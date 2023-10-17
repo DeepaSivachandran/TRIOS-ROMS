@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
@@ -130,6 +130,10 @@
             this.txtDCity = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.grpform2 = new System.Windows.Forms.TabPage();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.pnlStatusContact = new System.Windows.Forms.Panel();
+            this.rbInactiveContact = new System.Windows.Forms.RadioButton();
+            this.rbActiveContact = new System.Windows.Forms.RadioButton();
             this.txtStaffName = new System.Windows.Forms.TextBox();
             this.lblStaffName = new System.Windows.Forms.Label();
             this.btnAddContact = new System.Windows.Forms.Button();
@@ -144,6 +148,20 @@
             this.txtOperator = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdContactManager = new System.Windows.Forms.DataGridView();
+            this.clmContsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmWhatsAppNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPrimary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOperator = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMobileBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatusContactID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatusContact = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCMEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtMobilenumber = new System.Windows.Forms.TextBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.btnSaveContact = new System.Windows.Forms.Button();
@@ -153,18 +171,6 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmContsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmmobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmWhatsAppNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPrimary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOperator = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMobileBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCMEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tcCompanyDetails.SuspendLayout();
@@ -178,6 +184,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdBankDetails)).BeginInit();
             this.grbGovtRegisterationIds.SuspendLayout();
             this.grpform2.SuspendLayout();
+            this.pnlStatusContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
             this.SuspendLayout();
@@ -693,14 +700,14 @@
             this.grdBankDetails.AllowUserToResizeRows = false;
             this.grdBankDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdBankDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle34.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdBankDetails.ColumnHeadersHeight = 30;
             this.grdBankDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdBankDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -714,22 +721,22 @@
             this.clmsts,
             this.clmEdit,
             this.clmremovebank});
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdBankDetails.EnableHeadersVisualStyles = false;
             this.grdBankDetails.GridColor = System.Drawing.Color.White;
             this.grdBankDetails.Location = new System.Drawing.Point(6, 87);
             this.grdBankDetails.Name = "grdBankDetails";
             this.grdBankDetails.RowHeadersVisible = false;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.White;
-            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdBankDetails.RowTemplate.Height = 25;
             this.grdBankDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBankDetails.Size = new System.Drawing.Size(1277, 135);
@@ -1349,6 +1356,8 @@
             // 
             // grpform2
             // 
+            this.grpform2.Controls.Add(this.lblStatus);
+            this.grpform2.Controls.Add(this.pnlStatusContact);
             this.grpform2.Controls.Add(this.txtStaffName);
             this.grpform2.Controls.Add(this.lblStaffName);
             this.grpform2.Controls.Add(this.btnAddContact);
@@ -1376,13 +1385,55 @@
             this.grpform2.UseVisualStyleBackColor = true;
             this.grpform2.Leave += new System.EventHandler(this.Grpform2_Leave);
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(1127, 12);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.TabIndex = 1111177;
+            this.lblStatus.Text = "Status";
+            // 
+            // pnlStatusContact
+            // 
+            this.pnlStatusContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlStatusContact.Controls.Add(this.rbInactiveContact);
+            this.pnlStatusContact.Controls.Add(this.rbActiveContact);
+            this.pnlStatusContact.Enabled = false;
+            this.pnlStatusContact.Location = new System.Drawing.Point(1128, 39);
+            this.pnlStatusContact.Name = "pnlStatusContact";
+            this.pnlStatusContact.Size = new System.Drawing.Size(150, 27);
+            this.pnlStatusContact.TabIndex = 1111176;
+            // 
+            // rbInactiveContact
+            // 
+            this.rbInactiveContact.AutoSize = true;
+            this.rbInactiveContact.Location = new System.Drawing.Point(72, 1);
+            this.rbInactiveContact.Name = "rbInactiveContact";
+            this.rbInactiveContact.Size = new System.Drawing.Size(70, 24);
+            this.rbInactiveContact.TabIndex = 1;
+            this.rbInactiveContact.Text = "Inactive";
+            this.rbInactiveContact.UseVisualStyleBackColor = true;
+            // 
+            // rbActiveContact
+            // 
+            this.rbActiveContact.AutoSize = true;
+            this.rbActiveContact.Checked = true;
+            this.rbActiveContact.Location = new System.Drawing.Point(8, 1);
+            this.rbActiveContact.Name = "rbActiveContact";
+            this.rbActiveContact.Size = new System.Drawing.Size(60, 24);
+            this.rbActiveContact.TabIndex = 0;
+            this.rbActiveContact.TabStop = true;
+            this.rbActiveContact.Text = "Active";
+            this.rbActiveContact.UseVisualStyleBackColor = true;
+            // 
             // txtStaffName
             // 
             this.txtStaffName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtStaffName.Location = new System.Drawing.Point(1112, 39);
+            this.txtStaffName.Location = new System.Drawing.Point(953, 39);
             this.txtStaffName.MaxLength = 50;
             this.txtStaffName.Name = "txtStaffName";
-            this.txtStaffName.Size = new System.Drawing.Size(178, 27);
+            this.txtStaffName.Size = new System.Drawing.Size(169, 27);
             this.txtStaffName.TabIndex = 7;
             this.txtStaffName.Enter += new System.EventHandler(this.TxtStaffName_Enter);
             this.txtStaffName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStaffName_KeyDown);
@@ -1391,7 +1442,7 @@
             // lblStaffName
             // 
             this.lblStaffName.AutoSize = true;
-            this.lblStaffName.Location = new System.Drawing.Point(1112, 12);
+            this.lblStaffName.Location = new System.Drawing.Point(953, 12);
             this.lblStaffName.Name = "lblStaffName";
             this.lblStaffName.Size = new System.Drawing.Size(68, 20);
             this.lblStaffName.TabIndex = 1111175;
@@ -1402,7 +1453,7 @@
             this.btnAddContact.BackColor = System.Drawing.Color.White;
             this.btnAddContact.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAddContact.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAddContact.Location = new System.Drawing.Point(1293, 39);
+            this.btnAddContact.Location = new System.Drawing.Point(1284, 39);
             this.btnAddContact.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddContact.Name = "btnAddContact";
             this.btnAddContact.Size = new System.Drawing.Size(23, 27);
@@ -1415,7 +1466,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(911, 12);
+            this.label2.Location = new System.Drawing.Point(782, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 20);
             this.label2.TabIndex = 1111174;
@@ -1424,7 +1475,7 @@
             // lblOperator
             // 
             this.lblOperator.AutoSize = true;
-            this.lblOperator.Location = new System.Drawing.Point(710, 12);
+            this.lblOperator.Location = new System.Drawing.Point(611, 12);
             this.lblOperator.Name = "lblOperator";
             this.lblOperator.Size = new System.Drawing.Size(57, 20);
             this.lblOperator.TabIndex = 1111173;
@@ -1433,7 +1484,7 @@
             // cbPrimary
             // 
             this.cbPrimary.AutoSize = true;
-            this.cbPrimary.Location = new System.Drawing.Point(634, 40);
+            this.cbPrimary.Location = new System.Drawing.Point(541, 40);
             this.cbPrimary.Name = "cbPrimary";
             this.cbPrimary.Size = new System.Drawing.Size(70, 24);
             this.cbPrimary.TabIndex = 4;
@@ -1446,7 +1497,7 @@
             // cbWhatsApp
             // 
             this.cbWhatsApp.AutoSize = true;
-            this.cbWhatsApp.Location = new System.Drawing.Point(544, 40);
+            this.cbWhatsApp.Location = new System.Drawing.Point(460, 40);
             this.cbWhatsApp.Name = "cbWhatsApp";
             this.cbWhatsApp.Size = new System.Drawing.Size(84, 24);
             this.cbWhatsApp.TabIndex = 3;
@@ -1459,7 +1510,7 @@
             // lblMobileNo
             // 
             this.lblMobileNo.AutoSize = true;
-            this.lblMobileNo.Location = new System.Drawing.Point(384, 12);
+            this.lblMobileNo.Location = new System.Drawing.Point(339, 12);
             this.lblMobileNo.Name = "lblMobileNo";
             this.lblMobileNo.Size = new System.Drawing.Size(64, 20);
             this.lblMobileNo.TabIndex = 1111170;
@@ -1477,7 +1528,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(208, 10);
+            this.lblName.Location = new System.Drawing.Point(165, 10);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(39, 20);
             this.lblName.TabIndex = 1111168;
@@ -1486,10 +1537,10 @@
             // txtMobileBrand
             // 
             this.txtMobileBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMobileBrand.Location = new System.Drawing.Point(911, 39);
+            this.txtMobileBrand.Location = new System.Drawing.Point(782, 39);
             this.txtMobileBrand.MaxLength = 20;
             this.txtMobileBrand.Name = "txtMobileBrand";
-            this.txtMobileBrand.Size = new System.Drawing.Size(195, 27);
+            this.txtMobileBrand.Size = new System.Drawing.Size(167, 27);
             this.txtMobileBrand.TabIndex = 6;
             this.txtMobileBrand.Enter += new System.EventHandler(this.TxtMobileBrand_Enter);
             this.txtMobileBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobileBrand_KeyDown);
@@ -1498,10 +1549,10 @@
             // txtOperator
             // 
             this.txtOperator.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtOperator.Location = new System.Drawing.Point(710, 39);
+            this.txtOperator.Location = new System.Drawing.Point(611, 39);
             this.txtOperator.MaxLength = 20;
             this.txtOperator.Name = "txtOperator";
-            this.txtOperator.Size = new System.Drawing.Size(195, 27);
+            this.txtOperator.Size = new System.Drawing.Size(167, 27);
             this.txtOperator.TabIndex = 5;
             this.txtOperator.Enter += new System.EventHandler(this.TxtOperator_Enter);
             this.txtOperator.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtOperator_KeyDown);
@@ -1510,7 +1561,7 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtName.Location = new System.Drawing.Point(208, 39);
+            this.txtName.Location = new System.Drawing.Point(165, 39);
             this.txtName.MaxLength = 50;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(170, 27);
@@ -1523,24 +1574,22 @@
             // 
             this.grdContactManager.AllowUserToAddRows = false;
             this.grdContactManager.AllowUserToDeleteRows = false;
-            this.grdContactManager.AllowUserToResizeColumns = false;
             this.grdContactManager.AllowUserToResizeRows = false;
             this.grdContactManager.BackgroundColor = System.Drawing.Color.White;
             this.grdContactManager.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdContactManager.ColumnHeadersHeight = 30;
-            this.grdContactManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdContactManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmContsno,
-            this.clmName,
             this.clmTransaction,
+            this.clmName,
             this.clmmobile,
             this.clmWhatsAppNo,
             this.clmPrimary,
@@ -1548,25 +1597,27 @@
             this.clmMobileBrand,
             this.clmStaffName,
             this.clmid,
+            this.clmStatusContactID,
+            this.clmStatusContact,
             this.clmCMEdit,
             this.clmRemove});
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdContactManager.EnableHeadersVisualStyles = false;
             this.grdContactManager.GridColor = System.Drawing.Color.White;
             this.grdContactManager.Location = new System.Drawing.Point(13, 72);
             this.grdContactManager.Name = "grdContactManager";
             this.grdContactManager.ReadOnly = true;
             this.grdContactManager.RowHeadersVisible = false;
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.White;
-            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdContactManager.RowTemplate.Height = 25;
             this.grdContactManager.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdContactManager.Size = new System.Drawing.Size(1303, 472);
@@ -1574,13 +1625,110 @@
             this.grdContactManager.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdContactManager_CellContentClick);
             this.grdContactManager.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdContactManager_DataBindingComplete);
             // 
+            // clmContsno
+            // 
+            this.clmContsno.FillWeight = 50F;
+            this.clmContsno.HeaderText = "S.No.";
+            this.clmContsno.Name = "clmContsno";
+            this.clmContsno.ReadOnly = true;
+            this.clmContsno.Width = 50;
+            // 
+            // clmTransaction
+            // 
+            this.clmTransaction.HeaderText = "Transaction Type";
+            this.clmTransaction.Name = "clmTransaction";
+            this.clmTransaction.ReadOnly = true;
+            this.clmTransaction.Width = 125;
+            // 
+            // clmName
+            // 
+            this.clmName.HeaderText = "Name";
+            this.clmName.Name = "clmName";
+            this.clmName.ReadOnly = true;
+            // 
+            // clmmobile
+            // 
+            this.clmmobile.HeaderText = "Mobile No.";
+            this.clmmobile.Name = "clmmobile";
+            this.clmmobile.ReadOnly = true;
+            // 
+            // clmWhatsAppNo
+            // 
+            this.clmWhatsAppNo.HeaderText = "WhatsApp";
+            this.clmWhatsAppNo.Name = "clmWhatsAppNo";
+            this.clmWhatsAppNo.ReadOnly = true;
+            this.clmWhatsAppNo.Width = 70;
+            // 
+            // clmPrimary
+            // 
+            this.clmPrimary.HeaderText = "Primary";
+            this.clmPrimary.Name = "clmPrimary";
+            this.clmPrimary.ReadOnly = true;
+            this.clmPrimary.Width = 50;
+            // 
+            // clmOperator
+            // 
+            this.clmOperator.HeaderText = "Operator";
+            this.clmOperator.Name = "clmOperator";
+            this.clmOperator.ReadOnly = true;
+            this.clmOperator.Width = 120;
+            // 
+            // clmMobileBrand
+            // 
+            this.clmMobileBrand.HeaderText = "Mobile Brand";
+            this.clmMobileBrand.Name = "clmMobileBrand";
+            this.clmMobileBrand.ReadOnly = true;
+            this.clmMobileBrand.Width = 200;
+            // 
+            // clmStaffName
+            // 
+            this.clmStaffName.HeaderText = "Staff Name";
+            this.clmStaffName.Name = "clmStaffName";
+            this.clmStaffName.ReadOnly = true;
+            this.clmStaffName.Width = 150;
+            // 
+            // clmid
+            // 
+            this.clmid.HeaderText = "id";
+            this.clmid.Name = "clmid";
+            this.clmid.ReadOnly = true;
+            this.clmid.Visible = false;
+            // 
+            // clmStatusContactID
+            // 
+            this.clmStatusContactID.HeaderText = "Status ID";
+            this.clmStatusContactID.Name = "clmStatusContactID";
+            this.clmStatusContactID.ReadOnly = true;
+            this.clmStatusContactID.Visible = false;
+            // 
+            // clmStatusContact
+            // 
+            this.clmStatusContact.HeaderText = "Status";
+            this.clmStatusContact.Name = "clmStatusContact";
+            this.clmStatusContact.ReadOnly = true;
+            // 
+            // clmCMEdit
+            // 
+            this.clmCMEdit.HeaderText = "Edit";
+            this.clmCMEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmCMEdit.Name = "clmCMEdit";
+            this.clmCMEdit.ReadOnly = true;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.exclude;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // txtMobilenumber
             // 
             this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMobilenumber.Location = new System.Drawing.Point(384, 39);
+            this.txtMobilenumber.Location = new System.Drawing.Point(339, 39);
             this.txtMobilenumber.MaxLength = 10;
             this.txtMobilenumber.Name = "txtMobilenumber";
-            this.txtMobilenumber.Size = new System.Drawing.Size(154, 27);
+            this.txtMobilenumber.Size = new System.Drawing.Size(118, 27);
             this.txtMobilenumber.TabIndex = 2;
             this.txtMobilenumber.Enter += new System.EventHandler(this.TxtMobilenumber_Enter);
             this.txtMobilenumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobilenumber_KeyDown);
@@ -1593,7 +1741,7 @@
             this.cmbTransactionType.FormattingEnabled = true;
             this.cmbTransactionType.Location = new System.Drawing.Point(13, 39);
             this.cmbTransactionType.Name = "cmbTransactionType";
-            this.cmbTransactionType.Size = new System.Drawing.Size(189, 27);
+            this.cmbTransactionType.Size = new System.Drawing.Size(146, 27);
             this.cmbTransactionType.TabIndex = 0;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
             this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
@@ -1668,90 +1816,6 @@
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // clmContsno
-            // 
-            this.clmContsno.FillWeight = 50F;
-            this.clmContsno.HeaderText = "S.No.";
-            this.clmContsno.Name = "clmContsno";
-            this.clmContsno.ReadOnly = true;
-            this.clmContsno.Width = 50;
-            // 
-            // clmName
-            // 
-            this.clmName.HeaderText = "Name";
-            this.clmName.Name = "clmName";
-            this.clmName.ReadOnly = true;
-            // 
-            // clmTransaction
-            // 
-            this.clmTransaction.HeaderText = "Transaction Type";
-            this.clmTransaction.Name = "clmTransaction";
-            this.clmTransaction.ReadOnly = true;
-            this.clmTransaction.Width = 125;
-            // 
-            // clmmobile
-            // 
-            this.clmmobile.HeaderText = "Mobile No.";
-            this.clmmobile.Name = "clmmobile";
-            this.clmmobile.ReadOnly = true;
-            // 
-            // clmWhatsAppNo
-            // 
-            this.clmWhatsAppNo.HeaderText = "WhatsApp";
-            this.clmWhatsAppNo.Name = "clmWhatsAppNo";
-            this.clmWhatsAppNo.ReadOnly = true;
-            this.clmWhatsAppNo.Width = 70;
-            // 
-            // clmPrimary
-            // 
-            this.clmPrimary.HeaderText = "Primary";
-            this.clmPrimary.Name = "clmPrimary";
-            this.clmPrimary.ReadOnly = true;
-            this.clmPrimary.Width = 50;
-            // 
-            // clmOperator
-            // 
-            this.clmOperator.HeaderText = "Operator";
-            this.clmOperator.Name = "clmOperator";
-            this.clmOperator.ReadOnly = true;
-            this.clmOperator.Width = 120;
-            // 
-            // clmMobileBrand
-            // 
-            this.clmMobileBrand.HeaderText = "Mobile Brand";
-            this.clmMobileBrand.Name = "clmMobileBrand";
-            this.clmMobileBrand.ReadOnly = true;
-            this.clmMobileBrand.Width = 200;
-            // 
-            // clmStaffName
-            // 
-            this.clmStaffName.HeaderText = "Staff Name";
-            this.clmStaffName.Name = "clmStaffName";
-            this.clmStaffName.ReadOnly = true;
-            this.clmStaffName.Width = 150;
-            // 
-            // clmid
-            // 
-            this.clmid.HeaderText = "id";
-            this.clmid.Name = "clmid";
-            this.clmid.ReadOnly = true;
-            this.clmid.Visible = false;
-            // 
-            // clmCMEdit
-            // 
-            this.clmCMEdit.HeaderText = "Edit";
-            this.clmCMEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmCMEdit.Name = "clmCMEdit";
-            this.clmCMEdit.ReadOnly = true;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.exclude;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
             // CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1791,6 +1855,8 @@
             this.grbGovtRegisterationIds.PerformLayout();
             this.grpform2.ResumeLayout(false);
             this.grpform2.PerformLayout();
+            this.pnlStatusContact.ResumeLayout(false);
+            this.pnlStatusContact.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
             this.ResumeLayout(false);
@@ -1918,9 +1984,13 @@
         private System.Windows.Forms.Panel pnlBStatus;
         private System.Windows.Forms.TextBox txtStaffName;
         private System.Windows.Forms.Label lblStaffName;
+        private System.Windows.Forms.Panel pnlStatusContact;
+        private System.Windows.Forms.RadioButton rbInactiveContact;
+        private System.Windows.Forms.RadioButton rbActiveContact;
+        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmContsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransaction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmmobile;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmWhatsAppNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPrimary;
@@ -1928,6 +1998,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMobileBrand;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStaffName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatusContactID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatusContact;
         private System.Windows.Forms.DataGridViewImageColumn clmCMEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }

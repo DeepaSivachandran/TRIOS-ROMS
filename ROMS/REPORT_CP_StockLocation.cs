@@ -283,17 +283,17 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    txtLocation.Enabled = false; txtLocation.Text = "";
-                    cmbLocationType.Enabled = false;cmbLocationType.SelectedValue = 0;
-                    cmbGodownType.Enabled = false;cmbGodownType.SelectedValue = 0;
-                    cmbStatus.SelectedValue = 0;
+                    txtLocation.Enabled = false; 
+                    cmbLocationType.Enabled = false;
+                    cmbGodownType.Enabled = false;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
-                    txtLocation.Enabled = true; txtLocation.Text = "";
-                    cmbLocationType.Enabled = true; cmbLocationType.SelectedValue = 0;
-                    cmbGodownType.Enabled = true; cmbGodownType.SelectedValue = 0;
-                    cmbStatus.SelectedValue = 0;
+                    txtLocation.Enabled = true; 
+                    cmbLocationType.Enabled = true; 
+                    cmbGodownType.Enabled = true;
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -301,6 +301,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnClear()
+        {
+            txtLocation.Text = "";
+            cmbLocationType.SelectedValue = 0;
+            cmbGodownType.SelectedValue = 0;
+            cmbStatus.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {

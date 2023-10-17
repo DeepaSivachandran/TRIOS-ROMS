@@ -65,6 +65,7 @@ namespace ROMS
         {
             try
             {
+                lvCity.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -101,6 +102,7 @@ namespace ROMS
         {
             try
             {
+                lvCity.Visible = false;
                 if (cmbReportType.SelectedIndex == 0)
                 {
                     cmbReportType.Focus();
@@ -494,6 +496,7 @@ namespace ROMS
                     cmbSupplierType.Enabled = true;
                     cmbPaymentTerm.Enabled = true;
                     cmbStatus.Enabled = true;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
@@ -503,6 +506,7 @@ namespace ROMS
                     cmbReturnPolicy.Enabled = false;
                     cmbState.Enabled = true;
                     cmbStatus.Enabled = true;
+                    udfnClear();
                 }
                 if (cmbReportType.SelectedIndex == 3)
                 {
@@ -512,6 +516,7 @@ namespace ROMS
                     cmbReturnPolicy.Enabled = false;
                     cmbState.Enabled = true;
                     cmbStatus.Enabled = true;
+                    udfnClear();
                 }
                 if (cmbReportType.SelectedIndex == 4)
                 {
@@ -521,6 +526,7 @@ namespace ROMS
                     cmbState.Enabled = true;
                     cmbOrderType.Enabled = true;
                     cmbReturnPolicy.Enabled = true;
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -596,6 +602,10 @@ namespace ROMS
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbStatus.SelectedValue = 0;
+                cmbState.SelectedValue = 0;
+                cmbSupplierType.SelectedValue = 0;
+                cmbPaymentTerm.SelectedValue = 0;
+                cmbOrderType.SelectedValue = 0;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -607,7 +617,15 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnClear()
+        {
+            txtCity.Text = "";
+            cmbStatus.SelectedValue = 0;
+            cmbState.SelectedValue = 0;
+            cmbSupplierType.SelectedValue = 0;
+            cmbPaymentTerm.SelectedValue = 0;
+            cmbOrderType.SelectedValue = 0;
+        }
         private void REPORT_CP_Supplier_KeyDown(object sender, KeyEventArgs e)
         {
             try

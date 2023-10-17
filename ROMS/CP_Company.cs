@@ -47,8 +47,8 @@ namespace ROMS
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
         public string varupdate = "0";
-        public string varcompanyid="0",varstatusid ="0", varcontactcompanyid = "0", varSlNo = "0", varCMSlNo = "0";
-        public static int varCloseFlag = 0, varflag = 0;
+        public string varcompanyid="0",varstatusid ="0", varcontactcompanyid = "0", varSlNo = "0", varCMSlNo = "0", varstatus="";
+        public static int varCloseFlag = 0, varflag = 0, varstatusidContact = 1;
         string varNewfile = ""; string varFile = "";
         OpenFileDialog objfilelogo = new OpenFileDialog();
         public string pbLogoPath = "", pbCompanypath = "";
@@ -527,23 +527,28 @@ namespace ROMS
                 if (blnErrorFlag == false)
                 {
                     pnlBStatus.Enabled = false;
-                    if (varSlNo != "0") { varflag = 0; }
-                    else
-                    {
+                    //if (varSlNo != "0") { varflag = 0; }
+                    //else
+                    //{
                         foreach (DataGridViewRow row in grdBankDetails.Rows)
                         {
                             if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                             {
                                 string gridValue1 = row.Cells[1].Value.ToString();
-                                string gridValue2 = row.Cells[3].Value.ToString();
-
-                                if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                                string gridValue2 = row.Cells[3].Value.ToString();//varSlNo
+                                string varUpdateSlNo = row.Cells["clmsno"].Value.ToString();
+                                string varUpdateAccNo = row.Cells["clmaccno"].Value.ToString();
+                                if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim() && gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                                {
+                                    varflag = 1;
+                                }
+                                if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim())
                                 {
                                     varflag = 1;
                                 }
                             }
                         }
-                    }
+                    //}
                     if (varflag == 0)
                     {
                         if (rbBankActive.Checked == true)
@@ -2003,6 +2008,7 @@ namespace ROMS
             }
         }
         public void udfnSave(object sender, EventArgs e)
+
         {
             try
             {
@@ -2025,14 +2031,16 @@ namespace ROMS
                     DataTable objBankTable = new DataTable();
                     DataTable objContactTable = new DataTable();
                     objContactTable.TableName = "MR_Company_Contact";
-                    objContactTable.Columns.Add("CMCON_Name", typeof(string));
                     objContactTable.Columns.Add("CMCON_TransactionType", typeof(int));
+                    objContactTable.Columns.Add("CMCON_Name", typeof(string));
                     objContactTable.Columns.Add("CMCON_MobileNo", typeof(string));
                     objContactTable.Columns.Add("CMCON_Operator", typeof(string));
                     objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
                     objContactTable.Columns.Add("CMCON_Primary", typeof(int));
                     objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
                     objContactTable.Columns.Add("CMCON_StaffName", typeof(string));
+                    objContactTable.Columns.Add("CMCON_STSID", typeof(int));
+
                     int cityid = 0;string varpincode="";
                     if (lblcityid.Text=="")
                     {
@@ -2085,12 +2093,12 @@ namespace ROMS
                         //*********** copy file name & file path **************
                         File.Copy(objfilelogo.FileName, varNewfile, true);
                     }
-                    else
-                    {
-                        //************ Remove Image from Folder *******
-                        lblCompanyLogoPath.Text = "";
-                        lblCompanyLogoFilename.Text = "";
-                    }
+                    //else
+                    //{
+                    //    //************ Remove Image from Folder *******
+                    //    lblCompanyLogoPath.Text = "";
+                    //    lblCompanyLogoFilename.Text = "";
+                    //}
                     int varDefaultconcern = 0;
                     if (chkDefaultConcern.Checked==true)
                     {
@@ -2115,28 +2123,33 @@ namespace ROMS
                         txtCompanyName.Focus();
                         pnlBStatus.Enabled = false;
                         rbBankActive.Checked = true;
-                        if (btnSave.Text == "Update")
-                        {
-                            if (tcCompanyDetails.SelectedIndex == 1)
-                            {
-                                varupdate = "1";
-                                udfnClear();
-                                udfnclose();
-                            }
-                            else
-                            {
-                                tcCompanyDetails.SelectedIndex = 1;
-                            }
-                        }
-                        else
-                        { 
-                            varcontactcompanyid = varvalue[2];
-                        }
-                        if (tcCompanyDetails.SelectedIndex == 1)
-                        { 
-                            btnSaveContact.Text = "Update";
-                            btnSave.Text = "Update";
-                        }
+                        varupdate = "1";
+                        MainForm.objCP_Companylist.udfnList();
+                        udfnClear();
+                        udfnclose();
+                        //if (btnSave.Text == "Update")
+                        //{
+                        //    if (tcCompanyDetails.SelectedIndex == 1)
+                        //    {
+                        //        varupdate = "1";
+                        //        udfnClear();
+                        //        udfnclose();
+                        //    }
+                        //    else
+                        //    {
+                        //        tcCompanyDetails.SelectedIndex = 1;
+                        //    }
+                        //}
+                        //else
+                        //{ 
+                        //    varcontactcompanyid = varvalue[2];
+                        //    tcCompanyDetails.SelectedIndex = 1;
+                        //}
+                        //if (tcCompanyDetails.SelectedIndex == 1)
+                        //{ 
+                        //    btnSaveContact.Text = "Update";
+                        //    btnSave.Text = "Update";
+                        //}
                     }
                     else
                     {
@@ -3020,6 +3033,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    pnlStatusContact.Enabled = false;
                     var varcheckedvalue = "";
                     var varwhatsapp = "";
                     if (cbPrimary.Checked == true)
@@ -3039,21 +3053,27 @@ namespace ROMS
                         varwhatsapp = "No";
                     }
 
-                    if (varCMSlNo != "0") { varflag = 0; }
-                    else { 
-                        foreach (DataGridViewRow row in grdContactManager.Rows)
+                    //if (varCMSlNo != "0") { varflag = 0; }
+                    //else { 
+                    varflag = 0;
+                    foreach (DataGridViewRow row in grdContactManager.Rows)
                         {
                             if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                             {
                                 string gridValue1 = row.Cells[8].Value.ToString();
                                 string gridValue2 = row.Cells[5].Value.ToString();
                                 string gridValue4 = row.Cells[3].Value.ToString();
+                                string varSlNo = row.Cells["clmContsno"].Value.ToString();
 
-                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue4 == txtMobilenumber.Text)
+                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue4 == txtMobilenumber.Text && varSlNo != varCMSlNo)
                                 {
                                     varflag1 = 1;
                                 }
-                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue2 == varcheckedvalue)
+                                if (gridValue4 == txtMobilenumber.Text && varSlNo != varCMSlNo)
+                                {
+                                    varflag1 = 1;
+                                }
+                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue2 == varcheckedvalue && varSlNo != varCMSlNo)
                                 {
                                     varflag = 1;
                                     if (varflag == 1 && cbPrimary.Checked == true)
@@ -3063,7 +3083,7 @@ namespace ROMS
                                 }
                             }
                         }
-                    }
+                   // }
                     DataService objDser = new DataService();
                     string varvalue = "";
                     varvalue = objDser.displaydata("SELECT MST_DisplayText FROM  DEF_Master where MSTID = '"+ Convert.ToString(cmbTransactionType.SelectedValue) + "'");
@@ -3071,30 +3091,42 @@ namespace ROMS
 
                     if (varflag1==0 && varflag2 ==0)
                     {
+                        if (rbActiveContact.Checked == true)
+                        {
+                            varstatusidContact = 1;
+                            varstatus = "Active";
+                        }
+                        else
+                        {
+                            varstatusidContact =2;
+                            varstatus = "Inactive";
+                        }
                         if (varCMSlNo == "0")
                         {
-                            grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, txtName.Text, varvalue, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, txtStaffName.Text, Convert.ToString(cmbTransactionType.SelectedValue));
+                            grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, varvalue, txtName.Text, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, txtStaffName.Text, Convert.ToString(cmbTransactionType.SelectedValue), varstatusidContact,varstatus);
                         }
                         else {
                             for (int i = 0; i < grdContactManager.RowCount; i++)
                             {
                                 if (Convert.ToString(grdContactManager.Rows[i].Cells["clmContsno"].Value) == varCMSlNo)
                                 {
-                                    grdContactManager.Rows[i].Cells["clmName"].Value = txtName.Text;
                                     grdContactManager.Rows[i].Cells["clmTransaction"].Value = varvalue;
+                                    grdContactManager.Rows[i].Cells["clmName"].Value = txtName.Text;
                                     grdContactManager.Rows[i].Cells["clmmobile"].Value = txtMobilenumber.Text;
                                     grdContactManager.Rows[i].Cells["clmWhatsAppNo"].Value = varwhatsapp;
                                     grdContactManager.Rows[i].Cells["clmPrimary"].Value = varcheckedvalue;
                                     grdContactManager.Rows[i].Cells["clmOperator"].Value = txtOperator.Text;
                                     grdContactManager.Rows[i].Cells["clmMobileBrand"].Value = txtMobileBrand.Text;
                                     grdContactManager.Rows[i].Cells["clmStaffName"].Value = txtStaffName.Text;
+                                    grdContactManager.Rows[i].Cells["clmStatusContact"].Value = varstatus;
+                                    grdContactManager.Rows[i].Cells["clmStatusContactID"].Value = varstatusidContact;
                                     grdContactManager.Rows[i].Cells["clmid"].Value = Convert.ToString(cmbTransactionType.SelectedValue);
                                 }
                             }
                         }
                         udfnContactClear();
-                        //txtName.Focus();
                         cmbTransactionType.Focus();
+                        rbActiveContact.Checked = true;
                         grdContactManager.ClearSelection();
                         btnAddContact.Image = ROMS.Properties.Resources.plus;
                     }
@@ -3136,13 +3168,14 @@ namespace ROMS
                 txtMobileBrand.Text = "";
                 cbWhatsApp.Checked = false;
                 cbPrimary.Checked = false;
+                varCMSlNo = "0";
+                epCompany.Clear();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
        
@@ -3187,7 +3220,7 @@ namespace ROMS
                 objContactTable.Columns.Add("CMCON_Primary", typeof(int));
                 objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
                 objContactTable.Columns.Add("COMCON_StaffName", typeof(string));
-
+                objContactTable.Columns.Add("CMCON_STSID", typeof(int));
 
                 DataTable objBankTable = new DataTable();
                 objBankTable.TableName = "MR_Bank";
@@ -3218,10 +3251,9 @@ namespace ROMS
                     {
                         varwhatsapp = 0;
                     }
-
-                    objContactTable.Rows.Add(Convert.ToString(grdContactManager.Rows[i].Cells["clmName"].Value), Convert.ToInt32(grdContactManager.Rows[i].Cells["clmid"].Value),
+                    objContactTable.Rows.Add( Convert.ToString(grdContactManager.Rows[i].Cells["clmName"].Value), Convert.ToInt32(grdContactManager.Rows[i].Cells["clmid"].Value),
                     Convert.ToString(grdContactManager.Rows[i].Cells["clmmobile"].Value), Convert.ToString(grdContactManager.Rows[i].Cells["clmOperator"].Value),
-                    Convert.ToString(grdContactManager.Rows[i].Cells["clmMobileBrand"].Value),varprimary, varwhatsapp,Convert.ToString(grdContactManager.Rows[i].Cells["clmStaffName"].Value));
+                    Convert.ToString(grdContactManager.Rows[i].Cells["clmMobileBrand"].Value),varprimary, varwhatsapp,Convert.ToString(grdContactManager.Rows[i].Cells["clmStaffName"].Value), Convert.ToString(grdContactManager.Rows[i].Cells["clmStatusContactID"].Value));
                 }
                 if (Convert.ToInt32(varcontactcompanyid) != 0)
                 {
@@ -3552,8 +3584,8 @@ namespace ROMS
                             }
                             break;
                         case "clmCMEdit":
-                            txtName.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmName"].Value);
                             cmbTransactionType.SelectedValue = Convert.ToInt32(grdContactManager.Rows[e.RowIndex].Cells["clmid"].Value);
+                            txtName.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmName"].Value);
                             txtMobilenumber.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmmobile"].Value);
                             if (Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmWhatsAppNo"].Value) == "Yes") { cbWhatsApp.Checked = true; }
                             if (Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmPrimary"].Value) == "Yes") { cbPrimary.Checked = true; }
@@ -3561,9 +3593,20 @@ namespace ROMS
                             txtMobileBrand.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmMobileBrand"].Value);
                             txtStaffName.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmStaffName"].Value);
                             varCMSlNo = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmContsno"].Value);
+                            varstatus = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmStatusContact"].Value);
+                            varstatusidContact = Convert.ToInt32(grdContactManager.Rows[e.RowIndex].Cells["clmStatusContactID"].Value);
+                            pnlStatusContact.Enabled = true;
+                            if (varstatusidContact == 1)
+                            {
+                                rbActiveContact.Checked = true;
+                            }
+                            else if (varstatusidContact == 2)
+                            {
+                                rbInactiveContact.Checked = true;
+                            }
+                            tpName.Active = false;
                             btnAddContact.Image = ROMS.Properties.Resources.save16x16;
                             txtName.BackColor = Color.White;
-                            tpName.Active = false;
                             epCompany.Clear();
                             //txtName.Focus();
                             cmbTransactionType.Focus();
@@ -3695,11 +3738,13 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                             {
-                                grdContactManager.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[1].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[1].Rows[i]["TRANSACTIONNAME"]),
+                                grdContactManager.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[1].Rows[i]["TRANSACTIONNAME"]), Convert.ToString(objDS.Tables[1].Rows[i]["NAME"]),
                                 Convert.ToString(objDS.Tables[1].Rows[i]["MOBILE"]), Convert.ToString(objDS.Tables[1].Rows[i]["WHATSAPP"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRIMAY"])
-                                , Convert.ToString(objDS.Tables[1].Rows[i]["OPERATOR"]), Convert.ToString(objDS.Tables[1].Rows[i]["BRAND"]), Convert.ToString(objDS.Tables[1].Rows[i]["Staff Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["id"]));
+                                , Convert.ToString(objDS.Tables[1].Rows[i]["OPERATOR"]), Convert.ToString(objDS.Tables[1].Rows[i]["BRAND"]), Convert.ToString(objDS.Tables[1].Rows[i]["Staff Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["id"]), Convert.ToString(objDS.Tables[1].Rows[i]["StatusId"]), Convert.ToString(objDS.Tables[1].Rows[i]["Status"]));
+                               
                             }
                         }
+                       
                         if (objDS.Tables[2].Rows.Count > 0)
                         {
                             for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
@@ -3709,7 +3754,7 @@ namespace ROMS
                                 , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]));
                             }
                             btnSave.Text = "Update";
-                            btnSaveContact.Text = "Update"; ;
+                            btnSaveContact.Text = "Update"; 
 
                         }
 
@@ -4266,6 +4311,17 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void RbInactive_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RbInactive_Leave(object sender, EventArgs e)
+        {
+
+        }
+
 
         private void Grpform2_Leave(object sender, EventArgs e)
         {

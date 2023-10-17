@@ -433,6 +433,33 @@ namespace ROMS
                 GC.Collect();
             }
         }
+        public void udfnGroupValid()
+        {
+            /* Check product group is valid or not*/
+            string varId_Group = "0";
+            if (txtGroup.Text == "")
+            {
+                varId_Group = "0";
+            }
+            else
+            {
+                DataSet objDsGroup = new DataSet();
+                SPDataService objDServ1 = new SPDataService();
+                objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(), 0);
+                objDServ1.CloseConnection();
+                if (objDsGroup != null)
+                {
+                    if (objDsGroup.Tables.Count > 0)
+                    {
+                        if (objDsGroup.Tables[0].Rows.Count > 0)
+                        {
+                            varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
+            }
+            lblGroupCode.Text = Convert.ToString(varId_Group);
+        }
         private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -440,24 +467,24 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    txtBrand.Enabled = true; txtBrand.Text = "";
-                    txtGroup.Enabled = false;txtGroup.Text = "";
-                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
-                    cmbStatus.SelectedValue = 0;
+                    txtBrand.Enabled = true;
+                    txtGroup.Enabled = false;
+                    txtSubGroup.Enabled = false;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
-                    txtBrand.Enabled = true; txtBrand.Text = "";
-                    txtGroup.Enabled = true; txtGroup.Text = "";
-                    txtSubGroup.Enabled = true; txtSubGroup.Text = "";
-                    cmbStatus.SelectedValue = 0;
+                    txtBrand.Enabled = true;
+                    txtGroup.Enabled = true;
+                    txtSubGroup.Enabled = true;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==3)
                 {
-                    txtBrand.Enabled = false;txtBrand.Text = "";
-                    txtGroup.Enabled = false;txtGroup.Text = "";
-                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
-                    cmbStatus.SelectedValue = 0;
+                    txtBrand.Enabled = false;
+                    txtGroup.Enabled = false;
+                    txtSubGroup.Enabled = false;
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -465,6 +492,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnClear()
+        {
+            txtBrand.Text = "";
+            txtGroup.Text = "";
+            txtSubGroup.Text = "";
+            cmbStatus.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {
@@ -555,6 +589,7 @@ namespace ROMS
         {
             try
             {
+                udfnGroupValid();
                 lvGroup.Visible = false;
                 txtSubGroup.BackColor = Color.LemonChiffon;
             }

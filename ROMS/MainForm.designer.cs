@@ -106,6 +106,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.productToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -630,13 +631,14 @@ namespace ROMS
             this.companyToolStripMenuItem,
             this.hSNToolStripMenuItem,
             this.productGroupToolStripMenuItem,
-            this.productSubgroupToolStripMenuItem,
+            this.brokerToolStripMenuItem,
             this.brandToolStripMenuItem,
+            this.productSubgroupToolStripMenuItem,
             this.stockLocationToolStripMenuItem,
             this.rackToolStripMenuItem,
             this.rackGroupToolStripMenuItem,
-            this.brokerToolStripMenuItem,
-            this.supplierToolStripMenuItem});
+            this.supplierToolStripMenuItem,
+            this.productToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
             this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.mastersToolStripMenuItem1.Text = "Masters";
@@ -754,6 +756,13 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
+            // productToolStripMenuItem
+            // 
+            this.productToolStripMenuItem.Name = "productToolStripMenuItem";
+            this.productToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.productToolStripMenuItem.Text = "Product";
+            this.productToolStripMenuItem.Click += new System.EventHandler(this.ProductToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -859,5 +868,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem rackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rackGroupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supplierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productToolStripMenuItem;
     }
 }

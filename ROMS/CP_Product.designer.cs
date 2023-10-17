@@ -174,7 +174,7 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvHsnName = new System.Windows.Forms.ListView();
+            this.lvHsnCode = new System.Windows.Forms.ListView();
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -206,12 +206,14 @@
             // 
             // txtPICode
             // 
+            this.txtPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtPICode.Location = new System.Drawing.Point(160, 50);
             this.txtPICode.MaxLength = 10;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(337, 27);
             this.txtPICode.TabIndex = 2;
+            this.txtPICode.TextChanged += new System.EventHandler(this.TxtPICode_TextChanged);
             this.txtPICode.Enter += new System.EventHandler(this.TxtPICode_Enter);
             this.txtPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPICode_KeyDown);
             this.txtPICode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPICode_KeyPress);
@@ -272,7 +274,7 @@
             this.txtDHSNNumber.BackColor = System.Drawing.SystemColors.Control;
             this.txtDHSNNumber.Enabled = false;
             this.txtDHSNNumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDHSNNumber.Location = new System.Drawing.Point(10, 76);
+            this.txtDHSNNumber.Location = new System.Drawing.Point(11, 49);
             this.txtDHSNNumber.Name = "txtDHSNNumber";
             this.txtDHSNNumber.ReadOnly = true;
             this.txtDHSNNumber.Size = new System.Drawing.Size(111, 27);
@@ -291,7 +293,7 @@
             this.txtDSubGroup.Size = new System.Drawing.Size(139, 27);
             this.txtDSubGroup.TabIndex = 7;
             this.txtDSubGroup.TabStop = false;
-            this.txtDSubGroup.Text = "Product Sub Group";
+            this.txtDSubGroup.Text = "Product Subgroup";
             // 
             // txtDUnit
             // 
@@ -802,7 +804,7 @@
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox5.Location = new System.Drawing.Point(10, 49);
+            this.textBox5.Location = new System.Drawing.Point(11, 76);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(111, 27);
@@ -1514,12 +1516,12 @@
             // 
             // grpHsndetail
             // 
+            this.grpHsndetail.Controls.Add(this.textBox5);
             this.grpHsndetail.Controls.Add(this.lblHsnName);
             this.grpHsndetail.Controls.Add(this.txtHsnName);
             this.grpHsndetail.Controls.Add(this.cmbGst);
             this.grpHsndetail.Controls.Add(this.txtHSNCode);
             this.grpHsndetail.Controls.Add(this.textBox8);
-            this.grpHsndetail.Controls.Add(this.textBox5);
             this.grpHsndetail.Controls.Add(this.txtDHSNNumber);
             this.grpHsndetail.Location = new System.Drawing.Point(568, 440);
             this.grpHsndetail.Name = "grpHsndetail";
@@ -1539,10 +1541,12 @@
             // 
             // txtHsnName
             // 
+            this.txtHsnName.Enabled = false;
             this.txtHsnName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsnName.Location = new System.Drawing.Point(121, 49);
+            this.txtHsnName.Location = new System.Drawing.Point(122, 76);
             this.txtHsnName.MaxLength = 50;
             this.txtHsnName.Name = "txtHsnName";
+            this.txtHsnName.ReadOnly = true;
             this.txtHsnName.Size = new System.Drawing.Size(145, 27);
             this.txtHsnName.TabIndex = 34;
             this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
@@ -1554,7 +1558,7 @@
             // 
             this.cmbGst.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGst.FormattingEnabled = true;
-            this.cmbGst.Location = new System.Drawing.Point(121, 22);
+            this.cmbGst.Location = new System.Drawing.Point(122, 22);
             this.cmbGst.Name = "cmbGst";
             this.cmbGst.Size = new System.Drawing.Size(145, 27);
             this.cmbGst.TabIndex = 33;
@@ -1566,22 +1570,24 @@
             // 
             // txtHSNCode
             // 
-            this.txtHSNCode.Enabled = false;
             this.txtHSNCode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHSNCode.Location = new System.Drawing.Point(121, 76);
-            this.txtHSNCode.MaxLength = 50;
+            this.txtHSNCode.Location = new System.Drawing.Point(122, 49);
+            this.txtHSNCode.MaxLength = 8;
             this.txtHSNCode.Name = "txtHSNCode";
-            this.txtHSNCode.ReadOnly = true;
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
             this.txtHSNCode.TabIndex = 33;
             this.txtHSNCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHSNCode.TextChanged += new System.EventHandler(this.TxtHSNCode_TextChanged);
+            this.txtHSNCode.Enter += new System.EventHandler(this.TxtHSNCode_Enter);
+            this.txtHSNCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHSNCode_KeyDown);
+            this.txtHSNCode.Leave += new System.EventHandler(this.TxtHSNCode_Leave);
             // 
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.SystemColors.Control;
             this.textBox8.Enabled = false;
             this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox8.Location = new System.Drawing.Point(10, 22);
+            this.textBox8.Location = new System.Drawing.Point(11, 22);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(111, 27);
@@ -1886,31 +1892,31 @@
             // 
             this.columnHeader25.Width = 0;
             // 
-            // lvHsnName
+            // lvHsnCode
             // 
-            this.lvHsnName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvHsnCode.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader10,
             this.columnHeader30,
             this.columnHeader31});
-            this.lvHsnName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvHsnName.HideSelection = false;
-            this.lvHsnName.Location = new System.Drawing.Point(689, 517);
-            this.lvHsnName.Name = "lvHsnName";
-            this.lvHsnName.Size = new System.Drawing.Size(156, 78);
-            this.lvHsnName.TabIndex = 128;
-            this.lvHsnName.UseCompatibleStateImageBehavior = false;
-            this.lvHsnName.View = System.Windows.Forms.View.Details;
-            this.lvHsnName.Visible = false;
-            this.lvHsnName.DoubleClick += new System.EventHandler(this.LvHsnName_DoubleClick);
-            this.lvHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvHsnName_KeyDown);
+            this.lvHsnCode.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvHsnCode.HideSelection = false;
+            this.lvHsnCode.Location = new System.Drawing.Point(578, 517);
+            this.lvHsnCode.Name = "lvHsnCode";
+            this.lvHsnCode.Size = new System.Drawing.Size(257, 78);
+            this.lvHsnCode.TabIndex = 128;
+            this.lvHsnCode.UseCompatibleStateImageBehavior = false;
+            this.lvHsnCode.View = System.Windows.Forms.View.Details;
+            this.lvHsnCode.Visible = false;
+            this.lvHsnCode.DoubleClick += new System.EventHandler(this.LvHsnName_DoubleClick);
+            this.lvHsnCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvHsnName_KeyDown);
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Width = 80;
+            this.columnHeader10.Width = 120;
             // 
             // columnHeader30
             // 
-            this.columnHeader30.Width = 80;
+            this.columnHeader30.Width = 100;
             // 
             // columnHeader31
             // 
@@ -1922,7 +1928,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(859, 674);
-            this.Controls.Add(this.lvHsnName);
+            this.Controls.Add(this.lvHsnCode);
             this.Controls.Add(this.lvGroup);
             this.Controls.Add(this.lvBrand);
             this.Controls.Add(this.lvSaleLocation);
@@ -2129,7 +2135,7 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.ComboBox cmbGst;
         private System.Windows.Forms.TextBox txtHsnName;
-        public System.Windows.Forms.ListView lvHsnName;
+        public System.Windows.Forms.ListView lvHsnCode;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader30;
         private System.Windows.Forms.ColumnHeader columnHeader31;

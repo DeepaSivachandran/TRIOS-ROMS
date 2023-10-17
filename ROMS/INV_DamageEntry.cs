@@ -19,8 +19,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
-        
         public void udfnclose()
         {
             try
@@ -56,9 +54,9 @@ namespace ROMS
             {
                 grpproductname.Visible = true;
                 txtsuppliername.Enabled = true;
-                
             }
-            else {
+            else
+            {
                 grpproductname.Visible = false;
                 txtsuppliername.Enabled = false;
                 //cmbvoucherno.Enabled = false;
@@ -67,27 +65,133 @@ namespace ROMS
             }
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private void CmbConcern_Enter(object sender, EventArgs e)
         {
+            try
+            {
+                cmbConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epDamageEntry.SetError(cmbConcern, "Please select company");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //tpcompanyname.ShowAlways = true;
+                    //tpcompanyname.Show("Please select company", cmbConcern, 5000);
+                }
+                else
+                {
+                    epDamageEntry.Clear();
+                    cmbConcern.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpEntryDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtProductName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
-        private void Txtsuppliername_TextChanged(object sender, EventArgs e)
+        private void TxtProductName_Leave(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (txtProductName.Text == "")
+                {
+                    epDamageEntry.SetError(txtProductName, "Please enter product name or P.I Code");
+                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //tpplno.ShowAlways = true;
+                    //tpplno.Show("Please enter product name or P.I Code", txtProductName, 5000);
+                }
+                else
+                {
+                    txtProductName.BackColor = Color.White;
+                    epDamageEntry.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-
-        private void Btnsaveasdraft_Click(object sender, EventArgs e)
+        private void TxtMrp_Enter(object sender, EventArgs e)
         {
-
+            try
+            {
+                txtMrp.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-
-        private void LblMrp_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtMrp_TextChanged(object sender, EventArgs e)
+        private void TxtMrp_Leave(object sender, EventArgs e)
         {
 
         }

@@ -20,12 +20,15 @@ namespace ROMS
         public static string pbVersion = "1.0.1";
         public static string pbUserID = "";
         public static string pbUserName = "";
+        public static string pbLoginId = "";
         public static string pbUserRoleId;
         public static string pbView;
         public static string pbSelectedMenu;
         public static string pbIpAddress = "";
         public static string pbHostName = "";
         public static string pbUserRoleName = "";
+        public static string pbUserPassKey = "";
+        public static string pbUserPassKeyValue = "";
         public static string pbReleaseDt = "";
         public static string pbSSSSoftwareName = "";
         public static string pbRomsSoftwareName = "";
@@ -164,7 +167,10 @@ namespace ROMS
         public static REPORT_CP_Rack objREPORT_CP_Rack;
         public static REPORT_CP_Rackgroup objREPORT_CP_Rackgroup;
         public static REPORT_CP_Supplier objREPORT_CP_Supplier;
-
+        public static REPORT_CP_Product objREPORT_CP_Product;
+        public static CP_Verify objCP_Verify;
+         
+        //public static CP_SL_Verify objCP_SL_Verify;
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
@@ -907,9 +913,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_Settings = new CP_Settings();
-                MainForm.objCP_Settings.MdiParent = this;
-                MainForm.objCP_Settings.Show();
+                MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
+                MainForm.objCP_GeneralSettings.MdiParent = this;
+                MainForm.objCP_GeneralSettings.Show();
             }
             catch (Exception ex)
             {
@@ -1108,21 +1114,20 @@ namespace ROMS
         }
 
         private void TsmgeneralSettings_Click(object sender, EventArgs e)
-        {
+        { 
             try
-            { 
-                 udfnCloseChildForms();
+            {
+                udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
-                MainForm.objCP_GeneralSettings.MdiParent = this;
-                MainForm.objCP_GeneralSettings.Show();
+                MainForm.objCP_Settings = new CP_Settings();
+                MainForm.objCP_Settings.MdiParent = this;
+                MainForm.objCP_Settings.Show();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void TsmBulkAttr_Click(object sender, EventArgs e)
@@ -1440,6 +1445,23 @@ namespace ROMS
                 MainForm.objREPORT_CP_Supplier = new REPORT_CP_Supplier();
                 MainForm.objREPORT_CP_Supplier.MdiParent = this;
                 MainForm.objREPORT_CP_Supplier.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProductToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Product = new REPORT_CP_Product();
+                MainForm.objREPORT_CP_Product.MdiParent = this;
+                MainForm.objREPORT_CP_Product.Show();
             }
             catch (Exception ex)
             {
