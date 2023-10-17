@@ -527,23 +527,28 @@ namespace ROMS
                 if (blnErrorFlag == false)
                 {
                     pnlBStatus.Enabled = false;
-                    if (varSlNo != "0") { varflag = 0; }
-                    else
-                    {
+                    //if (varSlNo != "0") { varflag = 0; }
+                    //else
+                    //{
                         foreach (DataGridViewRow row in grdBankDetails.Rows)
                         {
                             if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                             {
                                 string gridValue1 = row.Cells[1].Value.ToString();
-                                string gridValue2 = row.Cells[3].Value.ToString();
-
-                                if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                                string gridValue2 = row.Cells[3].Value.ToString();//varSlNo
+                                string varUpdateSlNo = row.Cells["clmsno"].Value.ToString();
+                                string varUpdateAccNo = row.Cells["clmaccno"].Value.ToString();
+                                if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim() && gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                                {
+                                    varflag = 1;
+                                }
+                                if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim())
                                 {
                                     varflag = 1;
                                 }
                             }
                         }
-                    }
+                    //}
                     if (varflag == 0)
                     {
                         if (rbBankActive.Checked == true)
@@ -2088,12 +2093,12 @@ namespace ROMS
                         //*********** copy file name & file path **************
                         File.Copy(objfilelogo.FileName, varNewfile, true);
                     }
-                    else
-                    {
-                        //************ Remove Image from Folder *******
-                        lblCompanyLogoPath.Text = "";
-                        lblCompanyLogoFilename.Text = "";
-                    }
+                    //else
+                    //{
+                    //    //************ Remove Image from Folder *******
+                    //    lblCompanyLogoPath.Text = "";
+                    //    lblCompanyLogoFilename.Text = "";
+                    //}
                     int varDefaultconcern = 0;
                     if (chkDefaultConcern.Checked==true)
                     {
@@ -2118,29 +2123,33 @@ namespace ROMS
                         txtCompanyName.Focus();
                         pnlBStatus.Enabled = false;
                         rbBankActive.Checked = true;
-                        if (btnSave.Text == "Update")
-                        {
-                            if (tcCompanyDetails.SelectedIndex == 1)
-                            {
-                                varupdate = "1";
-                                udfnClear();
-                                udfnclose();
-                            }
-                            else
-                            {
-                                tcCompanyDetails.SelectedIndex = 1;
-                            }
-                        }
-                        else
-                        { 
-                            varcontactcompanyid = varvalue[2];
-                            tcCompanyDetails.SelectedIndex = 1;
-                        }
-                        if (tcCompanyDetails.SelectedIndex == 1)
-                        { 
-                            btnSaveContact.Text = "Update";
-                            btnSave.Text = "Update";
-                        }
+                        varupdate = "1";
+                        MainForm.objCP_Companylist.udfnList();
+                        udfnClear();
+                        udfnclose();
+                        //if (btnSave.Text == "Update")
+                        //{
+                        //    if (tcCompanyDetails.SelectedIndex == 1)
+                        //    {
+                        //        varupdate = "1";
+                        //        udfnClear();
+                        //        udfnclose();
+                        //    }
+                        //    else
+                        //    {
+                        //        tcCompanyDetails.SelectedIndex = 1;
+                        //    }
+                        //}
+                        //else
+                        //{ 
+                        //    varcontactcompanyid = varvalue[2];
+                        //    tcCompanyDetails.SelectedIndex = 1;
+                        //}
+                        //if (tcCompanyDetails.SelectedIndex == 1)
+                        //{ 
+                        //    btnSaveContact.Text = "Update";
+                        //    btnSave.Text = "Update";
+                        //}
                     }
                     else
                     {
@@ -3044,21 +3053,27 @@ namespace ROMS
                         varwhatsapp = "No";
                     }
 
-                    if (varCMSlNo != "0") { varflag = 0; }
-                    else { 
-                        foreach (DataGridViewRow row in grdContactManager.Rows)
+                    //if (varCMSlNo != "0") { varflag = 0; }
+                    //else { 
+                    varflag = 0;
+                    foreach (DataGridViewRow row in grdContactManager.Rows)
                         {
                             if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                             {
                                 string gridValue1 = row.Cells[8].Value.ToString();
                                 string gridValue2 = row.Cells[5].Value.ToString();
                                 string gridValue4 = row.Cells[3].Value.ToString();
+                                string varSlNo = row.Cells["clmContsno"].Value.ToString();
 
-                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue4 == txtMobilenumber.Text)
+                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue4 == txtMobilenumber.Text && varSlNo != varCMSlNo)
                                 {
                                     varflag1 = 1;
                                 }
-                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue2 == varcheckedvalue)
+                                if (gridValue4 == txtMobilenumber.Text && varSlNo != varCMSlNo)
+                                {
+                                    varflag1 = 1;
+                                }
+                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue2 == varcheckedvalue && varSlNo != varCMSlNo)
                                 {
                                     varflag = 1;
                                     if (varflag == 1 && cbPrimary.Checked == true)
@@ -3068,7 +3083,7 @@ namespace ROMS
                                 }
                             }
                         }
-                    }
+                   // }
                     DataService objDser = new DataService();
                     string varvalue = "";
                     varvalue = objDser.displaydata("SELECT MST_DisplayText FROM  DEF_Master where MSTID = '"+ Convert.ToString(cmbTransactionType.SelectedValue) + "'");
