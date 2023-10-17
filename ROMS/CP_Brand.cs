@@ -1351,13 +1351,16 @@ namespace ROMS
                 {
                     varGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
                     varmasterBrandtype = 0;
+                    // grdGroup.SelectedRows[0].Cells[0].ReadOnly = true;
                     udfnSubGroupList();
+
                 }
                 else
                 {
                     DataTable objDtNew = new DataTable();
                     int varRowCount = dtSubGroup.Rows.Count;
                     varRemoveGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
+                // grdGroup.SelectedRows[0].Cells[0].ReadOnly = true;
                 l: for (int i = 0; i < varRowCount; i++)
                     {
                         if (varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["Group ID"]))
@@ -1376,11 +1379,15 @@ namespace ROMS
                 grdSubGroup.Columns["Product Subgroup"].Width = 200;
                 grdSubGroup.Columns["Group Id"].Visible = false;
                 grdSubGroup.Columns["Sub Group Id"].Visible = false;
+                // grdGroup.SelectedRows[0].Cells[0].ReadOnly = false;
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            { //grdGroup.ReadOnly = false; 
             }
         }
         private void GrdGroup_CurrentCellDirtyStateChanged(object sender, EventArgs e)

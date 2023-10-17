@@ -44,6 +44,8 @@
             this.pnlRack = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblInactiveCount = new System.Windows.Forms.Label();
             this.lblInActive = new System.Windows.Forms.Label();
             this.lblActiveCount = new System.Windows.Forms.Label();
@@ -56,6 +58,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tsGroupList.SuspendLayout();
             this.pnlRack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -189,7 +192,6 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            this.DGV_SearchGrid.RowHeadersWidth = 70;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
@@ -198,18 +200,19 @@
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
-            this.DGV_SearchGrid.TabIndex = 958804;
+            this.DGV_SearchGrid.TabIndex = 958801;
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
-            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
-            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // grbFilterBy
             // 
+            this.grbFilterBy.Controls.Add(this.label2);
+            this.grbFilterBy.Controls.Add(this.label1);
+            this.grbFilterBy.Controls.Add(this.cmbStatus);
             this.grbFilterBy.Controls.Add(this.lblInactiveCount);
             this.grbFilterBy.Controls.Add(this.lblInActive);
             this.grbFilterBy.Controls.Add(this.lblActiveCount);
@@ -226,7 +229,30 @@
             this.grbFilterBy.Size = new System.Drawing.Size(1348, 67);
             this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
-            this.grbFilterBy.Text = "Filter By Rack Group";
+            this.grbFilterBy.Text = "Filter By ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(8, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 20);
+            this.label1.TabIndex = 958808;
+            this.label1.Text = "Rack Group";
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(272, 26);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(126, 27);
+            this.cmbStatus.TabIndex = 1;
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
             // 
             // lblInactiveCount
             // 
@@ -234,7 +260,7 @@
             this.lblInactiveCount.BackColor = System.Drawing.Color.Tomato;
             this.lblInactiveCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblInactiveCount.ForeColor = System.Drawing.Color.White;
-            this.lblInactiveCount.Location = new System.Drawing.Point(606, 29);
+            this.lblInactiveCount.Location = new System.Drawing.Point(851, 29);
             this.lblInactiveCount.Name = "lblInactiveCount";
             this.lblInactiveCount.Size = new System.Drawing.Size(41, 20);
             this.lblInactiveCount.TabIndex = 958807;
@@ -245,7 +271,7 @@
             this.lblInActive.AutoSize = true;
             this.lblInActive.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lblInActive.ForeColor = System.Drawing.Color.Black;
-            this.lblInActive.Location = new System.Drawing.Point(542, 29);
+            this.lblInActive.Location = new System.Drawing.Point(787, 29);
             this.lblInActive.Name = "lblInActive";
             this.lblInActive.Size = new System.Drawing.Size(58, 20);
             this.lblInActive.TabIndex = 958806;
@@ -257,7 +283,7 @@
             this.lblActiveCount.BackColor = System.Drawing.Color.LimeGreen;
             this.lblActiveCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblActiveCount.ForeColor = System.Drawing.Color.White;
-            this.lblActiveCount.Location = new System.Drawing.Point(495, 29);
+            this.lblActiveCount.Location = new System.Drawing.Point(740, 29);
             this.lblActiveCount.Name = "lblActiveCount";
             this.lblActiveCount.Size = new System.Drawing.Size(41, 20);
             this.lblActiveCount.TabIndex = 958805;
@@ -268,7 +294,7 @@
             this.lblActive.AutoSize = true;
             this.lblActive.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lblActive.ForeColor = System.Drawing.Color.Black;
-            this.lblActive.Location = new System.Drawing.Point(441, 29);
+            this.lblActive.Location = new System.Drawing.Point(686, 29);
             this.lblActive.Name = "lblActive";
             this.lblActive.Size = new System.Drawing.Size(48, 20);
             this.lblActive.TabIndex = 958804;
@@ -278,10 +304,10 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(233, 25);
+            this.btnExport.Location = new System.Drawing.Point(483, 26);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
-            this.btnExport.TabIndex = 2;
+            this.btnExport.TabIndex = 3;
             this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
@@ -295,7 +321,7 @@
             this.lblGC.BackColor = System.Drawing.Color.CornflowerBlue;
             this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblGC.ForeColor = System.Drawing.Color.White;
-            this.lblGC.Location = new System.Drawing.Point(394, 29);
+            this.lblGC.Location = new System.Drawing.Point(639, 29);
             this.lblGC.Name = "lblGC";
             this.lblGC.Size = new System.Drawing.Size(41, 20);
             this.lblGC.TabIndex = 958803;
@@ -305,10 +331,10 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(152, 25);
+            this.btnView.Location = new System.Drawing.Point(404, 26);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 1;
+            this.btnView.TabIndex = 2;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -321,7 +347,7 @@
             this.lblRack.AutoSize = true;
             this.lblRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lblRack.ForeColor = System.Drawing.Color.Black;
-            this.lblRack.Location = new System.Drawing.Point(318, 29);
+            this.lblRack.Location = new System.Drawing.Point(563, 29);
             this.lblRack.Name = "lblRack";
             this.lblRack.Size = new System.Drawing.Size(76, 20);
             this.lblRack.TabIndex = 958802;
@@ -330,7 +356,7 @@
             // cmbGroupType
             // 
             this.cmbGroupType.FormattingEnabled = true;
-            this.cmbGroupType.Location = new System.Drawing.Point(9, 26);
+            this.cmbGroupType.Location = new System.Drawing.Point(81, 26);
             this.cmbGroupType.Name = "cmbGroupType";
             this.cmbGroupType.Size = new System.Drawing.Size(137, 27);
             this.cmbGroupType.TabIndex = 0;
@@ -409,6 +435,17 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(221, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 20);
+            this.label2.TabIndex = 958809;
+            this.label2.Text = "Status";
+            // 
             // CP_RackList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -450,7 +487,6 @@
         public System.Windows.Forms.ToolStripSeparator tssNew;
         public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlRack;
-        public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblGC;
         private System.Windows.Forms.Label lblRack;
         private System.Windows.Forms.GroupBox grbFilterBy;
@@ -464,5 +500,9 @@
         private System.Windows.Forms.Label lblActiveCount;
         private System.Windows.Forms.Label lblInActive;
         private System.Windows.Forms.Label lblInactiveCount;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        public System.Windows.Forms.DataGridView DGV_SearchGrid;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -240,24 +240,24 @@ namespace ROMS
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
 
-                //if (pnlGodownType.Enabled == false)
-                //{
-                //    rbInside.Checked = false;
-                //    rbOutside.Checked = false;
-                //    varGodownType = 0;
-                //}
-                //else
-                //{
+                if (pnlGodownType.Enabled == false)
+                {
+                    rbInside.Checked = false;
+                    rbOutside.Checked = false;
+                    varGodownType = 0;
+                }
+                else
+                {
                     if (rbInside.Checked == true)
                     {
-                        varGodownType = 86;
+                        varGodownType = 86; 
                     }
                     else
                     {
                         varGodownType = 87;
                     }
-                //}
-                 
+                }
+
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;

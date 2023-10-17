@@ -209,7 +209,7 @@
             this.txtPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtPICode.Location = new System.Drawing.Point(160, 50);
-            this.txtPICode.MaxLength = 10;
+            this.txtPICode.MaxLength = 20;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(337, 27);
             this.txtPICode.TabIndex = 2;
@@ -1576,7 +1576,6 @@
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
             this.txtHSNCode.TabIndex = 33;
-            this.txtHSNCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtHSNCode.TextChanged += new System.EventHandler(this.TxtHSNCode_TextChanged);
             this.txtHSNCode.Enter += new System.EventHandler(this.TxtHSNCode_Enter);
             this.txtHSNCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHSNCode_KeyDown);
