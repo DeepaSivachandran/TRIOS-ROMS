@@ -257,7 +257,7 @@ namespace ROMS
                 string varId_HSN = "0";
                 DataSet objDsHSN = new DataSet();
                 SPDataService objDs = new SPDataService();
-                objDsHSN = objDs.udfnHsnList(9, 0, 0,0,"",txtHSNCode.Text.Trim());
+                objDsHSN = objDs.udfnHsnList(9, 0, 0,0,txtHsnName.Text.Trim(),txtHSNCode.Text.Trim());
                 objDs.CloseConnection();
                 if (objDsHSN != null)
                 {
@@ -658,10 +658,10 @@ namespace ROMS
                     } 
                     if (varId_PurchaseRack != "0" && txtPurRack.Text=="")
                     {
-                        errItems.SetError(txtPurRack, "Please select Purchase rack");
+                        errItems.SetError(txtPurRack, "Please select valid purchase rack");
                         txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpsalesrack.ShowAlways = true;
-                        tpsalesrack.Show("Please select Purchase rack", txtPurRack, 5000);
+                        tpsalesrack.Show("Please select valid purchase rack", txtPurRack, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -5001,11 +5001,12 @@ namespace ROMS
                             txtWMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WMINSALE QTY"].ToString().Replace("''", "'"));
                             txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
                             txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'"));
+                            cmbGst.SelectedValue = objDS.Tables[0].Rows[0]["GSTID"].ToString();
                             lblHsnName.Text = objDS.Tables[0].Rows[0]["HSN"].ToString();
                             txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"].ToString().Replace("''", "'"));
                             txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"].ToString().Replace("''", "'"));
-                            cmbGst.SelectedValue = objDS.Tables[0].Rows[0]["GSTID"].ToString();
                             cmbNetQty.SelectedValue = objDS.Tables[0].Rows[0]["PR_QUTID"].ToString();
+                            lvHsnCode.Visible = false;
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
