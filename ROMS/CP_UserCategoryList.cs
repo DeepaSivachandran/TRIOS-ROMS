@@ -174,7 +174,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnUserCategoryList(0,0,Convert.ToInt32(cmbStatus.SelectedValue));
+                objDs = objspservice.udfnUserCategoryList(0,0,"",Convert.ToInt32(cmbStatus.SelectedValue));
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {

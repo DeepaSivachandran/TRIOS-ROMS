@@ -200,7 +200,7 @@ namespace ROMS
                     string varId_HSN = "0";
                     DataSet objDsHSN = new DataSet();
                     SPDataService objSPDS = new SPDataService();
-                    objDsHSN = objSPDS.udfnHsnList(7, 0, 0, 0, txtHsnName.Text.Trim());
+                    objDsHSN = objSPDS.udfnHsnList(7, 0, 0, 0, txtHsnName.Text.Trim(),"");
                     objSPDS.CloseConnection();
                     if (objDsHSN != null)
                     {
@@ -288,7 +288,7 @@ namespace ROMS
                     string varId_HSN = "0";
                     DataSet objDsHSN = new DataSet();
                     SPDataService objSPDS = new SPDataService();
-                    objDsHSN = objSPDS.udfnHsnList(7, 0, 0, 0, txtHsnName.Text.Trim());
+                    objDsHSN = objSPDS.udfnHsnList(7, 0, 0, 0, txtHsnName.Text.Trim(),"");
                     objSPDS.CloseConnection();
                     if (objDsHSN != null)
                     {
@@ -311,7 +311,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnHsnList(4, Convert.ToInt32(cmbHSN.SelectedValue), Convert.ToInt32(cmbGST.SelectedValue),0,"","");
+                objDs = objspservice.udfnHsnList(4, Convert.ToInt32(lblHsnName.Text), Convert.ToInt32(cmbGST.SelectedValue),0,"","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -614,7 +614,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsnName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0,0, 0, txtHsnName.Text.Trim());
+                    objDs = objspdservice.udfnHsnList(6, 0,0, 0, txtHsnName.Text.Trim(),"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

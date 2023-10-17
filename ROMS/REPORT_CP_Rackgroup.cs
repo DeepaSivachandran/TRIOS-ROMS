@@ -697,7 +697,7 @@ namespace ROMS
                 string varId_RackIncharge = "0";
                 DataSet objDsRackIncharge = new DataSet();
                 SPDataService objDServ4 = new SPDataService();
-                objDsRackIncharge = objDServ4.udfnEmployeeList(8,txtEmployeeName.Text.Trim(),0,"",0,0);
+                objDsRackIncharge = objDServ4.udfnEmployeeList(8,txtEmployeeName.Text.Trim(),0,"",0,0,0);
                 objDServ4.CloseConnection();
                 if (objDsRackIncharge != null)
                 {
