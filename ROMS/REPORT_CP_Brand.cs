@@ -671,10 +671,10 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                     lvSubGroup.Columns[0].Width = 200;
                                     lvSubGroup.Columns[1].Width = 200;
-                                    lvSubGroup.Columns[2].Width = 200;
+                                    lvSubGroup.Columns[2].Width = 0;
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
@@ -737,8 +737,6 @@ namespace ROMS
                     ListViewItem selectedItem = lvSubGroup.SelectedItems[0];
                     txtSubGroup.Text = selectedItem.SubItems[0].Text;
                     lblSubGroupCode.Text = selectedItem.SubItems[2].Text;
-                    txtGroup.Text = selectedItem.SubItems[4].Text;
-                    lblGroupCode.Text = selectedItem.SubItems[5].Text;
                     lvSubGroup.Visible = false;
                 }
             }

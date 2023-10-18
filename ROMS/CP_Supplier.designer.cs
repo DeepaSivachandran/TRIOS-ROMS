@@ -219,7 +219,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
-            this.lblOrderDay = new System.Windows.Forms.Label();
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.cmbMappedorderrype = new System.Windows.Forms.ComboBox();
@@ -238,6 +237,8 @@
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtMappedOrderDay = new System.Windows.Forms.TextBox();
+            this.txtSupplierOrderDays = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -1890,6 +1891,7 @@
             // grpSupplierMapping
             // 
             this.grpSupplierMapping.BackColor = System.Drawing.Color.White;
+            this.grpSupplierMapping.Controls.Add(this.txtSupplierOrderDays);
             this.grpSupplierMapping.Controls.Add(this.lblOrderTypeId);
             this.grpSupplierMapping.Controls.Add(this.txtordertype);
             this.grpSupplierMapping.Controls.Add(this.cmbMappingorderschedule);
@@ -1915,7 +1917,7 @@
             // lblOrderTypeId
             // 
             this.lblOrderTypeId.AutoSize = true;
-            this.lblOrderTypeId.Location = new System.Drawing.Point(827, 33);
+            this.lblOrderTypeId.Location = new System.Drawing.Point(905, 33);
             this.lblOrderTypeId.Name = "lblOrderTypeId";
             this.lblOrderTypeId.Size = new System.Drawing.Size(16, 20);
             this.lblOrderTypeId.TabIndex = 958806;
@@ -1984,10 +1986,9 @@
             this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(607, 14);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 20);
+            this.label8.Size = new System.Drawing.Size(69, 20);
             this.label8.TabIndex = 958801;
-            this.label8.Text = "Order Day";
-            this.label8.Visible = false;
+            this.label8.Text = "Order Days";
             // 
             // label9
             // 
@@ -2500,7 +2501,7 @@
             // 
             // grpSchedule
             // 
-            this.grpSchedule.Controls.Add(this.lblOrderDay);
+            this.grpSchedule.Controls.Add(this.txtMappedOrderDay);
             this.grpSchedule.Controls.Add(this.txtSearchByProduct2);
             this.grpSchedule.Controls.Add(this.lblSearchByProduct2);
             this.grpSchedule.Controls.Add(this.cmbMappedorderrype);
@@ -2523,19 +2524,10 @@
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
             // 
-            // lblOrderDay
-            // 
-            this.lblOrderDay.AutoSize = true;
-            this.lblOrderDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrderDay.Location = new System.Drawing.Point(837, 40);
-            this.lblOrderDay.Name = "lblOrderDay";
-            this.lblOrderDay.Size = new System.Drawing.Size(0, 20);
-            this.lblOrderDay.TabIndex = 958825;
-            // 
             // txtSearchByProduct2
             // 
             this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchByProduct2.Location = new System.Drawing.Point(598, 37);
+            this.txtSearchByProduct2.Location = new System.Drawing.Point(761, 37);
             this.txtSearchByProduct2.MaxLength = 50;
             this.txtSearchByProduct2.Name = "txtSearchByProduct2";
             this.txtSearchByProduct2.Size = new System.Drawing.Size(233, 27);
@@ -2549,7 +2541,7 @@
             // 
             this.lblSearchByProduct2.AutoSize = true;
             this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchByProduct2.Location = new System.Drawing.Point(599, 12);
+            this.lblSearchByProduct2.Location = new System.Drawing.Point(761, 12);
             this.lblSearchByProduct2.Name = "lblSearchByProduct2";
             this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
             this.lblSearchByProduct2.TabIndex = 958810;
@@ -2677,10 +2669,9 @@
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(599, 12);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 20);
+            this.label7.Size = new System.Drawing.Size(69, 20);
             this.label7.TabIndex = 958818;
-            this.label7.Text = "Order Day";
-            this.label7.Visible = false;
+            this.label7.Text = "Order Days";
             // 
             // label6
             // 
@@ -2792,6 +2783,28 @@
             this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
+            // 
+            // txtMappedOrderDay
+            // 
+            this.txtMappedOrderDay.Enabled = false;
+            this.txtMappedOrderDay.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMappedOrderDay.Location = new System.Drawing.Point(599, 37);
+            this.txtMappedOrderDay.MaxLength = 50;
+            this.txtMappedOrderDay.Name = "txtMappedOrderDay";
+            this.txtMappedOrderDay.ReadOnly = true;
+            this.txtMappedOrderDay.Size = new System.Drawing.Size(156, 27);
+            this.txtMappedOrderDay.TabIndex = 958825;
+            // 
+            // txtSupplierOrderDays
+            // 
+            this.txtSupplierOrderDays.Enabled = false;
+            this.txtSupplierOrderDays.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplierOrderDays.Location = new System.Drawing.Point(607, 37);
+            this.txtSupplierOrderDays.MaxLength = 50;
+            this.txtSupplierOrderDays.Name = "txtSupplierOrderDays";
+            this.txtSupplierOrderDays.ReadOnly = true;
+            this.txtSupplierOrderDays.Size = new System.Drawing.Size(156, 27);
+            this.txtSupplierOrderDays.TabIndex = 958808;
             // 
             // CP_Supplier
             // 
@@ -3055,6 +3068,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.TextBox txtBrand;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblOrderDay;
+        private System.Windows.Forms.TextBox txtMappedOrderDay;
+        private System.Windows.Forms.TextBox txtSupplierOrderDays;
     }
 }
