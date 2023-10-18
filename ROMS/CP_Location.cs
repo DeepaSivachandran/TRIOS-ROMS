@@ -34,6 +34,7 @@ namespace ROMS
         public int PbLocationTypeID=0;
         public int PbStockApplicableID = 0;
         public string PbDefault;
+        public string PbRKCreationID;
         public int PbStatus = 0;
         public int PbGodownTypeStatus = 0;
         public int varUpdate = 0;
@@ -214,6 +215,19 @@ namespace ROMS
                 if (PbGodownTypeStatus == 86) { rbInside.Checked = true; } else { rbOutside.Checked = true; }
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if (PbStockApplicableID==11) { varStockApplicableId = PbStockApplicableID; }
+                if (PbRKCreationID == "1") { chkRKCreation.Checked = true; } else { chkRKCreation.Checked = false; }
+                if(PbDefault=="1" || PbDefault=="2")
+                {
+                    cmbConcern.Enabled = false;
+                    cmbLocationType.Enabled = false;
+                    txtLocationNameInEnglish.Enabled = false;
+                    txtLocationNameInTamil.Enabled = false;
+                    txtShortName.Enabled = false;
+                    pnlGodownType.Enabled = false;
+                    cmbStockApplicable.Enabled = false;
+                    pnlStatus.Enabled = false;
+                    chkRKCreation.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -258,6 +272,15 @@ namespace ROMS
                         varGodownType = 87;
                     }
                 }
+                int RKCheck = 0;
+                if(chkRKCreation.Checked==true)
+                {
+                    RKCheck = 1;
+                }
+                else
+                {
+                    RKCheck = 0;
+                }
 
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
@@ -281,13 +304,8 @@ namespace ROMS
                 }
                 else
                 {
-                    //if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11)
-                    //{ varVerify = 0;}
-                    //else
-                    //{
-                        varVerify = 1;
-                        saveflag = 0;
-                    //}
+                    varVerify = 1;
+                    saveflag = 0;
                 }
                 if (varVerify == 0)
                 {
@@ -303,7 +321,7 @@ namespace ROMS
                 }
                 if (saveflag == 0)
                 {
-                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID);
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID,RKCheck);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
