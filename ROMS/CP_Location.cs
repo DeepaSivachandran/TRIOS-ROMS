@@ -170,10 +170,10 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,4) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbStockApplicable, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                //if (MainForm.objCP_LocationList.varStockApplicable == 1)
-                //{
-                //    cmbStockApplicable.SelectedValue = 12;
-                //}
+                if (MainForm.objCP_LocationList.varStockApplicable == 1)
+                {
+                    cmbStockApplicable.SelectedValue = 12;
+                }
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
