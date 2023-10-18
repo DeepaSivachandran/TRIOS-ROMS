@@ -3126,6 +3126,11 @@ namespace ROMS
                         }
                         udfnContactClear();
                         this.grdContactManager.Sort(this.grdContactManager.Columns["clmid"], ListSortDirection.Ascending);
+                        for(int i=0;i<grdContactManager.Rows.Count;i++)
+                        {
+                            grdContactManager.Rows[i].Cells["clmContsno"].Value = i + 1;
+                        }
+                        grdContactManager.Columns["clmContsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         cmbTransactionType.Focus();
                         rbActiveContact.Checked = true;
                         grdContactManager.ClearSelection();
