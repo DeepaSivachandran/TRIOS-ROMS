@@ -735,7 +735,7 @@ namespace ROMS
                 if (txtLocation.Text.Length > 0)
                 {
 
-                    objDs = objspdservice.udfnStockLocationList(10,Convert.ToInt32(cmbConcern.SelectedValue),0,0, txtLocation.Text,0,0,0);
+                    objDs = objspdservice.udfnStockLocationList(20,Convert.ToInt32(cmbConcern.SelectedValue),0,0, txtLocation.Text,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
