@@ -257,7 +257,7 @@ namespace ROMS
                 string varId_HSN = "0";
                 DataSet objDsHSN = new DataSet();
                 SPDataService objDs = new SPDataService();
-                objDsHSN = objDs.udfnHsnList(9, 0, 0, 0, txtHsnName.Text.Trim(), txtHSNCode.Text.Trim());
+                objDsHSN = objDs.udfnHsnList(9, 0,Convert.ToInt32(cmbGst.SelectedValue), 0, txtHsnName.Text.Trim(), txtHSNCode.Text.Trim());
                 objDs.CloseConnection();
                 if (objDsHSN != null)
                 {
