@@ -243,11 +243,11 @@ namespace ROMS
                 {
                     if (btnSave.Text == "Save")
                     {
-                        result = objspdservice.udfnRepMaster(0, 0, Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
+                        result = objspdservice.udfnRepMaster(0, 0, Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create", MainForm.pbUserID);
                     }
                     else
                     {
-                        result = objspdservice.udfnRepMaster(1, Convert.ToInt32(varrepid), Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
+                        result = objspdservice.udfnRepMaster(1, Convert.ToInt32(varrepid), Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create",MainForm.pbUserID);
                     }
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -316,11 +316,12 @@ namespace ROMS
                 txtPhonenumber.Text = "";
                 txtWhatsappno.Text = "";
                 txtCompanyName.Text = "";
-                udfnlist();
                 foreach (DataGridViewRow row in grdRepBrand.Rows)
                 {
                     row.Cells[0].Value = false;
                 }
+                grdRepBrand.DataSource = null;
+                udfnlist();
             }
             catch (Exception ex)
             {

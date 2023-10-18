@@ -905,10 +905,14 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varupdate == "1") { this.Close(); }
+                else
                 {
-                    this.Close();
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -969,7 +973,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (10,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDesignation, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (12,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentTerm, "", "MST_DisplayText", "MSTID");
@@ -3579,33 +3583,12 @@ namespace ROMS
             }
         }
 
+
+
         public void udfnMappedDropDownLoad()
         {
             try
             {
-                SPDataService objspservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                cmborderday.DataSource = null;
-                objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, 0, "", 0, 0, 0,"",0,0,0,0,0);
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblMappedOrderTypeId.Text = objDs.Tables[0].Rows[0]["MSTID"].ToString().Replace("''", "'");
-                        }
-                        if (objDs.Tables[2].Rows.Count != 0)
-                        {
-                            cmborderday.ValueMember = objDs.Tables[2].Columns["ID"].Caption;
-                            cmborderday.DisplayMember = objDs.Tables[2].Columns["DAYNAME"].Caption;
-                            cmborderday.DataSource = objDs.Tables[2];
-
-                        }
-
-                    }
-                    objspservice.CloseConnection();
-                }
                 SPDataService objSPservice = new SPDataService();
                 DataSet objDS = new DataSet();
                 cmborderday.DataSource = null;
@@ -3617,7 +3600,13 @@ namespace ROMS
                     {
                         if (objDS.Tables[0].Rows.Count != 0)
                         {
-                            lblOrderDay.Text = objDS.Tables[0].Rows[0]["DayNames"].ToString().Replace("''", "'");
+                            txtMappedOrderDay.Text = objDS.Tables[0].Rows[0]["DayNames"].ToString().Replace("''", "'");
+                            cmbMappedorderrype.SelectedValue= objDS.Tables[0].Rows[0]["SPSC_OrderType"].ToString().Replace("''", "'");
+                        }
+                        else
+                        {
+                            cmbMappedorderrype.SelectedValue = 0;
+                            txtMappedOrderDay.Text = "";
                         }
                     }
                 }
@@ -3906,7 +3895,6 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 cmbMappingordeDay.DataSource = null;
-
                 objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0);
                 if (objDs != null)
                 {
@@ -3917,10 +3905,35 @@ namespace ROMS
                             txtordertype.Text = objDs.Tables[0].Rows[0]["MST_DisplayText"].ToString().Replace("''", "'");
                             lblOrderTypeId.Text = objDs.Tables[0].Rows[0]["MSTID"].ToString().Replace("''", "'");
                         }
-
+                        else
+                        {
+                            txtordertype.Text = "";
+                        }
                     }
                     objspservice.CloseConnection();
                 }
+
+                SPDataService objSPservice = new SPDataService();
+                DataSet objDS = new DataSet();
+                cmborderday.DataSource = null;
+                objDS = objSPservice.udfnSupplierList(21, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0);
+                objSPservice.CloseConnection();
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count != 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count != 0)
+                        {
+                            txtSupplierOrderDays.Text = objDS.Tables[0].Rows[0]["DayNames"].ToString().Replace("''", "'");
+                        }
+                        else
+                        {
+                            txtSupplierOrderDays.Text = "";
+                        }
+                    }
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -4987,6 +5000,7 @@ namespace ROMS
             try
             {
                 btnMappingsave.Enabled = false;
+                txtmappingproductsearch2.Text = "";
                 if (Convert.ToInt32(grdFinalSupplierMapping.Rows.Count) > 0)
                 {
                     string VarproductId = "", result = "", varoriginator = "";

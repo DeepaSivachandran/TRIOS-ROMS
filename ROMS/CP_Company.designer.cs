@@ -148,15 +148,6 @@
             this.txtOperator = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdContactManager = new System.Windows.Forms.DataGridView();
-            this.txtMobilenumber = new System.Windows.Forms.TextBox();
-            this.cmbTransactionType = new System.Windows.Forms.ComboBox();
-            this.btnSaveContact = new System.Windows.Forms.Button();
-            this.btnCloseContact = new System.Windows.Forms.Button();
-            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmContsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -171,6 +162,15 @@
             this.clmStatusContact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCMEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtMobilenumber = new System.Windows.Forms.TextBox();
+            this.cmbTransactionType = new System.Windows.Forms.ComboBox();
+            this.btnSaveContact = new System.Windows.Forms.Button();
+            this.btnCloseContact = new System.Windows.Forms.Button();
+            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tcCompanyDetails.SuspendLayout();
@@ -1574,7 +1574,6 @@
             // 
             this.grdContactManager.AllowUserToAddRows = false;
             this.grdContactManager.AllowUserToDeleteRows = false;
-            this.grdContactManager.AllowUserToResizeColumns = false;
             this.grdContactManager.AllowUserToResizeRows = false;
             this.grdContactManager.BackgroundColor = System.Drawing.Color.White;
             this.grdContactManager.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -1587,7 +1586,6 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdContactManager.ColumnHeadersHeight = 30;
-            this.grdContactManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdContactManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmContsno,
             this.clmTransaction,
@@ -1626,100 +1624,6 @@
             this.grdContactManager.TabIndex = 1111149;
             this.grdContactManager.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdContactManager_CellContentClick);
             this.grdContactManager.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdContactManager_DataBindingComplete);
-            // 
-            // txtMobilenumber
-            // 
-            this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMobilenumber.Location = new System.Drawing.Point(339, 39);
-            this.txtMobilenumber.MaxLength = 10;
-            this.txtMobilenumber.Name = "txtMobilenumber";
-            this.txtMobilenumber.Size = new System.Drawing.Size(118, 27);
-            this.txtMobilenumber.TabIndex = 2;
-            this.txtMobilenumber.Enter += new System.EventHandler(this.TxtMobilenumber_Enter);
-            this.txtMobilenumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobilenumber_KeyDown);
-            this.txtMobilenumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMobilenumber_KeyPress);
-            this.txtMobilenumber.Leave += new System.EventHandler(this.TxtMobilenumber_Leave);
-            // 
-            // cmbTransactionType
-            // 
-            this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTransactionType.FormattingEnabled = true;
-            this.cmbTransactionType.Location = new System.Drawing.Point(13, 39);
-            this.cmbTransactionType.Name = "cmbTransactionType";
-            this.cmbTransactionType.Size = new System.Drawing.Size(146, 27);
-            this.cmbTransactionType.TabIndex = 0;
-            this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
-            this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
-            this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
-            this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
-            this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
-            // 
-            // btnSaveContact
-            // 
-            this.btnSaveContact.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSaveContact.Image = global::ROMS.Properties.Resources.save;
-            this.btnSaveContact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveContact.Location = new System.Drawing.Point(1151, 551);
-            this.btnSaveContact.Name = "btnSaveContact";
-            this.btnSaveContact.Size = new System.Drawing.Size(84, 29);
-            this.btnSaveContact.TabIndex = 9;
-            this.btnSaveContact.Text = "Save";
-            this.btnSaveContact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSaveContact.UseVisualStyleBackColor = true;
-            this.btnSaveContact.Click += new System.EventHandler(this.BtnSaveContact_Click);
-            this.btnSaveContact.Enter += new System.EventHandler(this.BtnSaveContact_Enter);
-            this.btnSaveContact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSaveContact_KeyDown);
-            this.btnSaveContact.Leave += new System.EventHandler(this.BtnSaveContact_Leave);
-            // 
-            // btnCloseContact
-            // 
-            this.btnCloseContact.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnCloseContact.Image = global::ROMS.Properties.Resources.close;
-            this.btnCloseContact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCloseContact.Location = new System.Drawing.Point(1241, 551);
-            this.btnCloseContact.Name = "btnCloseContact";
-            this.btnCloseContact.Size = new System.Drawing.Size(75, 29);
-            this.btnCloseContact.TabIndex = 10;
-            this.btnCloseContact.Text = "Close";
-            this.btnCloseContact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCloseContact.UseVisualStyleBackColor = true;
-            this.btnCloseContact.Click += new System.EventHandler(this.BtnCloseContact_Click);
-            this.btnCloseContact.Enter += new System.EventHandler(this.BtnCloseContact_Enter);
-            this.btnCloseContact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnCloseContact_KeyDown);
-            this.btnCloseContact.Leave += new System.EventHandler(this.BtnCloseContact_Leave);
-            // 
-            // epCompany
-            // 
-            this.epCompany.ContainerControl = this;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Edit";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.Edit;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "Remove";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.Width = 80;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.HeaderText = "Edit";
-            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.Edit;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            // 
-            // dataGridViewImageColumn4
-            // 
-            this.dataGridViewImageColumn4.HeaderText = "Remove";
-            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.exclude;
-            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
-            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // clmContsno
             // 
@@ -1817,6 +1721,100 @@
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.ReadOnly = true;
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // txtMobilenumber
+            // 
+            this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtMobilenumber.Location = new System.Drawing.Point(339, 39);
+            this.txtMobilenumber.MaxLength = 10;
+            this.txtMobilenumber.Name = "txtMobilenumber";
+            this.txtMobilenumber.Size = new System.Drawing.Size(118, 27);
+            this.txtMobilenumber.TabIndex = 2;
+            this.txtMobilenumber.Enter += new System.EventHandler(this.TxtMobilenumber_Enter);
+            this.txtMobilenumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobilenumber_KeyDown);
+            this.txtMobilenumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMobilenumber_KeyPress);
+            this.txtMobilenumber.Leave += new System.EventHandler(this.TxtMobilenumber_Leave);
+            // 
+            // cmbTransactionType
+            // 
+            this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTransactionType.FormattingEnabled = true;
+            this.cmbTransactionType.Location = new System.Drawing.Point(13, 39);
+            this.cmbTransactionType.Name = "cmbTransactionType";
+            this.cmbTransactionType.Size = new System.Drawing.Size(146, 27);
+            this.cmbTransactionType.TabIndex = 0;
+            this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
+            this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
+            this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
+            this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
+            this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
+            // 
+            // btnSaveContact
+            // 
+            this.btnSaveContact.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSaveContact.Image = global::ROMS.Properties.Resources.save;
+            this.btnSaveContact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveContact.Location = new System.Drawing.Point(1151, 551);
+            this.btnSaveContact.Name = "btnSaveContact";
+            this.btnSaveContact.Size = new System.Drawing.Size(84, 29);
+            this.btnSaveContact.TabIndex = 9;
+            this.btnSaveContact.Text = "Save";
+            this.btnSaveContact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSaveContact.UseVisualStyleBackColor = true;
+            this.btnSaveContact.Click += new System.EventHandler(this.BtnSaveContact_Click);
+            this.btnSaveContact.Enter += new System.EventHandler(this.BtnSaveContact_Enter);
+            this.btnSaveContact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSaveContact_KeyDown);
+            this.btnSaveContact.Leave += new System.EventHandler(this.BtnSaveContact_Leave);
+            // 
+            // btnCloseContact
+            // 
+            this.btnCloseContact.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnCloseContact.Image = global::ROMS.Properties.Resources.close;
+            this.btnCloseContact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCloseContact.Location = new System.Drawing.Point(1241, 551);
+            this.btnCloseContact.Name = "btnCloseContact";
+            this.btnCloseContact.Size = new System.Drawing.Size(75, 29);
+            this.btnCloseContact.TabIndex = 10;
+            this.btnCloseContact.Text = "Close";
+            this.btnCloseContact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCloseContact.UseVisualStyleBackColor = true;
+            this.btnCloseContact.Click += new System.EventHandler(this.BtnCloseContact_Click);
+            this.btnCloseContact.Enter += new System.EventHandler(this.BtnCloseContact_Enter);
+            this.btnCloseContact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnCloseContact_KeyDown);
+            this.btnCloseContact.Leave += new System.EventHandler(this.BtnCloseContact_Leave);
+            // 
+            // epCompany
+            // 
+            this.epCompany.ContainerControl = this;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Edit";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.Edit;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Remove";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Width = 80;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "Edit";
+            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.Edit;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "Remove";
+            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.exclude;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // CP_Company
             // 

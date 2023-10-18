@@ -16,6 +16,8 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+
+        public string varUserID = "";
         public CP_Citylist()
         {
             InitializeComponent();
@@ -68,19 +70,24 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete");
-                        objspservice.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID);
+                            objspservice.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }

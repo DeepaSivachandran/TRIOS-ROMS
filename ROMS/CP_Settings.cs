@@ -33,18 +33,28 @@ namespace ROMS
         {
             try
             {
-                tpConcern.Active = false;
-                tpTransactionType.Active = false;
-                tpPrefix.Active = false;
-                tpSuffix.Active = false;
-                tpStartingNo.Active = false;
-                tpResetOn.Active = false;
+                udfnToolTip();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnToolTip()
+        {
+            tpConcern.Active = false;
+            tpTransactionType.Active = false;
+            tpPrefix.Active = false;
+            tpSuffix.Active = false;
+            tpStartingNo.Active = false;
+            tpResetOn.Active = false;
+            cmbConcern.BackColor = Color.White;
+            cmbTransactionType.BackColor = Color.White;
+            txtPrefix.BackColor = Color.White;
+            txtSuffix.BackColor = Color.White;
+            txtStartingNo.BackColor = Color.White;
+            cmbResetOn.BackColor = Color.White;
         }
         private void BtnClose_Click(object sender, EventArgs e)
         {
@@ -104,6 +114,7 @@ namespace ROMS
                 grdSettings.Columns["clmResetOnId"].Visible = false;
                 grdSettings.Columns["clmStartingNo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdSettings.Columns["clmNoofdigits"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdSettings.Columns["clmsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDS = objdserv.udfnVoucherSettingList(0);
@@ -654,18 +665,19 @@ namespace ROMS
         {
             try
             {
-                int varFlag = 0; int varConcern = 0; int varTransactionType = 0; string varStartingNum = "";
+                int varFlag = 0; int varConcern = 0; int varTransactionType = 0; string varStartingNum = ""; int varConcernId = 0;
                 varConcern = Convert.ToInt32(cmbConcern.SelectedValue);
                 varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
                 for (int i = 0; i < grdSettings.Rows.Count; i++)
                 {
-                    if (varConcern == Convert.ToInt32(grdSettings.Rows[i].Cells["clmConcernId"].Value))
+                    if (varConcern == Convert.ToInt32(grdSettings.Rows[i].Cells["clmConcernId"].Value) && varTransactionType == Convert.ToInt32(grdSettings.Rows[i].Cells["clmTransactionTypeID"].Value))
                     {
-                        for (int j = 0; j < grdSettings.Rows.Count; j++)
-                        {
-                            if (varTransactionType == Convert.ToInt32(grdSettings.Rows[j].Cells["clmTransactionTypeID"].Value))
-                            { varFlag = 1; }
-                        }
+                        varFlag = 1;
+                        //for (int j = 0; j < grdSettings.Rows.Count; j++)
+                        //{
+                        //    if (varTransactionType == Convert.ToInt32(grdSettings.Rows[j].Cells["clmTransactionTypeID"].Value) && varConcernId == Convert.ToInt32(grdSettings.Rows[j].Cells["clmConcernId"].Value))
+                        //    { varFlag = 1; }
+                        //}
                     }
                 }
                 if (varFlag == 0)
@@ -674,6 +686,7 @@ namespace ROMS
                     varStartingNum = objdservice.displaydata("SELECT RIGHT('00000000'+ CONVERT(nvarchar,"+ txtStartingNo.Text.Trim()+ "),"+txtNoOfDegits.Text.Trim()+") AS sampleTransactionno FROM MR_VoucherSettings");
                     varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + varStartingNum+Convert.ToString(txtSuffix.Text.Trim());
                     grdSettings.Rows.Add(grdSettings.Rows.Count+1, cmbConcern.Text.Trim(), cmbTransactionType.Text.Trim(), txtPrefix.Text.Trim(), txtSuffix.Text.Trim(), txtStartingNo.Text.Trim(), txtNoOfDegits.Text.Trim(), cmbResetOn.Text.Trim(),varSampleTransation,cmbConcern.SelectedValue,cmbTransactionType.SelectedValue,cmbResetOn.SelectedValue);
+                    udfnClear();
                 }
                 else
                 {
@@ -682,7 +695,6 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                udfnClear();
             }
             catch (Exception ex)
             {
@@ -782,8 +794,10 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         udfnClear();
-                        cmbConcern.SelectedIndex = -1;
+                        cmbConcern.SelectedIndex = 0;
+                        udfnToolTip();
                         cmbConcern.Focus();
+                        cmbTransactionType.BackColor = Color.White;
                         epSettings.Clear();
                         //udfnList();
                     }

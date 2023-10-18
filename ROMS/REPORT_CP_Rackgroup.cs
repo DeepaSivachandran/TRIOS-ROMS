@@ -24,6 +24,7 @@ namespace ROMS
         {
             try
             {
+                lvRack.Visible = false;
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -93,9 +94,10 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    txtRackgroup.Enabled = false;txtRackgroup.Text = "";
-                    txtEmployeeName.Enabled = false;txtEmployeeName.Text = "";
-                    txtRack.Enabled = false;txtRack.Text = "";
+                    txtRackgroup.Enabled = false;
+                    txtEmployeeName.Enabled = false;
+                    txtRack.Enabled = false;
+                    udfnClear();
                 }
                 else
                 {
@@ -103,12 +105,38 @@ namespace ROMS
                     txtEmployeeName.Enabled = true;
                     txtRack.Enabled = true;
                 }
+                if(cmbReportType.SelectedIndex==2)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 3)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 4)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 5)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 6)
+                {
+                    udfnClear();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnClear()
+        {
+            txtRackgroup.Text = "";
+            txtEmployeeName.Text = "";
+            txtRack.Text = "";
         }
         public void udfnRG()
         {
@@ -137,7 +165,6 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup.rpt");
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(0));
-                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -161,6 +188,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -168,6 +196,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -176,29 +207,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0,RKCode=0,EMPCode=0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if(txtRackgroup.Text=="")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -218,6 +256,9 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraRKGName", RKGName);
+                    objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
+                    objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -241,6 +282,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -248,6 +290,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -256,29 +301,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if (txtRackgroup.Text == "")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -298,6 +350,9 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraRKGName", RKGName);
+                    objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
+                    objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -321,6 +376,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -328,6 +384,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -336,29 +395,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if (txtRackgroup.Text == "")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -378,6 +444,9 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraRKGName", RKGName);
+                    objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
+                    objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -401,6 +470,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -408,6 +478,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -416,29 +489,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if (txtRackgroup.Text == "")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -458,6 +538,9 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraRKGName", RKGName);
+                    objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
+                    objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -481,6 +564,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -488,6 +572,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -496,29 +583,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if (txtRackgroup.Text == "")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -538,6 +632,9 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraRKGName", RKGName);
+                    objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
+                    objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -561,7 +658,89 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
+            }
+        }
+        public void udfnRackValid()
+        {
+            /* Check purchase rack is valid or not*/
+            if (txtRack.Text != "")
+            {
+                string varId_PurRack = "0";
+                DataSet objDsPurRack = new DataSet();
+                SPDataService objDServ4 = new SPDataService();
+                objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtRack.Text.Trim(),0,0);
+                objDServ4.CloseConnection();
+                if (objDsPurRack != null)
+                {
+                    if (objDsPurRack.Tables.Count > 0)
+                    {
+                        if (objDsPurRack.Tables[0].Rows.Count > 0)
+                        {
+                            varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
+                lblRackCode.Text = Convert.ToString(varId_PurRack);
+                if (varId_PurRack == "0" || varId_PurRack == "-1")
+                {
+                    //lblRackCode.Text = "0";
+                }
+            }
+        }
+        public void udfnRackGroupValid()
+        {
+            /* Check purchase rack is valid or not*/
+            if (txtRackgroup.Text != "")
+            {
+                string varId_RackGroup = "0";
+                DataSet objDsRackGroup = new DataSet();
+                SPDataService objDServ4 = new SPDataService();
+                objDsRackGroup = objDServ4.udfnRackGroupList(5, 0, 0, 0, 0, txtRackgroup.Text.Trim());
+                objDServ4.CloseConnection();
+                if (objDsRackGroup != null)
+                {
+                    if (objDsRackGroup.Tables.Count > 0)
+                    {
+                        if (objDsRackGroup.Tables[0].Rows.Count > 0)
+                        {
+                            varId_RackGroup = Convert.ToString(objDsRackGroup.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
+                lblRackgroupCode.Text = Convert.ToString(varId_RackGroup);
+                if (varId_RackGroup == "0" || varId_RackGroup == "-1")
+                {
+                    //lblRackgroupCode.Text = "0";
+                }
+            }
+        }
+        public void udfnRackInchargeValid()
+        {
+            /* Check purchase rack is valid or not*/
+            if (txtEmployeeName.Text != "")
+            {
+                string varId_RackIncharge = "0";
+                DataSet objDsRackIncharge = new DataSet();
+                SPDataService objDServ4 = new SPDataService();
+                objDsRackIncharge = objDServ4.udfnEmployeeList(8,txtEmployeeName.Text.Trim(),0,"",0,0,0);
+                objDServ4.CloseConnection();
+                if (objDsRackIncharge != null)
+                {
+                    if (objDsRackIncharge.Tables.Count > 0)
+                    {
+                        if (objDsRackIncharge.Tables[0].Rows.Count > 0)
+                        {
+                            varId_RackIncharge = Convert.ToString(objDsRackIncharge.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
+                lblEmpCode.Text = Convert.ToString(varId_RackIncharge);
+                if (varId_RackIncharge == "0" || varId_RackIncharge == "-1")
+                {
+                    //lblEmpCode.Text = "0";
+                }
             }
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
@@ -782,6 +961,7 @@ namespace ROMS
         {
             try
             {
+                lvRackIncharge.Visible = false;
                 txtRack.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1098,6 +1278,7 @@ namespace ROMS
         {
             try
             {
+                lvRackgroup.Visible = false;
                 txtEmployeeName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

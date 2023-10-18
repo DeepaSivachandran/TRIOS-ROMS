@@ -382,7 +382,7 @@ namespace ROMS
                     varViewType=1;
                     varOriginator = "HSN Updation";
                }
-               varResult= objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToString(txtHSNCode.Text).Trim(), varStatusid, varOriginator);
+               varResult= objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToString(txtHSNCode.Text).Trim(), varStatusid, varOriginator,MainForm.pbUserID);
               //  varResult = objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToInt32(txtHSNCode.Text), varStatusid, varOriginator);
                objDser.CloseConnection();
                btnSave.Enabled = true;

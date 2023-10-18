@@ -54,6 +54,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
+            this.chkRKCreation = new System.Windows.Forms.CheckBox();
+            this.lblRackCreation = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.pnlGodownType.SuspendLayout();
@@ -111,10 +113,10 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(329, 255);
+            this.btnSave.Location = new System.Drawing.Point(329, 266);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -139,10 +141,10 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(417, 255);
+            this.btnClose.Location = new System.Drawing.Point(417, 266);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 11;
+            this.btnClose.TabIndex = 12;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -230,6 +232,8 @@
             // 
             // grbGodown
             // 
+            this.grbGodown.Controls.Add(this.lblRackCreation);
+            this.grbGodown.Controls.Add(this.chkRKCreation);
             this.grbGodown.Controls.Add(this.textBox4);
             this.grbGodown.Controls.Add(this.txtShortName);
             this.grbGodown.Controls.Add(this.textBox3);
@@ -251,7 +255,7 @@
             this.grbGodown.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbGodown.Location = new System.Drawing.Point(12, 3);
             this.grbGodown.Name = "grbGodown";
-            this.grbGodown.Size = new System.Drawing.Size(511, 295);
+            this.grbGodown.Size = new System.Drawing.Size(511, 307);
             this.grbGodown.TabIndex = 1;
             this.grbGodown.TabStop = false;
             // 
@@ -380,12 +384,30 @@
             this.txtConcern.TabIndex = 49;
             this.txtConcern.Text = "Concern";
             // 
+            // chkRKCreation
+            // 
+            this.chkRKCreation.AutoSize = true;
+            this.chkRKCreation.Location = new System.Drawing.Point(22, 246);
+            this.chkRKCreation.Name = "chkRKCreation";
+            this.chkRKCreation.Size = new System.Drawing.Size(15, 14);
+            this.chkRKCreation.TabIndex = 10;
+            this.chkRKCreation.UseVisualStyleBackColor = true;
+            // 
+            // lblRackCreation
+            // 
+            this.lblRackCreation.AutoSize = true;
+            this.lblRackCreation.Location = new System.Drawing.Point(43, 243);
+            this.lblRackCreation.Name = "lblRackCreation";
+            this.lblRackCreation.Size = new System.Drawing.Size(84, 20);
+            this.lblRackCreation.TabIndex = 1111169;
+            this.lblRackCreation.Text = "Rack Creation";
+            // 
             // CP_Location
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(539, 308);
+            this.ClientSize = new System.Drawing.Size(539, 318);
             this.Controls.Add(this.grbGodown);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -437,5 +459,7 @@
         public System.Windows.Forms.ComboBox cmbStockApplicable;
         public System.Windows.Forms.TextBox txtLocationNameInTamil;
         public System.Windows.Forms.TextBox txtShortName;
+        private System.Windows.Forms.CheckBox chkRKCreation;
+        private System.Windows.Forms.Label lblRackCreation;
     }
 }

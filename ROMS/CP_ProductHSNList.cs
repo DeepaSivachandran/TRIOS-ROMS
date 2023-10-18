@@ -14,6 +14,8 @@ namespace ROMS
     // Sivabharathi    Create date: 09/08/2023   
     public partial class CP_ProductHSNList : Form
     {
+        public string varUserID = "";
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public CP_ProductHSNList()
@@ -82,17 +84,23 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "HSN Deletion");
-                        objDser.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else if (varResult.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "HSN Deletion", varUserID);
+                            objDser.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else if (varResult.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }

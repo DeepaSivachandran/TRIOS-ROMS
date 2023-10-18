@@ -2411,7 +2411,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbProductCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -2662,7 +2661,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBatchNoGeneration.Focus();
+                    if (cmbBatchNoGeneration.Enabled)
+                    {
+                        cmbBatchNoGeneration.Focus();
+                    }
+                    else { cbExpiry.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -4976,11 +4979,12 @@ namespace ROMS
                             txtWMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WMINSALE QTY"].ToString().Replace("''", "'"));
                             txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
                             txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'"));
-                            lblHsnName.Text = objDS.Tables[0].Rows[0]["HSN"].ToString();
-                            txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"]);
-                            txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"]);
                             cmbGst.SelectedValue = objDS.Tables[0].Rows[0]["GSTID"].ToString();
+                            lblHsnName.Text = objDS.Tables[0].Rows[0]["HSN"].ToString();
+                            txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"].ToString().Replace("''", "'"));
+                            txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"].ToString().Replace("''", "'"));
                             cmbNetQty.SelectedValue = objDS.Tables[0].Rows[0]["PR_QUTID"].ToString();
+                            lvHsnCode.Visible = false;
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }

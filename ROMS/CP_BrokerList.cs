@@ -17,6 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        public string varUserID = "";
         public CP_BrokerList()
         {
             InitializeComponent();
@@ -77,17 +78,23 @@ namespace ROMS
                         objBankTable.Columns.Add("BRB_AccNo", typeof(string));
                         objBankTable.Columns.Add("BRB_IFSC", typeof(string));
                         objBankTable.Columns.Add("BRB_STSID", typeof(string));
-                        result = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "",0,"Company delete", objBankTable);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            result = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "", 0, "Broker delete", objBankTable, varUserID);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
+                            {
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }

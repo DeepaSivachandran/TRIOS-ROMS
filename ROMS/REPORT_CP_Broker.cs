@@ -257,7 +257,6 @@ namespace ROMS
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
-                    txtCity.Text = "";
                 }
                 else
                 {
@@ -284,13 +283,15 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if (cmbReportType.SelectedIndex == 1)
                 {
-                    txtCity.Enabled = false;txtCity.Text = "";
+                    txtCity.Enabled = false;
                     cmbStatus.Enabled = true;
+                    udfnClear();
                 }
                 if (cmbReportType.SelectedIndex == 2)
                 {
                     txtCity.Enabled = true;
                     cmbStatus.Enabled = true;
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -298,6 +299,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnClear()
+        {
+            txtCity.Text = "";
+            cmbStatus.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {

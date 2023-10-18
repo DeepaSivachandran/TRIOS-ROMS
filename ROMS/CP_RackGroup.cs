@@ -90,7 +90,7 @@ namespace ROMS
 
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnUserCategoryList(4, Convert.ToInt32(cmbUserCategory.SelectedValue),0);
+                objDs = objdserv.udfnUserCategoryList(4, Convert.ToInt32(cmbUserCategory.SelectedValue),"",0);
                 objdserv.CloseConnection();
                 cmbUserCategory.DataSource = null;
                 if (objDs != null)
@@ -532,7 +532,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objDser = new SPDataService();
-                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator);
+                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator,MainForm.pbUserID);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")

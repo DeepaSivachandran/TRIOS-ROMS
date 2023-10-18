@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -860,7 +861,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objDser = new SPDataService();
-                varResult = objDser.udfnBrand(varViewType, varId, Convert.ToString(txtEBrandNameInEnglish.Text).Trim(), Convert.ToString(txtEBrandNameInTamil.Text).Trim(), varStatusid, varSubGroupId, varOriginator);
+                varResult = objDser.udfnBrand(varViewType, varId, Convert.ToString(txtEBrandNameInEnglish.Text).Trim(), Convert.ToString(txtEBrandNameInTamil.Text).Trim(), varStatusid, varSubGroupId, varOriginator,MainForm.pbUserID);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -1342,6 +1343,8 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                Application.DoEvents();
                 if (e.ColumnIndex == 0)
                 {
                     udfnCaculateCheckedCount_Group();
@@ -1351,9 +1354,7 @@ namespace ROMS
                 {
                     varGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
                     varmasterBrandtype = 0;
-                    // grdGroup.SelectedRows[0].Cells[0].ReadOnly = true;
                     udfnSubGroupList();
-
                 }
                 else
                 {
@@ -1386,8 +1387,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            { //grdGroup.ReadOnly = false; 
+            finally {
+                int milliseconds = 300;
+                Thread.Sleep(milliseconds);
+                picLoader.Visible = false;
             }
         }
         private void GrdGroup_CurrentCellDirtyStateChanged(object sender, EventArgs e)

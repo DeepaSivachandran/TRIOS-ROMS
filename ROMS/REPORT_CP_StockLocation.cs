@@ -177,6 +177,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -226,25 +227,8 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                int LocationTypeID = 0;
-                int GodownTypeID = 0;
-                if(cmbLocationType.SelectedIndex==0)
-                {
-                    LocationTypeID = 0;
-                }
-                else
-                {
-                    LocationTypeID = Convert.ToInt32(cmbLocationType.SelectedValue);
-                }
-                if (cmbGodownType.SelectedIndex == 0)
-                {
-                    GodownTypeID = 0;
-                }
-                else
-                {
-                    GodownTypeID = Convert.ToInt32(cmbGodownType.SelectedValue);
-                }
-                objDs = objspservice.udfnproductmasterlist(19,0,0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0,0,0, Convert.ToInt32(lblLocationCode.Text), Convert.ToInt32(LocationTypeID), Convert.ToInt32(GodownTypeID), 0,0);
+                
+                objDs = objspservice.udfnproductmasterlist(19,0,0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0,0,0, Convert.ToInt32(lblLocationCode.Text), Convert.ToInt32(cmbLocationType.SelectedValue), Convert.ToInt32(cmbGodownType.SelectedValue), 0,0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -257,11 +241,14 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_StockLocation_Product.rpt");
-                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(LocationTypeID));
-                    objBillreport.SetParameterValue("paraGodownType", Convert.ToInt32(GodownTypeID));
+                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue));
+                    objBillreport.SetParameterValue("paraGodownType", Convert.ToInt32(cmbGodownType.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(lblLocationCode.Text));
+                    objBillreport.SetParameterValue("paraLocationName", Convert.ToString(varLocationName));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraLTName", Convert.ToString(cmbLocationType.Text));
+                    objBillreport.SetParameterValue("paraGTName", Convert.ToString(cmbGodownType.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -285,6 +272,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -295,15 +283,17 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    txtLocation.Enabled = false; txtLocation.Text = "";
-                    cmbLocationType.Enabled = false;cmbLocationType.SelectedValue = -1;
-                    cmbGodownType.Enabled = false;cmbGodownType.SelectedValue = -1;
+                    txtLocation.Enabled = false; 
+                    cmbLocationType.Enabled = false;
+                    cmbGodownType.Enabled = false;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
-                    txtLocation.Enabled = true; txtLocation.Text = "";
-                    cmbLocationType.Enabled = true; cmbLocationType.SelectedValue = -1;
-                    cmbGodownType.Enabled = true; cmbGodownType.SelectedValue = -1;
+                    txtLocation.Enabled = true; 
+                    cmbLocationType.Enabled = true; 
+                    cmbGodownType.Enabled = true;
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -311,6 +301,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnClear()
+        {
+            txtLocation.Text = "";
+            cmbLocationType.SelectedValue = 0;
+            cmbGodownType.SelectedValue = 0;
+            cmbStatus.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {
@@ -377,14 +374,14 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,39) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,3) AND MSTID<>0", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,30) AND MSTID<>0", "MST_DisplayText,MSTID", cmbGodownType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,3) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,30) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbGodownType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbStatus.SelectedValue = 0;
-                cmbLocationType.SelectedValue = -1;
-                cmbGodownType.SelectedValue = -1;
+                cmbLocationType.SelectedValue = 0;
+                cmbGodownType.SelectedValue = 0;
                 //btnListPrint.Enabled = true;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
