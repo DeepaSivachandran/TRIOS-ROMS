@@ -408,6 +408,10 @@ namespace ROMS
                         grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+                    if (Convert.ToString(grdGodownList.Rows[i].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdGodownList.Rows[i].Cells["DefaultID"].Value) == "2")
+                    {
+                        grdGodownList.Rows[i].Cells[i].Style.BackColor = Color.LightPink;
+                    }
                 }
             }
             catch (Exception ex)
