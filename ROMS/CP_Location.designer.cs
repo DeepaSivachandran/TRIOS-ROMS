@@ -44,6 +44,8 @@
             this.txtLocationNameInEnglish = new System.Windows.Forms.TextBox();
             this.txtDGodownName = new System.Windows.Forms.TextBox();
             this.grbGodown = new System.Windows.Forms.GroupBox();
+            this.lblRackCreation = new System.Windows.Forms.Label();
+            this.chkRKCreation = new System.Windows.Forms.CheckBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtShortName = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -54,8 +56,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
-            this.chkRKCreation = new System.Windows.Forms.CheckBox();
-            this.lblRackCreation = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.pnlGodownType.SuspendLayout();
@@ -259,6 +259,24 @@
             this.grbGodown.TabIndex = 1;
             this.grbGodown.TabStop = false;
             // 
+            // lblRackCreation
+            // 
+            this.lblRackCreation.AutoSize = true;
+            this.lblRackCreation.Location = new System.Drawing.Point(224, 243);
+            this.lblRackCreation.Name = "lblRackCreation";
+            this.lblRackCreation.Size = new System.Drawing.Size(84, 20);
+            this.lblRackCreation.TabIndex = 1111169;
+            this.lblRackCreation.Text = "Rack Creation";
+            // 
+            // chkRKCreation
+            // 
+            this.chkRKCreation.AutoSize = true;
+            this.chkRKCreation.Location = new System.Drawing.Point(203, 246);
+            this.chkRKCreation.Name = "chkRKCreation";
+            this.chkRKCreation.Size = new System.Drawing.Size(15, 14);
+            this.chkRKCreation.TabIndex = 10;
+            this.chkRKCreation.UseVisualStyleBackColor = true;
+            // 
             // textBox4
             // 
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
@@ -383,24 +401,6 @@
             this.txtConcern.Size = new System.Drawing.Size(181, 27);
             this.txtConcern.TabIndex = 49;
             this.txtConcern.Text = "Concern";
-            // 
-            // chkRKCreation
-            // 
-            this.chkRKCreation.AutoSize = true;
-            this.chkRKCreation.Location = new System.Drawing.Point(22, 246);
-            this.chkRKCreation.Name = "chkRKCreation";
-            this.chkRKCreation.Size = new System.Drawing.Size(15, 14);
-            this.chkRKCreation.TabIndex = 10;
-            this.chkRKCreation.UseVisualStyleBackColor = true;
-            // 
-            // lblRackCreation
-            // 
-            this.lblRackCreation.AutoSize = true;
-            this.lblRackCreation.Location = new System.Drawing.Point(43, 243);
-            this.lblRackCreation.Name = "lblRackCreation";
-            this.lblRackCreation.Size = new System.Drawing.Size(84, 20);
-            this.lblRackCreation.TabIndex = 1111169;
-            this.lblRackCreation.Text = "Rack Creation";
             // 
             // CP_Location
             // 
