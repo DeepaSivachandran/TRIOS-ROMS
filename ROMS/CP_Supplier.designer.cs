@@ -148,10 +148,15 @@
             this.clmOrderdays = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.daysid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.btn_close = new System.Windows.Forms.Button();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
+            this.pnlScheduleStatus = new System.Windows.Forms.Panel();
+            this.rbScheduleActive = new System.Windows.Forms.RadioButton();
+            this.rbScheduleInactive = new System.Windows.Forms.RadioButton();
+            this.txtDStatus = new System.Windows.Forms.TextBox();
             this.txtScheduleName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -219,6 +224,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
+            this.lblOrderDay = new System.Windows.Forms.Label();
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.cmbMappedorderrype = new System.Windows.Forms.ComboBox();
@@ -237,7 +243,6 @@
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblOrderDay = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -255,6 +260,7 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             this.gpSupplier.SuspendLayout();
+            this.pnlScheduleStatus.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).BeginInit();
@@ -1473,6 +1479,7 @@
             this.clmOrderdays,
             this.daysid,
             this.ID,
+            this.clmStatus,
             this.clmedit,
             this.clmDelete});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1570,6 +1577,12 @@
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
             // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            // 
             // clmedit
             // 
             this.clmedit.HeaderText = "Edit";
@@ -1604,6 +1617,8 @@
             // 
             // gpSupplier
             // 
+            this.gpSupplier.Controls.Add(this.pnlScheduleStatus);
+            this.gpSupplier.Controls.Add(this.txtDStatus);
             this.gpSupplier.Controls.Add(this.txtScheduleName);
             this.gpSupplier.Controls.Add(this.label1);
             this.gpSupplier.Controls.Add(this.btnAdd);
@@ -1616,6 +1631,56 @@
             this.gpSupplier.Size = new System.Drawing.Size(684, 282);
             this.gpSupplier.TabIndex = 958801;
             this.gpSupplier.TabStop = false;
+            // 
+            // pnlScheduleStatus
+            // 
+            this.pnlScheduleStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlScheduleStatus.Controls.Add(this.rbScheduleActive);
+            this.pnlScheduleStatus.Controls.Add(this.rbScheduleInactive);
+            this.pnlScheduleStatus.Enabled = false;
+            this.pnlScheduleStatus.Location = new System.Drawing.Point(160, 240);
+            this.pnlScheduleStatus.Name = "pnlScheduleStatus";
+            this.pnlScheduleStatus.Size = new System.Drawing.Size(194, 27);
+            this.pnlScheduleStatus.TabIndex = 7;
+            this.pnlScheduleStatus.TabStop = true;
+            // 
+            // rbScheduleActive
+            // 
+            this.rbScheduleActive.AutoSize = true;
+            this.rbScheduleActive.Checked = true;
+            this.rbScheduleActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbScheduleActive.Location = new System.Drawing.Point(24, 1);
+            this.rbScheduleActive.Name = "rbScheduleActive";
+            this.rbScheduleActive.Size = new System.Drawing.Size(60, 24);
+            this.rbScheduleActive.TabIndex = 35;
+            this.rbScheduleActive.TabStop = true;
+            this.rbScheduleActive.Text = "Active";
+            this.rbScheduleActive.UseVisualStyleBackColor = true;
+            // 
+            // rbScheduleInactive
+            // 
+            this.rbScheduleInactive.AutoSize = true;
+            this.rbScheduleInactive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbScheduleInactive.Location = new System.Drawing.Point(95, 1);
+            this.rbScheduleInactive.Name = "rbScheduleInactive";
+            this.rbScheduleInactive.Size = new System.Drawing.Size(70, 24);
+            this.rbScheduleInactive.TabIndex = 36;
+            this.rbScheduleInactive.TabStop = true;
+            this.rbScheduleInactive.Text = "Inactive";
+            this.rbScheduleInactive.UseVisualStyleBackColor = true;
+            // 
+            // txtDStatus
+            // 
+            this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDStatus.Enabled = false;
+            this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDStatus.Location = new System.Drawing.Point(29, 240);
+            this.txtDStatus.Name = "txtDStatus";
+            this.txtDStatus.ReadOnly = true;
+            this.txtDStatus.Size = new System.Drawing.Size(131, 27);
+            this.txtDStatus.TabIndex = 1111182;
+            this.txtDStatus.TabStop = false;
+            this.txtDStatus.Text = "Status";
             // 
             // txtScheduleName
             // 
@@ -1688,7 +1753,7 @@
             this.groupBox2.Controls.Add(this.textBox18);
             this.groupBox2.Controls.Add(this.textBox20);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(14, 125);
+            this.groupBox2.Location = new System.Drawing.Point(14, 104);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(358, 127);
             this.groupBox2.TabIndex = 3;
@@ -2523,6 +2588,15 @@
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
             // 
+            // lblOrderDay
+            // 
+            this.lblOrderDay.AutoSize = true;
+            this.lblOrderDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderDay.Location = new System.Drawing.Point(837, 40);
+            this.lblOrderDay.Name = "lblOrderDay";
+            this.lblOrderDay.Size = new System.Drawing.Size(0, 20);
+            this.lblOrderDay.TabIndex = 958825;
+            // 
             // txtSearchByProduct2
             // 
             this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2784,15 +2858,6 @@
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
             // 
-            // lblOrderDay
-            // 
-            this.lblOrderDay.AutoSize = true;
-            this.lblOrderDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrderDay.Location = new System.Drawing.Point(837, 40);
-            this.lblOrderDay.Name = "lblOrderDay";
-            this.lblOrderDay.Size = new System.Drawing.Size(0, 20);
-            this.lblOrderDay.TabIndex = 958825;
-            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -2842,6 +2907,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
             this.gpSupplier.ResumeLayout(false);
             this.gpSupplier.PerformLayout();
+            this.pnlScheduleStatus.ResumeLayout(false);
+            this.pnlScheduleStatus.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -3002,18 +3069,6 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.Label lblOrderTypeId;
         public System.Windows.Forms.Button btnMappingsave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesmanWhatsapp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmscheduleid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderdays;
-        private System.Windows.Forms.DataGridViewTextBoxColumn daysid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewImageColumn clmedit;
-        private System.Windows.Forms.DataGridViewImageColumn clmDelete;
         private System.Windows.Forms.TextBox txtMappedSupplierName;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblMappedOrderTypeId;
@@ -3056,5 +3111,22 @@
         private System.Windows.Forms.TextBox txtBrand;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblOrderDay;
+        private System.Windows.Forms.Panel pnlScheduleStatus;
+        private System.Windows.Forms.RadioButton rbScheduleActive;
+        private System.Windows.Forms.RadioButton rbScheduleInactive;
+        private System.Windows.Forms.TextBox txtDStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesmanWhatsapp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmscheduleid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderdays;
+        private System.Windows.Forms.DataGridViewTextBoxColumn daysid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewImageColumn clmedit;
+        private System.Windows.Forms.DataGridViewImageColumn clmDelete;
     }
 }

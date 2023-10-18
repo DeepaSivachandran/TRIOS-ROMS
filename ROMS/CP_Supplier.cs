@@ -4540,6 +4540,8 @@ namespace ROMS
                         case "clmedit":
                             if (pbSupplierid != "")
                             {
+                                btnSupplierdeal.Enabled = false;
+                                btnSaveOrderType.Enabled = false;
                                 tpschedule.Active = false;
                                 errCompany.Clear();
                                 txtScheduleName.BackColor = Color.White;
@@ -4548,13 +4550,14 @@ namespace ROMS
                                     scheduleselectedIndex = e.RowIndex;
                                 }
                                 btnAdd.Text = "Update";
+                                pnlScheduleStatus.Enabled = true;
                                 SPDataService objspservice = new SPDataService();
                                 foreach (DataGridViewRow row in grddays.Rows)
                                 {
                                     row.Cells[0].Value = false;
                                 }
                                 DataSet objDS;
-                                int varview = 3;
+                                int varview = 3;string varScheduleStatus = "";
 
                                 SupplierUpdate = 0;
                                 if (Convert.ToInt32(varsupplierID) != 0)
@@ -4576,6 +4579,10 @@ namespace ROMS
                                         txtsalesmanname.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
                                         txtsalesmanwhatsapp.Text = objDS.Tables[0].Rows[0]["WHATSAPP"].ToString().Replace("''", "'");
                                         cmbOrderType.SelectedValue = objDS.Tables[0].Rows[0]["ORDERTYPE"].ToString();
+                                        if(objDS.Tables[0].Rows[0]["ORDERTYPE"].ToString()=="Active")
+                                        { rbScheduleActive.Checked = true; }
+                                        else
+                                        { rbScheduleInactive.Checked = true; }
                                     }
                                     if (objDS.Tables[1].Rows.Count > 0)
                                     {
@@ -5467,6 +5474,7 @@ namespace ROMS
                                 }
                             }
                         }
+
                     }
                     else
                     {
@@ -5528,7 +5536,10 @@ namespace ROMS
 
                             SPDataService objspdservice = new SPDataService();
                             string result = "", varoriginator = "";
-                            int Vartype = 0, count = 0;
+                            int Vartype = 0, count = 0, varScheduleStatusid = 0;
+                            if (rbActive.Checked == true)
+                            { varScheduleStatusid = 1; }
+                            else { varScheduleStatusid = 2; }
 
                             if (btnAdd.Text == "Save")
                             {
@@ -5559,7 +5570,7 @@ namespace ROMS
                                 Vartype = 4;
                             }
                             result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
-                                Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
+                                Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0,Convert.ToString(varScheduleStatusid), MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
                                 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text, txtsalesmanmobile.Text,
                                 txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "");
 
@@ -5642,6 +5653,9 @@ namespace ROMS
             finally
             {
                 grdSupplierList.ClearSelection();
+                btnAdd.Enabled = true;
+                btnSupplierdeal.Enabled = true;
+                btnSaveOrderType.Enabled = true;
             }
         }
         public void udfnSaveGrdAdd()
@@ -5658,7 +5672,7 @@ namespace ROMS
                 {
                     grdSupplierList.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["SCHEDULE"]), Convert.ToString(objDS.Tables[0].Rows[i]["SALEMAN"]),
                     Convert.ToString(objDS.Tables[0].Rows[i]["MOBILE"]), Convert.ToString(objDS.Tables[0].Rows[i]["WHATSAPP"]), Convert.ToString(objDS.Tables[0].Rows[i]["ORDERTYPE"]), varOrderid
-                    , Convert.ToString(objDS.Tables[0].Rows[i]["ORDERDAYS"]), Convert.ToString(objDS.Tables[0].Rows[i]["DAYID"]), Convert.ToString(objDS.Tables[0].Rows[i]["ID"]));
+                    , Convert.ToString(objDS.Tables[0].Rows[i]["ORDERDAYS"]), Convert.ToString(objDS.Tables[0].Rows[i]["DAYID"]), Convert.ToString(objDS.Tables[0].Rows[i]["ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status"]));
 
                 }
                 txtScheduleName.Text = "";
@@ -6626,6 +6640,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
 
