@@ -221,7 +221,7 @@ namespace ROMS
                 grdEmployee.Columns["S.No."].Width = 40;
                 grdEmployee.Columns["S.No."].Visible = false;
                 grdEmployee.Columns["Employee Code"].Width = 100;
-                grdEmployee.Columns["Employee Name"].Width = 150;
+                grdEmployee.Columns["Employee Name"].Width = 180;
                 grdEmployee.Columns["Employee Category"].Width = 150;
                 grdEmployee.Columns["EMPID"].Visible = false;
                 grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -370,7 +370,7 @@ namespace ROMS
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
                         dtRack.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Concern"], objDs.Tables[0].Rows[i]["Stock Location"],
-                           objDs.Tables[0].Rows[i]["Rack Name"], objDs.Tables[0].Rows[i]["Short Name"], objDs.Tables[0].Rows[i]["Description"],
+                           objDs.Tables[0].Rows[i]["Rack Name"], objDs.Tables[0].Rows[i]["Short Name"], objDs.Tables[0].Rows[i]["Description"], 
                            objDs.Tables[0].Rows[i]["Total Products"], objDs.Tables[0].Rows[i]["Status"], objDs.Tables[0].Rows[i]["ID"], objDs.Tables[0].Rows[i]["ConcernID"],
                            objDs.Tables[0].Rows[i]["StockLocationID"], objDs.Tables[0].Rows[i]["StatusID"]);
                     }
@@ -384,12 +384,13 @@ namespace ROMS
                 grdRack.Columns["Rack"].Width = 100;
                 grdRack.Columns["Description"].Width = 200;
                 grdRack.Columns["Total Products"].Width = 100;
+                grdRack.Columns["Stock Location"].Width = 180;
                 grdRack.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdRack.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
+                grdRack.Columns["Stock Location"].DisplayIndex = 3;
                 grdRack.Columns["S.No."].Visible = false;
                 grdRack.Columns["Concern"].Visible = false;
-                grdRack.Columns["Stock Location"].Visible = false;
+                //grdRack.Columns["Stock Location"].Visible = false;
                 grdRack.Columns["Short Name"].Visible = false;
                 grdRack.Columns["Status"].Visible = false;
                 grdRack.Columns["ID"].Visible = false;
@@ -462,7 +463,7 @@ namespace ROMS
                     {
                         for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
                         {
-                            grdSelectedRack.Rows.Add(grdSelectedRack.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["RK_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_Description"]), Convert.ToInt16(objDS.Tables[2].Rows[i]["TotalProducts"]), Convert.ToInt16(objDS.Tables[2].Rows[i]["RKID"]));
+                            grdSelectedRack.Rows.Add(grdSelectedRack.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["Stock Location"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_Description"]),  Convert.ToInt16(objDS.Tables[2].Rows[i]["TotalProducts"]),  Convert.ToInt16(objDS.Tables[2].Rows[i]["RKID"]));
                         }
                     }
                     //for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
@@ -1493,7 +1494,7 @@ namespace ROMS
                             }
                             if (varFlag == 0)
                             {
-                                grdSelectedRack.Rows.Add(Convert.ToInt32(grdSelectedRack.Rows.Count) + 1, grdRack.Rows[i].Cells["Rack"].Value, grdRack.Rows[i].Cells["Description"].Value,
+                                grdSelectedRack.Rows.Add(Convert.ToInt32(grdSelectedRack.Rows.Count) + 1, grdRack.Rows[i].Cells["Stock Location"].Value, grdRack.Rows[i].Cells["Rack"].Value, grdRack.Rows[i].Cells["Description"].Value, 
                                     grdRack.Rows[i].Cells["Total Products"].Value, grdRack.Rows[i].Cells["ID"].Value);
                             }
                         }
@@ -1599,10 +1600,10 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
 
-                                dtRack.Rows.Add(false, 0, "", "",
-                                   grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value, "", grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value,
-                                   grdSelectedRack.SelectedRows[0].Cells["clmTotalProducts"].Value, "", grdSelectedRack.SelectedRows[0].Cells["ID"].Value, 0,
-                                   0, 0);
+                                dtRack.Rows.Add(false, 0, "", grdSelectedRack.SelectedRows[0].Cells["clmStockLocation"].Value,
+                                   grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value, "", grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value, 
+                                   grdSelectedRack.SelectedRows[0].Cells["clmTotalProducts"].Value, "", grdSelectedRack.SelectedRows[0].Cells["ID"].Value, 0, 
+                                   0,0);
 
                                 grdSelectedRack.Rows.RemoveAt(this.grdSelectedRack.SelectedRows[0].Index);
                                 for (int i = 0; i < grdSelectedRack.RowCount; i++)

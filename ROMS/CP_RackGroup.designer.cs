@@ -32,8 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -44,18 +42,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_RackGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
             this.lblNoofproducts = new System.Windows.Forms.Label();
             this.lblTotalProduct = new System.Windows.Forms.Label();
             this.Add = new System.Windows.Forms.Button();
             this.grdSelectedRack = new System.Windows.Forms.DataGridView();
-            this.columnSNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemoveRack = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnView = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.chkRack = new System.Windows.Forms.CheckBox();
@@ -99,6 +93,13 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnSNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStockLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemoveRack = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRack)).BeginInit();
@@ -126,11 +127,11 @@
             this.grbform.Controls.Add(this.txtDRackGroup);
             this.grbform.Controls.Add(this.cmbConcern);
             this.grbform.Controls.Add(this.txtConcern);
-            this.grbform.Location = new System.Drawing.Point(184, 2);
+            this.grbform.Location = new System.Drawing.Point(12, 2);
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbform.Size = new System.Drawing.Size(986, 391);
+            this.grbform.Size = new System.Drawing.Size(1330, 391);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -162,7 +163,7 @@
             this.Add.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.Add.Image = global::ROMS.Properties.Resources.add;
             this.Add.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add.Location = new System.Drawing.Point(480, 221);
+            this.Add.Location = new System.Drawing.Point(652, 221);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(31, 29);
             this.Add.TabIndex = 4;
@@ -192,6 +193,7 @@
             this.grdSelectedRack.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSelectedRack.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnSNo,
+            this.clmStockLocation,
             this.clmRack,
             this.clmDescription,
             this.clmTotalProducts,
@@ -207,7 +209,7 @@
             this.grdSelectedRack.DefaultCellStyle = dataGridViewCellStyle4;
             this.grdSelectedRack.EnableHeadersVisualStyles = false;
             this.grdSelectedRack.GridColor = System.Drawing.Color.White;
-            this.grdSelectedRack.Location = new System.Drawing.Point(518, 87);
+            this.grdSelectedRack.Location = new System.Drawing.Point(689, 87);
             this.grdSelectedRack.Name = "grdSelectedRack";
             this.grdSelectedRack.ReadOnly = true;
             this.grdSelectedRack.RowHeadersVisible = false;
@@ -218,58 +220,12 @@
             this.grdSelectedRack.RowTemplate.Height = 25;
             this.grdSelectedRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSelectedRack.ShowRowErrors = false;
-            this.grdSelectedRack.Size = new System.Drawing.Size(455, 297);
+            this.grdSelectedRack.Size = new System.Drawing.Size(628, 297);
             this.grdSelectedRack.TabIndex = 61454;
             this.grdSelectedRack.TabStop = false;
             this.grdSelectedRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSelectedRack_CellContentClick);
             this.grdSelectedRack.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GrdSelectedRackList_CellMouseDoubleClick);
             this.grdSelectedRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSelectedRackList_KeyDown);
-            // 
-            // columnSNo
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnSNo.DefaultCellStyle = dataGridViewCellStyle2;
-            this.columnSNo.HeaderText = "S.No.";
-            this.columnSNo.Name = "columnSNo";
-            this.columnSNo.ReadOnly = true;
-            this.columnSNo.Width = 40;
-            // 
-            // clmRack
-            // 
-            this.clmRack.HeaderText = "Rack";
-            this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
-            // 
-            // clmDescription
-            // 
-            this.clmDescription.HeaderText = "Description";
-            this.clmDescription.Name = "clmDescription";
-            this.clmDescription.ReadOnly = true;
-            this.clmDescription.Width = 140;
-            // 
-            // clmTotalProducts
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmTotalProducts.DefaultCellStyle = dataGridViewCellStyle3;
-            this.clmTotalProducts.HeaderText = "Total Products";
-            this.clmTotalProducts.Name = "clmTotalProducts";
-            this.clmTotalProducts.ReadOnly = true;
-            this.clmTotalProducts.Width = 110;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // clmRemoveRack
-            // 
-            this.clmRemoveRack.HeaderText = "Remove";
-            this.clmRemoveRack.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemoveRack.Name = "clmRemoveRack";
-            this.clmRemoveRack.ReadOnly = true;
-            this.clmRemoveRack.Width = 50;
             // 
             // btnView
             // 
@@ -345,7 +301,7 @@
             this.grdRack.RowTemplate.Height = 25;
             this.grdRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRack.ShowRowErrors = false;
-            this.grdRack.Size = new System.Drawing.Size(455, 297);
+            this.grdRack.Size = new System.Drawing.Size(628, 297);
             this.grdRack.TabIndex = 512;
             this.grdRack.TabStop = false;
             this.grdRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellContentClick);
@@ -480,9 +436,9 @@
             this.grpUserList.Controls.Add(this.chkEmployee);
             this.grpUserList.Controls.Add(this.grdStaffDetails);
             this.grpUserList.Controls.Add(this.grdEmployee);
-            this.grpUserList.Location = new System.Drawing.Point(184, 392);
+            this.grpUserList.Location = new System.Drawing.Point(12, 392);
             this.grpUserList.Name = "grpUserList";
-            this.grpUserList.Size = new System.Drawing.Size(986, 217);
+            this.grpUserList.Size = new System.Drawing.Size(1330, 217);
             this.grpUserList.TabIndex = 1;
             this.grpUserList.TabStop = false;
             this.grpUserList.Text = "Employee Details";
@@ -529,7 +485,7 @@
             this.btnAddemployee.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnAddemployee.Image = global::ROMS.Properties.Resources.add;
             this.btnAddemployee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddemployee.Location = new System.Drawing.Point(480, 110);
+            this.btnAddemployee.Location = new System.Drawing.Point(652, 117);
             this.btnAddemployee.Name = "btnAddemployee";
             this.btnAddemployee.Size = new System.Drawing.Size(31, 29);
             this.btnAddemployee.TabIndex = 1111140;
@@ -583,7 +539,7 @@
             this.grdStaffDetails.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdStaffDetails.EnableHeadersVisualStyles = false;
             this.grdStaffDetails.GridColor = System.Drawing.Color.White;
-            this.grdStaffDetails.Location = new System.Drawing.Point(518, 51);
+            this.grdStaffDetails.Location = new System.Drawing.Point(689, 51);
             this.grdStaffDetails.Name = "grdStaffDetails";
             this.grdStaffDetails.RowHeadersVisible = false;
             this.grdStaffDetails.RowHeadersWidth = 70;
@@ -594,7 +550,7 @@
             this.grdStaffDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdStaffDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdStaffDetails.ShowRowErrors = false;
-            this.grdStaffDetails.Size = new System.Drawing.Size(455, 160);
+            this.grdStaffDetails.Size = new System.Drawing.Size(628, 160);
             this.grdStaffDetails.TabIndex = 331254;
             this.grdStaffDetails.TabStop = false;
             this.grdStaffDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStaffDetails_CellContentClick);
@@ -681,7 +637,7 @@
             this.grdEmployee.RowTemplate.Height = 25;
             this.grdEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdEmployee.ShowRowErrors = false;
-            this.grdEmployee.Size = new System.Drawing.Size(455, 160);
+            this.grdEmployee.Size = new System.Drawing.Size(628, 160);
             this.grdEmployee.TabIndex = 513;
             this.grdEmployee.TabStop = false;
             this.grdEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdEmployee_CellContentClick);
@@ -750,7 +706,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(992, 611);
+            this.btnSave.Location = new System.Drawing.Point(1161, 611);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(87, 30);
@@ -768,7 +724,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1082, 611);
+            this.btnClose.Location = new System.Drawing.Point(1254, 611);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 30);
@@ -886,6 +842,59 @@
             // 
             this.columnHeader6.Width = 0;
             // 
+            // columnSNo
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnSNo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.columnSNo.HeaderText = "S.No.";
+            this.columnSNo.Name = "columnSNo";
+            this.columnSNo.ReadOnly = true;
+            this.columnSNo.Width = 40;
+            // 
+            // clmStockLocation
+            // 
+            this.clmStockLocation.HeaderText = "Stock Location";
+            this.clmStockLocation.Name = "clmStockLocation";
+            this.clmStockLocation.ReadOnly = true;
+            this.clmStockLocation.Width = 150;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            // 
+            // clmDescription
+            // 
+            this.clmDescription.HeaderText = "Description";
+            this.clmDescription.Name = "clmDescription";
+            this.clmDescription.ReadOnly = true;
+            this.clmDescription.Width = 140;
+            // 
+            // clmTotalProducts
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmTotalProducts.DefaultCellStyle = dataGridViewCellStyle3;
+            this.clmTotalProducts.HeaderText = "Total Products";
+            this.clmTotalProducts.Name = "clmTotalProducts";
+            this.clmTotalProducts.ReadOnly = true;
+            this.clmTotalProducts.Width = 110;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // clmRemoveRack
+            // 
+            this.clmRemoveRack.HeaderText = "Remove";
+            this.clmRemoveRack.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveRack.Name = "clmRemoveRack";
+            this.clmRemoveRack.ReadOnly = true;
+            this.clmRemoveRack.Width = 50;
+            // 
             // CP_RackGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -966,12 +975,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button btnAddemployee;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnSNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewImageColumn clmRemoveRack;
         private System.Windows.Forms.Button btnViewEmployee;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblUserId;
@@ -983,5 +986,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUserId;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnSNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStockLocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemoveRack;
     }
 }

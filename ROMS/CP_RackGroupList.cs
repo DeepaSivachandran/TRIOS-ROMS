@@ -858,7 +858,7 @@ namespace ROMS
                     }
                     else
                     {
-                        varViewType = 11;
+                        varViewType = 20;
                     }
                     objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text,0, 0,0);
                     objspdservice.CloseConnection();
