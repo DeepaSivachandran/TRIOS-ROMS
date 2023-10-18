@@ -257,7 +257,7 @@ namespace ROMS
                 string varId_HSN = "0";
                 DataSet objDsHSN = new DataSet();
                 SPDataService objDs = new SPDataService();
-                objDsHSN = objDs.udfnHsnList(9, 0, 0,0,txtHsnName.Text.Trim(),txtHSNCode.Text.Trim());
+                objDsHSN = objDs.udfnHsnList(9, 0, 0, 0, txtHsnName.Text.Trim(), txtHSNCode.Text.Trim());
                 objDs.CloseConnection();
                 if (objDsHSN != null)
                 {
@@ -530,9 +530,38 @@ namespace ROMS
                 if (txtPurLocation.Text != "")
                 {
                     string varId_PurLocation = "0";
+                    DataSet objDsSalesLoc = new DataSet();
+                    SPDataService objDServ5 = new SPDataService();
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtPurLocation.Text.Trim(), 0, 0, 0);
+                    objDServ5.CloseConnection();
+                    if (objDsSalesLoc != null)
+                    {
+                        if (objDsSalesLoc.Tables.Count > 0)
+                        {
+                            if (objDsSalesLoc.Tables[0].Rows.Count > 0)
+                            {
+                                varId_PurLocation = Convert.ToString(objDsSalesLoc.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    lblPurLocationCode.Text = Convert.ToString(varId_PurLocation);
+                    if (varId_PurLocation == "0" || varId_PurLocation == "-1")
+                    {
+                        errItems.SetError(txtPurLocation, "Please select valid purchase stock location");
+                        txtPurLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tppurchaselocation.ShowAlways = true;
+                        tppurchaselocation.Show("Please select valid purchase stock location", txtPurLocation, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                /* Check purchase stock location is valid or not*/
+                if (txtPurLocation.Text != "")
+                {
+                    string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtPurLocation.Text.Trim(),0,0,0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(19, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, "", Convert.ToInt32(lblSubGroupCode.Text), 0, 0);
+                    //  objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtPurLocation.Text.Trim(),0,0,0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -544,7 +573,6 @@ namespace ROMS
                             }
                         }
                     }
-                    lblPurLocationCode.Text = Convert.ToString(varId_PurLocation);
                     if (varId_PurLocation == "0" || varId_PurLocation == "-1")
                     {
                         errItems.SetError(txtPurLocation, "Please select valid purchase stock location");
@@ -641,10 +669,11 @@ namespace ROMS
                 /*check location have a rack or not*/
                 if (lblPurLocationCode.Text != "0")
                 {
-                    string varId_PurchaseRack = "0";
+                    string varId_PurchaseRack = "0"; 
                     DataSet objDsPurchaseRack = new DataSet();
                     SPDataService objDServ6 = new SPDataService();
                     objDsPurchaseRack = objDServ6.udfnRackList(12, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), Convert.ToInt32(lblSubGroupCode.Text), 0);
+                    
                     objDServ6.CloseConnection();
                     if (objDsPurchaseRack != null)
                     {
@@ -655,7 +684,7 @@ namespace ROMS
                                 varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
                             }
                         }
-                    } 
+                    }
                     if (varId_PurchaseRack != "0" && txtPurRack.Text=="")
                     {
                         errItems.SetError(txtPurRack, "Please select valid purchase rack");
@@ -665,7 +694,8 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-
+                /*check purchase location valid r not*/
+                
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();

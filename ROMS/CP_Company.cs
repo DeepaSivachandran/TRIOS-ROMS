@@ -3125,6 +3125,7 @@ namespace ROMS
                             }
                         }
                         udfnContactClear();
+                        this.grdContactManager.Sort(this.grdContactManager.Columns["clmid"], ListSortDirection.Ascending);
                         cmbTransactionType.Focus();
                         rbActiveContact.Checked = true;
                         grdContactManager.ClearSelection();

@@ -340,7 +340,7 @@ namespace ROMS
                         else { varErrorflag = 2; }
                         var varPCode = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("P.I Code").Trim().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != (varID)) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPCode.Count() == 0)
-                        { varPIcode = Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim(); }
+                        { varPIcode = Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim().ToUpper(); }
                         else { varErrorflag = 3; }
                         var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Unit").Trim().ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varUnitId = Convert.ToInt32(varValue.ToList()[0]); }
@@ -1412,7 +1412,7 @@ namespace ROMS
                                 grdBulkAttributes.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                                 grdBulkAttributes.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdBulkAttributes.Columns["Product Name in Tamil-New"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
-                                ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Product Code-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Product Code-New"]).MaxInputLength = 20;
                                 ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Product Name in Tamil-New"]).MaxInputLength = 100;
                                 ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Product Name in English-New"]).MaxInputLength = 100;
                                 ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Unit-New"]).MaxInputLength = 10;

@@ -709,35 +709,40 @@ namespace ROMS
                         //picLoader.Visible = true;
                         //picLoader.BringToFront();
                         //Application.DoEvents();
-                        this.ActiveControl = tcSupplier;
-                       // tcSupplier.SelectedIndex = 1;
-                        MainForm.objCP_Supplierlist.udfnList();
-
-                        txtName.Focus();
-                        udfnclear();
-                        varupdate = "1";
-                        udfnclose();
-                        //if (btnSave.Text == "Update")
-                        //{
-                        //    varupdate = "1";
-                        //    udfnclear();
-
-                        //    txtsuppliername.Text = txtName.Text;
-                        //    txtSupplier.Text = txtName.Text;
-                        //    txtMappedSupplierName.Text = txtName.Text;
-                        //}
+                        //this.ActiveControl = tcSupplier;
+                        //tcSupplier.SelectedIndex = 1;
+                        //MainForm.objCP_Supplierlist.udfnList();
+                        //udfnclear();
+                        //txtName.Focus();
+                        if (btnSave.Text == "Update")
+                        {
+                            varupdate = "1";
+                         
+                            txtsuppliername.Text = txtName.Text;
+                            txtSupplier.Text = txtName.Text;
+                            txtMappedSupplierName.Text = txtName.Text;
+                        }
+                        else
+                        {
+                            udfnclear();
+                            btnSave.Text = "Save";
+                            pbSupplierid = "0";
+                        }
                         //else
                         //{
                         //    varsupplierID = varvalue[2];
                         //}
-                        //if (tcSupplier.SelectedIndex == 1)
-                        //{
-                        //    btnSave.Text = "Update";
-                        //    btnSaveOrderType.Text = "Update";
-                        //    txtSupplier.Text = txtName.Text;
-                        //    txtsuppliername.Text = txtName.Text;
-                        //    txtMappedSupplierName.Text = txtName.Text;
-                        //}
+                        if (tcSupplier.SelectedIndex == 1)
+                        {
+                            btnSave.Text = "Update";
+                            btnSaveOrderType.Text = "Update";
+                            txtSupplier.Text = txtName.Text;
+                            txtsuppliername.Text = txtName.Text;
+                            txtMappedSupplierName.Text = txtName.Text;
+                        }
+
+                        MainForm.objCP_Supplierlist.udfnList();
+                        
                     }
                     else
                     {
@@ -862,6 +867,33 @@ namespace ROMS
         {
             try
             {
+                txtName.Text = "";
+                txtArea.Text = "";
+                txtaddress2.Text = "";
+                cmbState.SelectedIndex = 0;
+                txtCity.Text = "";
+                txtPincode.Text = "";
+                txtContactNumber.Text = "";
+                txtAContactNumber.Text = "";
+                txtwhatsapp.Text = "";
+                txtEmail.Text = "";
+                cmbDesignation.SelectedIndex = 0;
+                txtcontactName.Text = "";
+                txtcontactName.Text = "";
+                txtopening.Text = "";
+                cmbSupplierType.SelectedIndex = 0;
+                txtcreditlimit.Text = "";
+                cmbfinance.SelectedIndex = 0;
+                txtgstin.Text = "";
+                cmbPaymentTerm.SelectedIndex = 0;
+                txtAccName.Text = "";
+                txtAccno.Text = "";
+                txtbranchname.Text = "";
+                txtBankname.Text = "";
+                txtBankShortName.Text = "";
+                txtIFScode.Text = "";
+                BindDataGrid();
+                txtName.Focus();
             }
             catch (Exception ex)
             {
@@ -4997,6 +5029,7 @@ namespace ROMS
                             varupdate = "1";
                             //udfnclose();
                         }
+
 
                         udfnMappingClear();
                     }
