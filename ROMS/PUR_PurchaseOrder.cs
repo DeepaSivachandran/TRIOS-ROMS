@@ -392,11 +392,14 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varupdate == "0")
                 {
-                    this.Close();
-                    udfntooltiphide();
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        udfntooltiphide();
+                    }
                 }
             }
             catch (Exception ex)
@@ -431,8 +434,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
         }
         public void udfnClear()
@@ -452,13 +454,11 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
         }
         public void udfnsave()
-        {
-
+        { 
             try
             {
                 bool varErrorFlag = true;
@@ -518,8 +518,7 @@ namespace ROMS
                         if (grdsupplieradd.Rows.Count > 0)
                         {
                             if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
-                            {
-
+                            { 
                                 udfntooltiphide();
                                 string result = "", varorginator="Po Create";
                                 int varviewtype = 0, POUpdate=varPOID;
@@ -1996,17 +1995,17 @@ namespace ROMS
                     switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                     {
                         case "clmRemove":
-                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                        DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            DataGridViewRow row = grdsupplieradd.Rows[e.RowIndex];
+                            grdsupplieradd.Rows.Remove(row);
+                            for (int i = 0; i < grdsupplieradd.RowCount; i++)
                             {
-                                DataGridViewRow row = grdsupplieradd.Rows[e.RowIndex];
-                                grdsupplieradd.Rows.Remove(row);
-                                for (int i = 0; i < grdsupplieradd.RowCount; i++)
-                                {
-                                    grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
-                                }
+                                grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
                             }
-                            break;
+                        }
+                        break;
                     }
                 }
             }

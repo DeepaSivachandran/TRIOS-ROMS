@@ -14,6 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        Boolean BlnSearchImageYN = false;
         public PUR_PurchaseOrderList()
         {
             InitializeComponent();
@@ -54,14 +55,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder(); 
-                MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.lblPOCreateby.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created By"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.lblpocreatedon.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created On"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.VarStatusId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm; 
-                MainForm.objPUR_PurchaseOrder.Show();
+                udfnEdit();
             }
             catch (Exception ex)
             {
@@ -180,10 +174,14 @@ namespace ROMS
         {
             try
             {
+
                 MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
                 MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.lblPOCreateby.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created By"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.lblpocreatedon.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created On"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.VarStatusId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseOrder.gpissued.Enabled = true;
                 MainForm.objPUR_PurchaseOrder.Show();
             }
             catch (Exception ex)
@@ -788,7 +786,7 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdPurchaseorderlist.DataSource = objDs.Tables[0];
-                            AddImageColumnToDataGridView();
+                            grdPurchaseorderlist.Columns["clmView"].DisplayIndex = objDs.Tables[0].Columns.Count;
                             //grdPurchaseorderlist.Columns["S.No."].Width = 50;
                             //grdPurchaseorderlist.Columns["P.I Code"].Width = 100;
                             //grdPurchaseorderlist.Columns["Product"].Width = 250;
@@ -822,31 +820,31 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void AddImageColumnToDataGridView()
-        {
-            try
-            { 
-                DataGridViewImageColumn imageColumn = new DataGridViewImageColumn
-                {
-                    Name = "clmView",
-                    HeaderText = "Issued Details",
-                    ImageLayout = DataGridViewImageCellLayout.Zoom
-                };
+        //private void AddImageColumnToDataGridView()
+        //{
+        //    try
+        //    { 
+        //        DataGridViewImageColumn imageColumn = new DataGridViewImageColumn
+        //        {
+        //            Name = "clmView",
+        //            HeaderText = "Issued Details",
+        //            ImageLayout = DataGridViewImageCellLayout.Zoom
+        //        };
                  
-                grdPurchaseorderlist.Columns.Add(imageColumn);
-                imageColumn.DisplayIndex = grdPurchaseorderlist.Columns.Count - 1;
-                for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
-                {
-                    Image image = Image.FromFile(Application.StartupPath + "\\view.png");
-                    grdPurchaseorderlist.Rows[i].Cells["clmView"].Value = image;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //        grdPurchaseorderlist.Columns.Add(imageColumn);
+        //        imageColumn.DisplayIndex = grdPurchaseorderlist.Columns.Count - 1;
+        //        for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
+        //        {
+        //            Image image = Image.FromFile(Application.StartupPath + "\\view.png");
+        //            grdPurchaseorderlist.Rows[i].Cells["clmView"].Value = image;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
 
 
         private void TxtProductGroup_Enter(object sender, EventArgs e)
@@ -1367,8 +1365,8 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                DGV_SearchGrid.Columns["Issued Details"].ReadOnly = true;
+                DGV_SearchGrid.Columns["S.No."].ReadOnly = true; 
+                DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1389,11 +1387,26 @@ namespace ROMS
                     }
                 }
                 int rowIndex = 0;
+                int ColIndex = 0;
                 dgv2.Rows.Clear();
                 dgv2.Rows.Add();
+                BlnSearchImageYN = false;
                 for (int i = 0; i < visibleColumns.Count; i++)
                 {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                    if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                    {
+                        //dgv2.Rows[rowIndex].Visible = false;
+                        BlnSearchImageYN = true;
+                        ColIndex = i;
+                        dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                        dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                        ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
