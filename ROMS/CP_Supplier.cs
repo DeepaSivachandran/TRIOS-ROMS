@@ -716,11 +716,12 @@ namespace ROMS
                         //txtName.Focus();
                         if (btnSave.Text == "Update")
                         {
-                            varupdate = "1";
-                         
+                            varupdate = "1";                         
                             txtsuppliername.Text = txtName.Text;
                             txtSupplier.Text = txtName.Text;
                             txtMappedSupplierName.Text = txtName.Text;
+                            MainForm.objCP_Supplierlist.udfnList();
+                            this.Close();
                         }
                         else
                         {
@@ -740,8 +741,6 @@ namespace ROMS
                             txtsuppliername.Text = txtName.Text;
                             txtMappedSupplierName.Text = txtName.Text;
                         }
-
-                        MainForm.objCP_Supplierlist.udfnList();
                         
                     }
                     else
