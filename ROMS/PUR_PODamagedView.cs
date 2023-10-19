@@ -28,17 +28,21 @@ namespace ROMS
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            udfnclose();
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnclose()
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -46,40 +50,49 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BindDataGrid()
-        {
+        private void udfnList()
+        { 
             try
             {
-                string[] item = new string[30];
-                ListViewItem listitem = new ListViewItem(); DataTable dataTable = new DataTable();
-                dataTable.Columns.Add("s.no", typeof(string));
-                dataTable.Columns.Add("invoiceno", typeof(string));
-                dataTable.Columns.Add("invoicedate", typeof(string));
-                dataTable.Columns.Add("Totalproduct", typeof(string)); 
-                dataTable.Rows.Add("1","1234","19/07/2023","20");
-                //dataTable.Rows.Add("Tuesday");
-                // dataTable.Rows.Add("Wednesday");
-                //dataTable.Rows.Add("Thursday");
-                //dataTable.Rows.Add("Friday");
-                //dataTable.Rows.Add("Saturday");
-                //dataTable.Rows.Add("Sunday");
+                Application.DoEvents();
+                //********** To display a data in a grid  ****************** 
 
-
-                for (int i = 0; i < dataTable.Rows.Count; i++)
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnReturnDC(0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue),0,0,0,0,0);
+                objdserv.CloseConnection();
+                if (objDs != null)
                 {
-                    string sno = dataTable.Rows[i]["s.no"].ToString();
-                    string invoiceno = dataTable.Rows[i]["invoiceno"].ToString();
-                    string invoicedate = dataTable.Rows[i]["invoicedate"].ToString();
-                    string totalproduct = dataTable.Rows[i]["Totalproduct"].ToString();
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
 
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(grdGRNPODamaged);
-                    row.Cells[1].Value = sno;
-                    row.Cells[3].Value = invoiceno;
-                    row.Cells[2].Value = invoicedate;
-                    row.Cells[4].Value = "Damage";
-                    row.Cells[5].Value = totalproduct; 
-                    grdGRNPODamaged.Rows.Add(row);
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            {
+                                grdGRNPODamaged.Rows.Add(objDs.Tables[0].Rows[i]["SINO"], objDs.Tables[0].Rows[i]["DCDATE"], objDs.Tables[0].Rows[i]["DCNO"], objDs.Tables[0].Rows[i]["REASON"], objDs.Tables[0].Rows[i]["prcount"], objDs.Tables[0].Rows[i]["DCVALUE"], objDs.Tables[0].Rows[i]["ID"]);
+                            }
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
             }
             catch (Exception ex)
@@ -87,14 +100,19 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
-
-            // grddays.DataSource = dataTable;
         }
 
         private void PUR_PODamagedView_Load(object sender, EventArgs e)
         {
-            BindDataGrid();
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdGRNPODamaged_DoubleClick(object sender, EventArgs e)
@@ -102,13 +120,30 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
-                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToInt32(grdGRNPODamaged.SelectedRows[0].Cells["ID"].Value.ToString());
+                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();  
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+
+        private void PUR_PODamagedView_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

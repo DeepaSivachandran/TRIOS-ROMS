@@ -714,8 +714,6 @@ namespace ROMS
                     {
                         maxstk = Convert.ToDouble(txtMaxStock.Text);
                     }
-
-
                     if (txtReOrderQty.Text == "")
                     {
                         reorderqty = 0;
@@ -805,6 +803,7 @@ namespace ROMS
                     wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction, shelflife,
                     Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue),null);
 
+                    objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -823,7 +822,6 @@ namespace ROMS
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         btnSave.Enabled = true;
                     }
-                    objspdservice.CloseConnection();
                 }  
             }
             catch (Exception ex)
@@ -900,8 +898,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
+         
         public void udfncolorchange()
         {
             try
@@ -3165,7 +3162,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 DataSet objDTBulkUnit = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDT = objdserv.udfnUnitList(varViewType, varUnitid);
+                objDT = objdserv.udfnUnitList(varViewType, varUnitid,0);
                 objdserv.CloseConnection();
                 cmbUnit.DataSource = null;
                 if (objDT != null)
@@ -3181,7 +3178,7 @@ namespace ROMS
                     }
                 }
                 objDT = null;
-                objDT = objdserv.udfnUnitList(varViewType, varUnitid);
+                objDT = objdserv.udfnUnitList(varViewType, varUnitid,0);
                 objdserv.CloseConnection();
                 cmbBulkUnit.DataSource = null;
                 if (objDT != null)
@@ -3302,7 +3299,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     lblDPicode.Visible = true;
-                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0);                    objdserv.CloseConnection();
+                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"");                    objdserv.CloseConnection();
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
@@ -4934,7 +4931,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"");
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {

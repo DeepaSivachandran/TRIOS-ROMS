@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; 
+using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 namespace ROMS
 {
@@ -28,7 +28,7 @@ namespace ROMS
             {
                 picLoader.Visible = true;
                 picLoader.BringToFront();
-                Application.DoEvents(); 
+                Application.DoEvents();
                 MainForm.objCP_Supplier = new CP_Supplier();
                 MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                 MainForm.objCP_Supplier.Show();
@@ -41,7 +41,7 @@ namespace ROMS
             }
             finally
             {
-                picLoader.Visible = false; 
+                picLoader.Visible = false;
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace ROMS
             }
         }
 
-        
+
         private void CP_Supplierlist_Load(object sender, EventArgs e)
         {
             try
@@ -94,7 +94,7 @@ namespace ROMS
             }
         }
 
-        
+
         public void udfndelete()
         {
             try
@@ -106,7 +106,7 @@ namespace ROMS
 
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int varordertype = 0,vardayide=0,varscheduleid=0;
+                        int varordertype = 0, vardayide = 0, varscheduleid = 0;
                         if (Convert.ToString(grdSupplierList.SelectedRows[0].Cells["ORDERTYPE"].Value.ToString()) == "")
                         {
                             varordertype = 0;
@@ -168,7 +168,7 @@ namespace ROMS
             {
                 picLoader.Visible = true;
                 picLoader.BringToFront();
-                Application.DoEvents(); 
+                Application.DoEvents();
                 if (grdSupplierList.SelectedRows.Count > 0)
                 {
 
@@ -186,15 +186,15 @@ namespace ROMS
             }
             finally
             {
-                picLoader.Visible = false; 
+                picLoader.Visible = false;
             }
         }
 
         public void udfnList()
         {
-              
+
             try
-            {  
+            {
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -206,7 +206,7 @@ namespace ROMS
                 int varSupplierId = 0;
                 if (txtSupplier.Text == "")
                 {
-                varSupplierId = 0;
+                    varSupplierId = 0;
                 }
                 else
                 {
@@ -238,49 +238,49 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdSupplierList.DataSource = objDs.Tables[0];
-                        grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdSupplierList.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
- 
-                        grdSupplierList.Columns["S.No."].Width = 50;
-                        grdSupplierList.Columns["Supplier"].Width = 200;
-                        grdSupplierList.Columns["Schedule Name"].Width = 150;
-                        grdSupplierList.Columns["Ret.Condition"].Width = 140;
-                        grdSupplierList.Columns["GSTIN"].Width = 120;
-                        grdSupplierList.Columns["Status"].Width = 80;
-                        grdSupplierList.Columns["Scheduleid"].Visible = false;
-                        grdSupplierList.Columns["SupplierID"].Visible = false;
-                        grdSupplierList.Columns["STS"].Visible = false;
-                        grdSupplierList.Columns["DYID"].Visible = false;
-                        grdSupplierList.Columns["ORDERTYPE"].Visible = false;
-                        grdSupplierList.Columns["rownum"].Visible = false;
-                    }
+                            grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdSupplierList.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                            grdSupplierList.Columns["S.No."].Width = 50;
+                            grdSupplierList.Columns["Supplier"].Width = 200;
+                            grdSupplierList.Columns["Schedule Name"].Width = 150;
+                            grdSupplierList.Columns["Ret.Condition"].Width = 140;
+                            grdSupplierList.Columns["GSTIN"].Width = 120;
+                            grdSupplierList.Columns["Status"].Width = 80;
+                            grdSupplierList.Columns["Scheduleid"].Visible = false;
+                            grdSupplierList.Columns["SupplierID"].Visible = false;
+                            grdSupplierList.Columns["STS"].Visible = false;
+                            grdSupplierList.Columns["DYID"].Visible = false;
+                            grdSupplierList.Columns["ORDERTYPE"].Visible = false;
+                            grdSupplierList.Columns["rownum"].Visible = false;
+                        }
                         else
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
-                if (objDs.Tables[1].Rows.Count > 0)
-                {
-                    grdDaywiseProduct.DataSource = null;
-                    for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                    if (objDs.Tables[1].Rows.Count > 0)
                     {
-                        grdDaywiseProduct.DataSource = objDs.Tables[1];
+                        grdDaywiseProduct.DataSource = null;
+                        for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                        {
+                            grdDaywiseProduct.DataSource = objDs.Tables[1];
 
-                        grdDaywiseProduct.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdDaywiseProduct.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdDaywiseProduct.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdDaywiseProduct.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdDaywiseProduct.Columns["Total Suppliers"].Width = 100;
-                        grdDaywiseProduct.Columns["Mobile App"].Width = 100;
-                        grdDaywiseProduct.Columns["Phone"].Width = 100;
-                        grdDaywiseProduct.Columns["Visit"].Width = 80;
+                            grdDaywiseProduct.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdDaywiseProduct.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdDaywiseProduct.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdDaywiseProduct.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdDaywiseProduct.Columns["Total Suppliers"].Width = 100;
+                            grdDaywiseProduct.Columns["Mobile App"].Width = 100;
+                            grdDaywiseProduct.Columns["Phone"].Width = 100;
+                            grdDaywiseProduct.Columns["Visit"].Width = 80;
 
+                        }
                     }
-                }
 
-                else
+                    else
                     {
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
@@ -293,19 +293,19 @@ namespace ROMS
                 }
 
                 udfnSearchGridHead();
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
-                finally
-                {
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
                 //  grdreplist.ClearSelection();
-                 picLoader.Visible = false; 
-                picLoader.SendToBack(); 
-                } 
-        } 
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+            }
+        }
         private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -386,7 +386,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-          
+
 
         private void CmbOrderSchedule_Enter(object sender, EventArgs e)
         {
@@ -524,7 +524,7 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbDay.Select(int.MaxValue, 0))); 
+                BeginInvoke(new Action(() => cmbDay.Select(int.MaxValue, 0)));
                 udfnList();
             }
             catch (Exception ex)
@@ -606,7 +606,7 @@ namespace ROMS
         {
             try
             {
-                txtSupplier.BackColor = Color.White; 
+                txtSupplier.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -667,8 +667,8 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(),objDs.Tables[0].Rows[i]["SPID"].ToString() };
-                                     ListViewItem objList = new ListViewItem(row);
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
                                 LV_Supplier.Visible = true;
@@ -690,9 +690,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
-            { 
+            {
             }
-        } 
+        }
 
         private void GrdSupplierList_KeyDown(object sender, KeyEventArgs e)
         {
@@ -775,6 +775,59 @@ namespace ROMS
             }
         }
 
+
+        public void cmbschedulebind()
+        {
+            try
+            {
+                int cmbsuppleirid = 0;
+                if (lblSupplierCode.Text == "0")
+                {
+                    cmbsuppleirid = 0;
+                }
+                else
+                {
+                    cmbsuppleirid = Convert.ToInt32(lblSupplierCode.Text);
+                }
+                if (txtSupplier.Text == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    cmbsuppleirid = 0;
+                }
+                if (Convert.ToString(txtSupplier.Text) != "")
+                {
+                    string varsuppliername = "0";
+                    DataService objDserv = new DataService();
+                    varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text + "'");
+                    if (varsuppliername == "0")
+                    {
+                        lblSupplierCode.Text = "0";
+                        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSupplier.ShowAlways = true;
+                        tpSupplier.Show("Invalid supplier", txtSupplier, 5000);
+                    }
+                    else
+                    {
+                        ep_Supplierlist.Clear();
+                        txtSupplier.BackColor = Color.White;
+                    }
+                }
+
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSCID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
+                objDataBind = null;
+
+            }
+
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void LV_Supplier_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -786,7 +839,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
         }
 
         public void udfnListViewData()
@@ -810,58 +863,6 @@ namespace ROMS
             finally
             {
                 LV_Supplier.Visible = false;
-            }
-        }
-
-        public void cmbschedulebind()
-        {
-            try
-            {
-                int cmbsuppleirid = 0;
-            if (lblSupplierCode.Text == "0")
-            {
-                cmbsuppleirid = 0;
-            }
-            else
-            {
-                cmbsuppleirid = Convert.ToInt32(lblSupplierCode.Text);
-            }
-            if (txtSupplier.Text == "")
-            {
-                lblSupplierCode.Text = "0";
-                    cmbsuppleirid = 0;
-            }
-            if (Convert.ToString(txtSupplier.Text) != "")
-            {
-                string varsuppliername = "0";
-                DataService objDserv = new DataService();
-                varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text + "'");
-                if (varsuppliername == "0")
-                {
-                    lblSupplierCode.Text = "0";
-                    ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
-                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSupplier.ShowAlways = true;
-                    tpSupplier.Show("Invalid supplier", txtSupplier, 5000); 
-                }
-                else
-                {
-                    ep_Supplierlist.Clear();
-                    txtSupplier.BackColor = Color.White;
-                }
-            }
-
-
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSCID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
-                objDataBind = null;
-
-            }
-
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
             }
         }
         private void LV_Supplier_KeyDown(object sender, KeyEventArgs e)
@@ -979,7 +980,8 @@ namespace ROMS
 
         private void BtnExport_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 udfnImport();
             }
             catch (Exception ex)
@@ -1062,8 +1064,8 @@ namespace ROMS
         private void GrdDaywiseProduct_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
-            { 
-                grdDaywiseProduct.ClearSelection(); 
+            {
+                grdDaywiseProduct.ClearSelection();
             }
 
             catch (Exception ex)

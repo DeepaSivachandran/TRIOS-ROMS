@@ -21,6 +21,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
+        public int varDcCode = 0;
         public PUR_PurchaseOrderDamage()
         {
             InitializeComponent();
@@ -28,17 +29,21 @@ namespace ROMS
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            udfnclose();
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnclose()
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -49,7 +54,90 @@ namespace ROMS
 
         private void PUR_PurchaseOrderDamage_Load(object sender, EventArgs e)
         {
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void udfnList()
+        {
+
+            try
+            {
+                Application.DoEvents();
+                //********** To display a data in a grid  ****************** 
+
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnReturnDC(1, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), varDcCode,0,0,0,0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            {
+                                grdPurchaseOrder.Rows.Add(objDs.Tables[0].Rows[i]["SINO"], objDs.Tables[0].Rows[i]["PICODE"], objDs.Tables[0].Rows[i]["PRODUCT"], objDs.Tables[0].Rows[i]["QTY"], objDs.Tables[0].Rows[i]["UNIT"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["PURCHASERATE"], objDs.Tables[0].Rows[i]["EXPIRY"], objDs.Tables[0].Rows[i]["BATCH"], objDs.Tables[0].Rows[i]["ID"]);
+                            }
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        {
+                            txtDLNo.Text= objDs.Tables[1].Rows[0]["DCNO"].ToString();
+                            txtReason.Text= objDs.Tables[1].Rows[0]["REASON"].ToString();
+                            txtCreatedBy.Text= objDs.Tables[1].Rows[0]["CREATEDBY"].ToString();
+                            txtCreatedOn.Text= objDs.Tables[1].Rows[0]["CREATEDON"].ToString();
+                        } 
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void PUR_PurchaseOrderDamage_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            { 
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

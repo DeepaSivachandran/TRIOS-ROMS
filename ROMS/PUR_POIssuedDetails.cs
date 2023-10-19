@@ -15,12 +15,13 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
-        private ToolTip tpbrandname = new ToolTip();
-        private ToolTip tpbrandtamilname = new ToolTip();
-        private ToolTip tpbltname = new ToolTip();
+        private ToolTip tpIssuemodeValues = new ToolTip();
+        private ToolTip tpIssuemode = new ToolTip();
+        private ToolTip tpIssueby = new ToolTip();
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
+        public int varupdate = 0, varPOID = 0;
         public PUR_POIssuedDetails()
         {
             InitializeComponent();
@@ -28,17 +29,21 @@ namespace ROMS
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            udfnclose();
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnclose()
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -49,6 +54,418 @@ namespace ROMS
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            try
+            {
+                udfnSave();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfntooltiphide()
+        {
+            try
+            {
+                tpIssuemodeValues.Active = false;
+                txtIssuedBY.BackColor = Color.White;
+                tpIssueby.Active = false; 
+                tpIssuemode.Active = false;
+                cmbIssueMode.BackColor = Color.White;
+                tpIssuemodeValues.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnSave()
+        {
+
+            try
+            {
+                bool varErrorFlag = true;
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+                {
+                    if (txtIssuemodeValues.Text.Length != 10)
+                    {
+                        errIssued.SetError(txtIssuemodeValues, "Please enter valid number");
+                        txtIssuemodeValues.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIssuemodeValues.ShowAlways = true;
+                        tpIssuemodeValues.Show("Please enter valid number.", txtIssuemodeValues, 5000);
+                        varErrorFlag = false;
+                    }
+                } 
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1)
+                {
+                    errIssued.SetError(cmbIssueMode, "Please select mode of issue");
+                    cmbIssueMode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIssuemode.ShowAlways = true;
+                    tpIssuemode.Show("Please select mode of issue.", cmbIssueMode, 5000);
+                    varErrorFlag = false;
+                }
+                if (txtIssuedBY.Text=="")
+                {
+                    errIssued.SetError(txtIssuedBY, "Please enter issuedby");
+                    txtIssuedBY.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIssueby.ShowAlways = true;
+                    tpIssueby.Show("Please enter issuedby.", txtIssuedBY, 5000);
+                    varErrorFlag = false;
+                }
+                if (varErrorFlag == true)
+                {
+                    if (varPOID != 0)
+                    {
+                        udfntooltiphide();
+                        string result = "", varorginator = "Issue Create";
+                        int varviewtype = 3, POUpdate = varPOID;
+                        SPDataService objspdservice = new SPDataService();
+                        DataTable objPurchaseOrder = new DataTable();
+                        objPurchaseOrder.TableName = "TRN_PO_Product";
+                        objPurchaseOrder.Columns.Add("POPR_PRID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_MSQ", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
+                        result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, 0, "", 0, 0
+                        , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text);
+                        objspdservice.CloseConnection();
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.ActiveControl = dpissuedateandtime;
+                            //MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad(); 
+                            varupdate = 1;
+                            udfnclose(); 
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_POIssuedDetails_Load(object sender, EventArgs e)
+        {
+
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=44 AND MSTID NOT IN (135,136) OR MSTID=-1", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                cmbIssueMode.SelectedIndex = 0;
+                udfnEditLoad();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEditLoad()
+        {
+            try
+            {
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************  
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            txtPODate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString().Replace("''", "'");
+                            txtPONo.Text = objDs.Tables[0].Rows[0]["PONO"].ToString().Replace("''", "'");
+                            txtSupplier.Text = objDs.Tables[0].Rows[0]["SUPPLIER"].ToString().Replace("''", "'");
+                            txtIssuedBY.Text = objDs.Tables[0].Rows[0]["Issuedby"].ToString().Replace("''", "'");
+                            txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString().Replace("''", "'"); 
+                            txtTAT.Text = objDs.Tables[0].Rows[0]["TAT"].ToString().Replace("''", "'");
+                            if (objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'") != "" && objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'") != null)
+                            {
+                                dpissuedateandtime.Text = objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'");
+                            }
+                            else
+                            {
+                                dpissuedateandtime.Text = "";
+                            }
+                            if (objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'") != "" && objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'") != null)
+                            {
+                                cmbIssueMode.SelectedValue = objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'");
+                            }
+                            else
+                            {
+                                cmbIssueMode.SelectedValue = -1;
+                            } 
+                        } 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void PUR_POIssuedDetails_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (varupdate == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Dpissuedateandtime_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                dpissuedateandtime.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Dpissuedateandtime_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpissuedateandtime.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Dpissuedateandtime_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtIssuedBY.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssuedBY_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIssuedBY.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssuedBY_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtIssuedBY.Text == "")
+                {
+                    errIssued.SetError(txtIssuedBY, "Please enter issuedby");
+                    txtIssuedBY.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIssueby.ShowAlways = true;
+                    tpIssueby.Show("Please enter issuedby.", txtIssuedBY, 5000);
+                }
+                else
+                {
+                    txtIssuedBY.BackColor = Color.White;
+                    errIssued.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssuedBY_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbIssueMode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbIssueMode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1)
+                {
+                    errIssued.SetError(cmbIssueMode, "Please select mode of issue");
+                    cmbIssueMode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIssuemode.ShowAlways = true;
+                    tpIssuemode.Show("Please select mode of issue.", cmbIssueMode, 5000); 
+                }
+                else
+                {
+                    cmbIssueMode.BackColor = Color.White;
+                    errIssued.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbIssueMode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbIssueMode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbIssueMode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (Convert.ToString(cmbIssueMode.SelectedValue) != "137")
+                    {
+                        txtIssuemodeValues.Focus();
+                    }
+                    else { txtTAT.Focus(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssuemodeValues_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIssuemodeValues.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssuemodeValues_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIssuemodeValues.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssuemodeValues_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtTAT.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_POIssuedDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                udfnclose();
+            }
+        }
+
+        private void CmbIssueMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1)
+                {
+                    txtDmode.Text = cmbIssueMode.Text;
+                }
+                else
+                {
+                    txtDmode.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
 
         }
     }
