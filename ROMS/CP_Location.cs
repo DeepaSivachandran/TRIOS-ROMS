@@ -69,7 +69,7 @@ namespace ROMS
                 txtLocationNameInTamil.Text = "";
                 txtShortName.Text = "";
                 cmbLocationType.SelectedIndex = 0;
-                cmbStockApplicable.SelectedIndex = 0;
+                cmbStockApplicable.SelectedIndex = 2;
                 cmbLocationType.Focus();
                 this.ActiveControl = cmbLocationType;
             }

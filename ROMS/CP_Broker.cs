@@ -1537,7 +1537,7 @@ namespace ROMS
                         }
                         if (varSlNo == "0")
                         {
-                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
                         }
                         else
                         {
@@ -1546,7 +1546,7 @@ namespace ROMS
                                 if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmsno"].Value) == varSlNo)
                                 {
                                     grdBankDetails.Rows[i].Cells["clmbankname"].Value = txtBankname.Text;
-                                    grdBankDetails.Rows[i].Cells["clmBankShortName"].Value = txtBankShortName.Text;
+                                    grdBankDetails.Rows[i].Cells["clmBankShortName"].Value = txtBankShortName.Text.ToUpper();
                                     grdBankDetails.Rows[i].Cells["clmbranch"].Value = txtbranchname.Text;
                                     grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
                                     grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
