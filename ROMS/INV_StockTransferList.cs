@@ -138,5 +138,66 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void INV_StockTransferList_Load(object sender, EventArgs e)
+        {
+
+        }
+        
+
+        private void CmbConcern_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbDestination_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbDestination_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void CmbDestination_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void CmbDestination_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbSource_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbSource_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void CmbSource_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void CmbSource_Leave(object sender, EventArgs e)
+        {
+
+        }
     }
 }

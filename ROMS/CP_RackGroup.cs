@@ -993,6 +993,7 @@ namespace ROMS
                 grdRack.DataSource = null;
                 grdSelectedRack.Rows.Clear();
                 chkRack.Checked = false;
+                udfnTotalProducts();
                 udfnList();
             }
             catch (Exception ex)

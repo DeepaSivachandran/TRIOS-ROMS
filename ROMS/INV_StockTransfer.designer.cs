@@ -39,10 +39,14 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grpStockTransfer = new System.Windows.Forms.GroupBox();
-            this.txttotalitem = new System.Windows.Forms.TextBox();
-            this.lbltotalproducts = new System.Windows.Forms.Label();
-            this.txtRemarks = new System.Windows.Forms.TextBox();
-            this.lblRemarks = new System.Windows.Forms.Label();
+            this.lvSLocation = new System.Windows.Forms.ListView();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvDLocation = new System.Windows.Forms.ListView();
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dgvStockTransfer = new System.Windows.Forms.DataGridView();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,15 +57,21 @@
             this.clmquantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnRemarks = new System.Windows.Forms.Button();
+            this.txttotalitem = new System.Windows.Forms.TextBox();
+            this.lbltotalproducts = new System.Windows.Forms.Label();
+            this.txtRemarks = new System.Windows.Forms.TextBox();
+            this.lblRemarks = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbStockTransfer = new System.Windows.Forms.GroupBox();
+            this.lblSLocation = new System.Windows.Forms.Label();
+            this.txtDLocation = new System.Windows.Forms.TextBox();
+            this.txtSLocation = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblDestinationGodown = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmbDestinationGodown = new System.Windows.Forms.ComboBox();
             this.lblSourceGodown = new System.Windows.Forms.Label();
-            this.cmbSourceGodown = new System.Windows.Forms.ComboBox();
             this.txtTransferNo = new System.Windows.Forms.TextBox();
             this.lblTransferNo = new System.Windows.Forms.Label();
             this.lblTransferDate = new System.Windows.Forms.Label();
@@ -82,7 +92,12 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
-            this.btnRemarks = new System.Windows.Forms.Button();
+            this.lblDLocation = new System.Windows.Forms.Label();
+            this.lvProduct = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblProduct = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -130,12 +145,15 @@
             // 
             // grpStockTransfer
             // 
+            this.grpStockTransfer.Controls.Add(this.lvProduct);
+            this.grpStockTransfer.Controls.Add(this.lvSLocation);
+            this.grpStockTransfer.Controls.Add(this.lvDLocation);
+            this.grpStockTransfer.Controls.Add(this.dgvStockTransfer);
             this.grpStockTransfer.Controls.Add(this.btnRemarks);
             this.grpStockTransfer.Controls.Add(this.txttotalitem);
             this.grpStockTransfer.Controls.Add(this.lbltotalproducts);
             this.grpStockTransfer.Controls.Add(this.txtRemarks);
             this.grpStockTransfer.Controls.Add(this.lblRemarks);
-            this.grpStockTransfer.Controls.Add(this.dgvStockTransfer);
             this.grpStockTransfer.Controls.Add(this.btnSave);
             this.grpStockTransfer.Controls.Add(this.btnClose);
             this.grpStockTransfer.Controls.Add(this.grbStockTransfer);
@@ -146,39 +164,67 @@
             this.grpStockTransfer.TabIndex = 0;
             this.grpStockTransfer.TabStop = false;
             // 
-            // txttotalitem
+            // lvSLocation
             // 
-            this.txttotalitem.Location = new System.Drawing.Point(976, 590);
-            this.txttotalitem.Name = "txttotalitem";
-            this.txttotalitem.ReadOnly = true;
-            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
-            this.txttotalitem.TabIndex = 1111228;
+            this.lvSLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24});
+            this.lvSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvSLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSLocation.HideSelection = false;
+            this.lvSLocation.Location = new System.Drawing.Point(450, 80);
+            this.lvSLocation.Name = "lvSLocation";
+            this.lvSLocation.Size = new System.Drawing.Size(327, 115);
+            this.lvSLocation.TabIndex = 111111131;
+            this.lvSLocation.UseCompatibleStateImageBehavior = false;
+            this.lvSLocation.View = System.Windows.Forms.View.Details;
+            this.lvSLocation.Visible = false;
+            this.lvSLocation.DoubleClick += new System.EventHandler(this.LvSLocation_DoubleClick);
+            this.lvSLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSLocation_KeyDown);
             // 
-            // lbltotalproducts
+            // columnHeader22
             // 
-            this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(886, 593);
-            this.lbltotalproducts.Name = "lbltotalproducts";
-            this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
-            this.lbltotalproducts.TabIndex = 1111227;
-            this.lbltotalproducts.Text = "Total Products";
+            this.columnHeader22.Width = 180;
             // 
-            // txtRemarks
+            // columnHeader23
             // 
-            this.txtRemarks.Location = new System.Drawing.Point(71, 589);
-            this.txtRemarks.Multiline = true;
-            this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(472, 39);
-            this.txtRemarks.TabIndex = 1111226;
+            this.columnHeader23.Width = 120;
             // 
-            // lblRemarks
+            // columnHeader24
             // 
-            this.lblRemarks.AutoSize = true;
-            this.lblRemarks.Location = new System.Drawing.Point(7, 589);
-            this.lblRemarks.Name = "lblRemarks";
-            this.lblRemarks.Size = new System.Drawing.Size(56, 20);
-            this.lblRemarks.TabIndex = 1111225;
-            this.lblRemarks.Text = "Remarks";
+            this.columnHeader24.Width = 0;
+            // 
+            // lvDLocation
+            // 
+            this.lvDLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader28,
+            this.columnHeader29,
+            this.columnHeader30});
+            this.lvDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvDLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvDLocation.HideSelection = false;
+            this.lvDLocation.Location = new System.Drawing.Point(663, 80);
+            this.lvDLocation.Name = "lvDLocation";
+            this.lvDLocation.Size = new System.Drawing.Size(327, 115);
+            this.lvDLocation.TabIndex = 111111140;
+            this.lvDLocation.UseCompatibleStateImageBehavior = false;
+            this.lvDLocation.View = System.Windows.Forms.View.Details;
+            this.lvDLocation.Visible = false;
+            this.lvDLocation.DoubleClick += new System.EventHandler(this.LvDLocation_DoubleClick);
+            this.lvDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvDLocation_KeyDown);
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Width = 180;
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Width = 120;
+            // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Width = 0;
             // 
             // dgvStockTransfer
             // 
@@ -278,6 +324,54 @@
             this.clmRemove.HeaderText = "Remove";
             this.clmRemove.Name = "clmRemove";
             // 
+            // btnRemarks
+            // 
+            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
+            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemarks.Location = new System.Drawing.Point(549, 589);
+            this.btnRemarks.Name = "btnRemarks";
+            this.btnRemarks.Size = new System.Drawing.Size(108, 29);
+            this.btnRemarks.TabIndex = 13;
+            this.btnRemarks.Text = "See Remarks";
+            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemarks.UseVisualStyleBackColor = true;
+            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
+            // 
+            // txttotalitem
+            // 
+            this.txttotalitem.Location = new System.Drawing.Point(976, 590);
+            this.txttotalitem.Name = "txttotalitem";
+            this.txttotalitem.ReadOnly = true;
+            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
+            this.txttotalitem.TabIndex = 14;
+            // 
+            // lbltotalproducts
+            // 
+            this.lbltotalproducts.AutoSize = true;
+            this.lbltotalproducts.Location = new System.Drawing.Point(886, 593);
+            this.lbltotalproducts.Name = "lbltotalproducts";
+            this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
+            this.lbltotalproducts.TabIndex = 1111227;
+            this.lbltotalproducts.Text = "Total Products";
+            // 
+            // txtRemarks
+            // 
+            this.txtRemarks.Location = new System.Drawing.Point(71, 589);
+            this.txtRemarks.Multiline = true;
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(472, 39);
+            this.txtRemarks.TabIndex = 12;
+            // 
+            // lblRemarks
+            // 
+            this.lblRemarks.AutoSize = true;
+            this.lblRemarks.Location = new System.Drawing.Point(7, 589);
+            this.lblRemarks.Name = "lblRemarks";
+            this.lblRemarks.Size = new System.Drawing.Size(56, 20);
+            this.lblRemarks.TabIndex = 1111225;
+            this.lblRemarks.Text = "Remarks";
+            // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -286,7 +380,7 @@
             this.btnSave.Location = new System.Drawing.Point(1056, 589);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 1111221;
+            this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -299,7 +393,7 @@
             this.btnClose.Location = new System.Drawing.Point(1148, 589);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 1111222;
+            this.btnClose.TabIndex = 16;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -307,12 +401,14 @@
             // 
             // grbStockTransfer
             // 
+            this.grbStockTransfer.Controls.Add(this.lblDLocation);
+            this.grbStockTransfer.Controls.Add(this.lblSLocation);
+            this.grbStockTransfer.Controls.Add(this.txtDLocation);
+            this.grbStockTransfer.Controls.Add(this.txtSLocation);
             this.grbStockTransfer.Controls.Add(this.cmbConcern);
             this.grbStockTransfer.Controls.Add(this.lblDestinationGodown);
             this.grbStockTransfer.Controls.Add(this.label12);
-            this.grbStockTransfer.Controls.Add(this.cmbDestinationGodown);
             this.grbStockTransfer.Controls.Add(this.lblSourceGodown);
-            this.grbStockTransfer.Controls.Add(this.cmbSourceGodown);
             this.grbStockTransfer.Controls.Add(this.txtTransferNo);
             this.grbStockTransfer.Controls.Add(this.lblTransferNo);
             this.grbStockTransfer.Controls.Add(this.lblTransferDate);
@@ -321,13 +417,46 @@
             this.grbStockTransfer.Location = new System.Drawing.Point(6, 12);
             this.grbStockTransfer.Name = "grbStockTransfer";
             this.grbStockTransfer.Size = new System.Drawing.Size(1331, 74);
-            this.grbStockTransfer.TabIndex = 1111220;
+            this.grbStockTransfer.TabIndex = 0;
             this.grbStockTransfer.TabStop = false;
+            // 
+            // lblSLocation
+            // 
+            this.lblSLocation.AutoSize = true;
+            this.lblSLocation.Location = new System.Drawing.Point(501, 17);
+            this.lblSLocation.Name = "lblSLocation";
+            this.lblSLocation.Size = new System.Drawing.Size(0, 20);
+            this.lblSLocation.TabIndex = 1111189;
+            this.lblSLocation.Visible = false;
+            // 
+            // txtDLocation
+            // 
+            this.txtDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDLocation.Location = new System.Drawing.Point(657, 42);
+            this.txtDLocation.MaxLength = 100;
+            this.txtDLocation.Name = "txtDLocation";
+            this.txtDLocation.Size = new System.Drawing.Size(207, 27);
+            this.txtDLocation.TabIndex = 4;
+            this.txtDLocation.TextChanged += new System.EventHandler(this.TxtDLocation_TextChanged);
+            this.txtDLocation.Enter += new System.EventHandler(this.TxtDLocation_Enter);
+            this.txtDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDLocation_KeyDown);
+            this.txtDLocation.Leave += new System.EventHandler(this.TxtDLocation_Leave);
+            // 
+            // txtSLocation
+            // 
+            this.txtSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSLocation.Location = new System.Drawing.Point(444, 42);
+            this.txtSLocation.MaxLength = 100;
+            this.txtSLocation.Name = "txtSLocation";
+            this.txtSLocation.Size = new System.Drawing.Size(207, 27);
+            this.txtSLocation.TabIndex = 3;
+            this.txtSLocation.TextChanged += new System.EventHandler(this.TxtSLocation_TextChanged);
+            this.txtSLocation.Enter += new System.EventHandler(this.TxtSLocation_Enter);
+            this.txtSLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSLocation_KeyDown);
+            this.txtSLocation.Leave += new System.EventHandler(this.TxtSLocation_Leave);
             // 
             // cmbConcern
             // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConcern.Enabled = false;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Items.AddRange(new object[] {
@@ -337,12 +466,16 @@
             this.cmbConcern.Location = new System.Drawing.Point(13, 41);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(151, 27);
-            this.cmbConcern.TabIndex = 1111185;
+            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
             // lblDestinationGodown
             // 
             this.lblDestinationGodown.AutoSize = true;
-            this.lblDestinationGodown.Location = new System.Drawing.Point(611, 17);
+            this.lblDestinationGodown.Location = new System.Drawing.Point(657, 17);
             this.lblDestinationGodown.Name = "lblDestinationGodown";
             this.lblDestinationGodown.Size = new System.Drawing.Size(71, 20);
             this.lblDestinationGodown.TabIndex = 90;
@@ -358,16 +491,6 @@
             this.label12.TabIndex = 1111186;
             this.label12.Text = "Concern";
             // 
-            // cmbDestinationGodown
-            // 
-            this.cmbDestinationGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDestinationGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDestinationGodown.FormattingEnabled = true;
-            this.cmbDestinationGodown.Location = new System.Drawing.Point(611, 41);
-            this.cmbDestinationGodown.Name = "cmbDestinationGodown";
-            this.cmbDestinationGodown.Size = new System.Drawing.Size(154, 27);
-            this.cmbDestinationGodown.TabIndex = 89;
-            // 
             // lblSourceGodown
             // 
             this.lblSourceGodown.AutoSize = true;
@@ -377,17 +500,6 @@
             this.lblSourceGodown.TabIndex = 86;
             this.lblSourceGodown.Text = "Source";
             // 
-            // cmbSourceGodown
-            // 
-            this.cmbSourceGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSourceGodown.Enabled = false;
-            this.cmbSourceGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSourceGodown.FormattingEnabled = true;
-            this.cmbSourceGodown.Location = new System.Drawing.Point(444, 41);
-            this.cmbSourceGodown.Name = "cmbSourceGodown";
-            this.cmbSourceGodown.Size = new System.Drawing.Size(161, 27);
-            this.cmbSourceGodown.TabIndex = 85;
-            // 
             // txtTransferNo
             // 
             this.txtTransferNo.Enabled = false;
@@ -395,7 +507,7 @@
             this.txtTransferNo.Name = "txtTransferNo";
             this.txtTransferNo.ReadOnly = true;
             this.txtTransferNo.Size = new System.Drawing.Size(114, 28);
-            this.txtTransferNo.TabIndex = 84;
+            this.txtTransferNo.TabIndex = 2;
             // 
             // lblTransferNo
             // 
@@ -422,10 +534,11 @@
             this.dpTrannsferDate.Location = new System.Drawing.Point(174, 41);
             this.dpTrannsferDate.Name = "dpTrannsferDate";
             this.dpTrannsferDate.Size = new System.Drawing.Size(122, 28);
-            this.dpTrannsferDate.TabIndex = 77;
+            this.dpTrannsferDate.TabIndex = 1;
             // 
             // grbDStockTransfer
             // 
+            this.grbDStockTransfer.Controls.Add(this.lblProduct);
             this.grbDStockTransfer.Controls.Add(this.textBox5);
             this.grbDStockTransfer.Controls.Add(this.label2);
             this.grbDStockTransfer.Controls.Add(this.textBox4);
@@ -473,7 +586,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(104, 27);
-            this.textBox4.TabIndex = 958818;
+            this.textBox4.TabIndex = 9;
             // 
             // textBox3
             // 
@@ -482,7 +595,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(154, 27);
-            this.textBox3.TabIndex = 958815;
+            this.textBox3.TabIndex = 8;
             // 
             // label1
             // 
@@ -500,7 +613,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(114, 27);
-            this.textBox1.TabIndex = 958813;
+            this.textBox1.TabIndex = 6;
             // 
             // textBox2
             // 
@@ -509,7 +622,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(161, 27);
-            this.textBox2.TabIndex = 958814;
+            this.textBox2.TabIndex = 7;
             // 
             // lblStock
             // 
@@ -528,7 +641,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 958818;
+            this.btnAdd.TabIndex = 11;
             this.btnAdd.Text = "        ";
             // 
             // txtQuantity
@@ -536,7 +649,7 @@
             this.txtQuantity.Location = new System.Drawing.Point(881, 40);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(95, 27);
-            this.txtQuantity.TabIndex = 958817;
+            this.txtQuantity.TabIndex = 10;
             // 
             // lblQuantity
             // 
@@ -570,7 +683,11 @@
             this.txtProductNamePICode.Location = new System.Drawing.Point(9, 40);
             this.txtProductNamePICode.Name = "txtProductNamePICode";
             this.txtProductNamePICode.Size = new System.Drawing.Size(287, 27);
-            this.txtProductNamePICode.TabIndex = 958810;
+            this.txtProductNamePICode.TabIndex = 5;
+            this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
+            this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
+            this.txtProductNamePICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductNamePICode_KeyDown);
+            this.txtProductNamePICode.Leave += new System.EventHandler(this.TxtProductNamePICode_Leave);
             // 
             // lblProductNamePICode
             // 
@@ -581,19 +698,51 @@
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Product Name/P.I Code";
             // 
-            // btnRemarks
+            // lblDLocation
             // 
-            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
-            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemarks.Location = new System.Drawing.Point(549, 589);
-            this.btnRemarks.Name = "btnRemarks";
-            this.btnRemarks.Size = new System.Drawing.Size(108, 29);
-            this.btnRemarks.TabIndex = 1111229;
-            this.btnRemarks.Text = "See Remarks";
-            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemarks.UseVisualStyleBackColor = true;
-            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
+            this.lblDLocation.AutoSize = true;
+            this.lblDLocation.Location = new System.Drawing.Point(771, 19);
+            this.lblDLocation.Name = "lblDLocation";
+            this.lblDLocation.Size = new System.Drawing.Size(0, 20);
+            this.lblDLocation.TabIndex = 1111190;
+            this.lblDLocation.Visible = false;
+            // 
+            // lvProduct
+            // 
+            this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvProduct.HideSelection = false;
+            this.lvProduct.Location = new System.Drawing.Point(15, 147);
+            this.lvProduct.Name = "lvProduct";
+            this.lvProduct.Size = new System.Drawing.Size(855, 178);
+            this.lvProduct.TabIndex = 111111141;
+            this.lvProduct.UseCompatibleStateImageBehavior = false;
+            this.lvProduct.View = System.Windows.Forms.View.Details;
+            this.lvProduct.Visible = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // lblProduct
+            // 
+            this.lblProduct.AutoSize = true;
+            this.lblProduct.Location = new System.Drawing.Point(174, 14);
+            this.lblProduct.Name = "lblProduct";
+            this.lblProduct.Size = new System.Drawing.Size(0, 20);
+            this.lblProduct.TabIndex = 1111237;
             // 
             // INV_StockTransfer
             // 
@@ -613,6 +762,7 @@
             this.Name = "INV_StockTransfer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock Transfer";
+            this.Load += new System.EventHandler(this.INV_StockTransfer_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_StockTransfer_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).EndInit();
             this.tsStockTransferList.ResumeLayout(false);
@@ -657,9 +807,7 @@
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label lblDestinationGodown;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cmbDestinationGodown;
         private System.Windows.Forms.Label lblSourceGodown;
-        private System.Windows.Forms.ComboBox cmbSourceGodown;
         private System.Windows.Forms.TextBox txtTransferNo;
         private System.Windows.Forms.Label lblTransferNo;
         private System.Windows.Forms.Label lblTransferDate;
@@ -681,5 +829,22 @@
         private System.Windows.Forms.Label lblProductNamePICode;
         private System.Windows.Forms.TextBox textBox5;
         public System.Windows.Forms.Button btnRemarks;
+        private System.Windows.Forms.TextBox txtSLocation;
+        private System.Windows.Forms.TextBox txtDLocation;
+        public System.Windows.Forms.ListView lvSLocation;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        public System.Windows.Forms.ListView lvDLocation;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.ColumnHeader columnHeader30;
+        private System.Windows.Forms.Label lblSLocation;
+        private System.Windows.Forms.Label lblDLocation;
+        public System.Windows.Forms.ListView lvProduct;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label lblProduct;
     }
 }

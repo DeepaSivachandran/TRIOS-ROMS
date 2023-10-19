@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.ReportHSN = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportHSN = new System.Windows.Forms.Panel();
+            this.lvHsnName = new System.Windows.Forms.ListView();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtHsnName = new System.Windows.Forms.TextBox();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblHsnName = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cmbGST = new System.Windows.Forms.ComboBox();
@@ -44,18 +49,10 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ep_HSN = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtHsnName = new System.Windows.Forms.TextBox();
-            this.lvHsnName = new System.Windows.Forms.ListView();
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblHsnName = new System.Windows.Forms.Label();
             this.ReportHSN.SuspendLayout();
             this.pnlReportHSN.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_HSN)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportHSN
@@ -91,10 +88,53 @@
             this.pnlReportHSN.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportHSN.Controls.Add(this.picLoader);
             this.pnlReportHSN.Controls.Add(this.RPTViewer);
-            this.pnlReportHSN.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportHSN.Location = new System.Drawing.Point(0, 29);
             this.pnlReportHSN.Name = "pnlReportHSN";
-            this.pnlReportHSN.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportHSN.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportHSN.TabIndex = 958788;
+            // 
+            // lvHsnName
+            // 
+            this.lvHsnName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader30,
+            this.columnHeader31});
+            this.lvHsnName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvHsnName.HideSelection = false;
+            this.lvHsnName.Location = new System.Drawing.Point(333, 46);
+            this.lvHsnName.Name = "lvHsnName";
+            this.lvHsnName.Size = new System.Drawing.Size(328, 113);
+            this.lvHsnName.TabIndex = 1111229;
+            this.lvHsnName.UseCompatibleStateImageBehavior = false;
+            this.lvHsnName.View = System.Windows.Forms.View.Details;
+            this.lvHsnName.Visible = false;
+            this.lvHsnName.DoubleClick += new System.EventHandler(this.LvHsnName_DoubleClick);
+            this.lvHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvHsnName_KeyDown);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Width = 80;
+            // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Width = 80;
+            // 
+            // columnHeader31
+            // 
+            this.columnHeader31.Width = 0;
+            // 
+            // txtHsnName
+            // 
+            this.txtHsnName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtHsnName.Location = new System.Drawing.Point(333, 19);
+            this.txtHsnName.MaxLength = 50;
+            this.txtHsnName.Name = "txtHsnName";
+            this.txtHsnName.Size = new System.Drawing.Size(143, 27);
+            this.txtHsnName.TabIndex = 1111228;
+            this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
+            this.txtHsnName.Enter += new System.EventHandler(this.TxtHsnName_Enter);
+            this.txtHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHsnName_KeyDown);
+            this.txtHsnName.Leave += new System.EventHandler(this.TxtHsnName_Leave);
             // 
             // grpfilter
             // 
@@ -113,6 +153,16 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // lblHsnName
+            // 
+            this.lblHsnName.AutoSize = true;
+            this.lblHsnName.Location = new System.Drawing.Point(308, 2);
+            this.lblHsnName.Name = "lblHsnName";
+            this.lblHsnName.Size = new System.Drawing.Size(16, 20);
+            this.lblHsnName.TabIndex = 958789;
+            this.lblHsnName.Text = "0";
+            this.lblHsnName.Visible = false;
             // 
             // cmbStatus
             // 
@@ -248,63 +298,6 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // ep_HSN
-            // 
-            this.ep_HSN.ContainerControl = this;
-            // 
-            // txtHsnName
-            // 
-            this.txtHsnName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsnName.Location = new System.Drawing.Point(333, 19);
-            this.txtHsnName.MaxLength = 50;
-            this.txtHsnName.Name = "txtHsnName";
-            this.txtHsnName.Size = new System.Drawing.Size(143, 27);
-            this.txtHsnName.TabIndex = 1111228;
-            this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
-            this.txtHsnName.Enter += new System.EventHandler(this.TxtHsnName_Enter);
-            this.txtHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHsnName_KeyDown);
-            this.txtHsnName.Leave += new System.EventHandler(this.TxtHsnName_Leave);
-            // 
-            // lvHsnName
-            // 
-            this.lvHsnName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader10,
-            this.columnHeader30,
-            this.columnHeader31});
-            this.lvHsnName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvHsnName.HideSelection = false;
-            this.lvHsnName.Location = new System.Drawing.Point(333, 46);
-            this.lvHsnName.Name = "lvHsnName";
-            this.lvHsnName.Size = new System.Drawing.Size(328, 113);
-            this.lvHsnName.TabIndex = 1111229;
-            this.lvHsnName.UseCompatibleStateImageBehavior = false;
-            this.lvHsnName.View = System.Windows.Forms.View.Details;
-            this.lvHsnName.Visible = false;
-            this.lvHsnName.DoubleClick += new System.EventHandler(this.LvHsnName_DoubleClick);
-            this.lvHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvHsnName_KeyDown);
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Width = 80;
-            // 
-            // columnHeader30
-            // 
-            this.columnHeader30.Width = 80;
-            // 
-            // columnHeader31
-            // 
-            this.columnHeader31.Width = 0;
-            // 
-            // lblHsnName
-            // 
-            this.lblHsnName.AutoSize = true;
-            this.lblHsnName.Location = new System.Drawing.Point(308, 2);
-            this.lblHsnName.Name = "lblHsnName";
-            this.lblHsnName.Size = new System.Drawing.Size(16, 20);
-            this.lblHsnName.TabIndex = 958789;
-            this.lblHsnName.Text = "0";
-            this.lblHsnName.Visible = false;
-            // 
             // REPORT_CP_HSN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -329,7 +322,6 @@
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_HSN)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,7 +336,6 @@
         private System.Windows.Forms.GroupBox grpfilter;
         private System.Windows.Forms.ComboBox cmbReportType;
         private System.Windows.Forms.Label lblReportType;
-        private System.Windows.Forms.ErrorProvider ep_HSN;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnListPrint;
