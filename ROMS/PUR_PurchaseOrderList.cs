@@ -102,7 +102,7 @@ namespace ROMS
                     {
                         case "clmView":
                             MainForm.objPUR_POIssuedDetails = new PUR_POIssuedDetails();
-                            MainForm.objPUR_POIssuedDetails.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()); 
+                            MainForm.objPUR_POIssuedDetails.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.ShowDialog();
                             break;
                     }
@@ -122,12 +122,12 @@ namespace ROMS
             try
             {
                 udfnDropdownLoad();
-                udfngridchanges(); 
+                udfngridchanges();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex); 
+                objError.WriteFile(ex);
             }
         }
 
@@ -180,6 +180,7 @@ namespace ROMS
                 MainForm.objPUR_PurchaseOrder.lblPOCreateby.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created By"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.lblpocreatedon.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created On"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.VarStatusId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.btnSave.Text = "Update";
                 MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
                 MainForm.objPUR_PurchaseOrder.Show();
@@ -218,6 +219,7 @@ namespace ROMS
                     grdPurchaseorderlist.Visible = true;
                     DGV_SearchGrid.Visible = true;
                     grpSearchBy.Visible = false;
+                    udfnPOEntryLoad();
                 }
                 else
                 {
@@ -554,6 +556,7 @@ namespace ROMS
                     ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                     varsuppliername = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
+                    lblschedleCode.Text = selectedItem.SubItems[2].Text;
                     txtSupplier.Text = selectedItem.SubItems[3].Text;
                     lblscheduleName.Text = selectedItem.SubItems[4].Text; ;
                 }
@@ -774,7 +777,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(1, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text,0);
+                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -787,28 +790,64 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdPurchaseorderlist.DataSource = objDs.Tables[0];
                             grdPurchaseorderlist.Columns["clmView"].DisplayIndex = objDs.Tables[0].Columns.Count;
-                            //grdPurchaseorderlist.Columns["S.No."].Width = 50;
-                            //grdPurchaseorderlist.Columns["P.I Code"].Width = 100;
-                            //grdPurchaseorderlist.Columns["Product"].Width = 250;
-                            //grdPurchaseorderlist.Columns["Unit"].Width = 80;
+                            grdPurchaseorderlist.Columns["clmView"].Width = 110;
+                            grdPurchaseorderlist.Columns["S.No."].Width = 50;
+                            grdPurchaseorderlist.Columns["Concern"].Width = 80;
+                            grdPurchaseorderlist.Columns["PO.No"].Width = 100;
+                            grdPurchaseorderlist.Columns["PO Date"].Width = 100;
+                            grdPurchaseorderlist.Columns["Supplier"].Width = 300;
+                            grdPurchaseorderlist.Columns["City"].Width = 100;
+                            grdPurchaseorderlist.Columns["GSTIN"].Width = 120;
+                            grdPurchaseorderlist.Columns["Total Products"].Width = 100;
+                            grdPurchaseorderlist.Columns["Total Qty"].Width = 100;
+                            grdPurchaseorderlist.Columns["Turn Around Time"].Width = 120;
+                            grdPurchaseorderlist.Columns["Created By"].Width = 100;
+                            grdPurchaseorderlist.Columns["Created On"].Width = 100;
+                            grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
+                            grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
+                            grdPurchaseorderlist.Columns["Issued By"].Width = 100;
+                            grdPurchaseorderlist.Columns["Status"].Width = 100;
+                            grdPurchaseorderlist.Columns["STS"].Visible = false; 
                             grdPurchaseorderlist.Columns["PO_ID"].Visible = false;
                         }
                         else
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
+                            grdPurchaseorderlist.Columns["clmView"].Visible=false;
+                        }
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        { 
+                            lblPartial.Text = objDs.Tables[1].Rows[0]["PartialCount"].ToString().Replace("''", "'");
+                            lblIssued.Text = objDs.Tables[1].Rows[0]["IssuedCount"].ToString().Replace("''", "'");
+                            lblNotissued.Text = objDs.Tables[1].Rows[0]["NotIssuedCount"].ToString().Replace("''", "'");
+                            lblDelayed.Text = objDs.Tables[1].Rows[0]["DelayedCount"].ToString().Replace("''", "'");
+                            lblTotal.Text = Convert.ToString(Convert.ToInt32(lblPartial.Text) + Convert.ToInt32(lblIssued.Text) + Convert.ToInt32(lblNotissued.Text) + Convert.ToInt32(lblDelayed.Text));
+                        }
+                        if (objDs.Tables[2].Rows.Count != 0)
+                        {
+                            if (Convert.ToInt32(objDs.Tables[1].Rows[0]["SupplierPend"].ToString().Replace("''", "'")) != 0)
+                            {
+                                MainForm.objPUR_PurchaseOrder.pbSupplierpend = Convert.ToInt32(objDs.Tables[1].Rows[0]["SupplierPend"].ToString().Replace("''", "'"));
+                            }
+                            else
+                            {
+                                MainForm.objPUR_PurchaseOrder.pbSupplierpend = 0;
+                            }
                         }
                     }
                     else
                     {
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
+                        grdPurchaseorderlist.Columns["clmView"].Visible = false;
                     }
                 }
                 else
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
+                    grdPurchaseorderlist.Columns["clmView"].Visible = false;
                 }
 
                 udfnSearchGridHead();
@@ -819,34 +858,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        //private void AddImageColumnToDataGridView()
-        //{
-        //    try
-        //    { 
-        //        DataGridViewImageColumn imageColumn = new DataGridViewImageColumn
-        //        {
-        //            Name = "clmView",
-        //            HeaderText = "Issued Details",
-        //            ImageLayout = DataGridViewImageCellLayout.Zoom
-        //        };
-                 
-        //        grdPurchaseorderlist.Columns.Add(imageColumn);
-        //        imageColumn.DisplayIndex = grdPurchaseorderlist.Columns.Count - 1;
-        //        for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
-        //        {
-        //            Image image = Image.FromFile(Application.StartupPath + "\\view.png");
-        //            grdPurchaseorderlist.Rows[i].Cells["clmView"].Value = image;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
-
-
+        } 
         private void TxtProductGroup_Enter(object sender, EventArgs e)
         {
             try
@@ -1235,7 +1247,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(0, 0, 0, 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), "", "",0);
+                objDs = objdserv.udfnPOEntry(0, 0, 0, 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), "", "", 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1295,22 +1307,23 @@ namespace ROMS
 
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (e.ColumnIndex == DGV_SearchGrid.Columns.Count - 1)
+                //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
+                //    return;
+                if ((e.ColumnIndex == 0 || e.ColumnIndex == 1))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     return;
 
-                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
-                                                                   //return;
+                if (e.Value != DBNull.Value && e.Value == "")  /*If value is null*/
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                        & ~(DataGridViewPaintParts.ContentForeground));
 
-                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                    {
-                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                            & ~(DataGridViewPaintParts.ContentForeground));
+                    TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                        e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
 
-                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                    e.Handled = true;
+                }
 
-                        e.Handled = true;
-                    }
+
 
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
@@ -1324,7 +1337,6 @@ namespace ROMS
                 {
                     grdPurchaseorderlist.Columns[e.Column.Index].Width = e.Column.Width;
                     DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseorderlist.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
                 }
             }
             catch (Exception ex)
@@ -1350,23 +1362,29 @@ namespace ROMS
         {
             try
             {
+                //udfnGridSearchHeading(grdPurchaseorderlist, DGV_SearchGrid);
+                //DGV_SearchGrid.Columns.Clear();
+                //List<int> visibleColumns = new List<int>();
+                //foreach (DataGridViewColumn col in grdPurchaseorderlist.Columns)
+                //{
+                //    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                //    visibleColumns.Add(col.Index);
+                //}
+                //int rowIndex = 0;
+                //DGV_SearchGrid.Rows.Clear();
+                //DGV_SearchGrid.Rows.Add();
+                //for (int i = 0; i < visibleColumns.Count; i++)
+                //{
+                //    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                //}
+                //DGV_SearchGrid.Columns["S.No."].ReadOnly = true; 
+                //DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
                 udfnGridSearchHeading(grdPurchaseorderlist, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdPurchaseorderlist.Columns)
+                if (DGV_SearchGrid.ColumnCount > 1)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV_SearchGrid.Columns["S.No."].ReadOnly = true; 
-                DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1414,7 +1432,12 @@ namespace ROMS
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdPurchaseorderlist.Columns[e.ColumnIndex];
+            int i = e.ColumnIndex + 2;
+            if (e.ColumnIndex == 0)
+            {
+                i = e.ColumnIndex;
+            }
+            DataGridViewColumn newColumn = grdPurchaseorderlist.Columns[i];
             DataGridViewColumn oldColumn = grdPurchaseorderlist.SortedColumn;
             ListSortDirection direction;
 
@@ -1456,6 +1479,8 @@ namespace ROMS
             {
 
                 int totalWidth = 0;
+                int cl = grdPurchaseorderlist.ColumnCount;
+                int cls = DGV_SearchGrid.ColumnCount;
                 int offSetValue = grdPurchaseorderlist.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
@@ -1533,8 +1558,11 @@ namespace ROMS
         private void GrdPurchaseorderlist_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            { 
-                udfnEdit();
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
             }
             catch (Exception ex)
             {
