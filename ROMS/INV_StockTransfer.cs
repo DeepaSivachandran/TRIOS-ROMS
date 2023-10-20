@@ -23,17 +23,19 @@ namespace ROMS
         public string varlocationcode;
         public string varUnitSymbol = "";
         public string varPICode = "";
-        public int varProductode = 0;
-        public int varBatchNo = 0;
-        public int varMRP = 0;
+        public string varProductCode = "";
+        public string varBatchNo = "";
+        public string varExpiryDate = "";
+        public string varMRP = "";
+        public int varFlag = 0;
+        public string varSNo = "0";
+
+        DataTable dtStock = new DataTable();
 
         public INV_StockTransfer()
         {
             InitializeComponent();
         }
-          
-         
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
@@ -45,10 +47,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-          
-    
         public void udfnclose()
         {
             try
@@ -64,8 +63,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
-
+        }
         private void INV_StockTransfer_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -85,7 +83,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnRemarks_Click(object sender, EventArgs e)
         {
             try
@@ -100,7 +97,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -113,7 +109,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -126,7 +121,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -139,7 +133,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
@@ -152,12 +145,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void INV_StockTransfer_Load(object sender, EventArgs e)
         {
             try
             {
-                dpTrannsferDate.MaxDate = DateTime.Now;
+                    dpTrannsferDate.MaxDate = DateTime.Now;
+                    dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                    dtStock.Columns.Add("STK_PRID", typeof(string));
+                    dtStock.Columns.Add("STK_MRP", typeof(string));
+                    dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                    dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 udfnCmbConcern();
             }
             catch (Exception ex)
@@ -195,7 +192,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtSLocation_Enter(object sender, EventArgs e)
         {
             try
@@ -208,7 +204,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtSLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -240,7 +235,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtSLocation_Leave(object sender, EventArgs e)
         {
             try
@@ -350,7 +344,6 @@ namespace ROMS
 
             }
         }
-
         private void LvSLocation_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -364,7 +357,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvSLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -402,11 +394,11 @@ namespace ROMS
                 lvSLocation.Visible = false;
             }
         }
-
         private void TxtDLocation_Enter(object sender, EventArgs e)
         {
             try
             {
+                lvSLocation.Visible = false;
                 txtDLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -415,7 +407,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtDLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -447,7 +438,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtDLocation_Leave(object sender, EventArgs e)
         {
             try
@@ -557,7 +547,6 @@ namespace ROMS
 
             }
         }
-
         private void LvDLocation_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -571,7 +560,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvDLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -609,12 +597,12 @@ namespace ROMS
                 lvDLocation.Visible = false;
             }
         }
-
         private void TxtProductNamePICode_Enter(object sender, EventArgs e)
         {
             try
             {
                 udfnSLocationValid();
+                lvDLocation.Visible = false;
                 txtProductNamePICode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -623,7 +611,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductNamePICode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -655,7 +642,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductNamePICode_Leave(object sender, EventArgs e)
         {
             try
@@ -668,7 +654,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductNamePICode_TextChanged(object sender, EventArgs e)
         {
             try
@@ -678,7 +663,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0,0,"","","",0,0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,0);
+                    objDs = objspdservice.udfnproductmasterlist(35,Convert.ToInt32(0), 0, 0,0,"","","",0,0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,txtProductNamePICode.Text.Trim(),0,"0","0","0",dtStock);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -736,11 +721,11 @@ namespace ROMS
 
             }
         }
-
         private void TxtQuantity_Enter(object sender, EventArgs e)
         {
             try
             {
+                lvProduct.Visible = false;
                 txtQuantity.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -749,7 +734,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -765,7 +749,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -781,7 +764,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQuantity_Leave(object sender, EventArgs e)
         {
             try
@@ -794,7 +776,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -831,7 +812,6 @@ namespace ROMS
                 }
             }
         }
-
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -848,8 +828,10 @@ namespace ROMS
                     tpTransferQty.ShowAlways = true;
                     tpTransferQty.Show("Please enter valid quentity", txtQuantity, 5000);
                 }
-
                 grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtQuantity.Text).Trim(),varUnitSymbol);
+
+                DataService objDser = new DataService();
+                dtStock.Rows.Add((lblProduct.Text).Trim(),(txtMRP.Text).Trim(),(txtExpiryDate.Text).Trim(),(txtBatchNo.Text).Trim());
                 txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
             }
             catch (Exception ex)
@@ -858,7 +840,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnAdd_Enter(object sender, EventArgs e)
         {
             try
@@ -883,7 +864,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvProduct_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -897,7 +877,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -929,6 +908,10 @@ namespace ROMS
                     txtStockQty.Text = selectedItem.SubItems[7].Text;
                     lblProduct.Text = selectedItem.SubItems[8].Text;
                     varUnitSymbol = selectedItem.SubItems[10].Text;
+                    //varMRP = selectedItem.SubItems[4].Text;
+                    //varExpiryDate = selectedItem.SubItems[5].Text;
+                    //varBatchNo = selectedItem.SubItems[6].Text;
+                    //varProductode = selectedItem.SubItems[8].Text;
                 }
             }
             catch (Exception ex)
@@ -941,7 +924,6 @@ namespace ROMS
                 lvProduct.Visible = false;
             }
         }
-
         private void GrdStockTransfer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -963,6 +945,64 @@ namespace ROMS
                             break;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void BtnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {

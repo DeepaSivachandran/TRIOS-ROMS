@@ -152,6 +152,12 @@ namespace ROMS
         {
             try
             {
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 /* Check product group is valid or not*/
                 string varId_Group = "0";
                 string varGroupName = "";
@@ -224,7 +230,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(25, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(25, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"", 0,"","","",dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -274,6 +280,12 @@ namespace ROMS
         {
             try
             {
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 btnListPrint.Enabled = false;
                 /* Check product group is valid or not*/
                 string varId_Group = "0";
@@ -348,7 +360,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(26, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(26, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"", 0,"","","",dtStock);
 
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -399,6 +411,12 @@ namespace ROMS
         {
             try
             {
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 /* Check product group is valid or not*/
                 string varId_Group = "0";
                 string varGroupName = "";
@@ -471,7 +489,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(27, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(27, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "",0,"","","",dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -521,6 +539,12 @@ namespace ROMS
         {
             try
             {
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 btnListPrint.Enabled = false;
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
@@ -594,7 +618,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(28, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(28, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"", 0,"","","",dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -644,6 +668,12 @@ namespace ROMS
         {
             try
             {
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 btnListPrint.Enabled = false;
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
@@ -717,7 +747,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(30, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(30, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"", 0,"","","",dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -767,6 +797,12 @@ namespace ROMS
         {
             try
             {
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 btnListPrint.Enabled = false;
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
@@ -840,7 +876,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(31, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(31, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"", 0,"","","",dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -890,6 +926,12 @@ namespace ROMS
         {
             try
             {
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 btnListPrint.Enabled = false;
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
@@ -963,7 +1005,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(32, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(32, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"", 0,"","","",dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

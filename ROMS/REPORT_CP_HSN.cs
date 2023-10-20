@@ -187,6 +187,12 @@ namespace ROMS
         {
             try
             {
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 int HSNID = 0;
                 string HSNName = "";
                 if(txtHsnName.Text=="")
@@ -225,7 +231,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(16, 0, 0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0, Convert.ToInt32(HSNID), Convert.ToInt32(cmbGST.SelectedValue),0,0,0,0,0);
+                objDs = objspservice.udfnproductmasterlist(16, 0, 0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0, Convert.ToInt32(HSNID), Convert.ToInt32(cmbGST.SelectedValue),0,0,0,0,"",0,"","","",dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
