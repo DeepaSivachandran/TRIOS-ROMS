@@ -360,18 +360,18 @@ namespace ROMS
         {
             try
             {
-                if (txtPrefix.Text.Trim() == "")
-                {
-                    epSettings.SetError(txtPrefix, "Please enter prefix.");
-                    txtPrefix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPrefix.ShowAlways = true;
-                    tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
-                }
-                else
-                {
-                    epSettings.Clear();
+                //if (txtPrefix.Text.Trim() == "")
+                //{
+                //    epSettings.SetError(txtPrefix, "Please enter prefix.");
+                //    txtPrefix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpPrefix.ShowAlways = true;
+                //    tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
+                //}
+                //else
+                //{
+                //    epSettings.Clear();
                     txtPrefix.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -477,7 +477,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtNoOfDegits.Focus();
+                    cmbResetOn.Focus();
                 }
             }
             catch (Exception ex)
@@ -620,14 +620,14 @@ namespace ROMS
                     tpTransactionType.Show("Please select transaction type.", cmbTransactionType, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtPrefix.Text.Trim() == "")
-                {
-                    epSettings.SetError(txtPrefix, "Please enter prefix.");
-                    txtPrefix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPrefix.ShowAlways = true;
-                    tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtPrefix.Text.Trim() == "")
+                //{
+                //    epSettings.SetError(txtPrefix, "Please enter prefix.");
+                //    txtPrefix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpPrefix.ShowAlways = true;
+                //    tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (txtStartingNo.Text.Trim() == "")
                 {
                     epSettings.SetError(txtStartingNo, "Please enter starting no.");
