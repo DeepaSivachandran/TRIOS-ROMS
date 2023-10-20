@@ -23,6 +23,9 @@ namespace ROMS
         public string varlocationcode;
         public string varUnitSymbol = "";
         public string varPICode = "";
+        public int varProductode = 0;
+        public int varBatchNo = 0;
+        public int varMRP = 0;
 
         public INV_StockTransfer()
         {
@@ -847,7 +850,7 @@ namespace ROMS
                 }
 
                 grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtQuantity.Text).Trim(),varUnitSymbol);
-
+                txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -860,7 +863,7 @@ namespace ROMS
         {
             try
             {
-                btnAdd.BackColor = Color.Transparent;
+                btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -870,7 +873,15 @@ namespace ROMS
         }
         private void BtnAdd_Leave(object sender, EventArgs e)
         {
-
+            try
+            {
+                btnAdd.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void LvProduct_DoubleClick(object sender, EventArgs e)
