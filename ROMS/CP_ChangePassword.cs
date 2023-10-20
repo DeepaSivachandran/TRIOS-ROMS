@@ -442,6 +442,29 @@ namespace ROMS
                 }
                 else
                 {
+                    int varCountValue = 0;
+                    SPDataService objDServ1 = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objDServ1.udfnUserList(11,"",MainForm.pbLoginId,varPassword,0,0,"");
+                    if (objDs != null) {
+                        if (objDs.Tables.Count > 0) {
+                            if (objDs.Tables[0].Rows.Count > 0) {
+                                varCountValue = Convert.ToInt32(objDs.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    if (varCountValue == 0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(68);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtNewPassword.Text = "";
+                        txtConfirmPassword.Text = "";
+                        txtOldPassword.Text = "";
+                        txtOldPassword.Focus();
+                        return;
+                    }
                     if (txtOldPassword.Text.Trim() == txtNewPassword.Text.Trim())
                     {
                         flag = 1;
