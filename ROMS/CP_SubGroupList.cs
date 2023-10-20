@@ -218,7 +218,7 @@ namespace ROMS
                             grdSubGroupList.Columns["Product Group Name"].Width = 200;
                             grdSubGroupList.Columns["Product Sub Group Name in English"].Width = 250;
                             grdSubGroupList.Columns["Product Sub Group Name in Tamil"].Width = 250;
-                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSubGroupList.Columns["Stock Location"].Width = 150;
                             grdSubGroupList.Columns["Rack"].Width = 100;
                             grdSubGroupList.Columns["Batch No."].Width = 100;
@@ -863,7 +863,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvSubGroup.Columns[2].Width = 200;
                                     lvSubGroup.Columns[0].Width = 200;
                                     lvSubGroup.Items.Add(objList);
@@ -1260,7 +1260,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvGroup.Columns[0].Width = 200;
                                     lvGroup.Columns[2].Width = 200;
                                     lvGroup.Items.Add(objList);
@@ -1370,7 +1370,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SL_TName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvStockLocation.Columns[0].Width = 200;
                                     lvStockLocation.Columns[1].Width = 200;
                                     lvStockLocation.Items.Add(objList);

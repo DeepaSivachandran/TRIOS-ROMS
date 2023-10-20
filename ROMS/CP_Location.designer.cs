@@ -210,7 +210,7 @@
             // 
             this.txtLocationNameInEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLocationNameInEnglish.Location = new System.Drawing.Point(203, 78);
-            this.txtLocationNameInEnglish.MaxLength = 20;
+            this.txtLocationNameInEnglish.MaxLength = 50;
             this.txtLocationNameInEnglish.Name = "txtLocationNameInEnglish";
             this.txtLocationNameInEnglish.Size = new System.Drawing.Size(288, 27);
             this.txtLocationNameInEnglish.TabIndex = 2;
@@ -317,7 +317,7 @@
             // 
             this.txtLocationNameInTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLocationNameInTamil.Location = new System.Drawing.Point(203, 105);
-            this.txtLocationNameInTamil.MaxLength = 20;
+            this.txtLocationNameInTamil.MaxLength = 50;
             this.txtLocationNameInTamil.Name = "txtLocationNameInTamil";
             this.txtLocationNameInTamil.Size = new System.Drawing.Size(288, 27);
             this.txtLocationNameInTamil.TabIndex = 3;

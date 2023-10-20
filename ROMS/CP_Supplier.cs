@@ -3432,7 +3432,7 @@ namespace ROMS
                     grdViewSupplierMapping.Columns["Product Name in English"].Width = 250;
                     grdViewSupplierMapping.Columns["Rep Name"].Width = 200;
                     grdViewSupplierMapping.Columns["R.Sales Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                    grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 }
                 else
                 {
@@ -3864,7 +3864,7 @@ namespace ROMS
                     grdSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
                     grdSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
-                    grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                    grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 }
                 else
                 {
@@ -4089,7 +4089,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
-                    grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                    grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
 
                     udfnGridRemove();
                     for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
@@ -4976,7 +4976,7 @@ namespace ROMS
                                 grdSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
                                 grdSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
-                                grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             }
                             break;
                     }
@@ -6190,7 +6190,7 @@ namespace ROMS
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvMappingSubGroup.Items.Add(objList);
                                 }
                                 lvMappingSubGroup.Visible = true;
@@ -6359,7 +6359,7 @@ namespace ROMS
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvMappingGroup.Items.Add(objList);
                                 }
                                 lvMappingGroup.Visible = true;

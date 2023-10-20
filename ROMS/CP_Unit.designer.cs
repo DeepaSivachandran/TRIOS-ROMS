@@ -46,6 +46,7 @@
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.epUnit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chkBulkUnit = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUnit)).BeginInit();
@@ -79,6 +80,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.chkBulkUnit);
             this.grbform.Controls.Add(this.textBox1);
             this.grbform.Controls.Add(this.txtInvoiceUnit);
             this.grbform.Controls.Add(this.cmbNoOfDecimals);
@@ -95,7 +97,7 @@
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(558, 218);
+            this.grbform.Size = new System.Drawing.Size(558, 239);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             // 
@@ -181,7 +183,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(440, 171);
+            this.btnClose.Location = new System.Drawing.Point(440, 197);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
@@ -198,7 +200,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(356, 171);
+            this.btnSave.Location = new System.Drawing.Point(356, 197);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
@@ -270,12 +272,25 @@
             // 
             this.epUnit.ContainerControl = this;
             // 
+            // chkBulkUnit
+            // 
+            this.chkBulkUnit.AutoSize = true;
+            this.chkBulkUnit.Location = new System.Drawing.Point(159, 169);
+            this.chkBulkUnit.Name = "chkBulkUnit";
+            this.chkBulkUnit.Size = new System.Drawing.Size(78, 24);
+            this.chkBulkUnit.TabIndex = 5;
+            this.chkBulkUnit.Text = "Bulk Unit";
+            this.chkBulkUnit.UseVisualStyleBackColor = true;
+            this.chkBulkUnit.Enter += new System.EventHandler(this.ChkBulkUnit_Enter);
+            this.chkBulkUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChkBulkUnit_KeyDown);
+            this.chkBulkUnit.Leave += new System.EventHandler(this.ChkBulkUnit_Leave);
+            // 
             // CP_Unit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(585, 245);
+            this.ClientSize = new System.Drawing.Size(585, 263);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -317,5 +332,6 @@
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtInvoiceUnit;
+        private System.Windows.Forms.CheckBox chkBulkUnit;
     }
 }
