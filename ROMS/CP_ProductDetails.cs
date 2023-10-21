@@ -39,7 +39,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(15,0,0,0,0,"",MainForm.pbUserID,MainForm.pbIpAddress,0,0,0,0,0,varRackId,0,0,0,0,0,0,"",0,"","","",dtStock);
+                objDs = objdserv.udfnproductmasterlist(15,0,0,0,0,"",MainForm.pbUserID,MainForm.pbIpAddress,0,0,0,0,0,varRackId,0,0,0,0,0,0,"",0,dtStock);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

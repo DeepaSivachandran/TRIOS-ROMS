@@ -246,7 +246,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20,0,0,0,0,"","","",0,0,0,0,0,RKCode,0,0,0,0,0,RKGCode,"",EMPCode,"","","",dtStock);
+                objDs = objspservice.udfnproductmasterlist(20,0,0,0,0,"","","",0,0,0,0,0,RKCode,0,0,0,0,0,RKGCode,"",EMPCode,dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -346,7 +346,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, "",EMPCode,"","","",dtStock);
+                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, "",EMPCode,dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -446,7 +446,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode,"", EMPCode,"","","",dtStock);
+                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode,"", EMPCode,dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -546,7 +546,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode,"", EMPCode,"","","",dtStock);
+                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode,"", EMPCode,dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -646,7 +646,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode,"", EMPCode,"","","",dtStock);
+                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode,"", EMPCode,dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

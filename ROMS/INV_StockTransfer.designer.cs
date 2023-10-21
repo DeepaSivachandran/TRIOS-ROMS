@@ -105,6 +105,7 @@
             this.clmbatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmquantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
@@ -299,6 +300,7 @@
             this.clmbatchno,
             this.clmquantity,
             this.clmUnit,
+            this.clmPRID,
             this.clmRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -781,6 +783,12 @@
             this.clmUnit.Name = "clmUnit";
             this.clmUnit.ReadOnly = true;
             // 
+            // clmPRID
+            // 
+            this.clmPRID.HeaderText = "PRID";
+            this.clmPRID.Name = "clmPRID";
+            this.clmPRID.Visible = false;
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -897,6 +905,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmbatchno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmquantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }

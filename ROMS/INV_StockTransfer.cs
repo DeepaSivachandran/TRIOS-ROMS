@@ -663,7 +663,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(35,Convert.ToInt32(0), 0, 0,0,"","","",0,0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,txtProductNamePICode.Text.Trim(),0,"0","0","0",dtStock);
+                    objDs = objspdservice.udfnproductmasterlist(35,Convert.ToInt32(0), 0, 0,0,"","","",0,0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,txtProductNamePICode.Text.Trim(),0,dtStock);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -828,11 +828,15 @@ namespace ROMS
                     tpTransferQty.ShowAlways = true;
                     tpTransferQty.Show("Please enter valid quentity", txtQuantity, 5000);
                 }
-                grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtQuantity.Text).Trim(),varUnitSymbol);
+                grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtQuantity.Text).Trim(),varUnitSymbol,(lblProduct.Text).Trim());
 
                 DataService objDser = new DataService();
                 dtStock.Rows.Add((lblProduct.Text).Trim(),(txtMRP.Text).Trim(),(txtExpiryDate.Text).Trim(),(txtBatchNo.Text).Trim());
                 txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
+
+                //int varId = 0;
+                //var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[i].Cells["HSN Name-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                //if (varValue.Count() > 0) { varId = Convert.ToInt32(varValue.ToList()[0]); }
             }
             catch (Exception ex)
             {
@@ -928,22 +932,33 @@ namespace ROMS
         {
             try
             {
+                string varProductID = "",varMRP="",varExpiryDate="",varBatchNo="";
                 if (e.RowIndex != -1)
                 {
                     switch (grdStockTransfer.Columns[e.ColumnIndex].Name)
                     {
                         case "clmRemove":
-                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                        DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            varProductID = Convert.ToString(grdStockTransfer.Rows[0].Cells["clmPRID"].Value);
+                            varMRP = Convert.ToString(grdStockTransfer.Rows[0].Cells["clmmrp"].Value);
+                            varExpiryDate = Convert.ToString(grdStockTransfer.Rows[0].Cells["clmExpirydate"].Value);
+                            varBatchNo = Convert.ToString(grdStockTransfer.Rows[0].Cells["clmbatchno"].Value);
+                            grdStockTransfer.Rows.RemoveAt(this.grdStockTransfer.SelectedRows[0].Index);
+                            for (int i = 0; i < grdStockTransfer.RowCount; i++)
                             {
-                                grdStockTransfer.Rows.RemoveAt(this.grdStockTransfer.SelectedRows[0].Index);
-                                for (int i = 0; i < grdStockTransfer.RowCount; i++)
-                                {
-                                    grdStockTransfer.Rows[i].Cells["clmdsno"].Value = i + 1;
-                                }
+                                grdStockTransfer.Rows[i].Cells["clmdsno"].Value = i + 1;
                             }
-                            break;
+                        }
+                        break;
                     }
+                }
+                string PRID = dtStock.Rows[0].Field<string>(0);
+                if (varProductID == Convert.ToString(PRID))
+                {
+                    dtStock.Rows[0].Delete();
+                    dtStock.AcceptChanges();
                 }
             }
             catch (Exception ex)

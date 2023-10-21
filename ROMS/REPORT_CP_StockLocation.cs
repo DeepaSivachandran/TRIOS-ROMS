@@ -234,7 +234,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 
-                objDs = objspservice.udfnproductmasterlist(19,0,0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0,0,0, Convert.ToInt32(lblLocationCode.Text), Convert.ToInt32(cmbLocationType.SelectedValue), Convert.ToInt32(cmbGodownType.SelectedValue), 0,"",0,"","","",dtStock);
+                objDs = objspservice.udfnproductmasterlist(19,0,0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0,0,0, Convert.ToInt32(lblLocationCode.Text), Convert.ToInt32(cmbLocationType.SelectedValue), Convert.ToInt32(cmbGodownType.SelectedValue), 0,"",0,dtStock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

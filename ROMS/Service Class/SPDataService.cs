@@ -1224,7 +1224,7 @@ namespace ROMS
 
         //Product Master List
         //created by Venkat,Created on 16/08/2023
-        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup, string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode, int paraStatusId, int paraBrandID, int ParaScheduleid, int paraScheduleDay, int paraRackId, int paraHsnId, int paraGstId, int paraLocationId, int paraLocationType, int paraGodownType, int paraRKGId, string paraProductName, int paraEMPId,string paraMRP, string paraExpiryDate,string paraBatchNo,DataTable paraStockTransfer)
+        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup, string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode, int paraStatusId, int paraBrandID, int ParaScheduleid, int paraScheduleDay, int paraRackId, int paraHsnId, int paraGstId, int paraLocationId, int paraLocationType, int paraGodownType, int paraRKGId, string paraProductName, int paraEMPId,DataTable paraStockTransfer)
         {
             DataSet ds = new DataSet();
             try
@@ -1254,9 +1254,6 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRKGId", paraRKGId);
                 varSqlCommand.Parameters.AddWithValue("@paraEMPId", paraEMPId);
                 varSqlCommand.Parameters.AddWithValue("@paraProductName", paraProductName);
-                varSqlCommand.Parameters.AddWithValue("@paraMRP", paraMRP);
-                varSqlCommand.Parameters.AddWithValue("@paraExpiryDate", paraExpiryDate);
-                varSqlCommand.Parameters.AddWithValue("@paraBatchNo", paraBatchNo);
                 varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", paraStockTransfer);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
