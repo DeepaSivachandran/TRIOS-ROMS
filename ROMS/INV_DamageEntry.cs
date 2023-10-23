@@ -34,6 +34,26 @@ namespace ROMS
                 string varExpiryDate = "",varUnit="";
                 varExpiryDate = txtDay.Text.Trim() + txtMonth.Text.Trim() + txtYear.Text.Trim();
                 grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1, txtProductName.Text.Trim(), txtProductName.Text.Trim(),txtMrp.Text.Trim(),varExpiryDate,txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnit,txtsuppliername.Text.Trim(),txtDay.Text.Trim(),txtMonth.Text.Trim(),txtYear.Text.Trim());
+                udfnClear();
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnClear()
+        {
+            try
+            {
+                txtProductName.Text = "";
+                txtMrp.Text = "";
+                txtDay.Text = "";
+                txtMonth.Text = "";
+                txtYear.Text = "";
+                txtBatchNo.Text = "";
+                txtQuantity.Text = "";
+                txtsuppliername.Text = "";
             }
             catch(Exception ex)
             {
