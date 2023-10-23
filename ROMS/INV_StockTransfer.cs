@@ -22,6 +22,8 @@ namespace ROMS
         private ToolTip tpsno = new ToolTip();
         public string varlocationcode;
         public string varUnitSymbol = "";
+        public string varUTID = "";
+        public string varQTY = "";
         public string varPICode = "";
         public string varProductCode = "";
         public string varBatchNo = "";
@@ -155,6 +157,8 @@ namespace ROMS
                     dtStock.Columns.Add("STK_MRP", typeof(string));
                     dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                     dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                    dtStock.Columns.Add("STK_UTID", typeof(string));
+                    dtStock.Columns.Add("STK_QTY", typeof(string));
                 udfnCmbConcern();
             }
             catch (Exception ex)
@@ -673,7 +677,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvProduct.Items.Add(objList);
                                 }
@@ -828,15 +832,20 @@ namespace ROMS
                     tpTransferQty.ShowAlways = true;
                     tpTransferQty.Show("Please enter valid quentity", txtQuantity, 5000);
                 }
-                grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtQuantity.Text).Trim(),varUnitSymbol,(lblProduct.Text).Trim());
+                grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtQuantity.Text).Trim(),varUnitSymbol,(lblProduct.Text).Trim(),varUTID,(txtQuantity.Text).Trim());
 
                 DataService objDser = new DataService();
-                dtStock.Rows.Add((lblProduct.Text).Trim(),(txtMRP.Text).Trim(),(txtExpiryDate.Text).Trim(),(txtBatchNo.Text).Trim());
+                dtStock.Rows.Add((lblProduct.Text).Trim(),(txtMRP.Text).Trim(),(txtExpiryDate.Text).Trim(),(txtBatchNo.Text).Trim(),varUTID,(txtQuantity.Text).Trim());
                 txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
 
-                //int varId = 0;
-                //var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[i].Cells["HSN Name-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
-                //if (varValue.Count() > 0) { varId = Convert.ToInt32(varValue.ToList()[0]); }
+                int varId = 0;
+                var varValue1 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_PRID").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmPRID"].Value).Trim().ToUpper()))group r by r.Field<string>("STK_PRID") into g select g.Key;
+                var varValue2 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_MRP").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmmrp"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_MRP") into g select g.Key;
+                var varValue3 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_ExpiryDate").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmExpirydate"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_ExpiryDate") into g select g.Key;
+                var varValue4 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_BatchNo").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmbatchno"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_BatchNo") into g select g.Key;
+                var varValue5 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_UTID").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmUTID"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_UTID") into g select g.Key;
+                var varValue6 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_QTY").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmQTY"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_QTY") into g select g.Key;
+                if (varValue1.Count() > 0) { varId = Convert.ToInt32(varValue1.ToList()[0]); }
             }
             catch (Exception ex)
             {
@@ -911,6 +920,7 @@ namespace ROMS
                     txtBatchNo.Text = selectedItem.SubItems[6].Text;
                     txtStockQty.Text = selectedItem.SubItems[7].Text;
                     lblProduct.Text = selectedItem.SubItems[8].Text;
+                    varUTID = selectedItem.SubItems[9].Text;
                     varUnitSymbol = selectedItem.SubItems[10].Text;
                     //varMRP = selectedItem.SubItems[4].Text;
                     //varExpiryDate = selectedItem.SubItems[5].Text;
@@ -954,6 +964,9 @@ namespace ROMS
                         break;
                     }
                 }
+
+
+
                 string PRID = dtStock.Rows[0].Field<string>(0);
                 if (varProductID == Convert.ToString(PRID))
                 {

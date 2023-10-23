@@ -97,6 +97,7 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,7 +107,10 @@
             this.clmquantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -186,7 +190,9 @@
             this.columnHeader8,
             this.columnHeader9,
             this.columnHeader10,
-            this.columnHeader11});
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13});
             this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvProduct.HideSelection = false;
@@ -301,6 +307,8 @@
             this.clmquantity,
             this.clmUnit,
             this.clmPRID,
+            this.clmUTID,
+            this.clmQTY,
             this.clmRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -789,6 +797,18 @@
             this.clmPRID.Name = "clmPRID";
             this.clmPRID.Visible = false;
             // 
+            // clmUTID
+            // 
+            this.clmUTID.HeaderText = "UTID";
+            this.clmUTID.Name = "clmUTID";
+            this.clmUTID.Visible = false;
+            // 
+            // clmQTY
+            // 
+            this.clmQTY.HeaderText = "QTY";
+            this.clmQTY.Name = "clmQTY";
+            this.clmQTY.Visible = false;
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -897,6 +917,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
@@ -906,6 +927,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmquantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmQTY;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
     }
 }
