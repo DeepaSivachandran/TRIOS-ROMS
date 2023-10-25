@@ -146,6 +146,7 @@ namespace ROMS
                             grdGodownList.Columns["StatusID"].Visible = false;
                             grdGodownList.Columns["DefaultID"].Visible = false;
                             grdGodownList.Columns["RKCreationID"].Visible = false;
+                            grdGodownList.Columns["RKGCreationID"].Visible = false;
                             grdGodownList.Columns["S.No."].Width = 50;
                             grdGodownList.Columns["Location Name in English"].Width = 250;
                             grdGodownList.Columns["Location Name in Tamil"].Width = 250;
@@ -258,7 +259,7 @@ namespace ROMS
                             varResult = "";
                             if (MainForm.objCP_Verify.flag == 1)
                             {
-                                varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID,0);
+                                varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID,0,0);
                                 objspservice.CloseConnection();
 
                                 if (varResult.Split('~')[0] == "3")
@@ -312,7 +313,7 @@ namespace ROMS
                     {
                         MainForm.objCP_Location = new CP_Location();
                         MainForm.objCP_Location.btnSave.Visible = true;
-                        MainForm.objCP_Location.cmbConcern.Enabled = true;
+                        MainForm.objCP_Location.cmbConcern.Enabled = false;
                         MainForm.objCP_Location.cmbLocationType.Enabled = true;
                         MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = true;
                         MainForm.objCP_Location.txtLocationNameInTamil.Enabled = true;

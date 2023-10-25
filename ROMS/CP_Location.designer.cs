@@ -56,6 +56,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
+            this.chkRKGCreation = new System.Windows.Forms.CheckBox();
+            this.lblRackGroupCreation = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.pnlGodownType.SuspendLayout();
@@ -116,7 +118,7 @@
             this.btnSave.Location = new System.Drawing.Point(329, 266);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 11;
+            this.btnSave.TabIndex = 12;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -144,7 +146,7 @@
             this.btnClose.Location = new System.Drawing.Point(417, 266);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 12;
+            this.btnClose.TabIndex = 13;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -232,6 +234,8 @@
             // 
             // grbGodown
             // 
+            this.grbGodown.Controls.Add(this.lblRackGroupCreation);
+            this.grbGodown.Controls.Add(this.chkRKGCreation);
             this.grbGodown.Controls.Add(this.lblRackCreation);
             this.grbGodown.Controls.Add(this.chkRKCreation);
             this.grbGodown.Controls.Add(this.textBox4);
@@ -262,7 +266,7 @@
             // lblRackCreation
             // 
             this.lblRackCreation.AutoSize = true;
-            this.lblRackCreation.Location = new System.Drawing.Point(224, 243);
+            this.lblRackCreation.Location = new System.Drawing.Point(43, 243);
             this.lblRackCreation.Name = "lblRackCreation";
             this.lblRackCreation.Size = new System.Drawing.Size(84, 20);
             this.lblRackCreation.TabIndex = 1111169;
@@ -271,7 +275,7 @@
             // chkRKCreation
             // 
             this.chkRKCreation.AutoSize = true;
-            this.chkRKCreation.Location = new System.Drawing.Point(203, 246);
+            this.chkRKCreation.Location = new System.Drawing.Point(22, 246);
             this.chkRKCreation.Name = "chkRKCreation";
             this.chkRKCreation.Size = new System.Drawing.Size(15, 14);
             this.chkRKCreation.TabIndex = 10;
@@ -402,6 +406,24 @@
             this.txtConcern.TabIndex = 49;
             this.txtConcern.Text = "Concern";
             // 
+            // chkRKGCreation
+            // 
+            this.chkRKGCreation.AutoSize = true;
+            this.chkRKGCreation.Location = new System.Drawing.Point(203, 246);
+            this.chkRKGCreation.Name = "chkRKGCreation";
+            this.chkRKGCreation.Size = new System.Drawing.Size(15, 14);
+            this.chkRKGCreation.TabIndex = 11;
+            this.chkRKGCreation.UseVisualStyleBackColor = true;
+            // 
+            // lblRackGroupCreation
+            // 
+            this.lblRackGroupCreation.AutoSize = true;
+            this.lblRackGroupCreation.Location = new System.Drawing.Point(224, 243);
+            this.lblRackGroupCreation.Name = "lblRackGroupCreation";
+            this.lblRackGroupCreation.Size = new System.Drawing.Size(120, 20);
+            this.lblRackGroupCreation.TabIndex = 1111171;
+            this.lblRackGroupCreation.Text = "Rack Group Creation";
+            // 
             // CP_Location
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -461,5 +483,7 @@
         public System.Windows.Forms.TextBox txtShortName;
         private System.Windows.Forms.CheckBox chkRKCreation;
         private System.Windows.Forms.Label lblRackCreation;
+        private System.Windows.Forms.Label lblRackGroupCreation;
+        private System.Windows.Forms.CheckBox chkRKGCreation;
     }
 }

@@ -183,6 +183,7 @@ namespace ROMS
                     if (btnSave.Visible)
                     {
                         pnlStatus.Enabled = true;
+                        pnlGodownType.Enabled = true;
                     }
                     udfnLoad();
                 }
@@ -212,7 +213,13 @@ namespace ROMS
                 cmbConcern.SelectedValue = PbConcernID;
                 cmbLocationType.SelectedValue = PbLocationTypeID;
                 cmbStockApplicable.SelectedValue = PbStockApplicableID;
-                if (PbGodownTypeStatus == 86) { rbInside.Checked = true; } else { rbOutside.Checked = true; }
+                //if (PbGodownTypeStatus != 0)
+                //{
+                    if (PbGodownTypeStatus == 86)
+                    { rbInside.Checked = true; }
+                    else
+                    { rbOutside.Checked = true; }
+                //}
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if (PbStockApplicableID==11) { varStockApplicableId = PbStockApplicableID; }
                 if (PbRKCreationID == "1") { chkRKCreation.Checked = true; } else { chkRKCreation.Checked = false; }
@@ -255,14 +262,14 @@ namespace ROMS
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
 
-                if (pnlGodownType.Enabled == false)
-                {
-                    rbInside.Checked = false;
-                    rbOutside.Checked = false;
-                    varGodownType = 0;
-                }
-                else
-                {
+                //if (pnlGodownType.Enabled == false)
+                //{
+                //    rbInside.Checked = false;
+                //    rbOutside.Checked = false;
+                //    varGodownType = 0;
+                //}
+                //else
+                //{
                     if (rbInside.Checked == true)
                     {
                         varGodownType = 86; 
@@ -271,7 +278,7 @@ namespace ROMS
                     {
                         varGodownType = 87;
                     }
-                }
+                //}
                 int RKCheck = 0;
                 if(chkRKCreation.Checked==true)
                 {
@@ -280,6 +287,15 @@ namespace ROMS
                 else
                 {
                     RKCheck = 0;
+                }
+                int RKGCheck = 0;
+                if (chkRKGCreation.Checked == true)
+                {
+                    RKGCheck = 1;
+                }
+                else
+                {
+                    RKGCheck = 0;
                 }
 
                 SPDataService objspservice = new SPDataService();
@@ -321,7 +337,7 @@ namespace ROMS
                 }
                 if (saveflag == 0)
                 {
-                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID,RKCheck);
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID,RKCheck,RKGCheck);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -1012,8 +1028,8 @@ namespace ROMS
                 //{
                 //    pnlGodownType.Enabled = true;
                 //}
-                pnlGodownType.Enabled = false;
-                rbInside.Checked = true;
+                //pnlGodownType.Enabled = false;
+                //rbInside.Checked = true;
             }
         }
 
