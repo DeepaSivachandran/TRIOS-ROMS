@@ -840,11 +840,17 @@ namespace ROMS
 
                 int varId = 0;
                 var varValue1 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_PRID").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmPRID"].Value).Trim().ToUpper()))group r by r.Field<string>("STK_PRID") into g select g.Key;
+                varProductCode = lblProduct.Text;
                 var varValue2 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_MRP").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmmrp"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_MRP") into g select g.Key;
+                varMRP = "";
                 var varValue3 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_ExpiryDate").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmExpirydate"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_ExpiryDate") into g select g.Key;
+                varExpiryDate = "";
                 var varValue4 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_BatchNo").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmbatchno"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_BatchNo") into g select g.Key;
-                var varValue5 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_UTID").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmUTID"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_UTID") into g select g.Key;
-                var varValue6 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_QTY").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmQTY"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_QTY") into g select g.Key;
+                varBatchNo = "";
+                //var varValue5 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_UTID").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmUTID"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_UTID") into g select g.Key;
+
+                //var varValue6 = from r in dtStock.AsEnumerable() where (r.Field<string>("STK_QTY").ToUpper().Equals(Convert.ToString(grdStockTransfer.Rows[0].Cells["clmQTY"].Value).Trim().ToUpper())) group r by r.Field<string>("STK_QTY") into g select g.Key;
+
                 if (varValue1.Count() > 0) { varId = Convert.ToInt32(varValue1.ToList()[0]); }
             }
             catch (Exception ex)
@@ -922,10 +928,10 @@ namespace ROMS
                     lblProduct.Text = selectedItem.SubItems[8].Text;
                     varUTID = selectedItem.SubItems[9].Text;
                     varUnitSymbol = selectedItem.SubItems[10].Text;
-                    //varMRP = selectedItem.SubItems[4].Text;
-                    //varExpiryDate = selectedItem.SubItems[5].Text;
-                    //varBatchNo = selectedItem.SubItems[6].Text;
-                    //varProductode = selectedItem.SubItems[8].Text;
+                    varMRP = selectedItem.SubItems[4].Text;
+                    varExpiryDate = selectedItem.SubItems[5].Text;
+                    varBatchNo = selectedItem.SubItems[6].Text;
+                    varProductCode = selectedItem.SubItems[8].Text;
                 }
             }
             catch (Exception ex)
