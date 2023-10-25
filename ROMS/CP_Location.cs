@@ -144,6 +144,7 @@ namespace ROMS
         {
             try
             {
+                chkRKGCreation.Enabled = false;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 4;
@@ -1054,6 +1055,19 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKCreation_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkRKCreation.Checked==true)
+            {
+                chkRKGCreation.Enabled = true;
+            }
+            else
+            {
+                chkRKGCreation.Enabled = false;
+                chkRKGCreation.Checked = false;
             }
         }
     }
