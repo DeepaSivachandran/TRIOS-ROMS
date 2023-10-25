@@ -285,7 +285,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 22);
-            this.btnAdd.TabIndex = 1111211;
+            this.btnAdd.TabIndex = 7;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -320,7 +320,7 @@
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(145, 141);
+            this.lvproduct.Location = new System.Drawing.Point(148, 141);
             this.lvproduct.Name = "lvproduct";
             this.lvproduct.Size = new System.Drawing.Size(604, 140);
             this.lvproduct.TabIndex = 1111156;
@@ -844,7 +844,7 @@
             this.cmbStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(114, 27);
-            this.cmbStatus.TabIndex = 1111196;
+            this.cmbStatus.TabIndex = 12;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
@@ -950,9 +950,8 @@
             this.lblpocreatedon.ForeColor = System.Drawing.Color.Black;
             this.lblpocreatedon.Location = new System.Drawing.Point(310, 610);
             this.lblpocreatedon.Name = "lblpocreatedon";
-            this.lblpocreatedon.Size = new System.Drawing.Size(63, 16);
+            this.lblpocreatedon.Size = new System.Drawing.Size(0, 16);
             this.lblpocreatedon.TabIndex = 1111188;
-            this.lblpocreatedon.Text = "20/07/2023";
             // 
             // lblPOCreateby
             // 
@@ -962,9 +961,8 @@
             this.lblPOCreateby.ForeColor = System.Drawing.Color.Black;
             this.lblPOCreateby.Location = new System.Drawing.Point(310, 585);
             this.lblPOCreateby.Name = "lblPOCreateby";
-            this.lblPOCreateby.Size = new System.Drawing.Size(38, 16);
+            this.lblPOCreateby.Size = new System.Drawing.Size(0, 16);
             this.lblPOCreateby.TabIndex = 1111187;
-            this.lblPOCreateby.Text = "Venkat";
             // 
             // label10
             // 
@@ -1223,7 +1221,7 @@
             this.btnSave.Location = new System.Drawing.Point(1156, 594);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -1257,7 +1255,10 @@
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(321, 38);
-            this.txtRemark.TabIndex = 1111164;
+            this.txtRemark.TabIndex = 11;
+            this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
+            this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
+            this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
             // 
             // lblRemark
             // 
@@ -1276,7 +1277,7 @@
             this.btnClose.Location = new System.Drawing.Point(1245, 594);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 11;
+            this.btnClose.TabIndex = 14;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -1622,11 +1623,10 @@
             this.grdsupplieradd.RowTemplate.Height = 25;
             this.grdsupplieradd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdsupplieradd.Size = new System.Drawing.Size(1325, 277);
-            this.grdsupplieradd.TabIndex = 1;
+            this.grdsupplieradd.TabIndex = 10;
             this.grdsupplieradd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grdsupplieradd_CellContentClick);
             this.grdsupplieradd.CurrentCellDirtyStateChanged += new System.EventHandler(this.Grdsupplieradd_CurrentCellDirtyStateChanged);
             this.grdsupplieradd.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grdsupplieradd_EditingControlShowing);
-            this.grdsupplieradd.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdBrandList_Scroll);
             this.grdsupplieradd.DoubleClick += new System.EventHandler(this.grdBrandList_DoubleClick);
             this.grdsupplieradd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdBrandList_KeyDown);
             // 
@@ -1810,7 +1810,6 @@
         private System.Windows.Forms.DateTimePicker dpPlanDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDESupplier;
-        private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.Label lblRemark;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox txtpono;
@@ -1857,7 +1856,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
-        private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TabControl tbSupplierDetails;
@@ -1918,5 +1916,7 @@
         public System.Windows.Forms.Label lblpocreatedon;
         public System.Windows.Forms.Label lblPOCreateby;
         public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.TextBox txtRemark;
+        public System.Windows.Forms.ComboBox cmbStatus;
     }
 }

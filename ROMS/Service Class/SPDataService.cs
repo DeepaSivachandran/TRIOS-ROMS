@@ -1778,7 +1778,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 17/10/2023 for PO list
-        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string ParaPOFromDate, string ParaPOToDate,int paraPOID)
+        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string ParaPOFromDate, string ParaPOToDate,int paraPOID,int paraStatus)
         {
             DataSet ds = new DataSet();
             try
@@ -1800,6 +1800,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaPOFromDate", ParaPOFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaPOToDate", ParaPOToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraPOID", paraPOID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

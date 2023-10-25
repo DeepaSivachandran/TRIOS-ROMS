@@ -21,7 +21,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
-        public int varupdate = 0, varPOID = 0;
+        public int varupdate = 0, varPOID = 0,varsts=0;
         public PUR_POIssuedDetails()
         {
             InitializeComponent();
@@ -161,6 +161,14 @@ namespace ROMS
 
             try
             {
+                this.ActiveControl = dpissuedateandtime;
+                if (varsts == 11)
+                {
+                    dpissuedateandtime.Enabled = false;
+                    txtTAT.Enabled = false;
+                    this.ActiveControl = txtIssuedBY;
+                } 
+
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=44 AND MSTID NOT IN (135,136) OR MSTID=-1", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -182,7 +190,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID);
+                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -430,7 +438,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtTAT.Focus();
+                    if (txtTAT.Enabled == true)
+                    {
+                        txtTAT.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -440,11 +455,61 @@ namespace ROMS
             }
         }
 
-        private void PUR_POIssuedDetails_KeyDown(object sender, KeyEventArgs e)
+        private void TxtTAT_Enter(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            try
             {
-                udfnclose();
+                txtTAT.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+        private void TxtTAT_KeyDown(object sender, KeyEventArgs e)
+        { 
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTAT_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTAT.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_POIssuedDetails_KeyDown(object sender, KeyEventArgs e)
+        { 
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

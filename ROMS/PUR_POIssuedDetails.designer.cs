@@ -226,6 +226,9 @@
             this.txtTAT.Size = new System.Drawing.Size(115, 27);
             this.txtTAT.TabIndex = 4;
             this.txtTAT.Text = " ";
+            this.txtTAT.Enter += new System.EventHandler(this.TxtTAT_Enter);
+            this.txtTAT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtTAT_KeyDown);
+            this.txtTAT.Leave += new System.EventHandler(this.TxtTAT_Leave);
             // 
             // textBox4
             // 
@@ -244,7 +247,7 @@
             // 
             this.txtIssuemodeValues.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtIssuemodeValues.Location = new System.Drawing.Point(403, 96);
-            this.txtIssuemodeValues.MaxLength = 50;
+            this.txtIssuemodeValues.MaxLength = 100;
             this.txtIssuemodeValues.Name = "txtIssuemodeValues";
             this.txtIssuemodeValues.Size = new System.Drawing.Size(160, 27);
             this.txtIssuemodeValues.TabIndex = 3;
@@ -275,7 +278,7 @@
             // 
             this.txtIssuedBY.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtIssuedBY.Location = new System.Drawing.Point(403, 68);
-            this.txtIssuedBY.MaxLength = 50;
+            this.txtIssuedBY.MaxLength = 20;
             this.txtIssuedBY.Name = "txtIssuedBY";
             this.txtIssuedBY.Size = new System.Drawing.Size(160, 27);
             this.txtIssuedBY.TabIndex = 1;
