@@ -35,6 +35,7 @@ namespace ROMS
         public int PbStockApplicableID = 0;
         public string PbDefault;
         public string PbRKCreationID;
+        public string PbRKGCreationID;
         public int PbStatus = 0;
         public int PbGodownTypeStatus = 0;
         public int varUpdate = 0;
@@ -223,7 +224,8 @@ namespace ROMS
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if (PbStockApplicableID==11) { varStockApplicableId = PbStockApplicableID; }
                 if (PbRKCreationID == "1") { chkRKCreation.Checked = true; } else { chkRKCreation.Checked = false; }
-                if(PbDefault=="1" || PbDefault=="2")
+                if (PbRKGCreationID == "1") { chkRKGCreation.Checked = true; } else { chkRKGCreation.Checked = false; }
+                if (PbDefault=="1" || PbDefault=="2")
                 {
                     cmbConcern.Enabled = false;
                     cmbLocationType.Enabled = false;
@@ -234,6 +236,7 @@ namespace ROMS
                     cmbStockApplicable.Enabled = false;
                     pnlStatus.Enabled = false;
                     chkRKCreation.Enabled = false;
+                    chkRKGCreation.Enabled = false;
                 }
             }
             catch (Exception ex)
