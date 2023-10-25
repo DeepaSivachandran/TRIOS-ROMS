@@ -86,6 +86,7 @@ namespace ROMS
                 dtEmployee.Columns.Add("Employee Name", typeof(string));
                 dtEmployee.Columns.Add("Employee Category", typeof(string));
                 dtEmployee.Columns.Add("EMPID", typeof(int));
+                dtEmployee.Columns.Add("CT_SINO", typeof(int));
 
 
                 DataSet objDs = new DataSet();
@@ -211,7 +212,7 @@ namespace ROMS
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
                         dtEmployee.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Employee Code"], objDs.Tables[0].Rows[i]["Employee Name"],
-                           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"]);
+                           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"], objDs.Tables[0].Rows[i]["CT_SINO"]);
                     }
                 }
                 grdEmployee.DataSource = null;
@@ -224,6 +225,7 @@ namespace ROMS
                 grdEmployee.Columns["Employee Name"].Width = 180;
                 grdEmployee.Columns["Employee Category"].Width = 150;
                 grdEmployee.Columns["EMPID"].Visible = false;
+                grdEmployee.Columns["CT_SINO"].Visible = false;
                 grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 udfnEmpGridRemove();
@@ -444,7 +446,7 @@ namespace ROMS
                     {
                         for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                         {
-                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]));
+                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["CT_SINO"]));
                         }
                     }
 
@@ -485,7 +487,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
+            }
+            finally
+            {
+                grdStaffDetails.Sort(grdStaffDetails.Columns["clmSINO"], ListSortDirection.Ascending);
             }
         }
         public void udfnSave(object sender, EventArgs e)
@@ -578,6 +583,7 @@ namespace ROMS
                 chkRack.Checked = false;
                 chkEmployee.Checked = false;
                 tpStaffName.Active = false;
+                lblTotalProduct.Text = "0";
                 cmbConcern.Focus();
                 foreach (DataGridViewRow row in grdEmployee.Rows)
                 {
@@ -1826,7 +1832,7 @@ namespace ROMS
                             if (varFlag == 0)
                             {
                                 grdStaffDetails.Rows.Add(Convert.ToInt32(grdStaffDetails.Rows.Count) + 1, grdEmployee.Rows[i].Cells["Employee Code"].Value, grdEmployee.Rows[i].Cells["Employee Name"].Value,
-                                    grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value);
+                                grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value, grdEmployee.Rows[i].Cells["CT_SINO"].Value);
                             }
                         }
                     }
@@ -1836,12 +1842,15 @@ namespace ROMS
                 {
                     MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdStaffDetails.Sort(grdStaffDetails.Columns["clmSINO"], ListSortDirection.Ascending);
             }
         }
 

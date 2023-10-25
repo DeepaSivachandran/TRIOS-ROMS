@@ -98,7 +98,7 @@ namespace ROMS
                             varUserID = MainForm.objCP_Verify.varUserId;
                             if (MainForm.objCP_Verify.flag == 1)
                             {
-                                varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, "UserCategory Delete", varUserID);
+                                varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0,0, "UserCategory Delete", varUserID);
                                 objspservice.CloseConnection();
                                 if (varResult.Split('~')[0] == "3")
                                 {
@@ -124,7 +124,6 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void udfnEdit()
         {
             try
@@ -191,9 +190,11 @@ namespace ROMS
                             grdUserCategoryList.Columns["StatusID"].Visible = false;
                             grdUserCategoryList.Columns["DefaultID"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].Width = 50;
+                            grdUserCategoryList.Columns["Order No."].Width = 80;
                             grdUserCategoryList.Columns["Employee Category"].Width = 200;
                             grdUserCategoryList.Columns["Status"].Width = 80;
                             grdUserCategoryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdUserCategoryList.Columns["Order No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserCategoryList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserCategoryList.Columns["No.of Users"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }

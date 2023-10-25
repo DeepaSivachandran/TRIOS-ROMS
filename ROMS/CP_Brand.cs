@@ -130,18 +130,18 @@ namespace ROMS
                         grdSubGroupAdd.Columns["Group Id"].ReadOnly = true;
                         grdSubGroupAdd.Columns["Sub Group Id"].ReadOnly = true;
                     }
-                    for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
-                    {
-                        for (int j = 0; j < dtGroup.Rows.Count; j++)
-                        {
-                            if (Convert.ToString(objDS.Tables[1].Rows[i]["PRGID"]) == Convert.ToString(dtGroup.Rows[j]["ID"]))
-                            {
-                                dtGroup.Rows[j][0] = true;
-                                varGroup = Convert.ToString(dtGroup.Rows[j]["ID"]);
-                                udfnSubGroupList();
-                            }
-                        }
-                    }
+                    //for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
+                    //{
+                    //    for (int j = 0; j < dtGroup.Rows.Count; j++)
+                    //    {
+                    //        if (Convert.ToString(objDS.Tables[1].Rows[i]["PRGID"]) == Convert.ToString(dtGroup.Rows[j]["ID"]))
+                    //        {
+                    //            dtGroup.Rows[j][0] = true;
+                    //            varGroup = Convert.ToString(dtGroup.Rows[j]["ID"]);
+                    //            udfnSubGroupList();
+                    //        }
+                    //    }
+                    //}
 
                     dtGroup.DefaultView.Sort = dtGroup.Columns[0].ColumnName + " DESC";
                     dtGroup = dtGroup.DefaultView.ToTable();
@@ -168,6 +168,8 @@ namespace ROMS
                     //        }
                     //    }
                     //}
+                    dtSubGroup.Rows.Clear();
+                    grdSubGroup.DataSource = dtSubGroup;
                     udfnRemoveGroup();
                 }
             }
@@ -405,7 +407,8 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 if (varGroup != "")
                 {
-                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, varId, "", 0, 0, 0, 0);
+                    //objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, varId, "", 0, 0, 0, 0);
+                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, 0, "", 0, 0, 0, 0);
                 }
                 else if (varmasterBrandtype == 1)
                 {
