@@ -1072,6 +1072,7 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

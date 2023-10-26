@@ -1202,6 +1202,7 @@ namespace ROMS
         {
             try
             {
+                lvSubGroup.Visible = false;
                 txtProductGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1345,6 +1346,8 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
