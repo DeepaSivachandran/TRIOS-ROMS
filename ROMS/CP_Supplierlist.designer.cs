@@ -66,6 +66,7 @@
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.ep_Supplierlist = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblschedule = new System.Windows.Forms.Label();
             this.tsSupplierList.SuspendLayout();
             this.pnlsupplier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -340,6 +341,7 @@
             // 
             // grbFilterBySupplier
             // 
+            this.grbFilterBySupplier.Controls.Add(this.lblschedule);
             this.grbFilterBySupplier.Controls.Add(this.cmbStatus);
             this.grbFilterBySupplier.Controls.Add(this.txtSupplier);
             this.grbFilterBySupplier.Controls.Add(this.label3);
@@ -494,6 +496,16 @@
             // 
             this.ep_Supplierlist.ContainerControl = this;
             // 
+            // lblschedule
+            // 
+            this.lblschedule.AutoSize = true;
+            this.lblschedule.Location = new System.Drawing.Point(419, 70);
+            this.lblschedule.Name = "lblschedule";
+            this.lblschedule.Size = new System.Drawing.Size(16, 20);
+            this.lblschedule.TabIndex = 958805;
+            this.lblschedule.Text = "0";
+            this.lblschedule.Visible = false;
+            // 
             // CP_Supplierlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -559,5 +571,6 @@
         public System.Windows.Forms.DataGridView grdSupplierList;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.ErrorProvider ep_Supplierlist;
+        private System.Windows.Forms.Label lblschedule;
     }
 }

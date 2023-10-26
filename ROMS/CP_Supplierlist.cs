@@ -582,7 +582,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0,0, 0, 0,txtSupplier.Text,0,0,0,"",0,0,0,0,0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,"",0,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -592,12 +592,14 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
                                 LV_Supplier.Visible = true;
                                 LV_Supplier.Columns[1].Width = 0;
+                                LV_Supplier.Columns[2].Width = 0;
+                                LV_Supplier.Columns[0].Width = 300;
                             }
                         }
                     }
@@ -766,7 +768,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnListViewData()
         {
             try
@@ -776,7 +777,7 @@ namespace ROMS
                     ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
-
+                    lblschedule.Text = selectedItem.SubItems[2].Text;
                 }
                 cmbStatus.Focus();
             }

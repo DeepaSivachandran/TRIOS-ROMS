@@ -7006,6 +7006,20 @@ namespace ROMS
             }
         }
 
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (DGV_SearchGrid.IsCurrentCellDirty)
+            {
+                // Commit the changes immediately
+                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+            DataService objDser = new DataService();
+            grdSupplierMappingLoad.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierMappingLoad);
+            objDser.CloseConnection();
+            grdSupplierMappingLoad.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+        }
+
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
