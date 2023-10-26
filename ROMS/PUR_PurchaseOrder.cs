@@ -366,6 +366,7 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PODamagedView = new PUR_PODamagedView();
+                MainForm.objPUR_PODamagedView.varMasterType = "1"; 
                 MainForm.objPUR_PODamagedView.ShowDialog();
             }
             catch (Exception ex)
@@ -2213,7 +2214,7 @@ namespace ROMS
                             lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString().Replace("''", "'");
                             lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString().Replace("''", "'");
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString().Replace("''", "'");
-                            lblSupplierOrderpolicy.Text = objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString().Replace("''", "'");
+                            lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString().Replace("''", "'");
                             cmbReturnPolicy.SelectedValue = Convert.ToInt64(objDs.Tables[0].Rows[0]["RETURN"].ToString());
                             cmbReturnType.SelectedValue = objDs.Tables[0].Rows[0]["RETURNCYCLEID"].ToString(); ; 
                             if ((Convert.ToString(cmbReturnType.SelectedValue) == "23"))
