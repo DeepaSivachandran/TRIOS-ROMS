@@ -44,6 +44,8 @@
             this.txtLocationNameInEnglish = new System.Windows.Forms.TextBox();
             this.txtDGodownName = new System.Windows.Forms.TextBox();
             this.grbGodown = new System.Windows.Forms.GroupBox();
+            this.lblRackGroupCreation = new System.Windows.Forms.Label();
+            this.chkRKGCreation = new System.Windows.Forms.CheckBox();
             this.lblRackCreation = new System.Windows.Forms.Label();
             this.chkRKCreation = new System.Windows.Forms.CheckBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -116,7 +118,7 @@
             this.btnSave.Location = new System.Drawing.Point(329, 266);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 11;
+            this.btnSave.TabIndex = 12;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -144,7 +146,7 @@
             this.btnClose.Location = new System.Drawing.Point(417, 266);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 12;
+            this.btnClose.TabIndex = 13;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -232,6 +234,8 @@
             // 
             // grbGodown
             // 
+            this.grbGodown.Controls.Add(this.lblRackGroupCreation);
+            this.grbGodown.Controls.Add(this.chkRKGCreation);
             this.grbGodown.Controls.Add(this.lblRackCreation);
             this.grbGodown.Controls.Add(this.chkRKCreation);
             this.grbGodown.Controls.Add(this.textBox4);
@@ -259,10 +263,28 @@
             this.grbGodown.TabIndex = 1;
             this.grbGodown.TabStop = false;
             // 
+            // lblRackGroupCreation
+            // 
+            this.lblRackGroupCreation.AutoSize = true;
+            this.lblRackGroupCreation.Location = new System.Drawing.Point(224, 243);
+            this.lblRackGroupCreation.Name = "lblRackGroupCreation";
+            this.lblRackGroupCreation.Size = new System.Drawing.Size(120, 20);
+            this.lblRackGroupCreation.TabIndex = 1111171;
+            this.lblRackGroupCreation.Text = "Rack Group Creation";
+            // 
+            // chkRKGCreation
+            // 
+            this.chkRKGCreation.AutoSize = true;
+            this.chkRKGCreation.Location = new System.Drawing.Point(203, 246);
+            this.chkRKGCreation.Name = "chkRKGCreation";
+            this.chkRKGCreation.Size = new System.Drawing.Size(15, 14);
+            this.chkRKGCreation.TabIndex = 11;
+            this.chkRKGCreation.UseVisualStyleBackColor = true;
+            // 
             // lblRackCreation
             // 
             this.lblRackCreation.AutoSize = true;
-            this.lblRackCreation.Location = new System.Drawing.Point(224, 243);
+            this.lblRackCreation.Location = new System.Drawing.Point(43, 243);
             this.lblRackCreation.Name = "lblRackCreation";
             this.lblRackCreation.Size = new System.Drawing.Size(84, 20);
             this.lblRackCreation.TabIndex = 1111169;
@@ -271,11 +293,12 @@
             // chkRKCreation
             // 
             this.chkRKCreation.AutoSize = true;
-            this.chkRKCreation.Location = new System.Drawing.Point(203, 246);
+            this.chkRKCreation.Location = new System.Drawing.Point(22, 246);
             this.chkRKCreation.Name = "chkRKCreation";
             this.chkRKCreation.Size = new System.Drawing.Size(15, 14);
             this.chkRKCreation.TabIndex = 10;
             this.chkRKCreation.UseVisualStyleBackColor = true;
+            this.chkRKCreation.CheckedChanged += new System.EventHandler(this.ChkRKCreation_CheckedChanged);
             // 
             // textBox4
             // 
@@ -461,5 +484,7 @@
         public System.Windows.Forms.TextBox txtShortName;
         private System.Windows.Forms.CheckBox chkRKCreation;
         private System.Windows.Forms.Label lblRackCreation;
+        private System.Windows.Forms.Label lblRackGroupCreation;
+        private System.Windows.Forms.CheckBox chkRKGCreation;
     }
 }

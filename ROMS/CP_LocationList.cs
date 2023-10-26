@@ -146,6 +146,7 @@ namespace ROMS
                             grdGodownList.Columns["StatusID"].Visible = false;
                             grdGodownList.Columns["DefaultID"].Visible = false;
                             grdGodownList.Columns["RKCreationID"].Visible = false;
+                            grdGodownList.Columns["RKGCreationID"].Visible = false;
                             grdGodownList.Columns["S.No."].Width = 50;
                             grdGodownList.Columns["Location Name in English"].Width = 250;
                             grdGodownList.Columns["Location Name in Tamil"].Width = 250;
@@ -258,7 +259,7 @@ namespace ROMS
                             varResult = "";
                             if (MainForm.objCP_Verify.flag == 1)
                             {
-                                varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID,0);
+                                varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID,0,0);
                                 objspservice.CloseConnection();
 
                                 if (varResult.Split('~')[0] == "3")
@@ -290,55 +291,56 @@ namespace ROMS
             try
             {
                 varStockApplicable = 0;
-                    if (grdGodownList.SelectedRows.Count > 0)
-                    {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
-                    {
-                        MainForm.objCP_Location = new CP_Location();
-                        MainForm.objCP_Location.btnSave.Visible = false;
-                        MainForm.objCP_Location.cmbConcern.Enabled = false;
-                        MainForm.objCP_Location.cmbLocationType.Enabled = false;
-                        MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = false;
-                        MainForm.objCP_Location.txtLocationNameInTamil.Enabled = false;
-                        MainForm.objCP_Location.txtShortName.Enabled = false;
-                        MainForm.objCP_Location.pnlGodownType.Enabled = false;
-                        MainForm.objCP_Location.cmbStockApplicable.Enabled = false;
-                        MainForm.objCP_Location.pnlStatus.Enabled = false;
-                    }
-                    else
-                    {
-                        MainForm.objCP_Location = new CP_Location();
-                        MainForm.objCP_Location.btnSave.Visible = true;
-                        MainForm.objCP_Location.cmbConcern.Enabled = true;
-                        MainForm.objCP_Location.cmbLocationType.Enabled = true;
-                        MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = true;
-                        MainForm.objCP_Location.txtLocationNameInTamil.Enabled = true;
-                        MainForm.objCP_Location.txtShortName.Enabled = true;
-                        MainForm.objCP_Location.pnlGodownType.Enabled = true;
-                        MainForm.objCP_Location.cmbStockApplicable.Enabled = true;
-                        MainForm.objCP_Location.pnlStatus.Enabled = true;
-                    }
-                    MainForm.objCP_Location.btnSave.Text = "Update";
-                    MainForm.objCP_Location.varlocationcode = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_Location.PbConcernID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ConcernID"].Value);
-                    MainForm.objCP_Location.PbLocationTypeID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["LocationTypeID"].Value);
-                    MainForm.objCP_Location.PbStockApplicableID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StockApplicableID"].Value);
-                    MainForm.objCP_Location.PbDefault = Convert.ToString(grdGodownList.SelectedRows[0].Cells["DefaultID"].Value);
-                    MainForm.objCP_Location.PbRKCreationID = Convert.ToString(grdGodownList.SelectedRows[0].Cells["RKCreationID"].Value);
-                    MainForm.objCP_Location.PbLocationEName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in English"].Value);
-                    MainForm.objCP_Location.PbLocationTName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in Tamil"].Value);
-                    MainForm.objCP_Location.PbLocationSName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Short Name"].Value);
-                    MainForm.objCP_Location.PbConcern = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Concern"].Value);
-                    MainForm.objCP_Location.PbLocationType = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Type"].Value);
-                    MainForm.objCP_Location.PbStockApplicable = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Stock Applicable"].Value);
-                    MainForm.objCP_Location.PbStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objCP_Location.PbGodownTypeStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["GodownTypeID"].Value);
-                    picLoader.SendToBack();
-                    picLoader.Visible = false;
-                    MainForm.objCP_Location.ShowDialog();
+                if (grdGodownList.SelectedRows.Count > 0)
+                {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                {
+                    MainForm.objCP_Location = new CP_Location();
+                    MainForm.objCP_Location.btnSave.Visible = false;
+                    MainForm.objCP_Location.cmbConcern.Enabled = false;
+                    MainForm.objCP_Location.cmbLocationType.Enabled = false;
+                    MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = false;
+                    MainForm.objCP_Location.txtLocationNameInTamil.Enabled = false;
+                    MainForm.objCP_Location.txtShortName.Enabled = false;
+                    MainForm.objCP_Location.pnlGodownType.Enabled = false;
+                    MainForm.objCP_Location.cmbStockApplicable.Enabled = false;
+                    MainForm.objCP_Location.pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    MainForm.objCP_Location = new CP_Location();
+                    MainForm.objCP_Location.btnSave.Visible = true;
+                    MainForm.objCP_Location.cmbConcern.Enabled = false;
+                    MainForm.objCP_Location.cmbLocationType.Enabled = true;
+                    MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = true;
+                    MainForm.objCP_Location.txtLocationNameInTamil.Enabled = true;
+                    MainForm.objCP_Location.txtShortName.Enabled = true;
+                    MainForm.objCP_Location.pnlGodownType.Enabled = true;
+                    MainForm.objCP_Location.cmbStockApplicable.Enabled = true;
+                    MainForm.objCP_Location.pnlStatus.Enabled = true;
+                }
+                MainForm.objCP_Location.btnSave.Text = "Update";
+                MainForm.objCP_Location.varlocationcode = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value);
+                MainForm.objCP_Location.PbConcernID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ConcernID"].Value);
+                MainForm.objCP_Location.PbLocationTypeID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["LocationTypeID"].Value);
+                MainForm.objCP_Location.PbStockApplicableID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StockApplicableID"].Value);
+                MainForm.objCP_Location.PbDefault = Convert.ToString(grdGodownList.SelectedRows[0].Cells["DefaultID"].Value);
+                MainForm.objCP_Location.PbRKCreationID = Convert.ToString(grdGodownList.SelectedRows[0].Cells["RKCreationID"].Value);
+                MainForm.objCP_Location.PbRKGCreationID = Convert.ToString(grdGodownList.SelectedRows[0].Cells["RKGCreationID"].Value);
+                MainForm.objCP_Location.PbLocationEName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in English"].Value);
+                MainForm.objCP_Location.PbLocationTName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in Tamil"].Value);
+                MainForm.objCP_Location.PbLocationSName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Short Name"].Value);
+                MainForm.objCP_Location.PbConcern = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Concern"].Value);
+                MainForm.objCP_Location.PbLocationType = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Type"].Value);
+                MainForm.objCP_Location.PbStockApplicable = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Stock Applicable"].Value);
+                MainForm.objCP_Location.PbStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StatusID"].Value);
+                MainForm.objCP_Location.PbGodownTypeStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["GodownTypeID"].Value);
+                picLoader.SendToBack();
+                picLoader.Visible = false;
+                MainForm.objCP_Location.ShowDialog();
                 }
             }
             catch (Exception ex)

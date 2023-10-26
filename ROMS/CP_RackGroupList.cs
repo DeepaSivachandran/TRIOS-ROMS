@@ -857,7 +857,7 @@ namespace ROMS
                     }
                     else
                     {
-                        varViewType = 20;
+                        varViewType = 22;
                     }
                     objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text,0, 0,0);
                     objspdservice.CloseConnection();
@@ -891,7 +891,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvStockLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -908,7 +907,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvStockLocation_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -940,7 +938,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -954,7 +951,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try

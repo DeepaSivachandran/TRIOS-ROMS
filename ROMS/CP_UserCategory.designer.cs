@@ -40,6 +40,8 @@
             this.txtDCategoryName = new System.Windows.Forms.TextBox();
             this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.epUserCategory = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtOrderNo = new System.Windows.Forms.TextBox();
+            this.cmbCTSINO = new System.Windows.Forms.ComboBox();
             this.pnlStatus.SuspendLayout();
             this.grbUserCategory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).BeginInit();
@@ -104,7 +106,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(320, 89);
+            this.btnSave.Location = new System.Drawing.Point(320, 113);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 4;
@@ -120,7 +122,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(410, 89);
+            this.btnClose.Location = new System.Drawing.Point(410, 113);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 5;
@@ -133,6 +135,8 @@
             // 
             // grbUserCategory
             // 
+            this.grbUserCategory.Controls.Add(this.cmbCTSINO);
+            this.grbUserCategory.Controls.Add(this.txtOrderNo);
             this.grbUserCategory.Controls.Add(this.txtDCategoryName);
             this.grbUserCategory.Controls.Add(this.txtCategoryName);
             this.grbUserCategory.Controls.Add(this.btnClose);
@@ -141,7 +145,7 @@
             this.grbUserCategory.Controls.Add(this.pnlStatus);
             this.grbUserCategory.Location = new System.Drawing.Point(17, 4);
             this.grbUserCategory.Name = "grbUserCategory";
-            this.grbUserCategory.Size = new System.Drawing.Size(503, 131);
+            this.grbUserCategory.Size = new System.Drawing.Size(503, 158);
             this.grbUserCategory.TabIndex = 0;
             this.grbUserCategory.TabStop = false;
             // 
@@ -173,12 +177,37 @@
             // 
             this.epUserCategory.ContainerControl = this;
             // 
+            // txtOrderNo
+            // 
+            this.txtOrderNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtOrderNo.Enabled = false;
+            this.txtOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrderNo.Location = new System.Drawing.Point(17, 80);
+            this.txtOrderNo.Name = "txtOrderNo";
+            this.txtOrderNo.ReadOnly = true;
+            this.txtOrderNo.Size = new System.Drawing.Size(181, 27);
+            this.txtOrderNo.TabIndex = 20;
+            this.txtOrderNo.Text = "Order No.";
+            // 
+            // cmbCTSINO
+            // 
+            this.cmbCTSINO.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCTSINO.FormattingEnabled = true;
+            this.cmbCTSINO.Location = new System.Drawing.Point(197, 80);
+            this.cmbCTSINO.Name = "cmbCTSINO";
+            this.cmbCTSINO.Size = new System.Drawing.Size(288, 27);
+            this.cmbCTSINO.TabIndex = 3;
+            this.cmbCTSINO.Enter += new System.EventHandler(this.CmbCTSINO_Enter);
+            this.cmbCTSINO.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCTSINO_KeyDown);
+            this.cmbCTSINO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCTSINO_KeyPress);
+            this.cmbCTSINO.Leave += new System.EventHandler(this.CmbCTSINO_Leave);
+            // 
             // CP_UserCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(540, 147);
+            this.ClientSize = new System.Drawing.Size(540, 175);
             this.Controls.Add(this.grbUserCategory);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -213,5 +242,7 @@
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.Panel pnlStatus;
         public System.Windows.Forms.TextBox txtCategoryName;
+        private System.Windows.Forms.TextBox txtOrderNo;
+        public System.Windows.Forms.ComboBox cmbCTSINO;
     }
 }

@@ -35,6 +35,7 @@ namespace ROMS
         public int PbStockApplicableID = 0;
         public string PbDefault;
         public string PbRKCreationID;
+        public string PbRKGCreationID;
         public int PbStatus = 0;
         public int PbGodownTypeStatus = 0;
         public int varUpdate = 0;
@@ -143,6 +144,7 @@ namespace ROMS
         {
             try
             {
+                chkRKGCreation.Enabled = false;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 4;
@@ -183,6 +185,7 @@ namespace ROMS
                     if (btnSave.Visible)
                     {
                         pnlStatus.Enabled = true;
+                        pnlGodownType.Enabled = true;
                     }
                     udfnLoad();
                 }
@@ -212,11 +215,18 @@ namespace ROMS
                 cmbConcern.SelectedValue = PbConcernID;
                 cmbLocationType.SelectedValue = PbLocationTypeID;
                 cmbStockApplicable.SelectedValue = PbStockApplicableID;
-                if (PbGodownTypeStatus == 86) { rbInside.Checked = true; } else { rbOutside.Checked = true; }
+                //if (PbGodownTypeStatus != 0)
+                //{
+                    if (PbGodownTypeStatus == 86)
+                    { rbInside.Checked = true; }
+                    else
+                    { rbOutside.Checked = true; }
+                //}
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if (PbStockApplicableID==11) { varStockApplicableId = PbStockApplicableID; }
                 if (PbRKCreationID == "1") { chkRKCreation.Checked = true; } else { chkRKCreation.Checked = false; }
-                if(PbDefault=="1" || PbDefault=="2")
+                if (PbRKGCreationID == "1") { chkRKGCreation.Checked = true; } else { chkRKGCreation.Checked = false; }
+                if (PbDefault=="1" || PbDefault=="2")
                 {
                     cmbConcern.Enabled = false;
                     cmbLocationType.Enabled = false;
@@ -227,6 +237,7 @@ namespace ROMS
                     cmbStockApplicable.Enabled = false;
                     pnlStatus.Enabled = false;
                     chkRKCreation.Enabled = false;
+                    chkRKGCreation.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -255,14 +266,14 @@ namespace ROMS
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
 
-                if (pnlGodownType.Enabled == false)
-                {
-                    rbInside.Checked = false;
-                    rbOutside.Checked = false;
-                    varGodownType = 0;
-                }
-                else
-                {
+                //if (pnlGodownType.Enabled == false)
+                //{
+                //    rbInside.Checked = false;
+                //    rbOutside.Checked = false;
+                //    varGodownType = 0;
+                //}
+                //else
+                //{
                     if (rbInside.Checked == true)
                     {
                         varGodownType = 86; 
@@ -271,7 +282,7 @@ namespace ROMS
                     {
                         varGodownType = 87;
                     }
-                }
+                //}
                 int RKCheck = 0;
                 if(chkRKCreation.Checked==true)
                 {
@@ -280,6 +291,15 @@ namespace ROMS
                 else
                 {
                     RKCheck = 0;
+                }
+                int RKGCheck = 0;
+                if (chkRKGCreation.Checked == true)
+                {
+                    RKGCheck = 1;
+                }
+                else
+                {
+                    RKGCheck = 0;
                 }
 
                 SPDataService objspservice = new SPDataService();
@@ -321,7 +341,7 @@ namespace ROMS
                 }
                 if (saveflag == 0)
                 {
-                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID,RKCheck);
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID,RKCheck,RKGCheck);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -1012,8 +1032,8 @@ namespace ROMS
                 //{
                 //    pnlGodownType.Enabled = true;
                 //}
-                pnlGodownType.Enabled = false;
-                rbInside.Checked = true;
+                //pnlGodownType.Enabled = false;
+                //rbInside.Checked = true;
             }
         }
 
@@ -1035,6 +1055,19 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKCreation_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkRKCreation.Checked==true)
+            {
+                chkRKGCreation.Enabled = true;
+            }
+            else
+            {
+                chkRKGCreation.Enabled = false;
+                chkRKGCreation.Checked = false;
             }
         }
     }

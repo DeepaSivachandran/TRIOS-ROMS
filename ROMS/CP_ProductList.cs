@@ -254,6 +254,7 @@ namespace ROMS
                             grdItemList.Columns["Product Subgroup"].Width = 150;
                             grdItemList.Columns["Product Group"].Width = 150;
                             grdItemList.Columns["Status"].Width = 80;
+                            grdItemList.Columns["HSN Name"].Width = 230;
                             grdItemList.Columns["ID"].Visible = false;
                             grdItemList.Columns["STSID"].Visible = false;
                             grdItemList.Columns["PRGID"].Visible = false;
