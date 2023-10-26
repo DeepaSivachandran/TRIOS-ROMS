@@ -752,12 +752,10 @@ namespace ROMS
                     // Commit the changes immediately
                     DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-                //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGroupList);
                 objDser.CloseConnection();
                 grdGroupList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //grdCompanyList(sender,e); 
             }
             catch (Exception ex)
             {
