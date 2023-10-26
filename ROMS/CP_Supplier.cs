@@ -3911,9 +3911,12 @@ namespace ROMS
                 DGV_SearchGrid.Rows.Add();
                 for (int i = 0; i < visibleColumns.Count; i++)
                 {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    if (i == 0)
+                    { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = false;  }
+                    else
+                    { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";  }
                 }
-                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                DGV_SearchGrid.Columns[0].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -3937,7 +3940,13 @@ namespace ROMS
                 dgv2.Rows.Add();
                 for (int i = 0; i < visibleColumns.Count; i++)
                 {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    //if (i == 0)
+                    //{
+                    //    dgv2.Rows[rowIndex].Cells[i].Value = false;
+                    //} else
+                    //{
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    //}
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
