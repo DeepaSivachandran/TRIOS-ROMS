@@ -76,11 +76,11 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
-                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSCID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,46) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
                 this.ActiveControl = txtSupplier;
                 objDataBind = null;
                 cmbDay.SelectedValue = 0;
-                cmbOrderSchedule.SelectedValue = 0;
+                cmbStatus.SelectedValue = 0;
                 udfnList();
             }
             catch (Exception ex)
@@ -226,7 +226,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "",0,0,0,"",0,0,0,0,0);
+                objDs = objdserv.udfnSupplierList(1, varSupplierId,0, Convert.ToInt32(cmbDay.SelectedValue), 0, "",0,0,0,"",0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -387,82 +387,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
-
-        private void CmbOrderSchedule_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                LV_Supplier.Visible = false;
-                cmbOrderSchedule.BackColor = Color.LemonChiffon;
-
-                cmbschedulebind();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbOrderSchedule_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbOrderSchedule.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbOrderSchedule_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbOrderSchedule_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbOrderSchedule_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbOrderSchedule.Select(int.MaxValue, 0)));
-
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void CmbDay_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -622,7 +546,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbOrderSchedule.Focus();
+                    cmbStatus.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -817,7 +741,7 @@ namespace ROMS
 
 
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSCID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
+                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSCID=0", "SPSC_Name,SPSCID", cmbStatus, "", "SPSC_Name", "SPSCID");
                 objDataBind = null;
 
             }
@@ -854,7 +778,7 @@ namespace ROMS
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
 
                 }
-                cmbOrderSchedule.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
@@ -1180,6 +1104,77 @@ namespace ROMS
                 objDser.CloseConnection();
                 grdSupplierList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //grdCompanyList(sender,e); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbStatus.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                LV_Supplier.Visible = false;
+                cmbStatus.BackColor = Color.LemonChiffon;
+
+                cmbschedulebind();
             }
             catch (Exception ex)
             {
