@@ -3925,6 +3925,7 @@ namespace ROMS
         {
             try
             {
+                //dgv2.DataSource = null;
                 dgv2.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
                 foreach (DataGridViewColumn col in dgv1.Columns)
@@ -3940,13 +3941,7 @@ namespace ROMS
                 dgv2.Rows.Add();
                 for (int i = 0; i < visibleColumns.Count; i++)
                 {
-                    //if (i == 0)
-                    //{
-                    //    dgv2.Rows[rowIndex].Cells[i].Value = false;
-                    //} else
-                    //{
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
-                    //}
+                    dgv2.Rows[rowIndex].Cells[i].Value = "";
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -6961,6 +6956,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (DGV_SearchGrid.IsCurrentCellDirty)
+            {
+                // Commit the changes immediately
+                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+            DataService objDser = new DataService();
+            grdSupplierMappingLoad.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierMappingLoad);
+            objDser.CloseConnection();
+            grdSupplierMappingLoad.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+        }
+
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
