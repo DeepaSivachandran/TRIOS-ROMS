@@ -134,6 +134,14 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                if (varMasterType == "1")
+                { 
+                    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "1";
+                }
+                else
+                {
+                    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "2";
+                }
                 MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToInt32(grdGRNPODamaged.SelectedRows[0].Cells["ID"].Value.ToString());
                 MainForm.objPUR_PurchaseOrderDamage.ShowDialog();  
             }

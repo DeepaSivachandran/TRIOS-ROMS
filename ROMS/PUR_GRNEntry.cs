@@ -57,7 +57,7 @@ namespace ROMS
                 else
                 {
                     this.Close();
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -144,7 +144,7 @@ namespace ROMS
                 {
                     DataGridViewRow lastRow = grdUnitList.Rows[grdUnitList.Rows.Count - 1];
                     //grdUnitList.columns
-                    lastRow.Cells["clmQty"].Value = sum;
+                    //lastRow.Cells["clmQty"].Value = sum;
                 }
             }
             catch (Exception ex)
@@ -158,6 +158,9 @@ namespace ROMS
         {
             try
             {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 SPDataService objdserv = new SPDataService();
                 int varconcerntype = 4;
                 if (btnSave.Text == "Save")
@@ -650,10 +653,10 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
-                {
-                    udfnclose();
-                }
+                //if (varCloseFlag == 0)
+                //{
+                //    udfnclose();
+                //}
             }
             catch (Exception ex)
             {
@@ -666,7 +669,7 @@ namespace ROMS
         {
             try
             {
-                if (cmbOrderType.SelectedItem == "Against PO")
+                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 53)
                 {
 
                     MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
@@ -858,6 +861,22 @@ namespace ROMS
             try
             {
                 dpinvoicedate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_GRNEntry_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
             }
             catch (Exception ex)
             {

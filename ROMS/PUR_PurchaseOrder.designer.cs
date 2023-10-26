@@ -101,7 +101,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.btnViewedProduct = new System.Windows.Forms.Button();
             this.btnNewUnit = new System.Windows.Forms.Label();
-            this.cmbUnit = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.lblPC = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -173,6 +172,7 @@
             this.clmflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtUnit = new System.Windows.Forms.TextBox();
             this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
             this.grppurchaseorder.SuspendLayout();
@@ -226,6 +226,7 @@
             // grppurchaseorder
             // 
             this.grppurchaseorder.BackColor = System.Drawing.Color.White;
+            this.grppurchaseorder.Controls.Add(this.txtUnit);
             this.grppurchaseorder.Controls.Add(this.btnAdd);
             this.grppurchaseorder.Controls.Add(this.lblschedule);
             this.grppurchaseorder.Controls.Add(this.lblProductcode);
@@ -240,7 +241,6 @@
             this.grppurchaseorder.Controls.Add(this.label17);
             this.grppurchaseorder.Controls.Add(this.btnViewedProduct);
             this.grppurchaseorder.Controls.Add(this.btnNewUnit);
-            this.grppurchaseorder.Controls.Add(this.cmbUnit);
             this.grppurchaseorder.Controls.Add(this.label11);
             this.grppurchaseorder.Controls.Add(this.lblPC);
             this.grppurchaseorder.Controls.Add(this.label7);
@@ -892,23 +892,6 @@
             this.btnNewUnit.Click += new System.EventHandler(this.BtnNewUnit_Click);
             this.btnNewUnit.Enter += new System.EventHandler(this.BtnNewUnit_Enter);
             this.btnNewUnit.Leave += new System.EventHandler(this.BtnNewUnit_Leave);
-            // 
-            // cmbUnit
-            // 
-            this.cmbUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUnit.Enabled = false;
-            this.cmbUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbUnit.FormattingEnabled = true;
-            this.cmbUnit.Location = new System.Drawing.Point(656, 115);
-            this.cmbUnit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbUnit.Name = "cmbUnit";
-            this.cmbUnit.Size = new System.Drawing.Size(59, 27);
-            this.cmbUnit.TabIndex = 5;
-            this.cmbUnit.SelectedIndexChanged += new System.EventHandler(this.CmbUnit_SelectedIndexChanged);
-            this.cmbUnit.Enter += new System.EventHandler(this.CmbUnit_Enter);
-            this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUnit_KeyDown);
-            this.cmbUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbUnit_KeyPress);
-            this.cmbUnit.Leave += new System.EventHandler(this.CmbUnit_Leave);
             // 
             // label11
             // 
@@ -1745,6 +1728,16 @@
             // 
             this.errPO.ContainerControl = this;
             // 
+            // txtUnit
+            // 
+            this.txtUnit.Enabled = false;
+            this.txtUnit.Location = new System.Drawing.Point(660, 115);
+            this.txtUnit.MaxLength = 50;
+            this.txtUnit.Name = "txtUnit";
+            this.txtUnit.ReadOnly = true;
+            this.txtUnit.Size = new System.Drawing.Size(58, 27);
+            this.txtUnit.TabIndex = 1111211;
+            // 
             // PUR_PurchaseOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1840,7 +1833,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmlastpurchaserate;
         private System.Windows.Forms.Label lblPC;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cmbUnit;
         private System.Windows.Forms.Label label11;
         internal System.Windows.Forms.Label btnNewUnit;
         private System.Windows.Forms.TextBox txtSalesManwhatsapp;
@@ -1918,5 +1910,6 @@
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.TextBox txtRemark;
         public System.Windows.Forms.ComboBox cmbStatus;
+        public System.Windows.Forms.TextBox txtUnit;
     }
 }
