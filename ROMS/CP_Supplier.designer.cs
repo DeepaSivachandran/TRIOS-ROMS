@@ -969,7 +969,7 @@
             this.lvCity.HideSelection = false;
             this.lvCity.Location = new System.Drawing.Point(121, 156);
             this.lvCity.Name = "lvCity";
-            this.lvCity.Size = new System.Drawing.Size(313, 78);
+            this.lvCity.Size = new System.Drawing.Size(396, 106);
             this.lvCity.TabIndex = 77;
             this.lvCity.UseCompatibleStateImageBehavior = false;
             this.lvCity.View = System.Windows.Forms.View.Details;
@@ -1458,7 +1458,6 @@
             // 
             this.grdSupplierList.AllowUserToAddRows = false;
             this.grdSupplierList.AllowUserToDeleteRows = false;
-            this.grdSupplierList.AllowUserToResizeColumns = false;
             this.grdSupplierList.AllowUserToResizeRows = false;
             this.grdSupplierList.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -1523,21 +1522,21 @@
             this.clmsupname.HeaderText = "Schedule Name";
             this.clmsupname.Name = "clmsupname";
             this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 150;
+            this.clmsupname.Width = 140;
             // 
             // clmsalesname
             // 
             this.clmsalesname.HeaderText = "Salesman Name";
             this.clmsalesname.Name = "clmsalesname";
             this.clmsalesname.ReadOnly = true;
-            this.clmsalesname.Width = 200;
+            this.clmsalesname.Width = 150;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Salesman Mobile No.";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 140;
+            this.Column3.Width = 130;
             // 
             // clmSalesmanWhatsapp
             // 
@@ -1551,7 +1550,7 @@
             this.clmOrderType.HeaderText = "Order Type";
             this.clmOrderType.Name = "clmOrderType";
             this.clmOrderType.ReadOnly = true;
-            this.clmOrderType.Width = 80;
+            this.clmOrderType.Width = 130;
             // 
             // clmscheduleid
             // 
@@ -2650,6 +2649,7 @@
             // 
             // cmbMappedorderrype
             // 
+            this.cmbMappedorderrype.Enabled = false;
             this.cmbMappedorderrype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMappedorderrype.FormattingEnabled = true;
             this.cmbMappedorderrype.Items.AddRange(new object[] {
@@ -3152,6 +3152,7 @@
         private System.Windows.Forms.TextBox txtDStatus;
         private System.Windows.Forms.TextBox txtMappedOrderDay;
         private System.Windows.Forms.TextBox txtSupplierOrderDays;
+        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
@@ -3166,6 +3167,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmScheduleStatusId;
         private System.Windows.Forms.DataGridViewImageColumn clmedit;
         private System.Windows.Forms.DataGridViewImageColumn clmDelete;
-        private System.Windows.Forms.Button btnRemove;
     }
 }

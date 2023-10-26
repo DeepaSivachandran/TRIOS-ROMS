@@ -671,8 +671,10 @@ namespace ROMS
                     {
                         varviewtype = 0;
                         varorginator = "Supplier Create";
-                        varretuencycle = 24;
-                        varreturnapplicable = 22;
+                        //varretuencycle = 24;
+                        //varreturnapplicable = 22;
+                        varreturnapplicable = Convert.ToInt32(cmbReturnPolicy.SelectedValue);
+                        varretuencycle = Convert.ToInt32(cmbReturnType.SelectedValue);
                     }
                     else
                     {
@@ -1039,6 +1041,7 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                            dtPaymentMode.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 dtPaymentMode.Rows.Add(false, objDs.Tables[0].Rows[i]["MST_DisplayText"], objDs.Tables[0].Rows[i]["MSTID"]);
@@ -3233,6 +3236,7 @@ namespace ROMS
                     txtScheduleName.Focus();
 
                     txtScheduleName.SelectionStart = txtScheduleName.Text.Length;
+                    cmbOrderType.SelectedValue = 144;
                 }
                 if (tcSupplier.SelectedIndex == 0)
                 {
@@ -4878,6 +4882,7 @@ namespace ROMS
                     grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
                     // grdFinalSupplierMapping.Columns["clmMappingRemove"].DisplayIndex = 5;
                     grdFinalSupplierMapping.Columns[0].HeaderText = "";
+                    grdFinalSupplierMapping.Columns[0].Width = 30;
                     grdFinalSupplierMapping.Columns["S.No."].Width = 50;
                     grdFinalSupplierMapping.Columns["P.I Code"].Width = 100;
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].Width = 220;
@@ -4888,7 +4893,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
                     grdFinalSupplierMapping.Columns["Product Name in Eng"].Visible = false;
                     grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-
+                    grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     grdFinalSupplierMapping.Columns["S.No."].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["P.I Code"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
@@ -5628,7 +5633,8 @@ namespace ROMS
                                 btnAdd.Text = "Save";
                                 rbScheduleActive.Checked = true;
                                 pnlScheduleStatus.Enabled = false;
-                            }
+                            cmbOrderType.SelectedValue = 144;
+                        }
                             else
                             {
                                 MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
