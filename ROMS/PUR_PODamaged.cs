@@ -19,7 +19,7 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbrandcode;
+        public string varbrandcode,varMasterType="0";
         public string pbFormStatus;
         public PUR_PODamaged()
         {
@@ -62,8 +62,21 @@ namespace ROMS
 
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductDamage(0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue));
+                SPDataService objdserv = new SPDataService(); 
+                int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0;
+                if (varMasterType == "1")
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
+                }
+                else
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNEntry.cmbConcern.SelectedValue);
+                }
+                objDs = objdserv.udfnproductDamage(0, varSupplierid, varScheduleid, varcompanyid);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
