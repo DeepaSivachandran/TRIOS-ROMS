@@ -1973,6 +1973,7 @@
             // grpSupplierMapping
             // 
             this.grpSupplierMapping.BackColor = System.Drawing.Color.White;
+            this.grpSupplierMapping.Controls.Add(this.chkSelectAll);
             this.grpSupplierMapping.Controls.Add(this.lblTotalProducts);
             this.grpSupplierMapping.Controls.Add(this.label15);
             this.grpSupplierMapping.Controls.Add(this.txtSupplierOrderDays);
@@ -2198,7 +2199,6 @@
             this.grbSupplierMapping.Controls.Add(this.lblSearchbyProduct1);
             this.grbSupplierMapping.Controls.Add(this.BtnaddMove);
             this.grbSupplierMapping.Controls.Add(this.grdFinalSupplierMapping);
-            this.grbSupplierMapping.Controls.Add(this.chkSelectAll);
             this.grbSupplierMapping.Controls.Add(this.grdSupplierMappingLoad);
             this.grbSupplierMapping.Controls.Add(this.btnMappingView);
             this.grbSupplierMapping.Controls.Add(this.lblDEGroup);
@@ -2478,7 +2478,7 @@
             // chkSelectAll
             // 
             this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(19, 137);
+            this.chkSelectAll.Location = new System.Drawing.Point(32, 179);
             this.chkSelectAll.Name = "chkSelectAll";
             this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
             this.chkSelectAll.TabIndex = 5;
