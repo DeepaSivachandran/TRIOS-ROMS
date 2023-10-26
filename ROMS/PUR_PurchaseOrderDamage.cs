@@ -20,7 +20,7 @@ namespace ROMS
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
-        public string pbFormStatus;
+        public string pbFormStatus, varMasterType="0";
         public int varDcCode = 0;
         public PUR_PurchaseOrderDamage()
         {
@@ -72,11 +72,24 @@ namespace ROMS
             {
                 Application.DoEvents();
                 //********** To display a data in a grid  ****************** 
-
+                int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0;
+                //Varmaster type means which form is access this form
+                if (varMasterType == "1")
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
+                }
+                else
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNEntry.cmbConcern.SelectedValue);
+                }
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnReturnDC(1, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), varDcCode,0,0,0,0);
+                objDs = objdserv.udfnReturnDC(1, varSupplierid, varScheduleid, varcompanyid, varDcCode,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

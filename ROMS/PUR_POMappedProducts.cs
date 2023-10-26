@@ -71,7 +71,7 @@ namespace ROMS
                     {
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode);
+                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", 0, 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -174,8 +174,12 @@ namespace ROMS
             try
             {
                 udfnAddProduct();
+                MainForm.objPUR_PurchaseOrder.grdsupplieradd.Sort(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Columns[1], ListSortDirection.Ascending); 
+                for (int i = 0; i < MainForm.objPUR_PurchaseOrder.grdsupplieradd.RowCount; i++)
+                {
+                    MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
+                } 
                 this.Close();
-                MainForm.objPUR_PurchaseOrder.grdsupplieradd.Sort(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Columns[1], ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {

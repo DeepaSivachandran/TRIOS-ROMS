@@ -19,7 +19,7 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbrandcode;
+        public string varbrandcode,varMasterType="0";
         public string pbFormStatus;
         public PUR_PODamagedView()
         {
@@ -60,7 +60,21 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnReturnDC(0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue),0,0,0,0,0);
+                int varSupplierid = 0, varScheduleid = 0,varcompanyid=0;
+                if (varMasterType == "1")
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
+                }
+                else
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNEntry.cmbConcern.SelectedValue);
+                }
+
+                objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, 0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -120,6 +134,14 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                if (varMasterType == "1")
+                { 
+                    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "1";
+                }
+                else
+                {
+                    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "2";
+                }
                 MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToInt32(grdGRNPODamaged.SelectedRows[0].Cells["ID"].Value.ToString());
                 MainForm.objPUR_PurchaseOrderDamage.ShowDialog();  
             }

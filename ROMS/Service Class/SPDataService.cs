@@ -1671,7 +1671,7 @@ namespace ROMS
 
         // added by venkat on 13/10/2023 for PO.No. Save
         public string udfnPurchaseEntry(int paraViewType, int ParaPOID, int paraCompanyId,string paraPONumber,int paraSupplierID,int paraScheduleID,string paraLastTrnsno
-            ,string paraOriginator,string paraRemarks,string paraTAT,DataTable objPurchaseOrder,string paraIssuedDate,string paraIssuedBy,string paraIssuedMode,string paraIssuedModeRemarks)
+            ,string paraOriginator,string paraRemarks,string paraTAT,DataTable objPurchaseOrder,string paraIssuedDate,string paraIssuedBy,string paraIssuedMode,string paraIssuedModeRemarks,int paraFinalStatus)
         {
             string result = "";
             try
@@ -1696,6 +1696,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIssuedBy", paraIssuedBy);
                 varSqlCommand.Parameters.AddWithValue("@paraIssuedMode", paraIssuedMode);
                 varSqlCommand.Parameters.AddWithValue("@paraIssuedModeRemarks", paraIssuedModeRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraFinalStatus", paraFinalStatus);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -1777,7 +1778,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 17/10/2023 for PO list
-        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string ParaPOFromDate, string ParaPOToDate,int paraPOID)
+        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string ParaPOFromDate, string ParaPOToDate,int paraPOID,int paraStatus)
         {
             DataSet ds = new DataSet();
             try
@@ -1799,6 +1800,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaPOFromDate", ParaPOFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaPOToDate", ParaPOToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraPOID", paraPOID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

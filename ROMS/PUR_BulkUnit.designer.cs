@@ -138,12 +138,13 @@
             // 
             this.txtUpp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtUpp.Location = new System.Drawing.Point(238, 48);
-            this.txtUpp.MaxLength = 100;
+            this.txtUpp.MaxLength = 5;
             this.txtUpp.Name = "txtUpp";
             this.txtUpp.Size = new System.Drawing.Size(44, 27);
             this.txtUpp.TabIndex = 122;
             this.txtUpp.Enter += new System.EventHandler(this.TxtUpp_Enter);
             this.txtUpp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUpp_KeyDown);
+            this.txtUpp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUpp_KeyPress);
             this.txtUpp.Leave += new System.EventHandler(this.TxtUpp_Leave);
             // 
             // txtDUPP
@@ -218,6 +219,7 @@
             this.Text = "Map Bulk Unit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PUR_BulkUnit_FormClosing);
             this.Load += new System.EventHandler(this.PUR_BulkUnit_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_BulkUnit_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errNewProduct)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

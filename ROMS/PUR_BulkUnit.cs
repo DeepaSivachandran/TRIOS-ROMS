@@ -20,6 +20,7 @@ namespace ROMS
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
+        public int varCloseFlag = 0;
         public string pbFormStatus;
         public PUR_BulkUnit()
         {
@@ -40,8 +41,16 @@ namespace ROMS
         public void udfnclose()
         {
             try
-            { 
-                this.Close(); 
+            {
+                if (varCloseFlag == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
+                }
+                else { this.Close(); }
             }
             catch (Exception ex)
             {
@@ -217,12 +226,25 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbUnit.SelectedValue) != -1)
+                if (Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblProductcode.Text) != 0)
                 {
-                    udfnSave();
+                    bool blnErrorFlag = true;
+                    if (Convert.ToString(cmbUnit.SelectedValue) == "-1")
+                    {
+                        errNewProduct.SetError(cmbUnit, "Please select unit.");
+                        cmbUnit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpblename.ShowAlways = true;
+                        tpblename.Show("Please select unit.", cmbUnit, 5000);
+                        blnErrorFlag = false;
+                    }
+                    if (blnErrorFlag == true)
+                    {
+                        udfnSave();
+                    }
                 }
                 else
                 {
+                    MessageBox.Show("Product Not found!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -235,7 +257,9 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspdservice = new SPDataService();
+                errNewProduct.Clear();
+                cmbUnit.BackColor = Color.White;
+                   SPDataService objspdservice = new SPDataService();
                 string result = "", varorignator, varupdate;
                 int varviewtype;
                 varviewtype = 12;
@@ -248,7 +272,8 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    varCloseFlag = 1;
+                    udfnclose();
                     MainForm.objCP_Itemlist.udfnDropdownbind();
                     MainForm.objCP_Itemlist.udfnList();
                 }
@@ -298,6 +323,7 @@ namespace ROMS
                         if (objDT.Tables[1].Rows.Count > 0)
                         {
                             cmbUnit.SelectedValue = objDT.Tables[1].Rows[0]["PR_Bulk_UTID"].ToString();
+                            txtUpp.Text = objDT.Tables[1].Rows[0]["PR_UPP"].ToString();
                         }
                     }
                 }
@@ -311,23 +337,44 @@ namespace ROMS
 
         private void PUR_BulkUnit_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //try
+            //{ 
+            //    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //    if (dialogResult == DialogResult.Yes)
+            //    {
+            //        e.Cancel = false;
+            //    }
+            //    else
+            //    {
+            //        e.Cancel = true;
+            //    } 
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
+        private void PUR_BulkUnit_KeyDown(object sender, KeyEventArgs e)
+        {
             try
-            { 
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+            {
+                if (e.KeyCode == Keys.Escape)
                 {
-                    e.Cancel = false;
+                    udfnclose();
                 }
-                else
-                {
-                    e.Cancel = true;
-                } 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TxtUpp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }
