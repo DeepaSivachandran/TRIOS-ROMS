@@ -238,15 +238,16 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdSupplierList.DataSource = objDs.Tables[0];
-                            grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdSupplierList.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSupplierList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSupplierList.Columns["Ret. Policy"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSupplierList.Columns["T.Pro.Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            //grdSupplierList.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                             grdSupplierList.Columns["S.No."].Width = 50;
                             grdSupplierList.Columns["Supplier"].Width = 200;
                             grdSupplierList.Columns["Schedule Name"].Width = 150;
                             grdSupplierList.Columns["Ret.Condition"].Width = 140;
-                            grdSupplierList.Columns["GSTIN"].Width = 120;
+                            grdSupplierList.Columns["GSTIN"].Width = 130;
                             grdSupplierList.Columns["Status"].Width = 80;
                             grdSupplierList.Columns["Scheduleid"].Visible = false;
                             grdSupplierList.Columns["SupplierID"].Visible = false;

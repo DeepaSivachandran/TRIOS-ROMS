@@ -500,6 +500,7 @@ namespace ROMS
                 {
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
+                        dtBrand.Rows.Clear();
                         for (int i = 0; i < objDS.Tables[0].Rows.Count; i++) {
                             if (Convert.ToString(objDS.Tables[0].Rows[i]["ID"]) == "0" || Convert.ToString(objDS.Tables[0].Rows[i]["ID"]) == "-1") {
                                 objDS.Tables[0].Rows[i].Delete();
