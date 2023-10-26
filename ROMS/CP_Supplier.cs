@@ -4,9 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ROMS
@@ -18,6 +15,7 @@ namespace ROMS
         DataTable dtSubGroup = new DataTable();
         DataTable dtSubGroupMapping = new DataTable();
         DataTable dtPaymentMode = new DataTable();
+        Boolean BlnSearchImageYN = false;
 
         public string varcompanycode;
         public string pbFormStatus;
@@ -3898,25 +3896,30 @@ namespace ROMS
         {
             try
             {
+                //udfnGridSearchHeading(grdSupplierMappingLoad, DGV_SearchGrid);
+                //DGV_SearchGrid.Columns.Clear();
+                //List<int> visibleColumns = new List<int>();
+                //foreach (DataGridViewColumn col in grdSupplierMappingLoad.Columns)
+                //{
+                //    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                //    visibleColumns.Add(col.Index);
+                //}
+                //int rowIndex = 0;
+                //DGV_SearchGrid.Rows.Clear();
+                //DGV_SearchGrid.Rows.Add();
+                //for (int i = 0; i < visibleColumns.Count; i++)
+                //{
+                //    if (i == 0)
+                //    { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = false;  }
+                //    else
+                //    { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";  }
+                //}
+                //DGV_SearchGrid.Columns[0].ReadOnly = true;
                 udfnGridSearchHeading(grdSupplierMappingLoad, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdSupplierMappingLoad.Columns)
+                if (DGV_SearchGrid.ColumnCount > 1)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    if (i == 0)
-                    { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = false;  }
-                    else
-                    { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";  }
-                }
-                DGV_SearchGrid.Columns[0].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -3925,6 +3928,7 @@ namespace ROMS
         {
             try
             {
+                //dgv2.DataSource = null;
                 dgv2.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
                 foreach (DataGridViewColumn col in dgv1.Columns)
@@ -3936,17 +3940,31 @@ namespace ROMS
                     }
                 }
                 int rowIndex = 0;
+                int ColIndex = 0;
                 dgv2.Rows.Clear();
                 dgv2.Rows.Add();
+                BlnSearchImageYN = false;
                 for (int i = 0; i < visibleColumns.Count; i++)
                 {
-                    //if (i == 0)
-                    //{
-                    //    dgv2.Rows[rowIndex].Cells[i].Value = false;
-                    //} else
-                    //{
+                    //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                    if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image" )
+                    {
+                        //dgv2.Rows[rowIndex].Visible = false;
+                        BlnSearchImageYN = true;
+                        ColIndex = i;
+                        dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                        dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                        ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                    {
+                        BlnSearchImageYN = true;
+                        dgv2.Rows[rowIndex].Cells[i].Value = false;
+                    }
+                    else
+                    {
                         dgv2.Rows[rowIndex].Cells[i].Value = "";
-                    //}
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -6804,19 +6822,37 @@ namespace ROMS
             {
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
-                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                    {
-                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                            & ~(DataGridViewPaintParts.ContentForeground));
+                //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
+                //    return;
+                if ((e.ColumnIndex == 0))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                    return;
 
-                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                if (e.Value != DBNull.Value && e.Value == "")  /*If value is null*/
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                        & ~(DataGridViewPaintParts.ContentForeground));
 
-                        e.Handled = true;
-                    }
+                    TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                        e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
 
+                    e.Handled = true;
+                }
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                //if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                //    return;
+                //if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
+                //    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                //    {
+                //        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                //            & ~(DataGridViewPaintParts.ContentForeground));
+
+                //        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                //            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                //        e.Handled = true;
+                //    }
+
+                //DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -6961,6 +6997,15 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void DGV_SearchGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            {
+                e.Value = null;
+            }
+        }
+
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
