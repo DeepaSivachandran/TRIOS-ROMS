@@ -766,6 +766,10 @@ namespace ROMS
                     {
                         grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.White;
                     }
+                    if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Employee Name"].Value) == "")
+                    {
+                        grdRackGroupList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                    }
                 }
             }
             catch (Exception ex)
