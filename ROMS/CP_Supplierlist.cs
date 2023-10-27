@@ -226,7 +226,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnSupplierList(1, varSupplierId,0, Convert.ToInt32(cmbDay.SelectedValue), 0, "",0,0,0,"",0,0,0,0,0);
+                objDs = objdserv.udfnSupplierList(1, varSupplierId,0, Convert.ToInt32(cmbDay.SelectedValue), 0, "",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,"",0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
