@@ -259,7 +259,7 @@
             // 
             // txtItemNameTamil
             // 
-            this.txtItemNameTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtItemNameTamil.Font = new System.Drawing.Font("Baamini", 14.75F);
             this.txtItemNameTamil.Location = new System.Drawing.Point(160, 104);
             this.txtItemNameTamil.MaxLength = 100;
             this.txtItemNameTamil.Name = "txtItemNameTamil";
@@ -1715,18 +1715,17 @@
             this.groupBox3.Controls.Add(this.lblDPicode);
             this.groupBox3.Location = new System.Drawing.Point(567, -6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(278, 100);
+            this.groupBox3.Size = new System.Drawing.Size(278, 114);
             this.groupBox3.TabIndex = 95;
             this.groupBox3.TabStop = false;
             // 
             // txtRTamilName
             // 
-            this.txtRTamilName.AutoSize = true;
-            this.txtRTamilName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRTamilName.Font = new System.Drawing.Font("Baamini", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRTamilName.ForeColor = System.Drawing.Color.Red;
             this.txtRTamilName.Location = new System.Drawing.Point(7, 74);
             this.txtRTamilName.Name = "txtRTamilName";
-            this.txtRTamilName.Size = new System.Drawing.Size(0, 20);
+            this.txtRTamilName.Size = new System.Drawing.Size(266, 35);
             this.txtRTamilName.TabIndex = 7;
             // 
             // txtREnglishName

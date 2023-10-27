@@ -3306,10 +3306,10 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtItemNameEnglish.Text = objDs.Tables[0].Rows[0]["ENAME"].ToString();
-                                txtItemNameTamil.Text = objDs.Tables[0].Rows[0]["Tname"].ToString();
-                                txtREnglishName.Text = objDs.Tables[0].Rows[0]["ENAME"].ToString();
-                                txtRTamilName.Text = objDs.Tables[0].Rows[0]["Tname"].ToString();
+                                txtItemNameEnglish.Text = objDs.Tables[0].Rows[0]["ENAME"].ToString().Trim();
+                                txtItemNameTamil.Text = objDs.Tables[0].Rows[0]["Tname"].ToString().Trim();
+                                txtREnglishName.Text = objDs.Tables[0].Rows[0]["ENAME"].ToString().Trim();
+                                txtRTamilName.Text = objDs.Tables[0].Rows[0]["Tname"].ToString().Trim();
                                 txtRPICode.Text = txtPICode.Text;
                             }
                         }

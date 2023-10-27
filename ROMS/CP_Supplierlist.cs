@@ -212,7 +212,7 @@ namespace ROMS
                 {
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(11,0,0,0,0,txtSupplier.Text.Trim(),0,0,0,"",0,0,0,0,0);
+                    objDsSupplierId = objDserv.udfnSupplierList(11,0,0,0,0,txtSupplier.Text.Split('-')[0].Trim(),0,0,0,"",0,0,0,0,0);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -226,7 +226,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnSupplierList(1, varSupplierId,0, Convert.ToInt32(cmbDay.SelectedValue), 0, "",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,"",0,0,0,0,0);
+                objDs = objdserv.udfnSupplierList(1, varSupplierId,Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbDay.SelectedValue), 0, "",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,"",0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -244,8 +244,8 @@ namespace ROMS
                             //grdSupplierList.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                             grdSupplierList.Columns["S.No."].Width = 50;
-                            grdSupplierList.Columns["Supplier"].Width = 200;
-                            grdSupplierList.Columns["Schedule Name"].Width = 150;
+                            grdSupplierList.Columns["Supplier"].Width = 350;
+                           // grdSupplierList.Columns["Schedule Name"].Width = 150;
                             grdSupplierList.Columns["Ret.Condition"].Width = 140;
                             grdSupplierList.Columns["GSTIN"].Width = 130;
                             grdSupplierList.Columns["Status"].Width = 80;
@@ -725,7 +725,7 @@ namespace ROMS
                 {
                     string varsuppliername = "0";
                     DataService objDserv = new DataService();
-                    varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text + "'");
+                    varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text.Split('-')[0].Trim() + "'");
                     if (varsuppliername == "0")
                     {
                         lblSupplierCode.Text = "0";
