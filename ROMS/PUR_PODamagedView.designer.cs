@@ -30,7 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PODamagedView));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdGRNPODamaged = new System.Windows.Forms.DataGridView();
@@ -83,9 +85,9 @@
             this.grdGRNPODamaged.Name = "grdGRNPODamaged";
             this.grdGRNPODamaged.ReadOnly = true;
             this.grdGRNPODamaged.RowHeadersVisible = false;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGRNPODamaged.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGRNPODamaged.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.grdGRNPODamaged.RowTemplate.Height = 25;
             this.grdGRNPODamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGRNPODamaged.Size = new System.Drawing.Size(736, 348);
@@ -149,12 +151,16 @@
             // 
             // clmTotalProduct
             // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmTotalProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.clmTotalProduct.HeaderText = "Total Products";
             this.clmTotalProduct.Name = "clmTotalProduct";
             this.clmTotalProduct.ReadOnly = true;
             // 
             // Column2
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column2.HeaderText = "Total Value";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;

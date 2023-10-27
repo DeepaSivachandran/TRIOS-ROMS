@@ -51,17 +51,19 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.Image = global::ROMS.Properties.Resources.submit;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(761, 458);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(81, 33);
-            this.btnSave.TabIndex = 9;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Submit";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // btnClose
             // 
@@ -72,11 +74,13 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 33);
-            this.btnClose.TabIndex = 10;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // txtSearchByProduct2
             // 
@@ -85,8 +89,11 @@
             this.txtSearchByProduct2.MaxLength = 50;
             this.txtSearchByProduct2.Name = "txtSearchByProduct2";
             this.txtSearchByProduct2.Size = new System.Drawing.Size(418, 27);
-            this.txtSearchByProduct2.TabIndex = 1111146;
+            this.txtSearchByProduct2.TabIndex = 1;
             this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
+            this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
+            this.txtSearchByProduct2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByProduct2_KeyDown);
+            this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
             // 
             // lblSearchByProduct2
             // 
@@ -135,7 +142,7 @@
             this.grdPurchaseOrder.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseOrder.Size = new System.Drawing.Size(905, 415);
-            this.grdPurchaseOrder.TabIndex = 1111148;
+            this.grdPurchaseOrder.TabIndex = 2;
             this.grdPurchaseOrder.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdPurchaseOrder_CurrentCellDirtyStateChanged);
             // 
             // lblNoRecordsFound

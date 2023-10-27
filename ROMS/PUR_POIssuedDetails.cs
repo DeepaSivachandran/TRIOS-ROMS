@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
-        public int varupdate = 0, varPOID = 0,varsts=0;
+        public int varupdate = 0, varPOID = 0,varsts=0, Varordertype = 0;
         public PUR_POIssuedDetails()
         {
             InitializeComponent();
@@ -167,11 +168,18 @@ namespace ROMS
                     dpissuedateandtime.Enabled = false;
                     txtTAT.Enabled = false;
                     this.ActiveControl = txtIssuedBY;
-                } 
+                }
+                //DateTime varmindate = DateTime.ParseExact(txtPODate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //dpissuedateandtime.MinDate = varmindate;
+                //dpissuedateandtime.MaxDate = DateTime.Today;
 
                 DataBind objDataBind = new DataBind();
+                DataService objdservice = new DataService();
+                string varTAT = "" ;
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=44 AND MSTID NOT IN (135,136) OR MSTID=-1", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
+                objDataBind = null; 
+                varTAT = objdservice.displaydata("SELECT GSTAT_OrderDays FROM MR_GeneralSettings_TAT  WHERE GSTAT_OrderType='"+Varordertype+"'");
+                txtTAT.Text = varTAT;
                 cmbIssueMode.SelectedIndex = 0;
                 udfnEditLoad();
             }
@@ -197,16 +205,16 @@ namespace ROMS
                     if (objDs.Tables.Count != 0)
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            txtPODate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString().Replace("''", "'");
-                            txtPONo.Text = objDs.Tables[0].Rows[0]["PONO"].ToString().Replace("''", "'");
-                            txtSupplier.Text = objDs.Tables[0].Rows[0]["SUPPLIER"].ToString().Replace("''", "'");
-                            txtIssuedBY.Text = objDs.Tables[0].Rows[0]["Issuedby"].ToString().Replace("''", "'");
-                            txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString().Replace("''", "'"); 
-                            txtTAT.Text = objDs.Tables[0].Rows[0]["TAT"].ToString().Replace("''", "'");
+                        {  
+                            txtPODate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString();
+                            txtPONo.Text = objDs.Tables[0].Rows[0]["PONO"].ToString();
+                            txtSupplier.Text = objDs.Tables[0].Rows[0]["SUPPLIER"].ToString();
+                            txtIssuedBY.Text = objDs.Tables[0].Rows[0]["Issuedby"].ToString();
+                            txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString(); 
+                            txtTAT.Text = objDs.Tables[0].Rows[0]["TAT"].ToString();
                             if (objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'") != "" && objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'") != null)
                             {
-                                dpissuedateandtime.Text = objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'");
+                                dpissuedateandtime.Text = objDs.Tables[0].Rows[0]["IssueDate"].ToString();
                             }
                             else
                             {
@@ -214,12 +222,16 @@ namespace ROMS
                             }
                             if (objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'") != "" && objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'") != null)
                             {
-                                cmbIssueMode.SelectedValue = objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'");
+                                cmbIssueMode.SelectedValue = objDs.Tables[0].Rows[0]["Issuemode"].ToString();
                             }
                             else
                             {
                                 cmbIssueMode.SelectedValue = -1;
-                            } 
+                            }
+
+                            DateTime varmindate = DateTime.ParseExact(txtPODate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            dpissuedateandtime.MinDate = varmindate;
+                            dpissuedateandtime.MaxDate = DateTime.Today;
                         } 
                     }
                 }
@@ -391,12 +403,8 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    if (Convert.ToString(cmbIssueMode.SelectedValue) != "137")
-                    {
-                        txtIssuemodeValues.Focus();
-                    }
-                    else { txtTAT.Focus(); }
+                { 
+                        txtIssuemodeValues.Focus(); 
                 }
             }
             catch (Exception ex)

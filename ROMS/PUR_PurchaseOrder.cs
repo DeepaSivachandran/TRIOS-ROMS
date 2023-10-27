@@ -37,9 +37,9 @@ namespace ROMS
             {
                 tbSupplierDetails.Enabled = false;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=4 AND STSID in (8,9) OR STSID=-1  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=4 AND STSID in (8,9)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 this.ActiveControl = cmbConcern;
                 udfnDropdownLoad();
@@ -87,32 +87,33 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
                                     lblNoRecordsFound.Visible = false;
-                                    grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString().Replace("''", "'"),
-                                    objDs.Tables[0].Rows[i]["Product Name"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Unit"].ToString().Replace("''", "'"),
-                                    objDs.Tables[0].Rows[i]["GST_Text"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["MSQ"].ToString().Replace("''", "'"),
-                                    objDs.Tables[0].Rows[i]["STOCK"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["PREVIOUS"].ToString().Replace("''", "'"),
-                                    objDs.Tables[0].Rows[i]["PARTIAL"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Reorder"].ToString().Replace("''", "'")
-                                    , objDs.Tables[0].Rows[i]["ORDERQTY"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Productid"].ToString().Replace("''", "'"),
-                                    objDs.Tables[0].Rows[i]["FLAG"].ToString().Replace("''", "'"));
+                                    grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString() ,
+                                    objDs.Tables[0].Rows[i]["Product Name"].ToString() , objDs.Tables[0].Rows[i]["Unit"].ToString() ,
+                                    objDs.Tables[0].Rows[i]["GST_Text"].ToString() , objDs.Tables[0].Rows[i]["MSQ"].ToString() ,
+                                    objDs.Tables[0].Rows[i]["STOCK"].ToString() , objDs.Tables[0].Rows[i]["PREVIOUS"].ToString() ,
+                                    objDs.Tables[0].Rows[i]["PARTIAL"].ToString() , objDs.Tables[0].Rows[i]["Reorder"].ToString() 
+                                    , objDs.Tables[0].Rows[i]["ORDERQTY"].ToString() , objDs.Tables[0].Rows[i]["Productid"].ToString() ,
+                                    objDs.Tables[0].Rows[i]["FLAG"].ToString() );
                                     grdsupplieradd.Columns[10].ReadOnly = false;
                                 }
-                                dpPlanDate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString().Replace("''", "'");
-                                txtpono.Text = objDs.Tables[0].Rows[0]["PONO"].ToString().Replace("''", "'");
-                                txtSupplier.Text = objDs.Tables[0].Rows[0]["Supplier"].ToString().Replace("''", "'");
-                                cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString().Replace("''", "'");
-                                lblSupplierCode.Text = objDs.Tables[0].Rows[0]["SPID"].ToString().Replace("''", "'");
-                                lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString().Replace("''", "'");
+                                dpPlanDate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString();
+                                txtpono.Text = objDs.Tables[0].Rows[0]["PONO"].ToString();
+                                txtSupplier.Text = objDs.Tables[0].Rows[0]["Supplier"].ToString();
+                                cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString();
+                                lblSupplierCode.Text = objDs.Tables[0].Rows[0]["SPID"].ToString();
+                                lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
                                 btnSave.Text = "Update";
+                                cmbStatus.Enabled = true;
                                 udfnsupplierLoad();
                             }
                             if (objDs.Tables[1].Rows.Count != 0)
                             { 
-                                dpissuedateandtime.Text = objDs.Tables[1].Rows[0]["PODATE"].ToString().Replace("''", "'");   
-                                txtIssuedBy.Text = objDs.Tables[1].Rows[0]["Issuedby"].ToString().Replace("''", "'");
-                                txtissuemodevalue.Text = objDs.Tables[1].Rows[0]["Issueremark"].ToString().Replace("''", "'");
-                                txtTurnAroundTime.Text = objDs.Tables[1].Rows[0]["TAT"].ToString().Replace("''", "'");
-                                txtModeofissue.Text = objDs.Tables[1].Rows[0]["Issuemode"].ToString().Replace("''", "'");
-                                txtDmode.Text = objDs.Tables[1].Rows[0]["Issuemode"].ToString().Replace("''", "'");
+                                dpissuedateandtime.Text = objDs.Tables[1].Rows[0]["PODATE"].ToString();   
+                                txtIssuedBy.Text = objDs.Tables[1].Rows[0]["Issuedby"].ToString();
+                                txtissuemodevalue.Text = objDs.Tables[1].Rows[0]["Issueremark"].ToString();
+                                txtTurnAroundTime.Text = objDs.Tables[1].Rows[0]["TAT"].ToString();
+                                txtModeofissue.Text = objDs.Tables[1].Rows[0]["Issuemode"].ToString();
+                                txtDmode.Text = objDs.Tables[1].Rows[0]["Issuemode"].ToString();
                             }
                         }
                     }
@@ -174,6 +175,7 @@ namespace ROMS
         {
             try
             {
+                errPO.Clear();
                 tpsalesman.Active = false;
                 tpsalemanph.Active = false;
                 tpSuppliername.Active = false;
@@ -483,6 +485,7 @@ namespace ROMS
                     }
                     if (varErrorFlag == true)
                     {
+                        udfntooltiphide();
                         DialogResult result1;
                         if (pbSupplierpend != 0)
                         {
@@ -498,8 +501,7 @@ namespace ROMS
                             if (grdsupplieradd.Rows.Count > 0)
                             {
                                 if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
-                                {
-                                    udfntooltiphide();
+                                { 
                                     string result = "", varorginator = "Po Create";
                                     int varviewtype = 0, POUpdate = varPOID;
                                     if (btnSave.Text == "Update")
@@ -526,12 +528,9 @@ namespace ROMS
                                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         this.ActiveControl = txtSupplier;
                                         MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
-                                        if (btnSave.Text == "Update")
-                                        {
-                                            varupdate = "1";
-                                            udfnclose();
-                                        }
                                         udfnClear();
+                                        varupdate = "1";
+                                        udfnclose(); 
                                     }
                                     else
                                     {
@@ -631,6 +630,11 @@ namespace ROMS
                                 (varPrevious).Trim(), (varPARITAL).Trim(), (varReOrderQty).Trim(), (txtProductQty.Text).Trim(), (addproductid).Trim(), 3);
                             grdsupplieradd.Columns[10].ReadOnly = false;
                             udfnrowclear();
+                            grdsupplieradd.Sort(grdsupplieradd.Columns[1], ListSortDirection.Ascending);
+                            for (int i = 0; i < grdsupplieradd.RowCount; i++)
+                            {
+                                grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
+                            }
                         }
                         else
                         {
@@ -650,6 +654,7 @@ namespace ROMS
             finally
             {
                 lblPC.Text = grdsupplieradd.Rows.Count.ToString();
+
             }
         }
 
@@ -1852,14 +1857,16 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(),  objDs.Tables[0].Rows[i]["PRID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvproduct.Items.Add(objList);
                                 }
                                 lvproduct.Visible = true;
-                                lvproduct.Columns[0].Width = 200;
-                                lvproduct.Columns[1].Width = 200;
-                                lvproduct.Columns[2].Width = 100;
+                                lvproduct.Columns[0].Width = 100;
+                                lvproduct.Columns[1].Width = 250;
+                                lvproduct.Columns[2].Width = 250; 
                                 lvproduct.Columns[3].Width = 0;
                             }
                         }
@@ -1950,11 +1957,14 @@ namespace ROMS
             {
                 for (int i = grdsupplieradd.Rows.Count - 1; i >= 0; i--)
                 {
-                    if ((int)grdsupplieradd.Rows[i].Cells["clmflag"].Value == 3 ||
-                        (int)grdsupplieradd.Rows[i].Cells["clmflag"].Value == 4)
+                    if ((Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "3" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "4"))
                     {
                         grdsupplieradd.Rows.RemoveAt(i);
                     }
+                }
+                for (int i = 0; i < grdsupplieradd.RowCount; i++)
+                {
+                    grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
                 }
             }
             catch (Exception ex)
@@ -1974,6 +1984,23 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPendingorder_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) 
+        {
+            for (int i = 0; i < grdPendingorder.Rows.Count; i++)
+            {
+                if (Convert.ToString(grdPendingorder.Rows[i].Cells["PLID"].Value) == "10")
+                {
+                    grdPendingorder.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                    grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                }
+                else
+                {
+                    grdPendingorder.Rows[i].DefaultCellStyle.BackColor = Color.RoyalBlue;
+                    grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                }
             }
         }
 
@@ -2102,7 +2129,7 @@ namespace ROMS
             {
                 if (txtSupplier.Text != "")
                 {
-                    cmbReturnType.SelectedValue = 24;
+                    cmbReturnType.SelectedValue = -1;
                     if (VarStatusId ==10)
                     {
                         ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
@@ -2111,6 +2138,9 @@ namespace ROMS
                         lblschedule.Text = selectedItem.SubItems[2].Text; 
                     }
                     udfnsupplierLoad();
+                    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+
+                    GrdPendingorder_DataBindingComplete(grdPendingorder, args); 
                 }
                 txtProductName.Focus();
             }
@@ -2147,12 +2177,12 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
-                            lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString().Replace("''", "'");
-                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString().Replace("''", "'");
-                            lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString().Replace("''", "'");
-                            lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString().Replace("''", "'");
-                            lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString().Replace("''", "'");
+                            lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
+                            lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
+                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
+                            lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
+                            lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
                             cmbReturnPolicy.SelectedValue = Convert.ToInt64(objDs.Tables[0].Rows[0]["RETURN"].ToString());
                             cmbReturnType.SelectedValue = objDs.Tables[0].Rows[0]["RETURNCYCLEID"].ToString(); ; 
                             if ((Convert.ToString(cmbReturnType.SelectedValue) == "23"))
@@ -2177,9 +2207,9 @@ namespace ROMS
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            txtSalesManMobile.Text = objDs.Tables[1].Rows[0]["SPSC_SMMobileNo"].ToString().Replace("''", "'");
-                            txtSalesManName.Text = objDs.Tables[1].Rows[0]["SPSC_SMName"].ToString().Replace("''", "'");
-                            txtSalesManwhatsapp.Text = objDs.Tables[1].Rows[0]["SPSC_SMWhatsAppNo"].ToString().Replace("''", "'");
+                            txtSalesManMobile.Text = objDs.Tables[1].Rows[0]["SPSC_SMMobileNo"].ToString();
+                            txtSalesManName.Text = objDs.Tables[1].Rows[0]["SPSC_SMName"].ToString();
+                            txtSalesManwhatsapp.Text = objDs.Tables[1].Rows[0]["SPSC_SMWhatsAppNo"].ToString();
                         }
                         if (objDs.Tables[2].Rows.Count > 0)
                         {
@@ -2191,7 +2221,7 @@ namespace ROMS
                                 grdRepDetails.Columns["Brand"].Width = 150;
                                 grdRepDetails.Columns["Phone No."].Width = 90;
                                 grdRepDetails.Columns["WhatsApp No."].Width = 90;
-                                grdRepDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdRepDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
                             }
                         }
                         if (objDs.Tables[3].Rows.Count > 0)
@@ -2202,12 +2232,12 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[3].Rows.Count; i++)
                                 {
                                     lblNoRecordsFound.Visible = false;
-                                    grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[3].Rows[i]["PR_PICode"].ToString().Replace("''", "'"),
-                                    objDs.Tables[3].Rows[i]["PR_EName"].ToString().Replace("''", "'"), objDs.Tables[3].Rows[i]["UT_Symbol"].ToString().Replace("''", "'"),
-                                    objDs.Tables[3].Rows[i]["GST_Text"].ToString().Replace("''", "'"), objDs.Tables[3].Rows[i]["PR_MinStock"].ToString().Replace("''", "'"),
-                                    objDs.Tables[3].Rows[i]["STOCK"].ToString().Replace("''", "'"), objDs.Tables[3].Rows[i]["PRE.PEND"].ToString().Replace("''", "'"),
-                                    objDs.Tables[3].Rows[i]["PARITAL"].ToString().Replace("''", "'"), objDs.Tables[3].Rows[i]["PR_ReOrderQty"].ToString().Replace("''", "'"),
-                                    (txtProductQty.Text).Trim(), objDs.Tables[3].Rows[i]["PRID"].ToString().Replace("''", "'"), objDs.Tables[3].Rows[i]["FLAG"].ToString().Replace("''", "'"));
+                                    grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[3].Rows[i]["PR_PICode"].ToString() ,
+                                    objDs.Tables[3].Rows[i]["PR_EName"].ToString() , objDs.Tables[3].Rows[i]["UT_Symbol"].ToString() ,
+                                    objDs.Tables[3].Rows[i]["GST_Text"].ToString() , objDs.Tables[3].Rows[i]["PR_MinStock"].ToString() ,
+                                    objDs.Tables[3].Rows[i]["STOCK"].ToString() , objDs.Tables[3].Rows[i]["PRE.PEND"].ToString() ,
+                                    objDs.Tables[3].Rows[i]["PARITAL"].ToString() , objDs.Tables[3].Rows[i]["PR_ReOrderQty"].ToString() ,
+                                    objDs.Tables[3].Rows[i]["ORDERQTY"].ToString().Trim(), objDs.Tables[3].Rows[i]["PRID"].ToString() , objDs.Tables[3].Rows[i]["FLAG"].ToString() );
                                     grdsupplieradd.Columns[10].ReadOnly = false;
                                 }
                             }
@@ -2221,8 +2251,24 @@ namespace ROMS
                         {
                             if (btnSave.Text == "Save")
                             {
-                                txtTurnAroundTime.Text = objDs.Tables[4].Rows[0]["GSTAT_OrderDays"].ToString().Replace("''", "'");
+                                txtTurnAroundTime.Text = objDs.Tables[4].Rows[0]["GSTAT_OrderDays"].ToString();
                             }
+                        }
+                        if (objDs.Tables[5].Rows.Count > 0)
+                        {
+                            grdPendingorder.Rows.Clear();
+                            for (int i = 0; i < objDs.Tables[5].Rows.Count; i++)
+                            {
+                                lblFinishedNoRecord.Visible = false;
+                                grdPendingorder.Rows.Add(objDs.Tables[5].Rows[i]["SINO"].ToString(), objDs.Tables[5].Rows[i]["PO_No"].ToString(),
+                                objDs.Tables[5].Rows[i]["PO_Date"].ToString(), objDs.Tables[5].Rows[i]["QTY"].ToString(), objDs.Tables[5].Rows[i]["PO_Final_STSID"].ToString());
+                                pbSupplierpend = 1;
+                            }
+                        }
+                        else
+                        {
+                            lblFinishedNoRecord.Visible = true;
+                            grdPendingorder.Rows.Clear();
                         }
                     }
                 }
@@ -2252,9 +2298,9 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            txtSalesManMobile.Text = objDs.Tables[0].Rows[0]["SPSC_SMMobileNo"].ToString().Replace("''", "'");
-                            txtSalesManName.Text = objDs.Tables[0].Rows[0]["SPSC_SMName"].ToString().Replace("''", "'");
-                            txtSalesManwhatsapp.Text = objDs.Tables[0].Rows[0]["SPSC_SMWhatsAppNo"].ToString().Replace("''", "'");
+                            txtSalesManMobile.Text = objDs.Tables[0].Rows[0]["SPSC_SMMobileNo"].ToString();
+                            txtSalesManName.Text = objDs.Tables[0].Rows[0]["SPSC_SMName"].ToString();
+                            txtSalesManwhatsapp.Text = objDs.Tables[0].Rows[0]["SPSC_SMWhatsAppNo"].ToString();
                         }
                         else
                         {
@@ -2321,7 +2367,7 @@ namespace ROMS
                 if (txtProductName.Text != "")
                 {
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
-                    txtProductName.Text = selectedItem.SubItems[0].Text;
+                    txtProductName.Text = selectedItem.SubItems[1].Text;
                     lblProductcode.Text = selectedItem.SubItems[3].Text;
                     udfnProductAdd();
                 }
@@ -2354,18 +2400,18 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            varPICode = objDs.Tables[0].Rows[0]["PR_PICode"].ToString().Replace("''", "'");
-                            varEName = objDs.Tables[0].Rows[0]["PR_EName"].ToString().Replace("''", "'");
-                            var_Symbol = objDs.Tables[0].Rows[0]["UT_Symbol"].ToString().Replace("''", "'");
-                            var_Text = objDs.Tables[0].Rows[0]["GST_Text"].ToString().Replace("''", "'");
-                            var_RMinSaleQty = objDs.Tables[0].Rows[0]["PR_MinStock"].ToString().Replace("''", "'");
-                            varSTOCK = objDs.Tables[0].Rows[0]["STOCK"].ToString().Replace("''", "'");
-                            varPrevious = objDs.Tables[0].Rows[0]["PRE.PEND"].ToString().Replace("''", "'");
-                            varPARITAL = objDs.Tables[0].Rows[0]["PARITAL"].ToString().Replace("''", "'");
-                            varReOrderQty = objDs.Tables[0].Rows[0]["PR_ReOrderQty"].ToString().Replace("''", "'");
+                            varPICode = objDs.Tables[0].Rows[0]["PR_PICode"].ToString();
+                            varEName = objDs.Tables[0].Rows[0]["PR_EName"].ToString();
+                            var_Symbol = objDs.Tables[0].Rows[0]["UT_Symbol"].ToString();
+                            var_Text = objDs.Tables[0].Rows[0]["GST_Text"].ToString();
+                            var_RMinSaleQty = objDs.Tables[0].Rows[0]["PR_MinStock"].ToString();
+                            varSTOCK = objDs.Tables[0].Rows[0]["STOCK"].ToString();
+                            varPrevious = objDs.Tables[0].Rows[0]["PRE.PEND"].ToString();
+                            varPARITAL = objDs.Tables[0].Rows[0]["PARITAL"].ToString();
+                            varReOrderQty = objDs.Tables[0].Rows[0]["PR_ReOrderQty"].ToString();
                             varorderSaleQty = "0";
-                            addproductid = objDs.Tables[0].Rows[0]["PRID"].ToString().Replace("''", "'");
-                            varunitid = objDs.Tables[0].Rows[0]["UTID"].ToString().Replace("''", "'");
+                            addproductid = objDs.Tables[0].Rows[0]["PRID"].ToString();
+                            varunitid = objDs.Tables[0].Rows[0]["UTID"].ToString();
                             flag = "3";
                             txtUnit.Text = varunitid;
                         }
