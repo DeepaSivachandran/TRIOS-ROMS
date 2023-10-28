@@ -1786,9 +1786,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void BtnAddemployee_Click(object sender, EventArgs e)
         {
             try
@@ -1851,6 +1849,12 @@ namespace ROMS
             finally
             {
                 grdStaffDetails.Sort(grdStaffDetails.Columns["clmSINO"], ListSortDirection.Ascending);
+
+                //For SNO Count For Right Side Grid
+                for (int i = 0; i < grdStaffDetails.Rows.Count; i++)
+                {
+                    grdStaffDetails.Rows[i].Cells["clmSno"].Value = i + 1;
+                }
             }
         }
 
