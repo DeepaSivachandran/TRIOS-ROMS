@@ -578,6 +578,39 @@ namespace ROMS
             }
             return ds;
         }
+        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_StockTransfer]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransferID", paraStockTransferID);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraSLocationID", paraSLocationID);
+                varSqlCommand.Parameters.AddWithValue("@paraDLocationID", paraDLocationID);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", paraStockTransfer);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
         public DataSet udfnStatelist(int paraViewType, int paraStatus)
         {
             DataSet ds = new DataSet();
