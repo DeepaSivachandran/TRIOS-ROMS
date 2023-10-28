@@ -38,26 +38,24 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Supplier));
             this.errCompany = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
-            this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
-            this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tcSupplier = new System.Windows.Forms.TabControl();
@@ -127,14 +125,10 @@
             this.txtDArea = new System.Windows.Forms.TextBox();
             this.txtDCity = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.tbOrder = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtOtherBrands = new System.Windows.Forms.TextBox();
-            this.btnSupplierdeal = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnSaveOrderType = new System.Windows.Forms.Button();
             this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
             this.txtNextLevel = new System.Windows.Forms.TextBox();
             this.cmbPolicyContent = new System.Windows.Forms.ComboBox();
@@ -156,9 +150,6 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmScheduleStatusId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btn_close = new System.Windows.Forms.Button();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
             this.pnlScheduleStatus = new System.Windows.Forms.Panel();
             this.rbScheduleActive = new System.Windows.Forms.RadioButton();
@@ -166,7 +157,6 @@
             this.txtDStatus = new System.Windows.Forms.TextBox();
             this.txtScheduleName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -198,11 +188,12 @@
             this.lblTotalMappingProduct = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtsuppliername = new System.Windows.Forms.TextBox();
-            this.btnClear = new System.Windows.Forms.Button();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.grbSupplierMapping = new System.Windows.Forms.GroupBox();
-            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.btnRemove = new System.Windows.Forms.Button();
+            this.chkMappedAll = new System.Windows.Forms.CheckBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.DGV_SearchGrid1 = new System.Windows.Forms.DataGridView();
             this.lvBrand = new System.Windows.Forms.ListView();
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -224,15 +215,11 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
-            this.BtnaddMove = new System.Windows.Forms.Button();
             this.grdFinalSupplierMapping = new System.Windows.Forms.DataGridView();
             this.grdSupplierMappingLoad = new System.Windows.Forms.DataGridView();
-            this.btnMappingView = new System.Windows.Forms.Button();
             this.lblDEGroup = new System.Windows.Forms.Label();
             this.lblDESubGroup = new System.Windows.Forms.Label();
-            this.btnMappingClose = new System.Windows.Forms.Button();
-            this.btnMappingsave = new System.Windows.Forms.Button();
-            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
             this.txtMappedOrderDay = new System.Windows.Forms.TextBox();
@@ -250,15 +237,30 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lblMappedproductcountlist = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btn_Close2 = new System.Windows.Forms.Button();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblOrderDay = new System.Windows.Forms.Label();
-            this.DGV_SearchGrid1 = new System.Windows.Forms.DataGridView();
-            this.label16 = new System.Windows.Forms.Label();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.chkMappedAll = new System.Windows.Forms.CheckBox();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
+            this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSupplierdeal = new System.Windows.Forms.Button();
+            this.btnSaveOrderType = new System.Windows.Forms.Button();
+            this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btn_close = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.BtnaddMove = new System.Windows.Forms.Button();
+            this.btnMappingView = new System.Windows.Forms.Button();
+            this.btnMappingClose = new System.Windows.Forms.Button();
+            this.btnMappingsave = new System.Windows.Forms.Button();
+            this.btn_Close2 = new System.Windows.Forms.Button();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -283,14 +285,14 @@
             this.tpSupplierProduct.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
             this.grbSupplierMapping.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdFinalSupplierMapping)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierMappingLoad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.tbSchedule.SuspendLayout();
             this.grpSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
             // errCompany
@@ -312,29 +314,6 @@
             this.tsSupplierMapping.Size = new System.Drawing.Size(1354, 25);
             this.tsSupplierMapping.TabIndex = 64;
             this.tsSupplierMapping.Text = "Supplier Mapping";
-            // 
-            // tspSupplierMapping
-            // 
-            this.tspSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspSupplierMapping.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspSupplierMapping.Name = "tspSupplierMapping";
-            this.tspSupplierMapping.Size = new System.Drawing.Size(70, 22);
-            this.tspSupplierMapping.Text = "Supplier";
-            // 
-            // tsbNew
-            // 
-            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
-            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.tsbNew.Name = "tsbNew";
-            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbNew.Size = new System.Drawing.Size(52, 24);
-            this.tsbNew.Text = "&New";
-            this.tsbNew.Visible = false;
             // 
             // tssNew
             // 
@@ -1253,45 +1232,13 @@
             this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCity_KeyDown);
             this.txtCity.Leave += new System.EventHandler(this.txtCity_Leave);
             // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(693, 304);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 27;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(805, 305);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 28;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
-            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
             // tbOrder
             // 
             this.tbOrder.Controls.Add(this.groupBox1);
             this.tbOrder.Controls.Add(this.groupBox3);
             this.tbOrder.Controls.Add(this.grdSupplierList);
-            this.tbOrder.Controls.Add(this.btn_close);
             this.tbOrder.Controls.Add(this.gpSupplier);
+            this.tbOrder.Controls.Add(this.btn_close);
             this.tbOrder.Location = new System.Drawing.Point(4, 28);
             this.tbOrder.Name = "tbOrder";
             this.tbOrder.Padding = new System.Windows.Forms.Padding(3);
@@ -1321,21 +1268,6 @@
             this.txtOtherBrands.Size = new System.Drawing.Size(251, 150);
             this.txtOtherBrands.TabIndex = 19;
             // 
-            // btnSupplierdeal
-            // 
-            this.btnSupplierdeal.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupplierdeal.Image = global::ROMS.Properties.Resources.save;
-            this.btnSupplierdeal.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSupplierdeal.Location = new System.Drawing.Point(178, 201);
-            this.btnSupplierdeal.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnSupplierdeal.Name = "btnSupplierdeal";
-            this.btnSupplierdeal.Size = new System.Drawing.Size(80, 33);
-            this.btnSupplierdeal.TabIndex = 20;
-            this.btnSupplierdeal.Text = "Update";
-            this.btnSupplierdeal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSupplierdeal.UseVisualStyleBackColor = true;
-            this.btnSupplierdeal.Click += new System.EventHandler(this.BtnSupplierdeal_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnSaveOrderType);
@@ -1353,20 +1285,6 @@
             this.groupBox3.TabIndex = 1111181;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Return Policy";
-            // 
-            // btnSaveOrderType
-            // 
-            this.btnSaveOrderType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSaveOrderType.Image = global::ROMS.Properties.Resources.save;
-            this.btnSaveOrderType.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveOrderType.Location = new System.Drawing.Point(188, 201);
-            this.btnSaveOrderType.Name = "btnSaveOrderType";
-            this.btnSaveOrderType.Size = new System.Drawing.Size(84, 29);
-            this.btnSaveOrderType.TabIndex = 18;
-            this.btnSaveOrderType.Text = "Update";
-            this.btnSaveOrderType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSaveOrderType.UseVisualStyleBackColor = true;
-            this.btnSaveOrderType.Click += new System.EventHandler(this.BtnSaveOrderType_Click);
             // 
             // cmbSecondLevel
             // 
@@ -1610,38 +1528,6 @@
             this.clmScheduleStatusId.ReadOnly = true;
             this.clmScheduleStatusId.Visible = false;
             // 
-            // clmedit
-            // 
-            this.clmedit.HeaderText = "Edit";
-            this.clmedit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmedit.Name = "clmedit";
-            this.clmedit.ReadOnly = true;
-            this.clmedit.Width = 60;
-            // 
-            // clmDelete
-            // 
-            this.clmDelete.HeaderText = "Delete";
-            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmDelete.Name = "clmDelete";
-            this.clmDelete.ReadOnly = true;
-            this.clmDelete.Width = 60;
-            // 
-            // btn_close
-            // 
-            this.btn_close.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btn_close.Image = global::ROMS.Properties.Resources.close;
-            this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_close.Location = new System.Drawing.Point(1240, 572);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(75, 29);
-            this.btn_close.TabIndex = 13;
-            this.btn_close.Text = "Close";
-            this.btn_close.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_close.UseVisualStyleBackColor = true;
-            this.btn_close.Click += new System.EventHandler(this.btnClose_Click);
-            this.btn_close.Enter += new System.EventHandler(this.Btn_close_Enter);
-            this.btn_close.Leave += new System.EventHandler(this.Btn_close_Leave);
-            // 
             // gpSupplier
             // 
             this.gpSupplier.Controls.Add(this.pnlScheduleStatus);
@@ -1731,23 +1617,6 @@
             this.label1.Size = new System.Drawing.Size(91, 20);
             this.label1.TabIndex = 1111180;
             this.label1.Text = "Schedule Name";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnAdd.Image = global::ROMS.Properties.Resources.save;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(575, 248);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(87, 29);
-            this.btnAdd.TabIndex = 13;
-            this.btnAdd.Text = "Save";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
             // txtSupplier
             // 
@@ -2172,23 +2041,6 @@
             this.txtsuppliername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsuppliername_KeyDown);
             this.txtsuppliername.Leave += new System.EventHandler(this.Txtsuppliername_Leave);
             // 
-            // btnClear
-            // 
-            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1062, 566);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(84, 29);
-            this.btnClear.TabIndex = 6;
-            this.btnClear.Text = "Clear";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Visible = false;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            this.btnClear.Enter += new System.EventHandler(this.BtnClear_Enter);
-            this.btnClear.Leave += new System.EventHandler(this.BtnClear_Leave);
-            // 
             // lblDESupplier
             // 
             this.lblDESupplier.AutoSize = true;
@@ -2231,66 +2083,84 @@
             this.grbSupplierMapping.TabIndex = 5;
             this.grbSupplierMapping.TabStop = false;
             // 
-            // DGV_SearchGrid
+            // chkMappedAll
             // 
-            this.DGV_SearchGrid.AllowUserToAddRows = false;
-            this.DGV_SearchGrid.AllowUserToDeleteRows = false;
-            this.DGV_SearchGrid.AllowUserToResizeRows = false;
-            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
-            this.DGV_SearchGrid.ColumnHeadersHeight = 30;
-            this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle20;
-            this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
-            this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(10, 76);
-            this.DGV_SearchGrid.Name = "DGV_SearchGrid";
-            this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle21;
-            this.DGV_SearchGrid.RowTemplate.Height = 25;
-            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(639, 56);
-            this.DGV_SearchGrid.TabIndex = 958809;
-            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
-            this.DGV_SearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_SearchGrid_CellFormatting);
-            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
-            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
-            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
-            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
-            this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
-            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
+            this.chkMappedAll.AutoSize = true;
+            this.chkMappedAll.Location = new System.Drawing.Point(695, 112);
+            this.chkMappedAll.Name = "chkMappedAll";
+            this.chkMappedAll.Size = new System.Drawing.Size(15, 14);
+            this.chkMappedAll.TabIndex = 958813;
+            this.chkMappedAll.UseVisualStyleBackColor = true;
+            this.chkMappedAll.CheckedChanged += new System.EventHandler(this.ChkMappedAll_CheckedChanged);
             // 
-            // btnRemove
+            // cmbStatus
             // 
-            this.btnRemove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnRemove.Image = global::ROMS.Properties.Resources.add;
-            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.Location = new System.Drawing.Point(652, 280);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(31, 29);
-            this.btnRemove.TabIndex = 958807;
-            this.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(368, 43);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(128, 27);
+            this.cmbStatus.TabIndex = 958812;
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(368, 18);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(45, 20);
+            this.label16.TabIndex = 958811;
+            this.label16.Text = "Status";
+            // 
+            // DGV_SearchGrid1
+            // 
+            this.DGV_SearchGrid1.AllowUserToAddRows = false;
+            this.DGV_SearchGrid1.AllowUserToDeleteRows = false;
+            this.DGV_SearchGrid1.AllowUserToResizeRows = false;
+            this.DGV_SearchGrid1.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.DGV_SearchGrid1.ColumnHeadersHeight = 30;
+            this.DGV_SearchGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid1.DefaultCellStyle = dataGridViewCellStyle11;
+            this.DGV_SearchGrid1.EnableHeadersVisualStyles = false;
+            this.DGV_SearchGrid1.GridColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid1.Location = new System.Drawing.Point(686, 76);
+            this.DGV_SearchGrid1.Name = "DGV_SearchGrid1";
+            this.DGV_SearchGrid1.RowHeadersVisible = false;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid1.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.DGV_SearchGrid1.RowTemplate.Height = 25;
+            this.DGV_SearchGrid1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_SearchGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_SearchGrid1.ShowRowErrors = false;
+            this.DGV_SearchGrid1.Size = new System.Drawing.Size(613, 56);
+            this.DGV_SearchGrid1.TabIndex = 958810;
+            this.DGV_SearchGrid1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid1_CellEndEdit);
+            this.DGV_SearchGrid1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_SearchGrid1_CellFormatting);
+            this.DGV_SearchGrid1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid1_CellPainting);
+            this.DGV_SearchGrid1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid1_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid1.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid1_ColumnWidthChanged);
+            this.DGV_SearchGrid1.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid1_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGrid1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid1_EditingControlShowing);
+            this.DGV_SearchGrid1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid1_Scroll);
             // 
             // lvBrand
             // 
@@ -2490,21 +2360,6 @@
             this.lblSearchbyProduct1.TabIndex = 35;
             this.lblSearchbyProduct1.Text = "Search by P.I Code";
             // 
-            // BtnaddMove
-            // 
-            this.BtnaddMove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.BtnaddMove.Image = global::ROMS.Properties.Resources.add;
-            this.BtnaddMove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnaddMove.Location = new System.Drawing.Point(652, 245);
-            this.BtnaddMove.Name = "BtnaddMove";
-            this.BtnaddMove.Size = new System.Drawing.Size(31, 29);
-            this.BtnaddMove.TabIndex = 33;
-            this.BtnaddMove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnaddMove.UseVisualStyleBackColor = true;
-            this.BtnaddMove.Click += new System.EventHandler(this.BtnaddMove_Click);
-            this.BtnaddMove.Enter += new System.EventHandler(this.BtnaddMove_Enter);
-            this.BtnaddMove.Leave += new System.EventHandler(this.BtnaddMove_Leave);
-            // 
             // grdFinalSupplierMapping
             // 
             this.grdFinalSupplierMapping.AllowUserToAddRows = false;
@@ -2592,21 +2447,6 @@
             this.grdSupplierMappingLoad.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierMappingLoad_DataBindingComplete);
             this.grdSupplierMappingLoad.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupplierMappingLoad_Scroll);
             // 
-            // btnMappingView
-            // 
-            this.btnMappingView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMappingView.Image = global::ROMS.Properties.Resources.view;
-            this.btnMappingView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMappingView.Location = new System.Drawing.Point(502, 41);
-            this.btnMappingView.Name = "btnMappingView";
-            this.btnMappingView.Size = new System.Drawing.Size(33, 29);
-            this.btnMappingView.TabIndex = 3;
-            this.btnMappingView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMappingView.UseVisualStyleBackColor = true;
-            this.btnMappingView.Click += new System.EventHandler(this.BtnMappingView_Click);
-            this.btnMappingView.Enter += new System.EventHandler(this.BtnMappingView_Enter);
-            this.btnMappingView.Leave += new System.EventHandler(this.BtnMappingView_Leave);
-            // 
             // lblDEGroup
             // 
             this.lblDEGroup.AutoSize = true;
@@ -2627,51 +2467,53 @@
             this.lblDESubGroup.TabIndex = 29;
             this.lblDESubGroup.Text = "Product Sub Group";
             // 
-            // btnMappingClose
+            // DGV_SearchGrid
             // 
-            this.btnMappingClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnMappingClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnMappingClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMappingClose.Location = new System.Drawing.Point(1245, 566);
-            this.btnMappingClose.Name = "btnMappingClose";
-            this.btnMappingClose.Size = new System.Drawing.Size(75, 29);
-            this.btnMappingClose.TabIndex = 8;
-            this.btnMappingClose.Text = "Close";
-            this.btnMappingClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMappingClose.UseVisualStyleBackColor = true;
-            this.btnMappingClose.Click += new System.EventHandler(this.BtnMappingClose_Click);
-            this.btnMappingClose.Enter += new System.EventHandler(this.BtnMappingClose_Enter);
-            this.btnMappingClose.Leave += new System.EventHandler(this.BtnMappingClose_Leave);
-            // 
-            // btnMappingsave
-            // 
-            this.btnMappingsave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnMappingsave.Image = global::ROMS.Properties.Resources.save;
-            this.btnMappingsave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMappingsave.Location = new System.Drawing.Point(1152, 566);
-            this.btnMappingsave.Name = "btnMappingsave";
-            this.btnMappingsave.Size = new System.Drawing.Size(84, 29);
-            this.btnMappingsave.TabIndex = 7;
-            this.btnMappingsave.Text = "Save";
-            this.btnMappingsave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMappingsave.UseVisualStyleBackColor = true;
-            this.btnMappingsave.Click += new System.EventHandler(this.BtnMappingsave_Click);
-            this.btnMappingsave.Enter += new System.EventHandler(this.BtnMappingsave_Enter);
-            this.btnMappingsave.Leave += new System.EventHandler(this.BtnMappingsave_Leave);
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(0, 29);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1322, 602);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958807;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
+            this.DGV_SearchGrid.AllowUserToAddRows = false;
+            this.DGV_SearchGrid.AllowUserToDeleteRows = false;
+            this.DGV_SearchGrid.AllowUserToResizeRows = false;
+            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.DGV_SearchGrid.ColumnHeadersHeight = 30;
+            this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle20;
+            this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
+            this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(10, 76);
+            this.DGV_SearchGrid.Name = "DGV_SearchGrid";
+            this.DGV_SearchGrid.RowHeadersVisible = false;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            this.DGV_SearchGrid.RowTemplate.Height = 25;
+            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_SearchGrid.ShowRowErrors = false;
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(639, 56);
+            this.DGV_SearchGrid.TabIndex = 958809;
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_SearchGrid_CellFormatting);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
+            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // tbSchedule
             // 
@@ -2904,22 +2746,6 @@
             this.label5.TabIndex = 958815;
             this.label5.Text = "No.of Products :";
             // 
-            // btn_Close2
-            // 
-            this.btn_Close2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btn_Close2.Image = global::ROMS.Properties.Resources.close;
-            this.btn_Close2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Close2.Location = new System.Drawing.Point(1210, 569);
-            this.btn_Close2.Name = "btn_Close2";
-            this.btn_Close2.Size = new System.Drawing.Size(75, 29);
-            this.btn_Close2.TabIndex = 4;
-            this.btn_Close2.Text = "Close";
-            this.btn_Close2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Close2.UseVisualStyleBackColor = true;
-            this.btn_Close2.Click += new System.EventHandler(this.btnClose_Click);
-            this.btn_Close2.Enter += new System.EventHandler(this.Btn_Close2_Enter);
-            this.btn_Close2.Leave += new System.EventHandler(this.Btn_Close2_Leave);
-            // 
             // grdViewSupplierMapping
             // 
             this.grdViewSupplierMapping.AllowUserToAddRows = false;
@@ -2992,84 +2818,276 @@
             this.lblOrderDay.Size = new System.Drawing.Size(0, 20);
             this.lblOrderDay.TabIndex = 958825;
             // 
-            // DGV_SearchGrid1
+            // dataGridViewImageColumn1
             // 
-            this.DGV_SearchGrid1.AllowUserToAddRows = false;
-            this.DGV_SearchGrid1.AllowUserToDeleteRows = false;
-            this.DGV_SearchGrid1.AllowUserToResizeRows = false;
-            this.DGV_SearchGrid1.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.DGV_SearchGrid1.ColumnHeadersHeight = 30;
-            this.DGV_SearchGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid1.DefaultCellStyle = dataGridViewCellStyle11;
-            this.DGV_SearchGrid1.EnableHeadersVisualStyles = false;
-            this.DGV_SearchGrid1.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid1.Location = new System.Drawing.Point(686, 76);
-            this.DGV_SearchGrid1.Name = "DGV_SearchGrid1";
-            this.DGV_SearchGrid1.RowHeadersVisible = false;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid1.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.DGV_SearchGrid1.RowTemplate.Height = 25;
-            this.DGV_SearchGrid1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGV_SearchGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_SearchGrid1.ShowRowErrors = false;
-            this.DGV_SearchGrid1.Size = new System.Drawing.Size(613, 56);
-            this.DGV_SearchGrid1.TabIndex = 958810;
-            this.DGV_SearchGrid1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid1_CellEndEdit);
-            this.DGV_SearchGrid1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_SearchGrid1_CellFormatting);
-            this.DGV_SearchGrid1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid1_CellPainting);
-            this.DGV_SearchGrid1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid1_ColumnHeaderMouseClick);
-            this.DGV_SearchGrid1.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid1_ColumnWidthChanged);
-            this.DGV_SearchGrid1.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid1_CurrentCellDirtyStateChanged);
-            this.DGV_SearchGrid1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid1_EditingControlShowing);
-            this.DGV_SearchGrid1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid1_Scroll);
+            this.dataGridViewImageColumn1.HeaderText = "Edit";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.Edit;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Width = 60;
             // 
-            // label16
+            // dataGridViewImageColumn2
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(368, 18);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(45, 20);
-            this.label16.TabIndex = 958811;
-            this.label16.Text = "Status";
+            this.dataGridViewImageColumn2.HeaderText = "Delete";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.Delete;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.ReadOnly = true;
+            this.dataGridViewImageColumn2.Width = 60;
             // 
-            // cmbStatus
+            // tspSupplierMapping
             // 
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(368, 43);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(128, 27);
-            this.cmbStatus.TabIndex = 958812;
-            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
-            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
-            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
-            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
+            this.tspSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspSupplierMapping.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspSupplierMapping.Name = "tspSupplierMapping";
+            this.tspSupplierMapping.Size = new System.Drawing.Size(70, 22);
+            this.tspSupplierMapping.Text = "Supplier";
             // 
-            // chkMappedAll
+            // tsbNew
             // 
-            this.chkMappedAll.AutoSize = true;
-            this.chkMappedAll.Location = new System.Drawing.Point(695, 112);
-            this.chkMappedAll.Name = "chkMappedAll";
-            this.chkMappedAll.Size = new System.Drawing.Size(15, 14);
-            this.chkMappedAll.TabIndex = 958813;
-            this.chkMappedAll.UseVisualStyleBackColor = true;
-            this.chkMappedAll.CheckedChanged += new System.EventHandler(this.ChkMappedAll_CheckedChanged);
+            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
+            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Name = "tsbNew";
+            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbNew.Size = new System.Drawing.Size(52, 24);
+            this.tsbNew.Text = "&New";
+            this.tsbNew.Visible = false;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(693, 304);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.TabIndex = 27;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(805, 305);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 28;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
+            // 
+            // btnSupplierdeal
+            // 
+            this.btnSupplierdeal.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupplierdeal.Image = global::ROMS.Properties.Resources.save;
+            this.btnSupplierdeal.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSupplierdeal.Location = new System.Drawing.Point(178, 201);
+            this.btnSupplierdeal.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnSupplierdeal.Name = "btnSupplierdeal";
+            this.btnSupplierdeal.Size = new System.Drawing.Size(80, 33);
+            this.btnSupplierdeal.TabIndex = 20;
+            this.btnSupplierdeal.Text = "Update";
+            this.btnSupplierdeal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSupplierdeal.UseVisualStyleBackColor = true;
+            this.btnSupplierdeal.Click += new System.EventHandler(this.BtnSupplierdeal_Click);
+            // 
+            // btnSaveOrderType
+            // 
+            this.btnSaveOrderType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSaveOrderType.Image = global::ROMS.Properties.Resources.save;
+            this.btnSaveOrderType.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveOrderType.Location = new System.Drawing.Point(188, 201);
+            this.btnSaveOrderType.Name = "btnSaveOrderType";
+            this.btnSaveOrderType.Size = new System.Drawing.Size(84, 29);
+            this.btnSaveOrderType.TabIndex = 18;
+            this.btnSaveOrderType.Text = "Update";
+            this.btnSaveOrderType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSaveOrderType.UseVisualStyleBackColor = true;
+            this.btnSaveOrderType.Click += new System.EventHandler(this.BtnSaveOrderType_Click);
+            // 
+            // clmedit
+            // 
+            this.clmedit.HeaderText = "Edit";
+            this.clmedit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmedit.Name = "clmedit";
+            this.clmedit.ReadOnly = true;
+            this.clmedit.Width = 60;
+            // 
+            // clmDelete
+            // 
+            this.clmDelete.HeaderText = "Delete";
+            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmDelete.Name = "clmDelete";
+            this.clmDelete.ReadOnly = true;
+            this.clmDelete.Width = 60;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnAdd.Image = global::ROMS.Properties.Resources.save;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(575, 248);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(87, 29);
+            this.btnAdd.TabIndex = 13;
+            this.btnAdd.Text = "Save";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
+            // btn_close
+            // 
+            this.btn_close.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btn_close.Image = global::ROMS.Properties.Resources.close;
+            this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_close.Location = new System.Drawing.Point(1240, 572);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(75, 29);
+            this.btn_close.TabIndex = 13;
+            this.btn_close.Text = "Close";
+            this.btn_close.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btnClose_Click);
+            this.btn_close.Enter += new System.EventHandler(this.Btn_close_Enter);
+            this.btn_close.Leave += new System.EventHandler(this.Btn_close_Leave);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(1062, 566);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(84, 29);
+            this.btnClear.TabIndex = 6;
+            this.btnClear.Text = "Clear";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Visible = false;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            this.btnClear.Enter += new System.EventHandler(this.BtnClear_Enter);
+            this.btnClear.Leave += new System.EventHandler(this.BtnClear_Leave);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRemove.Image = global::ROMS.Properties.Resources.add___left;
+            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemove.Location = new System.Drawing.Point(652, 280);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(31, 29);
+            this.btnRemove.TabIndex = 958807;
+            this.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
+            // 
+            // BtnaddMove
+            // 
+            this.BtnaddMove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.BtnaddMove.Image = global::ROMS.Properties.Resources.add;
+            this.BtnaddMove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnaddMove.Location = new System.Drawing.Point(652, 245);
+            this.BtnaddMove.Name = "BtnaddMove";
+            this.BtnaddMove.Size = new System.Drawing.Size(31, 29);
+            this.BtnaddMove.TabIndex = 33;
+            this.BtnaddMove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnaddMove.UseVisualStyleBackColor = true;
+            this.BtnaddMove.Click += new System.EventHandler(this.BtnaddMove_Click);
+            this.BtnaddMove.Enter += new System.EventHandler(this.BtnaddMove_Enter);
+            this.BtnaddMove.Leave += new System.EventHandler(this.BtnaddMove_Leave);
+            // 
+            // btnMappingView
+            // 
+            this.btnMappingView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMappingView.Image = global::ROMS.Properties.Resources.view;
+            this.btnMappingView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMappingView.Location = new System.Drawing.Point(502, 41);
+            this.btnMappingView.Name = "btnMappingView";
+            this.btnMappingView.Size = new System.Drawing.Size(33, 29);
+            this.btnMappingView.TabIndex = 3;
+            this.btnMappingView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMappingView.UseVisualStyleBackColor = true;
+            this.btnMappingView.Click += new System.EventHandler(this.BtnMappingView_Click);
+            this.btnMappingView.Enter += new System.EventHandler(this.BtnMappingView_Enter);
+            this.btnMappingView.Leave += new System.EventHandler(this.BtnMappingView_Leave);
+            // 
+            // btnMappingClose
+            // 
+            this.btnMappingClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnMappingClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnMappingClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMappingClose.Location = new System.Drawing.Point(1245, 566);
+            this.btnMappingClose.Name = "btnMappingClose";
+            this.btnMappingClose.Size = new System.Drawing.Size(75, 29);
+            this.btnMappingClose.TabIndex = 8;
+            this.btnMappingClose.Text = "Close";
+            this.btnMappingClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMappingClose.UseVisualStyleBackColor = true;
+            this.btnMappingClose.Click += new System.EventHandler(this.BtnMappingClose_Click);
+            this.btnMappingClose.Enter += new System.EventHandler(this.BtnMappingClose_Enter);
+            this.btnMappingClose.Leave += new System.EventHandler(this.BtnMappingClose_Leave);
+            // 
+            // btnMappingsave
+            // 
+            this.btnMappingsave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnMappingsave.Image = global::ROMS.Properties.Resources.save;
+            this.btnMappingsave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMappingsave.Location = new System.Drawing.Point(1152, 566);
+            this.btnMappingsave.Name = "btnMappingsave";
+            this.btnMappingsave.Size = new System.Drawing.Size(84, 29);
+            this.btnMappingsave.TabIndex = 7;
+            this.btnMappingsave.Text = "Save";
+            this.btnMappingsave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMappingsave.UseVisualStyleBackColor = true;
+            this.btnMappingsave.Click += new System.EventHandler(this.BtnMappingsave_Click);
+            this.btnMappingsave.Enter += new System.EventHandler(this.BtnMappingsave_Enter);
+            this.btnMappingsave.Leave += new System.EventHandler(this.BtnMappingsave_Leave);
+            // 
+            // btn_Close2
+            // 
+            this.btn_Close2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btn_Close2.Image = global::ROMS.Properties.Resources.close;
+            this.btn_Close2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Close2.Location = new System.Drawing.Point(1210, 569);
+            this.btn_Close2.Name = "btn_Close2";
+            this.btn_Close2.Size = new System.Drawing.Size(75, 29);
+            this.btn_Close2.TabIndex = 4;
+            this.btn_Close2.Text = "Close";
+            this.btn_Close2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Close2.UseVisualStyleBackColor = true;
+            this.btn_Close2.Click += new System.EventHandler(this.btnClose_Click);
+            this.btn_Close2.Enter += new System.EventHandler(this.Btn_Close2_Enter);
+            this.btn_Close2.Leave += new System.EventHandler(this.Btn_Close2_Leave);
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(0, 29);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1322, 602);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958807;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // CP_Supplier
             // 
@@ -3132,16 +3150,16 @@
             this.grpSupplierMapping.PerformLayout();
             this.grbSupplierMapping.ResumeLayout(false);
             this.grbSupplierMapping.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdFinalSupplierMapping)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierMappingLoad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.tbSchedule.ResumeLayout(false);
             this.tbSchedule.PerformLayout();
             this.grpSchedule.ResumeLayout(false);
             this.grpSchedule.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3353,5 +3371,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.CheckBox chkMappedAll;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
     }
 }

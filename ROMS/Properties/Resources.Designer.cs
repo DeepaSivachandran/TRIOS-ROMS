@@ -73,6 +73,26 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add___left {
+            get {
+                object obj = ResourceManager.GetObject("add - left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add___left1 {
+            get {
+                object obj = ResourceManager.GetObject("add - left1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap approve {
             get {
                 object obj = ResourceManager.GetObject("approve", resourceCulture);

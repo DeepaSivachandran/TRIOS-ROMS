@@ -1777,6 +1777,7 @@
     <EmbeddedResource Include="ReportLoad.resx">
       <DependentUpon>ReportLoad.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Resources\add - left.png" />
     <Content Include="Resources\RPT_PUR_SupplierProductList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>

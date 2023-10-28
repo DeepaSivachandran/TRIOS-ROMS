@@ -89,7 +89,7 @@ namespace ROMS
                     else
                     {
                         ActivationService.ActivationService activser = new ActivationService.ActivationService();
-                        activser.udfngetOTPForProduct(txtName.Text, txtMobile.Text, txtEmail.Text, txtAddress.Text, txtRegistration.Text, "1.1.0","30");
+                        activser.udfngetOTPForProduct(txtName.Text, txtMobile.Text, txtEmail.Text, txtAddress.Text, txtRegistration.Text, "1.1.1","30");
                         MessageBox.Show("OTP sent successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                        
                     }
@@ -194,7 +194,7 @@ namespace ROMS
                     ActivationService.ActivationService activser = new ActivationService.ActivationService();
                     DataService dser = new DataService();
                     // string version = dser.displaydata("select Versionno from tblVersionDetails where status='Active'");
-                    string version = "1.1.0";
+                    string version = "1.1.1";
                     dser.CloseConnection();
                     result = activser.udfnAuthenticate(txtName.Text, txtMobile.Text, txtEmail.Text, txtAddress.Text, txtRegistration.Text, version, txtotp.Text,"30");
                    // result = "Success";
