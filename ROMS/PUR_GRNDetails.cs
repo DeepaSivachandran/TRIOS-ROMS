@@ -16,7 +16,7 @@ namespace ROMS
         DataError objError;
         ToolTip tpProduct = new ToolTip();
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
-            , varorderSaleQty = "", varorderqty = "", addproductid = "" , varunitid = "0";
+            , varorderSaleQty = "", varorderqty = "", addproductid = "" , varunitid = "0", varDamage="0", varReturnDC="0";
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -31,31 +31,7 @@ namespace ROMS
 
             }
         }
-
-        private void tsbNew_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objCP_Supplier = new CP_Supplier();
-                MainForm.objCP_Supplier.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex); 
-            }
-        }
-        private void tsbEdit_Click(object sender, EventArgs e)
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        } 
+         
 
         private void PUR_GRNEntry_Load(object sender, EventArgs e)
         {
@@ -63,10 +39,10 @@ namespace ROMS
             {
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -160,36 +136,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-        private void PUR_GRNEntry_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
- 
-          
+         
          
         private void BtnClose_Click(object sender, EventArgs e)
         {
@@ -324,12 +271,7 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
-        }
-
-        private void TsSupplierMapping_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+        } 
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
@@ -345,11 +287,7 @@ namespace ROMS
 
             }
         }
-
-        private void GrpSupplierMapping_Enter(object sender, EventArgs e)
-        {
-
-        }
+         
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -380,11 +318,7 @@ namespace ROMS
 
             }
         }
-
-        private void GrdPODetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+         
 
         private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
         {
@@ -605,7 +539,8 @@ namespace ROMS
                     ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
-                    lblschedule.Text = selectedItem.SubItems[2].Text; 
+                    lblschedule.Text = selectedItem.SubItems[2].Text;
+                    udfnsupplierLoad();
                 }
                 cmbOrderType.Focus();
             }
@@ -748,8 +683,7 @@ namespace ROMS
         }
 
         private void TxtDate_Enter(object sender, EventArgs e)
-        {
-
+        { 
             try
             {
                 txtDate.BackColor = Color.LemonChiffon;
@@ -763,32 +697,233 @@ namespace ROMS
 
         private void Month_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    Year.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void Month_Leave(object sender, EventArgs e)
         {
-
+            try
+            {
+                Month.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void Month_Enter(object sender, EventArgs e)
         {
-
+            try
+            {
+                Month.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void Year_Leave(object sender, EventArgs e)
         {
-
+            try
+            {
+                Year.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void Year_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtBatchno.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void Year_Enter(object sender, EventArgs e)
         {
+            try
+            {
+                Year.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void TxtBatchno_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBatchno_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBatchno.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBatchno_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBatchno.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkCompleted_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkCompleted.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkCompleted_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkCompleted.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
+
+        private void BtnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void Dpinvoicedate_Enter(object sender, EventArgs e)
@@ -1027,6 +1162,61 @@ namespace ROMS
             finally
             {
                 lvproduct.Visible = false;
+            }
+        }
+
+        public void udfnsupplierLoad()
+        {
+            try
+            { 
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet(); 
+                if (lblSupplierCode.Text.Length > 0)
+                {
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
+                            lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
+                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
+                            lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
+                            lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();  
+                        }     
+                        if (objDs.Tables[7].Rows.Count > 0)
+                        {
+                            varDamage = objDs.Tables[7].Rows[0]["DAMAGE"].ToString();
+                            varReturnDC = objDs.Tables[7].Rows[0]["RETURNDC"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            { 
+                if (varReturnDC == "0")
+                {
+                    btnDC.Enabled = false;
+                }
+                else
+                {
+                    btnDC.Enabled = true;
+                }
+                if (varDamage == "0")
+                {
+                    btnDamage.Enabled = false;
+                }
+                else
+                {
+                    btnDamage.Enabled = true;
+                }
             }
         }
     }
