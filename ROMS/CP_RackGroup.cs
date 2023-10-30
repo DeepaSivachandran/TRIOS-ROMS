@@ -446,7 +446,7 @@ namespace ROMS
                     {
                         for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                         {
-                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["CT_SINO"]));
+                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_SINO"]));
                         }
                     }
 
@@ -1786,9 +1786,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void BtnAddemployee_Click(object sender, EventArgs e)
         {
             try
@@ -1832,7 +1830,7 @@ namespace ROMS
                             if (varFlag == 0)
                             {
                                 grdStaffDetails.Rows.Add(Convert.ToInt32(grdStaffDetails.Rows.Count) + 1, grdEmployee.Rows[i].Cells["Employee Code"].Value, grdEmployee.Rows[i].Cells["Employee Name"].Value,
-                                grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value, grdEmployee.Rows[i].Cells["CT_SINO"].Value);
+                                grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value, Convert.ToString(grdEmployee.Rows[i].Cells["CT_SINO"].Value));
                             }
                         }
                     }
@@ -1850,7 +1848,13 @@ namespace ROMS
             }
             finally
             {
-                grdStaffDetails.Sort(grdStaffDetails.Columns["clmSINO"], ListSortDirection.Ascending);
+                grdStaffDetails.Sort(grdStaffDetails.Columns[5], ListSortDirection.Ascending);
+
+                //For SNO Count For Right Side Grid
+                for (int i = 0; i < grdStaffDetails.Rows.Count; i++)
+                {
+                    grdStaffDetails.Rows[i].Cells["clmSno"].Value = i + 1;
+                }
             }
         }
 

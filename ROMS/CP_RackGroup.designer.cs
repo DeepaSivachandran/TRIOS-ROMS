@@ -40,10 +40,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_RackGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
             this.lblNoofproducts = new System.Windows.Forms.Label();
@@ -77,6 +77,13 @@
             this.btnAddemployee = new System.Windows.Forms.Button();
             this.chkEmployee = new System.Windows.Forms.CheckBox();
             this.grdStaffDetails = new System.Windows.Forms.DataGridView();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEmpCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmcatrgory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSINO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grdEmployee = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtStaffName = new System.Windows.Forms.TextBox();
@@ -94,13 +101,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmEmpCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcatrgory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSINO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRack)).BeginInit();
@@ -611,6 +611,56 @@
             this.grdStaffDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStaffDetails_CellContentClick);
             this.grdStaffDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvStaffDetails_KeyDown);
             // 
+            // clmSno
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmSno.DefaultCellStyle = dataGridViewCellStyle10;
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 40;
+            // 
+            // clmEmpCode
+            // 
+            this.clmEmpCode.HeaderText = "Employee Code";
+            this.clmEmpCode.Name = "clmEmpCode";
+            this.clmEmpCode.ReadOnly = true;
+            // 
+            // clmStaffName
+            // 
+            this.clmStaffName.HeaderText = "Employee Name";
+            this.clmStaffName.MinimumWidth = 6;
+            this.clmStaffName.Name = "clmStaffName";
+            this.clmStaffName.ReadOnly = true;
+            this.clmStaffName.Width = 125;
+            // 
+            // clmcatrgory
+            // 
+            this.clmcatrgory.HeaderText = "Employee Category";
+            this.clmcatrgory.Name = "clmcatrgory";
+            this.clmcatrgory.ReadOnly = true;
+            this.clmcatrgory.Width = 125;
+            // 
+            // clmUserId
+            // 
+            this.clmUserId.HeaderText = "User ID";
+            this.clmUserId.Name = "clmUserId";
+            this.clmUserId.Visible = false;
+            // 
+            // clmSINO
+            // 
+            this.clmSINO.HeaderText = "SINO";
+            this.clmSINO.Name = "clmSINO";
+            this.clmSINO.Visible = false;
+            // 
+            // clmremove
+            // 
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremove.Name = "clmremove";
+            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmremove.Width = 50;
+            // 
             // grdEmployee
             // 
             this.grdEmployee.AllowUserToAddRows = false;
@@ -852,56 +902,6 @@
             // columnHeader6
             // 
             this.columnHeader6.Width = 0;
-            // 
-            // clmSno
-            // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmSno.DefaultCellStyle = dataGridViewCellStyle10;
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 40;
-            // 
-            // clmEmpCode
-            // 
-            this.clmEmpCode.HeaderText = "Employee Code";
-            this.clmEmpCode.Name = "clmEmpCode";
-            this.clmEmpCode.ReadOnly = true;
-            // 
-            // clmStaffName
-            // 
-            this.clmStaffName.HeaderText = "Employee Name";
-            this.clmStaffName.MinimumWidth = 6;
-            this.clmStaffName.Name = "clmStaffName";
-            this.clmStaffName.ReadOnly = true;
-            this.clmStaffName.Width = 125;
-            // 
-            // clmcatrgory
-            // 
-            this.clmcatrgory.HeaderText = "Employee Category";
-            this.clmcatrgory.Name = "clmcatrgory";
-            this.clmcatrgory.ReadOnly = true;
-            this.clmcatrgory.Width = 125;
-            // 
-            // clmUserId
-            // 
-            this.clmUserId.HeaderText = "User ID";
-            this.clmUserId.Name = "clmUserId";
-            this.clmUserId.Visible = false;
-            // 
-            // clmSINO
-            // 
-            this.clmSINO.HeaderText = "SINO";
-            this.clmSINO.Name = "clmSINO";
-            this.clmSINO.Visible = false;
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmremove.Name = "clmremove";
-            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmremove.Width = 50;
             // 
             // CP_RackGroup
             // 
