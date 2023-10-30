@@ -1023,20 +1023,10 @@ namespace ROMS
             }
             else
             {
-                if (btnSave.Text == "Save")
-                {
-                    pnlGodownType.Enabled = false;
-                    rbInside.Checked = true;
-                }
-                else
-                {
-                    pnlGodownType.Enabled = true;
-                }
-                //pnlGodownType.Enabled = false;
-                //rbInside.Checked = true;
+                pnlGodownType.Enabled = false;
+                rbInside.Checked = true;
             }
         }
-
         private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
