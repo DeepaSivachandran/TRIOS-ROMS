@@ -217,7 +217,7 @@ namespace ROMS
                             txtIssuedBY.Text = objDs.Tables[0].Rows[0]["Issuedby"].ToString();
                             txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString(); 
                             txtTAT.Text = objDs.Tables[0].Rows[0]["TAT"].ToString();
-                            if (objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'") != "" && objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'") != null)
+                            if (objDs.Tables[0].Rows[0]["IssueDate"].ToString()  != "" && objDs.Tables[0].Rows[0]["IssueDate"].ToString()  != null)
                             {
                                 dpissuedateandtime.Text = objDs.Tables[0].Rows[0]["IssueDate"].ToString();
                             }
@@ -225,7 +225,7 @@ namespace ROMS
                             {
                                 dpissuedateandtime.Text = "";
                             }
-                            if (objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'") != "" && objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'") != null)
+                            if (objDs.Tables[0].Rows[0]["Issuemode"].ToString()  != "" && objDs.Tables[0].Rows[0]["Issuemode"].ToString()  != null)
                             {
                                 cmbIssueMode.SelectedValue = objDs.Tables[0].Rows[0]["Issuemode"].ToString();
                             }

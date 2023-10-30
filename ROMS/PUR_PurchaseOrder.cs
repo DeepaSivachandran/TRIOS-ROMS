@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tppono = new ToolTip();
         private ToolTip tpsts = new ToolTip();
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
-            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate="0",varpendingPOID="0";
+            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate="0",varpendingPOID="0", varReturnDC="0", varDamage="0";
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
@@ -123,6 +123,9 @@ namespace ROMS
                                 txtModeofissue.Text = objDs.Tables[1].Rows[0]["Issuemode"].ToString();
                                 txtDmode.Text = objDs.Tables[1].Rows[0]["Issuemode"].ToString();
                             }
+
+                            DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                            GrdPendingorder_DataBindingComplete(grdPendingorder, args);
                         }
                     }
                 }
@@ -495,7 +498,7 @@ namespace ROMS
                     {
                         udfntooltiphide();
                         DialogResult result1;
-                        if (pbSupplierpend != 0)
+                        if (varReturnDC != "0")
                         {
                             SPDataService objDServ = new SPDataService();
                             string varMessage = objDServ.udfnGetMessages(72);
@@ -2183,7 +2186,7 @@ namespace ROMS
                 }
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0,varPOID);
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue),varPOID);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2285,6 +2288,11 @@ namespace ROMS
                             lblFinishedNoRecord.Visible = true;
                             grdPendingorder.Rows.Clear();
                         }
+                        if (objDs.Tables[7].Rows.Count > 0)
+                        {   
+                            varDamage = objDs.Tables[7].Rows[0]["DAMAGE"].ToString();
+                            varReturnDC = objDs.Tables[7].Rows[0]["RETURNDC"].ToString();
+                        } 
                     }
                 }
             }
@@ -2296,6 +2304,22 @@ namespace ROMS
             finally
             {
                 lblPC.Text = Convert.ToString(grdsupplieradd.Rows.Count);
+                if (varReturnDC == "0")
+                {
+                    btnDC.Enabled = false;
+                }
+                else
+                {
+                    btnDC.Enabled = true;
+                }
+                if (varDamage == "0")
+                { 
+                    btnDamage.Enabled = false;
+                }
+                else
+                {
+                    btnDamage.Enabled = true;
+                }
             }
         }
 
