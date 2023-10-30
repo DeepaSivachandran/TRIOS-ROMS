@@ -19,7 +19,7 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbrandcode, varpendingPOID="0", pbSupplierpend="0";
+        public string varbrandcode, varpendingPOID="0", pbSupplierpend="0", varReturnDC="0", varDamage="0";
         public string pbFormStatus;
         public int varCloseFlag = 0;
         public PUR_GRNEntry()
@@ -603,7 +603,7 @@ namespace ROMS
                 DataSet objDs = new DataSet(); 
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0,0);
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0,Convert.ToInt32(cmbConcern.SelectedValue),0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -655,6 +655,12 @@ namespace ROMS
                             lblFinishedNoRecord.Visible = true;
                             grdPODetails.Rows.Clear();
                         }
+
+                        if (objDs.Tables[7].Rows.Count > 0)
+                        {
+                            varDamage = objDs.Tables[7].Rows[0]["DAMAGE"].ToString();
+                            varReturnDC = objDs.Tables[7].Rows[0]["RETURNDC"].ToString();
+                        }
                     }
                 }
             }
@@ -662,7 +668,26 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
+            finally
+            {
+                if (varReturnDC == "0")
+                {
+                    btnDC.Enabled = false;
+                }
+                else
+                {
+                    btnDC.Enabled = true;
+                }
+                if (varDamage == "0")
+                {
+                    btnDamage.Enabled = false;
+                }
+                else
+                {
+                    btnDamage.Enabled = true;
+                }
+            }
         }
          
 
@@ -760,6 +785,7 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PODamaged = new PUR_PODamaged();
+                MainForm.objPUR_PODamaged.varMasterType = "2";
                 MainForm.objPUR_PODamaged.ShowDialog();
             }
             catch (Exception ex)

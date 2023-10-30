@@ -917,6 +917,7 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PODamaged = new PUR_PODamaged();
+                MainForm.objPUR_PODamaged.varMasterType ="1";
                 MainForm.objPUR_PODamaged.ShowDialog();
             }
             catch (Exception ex)
