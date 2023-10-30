@@ -151,6 +151,7 @@ namespace ROMS
                     MainForm.objCP_UserCategory.varUserCategoryCode = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_UserCategory.PbUserCategoryName = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["Employee Category"].Value);
                     MainForm.objCP_UserCategory.PbStatus = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["StatusID"].Value);
+                    MainForm.objCP_UserCategory.PbOrderNo = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["Order No."].Value);
                     MainForm.objCP_UserCategory.ShowDialog();
                 }
             }

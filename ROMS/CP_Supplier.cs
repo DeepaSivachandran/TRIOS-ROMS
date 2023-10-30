@@ -51,7 +51,7 @@ namespace ROMS
         private ToolTip tpBranchName = new ToolTip();
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
-        public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0;
+        public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varProCount =0, varMappedCount =0;
         public string pbSupplierid = "0", varstatusid = "0", varsupplierID = "0";
         public CP_Supplier()
         {
@@ -223,7 +223,7 @@ namespace ROMS
                     //}
                     //else if (txtContactNumber.Text == "")
                     //{
-                    //    txtContactNumber.BackColor = Color.White;
+                        txtContactNumber.BackColor = Color.White;
                     //}
                     //else if (txtContactNumber.Text == "")
                     //{
@@ -3353,9 +3353,13 @@ namespace ROMS
                     {
                         SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     }
-                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
-
-                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
+                    if (SupplierUpdate != 0)
+                    {
+                        objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "' OR SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
+                    }
+                    else { objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", " SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID"); }
+                    
+                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
                     objDataBind = null;
                     DataSet objDT = new DataSet();
                     SPDataService objdserv = new SPDataService();
@@ -3857,6 +3861,7 @@ namespace ROMS
                             objDs.Tables[0].Rows[i]["PRODUCTID"], objDs.Tables[0].Rows[i]["Product Name in English"], objDs.Tables[0].Rows[i]["MappedCount"]);
                     }
                     grdSupplierMappingLoad.DataSource = dtSubGroup;
+                    grdSupplierMappingLoad.Columns[0].Frozen = true;
                     grdSupplierMappingLoad.Columns[0].HeaderText = "";
                     grdSupplierMappingLoad.Columns[0].Width = 30;
                     grdSupplierMappingLoad.Columns["S.No."].Width = 50;
@@ -4244,7 +4249,7 @@ namespace ROMS
 
                     }
                     grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
-                    //grdFinalSupplierMapping.Columns["clmMappingRemove"].DisplayIndex = 5;
+                    grdFinalSupplierMapping.Columns[0].Frozen = true;
                     grdFinalSupplierMapping.Columns[0].HeaderText = "";
                     grdFinalSupplierMapping.Columns[0].Width = 30;
                     grdFinalSupplierMapping.Columns["S.No."].Width = 50;
@@ -5039,7 +5044,7 @@ namespace ROMS
                     }
 
                     grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
-                    // grdFinalSupplierMapping.Columns["clmMappingRemove"].DisplayIndex = 5;
+                    grdFinalSupplierMapping.Columns[0].Frozen = true;
                     grdFinalSupplierMapping.Columns[0].HeaderText = "";
                     grdFinalSupplierMapping.Columns[0].Width = 30;
                     grdFinalSupplierMapping.Columns["S.No."].Width = 50;
@@ -5134,6 +5139,7 @@ namespace ROMS
                                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
                                 dtSubGroup.AcceptChanges();
                                 grdSupplierMappingLoad.DataSource = dtSubGroup;
+                                grdSupplierMappingLoad.Columns[0].Frozen = true;
                                 grdSupplierMappingLoad.Columns[0].HeaderText = "";
                                 grdSupplierMappingLoad.Columns[0].Width = 30;
                                 grdSupplierMappingLoad.Columns["S.No."].Width = 50;
@@ -5658,19 +5664,18 @@ namespace ROMS
                             if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                             {
                                 // string gridValue1 = row.Cells[5].Value.ToString();
-                                string gridValue2 = row.Cells[1].Value.ToString();
+                                string gridValue2 = row.Cells[1].Value.ToString().Trim().ToUpper();
 
                                 //if (gridValue1 == Convert.ToString(cmbOrderType.Text))
                                 //{
                                 //    varflag = 1;
                                 //}
-                                if (string.Equals(gridValue2, txtScheduleName.Text, StringComparison.OrdinalIgnoreCase))
+                                if (string.Equals(gridValue2, txtScheduleName.Text.Trim().ToUpper(), StringComparison.OrdinalIgnoreCase))
                                 {
                                     varflag = 2;
                                 }
                             }
                         }
-
                     }
                     else
                     {
@@ -5679,13 +5684,13 @@ namespace ROMS
                             if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value) && row.Cells[1].Value != null)
                             {
                                 //string gridValue1 = row.Cells[5].Value.ToString();
-                                string gridValue2 = row.Cells[1].Value.ToString();
+                                string gridValue2 = row.Cells[1].Value.ToString().Trim().ToUpper();
 
                                 //if (gridValue1 == Convert.ToString(cmbOrderType.Text))
                                 //{
                                 //    varflag = 1;
                                 //}
-                                if (string.Equals(gridValue2, txtScheduleName.Text, StringComparison.OrdinalIgnoreCase))
+                                if (string.Equals(gridValue2, txtScheduleName.Text.Trim().ToUpper(), StringComparison.OrdinalIgnoreCase))
                                 {
                                     varflag = 2;
                                 }
@@ -5768,7 +5773,7 @@ namespace ROMS
                         }
                         result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
                             Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, Convert.ToString(varScheduleStatusid), MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
-                            0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text, txtsalesmanmobile.Text,
+                            0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text.Trim(), txtsalesmanmobile.Text,
                             txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "");
 
                         string[] varvalue = result.Split('~');
@@ -6871,6 +6876,7 @@ namespace ROMS
                 }
                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
                 grdSupplierMappingLoad.DataSource = dtSubGroup;
+                grdSupplierMappingLoad.Columns[0].Frozen = true;
                 grdSupplierMappingLoad.Columns[0].HeaderText = "";
                 grdSupplierMappingLoad.Columns[0].Width = 30;
                 grdSupplierMappingLoad.Columns["S.No."].Width = 50;
@@ -6894,6 +6900,7 @@ namespace ROMS
 
 
                 grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
+                grdFinalSupplierMapping.Columns[0].Frozen = true;
                 grdFinalSupplierMapping.Columns[0].HeaderText = "";
                 grdFinalSupplierMapping.Columns[0].Width = 30;
                 grdFinalSupplierMapping.Columns["S.No."].Width = 50;

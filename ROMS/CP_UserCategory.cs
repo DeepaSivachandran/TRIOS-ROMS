@@ -26,7 +26,7 @@ namespace ROMS
         public int varstatus = 0;
         public int varUpdate = 0;
         public int varmastertype = 0;
-        public int varCategoryCode = 0;
+        public int varCategoryCode = 0, PbOrderNo=0;
 
         public CP_UserCategory()
         {
@@ -400,6 +400,7 @@ namespace ROMS
             {
                 txtCategoryName.Text = PbUserCategoryName;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                cmbCTSINO.SelectedValue = PbOrderNo;
             }
             catch (Exception ex)
             {

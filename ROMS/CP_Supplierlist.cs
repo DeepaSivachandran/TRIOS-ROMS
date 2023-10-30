@@ -207,12 +207,22 @@ namespace ROMS
                 if (txtSupplier.Text == "")
                 {
                     varSupplierId = 0;
+                    lblschedule.Text = "0";
                 }
                 else
                 {
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(11,0,0,0,0,txtSupplier.Text.Split('-')[0].Trim(),0,0,0,"",0,0,0,0,0);
+                    string varSuppName = "", varScheduleName = ""; ;
+                    if (txtSupplier.Text != "") {
+                        varSuppName = txtSupplier.Text.Split('-')[0].Trim();
+                        int varCount = txtSupplier.Text.Split('-').Count();
+                        if (varCount > 1)
+                        {
+                            varScheduleName = txtSupplier.Text.Split('-')[1].Trim();
+                        }
+                    }
+                    objDsSupplierId = objDserv.udfnSupplierList(11,0,0,0,0, varSuppName, 0,0,0,"",0,0,0,0,0);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -224,6 +234,7 @@ namespace ROMS
                             }
                         }
                     }
+                    if (varScheduleName == "") { lblschedule.Text = "0"; }
                 }
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnSupplierList(1, varSupplierId,Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbDay.SelectedValue), 0, "",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,"",0,0,0,0,0);
