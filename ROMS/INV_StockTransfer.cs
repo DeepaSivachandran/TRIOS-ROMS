@@ -1088,7 +1088,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
-                    //btnSave.Enabled = false;
+                    btnSave.Enabled = false;
                     udfnSave(sender, e);
                     udfnProductClear();
                     udfnClear();
@@ -1177,7 +1177,7 @@ namespace ROMS
                         tpDStockLocation.Show("Please select valid stock location", txtDLocation, 5000);
                     }
                 }
-                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID, Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text),Convert.ToInt32(lblDLocation.Text),txtRemarks.Text.Trim(),0,varoriginator,dtStock);
+                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),Convert.ToInt32(lblDLocation.Text),txtRemarks.Text.Trim(),0,varoriginator,dtStock);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")

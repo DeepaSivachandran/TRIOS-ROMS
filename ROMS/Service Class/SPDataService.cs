@@ -578,7 +578,7 @@ namespace ROMS
             }
             return ds;
         }
-        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer)
+        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,string paraTransferDate, int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer)
         {
             string varResult = "";
             try
@@ -589,6 +589,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraStockTransferID", paraStockTransferID);
                 varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferDate", paraTransferDate);
                 varSqlCommand.Parameters.AddWithValue("@paraSLocationID", paraSLocationID);
                 varSqlCommand.Parameters.AddWithValue("@paraDLocationID", paraDLocationID);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", paraRemarks);
