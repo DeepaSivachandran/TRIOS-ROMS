@@ -1228,8 +1228,8 @@ namespace ROMS
         //Product Master List
         //created by Venkat,Created on 16/08/2023
         public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup,
-            string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode, int paraStatusId, int paraBrandID, int ParaScheduleid,
-            int paraScheduleDay, int paraRackId, int paraHsnId, int paraGstId, int paraLocationId, int paraLocationType, int paraGodownType,
+            string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode, int paraStatusId, int paraBrandID, string ParaScheduleid,
+            string paraScheduleDay, int paraRackId, int paraHsnId, int paraGstId, int paraLocationId, int paraLocationType, int paraGodownType,
             int paraRKGId, int paraEMPId,string paraProductName,int ParaSupplierId,string ParaProductsCode)
         {
             DataSet ds = new DataSet();

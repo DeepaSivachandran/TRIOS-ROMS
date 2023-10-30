@@ -71,7 +71,7 @@ namespace ROMS
                     {
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", 0, 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode);
+                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", 0, 0, 0, Convert.ToString(MainForm.objPUR_PurchaseOrder.lblschedule.Text), "", 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
