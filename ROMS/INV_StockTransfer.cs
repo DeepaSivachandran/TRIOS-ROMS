@@ -116,7 +116,10 @@ namespace ROMS
         {
             try
             {
-                dpTrannsferDate.Focus();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpTrannsferDate.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -626,7 +629,7 @@ namespace ROMS
                 {
                     if (lvProduct.Items.Count == 0 || txtProductNamePICode.Text == "")
                     {
-                        //txtProductNamePICode.Focus();
+                        txtProductNamePICode.Focus();
                         lvProduct.Visible = false;
                     }
                     else
@@ -640,7 +643,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //txtProductNamePICode.Focus();
+                    txtQuantity.Focus();
                 }
             }
             catch (Exception ex)
@@ -806,7 +809,7 @@ namespace ROMS
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     DataService objDservice = new DataService();
-                    vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,GETDATE(),103)");
+                    vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'"+dpTrannsferDate.Text+"',103)");
                     varResult = objspdservice.udfngetPONO("44", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                     objspdservice.CloseConnection();
                     if (varResult != "")
@@ -1277,6 +1280,61 @@ namespace ROMS
                         e.Cancel = true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpTrannsferDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                dpTrannsferDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpTrannsferDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpTrannsferDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpTrannsferDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpTrannsferDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnTransferNo();
             }
             catch (Exception ex)
             {

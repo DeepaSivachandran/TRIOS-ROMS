@@ -44,16 +44,7 @@
             this.pnlStockTransferList = new System.Windows.Forms.Panel();
             this.lvProductNamePICode = new System.Windows.Forms.ListView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.dgvStockTransferList = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdStockTransfer = new System.Windows.Forms.DataGridView();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,21 +57,22 @@
             this.lblTransferFromDate = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtransferdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransferNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsalename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotalQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.cmbDestination = new System.Windows.Forms.ComboBox();
-            this.cmbSource = new System.Windows.Forms.ComboBox();
+            this.txtSLocation = new System.Windows.Forms.TextBox();
+            this.txtDLocation = new System.Windows.Forms.TextBox();
+            this.lvSLocation = new System.Windows.Forms.ListView();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvDLocation = new System.Windows.Forms.ListView();
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblSLocation = new System.Windows.Forms.Label();
+            this.lblDLocation = new System.Windows.Forms.Label();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransferList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStockTransfer)).BeginInit();
             this.grbFilterBy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -168,9 +160,11 @@
             // pnlStockTransferList
             // 
             this.pnlStockTransferList.BackColor = System.Drawing.Color.White;
+            this.pnlStockTransferList.Controls.Add(this.lvDLocation);
+            this.pnlStockTransferList.Controls.Add(this.lvSLocation);
             this.pnlStockTransferList.Controls.Add(this.lvProductNamePICode);
             this.pnlStockTransferList.Controls.Add(this.lblNoRecordsFound);
-            this.pnlStockTransferList.Controls.Add(this.dgvStockTransferList);
+            this.pnlStockTransferList.Controls.Add(this.grdStockTransfer);
             this.pnlStockTransferList.Controls.Add(this.grbFilterBy);
             this.pnlStockTransferList.Controls.Add(this.DGV_SearchGrid);
             this.pnlStockTransferList.Controls.Add(this.picLoader);
@@ -182,7 +176,7 @@
             // lvProductNamePICode
             // 
             this.lvProductNamePICode.HideSelection = false;
-            this.lvProductNamePICode.Location = new System.Drawing.Point(970, 55);
+            this.lvProductNamePICode.Location = new System.Drawing.Point(973, 52);
             this.lvProductNamePICode.Name = "lvProductNamePICode";
             this.lvProductNamePICode.Size = new System.Drawing.Size(281, 95);
             this.lvProductNamePICode.TabIndex = 958823;
@@ -201,13 +195,13 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // dgvStockTransferList
+            // grdStockTransfer
             // 
-            this.dgvStockTransferList.AllowUserToAddRows = false;
-            this.dgvStockTransferList.AllowUserToDeleteRows = false;
-            this.dgvStockTransferList.AllowUserToResizeRows = false;
-            this.dgvStockTransferList.BackgroundColor = System.Drawing.Color.White;
-            this.dgvStockTransferList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdStockTransfer.AllowUserToAddRows = false;
+            this.grdStockTransfer.AllowUserToDeleteRows = false;
+            this.grdStockTransfer.AllowUserToResizeRows = false;
+            this.grdStockTransfer.BackgroundColor = System.Drawing.Color.White;
+            this.grdStockTransfer.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -215,19 +209,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStockTransferList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvStockTransferList.ColumnHeadersHeight = 30;
-            this.dgvStockTransferList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvStockTransferList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.Column1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn5,
-            this.Column2,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.Column4});
+            this.grdStockTransfer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdStockTransfer.ColumnHeadersHeight = 30;
+            this.grdStockTransfer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -235,78 +219,29 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStockTransferList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvStockTransferList.EnableHeadersVisualStyles = false;
-            this.dgvStockTransferList.GridColor = System.Drawing.Color.White;
-            this.dgvStockTransferList.Location = new System.Drawing.Point(3, 130);
-            this.dgvStockTransferList.Name = "dgvStockTransferList";
-            this.dgvStockTransferList.RowHeadersVisible = false;
+            this.grdStockTransfer.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdStockTransfer.EnableHeadersVisualStyles = false;
+            this.grdStockTransfer.GridColor = System.Drawing.Color.White;
+            this.grdStockTransfer.Location = new System.Drawing.Point(3, 130);
+            this.grdStockTransfer.Name = "grdStockTransfer";
+            this.grdStockTransfer.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgvStockTransferList.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvStockTransferList.RowTemplate.Height = 25;
-            this.dgvStockTransferList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvStockTransferList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvStockTransferList.ShowRowErrors = false;
-            this.dgvStockTransferList.Size = new System.Drawing.Size(1339, 493);
-            this.dgvStockTransferList.TabIndex = 958802;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Concern";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Transfer Date";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Transfer No.";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Source";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Destination";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Total Products";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Created by";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 200;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Status";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.grdStockTransfer.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdStockTransfer.RowTemplate.Height = 25;
+            this.grdStockTransfer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.grdStockTransfer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdStockTransfer.ShowRowErrors = false;
+            this.grdStockTransfer.Size = new System.Drawing.Size(1339, 510);
+            this.grdStockTransfer.TabIndex = 958802;
             // 
             // grbFilterBy
             // 
-            this.grbFilterBy.Controls.Add(this.cmbDestination);
+            this.grbFilterBy.Controls.Add(this.lblDLocation);
+            this.grbFilterBy.Controls.Add(this.lblSLocation);
+            this.grbFilterBy.Controls.Add(this.txtDLocation);
+            this.grbFilterBy.Controls.Add(this.txtSLocation);
             this.grbFilterBy.Controls.Add(this.label2);
-            this.grbFilterBy.Controls.Add(this.cmbSource);
             this.grbFilterBy.Controls.Add(this.label1);
             this.grbFilterBy.Controls.Add(this.cmbConcern);
             this.grbFilterBy.Controls.Add(this.label12);
@@ -321,7 +256,7 @@
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Size = new System.Drawing.Size(1339, 67);
-            this.grbFilterBy.TabIndex = 958801;
+            this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By";
             // 
@@ -339,7 +274,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(478, 26);
+            this.label1.Location = new System.Drawing.Point(477, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 20);
             this.label1.TabIndex = 1111188;
@@ -347,19 +282,22 @@
             // 
             // cmbConcern
             // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(82, 23);
+            this.cmbConcern.Location = new System.Drawing.Point(66, 23);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(121, 27);
-            this.cmbConcern.TabIndex = 1111185;
+            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(26, 26);
+            this.label12.Location = new System.Drawing.Point(6, 26);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 20);
             this.label12.TabIndex = 1111186;
@@ -370,25 +308,35 @@
             this.txtProductNamePICode.Location = new System.Drawing.Point(970, 23);
             this.txtProductNamePICode.Name = "txtProductNamePICode";
             this.txtProductNamePICode.Size = new System.Drawing.Size(281, 27);
-            this.txtProductNamePICode.TabIndex = 958822;
+            this.txtProductNamePICode.TabIndex = 5;
+            this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
+            this.txtProductNamePICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductNamePICode_KeyDown);
+            this.txtProductNamePICode.Leave += new System.EventHandler(this.TxtProductNamePICode_Leave);
             // 
             // dpTransferToDate
             // 
             this.dpTransferToDate.CustomFormat = "dd/MM/yyyy";
             this.dpTransferToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTransferToDate.Location = new System.Drawing.Point(383, 23);
+            this.dpTransferToDate.Location = new System.Drawing.Point(379, 23);
             this.dpTransferToDate.Name = "dpTransferToDate";
             this.dpTransferToDate.Size = new System.Drawing.Size(92, 27);
-            this.dpTransferToDate.TabIndex = 958821;
+            this.dpTransferToDate.TabIndex = 2;
+            this.dpTransferToDate.Enter += new System.EventHandler(this.DpTransferToDate_Enter);
+            this.dpTransferToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpTransferToDate_KeyDown);
+            this.dpTransferToDate.Leave += new System.EventHandler(this.DpTransferToDate_Leave);
             // 
             // dpTrannsferFromDate
             // 
             this.dpTrannsferFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpTrannsferFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTrannsferFromDate.Location = new System.Drawing.Point(289, 23);
+            this.dpTrannsferFromDate.Location = new System.Drawing.Point(281, 23);
             this.dpTrannsferFromDate.Name = "dpTrannsferFromDate";
             this.dpTrannsferFromDate.Size = new System.Drawing.Size(92, 27);
-            this.dpTrannsferFromDate.TabIndex = 958820;
+            this.dpTrannsferFromDate.TabIndex = 1;
+            this.dpTrannsferFromDate.ValueChanged += new System.EventHandler(this.DpTrannsferFromDate_ValueChanged);
+            this.dpTrannsferFromDate.Enter += new System.EventHandler(this.DpTrannsferFromDate_Enter);
+            this.dpTrannsferFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpTrannsferFromDate_KeyDown);
+            this.dpTrannsferFromDate.Leave += new System.EventHandler(this.DpTrannsferFromDate_Leave);
             // 
             // lblProductNamePICode
             // 
@@ -402,7 +350,7 @@
             // lblTransferFromDate
             // 
             this.lblTransferFromDate.AutoSize = true;
-            this.lblTransferFromDate.Location = new System.Drawing.Point(205, 26);
+            this.lblTransferFromDate.Location = new System.Drawing.Point(193, 26);
             this.lblTransferFromDate.Name = "lblTransferFromDate";
             this.lblTransferFromDate.Size = new System.Drawing.Size(82, 20);
             this.lblTransferFromDate.TabIndex = 958816;
@@ -415,10 +363,13 @@
             this.btnView.Location = new System.Drawing.Point(1254, 22);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 4;
+            this.btnView.TabIndex = 6;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // DGV_SearchGrid
             // 
@@ -437,16 +388,6 @@
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmdsno,
-            this.Column3,
-            this.clmdtransferdate,
-            this.clmTransferNo,
-            this.clmsource,
-            this.clmdestination,
-            this.clmdsalename,
-            this.clmTotalQty,
-            this.Column5});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -470,56 +411,6 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1339, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Concern";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // clmdtransferdate
-            // 
-            this.clmdtransferdate.HeaderText = "Transfer Date";
-            this.clmdtransferdate.Name = "clmdtransferdate";
-            // 
-            // clmTransferNo
-            // 
-            this.clmTransferNo.HeaderText = "Transfer No.";
-            this.clmTransferNo.Name = "clmTransferNo";
-            // 
-            // clmsource
-            // 
-            this.clmsource.HeaderText = "Source";
-            this.clmsource.Name = "clmsource";
-            this.clmsource.Width = 150;
-            // 
-            // clmdestination
-            // 
-            this.clmdestination.HeaderText = "Destination";
-            this.clmdestination.Name = "clmdestination";
-            this.clmdestination.Width = 150;
-            // 
-            // clmdsalename
-            // 
-            this.clmdsalename.HeaderText = "Total Products";
-            this.clmdsalename.Name = "clmdsalename";
-            // 
-            // clmTotalQty
-            // 
-            this.clmTotalQty.HeaderText = "Created By";
-            this.clmTotalQty.Name = "clmTotalQty";
-            this.clmTotalQty.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Status";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -534,25 +425,111 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // cmbDestination
+            // txtSLocation
             // 
-            this.cmbDestination.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDestination.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDestination.FormattingEnabled = true;
-            this.cmbDestination.Location = new System.Drawing.Point(714, 23);
-            this.cmbDestination.Name = "cmbDestination";
-            this.cmbDestination.Size = new System.Drawing.Size(121, 27);
-            this.cmbDestination.TabIndex = 1111189;
+            this.txtSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSLocation.Location = new System.Drawing.Point(529, 23);
+            this.txtSLocation.MaxLength = 100;
+            this.txtSLocation.Name = "txtSLocation";
+            this.txtSLocation.Size = new System.Drawing.Size(111, 27);
+            this.txtSLocation.TabIndex = 958824;
+            this.txtSLocation.TextChanged += new System.EventHandler(this.TxtSLocation_TextChanged);
+            this.txtSLocation.Enter += new System.EventHandler(this.TxtSLocation_Enter);
+            this.txtSLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSLocation_KeyDown);
+            this.txtSLocation.Leave += new System.EventHandler(this.TxtSLocation_Leave);
             // 
-            // cmbSource
+            // txtDLocation
             // 
-            this.cmbSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSource.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSource.FormattingEnabled = true;
-            this.cmbSource.Location = new System.Drawing.Point(522, 23);
-            this.cmbSource.Name = "cmbSource";
-            this.cmbSource.Size = new System.Drawing.Size(121, 27);
-            this.cmbSource.TabIndex = 1111187;
+            this.txtDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDLocation.Location = new System.Drawing.Point(723, 23);
+            this.txtDLocation.MaxLength = 100;
+            this.txtDLocation.Name = "txtDLocation";
+            this.txtDLocation.Size = new System.Drawing.Size(111, 27);
+            this.txtDLocation.TabIndex = 1111191;
+            this.txtDLocation.TextChanged += new System.EventHandler(this.TxtDLocation_TextChanged);
+            this.txtDLocation.Enter += new System.EventHandler(this.TxtDLocation_Enter);
+            this.txtDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDLocation_KeyDown);
+            this.txtDLocation.Leave += new System.EventHandler(this.TxtDLocation_Leave);
+            // 
+            // lvSLocation
+            // 
+            this.lvSLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24});
+            this.lvSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvSLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSLocation.HideSelection = false;
+            this.lvSLocation.Location = new System.Drawing.Point(532, 52);
+            this.lvSLocation.Name = "lvSLocation";
+            this.lvSLocation.Size = new System.Drawing.Size(252, 115);
+            this.lvSLocation.TabIndex = 111111132;
+            this.lvSLocation.UseCompatibleStateImageBehavior = false;
+            this.lvSLocation.View = System.Windows.Forms.View.Details;
+            this.lvSLocation.Visible = false;
+            this.lvSLocation.DoubleClick += new System.EventHandler(this.LvSLocation_DoubleClick);
+            this.lvSLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSLocation_KeyDown);
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 180;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 120;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
+            // 
+            // lvDLocation
+            // 
+            this.lvDLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader28,
+            this.columnHeader29,
+            this.columnHeader30});
+            this.lvDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvDLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvDLocation.HideSelection = false;
+            this.lvDLocation.Location = new System.Drawing.Point(726, 52);
+            this.lvDLocation.Name = "lvDLocation";
+            this.lvDLocation.Size = new System.Drawing.Size(252, 115);
+            this.lvDLocation.TabIndex = 111111141;
+            this.lvDLocation.UseCompatibleStateImageBehavior = false;
+            this.lvDLocation.View = System.Windows.Forms.View.Details;
+            this.lvDLocation.Visible = false;
+            this.lvDLocation.DoubleClick += new System.EventHandler(this.LvDLocation_DoubleClick);
+            this.lvDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvDLocation_KeyDown);
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Width = 180;
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Width = 120;
+            // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Width = 0;
+            // 
+            // lblSLocation
+            // 
+            this.lblSLocation.AutoSize = true;
+            this.lblSLocation.Location = new System.Drawing.Point(482, 6);
+            this.lblSLocation.Name = "lblSLocation";
+            this.lblSLocation.Size = new System.Drawing.Size(0, 20);
+            this.lblSLocation.TabIndex = 1111192;
+            this.lblSLocation.Visible = false;
+            // 
+            // lblDLocation
+            // 
+            this.lblDLocation.AutoSize = true;
+            this.lblDLocation.Location = new System.Drawing.Point(646, 6);
+            this.lblDLocation.Name = "lblDLocation";
+            this.lblDLocation.Size = new System.Drawing.Size(0, 20);
+            this.lblDLocation.TabIndex = 1111193;
+            this.lblDLocation.Visible = false;
             // 
             // INV_StockTransferList
             // 
@@ -569,12 +546,13 @@
             this.Name = "INV_StockTransferList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Supplier List";
+            this.Load += new System.EventHandler(this.INV_StockTransferList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_StockTransferList_KeyDown);
             this.tsStockTransferList.ResumeLayout(false);
             this.tsStockTransferList.PerformLayout();
             this.pnlStockTransferList.ResumeLayout(false);
             this.pnlStockTransferList.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransferList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStockTransfer)).EndInit();
             this.grbFilterBy.ResumeLayout(false);
             this.grbFilterBy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
@@ -603,32 +581,24 @@
         private System.Windows.Forms.Label lblProductNamePICode;
         private System.Windows.Forms.DateTimePicker dpTransferToDate;
         private System.Windows.Forms.DateTimePicker dpTrannsferFromDate;
-        public System.Windows.Forms.DataGridView dgvStockTransferList;
+        public System.Windows.Forms.DataGridView grdStockTransfer;
         private System.Windows.Forms.TextBox txtProductNamePICode;
         private System.Windows.Forms.ListView lvProductNamePICode;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdtransferdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTransferNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdestination;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsalename;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbDestination;
-        private System.Windows.Forms.ComboBox cmbSource;
+        private System.Windows.Forms.TextBox txtSLocation;
+        private System.Windows.Forms.TextBox txtDLocation;
+        public System.Windows.Forms.ListView lvSLocation;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        public System.Windows.Forms.ListView lvDLocation;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.ColumnHeader columnHeader30;
+        private System.Windows.Forms.Label lblDLocation;
+        private System.Windows.Forms.Label lblSLocation;
     }
 }

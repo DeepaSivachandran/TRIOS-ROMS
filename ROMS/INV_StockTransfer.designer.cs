@@ -39,6 +39,7 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grpStockTransfer = new System.Windows.Forms.GroupBox();
+            this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lvProduct = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -110,7 +111,6 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
-            this.txttotalitem = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -176,6 +176,15 @@
             this.grpStockTransfer.Size = new System.Drawing.Size(1343, 632);
             this.grpStockTransfer.TabIndex = 0;
             this.grpStockTransfer.TabStop = false;
+            // 
+            // txttotalitem
+            // 
+            this.txttotalitem.Enabled = false;
+            this.txttotalitem.Location = new System.Drawing.Point(1103, 590);
+            this.txttotalitem.Name = "txttotalitem";
+            this.txttotalitem.ReadOnly = true;
+            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
+            this.txttotalitem.TabIndex = 111111143;
             // 
             // lvProduct
             // 
@@ -626,6 +635,10 @@
             this.dpTrannsferDate.Name = "dpTrannsferDate";
             this.dpTrannsferDate.Size = new System.Drawing.Size(122, 28);
             this.dpTrannsferDate.TabIndex = 1;
+            this.dpTrannsferDate.ValueChanged += new System.EventHandler(this.DpTrannsferDate_ValueChanged);
+            this.dpTrannsferDate.Enter += new System.EventHandler(this.DpTrannsferDate_Enter);
+            this.dpTrannsferDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpTrannsferDate_KeyDown);
+            this.dpTrannsferDate.Leave += new System.EventHandler(this.DpTrannsferDate_Leave);
             // 
             // grbDStockTransfer
             // 
@@ -807,15 +820,6 @@
             this.lblProductNamePICode.Size = new System.Drawing.Size(134, 20);
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Product Name/P.I Code";
-            // 
-            // txttotalitem
-            // 
-            this.txttotalitem.Enabled = false;
-            this.txttotalitem.Location = new System.Drawing.Point(1103, 590);
-            this.txttotalitem.Name = "txttotalitem";
-            this.txttotalitem.ReadOnly = true;
-            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
-            this.txttotalitem.TabIndex = 111111143;
             // 
             // INV_StockTransfer
             // 
