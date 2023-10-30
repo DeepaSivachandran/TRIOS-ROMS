@@ -169,6 +169,11 @@ namespace ROMS
                     txtTAT.Enabled = false;
                     this.ActiveControl = txtIssuedBY;
                 }
+                if (varsts == 9)
+                { 
+                    gpissued.Enabled = false;
+                    btnSave.Enabled = false; 
+                }
                 //DateTime varmindate = DateTime.ParseExact(txtPODate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 //dpissuedateandtime.MinDate = varmindate;
                 //dpissuedateandtime.MaxDate = DateTime.Today;
@@ -228,10 +233,16 @@ namespace ROMS
                             {
                                 cmbIssueMode.SelectedValue = -1;
                             }
-
-                            DateTime varmindate = DateTime.ParseExact(txtPODate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                            dpissuedateandtime.MinDate = varmindate;
-                            dpissuedateandtime.MaxDate = DateTime.Today;
+                            SPDataService objDServ = new SPDataService();
+                            DataSet objd = new DataSet();
+                            objd = objDServ.udfnMaster(4, 6,varPOID);
+                            if (objd.Tables[0].Rows.Count != 0)
+                            { 
+                                DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                DateTime varmaxdate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                dpissuedateandtime.MinDate = varmindate;
+                                dpissuedateandtime.MaxDate = varmaxdate;
+                            }
                         } 
                     }
                 }

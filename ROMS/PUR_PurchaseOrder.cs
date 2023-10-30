@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tppono = new ToolTip();
         private ToolTip tpsts = new ToolTip();
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
-            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate="0";
+            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate="0",varpendingPOID="0";
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
@@ -50,7 +50,15 @@ namespace ROMS
                 }
                 else
                 {
-                    btnSave.Enabled = false;
+                    if (VarStatusId == 9)
+                    {
+                        btnSave.Enabled = false;
+                        cmbStatus.Enabled = false;
+                    }
+                    else
+                    {
+                        btnSave.Enabled = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -876,6 +884,9 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_POProducts = new PUR_POProducts();
+                MainForm.objPUR_POProducts.pbPoid = varpendingPOID;
+                MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
+                MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
                 MainForm.objPUR_POProducts.ShowDialog();
             }
             catch (Exception ex)
@@ -1130,7 +1141,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2159,6 +2170,7 @@ namespace ROMS
         {
             try
             {
+                pbSupplierpend = 0;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text != "0")
@@ -2171,7 +2183,7 @@ namespace ROMS
                 }
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0,varPOID);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2256,14 +2268,17 @@ namespace ROMS
                         }
                         if (objDs.Tables[5].Rows.Count > 0)
                         {
+                            varpendingPOID = "0";
                             grdPendingorder.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[5].Rows.Count; i++)
                             {
                                 lblFinishedNoRecord.Visible = false;
                                 grdPendingorder.Rows.Add(objDs.Tables[5].Rows[i]["SINO"].ToString(), objDs.Tables[5].Rows[i]["PO_No"].ToString(),
-                                objDs.Tables[5].Rows[i]["PO_Date"].ToString(), objDs.Tables[5].Rows[i]["QTY"].ToString(), objDs.Tables[5].Rows[i]["PO_Final_STSID"].ToString());
+                                objDs.Tables[5].Rows[i]["PO_Date"].ToString(), objDs.Tables[5].Rows[i]["QTY"].ToString(), objDs.Tables[5].Rows[i]["PO_Final_STSID"].ToString()
+                                );
                                 pbSupplierpend = 1;
                             }
+                            varpendingPOID = objDs.Tables[5].Rows[0]["POID"].ToString();
                         }
                         else
                         {
@@ -2292,7 +2307,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(17, 0, Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(17, 0, Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2325,7 +2340,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(18, Convert.ToInt32(lblSupplierCode.Text), 0, 0, 0, "", 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(18, Convert.ToInt32(lblSupplierCode.Text), 0, 0, 0, "", 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

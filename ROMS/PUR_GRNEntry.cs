@@ -19,7 +19,7 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbrandcode;
+        public string varbrandcode, varpendingPOID="0", pbSupplierpend="0";
         public string pbFormStatus;
         public int varCloseFlag = 0;
         public PUR_GRNEntry()
@@ -69,13 +69,9 @@ namespace ROMS
         private void PUR_GRNEntry_Load(object sender, EventArgs e)
         {
             try
-            {
-
+            { 
                 udfnDropdownLoad();
-                udfnUnitListGrid();
-                grdPODetails.Rows.Add(1,"07/08/2023","10");
-
-
+                udfnUnitListGrid();  
                 //grdUnitList.Rows.Add("Bag","");
                 //grdUnitList.Rows.Add("Tin","");
                 //grdUnitList.Rows.Add("Box","");
@@ -366,7 +362,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -607,7 +603,7 @@ namespace ROMS
                 DataSet objDs = new DataSet(); 
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -639,6 +635,26 @@ namespace ROMS
                                 grdRepDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                         }
+
+                        if (objDs.Tables[5].Rows.Count > 0)
+                        {
+                            varpendingPOID = "0";
+                            grdPODetails.Rows.Clear();
+                            for (int i = 0; i < objDs.Tables[5].Rows.Count; i++)
+                            {
+                                lblFinishedNoRecord.Visible = false;
+                                grdPODetails.Rows.Add(objDs.Tables[5].Rows[i]["SINO"].ToString(), objDs.Tables[5].Rows[i]["PO_No"].ToString(),
+                                objDs.Tables[5].Rows[i]["PO_Date"].ToString(), objDs.Tables[5].Rows[i]["QTY"].ToString(), objDs.Tables[5].Rows[i]["PO_Final_STSID"].ToString()
+                                );
+                                pbSupplierpend = "1";
+                            }
+                            varpendingPOID = objDs.Tables[5].Rows[0]["POID"].ToString();
+                        }
+                        else
+                        {
+                            lblFinishedNoRecord.Visible = true;
+                            grdPODetails.Rows.Clear();
+                        }
                     }
                 }
             }
@@ -648,22 +664,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             } 
         }
-
-        private void PUR_GRNEntry_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                //if (varCloseFlag == 0)
-                //{
-                //    udfnclose();
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void CmbOrderType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -709,6 +710,9 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_POProducts = new PUR_POProducts();
+                MainForm.objPUR_POProducts.pbPoid = varpendingPOID;
+                MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
+                MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
                 MainForm.objPUR_POProducts.ShowDialog();
             }
             catch (Exception ex)

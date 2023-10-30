@@ -106,7 +106,7 @@ namespace ROMS
             return udfn;
         }
         // Sivabharathi    Create date: 20/09/2023    Description:	Master list Sp
-        public DataSet udfnMaster(int ViewType, int paraID)
+        public DataSet udfnMaster(int ViewType, int paraID,int paraPOID)
         {
             DataSet ds = new DataSet();
             try
@@ -118,6 +118,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraID", paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraPOID", paraPOID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1488,7 +1489,7 @@ namespace ROMS
             }
             return result;
         }
-        public DataSet udfnSupplierList(int ViewType, int paraSupplierid, int paraSupplierScheduleid, int pardayid, int paraOrderId, string @paraSupplierName, int paraordertype, int paraStatusId, int paraCompanycode)
+        public DataSet udfnSupplierList(int ViewType, int paraSupplierid, int paraSupplierScheduleid, int pardayid, int paraOrderId, string @paraSupplierName, int paraordertype, int paraStatusId, int paraCompanycode,int ParaPOID)
         {
             DataSet ds = new DataSet();
             try
@@ -1507,6 +1508,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraordertype", paraordertype);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanycode", paraCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@ParaPOID", ParaPOID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

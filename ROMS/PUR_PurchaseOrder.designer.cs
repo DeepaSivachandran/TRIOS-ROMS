@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseOrder));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -38,7 +37,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -49,12 +47,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseOrder));
             this.tsPOList = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseorder = new System.Windows.Forms.Panel();
             this.grppurchaseorder = new System.Windows.Forms.GroupBox();
             this.txtUnit = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lvproduct = new System.Windows.Forms.ListView();
@@ -74,12 +72,9 @@
             this.lblSuppliername = new System.Windows.Forms.Label();
             this.lblsupplierGST = new System.Windows.Forms.Label();
             this.lblsupplierpayment = new System.Windows.Forms.Label();
-            this.btnDamage = new System.Windows.Forms.Button();
             this.tbSupplierDetails = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnSalesmanUndo = new System.Windows.Forms.Button();
             this.txtSalesManMobile = new System.Windows.Forms.TextBox();
-            this.btnSalesmanSave = new System.Windows.Forms.Button();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.txtSalesManwhatsapp = new System.Windows.Forms.TextBox();
             this.txtSalesManName = new System.Windows.Forms.TextBox();
@@ -88,8 +83,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.grdRepDetails = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnReturnUndo = new System.Windows.Forms.Button();
-            this.btnReturnSave = new System.Windows.Forms.Button();
             this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
             this.txtNextLevel = new System.Windows.Forms.TextBox();
             this.cmbPolicyContent = new System.Windows.Forms.ComboBox();
@@ -98,11 +91,8 @@
             this.txtDReturnCycle = new System.Windows.Forms.TextBox();
             this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.btnClear = new System.Windows.Forms.Button();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.btnViewedProduct = new System.Windows.Forms.Button();
-            this.btnNewUnit = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblPC = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -114,7 +104,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
-            this.btnDC = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblGodown = new System.Windows.Forms.Label();
             this.gpissued = new System.Windows.Forms.GroupBox();
@@ -129,12 +118,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtDTamilName = new System.Windows.Forms.TextBox();
             this.dpissuedateandtime = new System.Windows.Forms.DateTimePicker();
-            this.btnSave = new System.Windows.Forms.Button();
             this.txtpono = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.lblRemark = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -151,16 +138,10 @@
             this.lblFinishedNoRecord = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.grdPendingorder = new System.Windows.Forms.DataGridView();
-            this.clmpsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grdsupplieradd = new System.Windows.Forms.DataGridView();
-            this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -174,7 +155,28 @@
             this.clmOrderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmpsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.poid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDamage = new System.Windows.Forms.Button();
+            this.btnSalesmanUndo = new System.Windows.Forms.Button();
+            this.btnSalesmanSave = new System.Windows.Forms.Button();
+            this.btnReturnUndo = new System.Windows.Forms.Button();
+            this.btnReturnSave = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnViewedProduct = new System.Windows.Forms.Button();
+            this.btnNewUnit = new System.Windows.Forms.Label();
+            this.btnDC = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
             this.grppurchaseorder.SuspendLayout();
@@ -205,16 +207,6 @@
             this.tsPOList.Size = new System.Drawing.Size(1354, 25);
             this.tsPOList.TabIndex = 35;
             this.tsPOList.Text = "Purchase Order";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(109, 22);
-            this.tspHeader.Text = "Purchase Order";
             // 
             // pnlpurchaseorder
             // 
@@ -287,21 +279,6 @@
             this.txtUnit.ReadOnly = true;
             this.txtUnit.Size = new System.Drawing.Size(58, 27);
             this.txtUnit.TabIndex = 1111211;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(844, 117);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 22);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
             // lblschedule
             // 
@@ -488,20 +465,6 @@
             this.lblsupplierpayment.TabIndex = 1111202;
             this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnDamage
-            // 
-            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
-            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDamage.Location = new System.Drawing.Point(145, 595);
-            this.btnDamage.Name = "btnDamage";
-            this.btnDamage.Size = new System.Drawing.Size(80, 29);
-            this.btnDamage.TabIndex = 1111199;
-            this.btnDamage.Text = "Damages";
-            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDamage.UseVisualStyleBackColor = true;
-            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
-            // 
             // tbSupplierDetails
             // 
             this.tbSupplierDetails.Controls.Add(this.tabPage1);
@@ -532,20 +495,6 @@
             this.tabPage1.Text = "Salesman Details";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btnSalesmanUndo
-            // 
-            this.btnSalesmanUndo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSalesmanUndo.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnSalesmanUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnSalesmanUndo.Image")));
-            this.btnSalesmanUndo.Location = new System.Drawing.Point(256, 47);
-            this.btnSalesmanUndo.Name = "btnSalesmanUndo";
-            this.btnSalesmanUndo.Size = new System.Drawing.Size(24, 25);
-            this.btnSalesmanUndo.TabIndex = 1111198;
-            this.btnSalesmanUndo.UseVisualStyleBackColor = false;
-            this.btnSalesmanUndo.Click += new System.EventHandler(this.BtnSalesmanUndo_Click);
-            this.btnSalesmanUndo.Enter += new System.EventHandler(this.BtnSalesmanUndo_Enter);
-            this.btnSalesmanUndo.Leave += new System.EventHandler(this.BtnSalesmanUndo_Leave);
-            // 
             // txtSalesManMobile
             // 
             this.txtSalesManMobile.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -558,20 +507,6 @@
             this.txtSalesManMobile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesManMobile_KeyDown);
             this.txtSalesManMobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSalesManMobile_KeyPress);
             this.txtSalesManMobile.Leave += new System.EventHandler(this.TxtSalesManMobile_Leave);
-            // 
-            // btnSalesmanSave
-            // 
-            this.btnSalesmanSave.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSalesmanSave.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnSalesmanSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSalesmanSave.Image")));
-            this.btnSalesmanSave.Location = new System.Drawing.Point(229, 47);
-            this.btnSalesmanSave.Name = "btnSalesmanSave";
-            this.btnSalesmanSave.Size = new System.Drawing.Size(24, 25);
-            this.btnSalesmanSave.TabIndex = 1111197;
-            this.btnSalesmanSave.UseVisualStyleBackColor = false;
-            this.btnSalesmanSave.Click += new System.EventHandler(this.BtnSalesmanSave_Click);
-            this.btnSalesmanSave.Enter += new System.EventHandler(this.BtnSalesmanSave_Enter);
-            this.btnSalesmanSave.Leave += new System.EventHandler(this.BtnSalesmanSave_Leave);
             // 
             // textBox18
             // 
@@ -663,7 +598,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdRepDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdRepDetails.ColumnHeadersHeight = 25;
+            this.grdRepDetails.ColumnHeadersHeight = 18;
             this.grdRepDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdRepDetails.EnableHeadersVisualStyles = false;
             this.grdRepDetails.GridColor = System.Drawing.Color.White;
@@ -671,10 +606,11 @@
             this.grdRepDetails.Name = "grdRepDetails";
             this.grdRepDetails.ReadOnly = true;
             this.grdRepDetails.RowHeadersVisible = false;
+            this.grdRepDetails.RowHeadersWidth = 38;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdRepDetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.grdRepDetails.RowTemplate.Height = 25;
+            this.grdRepDetails.RowTemplate.Height = 16;
             this.grdRepDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRepDetails.Size = new System.Drawing.Size(557, 69);
             this.grdRepDetails.TabIndex = 1111161;
@@ -698,30 +634,6 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Return Cycle";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btnReturnUndo
-            // 
-            this.btnReturnUndo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnReturnUndo.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnReturnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnUndo.Image")));
-            this.btnReturnUndo.Location = new System.Drawing.Point(231, 51);
-            this.btnReturnUndo.Name = "btnReturnUndo";
-            this.btnReturnUndo.Size = new System.Drawing.Size(24, 23);
-            this.btnReturnUndo.TabIndex = 1111200;
-            this.btnReturnUndo.UseVisualStyleBackColor = false;
-            this.btnReturnUndo.Click += new System.EventHandler(this.BtnReturnUndo_Click);
-            // 
-            // btnReturnSave
-            // 
-            this.btnReturnSave.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnReturnSave.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnReturnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnSave.Image")));
-            this.btnReturnSave.Location = new System.Drawing.Point(204, 51);
-            this.btnReturnSave.Name = "btnReturnSave";
-            this.btnReturnSave.Size = new System.Drawing.Size(24, 23);
-            this.btnReturnSave.TabIndex = 1111199;
-            this.btnReturnSave.UseVisualStyleBackColor = false;
-            this.btnReturnSave.Click += new System.EventHandler(this.BtnReturnSave_Click);
             // 
             // cmbSecondLevel
             // 
@@ -825,20 +737,6 @@
             this.textBox20.TabIndex = 82;
             this.textBox20.Text = "Returns Applicable";
             // 
-            // btnClear
-            // 
-            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1264, 115);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(69, 29);
-            this.btnClear.TabIndex = 9;
-            this.btnClear.Text = "Clear";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
             // cmbStatus
             // 
             this.cmbStatus.Enabled = false;
@@ -863,39 +761,6 @@
             this.label17.Size = new System.Drawing.Size(45, 20);
             this.label17.TabIndex = 1111195;
             this.label17.Text = "Status";
-            // 
-            // btnViewedProduct
-            // 
-            this.btnViewedProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnViewedProduct.Image = global::ROMS.Properties.Resources.view;
-            this.btnViewedProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewedProduct.Location = new System.Drawing.Point(875, 114);
-            this.btnViewedProduct.Name = "btnViewedProduct";
-            this.btnViewedProduct.Size = new System.Drawing.Size(166, 29);
-            this.btnViewedProduct.TabIndex = 8;
-            this.btnViewedProduct.Text = "View Mapped Products";
-            this.btnViewedProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewedProduct.UseVisualStyleBackColor = true;
-            this.btnViewedProduct.Click += new System.EventHandler(this.BtnViewedProduct_Click);
-            this.btnViewedProduct.Enter += new System.EventHandler(this.BtnViewedProduct_Enter);
-            this.btnViewedProduct.Leave += new System.EventHandler(this.BtnViewedProduct_Leave);
-            // 
-            // btnNewUnit
-            // 
-            this.btnNewUnit.BackColor = System.Drawing.SystemColors.Control;
-            this.btnNewUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.btnNewUnit.Image = global::ROMS.Properties.Resources.New;
-            this.btnNewUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNewUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewUnit.Location = new System.Drawing.Point(724, 117);
-            this.btnNewUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnNewUnit.Name = "btnNewUnit";
-            this.btnNewUnit.Size = new System.Drawing.Size(112, 22);
-            this.btnNewUnit.TabIndex = 6;
-            this.btnNewUnit.Text = "        New Bulk Unit";
-            this.btnNewUnit.Click += new System.EventHandler(this.BtnNewUnit_Click);
-            this.btnNewUnit.Enter += new System.EventHandler(this.BtnNewUnit_Enter);
-            this.btnNewUnit.Leave += new System.EventHandler(this.BtnNewUnit_Leave);
             // 
             // label11
             // 
@@ -1013,20 +878,6 @@
             this.dpPlanDate.Enter += new System.EventHandler(this.DpPlanDate_Enter);
             this.dpPlanDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpPlanDate_KeyDown);
             this.dpPlanDate.Leave += new System.EventHandler(this.DpPlanDate_Leave);
-            // 
-            // btnDC
-            // 
-            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
-            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDC.Location = new System.Drawing.Point(7, 595);
-            this.btnDC.Name = "btnDC";
-            this.btnDC.Size = new System.Drawing.Size(132, 29);
-            this.btnDC.TabIndex = 1111180;
-            this.btnDC.Text = "Purchase Return";
-            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDC.UseVisualStyleBackColor = true;
-            this.btnDC.Click += new System.EventHandler(this.btnDC_Click);
             // 
             // cmbConcern
             // 
@@ -1200,20 +1051,6 @@
             this.dpissuedateandtime.Size = new System.Drawing.Size(177, 27);
             this.dpissuedateandtime.TabIndex = 0;
             // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1156, 594);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 13;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
             // txtpono
             // 
             this.txtpono.Enabled = false;
@@ -1255,20 +1092,6 @@
             this.lblRemark.Size = new System.Drawing.Size(56, 20);
             this.lblRemark.TabIndex = 1111166;
             this.lblRemark.Text = "Remarks";
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1245, 594);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 14;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // txtSupplier
             // 
@@ -1483,7 +1306,8 @@
             this.clmpono,
             this.clmdate,
             this.clmtotalitem,
-            this.PLID});
+            this.PLID,
+            this.poid});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1507,41 +1331,6 @@
             this.grdPendingorder.TabIndex = 1111159;
             this.grdPendingorder.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPendingorder_DataBindingComplete);
             this.grdPendingorder.DoubleClick += new System.EventHandler(this.GrdPendingorder_DoubleClick);
-            // 
-            // clmpsno
-            // 
-            this.clmpsno.HeaderText = "S.No.";
-            this.clmpsno.Name = "clmpsno";
-            this.clmpsno.ReadOnly = true;
-            this.clmpsno.Width = 40;
-            // 
-            // clmpono
-            // 
-            this.clmpono.HeaderText = "PO No.";
-            this.clmpono.Name = "clmpono";
-            this.clmpono.ReadOnly = true;
-            // 
-            // clmdate
-            // 
-            this.clmdate.HeaderText = "PO Date";
-            this.clmdate.Name = "clmdate";
-            this.clmdate.ReadOnly = true;
-            // 
-            // clmtotalitem
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmtotalitem.DefaultCellStyle = dataGridViewCellStyle7;
-            this.clmtotalitem.HeaderText = "Total Products";
-            this.clmtotalitem.Name = "clmtotalitem";
-            this.clmtotalitem.ReadOnly = true;
-            this.clmtotalitem.Width = 90;
-            // 
-            // PLID
-            // 
-            this.PLID.HeaderText = "PLID";
-            this.PLID.Name = "PLID";
-            this.PLID.ReadOnly = true;
-            this.PLID.Visible = false;
             // 
             // label6
             // 
@@ -1626,10 +1415,6 @@
             this.grdsupplieradd.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grdsupplieradd_EditingControlShowing);
             this.grdsupplieradd.DoubleClick += new System.EventHandler(this.grdBrandList_DoubleClick);
             this.grdsupplieradd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdBrandList_KeyDown);
-            // 
-            // errPO
-            // 
-            this.errPO.ContainerControl = this;
             // 
             // clmsno
             // 
@@ -1736,6 +1521,230 @@
             this.clmflag.Name = "clmflag";
             this.clmflag.Visible = false;
             // 
+            // errPO
+            // 
+            this.errPO.ContainerControl = this;
+            // 
+            // clmpsno
+            // 
+            this.clmpsno.HeaderText = "S.No.";
+            this.clmpsno.Name = "clmpsno";
+            this.clmpsno.ReadOnly = true;
+            this.clmpsno.Width = 40;
+            // 
+            // clmpono
+            // 
+            this.clmpono.HeaderText = "PO No.";
+            this.clmpono.Name = "clmpono";
+            this.clmpono.ReadOnly = true;
+            // 
+            // clmdate
+            // 
+            this.clmdate.HeaderText = "PO Date";
+            this.clmdate.Name = "clmdate";
+            this.clmdate.ReadOnly = true;
+            // 
+            // clmtotalitem
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmtotalitem.DefaultCellStyle = dataGridViewCellStyle7;
+            this.clmtotalitem.HeaderText = "Total Products";
+            this.clmtotalitem.Name = "clmtotalitem";
+            this.clmtotalitem.ReadOnly = true;
+            this.clmtotalitem.Width = 90;
+            // 
+            // PLID
+            // 
+            this.PLID.HeaderText = "PLID";
+            this.PLID.Name = "PLID";
+            this.PLID.ReadOnly = true;
+            this.PLID.Visible = false;
+            // 
+            // poid
+            // 
+            this.poid.HeaderText = "poid";
+            this.poid.Name = "poid";
+            this.poid.ReadOnly = true;
+            this.poid.Visible = false;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Remove";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.Width = 70;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(844, 117);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 22);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
+            // btnDamage
+            // 
+            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
+            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDamage.Location = new System.Drawing.Point(145, 595);
+            this.btnDamage.Name = "btnDamage";
+            this.btnDamage.Size = new System.Drawing.Size(80, 29);
+            this.btnDamage.TabIndex = 1111199;
+            this.btnDamage.Text = "Damages";
+            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDamage.UseVisualStyleBackColor = true;
+            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
+            // 
+            // btnSalesmanUndo
+            // 
+            this.btnSalesmanUndo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSalesmanUndo.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnSalesmanUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnSalesmanUndo.Image")));
+            this.btnSalesmanUndo.Location = new System.Drawing.Point(256, 47);
+            this.btnSalesmanUndo.Name = "btnSalesmanUndo";
+            this.btnSalesmanUndo.Size = new System.Drawing.Size(24, 25);
+            this.btnSalesmanUndo.TabIndex = 1111198;
+            this.btnSalesmanUndo.UseVisualStyleBackColor = false;
+            this.btnSalesmanUndo.Click += new System.EventHandler(this.BtnSalesmanUndo_Click);
+            this.btnSalesmanUndo.Enter += new System.EventHandler(this.BtnSalesmanUndo_Enter);
+            this.btnSalesmanUndo.Leave += new System.EventHandler(this.BtnSalesmanUndo_Leave);
+            // 
+            // btnSalesmanSave
+            // 
+            this.btnSalesmanSave.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSalesmanSave.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnSalesmanSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSalesmanSave.Image")));
+            this.btnSalesmanSave.Location = new System.Drawing.Point(229, 47);
+            this.btnSalesmanSave.Name = "btnSalesmanSave";
+            this.btnSalesmanSave.Size = new System.Drawing.Size(24, 25);
+            this.btnSalesmanSave.TabIndex = 1111197;
+            this.btnSalesmanSave.UseVisualStyleBackColor = false;
+            this.btnSalesmanSave.Click += new System.EventHandler(this.BtnSalesmanSave_Click);
+            this.btnSalesmanSave.Enter += new System.EventHandler(this.BtnSalesmanSave_Enter);
+            this.btnSalesmanSave.Leave += new System.EventHandler(this.BtnSalesmanSave_Leave);
+            // 
+            // btnReturnUndo
+            // 
+            this.btnReturnUndo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnReturnUndo.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnReturnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnUndo.Image")));
+            this.btnReturnUndo.Location = new System.Drawing.Point(231, 51);
+            this.btnReturnUndo.Name = "btnReturnUndo";
+            this.btnReturnUndo.Size = new System.Drawing.Size(24, 23);
+            this.btnReturnUndo.TabIndex = 1111200;
+            this.btnReturnUndo.UseVisualStyleBackColor = false;
+            this.btnReturnUndo.Click += new System.EventHandler(this.BtnReturnUndo_Click);
+            // 
+            // btnReturnSave
+            // 
+            this.btnReturnSave.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnReturnSave.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnReturnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnSave.Image")));
+            this.btnReturnSave.Location = new System.Drawing.Point(204, 51);
+            this.btnReturnSave.Name = "btnReturnSave";
+            this.btnReturnSave.Size = new System.Drawing.Size(24, 23);
+            this.btnReturnSave.TabIndex = 1111199;
+            this.btnReturnSave.UseVisualStyleBackColor = false;
+            this.btnReturnSave.Click += new System.EventHandler(this.BtnReturnSave_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(1264, 115);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(69, 29);
+            this.btnClear.TabIndex = 9;
+            this.btnClear.Text = "Clear";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // btnViewedProduct
+            // 
+            this.btnViewedProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnViewedProduct.Image = global::ROMS.Properties.Resources.view;
+            this.btnViewedProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewedProduct.Location = new System.Drawing.Point(875, 114);
+            this.btnViewedProduct.Name = "btnViewedProduct";
+            this.btnViewedProduct.Size = new System.Drawing.Size(166, 29);
+            this.btnViewedProduct.TabIndex = 8;
+            this.btnViewedProduct.Text = "View Mapped Products";
+            this.btnViewedProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnViewedProduct.UseVisualStyleBackColor = true;
+            this.btnViewedProduct.Click += new System.EventHandler(this.BtnViewedProduct_Click);
+            this.btnViewedProduct.Enter += new System.EventHandler(this.BtnViewedProduct_Enter);
+            this.btnViewedProduct.Leave += new System.EventHandler(this.BtnViewedProduct_Leave);
+            // 
+            // btnNewUnit
+            // 
+            this.btnNewUnit.BackColor = System.Drawing.SystemColors.Control;
+            this.btnNewUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnNewUnit.Image = global::ROMS.Properties.Resources.New;
+            this.btnNewUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNewUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNewUnit.Location = new System.Drawing.Point(724, 117);
+            this.btnNewUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnNewUnit.Name = "btnNewUnit";
+            this.btnNewUnit.Size = new System.Drawing.Size(112, 22);
+            this.btnNewUnit.TabIndex = 6;
+            this.btnNewUnit.Text = "        New Bulk Unit";
+            this.btnNewUnit.Click += new System.EventHandler(this.BtnNewUnit_Click);
+            this.btnNewUnit.Enter += new System.EventHandler(this.BtnNewUnit_Enter);
+            this.btnNewUnit.Leave += new System.EventHandler(this.BtnNewUnit_Leave);
+            // 
+            // btnDC
+            // 
+            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
+            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDC.Location = new System.Drawing.Point(7, 595);
+            this.btnDC.Name = "btnDC";
+            this.btnDC.Size = new System.Drawing.Size(132, 29);
+            this.btnDC.TabIndex = 1111180;
+            this.btnDC.Text = "Purchase Return";
+            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDC.UseVisualStyleBackColor = true;
+            this.btnDC.Click += new System.EventHandler(this.btnDC_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1156, 594);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1245, 594);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -1743,6 +1752,16 @@
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.Width = 70;
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(109, 22);
+            this.tspHeader.Text = "Purchase Order";
             // 
             // PUR_PurchaseOrder
             // 
@@ -1899,11 +1918,6 @@
         public System.Windows.Forms.TextBox txtRemark;
         public System.Windows.Forms.ComboBox cmbStatus;
         public System.Windows.Forms.TextBox txtUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
@@ -1918,5 +1932,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmflag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PLID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn poid;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }

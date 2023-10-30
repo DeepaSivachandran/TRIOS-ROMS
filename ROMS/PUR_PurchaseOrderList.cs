@@ -98,8 +98,7 @@ namespace ROMS
         private void GrdPurchaseorderlist_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-            {
-
+            { 
                 if (e.RowIndex != -1)
                 {
                     switch (grdPurchaseorderlist.Columns[e.ColumnIndex].Name)
@@ -158,7 +157,7 @@ namespace ROMS
                 }
             }
             DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Status", "STSID NOT IN (8,9) AND STS_ModuleID=4 OR STSID=0 ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+            objDataBind.BindComboBoxListSelected("DEF_Status", "STSID NOT IN (8,9) AND STS_ModuleID=4 OR STSID=0  OR STSID=9", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
             objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=44 AND MSTID IN (135,136)", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
             objDataBind = null;
             cmbShow.SelectedIndex = 0;
@@ -507,7 +506,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -796,6 +795,11 @@ namespace ROMS
         {
             try
             {
+                if (txtSupplier.Text == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedleCode.Text = "0";
+                } 
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -842,6 +846,10 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["po_stsid"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_Remarks"].Visible = false;
                             grdPurchaseorderlist.Columns["SPSC_OrderType"].Visible = false;
+                            grdPurchaseorderlist.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["Total Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["Turn Around Time"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
                         }
                         else
                         {
@@ -1269,6 +1277,11 @@ namespace ROMS
         {
             try
             {
+                if (txtSupplier.Text == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedleCode.Text = "0";
+                }
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -1302,9 +1315,10 @@ namespace ROMS
                             grdProDetails.DataSource = objDs.Tables[0];
                             grdProDetails.Columns["S.No."].Width = 50;
                             grdProDetails.Columns["P.I Code"].Width = 100;
-                            grdProDetails.Columns["Product"].Width = 250;
+                            grdProDetails.Columns["Product"].Width = 300;
                             grdProDetails.Columns["Unit"].Width = 80;
                             grdProDetails.Columns["Quantity"].Width = 80;
+                            grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight; 
                             if (cbSupplier.Checked == true)
                             {
                                 grdProDetails.Columns["Supplier"].Width = 300;
@@ -1698,10 +1712,8 @@ namespace ROMS
             {
 
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
-                    return;
-                //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
-                //    return;
-                if ((e.ColumnIndex == 0 || e.ColumnIndex == 1))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                    return; 
+                if ((e.ColumnIndex == 0  ))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     return;
 
                 if (e.Value != DBNull.Value && e.Value == "")  /*If value is null*/

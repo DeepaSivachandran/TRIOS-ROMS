@@ -1158,9 +1158,10 @@
             this.grdProDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grdProDetails.ColumnHeadersHeight = 30;
             this.grdProDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdProDetails.ColumnHeadersVisible = false;
             this.grdProDetails.EnableHeadersVisualStyles = false;
             this.grdProDetails.GridColor = System.Drawing.Color.White;
-            this.grdProDetails.Location = new System.Drawing.Point(3, 212);
+            this.grdProDetails.Location = new System.Drawing.Point(3, 214);
             this.grdProDetails.Name = "grdProDetails";
             this.grdProDetails.ReadOnly = true;
             this.grdProDetails.RowHeadersVisible = false;
@@ -1170,7 +1171,7 @@
             this.grdProDetails.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.grdProDetails.RowTemplate.Height = 25;
             this.grdProDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdProDetails.Size = new System.Drawing.Size(1348, 427);
+            this.grdProDetails.Size = new System.Drawing.Size(1348, 425);
             this.grdProDetails.TabIndex = 1111173;
             this.grdProDetails.Visible = false;
             // 
