@@ -59,11 +59,7 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -320,6 +316,7 @@ namespace ROMS
                                     lvSLocation.Columns[1].Width = 0;
                                     lvSLocation.Items.Add(objList);
                                 }
+                                lvSLocation.BringToFront();
                                 lvSLocation.Visible = true;
                             }
                             else
@@ -523,6 +520,7 @@ namespace ROMS
                                     lvDLocation.Columns[1].Width = 0;
                                     lvDLocation.Items.Add(objList);
                                 }
+                                lvDLocation.BringToFront();
                                 lvDLocation.Visible = true;
                             }
                             else
@@ -687,9 +685,10 @@ namespace ROMS
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;
-                                lvProduct.Columns[0].Width = 220;
-                                lvProduct.Columns[1].Width = 400;
-                                lvProduct.Columns[2].Width = 220;
+                                lvProduct.BringToFront();
+                                lvProduct.Columns[0].Width = 180;
+                                lvProduct.Columns[1].Width = 450;
+                                lvProduct.Columns[2].Width = 200;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;
                                 lvProduct.Columns[5].Width = 0;

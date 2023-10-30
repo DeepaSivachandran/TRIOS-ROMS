@@ -75,7 +75,6 @@
             this.clmQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnRemarks = new System.Windows.Forms.Button();
-            this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.lblRemarks = new System.Windows.Forms.Label();
@@ -111,6 +110,7 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
+            this.txttotalitem = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -158,12 +158,12 @@
             // 
             // grpStockTransfer
             // 
+            this.grpStockTransfer.Controls.Add(this.txttotalitem);
             this.grpStockTransfer.Controls.Add(this.lvProduct);
             this.grpStockTransfer.Controls.Add(this.lvSLocation);
             this.grpStockTransfer.Controls.Add(this.lvDLocation);
             this.grpStockTransfer.Controls.Add(this.grdStockTransfer);
             this.grpStockTransfer.Controls.Add(this.btnRemarks);
-            this.grpStockTransfer.Controls.Add(this.txttotalitem);
             this.grpStockTransfer.Controls.Add(this.lbltotalproducts);
             this.grpStockTransfer.Controls.Add(this.txtRemarks);
             this.grpStockTransfer.Controls.Add(this.lblRemarks);
@@ -421,14 +421,6 @@
             this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemarks.UseVisualStyleBackColor = true;
             this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
-            // 
-            // txttotalitem
-            // 
-            this.txttotalitem.Location = new System.Drawing.Point(1103, 590);
-            this.txttotalitem.Name = "txttotalitem";
-            this.txttotalitem.ReadOnly = true;
-            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
-            this.txttotalitem.TabIndex = 14;
             // 
             // lbltotalproducts
             // 
@@ -816,6 +808,15 @@
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Product Name/P.I Code";
             // 
+            // txttotalitem
+            // 
+            this.txttotalitem.Enabled = false;
+            this.txttotalitem.Location = new System.Drawing.Point(1103, 590);
+            this.txttotalitem.Name = "txttotalitem";
+            this.txttotalitem.ReadOnly = true;
+            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
+            this.txttotalitem.TabIndex = 111111143;
+            // 
             // INV_StockTransfer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -860,7 +861,6 @@
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox grpStockTransfer;
-        private System.Windows.Forms.TextBox txttotalitem;
         private System.Windows.Forms.Label lbltotalproducts;
         private System.Windows.Forms.TextBox txtRemarks;
         private System.Windows.Forms.Label lblRemarks;
@@ -932,5 +932,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQTY;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.TextBox txttotalitem;
     }
 }
