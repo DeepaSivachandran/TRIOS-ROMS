@@ -1023,15 +1023,15 @@ namespace ROMS
             }
             else
             {
-                //if (btnSave.Text == "Save")
-                //{
-                //    pnlGodownType.Enabled = false;
-                //    rbInside.Checked = true;
-                //}
-                //else
-                //{
-                //    pnlGodownType.Enabled = true;
-                //}
+                if (btnSave.Text == "Save")
+                {
+                    pnlGodownType.Enabled = false;
+                    rbInside.Checked = true;
+                }
+                else
+                {
+                    pnlGodownType.Enabled = true;
+                }
                 //pnlGodownType.Enabled = false;
                 //rbInside.Checked = true;
             }
