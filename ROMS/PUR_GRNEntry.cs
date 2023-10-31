@@ -69,7 +69,8 @@ namespace ROMS
         private void PUR_GRNEntry_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                this.ActiveControl = cmbConcern;
                 udfnDropdownLoad();
                 udfnUnitListGrid();  
                 //grdUnitList.Rows.Add("Bag","");
@@ -158,11 +159,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 SPDataService objdserv = new SPDataService();
-                int varconcerntype = 4;
-                if (btnSave.Text == "Save")
-                {
-                    varconcerntype = 3;
-                }
+                int varconcerntype = 3; 
                 DataSet objDT = new DataSet();
                 objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
                 objdserv.CloseConnection();

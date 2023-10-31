@@ -1077,6 +1077,7 @@
             this.dpPlanDate.Name = "dpPlanDate";
             this.dpPlanDate.Size = new System.Drawing.Size(103, 27);
             this.dpPlanDate.TabIndex = 2;
+            this.dpPlanDate.ValueChanged += new System.EventHandler(this.DpPlanDate_ValueChanged);
             this.dpPlanDate.Enter += new System.EventHandler(this.DpPlanDate_Enter);
             this.dpPlanDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpPlanDate_KeyDown);
             this.dpPlanDate.Leave += new System.EventHandler(this.DpPlanDate_Leave);

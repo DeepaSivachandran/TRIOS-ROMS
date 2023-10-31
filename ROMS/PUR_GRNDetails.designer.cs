@@ -326,8 +326,7 @@
             this.btnDamage.TabIndex = 1111204;
             this.btnDamage.Text = "Damages";
             this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDamage.UseVisualStyleBackColor = true;
-            this.btnDamage.Click += new System.EventHandler(this.Button1_Click);
+            this.btnDamage.UseVisualStyleBackColor = true; 
             // 
             // chkCompleted
             // 
@@ -467,7 +466,7 @@
             this.btnDC.Text = "Purchase Return";
             this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDC.UseVisualStyleBackColor = true;
-            this.btnDC.Click += new System.EventHandler(this.BtnDamage_Click);
+            this.btnDC.Click += new System.EventHandler(this.BtnDC_Click);
             // 
             // dataGridView1
             // 
