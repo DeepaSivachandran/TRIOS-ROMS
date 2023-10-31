@@ -1243,10 +1243,6 @@ namespace ROMS
                                 }
                                 lvProductNamePICode.Visible = true;
                                 lvProductNamePICode.BringToFront();
-                                lvProductNamePICode.Columns[0].Width = 150;
-                                lvProductNamePICode.Columns[1].Width = 180;
-                                lvProductNamePICode.Columns[2].Width = 180;
-                                lvProductNamePICode.Columns[3].Width = 0;
                             }
                             else
                             {
