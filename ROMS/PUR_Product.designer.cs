@@ -50,8 +50,10 @@
             this.txtDProductName.MaxLength = 50;
             this.txtDProductName.Name = "txtDProductName";
             this.txtDProductName.Size = new System.Drawing.Size(413, 28);
-            this.txtDProductName.TabIndex = 8;
-            this.txtDProductName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEUnitName_KeyPress);
+            this.txtDProductName.TabIndex = 1;
+            this.txtDProductName.Enter += new System.EventHandler(this.TxtDProductName_Enter);
+            this.txtDProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDProductName_KeyDown);
+            this.txtDProductName.Leave += new System.EventHandler(this.TxtDProductName_Leave);
             // 
             // lblProductName
             // 
@@ -70,7 +72,7 @@
             this.btnClose.Location = new System.Drawing.Point(436, 50);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 11;
+            this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -84,10 +86,13 @@
             this.btnSave.Location = new System.Drawing.Point(343, 50);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // PUR_Product
             // 
