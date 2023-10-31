@@ -36,6 +36,12 @@ namespace ROMS
         public string varSNo = "0";
         public int varUpdate = 0;
         public int varStockTransferID = 0;
+        public int varStatusID = 0;
+        public int varSLID = 0;
+        public int varDLID = 0;
+        public int VarConcernID = 0;
+        public string VarSource = "0";
+        public string VarDestination = "0";
 
         DataTable dtStock = new DataTable();
 
@@ -155,17 +161,41 @@ namespace ROMS
         {
             try
             {
-                    dpTrannsferDate.MaxDate = DateTime.Now;
-                    dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                    dtStock.Columns.Add("STK_PRID", typeof(int));
-                    dtStock.Columns.Add("STK_MRP", typeof(string));
-                    dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                    dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                    dtStock.Columns.Add("STK_UTID", typeof(string));
-                    dtStock.Columns.Add("STK_QTY", typeof(string));
+                dpTrannsferDate.MaxDate = DateTime.Now;
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(int));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                dtStock.Columns.Add("STK_UTID", typeof(string));
+                dtStock.Columns.Add("STK_QTY", typeof(string));
                 udfnCmbConcern();
+                if (btnSave.Text=="Save")
+                {
+                    
+                }
+                else
+                {
+                    udfnEdit();
+                }
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                cmbConcern.SelectedValue = VarConcernID;
+                txtSLocation.Text = VarSource;
+                txtDLocation.Text = VarDestination;
+                lvSLocation.Visible = false;
+                lvDLocation.Visible = false;
+            }
+            catch(Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -919,7 +949,7 @@ namespace ROMS
         {
             try
             {
-                udfnSLocationEvent();
+                udfnProductEvent();
                 txtQuantity.Focus();
             }
             catch (Exception ex)
@@ -1185,6 +1215,7 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objINV_StockTransferList.udfnList();
                     udfnClear();
                     cmbConcern.Focus();
                     cmbConcern.SelectedValue = -1;
@@ -1200,6 +1231,7 @@ namespace ROMS
                     btnSave.Enabled = true;
                     btnSave.Focus();
                 }
+                grdStockTransfer.Rows.Clear();
             }
             catch (Exception ex)
             {

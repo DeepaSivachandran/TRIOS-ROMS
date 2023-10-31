@@ -869,7 +869,6 @@
         private System.Windows.Forms.TextBox txtRemarks;
         private System.Windows.Forms.Label lblRemarks;
         public System.Windows.Forms.DataGridView grdStockTransfer;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbStockTransfer;
         private System.Windows.Forms.ComboBox cmbConcern;
@@ -937,5 +936,6 @@
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.TextBox txttotalitem;
+        public System.Windows.Forms.Button btnSave;
     }
 }
