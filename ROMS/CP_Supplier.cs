@@ -5165,6 +5165,8 @@ namespace ROMS
                             break;
                     }
                 }
+                udfnGetProductCount();
+                udfnGetMappedProductCount();
             }
             catch (Exception ex)
             {
@@ -7427,6 +7429,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdSupplierMappingLoad_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                udfnGetProductCount();
+                udfnGetMappedProductCount();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -7628,6 +7645,61 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtAccno.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGetProductCount() {
+            try
+            {
+                int varProductCount = 0;
+                for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdSupplierMappingLoad.Rows[i].Cells[0].Value) == true)
+                    {
+                        varProductCount++;
+                    }
+                }
+                if (varProductCount > 0) {
+                    btnRemove.Enabled = false;
+                    grdFinalSupplierMapping.Columns[0].ReadOnly = true;
+                }
+                else {
+                    btnRemove.Enabled = true;
+                    grdFinalSupplierMapping.Columns[0].ReadOnly = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGetMappedProductCount()
+        {
+            try
+            {
+                int varMappedProductCount = 0;
+                for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdFinalSupplierMapping.Rows[i].Cells[0].Value) == true)
+                    {
+                        varMappedProductCount++;
+                    }
+                }
+                if (varMappedProductCount > 0)
+                {
+                    BtnaddMove.Enabled = false;
+                    grdSupplierMappingLoad.Columns[0].ReadOnly = true;
+                }
+                else
+                {
+                    BtnaddMove.Enabled = true;
+                    grdSupplierMappingLoad.Columns[0].ReadOnly = false;
                 }
             }
             catch (Exception ex)
