@@ -1510,6 +1510,7 @@
             this.grdPendingorder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdPendingorder.Size = new System.Drawing.Size(394, 113);
             this.grdPendingorder.TabIndex = 1111159;
+            this.grdPendingorder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPendingorder_CellClick);
             this.grdPendingorder.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPendingorder_DataBindingComplete);
             this.grdPendingorder.DoubleClick += new System.EventHandler(this.GrdPendingorder_DoubleClick);
             // 
@@ -1636,8 +1637,6 @@
             this.grdsupplieradd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grdsupplieradd_CellContentClick);
             this.grdsupplieradd.CurrentCellDirtyStateChanged += new System.EventHandler(this.Grdsupplieradd_CurrentCellDirtyStateChanged);
             this.grdsupplieradd.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grdsupplieradd_EditingControlShowing);
-            this.grdsupplieradd.DoubleClick += new System.EventHandler(this.grdBrandList_DoubleClick);
-            this.grdsupplieradd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdBrandList_KeyDown);
             // 
             // clmsno
             // 

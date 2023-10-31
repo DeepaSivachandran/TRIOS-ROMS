@@ -117,7 +117,7 @@ namespace ROMS
                                     grdPurchaseOrder.Columns["MSQ"].ReadOnly = true;
                                     grdPurchaseOrder.Columns["Stock"].ReadOnly = true;
                                     grdPurchaseOrder.Columns["Reorder Qty"].ReadOnly = true;
-                                    grdPurchaseOrder.Columns["ordervalue"].ReadOnly = true;
+                                    grdPurchaseOrder.Columns["ordervalue"].Visible = false;
 
 
                                 }
