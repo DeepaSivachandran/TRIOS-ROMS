@@ -26,6 +26,7 @@ namespace ROMS
         public string vargroupcode,VARBRANDLOADID = "";
         public String pbFormStatus;
         public int varCheckAllFlag = 0;
+        public DataTable dtBrand = new DataTable();
         public CP_Representative()
         {
             InitializeComponent();
@@ -225,7 +226,7 @@ namespace ROMS
                 string Varbrandid = ""; 
                 for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                 {
-                    if (Convert.ToBoolean(grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value) == true)
+                    if (Convert.ToBoolean(grdRepBrand.Rows[i].Cells[0].Value) == true)
                     {
                         if (Varbrandid == "")
                         {
@@ -242,11 +243,11 @@ namespace ROMS
                 {
                     if (btnSave.Text == "Save")
                     {
-                        result = objspdservice.udfnRepMaster(0, 0, Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
+                        result = objspdservice.udfnRepMaster(0, 0, Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create", MainForm.pbUserID);
                     }
                     else
                     {
-                        result = objspdservice.udfnRepMaster(1, Convert.ToInt32(varrepid), Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
+                        result = objspdservice.udfnRepMaster(1, Convert.ToInt32(varrepid), Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create",MainForm.pbUserID);
                     }
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -315,11 +316,12 @@ namespace ROMS
                 txtPhonenumber.Text = "";
                 txtWhatsappno.Text = "";
                 txtCompanyName.Text = "";
-                udfnlist();
                 foreach (DataGridViewRow row in grdRepBrand.Rows)
                 {
                     row.Cells[0].Value = false;
                 }
+                grdRepBrand.DataSource = null;
+                udfnlist();
             }
             catch (Exception ex)
             {
@@ -399,6 +401,12 @@ namespace ROMS
         {
             try
             {
+                dtBrand = new DataTable();
+                dtBrand.Columns.Add("", typeof(Boolean));
+                dtBrand.Columns.Add("ID", typeof(int));
+                dtBrand.Columns.Add("Brand Name", typeof(string));
+                dtBrand.Columns.Add("Group", typeof(string));
+                dtBrand.Columns.Add("Sub Group", typeof(string));
                 udfnEditload();
                 if (btnSave.Text == "Save")
                 {
@@ -426,7 +434,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnRepMasterList(1, Convert.ToInt32(varrepid), MainForm.pbUserID, MainForm.pbIpAddress);
+                    objDS = objspservice.udfnRepMasterList(1, Convert.ToInt32(varrepid), MainForm.pbUserID, MainForm.pbIpAddress,0);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -492,15 +500,20 @@ namespace ROMS
                 {
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
+                        dtBrand.Rows.Clear();
                         for (int i = 0; i < objDS.Tables[0].Rows.Count; i++) {
                             if (Convert.ToString(objDS.Tables[0].Rows[i]["ID"]) == "0" || Convert.ToString(objDS.Tables[0].Rows[i]["ID"]) == "-1") {
                                 objDS.Tables[0].Rows[i].Delete();
                                 objDS.Tables[0].AcceptChanges();
                             }
+                            dtBrand.Rows.Add(false, Convert.ToInt32(objDS.Tables[0].Rows[i]["ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Brand Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["Group"]), Convert.ToString(objDS.Tables[0].Rows[i]["Sub Group"]));
                         }
-                        grdRepBrand.DataSource = objDS.Tables[0];
+                       // dtBrand = objDS.Tables[0];
+                        grdRepBrand.DataSource = dtBrand;
+                        grdRepBrand.Columns["Column1"].HeaderText = "";
+                        grdRepBrand.Columns[0].Width = 30;
                         grdRepBrand.Columns["ID"].Visible = false;
-                        grdRepBrand.Columns["Brand Name"].Width = 200;
+                        grdRepBrand.Columns["Brand Name"].Width = 150;
                         grdRepBrand.Columns["Sub Group"].Width = 250;
                         grdRepBrand.Columns["Group"].Width = 250;
                         grdRepBrand.Columns["Brand Name"].ReadOnly = true;
@@ -543,16 +556,26 @@ namespace ROMS
 
                         if (btnSave.Text == "Update")
                         {
-                            for (int i = 0; i < grdRepBrand.Rows.Count; i++)
+                            for (int i = 0; i < dtBrand.Rows.Count; i++)
                             {
                                 for (int k = 0; k < objdatabrand.Rows.Count; k++)
                                 {
-                                    if (Convert.ToInt32(grdRepBrand.Rows[i].Cells["ID"].Value) == Convert.ToInt32(objdatabrand.Rows[k]["ID"]))
+                                    if (Convert.ToInt32(dtBrand.Rows[i]["ID"]) == Convert.ToInt32(dtBrand .Rows[k]["ID"]))
                                     {
-                                        grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = true;
+                                        dtBrand.Rows[i][0] = true;
                                     }
                                 }
                             }
+                            grdRepBrand.DataSource = dtBrand;
+                            grdRepBrand.Columns["Column1"].HeaderText = "";
+                            grdRepBrand.Columns[0].Width = 30;
+                            grdRepBrand.Columns["ID"].Visible = false;
+                            grdRepBrand.Columns["Brand Name"].Width = 150;
+                            grdRepBrand.Columns["Sub Group"].Width = 250;
+                            grdRepBrand.Columns["Group"].Width = 250;
+                            grdRepBrand.Columns["Brand Name"].ReadOnly = true;
+                            grdRepBrand.Columns["Sub Group"].ReadOnly = true;
+                            grdRepBrand.Columns["Group"].ReadOnly = true;
                             if (grdRepBrand.RowCount == objdatabrand.Rows.Count)
                             {
                                 varCheckAllFlag = 1;

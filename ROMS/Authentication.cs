@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-using System.Security.Cryptography;
-using System.IO;
-using System.Security.AccessControl;
-using System.Security.Principal;
-using System.Diagnostics;
-using System.Net;
 
 //[assembly: XmlConfigurator(Watch = true)]
 //[assembly: Repository()]
@@ -47,7 +43,7 @@ namespace ROMS
                     txtPassword.Focus();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -61,7 +57,7 @@ namespace ROMS
             {
                 txtUserName.BackColor = Color.LemonChiffon;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -75,7 +71,7 @@ namespace ROMS
             {
                 txtUserName.BackColor = Color.White;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -92,7 +88,7 @@ namespace ROMS
                     btnSignin.Focus();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -106,7 +102,7 @@ namespace ROMS
             {
                 txtPassword.BackColor = Color.LemonChiffon;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -120,7 +116,7 @@ namespace ROMS
             {
                 txtPassword.BackColor = Color.White;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -132,23 +128,30 @@ namespace ROMS
         {
             try
             {
-                DataSet objDs=new DataSet();
+                DataSet objDs = new DataSet();
                 if (txtUserName.TextLength != 0 & txtPassword.TextLength != 0)
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0);
+                    // objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0,"");
+                    objDs = objDser.udfnUserList(0, varUserName, txtUserName.Text.Trim(), _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text), 0, 0, "");
                     objDser.CloseConnection();
-                    if (objDs != null) {
-                        if (objDs.Tables.Count > 0) {
-                            if (objDs.Tables[0].Rows.Count > 0) {
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count > 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
                                 count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
                                 if (count != 0)
                                 {
                                     MainForm.pbUserID = objDs.Tables[1].Rows[0]["Userid"].ToString();
                                     MainForm.pbUserRoleId = objDs.Tables[1].Rows[0]["UserRoleCode"].ToString();
                                     MainForm.pbUserName = objDs.Tables[1].Rows[0]["UserName"].ToString();
+                                    MainForm.pbLoginId = objDs.Tables[1].Rows[0]["LoginId"].ToString();
                                     MainForm.pbUserRoleName = objDs.Tables[1].Rows[0]["RoleName"].ToString();
+                                    MainForm.pbUserPassKey = objDs.Tables[1].Rows[0]["PassKey"].ToString();
+                                    MainForm.pbUserPassKeyValue = _security.Decrypt("passkey", objDs.Tables[1].Rows[0]["PasskeyValue"].ToString());
                                     MainForm.pbVersion = lblDVersion.Text;
                                     MainForm.pbHostName = Dns.GetHostName();
                                     MainForm.pbSSSSoftwareName = udfnDBName();
@@ -265,7 +268,7 @@ namespace ROMS
                                                 System.Environment.Exit(1);
                                                 varProcess.WaitForExit();
                                             }
-                                            catch (Exception ex) { objError = new DataError();objError.WriteFile(ex); }
+                                            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
                                             finally { this.Close(); }
                                         }
                                         else
@@ -295,10 +298,10 @@ namespace ROMS
             //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
             //if (File.Exists(paths))
             //{
-                lblDVersion.Text = "v1.0.4";
-                lblDVersion.BringToFront();
-                Authentication objAuthetication = new Authentication();
-                objAuthetication.Name = " - " + lblDVersion.Text;
+            lblDVersion.Text = "v1.1.1";
+            lblDVersion.BringToFront();
+            Authentication objAuthetication = new Authentication();
+            objAuthetication.Name = " - " + lblDVersion.Text;
             //}
             //else { Application.Run(new ServerSettings()); }
         }
@@ -330,9 +333,9 @@ namespace ROMS
                 {
                     udfnclose();
                 }
-               
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -369,12 +372,14 @@ namespace ROMS
         // Created Date: 12-02-2020
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try {
-               this.Hide();
+            try
+            {
+                this.Hide();
                 ServerSettings obj = new ServerSettings();
                 obj.lblformname.Text = "login";
                 obj.Show();
-            } catch (Exception ex) { objError = new DataError();objError.WriteFile(ex); }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void TxtPassword_TextChanged(object sender, EventArgs e)

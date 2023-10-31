@@ -12,6 +12,7 @@ namespace ROMS
 {
     public partial class CP_GroupList : Form
     {
+        public string varUserID = "";
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
@@ -121,7 +122,7 @@ namespace ROMS
                             grdGroupList.Columns["Status"].Width = 80;
                             grdGroupList.Columns["ID"].Visible = false;
                             grdGroupList.Columns["Status ID"].Visible = false;
-                            grdGroupList.Columns["Product Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                            grdGroupList.Columns["Product Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
 
                         }
                         else
@@ -154,6 +155,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
                 varGroupCode = Convert.ToInt32(varGroupId);
+                txtSearchProduct.Text = "";
             }
         }
         private void udfnSearchGridHead()
@@ -212,17 +214,23 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0, "Product Group Deletion");
-                        objDser.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else if (varResult.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            string varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, "Product Group Deletion", varUserID);
+                            objDser.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else if (varResult.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
@@ -748,7 +756,7 @@ namespace ROMS
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvGroup.Columns[0].Width = 200;
                                     lvGroup.Columns[1].Width = 200;
                                     lvGroup.Items.Add(objList);
@@ -1064,6 +1072,7 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1096,6 +1105,20 @@ namespace ROMS
                 cmbStatus.BackColor = Color.White;
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

@@ -86,11 +86,12 @@ namespace ROMS
                 dtEmployee.Columns.Add("Employee Name", typeof(string));
                 dtEmployee.Columns.Add("Employee Category", typeof(string));
                 dtEmployee.Columns.Add("EMPID", typeof(int));
+                dtEmployee.Columns.Add("CT_SINO", typeof(int));
 
 
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnUserCategoryList(4, Convert.ToInt32(cmbUserCategory.SelectedValue));
+                objDs = objdserv.udfnUserCategoryList(4, Convert.ToInt32(cmbUserCategory.SelectedValue),"",0);
                 objdserv.CloseConnection();
                 cmbUserCategory.DataSource = null;
                 if (objDs != null)
@@ -180,6 +181,7 @@ namespace ROMS
                             cmbConcern.DataSource = objDT.Tables[0];
                         }
                     }
+                    udfnList();
                 }
             }
             catch (Exception ex)
@@ -210,7 +212,7 @@ namespace ROMS
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
                         dtEmployee.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Employee Code"], objDs.Tables[0].Rows[i]["Employee Name"],
-                           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"]);
+                           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"], objDs.Tables[0].Rows[i]["CT_SINO"]);
                     }
                 }
                 grdEmployee.DataSource = null;
@@ -220,9 +222,10 @@ namespace ROMS
                 grdEmployee.Columns["S.No."].Width = 40;
                 grdEmployee.Columns["S.No."].Visible = false;
                 grdEmployee.Columns["Employee Code"].Width = 100;
-                grdEmployee.Columns["Employee Name"].Width = 150;
+                grdEmployee.Columns["Employee Name"].Width = 180;
                 grdEmployee.Columns["Employee Category"].Width = 150;
                 grdEmployee.Columns["EMPID"].Visible = false;
+                grdEmployee.Columns["CT_SINO"].Visible = false;
                 grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 udfnEmpGridRemove();
@@ -300,7 +303,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfncmbShopLocation()
         {
             try
@@ -361,7 +363,7 @@ namespace ROMS
                 grdRack.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnRackList(varViewType, varId, varConcernId, varStockId, 0, "", 0);
+                objDs = objdserv.udfnRackList(varViewType, varId, varConcernId, varStockId, 0, "", 0, 0);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -369,7 +371,7 @@ namespace ROMS
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
                         dtRack.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Concern"], objDs.Tables[0].Rows[i]["Stock Location"],
-                           objDs.Tables[0].Rows[i]["Rack Name"], objDs.Tables[0].Rows[i]["Short Name"], objDs.Tables[0].Rows[i]["Description"],
+                           objDs.Tables[0].Rows[i]["Rack Name"], objDs.Tables[0].Rows[i]["Short Name"], objDs.Tables[0].Rows[i]["Description"], 
                            objDs.Tables[0].Rows[i]["Total Products"], objDs.Tables[0].Rows[i]["Status"], objDs.Tables[0].Rows[i]["ID"], objDs.Tables[0].Rows[i]["ConcernID"],
                            objDs.Tables[0].Rows[i]["StockLocationID"], objDs.Tables[0].Rows[i]["StatusID"]);
                     }
@@ -383,12 +385,13 @@ namespace ROMS
                 grdRack.Columns["Rack"].Width = 100;
                 grdRack.Columns["Description"].Width = 200;
                 grdRack.Columns["Total Products"].Width = 100;
+                grdRack.Columns["Stock Location"].Width = 180;
                 grdRack.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdRack.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
+                grdRack.Columns["Stock Location"].DisplayIndex = 3;
                 grdRack.Columns["S.No."].Visible = false;
                 grdRack.Columns["Concern"].Visible = false;
-                grdRack.Columns["Stock Location"].Visible = false;
+                //grdRack.Columns["Stock Location"].Visible = false;
                 grdRack.Columns["Short Name"].Visible = false;
                 grdRack.Columns["Status"].Visible = false;
                 grdRack.Columns["ID"].Visible = false;
@@ -426,7 +429,7 @@ namespace ROMS
 
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDS = objdserv.udfnRackGroupList(1, 0, varStockId, varId);
+                objDS = objdserv.udfnRackGroupList(1, 0, varStockId, varId,0,"");
                 objdserv.CloseConnection();
                 if (objDS != null)
                 {
@@ -443,7 +446,7 @@ namespace ROMS
                     {
                         for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                         {
-                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]));
+                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_SINO"]));
                         }
                     }
 
@@ -461,7 +464,7 @@ namespace ROMS
                     {
                         for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
                         {
-                            grdSelectedRack.Rows.Add(grdSelectedRack.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["RK_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_Description"]), Convert.ToInt16(objDS.Tables[2].Rows[i]["TotalProducts"]), Convert.ToInt16(objDS.Tables[2].Rows[i]["RKID"]));
+                            grdSelectedRack.Rows.Add(grdSelectedRack.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["Stock Location"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_Description"]),  Convert.ToInt16(objDS.Tables[2].Rows[i]["TotalProducts"]),  Convert.ToInt16(objDS.Tables[2].Rows[i]["RKID"]));
                         }
                     }
                     //for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
@@ -484,7 +487,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
+            }
+            finally
+            {
+                grdStaffDetails.Sort(grdStaffDetails.Columns["clmSINO"], ListSortDirection.Ascending);
             }
         }
         public void udfnSave(object sender, EventArgs e)
@@ -531,7 +537,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objDser = new SPDataService();
-                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator);
+                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator,MainForm.pbUserID);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -577,6 +583,7 @@ namespace ROMS
                 chkRack.Checked = false;
                 chkEmployee.Checked = false;
                 tpStaffName.Active = false;
+                lblTotalProduct.Text = "0";
                 cmbConcern.Focus();
                 foreach (DataGridViewRow row in grdEmployee.Rows)
                 {
@@ -857,8 +864,6 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
-
-
                                 dtEmployee.Rows.Add(false, 0,
                                    grdStaffDetails.SelectedRows[0].Cells["clmEmpCode"].Value, grdStaffDetails.SelectedRows[0].Cells["clmStaffName"].Value,
                                    grdStaffDetails.SelectedRows[0].Cells["clmcatrgory"].Value, grdStaffDetails.SelectedRows[0].Cells["clmUserId"].Value
@@ -871,6 +876,7 @@ namespace ROMS
                                 }
                                 dtEmployee.AcceptChanges();
                                 grdEmployee.DataSource = dtEmployee;
+                                BtnViewEmployee_Click(sender, e);
                             }
                             break;
                     }
@@ -992,6 +998,7 @@ namespace ROMS
                 grdRack.DataSource = null;
                 grdSelectedRack.Rows.Clear();
                 chkRack.Checked = false;
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -1492,7 +1499,7 @@ namespace ROMS
                             }
                             if (varFlag == 0)
                             {
-                                grdSelectedRack.Rows.Add(Convert.ToInt32(grdSelectedRack.Rows.Count) + 1, grdRack.Rows[i].Cells["Rack"].Value, grdRack.Rows[i].Cells["Description"].Value,
+                                grdSelectedRack.Rows.Add(Convert.ToInt32(grdSelectedRack.Rows.Count) + 1, grdRack.Rows[i].Cells["Stock Location"].Value, grdRack.Rows[i].Cells["Rack"].Value, grdRack.Rows[i].Cells["Description"].Value, 
                                     grdRack.Rows[i].Cells["Total Products"].Value, grdRack.Rows[i].Cells["ID"].Value);
                             }
                         }
@@ -1598,10 +1605,10 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
 
-                                dtRack.Rows.Add(false, 0, "", "",
-                                   grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value, "", grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value,
-                                   grdSelectedRack.SelectedRows[0].Cells["clmTotalProducts"].Value, "", grdSelectedRack.SelectedRows[0].Cells["ID"].Value, 0,
-                                   0, 0);
+                                dtRack.Rows.Add(false, 0, "", grdSelectedRack.SelectedRows[0].Cells["clmStockLocation"].Value,
+                                   grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value, "", grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value, 
+                                   grdSelectedRack.SelectedRows[0].Cells["clmTotalProducts"].Value, "", grdSelectedRack.SelectedRows[0].Cells["ID"].Value, 0, 
+                                   0,0);
 
                                 grdSelectedRack.Rows.RemoveAt(this.grdSelectedRack.SelectedRows[0].Index);
                                 for (int i = 0; i < grdSelectedRack.RowCount; i++)
@@ -1779,9 +1786,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void BtnAddemployee_Click(object sender, EventArgs e)
         {
             try
@@ -1825,7 +1830,7 @@ namespace ROMS
                             if (varFlag == 0)
                             {
                                 grdStaffDetails.Rows.Add(Convert.ToInt32(grdStaffDetails.Rows.Count) + 1, grdEmployee.Rows[i].Cells["Employee Code"].Value, grdEmployee.Rows[i].Cells["Employee Name"].Value,
-                                    grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value);
+                                grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value, Convert.ToString(grdEmployee.Rows[i].Cells["CT_SINO"].Value));
                             }
                         }
                     }
@@ -1835,12 +1840,21 @@ namespace ROMS
                 {
                     MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdStaffDetails.Sort(grdStaffDetails.Columns[5], ListSortDirection.Ascending);
+
+                //For SNO Count For Right Side Grid
+                for (int i = 0; i < grdStaffDetails.Rows.Count; i++)
+                {
+                    grdStaffDetails.Rows[i].Cells["clmSno"].Value = i + 1;
+                }
             }
         }
 

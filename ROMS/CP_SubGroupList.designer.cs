@@ -379,7 +379,7 @@
             this.grpSearch.Size = new System.Drawing.Size(227, 80);
             this.grpSearch.TabIndex = 1;
             this.grpSearch.TabStop = false;
-            this.grpSearch.Text = "Search By Product Sub Group";
+            this.grpSearch.Text = "Search By Product Subgroup";
             // 
             // txtSearchProduct
             // 
@@ -409,9 +409,9 @@
             this.lblNoPrSubGroup.ForeColor = System.Drawing.Color.Black;
             this.lblNoPrSubGroup.Location = new System.Drawing.Point(935, 46);
             this.lblNoPrSubGroup.Name = "lblNoPrSubGroup";
-            this.lblNoPrSubGroup.Size = new System.Drawing.Size(154, 20);
+            this.lblNoPrSubGroup.Size = new System.Drawing.Size(150, 20);
             this.lblNoPrSubGroup.TabIndex = 958796;
-            this.lblNoPrSubGroup.Text = "No.of Product Sub Groups :";
+            this.lblNoPrSubGroup.Text = "No.of Product Subgroups :";
             // 
             // grbFilterBy
             // 
@@ -493,6 +493,7 @@
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
             this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
             // 
             // label2

@@ -57,7 +57,7 @@
             this.cmbDay = new System.Windows.Forms.ComboBox();
             this.lblDay = new System.Windows.Forms.Label();
             this.grbFilterBySupplier = new System.Windows.Forms.GroupBox();
-            this.cmbOrderSchedule = new System.Windows.Forms.ComboBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
@@ -66,6 +66,7 @@
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.ep_Supplierlist = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblschedule = new System.Windows.Forms.Label();
             this.tsSupplierList.SuspendLayout();
             this.pnlsupplier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -184,7 +185,7 @@
             this.LV_Supplier.HideSelection = false;
             this.LV_Supplier.Location = new System.Drawing.Point(12, 54);
             this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(357, 93);
+            this.LV_Supplier.Size = new System.Drawing.Size(395, 93);
             this.LV_Supplier.TabIndex = 958803;
             this.LV_Supplier.UseCompatibleStateImageBehavior = false;
             this.LV_Supplier.View = System.Windows.Forms.View.Details;
@@ -248,7 +249,6 @@
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
-            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
@@ -341,7 +341,8 @@
             // 
             // grbFilterBySupplier
             // 
-            this.grbFilterBySupplier.Controls.Add(this.cmbOrderSchedule);
+            this.grbFilterBySupplier.Controls.Add(this.lblschedule);
+            this.grbFilterBySupplier.Controls.Add(this.cmbStatus);
             this.grbFilterBySupplier.Controls.Add(this.txtSupplier);
             this.grbFilterBySupplier.Controls.Add(this.label3);
             this.grbFilterBySupplier.Controls.Add(this.btnExport);
@@ -355,18 +356,18 @@
             this.grbFilterBySupplier.TabStop = false;
             this.grbFilterBySupplier.Text = "Filter By Supplier";
             // 
-            // cmbOrderSchedule
+            // cmbStatus
             // 
-            this.cmbOrderSchedule.FormattingEnabled = true;
-            this.cmbOrderSchedule.Location = new System.Drawing.Point(461, 26);
-            this.cmbOrderSchedule.Name = "cmbOrderSchedule";
-            this.cmbOrderSchedule.Size = new System.Drawing.Size(131, 27);
-            this.cmbOrderSchedule.TabIndex = 2;
-            this.cmbOrderSchedule.SelectedIndexChanged += new System.EventHandler(this.CmbOrderSchedule_SelectedIndexChanged);
-            this.cmbOrderSchedule.Enter += new System.EventHandler(this.CmbOrderSchedule_Enter);
-            this.cmbOrderSchedule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderSchedule_KeyDown);
-            this.cmbOrderSchedule.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderSchedule_KeyPress);
-            this.cmbOrderSchedule.Leave += new System.EventHandler(this.CmbOrderSchedule_Leave);
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(461, 26);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(131, 27);
+            this.cmbStatus.TabIndex = 2;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
             // 
             // txtSupplier
             // 
@@ -374,7 +375,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(9, 26);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(344, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(395, 27);
             this.txtSupplier.TabIndex = 1;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -384,11 +385,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(361, 29);
+            this.label3.Location = new System.Drawing.Point(410, 29);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 20);
+            this.label3.Size = new System.Drawing.Size(45, 20);
             this.label3.TabIndex = 958804;
-            this.label3.Text = "Order Schedule";
+            this.label3.Text = "Status";
             // 
             // btnExport
             // 
@@ -495,6 +496,16 @@
             // 
             this.ep_Supplierlist.ContainerControl = this;
             // 
+            // lblschedule
+            // 
+            this.lblschedule.AutoSize = true;
+            this.lblschedule.Location = new System.Drawing.Point(419, 70);
+            this.lblschedule.Name = "lblschedule";
+            this.lblschedule.Size = new System.Drawing.Size(16, 20);
+            this.lblschedule.TabIndex = 958805;
+            this.lblschedule.Text = "0";
+            this.lblschedule.Visible = false;
+            // 
             // CP_Supplierlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -549,7 +560,7 @@
         private System.Windows.Forms.GroupBox grbSupplierDetails;
         private System.Windows.Forms.ComboBox cmbDay;
         private System.Windows.Forms.Label lblDay;
-        private System.Windows.Forms.ComboBox cmbOrderSchedule;
+        private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.DataGridView grdDaywiseProduct;
         public System.Windows.Forms.ListView LV_Supplier;
@@ -560,5 +571,6 @@
         public System.Windows.Forms.DataGridView grdSupplierList;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.ErrorProvider ep_Supplierlist;
+        private System.Windows.Forms.Label lblschedule;
     }
 }

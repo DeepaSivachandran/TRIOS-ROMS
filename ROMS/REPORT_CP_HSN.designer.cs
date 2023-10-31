@@ -37,7 +37,6 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.cmbGST = new System.Windows.Forms.ComboBox();
             this.lblGST = new System.Windows.Forms.Label();
-            this.cmbHSN = new System.Windows.Forms.ComboBox();
             this.lblHSN = new System.Windows.Forms.Label();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
@@ -46,6 +45,12 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ep_HSN = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtHsnName = new System.Windows.Forms.TextBox();
+            this.lvHsnName = new System.Windows.Forms.ListView();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblHsnName = new System.Windows.Forms.Label();
             this.ReportHSN.SuspendLayout();
             this.pnlReportHSN.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -80,6 +85,8 @@
             // pnlReportHSN
             // 
             this.pnlReportHSN.BackColor = System.Drawing.Color.White;
+            this.pnlReportHSN.Controls.Add(this.lvHsnName);
+            this.pnlReportHSN.Controls.Add(this.txtHsnName);
             this.pnlReportHSN.Controls.Add(this.grpfilter);
             this.pnlReportHSN.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportHSN.Controls.Add(this.picLoader);
@@ -91,18 +98,18 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.lblHsnName);
             this.grpfilter.Controls.Add(this.cmbStatus);
             this.grpfilter.Controls.Add(this.lblStatus);
             this.grpfilter.Controls.Add(this.cmbGST);
             this.grpfilter.Controls.Add(this.lblGST);
-            this.grpfilter.Controls.Add(this.cmbHSN);
             this.grpfilter.Controls.Add(this.lblHSN);
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblReportType);
-            this.grpfilter.Location = new System.Drawing.Point(12, 2);
+            this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1339, 58);
+            this.grpfilter.Size = new System.Drawing.Size(1348, 58);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
@@ -110,7 +117,7 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(718, 19);
+            this.cmbStatus.Location = new System.Drawing.Point(715, 19);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(143, 27);
             this.cmbStatus.TabIndex = 3;
@@ -123,7 +130,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(667, 22);
+            this.lblStatus.Location = new System.Drawing.Point(664, 22);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 1111182;
@@ -132,7 +139,7 @@
             // cmbGST
             // 
             this.cmbGST.FormattingEnabled = true;
-            this.cmbGST.Location = new System.Drawing.Point(518, 19);
+            this.cmbGST.Location = new System.Drawing.Point(515, 19);
             this.cmbGST.Name = "cmbGST";
             this.cmbGST.Size = new System.Drawing.Size(143, 27);
             this.cmbGST.TabIndex = 2;
@@ -145,29 +152,17 @@
             // 
             this.lblGST.AutoSize = true;
             this.lblGST.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGST.Location = new System.Drawing.Point(482, 22);
+            this.lblGST.Location = new System.Drawing.Point(479, 22);
             this.lblGST.Name = "lblGST";
             this.lblGST.Size = new System.Drawing.Size(30, 20);
             this.lblGST.TabIndex = 1111180;
             this.lblGST.Text = "GST";
             // 
-            // cmbHSN
-            // 
-            this.cmbHSN.FormattingEnabled = true;
-            this.cmbHSN.Location = new System.Drawing.Point(333, 19);
-            this.cmbHSN.Name = "cmbHSN";
-            this.cmbHSN.Size = new System.Drawing.Size(143, 27);
-            this.cmbHSN.TabIndex = 1;
-            this.cmbHSN.Enter += new System.EventHandler(this.CmbHSN_Enter);
-            this.cmbHSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbHSN_KeyDown);
-            this.cmbHSN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbHSN_KeyPress);
-            this.cmbHSN.Leave += new System.EventHandler(this.CmbHSN_Leave);
-            // 
             // lblHSN
             // 
             this.lblHSN.AutoSize = true;
             this.lblHSN.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHSN.Location = new System.Drawing.Point(295, 22);
+            this.lblHSN.Location = new System.Drawing.Point(292, 22);
             this.lblHSN.Name = "lblHSN";
             this.lblHSN.Size = new System.Drawing.Size(32, 20);
             this.lblHSN.TabIndex = 1111178;
@@ -176,14 +171,14 @@
             // btnListPrint
             // 
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(867, 16);
+            this.btnListPrint.Location = new System.Drawing.Point(864, 18);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(70, 33);
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
             this.btnListPrint.TabIndex = 4;
-            this.btnListPrint.Text = "Print";
+            this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -193,7 +188,7 @@
             // cmbReportType
             // 
             this.cmbReportType.FormattingEnabled = true;
-            this.cmbReportType.Location = new System.Drawing.Point(88, 19);
+            this.cmbReportType.Location = new System.Drawing.Point(85, 19);
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(201, 27);
             this.cmbReportType.TabIndex = 0;
@@ -207,7 +202,7 @@
             // 
             this.lblReportType.AutoSize = true;
             this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportType.Location = new System.Drawing.Point(9, 22);
+            this.lblReportType.Location = new System.Drawing.Point(6, 22);
             this.lblReportType.Name = "lblReportType";
             this.lblReportType.Size = new System.Drawing.Size(73, 20);
             this.lblReportType.TabIndex = 1111176;
@@ -257,6 +252,59 @@
             // 
             this.ep_HSN.ContainerControl = this;
             // 
+            // txtHsnName
+            // 
+            this.txtHsnName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtHsnName.Location = new System.Drawing.Point(333, 19);
+            this.txtHsnName.MaxLength = 50;
+            this.txtHsnName.Name = "txtHsnName";
+            this.txtHsnName.Size = new System.Drawing.Size(143, 27);
+            this.txtHsnName.TabIndex = 1111228;
+            this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
+            this.txtHsnName.Enter += new System.EventHandler(this.TxtHsnName_Enter);
+            this.txtHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHsnName_KeyDown);
+            this.txtHsnName.Leave += new System.EventHandler(this.TxtHsnName_Leave);
+            // 
+            // lvHsnName
+            // 
+            this.lvHsnName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader30,
+            this.columnHeader31});
+            this.lvHsnName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvHsnName.HideSelection = false;
+            this.lvHsnName.Location = new System.Drawing.Point(333, 46);
+            this.lvHsnName.Name = "lvHsnName";
+            this.lvHsnName.Size = new System.Drawing.Size(328, 113);
+            this.lvHsnName.TabIndex = 1111229;
+            this.lvHsnName.UseCompatibleStateImageBehavior = false;
+            this.lvHsnName.View = System.Windows.Forms.View.Details;
+            this.lvHsnName.Visible = false;
+            this.lvHsnName.DoubleClick += new System.EventHandler(this.LvHsnName_DoubleClick);
+            this.lvHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvHsnName_KeyDown);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Width = 80;
+            // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Width = 80;
+            // 
+            // columnHeader31
+            // 
+            this.columnHeader31.Width = 0;
+            // 
+            // lblHsnName
+            // 
+            this.lblHsnName.AutoSize = true;
+            this.lblHsnName.Location = new System.Drawing.Point(308, 2);
+            this.lblHsnName.Name = "lblHsnName";
+            this.lblHsnName.Size = new System.Drawing.Size(16, 20);
+            this.lblHsnName.TabIndex = 958789;
+            this.lblHsnName.Text = "0";
+            this.lblHsnName.Visible = false;
+            // 
             // REPORT_CP_HSN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -301,10 +349,15 @@
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnListPrint;
         private System.Windows.Forms.Label lblHSN;
-        private System.Windows.Forms.ComboBox cmbHSN;
         private System.Windows.Forms.Label lblGST;
         private System.Windows.Forms.ComboBox cmbGST;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.TextBox txtHsnName;
+        public System.Windows.Forms.ListView lvHsnName;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader30;
+        private System.Windows.Forms.ColumnHeader columnHeader31;
+        public System.Windows.Forms.Label lblHsnName;
     }
 }

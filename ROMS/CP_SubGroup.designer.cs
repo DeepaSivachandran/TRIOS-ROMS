@@ -234,7 +234,7 @@
             this.txtEProductSubGroupNameTamil.ReadOnly = true;
             this.txtEProductSubGroupNameTamil.Size = new System.Drawing.Size(200, 27);
             this.txtEProductSubGroupNameTamil.TabIndex = 1111133;
-            this.txtEProductSubGroupNameTamil.Text = "Product Sub Group Name in Tamil";
+            this.txtEProductSubGroupNameTamil.Text = "Product Subgroup Name in Tamil";
             // 
             // txtESubGroupNameTamil
             // 
@@ -335,7 +335,7 @@
             this.txtDEProductSubGroupNameEnglish.ReadOnly = true;
             this.txtDEProductSubGroupNameEnglish.Size = new System.Drawing.Size(200, 27);
             this.txtDEProductSubGroupNameEnglish.TabIndex = 11;
-            this.txtDEProductSubGroupNameEnglish.Text = "Product Sub Group Name in English";
+            this.txtDEProductSubGroupNameEnglish.Text = "Product Subgroup Name in English";
             // 
             // btnClose
             // 
@@ -454,6 +454,7 @@
             this.grdRackList.TabIndex = 6;
             this.grdRackList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRackList_CellContentClick);
             this.grdRackList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdRackList_CurrentCellDirtyStateChanged);
+            this.grdRackList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdRackList_DataBindingComplete);
             // 
             // btnNewRack
             // 

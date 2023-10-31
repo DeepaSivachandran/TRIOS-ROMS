@@ -13,19 +13,23 @@ namespace ROMS
 {
     public partial class CP_SL_Verify : Form
     {
+
+        private SecurityController _security;
         DataValidation objValidation = new DataValidation();
         DataError objError;
+
 
         private ToolTip tpbrandname = new ToolTip();
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbrandcode;
-        public string pbFormStatus;
+        public string varUserId = "";
+        public string varPasskey = "";
         public int flag = 0;
         public CP_SL_Verify()
         {
             InitializeComponent();
+            _security = new SecurityController();
         }
         public string GenerateMD5(string HashString)
         {
@@ -40,29 +44,34 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, GenerateMD5(txtPassKey.Text), 0);
+                    varPasskey = _security.Encrypt("passkey", (txtPassKey.Text).Trim());
+                    objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0, 0, varPasskey);
                     objDser.CloseConnection();
                     if (objDs != null)
                     {
-                        if (objDs.Tables[0].Rows.Count > 0)
+                        if (objDs.Tables[2].Rows.Count > 0)
                         {
-                            count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
-                            if (count != 0)
+                            count = Convert.ToInt32(objDs.Tables[2].Rows[0]["countvalue"]);
+                            if (txtPassKey.Text != "")
                             {
-                                flag = 1;
-                                MainForm.objCP_Location.saveflag=0;
-                                this.Close();
+                                if (count != 0)
+                                {
+                                    flag = 1;
+                                    MainForm.objCP_Location.saveflag = 0;
+                                    varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]);
+                                    this.Close();
+                                }
                             }
-                            else if (count == 0)
-                            {
-                                //DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(62);
-                                objDServ.CloseConnection();
-                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                txtPassKey.Text = "";
-                                txtPassKey.Focus();
-                            }
+                        }
+                        else
+                        {
+                            //DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(66);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            txtPassKey.Text = "";
+                            txtPassKey.Focus();
                         }
                     }
                 }

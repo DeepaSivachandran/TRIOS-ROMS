@@ -12,6 +12,7 @@ namespace ROMS
     {
         public string Encrypt(string key, string data)
         {
+
             string encData = null;
             byte[][] keys = GetHashKeys(key);
 
