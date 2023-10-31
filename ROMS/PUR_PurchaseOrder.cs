@@ -909,6 +909,14 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (grdsupplieradd.Rows.Count > 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("This will clear all the products in list. Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    { 
+                        grdsupplieradd.Rows.Clear();
+                    }
+                }
                 udfnVocherno();
             }
             catch (Exception ex)
@@ -940,6 +948,10 @@ namespace ROMS
                         else
                         {
                             txtpono.Text = "";
+                            DialogResult dialogResult = MessageBox.Show("Voucher settings have not yet done for this company. This redirect you to voucher settings screen.", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            if (dialogResult == DialogResult.OK)
+                            { 
+                            }
                         }
                     }
                 }
@@ -1804,7 +1816,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes);
+                    objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "",Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1947,17 +1959,21 @@ namespace ROMS
         {
             try
             {
-                for (int i = grdsupplieradd.Rows.Count - 1; i >= 0; i--)
+                DialogResult dialogResult = MessageBox.Show("It will not clear all the products which are added from 0 retail rate and MSQ. Are you sure want to continue ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    if ((Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "3" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "4"))
+                    for (int i = grdsupplieradd.Rows.Count - 1; i >= 0; i--)
                     {
-                        grdsupplieradd.Rows.RemoveAt(i);
+                        if ((Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "3" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "4"))
+                        {
+                            grdsupplieradd.Rows.RemoveAt(i);
+                        }
                     }
-                }
-                for (int i = 0; i < grdsupplieradd.RowCount; i++)
-                {
-                    grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
-                }
+                    for (int i = 0; i < grdsupplieradd.RowCount; i++)
+                    {
+                        grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
+                    }
+                } 
             }
             catch (Exception ex)
             {
