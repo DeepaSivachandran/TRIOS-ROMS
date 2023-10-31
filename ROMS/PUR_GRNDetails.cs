@@ -37,7 +37,8 @@ namespace ROMS
         {
             try
             {
-
+                this.ActiveControl = cmbConcern;
+                udfnDropdownLoad();
             }
             catch (Exception ex)
             {
@@ -46,6 +47,28 @@ namespace ROMS
             }
         }
 
+        public void udfnDropdownLoad()
+        {
+            SPDataService objdserv = new SPDataService();
+            int varconcerntype = 3; 
+            DataSet objDT = new DataSet();
+            objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+            objdserv.CloseConnection();
+            cmbConcern.DataSource = null;
+            if (objDT != null)
+            {
+                if (objDT.Tables.Count > 0)
+                {
+                    if (objDT.Tables[0].Rows.Count > 0)
+                    {
+                        cmbConcern.ValueMember = "COMID";
+                        cmbConcern.DisplayMember = "COM_ShortName";
+                        cmbConcern.DataSource = objDT.Tables[0];
+                    }
+                }
+            }
+             
+        }
 
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
@@ -260,17 +283,17 @@ namespace ROMS
 
         private void BtnDamage_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MainForm.objINV_GRNPODamaged = new INV_GRNPODamaged();
-                MainForm.objINV_GRNPODamaged.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+            //try
+            //{
+            //    MainForm.objINV_GRNPODamaged = new INV_GRNPODamaged(); 
+            //    MainForm.objINV_GRNPODamaged.ShowDialog();
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
 
-            }
+            //}
         } 
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -333,20 +356,20 @@ namespace ROMS
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objPUR_PODamaged = new PUR_PODamaged();
-                MainForm.objPUR_PODamaged.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+        //private void BtnDamage_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        MainForm.objPUR_PODamaged = new PUR_PODamaged();
+        //        MainForm.objPUR_PODamaged.ShowDialog();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
 
-            }
-        }
+        //    }
+        //}
 
         private void DpGrnDate_Enter(object sender, EventArgs e)
         {
@@ -910,6 +933,21 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnDC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objINV_GRNPODamaged = new INV_GRNPODamaged(); 
+                MainForm.objINV_GRNPODamaged.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
 

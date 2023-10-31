@@ -14,8 +14,8 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0, varPOID = 0,VarStatusId= 10,pbSupplierpend=0,pbSupplierId=0,pbScheduleid=0;
-         
+        public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0, varPOID = 0, VarStatusId = 10, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0;
+
         public string vardays = "";
         private ToolTip tpsalesman = new ToolTip();
         private ToolTip tpsalemanph = new ToolTip();
@@ -25,17 +25,18 @@ namespace ROMS
         private ToolTip tppono = new ToolTip();
         private ToolTip tpsts = new ToolTip();
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
-            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate="0",varpendingPOID="0", varReturnDC="0", varDamage="0";
+            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0";
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
         }
-          
+
         private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
             try
             {
                 tbSupplierDetails.Enabled = false;
+                dpPlanDate.MinDate= DateTime.Today;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
@@ -83,7 +84,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID,0);
+                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -95,19 +96,19 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
                                     lblNoRecordsFound.Visible = false;
-                                    grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString() ,
-                                    objDs.Tables[0].Rows[i]["Product Name"].ToString() , objDs.Tables[0].Rows[i]["Unit"].ToString() ,
-                                    objDs.Tables[0].Rows[i]["GST_Text"].ToString() , objDs.Tables[0].Rows[i]["MSQ"].ToString() ,
-                                    objDs.Tables[0].Rows[i]["STOCK"].ToString() , objDs.Tables[0].Rows[i]["PREVIOUS"].ToString() ,
-                                    objDs.Tables[0].Rows[i]["PARTIAL"].ToString() , objDs.Tables[0].Rows[i]["Reorder"].ToString() 
-                                    , objDs.Tables[0].Rows[i]["ORDERQTY"].ToString() , objDs.Tables[0].Rows[i]["Productid"].ToString() ,
-                                    objDs.Tables[0].Rows[i]["FLAG"].ToString() );
+                                    grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString(),
+                                    objDs.Tables[0].Rows[i]["Product Name"].ToString(), objDs.Tables[0].Rows[i]["Unit"].ToString(),
+                                    objDs.Tables[0].Rows[i]["GST_Text"].ToString(), objDs.Tables[0].Rows[i]["MSQ"].ToString(),
+                                    objDs.Tables[0].Rows[i]["STOCK"].ToString(), objDs.Tables[0].Rows[i]["PREVIOUS"].ToString(),
+                                    objDs.Tables[0].Rows[i]["PARTIAL"].ToString(), objDs.Tables[0].Rows[i]["Reorder"].ToString()
+                                    , objDs.Tables[0].Rows[i]["ORDERQTY"].ToString(), objDs.Tables[0].Rows[i]["Productid"].ToString(),
+                                    objDs.Tables[0].Rows[i]["FLAG"].ToString());
                                     grdsupplieradd.Columns[10].ReadOnly = false;
                                 }
+                                cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString();
                                 dpPlanDate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString();
                                 txtpono.Text = objDs.Tables[0].Rows[0]["PONO"].ToString();
                                 txtSupplier.Text = objDs.Tables[0].Rows[0]["Supplier"].ToString();
-                                cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString();
                                 lblSupplierCode.Text = objDs.Tables[0].Rows[0]["SPID"].ToString();
                                 lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
                                 btnSave.Text = "Update";
@@ -115,8 +116,8 @@ namespace ROMS
                                 udfnsupplierLoad();
                             }
                             if (objDs.Tables[1].Rows.Count != 0)
-                            { 
-                                dpissuedateandtime.Text = objDs.Tables[1].Rows[0]["PODATE"].ToString();   
+                            {
+                                dpissuedateandtime.Text = objDs.Tables[1].Rows[0]["PODATE"].ToString();
                                 txtIssuedBy.Text = objDs.Tables[1].Rows[0]["Issuedby"].ToString();
                                 txtissuemodevalue.Text = objDs.Tables[1].Rows[0]["Issueremark"].ToString();
                                 txtTurnAroundTime.Text = objDs.Tables[1].Rows[0]["TAT"].ToString();
@@ -194,7 +195,7 @@ namespace ROMS
                 tpQty.Active = false;
                 tppono.Active = false;
                 tpsts.Active = false;
-                txtpono.BackColor=Color.White;
+                txtpono.BackColor = Color.White;
                 cmbStatus.BackColor = Color.White;
             }
             catch (Exception ex)
@@ -271,7 +272,7 @@ namespace ROMS
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -330,7 +331,7 @@ namespace ROMS
             }
         }
 
-         
+
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
@@ -379,13 +380,13 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PODamagedView = new PUR_PODamagedView();
-                MainForm.objPUR_PODamagedView.varMasterType = "1"; 
+                MainForm.objPUR_PODamagedView.varMasterType = "1";
                 MainForm.objPUR_PODamagedView.ShowDialog();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex); 
+                objError.WriteFile(ex);
             }
         }
 
@@ -398,7 +399,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex); 
+                objError.WriteFile(ex);
             }
         }
         public void udfnClear()
@@ -412,7 +413,7 @@ namespace ROMS
                 txtProductQty.Text = "";
                 txtUnit.Text = "";
                 grdsupplieradd.Rows.Clear();
-                cmbConcern.SelectedValue = "-1"; 
+                cmbConcern.SelectedValue = "-1";
                 cmbStatus.SelectedValue = "-1";
                 txtRemark.Text = "";
                 lblPC.Text = "0";
@@ -422,11 +423,11 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex); 
+                objError.WriteFile(ex);
             }
         }
         public void udfnsave()
-        { 
+        {
             try
             {
                 if (grdsupplieradd.RowCount > 0)
@@ -512,7 +513,7 @@ namespace ROMS
                             if (grdsupplieradd.Rows.Count > 0)
                             {
                                 if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
-                                { 
+                                {
                                     string result = "", varorginator = "Po Create";
                                     int varviewtype = 0, POUpdate = varPOID;
                                     if (btnSave.Text == "Update")
@@ -531,7 +532,7 @@ namespace ROMS
                                     objPurchaseOrder = udfnPurchaseProduct();
                                     result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
                                     txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
-                                    txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(cmbStatus.SelectedValue));
+                                    txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(cmbStatus.SelectedValue), dpPlanDate.Text);
                                     objspdservice.CloseConnection();
                                     string[] varvalue = result.Split('~');
                                     if (varvalue[0] == "3")
@@ -541,7 +542,7 @@ namespace ROMS
                                         MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
                                         udfnClear();
                                         varupdate = "1";
-                                        udfnclose(); 
+                                        udfnclose();
                                     }
                                     else
                                     {
@@ -619,7 +620,7 @@ namespace ROMS
                 if (varErrorFlag == true)
                 {
                     int varflag = 0;
-                    lblNoRecordsFound.Visible = false; 
+                    lblNoRecordsFound.Visible = false;
                     foreach (DataGridViewRow row in grdsupplieradd.Rows)
                     {
                         if (row.Cells[0].Value != null && row.Cells[1].Value != null)
@@ -679,14 +680,14 @@ namespace ROMS
                 objPurchaseOrder.Columns.Add("POPR_PRID", typeof(int));
                 objPurchaseOrder.Columns.Add("POPR_MSQ", typeof(float));
                 objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
-                objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float)); 
+                objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
                 objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
                 for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                 {
-                    double orderqty=0;
-                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value)=="0")
+                    double orderqty = 0;
+                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "0")
                     {
-                        orderqty =0;
+                        orderqty = 0;
                     }
                     else
                     {
@@ -699,7 +700,7 @@ namespace ROMS
                         , Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmreorderqty"].Value), orderqty,
                         Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmflag"].Value));
                     }
-                } 
+                }
 
             }
             catch (Exception ex)
@@ -738,7 +739,7 @@ namespace ROMS
                 MainForm.objPUR_BulkUnit.ShowDialog();
                 udfnDropdownLoad();
                 cmbConcern.SelectedValue = varcmbconcernid;
-               // cmbUnit.SelectedValue = varcmbunitid;
+                // cmbUnit.SelectedValue = varcmbunitid;
             }
             catch (Exception ex)
             {
@@ -776,7 +777,7 @@ namespace ROMS
             {
                 lblPC.Text = grdsupplieradd.Rows.Count.ToString();
             }
-        } 
+        }
 
         private void BtnSalesmanSave_Click(object sender, EventArgs e)
         {
@@ -917,7 +918,7 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PODamaged = new PUR_PODamaged();
-                MainForm.objPUR_PODamaged.varMasterType ="1";
+                MainForm.objPUR_PODamaged.varMasterType = "1";
                 MainForm.objPUR_PODamaged.ShowDialog();
             }
             catch (Exception ex)
@@ -991,6 +992,18 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                udfnVocherno();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVocherno()
+        {
+            try
+            {
                 if (btnSave.Text == "Save")
                 {
                     if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
@@ -999,7 +1012,8 @@ namespace ROMS
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
                         DataService objDservice = new DataService();
-                        vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,GETDATE(),103)");
+                        vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpPlanDate.Text + "',103)");
+                        objDservice.CloseConnection();
                         varResult = objspdservice.udfngetPONO("38", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                         objspdservice.CloseConnection();
                         if (varResult != "")
@@ -1012,7 +1026,6 @@ namespace ROMS
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1020,7 +1033,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpPlanDate_Leave(object sender, EventArgs e)
         {
             try
@@ -1963,6 +1975,19 @@ namespace ROMS
             finally
             {
                 lblPC.Text = grdsupplieradd.Rows.Count.ToString();
+            }
+        }
+
+        private void DpPlanDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            { 
+                udfnVocherno();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
