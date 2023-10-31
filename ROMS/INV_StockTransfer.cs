@@ -189,11 +189,41 @@ namespace ROMS
         {
             try
             {
-                cmbConcern.SelectedValue = VarConcernID;
-                txtSLocation.Text = VarSource;
-                txtDLocation.Text = VarDestination;
                 lvSLocation.Visible = false;
                 lvDLocation.Visible = false;
+                if(varStockTransferID!=0)
+                {
+                    SPDataService objspservice = new SPDataService();
+                    DataSet objDS;
+                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0);
+                    objspservice.CloseConnection();
+                    if (objDS != null)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            txtSLocation.Text = objDS.Tables[0].Rows[0]["Source"].ToString().Replace("''", "'");
+                            txtDLocation.Text = objDS.Tables[0].Rows[0]["Destination"].ToString().Replace("''", "'");
+                            dpTrannsferDate.Text = objDS.Tables[0].Rows[0]["Transfer Date"].ToString().Replace("''", "'");
+                            txtTransferNo.Text = objDS.Tables[0].Rows[0]["Transfer No."].ToString().Replace("''", "'");
+                            cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["ConcernID"].ToString();
+                            lblSLocation.Text = objDS.Tables[0].Rows[0]["SLID"].ToString();
+                            lblDLocation.Text = objDS.Tables[0].Rows[0]["DLID"].ToString();
+                            btnSave.Text = "Update";
+                        }
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
+                            {
+                                grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]),
+                                Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"])
+                                , Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]));
+                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]),Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]));
+                                //dtStock.Rows.Add((lblProduct.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtQuantity.Text).Trim());
+                            }
+                            btnSave.Text = "Update";
+                        }
+                    }
+                }
             }
             catch(Exception ex)
             {

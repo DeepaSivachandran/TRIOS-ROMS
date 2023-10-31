@@ -264,7 +264,7 @@ namespace ROMS
         {
             try
             {
-                //btnView.Enabled = false;
+                btnView.Enabled = false;
                 udfnList();
             }
             catch (Exception ex)
@@ -326,7 +326,10 @@ namespace ROMS
                 {
                     lblDLocation.Text = "0";
                 }
-
+                if(txtProductNamePICode.Text=="")
+                {
+                    lblProduct.Text = "0";
+                }
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -335,7 +338,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockTransferList(0,Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text),Convert.ToInt32(lblDLocation.Text),0,0);
+                objDs = objspservice.udfnStockTransferList(0,0,Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text),Convert.ToInt32(lblDLocation.Text),Convert.ToInt32(lblProduct.Text),0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -584,18 +587,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
-                    if (lvProductNamePICode.Items.Count == 0 || txtProductNamePICode.Text == "")
+                    if (lvProduct.Items.Count == 0 || txtProductNamePICode.Text == "")
                     {
                         txtProductNamePICode.Focus();
-                        lvProductNamePICode.Visible = false;
+                        lvProduct.Visible = false;
                     }
                     else
                     {
-                        lvProductNamePICode.Focus();
+                        lvProduct.Focus();
                     }
-                    if (lvProductNamePICode.Items.Count > 0)
+                    if (lvProduct.Items.Count > 0)
                     {
-                        lvProductNamePICode.Items[0].Selected = true;
+                        lvProduct.Items[0].Selected = true;
                     }
                 }
                 if (e.KeyCode == Keys.Enter)
@@ -615,6 +618,10 @@ namespace ROMS
             try
             {
                 txtProductNamePICode.BackColor = Color.White;
+                if(txtProductNamePICode.Text=="")
+                {
+                    lblProduct.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -673,6 +680,10 @@ namespace ROMS
             try
             {
                 txtSLocation.BackColor = Color.White;
+                if(txtSLocation.Text=="")
+                {
+                    lblSLocation.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -732,6 +743,10 @@ namespace ROMS
             try
             {
                 txtDLocation.BackColor = Color.White;
+                if(txtDLocation.Text=="")
+                {
+                    lblDLocation.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -997,12 +1012,12 @@ namespace ROMS
                     MainForm.objINV_StockTransfer.MdiParent = ParentForm;
                     MainForm.objINV_StockTransfer.btnSave.Text = "Update";
                     MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
-                    MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objINV_StockTransfer.varSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
-                    MainForm.objINV_StockTransfer.varDLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["DLID"].Value);
-                    MainForm.objINV_StockTransfer.VarConcernID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["ConcernID"].Value);
-                    MainForm.objINV_StockTransfer.VarSource = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["Source"].Value);
-                    MainForm.objINV_StockTransfer.VarDestination = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["Destination"].Value);
+                    //MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
+                    //MainForm.objINV_StockTransfer.varSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
+                    //MainForm.objINV_StockTransfer.varDLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["DLID"].Value);
+                    //MainForm.objINV_StockTransfer.VarConcernID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["ConcernID"].Value);
+                    //MainForm.objINV_StockTransfer.VarSource = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["Source"].Value);
+                    //MainForm.objINV_StockTransfer.VarDestination = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["Destination"].Value);
                     MainForm.objINV_StockTransfer.Show();
                 }
             }
@@ -1222,7 +1237,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_UTID", typeof(string));
                 dtStock.Columns.Add("STK_QTY", typeof(string));
 
-                lvProductNamePICode.Items.Clear();
+                lvProduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
@@ -1239,30 +1254,34 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString()};
                                     ListViewItem objList = new ListViewItem(row);
-                                    lvProductNamePICode.Items.Add(objList);
+                                    lvProduct.Items.Add(objList);
                                 }
-                                lvProductNamePICode.Visible = true;
-                                lvProductNamePICode.BringToFront();
+                                lvProduct.Visible = true;
+                                lvProduct.BringToFront();
+                                lvProduct.Columns[0].Width = 150;
+                                lvProduct.Columns[1].Width = 250;
+                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[3].Width = 0;
                             }
                             else
                             {
-                                lvProductNamePICode.Visible = false;
+                                lvProduct.Visible = false;
                             }
                         }
                         else
                         {
-                            lvProductNamePICode.Visible = false;
+                            lvProduct.Visible = false;
                         }
                     }
                     else
                     {
-                        lvProductNamePICode.Visible = false;
+                        lvProduct.Visible = false;
                     }
                 }
                 else
                 {
-                    lvProductNamePICode.Visible = false;
-                    lvProductNamePICode.Items.Clear();
+                    lvProduct.Visible = false;
+                    lvProduct.Items.Clear();
                 }
             }
             catch (Exception ex)
@@ -1275,7 +1294,7 @@ namespace ROMS
 
             }
         }
-        private void LvProductNamePICode_DoubleClick(object sender, EventArgs e)
+        private void lvProduct_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -1289,7 +1308,7 @@ namespace ROMS
             }
         }
 
-        private void LvProductNamePICode_KeyDown(object sender, KeyEventArgs e)
+        private void lvProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -1311,7 +1330,7 @@ namespace ROMS
             {
                 if (txtProductNamePICode.Text != "")
                 {
-                    ListViewItem selectedItem = lvProductNamePICode.SelectedItems[0];
+                    ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     //varPICode = selectedItem.SubItems[0].Text;
                     txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
                     //txtMRP.Text = selectedItem.SubItems[4].Text;
@@ -1334,7 +1353,7 @@ namespace ROMS
             }
             finally
             {
-                lvProductNamePICode.Visible = false;
+                lvProduct.Visible = false;
             }
         }
     }

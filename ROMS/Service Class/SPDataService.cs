@@ -612,7 +612,7 @@ namespace ROMS
             }
             return varResult;
         }
-        public DataSet udfnStockTransferList(int paraViewType,int paraConcern,int paraSLID,int paraDLID,int paraPRID,int paraStatus)
+        public DataSet udfnStockTransferList(int paraViewType,int paraStockTransferID, int paraConcern,int paraSLID,int paraDLID,int paraPRID,int paraStatus)
         {
             DataSet ds = new DataSet();
             try
@@ -621,6 +621,7 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[TRNG_StockTransfer]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransferID", paraStockTransferID);
                 varSqlCommand.Parameters.AddWithValue("@paraConcern", paraConcern);
                 varSqlCommand.Parameters.AddWithValue("@paraSLID", paraSLID);
                 varSqlCommand.Parameters.AddWithValue("@paraDLID", paraDLID);
