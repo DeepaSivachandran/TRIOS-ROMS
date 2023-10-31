@@ -3861,7 +3861,7 @@ namespace ROMS
                             objDs.Tables[0].Rows[i]["PRODUCTID"], objDs.Tables[0].Rows[i]["Product Name in English"], objDs.Tables[0].Rows[i]["MappedCount"]);
                     }
                     grdSupplierMappingLoad.DataSource = dtSubGroup;
-                    grdSupplierMappingLoad.Columns[0].Frozen = true;
+                  //  grdSupplierMappingLoad.Columns[0].Frozen = true;
                     grdSupplierMappingLoad.Columns[0].HeaderText = "";
                     grdSupplierMappingLoad.Columns[0].Width = 30;
                     grdSupplierMappingLoad.Columns["S.No."].Width = 50;
@@ -4249,7 +4249,7 @@ namespace ROMS
 
                     }
                     grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
-                    grdFinalSupplierMapping.Columns[0].Frozen = true;
+                    //grdFinalSupplierMapping.Columns[0].Frozen = true;
                     grdFinalSupplierMapping.Columns[0].HeaderText = "";
                     grdFinalSupplierMapping.Columns[0].Width = 30;
                     grdFinalSupplierMapping.Columns["S.No."].Width = 50;
@@ -4903,7 +4903,33 @@ namespace ROMS
         {
             try
             {
-                (grdSupplierMappingLoad.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
+                // (grdSupplierMappingLoad.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
+                DataTable objdtnew = new DataTable();
+                objdtnew = dtSubGroup.Copy();
+                objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
+                grdSupplierMappingLoad.DataSource = objdtnew;
+                //  grdSupplierMappingLoad.Columns[0].Frozen = true;
+                grdSupplierMappingLoad.Columns[0].HeaderText = "";
+                grdSupplierMappingLoad.Columns[0].Width = 30;
+                grdSupplierMappingLoad.Columns["S.No."].Width = 50;
+                grdSupplierMappingLoad.Columns["P.I Code"].Width = 100;
+                grdSupplierMappingLoad.Columns["Product Name in Tamil"].Width = 220;
+                grdSupplierMappingLoad.Columns["Unit"].Width = 60;
+                grdSupplierMappingLoad.Columns["Product SubGroup"].Width = 170;
+                grdSupplierMappingLoad.Columns["GROUPID"].Visible = false;
+                grdSupplierMappingLoad.Columns["SUBGROUPID"].Visible = false;
+                grdSupplierMappingLoad.Columns["PRODUCTID"].Visible = false;
+                grdSupplierMappingLoad.Columns["MappedCount"].Visible = false;
+                grdSupplierMappingLoad.Columns["Product Name in English"].Visible = false;
+                grdSupplierMappingLoad.Columns["S.No."].Visible = false;
+
+                grdSupplierMappingLoad.Columns["S.No."].ReadOnly = true;
+                grdSupplierMappingLoad.Columns["P.I Code"].ReadOnly = true;
+                grdSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
+                grdSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
+                grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+
             }
             catch (Exception ex)
             {
@@ -4919,7 +4945,31 @@ namespace ROMS
         {
             try
             {
-                (grdFinalSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //(grdFinalSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                DataTable objdtnew = new DataTable();
+                objdtnew = dtSubGroupMapping.Copy();
+                objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                grdFinalSupplierMapping.DataSource = objdtnew;
+                //  grdFinalSupplierMapping.Columns[0].Frozen = true;
+                grdFinalSupplierMapping.Columns[0].HeaderText = "";
+                grdFinalSupplierMapping.Columns[0].Width = 30;
+                grdFinalSupplierMapping.Columns["S.No."].Width = 50;
+                grdFinalSupplierMapping.Columns["P.I Code"].Width = 100;
+                grdFinalSupplierMapping.Columns["Product Name in Tamil"].Width = 220;
+                grdFinalSupplierMapping.Columns["Unit"].Width = 60;
+                grdFinalSupplierMapping.Columns["Product SubGroup"].Width = 120;
+                grdFinalSupplierMapping.Columns["GROUPID"].Visible = false;
+                grdFinalSupplierMapping.Columns["SUBGROUPID"].Visible = false;
+                grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
+                grdFinalSupplierMapping.Columns["MappedCount"].Visible = false;
+                grdFinalSupplierMapping.Columns["Product Name in English"].Visible = false;
+                grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                grdFinalSupplierMapping.Columns["S.No."].ReadOnly = true;
+                grdFinalSupplierMapping.Columns["P.I Code"].ReadOnly = true;
+                grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
+                grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -5044,7 +5094,7 @@ namespace ROMS
                     }
 
                     grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
-                    grdFinalSupplierMapping.Columns[0].Frozen = true;
+                  //  grdFinalSupplierMapping.Columns[0].Frozen = true;
                     grdFinalSupplierMapping.Columns[0].HeaderText = "";
                     grdFinalSupplierMapping.Columns[0].Width = 30;
                     grdFinalSupplierMapping.Columns["S.No."].Width = 50;
@@ -5139,7 +5189,7 @@ namespace ROMS
                                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
                                 dtSubGroup.AcceptChanges();
                                 grdSupplierMappingLoad.DataSource = dtSubGroup;
-                                grdSupplierMappingLoad.Columns[0].Frozen = true;
+                               // grdSupplierMappingLoad.Columns[0].Frozen = true;
                                 grdSupplierMappingLoad.Columns[0].HeaderText = "";
                                 grdSupplierMappingLoad.Columns[0].Width = 30;
                                 grdSupplierMappingLoad.Columns["S.No."].Width = 50;
@@ -6878,7 +6928,7 @@ namespace ROMS
                 }
                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
                 grdSupplierMappingLoad.DataSource = dtSubGroup;
-                grdSupplierMappingLoad.Columns[0].Frozen = true;
+               // grdSupplierMappingLoad.Columns[0].Frozen = true;
                 grdSupplierMappingLoad.Columns[0].HeaderText = "";
                 grdSupplierMappingLoad.Columns[0].Width = 30;
                 grdSupplierMappingLoad.Columns["S.No."].Width = 50;
@@ -6902,7 +6952,7 @@ namespace ROMS
 
 
                 grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
-                grdFinalSupplierMapping.Columns[0].Frozen = true;
+               // grdFinalSupplierMapping.Columns[0].Frozen = true;
                 grdFinalSupplierMapping.Columns[0].HeaderText = "";
                 grdFinalSupplierMapping.Columns[0].Width = 30;
                 grdFinalSupplierMapping.Columns["S.No."].Width = 50;
