@@ -161,7 +161,13 @@ namespace ROMS
                 objDSBatchNo = objDServ.udfnMaster(0, 25,0);
                 objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0);
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "",0);
-                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"");
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"",dtStock);
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -975,7 +981,13 @@ namespace ROMS
         {
             try
             {
-               // Application.DoEvents();
+                DataTable dtStock = new DataTable();
+                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStock.Columns.Add("STK_PRID", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                // Application.DoEvents();
                 grdLoction.DataSource = null;
                 grdMSQ.DataSource = null;
                 grdStock.DataSource = null;
@@ -987,7 +999,7 @@ namespace ROMS
                 grdBulkAttributes.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"");
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"",dtStock);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
