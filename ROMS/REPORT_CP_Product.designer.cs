@@ -96,9 +96,9 @@
             this.pnlReportProduct.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportProduct.Controls.Add(this.picLoader);
             this.pnlReportProduct.Controls.Add(this.RPTViewer);
-            this.pnlReportProduct.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportProduct.Location = new System.Drawing.Point(0, 29);
             this.pnlReportProduct.Name = "pnlReportProduct";
-            this.pnlReportProduct.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportProduct.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportProduct.TabIndex = 958788;
             // 
             // lvSubGroup

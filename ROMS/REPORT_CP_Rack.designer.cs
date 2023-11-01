@@ -78,9 +78,9 @@
             this.pnlReportRack.Controls.Add(this.grpfilter);
             this.pnlReportRack.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportRack.Controls.Add(this.picLoader);
-            this.pnlReportRack.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportRack.Location = new System.Drawing.Point(0, 29);
             this.pnlReportRack.Name = "pnlReportRack";
-            this.pnlReportRack.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportRack.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportRack.TabIndex = 958788;
             // 
             // RPTViewer
