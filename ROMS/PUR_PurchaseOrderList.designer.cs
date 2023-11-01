@@ -1260,12 +1260,13 @@
             // 
             // clmView
             // 
-            this.clmView.HeaderText = "Issued Details";
+            this.clmView.HeaderText = "Issued";
             this.clmView.Image = global::ROMS.Properties.Resources.Issue;
             this.clmView.Name = "clmView";
             this.clmView.ReadOnly = true;
             this.clmView.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmView.Width = 80;
             // 
             // PUR_PurchaseOrderList
             // 
