@@ -257,6 +257,8 @@
             // 
             // cmbIssueMode
             // 
+            this.cmbIssueMode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbIssueMode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbIssueMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbIssueMode.FormattingEnabled = true;
             this.cmbIssueMode.Items.AddRange(new object[] {
@@ -272,6 +274,7 @@
             this.cmbIssueMode.SelectedIndexChanged += new System.EventHandler(this.CmbIssueMode_SelectedIndexChanged);
             this.cmbIssueMode.Enter += new System.EventHandler(this.CmbIssueMode_Enter);
             this.cmbIssueMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbIssueMode_KeyDown);
+            this.cmbIssueMode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbIssueMode_KeyPress);
             this.cmbIssueMode.Leave += new System.EventHandler(this.CmbIssueMode_Leave);
             // 
             // txtIssuedBY

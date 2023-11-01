@@ -367,6 +367,14 @@ namespace ROMS
                     //    tpQty.Show("Please enter orderqty.", txtProductQty, 5000);
                     //    varErrorFlag = false;
                     //}
+                    if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                    {
+                        errPO.SetError(cmbConcern, "Please select company");
+                        cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpsts.ShowAlways = true;
+                        tpsts.Show("Please select company", cmbConcern, 5000);
+                        varErrorFlag = false;
+                    }
                     if (Convert.ToString(txtSupplier.Text) != "")
                     {
                         string varsuppliername = "0";
@@ -380,6 +388,7 @@ namespace ROMS
                             txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tpSuppliername.ShowAlways = true;
                             tpSuppliername.Show("Invalid supplier", txtSupplier, 5000);
+                            ClearSupplier();
                             varErrorFlag = false; 
                         }
                         else
@@ -387,15 +396,7 @@ namespace ROMS
                             errPO.Clear();
                             txtSupplier.BackColor = Color.White;
                         }
-                    }
-                    if (Convert.ToString(txtpono.Text) == "")
-                    {
-                        errPO.SetError(txtpono, "Invalid PO Number!");
-                        txtpono.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tppono.ShowAlways = true;
-                        tppono.Show("Invalid PO Number.", txtpono, 5000);
-                        varErrorFlag = false;
-                    }
+                    } 
                     if (Convert.ToInt64(cmbStatus.SelectedValue) == -1)
                     {
                         errPO.SetError(cmbStatus, "Please select status");

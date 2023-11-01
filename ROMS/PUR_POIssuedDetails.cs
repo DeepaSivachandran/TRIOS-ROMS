@@ -91,13 +91,24 @@ namespace ROMS
                 bool varErrorFlag = true;
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
                 {
-                    if (txtIssuemodeValues.Text.Length != 10)
+                    if (txtIssuemodeValues.Text == "")
                     {
-                        errIssued.SetError(txtIssuemodeValues, "Please enter valid number");
+                        errIssued.SetError(txtIssuemodeValues, "Please enter number");
                         txtIssuemodeValues.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpIssuemodeValues.ShowAlways = true;
-                        tpIssuemodeValues.Show("Please enter valid number.", txtIssuemodeValues, 5000);
+                        tpIssuemodeValues.Show("Please enter number.", txtIssuemodeValues, 5000);
                         varErrorFlag = false;
+                    }
+                    else
+                    {
+                        if (txtIssuemodeValues.Text.Length != 10)
+                        {
+                            errIssued.SetError(txtIssuemodeValues, "Please enter valid number");
+                            txtIssuemodeValues.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpIssuemodeValues.ShowAlways = true;
+                            tpIssuemodeValues.Show("Please enter valid number.", txtIssuemodeValues, 5000);
+                            varErrorFlag = false;
+                        }
                     }
                 } 
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1)
@@ -217,7 +228,6 @@ namespace ROMS
                             txtPONo.Text = objDs.Tables[0].Rows[0]["PONO"].ToString();
                             txtSupplier.Text = objDs.Tables[0].Rows[0]["SUPPLIER"].ToString();
                             txtIssuedBY.Text = objDs.Tables[0].Rows[0]["Issuedby"].ToString();
-                            txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString(); 
                             txtTAT.Text = objDs.Tables[0].Rows[0]["TAT"].ToString();
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["IssueDate"])  != "")
                             {
@@ -235,13 +245,14 @@ namespace ROMS
                             {
                                 cmbIssueMode.SelectedValue = -1;
                             }
+                            txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString();
                             SPDataService objDServ = new SPDataService();
                             DataSet objd = new DataSet();
                             objd = objDServ.udfnMaster(4, 6,varPOID);
                             if (objd.Tables[0].Rows.Count != 0)
                             { 
-                                DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                                DateTime varmaxdate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                                DateTime varmaxdate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                                 dpissuedateandtime.MinDate = varmindate;
                                 dpissuedateandtime.MaxDate = varmaxdate;
                             }
@@ -505,6 +516,20 @@ namespace ROMS
             }
         }
 
+        private void CmbIssueMode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //try
+            //{
+            //    e.Handled = true;
+            //}
+            //catch (Exception ex)
+
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
         private void TxtTAT_Leave(object sender, EventArgs e)
         {
             try
@@ -541,11 +566,14 @@ namespace ROMS
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1)
                 {
                     txtDmode.Text = cmbIssueMode.Text;
+                    txtIssuemodeValues.Text = "";
                 }
                 else
                 {
                     txtDmode.Text = "";
                 }
+                string selectedValue = cmbIssueMode.SelectedItem.ToString();
+                 
             }
             catch (Exception ex)
             {
