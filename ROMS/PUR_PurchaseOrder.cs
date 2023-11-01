@@ -993,17 +993,20 @@ namespace ROMS
                     {
                         if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(78);
-                            objDServ.CloseConnection();
-
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                            if (Convert.ToString(cmbConcern.SelectedValue) != "-1")
                             {
-                                grdsupplieradd.Rows.Clear();
-                                txtSupplier.Text = "";
-                                lblSupplierCode.Text = "0";
-                                ClearSupplier();
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(78);
+                                objDServ.CloseConnection();
+
+                                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    grdsupplieradd.Rows.Clear();
+                                    txtSupplier.Text = "";
+                                    lblSupplierCode.Text = "0";
+                                    ClearSupplier();
+                                }
                             }
                         }
                     }
