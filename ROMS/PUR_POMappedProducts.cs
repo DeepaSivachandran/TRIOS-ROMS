@@ -203,7 +203,7 @@ namespace ROMS
                         MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Add(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Count + 1,
                         grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value,grdPurchaseOrder.Rows[i].Cells["Product Name"].Value,grdPurchaseOrder.Rows[i].Cells["Unit"].Value, grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["MSQ"].Value),
                         (grdPurchaseOrder.Rows[i].Cells["Stock"].Value),grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value,grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),
-                        grdPurchaseOrder.Rows[i].Cells["ordervalue"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 4);
+                        grdPurchaseOrder.Rows[i].Cells["ordervalue"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 4,1);
                         VARFLAG = 1;
                     }
                 } 
