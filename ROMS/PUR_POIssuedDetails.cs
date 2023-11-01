@@ -131,6 +131,8 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, 0, "", 0, 0
                         , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text,11,"");
                         objspdservice.CloseConnection();

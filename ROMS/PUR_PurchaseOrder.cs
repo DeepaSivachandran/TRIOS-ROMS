@@ -343,14 +343,14 @@ namespace ROMS
                 if (grdsupplieradd.RowCount > 0)
                 {
                     bool varErrorFlag = true;
-                    //if (txtSupplier.Text == "")
-                    //{
-                    //    errPO.SetError(txtSupplier, "Please enter supplier");
-                    //    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    tpSuppliername.ShowAlways = true;
-                    //    tpSuppliername.Show("Please enter supplier.", txtSupplier, 5000);
-                    //    varErrorFlag = false;
-                    //}
+                    if (txtSupplier.Text == "")
+                    {
+                        errPO.SetError(txtSupplier, "Please select supplier");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSuppliername.ShowAlways = true;
+                        tpSuppliername.Show("Please select supplier.", txtSupplier, 5000);
+                        varErrorFlag = false;
+                    }
                     //if (txtProductName.Text == "")
                     //{
                     //    errPO.SetError(txtProductName, "Please enter product");
@@ -369,25 +369,24 @@ namespace ROMS
                     //}
                     if (Convert.ToString(txtSupplier.Text) != "")
                     {
-                        //string varsuppliername = "0";
-                        //DataService objDserv = new DataService();
-                        //varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text + "'");
-                        //if (varsuppliername == "0")
-                        //{
-                        //    lblSupplierCode.Text = "0";
-                        //    lblschedule.Text = "0";
-                        //    errPO.SetError(txtSupplier, "Invalid supplier");
-                        //    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //    tpSuppliername.ShowAlways = true;
-                        //    tpSuppliername.Show("Invalid supplier", txtSupplier, 5000);
-                        //    varErrorFlag = false;
-                        //    udfnListViewData();
-                        //}
-                        //else
-                        //{
-                        //    errPO.Clear();
-                        //    txtSupplier.BackColor = Color.White;
-                        //}
+                        string varsuppliername = "0";
+                        DataService objDserv = new DataService();
+                        varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text + "'");
+                        if (varsuppliername == "0")
+                        {
+                            lblSupplierCode.Text = "0";
+                            lblschedule.Text = "0";
+                            errPO.SetError(txtSupplier, "Invalid supplier");
+                            txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpSuppliername.ShowAlways = true;
+                            tpSuppliername.Show("Invalid supplier", txtSupplier, 5000);
+                            varErrorFlag = false; 
+                        }
+                        else
+                        {
+                            errPO.Clear();
+                            txtSupplier.BackColor = Color.White;
+                        }
                     }
                     if (Convert.ToString(txtpono.Text) == "")
                     {
@@ -932,6 +931,18 @@ namespace ROMS
             try
             {
                 cmbConcern.BackColor = Color.White;
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    errPO.SetError(cmbConcern, "Please select company");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpsts.ShowAlways = true;
+                    tpsts.Show("Please select company", cmbConcern, 5000);
+                }
+                else
+                {
+                    errPO.Clear();
+                    cmbConcern.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -1056,10 +1067,12 @@ namespace ROMS
                             string varMessage = objDServ.udfnGetMessages(75);
                             objDServ.CloseConnection();
                             txtpono.Text = "";
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            if (dialogResult == DialogResult.OK)
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             { 
                                 MainForm.objCP_Settings = new CP_Settings();
+                                MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                                MainForm.objCP_Settings.varValues = Convert.ToString(38);
                                 MainForm.objCP_Settings.MdiParent = this.ParentForm;
                                 MainForm.objCP_Settings.Show();
                                 this.Close();
@@ -1181,6 +1194,7 @@ namespace ROMS
             try
             {
                 txtSupplier.BackColor = Color.LemonChiffon;
+
             }
             catch (Exception ex)
             {
@@ -1241,6 +1255,7 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2097,24 +2112,34 @@ namespace ROMS
         {
             try
             {
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(76);
-                objDServ.CloseConnection();
-                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (grdsupplieradd.Rows.Count > 0)
                 {
-                    for (int i = grdsupplieradd.Rows.Count - 1; i >= 0; i--)
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(76);
+                    objDServ.CloseConnection();
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        if ((Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "3" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "4"))
+                        for (int i = grdsupplieradd.Rows.Count - 1; i >= 0; i--)
                         {
-                            grdsupplieradd.Rows.RemoveAt(i);
+                            if ((Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "3" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmflag"].Value) == "4"))
+                            {
+                                grdsupplieradd.Rows.RemoveAt(i);
+                            }
+                        }
+                        for (int i = 0; i < grdsupplieradd.RowCount; i++)
+                        {
+                            grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
                         }
                     }
-                    for (int i = 0; i < grdsupplieradd.RowCount; i++)
-                    {
-                        grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
-                    }
-                } 
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(79);
+                    objDServ.CloseConnection();
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -2291,7 +2316,15 @@ namespace ROMS
 
                     GrdPendingorder_DataBindingComplete(grdPendingorder, args); 
                 }
-                txtProductName.Focus();
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    cmbConcern.Focus();
+                    cmbConcern.BackColor = Color.LemonChiffon;
+                }
+                else
+                { 
+                    txtProductName.Focus(); 
+                }
             }
             catch (Exception ex)
             {

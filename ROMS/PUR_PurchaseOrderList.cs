@@ -1663,6 +1663,8 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
                         SPDataService objspdservice = new SPDataService();
                         result = "";
                         result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0,"", 0, 0, "", "", "","", objPurchaseOrder, "", "", "","",0,"");
