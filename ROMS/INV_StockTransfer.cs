@@ -61,11 +61,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnToolTipClear()
+        {
+            tpConcern.Active = false;
+            tpTransferNo.Active = false;
+            tpProductName.Active = false;
+            tpSStockLocation.Active = false;
+            tpDStockLocation.Active = false;
+            tpTransferQty.Active = false;
+    }
         public void udfnclose()
         {
             try
             {
-                this.Close();
+                udfnToolTipClear();
+                if (varUpdate == 1) { this.Close(); }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -83,7 +101,8 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    //btnSave_Click(sender, e);
+                    btnSave.Focus();
+                    BtnSave_Click(sender,e);
                 }
             }
             catch (Exception ex)
@@ -149,7 +168,18 @@ namespace ROMS
         {
             try
             {
-                cmbConcern.BackColor = Color.White;
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    errStockTransfer.SetError(cmbConcern, "Please select concern");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
+                }
+                else
+                {
+                    errStockTransfer.Clear();
+                    cmbConcern.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -325,19 +355,19 @@ namespace ROMS
         {
             try
             {
-                //if (Convert.ToString(txtSLocation.Text).Trim() == "")
-                //{
-                    //errStockTransfer.SetError(txtSLocation, "Please enter location");
-                    //txtSLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //tpSStockLocation.ShowAlways = true;
-                    //tpSStockLocation.Show("Please enter location", txtSLocation, 5000);
-                //    lblSLocation.Text = "0";
-                //}
-                //else
-                //{
-                //    errStockTransfer.Clear();
+                if (Convert.ToString(txtSLocation.Text).Trim() == "")
+                {
+                    errStockTransfer.SetError(txtSLocation, "Please enter location");
+                    txtSLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSStockLocation.ShowAlways = true;
+                    tpSStockLocation.Show("Please enter location", txtSLocation, 5000);
+                    lblSLocation.Text = "0";
+                }
+                else
+                {
+                    errStockTransfer.Clear();
                     txtSLocation.BackColor = Color.White;
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -529,19 +559,19 @@ namespace ROMS
         {
             try
             {
-                //if (Convert.ToString(txtDLocation.Text).Trim() == "")
-                //{
-                    //errStockTransfer.SetError(txtDLocation, "Please enter location");
-                    //txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //tpDStockLocation.ShowAlways = true;
-                    //tpDStockLocation.Show("Please enter location", txtDLocation, 5000);
-                //    lblDLocation.Text = "0";
-                //}
-                //else
-                //{
-                //    errStockTransfer.Clear();
+                if (Convert.ToString(txtDLocation.Text).Trim() == "")
+                {
+                    errStockTransfer.SetError(txtDLocation, "Please enter location");
+                    txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpDStockLocation.ShowAlways = true;
+                    tpDStockLocation.Show("Please enter location", txtDLocation, 5000);
+                    lblDLocation.Text = "0";
+                }
+                else
+                {
+                    errStockTransfer.Clear();
                     txtDLocation.BackColor = Color.White;
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -735,7 +765,18 @@ namespace ROMS
         {
             try
             {
-                txtProductNamePICode.BackColor = Color.White;
+                if (Convert.ToString(txtProductNamePICode.Text).Trim() == "")
+                {
+                    errStockTransfer.SetError(txtProductNamePICode, "Please enter product name");
+                    txtProductNamePICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProductName.ShowAlways = true;
+                    tpProductName.Show("Please enter product name", txtProductNamePICode, 5000);
+                }
+                else
+                {
+                    errStockTransfer.Clear();
+                    txtProductNamePICode.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -858,7 +899,18 @@ namespace ROMS
         {
             try
             {
-                txtQuantity.BackColor = Color.White;
+                if(txtQuantity.Text.Trim()=="")
+                {
+                    errStockTransfer.SetError(txtQuantity, "Please enter quentity");
+                    txtQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTransferQty.ShowAlways = true;
+                    tpTransferQty.Show("Please enter quentity", txtQuantity, 5000);
+                }
+                else
+                {
+                    errStockTransfer.Clear();
+                    txtQuantity.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -1241,11 +1293,15 @@ namespace ROMS
                     lblSLocation.Text = Convert.ToString(varId_PurLocation);
                     if (varId_PurLocation == "0" || varId_PurLocation == "-1")
                     {
-                        errStockTransfer.SetError(txtSLocation, "Please select valid stock location");
+                        errStockTransfer.SetError(txtSLocation, "Please select valid source location");
                         txtSLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpSStockLocation.ShowAlways = true;
-                        tpSStockLocation.Show("Please select valid stock location", txtSLocation, 5000);
+                        tpSStockLocation.Show("Please select valid source location", txtSLocation, 5000);
                     }
+                }
+                else
+                {
+                    lblSLocation.Text = "0";
                 }
                 /* Check destination stock location is valid or not*/
                 if (txtDLocation.Text != "")
@@ -1268,11 +1324,15 @@ namespace ROMS
                     lblDLocation.Text = Convert.ToString(varId_PurLocation);
                     if (varId_PurLocation == "0" || varId_PurLocation == "-1")
                     {
-                        errStockTransfer.SetError(txtDLocation, "Please select valid stock location");
+                        errStockTransfer.SetError(txtDLocation, "Please select valid destination location");
                         txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpDStockLocation.ShowAlways = true;
-                        tpDStockLocation.Show("Please select valid stock location", txtDLocation, 5000);
+                        tpDStockLocation.Show("Please select valid destination location", txtDLocation, 5000);
                     }
+                }
+                else
+                {
+                    lblDLocation.Text = "0";
                 }
                 varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),Convert.ToInt32(lblDLocation.Text),txtRemarks.Text.Trim(),0,varoriginator,dtStock);
                 objspservice.CloseConnection();
@@ -1364,28 +1424,8 @@ namespace ROMS
 
         private void INV_StockTransfer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
-            {
-                if (varUpdate == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
-
         private void DpTrannsferDate_Enter(object sender, EventArgs e)
         {
             try

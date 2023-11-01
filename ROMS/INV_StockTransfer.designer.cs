@@ -662,7 +662,7 @@
             this.grbDStockTransfer.Location = new System.Drawing.Point(6, 80);
             this.grbDStockTransfer.Name = "grbDStockTransfer";
             this.grbDStockTransfer.Size = new System.Drawing.Size(1331, 76);
-            this.grbDStockTransfer.TabIndex = 1111223;
+            this.grbDStockTransfer.TabIndex = 5;
             this.grbDStockTransfer.TabStop = false;
             // 
             // btnAdd

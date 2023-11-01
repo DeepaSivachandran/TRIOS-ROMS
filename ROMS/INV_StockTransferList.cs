@@ -166,13 +166,21 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
-
+                    TsbEdit_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    TsbDelete_Click(sender, e);
+                }
+                if ((e.KeyCode == Keys.Delete))
+                {
+                    TsbDelete_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
+                    MainForm.objStart.Show();   
                     this.Close();
                 }
             }
@@ -1358,6 +1366,19 @@ namespace ROMS
             finally
             {
                 lvProduct.Visible = false;
+            }
+        }
+
+        private void TsbEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
