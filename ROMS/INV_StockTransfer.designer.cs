@@ -184,7 +184,7 @@
             this.txttotalitem.Name = "txttotalitem";
             this.txttotalitem.ReadOnly = true;
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
-            this.txttotalitem.TabIndex = 111111143;
+            this.txttotalitem.TabIndex = 14;
             // 
             // lvProduct
             // 
@@ -673,7 +673,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 1111238;
+            this.btnAdd.TabIndex = 11;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);

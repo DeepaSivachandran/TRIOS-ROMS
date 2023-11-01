@@ -218,7 +218,7 @@ namespace ROMS
                                 //varUTID, (txtQuantity.Text).Trim());
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]),
                                 Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"])
-                                , Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]));
+                                , Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]));
                                 dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]),Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]));
                                 //dtStock.Rows.Add((lblProduct.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtQuantity.Text).Trim());
                             }
@@ -682,6 +682,7 @@ namespace ROMS
             {
                 udfnSLocationValid();
                 lvDLocation.Visible = false;
+                lvSLocation.Visible = false;
                 txtProductNamePICode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -861,6 +862,10 @@ namespace ROMS
             try
             {
                 udfnTransferNo();
+                grdStockTransfer.Rows.Clear();
+                txtSLocation.Text = "";
+                txtDLocation.Text = "";
+                txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -964,6 +969,9 @@ namespace ROMS
         {
             try
             {
+                lvSLocation.Visible = false;
+                lvDLocation.Visible = false;
+                lvProduct.Visible = false;
                 btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1160,11 +1168,11 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    errStockTransfer.Clear();
                     btnSave.Enabled = false;
                     udfnSave(sender, e);
                     udfnProductClear();
                     udfnClear();
-                    errStockTransfer.Clear();
                 }
             }
             catch (Exception ex)

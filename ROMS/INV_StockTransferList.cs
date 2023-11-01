@@ -448,6 +448,9 @@ namespace ROMS
         {
             try
             {
+                lvSLocation.Visible = false;
+                lvDLocation.Visible = false;
+                lvProduct.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -589,7 +592,7 @@ namespace ROMS
                 {
                     if (lvProduct.Items.Count == 0 || txtProductNamePICode.Text == "")
                     {
-                        txtProductNamePICode.Focus();
+                        btnView.Focus();
                         lvProduct.Visible = false;
                     }
                     else
