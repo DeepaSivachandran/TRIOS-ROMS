@@ -15,6 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        public string varconcernvalue="-1",varValues="-1";
 
         public string varSampleTransation = "";
         //tool tip
@@ -109,6 +110,8 @@ namespace ROMS
         {
             try
             {
+                cmbConcern.SelectedValue = varconcernvalue;
+                cmbTransactionType.SelectedValue = varValues;
                 grdSettings.Columns["clmConcernId"].Visible = false;
                 grdSettings.Columns["clmTransactionTypeID"].Visible = false;
                 grdSettings.Columns["clmResetOnId"].Visible = false;
