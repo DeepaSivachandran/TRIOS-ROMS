@@ -1843,34 +1843,6 @@ namespace ROMS
             }
             return ds;
         }
-        // added by venkat on 13/10/2023 for PO.No. Load
-        public string udfngetPONO(string paraTransactionType, string paraDate, int paraCompanyCode)
-        {
-            string result = "";
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand cmd = new SqlCommand("[MRG_VoucherNo]", tmpspcall.objConn);
-                cmd.Parameters.AddWithValue("@paraTransactionType", paraTransactionType);
-                cmd.Parameters.AddWithValue("@paraDate", paraDate);
-                cmd.Parameters.AddWithValue("@paraCompanyCode", paraCompanyCode); 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@paraVoucherNo", SqlDbType.NVarChar, 50);
-                cmd.Parameters["@paraVoucherNo"].Direction = ParameterDirection.Output;
-                cmd.ExecuteScalar();
-                result = cmd.Parameters["@paraVoucherNo"].Value.ToString();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return result; 
-        }
 
         // added by venkat on 13/10/2023 for PO.No. Save
         public string udfnPurchaseEntry(int paraViewType, int ParaPOID, int paraCompanyId,string paraPONumber,int paraSupplierID,int paraScheduleID,string paraLastTrnsno
