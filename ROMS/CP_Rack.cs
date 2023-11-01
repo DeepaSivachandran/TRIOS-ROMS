@@ -113,6 +113,7 @@ namespace ROMS
                 txtShortName.Text = PbShortName;
                 txtDescription.Text = PbDescription;
                 cmbConcern.SelectedValue = PbConcernID;
+                cmbConcern.Enabled = false;
                 //cmbStockLocation.SelectedValue = PbStockLocationID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
             }

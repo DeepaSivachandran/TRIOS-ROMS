@@ -1218,6 +1218,7 @@ namespace ROMS
                 }
                 udfnLoadSubgrouplist_Selected();
                 udfnTotalProducts();
+                udfnProductCount();
             }
             catch (Exception ex)
             {
@@ -1394,6 +1395,7 @@ namespace ROMS
                 int milliseconds = 300;
                 Thread.Sleep(milliseconds);
                 picLoader.Visible = false;
+                udfnProductCount();
             }
         }
         private void GrdGroup_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -1422,6 +1424,7 @@ namespace ROMS
             {
                 udfnSubGroupAdd();
                 udfnTotalProducts();
+                udfnProductCount();
             }
             catch (Exception ex)
             {
@@ -1505,6 +1508,7 @@ namespace ROMS
             }
             finally
             { //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending); 
+                udfnProductCount();
             }
         }
 
@@ -1858,6 +1862,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { udfnProductCount(); }
         }
 
         private void BtnUnselectAll_Click(object sender, EventArgs e)
@@ -1888,6 +1893,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { udfnProductCount(); }
         }
 
         private void BtnUnselectAll_Enter(object sender, EventArgs e)
@@ -1998,6 +2004,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { udfnProductCount(); }
         }
 
         private void BtnSubGrupUnSelectAll_Click(object sender, EventArgs e)
@@ -2016,6 +2023,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { udfnProductCount(); }
         }
 
         private void BtnSubGrupSelectAll_Enter(object sender, EventArgs e)
@@ -2094,6 +2102,18 @@ namespace ROMS
             try
             {
                 btnSubGrupUnSelectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnProductCount() {
+            try
+            {
+                lblGroupCount.Text = Convert.ToString(grdGroup.RowCount);
+                lblSubgroupCount.Text = Convert.ToString(grdSubGroup.RowCount);
             }
             catch (Exception ex)
             {

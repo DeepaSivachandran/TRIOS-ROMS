@@ -4938,6 +4938,7 @@ namespace ROMS
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
+                            cmbConcern.Enabled = false;
                             txtPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'"));
                             txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
                             txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));

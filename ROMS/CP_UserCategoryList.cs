@@ -190,6 +190,7 @@ namespace ROMS
                             grdUserCategoryList.Columns["ID"].Visible = false;
                             grdUserCategoryList.Columns["StatusID"].Visible = false;
                             grdUserCategoryList.Columns["DefaultID"].Visible = false;
+                            grdUserCategoryList.Columns["CT_SINO"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].Width = 50;
                             grdUserCategoryList.Columns["Order No."].Width = 80;
                             grdUserCategoryList.Columns["Employee Category"].Width = 200;
