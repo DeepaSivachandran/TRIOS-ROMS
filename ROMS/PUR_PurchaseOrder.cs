@@ -64,10 +64,12 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     btnClear.Enabled = true;
+                    cmbConcern.Enabled = true;
                 }
                 else
                 {
                     btnClear.Enabled = false;
+                    cmbConcern.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -964,17 +966,20 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                if (grdsupplieradd.Rows.Count > 0)
-                {
-                    if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
-                    { 
-                        DialogResult dialogResult = MessageBox.Show("This will clear all the products in list. Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        { 
-                            grdsupplieradd.Rows.Clear();
-                            txtSupplier.Text = "";
-                            lblSupplierCode.Text = "0";
-                            ClearSupplier();
+                if (btnSave.Text=="Save")
+                { 
+                    if (grdsupplieradd.Rows.Count > 0)
+                    {
+                        if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
+                        {
+                            DialogResult dialogResult = MessageBox.Show("This will clear all the products in list. Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdsupplieradd.Rows.Clear();
+                                txtSupplier.Text = "";
+                                lblSupplierCode.Text = "0";
+                                ClearSupplier();
+                            }
                         }
                     }
                 }
