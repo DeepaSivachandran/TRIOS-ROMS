@@ -189,8 +189,6 @@ namespace ROMS
         {
             try
             {
-                lvSLocation.Visible = false;
-                lvDLocation.Visible = false;
                 if(varStockTransferID!=0)
                 {
                     SPDataService objspservice = new SPDataService();
@@ -214,6 +212,10 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
+                                //grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode,
+                                //(txtProductNamePICode.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), 
+                                //(txtBatchNo.Text).Trim(), (txtQuantity.Text).Trim(), varUnitSymbol, (lblProduct.Text).Trim(),
+                                //varUTID, (txtQuantity.Text).Trim());
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]),
                                 Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"])
                                 , Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]));
@@ -223,7 +225,14 @@ namespace ROMS
                             btnSave.Text = "Update";
                         }
                     }
+                    lvSLocation.Visible = false;
+                    lvDLocation.Visible = false;
+                    cmbConcern.Enabled = false;
+                    dpTrannsferDate.Enabled = false;
+                    txtSLocation.Enabled = false;
+                    txtDLocation.Enabled = false;
                 }
+
             }
             catch(Exception ex)
             {
@@ -733,7 +742,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(35,Convert.ToInt32(0), 0, 0,0,"","","",0,0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,txtProductNamePICode.Text.Trim(),0,dtStock);
+                    objDs = objspdservice.udfnproductmasterlist(35,0, 0, 0,0,"","","",0,0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,txtProductNamePICode.Text.Trim(),0,dtStock);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1040,7 +1049,8 @@ namespace ROMS
         {
             try
             {
-                string varProductID = "",varMRP="",varExpiryDate="",varBatchNo="";
+                int varProductID = 0;
+                string varMRP="",varExpiryDate="",varBatchNo="";
                 if (e.RowIndex != -1)
                 {
                     switch (grdStockTransfer.Columns[e.ColumnIndex].Name)
@@ -1049,25 +1059,25 @@ namespace ROMS
                         DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            varProductID = Convert.ToString(grdStockTransfer.Rows[0].Cells["clmPRID"].Value);
-                            varMRP = Convert.ToString(grdStockTransfer.Rows[0].Cells["clmmrp"].Value);
-                            varExpiryDate = Convert.ToString(grdStockTransfer.Rows[0].Cells["clmExpirydate"].Value);
-                            varBatchNo = Convert.ToString(grdStockTransfer.Rows[0].Cells["clmbatchno"].Value);
+                            varProductID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["clmPRID"].Value);
+                            varMRP = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmmrp"].Value);
+                            varExpiryDate = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmExpirydate"].Value);
+                            varBatchNo = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmbatchno"].Value);
                             grdStockTransfer.Rows.RemoveAt(this.grdStockTransfer.SelectedRows[0].Index);
                             for (int i = 0; i < grdStockTransfer.RowCount; i++)
                             {
                                 grdStockTransfer.Rows[i].Cells["clmdsno"].Value = i + 1;
                             }
-                        }
+                                for (int i = 0; i < dtStock.Rows.Count; i++)
+                                {
+                                    if (Convert.ToInt32(dtStock.Rows[i]["STK_PRID"]) == Convert.ToInt32(varProductID) && Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo)
+                                    {
+                                        dtStock.Rows[i].Delete();
+                                        dtStock.AcceptChanges();
+                                    }
+                                }
+                            }
                         break;
-                    }
-                }
-                for (int i = 0; i < dtStock.Rows.Count; i++)
-                {
-                    if (Convert.ToInt32(dtStock.Rows[i]["STK_PRID"]) ==Convert.ToInt32(varProductID) && Convert.ToString(dtStock.Rows[i]["STK_MRP"])==varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo)
-                    {
-                        dtStock.Rows[i].Delete();
-                        dtStock.AcceptChanges();
                     }
                 }
 //////          List<DataRow> removeRows = from r in dtStock.AsEnumerable()
@@ -1249,6 +1259,7 @@ namespace ROMS
                     udfnClear();
                     cmbConcern.Focus();
                     cmbConcern.SelectedValue = -1;
+                    txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1;
