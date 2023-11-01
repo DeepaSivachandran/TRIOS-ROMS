@@ -14,7 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0, varPOID = 0, VarStatusId = 10, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0;
+        public int varcount=0,SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0, varPOID = 0, VarStatusId = 10, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0;
 
         public string vardays = "";
         private ToolTip tpsalesman = new ToolTip();
@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tppono = new ToolTip();
         private ToolTip tpsts = new ToolTip();
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
-            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0";
+            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid="0";
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
@@ -433,26 +433,49 @@ namespace ROMS
                                     objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
                                     objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
                                     objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
+                                    objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
                                     objPurchaseOrder = udfnPurchaseProduct();
-                                    result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
-                                    txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
-                                    txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(cmbStatus.SelectedValue), dpPlanDate.Text);
-                                    objspdservice.CloseConnection();
-                                    string[] varvalue = result.Split('~');
-                                    if (varvalue[0] == "3")
+                                    if (varcount == 0)
                                     {
-                                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        this.ActiveControl = txtSupplier;
-                                        MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
-                                        udfnClear();
-                                        varupdate = "1";
-                                        udfnclose();
+                                        result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
+                                        txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
+                                        txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(cmbStatus.SelectedValue), dpPlanDate.Text);
+                                        objspdservice.CloseConnection();
+                                        string[] varvalue = result.Split('~');
+                                        if (varvalue[0] == "3")
+                                        {
+                                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            this.ActiveControl = txtSupplier;
+                                            MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
+                                            udfnClear();
+                                            varupdate = "1";
+                                            udfnclose();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                                            string[] values = varvalue[1].Split(',');
+
+                                            for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
+                                            {
+                                                foreach (string value in values)
+                                                { 
+                                                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value || Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value)
+                                                    {
+                                                        grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.BackColor = Color.Tomato;
+                                                        grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.ForeColor = Color.White;
+                                                    } 
+                                                } 
+                                            }
+
+                                        }
+                                        this.ActiveControl = cmbConcern;
                                     }
                                     else
                                     {
-                                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        MessageBox.Show("Orderqty shouldn't be 0!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     }
-                                    this.ActiveControl = cmbConcern;
                                 }
                             }
                         }
@@ -605,32 +628,64 @@ namespace ROMS
             DataTable objPurchaseOrder = new DataTable();
             try
             {
+                varcount = 0;
                 objPurchaseOrder.TableName = "TRN_PO_Product";
                 objPurchaseOrder.Columns.Add("POPR_PRID", typeof(int));
                 objPurchaseOrder.Columns.Add("POPR_MSQ", typeof(float));
                 objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
                 objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
                 objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
+                objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
                 for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                 {
+
                     double orderqty = 0;
                     if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "0")
                     {
                         orderqty = 0;
+                        varcount++;
+                        grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.BackColor = Color.Tomato;
+                        grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.ForeColor = Color.White;
                     }
-                    else
+  
+                    //else
+                    //{
+                    //    orderqty = Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value);
+                    //}
+
+
+                    //if (orderqty != 0)
+                    //{
+                    //    DataService objDser = new DataService();
+                    //    objPurchaseOrder.Rows.Add(Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value), Convert.ToInt64(grdsupplieradd.Rows[i].Cells["clmMSQ"].Value)
+                    //    , Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmreorderqty"].Value), orderqty,
+                    //    Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmflag"].Value));
+                    //}
+                }
+                if (varcount == 0)
+                {
+                    for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                     {
-                        orderqty = Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value);
-                    }
-                    if (orderqty != 0)
-                    {
-                        DataService objDser = new DataService();
-                        objPurchaseOrder.Rows.Add(Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value), Convert.ToInt64(grdsupplieradd.Rows[i].Cells["clmMSQ"].Value)
-                        , Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmreorderqty"].Value), orderqty,
-                        Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmflag"].Value));
+
+                        double orderqty = 0;
+                        if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "0")
+                        {
+                            orderqty = 0; 
+                        } 
+                        else
+                        {
+                            orderqty = Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value);
+                        } 
+                        if (orderqty != 0)
+                        {
+                            DataService objDser = new DataService();
+                            objPurchaseOrder.Rows.Add(Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value), Convert.ToInt64(grdsupplieradd.Rows[i].Cells["clmMSQ"].Value)
+                            , Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmreorderqty"].Value), orderqty,
+                            Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmflag"].Value), Convert.ToInt32(lblschedule.Text));
+                        }
                     }
                 }
-
+                 
             }
             catch (Exception ex)
             {
@@ -905,21 +960,52 @@ namespace ROMS
         }
 
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        { 
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 if (grdsupplieradd.Rows.Count > 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("This will clear all the products in list. Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
                     { 
-                        grdsupplieradd.Rows.Clear();
+                        DialogResult dialogResult = MessageBox.Show("This will clear all the products in list. Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        { 
+                            grdsupplieradd.Rows.Clear();
+                            txtSupplier.Text = "";
+                            lblSupplierCode.Text = "0";
+                            ClearSupplier();
+                        }
                     }
                 }
+                varcomid = Convert.ToString(cmbConcern.SelectedValue);
                 udfnVocherno();
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+        public void ClearSupplier()
+        {
+            try
+            {
+
+                lblSuppliername.Text = "";
+                lblSupplierCity.Text = "";
+                lblsupplierGST.Text = "";
+                lblsupplierScheduletype.Text = "";
+                lblsupplierpayment.Text = "";
+                lblSupplierOrderpolicy.Text = "";
+
+                txtSalesManMobile.Text = "";
+                txtSalesManName.Text = "";
+                txtSalesManwhatsapp.Text = "";
+                tbSupplierDetails.Enabled = false;
+                grdPendingorder.Rows.Clear();
+            }
+             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -951,6 +1037,10 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Voucher settings have not yet done for this company. This redirect you to voucher settings screen.", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             if (dialogResult == DialogResult.OK)
                             { 
+                                MainForm.objCP_Settings = new CP_Settings();
+                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                                MainForm.objCP_Settings.Show();
+                                this.Close();
                             }
                         }
                     }
@@ -1086,7 +1176,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1920,6 +2010,32 @@ namespace ROMS
             }
         }
 
+        private void Grdsupplieradd_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value)=="" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "0")
+                {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmOrderqty"];
+                    cell.Style.BackColor = Color.Tomato;
+                    cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                }
+                else
+                {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmOrderqty"];
+                    cell.Style.BackColor = Color.PaleGreen;
+                    cell.Style.ForeColor = Color.Black;// Set the background color to the default background color}
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DpPlanDate_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -1940,7 +2056,7 @@ namespace ROMS
 
                 if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                 { 
-                    string cellPOValue = grdPendingorder.Rows[e.RowIndex].Cells["poid"].Value.ToString();
+                    string cellPOValue = Convert.ToString(grdPendingorder.Rows[e.RowIndex].Cells["poid"].Value);
                     MainForm.objPUR_POProducts = new PUR_POProducts();
                     MainForm.objPUR_POProducts.pbPoid = cellPOValue;
                     MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
@@ -2180,7 +2296,7 @@ namespace ROMS
                 }
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2324,7 +2440,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(17, 0, Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(17, 0, Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2357,7 +2473,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(18, Convert.ToInt32(lblSupplierCode.Text), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(18, Convert.ToInt32(lblSupplierCode.Text), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

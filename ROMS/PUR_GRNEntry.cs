@@ -265,6 +265,14 @@ namespace ROMS
                     else
                     {
                         txtgrnno.Text = "";
+                        DialogResult dialogResult = MessageBox.Show("Voucher settings have not yet done for this company. This redirect you to voucher settings screen.", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            MainForm.objCP_Settings = new CP_Settings();
+                            MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                            MainForm.objCP_Settings.Show();
+                            this.Close();
+                        }
                     }
                 } 
 
@@ -359,7 +367,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,"",0,0,0,0,0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,"",0,0,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -600,7 +608,7 @@ namespace ROMS
                 DataSet objDs = new DataSet(); 
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

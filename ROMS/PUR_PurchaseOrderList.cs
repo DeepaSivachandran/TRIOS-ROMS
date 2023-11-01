@@ -130,6 +130,7 @@ namespace ROMS
                 this.ActiveControl = cmbConcern;
                 udfnDropdownLoad();
                 udfngridchanges();
+                DpPlanDate_ValueChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -158,7 +159,7 @@ namespace ROMS
                 }
             }
             DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Status", "STSID NOT IN (8,9) AND STS_ModuleID=4 OR STSID=0  OR STSID=9", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+            objDataBind.BindComboBoxListSelected("DEF_Status", "STSID NOT IN (8,9,12) AND STS_ModuleID=4 OR STSID=0  OR STSID=9", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
             objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=44 AND MSTID IN (135,136)", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
             objDataBind = null;
             cmbShow.SelectedIndex = 0;
@@ -507,7 +508,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,"",0,0,0,0,0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,"",0,0,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
