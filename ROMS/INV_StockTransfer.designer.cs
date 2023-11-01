@@ -185,6 +185,7 @@
             this.txttotalitem.ReadOnly = true;
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
             this.txttotalitem.TabIndex = 14;
+            this.txttotalitem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lvProduct
             // 
@@ -743,6 +744,7 @@
             this.txtMRP.ReadOnly = true;
             this.txtMRP.Size = new System.Drawing.Size(114, 27);
             this.txtMRP.TabIndex = 6;
+            this.txtMRP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtExpiryDate
             // 
