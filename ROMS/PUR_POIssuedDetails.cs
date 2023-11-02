@@ -518,16 +518,16 @@ namespace ROMS
 
         private void CmbIssueMode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //try
-            //{
-            //    e.Handled = true;
-            //}
-            //catch (Exception ex)
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
 
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtTAT_Leave(object sender, EventArgs e)

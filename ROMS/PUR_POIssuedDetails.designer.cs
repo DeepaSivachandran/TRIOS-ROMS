@@ -257,8 +257,6 @@
             // 
             // cmbIssueMode
             // 
-            this.cmbIssueMode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cmbIssueMode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbIssueMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbIssueMode.FormattingEnabled = true;
             this.cmbIssueMode.Items.AddRange(new object[] {
