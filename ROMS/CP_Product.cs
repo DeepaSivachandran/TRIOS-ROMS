@@ -3305,7 +3305,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     lblDPicode.Visible = true;                    
-                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,"",0,"",dtStock);
+                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"",dtStock);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {

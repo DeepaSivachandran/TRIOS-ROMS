@@ -71,9 +71,15 @@ namespace ROMS
                     dtMappedProduct.Columns.Add("ordervalue", typeof(string));
                     if (Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text) != 0)
                     {
+                        DataTable dtStock = new DataTable();
+                        dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                        dtStock.Columns.Add("STK_PRID", typeof(string));
+                        dtStock.Columns.Add("STK_MRP", typeof(string));
+                        dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                        dtStock.Columns.Add("STK_BatchNo", typeof(string));
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode);
+                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", 0, 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode,dtStock);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {

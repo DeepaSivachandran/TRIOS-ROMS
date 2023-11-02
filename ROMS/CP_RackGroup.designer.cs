@@ -225,6 +225,7 @@
             this.grdSelectedRack.TabIndex = 61454;
             this.grdSelectedRack.TabStop = false;
             this.grdSelectedRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSelectedRack_CellContentClick);
+            this.grdSelectedRack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSelectedRack_CellDoubleClick);
             this.grdSelectedRack.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GrdSelectedRackList_CellMouseDoubleClick);
             this.grdSelectedRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSelectedRackList_KeyDown);
             // 
@@ -359,6 +360,7 @@
             this.grdRack.TabIndex = 512;
             this.grdRack.TabStop = false;
             this.grdRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellContentClick);
+            this.grdRack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellDoubleClick);
             this.grdRack.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_Racklist_CellMouseDoubleClick);
             // 
             // txtRackGroupName
@@ -988,13 +990,6 @@
         private System.Windows.Forms.Label lblUserId;
         private System.Windows.Forms.ComboBox cmbUserCategory;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnSNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStockLocation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewImageColumn clmRemoveRack;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmEmpCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStaffName;
@@ -1002,5 +997,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUserId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSINO;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnSNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStockLocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemoveRack;
     }
 }
