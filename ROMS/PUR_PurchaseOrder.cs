@@ -36,7 +36,13 @@ namespace ROMS
             try
             {
                 tbSupplierDetails.Enabled = false;
-                dpPlanDate.MinDate= DateTime.Today;
+
+                //DataService objDservice = new DataService();
+                //vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,GETDATE(),103)");
+                //objDservice.CloseConnection();
+                //dpPlanDate.MinDate = vardate;
+
+                //dpPlanDate.MinDate= DateTime.Today;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
