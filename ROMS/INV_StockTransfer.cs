@@ -223,7 +223,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0);
+                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","");
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -950,9 +950,10 @@ namespace ROMS
                     vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'"+dpTrannsferDate.Text+"',103)");
                     varResult = objspdservice.udfngetPONO("44", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                     objspdservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
                     if (varResult != "")
                     {
-                        txtTransferNo.Text = varResult;
+                        txtTransferNo.Text = varvalue[0];
                     }
                     else
                     {
