@@ -996,12 +996,12 @@ namespace ROMS
                         DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            //MainForm.objCP_Settings = new CP_Settings();
+                            MainForm.objCP_Settings = new CP_Settings();
                             //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
                             //MainForm.objCP_Settings.varValues = Convert.ToString(44);
-                            //MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                            //MainForm.objCP_Settings.Show();
-                            //this.Close();
+                            MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                            MainForm.objCP_Settings.Show();
+                            this.Close();
                         }
                     }
                 }
