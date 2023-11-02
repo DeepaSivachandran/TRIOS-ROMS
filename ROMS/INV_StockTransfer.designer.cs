@@ -204,11 +204,13 @@
             this.columnHeader12,
             this.columnHeader13});
             this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvProduct.FullRowSelect = true;
             this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvProduct.HideSelection = false;
             this.lvProduct.Location = new System.Drawing.Point(15, 147);
             this.lvProduct.Name = "lvProduct";
-            this.lvProduct.Size = new System.Drawing.Size(866, 178);
+            this.lvProduct.Scrollable = false;
+            this.lvProduct.Size = new System.Drawing.Size(866, 274);
             this.lvProduct.TabIndex = 111111141;
             this.lvProduct.UseCompatibleStateImageBehavior = false;
             this.lvProduct.View = System.Windows.Forms.View.Details;
@@ -444,8 +446,10 @@
             // txtRemarks
             // 
             this.txtRemarks.Location = new System.Drawing.Point(71, 589);
+            this.txtRemarks.MaxLength = 100;
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtRemarks.Size = new System.Drawing.Size(472, 39);
             this.txtRemarks.TabIndex = 12;
             // 

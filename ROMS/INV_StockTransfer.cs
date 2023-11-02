@@ -24,6 +24,7 @@ namespace ROMS
         private ToolTip tpTransferQty = new ToolTip();
         private ToolTip tpsno = new ToolTip();
         public string varlocationcode;
+        public string varLocation;
         public string varUnitSymbol = "";
         public string varUTID = "";
         public string varQTY = "";
@@ -515,6 +516,27 @@ namespace ROMS
         {
             try
             {
+                if (grdStockTransfer.Rows.Count > 0)
+                {
+                    udfnSLocationValid();
+                    if (Convert.ToString(varlocationcode) != Convert.ToString(lblSLocation.Text))
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(78);
+                        objDServ.CloseConnection();
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            grdStockTransfer.Rows.Clear();
+                            dtStock.Rows.Clear();
+                            txtDLocation.Focus();
+                        }
+                        else
+                        {
+                            txtSLocation.Text = varLocation;
+                        }
+                    }
+                }
                 lvSLocation.Visible = false;
                 txtDLocation.BackColor = Color.LemonChiffon;
             }
@@ -788,6 +810,15 @@ namespace ROMS
         {
             try
             {
+                if (txtProductNamePICode.Text == "")
+                {
+                    txtMRP.Text = "";
+                    txtExpiryDate.Text = "";
+                    txtBatchNo.Text = "";
+                    txtStockQty.Text = "";
+                    txtQuantity.Text = "";
+                }
+                varlocationcode = lblSLocation.Text;
                 lvProduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -809,9 +840,9 @@ namespace ROMS
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
-                                lvProduct.Columns[0].Width = 180;
+                                lvProduct.Columns[0].Width = 150;
                                 lvProduct.Columns[1].Width = 450;
-                                lvProduct.Columns[2].Width = 200;
+                                lvProduct.Columns[2].Width = 300;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;
                                 lvProduct.Columns[5].Width = 0;
@@ -960,6 +991,10 @@ namespace ROMS
                         txtTransferNo.Text = "";
                     }
                 }
+                else
+                {
+                    txtTransferNo.Text = "";
+                }
             }
         }
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -1001,6 +1036,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    varLocation = txtSLocation.Text;
                     grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtQuantity.Text).Trim(), varUnitSymbol, (lblProduct.Text).Trim(), varUTID, (txtQuantity.Text).Trim());
                     dtStock.Rows.Add((lblProduct.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtQuantity.Text).Trim());
                     txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
@@ -1009,6 +1045,7 @@ namespace ROMS
                     grdStockTransfer.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdStockTransfer.Columns["clmbatchno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdStockTransfer.Columns["clmquantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    txtProductNamePICode.Focus();
                     errStockTransfer.Clear();
                     udfnProductClear();
                 }
@@ -1241,8 +1278,6 @@ namespace ROMS
                     errStockTransfer.Clear();
                     btnSave.Enabled = false;
                     udfnSave(sender, e);
-                    udfnProductClear();
-                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -1343,22 +1378,33 @@ namespace ROMS
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objINV_StockTransferList.udfnList();
                     udfnClear();
-                    cmbConcern.Focus();
-                    cmbConcern.SelectedValue = -1;
-                    txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
-                    if (btnSave.Text == "Update")
-                    {
-                        varUpdate = 1;
-                        udfnclose();
-                    }
+                    this.Close();
                 }
                 else
                 {
                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSave.Enabled = true;
                     btnSave.Focus();
+                    if (varvalue[0] == "5")
+                    {
+                        string[] varFirstList = varvalue[2].Split('|');
+                        for (int i = 0; i < varFirstList.Length; i++)
+                        {
+                            string[] varSecondList = varFirstList[i].Split(',');
+                            string varPRID = varSecondList[0];
+                            string varMRP = varSecondList[1];
+                            string varExpiryDate = varSecondList[2];
+                            string varBatchNo = varSecondList[3];
+                            for (int j = 0; j < grdStockTransfer.RowCount; j++)
+                            {
+                                if (Convert.ToString(grdStockTransfer.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmbatchno"].Value) == varBatchNo)
+                                {
+                                    grdStockTransfer.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                }
+                            }
+                        }
+                    }
                 }
-                grdStockTransfer.Rows.Clear();
             }
             catch (Exception ex)
             {
