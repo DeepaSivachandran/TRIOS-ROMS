@@ -393,7 +393,7 @@ namespace ROMS
             return ds;
         }
         // Sivabharathi    Create date: 09/08/2023    Description:	HSN Sp
-        public string udfnHsn(int ViewType, int paraHsnId, int paraGstId, string paraHsnName, string paraHsnCode, int paraStatusId, string paraOriginator,string pbUserID)
+        public string udfnHsn(int ViewType, int paraHsnId, int paraGstId, string paraHsnName, string paraHsnCode, int paraStatusId, string paraOriginator,string pbUserID, int paraDeleteFlag)
         {
             string varResult = "";
             try
@@ -407,6 +407,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraHsnName", paraHsnName);
                 varSqlCommand.Parameters.AddWithValue("@paraHsnCode", paraHsnCode);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
@@ -520,7 +521,7 @@ namespace ROMS
             return ds;
         }
         //Created By :-Sathish ; Created On :-11/08/2023
-        public string udfnCity(int paraviewType, int paraCityId, string paraStateId, string paraCityName, int paraStatusId, string paraOriginator,string paraUserID)
+        public string udfnCity(int paraviewType, int paraCityId, string paraStateId, string paraCityName, int paraStatusId, string paraOriginator,string paraUserID,int paraDeleteFlag)
         {
             string varResult = "";
             try
@@ -534,6 +535,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.CommandTimeout = 0;
