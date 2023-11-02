@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tppono = new ToolTip();
         private ToolTip tpsts = new ToolTip();
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
-            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid="0";
+            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid="0",varSuppliervalue="";
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
@@ -319,6 +319,7 @@ namespace ROMS
                 txtProductName.Text = "";
                 lblProductcode.Text = "0";
                 txtSupplier.Text = "";
+                varSuppliervalue = "";
                 lblSupplierCode.Text = "0";
                 txtProductQty.Text = "";
                 txtUnit.Text = "";
@@ -379,7 +380,7 @@ namespace ROMS
                     {
                         string varsuppliername = "0";
                         DataService objDserv = new DataService();
-                        varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text + "'");
+                        varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + varSuppliervalue + "'");
                         if (varsuppliername == "0")
                         {
                             lblSupplierCode.Text = "0";
@@ -1005,6 +1006,7 @@ namespace ROMS
                                 {
                                     grdsupplieradd.Rows.Clear();
                                     txtSupplier.Text = "";
+                                    varSuppliervalue = "";
                                     lblSupplierCode.Text = "0";
                                     ClearSupplier();
                                 }
@@ -2313,7 +2315,8 @@ namespace ROMS
                         ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                         txtSupplier.Text = selectedItem.SubItems[0].Text;
                         lblSupplierCode.Text = selectedItem.SubItems[1].Text;
-                        lblschedule.Text = selectedItem.SubItems[2].Text; 
+                        lblschedule.Text = selectedItem.SubItems[2].Text;
+                        varSuppliervalue = selectedItem.SubItems[4].Text; 
                     }
                     udfnsupplierLoad();
                     DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
