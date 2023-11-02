@@ -179,12 +179,6 @@ namespace ROMS
             try
             {
                 udfnAddProduct();
-                MainForm.objPUR_PurchaseOrder.grdsupplieradd.Sort(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Columns[1], ListSortDirection.Ascending); 
-                for (int i = 0; i < MainForm.objPUR_PurchaseOrder.grdsupplieradd.RowCount; i++)
-                {
-                    MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
-                } 
-                this.Close();
             }
             catch (Exception ex)
             {
@@ -206,7 +200,34 @@ namespace ROMS
                         grdPurchaseOrder.Rows[i].Cells["ordervalue"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 4,1);
                         VARFLAG = 1;
                     }
-                } 
+                }
+
+                if(VARFLAG != 0)
+                { 
+                    MainForm.objPUR_PurchaseOrder.grdsupplieradd.Sort(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Columns[1], ListSortDirection.Ascending);
+                    for (int i = 0; i < MainForm.objPUR_PurchaseOrder.grdsupplieradd.RowCount; i++)
+                    {
+                        MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
+                    }
+                    this.Close();
+                }
+                 else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    if (grdPurchaseOrder.Rows.Count > 0)
+                    {
+                        string varMessage = objDServ.udfnGetMessages(80);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    { 
+                        string varMessage = objDServ.udfnGetMessages(41);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
             }
             catch (Exception ex)
             {
@@ -342,6 +363,42 @@ namespace ROMS
             try
             {
                 btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnselectall_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+
+                foreach (DataGridViewRow row in grdPurchaseOrder.Rows)
+                {
+                    row.Cells[0].Value = true;
+                } 
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnunselectall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                foreach (DataGridViewRow row in grdPurchaseOrder.Rows)
+                {
+                    row.Cells[0].Value = false;
+                }
+
             }
             catch (Exception ex)
             {
