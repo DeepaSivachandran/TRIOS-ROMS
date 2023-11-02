@@ -235,6 +235,7 @@ namespace ROMS
                             dpTrannsferDate.Text = objDS.Tables[0].Rows[0]["Transfer Date"].ToString().Replace("''", "'");
                             txtTransferNo.Text = objDS.Tables[0].Rows[0]["Transfer No."].ToString().Replace("''", "'");
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["ConcernID"].ToString();
+                            txtRemarks.Text = objDS.Tables[0].Rows[0]["Remarks"].ToString();
                             lblSLocation.Text = objDS.Tables[0].Rows[0]["SLID"].ToString();
                             lblDLocation.Text = objDS.Tables[0].Rows[0]["DLID"].ToString();
                             btnSave.Text = "Update";
@@ -988,7 +989,20 @@ namespace ROMS
                     }
                     else
                     {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(75);
+                        objDServ.CloseConnection();
                         txtTransferNo.Text = "";
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            //MainForm.objCP_Settings = new CP_Settings();
+                            //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                            //MainForm.objCP_Settings.varValues = Convert.ToString(44);
+                            //MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                            //MainForm.objCP_Settings.Show();
+                            //this.Close();
+                        }
                     }
                 }
                 else

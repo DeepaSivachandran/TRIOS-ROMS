@@ -425,7 +425,7 @@
             this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
             this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemarks.Location = new System.Drawing.Point(549, 589);
+            this.btnRemarks.Location = new System.Drawing.Point(617, 589);
             this.btnRemarks.Name = "btnRemarks";
             this.btnRemarks.Size = new System.Drawing.Size(108, 29);
             this.btnRemarks.TabIndex = 13;
@@ -449,8 +449,8 @@
             this.txtRemarks.MaxLength = 100;
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtRemarks.Size = new System.Drawing.Size(472, 39);
+            this.txtRemarks.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtRemarks.Size = new System.Drawing.Size(540, 39);
             this.txtRemarks.TabIndex = 12;
             // 
             // lblRemarks
