@@ -209,8 +209,7 @@
             this.lvProduct.HideSelection = false;
             this.lvProduct.Location = new System.Drawing.Point(15, 147);
             this.lvProduct.Name = "lvProduct";
-            this.lvProduct.Scrollable = false;
-            this.lvProduct.Size = new System.Drawing.Size(866, 274);
+            this.lvProduct.Size = new System.Drawing.Size(1000, 220);
             this.lvProduct.TabIndex = 111111141;
             this.lvProduct.UseCompatibleStateImageBehavior = false;
             this.lvProduct.View = System.Windows.Forms.View.Details;

@@ -843,7 +843,7 @@ namespace ROMS
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 150;
                                 lvProduct.Columns[1].Width = 450;
-                                lvProduct.Columns[2].Width = 300;
+                                lvProduct.Columns[2].Width = 250;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;
                                 lvProduct.Columns[5].Width = 0;
