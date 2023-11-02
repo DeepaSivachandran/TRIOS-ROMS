@@ -37,12 +37,12 @@ namespace ROMS
             {
                 tbSupplierDetails.Enabled = false;
 
-                //DataService objDservice = new DataService();
-                //vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,GETDATE(),103)");
-                //objDservice.CloseConnection();
-                //dpPlanDate.MinDate = vardate;
+                DataService objDservice = new DataService();
+                string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
+                objDservice.CloseConnection();
+                dpPlanDate.Text = vardate;
 
-                //dpPlanDate.MinDate= DateTime.Today;
+              //  dpPlanDate.MinDate = DateTime.Today;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
@@ -123,6 +123,7 @@ namespace ROMS
                                 }
                                 cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString();
                                 dpPlanDate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString();
+                                dpPlanDate.Enabled = false;
                                 txtpono.Text = objDs.Tables[0].Rows[0]["PONO"].ToString();
                                 txtSupplier.Text = objDs.Tables[0].Rows[0]["Supplier"].ToString();
                                 lblSupplierCode.Text = objDs.Tables[0].Rows[0]["SPID"].ToString();
