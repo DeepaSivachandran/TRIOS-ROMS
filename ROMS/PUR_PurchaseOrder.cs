@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tppono = new ToolTip();
         private ToolTip tpsts = new ToolTip();
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
-            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid="0";
+            , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid="0",varSuppliervalue="";
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
@@ -319,6 +319,7 @@ namespace ROMS
                 txtProductName.Text = "";
                 lblProductcode.Text = "0";
                 txtSupplier.Text = "";
+                varSuppliervalue = "";
                 lblSupplierCode.Text = "0";
                 txtProductQty.Text = "";
                 txtUnit.Text = "";
@@ -367,11 +368,19 @@ namespace ROMS
                     //    tpQty.Show("Please enter orderqty.", txtProductQty, 5000);
                     //    varErrorFlag = false;
                     //}
+                    if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                    {
+                        errPO.SetError(cmbConcern, "Please select company");
+                        cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpsts.ShowAlways = true;
+                        tpsts.Show("Please select company", cmbConcern, 5000);
+                        varErrorFlag = false;
+                    }
                     if (Convert.ToString(txtSupplier.Text) != "")
                     {
                         string varsuppliername = "0";
                         DataService objDserv = new DataService();
-                        varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text + "'");
+                        varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + varSuppliervalue + "'");
                         if (varsuppliername == "0")
                         {
                             lblSupplierCode.Text = "0";
@@ -380,6 +389,7 @@ namespace ROMS
                             txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tpSuppliername.ShowAlways = true;
                             tpSuppliername.Show("Invalid supplier", txtSupplier, 5000);
+                            ClearSupplier();
                             varErrorFlag = false; 
                         }
                         else
@@ -387,15 +397,7 @@ namespace ROMS
                             errPO.Clear();
                             txtSupplier.BackColor = Color.White;
                         }
-                    }
-                    if (Convert.ToString(txtpono.Text) == "")
-                    {
-                        errPO.SetError(txtpono, "Invalid PO Number!");
-                        txtpono.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tppono.ShowAlways = true;
-                        tppono.Show("Invalid PO Number.", txtpono, 5000);
-                        varErrorFlag = false;
-                    }
+                    } 
                     if (Convert.ToInt64(cmbStatus.SelectedValue) == -1)
                     {
                         errPO.SetError(cmbStatus, "Please select status");
@@ -993,17 +995,21 @@ namespace ROMS
                     {
                         if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(78);
-                            objDServ.CloseConnection();
-
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                            if (Convert.ToString(cmbConcern.SelectedValue) != "-1")
                             {
-                                grdsupplieradd.Rows.Clear();
-                                txtSupplier.Text = "";
-                                lblSupplierCode.Text = "0";
-                                ClearSupplier();
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(78);
+                                objDServ.CloseConnection();
+
+                                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    grdsupplieradd.Rows.Clear();
+                                    txtSupplier.Text = "";
+                                    varSuppliervalue = "";
+                                    lblSupplierCode.Text = "0";
+                                    ClearSupplier();
+                                }
                             }
                         }
                     }
@@ -2309,7 +2315,8 @@ namespace ROMS
                         ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                         txtSupplier.Text = selectedItem.SubItems[0].Text;
                         lblSupplierCode.Text = selectedItem.SubItems[1].Text;
-                        lblschedule.Text = selectedItem.SubItems[2].Text; 
+                        lblschedule.Text = selectedItem.SubItems[2].Text;
+                        varSuppliervalue = selectedItem.SubItems[4].Text; 
                     }
                     udfnsupplierLoad();
                     DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);

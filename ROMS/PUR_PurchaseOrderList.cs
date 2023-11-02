@@ -836,7 +836,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Total Qty"].Width = 100;
                             grdPurchaseorderlist.Columns["Turn Around Time"].Width = 120;
                             grdPurchaseorderlist.Columns["Created By"].Width = 100;
-                            grdPurchaseorderlist.Columns["Created On"].Width = 100;
+                            grdPurchaseorderlist.Columns["Created On"].Width = 150;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;

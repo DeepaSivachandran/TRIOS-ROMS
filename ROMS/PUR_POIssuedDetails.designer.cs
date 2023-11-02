@@ -272,6 +272,7 @@
             this.cmbIssueMode.SelectedIndexChanged += new System.EventHandler(this.CmbIssueMode_SelectedIndexChanged);
             this.cmbIssueMode.Enter += new System.EventHandler(this.CmbIssueMode_Enter);
             this.cmbIssueMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbIssueMode_KeyDown);
+            this.cmbIssueMode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbIssueMode_KeyPress);
             this.cmbIssueMode.Leave += new System.EventHandler(this.CmbIssueMode_Leave);
             // 
             // txtIssuedBY

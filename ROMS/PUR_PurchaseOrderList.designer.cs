@@ -134,8 +134,8 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdPurchaseorderlist = new System.Windows.Forms.DataGridView();
-            this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -1242,15 +1242,6 @@
             this.grdPurchaseorderlist.DoubleClick += new System.EventHandler(this.GrdPurchaseorderlist_DoubleClick);
             this.grdPurchaseorderlist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseorderlist_KeyDown);
             // 
-            // clmView
-            // 
-            this.clmView.HeaderText = "Issued Details";
-            this.clmView.Image = global::ROMS.Properties.Resources.view;
-            this.clmView.Name = "clmView";
-            this.clmView.ReadOnly = true;
-            this.clmView.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1266,6 +1257,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // clmView
+            // 
+            this.clmView.HeaderText = "Issued";
+            this.clmView.Image = global::ROMS.Properties.Resources.Issue;
+            this.clmView.Name = "clmView";
+            this.clmView.ReadOnly = true;
+            this.clmView.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmView.Width = 80;
             // 
             // PUR_PurchaseOrderList
             // 
@@ -1392,7 +1393,6 @@
         private System.Windows.Forms.Label lblGroupId;
         private System.Windows.Forms.Label lblSubGroupId;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        private System.Windows.Forms.DataGridViewImageColumn clmView;
         private System.Windows.Forms.PictureBox picLoader;
         public System.Windows.Forms.Label lblSupplierCode;
         public System.Windows.Forms.Label lblschedleCode;
@@ -1411,5 +1411,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewImageColumn clmView;
     }
 }

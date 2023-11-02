@@ -33,12 +33,8 @@ namespace ROMS
         public void udfnclose()
         {
             try
-            {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+            { 
+                this.Close(); 
             }
             catch (Exception ex)
             {
