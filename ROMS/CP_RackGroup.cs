@@ -1949,6 +1949,27 @@ namespace ROMS
             }
         }
 
+        private void GrdSelectedRack_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["clmTotalProducts"].Value) != 0 && grdSelectedRack.SelectedRows[0].Cells[e.ColumnIndex].OwningColumn.Name == "clmRack")
+                {
+                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
+                    MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value);
+                    MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value);
+                    MainForm.objCP_ProductDetails.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
         private void LblNoofproducts_Click(object sender, EventArgs e)
         {
 

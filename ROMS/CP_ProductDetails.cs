@@ -34,6 +34,8 @@ namespace ROMS
                 dtStock.Columns.Add("STK_MRP", typeof(string));
                 dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                 dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                dtStock.Columns.Add("STK_UTID", typeof(int));
+                dtStock.Columns.Add("STK_QTY", typeof(int));
                 Application.DoEvents();
                 grdProductDetails.DataSource = null;
                 DataSet objDs = new DataSet();
