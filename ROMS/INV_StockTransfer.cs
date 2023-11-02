@@ -1396,9 +1396,9 @@ namespace ROMS
                 }
                 else
                 {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     errStockTransfer.Clear();
                     txtProductNamePICode.BackColor = Color.White;
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSave.Enabled = true;
                     btnSave.Focus();
                     if (varvalue[0] == "5")
