@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -65,12 +65,6 @@
             this.lblConcern = new System.Windows.Forms.Label();
             this.grpproductname = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtYear = new System.Windows.Forms.TextBox();
-            this.txtDay = new System.Windows.Forms.TextBox();
-            this.txtMonth = new System.Windows.Forms.TextBox();
-            this.lblYyyy = new System.Windows.Forms.Label();
-            this.lblMM = new System.Windows.Forms.Label();
-            this.lblDd = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtBatchNo = new System.Windows.Forms.TextBox();
@@ -86,6 +80,11 @@
             this.lblMrp = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epDamageEntry = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtExpiryDate = new System.Windows.Forms.TextBox();
+            this.txtStockQty = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDamageEntry)).BeginInit();
@@ -138,7 +137,7 @@
             // lvProductName
             // 
             this.lvProductName.HideSelection = false;
-            this.lvProductName.Location = new System.Drawing.Point(15, 136);
+            this.lvProductName.Location = new System.Drawing.Point(9, 136);
             this.lvProductName.Name = "lvProductName";
             this.lvProductName.Size = new System.Drawing.Size(378, 69);
             this.lvProductName.TabIndex = 958808;
@@ -223,14 +222,14 @@
             this.grdDamageEntry.AllowUserToResizeRows = false;
             this.grdDamageEntry.BackgroundColor = System.Drawing.Color.White;
             this.grdDamageEntry.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDamageEntry.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdDamageEntry.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.grdDamageEntry.ColumnHeadersHeight = 30;
             this.grdDamageEntry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdDamageEntry.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -247,22 +246,22 @@
             this.clmMonth,
             this.clmYear,
             this.clmremove});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdDamageEntry.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdDamageEntry.DefaultCellStyle = dataGridViewCellStyle26;
             this.grdDamageEntry.EnableHeadersVisualStyles = false;
             this.grdDamageEntry.GridColor = System.Drawing.Color.White;
             this.grdDamageEntry.Location = new System.Drawing.Point(3, 157);
             this.grdDamageEntry.Name = "grdDamageEntry";
             this.grdDamageEntry.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.grdDamageEntry.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.Black;
+            this.grdDamageEntry.RowsDefaultCellStyle = dataGridViewCellStyle27;
             this.grdDamageEntry.RowTemplate.Height = 25;
             this.grdDamageEntry.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdDamageEntry.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -431,13 +430,12 @@
             // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.textBox2);
+            this.grpproductname.Controls.Add(this.label1);
+            this.grpproductname.Controls.Add(this.textBox1);
+            this.grpproductname.Controls.Add(this.txtExpiryDate);
             this.grpproductname.Controls.Add(this.btnAdd);
-            this.grpproductname.Controls.Add(this.txtYear);
-            this.grpproductname.Controls.Add(this.txtDay);
-            this.grpproductname.Controls.Add(this.txtMonth);
-            this.grpproductname.Controls.Add(this.lblYyyy);
-            this.grpproductname.Controls.Add(this.lblMM);
-            this.grpproductname.Controls.Add(this.lblDd);
+            this.grpproductname.Controls.Add(this.txtStockQty);
             this.grpproductname.Controls.Add(this.textBox5);
             this.grpproductname.Controls.Add(this.label3);
             this.grpproductname.Controls.Add(this.txtBatchNo);
@@ -462,7 +460,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1158, 36);
+            this.btnAdd.Location = new System.Drawing.Point(1313, 36);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
@@ -473,79 +471,10 @@
             this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
             this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
-            // txtYear
-            // 
-            this.txtYear.Location = new System.Drawing.Point(551, 36);
-            this.txtYear.MaxLength = 4;
-            this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(34, 27);
-            this.txtYear.TabIndex = 7;
-            this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtYear.Enter += new System.EventHandler(this.TxtYear_Enter);
-            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtYear_KeyDown);
-            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtYear_KeyPress);
-            this.txtYear.Leave += new System.EventHandler(this.TxtYear_Leave);
-            // 
-            // txtDay
-            // 
-            this.txtDay.Location = new System.Drawing.Point(484, 36);
-            this.txtDay.MaxLength = 2;
-            this.txtDay.Name = "txtDay";
-            this.txtDay.Size = new System.Drawing.Size(33, 27);
-            this.txtDay.TabIndex = 5;
-            this.txtDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtDay.Enter += new System.EventHandler(this.TxtDay_Enter);
-            this.txtDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDay_KeyDown);
-            this.txtDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDay_KeyPress);
-            this.txtDay.Leave += new System.EventHandler(this.TxtDay_Leave);
-            // 
-            // txtMonth
-            // 
-            this.txtMonth.Location = new System.Drawing.Point(517, 36);
-            this.txtMonth.MaxLength = 2;
-            this.txtMonth.Name = "txtMonth";
-            this.txtMonth.Size = new System.Drawing.Size(34, 27);
-            this.txtMonth.TabIndex = 6;
-            this.txtMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMonth.Enter += new System.EventHandler(this.TxtMonth_Enter);
-            this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonth_KeyDown);
-            this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMonth_KeyPress);
-            this.txtMonth.Leave += new System.EventHandler(this.TxtMonth_Leave);
-            // 
-            // lblYyyy
-            // 
-            this.lblYyyy.AutoSize = true;
-            this.lblYyyy.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblYyyy.Location = new System.Drawing.Point(557, 21);
-            this.lblYyyy.Name = "lblYyyy";
-            this.lblYyyy.Size = new System.Drawing.Size(20, 16);
-            this.lblYyyy.TabIndex = 1111243;
-            this.lblYyyy.Text = "YY";
-            // 
-            // lblMM
-            // 
-            this.lblMM.AutoSize = true;
-            this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblMM.Location = new System.Drawing.Point(523, 21);
-            this.lblMM.Name = "lblMM";
-            this.lblMM.Size = new System.Drawing.Size(24, 16);
-            this.lblMM.TabIndex = 1111242;
-            this.lblMM.Text = "MM";
-            // 
-            // lblDd
-            // 
-            this.lblDd.AutoSize = true;
-            this.lblDd.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblDd.Location = new System.Drawing.Point(490, 21);
-            this.lblDd.Name = "lblDd";
-            this.lblDd.Size = new System.Drawing.Size(20, 16);
-            this.lblDd.TabIndex = 1111241;
-            this.lblDd.Text = "DD";
-            // 
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
-            this.textBox5.Location = new System.Drawing.Point(334, 36);
+            this.textBox5.Location = new System.Drawing.Point(623, 36);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(17, 27);
@@ -556,7 +485,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(798, 40);
+            this.label3.Location = new System.Drawing.Point(1044, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 20);
             this.label3.TabIndex = 1111186;
@@ -564,7 +493,7 @@
             // 
             // txtBatchNo
             // 
-            this.txtBatchNo.Location = new System.Drawing.Point(592, 36);
+            this.txtBatchNo.Location = new System.Drawing.Point(774, 36);
             this.txtBatchNo.Name = "txtBatchNo";
             this.txtBatchNo.Size = new System.Drawing.Size(124, 27);
             this.txtBatchNo.TabIndex = 8;
@@ -575,7 +504,7 @@
             // lblbatchno
             // 
             this.lblbatchno.AutoSize = true;
-            this.lblbatchno.Location = new System.Drawing.Point(592, 14);
+            this.lblbatchno.Location = new System.Drawing.Point(774, 14);
             this.lblbatchno.Name = "lblbatchno";
             this.lblbatchno.Size = new System.Drawing.Size(61, 20);
             this.lblbatchno.TabIndex = 958816;
@@ -584,7 +513,7 @@
             // lblExpiryDate
             // 
             this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(409, 39);
+            this.lblExpiryDate.Location = new System.Drawing.Point(698, 14);
             this.lblExpiryDate.Name = "lblExpiryDate";
             this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
             this.lblExpiryDate.TabIndex = 958821;
@@ -592,9 +521,9 @@
             // 
             // txtsuppliername
             // 
-            this.txtsuppliername.Location = new System.Drawing.Point(836, 36);
+            this.txtsuppliername.Location = new System.Drawing.Point(1083, 36);
             this.txtsuppliername.Name = "txtsuppliername";
-            this.txtsuppliername.Size = new System.Drawing.Size(317, 27);
+            this.txtsuppliername.Size = new System.Drawing.Size(216, 27);
             this.txtsuppliername.TabIndex = 10;
             this.txtsuppliername.Enter += new System.EventHandler(this.Txtsuppliername_Enter);
             this.txtsuppliername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsuppliername_KeyDown);
@@ -603,7 +532,7 @@
             // lblSupplierName
             // 
             this.lblSupplierName.AutoSize = true;
-            this.lblSupplierName.Location = new System.Drawing.Point(836, 14);
+            this.lblSupplierName.Location = new System.Drawing.Point(1083, 14);
             this.lblSupplierName.Name = "lblSupplierName";
             this.lblSupplierName.Size = new System.Drawing.Size(87, 20);
             this.lblSupplierName.TabIndex = 27;
@@ -611,7 +540,7 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(13, 37);
+            this.txtProductName.Location = new System.Drawing.Point(6, 37);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(309, 27);
             this.txtProductName.TabIndex = 3;
@@ -621,9 +550,9 @@
             // 
             // txtQuantity
             // 
-            this.txtQuantity.Location = new System.Drawing.Point(721, 37);
+            this.txtQuantity.Location = new System.Drawing.Point(974, 37);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(76, 27);
+            this.txtQuantity.Size = new System.Drawing.Size(64, 27);
             this.txtQuantity.TabIndex = 9;
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtQuantity.Enter += new System.EventHandler(this.TxtQuantity_Enter);
@@ -634,7 +563,7 @@
             // lblQty
             // 
             this.lblQty.AutoSize = true;
-            this.lblQty.Location = new System.Drawing.Point(721, 14);
+            this.lblQty.Location = new System.Drawing.Point(999, 14);
             this.lblQty.Name = "lblQty";
             this.lblQty.Size = new System.Drawing.Size(56, 20);
             this.lblQty.TabIndex = 80;
@@ -643,7 +572,7 @@
             // lblProductName
             // 
             this.lblProductName.AutoSize = true;
-            this.lblProductName.Location = new System.Drawing.Point(13, 14);
+            this.lblProductName.Location = new System.Drawing.Point(6, 14);
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(134, 20);
             this.lblProductName.TabIndex = 28;
@@ -651,7 +580,7 @@
             // 
             // txtMrp
             // 
-            this.txtMrp.Location = new System.Drawing.Point(351, 36);
+            this.txtMrp.Location = new System.Drawing.Point(640, 36);
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(52, 27);
             this.txtMrp.TabIndex = 4;
@@ -664,7 +593,7 @@
             // lblMrp
             // 
             this.lblMrp.AutoSize = true;
-            this.lblMrp.Location = new System.Drawing.Point(351, 13);
+            this.lblMrp.Location = new System.Drawing.Point(640, 14);
             this.lblMrp.Name = "lblMrp";
             this.lblMrp.Size = new System.Drawing.Size(34, 20);
             this.lblMrp.TabIndex = 77;
@@ -682,6 +611,54 @@
             // epDamageEntry
             // 
             this.epDamageEntry.ContainerControl = this;
+            // 
+            // txtExpiryDate
+            // 
+            this.txtExpiryDate.Enabled = false;
+            this.txtExpiryDate.Location = new System.Drawing.Point(698, 37);
+            this.txtExpiryDate.Name = "txtExpiryDate";
+            this.txtExpiryDate.ReadOnly = true;
+            this.txtExpiryDate.Size = new System.Drawing.Size(70, 27);
+            this.txtExpiryDate.TabIndex = 958819;
+            // 
+            // txtStockQty
+            // 
+            this.txtStockQty.Enabled = false;
+            this.txtStockQty.Location = new System.Drawing.Point(904, 36);
+            this.txtStockQty.Name = "txtStockQty";
+            this.txtStockQty.ReadOnly = true;
+            this.txtStockQty.Size = new System.Drawing.Size(64, 27);
+            this.txtStockQty.TabIndex = 1111238;
+            this.txtStockQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(321, 37);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(145, 27);
+            this.textBox1.TabIndex = 1111239;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(472, 36);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(145, 27);
+            this.textBox2.TabIndex = 1111240;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(904, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 20);
+            this.label1.TabIndex = 1111239;
+            this.label1.Text = "Stock Quantity";
             // 
             // INV_DamageEntry
             // 
@@ -750,12 +727,6 @@
         private System.Windows.Forms.DateTimePicker dpEntryDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox txtYear;
-        private System.Windows.Forms.TextBox txtDay;
-        private System.Windows.Forms.TextBox txtMonth;
-        private System.Windows.Forms.Label lblYyyy;
-        private System.Windows.Forms.Label lblMM;
-        private System.Windows.Forms.Label lblDd;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ErrorProvider epDamageEntry;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
@@ -771,5 +742,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMonth;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmYear;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
+        private System.Windows.Forms.TextBox txtExpiryDate;
+        private System.Windows.Forms.TextBox txtStockQty;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

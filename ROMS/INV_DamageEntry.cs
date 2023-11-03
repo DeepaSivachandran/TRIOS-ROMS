@@ -32,8 +32,8 @@ namespace ROMS
             try
             {
                 string varExpiryDate = "",varUnit="";
-                varExpiryDate = txtDay.Text.Trim() + txtMonth.Text.Trim() + txtYear.Text.Trim();
-                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1, txtProductName.Text.Trim(), txtProductName.Text.Trim(),txtMrp.Text.Trim(),varExpiryDate,txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnit,txtsuppliername.Text.Trim(),txtDay.Text.Trim(),txtMonth.Text.Trim(),txtYear.Text.Trim());
+                //varExpiryDate = txtDay.Text.Trim() + txtMonth.Text.Trim() + txtYear.Text.Trim();
+                //grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1, txtProductName.Text.Trim(), txtProductName.Text.Trim(),txtMrp.Text.Trim(),varExpiryDate,txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnit,txtsuppliername.Text.Trim(),txtDay.Text.Trim(),txtMonth.Text.Trim(),txtYear.Text.Trim());
                 udfnClear();
             }
             catch(Exception ex)
@@ -48,9 +48,9 @@ namespace ROMS
             {
                 txtProductName.Text = "";
                 txtMrp.Text = "";
-                txtDay.Text = "";
-                txtMonth.Text = "";
-                txtYear.Text = "";
+                //txtDay.Text = "";
+                //txtMonth.Text = "";
+                //txtYear.Text = "";
                 txtBatchNo.Text = "";
                 txtQuantity.Text = "";
                 txtsuppliername.Text = "";
@@ -336,7 +336,7 @@ namespace ROMS
         {
             try
             {
-                txtDay.BackColor = Color.LemonChiffon;
+                //txtDay.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -348,7 +348,7 @@ namespace ROMS
         {
             try
             {
-                txtDay.BackColor = Color.White;
+                //txtDay.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -360,7 +360,7 @@ namespace ROMS
         {
             try
             {
-                txtMonth.BackColor = Color.White;
+                //txtMonth.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -372,18 +372,18 @@ namespace ROMS
         {
             try
             {
-                if (txtMonth.Text == "")
-                {
-                    //epDamageEntry.SetError(txtMonth, "Please enter Month.");
-                    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMonth.ShowAlways = true;
-                    tpMonth.Show("Please enter Month.", txtMonth, 5000);
-                }
-                else
-                {
-                    txtMonth.BackColor = Color.White;
-                    epDamageEntry.Clear();
-                }
+                //if (txtMonth.Text == "")
+                //{
+                //    //epDamageEntry.SetError(txtMonth, "Please enter Month.");
+                //    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpMonth.ShowAlways = true;
+                //    tpMonth.Show("Please enter Month.", txtMonth, 5000);
+                //}
+                //else
+                //{
+                //    txtMonth.BackColor = Color.White;
+                //    epDamageEntry.Clear();
+                //}
             }
             catch (Exception ex)
             {
@@ -397,7 +397,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtMonth.Focus();
+                    //txtMonth.Focus();
                 }
             }
             catch (Exception ex)
@@ -412,7 +412,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDay.Focus();
+                    //txtDay.Focus();
                 }
             }
             catch (Exception ex)
@@ -427,7 +427,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtYear.Focus();
+                    //txtYear.Focus();
                 }
             }
             catch (Exception ex)
@@ -440,7 +440,7 @@ namespace ROMS
         {
             try
             {
-                txtYear.BackColor = Color.LemonChiffon;
+                //txtYear.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -467,18 +467,18 @@ namespace ROMS
         {
             try
             {
-                if (txtYear.Text == "")
-                {
-                    //epDamageEntry.SetError(txtYear, "Please enter Year.");
-                    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpYear.ShowAlways = true;
-                    tpYear.Show("Please enter Year.", txtYear, 5000);
-                }
-                else
-                {
-                    txtYear.BackColor = Color.White;
-                    epDamageEntry.Clear();
-                }
+                //if (txtYear.Text == "")
+                //{
+                //    //epDamageEntry.SetError(txtYear, "Please enter Year.");
+                //    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpYear.ShowAlways = true;
+                //    tpYear.Show("Please enter Year.", txtYear, 5000);
+                //}
+                //else
+                //{
+                //    txtYear.BackColor = Color.White;
+                //    epDamageEntry.Clear();
+                //}
             }
             catch (Exception ex)
             {
@@ -681,22 +681,22 @@ namespace ROMS
                     tpMRP.Show("Please enter MRP.", txtMrp, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtMonth.Text == "")
-                {
-                    //epDamageEntry.SetError(txtMonth, "Please enter Month.");
-                    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMonth.ShowAlways = true;
-                    tpMonth.Show("Please enter Month.", txtMonth, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtYear.Text == "")
-                {
-                    //epDamageEntry.SetError(txtYear, "Please enter Year.");
-                    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpYear.ShowAlways = true;
-                    tpYear.Show("Please enter Year.", txtYear, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtMonth.Text == "")
+                //{
+                //    //epDamageEntry.SetError(txtMonth, "Please enter Month.");
+                //    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpMonth.ShowAlways = true;
+                //    tpMonth.Show("Please enter Month.", txtMonth, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtYear.Text == "")
+                //{
+                //    //epDamageEntry.SetError(txtYear, "Please enter Year.");
+                //    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpYear.ShowAlways = true;
+                //    tpYear.Show("Please enter Year.", txtYear, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (txtBatchNo.Text == "")
                 {
                     epDamageEntry.SetError(txtBatchNo, "Please enter batch No.");
