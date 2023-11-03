@@ -92,7 +92,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 DataService objdserv = new DataService();
-                objDs = objdserv.GetDataset("SELECT MSTID,MST_DisplayText,'' AS VALUE FROM DEF_Master WHERE MST_TransactionID=27 UNION ALL SELECT 0,'Excess',(SELECT GS_GRNQty FROM MR_GeneralSettings) UNION ALL SELECT 1,'Total','' ");
+                objDs = objdserv.GetDataset("SELECT MSTID,MST_DisplayText,'' AS VALUE FROM DEF_Master WHERE MST_TransactionID=27 UNION ALL SELECT 0,'Excess',(SELECT GS_GRNQty FROM MR_GeneralSettings) UNION ALL SELECT 1,'Total',(SELECT GS_GRNQty FROM MR_GeneralSettings) ");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1200,19 +1200,41 @@ namespace ROMS
 
             //}
         }
-
+        public void udfnCalculateTotal()
+        {
+            int varTotal = 0;
+            try
+            {
+                for (int i = 0; i < grdUnitList.RowCount - 1; i++)
+                {
+                    varTotal += Convert.ToInt32(grdUnitList.Rows[i].Cells["clmQty"].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally {
+                grdUnitList.Rows[grdUnitList.RowCount - 1].Cells["clmQty"].Value = Convert.ToString(varTotal);
+            }
+        }
         private void GrdUnitList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    udfnTotalUnitGrid();
-            //}
-            // catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
+            try
+            {
+                if (grdUnitList.IsCurrentCellDirty)
+                {
+                    grdUnitList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                udfnCalculateTotal();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
 
-            //}
+            }
         }
 
         private void BtnDamage_Click(object sender, EventArgs e)
