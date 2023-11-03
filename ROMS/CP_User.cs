@@ -345,7 +345,7 @@ namespace ROMS
                 {
                     varUserID = "0";
                 }
-                varResult = objspservice.udfnUser(varType,Convert.ToInt32( varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus,"", varoriginator,MainForm.pbUserID);
+                varResult = objspservice.udfnUser(varType,Convert.ToInt32( varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus,"", varoriginator,MainForm.pbUserID,0);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
