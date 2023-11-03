@@ -1927,6 +1927,43 @@ namespace ROMS
             }
             return ds;
         }
+
+
+        // added by venkat on 03/11/2023 for GRN Entry Save
+        public string udfnGRNEntry(int paraViewType, int ParaGRNID, int paraCompanyId, int paraSupplierID, int paraScheduleID
+            , string paraOriginator, string paraRemarks , DataTable objPurchaseOrder)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_GRN]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaGRNID", ParaGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId); 
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", paraScheduleID); 
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", paraRemarks); 
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_PO_Product", objPurchaseOrder);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+         
     }
 
 }

@@ -956,60 +956,42 @@ namespace ROMS
                 {
                     udfntooltiphide();
 
-                    //if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
-                    //{
-                    //    string result = "", varorginator = "Po Create";
-                    //    int varviewtype = 0;// GrnUpdate = varGrnId;
-                    //    if (btnSave.Text == "Update")
-                    //    {
-                    //        varviewtype = 1;
-                    //        varorginator = "Po Update";
-                    //    }
-                    //    SPDataService objspdservice = new SPDataService();
-                    //    DataTable objGrnPO = new DataTable();
-                    //    objGrnPO.TableName = "TRN_GRN_PO";
-                    //    objGrnPO.Columns.Add("GRNPO_POID", typeof(int));
-                    //    objGrnPO.Columns.Add("GRNPO_PODate", typeof(string));
-                    //    objGrnPO.Columns.Add("GRNPO_PONo", typeof(string));
-                    //    objGrnPO.Columns.Add("GRNPO_TotalPros", typeof(int));
-                    //    objGrnPO = udfnGrnPO(); 
-                    //    result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
-                    //    txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
-                    //    txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(cmbStatus.SelectedValue), dpPlanDate.Text);
-                    //    objspdservice.CloseConnection();
-                    //    string[] varvalue = result.Split('~');
-                    //    if (varvalue[0] == "3")
-                    //    {
-                    //        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //        this.ActiveControl = txtSupplier;
-                    //        MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
-                    //        udfnClear();
-                    //        varupdate = "1";
-                    //        udfnclose();
-                    //    }
-                    //    else
-                    //    {
-                    //        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //        if (varvalue[0] == "5")
-                    //        {
-                    //            string[] values = varvalue[2].Split(',');
-                    //            for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
-                    //            {
-                    //                foreach (string value in values)
-                    //                {
-                    //                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value || Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value)
-                    //                    {
-
-                    //                        grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
-                    //                        grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
-                    //                    }
-                    //                }
-                    //            }
-                    //        }
-
-                    //    }
-                    //    this.ActiveControl = cmbConcern; 
-                    //}
+                    if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
+                    {
+                        string result = "", varorginator = "Po Create";
+                        int varviewtype = 0;// GrnUpdate = varGrnId;
+                        if (btnSave.Text == "Update")
+                        {
+                            varviewtype = 1;
+                            varorginator = "Po Update";
+                        }
+                        SPDataService objspdservice = new SPDataService();
+                        DataTable objGrnPO = new DataTable();
+                        objGrnPO.TableName = "TRN_GRN_PO";
+                        objGrnPO.Columns.Add("GRNPO_POID", typeof(int));
+                        objGrnPO.Columns.Add("GRNPO_PODate", typeof(string));
+                        objGrnPO.Columns.Add("GRNPO_PONo", typeof(string));
+                        objGrnPO.Columns.Add("GRNPO_TotalPros", typeof(int));
+                        objGrnPO = udfnGrnPO(); 
+                        //result = objspdservice.udfnGRNEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
+                        //txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
+                        //txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(cmbStatus.SelectedValue), dpPlanDate.Text);
+                        //objspdservice.CloseConnection();
+                        //string[] varvalue = result.Split('~');
+                        //if (varvalue[0] == "3")
+                        //{
+                        //    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //    this.ActiveControl = txtSupplier;
+                        //    MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
+                        //    varCloseFlag = 1;
+                        //    udfnclose();
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);  
+                        //}
+                        //this.ActiveControl = cmbConcern; 
+                    }
                 }
             }
             catch (Exception ex)
