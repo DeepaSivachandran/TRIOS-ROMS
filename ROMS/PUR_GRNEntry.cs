@@ -102,7 +102,7 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdUnitList.Rows.Add(objDs.Tables[0].Rows[i]["MST_DisplayText"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["VALUE"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["MSTID"].ToString().Replace("''", "'"));
+                                grdUnitList.Rows.Add(objDs.Tables[0].Rows[i]["MST_DisplayText"].ToString() , objDs.Tables[0].Rows[i]["VALUE"].ToString() , objDs.Tables[0].Rows[i]["MSTID"].ToString() );
                             }
                             grdUnitList.Rows[grdUnitList.RowCount - 1].DefaultCellStyle.BackColor = Color.SlateGray;
                             grdUnitList.Rows[grdUnitList.RowCount - 1].DefaultCellStyle.ForeColor = Color.White;
@@ -208,7 +208,7 @@ namespace ROMS
                     errGRN.SetError(cmbConcern, "Please select company");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please select company", cmbConcern, 5000);
+                    tpConcern.Show("Please select company", cmbConcern, 5000); 
                 }
                 else
                 {
@@ -677,18 +677,18 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
-                            lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString().Replace("''", "'");
-                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString().Replace("''", "'");
-                            lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString().Replace("''", "'");
-                            lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString().Replace("''", "'");
-                            lblSupplierOrderpolicy.Text = "Return Policy :" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString().Replace("''", "'");
+                            lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString() ;
+                            lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString() ;
+                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString() ;
+                            lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString() ;
+                            lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString() ;
+                            lblSupplierOrderpolicy.Text = "Return Policy :" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString() ;
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            txtSalesManMobile.Text = objDs.Tables[1].Rows[0]["SPSC_SMMobileNo"].ToString().Replace("''", "'");
-                            txtSalesManName.Text = objDs.Tables[1].Rows[0]["SPSC_SMName"].ToString().Replace("''", "'");
-                            txtSalesManwhatsapp.Text = objDs.Tables[1].Rows[0]["SPSC_SMWhatsAppNo"].ToString().Replace("''", "'");
+                            txtSalesManMobile.Text = objDs.Tables[1].Rows[0]["SPSC_SMMobileNo"].ToString() ;
+                            txtSalesManName.Text = objDs.Tables[1].Rows[0]["SPSC_SMName"].ToString() ;
+                            txtSalesManwhatsapp.Text = objDs.Tables[1].Rows[0]["SPSC_SMWhatsAppNo"].ToString() ;
                         }
                         if (objDs.Tables[2].Rows.Count > 0)
                         {
@@ -954,37 +954,138 @@ namespace ROMS
                 }
                 if (VarErrorFlag == true)
                 {
+                    udfntooltiphide();
 
+                    //if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
+                    //{
+                    //    string result = "", varorginator = "Po Create";
+                    //    int varviewtype = 0;// GrnUpdate = varGrnId;
+                    //    if (btnSave.Text == "Update")
+                    //    {
+                    //        varviewtype = 1;
+                    //        varorginator = "Po Update";
+                    //    }
+                    //    SPDataService objspdservice = new SPDataService();
+                    //    DataTable objGrnPO = new DataTable();
+                    //    objGrnPO.TableName = "TRN_GRN_PO";
+                    //    objGrnPO.Columns.Add("GRNPO_POID", typeof(int));
+                    //    objGrnPO.Columns.Add("GRNPO_PODate", typeof(string));
+                    //    objGrnPO.Columns.Add("GRNPO_PONo", typeof(string));
+                    //    objGrnPO.Columns.Add("GRNPO_TotalPros", typeof(int));
+                    //    objGrnPO = udfnGrnPO(); 
+                    //    result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
+                    //    txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
+                    //    txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(cmbStatus.SelectedValue), dpPlanDate.Text);
+                    //    objspdservice.CloseConnection();
+                    //    string[] varvalue = result.Split('~');
+                    //    if (varvalue[0] == "3")
+                    //    {
+                    //        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //        this.ActiveControl = txtSupplier;
+                    //        MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
+                    //        udfnClear();
+                    //        varupdate = "1";
+                    //        udfnclose();
+                    //    }
+                    //    else
+                    //    {
+                    //        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //        if (varvalue[0] == "5")
+                    //        {
+                    //            string[] values = varvalue[2].Split(',');
+                    //            for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
+                    //            {
+                    //                foreach (string value in values)
+                    //                {
+                    //                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value || Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value)
+                    //                    {
+
+                    //                        grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                    //                        grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+
+                    //    }
+                    //    this.ActiveControl = cmbConcern; 
+                    //}
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
         }
 
-        private void GrdUnitList_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        public DataTable udfnGrnPO()
         {
+
+            DataTable objGrnPO = new DataTable();
             try
             {
-                if (e.RowIndex != -1)
-                {
-                    switch (grdUnitList.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmQty":
-                            udfnTotalUnitGrid();
-                            break;
-                    }
-                }
+                objGrnPO.TableName = "TRN_GRN_PO";
+                objGrnPO.Columns.Add("GRNPO_POID", typeof(int));
+                objGrnPO.Columns.Add("GRNPO_PODate", typeof(string));
+                objGrnPO.Columns.Add("GRNPO_PONo", typeof(string));
+                objGrnPO.Columns.Add("GRNPO_TotalPros", typeof(int)); 
+                for (int i = 0; i < grdPODetails.Rows.Count; i++)
+                {  
+                    DataService objDser = new DataService();
+                    objGrnPO.Rows.Add(Convert.ToString(grdPODetails.Rows[i].Cells["poid"].Value), Convert.ToInt64(grdPODetails.Rows[i].Cells["clmPODate"].Value)
+                    ,Convert.ToDouble(grdPODetails.Rows[i].Cells["clmpo"].Value) ,Convert.ToInt32(grdPODetails.Rows[i].Cells["clmtpro"].Value)); 
+                }  
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
+            return objGrnPO;
+        }
+        public void udfntooltiphide()
+        {
+            try
+            {
+                errGRN.Clear();
+                cmbConcern.BackColor = Color.White;
+                tpConcern.Active = false;
+                txtSupplier.BackColor = Color.White;
+                tpSuppliername.Active = false;
+                txtInvoiceno.BackColor = Color.White;
+                tpInvNo.Active = false;
+                cmbOrderType.BackColor = Color.White;
+                tpordertype.Active = false;
+                txtInvoiceamt.BackColor = Color.White;
+                tpinvamt.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdUnitList_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //try
+            //{
+            //    if (e.RowIndex != -1)
+            //    {
+            //        switch (grdUnitList.Columns[e.ColumnIndex].Name)
+            //        {
+            //            case "clmQty":
+            //                udfnTotalUnitGrid();
+            //                break;
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+
+            //}
         }
 
         private void DpPlanDate_Enter(object sender, EventArgs e)
@@ -1080,29 +1181,38 @@ namespace ROMS
 
         private void GrdUnitList_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (e.RowIndex != -1)
-                {
-                    switch (grdUnitList.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmQty":
-                            udfnTotalUnitGrid(); 
-                        break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+            //try
+            //{
+            //    if (e.RowIndex != -1)
+            //    {
+            //        switch (grdUnitList.Columns[e.ColumnIndex].Name)
+            //        {
+            //            case "clmQty":
+            //                udfnTotalUnitGrid(); 
+            //            break;
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
 
-            }
+            //}
         }
 
         private void GrdUnitList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    udfnTotalUnitGrid();
+            //}
+            // catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
 
+            //}
         }
 
         private void BtnDamage_Click(object sender, EventArgs e)
