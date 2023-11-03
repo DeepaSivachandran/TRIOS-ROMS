@@ -84,7 +84,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtgrnno = new System.Windows.Forms.TextBox();
             this.lblDEVisitDay = new System.Windows.Forms.Label();
-            this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.dpGRNDate = new System.Windows.Forms.DateTimePicker();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnDamage = new System.Windows.Forms.Button();
@@ -140,7 +140,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtgrnno);
             this.groupBox1.Controls.Add(this.lblDEVisitDay);
-            this.groupBox1.Controls.Add(this.dpPlanDate);
+            this.groupBox1.Controls.Add(this.dpGRNDate);
             this.groupBox1.Controls.Add(this.cmbConcern);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Location = new System.Drawing.Point(10, -1);
@@ -213,6 +213,10 @@
             this.txtFrieghtamount.Name = "txtFrieghtamount";
             this.txtFrieghtamount.Size = new System.Drawing.Size(70, 27);
             this.txtFrieghtamount.TabIndex = 8;
+            this.txtFrieghtamount.Enter += new System.EventHandler(this.TxtFrieghtamount_Enter);
+            this.txtFrieghtamount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFrieghtamount_KeyDown);
+            this.txtFrieghtamount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtFrieghtamount_KeyPress);
+            this.txtFrieghtamount.Leave += new System.EventHandler(this.TxtFrieghtamount_Leave);
             // 
             // label9
             // 
@@ -242,6 +246,10 @@
             this.txtLoadingCharge.Name = "txtLoadingCharge";
             this.txtLoadingCharge.Size = new System.Drawing.Size(70, 27);
             this.txtLoadingCharge.TabIndex = 7;
+            this.txtLoadingCharge.Enter += new System.EventHandler(this.TxtLoadingCharge_Enter);
+            this.txtLoadingCharge.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLoadingCharge_KeyDown);
+            this.txtLoadingCharge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtLoadingCharge_KeyPress);
+            this.txtLoadingCharge.Leave += new System.EventHandler(this.TxtLoadingCharge_Leave);
             // 
             // grpSalesmanDetails
             // 
@@ -529,9 +537,6 @@
             this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdUnitList.Size = new System.Drawing.Size(132, 230);
             this.grdUnitList.TabIndex = 1111197;
-            this.grdUnitList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdUnitList_CellFormatting);
-            this.grdUnitList.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdUnitList_CellLeave);
-            this.grdUnitList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdUnitList_CellValueChanged);
             this.grdUnitList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdUnitList_CurrentCellDirtyStateChanged);
             // 
             // clmUnit
@@ -557,7 +562,6 @@
             // 
             // cmbOrderType
             // 
-            this.cmbOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOrderType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOrderType.FormattingEnabled = true;
             this.cmbOrderType.Location = new System.Drawing.Point(74, 116);
@@ -617,12 +621,13 @@
             // 
             this.txtInvoiceamt.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInvoiceamt.Location = new System.Drawing.Point(266, 116);
-            this.txtInvoiceamt.MaxLength = 50;
+            this.txtInvoiceamt.MaxLength = 7;
             this.txtInvoiceamt.Name = "txtInvoiceamt";
             this.txtInvoiceamt.Size = new System.Drawing.Size(105, 27);
             this.txtInvoiceamt.TabIndex = 6;
             this.txtInvoiceamt.Enter += new System.EventHandler(this.TxtInvoiceamt_Enter);
             this.txtInvoiceamt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceamt_KeyDown);
+            this.txtInvoiceamt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtInvoiceamt_KeyPress);
             this.txtInvoiceamt.Leave += new System.EventHandler(this.TxtInvoiceamt_Leave);
             // 
             // label3
@@ -639,7 +644,7 @@
             // 
             this.txtInvoiceno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInvoiceno.Location = new System.Drawing.Point(266, 83);
-            this.txtInvoiceno.MaxLength = 50;
+            this.txtInvoiceno.MaxLength = 20;
             this.txtInvoiceno.Name = "txtInvoiceno";
             this.txtInvoiceno.Size = new System.Drawing.Size(105, 27);
             this.txtInvoiceno.TabIndex = 4;
@@ -700,21 +705,20 @@
             this.lblDEVisitDay.TabIndex = 1111183;
             this.lblDEVisitDay.Text = "GRN Date";
             // 
-            // dpPlanDate
+            // dpGRNDate
             // 
-            this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
-            this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpPlanDate.Location = new System.Drawing.Point(74, 50);
-            this.dpPlanDate.Name = "dpPlanDate";
-            this.dpPlanDate.Size = new System.Drawing.Size(111, 28);
-            this.dpPlanDate.TabIndex = 2;
-            this.dpPlanDate.Enter += new System.EventHandler(this.DpPlanDate_Enter);
-            this.dpPlanDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpPlanDate_KeyDown);
-            this.dpPlanDate.Leave += new System.EventHandler(this.DpPlanDate_Leave);
+            this.dpGRNDate.CustomFormat = "dd/MM/yyyy";
+            this.dpGRNDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpGRNDate.Location = new System.Drawing.Point(74, 50);
+            this.dpGRNDate.Name = "dpGRNDate";
+            this.dpGRNDate.Size = new System.Drawing.Size(111, 28);
+            this.dpGRNDate.TabIndex = 2;
+            this.dpGRNDate.Enter += new System.EventHandler(this.DpPlanDate_Enter);
+            this.dpGRNDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpPlanDate_KeyDown);
+            this.dpGRNDate.Leave += new System.EventHandler(this.DpPlanDate_Leave);
             // 
             // cmbConcern
             // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(74, 17);
@@ -918,7 +922,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtgrnno;
         private System.Windows.Forms.Label lblDEVisitDay;
-        private System.Windows.Forms.DateTimePicker dpPlanDate;
+        private System.Windows.Forms.DateTimePicker dpGRNDate;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.DataGridView grdUnitList;
