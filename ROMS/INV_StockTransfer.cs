@@ -1305,14 +1305,14 @@ namespace ROMS
                     tpConcern.Show("Please select concern", cmbConcern, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtTransferNo.Text).Trim() == "")
-                {
-                    errStockTransfer.SetError(txtTransferNo, "Please enter transfer no.");
-                    txtTransferNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpTransferNo.ShowAlways = true;
-                    tpTransferNo.Show("Please enter transfer no.", txtTransferNo, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(txtTransferNo.Text).Trim() == "")
+                //{
+                //    errStockTransfer.SetError(txtTransferNo, "Please enter transfer no.");
+                //    txtTransferNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpTransferNo.ShowAlways = true;
+                //    tpTransferNo.Show("Please enter transfer no.", txtTransferNo, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(txtSLocation.Text).Trim() == "")
                 {
                     errStockTransfer.SetError(txtSLocation, "Please enter source location");
