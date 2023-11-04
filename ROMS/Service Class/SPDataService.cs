@@ -1970,7 +1970,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 17/10/2023 for PO list
-        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string ParaPOFromDate, string ParaPOToDate,int paraPOID,int paraStatus)
+        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string ParaPOFromDate, string ParaPOToDate,int paraPOID,int paraStatus,string paraPendingPOIDs)
         {
             DataSet ds = new DataSet();
             try
@@ -1993,6 +1993,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaPOToDate", ParaPOToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraPOID", paraPOID);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraPendingPOIDs", paraPendingPOIDs);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2008,6 +2009,88 @@ namespace ROMS
             }
             return ds;
         }
+
+
+        // added by venkat on 03/11/2023 for GRN Entry Save
+        public string udfnGRNEntry(int paraViewType, int ParaGRNID, int paraCompanyId, int paraSupplierID, int paraScheduleID
+            , string paraOriginator, string paraRemarks , DataTable ParaTRN_GRN_PO,string paraGRNDate,string paraINVDate,string paraINVNo,double ParaInvAmt,string ParaLoadingCharge,string ParaFrightCharge,int paraOrderType,string paraPAckage)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_GRN]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaGRNID", ParaGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId); 
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", paraScheduleID); 
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", paraRemarks); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_GRN_PO", ParaTRN_GRN_PO); 
+                varSqlCommand.Parameters.AddWithValue("@paraGRNDate", paraGRNDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraINVDate", paraINVDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraINVNo", paraINVNo); 
+                varSqlCommand.Parameters.AddWithValue("@ParaInvAmt", ParaInvAmt); 
+                varSqlCommand.Parameters.AddWithValue("@ParaLoadingCharge", ParaLoadingCharge); 
+                varSqlCommand.Parameters.AddWithValue("@ParaFrightCharge", ParaFrightCharge); 
+                varSqlCommand.Parameters.AddWithValue("@paraOrderType", paraOrderType); 
+                varSqlCommand.Parameters.AddWithValue("@paraPAckage", paraPAckage); 
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+
+        // added by venkat on 03/11/2023 for GRN list
+        public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID,string ParaGRNFromDate,string ParaGRNToDate, int paraGRNID, int paraStatus,int paraOrdertype)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_GRN]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleId", ParaScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyID", paraCompanyID);
+                varSqlCommand.Parameters.AddWithValue("@paraDcID", paraDcID);   
+                varSqlCommand.Parameters.AddWithValue("@ParaGRNFromDate", ParaGRNFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaGRNToDate", ParaGRNToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNID", paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus); 
+                varSqlCommand.Parameters.AddWithValue("@paraOrdertype", paraOrdertype); 
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
     }
 
 }

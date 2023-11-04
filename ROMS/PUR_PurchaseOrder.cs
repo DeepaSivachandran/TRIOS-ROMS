@@ -100,7 +100,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0);
+                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0,"0");
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -468,21 +468,22 @@ namespace ROMS
                                         }
                                         else
                                         {
-                                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                                            string[] values = varvalue[2].Split(',');
-
-                                            for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
+                                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
+                                            if (varvalue[0] == "5")
                                             {
-                                                foreach (string value in values)
-                                                { 
-                                                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value || Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value)
+                                                string[] values = varvalue[2].Split(','); 
+                                                for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
+                                                {
+                                                    foreach (string value in values)
                                                     {
+                                                        if (Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value || Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value)
+                                                        {
 
-                                                        grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
-                                                        grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.Black; 
-                                                    } 
-                                                } 
+                                                            grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                                            grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                                                        }
+                                                    }
+                                                }
                                             }
 
                                         }
@@ -502,7 +503,10 @@ namespace ROMS
                 }
                 else
                 {
-                    MessageBox.Show("No Records Found!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(41);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -1070,9 +1074,11 @@ namespace ROMS
                         objDservice.CloseConnection();
                         varResult = objspdservice.udfngetPONO("38", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                         objspdservice.CloseConnection();
-                        if (varResult != "")
+                        string[] parts = varResult.Split('~');
+                        string pono = parts[0];
+                        if (pono != "")
                         {
-                            txtpono.Text = varResult;
+                            txtpono.Text = pono;
                         }
                         else
                         {
@@ -1082,7 +1088,7 @@ namespace ROMS
                             txtpono.Text = "";
                             DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
-                            { 
+                            {
                                 MainForm.objCP_Settings = new CP_Settings();
                                 MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
                                 MainForm.objCP_Settings.varValues = Convert.ToString(38);
@@ -1091,6 +1097,10 @@ namespace ROMS
                                 this.Close();
                             }
                         }
+                    }
+                    else
+                    {
+                        txtpono.Text = "";
                     }
                 }
             }
@@ -1235,7 +1245,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -1243,6 +1253,7 @@ namespace ROMS
                                 LV_Supplier.Columns[1].Width = 0;
                                 LV_Supplier.Columns[2].Width = 0;
                                 LV_Supplier.Columns[0].Width = 300;
+                                LV_Supplier.Columns[3].Width = 0;
                             }
                         }
                     }
@@ -2070,19 +2081,28 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value)=="" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "0")
+                if (e.RowIndex != -1)
                 {
-                    DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmOrderqty"];
-                    cell.Style.BackColor = Color.LightPink;
-                    cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                }
-                else
-                {
-                    DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmOrderqty"];
-                    cell.Style.BackColor = Color.PaleGreen;
-                    cell.Style.ForeColor = Color.Black;// Set the background color to the default background color}
+                    switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmOrderqty":
+
+                            if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "0")
+                            {
+                                DataGridView dataGridView = (DataGridView)sender;
+                                DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmOrderqty"];
+                                cell.Style.BackColor = Color.LightPink;
+                                cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                            }
+                            else
+                            {
+                                DataGridView dataGridView = (DataGridView)sender;
+                                DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmOrderqty"];
+                                cell.Style.BackColor = Color.PaleGreen;
+                                cell.Style.ForeColor = Color.Black;// Set the background color to the default background color}
+                            }
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -2109,16 +2129,23 @@ namespace ROMS
         {
             try
             {
-
-                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                { 
-                    string cellPOValue = Convert.ToString(grdPendingorder.Rows[e.RowIndex].Cells["poid"].Value);
-                    MainForm.objPUR_POProducts = new PUR_POProducts();
-                    MainForm.objPUR_POProducts.pbPoid = cellPOValue;
-                    MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
-                    MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
-                    MainForm.objPUR_POProducts.ShowDialog();
-                }
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPendingorder.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmpono":
+                        if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                        {
+                            string cellPOValue = Convert.ToString(grdPendingorder.Rows[e.RowIndex].Cells["poid"].Value);
+                            MainForm.objPUR_POProducts = new PUR_POProducts();
+                            MainForm.objPUR_POProducts.pbPoid = cellPOValue;
+                            MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
+                            MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
+                            MainForm.objPUR_POProducts.ShowDialog();
+                        }
+                        break;
+                    }
+                }  
             }
             catch (Exception ex)
             {
@@ -2329,7 +2356,7 @@ namespace ROMS
                         txtSupplier.Text = selectedItem.SubItems[0].Text;
                         lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                         lblschedule.Text = selectedItem.SubItems[2].Text;
-                        varSuppliervalue = selectedItem.SubItems[4].Text; 
+                        varSuppliervalue = selectedItem.SubItems[3].Text; 
                     }
                     udfnsupplierLoad();
                     DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
