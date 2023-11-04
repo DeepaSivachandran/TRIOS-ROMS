@@ -54,6 +54,8 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvSLocation = new System.Windows.Forms.ListView();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,10 +74,8 @@
             this.grbStockTransfer = new System.Windows.Forms.GroupBox();
             this.lblDLocation = new System.Windows.Forms.Label();
             this.lblSLocation = new System.Windows.Forms.Label();
-            this.txtDLocation = new System.Windows.Forms.TextBox();
             this.txtSLocation = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.lblDestinationGodown = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblSourceGodown = new System.Windows.Forms.Label();
             this.txtTransferNo = new System.Windows.Forms.TextBox();
@@ -83,8 +83,14 @@
             this.lblTransferDate = new System.Windows.Forms.Label();
             this.dpTrannsferDate = new System.Windows.Forms.DateTimePicker();
             this.grbDStockTransfer = new System.Windows.Forms.GroupBox();
+            this.lblDestRack = new System.Windows.Forms.Label();
+            this.lbltxtSourceRack = new System.Windows.Forms.Label();
+            this.txtSRack = new System.Windows.Forms.TextBox();
+            this.cmbDRack = new System.Windows.Forms.ComboBox();
+            this.lblDestinationGodown = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblProduct = new System.Windows.Forms.Label();
+            this.txtDLocation = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtStockQty = new System.Windows.Forms.TextBox();
@@ -99,12 +105,6 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
-            this.cmbDRack = new System.Windows.Forms.ComboBox();
-            this.txtSRack = new System.Windows.Forms.TextBox();
-            this.lbltxtSourceRack = new System.Windows.Forms.Label();
-            this.lblDestRack = new System.Windows.Forms.Label();
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -472,19 +472,6 @@
             this.lblSLocation.TabIndex = 1111189;
             this.lblSLocation.Visible = false;
             // 
-            // txtDLocation
-            // 
-            this.txtDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDLocation.Location = new System.Drawing.Point(897, 40);
-            this.txtDLocation.MaxLength = 100;
-            this.txtDLocation.Name = "txtDLocation";
-            this.txtDLocation.Size = new System.Drawing.Size(178, 27);
-            this.txtDLocation.TabIndex = 10;
-            this.txtDLocation.TextChanged += new System.EventHandler(this.TxtDLocation_TextChanged);
-            this.txtDLocation.Enter += new System.EventHandler(this.TxtDLocation_Enter);
-            this.txtDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDLocation_KeyDown);
-            this.txtDLocation.Leave += new System.EventHandler(this.TxtDLocation_Leave);
-            // 
             // txtSLocation
             // 
             this.txtSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -511,15 +498,6 @@
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
             this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
-            // 
-            // lblDestinationGodown
-            // 
-            this.lblDestinationGodown.AutoSize = true;
-            this.lblDestinationGodown.Location = new System.Drawing.Point(897, 15);
-            this.lblDestinationGodown.Name = "lblDestinationGodown";
-            this.lblDestinationGodown.Size = new System.Drawing.Size(71, 20);
-            this.lblDestinationGodown.TabIndex = 90;
-            this.lblDestinationGodown.Text = "Destination";
             // 
             // label12
             // 
@@ -610,6 +588,57 @@
             this.grbDStockTransfer.TabIndex = 4;
             this.grbDStockTransfer.TabStop = false;
             // 
+            // lblDestRack
+            // 
+            this.lblDestRack.AutoSize = true;
+            this.lblDestRack.Location = new System.Drawing.Point(1081, 15);
+            this.lblDestRack.Name = "lblDestRack";
+            this.lblDestRack.Size = new System.Drawing.Size(100, 20);
+            this.lblDestRack.TabIndex = 1111241;
+            this.lblDestRack.Text = "Destination Rack";
+            // 
+            // lbltxtSourceRack
+            // 
+            this.lbltxtSourceRack.AutoSize = true;
+            this.lbltxtSourceRack.Location = new System.Drawing.Point(298, 15);
+            this.lbltxtSourceRack.Name = "lbltxtSourceRack";
+            this.lbltxtSourceRack.Size = new System.Drawing.Size(75, 20);
+            this.lbltxtSourceRack.TabIndex = 1111240;
+            this.lbltxtSourceRack.Text = "Source Rack";
+            // 
+            // txtSRack
+            // 
+            this.txtSRack.Enabled = false;
+            this.txtSRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSRack.Location = new System.Drawing.Point(298, 40);
+            this.txtSRack.MaxLength = 100;
+            this.txtSRack.Name = "txtSRack";
+            this.txtSRack.ReadOnly = true;
+            this.txtSRack.Size = new System.Drawing.Size(150, 27);
+            this.txtSRack.TabIndex = 5;
+            // 
+            // cmbDRack
+            // 
+            this.cmbDRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDRack.FormattingEnabled = true;
+            this.cmbDRack.Location = new System.Drawing.Point(1081, 40);
+            this.cmbDRack.Name = "cmbDRack";
+            this.cmbDRack.Size = new System.Drawing.Size(121, 27);
+            this.cmbDRack.TabIndex = 11;
+            this.cmbDRack.Enter += new System.EventHandler(this.CmbDRack_Enter);
+            this.cmbDRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDRack_KeyDown);
+            this.cmbDRack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbDRack_KeyPress);
+            this.cmbDRack.Leave += new System.EventHandler(this.CmbDRack_Leave);
+            // 
+            // lblDestinationGodown
+            // 
+            this.lblDestinationGodown.AutoSize = true;
+            this.lblDestinationGodown.Location = new System.Drawing.Point(897, 15);
+            this.lblDestinationGodown.Name = "lblDestinationGodown";
+            this.lblDestinationGodown.Size = new System.Drawing.Size(71, 20);
+            this.lblDestinationGodown.TabIndex = 90;
+            this.lblDestinationGodown.Text = "Destination";
+            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.White;
@@ -633,6 +662,19 @@
             this.lblProduct.Size = new System.Drawing.Size(0, 20);
             this.lblProduct.TabIndex = 1111237;
             this.lblProduct.Visible = false;
+            // 
+            // txtDLocation
+            // 
+            this.txtDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDLocation.Location = new System.Drawing.Point(897, 40);
+            this.txtDLocation.MaxLength = 100;
+            this.txtDLocation.Name = "txtDLocation";
+            this.txtDLocation.Size = new System.Drawing.Size(178, 27);
+            this.txtDLocation.TabIndex = 10;
+            this.txtDLocation.TextChanged += new System.EventHandler(this.TxtDLocation_TextChanged);
+            this.txtDLocation.Enter += new System.EventHandler(this.TxtDLocation_Enter);
+            this.txtDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDLocation_KeyDown);
+            this.txtDLocation.Leave += new System.EventHandler(this.TxtDLocation_Leave);
             // 
             // textBox5
             // 
@@ -768,48 +810,6 @@
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Product Name/P.I Code";
             // 
-            // cmbDRack
-            // 
-            this.cmbDRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDRack.FormattingEnabled = true;
-            this.cmbDRack.Location = new System.Drawing.Point(1081, 40);
-            this.cmbDRack.Name = "cmbDRack";
-            this.cmbDRack.Size = new System.Drawing.Size(121, 27);
-            this.cmbDRack.TabIndex = 11;
-            this.cmbDRack.Enter += new System.EventHandler(this.CmbDRack_Enter);
-            this.cmbDRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDRack_KeyDown);
-            this.cmbDRack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbDRack_KeyPress);
-            this.cmbDRack.Leave += new System.EventHandler(this.CmbDRack_Leave);
-            // 
-            // txtSRack
-            // 
-            this.txtSRack.Enabled = false;
-            this.txtSRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSRack.Location = new System.Drawing.Point(298, 40);
-            this.txtSRack.MaxLength = 100;
-            this.txtSRack.Name = "txtSRack";
-            this.txtSRack.ReadOnly = true;
-            this.txtSRack.Size = new System.Drawing.Size(150, 27);
-            this.txtSRack.TabIndex = 5;
-            // 
-            // lbltxtSourceRack
-            // 
-            this.lbltxtSourceRack.AutoSize = true;
-            this.lbltxtSourceRack.Location = new System.Drawing.Point(298, 15);
-            this.lbltxtSourceRack.Name = "lbltxtSourceRack";
-            this.lbltxtSourceRack.Size = new System.Drawing.Size(75, 20);
-            this.lbltxtSourceRack.TabIndex = 1111240;
-            this.lbltxtSourceRack.Text = "Source Rack";
-            // 
-            // lblDestRack
-            // 
-            this.lblDestRack.AutoSize = true;
-            this.lblDestRack.Location = new System.Drawing.Point(1081, 15);
-            this.lblDestRack.Name = "lblDestRack";
-            this.lblDestRack.Size = new System.Drawing.Size(100, 20);
-            this.lblDestRack.TabIndex = 1111241;
-            this.lblDestRack.Text = "Destination Rack";
-            // 
             // clmdsno
             // 
             this.clmdsno.HeaderText = "S.No.";
@@ -839,28 +839,33 @@
             this.clmmrp.HeaderText = "MRP";
             this.clmmrp.Name = "clmmrp";
             this.clmmrp.ReadOnly = true;
+            this.clmmrp.Width = 50;
             // 
             // clmExpirydate
             // 
             this.clmExpirydate.HeaderText = "Expiry Date";
             this.clmExpirydate.Name = "clmExpirydate";
             this.clmExpirydate.ReadOnly = true;
+            this.clmExpirydate.Width = 90;
             // 
             // clmbatchno
             // 
             this.clmbatchno.HeaderText = "Batch No.";
             this.clmbatchno.Name = "clmbatchno";
             this.clmbatchno.ReadOnly = true;
+            this.clmbatchno.Width = 70;
             // 
             // clmDestLocation
             // 
             this.clmDestLocation.HeaderText = "Destination Location";
             this.clmDestLocation.Name = "clmDestLocation";
+            this.clmDestLocation.Width = 140;
             // 
             // clmDestRack
             // 
             this.clmDestRack.HeaderText = "Destination Rack";
             this.clmDestRack.Name = "clmDestRack";
+            this.clmDestRack.Width = 140;
             // 
             // clmquantity
             // 
@@ -873,6 +878,7 @@
             this.clmUnit.HeaderText = "Unit";
             this.clmUnit.Name = "clmUnit";
             this.clmUnit.ReadOnly = true;
+            this.clmUnit.Width = 60;
             // 
             // clmPRID
             // 
