@@ -222,6 +222,7 @@ namespace ROMS
                     else
                     { rbOutside.Checked = true; }
                 //}
+                pnlStatus.Enabled = true;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if (PbStockApplicableID==11) { varStockApplicableId = PbStockApplicableID; }
                 if (PbRKCreationID == "1") { chkRKCreation.Checked = true; } else { chkRKCreation.Checked = false; }
@@ -487,7 +488,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //rbActive.Focus();
+                    cmbStockApplicable.Focus();
                 }
             }
             catch (Exception ex)
@@ -502,7 +503,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    chkRKCreation.Focus();
                 }
             }
             catch (Exception ex)
@@ -517,7 +518,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    chkRKCreation.Focus();
                 }
             }
             catch (Exception ex)
@@ -820,11 +821,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
+                    if (pnlStatus.Enabled==true)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
                     }
-                    else { btnSave.Focus(); }
+                    else { chkRKCreation.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -985,9 +993,16 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlGodownType.Enabled)
+                    if (pnlGodownType.Enabled==true)
                     {
-                        rbInside.Focus();
+                        if(rbInside.Checked==true)
+                        {
+                            rbInside.Focus();
+                        }
+                        else
+                        {
+                            rbOutside.Focus();
+                        }
                     }
                     else
                     {
@@ -1058,6 +1073,97 @@ namespace ROMS
             {
                 chkRKGCreation.Enabled = false;
                 chkRKGCreation.Checked = false;
+            }
+        }
+
+        private void ChkRKCreation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if(chkRKGCreation.Enabled==true)
+                    {
+                        chkRKGCreation.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKGCreation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKCreation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkRKCreation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKCreation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkRKCreation.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKGCreation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkRKGCreation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKGCreation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkRKGCreation.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

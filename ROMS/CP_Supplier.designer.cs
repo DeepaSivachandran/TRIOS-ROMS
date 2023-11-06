@@ -678,6 +678,9 @@
             this.rbInactive.TabIndex = 26;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
+            this.rbInactive.Enter += new System.EventHandler(this.RbInactive_Enter);
+            this.rbInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
+            this.rbInactive.Leave += new System.EventHandler(this.RbInactive_Leave);
             // 
             // rbActive
             // 
@@ -691,6 +694,9 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
+            this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // groupBox4
             // 
@@ -1674,6 +1680,9 @@
             this.rbScheduleActive.TabStop = true;
             this.rbScheduleActive.Text = "Active";
             this.rbScheduleActive.UseVisualStyleBackColor = true;
+            this.rbScheduleActive.Enter += new System.EventHandler(this.RbScheduleActive_Enter);
+            this.rbScheduleActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbScheduleActive_KeyDown);
+            this.rbScheduleActive.Leave += new System.EventHandler(this.RbScheduleActive_Leave);
             // 
             // rbScheduleInactive
             // 
@@ -1686,6 +1695,9 @@
             this.rbScheduleInactive.TabStop = true;
             this.rbScheduleInactive.Text = "Inactive";
             this.rbScheduleInactive.UseVisualStyleBackColor = true;
+            this.rbScheduleInactive.Enter += new System.EventHandler(this.RbScheduleInactive_Enter);
+            this.rbScheduleInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbScheduleInactive_KeyDown);
+            this.rbScheduleInactive.Leave += new System.EventHandler(this.RbScheduleInactive_Leave);
             // 
             // txtDStatus
             // 

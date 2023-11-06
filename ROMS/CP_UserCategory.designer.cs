@@ -37,12 +37,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbUserCategory = new System.Windows.Forms.GroupBox();
+            this.cmbCTSINO = new System.Windows.Forms.ComboBox();
+            this.txtOrderNo = new System.Windows.Forms.TextBox();
             this.txtDCategoryName = new System.Windows.Forms.TextBox();
             this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.epUserCategory = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtOrderNo = new System.Windows.Forms.TextBox();
-            this.cmbCTSINO = new System.Windows.Forms.ComboBox();
-            this.pnlStatus.SuspendLayout();
             this.grbUserCategory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).BeginInit();
             this.SuspendLayout();
@@ -50,23 +49,21 @@
             // pnlStatus
             // 
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlStatus.Controls.Add(this.rbInactive);
-            this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Enabled = false;
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(197, 53);
+            this.pnlStatus.Location = new System.Drawing.Point(197, 80);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
-            this.pnlStatus.TabIndex = 1;
+            this.pnlStatus.TabIndex = 2;
             // 
             // rbInactive
             // 
             this.rbInactive.AutoSize = true;
             this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbInactive.Location = new System.Drawing.Point(150, 1);
+            this.rbInactive.Location = new System.Drawing.Point(341, 82);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 2;
+            this.rbInactive.TabIndex = 3;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
             this.rbInactive.Enter += new System.EventHandler(this.rbInactive_Enter);
@@ -78,10 +75,10 @@
             this.rbActive.AutoSize = true;
             this.rbActive.Checked = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbActive.Location = new System.Drawing.Point(62, 1);
+            this.rbActive.Location = new System.Drawing.Point(253, 82);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 1;
+            this.rbActive.TabIndex = 2;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -94,7 +91,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(17, 53);
+            this.txtDStatus.Location = new System.Drawing.Point(17, 80);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -135,6 +132,8 @@
             // 
             // grbUserCategory
             // 
+            this.grbUserCategory.Controls.Add(this.rbInactive);
+            this.grbUserCategory.Controls.Add(this.rbActive);
             this.grbUserCategory.Controls.Add(this.cmbCTSINO);
             this.grbUserCategory.Controls.Add(this.txtOrderNo);
             this.grbUserCategory.Controls.Add(this.txtDCategoryName);
@@ -148,6 +147,31 @@
             this.grbUserCategory.Size = new System.Drawing.Size(503, 158);
             this.grbUserCategory.TabIndex = 0;
             this.grbUserCategory.TabStop = false;
+            // 
+            // cmbCTSINO
+            // 
+            this.cmbCTSINO.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCTSINO.FormattingEnabled = true;
+            this.cmbCTSINO.Location = new System.Drawing.Point(197, 53);
+            this.cmbCTSINO.Name = "cmbCTSINO";
+            this.cmbCTSINO.Size = new System.Drawing.Size(288, 27);
+            this.cmbCTSINO.TabIndex = 1;
+            this.cmbCTSINO.Enter += new System.EventHandler(this.CmbCTSINO_Enter);
+            this.cmbCTSINO.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCTSINO_KeyDown);
+            this.cmbCTSINO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCTSINO_KeyPress);
+            this.cmbCTSINO.Leave += new System.EventHandler(this.CmbCTSINO_Leave);
+            // 
+            // txtOrderNo
+            // 
+            this.txtOrderNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtOrderNo.Enabled = false;
+            this.txtOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrderNo.Location = new System.Drawing.Point(17, 53);
+            this.txtOrderNo.Name = "txtOrderNo";
+            this.txtOrderNo.ReadOnly = true;
+            this.txtOrderNo.Size = new System.Drawing.Size(181, 27);
+            this.txtOrderNo.TabIndex = 20;
+            this.txtOrderNo.Text = "Order No.";
             // 
             // txtDCategoryName
             // 
@@ -177,31 +201,6 @@
             // 
             this.epUserCategory.ContainerControl = this;
             // 
-            // txtOrderNo
-            // 
-            this.txtOrderNo.BackColor = System.Drawing.SystemColors.Control;
-            this.txtOrderNo.Enabled = false;
-            this.txtOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrderNo.Location = new System.Drawing.Point(17, 80);
-            this.txtOrderNo.Name = "txtOrderNo";
-            this.txtOrderNo.ReadOnly = true;
-            this.txtOrderNo.Size = new System.Drawing.Size(181, 27);
-            this.txtOrderNo.TabIndex = 20;
-            this.txtOrderNo.Text = "Order No.";
-            // 
-            // cmbCTSINO
-            // 
-            this.cmbCTSINO.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCTSINO.FormattingEnabled = true;
-            this.cmbCTSINO.Location = new System.Drawing.Point(197, 80);
-            this.cmbCTSINO.Name = "cmbCTSINO";
-            this.cmbCTSINO.Size = new System.Drawing.Size(288, 27);
-            this.cmbCTSINO.TabIndex = 3;
-            this.cmbCTSINO.Enter += new System.EventHandler(this.CmbCTSINO_Enter);
-            this.cmbCTSINO.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCTSINO_KeyDown);
-            this.cmbCTSINO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCTSINO_KeyPress);
-            this.cmbCTSINO.Leave += new System.EventHandler(this.CmbCTSINO_Leave);
-            // 
             // CP_UserCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -222,8 +221,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_UserCategory_FormClosing);
             this.Load += new System.EventHandler(this.CP_UserCategory_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserCategory_KeyDown);
-            this.pnlStatus.ResumeLayout(false);
-            this.pnlStatus.PerformLayout();
             this.grbUserCategory.ResumeLayout(false);
             this.grbUserCategory.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).EndInit();

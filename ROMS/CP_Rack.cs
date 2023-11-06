@@ -637,7 +637,14 @@ namespace ROMS
                 {
                     if (pnlStatus.Enabled)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
                     }
                     else { btnSave.Focus(); }
                 }

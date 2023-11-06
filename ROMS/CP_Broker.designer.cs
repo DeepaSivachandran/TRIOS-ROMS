@@ -258,6 +258,9 @@
             this.rbBankActive.TabStop = true;
             this.rbBankActive.Text = "Active";
             this.rbBankActive.UseVisualStyleBackColor = true;
+            this.rbBankActive.Enter += new System.EventHandler(this.RbBankActive_Enter);
+            this.rbBankActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbBankActive_KeyDown);
+            this.rbBankActive.Leave += new System.EventHandler(this.RbBankActive_Leave);
             // 
             // rbBankInActive
             // 
@@ -269,6 +272,9 @@
             this.rbBankInActive.TabIndex = 18;
             this.rbBankInActive.Text = "Inactive";
             this.rbBankInActive.UseVisualStyleBackColor = true;
+            this.rbBankInActive.Enter += new System.EventHandler(this.RbBankInActive_Enter);
+            this.rbBankInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbBankInActive_KeyDown);
+            this.rbBankInActive.Leave += new System.EventHandler(this.RbBankInActive_Leave);
             // 
             // txtStatus
             // 

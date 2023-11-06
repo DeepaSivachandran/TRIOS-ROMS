@@ -393,7 +393,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAdd.Focus();
+                    if(pnlBStatus.Enabled==true)
+                    {
+                        if(rbBankActive.Checked==true)
+                        {
+                            rbBankActive.Focus();
+                        }
+                        else
+                        {
+                            rbBankInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnAdd.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -4283,7 +4297,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAddContact.Focus();
+                    if (pnlStatusContact.Enabled == true)
+                    {
+                        if(rbActiveContact.Checked==true)
+                        {
+                            rbActiveContact.Focus();
+                        }
+                        else
+                        {
+                            rbInactiveContact.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnAddContact.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -4317,6 +4345,89 @@ namespace ROMS
             }
         }
 
+        private void RbActiveContact_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActiveContact.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActiveContact_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAddContact.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActiveContact_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActiveContact.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactiveContact_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactiveContact.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactiveContact_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAddContact.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactiveContact_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactiveContact.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void RbInactive_Enter(object sender, EventArgs e)
         {

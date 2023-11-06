@@ -520,7 +520,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    if(pnlStatus.Enabled==true)
+                    {
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
+                    }
+                    else
+                    {
+                       btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)

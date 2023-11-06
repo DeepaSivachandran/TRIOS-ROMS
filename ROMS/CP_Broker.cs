@@ -364,7 +364,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    txtBankname.Focus();
                 }
             }
             catch (Exception ex)
@@ -379,7 +379,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    txtBankname.Focus();
                 }
             }
             catch (Exception ex)
@@ -714,7 +714,7 @@ namespace ROMS
                 else
                 {
                     epBroker.Clear();
-                    //txtMobileNo.BackColor = Color.White;
+                    txtMobileNo.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -933,9 +933,16 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
+                    if (pnlStatus.Enabled==true)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
                     }
                     else { btnSave.Focus(); }
                 }
@@ -1219,7 +1226,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAdd.Focus();
+                    if(pnlBStatus.Enabled==true)
+                    {
+                        if(rbBankActive.Checked==true)
+                        {
+                            rbBankActive.Focus();
+                        }
+                        else
+                        {
+                            rbBankInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnAdd.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1952,6 +1973,90 @@ namespace ROMS
             if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true; // This will prevent the character from being entered in the TextBox
+            }
+        }
+
+        private void RbBankActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankInActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankInActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankInActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankInActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
