@@ -2190,12 +2190,6 @@ namespace ROMS
         {
             try
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(string));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 int varViewType = 0;
                 int varStatusId = 1;
                 int varRackId = 0;
@@ -2276,7 +2270,7 @@ namespace ROMS
                         epRackSettings.Clear();
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0,varStatusId, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"", dtStock);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0,varStatusId, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"", null);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -2479,14 +2473,7 @@ namespace ROMS
         {
             try
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(string));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 int varViewType = 14;
-
                 dtViewProduct.Rows.Clear();
                 Application.DoEvents();
                 grdViewProduct.DataSource = null;
@@ -2598,7 +2585,7 @@ namespace ROMS
                         tppRack.Show("Please select valid rack", txtDRack, 5000);
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,Convert.ToInt32(varRackId),0,0,0,0,0,0,0,"",0,"", dtStock);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,Convert.ToInt32(varRackId),0,0,0,0,0,0,0,"",0,"", null);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[1].Rows.Count != 0)

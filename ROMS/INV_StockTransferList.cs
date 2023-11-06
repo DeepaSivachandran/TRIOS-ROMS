@@ -1040,14 +1040,6 @@ namespace ROMS
         {
             try
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                dtStock.Columns.Add("STK_UTID", typeof(string));
-                dtStock.Columns.Add("STK_QTY", typeof(string));
                 if (grdStockTransfer.SelectedRows.Count > 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1059,7 +1051,7 @@ namespace ROMS
                         if (MainForm.objCP_Verify.flag == 1)
                         {
                             SPDataService objDser = new SPDataService();
-                            string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"",0,"Stock Transfer Delete",dtStock);
+                            string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"",0,"Stock Transfer Delete",null);
                             objDser.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -1232,21 +1224,12 @@ namespace ROMS
         {
             try
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                dtStock.Columns.Add("STK_UTID", typeof(string));
-                dtStock.Columns.Add("STK_QTY", typeof(string));
-
                 lvProduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36,0,0,0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue), 0,0,0,0,0,0,0,0,0,0,0,0,txtProductNamePICode.Text,0,"",dtStock);
+                    objDs = objspdservice.udfnproductmasterlist(36,0,0,0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue), 0,0,0,0,0,0,0,0,0,0,0,0,txtProductNamePICode.Text,0,"",null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
