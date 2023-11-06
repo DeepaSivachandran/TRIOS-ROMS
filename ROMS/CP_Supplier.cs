@@ -963,6 +963,20 @@ namespace ROMS
         {
             try
             {
+                dtSubGroup = new DataTable();
+                dtSubGroup.Columns.Add("", typeof(Boolean));
+                dtSubGroup.Columns.Add("S.No.", typeof(string));
+                dtSubGroup.Columns.Add("P.I Code", typeof(string));
+                dtSubGroup.Columns.Add("Product Name in Tamil", typeof(string));
+                dtSubGroup.Columns.Add("Unit", typeof(string));
+                dtSubGroup.Columns.Add("Brand", typeof(string));
+                dtSubGroup.Columns.Add("Product SubGroup", typeof(string));
+                dtSubGroup.Columns.Add("Product Group", typeof(string));
+                dtSubGroup.Columns.Add("GROUPID", typeof(int));
+                dtSubGroup.Columns.Add("SUBGROUPID", typeof(int));
+                dtSubGroup.Columns.Add("PRODUCTID", typeof(int));
+                dtSubGroup.Columns.Add("Product Name in English", typeof(string));
+                dtSubGroup.Columns.Add("MappedCount", typeof(int));
                 dtPaymentMode = new DataTable();
                 dtPaymentMode.Columns.Add("", typeof(Boolean));
                 dtPaymentMode.Columns.Add("DisplayText", typeof(string));
@@ -3792,7 +3806,30 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnInitSubgroup() {
+            try
+            {
+                dtSubGroup = new DataTable();
+                dtSubGroup.Columns.Add("", typeof(Boolean));
+                dtSubGroup.Columns.Add("S.No.", typeof(string));
+                dtSubGroup.Columns.Add("P.I Code", typeof(string));
+                dtSubGroup.Columns.Add("Product Name in Tamil", typeof(string));
+                dtSubGroup.Columns.Add("Unit", typeof(string));
+                dtSubGroup.Columns.Add("Brand", typeof(string));
+                dtSubGroup.Columns.Add("Product SubGroup", typeof(string));
+                dtSubGroup.Columns.Add("Product Group", typeof(string));
+                dtSubGroup.Columns.Add("GROUPID", typeof(int));
+                dtSubGroup.Columns.Add("SUBGROUPID", typeof(int));
+                dtSubGroup.Columns.Add("PRODUCTID", typeof(int));
+                dtSubGroup.Columns.Add("Product Name in English", typeof(string));
+                dtSubGroup.Columns.Add("MappedCount", typeof(int));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbMappingorderschedule_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -3811,6 +3848,7 @@ namespace ROMS
                 dtSubGroupMapping.Columns.Add("PRODUCTID", typeof(int));
                 dtSubGroupMapping.Columns.Add("Product Name in English", typeof(string));
                 dtSubGroupMapping.Columns.Add("MappedCount", typeof(int));
+                udfnInitSubgroup();
                 BeginInvoke(new Action(() => cmbMappingorderschedule.Select(int.MaxValue, 0)));
                 udfnMappingGridsLoad();
                 udfnMappingDropDownLoad();
@@ -3835,20 +3873,6 @@ namespace ROMS
                 grdSupplierMappingLoad.DataSource = null;
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                dtSubGroup = new DataTable();
-                dtSubGroup.Columns.Add("", typeof(Boolean));
-                dtSubGroup.Columns.Add("S.No.", typeof(string));
-                dtSubGroup.Columns.Add("P.I Code", typeof(string));
-                dtSubGroup.Columns.Add("Product Name in Tamil", typeof(string));
-                dtSubGroup.Columns.Add("Unit", typeof(string));
-                dtSubGroup.Columns.Add("Brand", typeof(string));
-                dtSubGroup.Columns.Add("Product SubGroup", typeof(string));
-                dtSubGroup.Columns.Add("Product Group", typeof(string));
-                dtSubGroup.Columns.Add("GROUPID", typeof(int));
-                dtSubGroup.Columns.Add("SUBGROUPID", typeof(int));
-                dtSubGroup.Columns.Add("PRODUCTID", typeof(int));
-                dtSubGroup.Columns.Add("Product Name in English", typeof(string));
-                dtSubGroup.Columns.Add("MappedCount", typeof(int));
                 //objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
                 objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, Convert.ToInt32(cmbStatus.SelectedValue), varBrandId, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", null);
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -5011,6 +5035,7 @@ namespace ROMS
             }
             finally
             {
+                lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
             }
         }
 
@@ -5225,7 +5250,10 @@ namespace ROMS
             }
             finally
             {
-                this.grdSupplierMappingLoad.Sort(this.grdSupplierMappingLoad.Columns[2], ListSortDirection.Ascending);
+                if (grdSupplierMappingLoad.RowCount > 0)
+                {
+                    this.grdSupplierMappingLoad.Sort(this.grdSupplierMappingLoad.Columns[2], ListSortDirection.Ascending);
+                }
                 grdSupplierMappingLoad.ClearSelection();
             }
         }
@@ -6898,14 +6926,20 @@ namespace ROMS
         {
             try
             {
-            //DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //if (dialogResult == DialogResult.Yes)
-            //{
-            L: for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
+                //DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
+                if (dtSubGroup == null)
+                {
+                    udfnInitSubgroup();
+                }
+                L: for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdFinalSupplierMapping.Rows[i].Cells[0].EditedFormattedValue) == true)
                     {
-                        dtSubGroup.Rows.Add(false, "0", grdFinalSupplierMapping.Rows[i].Cells["P.I Code"].Value,
+                        int varSlNo = 1;
+                        if (dtSubGroup != null) { varSlNo = dtSubGroup.Rows.Count + 1; }
+                        dtSubGroup.Rows.Add(false, varSlNo, grdFinalSupplierMapping.Rows[i].Cells["P.I Code"].Value,
                         grdFinalSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value,
                         grdFinalSupplierMapping.Rows[i].Cells["Unit"].Value,
                         grdFinalSupplierMapping.Rows[i].Cells["Brand"].Value,
@@ -6948,7 +6982,7 @@ namespace ROMS
                 grdSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
                 grdSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
                 grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-
+                udfnSearchGridHead();
 
 
                 grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
