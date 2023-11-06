@@ -317,6 +317,7 @@ namespace ROMS
             finally
             {
                 grdSubGroupAdd.ClearSelection();
+                txtSelectedProductSubGroup.Text = "";
                 //this.grdSubGroupAdd.Sort(this.grdSubGroupAdd.Columns[2], ListSortDirection.Ascending);
             }
         }
@@ -522,6 +523,7 @@ namespace ROMS
                 grdSubGroup.ClearSelection();
                 //this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
                 this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
+                txtProductSubGroup.Text = "";
             }
         }
 

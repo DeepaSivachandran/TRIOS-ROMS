@@ -4814,6 +4814,7 @@ namespace ROMS
                                         { rbScheduleActive.Checked = true; }
                                         else if (objDS.Tables[0].Rows[0]["StatusId"].ToString() == "2")
                                         { rbScheduleInactive.Checked = true; }
+                                        txtScheduleName.Focus();
                                     }
                                     if (objDS.Tables[1].Rows.Count > 0)
                                     {
@@ -5052,6 +5053,7 @@ namespace ROMS
             finally
             {
                 lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
+                txtSearchByProduct1.Text = "";
             }
         }
 
@@ -5088,6 +5090,7 @@ namespace ROMS
                 }
                 grdFinalSupplierMapping.ClearSelection();
                 lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
+                txtmappingproductsearch2.Text = "";
                 chkSelectAll.Checked = false;
             }
         }
