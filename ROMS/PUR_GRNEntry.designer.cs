@@ -33,10 +33,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNEntry));
             this.errGRN = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -60,6 +60,11 @@
             this.grpRepresentativeDetails = new System.Windows.Forms.GroupBox();
             this.grdRepDetails = new System.Windows.Forms.DataGridView();
             this.grdPODetails = new System.Windows.Forms.DataGridView();
+            this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPODate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtpro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.poid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblSupplierOrderpolicy = new System.Windows.Forms.Label();
             this.lblsupplierScheduletype = new System.Windows.Forms.Label();
@@ -94,11 +99,6 @@
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPODate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtpro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.poid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errGRN)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grpSalesmanDetails.SuspendLayout();
@@ -421,6 +421,43 @@
             this.grdPODetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPODetails_CellContentClick);
             this.grdPODetails.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPODetails_CellDoubleClick);
             // 
+            // clmpo
+            // 
+            this.clmpo.HeaderText = "PO No.";
+            this.clmpo.Name = "clmpo";
+            this.clmpo.ReadOnly = true;
+            // 
+            // clmPODate
+            // 
+            this.clmPODate.HeaderText = "PO Date";
+            this.clmPODate.Name = "clmPODate";
+            this.clmPODate.ReadOnly = true;
+            this.clmPODate.Width = 80;
+            // 
+            // clmtpro
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmtpro.DefaultCellStyle = dataGridViewCellStyle4;
+            this.clmtpro.HeaderText = "T.Pro";
+            this.clmtpro.Name = "clmtpro";
+            this.clmtpro.ReadOnly = true;
+            this.clmtpro.Width = 50;
+            // 
+            // poid
+            // 
+            this.poid.HeaderText = "poid";
+            this.poid.Name = "poid";
+            this.poid.ReadOnly = true;
+            this.poid.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = " ";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Width = 40;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblSupplierOrderpolicy);
@@ -713,6 +750,7 @@
             this.dpGRNDate.Name = "dpGRNDate";
             this.dpGRNDate.Size = new System.Drawing.Size(111, 28);
             this.dpGRNDate.TabIndex = 2;
+            this.dpGRNDate.ValueChanged += new System.EventHandler(this.DpGRNDate_ValueChanged);
             this.dpGRNDate.Enter += new System.EventHandler(this.DpPlanDate_Enter);
             this.dpGRNDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpPlanDate_KeyDown);
             this.dpGRNDate.Leave += new System.EventHandler(this.DpPlanDate_Leave);
@@ -826,43 +864,6 @@
             this.lblSupplierCode.TabIndex = 1111211;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
-            // 
-            // clmpo
-            // 
-            this.clmpo.HeaderText = "PO No.";
-            this.clmpo.Name = "clmpo";
-            this.clmpo.ReadOnly = true;
-            // 
-            // clmPODate
-            // 
-            this.clmPODate.HeaderText = "PO Date";
-            this.clmPODate.Name = "clmPODate";
-            this.clmPODate.ReadOnly = true;
-            this.clmPODate.Width = 80;
-            // 
-            // clmtpro
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmtpro.DefaultCellStyle = dataGridViewCellStyle4;
-            this.clmtpro.HeaderText = "T.Pro";
-            this.clmtpro.Name = "clmtpro";
-            this.clmtpro.ReadOnly = true;
-            this.clmtpro.Width = 50;
-            // 
-            // poid
-            // 
-            this.poid.HeaderText = "poid";
-            this.poid.Name = "poid";
-            this.poid.ReadOnly = true;
-            this.poid.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = " ";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Width = 40;
             // 
             // PUR_GRNEntry
             // 

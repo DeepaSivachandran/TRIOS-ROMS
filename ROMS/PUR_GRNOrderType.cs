@@ -188,7 +188,6 @@ namespace ROMS
                         MainForm.objPUR_GRNEntry.grdPODetails.Rows.Add(grdPurchaseOrder.Rows[i].Cells["PO.No"].Value, grdPurchaseOrder.Rows[i].Cells["PO Date"].Value, grdPurchaseOrder.Rows[i].Cells["Total Products"].Value, grdPurchaseOrder.Rows[i].Cells["poid"].Value);
                        VARFLAG = 1;
                     }
-                     
                 }
                 if (VARFLAG != 0)
                 {
