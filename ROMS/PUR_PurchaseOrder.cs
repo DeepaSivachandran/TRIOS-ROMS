@@ -1967,13 +1967,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    DataTable dtStock = new DataTable();
-                    dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                    dtStock.Columns.Add("STK_PRID", typeof(string));
-                    dtStock.Columns.Add("STK_MRP", typeof(string));
-                    dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                    dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                    objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes,dtStock);
+                    objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes,null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2647,7 +2641,6 @@ namespace ROMS
                 {
                     varPICode = ""; varEName = ""; var_Symbol = ""; var_Text = ""; var_RMinSaleQty = ""; varSTOCK = ""; varPrevious = "";
                     varPARITAL = ""; varReOrderQty = ""; varorderSaleQty = ""; addproductid = ""; varunitid = ""; flag = "0";
-                   
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnproductmasterlist(34, Convert.ToInt32(lblProductcode.Text), 0, 0, 0, "", "", "", 0, 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(lblSupplierCode.Text), "",null);

@@ -3293,19 +3293,13 @@ namespace ROMS
         {
             try
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(string));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 if (txtPICode.Text != "")
                 {
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     lblDPicode.Visible = true;                    
-                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"",dtStock);
+                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"",null);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -4930,12 +4924,6 @@ namespace ROMS
         {
             try
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(string));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -4944,7 +4932,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"", dtStock);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"",null);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {

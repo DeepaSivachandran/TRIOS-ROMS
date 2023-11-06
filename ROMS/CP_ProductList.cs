@@ -175,13 +175,6 @@ namespace ROMS
         {
             try
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(string));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
-
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();

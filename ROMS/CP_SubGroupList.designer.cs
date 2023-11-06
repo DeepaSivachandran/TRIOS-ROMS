@@ -517,6 +517,7 @@
             this.cmbBatchNoEntry.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoEntry_SelectedIndexChanged);
             this.cmbBatchNoEntry.Enter += new System.EventHandler(this.CmbBatchNoEntry_Enter);
             this.cmbBatchNoEntry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchNoEntry_KeyDown);
+            this.cmbBatchNoEntry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBatchNoEntry_KeyPress);
             this.cmbBatchNoEntry.Leave += new System.EventHandler(this.CmbBatchNoEntry_Leave);
             // 
             // label1
