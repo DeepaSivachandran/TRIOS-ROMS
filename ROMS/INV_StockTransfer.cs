@@ -841,7 +841,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(35,0, 0, 0,0,"","","",0,0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,txtProductNamePICode.Text.Trim(),0,dtStock);
+                    objDs = objspdservice.udfnproductmasterlist(35,0, 0, 0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,txtProductNamePICode.Text.Trim(),0,dtStock);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
