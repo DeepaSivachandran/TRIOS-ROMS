@@ -673,6 +673,9 @@
             this.rbInactive.TabIndex = 26;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
+            this.rbInactive.Enter += new System.EventHandler(this.RbInactive_Enter);
+            this.rbInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
+            this.rbInactive.Leave += new System.EventHandler(this.RbInactive_Leave);
             // 
             // rbActive
             // 

@@ -1243,7 +1243,9 @@
             this.rbInActive.TabStop = true;
             this.rbInActive.Text = "InActive";
             this.rbInActive.UseVisualStyleBackColor = true;
+            this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
             this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown);
+            this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
             // 
             // rbActive
             // 
@@ -1257,7 +1259,9 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
+            this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // txtDStatus
             // 

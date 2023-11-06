@@ -7634,6 +7634,48 @@ namespace ROMS
             }
         }
 
+        private void RbInactive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -7735,7 +7777,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    if(panelStatus.Enabled==true)
+                    {
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)

@@ -364,7 +364,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    txtBankname.Focus();
                 }
             }
             catch (Exception ex)
@@ -379,7 +379,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    txtBankname.Focus();
                 }
             }
             catch (Exception ex)
@@ -714,7 +714,7 @@ namespace ROMS
                 else
                 {
                     epBroker.Clear();
-                    //txtMobileNo.BackColor = Color.White;
+                    txtMobileNo.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -933,9 +933,16 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
+                    if (pnlStatus.Enabled==true)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
                     }
                     else { btnSave.Focus(); }
                 }
@@ -1989,7 +1996,7 @@ namespace ROMS
         {
             try
             {
-                rbActive.BackColor = Color.LemonChiffon;
+                rbBankActive.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -2002,7 +2009,7 @@ namespace ROMS
         {
             try
             {
-                rbActive.BackColor = Color.White;
+                rbBankActive.BackColor = Color.White;
             }
             catch (Exception ex)
             {

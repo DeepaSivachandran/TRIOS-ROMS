@@ -210,7 +210,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
+                    if (pnlStatus.Enabled==true)
                     {
                         if(rbActive.Checked==true)
                         {
@@ -543,7 +543,15 @@ namespace ROMS
 
         private void RbInactive_Enter(object sender, EventArgs e)
         {
-
+            try
+            {
+                rbInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
