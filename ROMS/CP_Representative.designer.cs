@@ -52,6 +52,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.epGroup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnUnselectAll = new System.Windows.Forms.Button();
+            this.btnSelectAll = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRepBrand)).BeginInit();
             this.pnlStatus.SuspendLayout();
@@ -60,6 +62,8 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.btnUnselectAll);
+            this.grbform.Controls.Add(this.btnSelectAll);
             this.grbform.Controls.Add(this.chkBrandAll);
             this.grbform.Controls.Add(this.grdRepBrand);
             this.grbform.Controls.Add(this.textBox5);
@@ -87,6 +91,7 @@
             this.chkBrandAll.Size = new System.Drawing.Size(15, 14);
             this.chkBrandAll.TabIndex = 958794;
             this.chkBrandAll.UseVisualStyleBackColor = true;
+            this.chkBrandAll.Visible = false;
             this.chkBrandAll.CheckedChanged += new System.EventHandler(this.ChkBrandAll_CheckedChanged);
             // 
             // grdRepBrand
@@ -329,6 +334,32 @@
             // 
             this.epGroup.ContainerControl = this;
             // 
+            // btnUnselectAll
+            // 
+            this.btnUnselectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUnselectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUnselectAll.Location = new System.Drawing.Point(777, 412);
+            this.btnUnselectAll.Name = "btnUnselectAll";
+            this.btnUnselectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnUnselectAll.TabIndex = 958796;
+            this.btnUnselectAll.Text = "Unselect All";
+            this.btnUnselectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnUnselectAll.UseVisualStyleBackColor = true;
+            this.btnUnselectAll.Click += new System.EventHandler(this.BtnUnselectAll_Click);
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSelectAll.Location = new System.Drawing.Point(865, 412);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnSelectAll.TabIndex = 958795;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.BtnSelectAll_Click);
+            // 
             // CP_Representative
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -382,5 +413,7 @@
         private System.Windows.Forms.TextBox txtPhonenumber;
         public System.Windows.Forms.DataGridView grdRepBrand;
         private System.Windows.Forms.CheckBox chkBrandAll;
+        public System.Windows.Forms.Button btnUnselectAll;
+        public System.Windows.Forms.Button btnSelectAll;
     }
 }
