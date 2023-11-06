@@ -27,6 +27,7 @@ namespace ROMS
         private ToolTip tpBranchName = new ToolTip();
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
+        public int varModifiedFlag = 0;
         public int varCityCode;
         public int PbConcernID = 0;
         public string varCityName="";
@@ -466,16 +467,30 @@ namespace ROMS
         {
             try
             {
-                if (varUpdate == 0)
+                if (varModifiedFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        e.Cancel = false;
+                        this.Close();
+                        MainForm.objCP_CP_BrokerList.udfnList();
                     }
                     else
+                    { btnSave.Focus(); }
+                }
+                else
+                {
+                    if (varUpdate == 0)
                     {
-                        e.Cancel = true;
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            e.Cancel = false;
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
                     }
                 }
             }
@@ -1559,6 +1574,7 @@ namespace ROMS
                         if (varSlNo == "0")
                         {
                             grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                            varModifiedFlag = 1;
                         }
                         else
                         {
@@ -1572,6 +1588,7 @@ namespace ROMS
                                     grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
                                     grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
                                     grdBankDetails.Rows[i].Cells["clmStatus"].Value = varstatusid;
+                                    varModifiedFlag = 1;
                                 }
                             }
                         }
@@ -1622,6 +1639,7 @@ namespace ROMS
                                 {
                                     grdBankDetails.Rows[i].Cells["clmsno"].Value = i + 1;
                                 }
+                                varModifiedFlag = 1;
                             }
                             break;
                         case "clmEdit":

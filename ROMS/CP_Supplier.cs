@@ -24,6 +24,7 @@ namespace ROMS
         public int varBrandId = 0;
         public int varGroupId = 0;
         public int varSubGroupId = 0;
+        public int varModifiedFlag = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -905,16 +906,30 @@ namespace ROMS
         {
             try
             {
-                if (varupdate == "1") { this.Close(); }
-                else
+                if (varModifiedFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();
+                        MainForm.objCP_Supplierlist.udfnList();
                     }
+                    else
+                    { btnMappingsave.Focus(); }
                 }
-                MainForm.objCP_Supplierlist.udfnList();
+                else
+                {
+                    if (varupdate == "1") { this.Close(); }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                        }
+                    }
+                    MainForm.objCP_Supplierlist.udfnList();
+                }
             }
             catch (Exception ex)
             {
@@ -5121,6 +5136,7 @@ namespace ROMS
                             {
                                 dtSubGroupMapping.Rows.Add(false, Convert.ToInt32(dtSubGroupMapping.Rows.Count) + 1, grdSupplierMappingLoad.Rows[i].Cells["P.I Code"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMappingLoad.Rows[i].Cells["Unit"].Value, grdSupplierMappingLoad.Rows[i].Cells["Brand"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product SubGroup"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Group"].Value,
                                 grdSupplierMappingLoad.Rows[i].Cells["GROUPID"].Value, grdSupplierMappingLoad.Rows[i].Cells["SUBGROUPID"].Value, grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Name in English"].Value, grdSupplierMappingLoad.Rows[i].Cells["MappedCount"].Value);
+                                varModifiedFlag = 1;
                             }
                         }
                         else
@@ -6976,6 +6992,7 @@ namespace ROMS
                                 dtSubGroupMapping.AcceptChanges();
                                 goto L;
                             }
+                            varModifiedFlag = 1;
                         }
                     }
                 }
