@@ -73,27 +73,37 @@ namespace ROMS
             {
                 if (grdreplist.SelectedRows.Count > 0)
                 {
-                    string result = "";
+                    string varResult = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objspdservice = new SPDataService();
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
+                        varResult = objspdservice.udfnRepMaster(2, Convert.ToInt32(grdreplist.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", "", "", 0, "Representative Delete", varUserID, 0);
+                        string[] varvalue = varResult.Split('~');
+                        if (varvalue[0] == "3")
                         {
-                            result = objspdservice.udfnRepMaster(2, Convert.ToInt32(grdreplist.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", "", "", 0, "Representative Delete", varUserID);
-                            string[] varvalue = result.Split('~');
-                            if (varvalue[0] == "3")
+                            if (varResult.Split('~')[1] == "1")
                             {
-                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                udfnlist();
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    objspdservice = new SPDataService();
+                                    varResult = objspdservice.udfnRepMaster(2, Convert.ToInt32(grdreplist.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", "", "", 0, "Representative Delete", varUserID, 1);
+                                    objspdservice.CloseConnection();
+                                    if (varResult.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnlist();
+                                    }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
                             }
-                            else
-                            {
-                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }

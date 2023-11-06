@@ -99,9 +99,9 @@
             this.pnlReportRackgroup.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportRackgroup.Controls.Add(this.picLoader);
             this.pnlReportRackgroup.Controls.Add(this.RPTViewer);
-            this.pnlReportRackgroup.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportRackgroup.Location = new System.Drawing.Point(0, 29);
             this.pnlReportRackgroup.Name = "pnlReportRackgroup";
-            this.pnlReportRackgroup.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportRackgroup.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportRackgroup.TabIndex = 958788;
             // 
             // lvRack

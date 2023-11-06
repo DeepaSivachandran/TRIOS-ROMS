@@ -134,7 +134,7 @@ namespace ROMS
                         varType = 1;
                     }
                     objBankTable = udfnBankSave();
-                    varResult = objspservice.udfnBroker(varType, Convert.ToInt32(Brokerid) , Convert.ToInt16(cmbConcern.SelectedValue), (txtGstinNo.Text).Trim(), (txtBrokerName.Text).Trim(), (txtAddressLine1.Text).Trim(), (txtAddressLine2.Text).Trim(), varcityid, (txtPincode.Text).Trim(), (txtWhatsAppNo.Text).Trim(), (txtMobileNo.Text).Trim(),varstatus, varoriginator, objBankTable,MainForm.pbUserID);
+                    varResult = objspservice.udfnBroker(varType, Convert.ToInt32(Brokerid) , Convert.ToInt16(cmbConcern.SelectedValue), (txtGstinNo.Text).Trim(), (txtBrokerName.Text).Trim(), (txtAddressLine1.Text).Trim(), (txtAddressLine2.Text).Trim(), varcityid, (txtPincode.Text).Trim(), (txtWhatsAppNo.Text).Trim(), (txtMobileNo.Text).Trim(),varstatus, varoriginator, objBankTable,MainForm.pbUserID,0);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")

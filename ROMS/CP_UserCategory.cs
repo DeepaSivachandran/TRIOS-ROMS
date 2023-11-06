@@ -154,7 +154,7 @@ namespace ROMS
                     varoriginator = "UserCategory Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus,Convert.ToInt32(cmbCTSINO.SelectedValue),varoriginator,MainForm.pbUserID);
+                varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus,Convert.ToInt32(cmbCTSINO.SelectedValue),varoriginator,MainForm.pbUserID,0);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")

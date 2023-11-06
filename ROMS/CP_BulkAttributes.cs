@@ -154,14 +154,14 @@ namespace ROMS
                 objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0,0);
                 objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0,0);
 
-                objDSShelfLifeType = objDServ.udfnMaster(0, 6);
-                objDSQTYUnit = objDServ.udfnMaster(2, 0);
-                objDSProductCategory = objDServ.udfnMaster(0, 5);
-                objDSRMPRO = objDServ.udfnMaster(1, 0);
-                objDSBatchNo = objDServ.udfnMaster(0, 25);
-                objDSBatchNoGeneration = objDServ.udfnMaster(0, 26);
+                objDSShelfLifeType = objDServ.udfnMaster(0, 6,0);
+                objDSQTYUnit = objDServ.udfnMaster(2, 0,0);
+                objDSProductCategory = objDServ.udfnMaster(0, 5,0);
+                objDSRMPRO = objDServ.udfnMaster(1, 0,0);
+                objDSBatchNo = objDServ.udfnMaster(0, 25,0);
+                objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0);
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "",0);
-                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,"","",0,0,0,0,0,0,0,0,"",0,"");
+                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"",null);
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -837,7 +837,7 @@ namespace ROMS
                     {
                         varUserID = MainForm.objCP_BulkAttributeVerify.varUserId;
                         SPDataService objDSer = new SPDataService();
-                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "",varUserID,MainForm.pbIpAddress,varOriginator, 0, objBulkUpdate);
+                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "",varUserID,MainForm.pbIpAddress,varOriginator, 0, objBulkUpdate,0);
                         objDSer.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
@@ -975,7 +975,7 @@ namespace ROMS
         {
             try
             {
-               // Application.DoEvents();
+                // Application.DoEvents();
                 grdLoction.DataSource = null;
                 grdMSQ.DataSource = null;
                 grdStock.DataSource = null;
@@ -987,7 +987,7 @@ namespace ROMS
                 grdBulkAttributes.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,"","",0,0,0,0,0,0,0,0,"",0,"");
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"",null);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

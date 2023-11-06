@@ -78,14 +78,13 @@ namespace ROMS
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
-                    if (objDs.Tables.Count != 0)
+                    if (objDs.Tables.Count != 0) 
                     {
                         lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
                             lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-
+                            lblNoRecordsFound.SendToBack(); 
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 grdGRNPODamaged.Rows.Add(objDs.Tables[0].Rows[i]["SINO"], objDs.Tables[0].Rows[i]["DCDATE"], objDs.Tables[0].Rows[i]["DCNO"], objDs.Tables[0].Rows[i]["REASON"], objDs.Tables[0].Rows[i]["prcount"], objDs.Tables[0].Rows[i]["DCVALUE"], objDs.Tables[0].Rows[i]["ID"]);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
-        public int varupdate = 0, varPOID = 0,varsts=0;
+        public int varupdate = 0, varPOID = 0,varsts=0, Varordertype = 0;
         public PUR_POIssuedDetails()
         {
             InitializeComponent();
@@ -90,13 +91,24 @@ namespace ROMS
                 bool varErrorFlag = true;
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
                 {
-                    if (txtIssuemodeValues.Text.Length != 10)
+                    if (txtIssuemodeValues.Text == "")
                     {
-                        errIssued.SetError(txtIssuemodeValues, "Please enter valid number");
+                        errIssued.SetError(txtIssuemodeValues, "Please enter number");
                         txtIssuemodeValues.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpIssuemodeValues.ShowAlways = true;
-                        tpIssuemodeValues.Show("Please enter valid number.", txtIssuemodeValues, 5000);
+                        tpIssuemodeValues.Show("Please enter number.", txtIssuemodeValues, 5000);
                         varErrorFlag = false;
+                    }
+                    else
+                    {
+                        if (txtIssuemodeValues.Text.Length != 10)
+                        {
+                            errIssued.SetError(txtIssuemodeValues, "Please enter valid number");
+                            txtIssuemodeValues.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpIssuemodeValues.ShowAlways = true;
+                            tpIssuemodeValues.Show("Please enter valid number.", txtIssuemodeValues, 5000);
+                            varErrorFlag = false;
+                        }
                     }
                 } 
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1)
@@ -130,8 +142,10 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, 0, "", 0, 0
-                        , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text,11);
+                        , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text,11,"");
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
@@ -167,11 +181,23 @@ namespace ROMS
                     dpissuedateandtime.Enabled = false;
                     txtTAT.Enabled = false;
                     this.ActiveControl = txtIssuedBY;
-                } 
+                }
+                if (varsts == 9)
+                { 
+                    gpissued.Enabled = false;
+                    btnSave.Enabled = false; 
+                }
+                //DateTime varmindate = DateTime.ParseExact(txtPODate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //dpissuedateandtime.MinDate = varmindate;
+                //dpissuedateandtime.MaxDate = DateTime.Today;
 
                 DataBind objDataBind = new DataBind();
+                DataService objdservice = new DataService();
+                string varTAT = "" ;
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=44 AND MSTID NOT IN (135,136) OR MSTID=-1", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
+                objDataBind = null; 
+                varTAT = objdservice.displaydata("SELECT GSTAT_OrderDays FROM MR_GeneralSettings_TAT  WHERE GSTAT_OrderType='"+Varordertype+"'");
+                txtTAT.Text = varTAT;
                 cmbIssueMode.SelectedIndex = 0;
                 udfnEditLoad();
             }
@@ -190,36 +216,46 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID,0);
+                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID,0,"0");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            txtPODate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString().Replace("''", "'");
-                            txtPONo.Text = objDs.Tables[0].Rows[0]["PONO"].ToString().Replace("''", "'");
-                            txtSupplier.Text = objDs.Tables[0].Rows[0]["SUPPLIER"].ToString().Replace("''", "'");
-                            txtIssuedBY.Text = objDs.Tables[0].Rows[0]["Issuedby"].ToString().Replace("''", "'");
-                            txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString().Replace("''", "'"); 
-                            txtTAT.Text = objDs.Tables[0].Rows[0]["TAT"].ToString().Replace("''", "'");
-                            if (objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'") != "" && objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'") != null)
+                        {  
+                            txtPODate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString();
+                            txtPONo.Text = objDs.Tables[0].Rows[0]["PONO"].ToString();
+                            txtSupplier.Text = objDs.Tables[0].Rows[0]["SUPPLIER"].ToString();
+                            txtIssuedBY.Text = objDs.Tables[0].Rows[0]["Issuedby"].ToString();
+                            txtTAT.Text = objDs.Tables[0].Rows[0]["TAT"].ToString();
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["IssueDate"])  != "")
                             {
-                                dpissuedateandtime.Text = objDs.Tables[0].Rows[0]["IssueDate"].ToString().Replace("''", "'");
+                                dpissuedateandtime.Text = objDs.Tables[0].Rows[0]["IssueDate"].ToString();
                             }
                             else
                             {
                                 dpissuedateandtime.Text = "";
                             }
-                            if (objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'") != "" && objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'") != null)
+                            if (objDs.Tables[0].Rows[0]["Issuemode"].ToString()  != "" && objDs.Tables[0].Rows[0]["Issuemode"].ToString()  != null)
                             {
-                                cmbIssueMode.SelectedValue = objDs.Tables[0].Rows[0]["Issuemode"].ToString().Replace("''", "'");
+                                cmbIssueMode.SelectedValue = objDs.Tables[0].Rows[0]["Issuemode"].ToString();
                             }
                             else
                             {
                                 cmbIssueMode.SelectedValue = -1;
-                            } 
+                            }
+                            txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString();
+                            SPDataService objDServ = new SPDataService();
+                            DataSet objd = new DataSet();
+                            objd = objDServ.udfnMaster(4, 6,varPOID);
+                            if (objd.Tables[0].Rows.Count != 0)
+                            { 
+                                DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                                DateTime varmaxdate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                                dpissuedateandtime.MinDate = varmindate;
+                                dpissuedateandtime.MaxDate = varmaxdate;
+                            }
                         } 
                     }
                 }
@@ -391,12 +427,8 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    if (Convert.ToString(cmbIssueMode.SelectedValue) != "137")
-                    {
-                        txtIssuemodeValues.Focus();
-                    }
-                    else { txtTAT.Focus(); }
+                { 
+                        txtIssuemodeValues.Focus(); 
                 }
             }
             catch (Exception ex)
@@ -484,6 +516,20 @@ namespace ROMS
             }
         }
 
+        private void CmbIssueMode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtTAT_Leave(object sender, EventArgs e)
         {
             try
@@ -520,11 +566,14 @@ namespace ROMS
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1)
                 {
                     txtDmode.Text = cmbIssueMode.Text;
+                    txtIssuemodeValues.Text = "";
                 }
                 else
                 {
                     txtDmode.Text = "";
                 }
+                string selectedValue = cmbIssueMode.SelectedItem.ToString();
+                 
             }
             catch (Exception ex)
             {

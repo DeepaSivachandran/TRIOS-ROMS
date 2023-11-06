@@ -173,7 +173,7 @@ namespace ROMS
                     objDServ.CloseConnection();
                     varSupplierId = Convert.ToInt32(varId_Supplier);
                 }
-                objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue),0,"",0,0,0,0,0);
+                objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue),0,"",0,0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -190,17 +190,15 @@ namespace ROMS
 
                             dgvSupplierScheduleList.Columns["S.No."].Width = 50;
                             dgvSupplierScheduleList.Columns["Supplier"].Width = 300;
-                            dgvSupplierScheduleList.Columns["Schedule Name"].Width = 100;
                             dgvSupplierScheduleList.Columns["GSTIN"].Width =120;
                             dgvSupplierScheduleList.Columns["City"].Width = 130;
                             dgvSupplierScheduleList.Columns["Status"].Width = 100;
                             dgvSupplierScheduleList.Columns["Scheduleid"].Visible = false;
                             dgvSupplierScheduleList.Columns["SupplierID"].Visible = false;
-                            dgvSupplierScheduleList.Columns["STS"].Visible = false;
-                            dgvSupplierScheduleList.Columns["DYID"].Visible = false;
                             dgvSupplierScheduleList.Columns["ORDERTYPE"].Visible = false;
                             dgvSupplierScheduleList.Columns["STATUS CODE"].Visible = false;
                             dgvSupplierScheduleList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            dgvSupplierScheduleList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -1000,7 +998,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0, 0,0,"",0,0,0,0,0);
+                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0, 0,0,"",0,0,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1123,7 +1121,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtsuppliernameprint.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtsuppliernameprint.Text, 0, 0,0,"",0,0,0,0,0);
+                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtsuppliernameprint.Text, 0, 0,0,"",0,0,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

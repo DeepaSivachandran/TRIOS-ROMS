@@ -95,9 +95,9 @@
             this.pnlReportStockLocation.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportStockLocation.Controls.Add(this.picLoader);
             this.pnlReportStockLocation.Controls.Add(this.RPTViewer);
-            this.pnlReportStockLocation.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportStockLocation.Location = new System.Drawing.Point(0, 29);
             this.pnlReportStockLocation.Name = "pnlReportStockLocation";
-            this.pnlReportStockLocation.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportStockLocation.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportStockLocation.TabIndex = 958788;
             // 
             // lvCity

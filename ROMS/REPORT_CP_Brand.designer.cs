@@ -104,9 +104,9 @@
             this.pnlReportBrand.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportBrand.Controls.Add(this.picLoader);
             this.pnlReportBrand.Controls.Add(this.RPTViewer);
-            this.pnlReportBrand.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportBrand.Location = new System.Drawing.Point(0, 29);
             this.pnlReportBrand.Name = "pnlReportBrand";
-            this.pnlReportBrand.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportBrand.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportBrand.TabIndex = 958788;
             // 
             // lvGroup
@@ -117,7 +117,7 @@
             this.columnHeader13});
             this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(620, 48);
+            this.lvGroup.Location = new System.Drawing.Point(611, 48);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(457, 157);
             this.lvGroup.TabIndex = 1111230;
@@ -150,7 +150,7 @@
             this.columnHeader29});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(886, 48);
+            this.lvSubGroup.Location = new System.Drawing.Point(877, 48);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(457, 157);
             this.lvSubGroup.TabIndex = 1111229;
@@ -192,7 +192,7 @@
             this.columnHeader3});
             this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvBrand.HideSelection = false;
-            this.lvBrand.Location = new System.Drawing.Point(380, 48);
+            this.lvBrand.Location = new System.Drawing.Point(371, 48);
             this.lvBrand.Name = "lvBrand";
             this.lvBrand.Size = new System.Drawing.Size(457, 157);
             this.lvBrand.TabIndex = 1111228;
@@ -230,9 +230,9 @@
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblReportType);
-            this.grpfilter.Location = new System.Drawing.Point(12, 2);
+            this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1339, 58);
+            this.grpfilter.Size = new System.Drawing.Size(1348, 58);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
