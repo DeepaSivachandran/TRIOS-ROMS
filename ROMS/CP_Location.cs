@@ -487,7 +487,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //rbActive.Focus();
+                    cmbStockApplicable.Focus();
                 }
             }
             catch (Exception ex)

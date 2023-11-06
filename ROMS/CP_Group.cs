@@ -212,7 +212,14 @@ namespace ROMS
                 {
                     if (pnlStatus.Enabled)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
                     }
                     else { btnSave.Focus(); }
                 }
@@ -521,19 +528,6 @@ namespace ROMS
             }
         }
 
-        private void RbInactive_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                rbInActive.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void RbInactive_Leave(object sender, EventArgs e)
         {
             try
@@ -547,5 +541,9 @@ namespace ROMS
             }
         }
 
+        private void RbInactive_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1825,7 +1825,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbOrderType.Focus();
+                    if(pnlScheduleStatus.Enabled==true)
+                    {
+                        if(rbScheduleActive.Checked==true)
+                        {
+                            rbScheduleActive.Focus();
+                        }
+                        else
+                        {
+                            rbScheduleInactive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        cmbOrderType.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -7486,6 +7500,132 @@ namespace ROMS
             {
                 udfnGetProductCount();
                 udfnGetMappedProductCount();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbScheduleActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbScheduleActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbScheduleActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbOrderType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbScheduleActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbScheduleActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbScheduleInactive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbScheduleInactive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbScheduleInactive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbOrderType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbScheduleInactive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbScheduleInactive.BackColor = Color.White;
             }
             catch (Exception ex)
             {

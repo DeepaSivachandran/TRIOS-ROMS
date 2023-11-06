@@ -393,7 +393,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAdd.Focus();
+                    if(pnlBStatus.Enabled==true)
+                    {
+                        if(rbBankActive.Checked==true)
+                        {
+                            rbBankActive.Focus();
+                        }
+                        else
+                        {
+                            rbBankInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnAdd.Focus();
+                    }
                 }
             }
             catch (Exception ex)

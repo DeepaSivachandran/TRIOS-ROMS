@@ -350,7 +350,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbInActive.Focus();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -632,14 +632,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
-
-        private void RbInActive_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbInActive.Checked == true)
-            {
-
             }
         }
 

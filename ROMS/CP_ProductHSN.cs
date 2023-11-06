@@ -313,7 +313,14 @@ namespace ROMS
                 {
                     if (pnlStatus.Enabled)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
                     }
                     else { btnSave.Focus(); }
                 }
@@ -572,11 +579,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
-                    {
-                        btnSave.Focus();
-                    }
-                    else { btnSave.Focus(); }
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -591,11 +594,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
-                    {
-                        btnSave.Focus();
-                    }
-                    else { btnSave.Focus(); }
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
