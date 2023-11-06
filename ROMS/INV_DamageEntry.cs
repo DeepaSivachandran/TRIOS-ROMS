@@ -201,6 +201,7 @@ namespace ROMS
         {
             try
             {
+                udfnTransferNo();
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
@@ -208,6 +209,48 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        public void udfnTransferNo()
+        {
+            if (btnSave.Text == "Save")
+            {
+                if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
+                {
+                    string vardate = "", varResult = "";
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    DataService objDservice = new DataService();
+                    vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpEntryDate.Text + "',103)");
+                    varResult = objspdservice.udfngetPONO("44", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                    objspdservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varResult != "")
+                    {
+                        txtEntryNo.Text = varvalue[0];
+                    }
+                    else
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(75);
+                        objDServ.CloseConnection();
+                        txtEntryNo.Text = "";
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            MainForm.objCP_Settings = new CP_Settings();
+                            //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                            //MainForm.objCP_Settings.varValues = Convert.ToString(44);
+                            MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                            MainForm.objCP_Settings.Show();
+                            this.Close();
+                        }
+                    }
+                }
+                else
+                {
+                    txtEntryNo.Text = "";
+                }
             }
         }
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
@@ -320,9 +363,25 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvProduct.Items.Count == 0 || txtProductName.Text == "")
+                    {
+                        txtProductName.Focus();
+                        lvProduct.Visible = false;
+                    }
+                    else
+                    {
+                        lvProduct.Focus();
+                    }
+                    if (lvProduct.Items.Count > 0)
+                    {
+                        lvProduct.Items[0].Selected = true;
+                    }
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtMrp.Focus();
+                    //txtDLocation.Focus();
                 }
             }
             catch (Exception ex)
@@ -990,6 +1049,101 @@ namespace ROMS
                 if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (txtProductName.Text == "")
+                //{
+                //    txtMrp.Text = "";
+                //    txtExpiryDate.Text = "";
+                //    txtBatchNo.Text = "";
+                //    txtStockQty.Text = "";
+                //    txtQuantity.Text = "";
+                //}
+                lvProduct.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtProductName.Text.Length > 0)
+                {
+                    objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, null);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvProduct.Items.Add(objList);
+                                }
+                                lvProduct.Visible = true;
+                                lvProduct.BringToFront();
+                                lvProduct.Columns[0].Width = 150;
+                                lvProduct.Columns[1].Width = 480;
+                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[3].Width = 0;
+                                lvProduct.Columns[4].Width = 0;
+                                lvProduct.Columns[5].Width = 0;
+                                lvProduct.Columns[6].Width = 0;
+                                lvProduct.Columns[7].Width = 0;
+                                lvProduct.Columns[8].Width = 0;
+                                lvProduct.Columns[9].Width = 0;
+                                lvProduct.Columns[10].Width = 0;
+                                lvProduct.Columns[11].Width = 0;
+                                lvProduct.Columns[12].Width = 0;
+                            }
+                            else
+                            {
+                                lvProduct.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvProduct.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvProduct.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvProduct.Visible = false;
+                    lvProduct.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void DpEntryDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductName.Focus();
                 }
             }
             catch (Exception ex)
