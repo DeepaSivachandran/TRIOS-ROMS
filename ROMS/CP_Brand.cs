@@ -29,6 +29,7 @@ namespace ROMS
         public string varGroupId = "";
         public string varSubGroupId = "";
         public int varmastertype = 0;
+        public int varRefresh = 0;
         public int varmasterBrandtype = 0;
         public string varGroup = "";
         public string varGroupName = "";
@@ -676,6 +677,20 @@ namespace ROMS
                         //    udfnSubGroupList();
                         //}   
                     }
+                    //else
+                    //{
+                        if (varRefresh == 1)
+                        {
+                            if (btnSave.Text == "Update")
+                            {
+                                btnRefresh.Visible = true;
+                            }
+                            else
+                            {
+                                btnRefresh.Visible = false;
+                            }
+                        }
+                    //}
                 }
                 if (txtEBrandNameInEnglish.Text.Trim() == "")
                 {
@@ -2189,6 +2204,19 @@ namespace ROMS
             try
             {
                 rbInactive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_Brand.CP_Brand_Load(sender, e);
             }
             catch (Exception ex)
             {
