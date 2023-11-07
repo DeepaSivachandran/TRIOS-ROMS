@@ -472,11 +472,14 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        this.Close();
+                        e.Cancel = false;
                         MainForm.objCP_CP_BrokerList.udfnList();
                     }
                     else
-                    { btnSave.Focus(); }
+                    {
+                        e.Cancel = true;
+                        btnSave.Focus();
+                    }
                 }
                 else
                 {
