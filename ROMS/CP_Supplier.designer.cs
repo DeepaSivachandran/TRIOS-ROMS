@@ -106,6 +106,8 @@
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.txtSPShortName = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.lvCity = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -265,8 +267,6 @@
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.txtSPShortName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -991,6 +991,30 @@
             this.grbform.TabStop = false;
             this.grbform.Text = "Concern Details";
             this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
+            // 
+            // txtSPShortName
+            // 
+            this.txtSPShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSPShortName.Location = new System.Drawing.Point(121, 53);
+            this.txtSPShortName.MaxLength = 10;
+            this.txtSPShortName.Name = "txtSPShortName";
+            this.txtSPShortName.Size = new System.Drawing.Size(186, 27);
+            this.txtSPShortName.TabIndex = 1;
+            this.txtSPShortName.Enter += new System.EventHandler(this.TxtSPShortName_Enter);
+            this.txtSPShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSPShortName_KeyDown);
+            this.txtSPShortName.Leave += new System.EventHandler(this.TxtSPShortName_Leave);
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox5.Enabled = false;
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox5.Location = new System.Drawing.Point(10, 53);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(111, 27);
+            this.textBox5.TabIndex = 78;
+            this.textBox5.Text = "Short Name";
             // 
             // lvCity
             // 
@@ -2038,6 +2062,7 @@
             this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
             this.chkSelectAll.TabIndex = 5;
             this.chkSelectAll.UseVisualStyleBackColor = true;
+            this.chkSelectAll.Visible = false;
             this.chkSelectAll.CheckedChanged += new System.EventHandler(this.ChkSelectAll_CheckedChanged);
             // 
             // lblTotalProducts
@@ -2262,6 +2287,7 @@
             this.chkMappedAll.Size = new System.Drawing.Size(15, 14);
             this.chkMappedAll.TabIndex = 958813;
             this.chkMappedAll.UseVisualStyleBackColor = true;
+            this.chkMappedAll.Visible = false;
             this.chkMappedAll.CheckedChanged += new System.EventHandler(this.ChkMappedAll_CheckedChanged);
             // 
             // cmbStatus
@@ -3161,30 +3187,6 @@
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
-            // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox5.Location = new System.Drawing.Point(10, 53);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(111, 27);
-            this.textBox5.TabIndex = 78;
-            this.textBox5.Text = "Short Name";
-            // 
-            // txtSPShortName
-            // 
-            this.txtSPShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSPShortName.Location = new System.Drawing.Point(121, 53);
-            this.txtSPShortName.MaxLength = 10;
-            this.txtSPShortName.Name = "txtSPShortName";
-            this.txtSPShortName.Size = new System.Drawing.Size(186, 27);
-            this.txtSPShortName.TabIndex = 1;
-            this.txtSPShortName.Enter += new System.EventHandler(this.TxtSPShortName_Enter);
-            this.txtSPShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSPShortName_KeyDown);
-            this.txtSPShortName.Leave += new System.EventHandler(this.TxtSPShortName_Leave);
             // 
             // CP_Supplier
             // 
