@@ -912,6 +912,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();
+                        MainForm.objCP_Supplierlist.Show();
                         MainForm.objCP_Supplierlist.udfnList();
                     }
                     else

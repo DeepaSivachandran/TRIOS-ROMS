@@ -473,6 +473,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         e.Cancel = false;
+                        MainForm.objCP_CP_BrokerList.Show();
                         MainForm.objCP_CP_BrokerList.udfnList();
                     }
                     else
