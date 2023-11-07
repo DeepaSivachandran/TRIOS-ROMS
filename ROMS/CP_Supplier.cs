@@ -4992,6 +4992,15 @@ namespace ROMS
             }
             finally
             {
+                if (Convert.ToInt32(cmbMappingorderschedule.SelectedValue) != -1)
+                {
+                    this.grdFinalSupplierMapping.Sort(this.grdFinalSupplierMapping.Columns[2], ListSortDirection.Ascending);
+                    for (int i = 0; i < grdFinalSupplierMapping.RowCount; i++)
+                    {
+                        grdFinalSupplierMapping.Rows[i].Cells["S.No."].Value = i + 1;
+                    }
+                }
+                grdFinalSupplierMapping.ClearSelection();
                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
             }
         }
