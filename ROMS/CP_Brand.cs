@@ -361,7 +361,7 @@ namespace ROMS
                         }
                     }
                 }
-                grdSubGroup.DataSource = dtSubGroup;
+                //grdSubGroup.DataSource = dtSubGroup;
             }
             catch (Exception ex)
             {
@@ -912,6 +912,7 @@ namespace ROMS
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    varModifiedFlag = 0;
                     dtSubGroup.Rows.Clear();
                     dtSubGroupAdd.Rows.Clear();
                     if (btnSave.Text == "Save")
@@ -945,6 +946,7 @@ namespace ROMS
                         else
                         {
                             varUpdate = 1;
+                            varModifiedFlag = 0;
                             udfnclose();
                             MainForm.objCP_BrandList.udfnList();
                         }
@@ -1533,12 +1535,14 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+                                grdSubGroup.DataSource = null;
                                 dtSubGroup.Rows.Add(false, grdSubGroupAdd.SelectedRows[0].Cells["Selected Product Group"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Selected Product Subgroup"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Products"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Group Id"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Sub Group Id"].Value);
                                 dtSubGroup.AcceptChanges();
                                 grdSubGroup.DataSource = dtSubGroup;
                                 grdSubGroupAdd.Rows.RemoveAt(this.grdSubGroupAdd.SelectedRows[0].Index);
 
                             }
+                            varModifiedFlag = 1;
                             udfnTotalProducts();
                             break;
                     }

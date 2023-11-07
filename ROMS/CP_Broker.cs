@@ -143,6 +143,7 @@ namespace ROMS
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MainForm.objCP_CP_BrokerList.udfnList();
                         udfnClear();
+                        varModifiedFlag = 0;
                         cmbConcern.Focus();
                         cmbConcern.SelectedValue = -1;
                         pnlBStatus.Enabled = false;

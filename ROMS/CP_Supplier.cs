@@ -5336,6 +5336,7 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varModifiedFlag = 0;
                         MainForm.objCP_Supplierlist.udfnList();
                         cmbMappingorderschedule.Focus();
                         if (btnMappingsave.Text == "Update")

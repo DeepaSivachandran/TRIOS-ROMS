@@ -545,6 +545,7 @@ namespace ROMS
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    varModifiedFlag = 0;
                     if (btnSave.Text == "Save")
                     {
                         udfnClear();
