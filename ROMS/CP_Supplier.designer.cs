@@ -269,6 +269,7 @@
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnListPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -2837,6 +2838,7 @@
             // 
             // grpSchedule
             // 
+            this.grpSchedule.Controls.Add(this.btnListPrint);
             this.grpSchedule.Controls.Add(this.DGV_SearchGridPro);
             this.grpSchedule.Controls.Add(this.txtMappedOrderDay);
             this.grpSchedule.Controls.Add(this.txtSearchByProduct2);
@@ -3222,6 +3224,19 @@
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
             // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(1000, 31);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(33, 33);
+            this.btnListPrint.TabIndex = 958827;
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -3512,5 +3527,6 @@
         public System.Windows.Forms.Button btnUnselectAll;
         public System.Windows.Forms.Button btnMappingUnselectAll;
         public System.Windows.Forms.Button btnMappingSelectAll;
+        private System.Windows.Forms.Button btnListPrint;
     }
 }
