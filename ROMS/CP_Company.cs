@@ -4621,7 +4621,6 @@ namespace ROMS
             }
             finally
             {
-                // tpCompanyName.Active = false; 
             }
         }
 
