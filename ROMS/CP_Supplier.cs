@@ -5294,7 +5294,7 @@ namespace ROMS
                             break;
                     }
                 }
-                udfnGetProductCount();
+                udfnGetProductCount(0);
                 udfnGetMappedProductCount();
             }
             catch (Exception ex)
@@ -7573,7 +7573,8 @@ namespace ROMS
         {
             try
             {
-                udfnGetProductCount();
+                int varProId = Convert.ToInt16(grdSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
+                udfnGetProductCount(varProId);
                 udfnGetMappedProductCount();
             }
             catch (Exception ex)
@@ -8243,7 +8244,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGetProductCount() {
+        public void udfnGetProductCount(int varProId) {
             try
             {
                 int varProductCount = 0; string varRemoveProduct = "";
@@ -8253,17 +8254,23 @@ namespace ROMS
                     {
                         varProductCount++;
                     }
-                    else
+                }
+                if (Convert.ToBoolean(grdSupplierMappingLoad.SelectedRows[0].Cells[0].Value) == true)
+                {
+                    DataRow dr = dtSubGroup.Select("PRODUCTID=" + varProId).FirstOrDefault();
+                    if (dr != null)
                     {
-                        varRemoveProduct = Convert.ToString(grdSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
-                        for (int j = 0; j < dtSubGroup.Rows.Count; j++)
-                        {
-                            if (varRemoveProduct == Convert.ToString(dtSubGroup.Rows[j]["PRODUCTID"]))
-                            {
-                                dtSubGroup.Rows[j][0] = false;
-                                dtSubGroup.AcceptChanges();
-                            }
-                        }
+                        dr[0] = true;
+                        dtSubGroup.AcceptChanges();
+                    }
+                }
+                else
+                {
+                    DataRow dr = dtSubGroup.Select("PRODUCTID=" + varProId).FirstOrDefault();
+                    if (dr != null)
+                    {
+                        dr[0] = false;
+                        dtSubGroup.AcceptChanges();
                     }
                 }
                 if (varProductCount > 0) {
