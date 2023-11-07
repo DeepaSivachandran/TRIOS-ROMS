@@ -24,7 +24,7 @@ namespace ROMS
         public int varUpdate = 0;
         public int varFormFlag = 0;
         public int varId = 0;
-
+        public int varModifiedFlag = 0;
         public string varBrandId = "";
         public string varGroupId = "";
         public string varSubGroupId = "";
@@ -271,6 +271,7 @@ namespace ROMS
                             if (varFlag == 0)
                             {
                                 dtSubGroupAdd.Rows.Add(grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, "0", grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value, grdSubGroup.Rows[i].Cells["T.Pro"].Value);
+                                varModifiedFlag = 1;
                             }
                         }
                     }
@@ -317,6 +318,7 @@ namespace ROMS
             finally
             {
                 grdSubGroupAdd.ClearSelection();
+                txtSelectedProductSubGroup.Text = "";
                 //this.grdSubGroupAdd.Sort(this.grdSubGroupAdd.Columns[2], ListSortDirection.Ascending);
             }
         }
@@ -368,6 +370,7 @@ namespace ROMS
                                     dtSubGroupAdd.AcceptChanges();
                                     goto L;
                                 }
+                                varModifiedFlag = 1;
                             }
                         }
                     }
@@ -522,6 +525,7 @@ namespace ROMS
                 grdSubGroup.ClearSelection();
                 //this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
                 this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
+                txtProductSubGroup.Text = "";
             }
         }
 
@@ -529,17 +533,32 @@ namespace ROMS
         {
             try
             {
-                if (varUpdate == 0)
+                if (varModifiedFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();
                         MainForm.objCP_BrandList.Show();
                         MainForm.objCP_BrandList.udfnList();
                     }
+                    else
+                    { btnSave.Focus(); }
                 }
-                else { this.Close(); }
+                else
+                {
+                    if (varUpdate == 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                            MainForm.objCP_BrandList.Show();
+                            MainForm.objCP_BrandList.udfnList();
+                        }
+                    }
+                    else { this.Close(); }
+                }
             }
             catch (Exception ex)
             {

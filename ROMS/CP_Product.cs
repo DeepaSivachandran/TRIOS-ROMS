@@ -3125,8 +3125,15 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0))); 
-                this.ActiveControl = cmbConcern;
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (btnSave.Text == "Save")
+                {
+                    this.ActiveControl = cmbConcern;
+                }
+                else
+                {
+                    this.ActiveControl = txtPICode;
+                }
                 udfnDropDownload(); 
                 DataBind objDataBind = new DataBind(); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
