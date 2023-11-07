@@ -191,7 +191,7 @@ namespace ROMS
                     //    }
                     //}
                     dtSubGroup.Rows.Clear();
-                    grdSubGroup.DataSource = dtSubGroup;
+                    grdSubGroup.DataSource = null;
                     udfnRemoveGroup();
                 }
             }
