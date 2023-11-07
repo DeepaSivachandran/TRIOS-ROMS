@@ -41,9 +41,31 @@ namespace ROMS
         public DataTable dtSubGroup = new DataTable();
         public DataTable dtSubGroupAdd = new DataTable();
         public DataTable dtGroup = new DataTable();
+
         public CP_Brand()
         {
             InitializeComponent();
+            dtGroup = new DataTable();
+            dtGroup.Columns.Add("", typeof(Boolean));
+            dtGroup.Columns.Add("Product Group Name in English", typeof(string));
+            dtGroup.Columns.Add("T.S.Groups", typeof(string));
+            dtGroup.Columns.Add("ID", typeof(int));
+
+            dtSubGroup = new DataTable();
+            dtSubGroup.Columns.Add("", typeof(Boolean));
+            dtSubGroup.Columns.Add("Product Group", typeof(string));
+            dtSubGroup.Columns.Add("Product Subgroup", typeof(string));
+            dtSubGroup.Columns.Add("T.Pro", typeof(string));
+            dtSubGroup.Columns.Add("Group Id", typeof(int));
+            dtSubGroup.Columns.Add("Sub Group Id", typeof(int));
+
+            // dtSubGroupAdd.Columns.Add("", typeof(Boolean));
+            dtSubGroupAdd.Columns.Add("Selected Product Group", typeof(string));
+            dtSubGroupAdd.Columns.Add("Selected Product Subgroup", typeof(string));
+            dtSubGroupAdd.Columns.Add("T.Pro", typeof(string));
+            dtSubGroupAdd.Columns.Add("Group Id", typeof(int));
+            dtSubGroupAdd.Columns.Add("Sub Group Id", typeof(int));
+            dtSubGroupAdd.Columns.Add("Products", typeof(string));
         }
 
         private void CP_Brand_Leave(object sender, EventArgs e)
@@ -52,7 +74,6 @@ namespace ROMS
             {
                 tpBrandNameInEnglish.Active = false;
                 tpBrandNameInTamil.Active = false;
-
             }
             catch (Exception ex)
             {
@@ -677,20 +698,6 @@ namespace ROMS
                         //    udfnSubGroupList();
                         //}   
                     }
-                    //else
-                    //{
-                        if (varRefresh == 1)
-                        {
-                            if (btnSave.Text == "Update")
-                            {
-                                btnRefresh.Visible = true;
-                            }
-                            else
-                            {
-                                btnRefresh.Visible = false;
-                            }
-                        }
-                    //}
                 }
                 if (txtEBrandNameInEnglish.Text.Trim() == "")
                 {
@@ -710,6 +717,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { udfnLoadRefresh(); }
         }
         private void TxtEBrandNameInEnglish_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1232,27 +1240,6 @@ namespace ROMS
         {
             try
             {
-                dtGroup = new DataTable();
-                dtGroup.Columns.Add("", typeof(Boolean));
-                dtGroup.Columns.Add("Product Group Name in English", typeof(string));
-                dtGroup.Columns.Add("T.S.Groups", typeof(string));
-                dtGroup.Columns.Add("ID", typeof(int));
-
-                dtSubGroup = new DataTable();
-                dtSubGroup.Columns.Add("", typeof(Boolean));
-                dtSubGroup.Columns.Add("Product Group", typeof(string));
-                dtSubGroup.Columns.Add("Product Subgroup", typeof(string));
-                dtSubGroup.Columns.Add("T.Pro", typeof(string));
-                dtSubGroup.Columns.Add("Group Id", typeof(int));
-                dtSubGroup.Columns.Add("Sub Group Id", typeof(int));
-
-                // dtSubGroupAdd.Columns.Add("", typeof(Boolean));
-                dtSubGroupAdd.Columns.Add("Selected Product Group", typeof(string));
-                dtSubGroupAdd.Columns.Add("Selected Product Subgroup", typeof(string));
-                dtSubGroupAdd.Columns.Add("T.Pro", typeof(string));
-                dtSubGroupAdd.Columns.Add("Group Id", typeof(int));
-                dtSubGroupAdd.Columns.Add("Sub Group Id", typeof(int));
-                dtSubGroupAdd.Columns.Add("Products", typeof(string));
                 udfnList();
                 //udfnSubGroupAdd();
                 if (btnSave.Text == "Save")
@@ -1270,6 +1257,14 @@ namespace ROMS
             }
             catch (Exception ex)
             {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally { udfnLoadRefresh(); }
+        }
+        public void udfnLoadRefresh() {
+            try { if (varmastertype == 1 && btnSave.Text == "Update") { btnRefresh.Visible = true; } else { btnRefresh.Visible = false; } }
+            catch (Exception ex) {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
@@ -2216,7 +2211,15 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Brand.CP_Brand_Load(sender, e);
+                udfnClear();
+                varId = 0;
+                dtGroup.Clear();
+                dtSubGroup.Clear();
+                dtSubGroupAdd.Clear();
+                udfnProductCount();
+                btnSave.Text = "Save";
+                varmastertype = 1;
+                CP_Brand_Load(sender, e);
             }
             catch (Exception ex)
             {

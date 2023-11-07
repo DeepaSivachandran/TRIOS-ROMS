@@ -5277,7 +5277,6 @@ namespace ROMS
 
                     // varSubgroupId = lblSubGroupCode.Text;
                     MainForm.objCP_Brand.varmastertype = 1;
-                    MainForm.objCP_Brand.varRefresh = 1;
                     MainForm.objCP_Brand.ShowDialog();
                     if (btnSave.Text == "Save")
                     {
