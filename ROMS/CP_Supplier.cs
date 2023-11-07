@@ -8246,12 +8246,24 @@ namespace ROMS
         public void udfnGetProductCount() {
             try
             {
-                int varProductCount = 0;
+                int varProductCount = 0; string varRemoveProduct = "";
                 for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdSupplierMappingLoad.Rows[i].Cells[0].Value) == true)
                     {
                         varProductCount++;
+                    }
+                    else
+                    {
+                        varRemoveProduct = Convert.ToString(grdSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
+                        for (int j = 0; j < dtSubGroup.Rows.Count; j++)
+                        {
+                            if (varRemoveProduct == Convert.ToString(dtSubGroup.Rows[j]["PRODUCTID"]))
+                            {
+                                dtSubGroup.Rows[j][0] = false;
+                                dtSubGroup.AcceptChanges();
+                            }
+                        }
                     }
                 }
                 if (varProductCount > 0) {
