@@ -36,13 +36,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseDC));
-            this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epPurchaseDC = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnldl = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbRack = new System.Windows.Forms.ComboBox();
-            this.cmbLocation = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.grpSalesmanDetails = new System.Windows.Forms.GroupBox();
@@ -50,15 +48,24 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.grpRepresentativeDetails = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtYear = new System.Windows.Forms.TextBox();
             this.txtDay = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.lvproduct = new System.Windows.Forms.ListView();
+            this.RMcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RMEName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtMonth = new System.Windows.Forms.TextBox();
             this.lblYyyy = new System.Windows.Forms.Label();
             this.lblMM = new System.Windows.Forms.Label();
             this.lblDd = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtunitrate = new System.Windows.Forms.TextBox();
+            this.txtBatchNo = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
             this.txtActualQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
@@ -70,7 +77,6 @@
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.lvSupplier = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -85,33 +91,36 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtgrnno = new System.Windows.Forms.TextBox();
             this.lblDEVisitDay = new System.Windows.Forms.Label();
-            this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.dpDCDate = new System.Windows.Forms.DateTimePicker();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
+            this.txtStockLocation = new System.Windows.Forms.TextBox();
+            this.txtRack = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpRepresentativeDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.grpExcessProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // errUnit
+            // epPurchaseDC
             // 
-            this.errUnit.ContainerControl = this;
+            this.epPurchaseDC.ContainerControl = this;
             // 
             // tsPurchaseInvoiceList
             // 
@@ -149,23 +158,23 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cmbRack);
-            this.groupBox1.Controls.Add(this.cmbLocation);
+            this.groupBox1.Controls.Add(this.txtRack);
+            this.groupBox1.Controls.Add(this.txtStockLocation);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.grpSalesmanDetails);
             this.groupBox1.Controls.Add(this.lblExpiryDate);
             this.groupBox1.Controls.Add(this.textBox13);
             this.groupBox1.Controls.Add(this.grpRepresentativeDetails);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtYear);
             this.groupBox1.Controls.Add(this.txtDay);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.txtMonth);
             this.groupBox1.Controls.Add(this.lblYyyy);
             this.groupBox1.Controls.Add(this.lblMM);
             this.groupBox1.Controls.Add(this.lblDd);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtunitrate);
+            this.groupBox1.Controls.Add(this.txtBatchNo);
             this.groupBox1.Controls.Add(this.lblbatchno);
             this.groupBox1.Controls.Add(this.txtActualQty);
             this.groupBox1.Controls.Add(this.lblQty);
@@ -181,34 +190,6 @@
             this.groupBox1.Size = new System.Drawing.Size(1330, 636);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            // 
-            // cmbRack
-            // 
-            this.cmbRack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRack.FormattingEnabled = true;
-            this.cmbRack.Items.AddRange(new object[] {
-            "--Select--",
-            "Damage",
-            "Excess"});
-            this.cmbRack.Location = new System.Drawing.Point(923, 156);
-            this.cmbRack.Name = "cmbRack";
-            this.cmbRack.Size = new System.Drawing.Size(98, 27);
-            this.cmbRack.TabIndex = 1111246;
-            // 
-            // cmbLocation
-            // 
-            this.cmbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbLocation.FormattingEnabled = true;
-            this.cmbLocation.Items.AddRange(new object[] {
-            "--Select--",
-            "Damage",
-            "Excess"});
-            this.cmbLocation.Location = new System.Drawing.Point(819, 156);
-            this.cmbLocation.Name = "cmbLocation";
-            this.cmbLocation.Size = new System.Drawing.Size(98, 27);
-            this.cmbLocation.TabIndex = 1111245;
             // 
             // label6
             // 
@@ -313,13 +294,51 @@
             this.dataGridView2.Size = new System.Drawing.Size(450, 87);
             this.dataGridView2.TabIndex = 1111162;
             // 
-            // textBox1
+            // dataGridViewTextBoxColumn4
             // 
-            this.textBox1.Location = new System.Drawing.Point(552, 154);
-            this.textBox1.MaxLength = 2;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(34, 28);
-            this.textBox1.TabIndex = 1111234;
+            this.dataGridViewTextBoxColumn4.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Rep Name";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Brand";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Phone No.";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Whatsapp No.";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // txtYear
+            // 
+            this.txtYear.Location = new System.Drawing.Point(552, 154);
+            this.txtYear.MaxLength = 2;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(34, 28);
+            this.txtYear.TabIndex = 7;
+            this.txtYear.Enter += new System.EventHandler(this.TxtYear_Enter);
+            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtYear_KeyDown);
+            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtYear_KeyPress);
+            this.txtYear.Leave += new System.EventHandler(this.TxtYear_Leave);
             // 
             // txtDay
             // 
@@ -327,10 +346,15 @@
             this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
             this.txtDay.Size = new System.Drawing.Size(33, 28);
-            this.txtDay.TabIndex = 1111232;
+            this.txtDay.TabIndex = 5;
+            this.txtDay.Enter += new System.EventHandler(this.TxtDay_Enter);
+            this.txtDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDay_KeyDown);
+            this.txtDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDay_KeyPress);
+            this.txtDay.Leave += new System.EventHandler(this.TxtDay_Leave);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lvproduct);
             this.groupBox2.Location = new System.Drawing.Point(423, 14);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(209, 119);
@@ -338,13 +362,46 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Supplier Details";
             // 
-            // textBox4
+            // lvproduct
             // 
-            this.textBox4.Location = new System.Drawing.Point(518, 154);
-            this.textBox4.MaxLength = 2;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(34, 28);
-            this.textBox4.TabIndex = 1111233;
+            this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.RMcode,
+            this.RMTname,
+            this.RMEName});
+            this.lvproduct.FullRowSelect = true;
+            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvproduct.HideSelection = false;
+            this.lvproduct.Location = new System.Drawing.Point(-318, -22);
+            this.lvproduct.Name = "lvproduct";
+            this.lvproduct.Size = new System.Drawing.Size(690, 140);
+            this.lvproduct.TabIndex = 1111174;
+            this.lvproduct.UseCompatibleStateImageBehavior = false;
+            this.lvproduct.View = System.Windows.Forms.View.Details;
+            this.lvproduct.Visible = false;
+            // 
+            // RMcode
+            // 
+            this.RMcode.Width = 0;
+            // 
+            // RMTname
+            // 
+            this.RMTname.Width = 200;
+            // 
+            // RMEName
+            // 
+            this.RMEName.Width = 200;
+            // 
+            // txtMonth
+            // 
+            this.txtMonth.Location = new System.Drawing.Point(518, 154);
+            this.txtMonth.MaxLength = 2;
+            this.txtMonth.Name = "txtMonth";
+            this.txtMonth.Size = new System.Drawing.Size(34, 28);
+            this.txtMonth.TabIndex = 6;
+            this.txtMonth.Enter += new System.EventHandler(this.TxtMonth_Enter);
+            this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonth_KeyDown);
+            this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMonth_KeyPress);
+            this.txtMonth.Leave += new System.EventHandler(this.TxtMonth_Leave);
             // 
             // lblYyyy
             // 
@@ -385,12 +442,15 @@
             this.label3.TabIndex = 1111231;
             this.label3.Text = "Pkts";
             // 
-            // txtunitrate
+            // txtBatchNo
             // 
-            this.txtunitrate.Location = new System.Drawing.Point(596, 155);
-            this.txtunitrate.Name = "txtunitrate";
-            this.txtunitrate.Size = new System.Drawing.Size(119, 28);
-            this.txtunitrate.TabIndex = 1111226;
+            this.txtBatchNo.Location = new System.Drawing.Point(596, 155);
+            this.txtBatchNo.Name = "txtBatchNo";
+            this.txtBatchNo.Size = new System.Drawing.Size(119, 28);
+            this.txtBatchNo.TabIndex = 8;
+            this.txtBatchNo.Enter += new System.EventHandler(this.TxtBatchNo_Enter);
+            this.txtBatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo_KeyDown);
+            this.txtBatchNo.Leave += new System.EventHandler(this.TxtBatchNo_Leave);
             // 
             // lblbatchno
             // 
@@ -406,7 +466,10 @@
             this.txtActualQty.Location = new System.Drawing.Point(720, 155);
             this.txtActualQty.Name = "txtActualQty";
             this.txtActualQty.Size = new System.Drawing.Size(57, 28);
-            this.txtActualQty.TabIndex = 1111225;
+            this.txtActualQty.TabIndex = 9;
+            this.txtActualQty.Enter += new System.EventHandler(this.TxtActualQty_Enter);
+            this.txtActualQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtActualQty_KeyDown);
+            this.txtActualQty.Leave += new System.EventHandler(this.TxtActualQty_Leave);
             // 
             // lblQty
             // 
@@ -422,7 +485,11 @@
             this.txtMrp.Location = new System.Drawing.Point(332, 155);
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(78, 28);
-            this.txtMrp.TabIndex = 1111222;
+            this.txtMrp.TabIndex = 4;
+            this.txtMrp.Enter += new System.EventHandler(this.TxtMrp_Enter);
+            this.txtMrp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMrp_KeyDown);
+            this.txtMrp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMrp_KeyPress);
+            this.txtMrp.Leave += new System.EventHandler(this.TxtMrp_Leave);
             // 
             // lblMrp
             // 
@@ -442,7 +509,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 1111207;
+            this.btnAdd.TabIndex = 12;
             this.btnAdd.Text = "        ";
             // 
             // txtProductName
@@ -451,7 +518,10 @@
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(300, 28);
-            this.txtProductName.TabIndex = 1111206;
+            this.txtProductName.TabIndex = 3;
+            this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
+            this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
+            this.txtProductName.Leave += new System.EventHandler(this.TxtProductName_Leave);
             // 
             // label4
             // 
@@ -467,7 +537,6 @@
             // 
             this.grpExcessProduct.Controls.Add(this.btnClose);
             this.grpExcessProduct.Controls.Add(this.btnSave);
-            this.grpExcessProduct.Controls.Add(this.lvSupplier);
             this.grpExcessProduct.Controls.Add(this.label5);
             this.grpExcessProduct.Controls.Add(this.textBox2);
             this.grpExcessProduct.Controls.Add(this.dataGridView1);
@@ -485,7 +554,7 @@
             this.btnClose.Location = new System.Drawing.Point(1223, 418);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 1111202;
+            this.btnClose.TabIndex = 15;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -499,20 +568,10 @@
             this.btnSave.Location = new System.Drawing.Point(1134, 418);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 1111201;
+            this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // lvSupplier
-            // 
-            this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(2, 0);
-            this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(373, 81);
-            this.lvSupplier.TabIndex = 1111147;
-            this.lvSupplier.UseCompatibleStateImageBehavior = false;
-            this.lvSupplier.Visible = false;
             // 
             // label5
             // 
@@ -532,7 +591,7 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(585, 58);
-            this.textBox2.TabIndex = 1111174;
+            this.textBox2.TabIndex = 13;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // dataGridView1
@@ -656,10 +715,11 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.LV_Supplier);
             this.groupBox3.Controls.Add(this.cmbConcern);
             this.groupBox3.Controls.Add(this.txtgrnno);
             this.groupBox3.Controls.Add(this.lblDEVisitDay);
-            this.groupBox3.Controls.Add(this.dpPlanDate);
+            this.groupBox3.Controls.Add(this.dpDCDate);
             this.groupBox3.Controls.Add(this.txtSupplier);
             this.groupBox3.Controls.Add(this.lblDESupplier);
             this.groupBox3.Controls.Add(this.label1);
@@ -670,15 +730,50 @@
             this.groupBox3.TabIndex = 1111221;
             this.groupBox3.TabStop = false;
             // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader1});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(96, 11);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(358, 93);
+            this.LV_Supplier.TabIndex = 1111208;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 180;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
+            // 
             // cmbConcern
             // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(6, 35);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(98, 27);
-            this.cmbConcern.TabIndex = 1111170;
+            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
             // txtgrnno
             // 
@@ -701,15 +796,18 @@
             this.lblDEVisitDay.TabIndex = 1111163;
             this.lblDEVisitDay.Text = "DC Date";
             // 
-            // dpPlanDate
+            // dpDCDate
             // 
-            this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
-            this.dpPlanDate.Enabled = false;
-            this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpPlanDate.Location = new System.Drawing.Point(108, 34);
-            this.dpPlanDate.Name = "dpPlanDate";
-            this.dpPlanDate.Size = new System.Drawing.Size(100, 28);
-            this.dpPlanDate.TabIndex = 1111167;
+            this.dpDCDate.CustomFormat = "dd/MM/yyyy";
+            this.dpDCDate.Enabled = false;
+            this.dpDCDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpDCDate.Location = new System.Drawing.Point(108, 34);
+            this.dpDCDate.Name = "dpDCDate";
+            this.dpDCDate.Size = new System.Drawing.Size(106, 28);
+            this.dpDCDate.TabIndex = 1;
+            this.dpDCDate.Enter += new System.EventHandler(this.DpDCDate_Enter);
+            this.dpDCDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpDCDate_KeyDown);
+            this.dpDCDate.Leave += new System.EventHandler(this.DpDCDate_Leave);
             // 
             // txtSupplier
             // 
@@ -718,7 +816,11 @@
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(293, 27);
-            this.txtSupplier.TabIndex = 1111164;
+            this.txtSupplier.TabIndex = 2;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
+            this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
+            this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
+            this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
             // 
             // lblDESupplier
             // 
@@ -750,39 +852,19 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
-            // dataGridViewTextBoxColumn4
+            // txtStockLocation
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 40;
+            this.txtStockLocation.Location = new System.Drawing.Point(819, 155);
+            this.txtStockLocation.Name = "txtStockLocation";
+            this.txtStockLocation.Size = new System.Drawing.Size(98, 28);
+            this.txtStockLocation.TabIndex = 10;
             // 
-            // dataGridViewTextBoxColumn6
+            // txtRack
             // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Rep Name";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Brand";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Phone No.";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Whatsapp No.";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.txtRack.Location = new System.Drawing.Point(923, 155);
+            this.txtRack.Name = "txtRack";
+            this.txtRack.Size = new System.Drawing.Size(98, 28);
+            this.txtRack.TabIndex = 11;
             // 
             // PUR_PurchaseDC
             // 
@@ -803,7 +885,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Returns";
             this.Load += new System.EventHandler(this.PUR_PurchaseDC_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).EndInit();
             this.tsPurchaseInvoiceList.ResumeLayout(false);
             this.tsPurchaseInvoiceList.PerformLayout();
             this.pnldl.ResumeLayout(false);
@@ -811,6 +893,7 @@
             this.groupBox1.PerformLayout();
             this.grpRepresentativeDetails.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.grpExcessProduct.ResumeLayout(false);
             this.grpExcessProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -822,7 +905,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.ErrorProvider errUnit;
+        private System.Windows.Forms.ErrorProvider epPurchaseDC;
         private System.Windows.Forms.ToolStrip tsPurchaseInvoiceList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnldl;
@@ -833,7 +916,6 @@
         private System.Windows.Forms.GroupBox grpExcessProduct;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.ListView lvSupplier;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox2;
         public System.Windows.Forms.DataGridView dataGridView1;
@@ -841,22 +923,22 @@
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtgrnno;
         private System.Windows.Forms.Label lblDEVisitDay;
-        private System.Windows.Forms.DateTimePicker dpPlanDate;
+        private System.Windows.Forms.DateTimePicker dpDCDate;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label lblDESupplier;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtunitrate;
+        private System.Windows.Forms.TextBox txtBatchNo;
         private System.Windows.Forms.Label lblbatchno;
         private System.Windows.Forms.TextBox txtActualQty;
         private System.Windows.Forms.Label lblQty;
         private System.Windows.Forms.TextBox txtMrp;
         private System.Windows.Forms.Label lblMrp;
         private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.TextBox txtDay;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtMonth;
         private System.Windows.Forms.Label lblYyyy;
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDd;
@@ -867,8 +949,6 @@
         public System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbRack;
-        private System.Windows.Forms.ComboBox cmbLocation;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -884,5 +964,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        public System.Windows.Forms.ListView LV_Supplier;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ListView lvproduct;
+        private System.Windows.Forms.ColumnHeader RMcode;
+        private System.Windows.Forms.ColumnHeader RMTname;
+        private System.Windows.Forms.ColumnHeader RMEName;
+        private System.Windows.Forms.TextBox txtRack;
+        private System.Windows.Forms.TextBox txtStockLocation;
     }
 }
