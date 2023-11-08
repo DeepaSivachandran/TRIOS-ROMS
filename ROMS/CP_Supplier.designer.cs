@@ -264,13 +264,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btn_Close2 = new System.Windows.Forms.Button();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -2661,6 +2661,7 @@
             this.grdFinalSupplierMapping.Size = new System.Drawing.Size(613, 351);
             this.grdFinalSupplierMapping.TabIndex = 6;
             this.grdFinalSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdFinalSupplierMapping_CellContentClick);
+            this.grdFinalSupplierMapping.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdFinalSupplierMapping_CurrentCellDirtyStateChanged);
             this.grdFinalSupplierMapping.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdFinalSupplierMapping_DataBindingComplete);
             this.grdFinalSupplierMapping.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdFinalSupplierMapping_Scroll);
             // 
@@ -3179,6 +3180,19 @@
             this.grdViewSupplierMapping.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdViewSupplierMapping_DataBindingComplete);
             this.grdViewSupplierMapping.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdViewSupplierMapping_Scroll);
             // 
+            // RPTViewer
+            // 
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(37, 72);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1248, 504);
+            this.RPTViewer.TabIndex = 1111228;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
+            // 
             // lblGC
             // 
             this.lblGC.AutoSize = true;
@@ -3239,19 +3253,6 @@
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
-            // 
-            // RPTViewer
-            // 
-            this.RPTViewer.ActiveViewIndex = -1;
-            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(37, 72);
-            this.RPTViewer.Name = "RPTViewer";
-            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1248, 504);
-            this.RPTViewer.TabIndex = 1111228;
-            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.RPTViewer.Visible = false;
             // 
             // CP_Supplier
             // 

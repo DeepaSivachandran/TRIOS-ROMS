@@ -5110,6 +5110,7 @@ namespace ROMS
                 grdFinalSupplierMapping.ClearSelection();
                 lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
                 txtmappingproductsearch2.Text = "";
+                grdFinalSupplierMapping.Columns[0].ReadOnly = false;
             }
         }
         public void udfnSubGroupAdd()
@@ -5276,8 +5277,9 @@ namespace ROMS
                             break;
                     }
                 }
-                udfnGetProductCount(0);
-                udfnGetMappedProductCount(0);
+                int varPRID = Convert.ToInt16(grdFinalSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
+                udfnGetMappedProductCount(varPRID);
+                // udfnGetProductCount(0);       
             }
             catch (Exception ex)
             {
@@ -7555,9 +7557,7 @@ namespace ROMS
             try
             {
                 int varProId = Convert.ToInt16(grdSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
-                int varPRID = Convert.ToInt16(grdFinalSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
                 udfnGetProductCount(varProId);
-                udfnGetMappedProductCount(varPRID);
             }
             catch (Exception ex)
             {
@@ -8135,6 +8135,23 @@ namespace ROMS
             RPTViewer.ShowTextSearchButton = true;
             RPTViewer.ShowZoomButton = true;
         }
+
+        private void GrdFinalSupplierMapping_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdFinalSupplierMapping.IsCurrentCellDirty)
+                {
+                    grdFinalSupplierMapping.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -8389,11 +8406,18 @@ namespace ROMS
                 }
                 if (varProductCount > 0) {
                     btnRemove.Enabled = false;
-                    grdFinalSupplierMapping.Columns[0].ReadOnly = true;
+                    BtnaddMove.Enabled = true;
+                    if (grdFinalSupplierMapping.RowCount > 0)
+                    {
+                        grdFinalSupplierMapping.Columns[0].ReadOnly = true;
+                    }
                 }
                 else {
                     btnRemove.Enabled = true;
-                    grdFinalSupplierMapping.Columns[0].ReadOnly = false;
+                    if (grdFinalSupplierMapping.RowCount > 0)
+                    {
+                        grdFinalSupplierMapping.Columns[0].ReadOnly = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -8414,7 +8438,7 @@ namespace ROMS
                         varMappedProductCount++;
                     }
                 }
-                if (Convert.ToBoolean(grdFinalSupplierMapping.SelectedRows[0].Cells[0].Value) == true)
+                if (Convert.ToBoolean(grdFinalSupplierMapping.SelectedRows[0].Cells[0].EditedFormattedValue) == true)
                 {
                     DataRow dr = dtSubGroupMapping.Select("PRODUCTID=" + varPRID).FirstOrDefault();
                     if (dr != null)
@@ -8435,11 +8459,12 @@ namespace ROMS
                 if (varMappedProductCount > 0)
                 {
                     BtnaddMove.Enabled = false;
+                    btnRemove.Enabled = true;
                     grdSupplierMappingLoad.Columns[0].ReadOnly = true;
                 }
                 else
                 {
-                    BtnaddMove.Enabled = true;
+                    btnRemove.Enabled = false;
                     grdSupplierMappingLoad.Columns[0].ReadOnly = false;
                 }
             }
