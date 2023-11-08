@@ -4264,7 +4264,6 @@ namespace ROMS
             try
             {
                 lblNoRecordsFound.Visible = false;
-                chkSelectAll.Checked = false;
                 BeginInvoke(new Action(() => cmbMappingordeDay.Select(int.MaxValue, 0)));
                 grdFinalSupplierMapping.DataSource = null;
                 SPDataService objspservice = new SPDataService();
@@ -5056,22 +5055,6 @@ namespace ROMS
                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
             }
         }
-        private void ChkSelectAll_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow row in grdSupplierMappingLoad.Rows)
-                {
-                    row.Cells[0].Value = chkSelectAll.Checked;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void BtnMappingView_Click(object sender, EventArgs e)
         {
             try
@@ -5125,7 +5108,6 @@ namespace ROMS
                 grdFinalSupplierMapping.ClearSelection();
                 lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
                 txtmappingproductsearch2.Text = "";
-                chkSelectAll.Checked = false;
             }
         }
         public void udfnSubGroupAdd()
@@ -5251,15 +5233,13 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
-
-
                                 dtSubGroup.Rows.Add(false, "0", grdFinalSupplierMapping.SelectedRows[0].Cells["P.I Code"].Value,
-                                    grdFinalSupplierMapping.SelectedRows[0].Cells["Product Name in Tamil"].Value,
-                                    grdFinalSupplierMapping.SelectedRows[0].Cells["Unit"].Value,
-                                    grdFinalSupplierMapping.SelectedRows[0].Cells["Product SubGroup"].Value,
-                                    grdFinalSupplierMapping.SelectedRows[0].Cells["GROUPID"].Value,
-                                    grdFinalSupplierMapping.SelectedRows[0].Cells["SUBGROUPID"].Value,
-                                    grdFinalSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value, "0", grdFinalSupplierMapping.SelectedRows[0].Cells["MappedCount"].Value);
+                                grdFinalSupplierMapping.SelectedRows[0].Cells["Product Name in Tamil"].Value,
+                                grdFinalSupplierMapping.SelectedRows[0].Cells["Unit"].Value,
+                                grdFinalSupplierMapping.SelectedRows[0].Cells["Product SubGroup"].Value,
+                                grdFinalSupplierMapping.SelectedRows[0].Cells["GROUPID"].Value,
+                                grdFinalSupplierMapping.SelectedRows[0].Cells["SUBGROUPID"].Value,
+                                grdFinalSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value, "0", grdFinalSupplierMapping.SelectedRows[0].Cells["MappedCount"].Value);
                                 grdFinalSupplierMapping.Rows.RemoveAt(this.grdFinalSupplierMapping.SelectedRows[0].Index);
                                 for (int i = 0; i < grdFinalSupplierMapping.RowCount; i++)
                                 {
@@ -5295,7 +5275,7 @@ namespace ROMS
                     }
                 }
                 udfnGetProductCount(0);
-                udfnGetMappedProductCount();
+                udfnGetMappedProductCount(0);
             }
             catch (Exception ex)
             {
@@ -5356,6 +5336,7 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varModifiedFlag = 0;
                         MainForm.objCP_Supplierlist.udfnList();
                         cmbMappingorderschedule.Focus();
                         if (btnMappingsave.Text == "Update")
@@ -7075,7 +7056,6 @@ namespace ROMS
             finally
             {
                 lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
-                chkMappedAll.Checked = false;
             }
         }
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -7568,30 +7548,14 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void ChkMappedAll_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow row in grdFinalSupplierMapping.Rows)
-                {
-                    row.Cells[0].Value = chkMappedAll.Checked;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void GrdSupplierMappingLoad_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 int varProId = Convert.ToInt16(grdSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
+                int varPRID = Convert.ToInt16(grdFinalSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
                 udfnGetProductCount(varProId);
-                udfnGetMappedProductCount();
+                udfnGetMappedProductCount(varPRID);
             }
             catch (Exception ex)
             {
@@ -8037,6 +8001,70 @@ namespace ROMS
             }
         }
 
+        private void BtnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
+                {
+                    grdSupplierMappingLoad.Rows[i].Cells[0].Value = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
+                {
+                    grdSupplierMappingLoad.Rows[i].Cells[0].Value = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnMappingSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
+                {
+                    grdFinalSupplierMapping.Rows[i].Cells[0].Value = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnMappingUnselectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
+                {
+                    grdFinalSupplierMapping.Rows[i].Cells[0].Value = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -8304,7 +8332,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGetMappedProductCount()
+        public void udfnGetMappedProductCount(int varPRID)
         {
             try
             {
@@ -8314,6 +8342,24 @@ namespace ROMS
                     if (Convert.ToBoolean(grdFinalSupplierMapping.Rows[i].Cells[0].Value) == true)
                     {
                         varMappedProductCount++;
+                    }
+                }
+                if (Convert.ToBoolean(grdFinalSupplierMapping.SelectedRows[0].Cells[0].Value) == true)
+                {
+                    DataRow dr = dtSubGroupMapping.Select("PRODUCTID=" + varPRID).FirstOrDefault();
+                    if (dr != null)
+                    {
+                        dr[0] = true;
+                        dtSubGroupMapping.AcceptChanges();
+                    }
+                }
+                else
+                {
+                    DataRow dr = dtSubGroupMapping.Select("PRODUCTID=" + varPRID).FirstOrDefault();
+                    if (dr != null)
+                    {
+                        dr[0] = false;
+                        dtSubGroupMapping.AcceptChanges();
                     }
                 }
                 if (varMappedProductCount > 0)

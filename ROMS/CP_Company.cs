@@ -2165,6 +2165,7 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varCompanyModifiedFlag = 0;
                         this.ActiveControl = tcCompanyDetails; 
                         MainForm.objCP_Companylist.udfnList();
                         txtCompanyName.Focus();
@@ -3332,6 +3333,7 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    varContactModifiedFlag = 0;
                     udfnClear();
                     MainForm.objCP_Companylist.udfnList();
                     if (btnSave.Text == "Update")

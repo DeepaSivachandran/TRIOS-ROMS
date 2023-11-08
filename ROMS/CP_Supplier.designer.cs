@@ -189,7 +189,10 @@
             this.btn_close = new System.Windows.Forms.Button();
             this.tpSupplierProduct = new System.Windows.Forms.TabPage();
             this.grpSupplierMapping = new System.Windows.Forms.GroupBox();
-            this.chkSelectAll = new System.Windows.Forms.CheckBox();
+            this.btnMappingUnselectAll = new System.Windows.Forms.Button();
+            this.btnMappingSelectAll = new System.Windows.Forms.Button();
+            this.btnUnselectAll = new System.Windows.Forms.Button();
+            this.btnSelectAll = new System.Windows.Forms.Button();
             this.lblTotalProducts = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txtSupplierOrderDays = new System.Windows.Forms.TextBox();
@@ -203,10 +206,8 @@
             this.lblTotalMappingProduct = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtsuppliername = new System.Windows.Forms.TextBox();
-            this.btnClear = new System.Windows.Forms.Button();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.grbSupplierMapping = new System.Windows.Forms.GroupBox();
-            this.chkMappedAll = new System.Windows.Forms.CheckBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid1 = new System.Windows.Forms.DataGridView();
@@ -231,6 +232,7 @@
             this.txtmappingproductsearch2 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
             this.BtnaddMove = new System.Windows.Forms.Button();
             this.grdFinalSupplierMapping = new System.Windows.Forms.DataGridView();
@@ -267,6 +269,7 @@
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnListPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -2029,7 +2032,10 @@
             // grpSupplierMapping
             // 
             this.grpSupplierMapping.BackColor = System.Drawing.Color.White;
-            this.grpSupplierMapping.Controls.Add(this.chkSelectAll);
+            this.grpSupplierMapping.Controls.Add(this.btnMappingUnselectAll);
+            this.grpSupplierMapping.Controls.Add(this.btnMappingSelectAll);
+            this.grpSupplierMapping.Controls.Add(this.btnUnselectAll);
+            this.grpSupplierMapping.Controls.Add(this.btnSelectAll);
             this.grpSupplierMapping.Controls.Add(this.lblTotalProducts);
             this.grpSupplierMapping.Controls.Add(this.label15);
             this.grpSupplierMapping.Controls.Add(this.txtSupplierOrderDays);
@@ -2043,7 +2049,6 @@
             this.grpSupplierMapping.Controls.Add(this.lblTotalMappingProduct);
             this.grpSupplierMapping.Controls.Add(this.label11);
             this.grpSupplierMapping.Controls.Add(this.txtsuppliername);
-            this.grpSupplierMapping.Controls.Add(this.btnClear);
             this.grpSupplierMapping.Controls.Add(this.lblDESupplier);
             this.grpSupplierMapping.Controls.Add(this.grbSupplierMapping);
             this.grpSupplierMapping.Controls.Add(this.btnMappingClose);
@@ -2054,16 +2059,57 @@
             this.grpSupplierMapping.TabIndex = 958768;
             this.grpSupplierMapping.TabStop = false;
             // 
-            // chkSelectAll
+            // btnMappingUnselectAll
             // 
-            this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(32, 179);
-            this.chkSelectAll.Name = "chkSelectAll";
-            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
-            this.chkSelectAll.TabIndex = 5;
-            this.chkSelectAll.UseVisualStyleBackColor = true;
-            this.chkSelectAll.Visible = false;
-            this.chkSelectAll.CheckedChanged += new System.EventHandler(this.ChkSelectAll_CheckedChanged);
+            this.btnMappingUnselectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnMappingUnselectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMappingUnselectAll.Location = new System.Drawing.Point(974, 566);
+            this.btnMappingUnselectAll.Name = "btnMappingUnselectAll";
+            this.btnMappingUnselectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnMappingUnselectAll.TabIndex = 958816;
+            this.btnMappingUnselectAll.Text = "Unselect All";
+            this.btnMappingUnselectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnMappingUnselectAll.UseVisualStyleBackColor = true;
+            this.btnMappingUnselectAll.Click += new System.EventHandler(this.BtnMappingUnselectAll_Click);
+            // 
+            // btnMappingSelectAll
+            // 
+            this.btnMappingSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnMappingSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMappingSelectAll.Location = new System.Drawing.Point(1063, 566);
+            this.btnMappingSelectAll.Name = "btnMappingSelectAll";
+            this.btnMappingSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnMappingSelectAll.TabIndex = 958815;
+            this.btnMappingSelectAll.Text = "Select All";
+            this.btnMappingSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnMappingSelectAll.UseVisualStyleBackColor = true;
+            this.btnMappingSelectAll.Click += new System.EventHandler(this.BtnMappingSelectAll_Click);
+            // 
+            // btnUnselectAll
+            // 
+            this.btnUnselectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUnselectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUnselectAll.Location = new System.Drawing.Point(490, 567);
+            this.btnUnselectAll.Name = "btnUnselectAll";
+            this.btnUnselectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnUnselectAll.TabIndex = 958814;
+            this.btnUnselectAll.Text = "Unselect All";
+            this.btnUnselectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnUnselectAll.UseVisualStyleBackColor = true;
+            this.btnUnselectAll.Click += new System.EventHandler(this.BtnUnselectAll_Click);
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSelectAll.Location = new System.Drawing.Point(579, 567);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnSelectAll.TabIndex = 958811;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.BtnSelectAll_Click);
             // 
             // lblTotalProducts
             // 
@@ -2220,23 +2266,6 @@
             this.txtsuppliername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsuppliername_KeyDown);
             this.txtsuppliername.Leave += new System.EventHandler(this.Txtsuppliername_Leave);
             // 
-            // btnClear
-            // 
-            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1062, 566);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(84, 29);
-            this.btnClear.TabIndex = 6;
-            this.btnClear.Text = "Clear";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Visible = false;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            this.btnClear.Enter += new System.EventHandler(this.BtnClear_Enter);
-            this.btnClear.Leave += new System.EventHandler(this.BtnClear_Leave);
-            // 
             // lblDESupplier
             // 
             this.lblDESupplier.AutoSize = true;
@@ -2249,7 +2278,6 @@
             // 
             // grbSupplierMapping
             // 
-            this.grbSupplierMapping.Controls.Add(this.chkMappedAll);
             this.grbSupplierMapping.Controls.Add(this.cmbStatus);
             this.grbSupplierMapping.Controls.Add(this.label16);
             this.grbSupplierMapping.Controls.Add(this.DGV_SearchGrid1);
@@ -2265,6 +2293,7 @@
             this.grbSupplierMapping.Controls.Add(this.txtmappingproductsearch2);
             this.grbSupplierMapping.Controls.Add(this.label12);
             this.grbSupplierMapping.Controls.Add(this.txtSearchByProduct1);
+            this.grbSupplierMapping.Controls.Add(this.btnClear);
             this.grbSupplierMapping.Controls.Add(this.lblSearchbyProduct1);
             this.grbSupplierMapping.Controls.Add(this.BtnaddMove);
             this.grbSupplierMapping.Controls.Add(this.grdFinalSupplierMapping);
@@ -2278,17 +2307,6 @@
             this.grbSupplierMapping.Size = new System.Drawing.Size(1308, 495);
             this.grbSupplierMapping.TabIndex = 5;
             this.grbSupplierMapping.TabStop = false;
-            // 
-            // chkMappedAll
-            // 
-            this.chkMappedAll.AutoSize = true;
-            this.chkMappedAll.Location = new System.Drawing.Point(695, 112);
-            this.chkMappedAll.Name = "chkMappedAll";
-            this.chkMappedAll.Size = new System.Drawing.Size(15, 14);
-            this.chkMappedAll.TabIndex = 958813;
-            this.chkMappedAll.UseVisualStyleBackColor = true;
-            this.chkMappedAll.Visible = false;
-            this.chkMappedAll.CheckedChanged += new System.EventHandler(this.ChkMappedAll_CheckedChanged);
             // 
             // cmbStatus
             // 
@@ -2560,6 +2578,23 @@
             this.txtSearchByProduct1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByProduct1_KeyDown);
             this.txtSearchByProduct1.Leave += new System.EventHandler(this.TxtSearchByProduct1_Leave);
             // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(630, 481);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(84, 29);
+            this.btnClear.TabIndex = 6;
+            this.btnClear.Text = "Clear";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Visible = false;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            this.btnClear.Enter += new System.EventHandler(this.BtnClear_Enter);
+            this.btnClear.Leave += new System.EventHandler(this.BtnClear_Leave);
+            // 
             // lblSearchbyProduct1
             // 
             this.lblSearchbyProduct1.AutoSize = true;
@@ -2803,6 +2838,7 @@
             // 
             // grpSchedule
             // 
+            this.grpSchedule.Controls.Add(this.btnListPrint);
             this.grpSchedule.Controls.Add(this.DGV_SearchGridPro);
             this.grpSchedule.Controls.Add(this.txtMappedOrderDay);
             this.grpSchedule.Controls.Add(this.txtSearchByProduct2);
@@ -3188,6 +3224,19 @@
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
             // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(1000, 31);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(33, 33);
+            this.btnListPrint.TabIndex = 958827;
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -3374,7 +3423,6 @@
         private System.Windows.Forms.Label lblSearchbyProduct1;
         private System.Windows.Forms.Button BtnaddMove;
         public System.Windows.Forms.DataGridView grdFinalSupplierMapping;
-        private System.Windows.Forms.CheckBox chkSelectAll;
         public System.Windows.Forms.DataGridView grdSupplierMappingLoad;
         private System.Windows.Forms.Button btnMappingClose;
         private System.Windows.Forms.ComboBox cmbMappingorderschedule;
@@ -3470,11 +3518,15 @@
         public System.Windows.Forms.DataGridView DGV_SearchGrid1;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.CheckBox chkMappedAll;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         public System.Windows.Forms.DataGridView DGV_SearchGridPro;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox txtSPShortName;
+        public System.Windows.Forms.Button btnSelectAll;
+        public System.Windows.Forms.Button btnUnselectAll;
+        public System.Windows.Forms.Button btnMappingUnselectAll;
+        public System.Windows.Forms.Button btnMappingSelectAll;
+        private System.Windows.Forms.Button btnListPrint;
     }
 }

@@ -42,6 +42,7 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.lblSubgroupCount = new System.Windows.Forms.Label();
             this.lblNoofproducts = new System.Windows.Forms.Label();
@@ -136,6 +137,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.btnRefresh);
             this.grbform.Controls.Add(this.label5);
             this.grbform.Controls.Add(this.lblSubgroupCount);
             this.grbform.Controls.Add(this.lblNoofproducts);
@@ -172,6 +174,19 @@
             this.grbform.Size = new System.Drawing.Size(1339, 633);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRefresh.Image = global::ROMS.Properties.Resources.refresh;
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRefresh.Location = new System.Drawing.Point(1304, 15);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(30, 29);
+            this.btnRefresh.TabIndex = 1111177;
+            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
             // label5
             // 
@@ -908,5 +923,6 @@
         private System.Windows.Forms.Label lblSubgroupCount;
         private System.Windows.Forms.Label lblNoofproducts;
         private System.Windows.Forms.Label lblGroupCount;
+        public System.Windows.Forms.Button btnRefresh;
     }
 }
