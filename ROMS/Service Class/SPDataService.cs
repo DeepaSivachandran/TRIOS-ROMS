@@ -1931,7 +1931,7 @@ namespace ROMS
 
 
         // added by venkat on 03/11/2023 for GRN Entry Save
-        public string udfnGRNEntry( TRNS_GRN objTRNS_GRN, DataTable ParaTRN_GRN_PO)
+        public string udfnGRNEntry( TRNS_GRN objTRNS_GRN)
         {
             string result = "";
             try
@@ -1948,7 +1948,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRNS_GRN.paraRemarks); 
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
-                varSqlCommand.Parameters.AddWithValue("@ParaTRN_GRN_PO", ParaTRN_GRN_PO); 
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_GRN_PO", objTRNS_GRN.ParaTRN_GRN_PO); 
                 varSqlCommand.Parameters.AddWithValue("@paraGRNDate", objTRNS_GRN.paraGRNDate); 
                 varSqlCommand.Parameters.AddWithValue("@paraINVDate", objTRNS_GRN.paraINVDate); 
                 varSqlCommand.Parameters.AddWithValue("@paraINVNo", objTRNS_GRN.paraINVNo); 

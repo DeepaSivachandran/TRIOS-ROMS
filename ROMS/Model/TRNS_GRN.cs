@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,5 +27,6 @@ namespace ROMS.Model
         public int paraOrderType { get; set; } = 0;
         public string paraPAckage { get; set; } = "";
         public string paraRemarks { get; set; } = "";
+        public DataTable ParaTRN_GRN_PO { get; set; } = null;
     }
 }

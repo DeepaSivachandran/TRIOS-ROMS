@@ -990,8 +990,9 @@ namespace ROMS
                         objTRNS_GRN.ParaLoadingCharge = txtLoadingCharge.Text;
                         objTRNS_GRN.ParaFrightCharge = txtFrieghtamount.Text;
                         objTRNS_GRN.paraOrderType = Convert.ToInt32(cmbOrderType.SelectedValue);
+                        objTRNS_GRN.ParaTRN_GRN_PO = objGrnPO;
                         objTRNS_GRN.paraPAckage = varpakage;
-                        result = objspdservice.udfnGRNEntry(objTRNS_GRN, objGrnPO);
+                        result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
