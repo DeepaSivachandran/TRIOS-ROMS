@@ -8123,19 +8123,6 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        private void SetShowButtons()
-        {
-            RPTViewer.ShowCloseButton = true;
-            RPTViewer.ShowExportButton = true;
-            RPTViewer.ShowGotoPageButton = true;
-            RPTViewer.ShowGroupTreeButton = true;
-            RPTViewer.ShowPageNavigateButtons = true;
-            RPTViewer.ShowPrintButton = true;
-            RPTViewer.ShowRefreshButton = true;
-            RPTViewer.ShowTextSearchButton = true;
-            RPTViewer.ShowZoomButton = true;
-        }
-
         private void GrdFinalSupplierMapping_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
