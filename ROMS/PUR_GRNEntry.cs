@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -974,11 +975,23 @@ namespace ROMS
                             {
                                 varpakage = varpakage + '|' + Convert.ToString(grdUnitList.Rows[i].Cells["clmQty"].Value) + '-' + Convert.ToString(grdUnitList.Rows[i].Cells["id"].Value);
                             }
-                        }
-
-                        result = objspdservice.udfnGRNEntry(varviewtype, varGrnId, Convert.ToInt32(cmbConcern.SelectedValue),
-                            Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), varorginator, "", objGrnPO, dpGRNDate.Text, dpinvoicedate.Text
-                            , txtInvoiceno.Text, Convert.ToDouble(txtInvoiceamt.Text), txtLoadingCharge.Text, txtFrieghtamount.Text, Convert.ToInt32(cmbOrderType.SelectedValue), varpakage);
+                        } //objGrnP
+                        TRNS_GRN objTRNS_GRN = new TRNS_GRN();
+                        objTRNS_GRN.ViewType = varviewtype;
+                        objTRNS_GRN.ParaGRNID = varGrnId;
+                        objTRNS_GRN.ViewType = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objTRNS_GRN.ViewType = Convert.ToInt32(lblSupplierCode.Text);
+                        objTRNS_GRN.ViewType = Convert.ToInt32(lblschedule.Text);
+                        objTRNS_GRN.paraOriginator = varorginator;
+                        objTRNS_GRN.paraGRNDate = dpGRNDate.Text;
+                        objTRNS_GRN.paraINVDate = dpinvoicedate.Text;
+                        objTRNS_GRN.paraINVNo = txtInvoiceno.Text;
+                        objTRNS_GRN.ParaInvAmt = Convert.ToDouble(txtInvoiceamt.Text);
+                        objTRNS_GRN.ParaLoadingCharge = txtLoadingCharge.Text;
+                        objTRNS_GRN.ParaFrightCharge = txtFrieghtamount.Text;
+                        objTRNS_GRN.paraOrderType = Convert.ToInt32(cmbOrderType.SelectedValue);
+                        objTRNS_GRN.paraPAckage = varpakage;
+                        result = objspdservice.udfnGRNEntry(objTRNS_GRN, objGrnPO);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
