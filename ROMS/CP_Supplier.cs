@@ -1218,6 +1218,7 @@ namespace ROMS
                             {
                                 txtScheduleName.Text = "";
                             }
+                            else { txtScheduleName.Text = "Regular"; }
                         }
 
                         if (objDS.Tables[2].Rows.Count > 0)
@@ -4784,9 +4785,9 @@ namespace ROMS
                                     }
                                 }
                                 objspdservice.CloseConnection();
-
                                 udfnScheduleClear();
                                 btnAdd.Text = "Save";
+                                udfnSetRegularText();
                             }
                             break;
 
@@ -5920,6 +5921,7 @@ namespace ROMS
                             rbScheduleActive.Checked = true;
                             pnlScheduleStatus.Enabled = false;
                             cmbOrderType.SelectedValue = 144;
+                            udfnSetRegularText();
                         }
                         else
                         {
@@ -8375,6 +8377,27 @@ namespace ROMS
             }
             catch (Exception ex)
             {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnSetRegularText() {
+            try {
+                int varschedulenameflag = 0;
+                for (int i = 0; i < grdSupplierList.RowCount; i++)
+                {
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmsupname"].Value) == "Regular")
+                    {
+                        varschedulenameflag++;
+                    }
+                }
+                if (varschedulenameflag != 0)
+                {
+                    txtScheduleName.Text = "";
+                }
+                else { txtScheduleName.Text = "Regular"; }
+            }
+            catch (Exception ex) {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }

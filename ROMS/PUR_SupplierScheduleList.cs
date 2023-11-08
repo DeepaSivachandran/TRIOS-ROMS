@@ -149,7 +149,6 @@ namespace ROMS
         }
         public void udfnList()
         {
-
             try
             {
                 picLoader.Visible = true;
@@ -194,16 +193,18 @@ namespace ROMS
                             dgvSupplierScheduleList.Columns["City"].Width = 130;
                             dgvSupplierScheduleList.Columns["Status"].Width = 100;
                             dgvSupplierScheduleList.Columns["Order Type"].Width = 90;
+                            dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 90;
                             dgvSupplierScheduleList.Columns["Status"].Width = 80;
                             dgvSupplierScheduleList.Columns["Days"].Width = 90;
-                            dgvSupplierScheduleList.Columns["Pro Mapping"].Width = 90;
-                            dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 90; 
+                            dgvSupplierScheduleList.Columns["Pro. Mapping"].Width = 90;
+                            dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 80; 
                             dgvSupplierScheduleList.Columns["Scheduleid"].Visible = false;
                             dgvSupplierScheduleList.Columns["SupplierID"].Visible = false;
                             dgvSupplierScheduleList.Columns["ORDERTYPE"].Visible = false;
                             dgvSupplierScheduleList.Columns["MappedStatus"].Visible = false;
                             dgvSupplierScheduleList.Columns["STATUS CODE"].Visible = false;
                             dgvSupplierScheduleList.Columns["SP_ReturnApplicable"].Visible = false;
+                            dgvSupplierScheduleList.Columns["SPSC_OrderType"].Visible = false;
                             dgvSupplierScheduleList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             dgvSupplierScheduleList.Columns["Ret. Policy"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             dgvSupplierScheduleList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1205,15 +1206,15 @@ namespace ROMS
 
                 for (int i = 0; i < dgvSupplierScheduleList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "4" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Value) != "")
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "4" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Value) != "")
                     {
-                        dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.BackColor = Color.DarkViolet;
-                        dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.ForeColor = Color.White;
+                        dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Style.BackColor = Color.PaleVioletRed;
+                       dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Style.ForeColor = Color.White;
                     }
-                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "5" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Value) != "")
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "5" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Value) != "")
                     {
-                        dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.BackColor = Color.DarkGoldenrod;
-                        dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.ForeColor = Color.White;
+                        dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Style.BackColor = Color.DeepSkyBlue;
+                        dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Style.ForeColor = Color.White;
                     }
                     if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Status Code"].Value) == "1") // Active
                     {
@@ -1227,7 +1228,17 @@ namespace ROMS
                     }
                     if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["SP_ReturnApplicable"].Value) == "-1") // Not Defined
                     {
-                        dgvSupplierScheduleList.Rows[i].Cells["Ret. Policy"].Style.BackColor = Color.Yellow;
+                        dgvSupplierScheduleList.Rows[i].Cells["Ret. Policy"].Style.BackColor = Color.SteelBlue;
+                        dgvSupplierScheduleList.Rows[i].Cells["Ret. Policy"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["SPSC_OrderType"].Value) == "144") // Unscheduled order type
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Order Type"].Style.BackColor = Color.MediumSpringGreen;
+                    }
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Days"].Value) == "Unscheduled") // Unscheduled order type
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Days"].Style.BackColor = Color.Purple;
+                        dgvSupplierScheduleList.Rows[i].Cells["Days"].Style.ForeColor = Color.White;
                     }
                 }
             }

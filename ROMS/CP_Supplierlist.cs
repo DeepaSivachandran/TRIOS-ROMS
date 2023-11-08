@@ -201,7 +201,6 @@ namespace ROMS
 
         public void udfnList()
         {
-
             try
             {
                 picLoader.Visible = true;
@@ -266,9 +265,9 @@ namespace ROMS
                             grdSupplierList.Columns["S.No."].Width = 50;
                             grdSupplierList.Columns["Supplier"].Width = 350;
                            // grdSupplierList.Columns["Schedule Name"].Width = 150;
-                            grdSupplierList.Columns["Ret.Condition"].Width = 140;
                             grdSupplierList.Columns["GSTIN"].Width = 130;
                             grdSupplierList.Columns["Status"].Width = 80;
+                            grdSupplierList.Columns["Days"].Width = 90;
                             grdSupplierList.Columns["Scheduleid"].Visible = false;
                             grdSupplierList.Columns["SupplierID"].Visible = false;
                             grdSupplierList.Columns["STS"].Visible = false;
