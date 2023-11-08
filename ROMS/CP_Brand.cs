@@ -1538,7 +1538,27 @@ namespace ROMS
                                 grdSubGroup.DataSource = null;
                                 dtSubGroup.Rows.Add(false, grdSubGroupAdd.SelectedRows[0].Cells["Selected Product Group"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Selected Product Subgroup"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Products"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Group Id"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Sub Group Id"].Value);
                                 dtSubGroup.AcceptChanges();
+                                for (int i = 0; i < grdSubGroup.ColumnCount; i++)
+                                {
+                                    if (grdSubGroup.Columns[i].Name == "clmChk") { grdSubGroup.Columns.Remove("clmChk"); }
+                                    if (grdSubGroup.Columns[i].Name == "clmProductGroup") { grdSubGroup.Columns.Remove("clmProductGroup"); }
+                                    if (grdSubGroup.Columns[i].Name == "clmSubGroup") { grdSubGroup.Columns.Remove("clmSubGroup"); }
+                                    if (grdSubGroup.Columns[i].Name == "clmTotProducts") { grdSubGroup.Columns.Remove("clmTotProducts"); }
+                                }
                                 grdSubGroup.DataSource = dtSubGroup;
+                                grdSubGroup.Columns[0].HeaderText = "";
+                                grdSubGroup.Columns[0].Width = 30;
+                                grdSubGroup.Columns["Product Group"].Width = 150;
+                                grdSubGroup.Columns["Product Subgroup"].Width = 200;
+                                grdSubGroup.Columns["T.Pro"].Width = 60;
+                                grdSubGroup.Columns["Group Id"].Visible = false;
+                                grdSubGroup.Columns["Sub Group Id"].Visible = false;
+                                grdSubGroup.Columns["Product Group"].ReadOnly = true;
+                                grdSubGroup.Columns["Product Subgroup"].ReadOnly = true;
+                                grdSubGroup.Columns["T.Pro"].ReadOnly = true;
+                                grdSubGroup.Columns["Group Id"].ReadOnly = true;
+                                grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
+                                grdSubGroup.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSubGroupAdd.Rows.RemoveAt(this.grdSubGroupAdd.SelectedRows[0].Index);
 
                             }

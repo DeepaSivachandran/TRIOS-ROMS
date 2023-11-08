@@ -195,7 +195,7 @@ namespace ROMS
                             dgvSupplierScheduleList.Columns["Status"].Width = 100;
                             dgvSupplierScheduleList.Columns["Order Type"].Width = 90;
                             dgvSupplierScheduleList.Columns["Status"].Width = 80;
-                            dgvSupplierScheduleList.Columns["Days"].Width = 80;
+                            dgvSupplierScheduleList.Columns["Days"].Width = 90;
                             dgvSupplierScheduleList.Columns["Pro Mapping"].Width = 90;
                             dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 90; 
                             dgvSupplierScheduleList.Columns["Scheduleid"].Visible = false;
@@ -1205,12 +1205,6 @@ namespace ROMS
 
                 for (int i = 0; i < dgvSupplierScheduleList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "3" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Value) != "")
-                    {
-                        dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.BackColor = Color.DarkGoldenrod;
-                        dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.ForeColor = Color.White;
-                    }
-
                     if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "4" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Value) != "")
                     {
                         dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.BackColor = Color.DarkViolet;
@@ -1218,7 +1212,7 @@ namespace ROMS
                     }
                     if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "5" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Value) != "")
                     {
-                        dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.BackColor = Color.LimeGreen;
+                        dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.BackColor = Color.DarkGoldenrod;
                         dgvSupplierScheduleList.Rows[i].Cells["Pro Mapping"].Style.ForeColor = Color.White;
                     }
                     if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Status Code"].Value) == "1") // Active

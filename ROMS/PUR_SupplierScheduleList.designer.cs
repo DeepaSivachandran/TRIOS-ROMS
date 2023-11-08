@@ -48,8 +48,6 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -143,8 +141,6 @@
             this.pnlSupplierScheduleList.Controls.Add(this.lvSupplerName);
             this.pnlSupplierScheduleList.Controls.Add(this.LV_Supplier);
             this.pnlSupplierScheduleList.Controls.Add(this.DGV_SearchGrid);
-            this.pnlSupplierScheduleList.Controls.Add(this.label9);
-            this.pnlSupplierScheduleList.Controls.Add(this.textBox1);
             this.pnlSupplierScheduleList.Controls.Add(this.label6);
             this.pnlSupplierScheduleList.Controls.Add(this.textBox8);
             this.pnlSupplierScheduleList.Controls.Add(this.label7);
@@ -266,27 +262,6 @@
             this.DGV_SearchGrid.ColumnMinimumWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(256, 615);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 20);
-            this.label9.TabIndex = 1111226;
-            this.label9.Text = "Mapped";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.LimeGreen;
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(229, 617);
-            this.textBox1.MaxLength = 50;
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(27, 16);
-            this.textBox1.TabIndex = 1111225;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -314,9 +289,9 @@
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(36, 615);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 20);
+            this.label7.Size = new System.Drawing.Size(52, 20);
             this.label7.TabIndex = 1111219;
-            this.label7.Text = "Unschedule";
+            this.label7.Text = "Mapped";
             // 
             // textBox7
             // 
@@ -860,8 +835,6 @@
         private System.Windows.Forms.ErrorProvider ep_Supplierlist;
         private System.Windows.Forms.ComboBox cmbOrder;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.Label label10;
         public System.Windows.Forms.ComboBox cmbConcern;
