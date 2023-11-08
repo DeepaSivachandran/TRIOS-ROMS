@@ -29,12 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.lvProduct = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
@@ -63,6 +79,8 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblConcern = new System.Windows.Forms.Label();
             this.grpproductname = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -84,24 +102,6 @@
             this.lblMrp = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epDamageEntry = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lvProduct = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDamageEntry)).BeginInit();
@@ -150,6 +150,48 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 36;
+            // 
+            // lvProduct
+            // 
+            this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15});
+            this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvProduct.FullRowSelect = true;
+            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvProduct.HideSelection = false;
+            this.lvProduct.Location = new System.Drawing.Point(9, 135);
+            this.lvProduct.Name = "lvProduct";
+            this.lvProduct.Size = new System.Drawing.Size(1070, 220);
+            this.lvProduct.TabIndex = 111111142;
+            this.lvProduct.UseCompatibleStateImageBehavior = false;
+            this.lvProduct.View = System.Windows.Forms.View.Details;
+            this.lvProduct.Visible = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 120;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 0;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
             // 
             // txttotalitem
             // 
@@ -229,14 +271,14 @@
             this.grdDamageEntry.AllowUserToResizeRows = false;
             this.grdDamageEntry.BackgroundColor = System.Drawing.Color.White;
             this.grdDamageEntry.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDamageEntry.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdDamageEntry.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdDamageEntry.ColumnHeadersHeight = 30;
             this.grdDamageEntry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdDamageEntry.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -253,22 +295,22 @@
             this.clmMonth,
             this.clmYear,
             this.clmremove});
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdDamageEntry.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdDamageEntry.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdDamageEntry.EnableHeadersVisualStyles = false;
             this.grdDamageEntry.GridColor = System.Drawing.Color.White;
             this.grdDamageEntry.Location = new System.Drawing.Point(3, 157);
             this.grdDamageEntry.Name = "grdDamageEntry";
             this.grdDamageEntry.RowHeadersVisible = false;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.Black;
-            this.grdDamageEntry.RowsDefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.grdDamageEntry.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdDamageEntry.RowTemplate.Height = 25;
             this.grdDamageEntry.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdDamageEntry.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -465,6 +507,24 @@
             this.grpproductname.TabIndex = 3;
             this.grpproductname.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(472, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 20);
+            this.label4.TabIndex = 1111242;
+            this.label4.Text = "Rack";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(321, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 20);
+            this.label2.TabIndex = 1111241;
+            this.label2.Text = "Location";
+            // 
             // textBox2
             // 
             this.textBox2.Enabled = false;
@@ -508,7 +568,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1301, 36);
+            this.btnAdd.Location = new System.Drawing.Point(1313, 36);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
@@ -551,8 +611,10 @@
             // 
             // txtBatchNo
             // 
+            this.txtBatchNo.Enabled = false;
             this.txtBatchNo.Location = new System.Drawing.Point(774, 36);
             this.txtBatchNo.Name = "txtBatchNo";
+            this.txtBatchNo.ReadOnly = true;
             this.txtBatchNo.Size = new System.Drawing.Size(124, 27);
             this.txtBatchNo.TabIndex = 8;
             this.txtBatchNo.Enter += new System.EventHandler(this.TxtBatchNo_Enter);
@@ -581,7 +643,7 @@
             // 
             this.txtsuppliername.Location = new System.Drawing.Point(1082, 37);
             this.txtsuppliername.Name = "txtsuppliername";
-            this.txtsuppliername.Size = new System.Drawing.Size(216, 27);
+            this.txtsuppliername.Size = new System.Drawing.Size(228, 27);
             this.txtsuppliername.TabIndex = 11;
             this.txtsuppliername.Enter += new System.EventHandler(this.Txtsuppliername_Enter);
             this.txtsuppliername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsuppliername_KeyDown);
@@ -639,8 +701,10 @@
             // 
             // txtMrp
             // 
+            this.txtMrp.Enabled = false;
             this.txtMrp.Location = new System.Drawing.Point(640, 36);
             this.txtMrp.Name = "txtMrp";
+            this.txtMrp.ReadOnly = true;
             this.txtMrp.Size = new System.Drawing.Size(52, 27);
             this.txtMrp.TabIndex = 6;
             this.txtMrp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -670,66 +734,6 @@
             // epDamageEntry
             // 
             this.epDamageEntry.ContainerControl = this;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(321, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 20);
-            this.label2.TabIndex = 1111241;
-            this.label2.Text = "Location";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(472, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 20);
-            this.label4.TabIndex = 1111242;
-            this.label4.Text = "Rack";
-            // 
-            // lvProduct
-            // 
-            this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader15});
-            this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvProduct.FullRowSelect = true;
-            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvProduct.HideSelection = false;
-            this.lvProduct.Location = new System.Drawing.Point(9, 135);
-            this.lvProduct.Name = "lvProduct";
-            this.lvProduct.Size = new System.Drawing.Size(1070, 220);
-            this.lvProduct.TabIndex = 111111142;
-            this.lvProduct.UseCompatibleStateImageBehavior = false;
-            this.lvProduct.View = System.Windows.Forms.View.Details;
-            this.lvProduct.Visible = false;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 120;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 0;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 0;
             // 
             // INV_DamageEntry
             // 

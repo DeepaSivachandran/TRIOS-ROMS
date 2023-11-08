@@ -22,6 +22,9 @@ namespace ROMS
         private ToolTip tpQuantity = new ToolTip();
         private ToolTip tpSupplierName = new ToolTip();
         private ToolTip tpcompanyname = new ToolTip();
+        public string varPICode = "";
+        public string varUnitSymbol = "";
+        public string varUTID = "";
 
         public INV_DamageEntry()
         {
@@ -32,8 +35,21 @@ namespace ROMS
             try
             {
                 string varExpiryDate = "",varUnit="";
+                //if (varvalue[0] == "5")
+                //{
+                //    string[] varFirstList = varvalue[2].Split('|');
+                //    for (int i = 0; i < varFirstList.Length; i++)
+                //    {
+                //        string[] varSecondList = varFirstList[i].Split(',');
+                //    }
+                //}
+                varExpiryDate = txtsuppliername.Text.Trim();
+                string[] DMY = varExpiryDate.Split('/');
+                string Day = DMY[0];
+                string Month = DMY[1];
+                string Year = DMY[2];
                 //varExpiryDate = txtDay.Text.Trim() + txtMonth.Text.Trim() + txtYear.Text.Trim();
-                //grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1, txtProductName.Text.Trim(), txtProductName.Text.Trim(),txtMrp.Text.Trim(),varExpiryDate,txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnit,txtsuppliername.Text.Trim(),txtDay.Text.Trim(),txtMonth.Text.Trim(),txtYear.Text.Trim());
+                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(),txtMrp.Text.Trim(),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnitSymbol,txtsuppliername.Text.Trim(),Day,Month,Year);
                 udfnClear();
             }
             catch(Exception ex)
@@ -732,14 +748,14 @@ namespace ROMS
                     tpplno.Show("Please enter product name or P.I Code.", txtProductName, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtMrp.Text == "")
-                {
-                    epDamageEntry.SetError(txtMrp, "Please enter MRP.");
-                    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMRP.ShowAlways = true;
-                    tpMRP.Show("Please enter MRP.", txtMrp, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtMrp.Text == "")
+                //{
+                //    epDamageEntry.SetError(txtMrp, "Please enter MRP.");
+                //    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpMRP.ShowAlways = true;
+                //    tpMRP.Show("Please enter MRP.", txtMrp, 5000);
+                //    blnErrorFlag = true;
+                //}
                 //if (txtMonth.Text == "")
                 //{
                 //    //epDamageEntry.SetError(txtMonth, "Please enter Month.");
@@ -756,14 +772,14 @@ namespace ROMS
                 //    tpYear.Show("Please enter Year.", txtYear, 5000);
                 //    blnErrorFlag = true;
                 //}
-                if (txtBatchNo.Text == "")
-                {
-                    epDamageEntry.SetError(txtBatchNo, "Please enter batch No.");
-                    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBatchNo.ShowAlways = true;
-                    tpBatchNo.Show("Please enter batch No.", txtBatchNo, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtBatchNo.Text == "")
+                //{
+                //    epDamageEntry.SetError(txtBatchNo, "Please enter batch No.");
+                //    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpBatchNo.ShowAlways = true;
+                //    tpBatchNo.Show("Please enter batch No.", txtBatchNo, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (txtQuantity.Text == "")
                 {
                     epDamageEntry.SetError(txtQuantity, "Please enter quantity.");
@@ -816,23 +832,23 @@ namespace ROMS
         {
             try
             {
-                //if (e.RowIndex != -1)
-                //{
-                //    switch (grdDamageEntry.Columns[e.ColumnIndex].Name)
-                //    {
-                //        case "clmremove":
-                //            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //            if (dialogResult == DialogResult.Yes)
-                //            {
-                //                grdDamageEntry.Rows.RemoveAt(this.grdDamageEntry.SelectedRows[0].Index);
-                //                for (int i = 0; i < grdDamageEntry.RowCount; i++)
-                //                {
-                //                    grdDamageEntry.Rows[i].Cells["clmdsno"].Value = i + 1;
-                //                }
-                //            }
-                //            break;
-                //    }
-                //}
+                if (e.RowIndex != -1)
+                {
+                    switch (grdDamageEntry.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmremove":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdDamageEntry.Rows.RemoveAt(this.grdDamageEntry.SelectedRows[0].Index);
+                                for (int i = 0; i < grdDamageEntry.RowCount; i++)
+                                {
+                                    grdDamageEntry.Rows[i].Cells["clmdsno"].Value = i + 1;
+                                }
+                            }
+                            break;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -920,7 +936,71 @@ namespace ROMS
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            try
+            {
+                epDamageEntry.Clear();
+                bool blnErrorFlag = false;
 
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epDamageEntry.SetError(cmbConcern, "Please select concern");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcompanyname.ShowAlways = true;
+                    tpcompanyname.Show("Please select concern", cmbConcern, 5000);
+                    blnErrorFlag = true;
+                }
+                //if (Convert.ToString(txtTransferNo.Text).Trim() == "")
+                //{
+                //    errStockTransfer.SetError(txtTransferNo, "Please enter transfer no.");
+                //    txtTransferNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpTransferNo.ShowAlways = true;
+                //    tpTransferNo.Show("Please enter transfer no.", txtTransferNo, 5000);
+                //    blnErrorFlag = true;
+                //}
+                if (grdDamageEntry.Rows.Count < 1)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(53);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    epDamageEntry.Clear();
+                    btnSave.Enabled = false;
+                    udfnSave(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        public void udfnSave(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void BtnClose_Enter(object sender, EventArgs e)
         {
