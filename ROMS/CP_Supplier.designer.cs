@@ -245,6 +245,7 @@
             this.btnMappingsave = new System.Windows.Forms.Button();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
+            this.btnListPrint = new System.Windows.Forms.Button();
             this.DGV_SearchGridPro = new System.Windows.Forms.DataGridView();
             this.txtMappedOrderDay = new System.Windows.Forms.TextBox();
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
@@ -269,7 +270,7 @@
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnListPrint = new System.Windows.Forms.Button();
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -2857,11 +2858,26 @@
             this.grpSchedule.Controls.Add(this.label5);
             this.grpSchedule.Controls.Add(this.btn_Close2);
             this.grpSchedule.Controls.Add(this.grdViewSupplierMapping);
+            this.grpSchedule.Controls.Add(this.RPTViewer);
             this.grpSchedule.Location = new System.Drawing.Point(8, 1);
             this.grpSchedule.Name = "grpSchedule";
             this.grpSchedule.Size = new System.Drawing.Size(1313, 610);
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
+            // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(1000, 31);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(33, 33);
+            this.btnListPrint.TabIndex = 958827;
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
             // 
             // DGV_SearchGridPro
             // 
@@ -3109,7 +3125,7 @@
             this.btn_Close2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btn_Close2.Image = global::ROMS.Properties.Resources.close;
             this.btn_Close2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Close2.Location = new System.Drawing.Point(1210, 569);
+            this.btn_Close2.Location = new System.Drawing.Point(1210, 577);
             this.btn_Close2.Name = "btn_Close2";
             this.btn_Close2.Size = new System.Drawing.Size(75, 29);
             this.btn_Close2.TabIndex = 4;
@@ -3224,18 +3240,18 @@
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
             // 
-            // btnListPrint
+            // RPTViewer
             // 
-            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
-            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1000, 31);
-            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(33, 33);
-            this.btnListPrint.TabIndex = 958827;
-            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(37, 72);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1248, 504);
+            this.RPTViewer.TabIndex = 1111228;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
             // 
             // CP_Supplier
             // 
@@ -3528,5 +3544,6 @@
         public System.Windows.Forms.Button btnMappingUnselectAll;
         public System.Windows.Forms.Button btnMappingSelectAll;
         private System.Windows.Forms.Button btnListPrint;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
     }
 }

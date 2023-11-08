@@ -877,6 +877,7 @@ namespace ROMS
             try
             {
                 txtName.Text = "";
+                txtSPShortName.Text = "";
                 txtArea.Text = "";
                 txtaddress2.Text = "";
                 cmbState.SelectedIndex = 0;
@@ -3631,6 +3632,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
+                RPTViewer.Visible = false;
                 udfnMappedDropDownLoad();
                 mappedproductsfilter();
             }
@@ -8065,6 +8067,74 @@ namespace ROMS
             }
         }
 
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnListPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "",0, 0,0,"",0,0,0,0,0,0);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_Products.rpt");
+                    objBillreport.SetParameterValue("@parascheduleid", Convert.ToInt32(cmbOrderschedule.SelectedValue));
+                    objBillreport.SetParameterValue("@paraOrderID", Convert.ToInt32(cmbMappedorderrype.SelectedValue));
+                    objBillreport.SetParameterValue("@parasupplierid", Convert.ToInt32(pbSupplierid));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objvalidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                btnListPrint.Focus();
+                GC.Collect();
+            }
+        }
+        private void SetShowButtons()
+        {
+            RPTViewer.ShowCloseButton = true;
+            RPTViewer.ShowExportButton = true;
+            RPTViewer.ShowGotoPageButton = true;
+            RPTViewer.ShowGroupTreeButton = true;
+            RPTViewer.ShowPageNavigateButtons = true;
+            RPTViewer.ShowPrintButton = true;
+            RPTViewer.ShowRefreshButton = true;
+            RPTViewer.ShowTextSearchButton = true;
+            RPTViewer.ShowZoomButton = true;
+        }
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
