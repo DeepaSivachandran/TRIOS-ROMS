@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -2013,8 +2014,7 @@ namespace ROMS
 
 
         // added by venkat on 03/11/2023 for GRN Entry Save
-        public string udfnGRNEntry(int paraViewType, int ParaGRNID, int paraCompanyId, int paraSupplierID, int paraScheduleID
-            , string paraOriginator, string paraRemarks , DataTable ParaTRN_GRN_PO,string paraGRNDate,string paraINVDate,string paraINVNo,double ParaInvAmt,string ParaLoadingCharge,string ParaFrightCharge,int paraOrderType,string paraPAckage)
+        public string udfnGRNEntry( TRNS_GRN objTRNS_GRN)
         {
             string result = "";
             try
@@ -2022,24 +2022,24 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[TRNS_GRN]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@ParaGRNID", ParaGRNID);
-                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId); 
-                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", paraSupplierID);
-                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", paraScheduleID); 
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraRemarks", paraRemarks); 
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNS_GRN.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaGRNID", objTRNS_GRN.ParaGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRNS_GRN.paraCompanyId); 
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNS_GRN.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRNS_GRN.paraScheduleID); 
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_GRN.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRNS_GRN.paraRemarks); 
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
-                varSqlCommand.Parameters.AddWithValue("@ParaTRN_GRN_PO", ParaTRN_GRN_PO); 
-                varSqlCommand.Parameters.AddWithValue("@paraGRNDate", paraGRNDate); 
-                varSqlCommand.Parameters.AddWithValue("@paraINVDate", paraINVDate); 
-                varSqlCommand.Parameters.AddWithValue("@paraINVNo", paraINVNo); 
-                varSqlCommand.Parameters.AddWithValue("@ParaInvAmt", ParaInvAmt); 
-                varSqlCommand.Parameters.AddWithValue("@ParaLoadingCharge", ParaLoadingCharge); 
-                varSqlCommand.Parameters.AddWithValue("@ParaFrightCharge", ParaFrightCharge); 
-                varSqlCommand.Parameters.AddWithValue("@paraOrderType", paraOrderType); 
-                varSqlCommand.Parameters.AddWithValue("@paraPAckage", paraPAckage); 
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_GRN_PO", objTRNS_GRN.ParaTRN_GRN_PO); 
+                varSqlCommand.Parameters.AddWithValue("@paraGRNDate", objTRNS_GRN.paraGRNDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraINVDate", objTRNS_GRN.paraINVDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraINVNo", objTRNS_GRN.paraINVNo); 
+                varSqlCommand.Parameters.AddWithValue("@ParaInvAmt", objTRNS_GRN.ParaInvAmt); 
+                varSqlCommand.Parameters.AddWithValue("@ParaLoadingCharge", objTRNS_GRN.ParaLoadingCharge); 
+                varSqlCommand.Parameters.AddWithValue("@ParaFrightCharge", objTRNS_GRN.ParaFrightCharge); 
+                varSqlCommand.Parameters.AddWithValue("@paraOrderType", objTRNS_GRN.paraOrderType); 
+                varSqlCommand.Parameters.AddWithValue("@paraPAckage", objTRNS_GRN.paraPAckage); 
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

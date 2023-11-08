@@ -188,6 +188,10 @@ namespace ROMS
         {
             try
             {
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 objDT = objdserv.udfnCompanyList(2, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
@@ -227,6 +231,7 @@ namespace ROMS
                             MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
                             MainForm.objPUR_GRNEntry.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
                             MainForm.objPUR_GRNEntry.pbScheduleid = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPSCID"].Value.ToString());
+                            MainForm.objPUR_GRNEntry.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                             MainForm.objPUR_GRNEntry.btnSave.Text = "Update && Print";
                             MainForm.objPUR_GRNEntry.ShowDialog();
                             break;
