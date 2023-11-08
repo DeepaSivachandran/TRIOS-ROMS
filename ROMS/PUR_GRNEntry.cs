@@ -288,8 +288,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
+         
         private void TxtSupplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
