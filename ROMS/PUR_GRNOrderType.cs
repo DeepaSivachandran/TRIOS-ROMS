@@ -87,7 +87,7 @@ namespace ROMS
                         grdPurchaseOrder.Columns["S.No."].Width = 50;
                         grdPurchaseOrder.Columns["PO.No"].Width = 100;
                         grdPurchaseOrder.Columns["PO Date"].Width = 100;
-                        grdPurchaseOrder.Columns["Total Products"].Width = 50;
+                        grdPurchaseOrder.Columns["Total Products"].Width = 100;
                         grdPurchaseOrder.Columns["poid"].Visible = false;
                         grdPurchaseOrder.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdPurchaseOrder.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -188,7 +188,6 @@ namespace ROMS
                         MainForm.objPUR_GRNEntry.grdPODetails.Rows.Add(grdPurchaseOrder.Rows[i].Cells["PO.No"].Value, grdPurchaseOrder.Rows[i].Cells["PO Date"].Value, grdPurchaseOrder.Rows[i].Cells["Total Products"].Value, grdPurchaseOrder.Rows[i].Cells["poid"].Value);
                        VARFLAG = 1;
                     }
-                     
                 }
                 if (VARFLAG != 0)
                 {

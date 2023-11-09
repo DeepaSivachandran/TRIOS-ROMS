@@ -99,7 +99,7 @@ namespace ROMS
         private void GrdPurchaseorderlist_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-            { 
+            {
                 if (e.RowIndex != -1)
                 {
                     switch (grdPurchaseorderlist.Columns[e.ColumnIndex].Name)
@@ -508,7 +508,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,"",0,0,0,0,0,0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -777,11 +777,11 @@ namespace ROMS
             try
             {
                 if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
-                { 
+                {
                     udfnPOEntryLoad();
                 }
                 else
-                { 
+                {
                     udfnProductDetails();
                 }
             }
@@ -801,7 +801,7 @@ namespace ROMS
                 {
                     lblSupplierCode.Text = "0";
                     lblschedleCode.Text = "0";
-                } 
+                }
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -810,7 +810,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue),"0");
+                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), "0");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -855,7 +855,7 @@ namespace ROMS
                         }
                         else
                         {
-                            lblNoRecordsFound.Visible = true; 
+                            lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                             grdPurchaseorderlist.Columns["clmView"].Visible = false;
                         }
@@ -1303,7 +1303,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0,Convert.ToInt32(cmbstatus.SelectedValue),"0");
+                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), "0");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1320,7 +1320,7 @@ namespace ROMS
                             grdProDetails.Columns["Product"].Width = 300;
                             grdProDetails.Columns["Unit"].Width = 80;
                             grdProDetails.Columns["Quantity"].Width = 80;
-                            grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight; 
+                            grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             if (cbSupplier.Checked == true)
                             {
                                 grdProDetails.Columns["Supplier"].Width = 300;
@@ -1375,7 +1375,7 @@ namespace ROMS
                 if ((e.ColumnIndex == 0 || e.ColumnIndex == 1))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     return;
 
-                if (e.Value != DBNull.Value && e.Value == "")  /*If value is null*/
+                if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                 {
                     e.Paint(e.CellBounds, DataGridViewPaintParts.All
                         & ~(DataGridViewPaintParts.ContentForeground));
@@ -1655,7 +1655,7 @@ namespace ROMS
                     string result = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
-                    { 
+                    {
                         DataTable objPurchaseOrder = new DataTable();
                         objPurchaseOrder.TableName = "TRN_PO_Product";
                         objPurchaseOrder.Columns.Add("POPR_PRID", typeof(int));
@@ -1667,13 +1667,13 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
                         SPDataService objspdservice = new SPDataService();
                         result = "";
-                        result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0,"", 0, 0, "", "", "","", objPurchaseOrder, "", "", "","",0,"");
+                        result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", objPurchaseOrder, "", "", "", "", 0, "");
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnPOEntryLoad(); 
+                            udfnPOEntryLoad();
                         }
                         else
                         {
@@ -1715,11 +1715,11 @@ namespace ROMS
             {
 
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
-                    return; 
-                if ((e.ColumnIndex == 0  ))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                    return;
+                if ((e.ColumnIndex == 0))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     return;
 
-                if (e.Value != DBNull.Value && e.Value == "")  /*If value is null*/
+                if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                 {
                     e.Paint(e.CellBounds, DataGridViewPaintParts.All
                         & ~(DataGridViewPaintParts.ContentForeground));
@@ -1845,7 +1845,7 @@ namespace ROMS
                 if (DGV_SearchGridPro.ColumnCount > 1)
                 {
                     DGV_SearchGridPro.Columns["S.No."].ReadOnly = true;
-                   // DGV_SearchGridPro.Columns["clmView"].ReadOnly = true;
+                    // DGV_SearchGridPro.Columns["clmView"].ReadOnly = true;
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1895,7 +1895,7 @@ namespace ROMS
         private void DpPlanDate_ValueChanged(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 DateTime varmindate = DateTime.ParseExact(dpPlanDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dptoPlanDate.MinDate = varmindate;
             }

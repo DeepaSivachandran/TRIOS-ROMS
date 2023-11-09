@@ -71,8 +71,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
         }
 
@@ -104,12 +103,13 @@ namespace ROMS
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
+                this.ActiveControl = cmbConcern;
                 //********** To display a data in a grid  ****************** 
                 grdGRNList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, 0,Convert.ToInt32(cmbConcern.SelectedValue));
+                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, 0,Convert.ToInt32(cmbOrdertype.SelectedValue));
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -188,6 +188,10 @@ namespace ROMS
         {
             try
             {
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 objDT = objdserv.udfnCompanyList(2, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
@@ -227,6 +231,7 @@ namespace ROMS
                             MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
                             MainForm.objPUR_GRNEntry.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
                             MainForm.objPUR_GRNEntry.pbScheduleid = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPSCID"].Value.ToString());
+                            MainForm.objPUR_GRNEntry.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                             MainForm.objPUR_GRNEntry.btnSave.Text = "Update && Print";
                             MainForm.objPUR_GRNEntry.ShowDialog();
                             break;
@@ -261,6 +266,7 @@ namespace ROMS
             {
                 MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
                 MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
+                MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.Show();
             }
             catch (Exception ex)
@@ -623,6 +629,7 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
                 cmbOrdertype.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -658,7 +665,7 @@ namespace ROMS
                 if ((e.ColumnIndex == 0 || e.ColumnIndex == 2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     return;
 
-                if (e.Value != DBNull.Value && e.Value == "")  /*If value is null*/
+                if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                 {
                     e.Paint(e.CellBounds, DataGridViewPaintParts.All
                         & ~(DataGridViewPaintParts.ContentForeground));
@@ -900,6 +907,22 @@ namespace ROMS
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
                 udfnscrollVisible(DGV_SearchGrid, grdGRNList);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrdertype_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {
