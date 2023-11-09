@@ -118,7 +118,7 @@ namespace ROMS
                     varType = 1;
                 }
                 if (chkBulkUnit.Checked) { varBulkUnit = 1; }
-                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator, (txtInvoiceUnit.Text).Trim(),MainForm.pbUserID, varBulkUnit);
+                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator, (txtInvoiceUnit.Text).Trim(),MainForm.pbUserID, varBulkUnit,0);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -350,7 +350,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbInActive.Focus();
+                    chkBulkUnit.Focus();
                 }
             }
             catch (Exception ex)
@@ -365,7 +365,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    chkBulkUnit.Focus();
                 }
             }
             catch (Exception ex)
@@ -525,9 +525,16 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
+                    if (pnlStatus.Enabled==true)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
                     }
                     else { chkBulkUnit.Focus(); }
                 }
@@ -632,14 +639,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
-
-        private void RbInActive_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbInActive.Checked == true)
-            {
-
             }
         }
 

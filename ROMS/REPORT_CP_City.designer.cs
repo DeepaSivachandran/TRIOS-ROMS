@@ -28,23 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.ReportCity = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportCity = new System.Windows.Forms.Panel();
-            this.grpfilter = new System.Windows.Forms.GroupBox();
             this.btnListPrint = new System.Windows.Forms.Button();
+            this.grpfilter = new System.Windows.Forms.GroupBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ep_City = new System.Windows.Forms.ErrorProvider(this.components);
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_City)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportCity
@@ -79,22 +76,10 @@
             this.pnlReportCity.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportCity.Controls.Add(this.picLoader);
             this.pnlReportCity.Controls.Add(this.RPTViewer);
-            this.pnlReportCity.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportCity.Location = new System.Drawing.Point(0, 29);
             this.pnlReportCity.Name = "pnlReportCity";
-            this.pnlReportCity.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportCity.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportCity.TabIndex = 958788;
-            // 
-            // grpfilter
-            // 
-            this.grpfilter.Controls.Add(this.cmbStatus);
-            this.grpfilter.Controls.Add(this.lblStatus);
-            this.grpfilter.Location = new System.Drawing.Point(3, 3);
-            this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1348, 58);
-            this.grpfilter.TabIndex = 0;
-            this.grpfilter.TabStop = false;
-            this.grpfilter.Text = "Filter By";
-            this.grpfilter.Visible = false;
             // 
             // btnListPrint
             // 
@@ -112,6 +97,18 @@
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
             this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
             this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
+            // 
+            // grpfilter
+            // 
+            this.grpfilter.Controls.Add(this.cmbStatus);
+            this.grpfilter.Controls.Add(this.lblStatus);
+            this.grpfilter.Location = new System.Drawing.Point(3, 0);
+            this.grpfilter.Name = "grpfilter";
+            this.grpfilter.Size = new System.Drawing.Size(1348, 58);
+            this.grpfilter.TabIndex = 0;
+            this.grpfilter.TabStop = false;
+            this.grpfilter.Text = "Filter By";
+            this.grpfilter.Visible = false;
             // 
             // cmbStatus
             // 
@@ -178,10 +175,6 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // ep_City
-            // 
-            this.ep_City.ContainerControl = this;
-            // 
             // REPORT_CP_City
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -206,7 +199,6 @@
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_City)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,7 +213,6 @@
         private System.Windows.Forms.GroupBox grpfilter;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.ErrorProvider ep_City;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnListPrint;

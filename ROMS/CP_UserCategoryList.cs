@@ -92,23 +92,32 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             SPDataService objspservice = new SPDataService();
-                            varResult = "";
-                            MainForm.objCP_Verify = new CP_Verify();
-                            MainForm.objCP_Verify.ShowDialog();
-                            varUserID = MainForm.objCP_Verify.varUserId;
-                            if (MainForm.objCP_Verify.flag == 1)
+                            varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 0);
+                            objspservice.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
                             {
-                                varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0,0, "UserCategory Delete", varUserID);
-                                objspservice.CloseConnection();
-                                if (varResult.Split('~')[0] == "3")
+                                if (varResult.Split('~')[1] == "1")
                                 {
-                                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    udfnList();
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
+                                    {
+                                        objspservice = new SPDataService();
+                                        varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 1);
+                                        objspservice.CloseConnection();
+                                        if (varResult.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                    }
                                 }
-                                else
-                                {
-                                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                     }
@@ -190,6 +199,7 @@ namespace ROMS
                             grdUserCategoryList.Columns["ID"].Visible = false;
                             grdUserCategoryList.Columns["StatusID"].Visible = false;
                             grdUserCategoryList.Columns["DefaultID"].Visible = false;
+                            grdUserCategoryList.Columns["CT_SINO"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].Width = 50;
                             grdUserCategoryList.Columns["Order No."].Width = 80;
                             grdUserCategoryList.Columns["Employee Category"].Width = 200;
@@ -692,6 +702,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnView.Enabled = true;
+                btnView.Focus();
             }
         }
 
