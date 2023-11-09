@@ -38,6 +38,7 @@ namespace ROMS
         public int varCmbFlag = 0;
         public int varCompanyId = 0;
         public int varCheckAllFlag = 0;
+        public int varModifiedFlag = 0;
 
         public CP_RackGroup()
         {
@@ -544,6 +545,7 @@ namespace ROMS
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    varModifiedFlag = 0;
                     if (btnSave.Text == "Save")
                     {
                         udfnClear();
@@ -692,17 +694,31 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
+                if (varModifiedFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();
                         MainForm.objCP_RackGroupList.Show();
                         MainForm.objCP_RackGroupList.udfnList();
-                    }
+                    }else
+                    { btnSave.Focus(); }
                 }
-                else { this.Close(); }
+                else
+                {
+                    if (varCloseFlag == 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                            MainForm.objCP_RackGroupList.Show();
+                            MainForm.objCP_RackGroupList.udfnList();
+                        }
+                    }
+                    else { this.Close(); }
+                }
             }
             catch (Exception ex)
             {
@@ -715,7 +731,6 @@ namespace ROMS
             try
             {
                 udfnclose();
-
             }
             catch (Exception ex)
             {
@@ -878,6 +893,7 @@ namespace ROMS
                                 dtEmployee.AcceptChanges();
                                 grdEmployee.DataSource = dtEmployee;
                                 BtnViewEmployee_Click(sender, e);
+                                varModifiedFlag = 1;
                             }
                             break;
                     }
@@ -1487,6 +1503,7 @@ namespace ROMS
                                 grdSelectedRack.Rows.Add(Convert.ToInt32(grdSelectedRack.Rows.Count) + 1, grdRack.Rows[i].Cells["Stock Location"].Value, grdRack.Rows[i].Cells["Rack"].Value, grdRack.Rows[i].Cells["Description"].Value, 
                                     grdRack.Rows[i].Cells["Total Products"].Value, grdRack.Rows[i].Cells["ID"].Value);
                             }
+                            varModifiedFlag = 1;
                         }
 
                     }
@@ -1604,6 +1621,7 @@ namespace ROMS
 
                                 dtRack.AcceptChanges();
                                 grdRack.DataSource = dtRack;
+                                varModifiedFlag = 1;
                             }
                             break;
 
@@ -1817,6 +1835,7 @@ namespace ROMS
                                 grdStaffDetails.Rows.Add(Convert.ToInt32(grdStaffDetails.Rows.Count) + 1, grdEmployee.Rows[i].Cells["Employee Code"].Value, grdEmployee.Rows[i].Cells["Employee Name"].Value,
                                 grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value, Convert.ToString(grdEmployee.Rows[i].Cells["CT_SINO"].Value));
                             }
+                            varModifiedFlag = 1;
                         }
                     }
                     udfnEmpGridRemove();

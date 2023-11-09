@@ -1323,9 +1323,25 @@ namespace ROMS
 
         private void TxtRack_KeyDown(object sender, KeyEventArgs e)
         {
-            try {
-                if (e.KeyCode == Keys.Enter) {
-                    btnSave.Focus();
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if(pnlStatus.Enabled==true)
+                    {
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)

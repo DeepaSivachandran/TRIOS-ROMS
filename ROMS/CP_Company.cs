@@ -46,6 +46,8 @@ namespace ROMS
         private ToolTip tpBranchName = new ToolTip();
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
+        public int varCompanyModifiedFlag = 0;
+        public int varContactModifiedFlag = 0;
         public string varupdate = "0";
         public string varcompanyid="0",varstatusid ="0", varcontactcompanyid = "0", varSlNo = "0", varCMSlNo = "0", varstatus="";
         public static int varCloseFlag = 0, varflag = 0, varstatusidContact = 1;
@@ -107,17 +109,47 @@ namespace ROMS
         {
             try
             {
-                if (varupdate == "0")
+                if (varCompanyModifiedFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();
+                        MainForm.objCP_Companylist.udfnList();
+                    }
+                    else
+                    {
+                        tcCompanyDetails.SelectedIndex = 0;
+                    }
+                }
+                else if(varContactModifiedFlag==1)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objCP_Companylist.Show();
+                        MainForm.objCP_Companylist.udfnList();
+                    }
+                    else
+                    {
+                        tcCompanyDetails.SelectedIndex = 1;
                     }
                 }
                 else
                 {
-                    this.Close();
+                    if (varupdate == "0")
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -393,7 +425,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAdd.Focus();
+                    if(pnlBStatus.Enabled==true)
+                    {
+                        if(rbBankActive.Checked==true)
+                        {
+                            rbBankActive.Focus();
+                        }
+                        else
+                        {
+                            rbBankInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnAdd.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -562,6 +608,7 @@ namespace ROMS
                         if (varSlNo == "0")
                         {
                             grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(),varstatusid);
+                            varCompanyModifiedFlag = 1;
                         }
                         else {
                             for (int i = 0; i < grdBankDetails.RowCount; i++) {
@@ -572,6 +619,7 @@ namespace ROMS
                                     grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
                                     grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
                                     grdBankDetails.Rows[i].Cells["clmStatus"].Value = varstatusid;
+                                    varCompanyModifiedFlag = 1;
                                 }
                             }
                         }
@@ -2117,6 +2165,7 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varCompanyModifiedFlag = 0;
                         this.ActiveControl = tcCompanyDetails; 
                         MainForm.objCP_Companylist.udfnList();
                         txtCompanyName.Focus();
@@ -3103,6 +3152,7 @@ namespace ROMS
                         if (varCMSlNo == "0")
                         {
                             grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, varvalue, txtName.Text, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, txtStaffName.Text, Convert.ToString(cmbTransactionType.SelectedValue), varstatusidContact,varstatus);
+                            varContactModifiedFlag = 1;
                         }
                         else {
                             for (int i = 0; i < grdContactManager.RowCount; i++)
@@ -3120,6 +3170,7 @@ namespace ROMS
                                     grdContactManager.Rows[i].Cells["clmStatusContact"].Value = varstatus;
                                     grdContactManager.Rows[i].Cells["clmStatusContactID"].Value = varstatusidContact;
                                     grdContactManager.Rows[i].Cells["clmid"].Value = Convert.ToString(cmbTransactionType.SelectedValue);
+                                    varContactModifiedFlag = 1;
                                 }
                             }
                         }
@@ -3282,6 +3333,7 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    varContactModifiedFlag = 0;
                     udfnClear();
                     MainForm.objCP_Companylist.udfnList();
                     if (btnSave.Text == "Update")
@@ -3586,6 +3638,7 @@ namespace ROMS
                                 {
                                     grdContactManager.Rows[i].Cells["clmContsno"].Value = i + 1;
                                 }
+                                varContactModifiedFlag = 1;
                             }
                             break;
                         case "clmCMEdit":
@@ -3644,6 +3697,7 @@ namespace ROMS
                                 {
                                     grdBankDetails.Rows[i].Cells["clmsno"].Value = i + 1;
                                 }
+                                varCompanyModifiedFlag = 1;
                             }
                             break;
                         case "clmEdit":
@@ -4283,7 +4337,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAddContact.Focus();
+                    if (pnlStatusContact.Enabled == true)
+                    {
+                        if(rbActiveContact.Checked==true)
+                        {
+                            rbActiveContact.Focus();
+                        }
+                        else
+                        {
+                            rbInactiveContact.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnAddContact.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -4317,6 +4385,89 @@ namespace ROMS
             }
         }
 
+        private void RbActiveContact_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActiveContact.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActiveContact_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAddContact.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActiveContact_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActiveContact.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactiveContact_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactiveContact.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactiveContact_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAddContact.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactiveContact_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactiveContact.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void RbInactive_Enter(object sender, EventArgs e)
         {
@@ -4448,10 +4599,21 @@ namespace ROMS
                 }
                 else
                 {
-                    //udfnClear();
-                    udfntextboxcolor();
-                    //this.ActiveControl = txtName;
-                    this.ActiveControl = cmbTransactionType;
+                    if (varCompanyModifiedFlag == 1)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            //udfnClear();
+                            udfntextboxcolor();
+                            //this.ActiveControl = txtName;
+                            this.ActiveControl = cmbTransactionType;
+                        }
+                        else
+                        {
+                            tcCompanyDetails.SelectedIndex = 0;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -4461,7 +4623,6 @@ namespace ROMS
             }
             finally
             {
-                // tpCompanyName.Active = false; 
             }
         }
 
