@@ -1208,19 +1208,19 @@ namespace ROMS
         {
             try
             {
-                //if (txtSupplier.Text == "")
-                //{
-                //    errPO.SetError(txtSupplier, "Please enter supplier");
-                //    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpSuppliername.ShowAlways = true;
-                //    tpSuppliername.Show("Please enter supplier.", txtSupplier, 5000);
-                //}
-                //else
-                //{
+                if (txtSupplier.Text == "")
+                {
+                    errPO.SetError(txtSupplier, "Please enter supplier");
+                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSuppliername.ShowAlways = true;
+                    tpSuppliername.Show("Please enter supplier.", txtSupplier, 5000);
+                }
+                else
+                {
                     errPO.Clear();
                     txtSupplier.BackColor = Color.White;
                     tpSuppliername.Active = false;
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -1344,6 +1344,8 @@ namespace ROMS
                     VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                 }
                 txtProductName.BackColor = Color.LemonChiffon;
+                DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                GrdPendingorder_DataBindingComplete(grdPendingorder, args);
             }
             catch (Exception ex)
             {
