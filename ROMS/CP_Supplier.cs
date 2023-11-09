@@ -8076,7 +8076,7 @@ namespace ROMS
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
-                RPTViewer.Visible = false;
+                RPTViewer.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
