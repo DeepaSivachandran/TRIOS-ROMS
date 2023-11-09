@@ -35,8 +35,7 @@ namespace ROMS
         {
             try
             {
-                tbSupplierDetails.Enabled = false;
-                dpPlanDate.MinDate= DateTime.Today;
+                tbSupplierDetails.Enabled = false; 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
@@ -45,6 +44,10 @@ namespace ROMS
                 this.ActiveControl = cmbConcern;
                 udfnDropdownLoad();
                 udfnEditLoad();
+                DataService objDservice = new DataService();
+                string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
+                objDservice.CloseConnection();
+                dpPlanDate.Text = vardate;
                 if (VarStatusId == 10)
                 {
                     btnSave.Enabled = true;
@@ -738,8 +741,8 @@ namespace ROMS
                 }
                 MainForm.objPUR_BulkUnit = new PUR_BulkUnit();
                 MainForm.objPUR_BulkUnit.ShowDialog();
-                udfnDropdownLoad();
-                cmbConcern.SelectedValue = varcmbconcernid;
+                //udfnDropdownLoad();
+                //cmbConcern.SelectedValue = varcmbconcernid;
                 // cmbUnit.SelectedValue = varcmbunitid;
             }
             catch (Exception ex)
