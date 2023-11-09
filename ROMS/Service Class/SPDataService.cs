@@ -619,7 +619,7 @@ namespace ROMS
             }
             return varResult;
         }
-        public DataSet udfnStockTransferList(int paraViewType,int paraStockTransferID, int paraConcern,int paraSLID,int paraDLID,int paraPRID,int paraStatus)
+        public DataSet udfnStockTransferList(int paraViewType,int paraStockTransferID, int paraConcern,int paraSLID,int paraDLID,int paraPRID,int paraStatus,string ParaSTFromDate,string ParaSTToDate)
         {
             DataSet ds = new DataSet();
             try
@@ -634,6 +634,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDLID", paraDLID);
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", paraPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@ParaSTFromDate", ParaSTFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaSTToDate", ParaSTToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
