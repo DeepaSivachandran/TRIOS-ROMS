@@ -877,6 +877,7 @@ namespace ROMS
             try
             {
                 txtName.Text = "";
+                txtSPShortName.Text = "";
                 txtArea.Text = "";
                 txtaddress2.Text = "";
                 cmbState.SelectedIndex = 0;
@@ -3632,6 +3633,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
+                RPTViewer.Visible = false;
                 udfnMappedDropDownLoad();
                 mappedproductsfilter();
             }
@@ -5109,6 +5111,7 @@ namespace ROMS
                 grdFinalSupplierMapping.ClearSelection();
                 lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
                 txtmappingproductsearch2.Text = "";
+                grdFinalSupplierMapping.Columns[0].ReadOnly = false;
             }
         }
         public void udfnSubGroupAdd()
@@ -5275,8 +5278,9 @@ namespace ROMS
                             break;
                     }
                 }
-                udfnGetProductCount(0);
-                udfnGetMappedProductCount(0);
+                int varPRID = Convert.ToInt16(grdFinalSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
+                udfnGetMappedProductCount(varPRID);
+                // udfnGetProductCount(0);       
             }
             catch (Exception ex)
             {
@@ -7555,9 +7559,7 @@ namespace ROMS
             try
             {
                 int varProId = Convert.ToInt16(grdSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
-                int varPRID = Convert.ToInt16(grdFinalSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
                 udfnGetProductCount(varProId);
-                udfnGetMappedProductCount(varPRID);
             }
             catch (Exception ex)
             {
@@ -8067,6 +8069,78 @@ namespace ROMS
             }
         }
 
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnListPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "",0, 0,0,"",0,0,0,0,0,0);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_Products.rpt");
+                    objBillreport.SetParameterValue("@parascheduleid", Convert.ToInt32(cmbOrderschedule.SelectedValue));
+                    objBillreport.SetParameterValue("@paraOrderID", Convert.ToInt32(cmbMappedorderrype.SelectedValue));
+                    objBillreport.SetParameterValue("@parasupplierid", Convert.ToInt32(pbSupplierid));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objvalidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                btnListPrint.Focus();
+                GC.Collect();
+            }
+        }
+        private void GrdFinalSupplierMapping_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdFinalSupplierMapping.IsCurrentCellDirty)
+                {
+                    grdFinalSupplierMapping.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -8321,11 +8395,18 @@ namespace ROMS
                 }
                 if (varProductCount > 0) {
                     btnRemove.Enabled = false;
-                    grdFinalSupplierMapping.Columns[0].ReadOnly = true;
+                    BtnaddMove.Enabled = true;
+                    if (grdFinalSupplierMapping.RowCount > 0)
+                    {
+                        grdFinalSupplierMapping.Columns[0].ReadOnly = true;
+                    }
                 }
                 else {
                     btnRemove.Enabled = true;
-                    grdFinalSupplierMapping.Columns[0].ReadOnly = false;
+                    if (grdFinalSupplierMapping.RowCount > 0)
+                    {
+                        grdFinalSupplierMapping.Columns[0].ReadOnly = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -8346,7 +8427,7 @@ namespace ROMS
                         varMappedProductCount++;
                     }
                 }
-                if (Convert.ToBoolean(grdFinalSupplierMapping.SelectedRows[0].Cells[0].Value) == true)
+                if (Convert.ToBoolean(grdFinalSupplierMapping.SelectedRows[0].Cells[0].EditedFormattedValue) == true)
                 {
                     DataRow dr = dtSubGroupMapping.Select("PRODUCTID=" + varPRID).FirstOrDefault();
                     if (dr != null)
@@ -8367,11 +8448,12 @@ namespace ROMS
                 if (varMappedProductCount > 0)
                 {
                     BtnaddMove.Enabled = false;
+                    btnRemove.Enabled = true;
                     grdSupplierMappingLoad.Columns[0].ReadOnly = true;
                 }
                 else
                 {
-                    BtnaddMove.Enabled = true;
+                    btnRemove.Enabled = false;
                     grdSupplierMappingLoad.Columns[0].ReadOnly = false;
                 }
             }

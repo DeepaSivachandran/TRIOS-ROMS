@@ -703,6 +703,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnView.Enabled = true;
+                btnView.Focus();
+            }
         }
 
         private void BtnView_Enter(object sender, EventArgs e)
