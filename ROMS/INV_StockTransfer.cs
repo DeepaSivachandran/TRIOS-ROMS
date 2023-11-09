@@ -1602,7 +1602,7 @@ namespace ROMS
                         if (objDT.Tables[0].Rows.Count > 0)
                         {
                             cmbDRack.Enabled = true;
-                            cmbDRack.ValueMember = "STK_RKID";
+                            cmbDRack.ValueMember = "RKID";
                             cmbDRack.DisplayMember = "RK_ShortName";
                             cmbDRack.DataSource = objDT.Tables[0];
                         }
