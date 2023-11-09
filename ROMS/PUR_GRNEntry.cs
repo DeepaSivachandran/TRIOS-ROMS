@@ -939,7 +939,7 @@ namespace ROMS
                     {
                         DataSet objDsSupplierId = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        objDsSupplierId = objDserv.udfnSupplierList(11, 0, 0, 0, 0, varSupplierName, 0, 0, 0, "", 0, 0, 0, 0, 0, 0);
+                        objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0);
                         objDserv.CloseConnection();
                         if (objDsSupplierId != null)
                         {
