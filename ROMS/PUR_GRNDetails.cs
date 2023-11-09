@@ -17,7 +17,7 @@ namespace ROMS
         ToolTip tpProduct = new ToolTip();
         ToolTip tpconcern = new ToolTip();
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
-            , varorderSaleQty = "", varorderqty = "", addproductid = "" , varunitid = "0", varDamage="0", varReturnDC="0";
+            , varorderSaleQty = "", varorderqty = "", addproductid = "" , varunitid = "0", varDamage="0", varReturnDC="0", pbGRNId="0";
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -40,6 +40,7 @@ namespace ROMS
             {
                 this.ActiveControl = cmbConcern;
                 udfnDropdownLoad();
+                udfnEditLoad();
             }
             catch (Exception ex)
             {
@@ -67,10 +68,7 @@ namespace ROMS
                         cmbConcern.DataSource = objDT.Tables[0];
                     }
                 }
-            } 
-            DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
-            objDataBind = null;
+            }  
         }
 
         private void CmbConcern_Enter(object sender, EventArgs e)
@@ -1073,6 +1071,22 @@ namespace ROMS
             }
         }
 
+        private void TxtInvoiceamt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void BtnAdd_Leave(object sender, EventArgs e)
         {
             try
@@ -1377,6 +1391,51 @@ namespace ROMS
                 {
                     btnDamage.Enabled = true;
                 }
+            }
+        }  
+        public void udfnEditLoad()
+        {
+            try
+            {
+                if (pbGRNId != "0")
+                {
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objdserv.udfnGrnListLoad(2, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0);
+                    objdserv.CloseConnection(); 
+
+
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                cmbConcern.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_COMID"]);
+                                dpGrnDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
+                                txtgrnno.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_No"]);
+                                txtSupplier.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SUPPLIER"]);
+                                lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_SPID"]);
+                                cmbOrderType.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_OrderType"]);
+                                lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_SPSCID"]);
+                                dpinvoicedate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceDate"]);
+                                txtInvoiceno.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceNo"]);
+                                txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceAmnt"]); 
+                                udfnsupplierLoad();
+                                LV_Supplier.Visible = false;
+                                cmbConcern.Enabled = false;
+                                dpGrnDate.Enabled = false;
+                                txtSupplier.Enabled = false;
+                                cmbOrderType.Enabled = false;
+                            } 
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

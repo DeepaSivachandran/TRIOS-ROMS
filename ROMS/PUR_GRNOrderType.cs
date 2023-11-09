@@ -87,7 +87,7 @@ namespace ROMS
                         grdPurchaseOrder.Columns["S.No."].Width = 50;
                         grdPurchaseOrder.Columns["PO.No"].Width = 100;
                         grdPurchaseOrder.Columns["PO Date"].Width = 100;
-                        grdPurchaseOrder.Columns["Total Products"].Width = 50;
+                        grdPurchaseOrder.Columns["Total Products"].Width = 100;
                         grdPurchaseOrder.Columns["poid"].Visible = false;
                         grdPurchaseOrder.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdPurchaseOrder.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
