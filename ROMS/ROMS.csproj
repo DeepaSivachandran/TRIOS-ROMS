@@ -184,6 +184,7 @@
     <Compile Include="CP_Employee.designer.cs">
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_Damage.cs" />
     <Compile Include="Reports\RPT_CP_Product_Min_Sales_Qty.cs">
       <DependentUpon>RPT_CP_Product_Min_Sales_Qty.rpt</DependentUpon>
       <AutoGen>True</AutoGen>

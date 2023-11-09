@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -645,6 +646,40 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return ds;
+        }
+        //Added By Sathish On:-09-11-2023
+        public string udfnDamageEntry(TRN_Damage objTRN_Damage)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_DAMAGE]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Damage.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDamageEntryID", objTRN_Damage.paraDamageEntryID);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objTRN_Damage.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferDate", objTRN_Damage.paraTransferDate);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationID", objTRN_Damage.paraLocationID);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_Damage.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Damage.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Damage.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraDamageEntry", objTRN_Damage.paraDamageEntry);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
         }
         public DataSet udfnStatelist(int paraViewType, int paraStatus)
         {

@@ -1247,15 +1247,15 @@ namespace ROMS
                             {
                                 grdStockTransfer.Rows[i].Cells["clmdsno"].Value = i + 1;
                             }
-                                for (int i = 0; i < dtStock.Rows.Count; i++)
+                            for (int i = 0; i < dtStock.Rows.Count; i++)
+                            {
+                                if (Convert.ToInt32(dtStock.Rows[i]["STK_PRID"]) == Convert.ToInt32(varProductID) && Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo && Convert.ToString(dtStock.Rows[i]["STK_Source_RKID"]) == varSRKID)
                                 {
-                                    if (Convert.ToInt32(dtStock.Rows[i]["STK_PRID"]) == Convert.ToInt32(varProductID) && Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo && Convert.ToString(dtStock.Rows[i]["STK_Source_RKID"]) == varSRKID)
-                                    {
-                                        dtStock.Rows[i].Delete();
-                                        dtStock.AcceptChanges();
-                                    }
+                                    dtStock.Rows[i].Delete();
+                                    dtStock.AcceptChanges();
                                 }
                             }
+                        }
                         break;
                     }
                 }
@@ -1668,6 +1668,48 @@ namespace ROMS
             try
             {
                 cmbDRack.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemarks_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemarks.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemarks_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnRemarks.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemarks_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemarks.BackColor = Color.White;
             }
             catch (Exception ex)
             {
