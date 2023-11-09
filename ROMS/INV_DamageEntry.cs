@@ -34,23 +34,13 @@ namespace ROMS
         {
             try
             {
-                string varExpiryDate = "",varUnit="";
-                //if (varvalue[0] == "5")
-                //{
-                //    string[] varFirstList = varvalue[2].Split('|');
-                //    for (int i = 0; i < varFirstList.Length; i++)
-                //    {
-                //        string[] varSecondList = varFirstList[i].Split(',');
-                //    }
-                //}
+                string varExpiryDate = "",Day = "", Month = "", Year = ""; ;
                 varExpiryDate = txtsuppliername.Text.Trim();
                 string[] DMY = varExpiryDate.Split('/');
-                string Day = DMY[0];
-                string Month = DMY[1];
-                string Year = DMY[2];
-                //varExpiryDate = txtDay.Text.Trim() + txtMonth.Text.Trim() + txtYear.Text.Trim();
+                Day = DMY[0];
+                Month = DMY[1];
+                Year = DMY[2];
                 grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(),txtMrp.Text.Trim(),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnitSymbol,txtsuppliername.Text.Trim(),Day,Month,Year);
-                udfnClear();
             }
             catch(Exception ex)
             {
@@ -64,9 +54,6 @@ namespace ROMS
             {
                 txtProductName.Text = "";
                 txtMrp.Text = "";
-                //txtDay.Text = "";
-                //txtMonth.Text = "";
-                //txtYear.Text = "";
                 txtBatchNo.Text = "";
                 txtQuantity.Text = "";
                 txtsuppliername.Text = "";
