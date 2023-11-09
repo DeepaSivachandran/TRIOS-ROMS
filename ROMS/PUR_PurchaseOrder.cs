@@ -37,10 +37,6 @@ namespace ROMS
             {
                 tbSupplierDetails.Enabled = false;
 
-                DataService objDservice = new DataService();
-                string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
-                objDservice.CloseConnection();
-                dpPlanDate.Text = vardate;
 
               //  dpPlanDate.MinDate = DateTime.Today;
                 DataBind objDataBind = new DataBind();
@@ -49,7 +45,11 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=4 AND STSID in (8,9)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 this.ActiveControl = cmbConcern;
-                udfnDropdownLoad();
+                udfnDropdownLoad(); 
+                DataService objDservice = new DataService();
+                string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
+                objDservice.CloseConnection();
+                dpPlanDate.Text = vardate;
                 udfnEditLoad();
                 if (VarStatusId == 10)
                 {
