@@ -920,13 +920,17 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Status")
+                            if (col.Name == "S.No." || col.Name == "Status" )
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if (col.Name == "Concern" || col.Name == "Source" || col.Name == "Destination")
+                            else if (col.Name == "Concern" || col.Name == "Entry Date" || col.Name == "Entry No." || col.Name=="Created By" || col.Name == "Total Products")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            else if (col.Name == "Supplier" || col.Name == "City" )
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
                             }
                             else
                             {
@@ -1121,6 +1125,7 @@ namespace ROMS
                 udfnListViewSupplier();
                 btnPrint.Focus();
             }
+
             catch (Exception ex)
             {
                 objError = new DataError();
