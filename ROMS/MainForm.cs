@@ -92,6 +92,7 @@ namespace ROMS
         public static CP_Representative objCP_Representative;
         public static CP_EmployeeList objCP_EmployeeList;
         public static CP_Employee objCP_Employee;
+        public static CP_SupplierPopup objCP_SupplierPopup;
         public static ReportLoad objReportLoad;
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
@@ -149,6 +150,7 @@ namespace ROMS
         public static PUR_PurchaseQueue objPUR_PurchaseQueue;
         public static PUR_GRNApprovalVerify objPUR_GRNApprovalVerify;
         public static PUR_Calculator objPUR_Calculator;
+        public static PUR_POScheduleSummary objPUR_POScheduleSummary;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;

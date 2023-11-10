@@ -3183,7 +3183,6 @@
             // RPTViewer
             // 
             this.RPTViewer.ActiveViewIndex = -1;
-            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
             this.RPTViewer.Location = new System.Drawing.Point(37, 72);
             this.RPTViewer.Name = "RPTViewer";
@@ -3221,9 +3220,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(0, 29);
+            this.picLoader.Location = new System.Drawing.Point(22, 41);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1322, 602);
+            this.picLoader.Size = new System.Drawing.Size(1309, 596);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958807;
             this.picLoader.TabStop = false;

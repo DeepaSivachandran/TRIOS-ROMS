@@ -186,6 +186,18 @@
     </Compile>
     <Compile Include="Model\TRNS_GoodsOutward.cs" />
     <Compile Include="Model\TRNS_GRN.cs" />
+    <Compile Include="CP_SupplierPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SupplierPopup.designer.cs">
+      <DependentUpon>CP_SupplierPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POScheduleSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POScheduleSummary.designer.cs">
+      <DependentUpon>PUR_POScheduleSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_CP_Product_Min_Sales_Qty.cs">
       <DependentUpon>RPT_CP_Product_Min_Sales_Qty.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1259,6 +1271,12 @@
     <EmbeddedResource Include="PUR_Calculator.resx">
       <DependentUpon>PUR_Calculator.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_SupplierPopup.resx">
+      <DependentUpon>CP_SupplierPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POScheduleSummary.resx">
+      <DependentUpon>PUR_POScheduleSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseQueue.resx">
       <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
     </EmbeddedResource>
@@ -1803,6 +1821,7 @@
       <DependentUpon>ReportLoad.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\add - left.png" />
+    <None Include="Resources\clipboard.png" />
     <Content Include="Resources\Issue.png" />
     <Content Include="Resources\RPT_PUR_SupplierProductList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

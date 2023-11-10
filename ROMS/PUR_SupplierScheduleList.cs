@@ -68,9 +68,9 @@ namespace ROMS
                 {
                     tsbNew_Click(sender, e);
                 }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.P))
                 {
-                    // tsbEdit_Click(sender, e);
+                     TsbList_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -1585,6 +1585,26 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void TsbList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                MainForm.objPUR_POScheduleSummary = new PUR_POScheduleSummary();
+                MainForm.objPUR_POScheduleSummary.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+            finally
+            {
+                picLoader.Visible = false;
+            }
         }
     }
 }

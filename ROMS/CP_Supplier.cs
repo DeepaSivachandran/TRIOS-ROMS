@@ -1036,6 +1036,7 @@ namespace ROMS
                 cmbSecondLevel.Visible = false;
                 udfnEdit();
                 BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
+                btnListPrint.Image = global::ROMS.Properties.Resources.print;
             }
             catch (Exception ex)
             {
@@ -3632,10 +3633,20 @@ namespace ROMS
         {
             try
             {
+                btnListPrint.Image = global::ROMS.Properties.Resources.print;
                 BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
                 RPTViewer.Visible = false;
                 udfnMappedDropDownLoad();
                 mappedproductsfilter();
+                btnListPrint.Visible = false;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            btnListPrint.Visible = true;
+                        } } }
             }
             catch (Exception ex)
             {
@@ -8071,58 +8082,66 @@ namespace ROMS
 
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
-            try
+            if (!RPTViewer.Visible)
             {
-                btnListPrint.Enabled = false;
-                lblNoRecordsFound.Visible = false;
-                picLoader.Visible = true;
-                RPTViewer.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                int varPrint = 0;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "",0, 0,0,"",0,0,0,0,0,0);
-                objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
+                try
                 {
+                    btnListPrint.Image = global::ROMS.Properties.Resources.view;
+                    btnListPrint.Enabled = false;
+                    lblNoRecordsFound.Visible = false;
+                    picLoader.Visible = true;
                     RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_Products.rpt");
-                    objBillreport.SetParameterValue("@parascheduleid", Convert.ToInt32(cmbOrderschedule.SelectedValue));
-                    objBillreport.SetParameterValue("@paraOrderID", Convert.ToInt32(cmbMappedorderrype.SelectedValue));
-                    objBillreport.SetParameterValue("@parasupplierid", Convert.ToInt32(pbSupplierid));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objvalidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    RPTViewer.ShowCloseButton = true;
+                    RPTViewer.Enabled = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    int varPrint = 0;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+                    objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0);
+                    objspservice.CloseConnection();
+                    if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                    if (varPrint == 1)
+                    {
+                        RPTViewer.Visible = true;
+                        RPTViewer.BringToFront();
+                        RPTViewer.ReuseParameterValuesOnRefresh = true;
+                        RPTViewer.RefreshReport();
+                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_Products.rpt");
+                        objBillreport.SetParameterValue("@parascheduleid", Convert.ToInt32(cmbOrderschedule.SelectedValue));
+                        objBillreport.SetParameterValue("@paraOrderID", Convert.ToInt32(cmbMappedorderrype.SelectedValue));
+                        objBillreport.SetParameterValue("@parasupplierid", Convert.ToInt32(pbSupplierid));
+                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        objvalidation.CrySqlConnection(objBillreport);
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    lblNoRecordsFound.Visible = true;
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                    btnListPrint.Enabled = true;
+                    btnListPrint.Focus();
+                    GC.Collect();
                 }
             }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-                btnListPrint.Enabled = true;
-                btnListPrint.Focus();
-                GC.Collect();
+            else {
+                CmbOrderschedule_SelectedIndexChanged(sender,e);
             }
         }
         private void GrdFinalSupplierMapping_CurrentCellDirtyStateChanged(object sender, EventArgs e)

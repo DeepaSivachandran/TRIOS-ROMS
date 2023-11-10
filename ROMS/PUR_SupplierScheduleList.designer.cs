@@ -37,6 +37,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierScheduleList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbList = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlSupplierScheduleList = new System.Windows.Forms.Panel();
             this.lvSupplerName = new System.Windows.Forms.ListView();
@@ -101,6 +103,8 @@
             this.tsSupplierScheduleList.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsSupplierScheduleList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
+            this.tsbList,
+            this.toolStripSeparator1,
             this.tsbNew});
             this.tsSupplierScheduleList.Location = new System.Drawing.Point(0, 0);
             this.tsSupplierScheduleList.Name = "tsSupplierScheduleList";
@@ -117,6 +121,25 @@
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(92, 24);
             this.tspHeader.Text = "PO Schedule";
+            // 
+            // tsbList
+            // 
+            this.tsbList.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbList.Image = global::ROMS.Properties.Resources.clipboard;
+            this.tsbList.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbList.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbList.Name = "tsbList";
+            this.tsbList.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbList.Size = new System.Drawing.Size(150, 24);
+            this.tsbList.Text = "&PO Schedule Summary";
+            this.tsbList.Click += new System.EventHandler(this.TsbList_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbNew
             // 
@@ -298,7 +321,7 @@
             this.btnSchedulePopup.Location = new System.Drawing.Point(137, 46);
             this.btnSchedulePopup.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSchedulePopup.Name = "btnSchedulePopup";
-            this.btnSchedulePopup.Size = new System.Drawing.Size(67, 33);
+            this.btnSchedulePopup.Size = new System.Drawing.Size(65, 33);
             this.btnSchedulePopup.TabIndex = 11;
             this.btnSchedulePopup.Text = "View";
             this.btnSchedulePopup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -677,7 +700,7 @@
             this.picLoader.InitialImage = null;
             this.picLoader.Location = new System.Drawing.Point(3, 93);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1345, 516);
+            this.picLoader.Size = new System.Drawing.Size(1345, 537);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
@@ -787,5 +810,7 @@
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         public System.Windows.Forms.ComboBox cmbConcernPrint;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        public System.Windows.Forms.ToolStripButton tsbList;
     }
 }
