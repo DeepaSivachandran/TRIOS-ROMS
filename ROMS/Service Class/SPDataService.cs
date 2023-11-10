@@ -2054,7 +2054,43 @@ namespace ROMS
             }
             return result;
         }
-
+        // Sivabharathi on 10/11/2023 -- Purchase DC 
+        public string udfnPurchaseDc(TRNS_Purchase_DC objTRNS_Purchase_DC)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Purchase_DC]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNS_Purchase_DC.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRNS_Purchase_DC.@paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNS_Purchase_DC.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNS_Purchase_DC.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_Purchase_DC.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraDC_Date", objTRNS_Purchase_DC.paraDC_Date);
+                varSqlCommand.Parameters.AddWithValue("@paraDC_NO", objTRNS_Purchase_DC.paraDC_NO);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNS_Purchase_DC.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRNS_Purchase_DC.paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraDC_Remarks", objTRNS_Purchase_DC.paraDC_Remarks);
+                varSqlCommand.Parameters.AddWithValue("@paraDC_PURID", objTRNS_Purchase_DC.paraDC_PURID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRNS_Purchase_DC.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraDCID", objTRNS_Purchase_DC.paraDCID);
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_DC", objTRNS_Purchase_DC.ParaTRN_Purchase_DC);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
         // added by venkat on 03/11/2023 for GRN list
         public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID,string ParaGRNFromDate,string ParaGRNToDate, int paraGRNID, int paraStatus,int paraOrdertype)
         {

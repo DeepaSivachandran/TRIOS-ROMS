@@ -41,12 +41,12 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnldl = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblRackCode = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblRackCode = new System.Windows.Forms.Label();
             this.lblStockLocationCode = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblReturnType = new System.Windows.Forms.Label();
@@ -106,6 +106,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.grdPurchaseDC = new System.Windows.Forms.DataGridView();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStockLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
@@ -117,20 +131,6 @@
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -184,8 +184,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.lblRackCode);
+            this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.lblStockLocationCode);
             this.groupBox1.Controls.Add(this.lblProductcode);
             this.groupBox1.Controls.Add(this.lblReturnType);
@@ -223,6 +223,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // lblRackCode
+            // 
+            this.lblRackCode.AutoSize = true;
+            this.lblRackCode.Location = new System.Drawing.Point(960, 158);
+            this.lblRackCode.Name = "lblRackCode";
+            this.lblRackCode.Size = new System.Drawing.Size(16, 19);
+            this.lblRackCode.TabIndex = 1111247;
+            this.lblRackCode.Text = "0";
+            this.lblRackCode.Visible = false;
+            // 
             // LV_Supplier
             // 
             this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -253,16 +263,6 @@
             // columnHeader9
             // 
             this.columnHeader9.Width = 0;
-            // 
-            // lblRackCode
-            // 
-            this.lblRackCode.AutoSize = true;
-            this.lblRackCode.Location = new System.Drawing.Point(960, 158);
-            this.lblRackCode.Name = "lblRackCode";
-            this.lblRackCode.Size = new System.Drawing.Size(16, 19);
-            this.lblRackCode.TabIndex = 1111247;
-            this.lblRackCode.Text = "0";
-            this.lblRackCode.Visible = false;
             // 
             // lblStockLocationCode
             // 
@@ -305,7 +305,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 1111245;
+            this.btnAdd.TabIndex = 12;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -708,7 +708,7 @@
             // txtProductName
             // 
             this.txtProductName.Location = new System.Drawing.Point(11, 155);
-            this.txtProductName.MaxLength = 50;
+            this.txtProductName.MaxLength = 200;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(300, 26);
             this.txtProductName.TabIndex = 3;
@@ -790,6 +790,7 @@
             this.lvRack.View = System.Windows.Forms.View.Details;
             this.lvRack.Visible = false;
             this.lvRack.DoubleClick += new System.EventHandler(this.LvRack_DoubleClick);
+            this.lvRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvRack_KeyDown);
             // 
             // columnHeader7
             // 
@@ -847,6 +848,9 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnClose_KeyDown);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // btnSave
             // 
@@ -860,7 +864,9 @@
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // label5
@@ -882,7 +888,6 @@
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(585, 58);
             this.txtRemark.TabIndex = 13;
-            this.txtRemark.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
             this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
             this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
@@ -906,16 +911,16 @@
             this.grdPurchaseDC.ColumnHeadersHeight = 30;
             this.grdPurchaseDC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseDC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.Column5,
-            this.dataGridViewTextBoxColumn2,
-            this.Column10,
-            this.Column2,
-            this.Column1,
-            this.dataGridViewTextBoxColumn3,
-            this.Column6,
-            this.Column3,
-            this.Column4,
+            this.clmSno,
+            this.clmPICode,
+            this.clmProductName,
+            this.clmMRP,
+            this.clmExpiryDate,
+            this.clmBatchNo,
+            this.clmQuantity,
+            this.clmUnit,
+            this.clmStockLocation,
+            this.clmRack,
             this.ClmPRID,
             this.clmSLID,
             this.clmRKID,
@@ -941,6 +946,102 @@
             this.grdPurchaseDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseDC.Size = new System.Drawing.Size(1289, 360);
             this.grdPurchaseDC.TabIndex = 1111170;
+            this.grdPurchaseDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDC_CellContentClick);
+            // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmSno.Width = 50;
+            // 
+            // clmPICode
+            // 
+            this.clmPICode.HeaderText = "P.I Code";
+            this.clmPICode.Name = "clmPICode";
+            this.clmPICode.ReadOnly = true;
+            this.clmPICode.Width = 90;
+            // 
+            // clmProductName
+            // 
+            this.clmProductName.HeaderText = "Product Name";
+            this.clmProductName.Name = "clmProductName";
+            this.clmProductName.ReadOnly = true;
+            this.clmProductName.Width = 220;
+            // 
+            // clmMRP
+            // 
+            this.clmMRP.HeaderText = "MRP";
+            this.clmMRP.Name = "clmMRP";
+            this.clmMRP.ReadOnly = true;
+            // 
+            // clmExpiryDate
+            // 
+            this.clmExpiryDate.HeaderText = "Expiry Date";
+            this.clmExpiryDate.Name = "clmExpiryDate";
+            this.clmExpiryDate.ReadOnly = true;
+            // 
+            // clmBatchNo
+            // 
+            this.clmBatchNo.HeaderText = "Batch No.";
+            this.clmBatchNo.Name = "clmBatchNo";
+            this.clmBatchNo.ReadOnly = true;
+            // 
+            // clmQuantity
+            // 
+            this.clmQuantity.HeaderText = "Qty";
+            this.clmQuantity.Name = "clmQuantity";
+            this.clmQuantity.ReadOnly = true;
+            this.clmQuantity.Width = 75;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            this.clmUnit.Width = 75;
+            // 
+            // clmStockLocation
+            // 
+            this.clmStockLocation.HeaderText = "Stock Location";
+            this.clmStockLocation.Name = "clmStockLocation";
+            this.clmStockLocation.ReadOnly = true;
+            this.clmStockLocation.Width = 200;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            // 
+            // ClmPRID
+            // 
+            this.ClmPRID.HeaderText = "PRID";
+            this.ClmPRID.Name = "ClmPRID";
+            this.ClmPRID.ReadOnly = true;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
+            // 
+            // clmRKID
+            // 
+            this.clmRKID.HeaderText = "RKID";
+            this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // groupBox3
             // 
@@ -957,7 +1058,7 @@
             this.groupBox3.Location = new System.Drawing.Point(9, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(406, 123);
-            this.groupBox3.TabIndex = 1111221;
+            this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             // 
             // lblschedule
@@ -1071,101 +1172,6 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "P.I Code";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Product Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 220;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "MRP";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Expiry Date";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Batch No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Qty";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 75;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Unit";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 75;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Stock Location";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 200;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Rack";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // ClmPRID
-            // 
-            this.ClmPRID.HeaderText = "PRID";
-            this.ClmPRID.Name = "ClmPRID";
-            this.ClmPRID.ReadOnly = true;
-            // 
-            // clmSLID
-            // 
-            this.clmSLID.HeaderText = "SLID";
-            this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
-            // 
-            // clmRKID
-            // 
-            this.clmRKID.HeaderText = "RKID";
-            this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // PUR_PurchaseDC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1185,6 +1191,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Returns";
             this.Load += new System.EventHandler(this.PUR_PurchaseDC_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseDC_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).EndInit();
             this.tsPurchaseInvoiceList.ResumeLayout(false);
             this.tsPurchaseInvoiceList.PerformLayout();
@@ -1289,16 +1296,16 @@
         private System.Windows.Forms.Label lblProductcode;
         private System.Windows.Forms.Label lblStockLocationCode;
         private System.Windows.Forms.Label lblRackCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStockLocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClmPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
