@@ -135,7 +135,7 @@ namespace ROMS
             return result;
         }
         // Sivabharathi    Create date: 20/09/2023    Description:	Master list Sp
-        public DataSet udfnMaster(int ViewType, int paraID)
+        public DataSet udfnMaster(int ViewType, int paraID, int paraPOID)
         {
             DataSet ds = new DataSet();
             try
@@ -147,6 +147,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraID", paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraPOID", paraPOID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -654,7 +655,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_DAMAGE]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Damage]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Damage.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraDamageEntryID", objTRN_Damage.paraDamageEntryID);
@@ -680,6 +681,40 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return varResult;
+        }
+        // added by venkat on 16/10/2023 for purchase damage list
+        public DataSet udfnproductDamage(int paraViewType,int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID,int paraStatus,string ParaDMFromDate,string ParaDMToDate)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Damage]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDamageEntryID", paraDamageEntryID);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleId", ParaScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyID", paraCompanyID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@ParaDMFromDate", ParaDMFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaDMToDate", ParaDMToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
         public DataSet udfnStatelist(int paraViewType, int paraStatus)
         {
