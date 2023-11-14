@@ -4847,6 +4847,9 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvHsnCode.Items.Add(objList);
+                                    lvHsnCode.Columns[0].Width = 90;
+                                    lvHsnCode.Columns[1].Width = 160;
+                                    lvHsnCode.Columns[2].Width = 0;
                                 }
                                 lvHsnCode.Visible = true;
                             }
