@@ -54,7 +54,7 @@ namespace ROMS
                 Day = DMY[0];
                 Month = DMY[1];
                 Year = DMY[2];
-                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(),Convert.ToDecimal(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnitSymbol,txtsuppliername.Text.Trim(),Day,Month,Year,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
+                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(),Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnitSymbol,txtsuppliername.Text.Trim(),Day,Month,Year,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
                 grdDamageEntry.Columns["clmDay"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmMonth"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmYear"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -62,7 +62,7 @@ namespace ROMS
                 grdDamageEntry.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID),Convert.ToDecimal(txtMrp.Text.Trim()),Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim());
+                dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID),Convert.ToString(txtMrp.Text.Trim()),Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim());
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
                 txtProductName.Focus();
                 epDamageEntry.Clear();
@@ -150,7 +150,7 @@ namespace ROMS
                 dtDamage.Columns.Add("DM_PRID", typeof(int));
                 dtDamage.Columns.Add("DM_SLID", typeof(int));
                 dtDamage.Columns.Add("DM_RKID", typeof(int));
-                dtDamage.Columns.Add("DM_MRP", typeof(float));
+                dtDamage.Columns.Add("DM_MRP", typeof(string));
                 dtDamage.Columns.Add("DM_DD", typeof(int));
                 dtDamage.Columns.Add("DM_MM", typeof(int));
                 dtDamage.Columns.Add("DM_YYYY", typeof(int));
