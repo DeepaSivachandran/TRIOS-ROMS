@@ -5123,6 +5123,7 @@ namespace ROMS
                 lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
                 txtmappingproductsearch2.Text = "";
                 grdFinalSupplierMapping.Columns[0].ReadOnly = false;
+                grdSupplierMappingLoad.Columns[0].ReadOnly = false;
             }
         }
         public void udfnSubGroupAdd()
@@ -7073,6 +7074,8 @@ namespace ROMS
             finally
             {
                 lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
+                grdFinalSupplierMapping.Columns[0].ReadOnly = false;
+                grdSupplierMappingLoad.Columns[0].ReadOnly = false;
             }
         }
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)

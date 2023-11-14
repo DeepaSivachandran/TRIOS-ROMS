@@ -209,6 +209,8 @@ namespace ROMS
                 txtCategoryName.Text = "";
                 txtCategoryName.Focus();
                 this.ActiveControl = txtCategoryName;
+                pnlStatus.Enabled = false;
+                udfnLoadSlNo();
             }
             catch (Exception ex)
             {
