@@ -537,11 +537,17 @@ namespace ROMS
             {
                 if (grdDamageEntryList.SelectedRows.Count > 0)
                 {
+                    
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString()), 0, "", 0, 0, "", 0, "Stock Transfer Delete", null);
+                        Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
+                        objTRN_Damage.ViewType = 2;
+                        objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                        objTRN_Damage.paraOriginator = "Damage Entry Delete";
+
+                        string varResult = objDser.udfnDamageEntry(objTRN_Damage);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
