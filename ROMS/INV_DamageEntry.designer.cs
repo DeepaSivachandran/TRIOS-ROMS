@@ -343,7 +343,6 @@
             // 
             this.grdDamageEntry.AllowUserToAddRows = false;
             this.grdDamageEntry.AllowUserToDeleteRows = false;
-            this.grdDamageEntry.AllowUserToResizeColumns = false;
             this.grdDamageEntry.AllowUserToResizeRows = false;
             this.grdDamageEntry.BackgroundColor = System.Drawing.Color.White;
             this.grdDamageEntry.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -389,13 +388,14 @@
             this.grdDamageEntry.GridColor = System.Drawing.Color.White;
             this.grdDamageEntry.Location = new System.Drawing.Point(3, 157);
             this.grdDamageEntry.Name = "grdDamageEntry";
-            this.grdDamageEntry.ReadOnly = true;
             this.grdDamageEntry.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.grdDamageEntry.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdDamageEntry.RowTemplate.Height = 25;
+            this.grdDamageEntry.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdDamageEntry.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdDamageEntry.ShowRowErrors = false;
             this.grdDamageEntry.Size = new System.Drawing.Size(1340, 431);
             this.grdDamageEntry.TabIndex = 958809;
             this.grdDamageEntry.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDamageEntry_CellContentClick);
@@ -404,91 +404,78 @@
             // 
             this.clmdsno.HeaderText = "S.No.";
             this.clmdsno.Name = "clmdsno";
-            this.clmdsno.ReadOnly = true;
             this.clmdsno.Width = 50;
             // 
             // clmicode
             // 
             this.clmicode.HeaderText = "P.I Code";
             this.clmicode.Name = "clmicode";
-            this.clmicode.ReadOnly = true;
             this.clmicode.Width = 150;
             // 
             // clmproductname
             // 
             this.clmproductname.HeaderText = "Product Name";
             this.clmproductname.Name = "clmproductname";
-            this.clmproductname.ReadOnly = true;
             this.clmproductname.Width = 300;
             // 
             // clmmrp
             // 
             this.clmmrp.HeaderText = "MRP";
             this.clmmrp.Name = "clmmrp";
-            this.clmmrp.ReadOnly = true;
             this.clmmrp.Width = 50;
             // 
             // clmexpirydate
             // 
             this.clmexpirydate.HeaderText = "Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
-            this.clmexpirydate.ReadOnly = true;
             this.clmexpirydate.Width = 80;
             // 
             // clmBatchNo
             // 
             this.clmBatchNo.HeaderText = "Batch No.";
             this.clmBatchNo.Name = "clmBatchNo";
-            this.clmBatchNo.ReadOnly = true;
             this.clmBatchNo.Width = 70;
             // 
             // clmQuantity
             // 
             this.clmQuantity.HeaderText = "Quantity";
             this.clmQuantity.Name = "clmQuantity";
-            this.clmQuantity.ReadOnly = true;
             this.clmQuantity.Width = 70;
             // 
             // clmunit
             // 
             this.clmunit.HeaderText = "Unit";
             this.clmunit.Name = "clmunit";
-            this.clmunit.ReadOnly = true;
             this.clmunit.Width = 60;
             // 
             // clmSupplier
             // 
             this.clmSupplier.HeaderText = "Supplier";
             this.clmSupplier.Name = "clmSupplier";
-            this.clmSupplier.ReadOnly = true;
             this.clmSupplier.Width = 200;
             // 
             // clmDay
             // 
             this.clmDay.HeaderText = "Day";
             this.clmDay.Name = "clmDay";
-            this.clmDay.ReadOnly = true;
             this.clmDay.Width = 50;
             // 
             // clmMonth
             // 
             this.clmMonth.HeaderText = "Month";
             this.clmMonth.Name = "clmMonth";
-            this.clmMonth.ReadOnly = true;
             this.clmMonth.Width = 50;
             // 
             // clmYear
             // 
             this.clmYear.HeaderText = "Year";
             this.clmYear.Name = "clmYear";
-            this.clmYear.ReadOnly = true;
             this.clmYear.Width = 50;
             // 
             // clmPRID
             // 
             this.clmPRID.HeaderText = "PRID";
             this.clmPRID.Name = "clmPRID";
-            this.clmPRID.ReadOnly = true;
             this.clmPRID.Visible = false;
             this.clmPRID.Width = 10;
             // 
@@ -496,7 +483,6 @@
             // 
             this.clmSLID.HeaderText = "SLID";
             this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
             this.clmSLID.Visible = false;
             this.clmSLID.Width = 10;
             // 
@@ -504,7 +490,6 @@
             // 
             this.clmRKID.HeaderText = "RKID";
             this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
             this.clmRKID.Visible = false;
             this.clmRKID.Width = 10;
             // 
@@ -512,7 +497,6 @@
             // 
             this.clmUTID.HeaderText = "UTID";
             this.clmUTID.Name = "clmUTID";
-            this.clmUTID.ReadOnly = true;
             this.clmUTID.Visible = false;
             this.clmUTID.Width = 10;
             // 
@@ -520,7 +504,6 @@
             // 
             this.clmSPID.HeaderText = "SPID";
             this.clmSPID.Name = "clmSPID";
-            this.clmSPID.ReadOnly = true;
             this.clmSPID.Visible = false;
             this.clmSPID.Width = 10;
             // 
@@ -528,7 +511,6 @@
             // 
             this.clmSPSCID.HeaderText = "SPSCID";
             this.clmSPSCID.Name = "clmSPSCID";
-            this.clmSPSCID.ReadOnly = true;
             this.clmSPSCID.Visible = false;
             this.clmSPSCID.Width = 10;
             // 
@@ -537,7 +519,6 @@
             this.clmremove.HeaderText = "Remove";
             this.clmremove.Image = global::ROMS.Properties.Resources.remove;
             this.clmremove.Name = "clmremove";
-            this.clmremove.ReadOnly = true;
             this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmremove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmremove.Width = 80;
