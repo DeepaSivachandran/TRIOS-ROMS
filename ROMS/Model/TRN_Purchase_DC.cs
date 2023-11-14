@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ROMS.Model
 {
-    public class TRNS_Purchase_DC
+    public class TRN_Purchase_DC
     {
         public int ViewType { get; set; } = 0;
         public int paraUserID { get; set; } = 0;

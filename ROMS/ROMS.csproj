@@ -185,7 +185,7 @@
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\TRNS_GoodsOutward.cs" />
-    <Compile Include="Model\TRNS_Purchase_DC.cs" />
+    <Compile Include="Model\TRN_Purchase_DC.cs" />
     <Compile Include="Model\TRNS_GRN.cs" />
     <Compile Include="Reports\RPT_CP_Product_Min_Sales_Qty.cs">
       <DependentUpon>RPT_CP_Product_Min_Sales_Qty.rpt</DependentUpon>

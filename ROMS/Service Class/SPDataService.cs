@@ -163,6 +163,7 @@ namespace ROMS
             }
             return ds;
         }
+       
         // Sivabharathi    Create date: 26/09/2023    Description: Voucher Settings
         public string udfnVoucherSettings(int ViewType, DataTable ParaMRS_VoucherSettings, string paraOriginator)
         {
@@ -2055,7 +2056,7 @@ namespace ROMS
             return result;
         }
         // Sivabharathi on 10/11/2023 -- Purchase DC 
-        public string udfnPurchaseDc(TRNS_Purchase_DC objTRNS_Purchase_DC)
+        public string udfnPurchaseDc(TRN_Purchase_DC objTRNS_Purchase_DC)
         {
             string result = "";
             try
@@ -2090,6 +2091,38 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return result;
+        }
+        // Sivabharathi    Create date: 14/11/2023    Description: Purchase DC
+        public DataSet udfnPurchaseDCList(TRN_Purchase_DC objTRNG_Purchase_DC)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Purchase_DC]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_Purchase_DC.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDCID", objTRNG_Purchase_DC.paraDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNG_Purchase_DC.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRNG_Purchase_DC.paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRNG_Purchase_DC.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_Purchase_DC.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_Purchase_DC.paraIPAddress);
+               
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
         // added by venkat on 03/11/2023 for GRN list
         public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID,string ParaGRNFromDate,string ParaGRNToDate, int paraGRNID, int paraStatus,int paraOrdertype)
