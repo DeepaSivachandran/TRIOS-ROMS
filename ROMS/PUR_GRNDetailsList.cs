@@ -266,6 +266,7 @@ namespace ROMS
             {
                 MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
                 MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
+                MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.Show();
             }
@@ -922,6 +923,22 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGRNList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode==Keys.Enter)
+                {
+                    udfnEdit();
                 }
             }
             catch (Exception ex)

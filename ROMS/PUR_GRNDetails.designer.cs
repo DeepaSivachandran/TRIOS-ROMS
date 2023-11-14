@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNDetails));
             this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
             this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
@@ -53,20 +54,23 @@
             this.btnDamage = new System.Windows.Forms.Button();
             this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.grdPODetails = new System.Windows.Forms.DataGridView();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpendpoid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblDPercentage = new System.Windows.Forms.Label();
             this.lblPercentage = new System.Windows.Forms.Label();
             this.txtRDPercentageCheck = new System.Windows.Forms.TextBox();
             this.txtDGPercentageCheck = new System.Windows.Forms.TextBox();
             this.btnDC = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.InvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdReurnDC = new System.Windows.Forms.DataGridView();
+            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -76,7 +80,7 @@
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.txtTotalProducts = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtTotalpro = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -107,9 +111,9 @@
             this.txtBatchno = new System.Windows.Forms.TextBox();
             this.txtmrprate = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.Year = new System.Windows.Forms.TextBox();
+            this.txtYear = new System.Windows.Forms.TextBox();
             this.txtDate = new System.Windows.Forms.TextBox();
-            this.Month = new System.Windows.Forms.TextBox();
+            this.txtMonth = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lvproduct = new System.Windows.Forms.ListView();
             this.RMcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -120,18 +124,22 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmeng = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmactuallife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshelfper = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUtid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPOid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpVerify = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -149,7 +157,7 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -212,7 +220,7 @@
             this.grpSupplierMapping.Controls.Add(this.grdPODetails);
             this.grpSupplierMapping.Controls.Add(this.groupBox3);
             this.grpSupplierMapping.Controls.Add(this.btnDC);
-            this.grpSupplierMapping.Controls.Add(this.dataGridView1);
+            this.grpSupplierMapping.Controls.Add(this.grdReurnDC);
             this.grpSupplierMapping.Controls.Add(this.txtRemark);
             this.grpSupplierMapping.Controls.Add(this.btnClose);
             this.grpSupplierMapping.Controls.Add(this.btnSave);
@@ -321,6 +329,7 @@
             this.btnDamage.Text = "Damages";
             this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDamage.UseVisualStyleBackColor = true;
+            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
             // 
             // chkCompleted
             // 
@@ -344,40 +353,43 @@
             this.grdPODetails.AllowUserToResizeRows = false;
             this.grdPODetails.BackgroundColor = System.Drawing.Color.White;
             this.grdPODetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPODetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPODetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdPODetails.ColumnHeadersHeight = 30;
             this.grdPODetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPODetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column14,
+            this.clmpono,
             this.Column15,
-            this.Column17});
+            this.Column17,
+            this.clmsts,
+            this.clmpendpoid});
             this.grdPODetails.EnableHeadersVisualStyles = false;
             this.grdPODetails.GridColor = System.Drawing.Color.White;
             this.grdPODetails.Location = new System.Drawing.Point(24, 517);
             this.grdPODetails.Name = "grdPODetails";
             this.grdPODetails.ReadOnly = true;
             this.grdPODetails.RowHeadersVisible = false;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdPODetails.RowsDefaultCellStyle = dataGridViewCellStyle34;
-            this.grdPODetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdPODetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.grdPODetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdPODetails.Size = new System.Drawing.Size(272, 106);
             this.grdPODetails.TabIndex = 1111196;
-            this.grdPODetails.DoubleClick += new System.EventHandler(this.GrdPODetails_DoubleClick);
+            this.grdPODetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPODetails_CellClick);
+            this.grdPODetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPODetails_DataBindingComplete);
             // 
-            // Column14
+            // clmpono
             // 
-            this.Column14.HeaderText = "PO No.";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            this.Column14.Width = 80;
+            this.clmpono.HeaderText = "PO No.";
+            this.clmpono.Name = "clmpono";
+            this.clmpono.ReadOnly = true;
+            this.clmpono.Width = 80;
             // 
             // Column15
             // 
@@ -391,6 +403,20 @@
             this.Column17.HeaderText = "Total Products";
             this.Column17.Name = "Column17";
             this.Column17.ReadOnly = true;
+            // 
+            // clmsts
+            // 
+            this.clmsts.HeaderText = "clmsts";
+            this.clmsts.Name = "clmsts";
+            this.clmsts.ReadOnly = true;
+            this.clmsts.Visible = false;
+            // 
+            // clmpendpoid
+            // 
+            this.clmpendpoid.HeaderText = "clmpendpoid";
+            this.clmpendpoid.Name = "clmpendpoid";
+            this.clmpendpoid.ReadOnly = true;
+            this.clmpendpoid.Visible = false;
             // 
             // groupBox3
             // 
@@ -462,56 +488,57 @@
             this.btnDC.UseVisualStyleBackColor = true;
             this.btnDC.Click += new System.EventHandler(this.BtnDC_Click);
             // 
-            // dataGridView1
+            // grdReurnDC
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle35.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle35;
-            this.dataGridView1.ColumnHeadersHeight = 30;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.InvoiceDate,
+            this.grdReurnDC.AllowUserToAddRows = false;
+            this.grdReurnDC.AllowUserToDeleteRows = false;
+            this.grdReurnDC.AllowUserToResizeColumns = false;
+            this.grdReurnDC.AllowUserToResizeRows = false;
+            this.grdReurnDC.BackgroundColor = System.Drawing.Color.White;
+            this.grdReurnDC.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdReurnDC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdReurnDC.ColumnHeadersHeight = 30;
+            this.grdReurnDC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdReurnDC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DCDate,
             this.InvoiceNo,
             this.TotalProducts,
-            this.Value});
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle36.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle36;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(300, 543);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle37;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(382, 80);
-            this.dataGridView1.TabIndex = 1111182;
+            this.Value,
+            this.ID});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdReurnDC.DefaultCellStyle = dataGridViewCellStyle4;
+            this.grdReurnDC.EnableHeadersVisualStyles = false;
+            this.grdReurnDC.GridColor = System.Drawing.Color.White;
+            this.grdReurnDC.Location = new System.Drawing.Point(300, 543);
+            this.grdReurnDC.Name = "grdReurnDC";
+            this.grdReurnDC.ReadOnly = true;
+            this.grdReurnDC.RowHeadersVisible = false;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.grdReurnDC.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.grdReurnDC.RowTemplate.Height = 25;
+            this.grdReurnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdReurnDC.Size = new System.Drawing.Size(382, 80);
+            this.grdReurnDC.TabIndex = 1111182;
             // 
-            // InvoiceDate
+            // DCDate
             // 
-            this.InvoiceDate.HeaderText = "DC Date";
-            this.InvoiceDate.Name = "InvoiceDate";
-            this.InvoiceDate.ReadOnly = true;
+            this.DCDate.HeaderText = "DC Date";
+            this.DCDate.Name = "DCDate";
+            this.DCDate.ReadOnly = true;
             // 
             // InvoiceNo
             // 
@@ -531,6 +558,13 @@
             this.Value.HeaderText = "Value";
             this.Value.Name = "Value";
             this.Value.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             // 
             // txtRemark
             // 
@@ -579,7 +613,7 @@
             this.groupBox2.Controls.Add(this.txtSupplier);
             this.groupBox2.Controls.Add(this.lblSupplierCode);
             this.groupBox2.Controls.Add(this.txtTotalProducts);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.txtTotalpro);
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.cmbConcern);
             this.groupBox2.Controls.Add(this.label3);
@@ -655,18 +689,18 @@
             this.txtTotalProducts.TabIndex = 1111201;
             this.txtTotalProducts.Text = "Total Products";
             // 
-            // textBox3
+            // txtTotalpro
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(968, 56);
-            this.textBox3.MaxLength = 50;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(39, 27);
-            this.textBox3.TabIndex = 1111202;
-            this.textBox3.Text = "10";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalpro.Enabled = false;
+            this.txtTotalpro.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalpro.Location = new System.Drawing.Point(968, 56);
+            this.txtTotalpro.MaxLength = 50;
+            this.txtTotalpro.Name = "txtTotalpro";
+            this.txtTotalpro.ReadOnly = true;
+            this.txtTotalpro.Size = new System.Drawing.Size(39, 27);
+            this.txtTotalpro.TabIndex = 1111202;
+            this.txtTotalpro.Text = "10";
+            this.txtTotalpro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox1
             // 
@@ -849,6 +883,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnAdd);
+            this.groupBox4.Controls.Add(this.LV_Supplier);
             this.groupBox4.Controls.Add(this.txtProductName);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.textBox2);
@@ -861,9 +896,9 @@
             this.groupBox4.Controls.Add(this.txtBatchno);
             this.groupBox4.Controls.Add(this.txtmrprate);
             this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.Year);
+            this.groupBox4.Controls.Add(this.txtYear);
             this.groupBox4.Controls.Add(this.txtDate);
-            this.groupBox4.Controls.Add(this.Month);
+            this.groupBox4.Controls.Add(this.txtMonth);
             this.groupBox4.Location = new System.Drawing.Point(16, 104);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1024, 64);
@@ -881,6 +916,7 @@
             this.btnAdd.Size = new System.Drawing.Size(23, 22);
             this.btnAdd.TabIndex = 14;
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
             this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
@@ -1015,18 +1051,18 @@
             this.label9.TabIndex = 1111160;
             this.label9.Text = "Batch No.";
             // 
-            // Year
+            // txtYear
             // 
-            this.Year.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Year.Location = new System.Drawing.Point(778, 28);
-            this.Year.MaxLength = 4;
-            this.Year.Name = "Year";
-            this.Year.Size = new System.Drawing.Size(55, 27);
-            this.Year.TabIndex = 12;
-            this.Year.Enter += new System.EventHandler(this.Year_Enter);
-            this.Year.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Year_KeyDown);
-            this.Year.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Year_KeyPress);
-            this.Year.Leave += new System.EventHandler(this.Year_Leave);
+            this.txtYear.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYear.Location = new System.Drawing.Point(778, 28);
+            this.txtYear.MaxLength = 4;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(55, 27);
+            this.txtYear.TabIndex = 12;
+            this.txtYear.Enter += new System.EventHandler(this.Year_Enter);
+            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Year_KeyDown);
+            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Year_KeyPress);
+            this.txtYear.Leave += new System.EventHandler(this.Year_Leave);
             // 
             // txtDate
             // 
@@ -1041,23 +1077,22 @@
             this.txtDate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDate_KeyPress);
             this.txtDate.Leave += new System.EventHandler(this.TxtDate_Leave);
             // 
-            // Month
+            // txtMonth
             // 
-            this.Month.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Month.Location = new System.Drawing.Point(746, 28);
-            this.Month.MaxLength = 2;
-            this.Month.Name = "Month";
-            this.Month.Size = new System.Drawing.Size(32, 27);
-            this.Month.TabIndex = 11;
-            this.Month.Enter += new System.EventHandler(this.Month_Enter);
-            this.Month.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Month_KeyDown);
-            this.Month.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Month_KeyPress);
-            this.Month.Leave += new System.EventHandler(this.Month_Leave);
+            this.txtMonth.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMonth.Location = new System.Drawing.Point(746, 28);
+            this.txtMonth.MaxLength = 2;
+            this.txtMonth.Name = "txtMonth";
+            this.txtMonth.Size = new System.Drawing.Size(32, 27);
+            this.txtMonth.TabIndex = 11;
+            this.txtMonth.Enter += new System.EventHandler(this.Month_Enter);
+            this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Month_KeyDown);
+            this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Month_KeyPress);
+            this.txtMonth.Leave += new System.EventHandler(this.Month_Leave);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lvproduct);
-            this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.grdGrnlist);
             this.groupBox1.Location = new System.Drawing.Point(16, 162);
             this.groupBox1.Name = "groupBox1";
@@ -1074,7 +1109,7 @@
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(128, 61);
+            this.lvproduct.Location = new System.Drawing.Point(152, 0);
             this.lvproduct.Name = "lvproduct";
             this.lvproduct.Size = new System.Drawing.Size(503, 140);
             this.lvproduct.TabIndex = 1111212;
@@ -1104,7 +1139,7 @@
             this.columnHeader9});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(673, 61);
+            this.LV_Supplier.Location = new System.Drawing.Point(669, -42);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(358, 93);
             this.LV_Supplier.TabIndex = 1111210;
@@ -1133,125 +1168,131 @@
             this.grdGrnlist.AllowUserToResizeRows = false;
             this.grdGrnlist.BackgroundColor = System.Drawing.Color.White;
             this.grdGrnlist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle38.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.grdGrnlist.ColumnHeadersHeight = 30;
             this.grdGrnlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGrnlist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column8,
-            this.Column2,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column3,
+            this.clmsno,
+            this.clmpo,
+            this.clmpicode,
+            this.clmeng,
+            this.clmtam,
+            this.clmunit,
+            this.clmmrp,
             this.clmexpirydate,
-            this.Column7,
-            this.Column9,
-            this.Column10,
-            this.clmBatchno});
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle39;
+            this.clmshelflife,
+            this.clmactuallife,
+            this.clmshelfper,
+            this.clmBatchno,
+            this.clmProid,
+            this.clmUtid,
+            this.clmPOid,
+            this.clmRemove});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle8;
             this.grdGrnlist.EnableHeadersVisualStyles = false;
             this.grdGrnlist.GridColor = System.Drawing.Color.White;
             this.grdGrnlist.Location = new System.Drawing.Point(6, 13);
             this.grdGrnlist.Name = "grdGrnlist";
-            this.grdGrnlist.ReadOnly = true;
             this.grdGrnlist.RowHeadersVisible = false;
-            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdGrnlist.RowTemplate.Height = 25;
-            this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnlist.Size = new System.Drawing.Size(1302, 334);
             this.grdGrnlist.TabIndex = 4;
+            this.grdGrnlist.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdGrnlist_CellFormatting);
+            this.grdGrnlist.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GrdGrnlist_CellValidating);
+            this.grdGrnlist.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnlist_EditingControlShowing);
             this.grdGrnlist.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
             // 
-            // Column1
+            // clmsno
             // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
             // 
-            // Column8
+            // clmpo
             // 
-            this.Column8.HeaderText = "PO No.";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
+            this.clmpo.HeaderText = "PO No.";
+            this.clmpo.Name = "clmpo";
+            this.clmpo.ReadOnly = true;
             // 
-            // Column2
+            // clmpicode
             // 
-            this.Column2.HeaderText = "P.I Code";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 120;
+            this.clmpicode.HeaderText = "P.I Code";
+            this.clmpicode.Name = "clmpicode";
+            this.clmpicode.ReadOnly = true;
+            this.clmpicode.Width = 120;
             // 
-            // Column4
+            // clmeng
             // 
-            this.Column4.HeaderText = "Product Name in English";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 200;
+            this.clmeng.HeaderText = "Product Name in English";
+            this.clmeng.Name = "clmeng";
+            this.clmeng.ReadOnly = true;
+            this.clmeng.Width = 200;
             // 
-            // Column5
+            // clmtam
             // 
-            this.Column5.HeaderText = "Product Name in Tamil";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 200;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clmtam.DefaultCellStyle = dataGridViewCellStyle7;
+            this.clmtam.HeaderText = "Product Name in Tamil";
+            this.clmtam.Name = "clmtam";
+            this.clmtam.ReadOnly = true;
+            this.clmtam.Width = 200;
             // 
-            // Column6
+            // clmunit
             // 
-            this.Column6.HeaderText = "Unit";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 50;
+            this.clmunit.HeaderText = "Unit";
+            this.clmunit.Name = "clmunit";
+            this.clmunit.ReadOnly = true;
+            this.clmunit.Width = 50;
             // 
-            // Column3
+            // clmmrp
             // 
-            this.Column3.HeaderText = "MRP";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 50;
+            this.clmmrp.HeaderText = "MRP";
+            this.clmmrp.Name = "clmmrp";
+            this.clmmrp.Width = 50;
             // 
             // clmexpirydate
             // 
             this.clmexpirydate.HeaderText = "Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
-            this.clmexpirydate.ReadOnly = true;
             // 
-            // Column7
+            // clmshelflife
             // 
-            this.Column7.HeaderText = "Product Shelf Life";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 120;
+            this.clmshelflife.HeaderText = "Product Shelf Life";
+            this.clmshelflife.Name = "clmshelflife";
+            this.clmshelflife.ReadOnly = true;
+            this.clmshelflife.Width = 120;
             // 
-            // Column9
+            // clmactuallife
             // 
-            this.Column9.HeaderText = "Actual Shelf Life";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 120;
+            this.clmactuallife.HeaderText = "Actual Shelf Life";
+            this.clmactuallife.Name = "clmactuallife";
+            this.clmactuallife.ReadOnly = true;
+            this.clmactuallife.Width = 120;
             // 
-            // Column10
+            // clmshelfper
             // 
-            this.Column10.HeaderText = "Shelf Life (%)";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
+            this.clmshelfper.HeaderText = "Shelf Life (%)";
+            this.clmshelfper.Name = "clmshelfper";
+            this.clmshelfper.ReadOnly = true;
             // 
             // clmBatchno
             // 
@@ -1259,6 +1300,33 @@
             this.clmBatchno.Name = "clmBatchno";
             this.clmBatchno.ReadOnly = true;
             this.clmBatchno.Width = 80;
+            // 
+            // clmProid
+            // 
+            this.clmProid.HeaderText = "Proid";
+            this.clmProid.Name = "clmProid";
+            this.clmProid.Visible = false;
+            // 
+            // clmUtid
+            // 
+            this.clmUtid.HeaderText = "Utid";
+            this.clmUtid.Name = "clmUtid";
+            this.clmUtid.Visible = false;
+            // 
+            // clmPOid
+            // 
+            this.clmPOid.HeaderText = "POid";
+            this.clmPOid.Name = "clmPOid";
+            this.clmPOid.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemove.Width = 50;
             // 
             // grpVerify
             // 
@@ -1346,7 +1414,6 @@
             // 
             // btnVerify1
             // 
-            this.btnVerify1.Enabled = false;
             this.btnVerify1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnVerify1.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify1.Image")));
             this.btnVerify1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1360,7 +1427,6 @@
             // 
             // btnVerify2
             // 
-            this.btnVerify2.Enabled = false;
             this.btnVerify2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnVerify2.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify2.Image")));
             this.btnVerify2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1403,6 +1469,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Goods Receipt";
             this.Load += new System.EventHandler(this.PUR_GRNEntry_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_GRNDetails_KeyDown);
             this.tsSupplierMapping.ResumeLayout(false);
             this.tsSupplierMapping.PerformLayout();
             this.pnlSupplierMapping.ResumeLayout(false);
@@ -1413,7 +1480,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1450,8 +1517,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtDate;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox Year;
-        private System.Windows.Forms.TextBox Month;
+        private System.Windows.Forms.TextBox txtYear;
+        private System.Windows.Forms.TextBox txtMonth;
         private System.Windows.Forms.TextBox txtBatchno;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -1468,13 +1535,12 @@
         private System.Windows.Forms.Button btnVerify2;
         private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.Label lblRemark;
-        private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnDC;
         private System.Windows.Forms.Label lblYYYY;
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDD;
-        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView grdReurnDC;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtDGPercentageCheck;
         private System.Windows.Forms.TextBox txtRDPercentageCheck;
@@ -1488,18 +1554,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnNew;
         public System.Windows.Forms.DataGridView grdPODetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label txtTotalProducts;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtTotalpro;
         private System.Windows.Forms.CheckBox chkCompleted;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.Button btnDamage;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label lblSupplierOrderpolicy;
@@ -1508,18 +1567,6 @@
         private System.Windows.Forms.Label lblSuppliername;
         private System.Windows.Forms.Label lblsupplierGST;
         private System.Windows.Forms.Label lblsupplierpayment;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
         private System.Windows.Forms.TextBox txtSupplier;
         public System.Windows.Forms.ListView LV_Supplier;
         private System.Windows.Forms.ColumnHeader columnHeader5;
@@ -1535,5 +1582,32 @@
         private System.Windows.Forms.ColumnHeader RMEName;
         private System.Windows.Forms.ErrorProvider errGRNDetails;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmeng;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmmrp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmshelflife;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmactuallife;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmshelfper;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUtid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPOid;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpendpoid;
+        public System.Windows.Forms.ComboBox cmbConcern;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DCDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
     }
 }
