@@ -144,9 +144,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdBrokerList.DataSource = objDs.Tables[0];
                             grdBrokerList.Columns["ID"].Visible = false;
-                            grdBrokerList.Columns["ConcernID"].Visible = false;
                             grdBrokerList.Columns["STSID"].Visible = false;
-                            grdBrokerList.Columns["Concern"].Visible = false;
                             grdBrokerList.Columns["S.No."].Width = 50;
                             grdBrokerList.Columns["GSTIN No."].Width = 150;
                             grdBrokerList.Columns["Broker Name"].Width = 250;
@@ -197,7 +195,7 @@ namespace ROMS
                     MainForm.objCP_CP_Broker = new CP_Broker();
                     MainForm.objCP_CP_Broker.btnSave.Text = "Update";
                     MainForm.objCP_CP_Broker.varBrokerid = grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString();
-                    MainForm.objCP_CP_Broker.PbConcernID = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ConcernID"].Value);
+                    //MainForm.objCP_CP_Broker.PbConcernID = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ConcernID"].Value);
                     MainForm.objCP_CP_Broker.ShowDialog();
                 }
             }
