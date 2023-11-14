@@ -78,7 +78,7 @@ namespace ROMS
                         objBankTable.Columns.Add("BRB_AccNo", typeof(string));
                         objBankTable.Columns.Add("BRB_IFSC", typeof(string));
                         objBankTable.Columns.Add("BRB_STSID", typeof(string));
-                        varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "", 0, "Broker delete", objBankTable, varUserID,0);
+                        varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0,"", "", "", "", "", 0, "", "", "", 0, "Broker delete", objBankTable, varUserID,0);
                         objspdservice.CloseConnection();
                         string[] varvalue = varResult.Split('~');
                         if (varvalue[0] == "3")
@@ -91,7 +91,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objspdservice = new SPDataService();
-                                    varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "", 0, "Broker delete", objBankTable, varUserID, 1);
+                                    varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0,"", "", "", "", "", 0, "", "", "", 0, "Broker delete", objBankTable, varUserID, 1);
                                     objspdservice.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -146,6 +146,7 @@ namespace ROMS
                             grdBrokerList.Columns["ID"].Visible = false;
                             grdBrokerList.Columns["ConcernID"].Visible = false;
                             grdBrokerList.Columns["STSID"].Visible = false;
+                            grdBrokerList.Columns["Concern"].Visible = false;
                             grdBrokerList.Columns["S.No."].Width = 50;
                             grdBrokerList.Columns["GSTIN No."].Width = 150;
                             grdBrokerList.Columns["Broker Name"].Width = 250;
