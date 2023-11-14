@@ -761,18 +761,26 @@ namespace ROMS
                                 varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
                                 values = Convert.ToString(varSupplierId).Split(',');
                             }
+                            else
+                            {
+                                lblSupplierCode.Text = "0";
+                                lblScheduleCode.Text = "0";
+                            }
                         }
                     }
-                    if (values[0] == "-1")
+                    if (objDsSupplierId.Tables[0].Rows.Count > 0)
                     {
-                        lblSupplierCode.Text = "0";
-                        lblScheduleCode.Text = "0";
-                    }
-                    else
-                    {
-                        lblSupplierCode.Text = values[0];
-                        lblScheduleCode.Text = values[1];
-                        txtSupplierName.BackColor = Color.White;
+                        if (values[0] == "-1")
+                        {
+                            lblSupplierCode.Text = "0";
+                            lblScheduleCode.Text = "0";
+                        }
+                        else
+                        {
+                            lblSupplierCode.Text = values[0];
+                            lblScheduleCode.Text = values[1];
+                            txtSupplierName.BackColor = Color.White;
+                        }
                     }
                 }
                 else
