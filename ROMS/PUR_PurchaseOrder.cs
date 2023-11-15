@@ -588,43 +588,75 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtProductName.Text) != "")
                 {
-                    string varproductname = "0", varproductID="0";
-                    DataService objDserv = new DataService();
-                    varproductname = objDserv.displaydata("SELECT COUNT(*) FROM MR_PRODUCT WHERE PR_ENAME='" + txtProductName.Text + "'");
-                    if (varproductname == "0")
+                    //string varproductname = "0", varproductID="0";
+                    //DataService objDserv = new DataService();
+                    //varproductname = objDserv.displaydata("SELECT COUNT(*) FROM MR_PRODUCT WHERE PR_ENAME='" + txtProductName.Text + "'");
+                    //if (varproductname == "0")
+                    //{
+                    //    lblProductcode.Text = "0"; 
+                    //    errPO.SetError(txtProductName, "Invalid product");
+                    //    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpProduct.ShowAlways = true;
+                    //    tpProduct.Show("Invalid supplier", txtProductName, 5000);
+                    //    varErrorFlag = false; 
+                    //}
+                    //else
+                    //{ 
+                    //    varproductID = objDserv.displaydata("SELECT PRID FROM MR_PRODUCT WHERE PR_ENAME='" + txtProductName.Text + "'");
+                    //    lblProductcode.Text = varproductID;
+                    //    errPO.Clear();
+                    //    txtProductName.BackColor = Color.White;
+                    //}
+                    //objDserv.CloseConnection(); 
+                    string varproductID = "0";
+                    DataSet objDsproductId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsproductId = objDserv.udfnproductmasterlist(39, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), "", null);
+                    objDserv.CloseConnection();
+                    if (objDsproductId != null)
                     {
-                        lblProductcode.Text = "0"; 
+                        if (objDsproductId.Tables.Count > 0)
+                        {
+                            if (objDsproductId.Tables[0].Rows.Count > 0)
+                            {
+                                varproductID = Convert.ToString(objDsproductId.Tables[0].Rows[0][0]); 
+                            }
+                        }
+                    }
+                    if (varproductID == "-1")
+                    {
+                        lblProductcode.Text = "0";
                         errPO.SetError(txtProductName, "Invalid product");
                         txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpProduct.ShowAlways = true;
-                        tpProduct.Show("Invalid supplier", txtProductName, 5000);
-                        varErrorFlag = false; 
+                        tpProduct.Show("Invalid product", txtProductName, 5000);
+                        varErrorFlag = false;
+
                     }
                     else
                     { 
-                        varproductID = objDserv.displaydata("SELECT PRID FROM MR_PRODUCT WHERE PR_ENAME='" + txtProductName.Text + "'");
                         lblProductcode.Text = varproductID;
                         errPO.Clear();
                         txtProductName.BackColor = Color.White;
                     }
-                    objDserv.CloseConnection();
+
                 }
                 if (varErrorFlag == true)
                 {
                     int varflag = 0;
                     lblNoRecordsFound.Visible = false;
-                    //foreach (DataGridViewRow row in grdsupplieradd.Rows)
-                    //{
-                    //    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
-                    //    {
-                    //        string gridValue1 = row.Cells[11].Value.ToString();
+                    foreach (DataGridViewRow row in grdsupplieradd.Rows)
+                    {
+                        if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                        {
+                            string gridValue1 = row.Cells[11].Value.ToString();
 
-                    //        if (gridValue1.ToUpper() == (lblProductcode.Text).Trim().ToUpper())
-                    //        {
-                    //            varflag = 1;
-                    //        }
-                    //    }
-                    //}
+                            if (gridValue1.ToUpper() == (lblProductcode.Text).Trim().ToUpper())
+                            {
+                                varflag = 1;
+                            }
+                        }
+                    }
 
                     if (Convert.ToInt32(lblProductcode.Text) != 0 && Convert.ToInt32(lblSupplierCode.Text) != 0)
                     {
@@ -2418,8 +2450,7 @@ namespace ROMS
                         varSuppliervalue = selectedItem.SubItems[3].Text; 
                     }
                     udfnsupplierLoad();
-                    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
-
+                    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset); 
                     GrdPendingorder_DataBindingComplete(grdPendingorder, args); 
                 }
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")

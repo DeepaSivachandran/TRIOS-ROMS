@@ -184,6 +184,7 @@
     <Compile Include="CP_Employee.designer.cs">
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="MaskedTextColumn.cs" />
     <Compile Include="Model\TRNS_GoodsOutward.cs" />
     <Compile Include="Model\TRNS_GRN.cs" />
     <Compile Include="CP_SupplierPopup.cs">
