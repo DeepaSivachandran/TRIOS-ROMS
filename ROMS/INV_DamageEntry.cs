@@ -873,7 +873,7 @@ namespace ROMS
                     string varSupplierId = "0";
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtsuppliername.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtsuppliername.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0,0);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -1427,7 +1427,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, null);
+                    objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,txtProductName.Text.Trim(),0,"",null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1583,7 +1583,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtsuppliername.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtsuppliername.Text, 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtsuppliername.Text, 0, 0, 0, "", 0, 0, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

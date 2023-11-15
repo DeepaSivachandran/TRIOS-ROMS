@@ -1205,7 +1205,6 @@
     <Compile Include="Service Class\SecurityController.cs" />
     <Compile Include="Service Class\SPCall.cs" />
     <Compile Include="Service Class\SPDataService.cs" />
-    <Compile Include="Service Class\TRN_Damage.cs" />
     <Compile Include="SSS Acccounts activation.cs">
       <SubType>Form</SubType>
     </Compile>
