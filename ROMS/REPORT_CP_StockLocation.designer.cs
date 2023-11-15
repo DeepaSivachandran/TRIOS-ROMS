@@ -36,6 +36,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.lblConcern = new System.Windows.Forms.Label();
             this.cmbGodownType = new System.Windows.Forms.ComboBox();
             this.cmbLocationType = new System.Windows.Forms.ComboBox();
             this.lblLocationCode = new System.Windows.Forms.Label();
@@ -102,9 +104,9 @@
             this.columnHeader3});
             this.lvLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvLocation.HideSelection = false;
-            this.lvLocation.Location = new System.Drawing.Point(413, 48);
+            this.lvLocation.Location = new System.Drawing.Point(435, 73);
             this.lvLocation.Name = "lvLocation";
-            this.lvLocation.Size = new System.Drawing.Size(457, 157);
+            this.lvLocation.Size = new System.Drawing.Size(457, 169);
             this.lvLocation.TabIndex = 1111228;
             this.lvLocation.UseCompatibleStateImageBehavior = false;
             this.lvLocation.View = System.Windows.Forms.View.Details;
@@ -126,6 +128,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.cmbConcern);
+            this.grpfilter.Controls.Add(this.lblConcern);
             this.grpfilter.Controls.Add(this.cmbGodownType);
             this.grpfilter.Controls.Add(this.cmbLocationType);
             this.grpfilter.Controls.Add(this.lblLocationCode);
@@ -140,18 +144,40 @@
             this.grpfilter.Controls.Add(this.lblReportType);
             this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1348, 58);
+            this.grpfilter.Size = new System.Drawing.Size(1348, 81);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // cmbConcern
+            // 
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(241, 44);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(185, 27);
+            this.cmbConcern.TabIndex = 1;
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
+            // 
+            // lblConcern
+            // 
+            this.lblConcern.AutoSize = true;
+            this.lblConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConcern.Location = new System.Drawing.Point(241, 21);
+            this.lblConcern.Name = "lblConcern";
+            this.lblConcern.Size = new System.Drawing.Size(54, 20);
+            this.lblConcern.TabIndex = 1111232;
+            this.lblConcern.Text = "Concern";
+            // 
             // cmbGodownType
             // 
             this.cmbGodownType.FormattingEnabled = true;
-            this.cmbGodownType.Location = new System.Drawing.Point(903, 19);
+            this.cmbGodownType.Location = new System.Drawing.Point(833, 44);
             this.cmbGodownType.Name = "cmbGodownType";
             this.cmbGodownType.Size = new System.Drawing.Size(143, 27);
-            this.cmbGodownType.TabIndex = 3;
+            this.cmbGodownType.TabIndex = 4;
             this.cmbGodownType.Enter += new System.EventHandler(this.CmbGodownType_Enter);
             this.cmbGodownType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGodownType_KeyDown);
             this.cmbGodownType.Leave += new System.EventHandler(this.CmbGodownType_Leave);
@@ -159,10 +185,10 @@
             // cmbLocationType
             // 
             this.cmbLocationType.FormattingEnabled = true;
-            this.cmbLocationType.Location = new System.Drawing.Point(692, 19);
+            this.cmbLocationType.Location = new System.Drawing.Point(679, 44);
             this.cmbLocationType.Name = "cmbLocationType";
-            this.cmbLocationType.Size = new System.Drawing.Size(119, 27);
-            this.cmbLocationType.TabIndex = 2;
+            this.cmbLocationType.Size = new System.Drawing.Size(148, 27);
+            this.cmbLocationType.TabIndex = 3;
             this.cmbLocationType.Enter += new System.EventHandler(this.CmbLocationType_Enter);
             this.cmbLocationType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbLocationType_KeyDown);
             this.cmbLocationType.Leave += new System.EventHandler(this.CmbLocationType_Leave);
@@ -180,11 +206,11 @@
             // txtLocation
             // 
             this.txtLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtLocation.Location = new System.Drawing.Point(410, 19);
+            this.txtLocation.Location = new System.Drawing.Point(432, 44);
             this.txtLocation.MaxLength = 100;
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(188, 27);
-            this.txtLocation.TabIndex = 1;
+            this.txtLocation.Size = new System.Drawing.Size(241, 27);
+            this.txtLocation.TabIndex = 2;
             this.txtLocation.TextChanged += new System.EventHandler(this.TxtLocation_TextChanged);
             this.txtLocation.Enter += new System.EventHandler(this.TxtLocation_Enter);
             this.txtLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLocation_KeyDown);
@@ -194,7 +220,7 @@
             // 
             this.lblGodownType.AutoSize = true;
             this.lblGodownType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGodownType.Location = new System.Drawing.Point(817, 22);
+            this.lblGodownType.Location = new System.Drawing.Point(833, 21);
             this.lblGodownType.Name = "lblGodownType";
             this.lblGodownType.Size = new System.Drawing.Size(80, 20);
             this.lblGodownType.TabIndex = 1111181;
@@ -203,10 +229,10 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(1103, 19);
+            this.cmbStatus.Location = new System.Drawing.Point(982, 44);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(143, 27);
-            this.cmbStatus.TabIndex = 4;
+            this.cmbStatus.TabIndex = 5;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
@@ -216,7 +242,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(1052, 22);
+            this.lblStatus.Location = new System.Drawing.Point(982, 21);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 1111182;
@@ -226,7 +252,7 @@
             // 
             this.lblLocationType.AutoSize = true;
             this.lblLocationType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocationType.Location = new System.Drawing.Point(604, 22);
+            this.lblLocationType.Location = new System.Drawing.Point(679, 21);
             this.lblLocationType.Name = "lblLocationType";
             this.lblLocationType.Size = new System.Drawing.Size(82, 20);
             this.lblLocationType.TabIndex = 1111180;
@@ -236,7 +262,7 @@
             // 
             this.lblLocationName.AutoSize = true;
             this.lblLocationName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocationName.Location = new System.Drawing.Point(317, 22);
+            this.lblLocationName.Location = new System.Drawing.Point(432, 21);
             this.lblLocationName.Name = "lblLocationName";
             this.lblLocationName.Size = new System.Drawing.Size(87, 20);
             this.lblLocationName.TabIndex = 1111178;
@@ -247,11 +273,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1252, 18);
+            this.btnListPrint.Location = new System.Drawing.Point(1131, 43);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 5;
+            this.btnListPrint.TabIndex = 6;
             this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
@@ -262,7 +288,7 @@
             // cmbReportType
             // 
             this.cmbReportType.FormattingEnabled = true;
-            this.cmbReportType.Location = new System.Drawing.Point(85, 19);
+            this.cmbReportType.Location = new System.Drawing.Point(9, 44);
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(226, 27);
             this.cmbReportType.TabIndex = 0;
@@ -276,7 +302,7 @@
             // 
             this.lblReportType.AutoSize = true;
             this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportType.Location = new System.Drawing.Point(6, 22);
+            this.lblReportType.Location = new System.Drawing.Point(9, 21);
             this.lblReportType.Name = "lblReportType";
             this.lblReportType.Size = new System.Drawing.Size(73, 20);
             this.lblReportType.TabIndex = 1111176;
@@ -287,7 +313,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 357);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 355);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
@@ -301,9 +327,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 66);
+            this.picLoader.Location = new System.Drawing.Point(3, 89);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1351, 576);
+            this.picLoader.Size = new System.Drawing.Size(1351, 553);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
@@ -314,10 +340,10 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(3, 66);
+            this.RPTViewer.Location = new System.Drawing.Point(3, 89);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1348, 573);
+            this.RPTViewer.Size = new System.Drawing.Size(1348, 550);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
@@ -376,5 +402,7 @@
         public System.Windows.Forms.Label lblLocationCode;
         private System.Windows.Forms.ComboBox cmbGodownType;
         private System.Windows.Forms.ComboBox cmbLocationType;
+        private System.Windows.Forms.Label lblConcern;
+        private System.Windows.Forms.ComboBox cmbConcern;
     }
 }
