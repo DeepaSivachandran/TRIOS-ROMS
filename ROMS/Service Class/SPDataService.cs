@@ -653,6 +653,74 @@ namespace ROMS
             }
             return ds;
         }
+        //Added By Sathish On:-09-11-2023
+        public string udfnDamageEntry(TRN_Damage objTRN_Damage)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Damage]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Damage.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDamageEntryID", objTRN_Damage.paraDamageEntryID);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objTRN_Damage.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferDate", objTRN_Damage.paraTransferDate);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationID", objTRN_Damage.paraLocationID);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_Damage.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Damage.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Damage.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraDamageEntry", objTRN_Damage.paraDamageEntry);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        // added by venkat on 16/10/2023 for purchase damage list
+        public DataSet udfnproductDamage(int paraViewType,int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID,int paraStatus,string ParaDMFromDate,string ParaDMToDate)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Damage]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDamageEntryID", paraDamageEntryID);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleId", ParaScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyID", paraCompanyID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@ParaDMFromDate", ParaDMFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaDMToDate", ParaDMToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
         public DataSet udfnSINO(int ViewType, int paraID)
         {
             DataSet ds = new DataSet();
