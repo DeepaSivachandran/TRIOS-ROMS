@@ -97,8 +97,12 @@
             this.lblDEVisitDay = new System.Windows.Forms.Label();
             this.dpGrnDate = new System.Windows.Forms.DateTimePicker();
             this.lblDESupplier = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gpAddrow = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -119,10 +123,6 @@
             this.RMcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMEName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LV_Supplier = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -141,10 +141,10 @@
             this.clmPOid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpVerify = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblDateTime2 = new System.Windows.Forms.Label();
-            this.lblDateTime = new System.Windows.Forms.Label();
+            this.lblVerified2 = new System.Windows.Forms.Label();
+            this.lblVerified1 = new System.Windows.Forms.Label();
+            this.lblVerifyDateTime2 = new System.Windows.Forms.Label();
+            this.lblVerifyDateTime = new System.Windows.Forms.Label();
             this.txtDLevel2 = new System.Windows.Forms.TextBox();
             this.txtDLevel1 = new System.Windows.Forms.TextBox();
             this.btnVerify1 = new System.Windows.Forms.Button();
@@ -159,7 +159,7 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.gpAddrow.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
             this.grpVerify.SuspendLayout();
@@ -225,7 +225,7 @@
             this.grpSupplierMapping.Controls.Add(this.btnClose);
             this.grpSupplierMapping.Controls.Add(this.btnSave);
             this.grpSupplierMapping.Controls.Add(this.groupBox2);
-            this.grpSupplierMapping.Controls.Add(this.groupBox4);
+            this.grpSupplierMapping.Controls.Add(this.gpAddrow);
             this.grpSupplierMapping.Controls.Add(this.groupBox1);
             this.grpSupplierMapping.Controls.Add(this.grpVerify);
             this.grpSupplierMapping.Controls.Add(this.lblRemark);
@@ -569,6 +569,7 @@
             // txtRemark
             // 
             this.txtRemark.Location = new System.Drawing.Point(689, 535);
+            this.txtRemark.MaxLength = 100;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(213, 88);
@@ -699,17 +700,17 @@
             this.txtTotalpro.ReadOnly = true;
             this.txtTotalpro.Size = new System.Drawing.Size(39, 27);
             this.txtTotalpro.TabIndex = 1111202;
-            this.txtTotalpro.Text = "10";
             this.txtTotalpro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
             this.textBox1.Location = new System.Drawing.Point(669, 53);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(17, 27);
-            this.textBox1.TabIndex = 1111200;
+            this.textBox1.TabIndex = 888888;
             this.textBox1.Text = "₹";
             // 
             // cmbConcern
@@ -755,6 +756,9 @@
             this.txtInvoiceno.Name = "txtInvoiceno";
             this.txtInvoiceno.Size = new System.Drawing.Size(163, 27);
             this.txtInvoiceno.TabIndex = 5;
+            this.txtInvoiceno.Enter += new System.EventHandler(this.TxtInvoiceno_Enter);
+            this.txtInvoiceno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceno_KeyDown);
+            this.txtInvoiceno.Leave += new System.EventHandler(this.TxtInvoiceno_Leave);
             // 
             // cmbOrderType
             // 
@@ -880,30 +884,30 @@
             this.lblDESupplier.TabIndex = 20;
             this.lblDESupplier.Text = "Supplier";
             // 
-            // groupBox4
+            // gpAddrow
             // 
-            this.groupBox4.Controls.Add(this.btnAdd);
-            this.groupBox4.Controls.Add(this.LV_Supplier);
-            this.groupBox4.Controls.Add(this.txtProductName);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.textBox2);
-            this.groupBox4.Controls.Add(this.BtnNew);
-            this.groupBox4.Controls.Add(this.lblYYYY);
-            this.groupBox4.Controls.Add(this.lblMM);
-            this.groupBox4.Controls.Add(this.lblDD);
-            this.groupBox4.Controls.Add(this.lblDEGroup);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.txtBatchno);
-            this.groupBox4.Controls.Add(this.txtmrprate);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.txtYear);
-            this.groupBox4.Controls.Add(this.txtDate);
-            this.groupBox4.Controls.Add(this.txtMonth);
-            this.groupBox4.Location = new System.Drawing.Point(16, 104);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1024, 64);
-            this.groupBox4.TabIndex = 1111163;
-            this.groupBox4.TabStop = false;
+            this.gpAddrow.Controls.Add(this.btnAdd);
+            this.gpAddrow.Controls.Add(this.LV_Supplier);
+            this.gpAddrow.Controls.Add(this.txtProductName);
+            this.gpAddrow.Controls.Add(this.label8);
+            this.gpAddrow.Controls.Add(this.textBox2);
+            this.gpAddrow.Controls.Add(this.BtnNew);
+            this.gpAddrow.Controls.Add(this.lblYYYY);
+            this.gpAddrow.Controls.Add(this.lblMM);
+            this.gpAddrow.Controls.Add(this.lblDD);
+            this.gpAddrow.Controls.Add(this.lblDEGroup);
+            this.gpAddrow.Controls.Add(this.label7);
+            this.gpAddrow.Controls.Add(this.txtBatchno);
+            this.gpAddrow.Controls.Add(this.txtmrprate);
+            this.gpAddrow.Controls.Add(this.label9);
+            this.gpAddrow.Controls.Add(this.txtYear);
+            this.gpAddrow.Controls.Add(this.txtDate);
+            this.gpAddrow.Controls.Add(this.txtMonth);
+            this.gpAddrow.Location = new System.Drawing.Point(16, 104);
+            this.gpAddrow.Name = "gpAddrow";
+            this.gpAddrow.Size = new System.Drawing.Size(1024, 64);
+            this.gpAddrow.TabIndex = 700000000;
+            this.gpAddrow.TabStop = false;
             // 
             // btnAdd
             // 
@@ -920,13 +924,42 @@
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
             this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(669, -42);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(358, 93);
+            this.LV_Supplier.TabIndex = 1111210;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 180;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
+            // 
             // txtProductName
             // 
             this.txtProductName.Location = new System.Drawing.Point(152, 28);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(261, 27);
-            this.txtProductName.TabIndex = 7;
+            this.txtProductName.TabIndex = 6;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
             this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
@@ -1109,7 +1142,7 @@
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(152, 0);
+            this.lvproduct.Location = new System.Drawing.Point(152, 2);
             this.lvproduct.Name = "lvproduct";
             this.lvproduct.Size = new System.Drawing.Size(503, 140);
             this.lvproduct.TabIndex = 1111212;
@@ -1130,35 +1163,6 @@
             // RMEName
             // 
             this.RMEName.Width = 200;
-            // 
-            // LV_Supplier
-            // 
-            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader9});
-            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(669, -42);
-            this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(358, 93);
-            this.LV_Supplier.TabIndex = 1111210;
-            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
-            this.LV_Supplier.View = System.Windows.Forms.View.Details;
-            this.LV_Supplier.Visible = false;
-            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 180;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Width = 120;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Width = 0;
             // 
             // grdGrnlist
             // 
@@ -1216,9 +1220,9 @@
             this.grdGrnlist.Size = new System.Drawing.Size(1302, 334);
             this.grdGrnlist.TabIndex = 4;
             this.grdGrnlist.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdGrnlist_CellFormatting);
+            this.grdGrnlist.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnlist_CellLeave);
             this.grdGrnlist.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GrdGrnlist_CellValidating);
-            this.grdGrnlist.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnlist_EditingControlShowing);
-            this.grdGrnlist.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.grdGrnlist.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGrnlist_CurrentCellDirtyStateChanged);
             // 
             // clmsno
             // 
@@ -1330,10 +1334,10 @@
             // 
             // grpVerify
             // 
-            this.grpVerify.Controls.Add(this.label11);
-            this.grpVerify.Controls.Add(this.label2);
-            this.grpVerify.Controls.Add(this.lblDateTime2);
-            this.grpVerify.Controls.Add(this.lblDateTime);
+            this.grpVerify.Controls.Add(this.lblVerified2);
+            this.grpVerify.Controls.Add(this.lblVerified1);
+            this.grpVerify.Controls.Add(this.lblVerifyDateTime2);
+            this.grpVerify.Controls.Add(this.lblVerifyDateTime);
             this.grpVerify.Controls.Add(this.txtDLevel2);
             this.grpVerify.Controls.Add(this.txtDLevel1);
             this.grpVerify.Controls.Add(this.btnVerify1);
@@ -1346,45 +1350,41 @@
             this.grpVerify.TabStop = false;
             this.grpVerify.Text = "Verification Process";
             // 
-            // label11
+            // lblVerified2
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(103, 62);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 16);
-            this.label11.TabIndex = 1111189;
-            this.label11.Text = "User 2";
+            this.lblVerified2.AutoSize = true;
+            this.lblVerified2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerified2.Location = new System.Drawing.Point(103, 62);
+            this.lblVerified2.Name = "lblVerified2";
+            this.lblVerified2.Size = new System.Drawing.Size(0, 16);
+            this.lblVerified2.TabIndex = 1111189;
             // 
-            // label2
+            // lblVerified1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(103, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 16);
-            this.label2.TabIndex = 1111188;
-            this.label2.Text = "User 1";
+            this.lblVerified1.AutoSize = true;
+            this.lblVerified1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerified1.Location = new System.Drawing.Point(103, 29);
+            this.lblVerified1.Name = "lblVerified1";
+            this.lblVerified1.Size = new System.Drawing.Size(0, 16);
+            this.lblVerified1.TabIndex = 1111188;
             // 
-            // lblDateTime2
+            // lblVerifyDateTime2
             // 
-            this.lblDateTime2.AutoSize = true;
-            this.lblDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime2.Location = new System.Drawing.Point(103, 76);
-            this.lblDateTime2.Name = "lblDateTime2";
-            this.lblDateTime2.Size = new System.Drawing.Size(123, 16);
-            this.lblDateTime2.TabIndex = 1111187;
-            this.lblDateTime2.Text = "20/07/2023 @ 05.05 PM";
+            this.lblVerifyDateTime2.AutoSize = true;
+            this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime2.Location = new System.Drawing.Point(103, 76);
+            this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
+            this.lblVerifyDateTime2.Size = new System.Drawing.Size(0, 16);
+            this.lblVerifyDateTime2.TabIndex = 1111187;
             // 
-            // lblDateTime
+            // lblVerifyDateTime
             // 
-            this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime.Location = new System.Drawing.Point(103, 43);
-            this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(123, 16);
-            this.lblDateTime.TabIndex = 1111186;
-            this.lblDateTime.Text = "20/07/2023 @ 05.05 PM";
+            this.lblVerifyDateTime.AutoSize = true;
+            this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime.Location = new System.Drawing.Point(103, 43);
+            this.lblVerifyDateTime.Name = "lblVerifyDateTime";
+            this.lblVerifyDateTime.Size = new System.Drawing.Size(0, 16);
+            this.lblVerifyDateTime.TabIndex = 1111186;
             // 
             // txtDLevel2
             // 
@@ -1414,6 +1414,7 @@
             // 
             // btnVerify1
             // 
+            this.btnVerify1.Enabled = false;
             this.btnVerify1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnVerify1.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify1.Image")));
             this.btnVerify1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1427,6 +1428,7 @@
             // 
             // btnVerify2
             // 
+            this.btnVerify2.Enabled = false;
             this.btnVerify2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnVerify2.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify2.Image")));
             this.btnVerify2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1483,8 +1485,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.gpAddrow.ResumeLayout(false);
+            this.gpAddrow.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).EndInit();
             this.grpVerify.ResumeLayout(false);
@@ -1521,7 +1523,7 @@
         private System.Windows.Forms.TextBox txtMonth;
         private System.Windows.Forms.TextBox txtBatchno;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gpAddrow;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtInvoiceno;
         private System.Windows.Forms.ComboBox cmbOrderType;
@@ -1548,10 +1550,10 @@
         private System.Windows.Forms.Label lblPercentage;
         private System.Windows.Forms.TextBox txtDLevel1;
         private System.Windows.Forms.TextBox txtDLevel2;
-        private System.Windows.Forms.Label lblDateTime2;
-        private System.Windows.Forms.Label lblDateTime;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblVerifyDateTime2;
+        private System.Windows.Forms.Label lblVerifyDateTime;
+        private System.Windows.Forms.Label lblVerified2;
+        private System.Windows.Forms.Label lblVerified1;
         private System.Windows.Forms.Button BtnNew;
         public System.Windows.Forms.DataGridView grdPODetails;
         private System.Windows.Forms.TextBox textBox2;

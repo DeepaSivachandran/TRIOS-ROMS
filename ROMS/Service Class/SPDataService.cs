@@ -2042,6 +2042,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaFrightCharge", objTRNS_GRN.ParaFrightCharge); 
                 varSqlCommand.Parameters.AddWithValue("@paraOrderType", objTRNS_GRN.paraOrderType); 
                 varSqlCommand.Parameters.AddWithValue("@paraPAckage", objTRNS_GRN.paraPAckage); 
+                varSqlCommand.Parameters.AddWithValue("@ParaVerify", objTRNS_GRN.ParaVerify); 
+                varSqlCommand.Parameters.AddWithValue("@paraflag", objTRNS_GRN.paraflag); 
+                varSqlCommand.Parameters.AddWithValue("@ParaPurchaseDC", objTRNS_GRN.ParaPurchaseDC); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRNS_GRN.paraStatus); 
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -2058,7 +2062,8 @@ namespace ROMS
         }
 
         // added by venkat on 03/11/2023 for GRN list
-        public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID,string ParaGRNFromDate,string ParaGRNToDate, int paraGRNID, int paraStatus,int paraOrdertype)
+        public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID,string ParaGRNFromDate,string ParaGRNToDate,
+            int paraGRNID, int paraStatus,int paraOrdertype,string ParaExpiryDate,string ParaGRNDate,int paraProductId)
         {
             DataSet ds = new DataSet();
             try
@@ -2078,6 +2083,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", paraGRNID);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus); 
                 varSqlCommand.Parameters.AddWithValue("@paraOrdertype", paraOrdertype); 
+                varSqlCommand.Parameters.AddWithValue("@ParaGRNDate", ParaGRNDate); 
+                varSqlCommand.Parameters.AddWithValue("@ParaExpiryDate", ParaExpiryDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId); 
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

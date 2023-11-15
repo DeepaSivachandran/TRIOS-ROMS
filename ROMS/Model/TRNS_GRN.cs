@@ -28,5 +28,10 @@ namespace ROMS.Model
         public string paraPAckage { get; set; } = "";
         public string paraRemarks { get; set; } = "";
         public DataTable ParaTRN_GRN_PO { get; set; } = null;
+        public int ParaVerify { get; set; } = 0;
+        public int paraflag { get; set; } = 0;
+        public string ParaPurchaseDC { get; set; } = "0"; 
+        public int paraStatus { get; set; } =0;
+
     }
 }
