@@ -2343,7 +2343,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\ROMS v1.1.2.msi"
+        "OutputFilename" = "8:Debug\\ROMS v1.1.3.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -5732,8 +5732,8 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C2D8A0C8CE224494B9B6BB411E17B89E"
             {
-            "SourcePath" = "8:..\\..\\Release Notes\\Release Notes v1.1.2.txt"
-            "TargetName" = "8:Release Notes v1.1.2.txt"
+            "SourcePath" = "8:..\\..\\Release Notes\\Release Notes v1.1.3.txt"
+            "TargetName" = "8:Release Notes v1.1.3.txt"
             "Tag" = "8:"
             "Folder" = "8:_890B12C9444C416CB410235B7F9393CD"
             "Condition" = "8:"
@@ -6853,7 +6853,7 @@
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.2"
+        "ProductVersion" = "8:1.1.3"
         "Manufacturer" = "8:Trio-S"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://trio-s.com/"
