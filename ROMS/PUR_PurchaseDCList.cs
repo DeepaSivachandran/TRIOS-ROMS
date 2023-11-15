@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,10 @@ namespace ROMS
                 objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRNG_Purchase_DC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRNG_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                objTRNG_Purchase_DC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                objTRNG_Purchase_DC.paraFromDate = dpDcFromDate.Text;
+                objTRNG_Purchase_DC.paraToDate = dpdctodate.Text;
+                objTRNG_Purchase_DC.@paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
                 objdserv.CloseConnection();
@@ -91,6 +96,7 @@ namespace ROMS
                             grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
                             grdPurchaseDCList.Columns["Status ID"].Visible = false;
                             grdPurchaseDCList.Columns["COMID"].Visible = false;
+                            grdPurchaseDCList.Columns["DC_SPSCID"].Visible = false;
                         }
                         else
                         {
@@ -135,7 +141,6 @@ namespace ROMS
                 MainForm.objPUR_PurchaseDC.pbScheduleid = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPSCID"].Value.ToString());
                 MainForm.objPUR_PurchaseDC.pbSupplierId = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPID"].Value.ToString());
                 //MainForm.objPUR_PurchaseDC.txtRemark.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
-                
                 MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
                 MainForm.objPUR_PurchaseDC.Show();
             }
@@ -143,6 +148,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.SendToBack();
+                picLoader.Visible = false;
             }
         } 
         private void udfnSearchGridHead()
@@ -294,10 +304,27 @@ namespace ROMS
         {
             try
             {
-
-                //MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns(); 
-                //MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                //MainForm.objPUR_PurchaseReturns.Show();
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    TsbDelete_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -356,9 +383,10 @@ namespace ROMS
                         }
                     }
                 }
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", " STS_ModuleID=8 OR STSID=0 ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -829,27 +857,34 @@ namespace ROMS
         {
             try
             {
-                string varorginator = "Purchase DC Deletion",result="";
-                varviewtype = 2; 
-                TRN_Purchase_DC objTRNS_Purchase_DC = new TRN_Purchase_DC();
-                objTRNS_Purchase_DC.ViewType = varviewtype;
-                objTRNS_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                objTRNS_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
-                objTRNS_Purchase_DC.paraOriginator = varorginator;
-                objTRNS_Purchase_DC.paraDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-               
-                SPDataService objspdservice = new SPDataService();
-                result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
-                objspdservice.CloseConnection();
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
+                if (grdPurchaseDCList.SelectedRows.Count > 0)
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnList();
-                }
-                else if (result.Split('~')[0] == "4")
-                {
-                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        string varorginator = "Purchase DC Deletion", result = "";
+                        varviewtype = 2;
+                        TRN_Purchase_DC objTRNS_Purchase_DC = new TRN_Purchase_DC();
+                        objTRNS_Purchase_DC.ViewType = varviewtype;
+                        objTRNS_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                        objTRNS_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                        objTRNS_Purchase_DC.paraOriginator = varorginator;
+                        objTRNS_Purchase_DC.paraDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+
+                        SPDataService objspdservice = new SPDataService();
+                        result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
+                        objspdservice.CloseConnection();
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            udfnList();
+                        }
+                        else if (result.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -919,7 +954,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplier.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -977,7 +1012,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -986,6 +1020,19 @@ namespace ROMS
                 {
                     BtnView_Click(sender, e);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpDcFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpDcFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpdctodate.MinDate = varmindate;
             }
             catch (Exception ex)
             {

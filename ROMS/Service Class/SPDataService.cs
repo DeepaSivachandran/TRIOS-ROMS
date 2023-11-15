@@ -135,7 +135,7 @@ namespace ROMS
             return result;
         }
         // Sivabharathi    Create date: 20/09/2023    Description:	Master list Sp
-        public DataSet udfnMaster(int ViewType, int paraID,int paraPOID)
+        public DataSet udfnMaster(int ViewType, int paraID,int paraPOID,string paraDate)
         {
             DataSet ds = new DataSet();
             try
@@ -145,6 +145,7 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraID", paraID);
+                varSqlCommand.Parameters.AddWithValue("@paraDate", paraDate);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraPOID", paraPOID);
@@ -2103,12 +2104,14 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_Purchase_DC.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraDCID", objTRNG_Purchase_DC.paraDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_Purchase_DC.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_Purchase_DC.paraToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNG_Purchase_DC.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRNG_Purchase_DC.paraStatusID);
                 varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRNG_Purchase_DC.paraScheduleID);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRNG_Purchase_DC.paraCompanyId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_Purchase_DC.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_Purchase_DC.paraIPAddress);
-               
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

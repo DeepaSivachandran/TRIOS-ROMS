@@ -17,6 +17,8 @@ namespace ROMS.Model
         public int paraCompanyId { get; set; } = 0;
         public string paraDC_Date { get; set; } = "";
         public string paraDC_NO { get; set; } = "";
+        public string paraFromDate { get; set; } = "";
+        public string paraToDate { get; set; } = "";
         public int paraSupplierID { get; set; } = 0;
         public int paraScheduleID { get; set; } = 0;
         public string paraDC_Remarks { get; set; } = "";

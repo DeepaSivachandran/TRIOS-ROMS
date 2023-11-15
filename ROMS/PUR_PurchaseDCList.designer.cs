@@ -258,11 +258,11 @@
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(1144, 404);
+            this.picLoader.Location = new System.Drawing.Point(3, 74);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(197, 226);
+            this.picLoader.Size = new System.Drawing.Size(1348, 566);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958787;
             this.picLoader.TabStop = false;
@@ -448,6 +448,7 @@
             this.dpDcFromDate.Name = "dpDcFromDate";
             this.dpDcFromDate.Size = new System.Drawing.Size(104, 27);
             this.dpDcFromDate.TabIndex = 1;
+            this.dpDcFromDate.ValueChanged += new System.EventHandler(this.DpDcFromDate_ValueChanged);
             this.dpDcFromDate.Enter += new System.EventHandler(this.DpDcFromDate_Enter);
             this.dpDcFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpDcFromDate_KeyDown);
             this.dpDcFromDate.Leave += new System.EventHandler(this.DpDcFromDate_Leave);
