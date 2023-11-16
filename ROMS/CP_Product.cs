@@ -556,16 +556,15 @@ namespace ROMS
                     }
                 }
                 /*check location have a rack or not*/
+                string varId_PurchaseRack = "0";
+                DataSet objDsPurchaseRack = new DataSet();
+                SPDataService objDServ6 = new SPDataService();
+                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), 0, 0);
+                objDServ6.CloseConnection();
                 if (txtPurRack.Text.Trim() != "")
                 {
                     if (lblPurLocationCode.Text != "0")
                     {
-                        string varId_PurchaseRack = "0";
-                        DataSet objDsPurchaseRack = new DataSet();
-                        SPDataService objDServ6 = new SPDataService();
-                        objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), 0, 0);
-
-                        objDServ6.CloseConnection();
                         if (objDsPurchaseRack != null)
                         {
                             if (objDsPurchaseRack.Tables.Count > 0)
@@ -591,11 +590,7 @@ namespace ROMS
                 {
                     if (lblPurLocationCode.Text != "0")
                     {
-                        string varId_PurchaseRack = "0";
-                        DataSet objDsPurchaseRack = new DataSet();
-                        SPDataService objDServ6 = new SPDataService();
-                        objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), 0, 0);
-                        objDServ6.CloseConnection();
+                        
                         if (objDsPurchaseRack != null)
                         {
                             if (objDsPurchaseRack.Tables.Count > 0)
@@ -5145,8 +5140,6 @@ namespace ROMS
                             btnSave.Text = "Update";
                             pnlStatus.Enabled = true;
                         }
-
-
                     }
                 }
             }
