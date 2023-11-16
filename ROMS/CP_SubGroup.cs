@@ -1306,7 +1306,7 @@ namespace ROMS
 
         private void TxtRack_TextChanged(object sender, EventArgs e)
         {
-            try {// (grdRackList.DataSource as DataTable).DefaultView.RowFilter = "([RK_Name]) LIKE '%" + txtRack.Text + "%'";
+            try {// (grdRackList.DataSource as BindingSource).Filter = "([RK_Name]) LIKE '%" + txtRack.Text + "%'";
                 dtRackList.DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtRack.Text.Trim() + "%'";
             }
             catch (Exception ex)

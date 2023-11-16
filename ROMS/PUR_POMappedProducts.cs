@@ -149,7 +149,7 @@ namespace ROMS
         {
             try
             {
-                (grdPurchaseOrder.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+                (grdPurchaseOrder.DataSource as BindingSource).Filter = "([Product Name]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             }
             catch (Exception ex)
             {

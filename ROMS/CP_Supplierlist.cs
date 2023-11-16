@@ -1003,10 +1003,18 @@ namespace ROMS
                             Excel.Range cell = ExcelSheet.Cells[2, cIndex];
                             cell.Font.Color = Excel.XlRgbColor.rgbWhite;
 
-
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdSupplierList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
                             }
                         }
                     }

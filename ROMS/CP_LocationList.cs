@@ -84,7 +84,7 @@ namespace ROMS
                         }
                     }
                 }
-
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataSet objDS = new DataSet();
                 SPDataService objDServ = new SPDataService();
                 objDS = objdserv.udfnStockLocationList(18, 0,0,0,"",0,0,0);
@@ -148,10 +148,11 @@ namespace ROMS
                             grdGodownList.Columns["RKCreationID"].Visible = false;
                             grdGodownList.Columns["RKGCreationID"].Visible = false;
                             grdGodownList.Columns["S.No."].Width = 50;
-                            grdGodownList.Columns["Location Name in English"].Width = 250;
-                            grdGodownList.Columns["Location Name in Tamil"].Width = 250;
+                            grdGodownList.Columns["Location Name in English"].Width = 200;
+                            grdGodownList.Columns["Location Name in Tamil"].Width = 200;
+                            grdGodownList.Columns["Rack Group Creation"].Width = 130;
                             grdGodownList.Columns["Short Name"].Width = 100;
-                            grdGodownList.Columns["Stock Applicable"].Width = 120;
+                            grdGodownList.Columns["Stock Applicable"].Width = 110;
                             grdGodownList.Columns["Status"].Width = 80;
                             grdGodownList.Columns["Godown Type"].Width = 150;
                             grdGodownList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -579,10 +580,22 @@ namespace ROMS
                             {
                                 ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdGodownList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
+                                if (cIndex == 5)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex].Font.Name = "Uni Ila.Sundaram-03";
+                                }
                             }
                         }
                     }
@@ -661,7 +674,7 @@ namespace ROMS
         {
             try
             {
-                (grdGodownList.DataSource as DataTable).DefaultView.RowFilter = "([Location Name in English]) LIKE '%" + txtSearchbyLocationName.Text + "%'";
+                (grdGodownList.DataSource as BindingSource).Filter = "([Location Name in English]) LIKE '%" + txtSearchbyLocationName.Text + "%'";
             }
             catch (Exception ex)
             {

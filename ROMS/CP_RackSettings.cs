@@ -862,7 +862,7 @@ namespace ROMS
         {
             try
             {
-                (grdSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%' ";
+                (grdSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchByProduct1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%' ";
             }
             catch (Exception ex)
             {
@@ -898,7 +898,7 @@ namespace ROMS
         {
             try
             {
-                (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+                (grdViewSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             }
             catch (Exception ex)
             {
@@ -3059,7 +3059,7 @@ namespace ROMS
         {
             try
             {
-                (grdViewProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchProductName1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName1.Text + "%' ";
+                (grdViewProduct.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchProductName1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName1.Text + "%' ";
             }
             catch (Exception ex)
             {
@@ -3095,7 +3095,7 @@ namespace ROMS
         {
             try
             {
-                (grdMoveProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchProductName2.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName2.Text + "%' ";
+                (grdMoveProduct.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchProductName2.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName2.Text + "%' ";
             }
             catch (Exception ex)
             {

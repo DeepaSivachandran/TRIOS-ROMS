@@ -2686,8 +2686,9 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
-            { 
-               
+            {
+                MainForm objMainForm = new MainForm();
+                objMainForm.udfnGetDefaultCompany();
             }
         }
 

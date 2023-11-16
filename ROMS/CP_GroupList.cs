@@ -622,9 +622,22 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdGroupList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
+                                if (cIndex == 3)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex].Font.Name = "Uni Ila.Sundaram-03";
+                                }
                             }
                         }
                     }
@@ -667,7 +680,7 @@ namespace ROMS
         {
             try
             {
-                (grdGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                (grdGroupList.DataSource as BindingSource).Filter = "([Product Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
             }
             catch (Exception ex)
             {

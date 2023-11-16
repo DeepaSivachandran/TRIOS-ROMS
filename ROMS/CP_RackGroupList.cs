@@ -613,10 +613,21 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdRackGroupList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    if (Convert.ToString(rowa.Cells[col.Index].Value) != "")
+                                    {
+                                        ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                        varSLno++;
+                                    }
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
                             }
                         }
                     }

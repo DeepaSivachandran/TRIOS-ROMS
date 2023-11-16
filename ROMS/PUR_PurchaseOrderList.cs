@@ -1254,7 +1254,7 @@ namespace ROMS
         {
             try
             {
-                (grdProDetails.DataSource as DataTable).DefaultView.RowFilter = "([Product]) LIKE '%" + txtProductSearch.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductSearch.Text + "%'";
+                (grdProDetails.DataSource as BindingSource).Filter = "([Product]) LIKE '%" + txtProductSearch.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductSearch.Text + "%'";
             }
             catch (Exception ex)
             {

@@ -4983,7 +4983,7 @@ namespace ROMS
         {
             try
             {
-                // (grdSupplierMappingLoad.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
+                // (grdSupplierMappingLoad.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
                 DataTable objdtnew = new DataTable();
                 objdtnew = dtSubGroup.Copy();
                 objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
@@ -5025,7 +5025,7 @@ namespace ROMS
         {
             try
             {
-                //(grdFinalSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //(grdFinalSupplierMapping.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
                 DataTable objdtnew = new DataTable();
                 objdtnew = dtSubGroupMapping.Copy();
                 objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
@@ -5482,7 +5482,7 @@ namespace ROMS
         {
             try
             {
-                (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+                (grdViewSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             }
             catch (Exception ex)
             {
