@@ -283,7 +283,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                int varViewType = 2;
+                int varViewType = 8;
                 objDT = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;

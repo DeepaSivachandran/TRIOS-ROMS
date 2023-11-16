@@ -162,10 +162,10 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                int varViewType = 3, varConcernId = 0;
+                int varViewType = 9, varConcernId = 0;
                 if (btnSave.Text == "Update")
                 {
-                    varViewType = 4;
+                    varViewType = 10;
                     varConcernId = varCompanyId;
                 }
                 objDT = objdserv.udfnCompanyList(varViewType, varConcernId, MainForm.pbUserID, MainForm.pbIpAddress, 0);
@@ -229,6 +229,10 @@ namespace ROMS
                 grdEmployee.Columns["CT_SINO"].Visible = false;
                 grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
+                grdEmployee.Columns["S.No."].ReadOnly = true;
+                grdEmployee.Columns["Employee Code"].ReadOnly = true;
+                grdEmployee.Columns["Employee Name"].ReadOnly = true;
+                grdEmployee.Columns["Employee Category"].ReadOnly = true;
                 udfnEmpGridRemove();
 
             }
