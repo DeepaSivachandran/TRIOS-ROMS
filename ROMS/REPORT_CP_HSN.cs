@@ -101,21 +101,21 @@ namespace ROMS
         {
             try
             {
-                if (cmbReportType.SelectedIndex == 0)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbReportType.Focus();
                 }
                 else
                 {
-                    if (cmbReportType.SelectedIndex == 1)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 103)
                     {
                         udfnHSN();
                     }
-                    if (cmbReportType.SelectedIndex == 2)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 104)
                     {
                         udfnHSNProduct();
                     }
-                    if (cmbReportType.SelectedIndex == 3)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 105)
                     {
                         udfnHSNSubgroup();
                     }

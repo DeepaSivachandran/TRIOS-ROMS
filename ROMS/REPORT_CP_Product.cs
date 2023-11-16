@@ -103,7 +103,7 @@ namespace ROMS
         {
             try
             {
-                if (cmbReportType.SelectedIndex == 0)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbReportType.Focus();
                 }
@@ -112,31 +112,31 @@ namespace ROMS
                     lvGroup.Visible = false;
                     lvSubGroup.Visible = false;
 
-                    if (cmbReportType.SelectedIndex == 1)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 127)
                     {
                         udfnProductGST();
                     }
-                    if (cmbReportType.SelectedIndex == 2)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 128)
                     {
                         udfnProductRate();
                     }
-                    if (cmbReportType.SelectedIndex == 3)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 129)
                     {
                         udfnProductDefaultStock();
                     }
-                    if (cmbReportType.SelectedIndex == 4)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 130)
                     {
                         udfnProductShelfLife();
                     }
-                    if (cmbReportType.SelectedIndex == 5)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 131)
                     {
                         udfnProductNettGross();
                     }
-                    if (cmbReportType.SelectedIndex == 6)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 132)
                     {
                         udfnProductSubgroupGroupBrand();
                     }
-                    if (cmbReportType.SelectedIndex == 7)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 133)
                     {
                         udfnProductMinSales();
                     }
