@@ -78,7 +78,7 @@ namespace ROMS
                         }
                     }
                 }
-               
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {

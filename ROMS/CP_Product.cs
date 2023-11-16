@@ -3267,6 +3267,7 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnUnitLoad();
                 //int varbrnadViewtype = 4;
                 //if (btnSave.Text == "Save")

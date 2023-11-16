@@ -109,6 +109,7 @@ namespace ROMS
                 }
 
                 udfnCmbConcern();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnemployeeload();
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 if (btnSave.Text == "Save")

@@ -311,6 +311,7 @@ namespace ROMS
             try
             {
                 udfnCmbConcern();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
                 this.ActiveControl = cmbConcern;
             }
