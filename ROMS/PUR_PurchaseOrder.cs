@@ -696,8 +696,7 @@ namespace ROMS
         }
 
         public DataTable udfnPurchaseProduct()
-        {
-
+        { 
             DataTable objPurchaseOrder = new DataTable();
             try
             {

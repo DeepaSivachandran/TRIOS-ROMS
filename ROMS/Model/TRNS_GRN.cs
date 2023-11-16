@@ -32,6 +32,7 @@ namespace ROMS.Model
         public int paraflag { get; set; } = 0;
         public string ParaPurchaseDC { get; set; } = "0"; 
         public int paraStatus { get; set; } =0;
+        public DataTable paraGRNProd { get; set; } =null;
 
     }
 }
