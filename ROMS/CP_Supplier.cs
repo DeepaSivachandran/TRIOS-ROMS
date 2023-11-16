@@ -103,7 +103,20 @@ namespace ROMS
 
 
         }
-
+        public void udfnLvHide()
+        {
+            try
+            {
+                lvMappingGroup.Visible = false;
+                lvMappingSubGroup.Visible = false;
+                lvBrand.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void txtCity_Enter(object sender, EventArgs e)
         {
@@ -1352,6 +1365,7 @@ namespace ROMS
         {
             try
             {
+                lvCity.Visible = false;
                 txtPincode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -4550,7 +4564,7 @@ namespace ROMS
         {
             try
             {
-
+                udfnLvHide();
                 btnMappingView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -4607,6 +4621,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 txtSearchByProduct1.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -4634,6 +4649,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 txtmappingproductsearch2.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -5132,8 +5148,11 @@ namespace ROMS
                 grdFinalSupplierMapping.ClearSelection();
                 lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
                 txtmappingproductsearch2.Text = "";
-                grdFinalSupplierMapping.Columns[0].ReadOnly = false;
-                grdSupplierMappingLoad.Columns[0].ReadOnly = false;
+                if (grdFinalSupplierMapping.Columns.Count!=0)
+                {
+                    grdFinalSupplierMapping.Columns[0].ReadOnly = false;
+                    grdSupplierMappingLoad.Columns[0].ReadOnly = false;
+                }
             }
         }
         public void udfnSubGroupAdd()
@@ -5326,6 +5345,11 @@ namespace ROMS
             {
                 btnMappingsave.Enabled = false;
                 txtmappingproductsearch2.Text = "";
+                for (int i = 1; i < DGV_SearchGrid1.ColumnCount; i++)
+                {
+                     DGV_SearchGrid1.Rows[0].Cells[i].Value = "";  
+                }
+                DGV_SearchGrid1_CurrentCellDirtyStateChanged(sender,e);
                 if (Convert.ToInt32(grdFinalSupplierMapping.Rows.Count) > 0)
                 {
                     string VarproductId = "", result = "", varoriginator = "";
@@ -5683,6 +5707,7 @@ namespace ROMS
             try
             {
                 BtnaddMove.BackColor = Color.LemonChiffon;
+                udfnLvHide();
             }
             catch (Exception ex)
             {
@@ -6421,6 +6446,8 @@ namespace ROMS
         {
             try
             {
+                lvMappingSubGroup.Visible = false;
+                lvBrand.Visible = false;
                 txtMappingGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -6448,6 +6475,8 @@ namespace ROMS
         {
             try
             {
+                lvMappingGroup.Visible = false;
+                lvBrand.Visible = false;
                 txtMappingSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -7553,9 +7582,7 @@ namespace ROMS
         {
             try
             {
-                lvMappingGroup.Visible = false;
-                lvMappingSubGroup.Visible = false;
-                lvBrand.Visible = false;
+                udfnLvHide();
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -8213,6 +8240,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnRemove_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRemove.BackColor = Color.LemonChiffon;
+                udfnLvHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnRemove_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRemove.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void Txtbranchname_KeyDown(object sender, KeyEventArgs e)
         {
             try

@@ -2390,6 +2390,8 @@
             this.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
+            this.btnRemove.Enter += new System.EventHandler(this.BtnRemove_Enter);
+            this.btnRemove.Leave += new System.EventHandler(this.BtnRemove_Leave);
             // 
             // lvBrand
             // 

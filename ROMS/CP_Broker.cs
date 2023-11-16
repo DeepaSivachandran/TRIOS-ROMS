@@ -870,6 +870,7 @@ namespace ROMS
         {
             try
             {
+                lvCity.Visible = false;
                 txtAddressLine2.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -909,6 +910,7 @@ namespace ROMS
         {
             try
             {
+                lvCity.Visible = false;
                 txtPincode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
