@@ -3183,6 +3183,7 @@
             // RPTViewer
             // 
             this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
             this.RPTViewer.Location = new System.Drawing.Point(37, 72);
             this.RPTViewer.Name = "RPTViewer";
