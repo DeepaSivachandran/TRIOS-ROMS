@@ -56,6 +56,7 @@ namespace ROMS
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
+                            txtBrokerConcern.Text = objDS.Tables[0].Rows[0]["Broker Concern"].ToString().Replace("''", "'");
                             txtGstinNo.Text = objDS.Tables[0].Rows[0]["GSTIN No."].ToString().Replace("''", "'");
                             txtBrokerName.Text = objDS.Tables[0].Rows[0]["Broker Name"].ToString().Replace("''", "'");
                             txtMobileNo.Text = objDS.Tables[0].Rows[0]["Mobile No."].ToString().Replace("''", "'"); 
@@ -100,7 +101,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "";
                 udfnTextBoxColor();
-                if (Convert.ToString(txtBrokerName.Text).Trim() != "" && Convert.ToString(cmbConcern.SelectedValue).Trim() != "")
+                if (Convert.ToString(txtBrokerName.Text).Trim() != "" && Convert.ToString(txtBrokerConcern.Text).Trim() != "")
                 {
                     if (rbActive.Checked == true) { varstatus = 1; }
                     else { varstatus = 2; }
@@ -135,7 +136,7 @@ namespace ROMS
                         varType = 1;
                     }
                     objBankTable = udfnBankSave();
-                    varResult = objspservice.udfnBroker(varType, Convert.ToInt32(Brokerid) , Convert.ToInt16(cmbConcern.SelectedValue), (txtGstinNo.Text).Trim(), (txtBrokerName.Text).Trim(), (txtAddressLine1.Text).Trim(), (txtAddressLine2.Text).Trim(), varcityid, (txtPincode.Text).Trim(), (txtWhatsAppNo.Text).Trim(), (txtMobileNo.Text).Trim(),varstatus, varoriginator, objBankTable,MainForm.pbUserID,0);
+                    varResult = objspservice.udfnBroker(varType, Convert.ToInt32(Brokerid) , Convert.ToInt16(cmbConcern.SelectedValue),(txtBrokerConcern.Text).Trim(),(txtGstinNo.Text).Trim(), (txtBrokerName.Text).Trim(), (txtAddressLine1.Text).Trim(), (txtAddressLine2.Text).Trim(), varcityid, (txtPincode.Text).Trim(), (txtWhatsAppNo.Text).Trim(), (txtMobileNo.Text).Trim(),varstatus, varoriginator, objBankTable,MainForm.pbUserID,0);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -144,6 +145,7 @@ namespace ROMS
                         MainForm.objCP_CP_BrokerList.udfnList();
                         udfnClear();
                         varModifiedFlag = 0;
+                        txtBrokerConcern.Focus();
                         cmbConcern.Focus();
                         cmbConcern.SelectedValue = -1;
                         pnlBStatus.Enabled = false;
@@ -271,6 +273,7 @@ namespace ROMS
         {
             try
             {
+                txtBrokerConcern.Text = "";
                 txtGstinNo.Text = "";
                 txtBrokerName.Text = "";
                 txtAddressLine1.Text = "";
@@ -1331,12 +1334,20 @@ namespace ROMS
                 epBroker.Clear();
                 bool blnErrorFlag = false;
 
-                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                //if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                //{
+                //    epBroker.SetError(cmbConcern, "Please select concern");
+                //    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpConcern.ShowAlways = true;
+                //    tpConcern.Show("Please select concern", cmbConcern, 5000);
+                //    blnErrorFlag = true;
+                //}
+                if (Convert.ToString(txtBrokerConcern.Text).Trim() == "")
                 {
-                    epBroker.SetError(cmbConcern, "Please select concern");
-                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epBroker.SetError(txtBrokerConcern, "Please enter broker concern");
+                    txtBrokerConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please select concern", cmbConcern, 5000);
+                    tpConcern.Show("Please enter broker concern", txtBrokerConcern, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtBrokerName.Text).Trim() == "")
@@ -2075,6 +2086,48 @@ namespace ROMS
             try
             {
                 rbBankInActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrokerConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrokerConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrokerConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtGstinNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrokerConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrokerConcern.BackColor = Color.White;
             }
             catch (Exception ex)
             {

@@ -107,7 +107,6 @@ namespace ROMS
                 }
                 else
                 {
-                    
                     if (cmbReportType.SelectedIndex == 1)
                     {
                         udfnHSN();
@@ -225,7 +224,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(16, 0, 0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0, Convert.ToInt32(lblHSN.Text), Convert.ToInt32(cmbGST.SelectedValue),0,0,0,0,0,"",0,"",null);
+                objDs = objspservice.udfnproductmasterlist(16, 0, 0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0, Convert.ToInt32(HSNID), Convert.ToInt32(cmbGST.SelectedValue),0,0,0,0,0,"",0,"",null);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -637,8 +636,8 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvHsnName.Items.Add(objList);
-                                    lvHsnName.Columns[0].Width = 150;
-                                    lvHsnName.Columns[1].Width = 150;
+                                    lvHsnName.Columns[0].Width = 90;
+                                    lvHsnName.Columns[1].Width = 210;
                                     lvHsnName.Columns[2].Width = 0;
                                 }
                                 lvHsnName.Visible = true;
