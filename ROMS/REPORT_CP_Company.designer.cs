@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.ReportCompany = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportCompany = new System.Windows.Forms.Panel();
@@ -41,12 +40,10 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ep_Company = new System.Windows.Forms.ErrorProvider(this.components);
             this.ReportCompany.SuspendLayout();
             this.pnlReportCompany.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_Company)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportCompany
@@ -80,9 +77,9 @@
             this.pnlReportCompany.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportCompany.Controls.Add(this.picLoader);
             this.pnlReportCompany.Controls.Add(this.RPTViewer);
-            this.pnlReportCompany.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportCompany.Location = new System.Drawing.Point(0, 29);
             this.pnlReportCompany.Name = "pnlReportCompany";
-            this.pnlReportCompany.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportCompany.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportCompany.TabIndex = 958788;
             // 
             // grpfilter
@@ -202,10 +199,6 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // ep_Company
-            // 
-            this.ep_Company.ContainerControl = this;
-            // 
             // REPORT_CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -230,7 +223,6 @@
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_Company)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,7 +237,6 @@
         private System.Windows.Forms.GroupBox grpfilter;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label lblCompany;
-        private System.Windows.Forms.ErrorProvider ep_Company;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnListPrint;

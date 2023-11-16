@@ -873,7 +873,7 @@ namespace ROMS
             try
             {
                 SPCall tmpspcall = new SPCall();
-                SqlConnection objConn = new SqlConnection(); 
+                SqlConnection objConn = new SqlConnection();
                 string connectstring = tmpspcall.connectionstring();
                 objConn = new System.Data.SqlClient.SqlConnection(connectstring);
 
@@ -905,6 +905,23 @@ namespace ROMS
                     crtableLogoninfo.ConnectionInfo = crConnectionInfo;
                     CrTable.ApplyLogOnInfo(crtableLogoninfo);
                 }
+                //SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["ConnStr"]);
+
+                //TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
+                //TableLogOnInfo crtableLogoninfo = new TableLogOnInfo();
+                //ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                //Tables CrTables = default(Tables);
+                //crConnectionInfo.ServerName = objConn.DataSource;
+                //crConnectionInfo.DatabaseName = objConn.Database;
+                //crConnectionInfo.UserID = ConfigurationManager.AppSettings["Sqluser"]; ;
+                //crConnectionInfo.Password = ConfigurationManager.AppSettings["SqlPassword"];
+                //CrTables = objBillReport.Database.Tables;
+                //foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
+                //{
+                //    crtableLogoninfo = CrTable.LogOnInfo;
+                //    crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                //    CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                //}
             }
             catch (Exception ex)
             {

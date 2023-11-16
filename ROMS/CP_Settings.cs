@@ -15,6 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        public string varconcernvalue="-1",varValues="-1";
 
         public string varSampleTransation = "";
         //tool tip
@@ -109,9 +110,12 @@ namespace ROMS
         {
             try
             {
+                cmbConcern.SelectedValue = varconcernvalue;
+                cmbTransactionType.SelectedValue = varValues;
                 grdSettings.Columns["clmConcernId"].Visible = false;
                 grdSettings.Columns["clmTransactionTypeID"].Visible = false;
                 grdSettings.Columns["clmResetOnId"].Visible = false;
+                grdSettings.Columns["clmNoofdigits"].Visible = false;
                 grdSettings.Columns["clmStartingNo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdSettings.Columns["clmNoofdigits"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdSettings.Columns["clmsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -133,6 +137,7 @@ namespace ROMS
                                     objDS.Tables[0].Rows[i]["Strating No."], objDS.Tables[0].Rows[i]["No.of Digits"], objDS.Tables[0].Rows[i]["Reset On"], objDS.Tables[0].Rows[i]["Sample Transaction No."],
                                      objDS.Tables[0].Rows[i]["Concern-ID"], objDS.Tables[0].Rows[i]["Transaction Type-ID"], objDS.Tables[0].Rows[i]["Reset On-ID"]);
                             }
+                            
                         }
                         else
                         {
@@ -358,18 +363,18 @@ namespace ROMS
         {
             try
             {
-                if (txtPrefix.Text.Trim() == "")
-                {
-                    epSettings.SetError(txtPrefix, "Please enter prefix.");
-                    txtPrefix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPrefix.ShowAlways = true;
-                    tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
-                }
-                else
-                {
-                    epSettings.Clear();
+                //if (txtPrefix.Text.Trim() == "")
+                //{
+                //    epSettings.SetError(txtPrefix, "Please enter prefix.");
+                //    txtPrefix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpPrefix.ShowAlways = true;
+                //    tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
+                //}
+                //else
+                //{
+                //    epSettings.Clear();
                     txtPrefix.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -475,7 +480,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtNoOfDegits.Focus();
+                    cmbResetOn.Focus();
                 }
             }
             catch (Exception ex)
@@ -618,14 +623,14 @@ namespace ROMS
                     tpTransactionType.Show("Please select transaction type.", cmbTransactionType, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtPrefix.Text.Trim() == "")
-                {
-                    epSettings.SetError(txtPrefix, "Please enter prefix.");
-                    txtPrefix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPrefix.ShowAlways = true;
-                    tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtPrefix.Text.Trim() == "")
+                //{
+                //    epSettings.SetError(txtPrefix, "Please enter prefix.");
+                //    txtPrefix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpPrefix.ShowAlways = true;
+                //    tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (txtStartingNo.Text.Trim() == "")
                 {
                     epSettings.SetError(txtStartingNo, "Please enter starting no.");
@@ -634,14 +639,14 @@ namespace ROMS
                     tpStartingNo.Show("Please enter starting no.", txtStartingNo, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtNoOfDegits.Text.Trim() == "")
-                {
-                    epSettings.SetError(txtNoOfDegits, "Please enter No.of digits.");
-                    txtNoOfDegits.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpNoofdigits.ShowAlways = true;
-                    tpNoofdigits.Show("Please enter No.of digits.", txtNoOfDegits, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtNoOfDegits.Text.Trim() == "")
+                //{
+                //    epSettings.SetError(txtNoOfDegits, "Please enter No.of digits.");
+                //    txtNoOfDegits.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpNoofdigits.ShowAlways = true;
+                //    tpNoofdigits.Show("Please enter No.of digits.", txtNoOfDegits, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(cmbResetOn.SelectedValue) == "0" || Convert.ToString(cmbResetOn.SelectedValue) == "-1")
                 {
                     epSettings.SetError(cmbResetOn, "Please select reset on.");
@@ -683,9 +688,10 @@ namespace ROMS
                 if (varFlag == 0)
                 {
                     DataService objdservice = new DataService();
-                    varStartingNum = objdservice.displaydata("SELECT RIGHT('00000000'+ CONVERT(nvarchar,"+ txtStartingNo.Text.Trim()+ "),"+txtNoOfDegits.Text.Trim()+") AS sampleTransactionno FROM MR_VoucherSettings");
-                    varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + varStartingNum+Convert.ToString(txtSuffix.Text.Trim());
-                    grdSettings.Rows.Add(grdSettings.Rows.Count+1, cmbConcern.Text.Trim(), cmbTransactionType.Text.Trim(), txtPrefix.Text.Trim(), txtSuffix.Text.Trim(), txtStartingNo.Text.Trim(), txtNoOfDegits.Text.Trim(), cmbResetOn.Text.Trim(),varSampleTransation,cmbConcern.SelectedValue,cmbTransactionType.SelectedValue,cmbResetOn.SelectedValue);
+                   // varStartingNum = objdservice.displaydata("SELECT RIGHT('00000000'+ CONVERT(nvarchar,"+ txtStartingNo.Text.Trim()+ "),"+txtNoOfDegits.Text.Trim()+") AS sampleTransactionno FROM MR_VoucherSettings");
+                    varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + txtStartingNo.Text.Trim()+Convert.ToString(txtSuffix.Text.Trim());
+                    grdSettings.Rows.Add(grdSettings.Rows.Count+1, cmbConcern.Text.Trim(), cmbTransactionType.Text.Trim(), txtPrefix.Text.Trim(), txtSuffix.Text.Trim(), txtStartingNo.Text.Trim(), "0", cmbResetOn.Text.Trim(),varSampleTransation,cmbConcern.SelectedValue,cmbTransactionType.SelectedValue,cmbResetOn.SelectedValue);
+            
                     udfnClear();
                 }
                 else
@@ -938,26 +944,26 @@ namespace ROMS
         }
         private void TxtNoOfDegits_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                if (txtNoOfDegits.Text.Trim() == "")
-                {
-                    epSettings.SetError(txtNoOfDegits, "Please enter No.of digits.");
-                    txtNoOfDegits.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpNoofdigits.ShowAlways = true;
-                    tpNoofdigits.Show("Please enter No.of digits.", txtNoOfDegits, 5000);
-                }
-                else
-                {
-                    epSettings.Clear();
-                    txtNoOfDegits.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    if (txtNoOfDegits.Text.Trim() == "")
+            //    {
+            //        epSettings.SetError(txtNoOfDegits, "Please enter No.of digits.");
+            //        txtNoOfDegits.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+            //        tpNoofdigits.ShowAlways = true;
+            //        tpNoofdigits.Show("Please enter No.of digits.", txtNoOfDegits, 5000);
+            //    }
+            //    else
+            //    {
+            //        epSettings.Clear();
+            //        txtNoOfDegits.BackColor = Color.White;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
         private void TxtStartingNo_KeyPress(object sender, KeyPressEventArgs e)
         {

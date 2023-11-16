@@ -68,9 +68,9 @@ namespace ROMS
                 {
                     tsbNew_Click(sender, e);
                 }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.P))
                 {
-                    // tsbEdit_Click(sender, e);
+                     TsbList_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -149,7 +149,6 @@ namespace ROMS
         }
         public void udfnList()
         {
-
             try
             {
                 picLoader.Visible = true;
@@ -173,7 +172,7 @@ namespace ROMS
                     objDServ.CloseConnection();
                     varSupplierId = Convert.ToInt32(varId_Supplier);
                 }
-                objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue),0,"",0,0,0,0,0);
+                objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue),0,"",0,0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -188,19 +187,27 @@ namespace ROMS
                             //grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             //grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                            dgvSupplierScheduleList.Columns["S.No."].Width = 50;
+                            dgvSupplierScheduleList.Columns["S.No."].Width = 40;
                             dgvSupplierScheduleList.Columns["Supplier"].Width = 300;
-                            dgvSupplierScheduleList.Columns["Schedule Name"].Width = 100;
                             dgvSupplierScheduleList.Columns["GSTIN"].Width =120;
                             dgvSupplierScheduleList.Columns["City"].Width = 130;
                             dgvSupplierScheduleList.Columns["Status"].Width = 100;
+                            dgvSupplierScheduleList.Columns["Order Type"].Width = 90;
+                            dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 90;
+                            dgvSupplierScheduleList.Columns["Status"].Width = 80;
+                            dgvSupplierScheduleList.Columns["Days"].Width = 90;
+                            dgvSupplierScheduleList.Columns["Pro. Mapping"].Width = 90;
+                            dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 80; 
                             dgvSupplierScheduleList.Columns["Scheduleid"].Visible = false;
                             dgvSupplierScheduleList.Columns["SupplierID"].Visible = false;
-                            dgvSupplierScheduleList.Columns["STS"].Visible = false;
-                            dgvSupplierScheduleList.Columns["DYID"].Visible = false;
                             dgvSupplierScheduleList.Columns["ORDERTYPE"].Visible = false;
+                            dgvSupplierScheduleList.Columns["MappedStatus"].Visible = false;
                             dgvSupplierScheduleList.Columns["STATUS CODE"].Visible = false;
+                            dgvSupplierScheduleList.Columns["SP_ReturnApplicable"].Visible = false;
+                            dgvSupplierScheduleList.Columns["SPSC_OrderType"].Visible = false;
                             dgvSupplierScheduleList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            dgvSupplierScheduleList.Columns["Ret. Policy"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            dgvSupplierScheduleList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -1000,7 +1007,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0, 0,0,"",0,0,0,0,0);
+                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0, 0,0,"",0,0,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1123,7 +1130,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtsuppliernameprint.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtsuppliernameprint.Text, 0, 0,0,"",0,0,0,0,0);
+                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtsuppliernameprint.Text, 0, 0,0,"",0,0,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1199,21 +1206,39 @@ namespace ROMS
 
                 for (int i = 0; i < dgvSupplierScheduleList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS CODE"].Value) == "3" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "4" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Value) != "")
                     {
-                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.DarkGoldenrod;
-                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Style.BackColor = Color.PaleVioletRed;
+                       dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Style.ForeColor = Color.White;
                     }
-
-                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS CODE"].Value) == "4" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "5" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Value) != "")
                     {
-                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.DarkViolet;
-                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Style.BackColor = Color.DeepSkyBlue;
+                        dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Style.ForeColor = Color.White;
                     }
-                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS CODE"].Value) == "5" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Status Code"].Value) == "1") // Active
                     {
                         dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Status Code"].Value) == "2") // Inactive
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.Red;
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["SP_ReturnApplicable"].Value) == "-1") // Not Defined
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Ret. Policy"].Style.BackColor = Color.SteelBlue;
+                        dgvSupplierScheduleList.Rows[i].Cells["Ret. Policy"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["SPSC_OrderType"].Value) == "144") // Unscheduled order type
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Order Type"].Style.BackColor = Color.MediumSpringGreen;
+                    }
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Days"].Value) == "Unscheduled") // Unscheduled order type
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Days"].Style.BackColor = Color.Purple;
+                        dgvSupplierScheduleList.Rows[i].Cells["Days"].Style.ForeColor = Color.White;
                     }
                 }
             }
@@ -1303,8 +1328,7 @@ namespace ROMS
             {
                 dgvSupplierScheduleList.ClearSelection(); 
             }
-        }
-
+        } 
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1369,8 +1393,7 @@ namespace ROMS
             {
                 cmbConcern.BackColor = Color.White;
             }
-            catch (Exception ex)
-
+            catch (Exception ex) 
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1562,6 +1585,26 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void TsbList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                MainForm.objPUR_POScheduleSummary = new PUR_POScheduleSummary();
+                MainForm.objPUR_POScheduleSummary.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+            finally
+            {
+                picLoader.Visible = false;
+            }
         }
     }
 }

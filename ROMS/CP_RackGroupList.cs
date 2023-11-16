@@ -18,6 +18,7 @@ namespace ROMS
         public int varStockLocationId = 0;
         public int varCompanyId = 0;
         public int varId = 0;
+        public string varUserID = "";
         public CP_RackGroupList()
         {
             InitializeComponent();
@@ -73,13 +74,28 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-
-                        string varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "","", 0, "Rack Group Deletion");
+                        string varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", 0, "Rack Group Deletion", varUserID, 0);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
+                            if (varResult.Split('~')[1] == "1")
+                            {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    objDser = new SPDataService();
+                                    varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", 0, "Rack Group Deletion", varUserID, 1);
+                                    objDser.CloseConnection();
+                                    if (varResult.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
                         }
                         else if (varResult.Split('~')[0] == "4")
                         {
@@ -96,8 +112,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
             }
 
         }
@@ -112,18 +127,17 @@ namespace ROMS
                 MainForm.objCP_RackGroup = new CP_RackGroup();
                 MainForm.objCP_RackGroup.grdEmployee.ClearSelection();
                 MainForm.objCP_RackGroup.grdRack.ClearSelection();
-                MainForm.objCP_RackGroup.grdSelectedRack.ClearSelection(); 
+                MainForm.objCP_RackGroup.grdSelectedRack.ClearSelection();
                 MainForm.objCP_RackGroup.grdStaffDetails.ClearSelection();
                 MainForm.objCP_RackGroup.btnSave.Text="Update";
                 MainForm.objCP_RackGroup.varId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value);
                 MainForm.objCP_RackGroup.varCompanyId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["COMID"].Value);
                 MainForm.objCP_RackGroup.varStatusid = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["Status ID"].Value);
                 MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+               // picLoader.Visible = false;
+                //picLoader.SendToBack();
                 MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
                 MainForm.objCP_RackGroup.Show();
-
             }
             catch (Exception ex)
             {
@@ -192,13 +206,13 @@ namespace ROMS
                             grdRackGroupList.Columns["Description"].Width = 150;
                             grdRackGroupList.Columns["Employee Name"].Width = 150;
                             grdRackGroupList.Columns["TotalProducts"].Width = 150;
-                            grdRackGroupList.Columns["Status"].Width = 80;
 
                             grdRackGroupList.Columns["ID"].Visible = false;
                             grdRackGroupList.Columns["COMID"].Visible = false;
                             grdRackGroupList.Columns["Status ID"].Visible = false;
                             grdRackGroupList.Columns["SL_ShortName"].Visible = false;
                             grdRackGroupList.Columns["StockLocation ID"].Visible = false;
+                            grdRackGroupList.Columns["Status"].Visible = false;
                         }
                         else
                         {
@@ -500,7 +514,7 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+              //  DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -762,6 +776,10 @@ namespace ROMS
                     {
                         grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.White;
                     }
+                    if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Employee Name"].Value) == "")
+                    {
+                        grdRackGroupList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                    }
                 }
             }
             catch (Exception ex)
@@ -853,7 +871,7 @@ namespace ROMS
                     }
                     else
                     {
-                        varViewType = 11;
+                        varViewType = 22;
                     }
                     objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text,0, 0,0);
                     objspdservice.CloseConnection();
@@ -887,7 +905,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvStockLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -904,7 +921,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvStockLocation_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -936,7 +952,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -950,7 +965,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try

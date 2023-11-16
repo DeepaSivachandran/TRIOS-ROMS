@@ -27,6 +27,7 @@ namespace ROMS
         private ToolTip tpBranchName = new ToolTip();
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
+        public int varModifiedFlag = 0;
         public int varCityCode;
         public int PbConcernID = 0;
         public string varCityName="";
@@ -134,7 +135,7 @@ namespace ROMS
                         varType = 1;
                     }
                     objBankTable = udfnBankSave();
-                    varResult = objspservice.udfnBroker(varType, Convert.ToInt32(Brokerid) , Convert.ToInt16(cmbConcern.SelectedValue), (txtGstinNo.Text).Trim(), (txtBrokerName.Text).Trim(), (txtAddressLine1.Text).Trim(), (txtAddressLine2.Text).Trim(), varcityid, (txtPincode.Text).Trim(), (txtWhatsAppNo.Text).Trim(), (txtMobileNo.Text).Trim(),varstatus, varoriginator, objBankTable);
+                    varResult = objspservice.udfnBroker(varType, Convert.ToInt32(Brokerid) , Convert.ToInt16(cmbConcern.SelectedValue), (txtGstinNo.Text).Trim(), (txtBrokerName.Text).Trim(), (txtAddressLine1.Text).Trim(), (txtAddressLine2.Text).Trim(), varcityid, (txtPincode.Text).Trim(), (txtWhatsAppNo.Text).Trim(), (txtMobileNo.Text).Trim(),varstatus, varoriginator, objBankTable,MainForm.pbUserID,0);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -142,6 +143,7 @@ namespace ROMS
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MainForm.objCP_CP_BrokerList.udfnList();
                         udfnClear();
+                        varModifiedFlag = 0;
                         cmbConcern.Focus();
                         cmbConcern.SelectedValue = -1;
                         pnlBStatus.Enabled = false;
@@ -364,7 +366,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    txtBankname.Focus();
                 }
             }
             catch (Exception ex)
@@ -379,7 +381,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    txtBankname.Focus();
                 }
             }
             catch (Exception ex)
@@ -466,16 +468,34 @@ namespace ROMS
         {
             try
             {
-                if (varUpdate == 0)
+                if (varModifiedFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         e.Cancel = false;
+                        MainForm.objCP_CP_BrokerList.Show();
+                        MainForm.objCP_CP_BrokerList.udfnList();
                     }
                     else
                     {
                         e.Cancel = true;
+                        btnSave.Focus();
+                    }
+                }
+                else
+                {
+                    if (varUpdate == 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            e.Cancel = false;
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
                     }
                 }
             }
@@ -714,7 +734,7 @@ namespace ROMS
                 else
                 {
                     epBroker.Clear();
-                    //txtMobileNo.BackColor = Color.White;
+                    txtMobileNo.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -933,9 +953,16 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
+                    if (pnlStatus.Enabled==true)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
                     }
                     else { btnSave.Focus(); }
                 }
@@ -1219,7 +1246,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAdd.Focus();
+                    if(pnlBStatus.Enabled==true)
+                    {
+                        if(rbBankActive.Checked==true)
+                        {
+                            rbBankActive.Focus();
+                        }
+                        else
+                        {
+                            rbBankInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnAdd.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1537,7 +1578,8 @@ namespace ROMS
                         }
                         if (varSlNo == "0")
                         {
-                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                            varModifiedFlag = 1;
                         }
                         else
                         {
@@ -1546,11 +1588,12 @@ namespace ROMS
                                 if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmsno"].Value) == varSlNo)
                                 {
                                     grdBankDetails.Rows[i].Cells["clmbankname"].Value = txtBankname.Text;
-                                    grdBankDetails.Rows[i].Cells["clmBankShortName"].Value = txtBankShortName.Text;
+                                    grdBankDetails.Rows[i].Cells["clmBankShortName"].Value = txtBankShortName.Text.ToUpper();
                                     grdBankDetails.Rows[i].Cells["clmbranch"].Value = txtbranchname.Text;
                                     grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
                                     grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
                                     grdBankDetails.Rows[i].Cells["clmStatus"].Value = varstatusid;
+                                    varModifiedFlag = 1;
                                 }
                             }
                         }
@@ -1601,6 +1644,7 @@ namespace ROMS
                                 {
                                     grdBankDetails.Rows[i].Cells["clmsno"].Value = i + 1;
                                 }
+                                varModifiedFlag = 1;
                             }
                             break;
                         case "clmEdit":
@@ -1952,6 +1996,90 @@ namespace ROMS
             if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true; // This will prevent the character from being entered in the TextBox
+            }
+        }
+
+        private void RbBankActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankInActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankInActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankInActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankInActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

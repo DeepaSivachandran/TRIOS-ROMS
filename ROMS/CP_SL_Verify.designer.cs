@@ -48,6 +48,7 @@
             this.txtDPasskey.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDPasskey.Location = new System.Drawing.Point(12, 14);
             this.txtDPasskey.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDPasskey.MaxLength = 6;
             this.txtDPasskey.Name = "txtDPasskey";
             this.txtDPasskey.ReadOnly = true;
             this.txtDPasskey.Size = new System.Drawing.Size(62, 28);
@@ -104,7 +105,7 @@
             this.MinimizeBox = false;
             this.Name = "CP_SL_Verify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Please Enter Password to Proceed";
+            this.Text = "Please Enter Passkey to Proceed";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

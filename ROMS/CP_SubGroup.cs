@@ -43,7 +43,7 @@ namespace ROMS
         public int varGroupCode = 0, varmastertype=0,varSubgroupCode=0;
         public int varLocationCode = 0, varRackCode = 0;
         public string varRackCodes = "";
-
+        public int varSortFlag = 0;
         public CP_SubGroup()
         {
             InitializeComponent();
@@ -97,6 +97,7 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    varSortFlag = 1;
                     udfnEdit();
                 }
             }
@@ -171,23 +172,36 @@ namespace ROMS
             try
             {
                 txtProductGroupName.Text = varGroupName;
-                lblGroupCode.Text = Convert.ToString( varGroupCode);
+                lblGroupCode.Text = Convert.ToString(varGroupCode);
                 txtESubGroupNameEnglish.Text = varSubGroupNameinEnglish;
                 txtESubGroupNameTamil.Text = varSubGroupNameinTamil;
                 cmbBatchNo.SelectedValue = varBatchId;
                 txtLocation.Text = varStockLocationName;
-                lblLocation.Text=Convert.ToString(varLocationCode);
+                lblLocation.Text = Convert.ToString(varLocationCode);
                 udfnLoadRackList();
                 // txtRack.Text = varRackName;
                 // lblRack.Text = Convert.ToString(varRackCode);
                 string[] varRkIds = varRackCodes.Split(',');
-                for (int i = 0; i < grdRackList.RowCount; i++) {
-                    for (int j = 0; j < varRkIds.Length; j++) {
-                        if (varRkIds[j] == Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value)) {
-                            grdRackList.Rows[i].Cells[0].Value = true;
+                for (int i = 0; i < dtRackList.Rows.Count; i++)
+                {
+                    for (int j = 0; j < varRkIds.Length; j++)
+                    {
+                        if (varRkIds[j] == Convert.ToString(dtRackList.Rows[i]["RKID"]))
+                        {
+                            dtRackList.Rows[i][0] = true;
                         }
                     }
                 }
+                dtRackList.DefaultView.Sort = dtRackList.Columns[0].ColumnName + " DESC";
+                dtRackList = dtRackList.DefaultView.ToTable();
+                grdRackList.DataSource = null;
+                grdRackList.DataSource = dtRackList;
+                grdRackList.Columns["Column1"].HeaderText = "";
+                grdRackList.Columns["Column1"].Width = 80;
+                grdRackList.Columns["Rack Name"].Width = 80;
+                grdRackList.Columns["Rack Description"].Width = 270;
+                grdRackList.Columns["RKID"].Visible = false;
+                grdRackList.Columns[0].Width = 30;
                 varStatusid = varStatus;
                 if(varStatusid==1)
                 {
@@ -236,6 +250,7 @@ namespace ROMS
             try
             {
                 btnSave.Enabled = false;
+                txtRack.Text = "";
                 string varResult = ""; string varOriginator = "Product Sub Group Creation";
                 int varViewType=0; 
                 if (rbActive.Checked)
@@ -276,7 +291,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId);
+                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId,MainForm.pbUserID,0);
                     objDser.CloseConnection();
                     btnSave.Enabled = true;
                     if (varResult.Split('~')[0] == "3")
@@ -912,7 +927,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvGroupName.Columns[1].Width = 0;
                                     lvGroupName.Items.Add(objList);
                                 }
@@ -1229,6 +1244,7 @@ namespace ROMS
                     SPDataService objService = new SPDataService();
                     objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "", 0,0);
                     objService.CloseConnection();
+                    dtRackList.Rows.Clear();
                     if (objRackList != null)
                     {
                         if (objRackList.Tables.Count > 0)
@@ -1238,6 +1254,7 @@ namespace ROMS
                                 for (int i = 0; i < objRackList.Tables[0].Rows.Count; i++) {
                                     dtRackList.Rows.Add(false,Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]),Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Description"]), Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]));
                                 }
+                                grdRackList.DataSource = null;
                                 grdRackList.DataSource = dtRackList;
                                 grdRackList.Columns["RKID"].Visible = false;
                                 grdRackList.Columns["Column1"].HeaderText = "";
@@ -1259,7 +1276,7 @@ namespace ROMS
             }
             finally
             {
-                this.grdRackList.Sort(this.grdRackList.Columns[0], ListSortDirection.Descending);
+                //this.grdRackList.Sort(this.grdRackList.Columns[0], ListSortDirection.Descending);
             }
         }
         public void udfnLocationEvent()
@@ -1306,9 +1323,25 @@ namespace ROMS
 
         private void TxtRack_KeyDown(object sender, KeyEventArgs e)
         {
-            try {
-                if (e.KeyCode == Keys.Enter) {
-                    btnSave.Focus();
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if(pnlStatus.Enabled==true)
+                    {
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1354,6 +1387,19 @@ namespace ROMS
                 }
                 //grdRackList.DataSource = null;
                 //grdRackList.DataSource = dtRackList;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdRackList.ClearSelection();
             }
             catch (Exception ex)
             {

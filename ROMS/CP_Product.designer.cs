@@ -206,12 +206,14 @@
             // 
             // txtPICode
             // 
+            this.txtPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtPICode.Location = new System.Drawing.Point(160, 50);
-            this.txtPICode.MaxLength = 10;
+            this.txtPICode.MaxLength = 20;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(337, 27);
             this.txtPICode.TabIndex = 2;
+            this.txtPICode.TextChanged += new System.EventHandler(this.TxtPICode_TextChanged);
             this.txtPICode.Enter += new System.EventHandler(this.TxtPICode_Enter);
             this.txtPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPICode_KeyDown);
             this.txtPICode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPICode_KeyPress);
@@ -257,7 +259,7 @@
             // 
             // txtItemNameTamil
             // 
-            this.txtItemNameTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtItemNameTamil.Font = new System.Drawing.Font("Baamini", 14.75F);
             this.txtItemNameTamil.Location = new System.Drawing.Point(160, 104);
             this.txtItemNameTamil.MaxLength = 100;
             this.txtItemNameTamil.Name = "txtItemNameTamil";
@@ -291,7 +293,7 @@
             this.txtDSubGroup.Size = new System.Drawing.Size(139, 27);
             this.txtDSubGroup.TabIndex = 7;
             this.txtDSubGroup.TabStop = false;
-            this.txtDSubGroup.Text = "Product Sub Group";
+            this.txtDSubGroup.Text = "Product Subgroup";
             // 
             // txtDUnit
             // 
@@ -1241,7 +1243,9 @@
             this.rbInActive.TabStop = true;
             this.rbInActive.Text = "InActive";
             this.rbInActive.UseVisualStyleBackColor = true;
+            this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
             this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown);
+            this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
             // 
             // rbActive
             // 
@@ -1255,7 +1259,9 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
+            this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // txtDStatus
             // 
@@ -1570,11 +1576,10 @@
             // 
             this.txtHSNCode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtHSNCode.Location = new System.Drawing.Point(122, 49);
-            this.txtHSNCode.MaxLength = 50;
+            this.txtHSNCode.MaxLength = 8;
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
             this.txtHSNCode.TabIndex = 33;
-            this.txtHSNCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtHSNCode.TextChanged += new System.EventHandler(this.TxtHSNCode_TextChanged);
             this.txtHSNCode.Enter += new System.EventHandler(this.TxtHSNCode_Enter);
             this.txtHSNCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHSNCode_KeyDown);
@@ -1714,18 +1719,17 @@
             this.groupBox3.Controls.Add(this.lblDPicode);
             this.groupBox3.Location = new System.Drawing.Point(567, -6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(278, 100);
+            this.groupBox3.Size = new System.Drawing.Size(278, 114);
             this.groupBox3.TabIndex = 95;
             this.groupBox3.TabStop = false;
             // 
             // txtRTamilName
             // 
-            this.txtRTamilName.AutoSize = true;
-            this.txtRTamilName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRTamilName.Font = new System.Drawing.Font("Baamini", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRTamilName.ForeColor = System.Drawing.Color.Red;
             this.txtRTamilName.Location = new System.Drawing.Point(7, 74);
             this.txtRTamilName.Name = "txtRTamilName";
-            this.txtRTamilName.Size = new System.Drawing.Size(0, 20);
+            this.txtRTamilName.Size = new System.Drawing.Size(266, 35);
             this.txtRTamilName.TabIndex = 7;
             // 
             // txtREnglishName
@@ -1910,11 +1914,11 @@
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Width = 80;
+            this.columnHeader10.Width = 120;
             // 
             // columnHeader30
             // 
-            this.columnHeader30.Width = 80;
+            this.columnHeader30.Width = 100;
             // 
             // columnHeader31
             // 

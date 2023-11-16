@@ -95,9 +95,9 @@
             this.pnlReportStockLocation.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportStockLocation.Controls.Add(this.picLoader);
             this.pnlReportStockLocation.Controls.Add(this.RPTViewer);
-            this.pnlReportStockLocation.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportStockLocation.Location = new System.Drawing.Point(0, 29);
             this.pnlReportStockLocation.Name = "pnlReportStockLocation";
-            this.pnlReportStockLocation.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportStockLocation.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportStockLocation.TabIndex = 958788;
             // 
             // lvCity
@@ -181,6 +181,7 @@
             this.cmbSupplierType.TabIndex = 3;
             this.cmbSupplierType.Enter += new System.EventHandler(this.CmbSupplierType_Enter);
             this.cmbSupplierType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSupplierType_KeyDown);
+            this.cmbSupplierType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSupplierType_KeyPress);
             this.cmbSupplierType.Leave += new System.EventHandler(this.CmbSupplierType_Leave);
             // 
             // cmbReturnPolicy
@@ -193,6 +194,7 @@
             this.cmbReturnPolicy.TabIndex = 6;
             this.cmbReturnPolicy.Enter += new System.EventHandler(this.CmbReturnPolicy_Enter);
             this.cmbReturnPolicy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReturnPolicy_KeyDown);
+            this.cmbReturnPolicy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReturnPolicy_KeyPress);
             this.cmbReturnPolicy.Leave += new System.EventHandler(this.CmbReturnPolicy_Leave);
             // 
             // cmbPaymentTerm
@@ -209,6 +211,7 @@
             this.cmbPaymentTerm.TabIndex = 4;
             this.cmbPaymentTerm.Enter += new System.EventHandler(this.CmbPaymentTerm_Enter);
             this.cmbPaymentTerm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPaymentTerm_KeyDown);
+            this.cmbPaymentTerm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPaymentTerm_KeyPress);
             this.cmbPaymentTerm.Leave += new System.EventHandler(this.CmbPaymentTerm_Leave);
             // 
             // cmbOrderType
@@ -225,6 +228,7 @@
             this.cmbOrderType.TabIndex = 5;
             this.cmbOrderType.Enter += new System.EventHandler(this.CmbOrderType_Enter);
             this.cmbOrderType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderType_KeyDown);
+            this.cmbOrderType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderType_KeyPress);
             this.cmbOrderType.Leave += new System.EventHandler(this.CmbOrderType_Leave);
             // 
             // lblReturnPolicy
@@ -300,6 +304,7 @@
             this.cmbState.TabIndex = 1;
             this.cmbState.Enter += new System.EventHandler(this.CmbState_Enter);
             this.cmbState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbState_KeyDown);
+            this.cmbState.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbState_KeyPress);
             this.cmbState.Leave += new System.EventHandler(this.CmbState_Leave);
             // 
             // lblState

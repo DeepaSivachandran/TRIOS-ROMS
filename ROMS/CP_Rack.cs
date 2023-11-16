@@ -113,6 +113,7 @@ namespace ROMS
                 txtShortName.Text = PbShortName;
                 txtDescription.Text = PbDescription;
                 cmbConcern.SelectedValue = PbConcernID;
+                cmbConcern.Enabled = false;
                 //cmbStockLocation.SelectedValue = PbStockLocationID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
             }
@@ -178,7 +179,7 @@ namespace ROMS
                 }
                 if (varLocationId != -1)
                 {
-                    varResult = objspservice.udfnRack(varType, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), varLocationId, (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, varoriginator);
+                    varResult = objspservice.udfnRack(varType, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), varLocationId, (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, varoriginator,0);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -636,7 +637,14 @@ namespace ROMS
                 {
                     if (pnlStatus.Enabled)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
                     }
                     else { btnSave.Focus(); }
                 }
@@ -734,8 +742,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtLocation.Text.Length > 0)
                 {
-
-                    objDs = objspdservice.udfnStockLocationList(10,Convert.ToInt32(cmbConcern.SelectedValue),0,0, txtLocation.Text,0,0,0);
+                    objDs = objspdservice.udfnStockLocationList(20,Convert.ToInt32(cmbConcern.SelectedValue),0,0, txtLocation.Text,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

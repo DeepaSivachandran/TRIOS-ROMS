@@ -185,6 +185,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -255,7 +256,6 @@ namespace ROMS
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
-                    txtBrand.Text = "";
                 }
                 else
                 {
@@ -272,6 +272,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -384,7 +385,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(18,0,0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "","","",0, Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(lblBrandCode.Text),0,0,0,0,0,0,0,0,0,0);
+                objDs = objspservice.udfnproductmasterlist(18,0,0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "","","",0, Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(lblBrandCode.Text),0,0,0,0,0,0,0,0,0,0,"",0,"", null);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -412,9 +413,6 @@ namespace ROMS
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
-                    txtGroup.Text = "";
-                    txtSubGroup.Text = "";
-                    txtBrand.Text = "";
                 }
                 else
                 {
@@ -431,8 +429,36 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
+        }
+        public void udfnGroupValid()
+        {
+            /* Check product group is valid or not*/
+            string varId_Group = "0";
+            if (txtGroup.Text == "")
+            {
+                varId_Group = "0";
+            }
+            else
+            {
+                DataSet objDsGroup = new DataSet();
+                SPDataService objDServ1 = new SPDataService();
+                objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(), 0);
+                objDServ1.CloseConnection();
+                if (objDsGroup != null)
+                {
+                    if (objDsGroup.Tables.Count > 0)
+                    {
+                        if (objDsGroup.Tables[0].Rows.Count > 0)
+                        {
+                            varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
+            }
+            lblGroupCode.Text = Convert.ToString(varId_Group);
         }
         private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -441,21 +467,24 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    txtBrand.Enabled = true; txtBrand.Text = "";
-                    txtGroup.Enabled = false;txtGroup.Text = "";
-                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
+                    txtBrand.Enabled = true;
+                    txtGroup.Enabled = false;
+                    txtSubGroup.Enabled = false;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
-                    txtBrand.Enabled = true; txtBrand.Text = "";
-                    txtGroup.Enabled = true; txtGroup.Text = "";
-                    txtSubGroup.Enabled = true; txtSubGroup.Text = "";
+                    txtBrand.Enabled = true;
+                    txtGroup.Enabled = true;
+                    txtSubGroup.Enabled = true;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==3)
                 {
-                    txtBrand.Enabled = false;txtBrand.Text = "";
-                    txtGroup.Enabled = false;txtGroup.Text = "";
-                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
+                    txtBrand.Enabled = false;
+                    txtGroup.Enabled = false;
+                    txtSubGroup.Enabled = false;
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -463,6 +492,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnClear()
+        {
+            txtBrand.Text = "";
+            txtGroup.Text = "";
+            txtSubGroup.Text = "";
+            cmbStatus.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {
@@ -553,6 +589,7 @@ namespace ROMS
         {
             try
             {
+                udfnGroupValid();
                 lvGroup.Visible = false;
                 txtSubGroup.BackColor = Color.LemonChiffon;
             }
@@ -599,7 +636,11 @@ namespace ROMS
         {
             try
             {
-                    txtSubGroup.BackColor = Color.White;
+                txtSubGroup.BackColor = Color.White;
+                if(txtSubGroup.Text=="")
+                {
+                    lblSubGroupCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -617,7 +658,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -627,16 +668,31 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    lvSubGroup.Columns[0].Width = 200;
+                                    lvSubGroup.Columns[1].Width = 200;
+                                    lvSubGroup.Columns[2].Width = 0;
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
                                 lvSubGroup.BringToFront();
                             }
+                            else
+                            {
+                                lvSubGroup.Visible = false;
+                            }
                         }
+                        else
+                        {
+                            lvSubGroup.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvSubGroup.Visible = false;
                     }
                 }
                 else
@@ -681,8 +737,6 @@ namespace ROMS
                     ListViewItem selectedItem = lvSubGroup.SelectedItems[0];
                     txtSubGroup.Text = selectedItem.SubItems[0].Text;
                     lblSubGroupCode.Text = selectedItem.SubItems[2].Text;
-                    txtGroup.Text = selectedItem.SubItems[4].Text;
-                    lblGroupCode.Text = selectedItem.SubItems[5].Text;
                     lvSubGroup.Visible = false;
                 }
             }
@@ -749,6 +803,10 @@ namespace ROMS
             try
             {
                     txtGroup.BackColor = Color.White;
+                if(txtGroup.Text=="")
+                {
+                    lblGroupCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -779,7 +837,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvGroup.Items.Add(objList);
                                 }
                                 lvGroup.Visible = true;
@@ -902,6 +960,10 @@ namespace ROMS
             try
             {
                 txtBrand.BackColor = Color.White;
+                if(txtBrand.Text=="")
+                {
+                    lblBrandCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -932,7 +994,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvBrand.Items.Add(objList);
                                 }
                                 lvBrand.Visible = true;

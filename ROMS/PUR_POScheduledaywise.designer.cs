@@ -60,7 +60,7 @@
             this.grpPOScheduledaywise.Controls.Add(this.grdPOSchedule);
             this.grpPOScheduledaywise.Location = new System.Drawing.Point(2, -4);
             this.grpPOScheduledaywise.Name = "grpPOScheduledaywise";
-            this.grpPOScheduledaywise.Size = new System.Drawing.Size(972, 354);
+            this.grpPOScheduledaywise.Size = new System.Drawing.Size(1176, 354);
             this.grpPOScheduledaywise.TabIndex = 0;
             this.grpPOScheduledaywise.TabStop = false;
             // 
@@ -69,7 +69,7 @@
             this.btnPrintdaywise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintdaywise.Image = global::ROMS.Properties.Resources.print;
             this.btnPrintdaywise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintdaywise.Location = new System.Drawing.Point(895, 29);
+            this.btnPrintdaywise.Location = new System.Drawing.Point(1101, 29);
             this.btnPrintdaywise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnPrintdaywise.Name = "btnPrintdaywise";
             this.btnPrintdaywise.Size = new System.Drawing.Size(67, 33);
@@ -121,7 +121,7 @@
             this.grdHeaderview.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdHeaderview.RowTemplate.Height = 25;
             this.grdHeaderview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdHeaderview.Size = new System.Drawing.Size(952, 29);
+            this.grdHeaderview.Size = new System.Drawing.Size(1158, 29);
             this.grdHeaderview.TabIndex = 1111179;
             // 
             // dataGridViewTextBoxColumn1
@@ -176,7 +176,7 @@
             this.grdPOSchedule.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPOSchedule.RowTemplate.Height = 25;
             this.grdPOSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdPOSchedule.Size = new System.Drawing.Size(952, 251);
+            this.grdPOSchedule.Size = new System.Drawing.Size(1158, 251);
             this.grdPOSchedule.TabIndex = 1111178;
             // 
             // PUR_POScheduledaywise
@@ -184,7 +184,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(978, 352);
+            this.ClientSize = new System.Drawing.Size(1184, 352);
             this.Controls.Add(this.grpPOScheduledaywise);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

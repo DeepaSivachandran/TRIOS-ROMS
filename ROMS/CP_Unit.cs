@@ -30,7 +30,7 @@ namespace ROMS
         public string PbNoOfDecimals="",pbInvoiceUnit ="";
         public int PbStatus=0;
         public int pbDecimalId = 0;
-        public int varUpdate = 0;
+        public int varUpdate = 0, varBulkUnitId=0;
         public CP_Unit()
         {
             InitializeComponent();
@@ -85,6 +85,7 @@ namespace ROMS
                 txtInvoiceUnit.Text = pbInvoiceUnit;
                 cmbNoOfDecimals.SelectedValue = pbDecimalId;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
+                if (varBulkUnitId == 1) { chkBulkUnit.Checked = true; } else { chkBulkUnit.Checked = false; }
                 MainForm.objCP_Unitlist.picLoader.Visible = false;
                 MainForm.objCP_Unitlist.picLoader.SendToBack();
             }
@@ -101,7 +102,7 @@ namespace ROMS
                 else { varstatus = 2; }
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
-                varoriginator = ""; int varType = 0;
+                varoriginator = ""; int varType = 0,varBulkUnit=0;
                 if (btnSave.Text == "Save")
                 {
                     varoriginator = "Unit Creation";
@@ -116,7 +117,8 @@ namespace ROMS
                     varoriginator = "Unit Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator, (txtInvoiceUnit.Text).Trim());
+                if (chkBulkUnit.Checked) { varBulkUnit = 1; }
+                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator, (txtInvoiceUnit.Text).Trim(),MainForm.pbUserID, varBulkUnit,0);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -176,6 +178,7 @@ namespace ROMS
                 txtInvoiceUnit.Text = "";
                 cmbNoOfDecimals.SelectedIndex = 0;
                 txtEUnitName.Focus();
+                chkBulkUnit.Checked = false;
                 this.ActiveControl = txtEUnitName;
             }
             catch (Exception ex)
@@ -347,7 +350,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbInActive.Focus();
+                    chkBulkUnit.Focus();
                 }
             }
             catch (Exception ex)
@@ -362,7 +365,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    chkBulkUnit.Focus();
                 }
             }
             catch (Exception ex)
@@ -522,11 +525,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
+                    if (pnlStatus.Enabled==true)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
                     }
-                    else { btnSave.Focus(); }
+                    else { chkBulkUnit.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -632,13 +642,50 @@ namespace ROMS
             }
         }
 
-        private void RbInActive_CheckedChanged(object sender, EventArgs e)
+        private void ChkBulkUnit_KeyDown(object sender, KeyEventArgs e)
         {
-            if (rbInActive.Checked == true)
+            try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
+
+        private void ChkBulkUnit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkBulkUnit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkBulkUnit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkBulkUnit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtInvoiceUnit_KeyDown(object sender, KeyEventArgs e)
         {
             try

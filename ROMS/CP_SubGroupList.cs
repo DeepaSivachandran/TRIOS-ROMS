@@ -15,6 +15,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
+        public string varUserID = "";
         DataSet objDs = new DataSet();
         DataTable objDtExcel = new DataTable();
 
@@ -102,6 +103,9 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
 
                 int varSubGroupId = 0;
+                int varGroupId = 0;
+                int varLocationId = 0;
+                int varRackId = 0;
                 if (txtProductSubGroup.Text == "")
                 {
                     varSubGroupId = 0;
@@ -125,29 +129,39 @@ namespace ROMS
                     }
                     varSubGroupId = Convert.ToInt32(varId_SubGroup);
                 }
-                string varId_Group = "0";
-                DataSet objDsGroup = new DataSet();
-                SPDataService objDServ1 = new SPDataService();
-                objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(),0);
-                objDServ1.CloseConnection();
-                if (objDsGroup != null)
+                if (txtProductGroup.Text == "")
                 {
-                    if (objDsGroup.Tables.Count > 0)
+                    varGroupId = 0;
+                }
+                else
+                {
+                    string varId_Group = "0";
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(), 0);
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
                     {
-                        if (objDsGroup.Tables[0].Rows.Count > 0)
+                        if (objDsGroup.Tables.Count > 0)
                         {
-                            varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            }
                         }
                     }
+                    varGroupId = Convert.ToInt32(varId_Group);
                 }
-                lblGroupCode.Text = Convert.ToString(varId_Group);
-                if (txtStockLocation.Text.Trim() == "") { lblSLCode.Text = "0"; }
+                if (txtStockLocation.Text.Trim() == "")
+                {
+                    varLocationId = 0;
+                }
                 else
                 {
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(),0,0,0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -159,9 +173,12 @@ namespace ROMS
                             }
                         }
                     }
-                    lblSLCode.Text = Convert.ToString(varId_PurLocation);
+                    varLocationId = Convert.ToInt32(varId_PurLocation);
                 }
-                if (txtSaleRack.Text.Trim() == "") { lblRkCode.Text = "0"; }
+                if (txtSaleRack.Text.Trim() == "")
+                {
+                    varRackId = 0;
+                }
                 else
                 {
                     string varId_PurRack = "0";
@@ -179,9 +196,9 @@ namespace ROMS
                             }
                         }
                     }
-                    lblRkCode.Text = Convert.ToString(varId_PurRack);
+                    varRackId = Convert.ToInt32(varId_PurRack);
                 }
-                objDs = objdserv.udfnSubGroupList(0, varSubGroupId,"",Convert.ToInt32(lblGroupCode.Text),0,"",Convert.ToInt32(cmbStatus.SelectedValue),Convert.ToInt32(cmbBatchNoEntry.SelectedValue),Convert.ToInt32(lblSLCode.Text),Convert.ToInt32(lblRkCode.Text));
+                objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "", varGroupId, 0, "", Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(cmbBatchNoEntry.SelectedValue), varLocationId, varRackId);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -193,15 +210,15 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdSubGroupList.DataSource = objDs.Tables[0];
-                            grdSubGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSubGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdSubGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                           // grdSubGroupList.Columns["Batch No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            // grdSubGroupList.Columns["Batch No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                             grdSubGroupList.Columns["S.No."].Width = 50;
                             grdSubGroupList.Columns["Product Group Name"].Width = 200;
                             grdSubGroupList.Columns["Product Sub Group Name in English"].Width = 250;
                             grdSubGroupList.Columns["Product Sub Group Name in Tamil"].Width = 250;
-                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSubGroupList.Columns["Stock Location"].Width = 150;
                             grdSubGroupList.Columns["Rack"].Width = 100;
                             grdSubGroupList.Columns["Batch No."].Width = 100;
@@ -244,6 +261,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
+                txtSearchProduct.Text = "";
                 //varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
             }
         }
@@ -304,12 +322,28 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion","");
+                        string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID,0);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
+                            if (varResult.Split('~')[1] == "1")
+                            {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    objDser = new SPDataService();
+                                    varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID,1);
+                                    objDser.CloseConnection();
+                                    if (varResult.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
                         }
                         else if (varResult.Split('~')[0] == "4")
                         {
@@ -839,7 +873,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvSubGroup.Columns[2].Width = 200;
                                     lvSubGroup.Columns[0].Width = 200;
                                     lvSubGroup.Items.Add(objList);
@@ -1236,7 +1270,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvGroup.Columns[0].Width = 200;
                                     lvGroup.Columns[2].Width = 200;
                                     lvGroup.Items.Add(objList);
@@ -1346,7 +1380,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SL_TName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvStockLocation.Columns[0].Width = 200;
                                     lvStockLocation.Columns[1].Width = 200;
                                     lvStockLocation.Items.Add(objList);
@@ -1570,7 +1604,9 @@ namespace ROMS
 
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            catch (Exception ex)
+            { objError = new DataError();
+                objError.WriteFile(ex); }
         }
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -1733,6 +1769,19 @@ namespace ROMS
             }
             catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBatchNoEntry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

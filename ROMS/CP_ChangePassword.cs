@@ -15,7 +15,7 @@ namespace ROMS
     public partial class CP_ChangePassword : Form
     {
         // Author : DEEPA
-        // Created Date: 12-02-2020
+        //Sivabharathi on 10-10-2023
 
         //*************** Object for Service Classes Initialisation  ***********
         DataValidation objValidation = new DataValidation();
@@ -43,7 +43,7 @@ namespace ROMS
                 DataSet objDsUser = new DataSet();
                 SPDataService objDser = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objDser.udfnUserList(10, "", MainForm.pbLoginId, "", 0,"");
+                objDs = objDser.udfnUserList(10, "", MainForm.pbLoginId, "", 0, 0, "");
                 objDser.CloseConnection();
                 if (objDs != null)
                 {
@@ -442,6 +442,29 @@ namespace ROMS
                 }
                 else
                 {
+                    int varCountValue = 0;
+                    SPDataService objDServ1 = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objDServ1.udfnUserList(11,"",MainForm.pbLoginId,varPassword,0,0,"");
+                    if (objDs != null) {
+                        if (objDs.Tables.Count > 0) {
+                            if (objDs.Tables[0].Rows.Count > 0) {
+                                varCountValue = Convert.ToInt32(objDs.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    if (varCountValue == 0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(68);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtNewPassword.Text = "";
+                        txtConfirmPassword.Text = "";
+                        txtOldPassword.Text = "";
+                        txtOldPassword.Focus();
+                        return;
+                    }
                     if (txtOldPassword.Text.Trim() == txtNewPassword.Text.Trim())
                     {
                         flag = 1;
@@ -491,7 +514,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varOriginator = "Password Updation", varPassword = "";
                     varPassword = _security.Encrypt(MainForm.pbUserName.Trim().ToLower(), txtNewPassword.Text.Trim());
-                    varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, varPassword, 0, 0,"", varOriginator);
+                    varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, varPassword, 0, 0,"", varOriginator,MainForm.pbUserID,0);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -585,7 +608,7 @@ namespace ROMS
                     DataService objdservice = new DataService();
                     DataSet objDT = new DataSet();
                     SPDataService objDser = new SPDataService();
-                    objDT = objDser.udfnUserList(9, "", "", "", 0, "");
+                    objDT = objDser.udfnUserList(9, "", "", "", 0,0, "");
                     objDser.CloseConnection();
                     objdservice.CloseConnection();
                     if (objDT != null)
@@ -598,7 +621,7 @@ namespace ROMS
                             }
                         }
                     }
-                    varResult = objDser.udfnUser(4, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, _security.Encrypt("passkey", varpasskey), varOriginator);
+                    varResult = objDser.udfnUser(4, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, _security.Encrypt("passkey", varpasskey), varOriginator,MainForm.pbUserID,0);
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {

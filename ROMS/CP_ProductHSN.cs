@@ -313,7 +313,14 @@ namespace ROMS
                 {
                     if (pnlStatus.Enabled)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
                     }
                     else { btnSave.Focus(); }
                 }
@@ -382,7 +389,7 @@ namespace ROMS
                     varViewType=1;
                     varOriginator = "HSN Updation";
                }
-               varResult= objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToString(txtHSNCode.Text).Trim(), varStatusid, varOriginator);
+               varResult= objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToString(txtHSNCode.Text).Trim(), varStatusid, varOriginator,MainForm.pbUserID,0);
               //  varResult = objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToInt32(txtHSNCode.Text), varStatusid, varOriginator);
                objDser.CloseConnection();
                btnSave.Enabled = true;
@@ -572,11 +579,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
-                    {
-                        btnSave.Focus();
-                    }
-                    else { btnSave.Focus(); }
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -591,11 +594,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
-                    {
-                        btnSave.Focus();
-                    }
-                    else { btnSave.Focus(); }
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)

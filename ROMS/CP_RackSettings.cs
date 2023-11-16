@@ -612,7 +612,7 @@ namespace ROMS
                 grdSupplierMapping.Columns["Product Name in English"].ReadOnly = true;
                 grdSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
                 grdSupplierMapping.Columns["Unit"].ReadOnly = true;
-                grdSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                grdSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 
                 if (objDs.Tables[1].Rows.Count != 0)
                 {
@@ -634,7 +634,7 @@ namespace ROMS
                 grdViewSupplierMapping.Columns["Product Name in English"].ReadOnly = true;
                 grdViewSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
                 grdViewSupplierMapping.Columns["Unit"].ReadOnly = true;
-                grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
 
                 for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                 {
@@ -788,7 +788,7 @@ namespace ROMS
                     grdViewSupplierMapping.Columns["Product Name in English"].ReadOnly = true;
                     grdViewSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdViewSupplierMapping.Columns["Unit"].ReadOnly = true;
-                    grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                    grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
 
 
                 }
@@ -2270,7 +2270,7 @@ namespace ROMS
                         epRackSettings.Clear();
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0,varStatusId, 0, 0, 0,0,0,0,0,0,0,0,0);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0,varStatusId, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"", null);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -2474,7 +2474,6 @@ namespace ROMS
             try
             {
                 int varViewType = 14;
-
                 dtViewProduct.Rows.Clear();
                 Application.DoEvents();
                 grdViewProduct.DataSource = null;
@@ -2586,7 +2585,7 @@ namespace ROMS
                         tppRack.Show("Please select valid rack", txtDRack, 5000);
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,Convert.ToInt32(varRackId),0,0,0,0,0,0,0);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,Convert.ToInt32(varRackId),0,0,0,0,0,0,0,"",0,"", null);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[1].Rows.Count != 0)
@@ -2611,8 +2610,8 @@ namespace ROMS
                 grdViewProduct.Columns["Product Name in English"].ReadOnly = true;
                 grdViewProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                 grdViewProduct.Columns["Unit"].ReadOnly = true;
-                grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
-                //grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                //grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
             }
             catch (Exception ex)
             {
@@ -3219,7 +3218,7 @@ namespace ROMS
                     grdMoveProduct.Columns["Product Name in English"].ReadOnly = true;
                     grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdMoveProduct.Columns["Unit"].ReadOnly = true;
-                    grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                    grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 }
                 else
                 {
@@ -4061,7 +4060,7 @@ namespace ROMS
                 grdMoveProduct.Columns["Product Name in English"].ReadOnly = true;
                 grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                 grdMoveProduct.Columns["Unit"].ReadOnly = true;
-                grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
 
             }
             catch (Exception ex)

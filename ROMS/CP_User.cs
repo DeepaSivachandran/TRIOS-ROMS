@@ -345,7 +345,7 @@ namespace ROMS
                 {
                     varUserID = "0";
                 }
-                varResult = objspservice.udfnUser(varType,Convert.ToInt32( varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus,"", varoriginator);
+                varResult = objspservice.udfnUser(varType,Convert.ToInt32( varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus,"", varoriginator,MainForm.pbUserID,0);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -769,9 +769,16 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
+                    if (pnlStatus.Enabled==true)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
                     }
                     else { btnSave.Focus(); }
                 }
@@ -874,7 +881,7 @@ namespace ROMS
                     pnlStatus.Enabled = true;
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnUserList(3,"", "", "",Convert.ToInt32(varUserID),"");
+                    objDs = objspdservice.udfnUserList(3,"", "", "",Convert.ToInt32(varUserID), 0, "");
                     objspdservice.CloseConnection();
 
                     if (objDs != null)

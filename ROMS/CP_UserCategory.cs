@@ -26,7 +26,7 @@ namespace ROMS
         public int varstatus = 0;
         public int varUpdate = 0;
         public int varmastertype = 0;
-        public int varCategoryCode = 0;
+        public int varCategoryCode = 0, PbOrderNo=0;
 
         public CP_UserCategory()
         {
@@ -98,57 +98,94 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnLoadSlNo()
+        {
+            try
+            {
+                int ViewType = 0;
+                if(btnSave.Text=="Save")
+                {
+                    ViewType = 0;
+                }
+                else
+                {
+                    ViewType = 1;
+                }
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnSINO(ViewType,varUserCategoryCode);
+                objdserv.CloseConnection();
+                cmbCTSINO.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbCTSINO.ValueMember = "num";
+                            cmbCTSINO.DisplayMember = "num";
+                            cmbCTSINO.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-                    if (rbActive.Checked == true) { varstatus = 1; }
-                    else { varstatus = 2; }
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = "",
-                    varoriginator = ""; int varType = 0;
-                    if (btnSave.Text == "Save")
+                if (rbActive.Checked == true) { varstatus = 1; }
+                else { varstatus = 2; }
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
+                if (btnSave.Text == "Save")
+                {
+                    varoriginator = "UserCategory Creation";
+                    varType = 0;
+                }
+                else
+                {
+                    varoriginator = "UserCategory Updation";
+                    varType = 1;
+                }
+                varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus,Convert.ToInt32(cmbCTSINO.SelectedValue),varoriginator,MainForm.pbUserID,0);
+                objspservice.CloseConnection();
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnclear();
+                    if (varmastertype == 1)
                     {
-                        varoriginator = "UserCategory Creation";
-                        varType = 0;
+                        varmastertype = 0;
+                        varUpdate = 1;
+                        varCategoryCode = Convert.ToInt16(varResult.Split('~')[2]);
+                        MainForm.objCP_Employee.varCategoryCode = varCategoryCode;
+                        udfnclose();
                     }
                     else
                     {
-                        varoriginator = "UserCategory Updation";
-                        varType = 1;
+                        MainForm.objCP_UserCategoryList.udfnList();
                     }
-                    varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus, varoriginator);
-                    objspservice.CloseConnection();
-                    string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "3")
+                    if (btnSave.Text == "Update")
                     {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnclear();
-                        if (varmastertype == 1)
-                        {
-                            varmastertype = 0;
-                            varUpdate = 1;
-                            varCategoryCode = Convert.ToInt16(varResult.Split('~')[2]);
-                            MainForm.objCP_Employee.varCategoryCode = varCategoryCode;
-                            udfnclose();
-                        }
-                        else
-                        {
-                            MainForm.objCP_UserCategoryList.udfnList();
-                        }
-                        if (btnSave.Text == "Update")
-                        {
-                            varUpdate = 1;
-                            udfnclose();
-                        }
-                        udfnclear();
+                        varUpdate = 1;
+                        udfnclose();
                     }
-                    else
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        btnSave.Enabled = true;
-                        btnSave.Focus();
-                    }
+                    udfnclear();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -172,6 +209,8 @@ namespace ROMS
                 txtCategoryName.Text = "";
                 txtCategoryName.Focus();
                 this.ActiveControl = txtCategoryName;
+                pnlStatus.Enabled = false;
+                udfnLoadSlNo();
             }
             catch (Exception ex)
             {
@@ -329,6 +368,7 @@ namespace ROMS
         {
             try
             {
+                udfnLoadSlNo();
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -362,6 +402,7 @@ namespace ROMS
             {
                 txtCategoryName.Text = PbUserCategoryName;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                cmbCTSINO.SelectedValue = PbOrderNo;
             }
             catch (Exception ex)
             {
@@ -416,17 +457,79 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbCTSINO_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCTSINO.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbCTSINO_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if(pnlStatus.Enabled==true)
+                    {
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbCTSINO_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCTSINO.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbCTSINO_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtCategoryName_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
-                    {
-                        rbActive.Focus();
-                    }
-                    else { btnSave.Focus(); }
+                    cmbCTSINO.Focus();
                 }
             }
             catch (Exception ex)

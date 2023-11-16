@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.ReportBroker = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportBroker = new System.Windows.Forms.Panel();
@@ -48,12 +47,10 @@
             this.lblReportType = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.ep_Broker = new System.Windows.Forms.ErrorProvider(this.components);
             this.ReportBroker.SuspendLayout();
             this.pnlReportBroker.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_Broker)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportBroker
@@ -88,9 +85,9 @@
             this.pnlReportBroker.Controls.Add(this.grpfilter);
             this.pnlReportBroker.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportBroker.Controls.Add(this.picLoader);
-            this.pnlReportBroker.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportBroker.Location = new System.Drawing.Point(0, 29);
             this.pnlReportBroker.Name = "pnlReportBroker";
-            this.pnlReportBroker.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportBroker.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportBroker.TabIndex = 958788;
             // 
             // lvCity
@@ -275,10 +272,6 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // ep_Broker
-            // 
-            this.ep_Broker.ContainerControl = this;
-            // 
             // REPORT_CP_Broker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -303,7 +296,6 @@
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_Broker)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,7 +310,6 @@
         private System.Windows.Forms.GroupBox grpfilter;
         private System.Windows.Forms.ComboBox cmbReportType;
         private System.Windows.Forms.Label lblReportType;
-        private System.Windows.Forms.ErrorProvider ep_Broker;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnListPrint;
