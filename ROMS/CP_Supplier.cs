@@ -1103,9 +1103,7 @@ namespace ROMS
             {
 
             }
-
         }
-
         private void udfnEdit()
         {
             try
@@ -3336,7 +3334,7 @@ namespace ROMS
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", " SPSC_SPID='" + SupplierUpdate + "' oR  SPSC_SPID= 0 order by SPSCID, SPSC_Name", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
+                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", " SPSC_SPID='" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) oR  SPSC_SPID= 0 order by SPSCID, SPSC_Name", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbMappedorderrype, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
@@ -3411,11 +3409,13 @@ namespace ROMS
                     }
                     if (SupplierUpdate != 0)
                     {
-                        objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "' OR SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
+                        objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) OR SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
                     }
-                    else { objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", " SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID"); }
+                    else
+                    {
+                        objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_STSID NOT IN (2) OR SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID"); }
                     
-                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
+                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
                     objDataBind = null;
                     DataSet objDT = new DataSet();
                     SPDataService objdserv = new SPDataService();
