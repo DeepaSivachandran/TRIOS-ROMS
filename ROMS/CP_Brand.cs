@@ -545,8 +545,8 @@ namespace ROMS
             finally
             {
                 grdSubGroup.ClearSelection();
-                //this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
-                this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
+                this.grdSubGroup.Sort(this.grdSubGroup.Columns[1], ListSortDirection.Ascending);
+                //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
                 txtProductSubGroup.Text = "";
             }
         }
@@ -690,6 +690,7 @@ namespace ROMS
                         varmasterBrandtype = 0;
                         varId = Convert.ToInt32(varId_Brand);
                         udfnEdit();
+                        udfnProductCount();
                         //varSubGroupId = MainForm.objCP_Items.varSubgroupId;
                         //varGroupId = MainForm.objCP_Items.vargroupId;
                         //if (varSubGroupId != "0" && varGroupId != "0")
