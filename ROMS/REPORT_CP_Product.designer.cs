@@ -382,7 +382,7 @@
             // 
             this.txtSearchByPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSearchByPICode.Location = new System.Drawing.Point(1091, 19);
-            this.txtSearchByPICode.MaxLength = 100;
+            this.txtSearchByPICode.MaxLength = 20;
             this.txtSearchByPICode.Name = "txtSearchByPICode";
             this.txtSearchByPICode.Size = new System.Drawing.Size(167, 27);
             this.txtSearchByPICode.TabIndex = 5;
