@@ -131,6 +131,11 @@ namespace ROMS
 
         private void GrdGRNPODamaged_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+        }
+
+        private void GrdGRNPODamaged_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
             try
             {
                 if (e.RowIndex != -1)
@@ -138,21 +143,21 @@ namespace ROMS
                     switch (grdGRNPODamaged.Columns[e.ColumnIndex].Name)
                     {
                         case "clmInvoiceNo":
-                            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                            { 
-                                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
-                                if (varMasterType == "1")
-                                {
-                                    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "1";
-                                }
-                                else
-                                {
-                                    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "2";
-                                }
-                                MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToInt32(grdGRNPODamaged.SelectedRows[0].Cells["ID"].Value.ToString());
-                                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                        if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                        {
+                            MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                            if (varMasterType == "1")
+                            {
+                                MainForm.objPUR_PurchaseOrderDamage.varMasterType = "1";
                             }
-                            break;
+                            else
+                            {
+                                MainForm.objPUR_PurchaseOrderDamage.varMasterType = "2";
+                            }
+                            MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToInt32(grdGRNPODamaged.SelectedRows[0].Cells["ID"].Value.ToString());
+                            MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                        }
+                        break;
                     }
                 }
             }

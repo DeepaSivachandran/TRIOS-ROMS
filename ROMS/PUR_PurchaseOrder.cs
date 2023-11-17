@@ -2520,31 +2520,7 @@ namespace ROMS
 
         private void GrdPendingorder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (e.RowIndex != -1)
-                {
-                    switch (grdPendingorder.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmpono":
-                        if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                        {
-                            string cellPOValue = Convert.ToString(grdPendingorder.Rows[e.RowIndex].Cells["poid"].Value);
-                            MainForm.objPUR_POProducts = new PUR_POProducts();
-                            MainForm.objPUR_POProducts.pbPoid = cellPOValue;
-                            MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
-                            MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
-                            MainForm.objPUR_POProducts.ShowDialog();
-                        }
-                        break;
-                    }
-                }  
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
@@ -2731,6 +2707,36 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdPendingorder_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPendingorder.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmpono":
+                            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                            {
+                                string cellPOValue = Convert.ToString(grdPendingorder.Rows[e.RowIndex].Cells["poid"].Value);
+                                MainForm.objPUR_POProducts = new PUR_POProducts();
+                                MainForm.objPUR_POProducts.pbPoid = cellPOValue;
+                                MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
+                                MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
+                                MainForm.objPUR_POProducts.ShowDialog();
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdPendingorder_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) 
         {
             for (int i = 0; i < grdPendingorder.Rows.Count; i++)

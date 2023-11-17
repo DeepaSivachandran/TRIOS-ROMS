@@ -1285,12 +1285,12 @@ namespace ROMS
         {
             try
             {
-                if (grdGrnlist.Columns[e.ColumnIndex].Name == "e")
+                if (grdGrnlist.Columns[e.ColumnIndex].Name == "clmexpirydate")
                 {
                     string dateString = e.FormattedValue.ToString();
                     DataSet objDS = new DataSet();
                     SPDataService objDServ = new SPDataService();
-                    objDS = objDServ.udfnMaster(8, 0, 0, dpGrnDate.Text, "", 0);
+                    objDS = objDServ.udfnMaster(8, 0, 0, dateString, "", 0);
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
