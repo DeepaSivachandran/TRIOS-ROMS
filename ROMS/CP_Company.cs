@@ -1040,6 +1040,7 @@ namespace ROMS
                 //    epCompany.Clear();
                 //    txtPhoneNo.BackColor = Color.White;
                 //}
+                txtPhoneNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
