@@ -2585,6 +2585,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
+            finally
+            {
+                lblPC.Text = grdsupplieradd.Rows.Count.ToString();
+            }
         }
 
         private void TxtRemark_Enter(object sender, EventArgs e)
