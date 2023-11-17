@@ -99,6 +99,14 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=34 OR MSTID=-1  ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbResetOn, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COMID NOT IN(0) ORDER BY COMID,COM_ShortName", "COMID,COM_ShortName", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
+                if (varValues == "38")
+                {
+                   this.ActiveControl =txtPrefix;
+                }
+                else
+                {
+                    this.ActiveControl = cmbConcern;
+                }
             }
             catch (Exception ex)
             {
@@ -171,7 +179,6 @@ namespace ROMS
             {
                 udfnCmbLoad();
                 udfnList();
-                this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
             {

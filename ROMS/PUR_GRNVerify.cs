@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,14 +21,15 @@ namespace ROMS
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
-        public string pbFormStatus;
+        public string pbFormStatus, pbGRNId="0";
         public string varUserId = "";
         public string varPasskey = "";
-        public int flag = 0;
+        public int flag = 0, varVerifyType=0;
         private SecurityController _security;
         public PUR_GRNVerify()
         {
             InitializeComponent();
+            _security = new SecurityController();
         }
          
 
@@ -122,6 +124,7 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
+                    string result = "";
                     varPasskey = _security.Encrypt("passkey", (txtPassKey.Text).Trim());
                     objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0, 0, varPasskey);
                     objDser.CloseConnection();
@@ -132,9 +135,30 @@ namespace ROMS
                             count = Convert.ToInt32(objDs.Tables[2].Rows[0]["countvalue"]);
                             if (count != 0)
                             {
-                                flag = 1;
-                                varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]);
-                                this.Close();
+                                if (varVerifyType == 1)
+                                {
+                                    flag = 1;
+                                }
+                                else
+                                {
+                                    flag = 2;
+                                }
+                                varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]); 
+
+                                TRNS_GRN objTRNS_GRN = new TRNS_GRN();
+                                objTRNS_GRN.ViewType = 2;
+                                objTRNS_GRN.ParaGRNID = Convert.ToInt32(pbGRNId);
+                                objTRNS_GRN.ParaVerify = Convert.ToInt32(varUserId);
+                                objTRNS_GRN.paraflag = Convert.ToInt32(flag);
+                                result = objDser.udfnGRNEntry(objTRNS_GRN);
+                                objDser.CloseConnection();
+                                string[] varvalue = result.Split('~');
+                                if (varvalue[0] == "3")
+                                {
+                                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MainForm.objPUR_GRNDetails.varenablefalg = Convert.ToString(flag);
+                                    this.Close();
+                                }
                             }
                         }
                         else

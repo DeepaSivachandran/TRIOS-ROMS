@@ -52,7 +52,7 @@
             this.txtDPasskey.ReadOnly = true;
             this.txtDPasskey.Size = new System.Drawing.Size(62, 28);
             this.txtDPasskey.TabIndex = 11;
-            this.txtDPasskey.Text = "Pass Key";
+            this.txtDPasskey.Text = "PassKey";
             // 
             // txtPassKey
             // 
@@ -62,8 +62,10 @@
             this.txtPassKey.MaxLength = 50;
             this.txtPassKey.Name = "txtPassKey";
             this.txtPassKey.Size = new System.Drawing.Size(174, 28);
-            this.txtPassKey.TabIndex = 8;
-            this.txtPassKey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassKey_KeyPress);
+            this.txtPassKey.TabIndex = 1;
+            this.txtPassKey.Enter += new System.EventHandler(this.TxtPassKey_Enter);
+            this.txtPassKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassKey_KeyDown);
+            this.txtPassKey.Leave += new System.EventHandler(this.TxtPassKey_Leave);
             // 
             // btnAuthorise
             // 
@@ -74,11 +76,13 @@
             this.btnAuthorise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnAuthorise.Name = "btnAuthorise";
             this.btnAuthorise.Size = new System.Drawing.Size(93, 33);
-            this.btnAuthorise.TabIndex = 9;
+            this.btnAuthorise.TabIndex = 2;
             this.btnAuthorise.Text = "Authorize";
             this.btnAuthorise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAuthorise.UseVisualStyleBackColor = true;
             this.btnAuthorise.Click += new System.EventHandler(this.btnAuthorise_Click);
+            this.btnAuthorise.Enter += new System.EventHandler(this.BtnAuthorise_Enter);
+            this.btnAuthorise.Leave += new System.EventHandler(this.BtnAuthorise_Leave);
             // 
             // PUR_GRNApprovalVerify
             // 

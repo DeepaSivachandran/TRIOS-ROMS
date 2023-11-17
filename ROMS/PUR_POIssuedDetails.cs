@@ -248,7 +248,7 @@ namespace ROMS
                             txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString();
                             SPDataService objDServ = new SPDataService();
                             DataSet objd = new DataSet();
-                            objd = objDServ.udfnMaster(4, 6,varPOID);
+                            objd = objDServ.udfnMaster(4, 6,varPOID,"","",0);
                             if (objd.Tables[0].Rows.Count != 0)
                             { 
                                 DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
@@ -516,19 +516,7 @@ namespace ROMS
             }
         }
 
-        private void CmbIssueMode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
 
         private void TxtTAT_Leave(object sender, EventArgs e)
         {
@@ -558,7 +546,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void CmbIssueMode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbIssueMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

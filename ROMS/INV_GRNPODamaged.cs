@@ -174,7 +174,9 @@ namespace ROMS
         private void BtnOk_Click(object sender, EventArgs e)
         {
             try
-            { udfnAddPrevPending(); }
+            {
+                udfnAddPrevPending();
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -206,7 +208,7 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     if (grdGRNPODamaged.Rows.Count > 0)
                     {
-                        string varMessage = objDServ.udfnGetMessages(81);
+                        string varMessage = objDServ.udfnGetMessages(84);
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }

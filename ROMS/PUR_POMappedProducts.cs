@@ -19,7 +19,7 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbrandcode;
+        public string varbrandcode, DefProductsCode="";
         public DataTable dtMappedProduct;
         public string pbFormStatus;
         public int VARFLAG = 0;
@@ -189,15 +189,48 @@ namespace ROMS
         public void udfnAddProduct()
         {
             try
-            { 
+            {
+                DefProductsCode = "";
+                for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
+                {
+                    if (DefProductsCode == "")
+                    {
+                        DefProductsCode = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Product ID"].Value);
+                    }
+                    else
+                    {
+                        DefProductsCode = DefProductsCode + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Product ID"].Value);
+                    }
+                }
+
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet(); 
+                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode);
+                objspdservice.CloseConnection();
+
                 for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
                     {
+                        string defflag = "0";
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                if (Convert.ToString( objDs.Tables[0].Rows[i]["prid"])== Convert.ToString((grdPurchaseOrder.Rows[i].Cells["Product ID"].Value)))
+                                {
+                                    defflag = Convert.ToString(objDs.Tables[0].Rows[i]["flag"]);
+                                }
+                                else
+                                {
+                                    defflag = "4";
+                                }
+                            }
+                        }
                         MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Add(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Count + 1,
                         grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value,grdPurchaseOrder.Rows[i].Cells["Product Name"].Value,grdPurchaseOrder.Rows[i].Cells["Unit"].Value, grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["MSQ"].Value),
                         (grdPurchaseOrder.Rows[i].Cells["Stock"].Value),grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value,grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),
-                        grdPurchaseOrder.Rows[i].Cells["ordervalue"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 4,1);
+                        grdPurchaseOrder.Rows[i].Cells["ordervalue"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), defflag, 1);
                         VARFLAG = 1;
                     }
                 }
