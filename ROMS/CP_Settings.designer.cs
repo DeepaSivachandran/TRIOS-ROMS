@@ -592,7 +592,6 @@
         private System.Windows.Forms.ComboBox cmbTransactionType;
         private System.Windows.Forms.Label lblTransactionType;
         private System.Windows.Forms.Label lblPrefix;
-        private System.Windows.Forms.TextBox txtPrefix;
         private System.Windows.Forms.TextBox txtSuffix;
         private System.Windows.Forms.Label lblSuffix;
         private System.Windows.Forms.TextBox txtStartingNo;
@@ -625,5 +624,6 @@
         private System.Windows.Forms.TextBox txtFyyear;
         private System.Windows.Forms.Label lblFyyr;
         public System.Windows.Forms.ComboBox cmbConcern;
+        public System.Windows.Forms.TextBox txtPrefix;
     }
 }

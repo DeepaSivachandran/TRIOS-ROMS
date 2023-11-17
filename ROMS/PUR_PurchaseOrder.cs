@@ -47,7 +47,8 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=4 AND STSID in (8,9)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 this.ActiveControl = cmbConcern;
-                udfnDropdownLoad();   
+                udfnDropdownLoad(); 
+                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
                 udfnEditLoad();
                 DataService objDservice = new DataService();
                 string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
@@ -169,7 +170,10 @@ namespace ROMS
                 if (VarStatusId == 11)
                 {
                     dpissuedateandtime.Enabled = false;
-                    txtTurnAroundTime.Enabled = false; 
+                    txtTurnAroundTime.Enabled = false;
+                    grdsupplieradd.Columns["clmRemove"].Visible = false;
+                    btnViewedProduct.Enabled = false;
+                    btnAdd.Enabled = false;
                 }
                 if (VarStatusId == 9)
                 {

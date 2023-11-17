@@ -129,6 +129,7 @@ namespace ROMS
             {
                 this.ActiveControl = cmbConcern;
                 udfnDropdownLoad();
+                cmbConcern.SelectedValue =Convert.ToInt32(MainForm.pbDefaultComId);
                 udfngridchanges();
                 DpPlanDate_ValueChanged(sender, e);
             }
