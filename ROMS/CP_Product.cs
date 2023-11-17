@@ -3142,10 +3142,11 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoGeneration, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_QtyUnit", " QUT_STSID =1", "QUT_Symbol,QUTID", cmbNetQty, "", "QUT_Symbol", "QUTID");
                 objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  not in (0)", "GST_Text,GSTID", cmbGst, "", "GST_Text", "GSTID");
-                objDataBind = null; 
-                    cmbConcern.SelectedValue = -1;
-                    //cmbHSNName.SelectedValue = -1;
-                    cmbUnit.SelectedValue = -1;
+                objDataBind = null;
+                //cmbConcern.SelectedValue = -1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                //cmbHSNName.SelectedValue = -1;
+                cmbUnit.SelectedValue = -1;
                     cmbBulkUnit.SelectedValue = -1;
                     cmbProductCategory.SelectedValue = -1;
                     cmbPeriod.SelectedValue = -1;

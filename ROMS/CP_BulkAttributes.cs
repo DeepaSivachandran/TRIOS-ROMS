@@ -2494,23 +2494,23 @@ namespace ROMS
             {
                 //(grdSupplierMappingLoad.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchByProduct1.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
                 if (grdLoction.Visible == true)
-                { (grdLoction.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = " ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdMSQ.Visible == true)
-                { (grdMSQ.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdStock.Visible == true)
-                { (grdStock.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdStock.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdWeight.Visible == true)
-                { (grdWeight.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdWeight.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdShelfLife.Visible == true)
-                { (grdShelfLife.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdShelfLife.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdBatch.Visible == true)
-                { (grdBatch.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdBatch.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdBrand.Visible == true)
-                { (grdBrand.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdBrand.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdHSN.Visible == true)
-                { (grdHSN.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdHSN.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdBulkAttributes.Visible == true)
-                { (grdBulkAttributes.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdBulkAttributes.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
             }
             catch (Exception ex)
             {
