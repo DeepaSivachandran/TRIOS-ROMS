@@ -886,6 +886,8 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

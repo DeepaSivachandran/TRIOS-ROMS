@@ -433,6 +433,7 @@ namespace ROMS
         {
             try
             {
+                lvLocation.Visible = false;
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -547,6 +548,7 @@ namespace ROMS
         {
             try
             {
+                lvLocation.Visible = false;
                 txtShortName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -597,6 +599,7 @@ namespace ROMS
         {
             try
             {
+                lvLocation.Visible = false;
                 txtDescription.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

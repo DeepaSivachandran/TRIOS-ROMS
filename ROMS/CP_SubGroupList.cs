@@ -460,7 +460,7 @@ namespace ROMS
             try
             {
                 btnView.BackColor = Color.LemonChiffon;
-                lvSubGroup.Visible = false;
+                udfnLvHide();
             }
             catch (Exception ex)
             {
@@ -486,6 +486,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -779,6 +780,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 txtSearchProduct.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -805,6 +807,9 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
+                lvStockLocation.Visible = false;
+                lvSaleRack.Visible = false;
                 txtProductSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -981,6 +986,9 @@ namespace ROMS
         {
             try
             {
+                lvSubGroup.Visible = false;
+                lvStockLocation.Visible = false;
+                lvSaleRack.Visible = false;
                 txtProductGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -994,6 +1002,9 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
+                lvSaleRack.Visible = false;
                 txtStockLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1007,6 +1018,9 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
+                lvStockLocation.Visible = false;
                 txtSaleRack.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1041,11 +1055,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnLvHide()
+        {
+            try
+            {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
+                lvStockLocation.Visible = false;
+                lvSaleRack.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbBatchNoEntry_Enter(object sender, EventArgs e)
         {
             try
             {
+                udfnLvHide();
                 cmbBatchNoEntry.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1059,6 +1088,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

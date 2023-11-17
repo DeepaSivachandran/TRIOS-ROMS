@@ -128,6 +128,11 @@ namespace ROMS
             {
                 bool blnErrorFlag = false;
                 btnSave.Enabled = false;
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
                 if ((Convert.ToString(txtRepName.Text).Trim() == ""))
                 {
                     epGroup.SetError(txtRepName, "Please enter rep name");
@@ -440,14 +445,36 @@ namespace ROMS
                     DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
+                if (DGV_SearchGrid.ColumnCount > 1)
                 {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        if (i == 0)
+                        { DGV_SearchGrid.Rows[0].Cells[i].ReadOnly = true; }
+                        else
+                        { DGV_SearchGrid.Rows[0].Cells[i].ReadOnly = false; }
+                    }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
                 }
-                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                //    udfnGridSearchHeading(grdRepBrand, DGV_SearchGrid);
+                //DGV_SearchGrid.Columns.Clear();
+                //List<int> visibleColumns = new List<int>();
+                //foreach (DataGridViewColumn col in grdRepBrand.Columns)
+                //{
+                //    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                //    visibleColumns.Add(col.Index);
+                //}
+                //int rowIndex = 0;
+                //DGV_SearchGrid.Rows.Clear();
+                //DGV_SearchGrid.Rows.Add();
+                //for (int i = 0; i < visibleColumns.Count; i++)
+                //{
+                //    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                //}
+                //DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }

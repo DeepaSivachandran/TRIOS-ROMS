@@ -299,6 +299,7 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -697,6 +698,7 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
                 txtSearchProduct.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

@@ -102,7 +102,7 @@ namespace ROMS
         {
             try
             {
-                if (cmbReportType.SelectedIndex == 0)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbReportType.Focus();
                 }
@@ -110,11 +110,11 @@ namespace ROMS
                 {
                     lvLocation.Visible = false;
 
-                    if (cmbReportType.SelectedIndex == 1)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 113)
                     {
                         udfnLocation();
                     }
-                    if (cmbReportType.SelectedIndex == 2)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 114)
                     {
                         udfnLocationProduct();
                     }

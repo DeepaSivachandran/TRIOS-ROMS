@@ -854,6 +854,7 @@ namespace ROMS
         {
             try
             {
+                lvUserList.Visible = false;
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -922,6 +923,7 @@ namespace ROMS
         {
             try
             {
+                lvUserList.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

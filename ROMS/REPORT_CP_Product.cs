@@ -26,7 +26,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    txtSearchByPICode.Focus();
                 }
             }
             catch (Exception ex)
@@ -103,7 +103,7 @@ namespace ROMS
         {
             try
             {
-                if (cmbReportType.SelectedIndex == 0)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbReportType.Focus();
                 }
@@ -112,31 +112,31 @@ namespace ROMS
                     lvGroup.Visible = false;
                     lvSubGroup.Visible = false;
 
-                    if (cmbReportType.SelectedIndex == 1)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 127)
                     {
                         udfnProductGST();
                     }
-                    if (cmbReportType.SelectedIndex == 2)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 128)
                     {
                         udfnProductRate();
                     }
-                    if (cmbReportType.SelectedIndex == 3)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 129)
                     {
                         udfnProductDefaultStock();
                     }
-                    if (cmbReportType.SelectedIndex == 4)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 130)
                     {
                         udfnProductShelfLife();
                     }
-                    if (cmbReportType.SelectedIndex == 5)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 131)
                     {
                         udfnProductNettGross();
                     }
-                    if (cmbReportType.SelectedIndex == 6)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 132)
                     {
                         udfnProductSubgroupGroupBrand();
                     }
-                    if (cmbReportType.SelectedIndex == 7)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 133)
                     {
                         udfnProductMinSales();
                     }
@@ -1478,6 +1478,47 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPICode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByPICode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtSearchByPICode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPICode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByPICode.BackColor = Color.White;
             }
             catch (Exception ex)
             {
