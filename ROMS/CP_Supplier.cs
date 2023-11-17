@@ -4021,16 +4021,6 @@ namespace ROMS
                     DGV_SearchGrid.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        //if (i == 0)
-                        //{
-                        //   DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = false;
-                        //    
-                        //}
-                        //else
-                        //{
-                        //    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = false;
-                        //    DGV_SearchGrid.Columns[0].ReadOnly = false;
-                        //}
                         if (i == 0)
                         { DGV_SearchGrid.Rows[0].Cells[i].ReadOnly = true; }
                         else
