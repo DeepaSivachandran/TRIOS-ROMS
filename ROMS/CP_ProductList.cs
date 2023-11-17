@@ -907,6 +907,7 @@ namespace ROMS
                 this.ActiveControl = cmbConcern;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
 
             }
