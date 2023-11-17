@@ -435,8 +435,7 @@ namespace ROMS
                     objGRNProd.Columns.Add("GRNPR_ShelfLifeType", typeof(int));
                     objGRNProd.Columns.Add("GRNPR_POID", typeof(int));
                     objGRNProd.Columns.Add("GRNPR_ShelfLife_Per", typeof(int));
-                    objGRNProd = udfnobjGRNProd();
-
+                    objGRNProd = udfnobjGRNProd(); 
                     SPDataService objspdservice = new SPDataService();
                     varGrnId = Convert.ToInt32(pbGRNId);
                     TRNS_GRN objTRNS_GRN = new TRNS_GRN();
@@ -480,8 +479,7 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
-        }
-
+        } 
         public DataTable udfnobjGRNProd()
         { 
             DataTable objGRNProd = new DataTable();
@@ -502,15 +500,13 @@ namespace ROMS
                 objGRNProd.Columns.Add("GRNPR_ShelfLife_Per", typeof(float));
                 objGRNProd.Columns.Add("GRNPR_Expirydate", typeof(string));
                 for (int i = 0; i < grdGrnlist.Rows.Count; i++)
-                { 
-                    
+                {  
                     DataService objDser = new DataService();
                     objGRNProd.Rows.Add(Convert.ToInt32(pbGRNId),Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmProid"].Value),
                     Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmUtid"].Value), Convert.ToDouble(grdGrnlist.Rows[i].Cells["clmmrp"].Value),
                     0,0,0, Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchno"].Value), 0,0, Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmPOid"].Value)
                     ,0,""); 
                 }
-
             }
             catch (Exception ex)
             {
@@ -518,8 +514,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             return objGRNProd;
-        }
-
+        } 
         private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -647,7 +642,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2152,7 +2147,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -49,7 +49,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService(); 
-                objDs = objdserv.udfnSupplierList(9, 0, 0, 0, 0, "", 0,0,Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue),"",0,0,0,0,0,0);
+                objDs = objdserv.udfnSupplierList(9, 0, 0, 0, 0, "", 0,0,Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue),"",0,0,0,0,0,0,"");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
