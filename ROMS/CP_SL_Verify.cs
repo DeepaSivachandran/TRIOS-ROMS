@@ -23,8 +23,11 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varUserId = "";
+
         public string varPasskey = "";
+        public string varbrandcode;
+        public string pbFormStatus;
+        public string varUserId = "";
         public int flag = 0;
         public CP_SL_Verify()
         {
@@ -42,6 +45,33 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtPassKey.TextLength != 0)
                 {
+                    //SPDataService objDser = new SPDataService();
+                    //int count = 0;
+                    //objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, _security.Encrypt(MainForm.pbUserName.Trim().ToLower(), txtPassKey.Text.Trim()), 0,"");
+                    //objDser.CloseConnection();
+                    //if (objDs != null)
+                    //{
+                    //    if (objDs.Tables[0].Rows.Count > 0)
+                    //    {
+                    //        count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
+                    //        if (count != 0)
+                    //        {
+                    //            flag = 1;
+                    //            MainForm.objCP_Location.saveflag=0;
+                    //            this.Close();
+                    //        }
+                    //        else if (count == 0)
+                    //        {
+                    //            //DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                    //            SPDataService objDServ = new SPDataService();
+                    //            string varMessage = objDServ.udfnGetMessages(62);
+                    //            objDServ.CloseConnection();
+                    //            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //            txtPassKey.Text = "";
+                    //            txtPassKey.Focus();
+                    //        }
+                    //    }
+                    //}
                     SPDataService objDser = new SPDataService();
                     int count = 0;
                     varPasskey = _security.Encrypt("passkey", (txtPassKey.Text).Trim());
