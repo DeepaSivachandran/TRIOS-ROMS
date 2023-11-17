@@ -324,6 +324,7 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -644,6 +645,7 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
