@@ -36,7 +36,6 @@ namespace ROMS
         public static bool isFormClosed = false;
         public static bool isClose = false;
         public static bool isFormClosedMenu = false;
-        public static int pbDefaultComId = 0;
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart;
@@ -195,25 +194,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGetDefaultCompany()
-        {
-            try
-            {
-                SPDataService objSPDataService = new SPDataService();
-                DataSet objDs = new DataSet();
-                objDs = objSPDataService.udfnCompanyList(11, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count > 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count > 0) { pbDefaultComId = Convert.ToInt32(objDs.Tables[0].Rows[0]["COMID"]); }
-                    }
-                }
-                objSPDataService.CloseConnection();
-            }
-            catch (Exception ex)
-            { objError = new DataError(); objError.WriteFile(ex); }
-        }
 
         //Close Form
         public void udfnCloseChildForms()
@@ -297,7 +277,6 @@ namespace ROMS
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
                 //lblDb.Text = "ROMS DB : "+MainForm.pbRomsSoftwareName;
-                udfnGetDefaultCompany();
                 objStart = new DEF_Start();
                 objStart.MdiParent = this;
                 objStart.Show();
