@@ -26,7 +26,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    txtSearchByPICode.Focus();
                 }
             }
             catch (Exception ex)
@@ -1478,6 +1478,47 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPICode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByPICode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtSearchByPICode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPICode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByPICode.BackColor = Color.White;
             }
             catch (Exception ex)
             {
