@@ -28,7 +28,6 @@ namespace ROMS
         public string varbrandcode;
         public string pbFormStatus;
         public string varUserId = "";
->>>>>>>>> Temporary merge branch 2
         public int flag = 0;
         public CP_SL_Verify()
         {
