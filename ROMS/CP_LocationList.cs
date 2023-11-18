@@ -17,6 +17,7 @@ namespace ROMS
         DataError objError;
         public int varStockApplicable = 0;
         public string varUserID = "";
+        public int SearchFlag = 0;
         public CP_LocationList()
         {
             InitializeComponent();
@@ -674,7 +675,14 @@ namespace ROMS
         {
             try
             {
-                (grdGodownList.DataSource as BindingSource).Filter = "([Location Name in English]) LIKE '%" + txtSearchbyLocationName.Text + "%'";
+                if (SearchFlag == 1)
+                {
+                    (grdGodownList.DataSource as BindingSource).Filter = "([Location Name in English]) LIKE '%" + txtSearchbyLocationName.Text + "%'";
+                }
+                else
+                {
+                    (grdGodownList.DataSource as DataTable).DefaultView.RowFilter = "([Location Name in English]) LIKE '%" + txtSearchbyLocationName.Text + "%'";
+                }
             }
             catch (Exception ex)
             {
@@ -794,6 +802,10 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally
+            {
+                SearchFlag = 1;
+            }
         }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

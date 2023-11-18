@@ -20,6 +20,7 @@ namespace ROMS
         DataTable objDtExcel = new DataTable();
 
         public int varSubGroupCode = 0;
+        public int SearchFlag = 0;
         public CP_SubGroupList()
         {
             InitializeComponent();
@@ -763,7 +764,14 @@ namespace ROMS
         {
             try
             {
-                (grdSubGroupList.DataSource as BindingSource).Filter = "([Product Sub Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                if (SearchFlag == 1)
+                {
+                    (grdSubGroupList.DataSource as BindingSource).Filter = "([Product Sub Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                }
+                else
+                {
+                    (grdSubGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Sub Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                }
             }
             catch (Exception ex)
             {
@@ -1625,6 +1633,10 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally
+            {
+                SearchFlag = 1;
+            }
         }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
