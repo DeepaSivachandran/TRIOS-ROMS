@@ -109,7 +109,6 @@ namespace ROMS
                 else
                 {
                     lvLocation.Visible = false;
-
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 113)
                     {
                         udfnLocation();
@@ -117,6 +116,10 @@ namespace ROMS
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 114)
                     {
                         udfnLocationProduct();
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 154)
+                    {
+                        udfnProductLocation();
                     }
                 }
             }
@@ -231,6 +234,101 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 
                 objDs = objspservice.udfnproductmasterlist(19,0,0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0,0,0, Convert.ToInt32(lblLocationCode.Text), Convert.ToInt32(cmbLocationType.SelectedValue), Convert.ToInt32(cmbGodownType.SelectedValue), 0,0,"",0,"", null);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_StockLocation_Product.rpt");
+                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue));
+                    objBillreport.SetParameterValue("paraGodownType", Convert.ToInt32(cmbGodownType.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(lblLocationCode.Text));
+                    objBillreport.SetParameterValue("paraLocationName", Convert.ToString(varLocationName));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraLTName", Convert.ToString(cmbLocationType.Text));
+                    objBillreport.SetParameterValue("paraGTName", Convert.ToString(cmbGodownType.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                btnListPrint.Focus();
+                GC.Collect();
+            }
+        }
+        public void udfnProductLocation()
+        {
+            try
+            {
+                btnListPrint.Enabled = false;
+                /* Check purchase stock location is valid or not*/
+                string varId_PurLocation = "0";
+                string varLocationName = "";
+                if (txtLocation.Text == "")
+                {
+                    varId_PurLocation = "0";
+                    varLocationName = "-All-";
+                }
+                else
+                {
+                    DataSet objDsPurLoc = new DataSet();
+                    SPDataService objDServ3 = new SPDataService();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(), 0, 0, 0);
+                    objDServ3.CloseConnection();
+                    if (objDsPurLoc != null)
+                    {
+                        if (objDsPurLoc.Tables.Count > 0)
+                        {
+                            if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                            {
+                                varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+                if (varId_PurLocation == "-1" || varId_PurLocation == "0")
+                {
+                    varLocationName = "-All-";
+                }
+                else { varLocationName = txtLocation.Text.Trim(); }
+                lblLocationCode.Text = Convert.ToString(varId_PurLocation);
+
+
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+
+                objDs = objspservice.udfnproductmasterlist(19, 0, 0, 0, 0, "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblLocationCode.Text), Convert.ToInt32(cmbLocationType.SelectedValue), Convert.ToInt32(cmbGodownType.SelectedValue), 0, 0, "", 0, "", null);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
