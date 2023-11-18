@@ -712,6 +712,11 @@ namespace ROMS
                         grdSupplierList.Rows[i].Cells["Days"].Style.BackColor = Color.Purple;
                         grdSupplierList.Rows[i].Cells["Days"].Style.ForeColor = Color.White;
                     }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["Days"].Value) == "Not Defined") // Not defined days
+                    {
+                        grdSupplierList.Rows[i].Cells["Days"].Style.BackColor = Color.SteelBlue;
+                        grdSupplierList.Rows[i].Cells["Days"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
