@@ -3665,10 +3665,24 @@ namespace ROMS
                     objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0);
                 }
                 objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0)
-                        {
-                            btnListPrint.Visible = true;
-                        } } }
+                //if (objDs != null)
+                //{
+                //    if (objDs.Tables.Count > 0)
+                //    {
+                //        if (objDs.Tables[0].Rows.Count > 0)
+                //        {
+                //            btnListPrint.Visible = true;
+                //        }
+                //    }
+                //}
+                if(grdViewSupplierMapping.Rows.Count!=0)
+                {
+                    btnListPrint.Visible = true;
+                }
+                else
+                {
+                    btnListPrint.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -7466,39 +7480,50 @@ namespace ROMS
 
         private void DGV_SearchGrid1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdFinalSupplierMapping.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdFinalSupplierMapping.SortedColumn;
-            ListSortDirection direction;
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
+            try
             {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn
-                    &&
-                    grdFinalSupplierMapping.SortOrder == SortOrder.Ascending
-                    )
+                if (e.ColumnIndex != 0)
                 {
-                    direction = ListSortDirection.Descending;
-                }
-                else
-                {
-                    // Sort a new column and remove the old SortGlyph.
-                    direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DataGridViewColumn newColumn = grdFinalSupplierMapping.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdFinalSupplierMapping.SortedColumn;
+                    ListSortDirection direction;
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
+                    {
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn
+                            &&
+                            grdFinalSupplierMapping.SortOrder == SortOrder.Ascending
+                            )
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
+                    }
+                    else
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    grdFinalSupplierMapping.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+                    DataGridViewColumn DGV = DGV_SearchGrid1.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DGV_SearchGrid1.HorizontalScrollingOffset = grdFinalSupplierMapping.HorizontalScrollingOffset;
+                    DGV_SearchGrid1.FirstDisplayedScrollingRowIndex = 0;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                direction = ListSortDirection.Ascending;
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
-            grdFinalSupplierMapping.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
-            DataGridViewColumn DGV = DGV_SearchGrid1.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-            DGV_SearchGrid1.HorizontalScrollingOffset = grdFinalSupplierMapping.HorizontalScrollingOffset;
-            DGV_SearchGrid1.FirstDisplayedScrollingRowIndex = 0;
         }
 
         private void DGV_SearchGrid1_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -8279,6 +8304,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
 
         private void Txtbranchname_KeyDown(object sender, KeyEventArgs e)
         {
