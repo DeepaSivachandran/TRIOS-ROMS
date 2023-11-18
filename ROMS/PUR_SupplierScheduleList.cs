@@ -1240,6 +1240,11 @@ namespace ROMS
                         dgvSupplierScheduleList.Rows[i].Cells["Days"].Style.BackColor = Color.Purple;
                         dgvSupplierScheduleList.Rows[i].Cells["Days"].Style.ForeColor = Color.White;
                     }
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Days"].Value) == "Not Defined") // Not defined days
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Days"].Style.BackColor = Color.SteelBlue;
+                        dgvSupplierScheduleList.Rows[i].Cells["Days"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
