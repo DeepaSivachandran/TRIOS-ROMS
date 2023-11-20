@@ -3662,7 +3662,7 @@ namespace ROMS
                 }
                 else
                 {
-                    objDs = objspservice.udfnSupplierList(28, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDs = objspservice.udfnSupplierList(28, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"");
                 }
                 objspservice.CloseConnection();
                 if (objDs != null)
@@ -3674,14 +3674,6 @@ namespace ROMS
                             btnListPrint.Visible = true;
                         }
                     }
-                }
-                if (grdViewSupplierMapping.Rows.Count!=0)
-                {
-                    btnListPrint.Visible = true;
-                }
-                else
-                {
-                    btnListPrint.Visible = false;
                 }
             }
             catch (Exception ex)

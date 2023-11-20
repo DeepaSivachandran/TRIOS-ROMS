@@ -65,9 +65,7 @@ namespace ROMS
                                     column.Width = 200;
                                 }
                             }
-
                         }
-
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
                             grdPOSchedule.DataSource = objDs.Tables[1];
@@ -90,6 +88,17 @@ namespace ROMS
                             if (grdPOSchedule.Rows.Count > 0) // Check if there are any rows
                             {
                                 grdPOSchedule.Rows[grdPOSchedule.Rows.Count - 1].Cells[1].Value = null;
+                               // grdPOSchedule.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                         }
                         if (objDs.Tables[2].Rows.Count != 0)
@@ -104,6 +113,18 @@ namespace ROMS
                                 lastCell.Value = Convert.ToString(objDs.Tables[2].Rows[0]["ProCount"].ToString().Replace("''", "'")); ;
                             } 
                         }
+                        //grdPOSchedule.Rows[7].DefaultCellStyle.BackColor = Color.MistyRose;
+                        //grdPOSchedule.Rows[7].DefaultCellStyle.ForeColor = Color.Black;
+                        grdPOSchedule.Rows[7].DefaultCellStyle.BackColor = Color.RosyBrown;
+                        grdPOSchedule.Rows[7].DefaultCellStyle.ForeColor = Color.White;
+                        foreach (DataGridViewColumn column in grdHeaderview.Columns)
+                        {
+                            column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                        }
+                        foreach (DataGridViewColumn column in grdPOSchedule.Columns)
+                        {
+                            column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                        }
                     }
                 } 
             }
@@ -112,6 +133,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             } 
+            finally
+            {
+                grdPOSchedule.ClearSelection();
+            }
         }
 
         private void BtnPrintdaywise_Enter(object sender, EventArgs e)

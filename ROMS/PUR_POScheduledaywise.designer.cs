@@ -40,9 +40,9 @@
             this.grpPOScheduledaywise = new System.Windows.Forms.GroupBox();
             this.btnPrintdaywise = new System.Windows.Forms.Button();
             this.grdHeaderview = new System.Windows.Forms.DataGridView();
+            this.grdPOSchedule = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdPOSchedule = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.grpPOScheduledaywise.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).BeginInit();
@@ -124,21 +124,6 @@
             this.grdHeaderview.Size = new System.Drawing.Size(1158, 29);
             this.grdHeaderview.TabIndex = 1111179;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
             // grdPOSchedule
             // 
             this.grdPOSchedule.AllowUserToAddRows = false;
@@ -175,9 +160,25 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdPOSchedule.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPOSchedule.RowTemplate.Height = 25;
-            this.grdPOSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdPOSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPOSchedule.Size = new System.Drawing.Size(1158, 251);
             this.grdPOSchedule.TabIndex = 1111178;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Order Type";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // PUR_POScheduledaywise
             // 
