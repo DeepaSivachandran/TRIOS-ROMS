@@ -875,7 +875,8 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtEmployeeName.Focus();
+                    //txtEmployeeName.Focus();
+                    btnListPrint.Focus();
                 }
             }
             catch (Exception ex)
@@ -1122,7 +1123,8 @@ namespace ROMS
             }
             finally
             {
-                txtEmployeeName.Focus();
+                //txtEmployeeName.Focus();
+                btnListPrint.Focus();
                 lvRackgroup.Visible = false;
             }
         }

@@ -253,6 +253,7 @@
             this.txtRack.Name = "txtRack";
             this.txtRack.Size = new System.Drawing.Size(215, 27);
             this.txtRack.TabIndex = 3;
+            this.txtRack.Visible = false;
             this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
             this.txtRack.Enter += new System.EventHandler(this.TxtRack_Enter);
             this.txtRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRack_KeyDown);
@@ -267,6 +268,7 @@
             this.lblRack.Size = new System.Drawing.Size(35, 20);
             this.lblRack.TabIndex = 1111181;
             this.lblRack.Text = "Rack";
+            this.lblRack.Visible = false;
             // 
             // txtEmployeeName
             // 
@@ -276,6 +278,7 @@
             this.txtEmployeeName.Name = "txtEmployeeName";
             this.txtEmployeeName.Size = new System.Drawing.Size(215, 27);
             this.txtEmployeeName.TabIndex = 2;
+            this.txtEmployeeName.Visible = false;
             this.txtEmployeeName.TextChanged += new System.EventHandler(this.TxtEmployeeName_TextChanged);
             this.txtEmployeeName.Enter += new System.EventHandler(this.TxtEmployeeName_Enter);
             this.txtEmployeeName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEmployeeName_KeyDown);
@@ -290,6 +293,7 @@
             this.lblEmployeeName.Size = new System.Drawing.Size(92, 20);
             this.lblEmployeeName.TabIndex = 1111179;
             this.lblEmployeeName.Text = "Employee Name";
+            this.lblEmployeeName.Visible = false;
             // 
             // txtRackgroup
             // 
@@ -319,7 +323,7 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1269, 18);
+            this.btnListPrint.Location = new System.Drawing.Point(688, 18);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
