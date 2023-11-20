@@ -59,6 +59,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.lblConcern = new System.Windows.Forms.Label();
             this.ReportRackgroup.SuspendLayout();
             this.pnlReportRackgroup.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -172,7 +174,7 @@
             this.columnHeader3});
             this.lvRackgroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvRackgroup.HideSelection = false;
-            this.lvRackgroup.Location = new System.Drawing.Point(470, 47);
+            this.lvRackgroup.Location = new System.Drawing.Point(721, 47);
             this.lvRackgroup.Name = "lvRackgroup";
             this.lvRackgroup.Size = new System.Drawing.Size(457, 157);
             this.lvRackgroup.TabIndex = 1111229;
@@ -196,6 +198,9 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnListPrint);
+            this.grpfilter.Controls.Add(this.lblConcern);
+            this.grpfilter.Controls.Add(this.cmbConcern);
             this.grpfilter.Controls.Add(this.lblRackCode);
             this.grpfilter.Controls.Add(this.lblEmpCode);
             this.grpfilter.Controls.Add(this.lblRackgroupCode);
@@ -205,7 +210,6 @@
             this.grpfilter.Controls.Add(this.lblEmployeeName);
             this.grpfilter.Controls.Add(this.txtRackgroup);
             this.grpfilter.Controls.Add(this.lblRackgroup);
-            this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblReportType);
             this.grpfilter.Location = new System.Drawing.Point(3, 2);
@@ -218,7 +222,7 @@
             // lblRackCode
             // 
             this.lblRackCode.AutoSize = true;
-            this.lblRackCode.Location = new System.Drawing.Point(1017, 2);
+            this.lblRackCode.Location = new System.Drawing.Point(1310, -4);
             this.lblRackCode.Name = "lblRackCode";
             this.lblRackCode.Size = new System.Drawing.Size(16, 20);
             this.lblRackCode.TabIndex = 1111234;
@@ -228,7 +232,7 @@
             // lblEmpCode
             // 
             this.lblEmpCode.AutoSize = true;
-            this.lblEmpCode.Location = new System.Drawing.Point(718, 2);
+            this.lblEmpCode.Location = new System.Drawing.Point(1209, -4);
             this.lblEmpCode.Name = "lblEmpCode";
             this.lblEmpCode.Size = new System.Drawing.Size(16, 20);
             this.lblEmpCode.TabIndex = 1111233;
@@ -238,7 +242,7 @@
             // lblRackgroupCode
             // 
             this.lblRackgroupCode.AutoSize = true;
-            this.lblRackgroupCode.Location = new System.Drawing.Point(416, 2);
+            this.lblRackgroupCode.Location = new System.Drawing.Point(665, 2);
             this.lblRackgroupCode.Name = "lblRackgroupCode";
             this.lblRackgroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblRackgroupCode.TabIndex = 1111232;
@@ -248,7 +252,7 @@
             // txtRack
             // 
             this.txtRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRack.Location = new System.Drawing.Point(1048, 19);
+            this.txtRack.Location = new System.Drawing.Point(1127, 19);
             this.txtRack.MaxLength = 100;
             this.txtRack.Name = "txtRack";
             this.txtRack.Size = new System.Drawing.Size(215, 27);
@@ -263,7 +267,7 @@
             // 
             this.lblRack.AutoSize = true;
             this.lblRack.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRack.Location = new System.Drawing.Point(1007, 22);
+            this.lblRack.Location = new System.Drawing.Point(1258, -5);
             this.lblRack.Name = "lblRack";
             this.lblRack.Size = new System.Drawing.Size(35, 20);
             this.lblRack.TabIndex = 1111181;
@@ -273,7 +277,7 @@
             // txtEmployeeName
             // 
             this.txtEmployeeName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtEmployeeName.Location = new System.Drawing.Point(786, 19);
+            this.txtEmployeeName.Location = new System.Drawing.Point(1124, 12);
             this.txtEmployeeName.MaxLength = 100;
             this.txtEmployeeName.Name = "txtEmployeeName";
             this.txtEmployeeName.Size = new System.Drawing.Size(215, 27);
@@ -288,7 +292,7 @@
             // 
             this.lblEmployeeName.AutoSize = true;
             this.lblEmployeeName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeName.Location = new System.Drawing.Point(688, 22);
+            this.lblEmployeeName.Location = new System.Drawing.Point(1120, -4);
             this.lblEmployeeName.Name = "lblEmployeeName";
             this.lblEmployeeName.Size = new System.Drawing.Size(92, 20);
             this.lblEmployeeName.TabIndex = 1111179;
@@ -298,11 +302,11 @@
             // txtRackgroup
             // 
             this.txtRackgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRackgroup.Location = new System.Drawing.Point(467, 19);
+            this.txtRackgroup.Location = new System.Drawing.Point(718, 19);
             this.txtRackgroup.MaxLength = 100;
             this.txtRackgroup.Name = "txtRackgroup";
             this.txtRackgroup.Size = new System.Drawing.Size(215, 27);
-            this.txtRackgroup.TabIndex = 1;
+            this.txtRackgroup.TabIndex = 2;
             this.txtRackgroup.TextChanged += new System.EventHandler(this.TxtRackgroup_TextChanged);
             this.txtRackgroup.Enter += new System.EventHandler(this.TxtRackgroup_Enter);
             this.txtRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRackgroup_KeyDown);
@@ -312,7 +316,7 @@
             // 
             this.lblRackgroup.AutoSize = true;
             this.lblRackgroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRackgroup.Location = new System.Drawing.Point(390, 22);
+            this.lblRackgroup.Location = new System.Drawing.Point(641, 22);
             this.lblRackgroup.Name = "lblRackgroup";
             this.lblRackgroup.Size = new System.Drawing.Size(71, 20);
             this.lblRackgroup.TabIndex = 1111177;
@@ -323,11 +327,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(688, 18);
+            this.btnListPrint.Location = new System.Drawing.Point(939, 18);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 4;
+            this.btnListPrint.TabIndex = 3;
             this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
@@ -398,6 +402,28 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
+            // cmbConcern
+            // 
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(450, 19);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(185, 27);
+            this.cmbConcern.TabIndex = 1;
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
+            // 
+            // lblConcern
+            // 
+            this.lblConcern.AutoSize = true;
+            this.lblConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConcern.Location = new System.Drawing.Point(390, 22);
+            this.lblConcern.Name = "lblConcern";
+            this.lblConcern.Size = new System.Drawing.Size(54, 20);
+            this.lblConcern.TabIndex = 1111236;
+            this.lblConcern.Text = "Concern";
+            // 
             // REPORT_CP_Rackgroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -460,5 +486,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.Label lblEmpCode;
         private System.Windows.Forms.Label lblRackCode;
+        private System.Windows.Forms.ComboBox cmbConcern;
+        private System.Windows.Forms.Label lblConcern;
     }
 }
