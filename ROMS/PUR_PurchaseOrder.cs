@@ -64,6 +64,7 @@ namespace ROMS
                     {
                         btnSave.Enabled = false;
                         cmbStatus.Enabled = false;
+                        gpissued.Enabled = false;
                     }
                     else
                     {
@@ -125,7 +126,8 @@ namespace ROMS
                                     objDs.Tables[0].Rows[i]["STOCK"].ToString(), objDs.Tables[0].Rows[i]["PREVIOUS"].ToString(),
                                     objDs.Tables[0].Rows[i]["PARTIAL"].ToString(), objDs.Tables[0].Rows[i]["Reorder"].ToString()
                                     , objDs.Tables[0].Rows[i]["ORDERQTY"].ToString(), objDs.Tables[0].Rows[i]["Productid"].ToString(),
-                                    objDs.Tables[0].Rows[i]["FLAG"].ToString(),Convert.ToString( objDs.Tables[0].Rows[i]["EDITFLAG"]));
+                                    objDs.Tables[0].Rows[i]["FLAG"].ToString(),Convert.ToString( objDs.Tables[0].Rows[i]["EDITFLAG"]),
+                                    objDs.Tables[0].Rows[i]["STATUS"].ToString());
                                     grdsupplieradd.Columns[10].ReadOnly = false;
                                 }
                                 cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString();
@@ -137,7 +139,8 @@ namespace ROMS
                                 lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
                                 btnSave.Text = "Update";
                                 cmbStatus.Enabled = true;
-                                udfnsupplierLoad();
+                                udfnsupplierLoad(); 
+                                grdsupplieradd.Columns["clmStsname"].Visible = true;
                             }
 
                             udfnIssuedDEtails();
@@ -167,18 +170,14 @@ namespace ROMS
                 txtIssuedBy.ReadOnly = false;
                 txtissuemodevalue.ReadOnly = false;
                 txtTurnAroundTime.ReadOnly = false;
-                if (VarStatusId == 11)
+                if (VarStatusId != 10)
                 {
                     dpissuedateandtime.Enabled = false;
                     txtTurnAroundTime.Enabled = false;
                     grdsupplieradd.Columns["clmRemove"].Visible = false;
                     btnViewedProduct.Enabled = false;
                     btnAdd.Enabled = false;
-                }
-                if (VarStatusId == 9)
-                {
-                    gpissued.Enabled = false; 
-                }
+                } 
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0");
@@ -647,6 +646,14 @@ namespace ROMS
                     txtProductQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpQty.ShowAlways = true;
                     tpQty.Show("Please enter orderqty.", txtProductQty, 5000);
+                    varErrorFlag = false;
+                }
+                if (txtProductQty.Text == "0")
+                {
+                    errPO.SetError(txtProductQty, "Order quantity should not be 0!");
+                    txtProductQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpQty.ShowAlways = true;
+                    tpQty.Show("Order quantity should not be 0!.", txtProductQty, 5000);
                     varErrorFlag = false;
                 }
                 if (Convert.ToString(txtSupplier.Text) != "")
@@ -2445,17 +2452,26 @@ namespace ROMS
                     switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                     {
                         case "clmRemove":
-                        DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            DataGridViewRow row = grdsupplieradd.Rows[e.RowIndex];
-                            grdsupplieradd.Rows.Remove(row);
+
+                            if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "0")
+                            {
+                                DataGridViewRow row = grdsupplieradd.Rows[e.RowIndex];
+                                grdsupplieradd.Rows.Remove(row);
+                            }
+                            else
+                            {
+                                DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    DataGridViewRow row = grdsupplieradd.Rows[e.RowIndex];
+                                    grdsupplieradd.Rows.Remove(row); 
+                                }
+                            }
                             for (int i = 0; i < grdsupplieradd.RowCount; i++)
                             {
                                 grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
                             }
-                        }
-                        break;
+                            break;
                     }
                 }
             }
@@ -2520,31 +2536,7 @@ namespace ROMS
 
         private void GrdPendingorder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (e.RowIndex != -1)
-                {
-                    switch (grdPendingorder.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmpono":
-                        if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                        {
-                            string cellPOValue = Convert.ToString(grdPendingorder.Rows[e.RowIndex].Cells["poid"].Value);
-                            MainForm.objPUR_POProducts = new PUR_POProducts();
-                            MainForm.objPUR_POProducts.pbPoid = cellPOValue;
-                            MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
-                            MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
-                            MainForm.objPUR_POProducts.ShowDialog();
-                        }
-                        break;
-                    }
-                }  
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
@@ -2731,6 +2723,41 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdPendingorder_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPendingorder.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmpono":
+                            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                            {
+                                string cellPOValue = Convert.ToString(grdPendingorder.Rows[e.RowIndex].Cells["poid"].Value);
+                                MainForm.objPUR_POProducts = new PUR_POProducts();
+                                MainForm.objPUR_POProducts.pbPoid = cellPOValue;
+                                MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
+                                MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
+                                MainForm.objPUR_POProducts.ShowDialog();
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GroupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         private void GrdPendingorder_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) 
         {
             for (int i = 0; i < grdPendingorder.Rows.Count; i++)
@@ -2987,7 +3014,7 @@ namespace ROMS
                                 {
                                     lblNoRecordsFound.Visible = false;
                                     grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[3].Rows[i]["PR_PICode"].ToString(),
-                                    objDs.Tables[3].Rows[i]["PR_EName"].ToString(), objDs.Tables[3].Rows[i]["UT_Symbol"].ToString(),
+                                    objDs.Tables[3].Rows[i]["PR_TName"].ToString(), objDs.Tables[3].Rows[i]["UT_Symbol"].ToString(),
                                     objDs.Tables[3].Rows[i]["GST_Text"].ToString(), objDs.Tables[3].Rows[i]["PR_MinStock"].ToString(),
                                     objDs.Tables[3].Rows[i]["STOCK"].ToString(), objDs.Tables[3].Rows[i]["PRE.PEND"].ToString(),
                                     objDs.Tables[3].Rows[i]["PARITAL"].ToString(), objDs.Tables[3].Rows[i]["PR_ReOrderQty"].ToString(),
@@ -3179,7 +3206,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             varPICode = objDs.Tables[0].Rows[0]["PR_PICode"].ToString();
-                            varEName = objDs.Tables[0].Rows[0]["PR_EName"].ToString();
+                            varEName = objDs.Tables[0].Rows[0]["PR_TName"].ToString();
                             var_Symbol = objDs.Tables[0].Rows[0]["UT_Symbol"].ToString();
                             var_Text = objDs.Tables[0].Rows[0]["GST_Text"].ToString();
                             var_RMinSaleQty = objDs.Tables[0].Rows[0]["PR_MinStock"].ToString();

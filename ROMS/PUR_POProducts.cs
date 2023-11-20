@@ -82,7 +82,7 @@ namespace ROMS
                     {
                         lblNoRecordsFound.Visible = false;
                         grdPurchaseOrder.Rows.Add(grdPurchaseOrder.Rows.Count + 1, objDs.Tables[6].Rows[i]["PR_PICode"].ToString(),
-                        objDs.Tables[6].Rows[i]["PR_EName"].ToString(), objDs.Tables[6].Rows[i]["UT_Symbol"].ToString(),
+                        objDs.Tables[6].Rows[i]["PR_TName"].ToString(), objDs.Tables[6].Rows[i]["UT_Symbol"].ToString(),
                         objDs.Tables[6].Rows[i]["POPR_OrderQty"].ToString(), objDs.Tables[6].Rows[i]["RECEIVED"].ToString(),
                         objDs.Tables[6].Rows[i]["POPR_RemainingQty"].ToString()); 
                     }

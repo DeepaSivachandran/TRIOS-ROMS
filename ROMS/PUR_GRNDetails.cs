@@ -1285,19 +1285,19 @@ namespace ROMS
         {
             try
             {
-                if (grdGrnlist.Columns[e.ColumnIndex].Name == "e")
+                if (grdGrnlist.Columns[e.ColumnIndex].Name == "clmexpirydate")
                 {
                     string dateString = e.FormattedValue.ToString();
                     DataSet objDS = new DataSet();
                     SPDataService objDServ = new SPDataService();
-                    objDS = objDServ.udfnMaster(8, 0, 0, dpGrnDate.Text, "", 0);
+                    objDS = objDServ.udfnMaster(8, 0, 0, dateString, "", 0);
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToString(objDS.Tables[0].Rows[0]["DATE"]) == "0")
                         {
-                            MessageBox.Show("Invalid date. Please enter a valid date in the format dd/mm/yyyy.");
-                            return;
+                            MessageBox.Show("Invalid date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            e.Cancel = true;
                         }
                     }
                 }
@@ -1367,7 +1367,7 @@ namespace ROMS
                     if (rowIndex >= 0 && columnIndex >= 0)
                     {
                         object cellValue = grdGrnlist.Rows[rowIndex].Cells[columnIndex].Value;
-                        if (cellValue != null)
+                        if (cellValue != null && Convert.ToString(cellValue) != "")
                         {
                             varshelflife = cellValue.ToString();
                             if (varshelflife != "" || varshelflife != null)
@@ -1518,11 +1518,12 @@ namespace ROMS
 
                         if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Value) == varNewExpiryDate && Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmBatchno"].Value) == varBatch)
                         {
-                            //if (Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmPOid"].Value) == Convert.ToInt32(varPoid))
-                            //{
-                            //    MessageBox.Show("Product already exists!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            //    grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
-                            //}
+                            if (Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmPOid"].Value) == Convert.ToInt32(varPoid))
+                            {
+                                MessageBox.Show("Product already exists!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                            }
+                            else { }
                         }
                     }
                 }

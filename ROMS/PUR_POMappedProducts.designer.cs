@@ -42,6 +42,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.btnselectall = new System.Windows.Forms.Button();
             this.btnunselectall = new System.Windows.Forms.Button();
+            this.lblPC = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -187,12 +189,36 @@
             this.btnunselectall.UseVisualStyleBackColor = true;
             this.btnunselectall.Click += new System.EventHandler(this.Btnunselectall_Click);
             // 
+            // lblPC
+            // 
+            this.lblPC.AutoSize = true;
+            this.lblPC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblPC.ForeColor = System.Drawing.Color.Crimson;
+            this.lblPC.Location = new System.Drawing.Point(722, 466);
+            this.lblPC.Name = "lblPC";
+            this.lblPC.Size = new System.Drawing.Size(17, 20);
+            this.lblPC.TabIndex = 1111192;
+            this.lblPC.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(624, 466);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(93, 20);
+            this.label7.TabIndex = 1111191;
+            this.label7.Text = "Total Products :";
+            // 
             // PUR_POMappedProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(929, 502);
+            this.Controls.Add(this.lblPC);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnunselectall);
             this.Controls.Add(this.btnselectall);
             this.Controls.Add(this.lblNoRecordsFound);
@@ -230,5 +256,7 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.Button btnunselectall;
         private System.Windows.Forms.Button btnselectall;
+        private System.Windows.Forms.Label lblPC;
+        private System.Windows.Forms.Label label7;
     }
 }

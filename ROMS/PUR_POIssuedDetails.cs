@@ -185,6 +185,7 @@ namespace ROMS
                 if (varsts == 9)
                 { 
                     gpissued.Enabled = false;
+                    gpissued.Enabled = false;
                     btnSave.Enabled = false; 
                 }
                 //DateTime varmindate = DateTime.ParseExact(txtPODate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
