@@ -2128,10 +2128,20 @@ namespace ROMS
                                 ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
 
-                                if (col.Name == "S.No." || col.Name == "Total Products" || col.Name == "Unit")
+                                if (col.Name == "S.No." || col.Name == "Total Products" || col.Name == "Total Qty")
+                                {
+                                    ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                }
+                                if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date" || col.Name == "GSTIN" || col.Name == "Created On" 
+                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "Turn Around Time")
                                 {
                                     ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                                 }
+                                if (col.Name == "Supplier" || col.Name == "City" )
+                                {
+                                    ExcelSheet.Columns[cIndex].ColumnWidth = 25;
+                                }
+                                
 
 
                                 //else if (col.Name == "HSN Name" || col.Name == "HSN Code")
