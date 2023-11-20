@@ -2390,6 +2390,8 @@
             this.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
+            this.btnRemove.Enter += new System.EventHandler(this.BtnRemove_Enter);
+            this.btnRemove.Leave += new System.EventHandler(this.BtnRemove_Leave);
             // 
             // lvBrand
             // 
@@ -3221,9 +3223,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(0, 29);
+            this.picLoader.Location = new System.Drawing.Point(22, 41);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1322, 602);
+            this.picLoader.Size = new System.Drawing.Size(1309, 596);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958807;
             this.picLoader.TabStop = false;

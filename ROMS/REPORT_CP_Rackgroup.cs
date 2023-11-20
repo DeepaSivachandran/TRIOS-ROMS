@@ -49,33 +49,33 @@ namespace ROMS
         {
             try
             {
-                if (cmbReportType.SelectedIndex == 0)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbReportType.Focus();
                 }
                 else
                 {
-                    if (cmbReportType.SelectedIndex == 1)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 117)
                     {
                         udfnRG();
                     }
-                    if (cmbReportType.SelectedIndex == 2)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 118)
                     {
                         udfnRGProduct();
                     }
-                    if (cmbReportType.SelectedIndex == 3)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 119)
                     {
                         udfnRGProBarcode();
                     }
-                    if (cmbReportType.SelectedIndex == 4)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 120)
                     {
                         udfnRGProMsq();
                     }
-                    if (cmbReportType.SelectedIndex == 5)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 121)
                     {
                         udfnRGProWeight();
                     }
-                    if (cmbReportType.SelectedIndex == 6)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 122)
                     {
                         udfnRGProRackMinQty();
                     }
@@ -334,7 +334,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"", null);
+                objDs = objspservice.udfnproductmasterlist(21, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"", null);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -428,7 +428,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"", null);
+                objDs = objspservice.udfnproductmasterlist(22, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"", null);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -522,7 +522,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"", null);
+                objDs = objspservice.udfnproductmasterlist(23, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"", null);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -616,7 +616,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"", null);
+                objDs = objspservice.udfnproductmasterlist(24, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"", null);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -826,7 +826,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,41) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,41) AND MSTID NOT IN (0,-2)", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 RPTViewer.Visible = true;

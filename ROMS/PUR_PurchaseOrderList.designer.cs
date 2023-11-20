@@ -111,11 +111,11 @@
             this.lblDelayed = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblNotissued = new System.Windows.Forms.Label();
-            this.lblIssued = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblIssued = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.lblGroupId = new System.Windows.Forms.Label();
             this.lblSubGroupId = new System.Windows.Forms.Label();
@@ -134,9 +134,9 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdPurchaseorderlist = new System.Windows.Forms.DataGridView();
-            this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
+            this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -917,17 +917,6 @@
             this.lblNotissued.TabIndex = 21;
             this.lblNotissued.Text = "0";
             // 
-            // lblIssued
-            // 
-            this.lblIssued.AutoSize = true;
-            this.lblIssued.BackColor = System.Drawing.Color.LimeGreen;
-            this.lblIssued.ForeColor = System.Drawing.Color.White;
-            this.lblIssued.Location = new System.Drawing.Point(60, 76);
-            this.lblIssued.Name = "lblIssued";
-            this.lblIssued.Size = new System.Drawing.Size(16, 20);
-            this.lblIssued.TabIndex = 20;
-            this.lblIssued.Text = "0";
-            // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
@@ -950,14 +939,16 @@
             this.label5.TabIndex = 18;
             this.label5.Text = "Total";
             // 
-            // label4
+            // lblIssued
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(104, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 20);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Not Issued";
+            this.lblIssued.AutoSize = true;
+            this.lblIssued.BackColor = System.Drawing.Color.LimeGreen;
+            this.lblIssued.ForeColor = System.Drawing.Color.White;
+            this.lblIssued.Location = new System.Drawing.Point(60, 76);
+            this.lblIssued.Name = "lblIssued";
+            this.lblIssued.Size = new System.Drawing.Size(16, 20);
+            this.lblIssued.TabIndex = 20;
+            this.lblIssued.Text = "0";
             // 
             // label6
             // 
@@ -967,6 +958,15 @@
             this.label6.Size = new System.Drawing.Size(45, 20);
             this.label6.TabIndex = 16;
             this.label6.Text = "Issued";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(104, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 20);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Not Issued";
             // 
             // grpfilter
             // 
@@ -1246,16 +1246,6 @@
             this.grdPurchaseorderlist.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             this.grdPurchaseorderlist.DoubleClick += new System.EventHandler(this.GrdPurchaseorderlist_DoubleClick);
             this.grdPurchaseorderlist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseorderlist_KeyDown);
-            // 
-            // clmView
-            // 
-            this.clmView.HeaderText = "Issued";
-            this.clmView.Image = global::ROMS.Properties.Resources.Issue;
-            this.clmView.Name = "clmView";
-            this.clmView.ReadOnly = true;
-            this.clmView.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmView.Width = 80;
             // 
             // button1
             // 

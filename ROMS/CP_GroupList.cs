@@ -20,6 +20,7 @@ namespace ROMS
         DataTable objDtExcel = new DataTable();
         public int varGroupCode = 0;
         public int varGroupId = 0;
+        public int SearchFlag = 0;
         public CP_GroupList()
         {
             InitializeComponent();
@@ -299,6 +300,7 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -347,7 +349,7 @@ namespace ROMS
             }
         }
         private void CP_GroupList_KeyDown(object sender, KeyEventArgs e)
-        {
+      {
             try
             {
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
@@ -622,9 +624,22 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdGroupList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
+                                if (cIndex == 3)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex].Font.Name = "Uni Ila.Sundaram-03";
+                                }
                             }
                         }
                     }
@@ -667,7 +682,15 @@ namespace ROMS
         {
             try
             {
-                (grdGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                if (SearchFlag == 1)
+                {
+                    (grdGroupList.DataSource as BindingSource).Filter = "([Product Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                }
+                else
+                {
+                    (grdGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                }
+                
             }
             catch (Exception ex)
             {
@@ -684,6 +707,7 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
                 txtSearchProduct.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -901,6 +925,7 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally { SearchFlag = 1; }
         }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

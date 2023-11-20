@@ -2492,9 +2492,9 @@ namespace ROMS
         {
             try
             {
-                //(grdSupplierMappingLoad.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct1.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
+                //(grdSupplierMappingLoad.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchByProduct1.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
                 if (grdLoction.Visible == true)
-                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = " ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdMSQ.Visible == true)
                 { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdStock.Visible == true)

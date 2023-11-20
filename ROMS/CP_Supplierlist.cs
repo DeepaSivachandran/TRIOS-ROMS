@@ -14,6 +14,7 @@ namespace ROMS
     {
         ToolTip tpSupplier = new ToolTip();
         public string varUserID = "";
+        public int varActiveCount = 0, varInactiveCount = 0, varTotalCount = 0;
 
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -149,7 +150,7 @@ namespace ROMS
                                     objspdservice.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
-                                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         MainForm.objCP_Supplierlist.udfnList();
                                     }
                                     else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
@@ -266,7 +267,7 @@ namespace ROMS
                             grdSupplierList.Columns["Supplier"].Width = 350;
                            // grdSupplierList.Columns["Schedule Name"].Width = 150;
                             grdSupplierList.Columns["GSTIN"].Width = 130;
-                            grdSupplierList.Columns["Status"].Width = 80;
+                            grdSupplierList.Columns["Schedule Status"].Width = 110;
                             grdSupplierList.Columns["Days"].Width = 90;
                             grdSupplierList.Columns["Scheduleid"].Visible = false;
                             grdSupplierList.Columns["SupplierID"].Visible = false;
@@ -274,6 +275,8 @@ namespace ROMS
                             grdSupplierList.Columns["DYID"].Visible = false;
                             grdSupplierList.Columns["ORDERTYPE"].Visible = false;
                             grdSupplierList.Columns["rownum"].Visible = false;
+                            grdSupplierList.Columns["SP_ReturnApplicable"].Visible = false;
+                            grdSupplierList.Columns["SPSC_OrderType"].Visible = false;
                         }
                         else
                         {
@@ -677,19 +680,46 @@ namespace ROMS
         {
             try
             {
-
+                varActiveCount = 0; varInactiveCount = 0; varTotalCount = 0;
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "1" && Convert.ToString(grdSupplierList.Rows[i].Cells["STATUS"].Value) != "")
+                    varTotalCount++;
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "1" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
                     {
-                        grdSupplierList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdSupplierList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.LimeGreen;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+                        varActiveCount++;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
+                    {
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.SteelBlue;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
+                    {
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.Tomato;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+                        varInactiveCount++;
                     }
 
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(grdSupplierList.Rows[i].Cells["STATUS"].Value) != "")
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["SP_ReturnApplicable"].Value) == "-1") // Not Defined
                     {
-                        grdSupplierList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdSupplierList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdSupplierList.Rows[i].Cells["Ret. Policy"].Style.BackColor = Color.SteelBlue;
+                        grdSupplierList.Rows[i].Cells["Ret. Policy"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["SPSC_OrderType"].Value) == "144") // Unscheduled order type
+                    {
+                        grdSupplierList.Rows[i].Cells["Order Type"].Style.BackColor = Color.MediumSpringGreen;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["Days"].Value) == "Unscheduled") // Unscheduled order type
+                    {
+                        grdSupplierList.Rows[i].Cells["Days"].Style.BackColor = Color.Purple;
+                        grdSupplierList.Rows[i].Cells["Days"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["Days"].Value) == "Not Defined") // Not defined days
+                    {
+                        grdSupplierList.Rows[i].Cells["Days"].Style.BackColor = Color.SteelBlue;
+                        grdSupplierList.Rows[i].Cells["Days"].Style.ForeColor = Color.White;
                     }
                 }
             }
@@ -701,6 +731,9 @@ namespace ROMS
             finally
             {
                 grdSupplierList.ClearSelection();
+                lblActiveCount.Text = Convert.ToString(varActiveCount);
+                lblInactiveCount.Text = Convert.ToString(varInactiveCount);
+                lblTotal.Text = Convert.ToString(varTotalCount);
             }
         }
 
@@ -979,10 +1012,18 @@ namespace ROMS
                             Excel.Range cell = ExcelSheet.Cells[2, cIndex];
                             cell.Font.Color = Excel.XlRgbColor.rgbWhite;
 
-
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdSupplierList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
                             }
                         }
                     }
@@ -1200,6 +1241,27 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSummary_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               // picLoader.Visible = true;
+               // picLoader.BringToFront();
+                MainForm.objCP_SupplierPopup = new CP_SupplierPopup();
+                MainForm.objCP_SupplierPopup.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+            finally
+            {
+               // picLoader.Visible = false;
             }
         }
     }

@@ -32,10 +32,10 @@ namespace ROMS
         public static string pbReleaseDt = "";
         public static string pbSSSSoftwareName = "";
         public static string pbRomsSoftwareName = "";
+        public static int pbDefaultComId = 0;
         public static bool isFormClosed = false;
         public static bool isClose = false;
         public static bool isFormClosedMenu = false;
-        public static int pbDefaultComId = 0;
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart;
@@ -93,6 +93,8 @@ namespace ROMS
         public static CP_Representative objCP_Representative;
         public static CP_EmployeeList objCP_EmployeeList;
         public static CP_Employee objCP_Employee;
+        public static CP_SupplierPopup objCP_SupplierPopup;
+        public static CP_Verify objCP_Verify;
         public static ReportLoad objReportLoad;
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
@@ -150,6 +152,7 @@ namespace ROMS
         public static PUR_PurchaseQueue objPUR_PurchaseQueue;
         public static PUR_GRNApprovalVerify objPUR_GRNApprovalVerify;
         public static PUR_Calculator objPUR_Calculator;
+        public static PUR_POScheduleSummary objPUR_POScheduleSummary;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
@@ -169,7 +172,6 @@ namespace ROMS
         public static REPORT_CP_Rackgroup objREPORT_CP_Rackgroup;
         public static REPORT_CP_Supplier objREPORT_CP_Supplier;
         public static REPORT_CP_Product objREPORT_CP_Product;
-        public static CP_Verify objCP_Verify;
          
         //public static CP_SL_Verify objCP_SL_Verify;
         public static DataTable objDtMenuDetails;
@@ -191,25 +193,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void udfnGetDefaultCompany()
-        {
-            try
-            {
-                SPDataService objSPDataService = new SPDataService();
-                DataSet objDs = new DataSet();
-                objDs = objSPDataService.udfnCompanyList(11, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count > 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count > 0) { pbDefaultComId = Convert.ToInt32(objDs.Tables[0].Rows[0]["COMID"]); }
-                    }
-                }
-                objSPDataService.CloseConnection();
-            }
-            catch (Exception ex)
-            { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         //Close Form
@@ -268,16 +251,32 @@ namespace ROMS
             }
             return isFound;
         }
+        public void udfnGetDefaultCompany() {
+            try
+            {
+                SPDataService objSPDataService = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objSPDataService.udfnCompanyList(11,0,MainForm.pbUserID,MainForm.pbIpAddress,0);
+                if (objDs != null) {
+                    if (objDs.Tables.Count > 0) {
+                        if (objDs.Tables[0].Rows.Count > 0) { pbDefaultComId = Convert.ToInt32(objDs.Tables[0].Rows[0]["COMID"]); }
+                    }
+                }
+                objSPDataService.CloseConnection();
+            }
+            catch (Exception ex)
+            { objError = new DataError(); objError.WriteFile(ex); }
+        }
         private void MainForm_Load(object sender, EventArgs e)
         {
             try
             {
                 GetLocalIPAddress();
+                udfnGetDefaultCompany();
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
                 //lblDb.Text = "ROMS DB : "+MainForm.pbRomsSoftwareName;
-                udfnGetDefaultCompany();
                 objStart = new DEF_Start();
                 objStart.MdiParent = this;
                 objStart.Show();

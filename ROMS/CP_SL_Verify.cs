@@ -23,8 +23,11 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varUserId = "";
+
         public string varPasskey = "";
+        public string varbrandcode;
+        public string pbFormStatus;
+        public string varUserId = "";
         public int flag = 0;
         public CP_SL_Verify()
         {

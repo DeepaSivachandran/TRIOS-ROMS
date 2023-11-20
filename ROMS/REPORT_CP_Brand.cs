@@ -104,7 +104,7 @@ namespace ROMS
         {
             try
             {
-                if (cmbReportType.SelectedIndex == 0)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbReportType.Focus();
                 }
@@ -114,15 +114,15 @@ namespace ROMS
                     lvSubGroup.Visible = false;
                     lvBrand.Visible = false;
                     
-                    if (cmbReportType.SelectedIndex == 1)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 108)
                     {
                         udfnSubgroup();
                     }
-                    if (cmbReportType.SelectedIndex == 2)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 109)
                     {
                        udfnProduct();
                     }
-                    if (cmbReportType.SelectedIndex == 3)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 134)
                     {
                         udfnBrand();
                     }

@@ -57,6 +57,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSearchByPICode = new System.Windows.Forms.TextBox();
             this.ReportProduct.SuspendLayout();
             this.pnlReportProduct.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -178,6 +180,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.txtSearchByPICode);
+            this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Controls.Add(this.lblGroupCode);
             this.grpfilter.Controls.Add(this.lblSubGroupCode);
             this.grpfilter.Controls.Add(this.txtGroup);
@@ -289,11 +293,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1037, 18);
+            this.btnListPrint.Location = new System.Drawing.Point(1264, 18);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 5;
+            this.btnListPrint.TabIndex = 6;
             this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
@@ -364,6 +368,28 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1037, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 20);
+            this.label1.TabIndex = 1111232;
+            this.label1.Text = "PI Code";
+            // 
+            // txtSearchByPICode
+            // 
+            this.txtSearchByPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSearchByPICode.Location = new System.Drawing.Point(1091, 19);
+            this.txtSearchByPICode.MaxLength = 20;
+            this.txtSearchByPICode.Name = "txtSearchByPICode";
+            this.txtSearchByPICode.Size = new System.Drawing.Size(167, 27);
+            this.txtSearchByPICode.TabIndex = 5;
+            this.txtSearchByPICode.Enter += new System.EventHandler(this.TxtSearchByPICode_Enter);
+            this.txtSearchByPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByPICode_KeyDown);
+            this.txtSearchByPICode.Leave += new System.EventHandler(this.TxtSearchByPICode_Leave);
+            // 
             // REPORT_CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -424,5 +450,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.Label lblSubGroupCode;
         private System.Windows.Forms.Label lblGroupCode;
+        private System.Windows.Forms.TextBox txtSearchByPICode;
+        private System.Windows.Forms.Label label1;
     }
 }
