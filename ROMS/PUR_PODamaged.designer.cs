@@ -129,7 +129,7 @@
             // 
             // clmsno
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.clmsno.DefaultCellStyle = dataGridViewCellStyle2;
             this.clmsno.HeaderText = "S.No.";
             this.clmsno.Name = "clmsno";

@@ -874,6 +874,9 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["Total Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["Turn Around Time"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseorderlist.Columns["Issue Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                         }
                         else
@@ -1277,7 +1280,7 @@ namespace ROMS
         {
             try
             {
-                (grdProDetails.DataSource as DataTable).DefaultView.RowFilter = "([Product]) LIKE '%" + txtProductSearch.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductSearch.Text + "%'";
+                (grdProDetails.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtProductSearch.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductSearch.Text + "%'";
             }
             catch (Exception ex)
             {
@@ -1342,8 +1345,11 @@ namespace ROMS
                             grdProDetails.Columns["P.I Code"].Width = 100;
                             grdProDetails.Columns["Product Name"].Width = 300;
                             grdProDetails.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdProDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProDetails.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["Unit"].Width = 80;
                             grdProDetails.Columns["Quantity"].Width = 80;
+                            grdProDetails.Columns["STSID"].Visible = false;
                             grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             if (cbSupplier.Checked == true)
                             {
@@ -1922,6 +1928,108 @@ namespace ROMS
             {
                 DateTime varmindate = DateTime.ParseExact(dpPlanDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dptoPlanDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdProDetails_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int cl = grdProDetails.ColumnCount;
+                int cls = DGV_SearchGridPro.ColumnCount;
+                int offSetValue = grdProDetails.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGridPro.Columns)
+                    totalWidth += col.Width;
+
+                if (totalWidth - grdProDetails.Width > grdProDetails.HorizontalScrollingOffset && grdProDetails.HorizontalScrollingOffset > 0)
+                {
+                    //offSetValue = offSetValue ;
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGridPro.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGridPro.Invalidate();
+                udfnscrollVisible(DGV_SearchGridPro, grdProDetails);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseorderlist_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        { 
+            try
+            {
+                for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
+                {
+
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+
+                    if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "1")
+                    { 
+                        cell.Style.BackColor = Color.Olive;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "2")
+                    { 
+                        cell.Style.BackColor = Color.BlueViolet;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "3")
+                    { 
+
+                        cell.Style.BackColor = Color.LimeGreen;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "4")
+                    {
+                        cell.Style.BackColor = Color.Tomato;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
+                    }
+                    else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "5")
+                    {
+                        cell.Style.BackColor = Color.RoyalBlue;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
+                    }
+                }
+            }
+             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdProDetails_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+            try
+            {
+                for (int i = 0; i < grdProDetails.Rows.Count; i++)
+                {
+
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+
+                    if (Convert.ToString(grdProDetails.Rows[i].Cells["STSID"].Value) == "10")
+                    {
+                        cell.Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    } 
+                    else  
+                    {
+                        cell.Style.BackColor = Color.RoyalBlue;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
+                    }
+                }
             }
             catch (Exception ex)
             {

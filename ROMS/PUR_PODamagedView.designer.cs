@@ -30,12 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PODamagedView));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdGRNPODamaged = new System.Windows.Forms.DataGridView();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,8 +47,6 @@
             this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).BeginInit();
             this.SuspendLayout();
@@ -85,66 +87,15 @@
             this.grdGRNPODamaged.Name = "grdGRNPODamaged";
             this.grdGRNPODamaged.ReadOnly = true;
             this.grdGRNPODamaged.RowHeadersVisible = false;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGRNPODamaged.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGRNPODamaged.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdGRNPODamaged.RowTemplate.Height = 25;
             this.grdGRNPODamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGRNPODamaged.Size = new System.Drawing.Size(736, 348);
             this.grdGRNPODamaged.TabIndex = 1111144;
             this.grdGRNPODamaged.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellClick);
             this.grdGRNPODamaged.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellContentDoubleClick);
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 70;
-            // 
-            // clmInvoiceDate
-            // 
-            this.clmInvoiceDate.HeaderText = "DC Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            this.clmInvoiceDate.ReadOnly = true;
-            // 
-            // clmInvoiceNo
-            // 
-            this.clmInvoiceNo.HeaderText = "DC No.";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Reason";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 200;
-            // 
-            // clmTotalProduct
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmTotalProduct.DefaultCellStyle = dataGridViewCellStyle2;
-            this.clmTotalProduct.HeaderText = "Total Products";
-            this.clmTotalProduct.Name = "clmTotalProduct";
-            this.clmTotalProduct.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column2.HeaderText = "Total Value";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "id";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
             // 
             // btnClose
             // 
@@ -172,6 +123,61 @@
             this.lblNoRecordsFound.TabIndex = 1111147;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // clmsno
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clmsno.DefaultCellStyle = dataGridViewCellStyle2;
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmsno.Width = 70;
+            // 
+            // clmInvoiceDate
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clmInvoiceDate.DefaultCellStyle = dataGridViewCellStyle3;
+            this.clmInvoiceDate.HeaderText = "DC Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            this.clmInvoiceDate.ReadOnly = true;
+            // 
+            // clmInvoiceNo
+            // 
+            this.clmInvoiceNo.HeaderText = "DC No.";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Reason";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 200;
+            // 
+            // clmTotalProduct
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmTotalProduct.DefaultCellStyle = dataGridViewCellStyle4;
+            this.clmTotalProduct.HeaderText = "Total Products";
+            this.clmTotalProduct.Name = "clmTotalProduct";
+            this.clmTotalProduct.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column2.HeaderText = "Total Value";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "id";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             // 
             // PUR_PODamagedView
             // 

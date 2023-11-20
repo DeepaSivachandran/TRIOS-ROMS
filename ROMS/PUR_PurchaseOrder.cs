@@ -40,7 +40,18 @@ namespace ROMS
         {
             try
             {
-                tbSupplierDetails.Enabled = false; 
+                if (btnSave.Text == "Save")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0);
+                    if (objd.Tables[1].Rows.Count != 0)
+                    {
+                        DateTime varmindate = DateTime.ParseExact(objd.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        dpPlanDate.MinDate = varmindate;
+                    }
+                }
+                tbSupplierDetails.Enabled = false;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
@@ -127,7 +138,7 @@ namespace ROMS
                                     objDs.Tables[0].Rows[i]["PARTIAL"].ToString(), objDs.Tables[0].Rows[i]["Reorder"].ToString()
                                     , objDs.Tables[0].Rows[i]["ORDERQTY"].ToString(), objDs.Tables[0].Rows[i]["Productid"].ToString(),
                                     objDs.Tables[0].Rows[i]["FLAG"].ToString(),Convert.ToString( objDs.Tables[0].Rows[i]["EDITFLAG"]),
-                                    objDs.Tables[0].Rows[i]["STATUS"].ToString());
+                                    objDs.Tables[0].Rows[i]["STATUS"].ToString(), objDs.Tables[0].Rows[i]["PRSTSID"].ToString() );
                                     grdsupplieradd.Columns[10].ReadOnly = false;
                                 }
                                 cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString();
@@ -147,6 +158,9 @@ namespace ROMS
 
                             DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdPendingorder_DataBindingComplete(grdPendingorder, args);
+
+                            DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                            Grdsupplieradd_DataBindingComplete(grdsupplieradd, args2);
                         }
                     }
                 }
@@ -2752,10 +2766,33 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
 
-        private void GroupBox2_Enter(object sender, EventArgs e)
+        private void Grdsupplieradd_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
+            {
+                if (Convert.ToString(grdsupplieradd.Rows[i].Cells["prstsid"].Value) == "10" || Convert.ToString(grdsupplieradd.Rows[i].Cells["prstsid"].Value) == "11")
+                {
+                    //grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                    //grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.White;
 
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStsname"];
+                    cell.Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                    cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                }
+                else
+                {
+
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStsname"];
+                    cell.Style.BackColor = Color.LimeGreen;
+                    cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    //grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LimeGreen;
+                    //grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                }
+            }
         }
 
         private void GrdPendingorder_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) 
