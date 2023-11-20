@@ -2117,7 +2117,6 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
 
-
                     foreach (DataGridViewColumn col in grdPurchaseorderlist.Columns)
                     {
                         if (col.Visible)
@@ -2127,10 +2126,12 @@ namespace ROMS
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
 
-                            //if (col.Name == "S.No." || col.Name == "Total Products")
-                            //{
-                            //    ExcelSheet.Columns[cIndex].ColumnWidth = 15;
-                            //}
+                            if (col.Name == "S.No." || col.Name == "Total Products" || col.Name == "Unit")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                           
+
                             //else if (col.Name == "HSN Name" || col.Name == "HSN Code")
                             //{
                             //    ExcelSheet.Columns[cIndex].ColumnWidth = 20;
