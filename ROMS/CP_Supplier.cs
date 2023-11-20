@@ -5157,8 +5157,11 @@ namespace ROMS
             try
             {
                 string varRemoveProduct = "", varAddProduct = "", varGridRemove = "";
-
-
+                //for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                //{
+                //    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                //}
+                //DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
                 if (dtSubGroup.Rows.Count > 0)
                 {
                     for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
@@ -5195,7 +5198,7 @@ namespace ROMS
                             }
                         }
                     }
-
+                    grdFinalSupplierMapping.DataSource = null;
                     grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
                   //  grdFinalSupplierMapping.Columns[0].Frozen = true;
                     grdFinalSupplierMapping.Columns[0].HeaderText = "";
@@ -7280,16 +7283,7 @@ namespace ROMS
 
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdSupplierMappingLoad.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierMappingLoad);
-                objDser.CloseConnection();
-                grdSupplierMappingLoad.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
@@ -7407,15 +7401,20 @@ namespace ROMS
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (DGV_SearchGrid.IsCurrentCellDirty)
+            try
             {
-                // Commit the changes immediately
-                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdSupplierMappingLoad.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierMappingLoad);
+                objDser.CloseConnection();
+                grdSupplierMappingLoad.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
             }
-            DataService objDser = new DataService();
-            grdSupplierMappingLoad.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierMappingLoad);
-            objDser.CloseConnection();
-            grdSupplierMappingLoad.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void DGV_SearchGrid1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -7537,15 +7536,24 @@ namespace ROMS
 
         private void DGV_SearchGrid1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (DGV_SearchGrid1.IsCurrentCellDirty)
+            try
             {
-                // Commit the changes immediately
-                DGV_SearchGrid1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                if (DGV_SearchGrid1.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdFinalSupplierMapping.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid1, grdFinalSupplierMapping);
+                objDser.CloseConnection();
+                grdFinalSupplierMapping.HorizontalScrollingOffset = DGV_SearchGrid1.HorizontalScrollingOffset;
+                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
             }
-            DataService objDser = new DataService();
-            grdFinalSupplierMapping.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid1, grdFinalSupplierMapping);
-            objDser.CloseConnection();
-            grdFinalSupplierMapping.HorizontalScrollingOffset = DGV_SearchGrid1.HorizontalScrollingOffset;
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DGV_SearchGrid1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

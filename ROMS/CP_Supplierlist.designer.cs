@@ -46,6 +46,10 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlsupplier = new System.Windows.Forms.Panel();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblSubGroup = new System.Windows.Forms.Label();
@@ -54,10 +58,6 @@
             this.lblGroup = new System.Windows.Forms.Label();
             this.lblTotProducts = new System.Windows.Forms.Label();
             this.btnSummary = new System.Windows.Forms.Button();
-            this.LV_Supplier = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
@@ -186,6 +186,36 @@
             this.pnlsupplier.Size = new System.Drawing.Size(1354, 641);
             this.pnlsupplier.TabIndex = 36;
             // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(12, 54);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(395, 93);
+            this.LV_Supplier.TabIndex = 958803;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 180;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblTotal);
@@ -272,36 +302,6 @@
             this.btnSummary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSummary.UseVisualStyleBackColor = true;
             this.btnSummary.Click += new System.EventHandler(this.BtnSummary_Click);
-            // 
-            // LV_Supplier
-            // 
-            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader9});
-            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(12, 54);
-            this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(395, 93);
-            this.LV_Supplier.TabIndex = 958803;
-            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
-            this.LV_Supplier.View = System.Windows.Forms.View.Details;
-            this.LV_Supplier.Visible = false;
-            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
-            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 180;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Width = 120;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Width = 0;
             // 
             // DGV_SearchGrid
             // 
@@ -528,6 +528,7 @@
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnView_KeyDown);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // lblNoRecordsFound
