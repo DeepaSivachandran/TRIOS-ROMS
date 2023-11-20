@@ -923,7 +923,7 @@
             this.txtDReOrderQty.Size = new System.Drawing.Size(111, 27);
             this.txtDReOrderQty.TabIndex = 86;
             this.txtDReOrderQty.TabStop = false;
-            this.txtDReOrderQty.Text = "Reorder Qty";
+            this.txtDReOrderQty.Text = "Reorder Qty (ROQ)";
             // 
             // txtMinStock
             // 
@@ -950,7 +950,7 @@
             this.txtDMinStock.Size = new System.Drawing.Size(111, 27);
             this.txtDMinStock.TabIndex = 23;
             this.txtDMinStock.TabStop = false;
-            this.txtDMinStock.Text = "Min.Stock";
+            this.txtDMinStock.Text = "Min.Stock (MSQ)";
             // 
             // txtMaxStock
             // 
@@ -977,7 +977,7 @@
             this.txtDMaxStock.Size = new System.Drawing.Size(111, 27);
             this.txtDMaxStock.TabIndex = 22;
             this.txtDMaxStock.TabStop = false;
-            this.txtDMaxStock.Text = "Max.Stock";
+            this.txtDMaxStock.Text = "Max.Stock (MXSQ)";
             // 
             // txtWeight
             // 
