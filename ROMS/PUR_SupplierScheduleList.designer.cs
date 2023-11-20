@@ -271,11 +271,13 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 1111224;
+            this.DGV_SearchGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellContentClick);
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnMinimumWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // groupBox1
             // 
@@ -688,6 +690,7 @@
             this.dgvSupplierScheduleList.Size = new System.Drawing.Size(1348, 484);
             this.dgvSupplierScheduleList.TabIndex = 958802;
             this.dgvSupplierScheduleList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgvSupplierScheduleList_DataBindingComplete);
+            this.dgvSupplierScheduleList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DgvSupplierScheduleList_Scroll);
             this.dgvSupplierScheduleList.DoubleClick += new System.EventHandler(this.DgvSupplierScheduleList_DoubleClick);
             this.dgvSupplierScheduleList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvSupplierScheduleList_KeyDown);
             // 

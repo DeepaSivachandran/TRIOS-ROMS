@@ -267,7 +267,7 @@ namespace ROMS
                             grdSupplierList.Columns["Supplier"].Width = 350;
                            // grdSupplierList.Columns["Schedule Name"].Width = 150;
                             grdSupplierList.Columns["GSTIN"].Width = 130;
-                            grdSupplierList.Columns["Status"].Width = 80;
+                            grdSupplierList.Columns["Schedule Status"].Width = 110;
                             grdSupplierList.Columns["Days"].Width = 90;
                             grdSupplierList.Columns["Scheduleid"].Visible = false;
                             grdSupplierList.Columns["SupplierID"].Visible = false;
@@ -684,17 +684,21 @@ namespace ROMS
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
                     varTotalCount++;
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "1" && Convert.ToString(grdSupplierList.Rows[i].Cells["STATUS"].Value) != "")
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "1" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
                     {
-                        grdSupplierList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdSupplierList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.LimeGreen;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
                         varActiveCount++;
                     }
-
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(grdSupplierList.Rows[i].Cells["STATUS"].Value) != "")
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
                     {
-                        grdSupplierList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdSupplierList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.SteelBlue;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
+                    {
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.Tomato;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
                         varInactiveCount++;
                     }
 
