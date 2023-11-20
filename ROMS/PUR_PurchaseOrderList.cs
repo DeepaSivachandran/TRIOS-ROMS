@@ -862,6 +862,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
                             grdPurchaseorderlist.Columns["Status"].Width = 100;
+                            grdPurchaseorderlist.Columns["clmView"].Width = 60;
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
                             grdPurchaseorderlist.Columns["STS1"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_ID"].Visible = false;
@@ -1453,29 +1454,31 @@ namespace ROMS
         {
             try
             {
-                //udfnGridSearchHeading(grdPurchaseorderlist, DGV_SearchGrid);
-                //DGV_SearchGrid.Columns.Clear();
-                //List<int> visibleColumns = new List<int>();
-                //foreach (DataGridViewColumn col in grdPurchaseorderlist.Columns)
-                //{
-                //    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                //    visibleColumns.Add(col.Index);
-                //}
-                //int rowIndex = 0;
-                //DGV_SearchGrid.Rows.Clear();
-                //DGV_SearchGrid.Rows.Add();
-                //for (int i = 0; i < visibleColumns.Count; i++)
-                //{
-                //    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                //}
-                //DGV_SearchGrid.Columns["S.No."].ReadOnly = true; 
-                //DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
                 udfnGridSearchHeading(grdPurchaseorderlist, DGV_SearchGrid);
-                if (DGV_SearchGrid.ColumnCount > 1)
+                DGV_SearchGrid.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in grdPurchaseorderlist.Columns)
                 {
-                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                    DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
+                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                    visibleColumns.Add(col.Index);
                 }
+                int rowIndex = 0;
+                DGV_SearchGrid.Rows.Clear();
+                DGV_SearchGrid.Rows.Add();
+                DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                for (int i = 1; i < visibleColumns.Count; i++)
+                {
+                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                }
+                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
+                DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                //udfnGridSearchHeading(grdPurchaseorderlist, DGV_SearchGrid);
+                //if (DGV_SearchGrid.ColumnCount > 1)
+                //{
+                //    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                //    DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
+                //}
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1484,7 +1487,6 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
                 dgv2.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
                 foreach (DataGridViewColumn col in dgv1.Columns)
@@ -1492,7 +1494,7 @@ namespace ROMS
                     if (col.Visible)
                     {
                         dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index+1);
+                        visibleColumns.Add(col.Index);
                     }
                 }
                 int rowIndex = 0;
@@ -1511,6 +1513,11 @@ namespace ROMS
                         dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
                         dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
                         ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                    {
+                        BlnSearchImageYN = true;
+                        dgv2.Rows[rowIndex].Cells[i].Value = false;
                     }
                     else
                     {
