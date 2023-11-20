@@ -128,12 +128,33 @@ namespace ROMS
             try
             {
                 this.ActiveControl = cmbConcern;
+                udfnDate();
                 udfnDropdownLoad();
                 cmbConcern.SelectedValue =Convert.ToInt32(MainForm.pbDefaultComId);
-                udfngridchanges();
+                udfngridchanges(); 
                 DpPlanDate_ValueChanged(sender, e);
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDate()
+        { 
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0);
+                if (objd.Tables[0].Rows.Count != 0)
+                {
+                    DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpPlanDate.MinDate = varmindate;
+                    dpPlanDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
+                }
+            }
+             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -823,7 +844,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdPurchaseorderlist.DataSource = objDs.Tables[0];
                             grdPurchaseorderlist.Columns["clmView"].Visible = true;
-                            grdPurchaseorderlist.Columns["clmView"].DisplayIndex = objDs.Tables[0].Columns.Count;
+                            grdPurchaseorderlist.Columns["clmView"].DisplayIndex =0;
                             grdPurchaseorderlist.Columns["clmView"].Width = 110;
                             grdPurchaseorderlist.Columns["S.No."].Width = 50;
                             grdPurchaseorderlist.Columns["Concern"].Width = 80;
@@ -842,12 +863,14 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
                             grdPurchaseorderlist.Columns["Status"].Width = 100;
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
+                            grdPurchaseorderlist.Columns["STS1"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_ID"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_SPSCID"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_SPID"].Visible = false;
                             grdPurchaseorderlist.Columns["po_stsid"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_Remarks"].Visible = false;
                             grdPurchaseorderlist.Columns["SPSC_OrderType"].Visible = false;
+                            grdPurchaseorderlist.Columns["PO_Created"].Visible = false;
                             grdPurchaseorderlist.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["Total Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["Turn Around Time"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1317,7 +1340,8 @@ namespace ROMS
                             grdProDetails.DataSource = objDs.Tables[0];
                             grdProDetails.Columns["S.No."].Width = 50;
                             grdProDetails.Columns["P.I Code"].Width = 100;
-                            grdProDetails.Columns["Product"].Width = 300;
+                            grdProDetails.Columns["Product Name"].Width = 300;
+                            grdProDetails.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdProDetails.Columns["Unit"].Width = 80;
                             grdProDetails.Columns["Quantity"].Width = 80;
                             grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1468,7 +1492,7 @@ namespace ROMS
                     if (col.Visible)
                     {
                         dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
+                        visibleColumns.Add(col.Index+1);
                     }
                 }
                 int rowIndex = 0;

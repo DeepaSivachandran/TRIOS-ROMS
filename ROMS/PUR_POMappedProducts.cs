@@ -96,6 +96,7 @@ namespace ROMS
                                     grdPurchaseOrder.Columns[0].Frozen = true;
                                     grdPurchaseOrder.Columns["P.I Code"].Width = 100;
                                     grdPurchaseOrder.Columns["Product Name"].Width = 300;
+                                    grdPurchaseOrder.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     grdPurchaseOrder.Columns["Unit"].Width = 70;
                                     grdPurchaseOrder.Columns["R.Sales Rate"].Width = 100;
                                     grdPurchaseOrder.Columns["MSQ"].Width = 70;
@@ -141,7 +142,8 @@ namespace ROMS
             }
             finally
             {
-                grdPurchaseOrder.ClearSelection();
+                grdPurchaseOrder.ClearSelection(); 
+                lblPC.Text = grdPurchaseOrder.Rows.Count.ToString();
             }
         }
 
