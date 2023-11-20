@@ -842,9 +842,9 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdPurchaseorderlist.DataSource = objDs.Tables[0];
-                            grdPurchaseorderlist.Columns["clmView"].Visible = true;
-                            grdPurchaseorderlist.Columns["clmView"].DisplayIndex = 0;
-                            grdPurchaseorderlist.Columns["clmView"].Width = 110;
+                            //grdPurchaseorderlist.Columns["clmView"].Visible = true;
+                            //grdPurchaseorderlist.Columns["clmView"].DisplayIndex = 0;
+                            //grdPurchaseorderlist.Columns["clmView"].Width = 110;
                             grdPurchaseorderlist.Columns["S.No."].Width = 50;
                             grdPurchaseorderlist.Columns["Concern"].Width = 80;
                             grdPurchaseorderlist.Columns["PO.No"].Width = 100;
@@ -1476,7 +1476,7 @@ namespace ROMS
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
                 DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
+                DGV_SearchGrid.Columns[0].ReadOnly = true;
                 DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 //udfnGridSearchHeading(grdPurchaseorderlist, DGV_SearchGrid);
                 //if (DGV_SearchGrid.ColumnCount > 1)
@@ -2122,59 +2122,78 @@ namespace ROMS
                         if (col.Visible)
                         {
                             cIndex += 1;
-                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
-
-
-                            if (col.Name == "S.No." || col.Name == "Total Products" || col.Name == "Unit")
+                            if (cIndex != 1 || cIndex != 2)
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
-                            }
-                           
+                                ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                                ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            //else if (col.Name == "HSN Name" || col.Name == "HSN Code")
+
+                                if (col.Name == "S.No." || col.Name == "Total Products" || col.Name == "Unit")
+                                {
+                                    ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                }
+
+
+                                //else if (col.Name == "HSN Name" || col.Name == "HSN Code")
+                                //{
+                                //    ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                                //}
+                                //else
+                                //{
+                                //    ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                //}
+                                if (col.Name == "S.No.")
+                                {
+                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                }
+
+                                if (col.Name == "Issue Date")
+                                {
+                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                }
+
+                                if (col.Name == "PO Date")
+                                {
+                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                }
+                                if (col.Name == "Total Products")
+                                {
+                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                }
+                                if (col.Name == "Total Qty")
+                                {
+                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                }
+                                if (col.Name == "Turn Around Time")
+                                {
+                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                }
+
+                                //if (col.Name == "Total Products" || col.Name == "GST%")
+                                //{
+                                //    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                //}
+                                int varSLno = 1;
+                                foreach (DataGridViewRow rowa in grdPurchaseorderlist.Rows)
+                                {
+                                    if (cIndex != 1)
+                                    {
+                                        if (cIndex == 2)
+                                        {
+                                            ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                            varSLno++;
+                                        }
+                                        else
+                                        {
+                                            ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                        }
+                                    }
+                                }
+                            }
+                            //foreach (DataGridViewRow rowa in grdPurchaseorderlist.Rows)
                             //{
-                            //    ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            //    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
                             //}
-                            //else
-                            //{
-                            //    ExcelSheet.Columns[cIndex].ColumnWidth = 10;
-                            //}
-                            if (col.Name == "S.No.")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
-                            }
-
-                            if (col.Name == "Issue Date")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
-                            }
-
-                            if (col.Name == "PO Date")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
-                            }
-                            if (col.Name == "Total Products")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            }
-                            if (col.Name == "Total Qty")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            }
-                            if (col.Name == "Turn Around Time")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            }
-                             
-                            //if (col.Name == "Total Products" || col.Name == "GST%")
-                            //{
-                            //    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            //}
-                            foreach (DataGridViewRow rowa in grdPurchaseorderlist.Rows)
-                            {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
-                            }
                         }
                     }
                     //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
