@@ -2122,20 +2122,20 @@ namespace ROMS
                         if (col.Visible)
                         {
                             cIndex += 1;
-                            if (cIndex != 1 || cIndex != 2)
+                            if (cIndex != 1)
                             {
                                 ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                                 ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
 
-                                if (col.Name == "S.No." || col.Name == "Total Products" || col.Name == "Total Qty")
+                                if (col.Name == "S.No."  || col.Name == "Total Qty")
                                 {
                                     ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                                 }
                                 if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date" || col.Name == "GSTIN" || col.Name == "Created On" 
-                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "Turn Around Time")
+                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "Turn Around Time" || col.Name == "Total Products")
                                 {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                    ExcelSheet.Columns[cIndex-1].ColumnWidth = 15;
                                 }
                                 if (col.Name == "Supplier" || col.Name == "City" )
                                 {
@@ -2154,29 +2154,29 @@ namespace ROMS
                                 //}
                                 if (col.Name == "S.No.")
                                 {
-                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
 
                                 if (col.Name == "Issue Date")
                                 {
-                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
 
                                 if (col.Name == "PO Date")
                                 {
-                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
                                 if (col.Name == "Total Products")
                                 {
-                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
                                 if (col.Name == "Total Qty")
                                 {
-                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
                                 if (col.Name == "Turn Around Time")
                                 {
-                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
 
                                 //if (col.Name == "Total Products" || col.Name == "GST%")
@@ -2190,12 +2190,12 @@ namespace ROMS
                                     {
                                         if (cIndex == 2)
                                         {
-                                            ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                            ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = varSLno;
                                             varSLno++;
                                         }
                                         else
                                         {
-                                            ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                            ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
                                         }
                                     }
                                 }
