@@ -56,7 +56,6 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseorder = new System.Windows.Forms.Panel();
             this.grppurchaseorder = new System.Windows.Forms.GroupBox();
-            this.txtUnit = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
@@ -168,6 +167,7 @@
             this.grdsupplieradd = new System.Windows.Forms.DataGridView();
             this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cmbUnit = new System.Windows.Forms.ComboBox();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -185,6 +185,7 @@
             this.clmeditflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStsname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prstsid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
@@ -239,7 +240,7 @@
             // grppurchaseorder
             // 
             this.grppurchaseorder.BackColor = System.Drawing.Color.White;
-            this.grppurchaseorder.Controls.Add(this.txtUnit);
+            this.grppurchaseorder.Controls.Add(this.cmbUnit);
             this.grppurchaseorder.Controls.Add(this.btnAdd);
             this.grppurchaseorder.Controls.Add(this.lblschedule);
             this.grppurchaseorder.Controls.Add(this.lblProductcode);
@@ -289,16 +290,6 @@
             this.grppurchaseorder.TabIndex = 958788;
             this.grppurchaseorder.TabStop = false;
             // 
-            // txtUnit
-            // 
-            this.txtUnit.Enabled = false;
-            this.txtUnit.Location = new System.Drawing.Point(660, 115);
-            this.txtUnit.MaxLength = 50;
-            this.txtUnit.Name = "txtUnit";
-            this.txtUnit.ReadOnly = true;
-            this.txtUnit.Size = new System.Drawing.Size(58, 27);
-            this.txtUnit.TabIndex = 1111211;
-            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.White;
@@ -343,9 +334,9 @@
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(148, 131);
+            this.lvproduct.Location = new System.Drawing.Point(148, 145);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(690, 140);
+            this.lvproduct.Size = new System.Drawing.Size(575, 140);
             this.lvproduct.TabIndex = 1111156;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -1676,6 +1667,7 @@
             this.clmeditflag,
             this.clmStsname,
             this.prstsid,
+            this.UTID,
             this.clmRemove});
             this.grdsupplieradd.EnableHeadersVisualStyles = false;
             this.grdsupplieradd.GridColor = System.Drawing.Color.White;
@@ -1706,6 +1698,20 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 70;
+            // 
+            // cmbUnit
+            // 
+            this.cmbUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbUnit.FormattingEnabled = true;
+            this.cmbUnit.Location = new System.Drawing.Point(660, 115);
+            this.cmbUnit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbUnit.Name = "cmbUnit";
+            this.cmbUnit.Size = new System.Drawing.Size(63, 27);
+            this.cmbUnit.TabIndex = 5;
+            this.cmbUnit.Enter += new System.EventHandler(this.CmbUnit_Enter);
+            this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUnit_KeyDown);
+            this.cmbUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbUnit_KeyPress);
+            this.cmbUnit.Leave += new System.EventHandler(this.CmbUnit_Leave);
             // 
             // clmsno
             // 
@@ -1842,6 +1848,12 @@
             this.prstsid.HeaderText = "stsid";
             this.prstsid.Name = "prstsid";
             this.prstsid.Visible = false;
+            // 
+            // UTID
+            // 
+            this.UTID.HeaderText = "UTID";
+            this.UTID.Name = "UTID";
+            this.UTID.Visible = false;
             // 
             // clmRemove
             // 
@@ -2004,7 +2016,6 @@
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.TextBox txtRemark;
         public System.Windows.Forms.ComboBox cmbStatus;
-        public System.Windows.Forms.TextBox txtUnit;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ComboBox cmbIssueMode;
@@ -2015,6 +2026,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
         private System.Windows.Forms.DataGridViewTextBoxColumn PLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn poid;
+        public System.Windows.Forms.ComboBox cmbUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
@@ -2032,6 +2044,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmeditflag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStsname;
         private System.Windows.Forms.DataGridViewTextBoxColumn prstsid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UTID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
