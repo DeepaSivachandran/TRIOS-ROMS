@@ -1966,6 +1966,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIssuedModeRemarks", paraIssuedModeRemarks);
                 varSqlCommand.Parameters.AddWithValue("@paraFinalStatus", paraFinalStatus);
                 varSqlCommand.Parameters.AddWithValue("@paraPODate", paraPODate);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
