@@ -1037,6 +1037,7 @@ namespace ROMS
                 //objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbMappingordeDay, "", "DY_Name", "DYID");
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmborderday, "", "DY_Name", "DYID");
                 objDataBind = null;
+                cmbState.SelectedValue = 27;
                 if (btnSave.Text == "Save")
                 {
                     cmbPaymentTerm.SelectedValue = 33;
@@ -5164,14 +5165,14 @@ namespace ROMS
                 //DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
                 if (dtSubGroup.Rows.Count > 0)
                 {
-                    for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
+                    for (int i = 0; i < dtSubGroup.Rows.Count; i++)
                     {
-                        if (Convert.ToBoolean(grdSupplierMappingLoad.Rows[i].Cells[0].Value) == true)
+                        if (Convert.ToBoolean(dtSubGroup.Rows[i][0]) == true)
                         {
                             int varFlag = 0, varcount = 1;
                             for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
                             {
-                                varRemoveProduct = Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
+                                varRemoveProduct = Convert.ToString(dtSubGroup.Rows[i]["PRODUCTID"]);
                                 if (varRemoveProduct == Convert.ToString(dtSubGroupMapping.Rows[j]["PRODUCTID"]))
                                 {
                                     varFlag = 1;
@@ -5180,8 +5181,8 @@ namespace ROMS
                             }
                             if (varFlag == 0)
                             {
-                                dtSubGroupMapping.Rows.Add(false, Convert.ToInt32(dtSubGroupMapping.Rows.Count) + 1, grdSupplierMappingLoad.Rows[i].Cells["P.I Code"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMappingLoad.Rows[i].Cells["Unit"].Value, grdSupplierMappingLoad.Rows[i].Cells["Brand"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product SubGroup"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Group"].Value,
-                                grdSupplierMappingLoad.Rows[i].Cells["GROUPID"].Value, grdSupplierMappingLoad.Rows[i].Cells["SUBGROUPID"].Value, grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Name in English"].Value, grdSupplierMappingLoad.Rows[i].Cells["MappedCount"].Value);
+                                dtSubGroupMapping.Rows.Add(false, Convert.ToInt32(dtSubGroupMapping.Rows.Count) + 1, dtSubGroup.Rows[i]["P.I Code"], dtSubGroup.Rows[i]["Product Name in Tamil"], dtSubGroup.Rows[i]["Unit"], dtSubGroup.Rows[i]["Brand"], dtSubGroup.Rows[i]["Product SubGroup"], dtSubGroup.Rows[i]["Product Group"],
+                                dtSubGroup.Rows[i]["GROUPID"], dtSubGroup.Rows[i]["SUBGROUPID"], dtSubGroup.Rows[i]["PRODUCTID"], dtSubGroup.Rows[i]["Product Name in English"], dtSubGroup.Rows[i]["MappedCount"]);
                                 varModifiedFlag = 1;
                             }
                         }
@@ -5189,7 +5190,7 @@ namespace ROMS
                         {
                             for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
                             {
-                                varAddProduct = Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
+                                varAddProduct = Convert.ToString(dtSubGroup.Rows[i]["PRODUCTID"]);
                                 if (varAddProduct == Convert.ToString(dtSubGroupMapping.Rows[j]["PRODUCTID"]))
                                 {
                                     dtSubGroupMapping.Rows[j].Delete();
@@ -7062,21 +7063,27 @@ namespace ROMS
                 {
                     udfnInitSubgroup();
                 }
-                L: for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
+                for (int k = 1; k < DGV_SearchGrid1.ColumnCount; k++)
                 {
-                    if (Convert.ToBoolean(grdFinalSupplierMapping.Rows[i].Cells[0].EditedFormattedValue) == true)
+                    DGV_SearchGrid1.Rows[0].Cells[k].Value = "";
+                }
+                DGV_SearchGrid1_CurrentCellDirtyStateChanged(sender, e);
+                L: for (int i = 0; i < dtSubGroupMapping.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(dtSubGroupMapping.Rows[i][0]) == true)
                     {
                         int varSlNo = 1;
                         if (dtSubGroup != null) { varSlNo = dtSubGroup.Rows.Count + 1; }
-                        dtSubGroup.Rows.Add(false, varSlNo, grdFinalSupplierMapping.Rows[i].Cells["P.I Code"].Value,
-                        grdFinalSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value,
-                        grdFinalSupplierMapping.Rows[i].Cells["Unit"].Value,
-                        grdFinalSupplierMapping.Rows[i].Cells["Brand"].Value,
-                        grdFinalSupplierMapping.Rows[i].Cells["Product SubGroup"].Value,
-                        grdFinalSupplierMapping.Rows[i].Cells["Product Group"].Value,
-                        grdFinalSupplierMapping.Rows[i].Cells["GROUPID"].Value,
-                        grdFinalSupplierMapping.Rows[i].Cells["SUBGROUPID"].Value,
-                        grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value, grdFinalSupplierMapping.Rows[i].Cells["Product Name in English"].Value, grdFinalSupplierMapping.Rows[i].Cells["MappedCount"].Value);
+                        dtSubGroup.Rows.Add(false, varSlNo, dtSubGroupMapping.Rows[i]["P.I Code"],
+                        dtSubGroupMapping.Rows[i]["Product Name in Tamil"],
+                        dtSubGroupMapping.Rows[i]["Unit"],
+                        dtSubGroupMapping.Rows[i]["Brand"],
+                        dtSubGroupMapping.Rows[i]["Product SubGroup"],
+                        dtSubGroupMapping.Rows[i]["Product Group"],
+                        dtSubGroupMapping.Rows[i]["GROUPID"],
+                        dtSubGroupMapping.Rows[i]["SUBGROUPID"],
+                        dtSubGroupMapping.Rows[i]["PRODUCTID"], dtSubGroupMapping.Rows[i]["Product Name in English"],
+                        dtSubGroupMapping.Rows[i]["MappedCount"]);
                         dtSubGroup.AcceptChanges();
                         for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
                         {
