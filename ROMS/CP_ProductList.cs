@@ -1024,7 +1024,7 @@ namespace ROMS
             try
             {
                 udfnSubGroupevent();
-                btnView.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
