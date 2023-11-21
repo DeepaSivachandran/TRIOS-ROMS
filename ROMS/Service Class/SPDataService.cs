@@ -2176,6 +2176,76 @@ namespace ROMS
             }
             return ds;
         }
+        // added by Kavitha on 07/11/2023 for Outward -- save process
+        public string udfnOutwardProduct(int ViewType, int paraProductid, int paramrp, string paraExpiryDate, int paraBatchNo, int paraRequestQty, string paraOutwardQty, int paraUnitId, int paraGoodsOutwardId, string paraOriginator, DataTable paraStockTransfer)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRN_GoodsOutward_Products]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraProductID", paraProductid);
+                varSqlCommand.Parameters.AddWithValue("@paraMRP", paramrp);
+                varSqlCommand.Parameters.AddWithValue("@paraExpiryDate", paraExpiryDate);
+                varSqlCommand.Parameters.AddWithValue("@paraBatchNo", paraBatchNo);
+                varSqlCommand.Parameters.AddWithValue("@paraRequestQty", paraRequestQty);
+                varSqlCommand.Parameters.AddWithValue("@paraOutwardQty", paraOutwardQty);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitId", paraUnitId);
+                varSqlCommand.Parameters.AddWithValue("@paraGoodsOutwardId", paraGoodsOutwardId);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", paraStockTransfer);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        // added by kavitha on 08/11/2023 for Goods Outward Save
+        public string udfnGoodsOutward(TRNS_GoodsOutward objTRNS_GoodsOutward)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_GoodsOutward]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNS_GoodsOutward.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaGOId", objTRNS_GoodsOutward.ParaGOId);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRNS_GoodsOutward.ParaCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraOutwardDate", objTRNS_GoodsOutward.paraOutwardDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNS_GoodsOutward.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferType", objTRNS_GoodsOutward.paraTransferType);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRNS_GoodsOutward.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRNS_GoodsOutward.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", objTRNS_GoodsOutward.paraStockTransfer);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_GoodsOutward.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
 
     }
 
