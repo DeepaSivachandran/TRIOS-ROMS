@@ -446,7 +446,7 @@ namespace ROMS
                 grdsupplieradd.Rows.Clear();
                 cmbConcern.SelectedValue = "-1";
                 cmbStatus.SelectedValue = "-1";
-                cmbUnit.SelectedValue = "-1";
+                cmbUnit.SelectedIndex = 0;
                 txtRemark.Text = "";
                 lblPC.Text = "0";
                 txtpono.Text = "";
@@ -963,7 +963,7 @@ namespace ROMS
                 lblProductcode.Text = "0";
                 txtProductName.Text = "";
                 txtProductQty.Text = "";
-                cmbUnit.SelectedValue = "-1";
+                cmbUnit.SelectedIndex = 0;
             }
             catch (Exception ex)
             {

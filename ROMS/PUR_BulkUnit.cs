@@ -325,6 +325,7 @@ namespace ROMS
                         {
                             cmbUnit.SelectedValue = objDT.Tables[1].Rows[0]["PR_Bulk_UTID"].ToString();
                             txtUpp.Text = objDT.Tables[1].Rows[0]["PR_UPP"].ToString();
+                            txtUnittype.Text =Convert.ToString(objDT.Tables[1].Rows[0]["UT_Name"]);
                         }
                     }
                 }
