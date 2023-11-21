@@ -1417,7 +1417,6 @@ namespace ROMS
         {
             try
             {
-
                 btnListPrint.Enabled = false;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();

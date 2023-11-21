@@ -23,7 +23,7 @@ namespace ROMS
         public int varOrderid = 0, scheduleselectedIndex = -1;
         public int varBrandId = 0;
         public int varGroupId = 0;
-        public int varSubGroupId = 0;
+        public int varSubGroupId = 0,varSLNO = 0;
         public int varModifiedFlag = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
@@ -4860,6 +4860,7 @@ namespace ROMS
                                 {
                                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                                 }
+                                varSLNO = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value.ToString());
                                 objDS = objspservice.udfnSupplierList(varview, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"");
                                 objspservice.CloseConnection();
                                 if (objDS != null)
@@ -5886,7 +5887,8 @@ namespace ROMS
                     {
                         foreach (DataGridViewRow row in grdSupplierList.Rows)
                         {
-                            if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value) && row.Cells[1].Value != null)
+                            //if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value) && row.Cells[1].Value != null)
+                            if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(varSLNO) && row.Cells[1].Value != null)
                             {
                                 //string gridValue1 = row.Cells[5].Value.ToString();
                                 string gridValue2 = row.Cells[1].Value.ToString().Trim().ToUpper();
@@ -5954,7 +5956,7 @@ namespace ROMS
                         }
                         else
                         {
-                            count = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value.ToString());
+                            count = Convert.ToInt32(varSLNO);
                         }
                         int sceduleidupdate = 0;
                         if (btnAdd.Text == "Save")
