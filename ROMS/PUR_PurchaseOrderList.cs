@@ -1346,7 +1346,6 @@ namespace ROMS
                             grdProDetails.Columns["Product Name"].Width = 300;
                             grdProDetails.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdProDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdProDetails.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["Unit"].Width = 80;
                             grdProDetails.Columns["Quantity"].Width = 80;
                             grdProDetails.Columns["STSID"].Visible = false;
@@ -1359,6 +1358,7 @@ namespace ROMS
                             if (cbPoNo.Checked == true)
                             {
                                 grdProDetails.Columns["PO No."].Width = 80;
+                                grdProDetails.Columns["PODate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             }
                         }
                         else
@@ -2124,13 +2124,13 @@ namespace ROMS
                             cIndex += 1;
                             if (cIndex != 1)
                             {
-                                ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                                ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                                ExcelSheet.Cells[2, cIndex-1] = col.HeaderText;
+                                ExcelSheet.Columns[cIndex - 1].NumberFormat = "@";
 
 
                                 if (col.Name == "S.No."  || col.Name == "Total Qty")
                                 {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                    ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                                 }
                                 if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date" || col.Name == "GSTIN" || col.Name == "Created On" 
                                     || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "Turn Around Time" || col.Name == "Total Products")
@@ -2139,10 +2139,9 @@ namespace ROMS
                                 }
                                 if (col.Name == "Supplier" || col.Name == "City" )
                                 {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 25;
+                                    ExcelSheet.Columns[cIndex - 1].ColumnWidth = 25;
                                 }
-                                
-
+                                 
 
                                 //else if (col.Name == "HSN Name" || col.Name == "HSN Code")
                                 //{
@@ -2276,25 +2275,42 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@"; 
                            
-                            if (col.Name == "S.No.")
+                            if (col.Name == "S.No." || col.Name == "Quantity")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
-                            } 
-                            if (col.Name == "S.No.")
+                            }  
+
+                            if (col.Name == "S.No." || col.Name == "Quantity" || col.Name == "Unit")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex ].ColumnWidth = 10;
                             }
-                            if (col.Name == "Unit" || col.Name == "Quantity")
+                            if (col.Name == "P.I Code"  )
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                                ExcelSheet.Columns[cIndex ].ColumnWidth = 15;
                             }
+                            if (col.Name == "Product Name" || col.Name == "GSTIN")
+                            {
+                                ExcelSheet.Columns[cIndex ].ColumnWidth = 25;
+                            }
+
+
                             if (cbPoNo.Checked == true)
                             {
                                 if (col.Name == "PO Date")
                                 {
                                     ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
-
+                                if (col.Name == "PO No." || col.Name == "PO Date" )
+                                {
+                                    ExcelSheet.Columns[cIndex ].ColumnWidth = 15;
+                                }
+                            }
+                            if (cbSupplier.Checked == true)
+                            {
+                                if (col.Name == "Supplier" || col.Name == "City")
+                                {
+                                    ExcelSheet.Columns[cIndex ].ColumnWidth = 25;
+                                }
                             }
                             foreach (DataGridViewRow rowa in grdProDetails.Rows)
                             {
@@ -2315,6 +2331,32 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
             }
             finally
             {

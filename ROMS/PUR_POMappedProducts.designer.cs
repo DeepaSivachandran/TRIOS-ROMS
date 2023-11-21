@@ -57,7 +57,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.submit;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(761, 460);
+            this.btnSave.Location = new System.Drawing.Point(688, 460);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(81, 33);
@@ -74,7 +74,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(845, 460);
+            this.btnClose.Location = new System.Drawing.Point(778, 460);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 33);
@@ -89,10 +89,10 @@
             // txtSearchByProduct2
             // 
             this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchByProduct2.Location = new System.Drawing.Point(499, 6);
+            this.txtSearchByProduct2.Location = new System.Drawing.Point(483, 6);
             this.txtSearchByProduct2.MaxLength = 50;
             this.txtSearchByProduct2.Name = "txtSearchByProduct2";
-            this.txtSearchByProduct2.Size = new System.Drawing.Size(418, 27);
+            this.txtSearchByProduct2.Size = new System.Drawing.Size(367, 27);
             this.txtSearchByProduct2.TabIndex = 1;
             this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
             this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
@@ -103,7 +103,7 @@
             // 
             this.lblSearchByProduct2.AutoSize = true;
             this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchByProduct2.Location = new System.Drawing.Point(305, 9);
+            this.lblSearchByProduct2.Location = new System.Drawing.Point(277, 9);
             this.lblSearchByProduct2.Name = "lblSearchByProduct2";
             this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
             this.lblSearchByProduct2.TabIndex = 1111147;
@@ -143,9 +143,9 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdPurchaseOrder.RowTemplate.Height = 25;
-            this.grdPurchaseOrder.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.grdPurchaseOrder.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseOrder.Size = new System.Drawing.Size(905, 415);
+            this.grdPurchaseOrder.Size = new System.Drawing.Size(838, 415);
             this.grdPurchaseOrder.TabIndex = 2;
             this.grdPurchaseOrder.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdPurchaseOrder_CurrentCellDirtyStateChanged);
             // 
@@ -154,7 +154,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(411, 234);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(378, 234);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 1111149;
@@ -194,7 +194,7 @@
             this.lblPC.AutoSize = true;
             this.lblPC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblPC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblPC.Location = new System.Drawing.Point(722, 466);
+            this.lblPC.Location = new System.Drawing.Point(625, 466);
             this.lblPC.Name = "lblPC";
             this.lblPC.Size = new System.Drawing.Size(17, 20);
             this.lblPC.TabIndex = 1111192;
@@ -205,7 +205,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(624, 466);
+            this.label7.Location = new System.Drawing.Point(527, 466);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 20);
             this.label7.TabIndex = 1111191;
@@ -216,7 +216,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(929, 502);
+            this.ClientSize = new System.Drawing.Size(862, 502);
             this.Controls.Add(this.lblPC);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnunselectall);
