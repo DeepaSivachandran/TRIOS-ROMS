@@ -1358,7 +1358,7 @@ namespace ROMS
                             if (cbPoNo.Checked == true)
                             {
                                 grdProDetails.Columns["PO No."].Width = 80;
-                                grdProDetails.Columns["PODate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdProDetails.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             }
                         }
                         else
