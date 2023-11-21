@@ -2002,7 +2002,7 @@ namespace ROMS
                     }
                     else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "5")
                     {
-                        cell.Style.BackColor = Color.RoyalBlue;
+                        cell.Style.BackColor = Color.SteelBlue;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
                 }
