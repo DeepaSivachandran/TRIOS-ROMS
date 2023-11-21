@@ -597,43 +597,43 @@ namespace ROMS
                                             udfnClear();
                                             varupdate = "1";
 
-                                            SPDataService objDServ = new SPDataService();
-                                            string varMessage = objDServ.udfnGetMessages(87);
-                                            objDServ.CloseConnection();
-                                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                            if(result1 == DialogResult.Yes)
-                                            { 
-                                                try
-                                                {
-                                                    string varHeader = "";
-                                                    //CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                                    //objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                                    //objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.rpt");
-                                                    //varHeader = "Purchase Order";
-                                                    //objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdate));
-                                                    //objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                                    //objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                                    //objValidation.CrySqlConnection(objBillreport);
+                                            //SPDataService objDServ = new SPDataService();
+                                            //string varMessage = objDServ.udfnGetMessages(87);
+                                            //objDServ.CloseConnection();
+                                            //result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                            //if(result1 == DialogResult.Yes)
+                                            //{ 
+                                            //    try
+                                            //    {
+                                            //        string varHeader = "";
+                                            //        //CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                            //        //objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                            //        //objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.rpt");
+                                            //        //varHeader = "Purchase Order";
+                                            //        //objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdate));
+                                            //        //objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                            //        //objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                            //        //objValidation.CrySqlConnection(objBillreport);
 
-                                                    //MainForm.objReportLoad = new ReportLoad();
-                                                    //MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                                    //MainForm.objReportLoad.Text = varHeader;
-                                                    //MainForm.objReportLoad.ShowDialog();
-                                                }
-                                                catch (Exception ex)
-                                                {
-                                                    objError = new DataError();
-                                                    objError.WriteFile(ex);
-                                                }
-                                                finally
-                                                {
-                                                } 
+                                            //        //MainForm.objReportLoad = new ReportLoad();
+                                            //        //MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                            //        //MainForm.objReportLoad.Text = varHeader;
+                                            //        //MainForm.objReportLoad.ShowDialog();
+                                            //    }
+                                            //    catch (Exception ex)
+                                            //    {
+                                            //        objError = new DataError();
+                                            //        objError.WriteFile(ex);
+                                            //    }
+                                            //    finally
+                                            //    {
+                                            //    } 
+                                            //    udfnclose();
+                                            //}
+                                            //else
+                                            //{
                                                 udfnclose();
-                                            }
-                                            else
-                                            {
-                                                udfnclose();
-                                            }
+                                            //}
                                         }
                                         else
                                         {
