@@ -40,9 +40,17 @@
             this.grpPOScheduledaywise = new System.Windows.Forms.GroupBox();
             this.btnPrintdaywise = new System.Windows.Forms.Button();
             this.grdHeaderview = new System.Windows.Forms.DataGridView();
-            this.grdPOSchedule = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdPOSchedule = new System.Windows.Forms.DataGridView();
+            this.clmPrint1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint5 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint6 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint7 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint8 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.grpPOScheduledaywise.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).BeginInit();
@@ -60,7 +68,7 @@
             this.grpPOScheduledaywise.Controls.Add(this.grdPOSchedule);
             this.grpPOScheduledaywise.Location = new System.Drawing.Point(2, -4);
             this.grpPOScheduledaywise.Name = "grpPOScheduledaywise";
-            this.grpPOScheduledaywise.Size = new System.Drawing.Size(1176, 354);
+            this.grpPOScheduledaywise.Size = new System.Drawing.Size(1273, 354);
             this.grpPOScheduledaywise.TabIndex = 0;
             this.grpPOScheduledaywise.TabStop = false;
             // 
@@ -69,7 +77,7 @@
             this.btnPrintdaywise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintdaywise.Image = global::ROMS.Properties.Resources.print;
             this.btnPrintdaywise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintdaywise.Location = new System.Drawing.Point(1101, 29);
+            this.btnPrintdaywise.Location = new System.Drawing.Point(1199, 29);
             this.btnPrintdaywise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnPrintdaywise.Name = "btnPrintdaywise";
             this.btnPrintdaywise.Size = new System.Drawing.Size(67, 33);
@@ -121,8 +129,24 @@
             this.grdHeaderview.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdHeaderview.RowTemplate.Height = 25;
             this.grdHeaderview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdHeaderview.Size = new System.Drawing.Size(1158, 29);
+            this.grdHeaderview.Size = new System.Drawing.Size(1256, 29);
             this.grdHeaderview.TabIndex = 1111179;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Order Type";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // grdPOSchedule
             // 
@@ -142,6 +166,15 @@
             this.grdPOSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdPOSchedule.ColumnHeadersHeight = 30;
             this.grdPOSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPOSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmPrint1,
+            this.clmPrint2,
+            this.clmPrint3,
+            this.clmPrint4,
+            this.clmPrint5,
+            this.clmPrint6,
+            this.clmPrint7,
+            this.clmPrint8});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -161,31 +194,80 @@
             this.grdPOSchedule.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPOSchedule.RowTemplate.Height = 25;
             this.grdPOSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPOSchedule.Size = new System.Drawing.Size(1158, 251);
+            this.grdPOSchedule.Size = new System.Drawing.Size(1256, 251);
             this.grdPOSchedule.TabIndex = 1111178;
+            this.grdPOSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPOSchedule_CellContentClick);
             // 
-            // dataGridViewTextBoxColumn1
+            // clmPrint1
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 50;
+            this.clmPrint1.HeaderText = "";
+            this.clmPrint1.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint1.Name = "clmPrint1";
+            this.clmPrint1.ReadOnly = true;
+            this.clmPrint1.Width = 40;
             // 
-            // dataGridViewTextBoxColumn2
+            // clmPrint2
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Order Type";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPrint2.HeaderText = "";
+            this.clmPrint2.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint2.Name = "clmPrint2";
+            this.clmPrint2.ReadOnly = true;
+            this.clmPrint2.Width = 30;
+            // 
+            // clmPrint3
+            // 
+            this.clmPrint3.HeaderText = "";
+            this.clmPrint3.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint3.Name = "clmPrint3";
+            this.clmPrint3.ReadOnly = true;
+            this.clmPrint3.Width = 30;
+            // 
+            // clmPrint4
+            // 
+            this.clmPrint4.HeaderText = "";
+            this.clmPrint4.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint4.Name = "clmPrint4";
+            this.clmPrint4.ReadOnly = true;
+            this.clmPrint4.Width = 30;
+            // 
+            // clmPrint5
+            // 
+            this.clmPrint5.HeaderText = "";
+            this.clmPrint5.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint5.Name = "clmPrint5";
+            this.clmPrint5.ReadOnly = true;
+            this.clmPrint5.Width = 30;
+            // 
+            // clmPrint6
+            // 
+            this.clmPrint6.HeaderText = "";
+            this.clmPrint6.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint6.Name = "clmPrint6";
+            this.clmPrint6.ReadOnly = true;
+            this.clmPrint6.Width = 30;
+            // 
+            // clmPrint7
+            // 
+            this.clmPrint7.HeaderText = "";
+            this.clmPrint7.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint7.Name = "clmPrint7";
+            this.clmPrint7.ReadOnly = true;
+            this.clmPrint7.Width = 30;
+            // 
+            // clmPrint8
+            // 
+            this.clmPrint8.HeaderText = "";
+            this.clmPrint8.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint8.Name = "clmPrint8";
+            this.clmPrint8.ReadOnly = true;
+            this.clmPrint8.Width = 30;
             // 
             // PUR_POScheduledaywise
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1184, 352);
+            this.ClientSize = new System.Drawing.Size(1284, 352);
             this.Controls.Add(this.grpPOScheduledaywise);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -215,5 +297,13 @@
         public System.Windows.Forms.DataGridView grdPOSchedule;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint1;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint2;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint3;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint4;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint5;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint6;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint7;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint8;
     }
 }
