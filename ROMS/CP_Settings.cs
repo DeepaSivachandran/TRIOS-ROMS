@@ -779,8 +779,10 @@ namespace ROMS
                             grdSettings.Rows[i].Cells["clmTransactionTypeID"].Value = varTransactionType;
                             grdSettings.Rows[i].Cells["clmResetOnId"].Value = cmbResetOn.SelectedValue;
                             udfnClear();
+                            goto L;
                         }
                     }
+                L: int varTest = 0;
                 }
                 else
                 {

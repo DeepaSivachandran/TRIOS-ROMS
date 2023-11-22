@@ -972,7 +972,8 @@ namespace ROMS
                 }
                 DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
             }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            catch (Exception ex)
+            { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
@@ -1857,6 +1858,99 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     BtnExport_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int varSupplierId = 0;
+                if (txtSupplier.Text == "")
+                {
+                    varSupplierId = 0;
+                }
+                else
+                {
+                    DataService objDServ = new DataService();
+                    string varId_Supplier = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SPID FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') END AS SPID ");
+                    objDServ.CloseConnection();
+                    varSupplierId = Convert.ToInt32(varId_Supplier);
+                }
+                btnListPrint.Enabled = false;
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                RPTViewer.ReuseParameterValuesOnRefresh = true;
+                RPTViewer.RefreshReport();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                //objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrder.SelectedValue), 
+                //    "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "");
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleList.rpt");
+                objBillreport.SetParameterValue("paraSupplierid", Convert.ToInt32(varSupplierId));
+                objBillreport.SetParameterValue("paradayid", Convert.ToInt32(cmbDay.SelectedValue));
+                objBillreport.SetParameterValue("paraSupplierScheduleid", Convert.ToInt32(cmbOrderSchedule.SelectedValue));
+                //objBillreport.SetParameterValue("paraSupplierid", Convert.ToInt32(cmbStatus.SelectedValue));
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objBillreport.SetParameterValue("paraStatusName", cmbStatus.Text);
+                objBillreport.SetParameterValue("paraStatusId",Convert.ToInt32(cmbStatus.SelectedValue));
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                dgvSupplierScheduleList.ClearSelection();
+                btnListPrint.Enabled = true;
+                GC.Collect();
+            }
+        }
+
+        private void BtnPrint_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnPrint_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnPrint_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnPrint_Click(sender, e);
                 }
             }
             catch (Exception ex)
