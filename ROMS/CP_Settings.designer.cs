@@ -37,6 +37,20 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSettings = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransactionType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPrefix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSuffix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStartingNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNoofdigits = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmResetOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSampleTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcernId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransactionTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmResetOnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpVoucherSettings = new System.Windows.Forms.GroupBox();
             this.txtFyyear = new System.Windows.Forms.TextBox();
             this.lblFyyr = new System.Windows.Forms.Label();
@@ -59,20 +73,6 @@
             this.epSettings = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsSettings = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransactionType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPrefix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSuffix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStartingNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNoofdigits = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmResetOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSampleTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcernId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransactionTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmResetOnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.pnlSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSettings)).BeginInit();
             this.grpVoucherSettings.SuspendLayout();
@@ -199,6 +199,110 @@
             this.grdSettings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSettings_CellContentClick);
             this.grdSettings.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSettings_DataBindingComplete);
             // 
+            // clmsno
+            // 
+            this.clmsno.FillWeight = 80F;
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmsno.Width = 80;
+            // 
+            // clmConcern
+            // 
+            this.clmConcern.HeaderText = "Concern";
+            this.clmConcern.Name = "clmConcern";
+            this.clmConcern.ReadOnly = true;
+            this.clmConcern.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmTransactionType
+            // 
+            this.clmTransactionType.HeaderText = "Transaction Type";
+            this.clmTransactionType.Name = "clmTransactionType";
+            this.clmTransactionType.ReadOnly = true;
+            this.clmTransactionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmTransactionType.Width = 200;
+            // 
+            // clmPrefix
+            // 
+            this.clmPrefix.HeaderText = "Prefix";
+            this.clmPrefix.Name = "clmPrefix";
+            this.clmPrefix.ReadOnly = true;
+            this.clmPrefix.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmSuffix
+            // 
+            this.clmSuffix.HeaderText = "Suffix";
+            this.clmSuffix.Name = "clmSuffix";
+            this.clmSuffix.ReadOnly = true;
+            this.clmSuffix.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmStartingNo
+            // 
+            this.clmStartingNo.HeaderText = "Starting No";
+            this.clmStartingNo.Name = "clmStartingNo";
+            this.clmStartingNo.ReadOnly = true;
+            this.clmStartingNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmNoofdigits
+            // 
+            this.clmNoofdigits.HeaderText = "No.of Digits";
+            this.clmNoofdigits.Name = "clmNoofdigits";
+            this.clmNoofdigits.ReadOnly = true;
+            this.clmNoofdigits.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmResetOn
+            // 
+            this.clmResetOn.HeaderText = "Reset On";
+            this.clmResetOn.Name = "clmResetOn";
+            this.clmResetOn.ReadOnly = true;
+            this.clmResetOn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmSampleTransactionNo
+            // 
+            this.clmSampleTransactionNo.HeaderText = "Sample Transaction No";
+            this.clmSampleTransactionNo.Name = "clmSampleTransactionNo";
+            this.clmSampleTransactionNo.ReadOnly = true;
+            this.clmSampleTransactionNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmSampleTransactionNo.Width = 150;
+            // 
+            // clmConcernId
+            // 
+            this.clmConcernId.HeaderText = "Concern ID";
+            this.clmConcernId.Name = "clmConcernId";
+            this.clmConcernId.ReadOnly = true;
+            this.clmConcernId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmTransactionTypeID
+            // 
+            this.clmTransactionTypeID.HeaderText = "Transaction Type ID";
+            this.clmTransactionTypeID.Name = "clmTransactionTypeID";
+            this.clmTransactionTypeID.ReadOnly = true;
+            this.clmTransactionTypeID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmResetOnId
+            // 
+            this.clmResetOnId.HeaderText = "Reset On ID";
+            this.clmResetOnId.Name = "clmResetOnId";
+            this.clmResetOnId.ReadOnly = true;
+            this.clmResetOnId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.Visible = false;
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.HeaderText = "Edit";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.ReadOnly = true;
+            // 
             // grpVoucherSettings
             // 
             this.grpVoucherSettings.BackColor = System.Drawing.Color.White;
@@ -280,7 +384,7 @@
             this.btnAdd.Location = new System.Drawing.Point(708, 46);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 27);
+            this.btnAdd.Size = new System.Drawing.Size(27, 27);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -468,110 +572,6 @@
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(119, 22);
             this.tspHeader.Text = "Voucher Settings";
-            // 
-            // clmsno
-            // 
-            this.clmsno.FillWeight = 80F;
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 80;
-            // 
-            // clmConcern
-            // 
-            this.clmConcern.HeaderText = "Concern";
-            this.clmConcern.Name = "clmConcern";
-            this.clmConcern.ReadOnly = true;
-            this.clmConcern.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmTransactionType
-            // 
-            this.clmTransactionType.HeaderText = "Transaction Type";
-            this.clmTransactionType.Name = "clmTransactionType";
-            this.clmTransactionType.ReadOnly = true;
-            this.clmTransactionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmTransactionType.Width = 200;
-            // 
-            // clmPrefix
-            // 
-            this.clmPrefix.HeaderText = "Prefix";
-            this.clmPrefix.Name = "clmPrefix";
-            this.clmPrefix.ReadOnly = true;
-            this.clmPrefix.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmSuffix
-            // 
-            this.clmSuffix.HeaderText = "Suffix";
-            this.clmSuffix.Name = "clmSuffix";
-            this.clmSuffix.ReadOnly = true;
-            this.clmSuffix.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmStartingNo
-            // 
-            this.clmStartingNo.HeaderText = "Starting No";
-            this.clmStartingNo.Name = "clmStartingNo";
-            this.clmStartingNo.ReadOnly = true;
-            this.clmStartingNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmNoofdigits
-            // 
-            this.clmNoofdigits.HeaderText = "No.of Digits";
-            this.clmNoofdigits.Name = "clmNoofdigits";
-            this.clmNoofdigits.ReadOnly = true;
-            this.clmNoofdigits.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmResetOn
-            // 
-            this.clmResetOn.HeaderText = "Reset On";
-            this.clmResetOn.Name = "clmResetOn";
-            this.clmResetOn.ReadOnly = true;
-            this.clmResetOn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmSampleTransactionNo
-            // 
-            this.clmSampleTransactionNo.HeaderText = "Sample Transaction No";
-            this.clmSampleTransactionNo.Name = "clmSampleTransactionNo";
-            this.clmSampleTransactionNo.ReadOnly = true;
-            this.clmSampleTransactionNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmSampleTransactionNo.Width = 150;
-            // 
-            // clmConcernId
-            // 
-            this.clmConcernId.HeaderText = "Concern ID";
-            this.clmConcernId.Name = "clmConcernId";
-            this.clmConcernId.ReadOnly = true;
-            this.clmConcernId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmTransactionTypeID
-            // 
-            this.clmTransactionTypeID.HeaderText = "Transaction Type ID";
-            this.clmTransactionTypeID.Name = "clmTransactionTypeID";
-            this.clmTransactionTypeID.ReadOnly = true;
-            this.clmTransactionTypeID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmResetOnId
-            // 
-            this.clmResetOnId.HeaderText = "Reset On ID";
-            this.clmResetOnId.Name = "clmResetOnId";
-            this.clmResetOnId.ReadOnly = true;
-            this.clmResetOnId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.Visible = false;
-            // 
-            // clmEdit
-            // 
-            this.clmEdit.HeaderText = "Edit";
-            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmEdit.Name = "clmEdit";
-            this.clmEdit.ReadOnly = true;
             // 
             // CP_Settings
             // 
