@@ -2352,8 +2352,7 @@ namespace ROMS
             }
             finally
             {
-                btnExport.Enabled = true;
-                btnExport.Focus();
+                btnExport.Enabled = true; 
             }
         }
 
@@ -2365,8 +2364,7 @@ namespace ROMS
             }
             finally
             {
-                btnExport.Enabled = true;
-                btnExport.Focus();
+                btnExport.Enabled = true; 
             }
         }
 
@@ -2378,8 +2376,7 @@ namespace ROMS
             }
             finally
             {
-                btnExport.Enabled = true;
-                btnExport.Focus();
+                btnExport.Enabled = true; 
             }
         }
     }
