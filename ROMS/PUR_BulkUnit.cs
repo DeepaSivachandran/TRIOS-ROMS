@@ -273,9 +273,10 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     varCloseFlag = 1;
+                    MainForm.objPUR_PurchaseOrder.varcmbunitid = Convert.ToInt32(varvalue[2]);
                     udfnclose();
-                    MainForm.objCP_Itemlist.udfnDropdownbind();
-                    MainForm.objCP_Itemlist.udfnList();
+                    //MainForm.objCP_Itemlist.udfnDropdownbind();
+                    //MainForm.objCP_Itemlist.udfnList();
                 }
                 else
                 {
@@ -324,6 +325,7 @@ namespace ROMS
                         {
                             cmbUnit.SelectedValue = objDT.Tables[1].Rows[0]["PR_Bulk_UTID"].ToString();
                             txtUpp.Text = objDT.Tables[1].Rows[0]["PR_UPP"].ToString();
+                            txtUnittype.Text =Convert.ToString(objDT.Tables[1].Rows[0]["UT_Name"]);
                         }
                     }
                 }

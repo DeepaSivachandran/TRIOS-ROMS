@@ -1353,7 +1353,7 @@ namespace ROMS
                             if (cbSupplier.Checked == true)
                             {
                                 grdProDetails.Columns["Supplier"].Width = 300;
-                                grdProDetails.Columns["GSTIN"].Width = 150;
+                                grdProDetails.Columns["GSTIN"].Visible = false;
                             }
                             if (cbPoNo.Checked == true)
                             {
@@ -1703,7 +1703,7 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
                         SPDataService objspdservice = new SPDataService();
                         result = "";
-                        result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", objPurchaseOrder, "", "", "", "", 0, "");
+                        result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", objPurchaseOrder, "", "", "", "", 0, "",0);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
@@ -2002,7 +2002,7 @@ namespace ROMS
                     }
                     else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "5")
                     {
-                        cell.Style.BackColor = Color.RoyalBlue;
+                        cell.Style.BackColor = Color.SteelBlue;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
                 }
@@ -2257,7 +2257,25 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "PO Product List";
+                    if (cbPoNo.Checked == true && cbSupplier.Checked == true)
+                    {
+                        ExcelSheet.Cells[1, 1].Value = "PO Product List";
+                    }
+                    else
+                    {
+                        if (cbPoNo.Checked == true )
+                        {
+                            ExcelSheet.Cells[1, 1].Value = "PO Product List - PO No. Wise";
+                        }
+                        if (cbSupplier.Checked == true)
+                        {
+                            ExcelSheet.Cells[1, 1].Value = "PO Product List - Supplier Wise";
+                        }
+                        if (cbPoNo.Checked == false && cbSupplier.Checked == false)
+                        {
+                            ExcelSheet.Cells[1, 1].Value = "PO Product List";
+                        }
+                    }
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -2334,8 +2352,7 @@ namespace ROMS
             }
             finally
             {
-                btnExport.Enabled = true;
-                btnExport.Focus();
+                btnExport.Enabled = true; 
             }
         }
 
@@ -2347,8 +2364,7 @@ namespace ROMS
             }
             finally
             {
-                btnExport.Enabled = true;
-                btnExport.Focus();
+                btnExport.Enabled = true; 
             }
         }
 
@@ -2360,8 +2376,7 @@ namespace ROMS
             }
             finally
             {
-                btnExport.Enabled = true;
-                btnExport.Focus();
+                btnExport.Enabled = true; 
             }
         }
     }
