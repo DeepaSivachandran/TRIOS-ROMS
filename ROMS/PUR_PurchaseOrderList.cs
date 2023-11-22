@@ -1353,7 +1353,7 @@ namespace ROMS
                             if (cbSupplier.Checked == true)
                             {
                                 grdProDetails.Columns["Supplier"].Width = 300;
-                                grdProDetails.Columns["GSTIN"].Width = 150;
+                                grdProDetails.Columns["GSTIN"].Visible = false;
                             }
                             if (cbPoNo.Checked == true)
                             {
@@ -2257,7 +2257,25 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "PO Product List";
+                    if (cbPoNo.Checked == true && cbSupplier.Checked == true)
+                    {
+                        ExcelSheet.Cells[1, 1].Value = "PO Product List";
+                    }
+                    else
+                    {
+                        if (cbPoNo.Checked == true )
+                        {
+                            ExcelSheet.Cells[1, 1].Value = "PO Product List - PO No. Wise";
+                        }
+                        if (cbSupplier.Checked == true)
+                        {
+                            ExcelSheet.Cells[1, 1].Value = "PO Product List - Supplier Wise";
+                        }
+                        if (cbPoNo.Checked == false && cbSupplier.Checked == false)
+                        {
+                            ExcelSheet.Cells[1, 1].Value = "PO Product List";
+                        }
+                    }
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;

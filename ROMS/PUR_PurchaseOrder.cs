@@ -908,8 +908,7 @@ namespace ROMS
                         varcount++;
                         grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.BackColor = Color.LightPink;
                         grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.ForeColor = Color.Black;
-                    }
-  
+                    } 
                     //else
                     //{
                     //    orderqty = Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value);
@@ -947,7 +946,6 @@ namespace ROMS
                         }
                     }
                 }
-                 
             }
             catch (Exception ex)
             {
