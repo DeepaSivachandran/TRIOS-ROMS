@@ -533,7 +533,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void TxtSupplier_Enter(object sender, EventArgs e)
@@ -1219,6 +1218,22 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnView_Click(sender, e);
                 }
             }
             catch (Exception ex)

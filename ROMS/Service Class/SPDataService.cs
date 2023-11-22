@@ -2177,7 +2177,75 @@ namespace ROMS
             }
             return ds;
         }
+        // added by kavitha on 08/11/2023 for Goods Outward Save
+        public string udfnGoodsOutward(TRNS_GoodsOutward objTRNS_GoodsOutward)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_GoodsOutward]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNS_GoodsOutward.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaGOId", objTRNS_GoodsOutward.ParaGOId);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRNS_GoodsOutward.ParaCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraOutwardDate", objTRNS_GoodsOutward.paraOutwardDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNS_GoodsOutward.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferType", objTRNS_GoodsOutward.paraTransferType);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRNS_GoodsOutward.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRNS_GoodsOutward.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", objTRNS_GoodsOutward.paraStockTransfer);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_GoodsOutward.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
 
+        //Created By :-Kavitha ; Created On :-09/11/2023
+        public DataSet udfnGOList(int paraviewType, int paraGOID, int paraConcern, string paraFromDate, string paraToDate, int paraSLID, int paraPRID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_GoodsOutward]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraGOID", paraGOID);
+                varSqlCommand.Parameters.AddWithValue("@paraConcern", paraConcern);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }
