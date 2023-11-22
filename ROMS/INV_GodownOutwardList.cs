@@ -509,11 +509,10 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
                 udfnList();
                 dtpOutwardDate.MaxDate = DateTime.Now;
                 dtpOutwardDate2.MaxDate = DateTime.Now;
-                cmbConcern.SelectedValue = 0;
-
             }
             catch (Exception ex)
             {

@@ -611,7 +611,7 @@
             this.txtOutwardQuantity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtOutwardQuantity.Size = new System.Drawing.Size(104, 27);
             this.txtOutwardQuantity.TabIndex = 5;
-            this.txtOutwardQuantity.TextChanged += new System.EventHandler(this.TxtOutwardQuantity_TextChanged);
+            //this.txtOutwardQuantity.TextChanged += new System.EventHandler(this.TxtOutwardQuantity_TextChanged);
             this.txtOutwardQuantity.Enter += new System.EventHandler(this.TxtOutwardQuantity_Enter);
             this.txtOutwardQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtOutwardQuantity_KeyDown);
             this.txtOutwardQuantity.Leave += new System.EventHandler(this.TxtOutwardQuantity_Leave);
