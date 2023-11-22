@@ -634,6 +634,7 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
             }
             catch (Exception ex)
             {
@@ -982,11 +983,6 @@ namespace ROMS
 
         }
 
-        private void TxtOutwardQuantity_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void DGV_inward_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1005,8 +1001,12 @@ namespace ROMS
                     objDServ.CloseConnection();
                     //MessageBox.Show("Please Enter Valid Outward Quantity", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                else
+                {
+                    DGV_inward.CurrentRow.Cells["clmOutward"].Style.BackColor = Color.PaleGreen;
 
-                    object varEditQty = DGV_inward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                }
+                object varEditQty = DGV_inward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     // Update the same column value in the DataTable
                     dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
                 
@@ -1112,8 +1112,8 @@ namespace ROMS
                 //    object cellValue = DGV_inward[stockQtyColumnIndex, stockQtyRowIndex].Value;
                 //    MessageBox.Show(cellValue);
                 //}
-                int StockcellValue = Convert.ToInt32(DGV_inward.CurrentRow.Cells["clmQty"].Value);
-                int OutwardcellValue = Convert.ToInt32(DGV_inward.CurrentRow.Cells["clmOutward"].Value);
+                //int StockcellValue = Convert.ToInt32(DGV_inward.CurrentRow.Cells["clmQty"].Value);
+                //int OutwardcellValue = Convert.ToInt32(DGV_inward.CurrentRow.Cells["clmOutward"].Value);
 
                 //if (Convert.ToInt32(OutwardcellValue) > Convert.ToInt32(StockcellValue))
                 //{
