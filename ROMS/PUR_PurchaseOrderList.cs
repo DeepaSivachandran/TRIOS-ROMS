@@ -249,7 +249,9 @@ namespace ROMS
         {
 
             try
-            {
+            { 
+                RPTViewer.Visible = false;
+                RPTViewer.SendToBack();
                 if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
                 {
                     grpProFilter.Visible = false;
@@ -2377,6 +2379,87 @@ namespace ROMS
             finally
             {
                 btnExport.Enabled = true; 
+            }
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                if (txtSupplier.Text == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedleCode.Text = "0";
+                }
+                int varsupplier = 0, varpono = 0;
+                if (cbPoNo.Checked == true)
+                {
+                    varpono = 1;
+                }
+                if (cbSupplier.Checked == true)
+                {
+                    varsupplier = 1;
+                }
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), "0");
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        btnPrint.Enabled = false;
+                        RPTViewer.Visible = true;
+                        RPTViewer.BringToFront();
+                        RPTViewer.ReuseParameterValuesOnRefresh = true;
+                        RPTViewer.RefreshReport();
+                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        int varlanguage = 0; string varlblsupplierprint = "0";
+
+                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
+                        objBillreport.SetParameterValue("@paracompanycode", Convert.ToInt32(cmbConcernPrint.SelectedValue));
+                        objBillreport.SetParameterValue("@paraOrderID", Convert.ToInt32(cmbOrder.SelectedValue));
+                        objBillreport.SetParameterValue("@parascheduleid", Convert.ToInt32(cmbOrderSchedule.SelectedValue));
+                        objBillreport.SetParameterValue("@parasupplierid", varlblsupplierprint);
+                        objBillreport.SetParameterValue("@paraProductType", varlanguage);
+                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName); 
+                        objValidation.CrySqlConnection(objBillreport);
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    } 
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnPrint.Enabled = true;
             }
         }
     }
