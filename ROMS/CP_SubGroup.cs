@@ -1121,7 +1121,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     if (lvLocation.Items.Count == 0 || txtLocation.Text == "")
                     {
@@ -1227,7 +1227,7 @@ namespace ROMS
             try
             {
                 udfnLocationEvent();
-                grdRackList.Focus();
+                txtRack.Focus();
             }
             catch (Exception ex)
             {
@@ -1243,7 +1243,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnLocationEvent();
-                    grdRackList.Focus();
+                    txtRack.Focus();
                 }
             }
             catch (Exception ex)

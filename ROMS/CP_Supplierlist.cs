@@ -77,7 +77,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN(0, 1) AND STSID<>-1", "STSID, STS_Name", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("(SELECT STSID,STS_Name,STS_ModuleID FROM DEF_Status WHERE STS_ModuleID IN(0, 1) AND STSID<>-1 UNION ALL  SELECT -2, 'Not defined',1)AS DIV", "1=1", "STSID, STS_Name", cmbStatus, "", "STS_Name", "STSID");
                 this.ActiveControl = txtSupplier;
                 objDataBind = null;
                 cmbDay.SelectedValue = 0;

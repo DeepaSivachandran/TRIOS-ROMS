@@ -938,10 +938,6 @@ namespace ROMS
                         this.Close();
                         MainForm.objCP_Supplierlist.Show();
                         MainForm.objCP_Supplierlist.udfnList();
-                        if(PoScheduleFlag == 1)
-                        {
-                            MainForm.objPUR_SupplierScheduleList.udfnList();
-                        }
                     }
                     else
                     { btnMappingsave.Focus(); }
@@ -958,6 +954,11 @@ namespace ROMS
                         }
                     }
                     MainForm.objCP_Supplierlist.udfnList();
+                }
+                if (PoScheduleFlag == 1)
+                {
+                    MainForm.objPUR_SupplierScheduleList.udfnList();
+                    PoScheduleFlag = 0;
                 }
             }
             catch (Exception ex)

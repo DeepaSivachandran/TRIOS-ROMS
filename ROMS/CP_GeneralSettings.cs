@@ -87,7 +87,6 @@ namespace ROMS
         {
             try
             {
-               
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnGeneralSettingList(0);
                 objdserv.CloseConnection();
@@ -114,14 +113,12 @@ namespace ROMS
                             grdOrderType.Columns["Days"].Width = 50;
                             grdOrderType.Columns["Order Type"].ReadOnly = true;
                         }
-                       // TransactionID
                         if (objDs.Tables[2].Rows.Count != 0)
                         {
                             for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
                             {
                                 grdReport.Rows.Add(Convert.ToString(objDs.Tables[2].Rows[i]["Transaction"]),Convert.ToString(objDs.Tables[2].Rows[i]["Report Text"]), objDs.Tables[2].Rows[i]["TransactionID"] );
                             }
-                            grdReport.Columns["TransactionID"].Visible = false;   
                         }
                     }
                 }
@@ -449,7 +446,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnUpdate.Focus();
+                    cmbTransactionType.Focus();
                 }
             }
             catch (Exception ex)
@@ -746,6 +743,8 @@ namespace ROMS
                 tpGRNQty.Active = false;
                 tpInvoiceEditDays.Active = false;
                 tpReturnAlertDays.Active = false;
+                tpTransactionType.Active = false;
+                tpReportText.Active = false;
             }
             catch (Exception ex)
             {
@@ -1003,6 +1002,18 @@ namespace ROMS
                 {
                     BtnAdd_Click(sender, e);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdReport_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdReport.ClearSelection();
             }
             catch (Exception ex)
             {

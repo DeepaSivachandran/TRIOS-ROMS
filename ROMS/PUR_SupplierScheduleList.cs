@@ -26,11 +26,12 @@ namespace ROMS
         {
             try
             {
-
+                
                 MainForm.objCP_Supplier = new CP_Supplier();
                 MainForm.objCP_Supplier.MdiParent = this.ParentForm;
-                MainForm.objCP_Supplier.Show();
                 MainForm.objCP_Supplier.PoScheduleFlag = 1;
+                MainForm.objCP_Supplier.Show();
+                
             }
             catch (Exception ex)
             {
@@ -303,7 +304,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbOrder.Focus();
                 }
             }
             catch (Exception ex)
