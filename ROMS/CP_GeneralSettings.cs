@@ -87,6 +87,7 @@ namespace ROMS
         {
             try
             {
+                
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnGeneralSettingList(0);
                 objdserv.CloseConnection();
@@ -152,7 +153,7 @@ namespace ROMS
                 objGeneralSettingsRPT.Columns.Add("GSRPT_Text", typeof(string));
                 for (int i = 0; i < grdReport.Rows.Count; i++)
                 {
-                    objGeneralSettingsRPT.Rows.Add(varSettingID, Convert.ToInt32(grdReport.Rows[i].Cells["TransactionID"].Value), Convert.ToString(grdReport.Rows[i].Cells["Report Text"].Value).Trim());
+                    objGeneralSettingsRPT.Rows.Add(varSettingID, Convert.ToInt32(grdReport.Rows[i].Cells["clmTransactionID"].Value), Convert.ToString(grdReport.Rows[i].Cells["clmReportText"].Value).Trim());
                 }
                 for (int i=0;i<grdOrderType.Rows.Count;i++)
                 {
@@ -170,6 +171,7 @@ namespace ROMS
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnUpdate.Focus();
                 }
+                grdReport.Rows.Clear();
                 udfnList();
             }
             catch (Exception ex)

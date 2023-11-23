@@ -3321,7 +3321,7 @@ namespace ROMS
                         if (varSupplierStatusID == 2)
                         {
                             gpSupplier.Enabled = false;
-                            grdSupplierList.Columns["clmedit"].ReadOnly = true;
+                            grdSupplierList.Columns["clmedit"].Visible = false;
                             grddays.Enabled = false;
                         }
                     }
