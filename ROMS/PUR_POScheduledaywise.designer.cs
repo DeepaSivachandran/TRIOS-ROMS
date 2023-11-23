@@ -38,23 +38,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_POScheduledaywise));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpPOScheduledaywise = new System.Windows.Forms.GroupBox();
-            this.grdHeaderview = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdPOSchedule = new System.Windows.Forms.DataGridView();
             this.pnlLanguage = new System.Windows.Forms.Panel();
             this.rbEnglish = new System.Windows.Forms.RadioButton();
             this.rbTamil = new System.Windows.Forms.RadioButton();
             this.lblPrintLanguage = new System.Windows.Forms.Label();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn5 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn6 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn7 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn8 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnPrintdaywise = new System.Windows.Forms.Button();
+            this.grdHeaderview = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdPOSchedule = new System.Windows.Forms.DataGridView();
             this.clmPrint1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint3 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -63,11 +55,19 @@
             this.clmPrint6 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint7 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint8 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn5 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn6 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn7 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn8 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.grpPOScheduledaywise.SuspendLayout();
+            this.pnlLanguage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPOSchedule)).BeginInit();
-            this.pnlLanguage.SuspendLayout();
             this.SuspendLayout();
             // 
             // errUnit
@@ -86,6 +86,69 @@
             this.grpPOScheduledaywise.Size = new System.Drawing.Size(1273, 341);
             this.grpPOScheduledaywise.TabIndex = 0;
             this.grpPOScheduledaywise.TabStop = false;
+            // 
+            // pnlLanguage
+            // 
+            this.pnlLanguage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlLanguage.Controls.Add(this.rbEnglish);
+            this.pnlLanguage.Controls.Add(this.rbTamil);
+            this.pnlLanguage.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlLanguage.Location = new System.Drawing.Point(104, 21);
+            this.pnlLanguage.Name = "pnlLanguage";
+            this.pnlLanguage.Size = new System.Drawing.Size(117, 27);
+            this.pnlLanguage.TabIndex = 1111181;
+            // 
+            // rbEnglish
+            // 
+            this.rbEnglish.AutoSize = true;
+            this.rbEnglish.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbEnglish.Location = new System.Drawing.Point(56, 1);
+            this.rbEnglish.Name = "rbEnglish";
+            this.rbEnglish.Size = new System.Drawing.Size(60, 21);
+            this.rbEnglish.TabIndex = 8;
+            this.rbEnglish.Text = "English";
+            this.rbEnglish.UseVisualStyleBackColor = true;
+            // 
+            // rbTamil
+            // 
+            this.rbTamil.AutoSize = true;
+            this.rbTamil.Checked = true;
+            this.rbTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTamil.Location = new System.Drawing.Point(4, 3);
+            this.rbTamil.Name = "rbTamil";
+            this.rbTamil.Size = new System.Drawing.Size(51, 19);
+            this.rbTamil.TabIndex = 7;
+            this.rbTamil.TabStop = true;
+            this.rbTamil.Text = "தமிழ்";
+            this.rbTamil.UseVisualStyleBackColor = true;
+            // 
+            // lblPrintLanguage
+            // 
+            this.lblPrintLanguage.AutoSize = true;
+            this.lblPrintLanguage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrintLanguage.Location = new System.Drawing.Point(10, 24);
+            this.lblPrintLanguage.Name = "lblPrintLanguage";
+            this.lblPrintLanguage.Size = new System.Drawing.Size(88, 20);
+            this.lblPrintLanguage.TabIndex = 1111182;
+            this.lblPrintLanguage.Text = "Print language";
+            // 
+            // btnPrintdaywise
+            // 
+            this.btnPrintdaywise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintdaywise.Image = global::ROMS.Properties.Resources.print;
+            this.btnPrintdaywise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintdaywise.Location = new System.Drawing.Point(1199, 29);
+            this.btnPrintdaywise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnPrintdaywise.Name = "btnPrintdaywise";
+            this.btnPrintdaywise.Size = new System.Drawing.Size(67, 33);
+            this.btnPrintdaywise.TabIndex = 1111180;
+            this.btnPrintdaywise.Text = "Print";
+            this.btnPrintdaywise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrintdaywise.UseVisualStyleBackColor = true;
+            this.btnPrintdaywise.Visible = false;
+            this.btnPrintdaywise.Click += new System.EventHandler(this.BtnPrintdaywise_Click);
+            this.btnPrintdaywise.Enter += new System.EventHandler(this.BtnPrintdaywise_Enter);
+            this.btnPrintdaywise.Leave += new System.EventHandler(this.BtnPrintdaywise_Leave);
             // 
             // grdHeaderview
             // 
@@ -196,125 +259,6 @@
             this.grdPOSchedule.TabIndex = 1111178;
             this.grdPOSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPOSchedule_CellContentClick);
             // 
-            // pnlLanguage
-            // 
-            this.pnlLanguage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlLanguage.Controls.Add(this.rbEnglish);
-            this.pnlLanguage.Controls.Add(this.rbTamil);
-            this.pnlLanguage.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlLanguage.Location = new System.Drawing.Point(104, 21);
-            this.pnlLanguage.Name = "pnlLanguage";
-            this.pnlLanguage.Size = new System.Drawing.Size(117, 27);
-            this.pnlLanguage.TabIndex = 1111181;
-            // 
-            // rbEnglish
-            // 
-            this.rbEnglish.AutoSize = true;
-            this.rbEnglish.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbEnglish.Location = new System.Drawing.Point(56, 1);
-            this.rbEnglish.Name = "rbEnglish";
-            this.rbEnglish.Size = new System.Drawing.Size(60, 21);
-            this.rbEnglish.TabIndex = 8;
-            this.rbEnglish.Text = "English";
-            this.rbEnglish.UseVisualStyleBackColor = true;
-            // 
-            // rbTamil
-            // 
-            this.rbTamil.AutoSize = true;
-            this.rbTamil.Checked = true;
-            this.rbTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbTamil.Location = new System.Drawing.Point(4, 3);
-            this.rbTamil.Name = "rbTamil";
-            this.rbTamil.Size = new System.Drawing.Size(51, 19);
-            this.rbTamil.TabIndex = 7;
-            this.rbTamil.TabStop = true;
-            this.rbTamil.Text = "தமிழ்";
-            this.rbTamil.UseVisualStyleBackColor = true;
-            // 
-            // lblPrintLanguage
-            // 
-            this.lblPrintLanguage.AutoSize = true;
-            this.lblPrintLanguage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrintLanguage.Location = new System.Drawing.Point(10, 24);
-            this.lblPrintLanguage.Name = "lblPrintLanguage";
-            this.lblPrintLanguage.Size = new System.Drawing.Size(88, 20);
-            this.lblPrintLanguage.TabIndex = 1111182;
-            this.lblPrintLanguage.Text = "Print language";
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Pro.";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.print16;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 30;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "Sup.";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.print;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.Width = 30;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.HeaderText = "Pro.";
-            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.print;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            this.dataGridViewImageColumn3.Width = 30;
-            // 
-            // dataGridViewImageColumn4
-            // 
-            this.dataGridViewImageColumn4.HeaderText = "Sup.";
-            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.print;
-            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
-            this.dataGridViewImageColumn4.Width = 30;
-            // 
-            // dataGridViewImageColumn5
-            // 
-            this.dataGridViewImageColumn5.HeaderText = "Pro.";
-            this.dataGridViewImageColumn5.Image = global::ROMS.Properties.Resources.print;
-            this.dataGridViewImageColumn5.Name = "dataGridViewImageColumn5";
-            this.dataGridViewImageColumn5.Width = 30;
-            // 
-            // dataGridViewImageColumn6
-            // 
-            this.dataGridViewImageColumn6.HeaderText = "Sup.";
-            this.dataGridViewImageColumn6.Image = global::ROMS.Properties.Resources.print;
-            this.dataGridViewImageColumn6.Name = "dataGridViewImageColumn6";
-            this.dataGridViewImageColumn6.Width = 30;
-            // 
-            // dataGridViewImageColumn7
-            // 
-            this.dataGridViewImageColumn7.HeaderText = "Pro.";
-            this.dataGridViewImageColumn7.Image = global::ROMS.Properties.Resources.print;
-            this.dataGridViewImageColumn7.Name = "dataGridViewImageColumn7";
-            this.dataGridViewImageColumn7.Width = 30;
-            // 
-            // dataGridViewImageColumn8
-            // 
-            this.dataGridViewImageColumn8.HeaderText = "Sup.";
-            this.dataGridViewImageColumn8.Image = global::ROMS.Properties.Resources.print;
-            this.dataGridViewImageColumn8.Name = "dataGridViewImageColumn8";
-            this.dataGridViewImageColumn8.Width = 30;
-            // 
-            // btnPrintdaywise
-            // 
-            this.btnPrintdaywise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintdaywise.Image = global::ROMS.Properties.Resources.print;
-            this.btnPrintdaywise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintdaywise.Location = new System.Drawing.Point(1199, 29);
-            this.btnPrintdaywise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnPrintdaywise.Name = "btnPrintdaywise";
-            this.btnPrintdaywise.Size = new System.Drawing.Size(67, 33);
-            this.btnPrintdaywise.TabIndex = 1111180;
-            this.btnPrintdaywise.Text = "Print";
-            this.btnPrintdaywise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrintdaywise.UseVisualStyleBackColor = true;
-            this.btnPrintdaywise.Visible = false;
-            this.btnPrintdaywise.Click += new System.EventHandler(this.BtnPrintdaywise_Click);
-            this.btnPrintdaywise.Enter += new System.EventHandler(this.BtnPrintdaywise_Enter);
-            this.btnPrintdaywise.Leave += new System.EventHandler(this.BtnPrintdaywise_Leave);
-            // 
             // clmPrint1
             // 
             this.clmPrint1.HeaderText = "";
@@ -379,6 +323,62 @@
             this.clmPrint8.ReadOnly = true;
             this.clmPrint8.Width = 30;
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Pro.";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.print16;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 30;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Sup.";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Width = 30;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "Pro.";
+            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            this.dataGridViewImageColumn3.Width = 30;
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "Sup.";
+            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.Width = 30;
+            // 
+            // dataGridViewImageColumn5
+            // 
+            this.dataGridViewImageColumn5.HeaderText = "Pro.";
+            this.dataGridViewImageColumn5.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn5.Name = "dataGridViewImageColumn5";
+            this.dataGridViewImageColumn5.Width = 30;
+            // 
+            // dataGridViewImageColumn6
+            // 
+            this.dataGridViewImageColumn6.HeaderText = "Sup.";
+            this.dataGridViewImageColumn6.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn6.Name = "dataGridViewImageColumn6";
+            this.dataGridViewImageColumn6.Width = 30;
+            // 
+            // dataGridViewImageColumn7
+            // 
+            this.dataGridViewImageColumn7.HeaderText = "Pro.";
+            this.dataGridViewImageColumn7.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn7.Name = "dataGridViewImageColumn7";
+            this.dataGridViewImageColumn7.Width = 30;
+            // 
+            // dataGridViewImageColumn8
+            // 
+            this.dataGridViewImageColumn8.HeaderText = "Sup.";
+            this.dataGridViewImageColumn8.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn8.Name = "dataGridViewImageColumn8";
+            this.dataGridViewImageColumn8.Width = 30;
+            // 
             // PUR_POScheduledaywise
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -395,16 +395,16 @@
             this.MinimizeBox = false;
             this.Name = "PUR_POScheduledaywise";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Day Wise Suppliers in PO Schedule";
+            this.Text = "Products & Supplier List";
             this.Load += new System.EventHandler(this.PUR_POScheduledaywise_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_POScheduledaywise_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.grpPOScheduledaywise.ResumeLayout(false);
             this.grpPOScheduledaywise.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPOSchedule)).EndInit();
             this.pnlLanguage.ResumeLayout(false);
             this.pnlLanguage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPOSchedule)).EndInit();
             this.ResumeLayout(false);
 
         }
