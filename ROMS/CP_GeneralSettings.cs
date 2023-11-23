@@ -121,6 +121,7 @@ namespace ROMS
                             grdReport.Columns["Transaction"].Width = 200;
                             grdReport.Columns["Report Text"].Width = 400;
                         }
+                        grdReport.Columns["clmRemove"].DisplayIndex = 3;
                     }
                 }
             }
@@ -966,5 +967,33 @@ namespace ROMS
             }
         }
 
+        private void GrdReport_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdReport.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmRemove":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdReport.Rows.RemoveAt(this.grdReport.SelectedRows[0].Index);
+                                //for (int i = 0; i < grdReport.RowCount; i++)
+                                //{
+                                //    grdReport.Rows[i].Cells["clmsno"].Value = i + 1;
+                                //}
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

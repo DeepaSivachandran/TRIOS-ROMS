@@ -5793,22 +5793,25 @@ namespace ROMS
                     tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
                     errorflag = 1;
                 }
-                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
+                if (btnAdd.Text == "Save")
                 {
-                    for (int i = 0; i < grddays.Rows.Count; i++)
+                    if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
                     {
-                        if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
+                        for (int i = 0; i < grddays.Rows.Count; i++)
                         {
-                            count = count + 1;
+                            if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
+                            {
+                                count = count + 1;
+                            }
                         }
-                    }
-                    if (count == 0)
-                    {
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(56);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        errorflag = 1;
+                        if (count == 0)
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(56);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            errorflag = 1;
+                        }
                     }
                 }
                 if (errorflag == 0)
@@ -5888,6 +5891,7 @@ namespace ROMS
                         foreach (DataGridViewRow row in grdSupplierList.Rows)
                         {
                             //if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value) && row.Cells[1].Value != null)
+                           
                             if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(varSLNO) && row.Cells[1].Value != null)
                             {
                                 //string gridValue1 = row.Cells[5].Value.ToString();
@@ -5900,7 +5904,7 @@ namespace ROMS
                                 if (string.Equals(gridValue2, txtScheduleName.Text.Trim().ToUpper(), StringComparison.OrdinalIgnoreCase))
                                 {
                                     varflag = 2;
-                                }
+                                }    
                             }
                         }
                     }
