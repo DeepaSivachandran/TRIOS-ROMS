@@ -103,24 +103,25 @@ namespace ROMS
                                 grdPOSchedule.Columns["clmPrint1"].DisplayIndex = grdPOSchedule.Columns.Count - 16;
                                 grdPOSchedule.Columns["clmPrint1"].Width = 30;
                                 grdPOSchedule.Columns["S.No."].Width = 50;
-                                grdPOSchedule.Columns["Order Day"].Width = 100;
+                               grdPOSchedule.Columns["Order Day"].Width = 100;
                                 //grdPOSchedule.Columns["clmPrint1"].DisplayIndex = 4;
                                 //grdPOSchedule.Columns["clmPrint2"].DisplayIndex = 5;
                                 //grdPOSchedule.Columns["clmPrint3"].DisplayIndex = 8;
                                 //grdPOSchedule.Columns["clmPrint4"].DisplayIndex = 9;
                                 //grdPOSchedule.Columns["clmPrint5"].DisplayIndex = 12;
                                 //grdPOSchedule.Columns["clmPrint6"].DisplayIndex = 13;
-                                 grdPOSchedule.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                                grdPOSchedule.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPOSchedule.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPOSchedule.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPOSchedule.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPOSchedule.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPOSchedule.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPOSchedule.Columns[17].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns["Order Day"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                                grdPOSchedule.Columns[19].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[20].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdPOSchedule.Columns[18].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                //grdPOSchedule.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                //grdPOSchedule.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[17].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[16].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[15].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                         }
                         if (objDs.Tables[2].Rows.Count != 0)
@@ -249,10 +250,10 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
+                    int varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
                     switch (grdPOSchedule.Columns[e.ColumnIndex].Name)
                     {
                         case "clmPrint1": case "clmPrint3": case "clmPrint5": case "clmPrint7":
-                            int varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
                             string varHeader = "";
                             CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -281,6 +282,7 @@ namespace ROMS
                             objBillreport1.SetParameterValue("@paracompanycode", Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue));
                             objBillreport1.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport1.SetParameterValue("paraUserName", MainForm.pbUserName);
+                            objBillreport1.SetParameterValue("@pardayid", varDYID);
                             objValidation.CrySqlConnection(objBillreport1);
 
                             MainForm.objReportLoad = new ReportLoad();
