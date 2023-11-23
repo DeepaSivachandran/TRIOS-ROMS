@@ -25,6 +25,8 @@ namespace ROMS
         public int varGroupId = 0;
         public int varSubGroupId = 0,varSLNO = 0;
         public int varModifiedFlag = 0;
+        public int PoScheduleFlag = 0;
+        public int varSupplierStatusID = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -936,6 +938,10 @@ namespace ROMS
                         this.Close();
                         MainForm.objCP_Supplierlist.Show();
                         MainForm.objCP_Supplierlist.udfnList();
+                        if(PoScheduleFlag == 1)
+                        {
+                            MainForm.objPUR_SupplierScheduleList.udfnList();
+                        }
                     }
                     else
                     { btnMappingsave.Focus(); }
@@ -1209,7 +1215,16 @@ namespace ROMS
                                 cmbPolicyContent.SelectedValue = objDS.Tables[0].Rows[0]["MONTHID"].ToString();
                                 cmbSecondLevel.SelectedValue = objDS.Tables[0].Rows[0]["DAYOFMONTHID"].ToString();
                             }
-                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1")
+                            {
+                                rbActive.Checked = true;
+                                varSupplierStatusID = 1;
+                            }
+                            else
+                            {
+                                rbInactive.Checked = true;
+                                varSupplierStatusID = 2;
+                            }
 
                             btnSave.Text = "Update";
                             panelStatus.Enabled = true;
@@ -3300,6 +3315,15 @@ namespace ROMS
 
                 if (tcSupplier.SelectedIndex == 1)
                 {
+                    if (btnSave.Text == "Update")
+                    {
+                        if (varSupplierStatusID == 2)
+                        {
+                            gpSupplier.Enabled = false;
+                            grdSupplierList.Columns["clmedit"].ReadOnly = true;
+                            grddays.Enabled = false;
+                        }
+                    }
                     txtScheduleName.Focus();
 
                     txtScheduleName.SelectionStart = txtScheduleName.Text.Length;
@@ -4894,6 +4918,13 @@ namespace ROMS
                                         }
                                     }
                                 }
+                                if(objDS.Tables[0].Rows[0]["StatusId"].ToString() == "2")
+                                {
+                                    txtScheduleName.Enabled = false;
+                                    grpSalesmanDetails.Enabled = false;
+                                    grpOrderDetails.Enabled = false;
+                                    grddays.Enabled = false;
+                                }
                             }
                             break;
 
@@ -5793,22 +5824,25 @@ namespace ROMS
                     tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
                     errorflag = 1;
                 }
-                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
+                if (btnAdd.Text == "Save")
                 {
-                    for (int i = 0; i < grddays.Rows.Count; i++)
+                    if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
                     {
-                        if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
+                        for (int i = 0; i < grddays.Rows.Count; i++)
                         {
-                            count = count + 1;
+                            if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
+                            {
+                                count = count + 1;
+                            }
                         }
-                    }
-                    if (count == 0)
-                    {
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(56);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        errorflag = 1;
+                        if (count == 0)
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(56);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            errorflag = 1;
+                        }
                     }
                 }
                 if (errorflag == 0)
@@ -5888,6 +5922,7 @@ namespace ROMS
                         foreach (DataGridViewRow row in grdSupplierList.Rows)
                         {
                             //if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value) && row.Cells[1].Value != null)
+                           
                             if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(varSLNO) && row.Cells[1].Value != null)
                             {
                                 //string gridValue1 = row.Cells[5].Value.ToString();
@@ -5900,7 +5935,7 @@ namespace ROMS
                                 if (string.Equals(gridValue2, txtScheduleName.Text.Trim().ToUpper(), StringComparison.OrdinalIgnoreCase))
                                 {
                                     varflag = 2;
-                                }
+                                }    
                             }
                         }
                     }
@@ -6009,6 +6044,10 @@ namespace ROMS
                             udfnSaveGrdAdd();
                             udfnScheduleClear();
                             btnAdd.Text = "Save";
+                            txtScheduleName.Enabled = true;
+                            grpSalesmanDetails.Enabled = true;
+                            grpOrderDetails.Enabled = true;
+                            grddays.Enabled = true;
                             rbScheduleActive.Checked = true;
                             pnlScheduleStatus.Enabled = false;
                             cmbOrderType.SelectedValue = 144;

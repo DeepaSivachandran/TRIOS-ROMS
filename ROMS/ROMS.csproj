@@ -1895,6 +1895,7 @@
     <None Include="Resources\add - left.png" />
     <None Include="Resources\clipboard.png" />
     <Content Include="Resources\Issue.png" />
+    <None Include="Resources\print16.png" />
     <Content Include="Resources\RPT_PUR_SupplierProductList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>

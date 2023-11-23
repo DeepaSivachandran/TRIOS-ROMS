@@ -30,6 +30,7 @@ namespace ROMS
                 MainForm.objCP_Supplier = new CP_Supplier();
                 MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                 MainForm.objCP_Supplier.Show();
+                MainForm.objCP_Supplier.PoScheduleFlag = 1;
             }
             catch (Exception ex)
             {
@@ -708,7 +709,7 @@ namespace ROMS
 
         private void CmbOrderSchedule_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+                try
             {
                 BeginInvoke(new Action(() => cmbOrderSchedule.Select(int.MaxValue, 0)));
             }
@@ -1952,6 +1953,29 @@ namespace ROMS
                 {
                     BtnPrint_Click(sender, e);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                dgvSupplierScheduleList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, dgvSupplierScheduleList);
+                objDser.CloseConnection();
+                dgvSupplierScheduleList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
             }
             catch (Exception ex)
             {
