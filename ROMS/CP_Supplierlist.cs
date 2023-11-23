@@ -77,7 +77,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,46) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN(0, 1) AND STSID<>-1", "STSID, STS_Name", cmbStatus, "", "STS_Name", "STSID");
                 this.ActiveControl = txtSupplier;
                 objDataBind = null;
                 cmbDay.SelectedValue = 0;
@@ -758,6 +758,45 @@ namespace ROMS
         {
             try
             {
+                //if (Convert.ToString(txtSupplier.Text) != "")
+                //{
+                //    string varsuppliername = "0";
+                //    DataService objDserv = new DataService();
+                //    varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text.Split('-')[0].Trim() + "'");
+                //    if (varsuppliername == "0")
+                //    {
+                //        lblSupplierCode.Text = "0";
+                //        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
+                //        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpSupplier.ShowAlways = true;
+                //        tpSupplier.Show("Invalid supplier", txtSupplier, 5000);
+                //    }
+                //    else
+                //    {
+                //        ep_Supplierlist.Clear();
+                //        txtSupplier.BackColor = Color.White;
+                //    }
+                //}
+                //if (Convert.ToString(txtSupplier.Text) != "")
+                //{
+                //    string varsuppliername = "0";
+                //    DataService objDserv = new DataService();
+                //    varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text.Split('-')[0].Trim() + "'");
+                //    if (varsuppliername == "0")
+                //    {
+                //        lblSupplierCode.Text = "0";
+                //        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
+                //        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpSupplier.ShowAlways = true;
+                //        tpSupplier.Show("Invalid supplier", txtSupplier, 5000);
+                //    }
+                //    else
+                //    {
+                //        ep_Supplierlist.Clear();
+                //        txtSupplier.BackColor = Color.White;
+                //    }
+                //}
+
                 int cmbsuppleirid = 0;
                 if (lblSupplierCode.Text == "0")
                 {
@@ -772,30 +811,10 @@ namespace ROMS
                     lblSupplierCode.Text = "0";
                     cmbsuppleirid = 0;
                 }
-                if (Convert.ToString(txtSupplier.Text) != "")
-                {
-                    string varsuppliername = "0";
-                    DataService objDserv = new DataService();
-                    varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text.Split('-')[0].Trim() + "'");
-                    if (varsuppliername == "0")
-                    {
-                        lblSupplierCode.Text = "0";
-                        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
-                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpSupplier.ShowAlways = true;
-                        tpSupplier.Show("Invalid supplier", txtSupplier, 5000);
-                    }
-                    else
-                    {
-                        ep_Supplierlist.Clear();
-                        txtSupplier.BackColor = Color.White;
-                    }
-                }
-
-
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSCID=0", "SPSC_Name,SPSCID", cmbStatus, "", "SPSC_Name", "SPSCID");
                 objDataBind = null;
+                
 
             }
 
