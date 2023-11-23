@@ -22,7 +22,8 @@ namespace ROMS
         private ToolTip tpInvoiceEditDays = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
         private ToolTip tpReportText = new ToolTip();
-        
+        DataSet objDs = new DataSet();
+
         public int varSettingID = 0;
         public CP_GeneralSettings()
         {
@@ -82,11 +83,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnEditLoad()
+        public void udfnList()
         {
             try
             {
-                DataSet objDs = new DataSet();
+               
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnGeneralSettingList(0);
                 objdserv.CloseConnection();
@@ -116,12 +117,12 @@ namespace ROMS
                        // TransactionID
                         if (objDs.Tables[2].Rows.Count != 0)
                         {
-                            grdReport.DataSource = objDs.Tables[2];
-                            grdReport.Columns["TransactionID"].Visible = false;
-                            grdReport.Columns["Transaction"].Width = 200;
-                            grdReport.Columns["Report Text"].Width = 400;
+                            for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
+                            {
+                                grdReport.Rows.Add(Convert.ToString(objDs.Tables[2].Rows[i]["Transaction"]),Convert.ToString(objDs.Tables[2].Rows[i]["Report Text"]), objDs.Tables[2].Rows[i]["TransactionID"] );
+                            }
+                            grdReport.Columns["TransactionID"].Visible = false;   
                         }
-                        grdReport.Columns["clmRemove"].DisplayIndex = 3;
                     }
                 }
             }
@@ -172,7 +173,7 @@ namespace ROMS
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnUpdate.Focus();
                 }
-                udfnEditLoad();
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -193,7 +194,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=49 OR MSTID=-1 ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbTransactionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 //udfnTurnAroundTimeLoad();
-                udfnEditLoad();
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -923,9 +924,6 @@ namespace ROMS
                 if (blnErrorFlag == false)
                 {
                     udfnAdd();
-                    cmbTransactionType.SelectedValue = -1;
-                    txtReportText.Text = "";
-                    cmbTransactionType.Focus();
                 }
             }
             catch (Exception ex)
@@ -942,20 +940,22 @@ namespace ROMS
                 varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
                 for (int i = 0; i < grdReport.Rows.Count; i++)
                 {
-                    if (varTransactionType == Convert.ToInt32(grdReport.Rows[i].Cells["clmTransactionTypeID"].Value))
+                    if (varTransactionType == Convert.ToInt32(grdReport.Rows[i].Cells["clmTransactionID"].Value))
                     {
                         varFlag = 1;
                     }
                 }
                 if (varFlag == 0)
                 {
-                    grdReport.Rows.Add(grdReport.Rows.Count + 1, cmbTransactionType.Text.Trim(),txtReportText.Text.Trim(), cmbTransactionType.SelectedValue);
-                    
+                    grdReport.Rows.Add( cmbTransactionType.Text.Trim(),txtReportText.Text.Trim(), cmbTransactionType.SelectedValue);
+                    cmbTransactionType.SelectedValue = -1;
+                    txtReportText.Text = "";
+                    cmbTransactionType.Focus();
                 }
                 else
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(63);
+                    string varMessage = objDServ.udfnGetMessages(88);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -987,6 +987,21 @@ namespace ROMS
                             }
                             break;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnAdd_Click(sender, e);
                 }
             }
             catch (Exception ex)

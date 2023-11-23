@@ -39,10 +39,8 @@
             this.tsSettings = new System.Windows.Forms.ToolStripLabel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpGeneralsettings = new System.Windows.Forms.GroupBox();
-            this.btnAdd = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdReport = new System.Windows.Forms.DataGridView();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtReportText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
@@ -65,6 +63,11 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.epGeneralSettings = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReportText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tshSettings.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.grpGeneralsettings.SuspendLayout();
@@ -138,25 +141,10 @@
             this.grpGeneralsettings.TabIndex = 958794;
             this.grpGeneralsettings.TabStop = false;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(1260, 22);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 27);
-            this.btnAdd.TabIndex = 9;
-            this.btnAdd.Text = "        ";
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.grdReport);
-            this.groupBox2.Location = new System.Drawing.Point(622, 61);
+            this.groupBox2.Location = new System.Drawing.Point(622, 73);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(709, 227);
             this.groupBox2.TabIndex = 1111199;
@@ -182,6 +170,9 @@
             this.grdReport.ColumnHeadersHeight = 30;
             this.grdReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmTransaction,
+            this.clmReportText,
+            this.clmTransactionID,
             this.clmRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -206,16 +197,6 @@
             this.grdReport.TabIndex = 1111198;
             this.grdReport.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReport_CellContentClick);
             // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemove.Width = 80;
-            // 
             // txtReportText
             // 
             this.txtReportText.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -223,7 +204,7 @@
             this.txtReportText.MaxLength = 200;
             this.txtReportText.Multiline = true;
             this.txtReportText.Name = "txtReportText";
-            this.txtReportText.Size = new System.Drawing.Size(315, 27);
+            this.txtReportText.Size = new System.Drawing.Size(315, 47);
             this.txtReportText.TabIndex = 6;
             this.txtReportText.Enter += new System.EventHandler(this.TxtReportText_Enter);
             this.txtReportText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReportText_KeyDown);
@@ -505,6 +486,52 @@
             // 
             this.epGeneralSettings.ContainerControl = this;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(1261, 30);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 27);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
+            // clmTransaction
+            // 
+            this.clmTransaction.HeaderText = "Transaction";
+            this.clmTransaction.Name = "clmTransaction";
+            this.clmTransaction.ReadOnly = true;
+            this.clmTransaction.Width = 150;
+            // 
+            // clmReportText
+            // 
+            this.clmReportText.HeaderText = "Report Text";
+            this.clmReportText.Name = "clmReportText";
+            this.clmReportText.ReadOnly = true;
+            this.clmReportText.Width = 350;
+            // 
+            // clmTransactionID
+            // 
+            this.clmTransactionID.HeaderText = "Transaction ID";
+            this.clmTransactionID.Name = "clmTransactionID";
+            this.clmTransactionID.ReadOnly = true;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemove.Width = 80;
+            // 
             // CP_GeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -570,7 +597,10 @@
         public System.Windows.Forms.DataGridView grdReport;
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.DataGridView grdOrderType;
-        internal System.Windows.Forms.Label btnAdd;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTransaction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmReportText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTransactionID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }

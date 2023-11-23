@@ -173,14 +173,14 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpSalesmanDetails = new System.Windows.Forms.GroupBox();
             this.txtsalesmanwhatsapp = new System.Windows.Forms.TextBox();
             this.txtsalesmanmobile = new System.Windows.Forms.TextBox();
             this.txtsalesmanname = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.grpOrderDetails = new System.Windows.Forms.GroupBox();
             this.grddays = new System.Windows.Forms.DataGridView();
             this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cmbOrderType = new System.Windows.Forms.ComboBox();
@@ -289,8 +289,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             this.gpSupplier.SuspendLayout();
             this.pnlScheduleStatus.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.grpSalesmanDetails.SuspendLayout();
+            this.grpOrderDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).BeginInit();
             this.tpSupplierProduct.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -1303,7 +1303,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(693, 304);
+            this.btnSave.Location = new System.Drawing.Point(717, 304);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 27;
@@ -1680,8 +1680,8 @@
             this.gpSupplier.Controls.Add(this.btnAdd);
             this.gpSupplier.Controls.Add(this.txtSupplier);
             this.gpSupplier.Controls.Add(this.label2);
-            this.gpSupplier.Controls.Add(this.groupBox2);
-            this.gpSupplier.Controls.Add(this.groupBox6);
+            this.gpSupplier.Controls.Add(this.grpSalesmanDetails);
+            this.gpSupplier.Controls.Add(this.grpOrderDetails);
             this.gpSupplier.Location = new System.Drawing.Point(8, -5);
             this.gpSupplier.Name = "gpSupplier";
             this.gpSupplier.Size = new System.Drawing.Size(684, 282);
@@ -1806,21 +1806,21 @@
             this.label2.TabIndex = 1111177;
             this.label2.Text = "Supplier Name";
             // 
-            // groupBox2
+            // grpSalesmanDetails
             // 
-            this.groupBox2.Controls.Add(this.txtsalesmanwhatsapp);
-            this.groupBox2.Controls.Add(this.txtsalesmanmobile);
-            this.groupBox2.Controls.Add(this.txtsalesmanname);
-            this.groupBox2.Controls.Add(this.textBox17);
-            this.groupBox2.Controls.Add(this.textBox18);
-            this.groupBox2.Controls.Add(this.textBox20);
-            this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(14, 104);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(358, 127);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Salesman Details";
+            this.grpSalesmanDetails.Controls.Add(this.txtsalesmanwhatsapp);
+            this.grpSalesmanDetails.Controls.Add(this.txtsalesmanmobile);
+            this.grpSalesmanDetails.Controls.Add(this.txtsalesmanname);
+            this.grpSalesmanDetails.Controls.Add(this.textBox17);
+            this.grpSalesmanDetails.Controls.Add(this.textBox18);
+            this.grpSalesmanDetails.Controls.Add(this.textBox20);
+            this.grpSalesmanDetails.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpSalesmanDetails.Location = new System.Drawing.Point(14, 104);
+            this.grpSalesmanDetails.Name = "grpSalesmanDetails";
+            this.grpSalesmanDetails.Size = new System.Drawing.Size(358, 127);
+            this.grpSalesmanDetails.TabIndex = 3;
+            this.grpSalesmanDetails.TabStop = false;
+            this.grpSalesmanDetails.Text = "Salesman Details";
             // 
             // txtsalesmanwhatsapp
             // 
@@ -1896,19 +1896,19 @@
             this.textBox20.TabIndex = 16;
             this.textBox20.Text = "Salesman Name";
             // 
-            // groupBox6
+            // grpOrderDetails
             // 
-            this.groupBox6.Controls.Add(this.grddays);
-            this.groupBox6.Controls.Add(this.cmbOrderType);
-            this.groupBox6.Controls.Add(this.txtDOrderDay);
-            this.groupBox6.Controls.Add(this.textBox34);
-            this.groupBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(387, 14);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(283, 235);
-            this.groupBox6.TabIndex = 11;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Order Details";
+            this.grpOrderDetails.Controls.Add(this.grddays);
+            this.grpOrderDetails.Controls.Add(this.cmbOrderType);
+            this.grpOrderDetails.Controls.Add(this.txtDOrderDay);
+            this.grpOrderDetails.Controls.Add(this.textBox34);
+            this.grpOrderDetails.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpOrderDetails.Location = new System.Drawing.Point(387, 14);
+            this.grpOrderDetails.Name = "grpOrderDetails";
+            this.grpOrderDetails.Size = new System.Drawing.Size(283, 235);
+            this.grpOrderDetails.TabIndex = 11;
+            this.grpOrderDetails.TabStop = false;
+            this.grpOrderDetails.Text = "Order Details";
             // 
             // grddays
             // 
@@ -3307,10 +3307,10 @@
             this.gpSupplier.PerformLayout();
             this.pnlScheduleStatus.ResumeLayout(false);
             this.pnlScheduleStatus.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.grpSalesmanDetails.ResumeLayout(false);
+            this.grpSalesmanDetails.PerformLayout();
+            this.grpOrderDetails.ResumeLayout(false);
+            this.grpOrderDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).EndInit();
             this.tpSupplierProduct.ResumeLayout(false);
             this.grpSupplierMapping.ResumeLayout(false);
@@ -3350,14 +3350,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpSalesmanDetails;
         private System.Windows.Forms.TextBox txtsalesmanwhatsapp;
         private System.Windows.Forms.TextBox txtsalesmanmobile;
         private System.Windows.Forms.TextBox txtsalesmanname;
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.TextBox textBox18;
         private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox grpOrderDetails;
         public System.Windows.Forms.DataGridView grddays;
         private System.Windows.Forms.ComboBox cmbOrderType;
         private System.Windows.Forms.TextBox txtDOrderDay;

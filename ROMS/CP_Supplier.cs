@@ -25,6 +25,8 @@ namespace ROMS
         public int varGroupId = 0;
         public int varSubGroupId = 0,varSLNO = 0;
         public int varModifiedFlag = 0;
+        public int PoScheduleFlag = 0;
+        public int varSupplierStatusID = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -936,6 +938,10 @@ namespace ROMS
                         this.Close();
                         MainForm.objCP_Supplierlist.Show();
                         MainForm.objCP_Supplierlist.udfnList();
+                        if(PoScheduleFlag == 1)
+                        {
+                            MainForm.objPUR_SupplierScheduleList.udfnList();
+                        }
                     }
                     else
                     { btnMappingsave.Focus(); }
@@ -1209,7 +1215,16 @@ namespace ROMS
                                 cmbPolicyContent.SelectedValue = objDS.Tables[0].Rows[0]["MONTHID"].ToString();
                                 cmbSecondLevel.SelectedValue = objDS.Tables[0].Rows[0]["DAYOFMONTHID"].ToString();
                             }
-                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1")
+                            {
+                                rbActive.Checked = true;
+                                varSupplierStatusID = 1;
+                            }
+                            else
+                            {
+                                rbInactive.Checked = true;
+                                varSupplierStatusID = 2;
+                            }
 
                             btnSave.Text = "Update";
                             panelStatus.Enabled = true;
@@ -3300,6 +3315,15 @@ namespace ROMS
 
                 if (tcSupplier.SelectedIndex == 1)
                 {
+                    if (btnSave.Text == "Update")
+                    {
+                        if (varSupplierStatusID == 2)
+                        {
+                            gpSupplier.Enabled = false;
+                            grdSupplierList.Columns["clmedit"].ReadOnly = true;
+                            grddays.Enabled = false;
+                        }
+                    }
                     txtScheduleName.Focus();
 
                     txtScheduleName.SelectionStart = txtScheduleName.Text.Length;
@@ -4894,6 +4918,13 @@ namespace ROMS
                                         }
                                     }
                                 }
+                                if(objDS.Tables[0].Rows[0]["StatusId"].ToString() == "2")
+                                {
+                                    txtScheduleName.Enabled = false;
+                                    grpSalesmanDetails.Enabled = false;
+                                    grpOrderDetails.Enabled = false;
+                                    grddays.Enabled = false;
+                                }
                             }
                             break;
 
@@ -6013,6 +6044,10 @@ namespace ROMS
                             udfnSaveGrdAdd();
                             udfnScheduleClear();
                             btnAdd.Text = "Save";
+                            txtScheduleName.Enabled = true;
+                            grpSalesmanDetails.Enabled = true;
+                            grpOrderDetails.Enabled = true;
+                            grddays.Enabled = true;
                             rbScheduleActive.Checked = true;
                             pnlScheduleStatus.Enabled = false;
                             cmbOrderType.SelectedValue = 144;

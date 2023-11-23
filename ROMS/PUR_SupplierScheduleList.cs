@@ -30,7 +30,7 @@ namespace ROMS
                 MainForm.objCP_Supplier = new CP_Supplier();
                 MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                 MainForm.objCP_Supplier.Show();
-                udfnList();
+                MainForm.objCP_Supplier.PoScheduleFlag = 1;
             }
             catch (Exception ex)
             {
