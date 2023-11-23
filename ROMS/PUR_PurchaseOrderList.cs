@@ -249,7 +249,9 @@ namespace ROMS
         {
 
             try
-            {
+            { 
+                RPTViewer.Visible = false;
+                RPTViewer.SendToBack();
                 if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
                 {
                     grpProFilter.Visible = false;
@@ -1353,7 +1355,7 @@ namespace ROMS
                             if (cbSupplier.Checked == true)
                             {
                                 grdProDetails.Columns["Supplier"].Width = 300;
-                                grdProDetails.Columns["GSTIN"].Width = 150;
+                                grdProDetails.Columns["GSTIN"].Visible = false;
                             }
                             if (cbPoNo.Checked == true)
                             {
@@ -2257,7 +2259,25 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "PO Product List";
+                    if (cbPoNo.Checked == true && cbSupplier.Checked == true)
+                    {
+                        ExcelSheet.Cells[1, 1].Value = "PO Product List";
+                    }
+                    else
+                    {
+                        if (cbPoNo.Checked == true )
+                        {
+                            ExcelSheet.Cells[1, 1].Value = "PO Product List - PO No. Wise";
+                        }
+                        if (cbSupplier.Checked == true)
+                        {
+                            ExcelSheet.Cells[1, 1].Value = "PO Product List - Supplier Wise";
+                        }
+                        if (cbPoNo.Checked == false && cbSupplier.Checked == false)
+                        {
+                            ExcelSheet.Cells[1, 1].Value = "PO Product List";
+                        }
+                    }
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -2334,8 +2354,7 @@ namespace ROMS
             }
             finally
             {
-                btnExport.Enabled = true;
-                btnExport.Focus();
+                btnExport.Enabled = true; 
             }
         }
 
@@ -2347,8 +2366,7 @@ namespace ROMS
             }
             finally
             {
-                btnExport.Enabled = true;
-                btnExport.Focus();
+                btnExport.Enabled = true; 
             }
         }
 
@@ -2360,8 +2378,128 @@ namespace ROMS
             }
             finally
             {
-                btnExport.Enabled = true;
-                btnExport.Focus();
+                btnExport.Enabled = true; 
+            }
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtSupplier.Text == "")
+                {
+                    lblSupplierCode.Text ="0";
+                    lblschedleCode.Text = "0";
+                }
+                btnPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0,0, 0, dpPlanDate.Text, dptoPlanDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), "0");
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            varPrint = 1;
+                        }
+                        else
+                        {
+                            grdPurchaseorderlist.DataSource = null;
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Order_List.rpt");
+                        objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
+                        objBillreport.SetParameterValue("paraSupplierScheduleid ", Convert.ToInt32(lblschedleCode.Text));
+                        objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                        objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                        objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbstatus.SelectedValue));
+                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpPlanDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dptoPlanDate.Text));
+                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        objValidation.CrySqlConnection(objBillreport);
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnPrint.Enabled = true;
+                btnPrint.Focus();
+                GC.Collect();
+            }
+        }
+
+        private void BtnPrint_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrint_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
