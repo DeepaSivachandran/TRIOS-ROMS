@@ -39,6 +39,7 @@
             this.tsSettings = new System.Windows.Forms.ToolStripLabel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpGeneralsettings = new System.Windows.Forms.GroupBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdReport = new System.Windows.Forms.DataGridView();
             this.txtReportText = new System.Windows.Forms.TextBox();
@@ -63,7 +64,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.epGeneralSettings = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnAdd = new System.Windows.Forms.Button();
             this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReportText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -141,6 +141,22 @@
             this.grpGeneralsettings.TabIndex = 958794;
             this.grpGeneralsettings.TabStop = false;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(1261, 30);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 27);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.grdReport);
@@ -196,6 +212,7 @@
             this.grdReport.Size = new System.Drawing.Size(689, 188);
             this.grdReport.TabIndex = 1111198;
             this.grdReport.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReport_CellContentClick);
+            this.grdReport.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReport_DataBindingComplete);
             // 
             // txtReportText
             // 
@@ -486,22 +503,6 @@
             // 
             this.epGeneralSettings.ContainerControl = this;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1261, 30);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
-            // 
             // clmTransaction
             // 
             this.clmTransaction.HeaderText = "Transaction";
@@ -514,13 +515,14 @@
             this.clmReportText.HeaderText = "Report Text";
             this.clmReportText.Name = "clmReportText";
             this.clmReportText.ReadOnly = true;
-            this.clmReportText.Width = 350;
+            this.clmReportText.Width = 450;
             // 
             // clmTransactionID
             // 
             this.clmTransactionID.HeaderText = "Transaction ID";
             this.clmTransactionID.Name = "clmTransactionID";
             this.clmTransactionID.ReadOnly = true;
+            this.clmTransactionID.Visible = false;
             // 
             // clmRemove
             // 
@@ -530,7 +532,7 @@
             this.clmRemove.ReadOnly = true;
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemove.Width = 80;
+            this.clmRemove.Width = 60;
             // 
             // CP_GeneralSettings
             // 
