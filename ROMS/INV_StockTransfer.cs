@@ -21,6 +21,11 @@ namespace ROMS
         private ToolTip tpProductName = new ToolTip();
         private ToolTip tpSStockLocation = new ToolTip();
         private ToolTip tpDStockLocation = new ToolTip();
+        private ToolTip tpsRack = new ToolTip();
+        private ToolTip tpMRP = new ToolTip();
+        private ToolTip tpExpiryDate = new ToolTip();
+        private ToolTip tpBatchNo = new ToolTip();
+        private ToolTip tpStockQty = new ToolTip();
         private ToolTip tpTransferQty = new ToolTip();
         private ToolTip tpsno = new ToolTip();
         public string varlocationcode;
@@ -1040,6 +1045,46 @@ namespace ROMS
                     txtProductNamePICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProductName.ShowAlways = true;
                     tpProductName.Show("Please enter product name", txtProductNamePICode, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtSRack.Text).Trim() == "")
+                {
+                    errStockTransfer.SetError(txtSRack, "Please enter source rack");
+                    txtSRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpsRack.ShowAlways = true;
+                    tpsRack.Show("Please enter source rack", txtSRack, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtMRP.Text).Trim() == "")
+                {
+                    errStockTransfer.SetError(txtMRP, "Please enter mrp");
+                    txtMRP.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMRP.ShowAlways = true;
+                    tpMRP.Show("Please enter mrp", txtMRP, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtExpiryDate.Text).Trim() == "")
+                {
+                    errStockTransfer.SetError(txtExpiryDate, "Please enter expiry date");
+                    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpExpiryDate.ShowAlways = true;
+                    tpExpiryDate.Show("Please enter expiry date", txtExpiryDate, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtBatchNo.Text).Trim() == "")
+                {
+                    errStockTransfer.SetError(txtBatchNo, "Please enter batchno");
+                    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpBatchNo.ShowAlways = true;
+                    tpBatchNo.Show("Please enter batchno", txtBatchNo, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtStockQty.Text).Trim() == "")
+                {
+                    errStockTransfer.SetError(txtStockQty, "Please enter stock qty");
+                    txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStockQty.ShowAlways = true;
+                    tpStockQty.Show("Please enter stock qty", txtStockQty, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtDLocation.Text).Trim() == "")
