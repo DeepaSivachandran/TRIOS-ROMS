@@ -88,19 +88,19 @@ namespace ROMS
                                 grdPOSchedule.Rows[grdPOSchedule.Rows.Count - 1].Cells[1].Value = null;
                                 grdPOSchedule.Columns["clmPrint8"].DisplayIndex = grdPOSchedule.Columns.Count - 3;
                                 grdPOSchedule.Columns["clmPrint8"].Width = 30;
-                                grdPOSchedule.Columns["clmPrint7"].DisplayIndex = grdPOSchedule.Columns.Count - 4;
+                                grdPOSchedule.Columns["clmPrint7"].DisplayIndex = grdPOSchedule.Columns.Count - 5;
                                 grdPOSchedule.Columns["clmPrint7"].Width = 30;
                                 grdPOSchedule.Columns["clmPrint6"].DisplayIndex = grdPOSchedule.Columns.Count - 7;
                                 grdPOSchedule.Columns["clmPrint6"].Width = 30;
-                                grdPOSchedule.Columns["clmPrint5"].DisplayIndex = grdPOSchedule.Columns.Count - 8;
+                                grdPOSchedule.Columns["clmPrint5"].DisplayIndex = grdPOSchedule.Columns.Count - 9;
                                 grdPOSchedule.Columns["clmPrint5"].Width = 30;
                                 grdPOSchedule.Columns["clmPrint4"].DisplayIndex = grdPOSchedule.Columns.Count - 11;
                                 grdPOSchedule.Columns["clmPrint4"].Width = 30;
-                                grdPOSchedule.Columns["clmPrint3"].DisplayIndex = grdPOSchedule.Columns.Count - 12;
+                                grdPOSchedule.Columns["clmPrint3"].DisplayIndex = grdPOSchedule.Columns.Count - 13;
                                 grdPOSchedule.Columns["clmPrint3"].Width = 30;
                                 grdPOSchedule.Columns["clmPrint2"].DisplayIndex = grdPOSchedule.Columns.Count - 15;
                                 grdPOSchedule.Columns["clmPrint2"].Width = 30;
-                                grdPOSchedule.Columns["clmPrint1"].DisplayIndex = grdPOSchedule.Columns.Count - 16;
+                                grdPOSchedule.Columns["clmPrint1"].DisplayIndex = grdPOSchedule.Columns.Count - 17;
                                 grdPOSchedule.Columns["clmPrint1"].Width = 30;
                                 grdPOSchedule.Columns["S.No."].Width = 50;
                                grdPOSchedule.Columns["Order Day"].Width = 100;
@@ -251,30 +251,10 @@ namespace ROMS
                 if (e.RowIndex != -1)
                 {
                     int varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
+                    string varHeader = "";
                     switch (grdPOSchedule.Columns[e.ColumnIndex].Name)
                     {
                         case "clmPrint1": case "clmPrint3": case "clmPrint5": case "clmPrint7":
-                            string varHeader = "";
-                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
-                            objBillreport.SetParameterValue("@paracompanycode", 0);
-                            objBillreport.SetParameterValue("@paraOrderID", 0);
-                            objBillreport.SetParameterValue("@parascheduleid",0);
-                            objBillreport.SetParameterValue("@parasupplierid", 0);
-                            objBillreport.SetParameterValue("@paraProductType", 1);
-                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                            objBillreport.SetParameterValue("pardayid", varDYID);
-                            objValidation.CrySqlConnection(objBillreport);
-                            MainForm.objReportLoad = new ReportLoad();
-                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                            MainForm.objReportLoad.Text = varHeader;
-                            MainForm.objReportLoad.ShowDialog();
-                            break;
-                        case "clmPrint2": case "clmPrint4":  case "clmPrint6": case "clmPrint8":
                             CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport1 = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport1 = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport1.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.rpt");
@@ -287,6 +267,32 @@ namespace ROMS
 
                             MainForm.objReportLoad = new ReportLoad();
                             MainForm.objReportLoad.cryptview.ReportSource = objBillreport1;
+                            MainForm.objReportLoad.Text = varHeader;
+                            MainForm.objReportLoad.ShowDialog();
+                            break;
+                        case "clmPrint2": case "clmPrint4":  case "clmPrint6": case "clmPrint8":
+                            int varlanguage = 0;
+                            if (rbEnglish.Checked == true)
+                            {
+                                varlanguage = 1;
+                            }
+                            else { varlanguage = 2; }
+                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
+                            objBillreport.SetParameterValue("@paracompanycode", 0);
+                            objBillreport.SetParameterValue("@paraOrderID", 0);
+                            objBillreport.SetParameterValue("@parascheduleid", 0);
+                            objBillreport.SetParameterValue("@parasupplierid", 0);
+                            objBillreport.SetParameterValue("@paraProductType", varlanguage);
+                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                            objBillreport.SetParameterValue("pardayid", varDYID);
+                            objValidation.CrySqlConnection(objBillreport);
+                            MainForm.objReportLoad = new ReportLoad();
+                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                             MainForm.objReportLoad.Text = varHeader;
                             MainForm.objReportLoad.ShowDialog();
                             break;

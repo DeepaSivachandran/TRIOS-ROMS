@@ -708,7 +708,7 @@ namespace ROMS
 
         private void CmbOrderSchedule_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+                try
             {
                 BeginInvoke(new Action(() => cmbOrderSchedule.Select(int.MaxValue, 0)));
             }

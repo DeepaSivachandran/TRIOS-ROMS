@@ -38,11 +38,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_POScheduledaywise));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpPOScheduledaywise = new System.Windows.Forms.GroupBox();
-            this.btnPrintdaywise = new System.Windows.Forms.Button();
             this.grdHeaderview = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdPOSchedule = new System.Windows.Forms.DataGridView();
+            this.pnlLanguage = new System.Windows.Forms.Panel();
+            this.rbEnglish = new System.Windows.Forms.RadioButton();
+            this.rbTamil = new System.Windows.Forms.RadioButton();
+            this.lblPrintLanguage = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn5 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn6 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn7 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn8 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnPrintdaywise = new System.Windows.Forms.Button();
             this.clmPrint1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint3 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -55,6 +67,7 @@
             this.grpPOScheduledaywise.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPOSchedule)).BeginInit();
+            this.pnlLanguage.SuspendLayout();
             this.SuspendLayout();
             // 
             // errUnit
@@ -63,31 +76,16 @@
             // 
             // grpPOScheduledaywise
             // 
+            this.grpPOScheduledaywise.Controls.Add(this.pnlLanguage);
+            this.grpPOScheduledaywise.Controls.Add(this.lblPrintLanguage);
             this.grpPOScheduledaywise.Controls.Add(this.btnPrintdaywise);
             this.grpPOScheduledaywise.Controls.Add(this.grdHeaderview);
             this.grpPOScheduledaywise.Controls.Add(this.grdPOSchedule);
             this.grpPOScheduledaywise.Location = new System.Drawing.Point(2, -4);
             this.grpPOScheduledaywise.Name = "grpPOScheduledaywise";
-            this.grpPOScheduledaywise.Size = new System.Drawing.Size(1273, 354);
+            this.grpPOScheduledaywise.Size = new System.Drawing.Size(1273, 341);
             this.grpPOScheduledaywise.TabIndex = 0;
             this.grpPOScheduledaywise.TabStop = false;
-            // 
-            // btnPrintdaywise
-            // 
-            this.btnPrintdaywise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintdaywise.Image = global::ROMS.Properties.Resources.print;
-            this.btnPrintdaywise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintdaywise.Location = new System.Drawing.Point(1199, 29);
-            this.btnPrintdaywise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnPrintdaywise.Name = "btnPrintdaywise";
-            this.btnPrintdaywise.Size = new System.Drawing.Size(67, 33);
-            this.btnPrintdaywise.TabIndex = 1111180;
-            this.btnPrintdaywise.Text = "Print";
-            this.btnPrintdaywise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrintdaywise.UseVisualStyleBackColor = true;
-            this.btnPrintdaywise.Click += new System.EventHandler(this.BtnPrintdaywise_Click);
-            this.btnPrintdaywise.Enter += new System.EventHandler(this.BtnPrintdaywise_Enter);
-            this.btnPrintdaywise.Leave += new System.EventHandler(this.BtnPrintdaywise_Leave);
             // 
             // grdHeaderview
             // 
@@ -120,7 +118,7 @@
             this.grdHeaderview.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdHeaderview.EnableHeadersVisualStyles = false;
             this.grdHeaderview.GridColor = System.Drawing.Color.White;
-            this.grdHeaderview.Location = new System.Drawing.Point(10, 69);
+            this.grdHeaderview.Location = new System.Drawing.Point(10, 55);
             this.grdHeaderview.Name = "grdHeaderview";
             this.grdHeaderview.ReadOnly = true;
             this.grdHeaderview.RowHeadersVisible = false;
@@ -185,7 +183,7 @@
             this.grdPOSchedule.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdPOSchedule.EnableHeadersVisualStyles = false;
             this.grdPOSchedule.GridColor = System.Drawing.Color.White;
-            this.grdPOSchedule.Location = new System.Drawing.Point(10, 95);
+            this.grdPOSchedule.Location = new System.Drawing.Point(10, 81);
             this.grdPOSchedule.Name = "grdPOSchedule";
             this.grdPOSchedule.ReadOnly = true;
             this.grdPOSchedule.RowHeadersVisible = false;
@@ -198,18 +196,137 @@
             this.grdPOSchedule.TabIndex = 1111178;
             this.grdPOSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPOSchedule_CellContentClick);
             // 
+            // pnlLanguage
+            // 
+            this.pnlLanguage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlLanguage.Controls.Add(this.rbEnglish);
+            this.pnlLanguage.Controls.Add(this.rbTamil);
+            this.pnlLanguage.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlLanguage.Location = new System.Drawing.Point(104, 21);
+            this.pnlLanguage.Name = "pnlLanguage";
+            this.pnlLanguage.Size = new System.Drawing.Size(117, 27);
+            this.pnlLanguage.TabIndex = 1111181;
+            // 
+            // rbEnglish
+            // 
+            this.rbEnglish.AutoSize = true;
+            this.rbEnglish.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbEnglish.Location = new System.Drawing.Point(56, 1);
+            this.rbEnglish.Name = "rbEnglish";
+            this.rbEnglish.Size = new System.Drawing.Size(60, 21);
+            this.rbEnglish.TabIndex = 8;
+            this.rbEnglish.Text = "English";
+            this.rbEnglish.UseVisualStyleBackColor = true;
+            // 
+            // rbTamil
+            // 
+            this.rbTamil.AutoSize = true;
+            this.rbTamil.Checked = true;
+            this.rbTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTamil.Location = new System.Drawing.Point(4, 3);
+            this.rbTamil.Name = "rbTamil";
+            this.rbTamil.Size = new System.Drawing.Size(51, 19);
+            this.rbTamil.TabIndex = 7;
+            this.rbTamil.TabStop = true;
+            this.rbTamil.Text = "தமிழ்";
+            this.rbTamil.UseVisualStyleBackColor = true;
+            // 
+            // lblPrintLanguage
+            // 
+            this.lblPrintLanguage.AutoSize = true;
+            this.lblPrintLanguage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrintLanguage.Location = new System.Drawing.Point(10, 24);
+            this.lblPrintLanguage.Name = "lblPrintLanguage";
+            this.lblPrintLanguage.Size = new System.Drawing.Size(88, 20);
+            this.lblPrintLanguage.TabIndex = 1111182;
+            this.lblPrintLanguage.Text = "Print language";
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Pro.";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.print16;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 30;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Sup.";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Width = 30;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "Pro.";
+            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            this.dataGridViewImageColumn3.Width = 30;
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "Sup.";
+            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.Width = 30;
+            // 
+            // dataGridViewImageColumn5
+            // 
+            this.dataGridViewImageColumn5.HeaderText = "Pro.";
+            this.dataGridViewImageColumn5.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn5.Name = "dataGridViewImageColumn5";
+            this.dataGridViewImageColumn5.Width = 30;
+            // 
+            // dataGridViewImageColumn6
+            // 
+            this.dataGridViewImageColumn6.HeaderText = "Sup.";
+            this.dataGridViewImageColumn6.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn6.Name = "dataGridViewImageColumn6";
+            this.dataGridViewImageColumn6.Width = 30;
+            // 
+            // dataGridViewImageColumn7
+            // 
+            this.dataGridViewImageColumn7.HeaderText = "Pro.";
+            this.dataGridViewImageColumn7.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn7.Name = "dataGridViewImageColumn7";
+            this.dataGridViewImageColumn7.Width = 30;
+            // 
+            // dataGridViewImageColumn8
+            // 
+            this.dataGridViewImageColumn8.HeaderText = "Sup.";
+            this.dataGridViewImageColumn8.Image = global::ROMS.Properties.Resources.print;
+            this.dataGridViewImageColumn8.Name = "dataGridViewImageColumn8";
+            this.dataGridViewImageColumn8.Width = 30;
+            // 
+            // btnPrintdaywise
+            // 
+            this.btnPrintdaywise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintdaywise.Image = global::ROMS.Properties.Resources.print;
+            this.btnPrintdaywise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintdaywise.Location = new System.Drawing.Point(1199, 29);
+            this.btnPrintdaywise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnPrintdaywise.Name = "btnPrintdaywise";
+            this.btnPrintdaywise.Size = new System.Drawing.Size(67, 33);
+            this.btnPrintdaywise.TabIndex = 1111180;
+            this.btnPrintdaywise.Text = "Print";
+            this.btnPrintdaywise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrintdaywise.UseVisualStyleBackColor = true;
+            this.btnPrintdaywise.Visible = false;
+            this.btnPrintdaywise.Click += new System.EventHandler(this.BtnPrintdaywise_Click);
+            this.btnPrintdaywise.Enter += new System.EventHandler(this.BtnPrintdaywise_Enter);
+            this.btnPrintdaywise.Leave += new System.EventHandler(this.BtnPrintdaywise_Leave);
+            // 
             // clmPrint1
             // 
             this.clmPrint1.HeaderText = "";
-            this.clmPrint1.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint1.Image = global::ROMS.Properties.Resources.print16;
             this.clmPrint1.Name = "clmPrint1";
             this.clmPrint1.ReadOnly = true;
-            this.clmPrint1.Width = 40;
+            this.clmPrint1.Width = 30;
             // 
             // clmPrint2
             // 
             this.clmPrint2.HeaderText = "";
-            this.clmPrint2.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint2.Image = global::ROMS.Properties.Resources.print16;
             this.clmPrint2.Name = "clmPrint2";
             this.clmPrint2.ReadOnly = true;
             this.clmPrint2.Width = 30;
@@ -217,7 +334,7 @@
             // clmPrint3
             // 
             this.clmPrint3.HeaderText = "";
-            this.clmPrint3.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint3.Image = global::ROMS.Properties.Resources.print16;
             this.clmPrint3.Name = "clmPrint3";
             this.clmPrint3.ReadOnly = true;
             this.clmPrint3.Width = 30;
@@ -225,7 +342,7 @@
             // clmPrint4
             // 
             this.clmPrint4.HeaderText = "";
-            this.clmPrint4.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint4.Image = global::ROMS.Properties.Resources.print16;
             this.clmPrint4.Name = "clmPrint4";
             this.clmPrint4.ReadOnly = true;
             this.clmPrint4.Width = 30;
@@ -233,7 +350,7 @@
             // clmPrint5
             // 
             this.clmPrint5.HeaderText = "";
-            this.clmPrint5.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint5.Image = global::ROMS.Properties.Resources.print16;
             this.clmPrint5.Name = "clmPrint5";
             this.clmPrint5.ReadOnly = true;
             this.clmPrint5.Width = 30;
@@ -241,7 +358,7 @@
             // clmPrint6
             // 
             this.clmPrint6.HeaderText = "";
-            this.clmPrint6.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint6.Image = global::ROMS.Properties.Resources.print16;
             this.clmPrint6.Name = "clmPrint6";
             this.clmPrint6.ReadOnly = true;
             this.clmPrint6.Width = 30;
@@ -249,7 +366,7 @@
             // clmPrint7
             // 
             this.clmPrint7.HeaderText = "";
-            this.clmPrint7.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint7.Image = global::ROMS.Properties.Resources.print16;
             this.clmPrint7.Name = "clmPrint7";
             this.clmPrint7.ReadOnly = true;
             this.clmPrint7.Width = 30;
@@ -257,7 +374,7 @@
             // clmPrint8
             // 
             this.clmPrint8.HeaderText = "";
-            this.clmPrint8.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint8.Image = global::ROMS.Properties.Resources.print16;
             this.clmPrint8.Name = "clmPrint8";
             this.clmPrint8.ReadOnly = true;
             this.clmPrint8.Width = 30;
@@ -267,7 +384,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1284, 352);
+            this.ClientSize = new System.Drawing.Size(1284, 345);
             this.Controls.Add(this.grpPOScheduledaywise);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -283,8 +400,11 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_POScheduledaywise_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.grpPOScheduledaywise.ResumeLayout(false);
+            this.grpPOScheduledaywise.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPOSchedule)).EndInit();
+            this.pnlLanguage.ResumeLayout(false);
+            this.pnlLanguage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -297,6 +417,18 @@
         public System.Windows.Forms.DataGridView grdPOSchedule;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Panel pnlLanguage;
+        private System.Windows.Forms.RadioButton rbEnglish;
+        private System.Windows.Forms.RadioButton rbTamil;
+        private System.Windows.Forms.Label lblPrintLanguage;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn4;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn5;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn6;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn7;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn8;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint1;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint2;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint3;
