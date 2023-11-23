@@ -1659,7 +1659,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void PUR_PurchaseDC_KeyDown(object sender, KeyEventArgs e)
         {
             try
