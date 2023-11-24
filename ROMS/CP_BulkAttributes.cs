@@ -161,7 +161,7 @@ namespace ROMS
                 objDSBatchNo = objDServ.udfnMaster(0, 25,0,"","",0);
                 objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0,"","",0);
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "",0);
-                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null);
+                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0);
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -987,7 +987,7 @@ namespace ROMS
                 grdBulkAttributes.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"","",null);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

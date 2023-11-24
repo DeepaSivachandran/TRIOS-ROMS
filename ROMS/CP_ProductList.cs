@@ -230,7 +230,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", "",null);
+                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", "",null,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

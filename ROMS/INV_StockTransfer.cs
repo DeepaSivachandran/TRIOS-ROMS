@@ -262,7 +262,7 @@ namespace ROMS
                                 //varUTID, (txtQuantity.Text).Trim());
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]),
                                 Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Destination"]), Convert.ToString(objDS.Tables[0].Rows[i]["Destination Rack"]),
-                                Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]));
+                                Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]));
                                 dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]),Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
                                 //dtStock.Rows.Add((lblProduct.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtQuantity.Text).Trim());
                                 grdStockTransfer.Columns["clmdsno"].Width = 50;
@@ -558,6 +558,7 @@ namespace ROMS
                     }
                 }
                 lvSLocation.Visible = false;
+                lvProduct.Visible = false;
                 txtDLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -832,21 +833,22 @@ namespace ROMS
         {
             try
             {
-                if (txtProductNamePICode.Text == "")
-                {
+                
                     txtMRP.Text = "";
+                    txtSRack.Text = "";
                     txtExpiryDate.Text = "";
                     txtBatchNo.Text = "";
                     txtStockQty.Text = "";
                     txtQuantity.Text = "";
-                }
+                    txtDLocation.Text = "";
+                    cmbDRack.Text = "None";cmbDRack.Enabled = false;
                 varlocationcode = lblSLocation.Text;
                 lvProduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(35,0, 0, 0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,0,txtProductNamePICode.Text.Trim(),0,"","",dtStock);
+                    objDs = objspdservice.udfnproductmasterlist(35,0, 0, 0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,0,txtProductNamePICode.Text.Trim(),0,"","",dtStock,varStockTransferID);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1265,6 +1267,14 @@ namespace ROMS
             finally
             {
                 lvProduct.Visible = false;
+                errStockTransfer.Clear();
+                txtSRack.BackColor = Color.LightGray;//txtSRack.Enabled = false;
+                txtMRP.BackColor = Color.LightGray;
+                txtExpiryDate.BackColor = Color.LightGray;
+                txtBatchNo.BackColor = Color.LightGray;
+                txtStockQty.BackColor = Color.LightGray;
+                txtDLocation.BackColor = Color.LightGray;
+                txtQuantity.BackColor = Color.LightGray;
             }
         }
         private void GrdStockTransfer_CellContentClick(object sender, DataGridViewCellEventArgs e)
