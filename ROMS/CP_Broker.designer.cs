@@ -92,6 +92,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtMobileNo = new System.Windows.Forms.TextBox();
             this.epBroker = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtBrokerConcern = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnlBStatus.SuspendLayout();
@@ -102,6 +103,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.txtBrokerConcern);
             this.grbform.Controls.Add(this.lvCity);
             this.grbform.Controls.Add(this.txtCity);
             this.grbform.Controls.Add(this.lblcityid);
@@ -567,10 +569,11 @@
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(182, 27);
+            this.cmbConcern.Location = new System.Drawing.Point(464, 27);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(274, 27);
-            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.TabIndex = 24235345;
+            this.cmbConcern.Visible = false;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -587,7 +590,7 @@
             this.txtDConcern.ReadOnly = true;
             this.txtDConcern.Size = new System.Drawing.Size(156, 27);
             this.txtDConcern.TabIndex = 1111145;
-            this.txtDConcern.Text = "Concern ";
+            this.txtDConcern.Text = "Broker Concern";
             // 
             // txtAddressLine1
             // 
@@ -837,6 +840,18 @@
             // 
             this.epBroker.ContainerControl = this;
             // 
+            // txtBrokerConcern
+            // 
+            this.txtBrokerConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBrokerConcern.Location = new System.Drawing.Point(182, 27);
+            this.txtBrokerConcern.MaxLength = 100;
+            this.txtBrokerConcern.Name = "txtBrokerConcern";
+            this.txtBrokerConcern.Size = new System.Drawing.Size(274, 27);
+            this.txtBrokerConcern.TabIndex = 0;
+            this.txtBrokerConcern.Enter += new System.EventHandler(this.TxtBrokerConcern_Enter);
+            this.txtBrokerConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBrokerConcern_KeyDown);
+            this.txtBrokerConcern.Leave += new System.EventHandler(this.TxtBrokerConcern_Leave);
+            // 
             // CP_Broker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -930,5 +945,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
+        private System.Windows.Forms.TextBox txtBrokerConcern;
     }
 }

@@ -230,7 +230,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", null);
+                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", "",null);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -839,10 +839,22 @@ namespace ROMS
                             {
                                 ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdItemList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
+                                if (cIndex == 4)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex].Font.Name = "Uni Ila.Sundaram-03";
+                                }
                             }
                         }
                     }
@@ -895,6 +907,7 @@ namespace ROMS
                 this.ActiveControl = cmbConcern;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
 
             }
@@ -929,6 +942,7 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -1010,7 +1024,7 @@ namespace ROMS
             try
             {
                 udfnSubGroupevent();
-                btnView.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {

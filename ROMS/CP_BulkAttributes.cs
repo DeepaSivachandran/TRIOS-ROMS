@@ -154,14 +154,14 @@ namespace ROMS
                 objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0,0);
                 objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0,0);
 
-                objDSShelfLifeType = objDServ.udfnMaster(0, 6,0,"");
-                objDSQTYUnit = objDServ.udfnMaster(2, 0,0,"");
-                objDSProductCategory = objDServ.udfnMaster(0, 5,0,"");
-                objDSRMPRO = objDServ.udfnMaster(1, 0,0,"");
-                objDSBatchNo = objDServ.udfnMaster(0, 25,0,"");
-                objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0,"");
+                objDSShelfLifeType = objDServ.udfnMaster(0, 6,0,"","",0);
+                objDSQTYUnit = objDServ.udfnMaster(2, 0,0,"","",0);
+                objDSProductCategory = objDServ.udfnMaster(0, 5,0,"","",0);
+                objDSRMPRO = objDServ.udfnMaster(1, 0,0,"","",0);
+                objDSBatchNo = objDServ.udfnMaster(0, 25,0,"","",0);
+                objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0,"","",0);
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "",0);
-                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"",null);
+                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null);
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -987,7 +987,7 @@ namespace ROMS
                 grdBulkAttributes.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"",null);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"","",null);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -2492,9 +2492,9 @@ namespace ROMS
         {
             try
             {
-                //(grdSupplierMappingLoad.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct1.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
+                //(grdSupplierMappingLoad.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchByProduct1.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
                 if (grdLoction.Visible == true)
-                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = " ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdMSQ.Visible == true)
                 { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdStock.Visible == true)

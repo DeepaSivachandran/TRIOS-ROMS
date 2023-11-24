@@ -556,16 +556,15 @@ namespace ROMS
                     }
                 }
                 /*check location have a rack or not*/
+                string varId_PurchaseRack = "0";
+                DataSet objDsPurchaseRack = new DataSet();
+                SPDataService objDServ6 = new SPDataService();
+                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), 0, 0);
+                objDServ6.CloseConnection();
                 if (txtPurRack.Text.Trim() != "")
                 {
                     if (lblPurLocationCode.Text != "0")
                     {
-                        string varId_PurchaseRack = "0";
-                        DataSet objDsPurchaseRack = new DataSet();
-                        SPDataService objDServ6 = new SPDataService();
-                        objDsPurchaseRack = objDServ6.udfnRackList(9, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), 0, 0);
-
-                        objDServ6.CloseConnection();
                         if (objDsPurchaseRack != null)
                         {
                             if (objDsPurchaseRack.Tables.Count > 0)
@@ -587,6 +586,32 @@ namespace ROMS
                         }
                     }
                 }
+                else
+                {
+                    if (lblPurLocationCode.Text != "0")
+                    {
+                        
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                }
+                            }
+                        }
+                        lblPurRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                        if (varId_PurchaseRack != "0")
+                        {
+                            errItems.SetError(txtPurRack, "Please enter rack");
+                            txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tppurchaserack.ShowAlways = true;
+                            tppurchaserack.Show("Please enter rack", txtPurRack, 5000);
+                            blnErrorFlag = true;
+                        }
+                    }
+                }
                 ///* Check SALES stock location is valid or not*/
                 //if (txtSaleLocation.Text != "")
                 //{
@@ -596,6 +621,7 @@ namespace ROMS
                 //    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSaleLocation.Text.Trim(),0,0,0);
                 //    objDServ5.CloseConnection();
                 //    if (objDsSalesLoc != null)
+                
                 //    {
                 //        if (objDsSalesLoc.Tables.Count > 0)
                 //        {
@@ -3142,10 +3168,11 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoGeneration, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_QtyUnit", " QUT_STSID =1", "QUT_Symbol,QUTID", cmbNetQty, "", "QUT_Symbol", "QUTID");
                 objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  not in (0)", "GST_Text,GSTID", cmbGst, "", "GST_Text", "GSTID");
-                objDataBind = null; 
-                    cmbConcern.SelectedValue = -1;
-                    //cmbHSNName.SelectedValue = -1;
-                    cmbUnit.SelectedValue = -1;
+                objDataBind = null;
+                //cmbConcern.SelectedValue = -1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                //cmbHSNName.SelectedValue = -1;
+                cmbUnit.SelectedValue = -1;
                     cmbBulkUnit.SelectedValue = -1;
                     cmbProductCategory.SelectedValue = -1;
                     cmbPeriod.SelectedValue = -1;
@@ -3267,6 +3294,7 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnUnitLoad();
                 //int varbrnadViewtype = 4;
                 //if (btnSave.Text == "Save")
@@ -3306,7 +3334,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     lblDPicode.Visible = true;                    
-                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"",null);
+                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"","",null);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -4847,6 +4875,9 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvHsnCode.Items.Add(objList);
+                                    lvHsnCode.Columns[0].Width = 90;
+                                    lvHsnCode.Columns[1].Width = 160;
+                                    lvHsnCode.Columns[2].Width = 0;
                                 }
                                 lvHsnCode.Visible = true;
                             }
@@ -5040,7 +5071,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"",null);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"","",null);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {
@@ -5114,8 +5145,6 @@ namespace ROMS
                             btnSave.Text = "Update";
                             pnlStatus.Enabled = true;
                         }
-
-
                     }
                 }
             }

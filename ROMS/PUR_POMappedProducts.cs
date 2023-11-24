@@ -19,7 +19,7 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbrandcode;
+        public string varbrandcode, DefProductsCode="";
         public DataTable dtMappedProduct;
         public string pbFormStatus;
         public int VARFLAG = 0;
@@ -60,8 +60,10 @@ namespace ROMS
                     dtMappedProduct.Columns.Add("P.I Code", typeof(string));
                     dtMappedProduct.Columns.Add("Product Name", typeof(string));
                     dtMappedProduct.Columns.Add("Unit", typeof(string));
-                    dtMappedProduct.Columns.Add("R.Sales Rate", typeof(string));
-                    dtMappedProduct.Columns.Add("MSQ", typeof(string));
+                    dtMappedProduct.Columns.Add("R.Rate", typeof(string));
+                    dtMappedProduct.Columns.Add("W.Rate", typeof(string));
+                    dtMappedProduct.Columns.Add("Min Qty", typeof(string));
+                    dtMappedProduct.Columns.Add("Max Qty", typeof(string));
                     dtMappedProduct.Columns.Add("Stock", typeof(float));
                     dtMappedProduct.Columns.Add("Reorder Qty", typeof(string));
                     dtMappedProduct.Columns.Add("Product ID", typeof(int));
@@ -69,11 +71,12 @@ namespace ROMS
                     dtMappedProduct.Columns.Add("PREVIOUS", typeof(string));
                     dtMappedProduct.Columns.Add("PARTIAL", typeof(string));
                     dtMappedProduct.Columns.Add("ordervalue", typeof(string));
+                    dtMappedProduct.Columns.Add("PR_UTID", typeof(int));
                     if (Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text) != 0)
                     {
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", 0, 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode,null);
+                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode,"",null);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -84,9 +87,9 @@ namespace ROMS
                                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                     {
                                        dtMappedProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"]
-                                        , objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["SalesRate"], objDs.Tables[0].Rows[i]["MSQ"], objDs.Tables[0].Rows[i]["Stock"],
+                                        , objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["SalesRate"], objDs.Tables[0].Rows[i]["WholeSaleRate"] , objDs.Tables[0].Rows[i]["Min Qty"], objDs.Tables[0].Rows[i]["Max Qty"] , objDs.Tables[0].Rows[i]["Stock"],
                                         objDs.Tables[0].Rows[i]["Reorder"], objDs.Tables[0].Rows[i]["Productid"], objDs.Tables[0].Rows[i]["GST_Text"],
-                                        objDs.Tables[0].Rows[i]["PREVIOUS"], objDs.Tables[0].Rows[i]["PARTIAL"], objDs.Tables[0].Rows[i]["ordervalue"]);
+                                        objDs.Tables[0].Rows[i]["PREVIOUS"], objDs.Tables[0].Rows[i]["PARTIAL"], objDs.Tables[0].Rows[i]["ordervalue"], objDs.Tables[0].Rows[i]["PR_UTID"]);
                                     }
                                     grdPurchaseOrder.DataSource = dtMappedProduct;
                                     grdPurchaseOrder.Columns[0].HeaderText = "";
@@ -96,29 +99,38 @@ namespace ROMS
                                     grdPurchaseOrder.Columns[0].Frozen = true;
                                     grdPurchaseOrder.Columns["P.I Code"].Width = 100;
                                     grdPurchaseOrder.Columns["Product Name"].Width = 300;
+                                    grdPurchaseOrder.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     grdPurchaseOrder.Columns["Unit"].Width = 70;
-                                    grdPurchaseOrder.Columns["R.Sales Rate"].Width = 100;
-                                    grdPurchaseOrder.Columns["MSQ"].Width = 70;
+                                    grdPurchaseOrder.Columns["R.Rate"].Width = 70;
+                                    grdPurchaseOrder.Columns["W.Rate"].Width = 70;
+                                    grdPurchaseOrder.Columns["Min Qty"].Width = 70;
+                                    grdPurchaseOrder.Columns["Max Qty"].Width = 70;
                                     grdPurchaseOrder.Columns["Stock"].Width = 80;
                                     grdPurchaseOrder.Columns["Product id"].Visible = false;
                                     grdPurchaseOrder.Columns["GST_Text"].Visible = false;
                                     grdPurchaseOrder.Columns["PREVIOUS"].Visible = false;
                                     grdPurchaseOrder.Columns["PARTIAL"].Visible = false;
-                                    grdPurchaseOrder.Columns["R.Sales Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdPurchaseOrder.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdPurchaseOrder.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdPurchaseOrder.Columns["Stock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdPurchaseOrder.Columns["Reorder Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdPurchaseOrder.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdPurchaseOrder.Columns["MSQ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdPurchaseOrder.Columns["Min Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdPurchaseOrder.Columns["Max Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdPurchaseOrder.Columns["S.No."].ReadOnly = true;
                                     grdPurchaseOrder.Columns["P.I Code"].ReadOnly = true;
                                     grdPurchaseOrder.Columns["Product Name"].ReadOnly = true;
                                     grdPurchaseOrder.Columns["Unit"].ReadOnly = true;
-                                    grdPurchaseOrder.Columns["R.Sales Rate"].ReadOnly = true;
-                                    grdPurchaseOrder.Columns["MSQ"].ReadOnly = true;
+                                    grdPurchaseOrder.Columns["R.Rate"].ReadOnly = true;
+                                    grdPurchaseOrder.Columns["W.Rate"].ReadOnly = true;
+                                    grdPurchaseOrder.Columns["Min Qty"].ReadOnly = true;
+                                    grdPurchaseOrder.Columns["Max Qty"].ReadOnly = true;
                                     grdPurchaseOrder.Columns["Stock"].ReadOnly = true;
+                                    grdPurchaseOrder.Columns["Stock"].Visible = false;
                                     grdPurchaseOrder.Columns["Reorder Qty"].ReadOnly = true;
-                                    grdPurchaseOrder.Columns["ordervalue"].Visible = false;
-
+                                    grdPurchaseOrder.Columns["ordervalue"].Visible = false; 
+                                    grdPurchaseOrder.Columns["PR_UTID"].Visible = false; 
+                                    grdPurchaseOrder.Columns["Reorder Qty"].Visible = false; 
 
                                 }
                                 else { lblNoRecordsFound.Visible = true; }
@@ -141,7 +153,8 @@ namespace ROMS
             }
             finally
             {
-                grdPurchaseOrder.ClearSelection();
+                grdPurchaseOrder.ClearSelection(); 
+                lblPC.Text = grdPurchaseOrder.Rows.Count.ToString();
             }
         }
 
@@ -149,7 +162,7 @@ namespace ROMS
         {
             try
             {
-                (grdPurchaseOrder.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+                (grdPurchaseOrder.DataSource as BindingSource).Filter = "([Product Name]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             }
             catch (Exception ex)
             {
@@ -189,15 +202,48 @@ namespace ROMS
         public void udfnAddProduct()
         {
             try
-            { 
+            {
+                DefProductsCode = "";
+                for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
+                {
+                    if (DefProductsCode == "")
+                    {
+                        DefProductsCode = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Product ID"].Value);
+                    }
+                    else
+                    {
+                        DefProductsCode = DefProductsCode + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Product ID"].Value);
+                    }
+                }
+
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet(); 
+                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode);
+                objspdservice.CloseConnection();
+
                 for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
                     {
+                        string defflag = "0";
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                if (Convert.ToString( objDs.Tables[0].Rows[i]["prid"])== Convert.ToString((grdPurchaseOrder.Rows[i].Cells["Product ID"].Value)))
+                                {
+                                    defflag = Convert.ToString(objDs.Tables[0].Rows[i]["flag"]);
+                                }
+                                else
+                                {
+                                    defflag = "4";
+                                }
+                            }
+                        }
                         MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Add(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Count + 1,
-                        grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value,grdPurchaseOrder.Rows[i].Cells["Product Name"].Value,grdPurchaseOrder.Rows[i].Cells["Unit"].Value, grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["MSQ"].Value),
+                        grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value,grdPurchaseOrder.Rows[i].Cells["Product Name"].Value,grdPurchaseOrder.Rows[i].Cells["Unit"].Value, grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value), 
                         (grdPurchaseOrder.Rows[i].Cells["Stock"].Value),grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value,grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),
-                        grdPurchaseOrder.Rows[i].Cells["ordervalue"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 4,1);
+                        grdPurchaseOrder.Rows[i].Cells["ordervalue"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), defflag, 1,"","", (grdPurchaseOrder.Rows[i].Cells["PR_UTID"].Value) );
                         VARFLAG = 1;
                     }
                 }

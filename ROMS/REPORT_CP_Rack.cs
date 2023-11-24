@@ -102,22 +102,21 @@ namespace ROMS
         {
             try
             {
-                
-                    if (cmbReportType.SelectedIndex == 0)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    cmbReportType.Focus();
+                }
+                else
+                {
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 115)
                     {
-                        cmbReportType.Focus();
+                         udfnRack();
                     }
-                    else
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 116)
                     {
-                        if (cmbReportType.SelectedIndex == 1)
-                        {
-                             udfnRack();
-                        }
-                        if (cmbReportType.SelectedIndex == 2)
-                        {
-                            udfnRackgroup();
-                        }
+                        udfnRackgroup();
                     }
+                }
             }
             catch (Exception ex)
             {

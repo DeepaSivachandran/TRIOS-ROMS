@@ -456,10 +456,18 @@ namespace ROMS
                             {
                                 ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdGroupList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
                             }
                         }
                     }
@@ -827,6 +835,19 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGroupType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {

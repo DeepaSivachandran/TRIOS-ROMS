@@ -374,6 +374,7 @@
             this.cmbGroupType.TabIndex = 0;
             this.cmbGroupType.Enter += new System.EventHandler(this.CmbGroupType_Enter);
             this.cmbGroupType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroupType_KeyDown);
+            this.cmbGroupType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGroupType_KeyPress);
             this.cmbGroupType.Leave += new System.EventHandler(this.CmbGroupType_Leave);
             // 
             // lblNoRecordsFound

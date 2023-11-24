@@ -78,7 +78,7 @@ namespace ROMS
                         objBankTable.Columns.Add("BRB_AccNo", typeof(string));
                         objBankTable.Columns.Add("BRB_IFSC", typeof(string));
                         objBankTable.Columns.Add("BRB_STSID", typeof(string));
-                        varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "", 0, "Broker delete", objBankTable, varUserID,0);
+                        varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0,"", "", "", "", "", 0, "", "", "", 0, "Broker delete", objBankTable, varUserID,0);
                         objspdservice.CloseConnection();
                         string[] varvalue = varResult.Split('~');
                         if (varvalue[0] == "3")
@@ -91,7 +91,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objspdservice = new SPDataService();
-                                    varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "", 0, "Broker delete", objBankTable, varUserID, 1);
+                                    varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0,"", "", "", "", "", 0, "", "", "", 0, "Broker delete", objBankTable, varUserID, 1);
                                     objspdservice.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -144,7 +144,6 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdBrokerList.DataSource = objDs.Tables[0];
                             grdBrokerList.Columns["ID"].Visible = false;
-                            grdBrokerList.Columns["ConcernID"].Visible = false;
                             grdBrokerList.Columns["STSID"].Visible = false;
                             grdBrokerList.Columns["S.No."].Width = 50;
                             grdBrokerList.Columns["GSTIN No."].Width = 150;
@@ -196,7 +195,7 @@ namespace ROMS
                     MainForm.objCP_CP_Broker = new CP_Broker();
                     MainForm.objCP_CP_Broker.btnSave.Text = "Update";
                     MainForm.objCP_CP_Broker.varBrokerid = grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString();
-                    MainForm.objCP_CP_Broker.PbConcernID = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ConcernID"].Value);
+                    //MainForm.objCP_CP_Broker.PbConcernID = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ConcernID"].Value);
                     MainForm.objCP_CP_Broker.ShowDialog();
                 }
             }
@@ -755,9 +754,18 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdBrokerList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
                             }
                         }
                     }

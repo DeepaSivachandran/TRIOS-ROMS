@@ -19,6 +19,7 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
+        DataTable dtPendingPO = new DataTable();
         public string varbrandcode;
         public string pbFormStatus;
         public INV_GRNPODamaged()
@@ -45,41 +46,92 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        } 
+        private void INV_GRNPODamaged_Load(object sender, EventArgs e)
+        {
+            try
+            { 
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-        private void BindDataGrid()
+
+        private void udfnList()
         {
             try
             {
-                string[] item = new string[30];
-                ListViewItem listitem = new ListViewItem(); DataTable dataTable = new DataTable();
-                dataTable.Columns.Add("s.no", typeof(string));
-                dataTable.Columns.Add("invoiceno", typeof(string));
-                dataTable.Columns.Add("invoicedate", typeof(string));
-                dataTable.Columns.Add("Totalproduct", typeof(string)); 
-                dataTable.Rows.Add("1","1234","19/07/2023","20");
-                //dataTable.Rows.Add("Tuesday");
-                // dataTable.Rows.Add("Wednesday");
-                //dataTable.Rows.Add("Thursday");
-                //dataTable.Rows.Add("Friday");
-                //dataTable.Rows.Add("Saturday");
-                //dataTable.Rows.Add("Sunday");
+                Application.DoEvents();
+                //********** To display a data in a grid  ****************** 
 
-
-                for (int i = 0; i < dataTable.Rows.Count; i++)
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0,varDcid=0;
+                
+                varSupplierid = Convert.ToInt32(MainForm.objPUR_GRNDetails.lblSupplierCode.Text);
+                varScheduleid = Convert.ToInt32(MainForm.objPUR_GRNDetails.lblschedule.Text);
+                varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNDetails.cmbConcern.SelectedValue);
+                varDcid = Convert.ToInt32(MainForm.objPUR_GRNDetails.dcid);
+                 
+                dtPendingPO = new DataTable();
+                dtPendingPO.Columns.Add("", typeof(Boolean));
+                dtPendingPO.Columns.Add("S.No.", typeof(string));
+                dtPendingPO.Columns.Add("DC Date", typeof(string));
+                dtPendingPO.Columns.Add("DC No.", typeof(string));
+                dtPendingPO.Columns.Add("Reason", typeof(string));
+                dtPendingPO.Columns.Add("Total Products", typeof(string));
+                dtPendingPO.Columns.Add("Total value", typeof(string));
+                dtPendingPO.Columns.Add("ID", typeof(string)); 
+                objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, varDcid, 0, 0, 0, 0);
+                objdserv.CloseConnection();
+                if (objDs != null)
                 {
-                    string sno = dataTable.Rows[i]["s.no"].ToString();
-                    string invoiceno = dataTable.Rows[i]["invoiceno"].ToString();
-                    string invoicedate = dataTable.Rows[i]["invoicedate"].ToString();
-                    string totalproduct = dataTable.Rows[i]["Totalproduct"].ToString();
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            grdGRNPODamaged.DataSource = null;
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            {
+                                dtPendingPO.Rows.Add(false,dtPendingPO.Rows.Count + 1, objDs.Tables[0].Rows[i]["DCDATE"], objDs.Tables[0].Rows[i]["DCNO"], objDs.Tables[0].Rows[i]["REASON"], objDs.Tables[0].Rows[i]["prcount"], objDs.Tables[0].Rows[i]["DCVALUE"], objDs.Tables[0].Rows[i]["ID"]);
+                            }
+                            grdGRNPODamaged.DataSource=dtPendingPO;
+                            grdGRNPODamaged.Columns[0].HeaderText = ""; 
+                            grdGRNPODamaged.Columns[0].Width = 30; 
+                            grdGRNPODamaged.Columns["S.No."].Width = 70; 
+                            grdGRNPODamaged.Columns["Reason"].Width = 200;
+                            grdGRNPODamaged.Columns["S.No."].ReadOnly = true;
+                            grdGRNPODamaged.Columns["DC Date"].ReadOnly = true;
+                            grdGRNPODamaged.Columns["DC No."].ReadOnly = true;
+                            grdGRNPODamaged.Columns["Reason"].ReadOnly = true;
+                            grdGRNPODamaged.Columns["Total Products"].ReadOnly = true;
+                            grdGRNPODamaged.Columns["Total value"].ReadOnly = true;
+                            grdGRNPODamaged.Columns["ID"].Visible = false;
 
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(grdGRNPODamaged);
-                    row.Cells[1].Value = sno;
-                    row.Cells[3].Value = invoiceno;
-                    row.Cells[2].Value = invoicedate;
-                    row.Cells[4].Value = "Damage";
-                    row.Cells[5].Value = totalproduct; 
-                    grdGRNPODamaged.Rows.Add(row);
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
             }
             catch (Exception ex)
@@ -87,28 +139,143 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
-
-            // grddays.DataSource = dataTable;
         }
 
-        private void INV_GRNPODamaged_Load(object sender, EventArgs e)
-        {
-            BindDataGrid();
-        }
-
-        private void GrdGRNPODamaged_DoubleClick(object sender, EventArgs e)
+        private void GrdGRNPODamaged_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
-                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                if (e.RowIndex != -1)
+                {
+                    switch (grdGRNPODamaged.Columns[e.ColumnIndex].Name)
+                    {
+                        case "DC No.":
+                            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                            {
+                                string cellPOValue = Convert.ToString(grdGRNPODamaged.Rows[e.RowIndex].Cells["ID"].Value);
+
+                                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                                MainForm.objPUR_PurchaseOrderDamage.varMasterType = "3";
+                                MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToInt32(cellPOValue);
+                                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                            }
+                            break;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+
+        private void BtnOk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnAddPrevPending();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            } 
+        }
+        public void udfnAddPrevPending()
+        {
+            try
+            {
+                MainForm.objPUR_GRNDetails.grdReurnDC.Rows.Clear();
+                int VARFLAG = 0;
+                for (int i = 0; i < grdGRNPODamaged.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdGRNPODamaged.Rows[i].Cells[0].Value) == true)
+                    {
+                        MainForm.objPUR_GRNDetails.grdReurnDC.Rows.Add(grdGRNPODamaged.Rows[i].Cells["DC No."].Value, grdGRNPODamaged.Rows[i].Cells["DC Date"].Value, grdGRNPODamaged.Rows[i].Cells["Total Products"].Value, grdGRNPODamaged.Rows[i].Cells["Total value"].Value, grdGRNPODamaged.Rows[i].Cells["id"].Value);
+                        VARFLAG = 1;
+                    }
+                }
+                if (VARFLAG != 0)
+                { 
+                    MainForm.objPUR_GRNDetails.grdReurnDC.Sort(MainForm.objPUR_GRNDetails.grdReurnDC.Columns["DCDate"], ListSortDirection.Descending);
+                    this.Close();
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    if (grdGRNPODamaged.Rows.Count > 0)
+                    {
+                        string varMessage = objDServ.udfnGetMessages(84);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        string varMessage = objDServ.udfnGetMessages(41);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void INV_GRNPODamaged_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            { 
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnselectall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                foreach (DataGridViewRow row in grdGRNPODamaged.Rows)
+                {
+                    row.Cells[0].Value = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnunselectall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                foreach (DataGridViewRow row in grdGRNPODamaged.Rows)
+                {
+                    row.Cells[0].Value = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

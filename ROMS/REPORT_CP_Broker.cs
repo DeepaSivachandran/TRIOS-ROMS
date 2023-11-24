@@ -126,18 +126,17 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
-
-                    if (cmbReportType.SelectedIndex == 0)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                     {
                         cmbReportType.Focus();
                     }
                     else
                     {
-                        if (cmbReportType.SelectedIndex == 1)
+                        if (Convert.ToInt32(cmbReportType.SelectedValue) == 106)
                         {
                             udfnContact();
                         }
-                        if (cmbReportType.SelectedIndex == 2)
+                        if (Convert.ToInt32(cmbReportType.SelectedValue) == 107)
                         {
                             udfnAddress();
                         }

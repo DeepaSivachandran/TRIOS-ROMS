@@ -101,25 +101,25 @@ namespace ROMS
             try
             {
                 lvCity.Visible = false;
-                if (cmbReportType.SelectedIndex == 0)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbReportType.Focus();
                 }
                 else
                 {
-                    if (cmbReportType.SelectedIndex == 1)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 123)
                     {
                         udfnSupplier();
                     }
-                    if (cmbReportType.SelectedIndex == 2)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 124)
                     {
                         udfnSupplierAddress();
                     }
-                    if (cmbReportType.SelectedIndex == 3)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 125)
                     {
                         udfnSupplierContact();
                     }
-                    if (cmbReportType.SelectedIndex == 4)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 126)
                     {
                         udfnSupplierPODetails();
                     }
@@ -171,7 +171,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(13,0,0,0,0,"",0,Convert.ToInt32(cmbStatus.SelectedValue),0,"",CityId,Convert.ToInt32(cmbState.SelectedValue), Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbPaymentTerm.SelectedValue),0,0);
+                objDs = objspservice.udfnSupplierList(13,0,0,0,0,"",0,Convert.ToInt32(cmbStatus.SelectedValue),0,"",CityId,Convert.ToInt32(cmbState.SelectedValue), Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbPaymentTerm.SelectedValue),0,0,"");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -261,7 +261,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(14, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue), 0, 0, 0,0);
+                objDs = objspservice.udfnSupplierList(14, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue), 0, 0, 0,0,"");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -347,7 +347,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(20, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0, 0,0);
+                objDs = objspservice.udfnSupplierList(20, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0, 0,0,"");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -433,7 +433,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(19, 0, 0, 0, 0, "",Convert.ToInt32(cmbOrderType.SelectedValue), 0, 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0,Convert.ToInt32(cmbReturnPolicy.SelectedValue),0);
+                objDs = objspservice.udfnSupplierList(19, 0, 0, 0, 0, "",Convert.ToInt32(cmbOrderType.SelectedValue), 0, 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0,Convert.ToInt32(cmbReturnPolicy.SelectedValue),0,"");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -589,14 +589,15 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,42) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,42) AND MSTID NOT IN (0,-2)", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>-1 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (12,0) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentTerm, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                udfncmbLoad();
                 cmbReportType.SelectedValue = -1;
                 cmbStatus.SelectedValue = 0;
                 cmbState.SelectedValue = 0;
@@ -607,6 +608,42 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfncmbLoad()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnMaster(6,0,0,"","",0);
+                objdserv.CloseConnection();
+                cmbOrderType.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbOrderType.Enabled = true;
+                            cmbOrderType.ValueMember = "MSTID";
+                            cmbOrderType.DisplayMember = "MST_DisplayText";
+                            cmbOrderType.DataSource = objDT.Tables[0];
+                        }
+                        if (objDT.Tables[1].Rows.Count > 0)
+                        {
+                            cmbReturnPolicy.Enabled = true;
+                            cmbReturnPolicy.ValueMember = "MSTID";
+                            cmbReturnPolicy.DisplayMember = "MST_DisplayText";
+                            cmbReturnPolicy.DataSource = objDT.Tables[1];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

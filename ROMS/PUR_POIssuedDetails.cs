@@ -143,9 +143,10 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
                         objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_UTID", typeof(int));
                         objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, 0, "", 0, 0
-                        , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text,11,"");
+                        , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text,11,"",0);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
@@ -184,6 +185,7 @@ namespace ROMS
                 }
                 if (varsts == 9)
                 { 
+                    gpissued.Enabled = false;
                     gpissued.Enabled = false;
                     btnSave.Enabled = false; 
                 }
@@ -248,7 +250,7 @@ namespace ROMS
                             txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString();
                             SPDataService objDServ = new SPDataService();
                             DataSet objd = new DataSet();
-                            objd = objDServ.udfnMaster(4, 6,varPOID,"");
+                            objd = objDServ.udfnMaster(4, 6,varPOID,"","",0);
                             if (objd.Tables[0].Rows.Count != 0)
                             { 
                                 DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
@@ -516,19 +518,7 @@ namespace ROMS
             }
         }
 
-        private void CmbIssueMode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
 
         private void TxtTAT_Leave(object sender, EventArgs e)
         {
@@ -558,7 +548,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void CmbIssueMode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbIssueMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

@@ -48,6 +48,19 @@ namespace ROMS
         {
             InitializeComponent();
         }
+        public void udfnLvHide()
+        {
+            try
+            {
+                lvGroupName.Visible = false;
+                lvLocation.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_SubGroup_Leave(object sender, EventArgs e)
         {
             try
@@ -628,7 +641,7 @@ namespace ROMS
         {
             try
             {
-                lvGroupName.Visible = false;
+                udfnLvHide();
                 txtESubGroupNameEnglish.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -679,6 +692,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 txtESubGroupNameTamil.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -772,6 +786,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 cmbBatchNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1022,6 +1037,7 @@ namespace ROMS
         {
             try
             {
+                lvLocation.Visible = false;
                 txtProductGroupName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1091,6 +1107,7 @@ namespace ROMS
         {
             try
             {
+                lvGroupName.Visible = false;
                 txtLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1104,7 +1121,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     if (lvLocation.Items.Count == 0 || txtLocation.Text == "")
                     {
@@ -1210,7 +1227,7 @@ namespace ROMS
             try
             {
                 udfnLocationEvent();
-                grdRackList.Focus();
+                txtRack.Focus();
             }
             catch (Exception ex)
             {
@@ -1226,7 +1243,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnLocationEvent();
-                    grdRackList.Focus();
+                    txtRack.Focus();
                 }
             }
             catch (Exception ex)
@@ -1306,7 +1323,7 @@ namespace ROMS
 
         private void TxtRack_TextChanged(object sender, EventArgs e)
         {
-            try {// (grdRackList.DataSource as DataTable).DefaultView.RowFilter = "([RK_Name]) LIKE '%" + txtRack.Text + "%'";
+            try {// (grdRackList.DataSource as BindingSource).Filter = "([RK_Name]) LIKE '%" + txtRack.Text + "%'";
                 dtRackList.DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtRack.Text.Trim() + "%'";
             }
             catch (Exception ex)
@@ -1456,7 +1473,11 @@ namespace ROMS
 
         private void TxtRack_Enter(object sender, EventArgs e)
         {
-            try { txtRack.BackColor = Color.LemonChiffon; }
+            try
+            {
+                udfnLvHide();
+                txtRack.BackColor = Color.LemonChiffon;
+            }
             catch (Exception ex)
             {
                 objError = new DataError();

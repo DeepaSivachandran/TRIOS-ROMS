@@ -73,7 +73,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(pbSupplierCode), Convert.ToInt32(pbScheduleCode), 0, 0, "", 0, 0, 0,"",0,0,0,0,0, Convert.ToInt32(pbPoid));
+                objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(pbSupplierCode), Convert.ToInt32(pbScheduleCode), 0, 0, "", 0, 0, 0,"",0,0,0,0,0, Convert.ToInt32(pbPoid),"");
                 objspdservice.CloseConnection();
                 if (objDs.Tables[6].Rows.Count > 0)
                 { 
@@ -82,7 +82,7 @@ namespace ROMS
                     {
                         lblNoRecordsFound.Visible = false;
                         grdPurchaseOrder.Rows.Add(grdPurchaseOrder.Rows.Count + 1, objDs.Tables[6].Rows[i]["PR_PICode"].ToString(),
-                        objDs.Tables[6].Rows[i]["PR_EName"].ToString(), objDs.Tables[6].Rows[i]["UT_Symbol"].ToString(),
+                        objDs.Tables[6].Rows[i]["PR_TName"].ToString(), objDs.Tables[6].Rows[i]["UT_Symbol"].ToString(),
                         objDs.Tables[6].Rows[i]["POPR_OrderQty"].ToString(), objDs.Tables[6].Rows[i]["RECEIVED"].ToString(),
                         objDs.Tables[6].Rows[i]["POPR_RemainingQty"].ToString()); 
                     }

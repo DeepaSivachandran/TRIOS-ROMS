@@ -283,7 +283,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                int varViewType = 2;
+                int varViewType = 8;
                 objDT = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
@@ -311,6 +311,7 @@ namespace ROMS
             try
             {
                 udfnCmbConcern();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
                 this.ActiveControl = cmbConcern;
             }
@@ -324,6 +325,7 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -613,10 +615,21 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdRackGroupList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    if (Convert.ToString(rowa.Cells[col.Index].Value) != "")
+                                    {
+                                        ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                        varSLno++;
+                                    }
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
                             }
                         }
                     }
@@ -644,6 +657,7 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

@@ -1040,6 +1040,7 @@ namespace ROMS
                 //    epCompany.Clear();
                 //    txtPhoneNo.BackColor = Color.White;
                 //}
+                txtPhoneNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -2686,8 +2687,9 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
-            { 
-               
+            {
+                MainForm objMainForm = new MainForm();
+                objMainForm.udfnGetDefaultCompany();
             }
         }
 

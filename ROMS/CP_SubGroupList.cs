@@ -20,6 +20,7 @@ namespace ROMS
         DataTable objDtExcel = new DataTable();
 
         public int varSubGroupCode = 0;
+        public int SearchFlag = 0;
         public CP_SubGroupList()
         {
             InitializeComponent();
@@ -349,14 +350,6 @@ namespace ROMS
                         {
                             MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
-                        {
-                           
-                        }
                     }
                 }
             }
@@ -468,7 +461,7 @@ namespace ROMS
             try
             {
                 btnView.BackColor = Color.LemonChiffon;
-                lvSubGroup.Visible = false;
+                udfnLvHide();
             }
             catch (Exception ex)
             {
@@ -494,6 +487,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -713,9 +707,22 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdSubGroupList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
+                                if (cIndex == 4)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex].Font.Name = "Uni Ila.Sundaram-03";
+                                }
                             }
                         }
                     }
@@ -757,7 +764,14 @@ namespace ROMS
         {
             try
             {
-                (grdSubGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Sub Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                if (SearchFlag == 1)
+                {
+                    (grdSubGroupList.DataSource as BindingSource).Filter = "([Product Sub Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                }
+                else
+                {
+                    (grdSubGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Sub Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+                }
             }
             catch (Exception ex)
             {
@@ -774,6 +788,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 txtSearchProduct.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -800,6 +815,9 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
+                lvStockLocation.Visible = false;
+                lvSaleRack.Visible = false;
                 txtProductSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -976,6 +994,9 @@ namespace ROMS
         {
             try
             {
+                lvSubGroup.Visible = false;
+                lvStockLocation.Visible = false;
+                lvSaleRack.Visible = false;
                 txtProductGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -989,6 +1010,9 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
+                lvSaleRack.Visible = false;
                 txtStockLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1002,6 +1026,9 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
+                lvStockLocation.Visible = false;
                 txtSaleRack.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1036,11 +1063,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnLvHide()
+        {
+            try
+            {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
+                lvStockLocation.Visible = false;
+                lvSaleRack.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbBatchNoEntry_Enter(object sender, EventArgs e)
         {
             try
             {
+                udfnLvHide();
                 cmbBatchNoEntry.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1054,6 +1096,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1590,6 +1633,10 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally
+            {
+                SearchFlag = 1;
+            }
         }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -1790,7 +1837,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

@@ -42,6 +42,7 @@
             this.txtDCategoryName = new System.Windows.Forms.TextBox();
             this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.epUserCategory = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pnlStatus.SuspendLayout();
             this.grbUserCategory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).BeginInit();
             this.SuspendLayout();
@@ -49,6 +50,8 @@
             // pnlStatus
             // 
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlStatus.Controls.Add(this.rbInactive);
+            this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Enabled = false;
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlStatus.Location = new System.Drawing.Point(197, 80);
@@ -60,7 +63,7 @@
             // 
             this.rbInactive.AutoSize = true;
             this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbInactive.Location = new System.Drawing.Point(341, 82);
+            this.rbInactive.Location = new System.Drawing.Point(143, 3);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
             this.rbInactive.TabIndex = 3;
@@ -75,7 +78,7 @@
             this.rbActive.AutoSize = true;
             this.rbActive.Checked = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbActive.Location = new System.Drawing.Point(253, 82);
+            this.rbActive.Location = new System.Drawing.Point(54, 3);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
             this.rbActive.TabIndex = 2;
@@ -132,8 +135,6 @@
             // 
             // grbUserCategory
             // 
-            this.grbUserCategory.Controls.Add(this.rbInactive);
-            this.grbUserCategory.Controls.Add(this.rbActive);
             this.grbUserCategory.Controls.Add(this.cmbCTSINO);
             this.grbUserCategory.Controls.Add(this.txtOrderNo);
             this.grbUserCategory.Controls.Add(this.txtDCategoryName);
@@ -221,6 +222,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_UserCategory_FormClosing);
             this.Load += new System.EventHandler(this.CP_UserCategory_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserCategory_KeyDown);
+            this.pnlStatus.ResumeLayout(false);
+            this.pnlStatus.PerformLayout();
             this.grbUserCategory.ResumeLayout(false);
             this.grbUserCategory.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).EndInit();
