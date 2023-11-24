@@ -110,6 +110,40 @@ namespace ROMS
                             MainForm.objPUR_POIssuedDetails.varsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.ShowDialog();
                             break;
+                        case "clmPrint":
+                            try
+                            {
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO.rpt");
+                                    varHeader = "Purchase Order";
+                                    objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
                     }
                 }
 
@@ -1404,7 +1438,7 @@ namespace ROMS
                     return;
                 //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
                 //    return;
-                if ((e.ColumnIndex == 0 || e.ColumnIndex == 1))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                if ((e.ColumnIndex == 0 || e.ColumnIndex == 1 || e.ColumnIndex == 2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     return;
 
                 if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
@@ -1480,6 +1514,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                 DGV_SearchGrid.Columns[0].ReadOnly = true;
                 DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                DGV_SearchGrid.Columns[1].ReadOnly = true;
+                DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 //udfnGridSearchHeading(grdPurchaseorderlist, DGV_SearchGrid);
                 //if (DGV_SearchGrid.ColumnCount > 1)
                 //{
@@ -1702,7 +1738,13 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
                         objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_UTID", typeof(int));
                         objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_UTOrderQty", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_TOTOrderQty", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_KGORDERQTY", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
                         SPDataService objspdservice = new SPDataService();
                         result = "";
                         result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", objPurchaseOrder, "", "", "", "", 0, "",0);
@@ -1754,7 +1796,7 @@ namespace ROMS
 
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if ((e.ColumnIndex == 0))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                if ((e.ColumnIndex == 0) || (e.ColumnIndex == 1))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     return;
 
                 if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
@@ -2079,6 +2121,7 @@ namespace ROMS
 
             }
         }
+
         public void udfnPOExcel()
         {
             try
@@ -2126,24 +2169,24 @@ namespace ROMS
                             cIndex += 1;
                             if (cIndex != 1)
                             {
-                                ExcelSheet.Cells[2, cIndex-1] = col.HeaderText;
+                                ExcelSheet.Cells[2, cIndex - 1] = col.HeaderText;
                                 ExcelSheet.Columns[cIndex - 1].NumberFormat = "@";
 
 
-                                if (col.Name == "S.No."  || col.Name == "Total Qty")
+                                if (col.Name == "S.No." || col.Name == "Total Qty")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                                 }
-                                if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date" || col.Name == "GSTIN" || col.Name == "Created On" 
+                                if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date" || col.Name == "GSTIN" || col.Name == "Created On"
                                     || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "Turn Around Time" || col.Name == "Total Products")
                                 {
-                                    ExcelSheet.Columns[cIndex-1].ColumnWidth = 15;
+                                    ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                                 }
-                                if (col.Name == "Supplier" || col.Name == "City" )
+                                if (col.Name == "Supplier" || col.Name == "City")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 25;
                                 }
-                                 
+
 
                                 //else if (col.Name == "HSN Name" || col.Name == "HSN Code")
                                 //{
@@ -2229,6 +2272,8 @@ namespace ROMS
                 btnExport.Focus();
             }
         }
+
+
         public void udfnProductExcel()
         {
             try
@@ -2386,7 +2431,7 @@ namespace ROMS
         {
             try
             {
-
+                int varSupplierId = 0;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -2406,50 +2451,85 @@ namespace ROMS
                 {
                     varsupplier = 1;
                 }
+                int varprint = 0;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), "0");
                 objdserv.CloseConnection();
+               
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count > 0)
                     {
-                        btnPrint.Enabled = false;
-                        RPTViewer.Visible = true;
-                        RPTViewer.BringToFront();
-                        RPTViewer.ReuseParameterValuesOnRefresh = true;
-                        RPTViewer.RefreshReport();
-                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                        int varlanguage = 0; string varlblsupplierprint = "0";
-
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            varprint = 1;
+                        }
+                    }
+                }
+                if (varprint == 1)
+                {
+                    grpProFilter.BringToFront();
+                    grpProFilter.Visible=true;
+                    btnPrint.Enabled = false;
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Order_List.rpt");
+                    }
+                    else
+                    {
                         objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
-                        objBillreport.SetParameterValue("@paracompanycode", Convert.ToInt32(cmbConcernPrint.SelectedValue));
-                        objBillreport.SetParameterValue("@paraOrderID", Convert.ToInt32(cmbOrder.SelectedValue));
-                        objBillreport.SetParameterValue("@parascheduleid", Convert.ToInt32(cmbOrderSchedule.SelectedValue));
-                        objBillreport.SetParameterValue("@parasupplierid", varlblsupplierprint);
-                        objBillreport.SetParameterValue("@paraProductType", varlanguage);
+                        if (cbPoNo.Checked == true && cbSupplier.Checked == true)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
+                        }
+                        else
+                        {
+                            if (cbPoNo.Checked == true)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_PO_wise.rpt");
+                            }
+                            if (cbSupplier.Checked == true)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_Supplierwise.rpt");
+                            }
+                            if (cbPoNo.Checked == false && cbSupplier.Checked == false)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_Product_wise.rpt");
+                            }
+                        }
+                        objBillreport.SetParameterValue("ParaGroupID", Convert.ToInt32(lblGroupId.Text));
+                        objBillreport.SetParameterValue("ParaSubGroupID", Convert.ToString(lblSubGroupId.Text));
+                        objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
+                        objBillreport.SetParameterValue("ParaScheduleId ", Convert.ToInt32(lblschedleCode.Text));
+                        objBillreport.SetParameterValue("paraCompanyID ", Convert.ToInt32(cmbConcern.SelectedValue));
+                        objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbstatus.SelectedValue));
+                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
+                        objBillreport.SetParameterValue("ParaPOFromDate", Convert.ToString(dpPlanDate.Text));
+                        objBillreport.SetParameterValue("ParaPOToDate", Convert.ToString(dptoPlanDate.Text));
                         objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                         objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                         objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName); 
+                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         objValidation.CrySqlConnection(objBillreport);
                         RPTViewer.ReportSource = objBillreport;
                         RPTViewer.Refresh();
                     }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    } 
                 }
                 else
                 {
+                    DGV_SearchGridPro.Columns.Clear();
+                    grdProDetails.DataSource = null;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
-
 
             }
             catch (Exception ex)
