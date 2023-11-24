@@ -1273,8 +1273,8 @@ namespace ROMS
                 txtExpiryDate.BackColor = Color.LightGray;
                 txtBatchNo.BackColor = Color.LightGray;
                 txtStockQty.BackColor = Color.LightGray;
-                txtDLocation.BackColor = Color.LightGray;
-                txtQuantity.BackColor = Color.LightGray;
+                txtDLocation.BackColor = Color.White;
+                txtQuantity.BackColor = Color.White;
             }
         }
         private void GrdStockTransfer_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1507,9 +1507,10 @@ namespace ROMS
                             string varMRP = varSecondList[1];
                             string varExpiryDate = varSecondList[2];
                             string varBatchNo = varSecondList[3];
+                            string varRack = varSecondList[4];
                             for (int j = 0; j < grdStockTransfer.RowCount; j++)
                             {
-                                if (Convert.ToString(grdStockTransfer.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmbatchno"].Value) == varBatchNo)
+                                if (Convert.ToString(grdStockTransfer.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmbatchno"].Value) == varBatchNo && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmSRID"].Value) == varRack)
                                 {
                                     grdStockTransfer.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
                                 }

@@ -54,7 +54,7 @@ namespace ROMS
                 Day = DMY[0];
                 Month = DMY[1];
                 Year = DMY[2];
-                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(),Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnitSymbol,txtsuppliername.Text.Trim(),Day,Month,Year,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
+                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(),Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(), varUnitSymbol,txtsuppliername.Text.Trim(),Day,Month,Year,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim(), (txtStockQty.Text).Trim());
                 grdDamageEntry.Columns["clmDay"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmMonth"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmYear"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1699,6 +1699,35 @@ namespace ROMS
             try
             {
                 udfnTransferNo();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntry_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int TransferQty = Convert.ToInt32(grdDamageEntry.CurrentRow.Cells["clmQuantity"].Value);
+                int StockQty = Convert.ToInt32(grdDamageEntry.CurrentRow.Cells["clmStockQty"].Value);
+
+                if (Convert.ToInt32(TransferQty) > Convert.ToInt32(StockQty))
+                {
+                    //grdStockTransfer.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
+                    grdDamageEntry.Rows[e.RowIndex].Cells["clmQuantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                }
+                else
+                {
+                    grdDamageEntry.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
+                }
+                object varEditQty = grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                // Update the same column value in the DataTable
+                dtDamage.Rows[e.RowIndex]["DM_Qty"] = varEditQty;
+
             }
             catch (Exception ex)
             {
