@@ -780,6 +780,28 @@ namespace ROMS
                     txtProductName.BackColor = Color.White;
                     tpProduct.Active = false;
                 }
+                if(txtProductName.Text!="")
+                {
+                    if(lblProductcode.Text!="0" && lblProductcode.Text!="-1")
+                    {
+                        DataSet ObjsLocation = new DataSet();
+                        SPDataService objDserv = new SPDataService();
+                        ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0,Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 0, 0);
+                        objDserv.CloseConnection();
+                        if (ObjsLocation != null)
+                        {
+                            if (ObjsLocation.Tables.Count > 0)
+                            {
+                                if (ObjsLocation.Tables[0].Rows.Count > 0)
+                                {
+                                    lblStockLocationCode.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SLID"]);
+                                    txtStockLocation.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SL_EName"]);
+                                    lvStockLocation.Visible = false;
+                                }
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
