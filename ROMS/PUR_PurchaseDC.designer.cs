@@ -187,7 +187,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblRackCode);
-            this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.lblStockLocationCode);
             this.groupBox1.Controls.Add(this.lblProductcode);
             this.groupBox1.Controls.Add(this.lblReturnType);
@@ -244,7 +243,7 @@
             this.columnHeader1});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(117, 127);
+            this.LV_Supplier.Location = new System.Drawing.Point(112, 87);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(366, 93);
             this.LV_Supplier.TabIndex = 1111208;
@@ -742,6 +741,7 @@
             // grpExcessProduct
             // 
             this.grpExcessProduct.Controls.Add(this.lblTotalProducts);
+            this.grpExcessProduct.Controls.Add(this.LV_Supplier);
             this.grpExcessProduct.Controls.Add(this.txtTotalProducts);
             this.grpExcessProduct.Controls.Add(this.lvproduct);
             this.grpExcessProduct.Controls.Add(this.lvRack);
@@ -789,7 +789,7 @@
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(2, 2);
+            this.lvproduct.Location = new System.Drawing.Point(-18, 101);
             this.lvproduct.Name = "lvproduct";
             this.lvproduct.Size = new System.Drawing.Size(690, 140);
             this.lvproduct.TabIndex = 1111174;
@@ -819,7 +819,7 @@
             this.columnHeader12});
             this.lvRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvRack.HideSelection = false;
-            this.lvRack.Location = new System.Drawing.Point(916, 2);
+            this.lvRack.Location = new System.Drawing.Point(949, 101);
             this.lvRack.Name = "lvRack";
             this.lvRack.Size = new System.Drawing.Size(366, 93);
             this.lvRack.TabIndex = 1111210;
@@ -850,7 +850,7 @@
             this.columnHeader6});
             this.lvStockLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvStockLocation.HideSelection = false;
-            this.lvStockLocation.Location = new System.Drawing.Point(810, 2);
+            this.lvStockLocation.Location = new System.Drawing.Point(810, 126);
             this.lvStockLocation.Name = "lvStockLocation";
             this.lvStockLocation.Size = new System.Drawing.Size(385, 93);
             this.lvStockLocation.TabIndex = 1111209;
