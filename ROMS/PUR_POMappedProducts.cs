@@ -72,6 +72,20 @@ namespace ROMS
                     dtMappedProduct.Columns.Add("PARTIAL", typeof(string));
                     dtMappedProduct.Columns.Add("ordervalue", typeof(string));
                     dtMappedProduct.Columns.Add("PR_UTID", typeof(int));
+                    //for products weight value calc 
+                    dtMappedProduct.Columns.Add("Unit Wt", typeof(string));
+                    dtMappedProduct.Columns.Add("Unit Per box", typeof(string));
+                    dtMappedProduct.Columns.Add("B.Unit Weight", typeof(string));
+                    dtMappedProduct.Columns.Add("bunit", typeof(string));
+                    dtMappedProduct.Columns.Add("qtyunit", typeof(string));
+                    dtMappedProduct.Columns.Add("totunit", typeof(string));
+                    dtMappedProduct.Columns.Add("finalunit", typeof(string));
+                    dtMappedProduct.Columns.Add("PR_NettWeight", typeof(double));
+                    dtMappedProduct.Columns.Add("PR_UPP", typeof(int));
+                    dtMappedProduct.Columns.Add("B.UTID", typeof(int));
+                    dtMappedProduct.Columns.Add("T.UTID", typeof(int));
+                     
+
                     if (Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text) != 0)
                     {
                         SPDataService objspdservice = new SPDataService();
@@ -85,11 +99,17 @@ namespace ROMS
                                 if (objDs.Tables[0].Rows.Count != 0)
                                 {
                                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    {
-                                       dtMappedProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"]
+                                    { 
+                                        dtMappedProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"]
                                         , objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["SalesRate"], objDs.Tables[0].Rows[i]["WholeSaleRate"] , objDs.Tables[0].Rows[i]["Min Qty"], objDs.Tables[0].Rows[i]["Max Qty"] , objDs.Tables[0].Rows[i]["Stock"],
                                         objDs.Tables[0].Rows[i]["Reorder"], objDs.Tables[0].Rows[i]["Productid"], objDs.Tables[0].Rows[i]["GST_Text"],
-                                        objDs.Tables[0].Rows[i]["PREVIOUS"], objDs.Tables[0].Rows[i]["PARTIAL"], objDs.Tables[0].Rows[i]["ordervalue"], objDs.Tables[0].Rows[i]["PR_UTID"]);
+                                        objDs.Tables[0].Rows[i]["PREVIOUS"], objDs.Tables[0].Rows[i]["PARTIAL"], objDs.Tables[0].Rows[i]["ordervalue"], 
+                                        objDs.Tables[0].Rows[i]["PR_UTID"], objDs.Tables[0].Rows[i]["Unit Wt"],
+                                        objDs.Tables[0].Rows[i]["Unit Per box"], objDs.Tables[0].Rows[i]["B.Unit Weight"],
+                                        objDs.Tables[0].Rows[i]["bt_symbol"], objDs.Tables[0].Rows[i]["unit"],
+                                        objDs.Tables[0].Rows[i]["unit"], objDs.Tables[0].Rows[i]["tot_symbol"],
+                                        objDs.Tables[0].Rows[i]["PR_NettWeight"], objDs.Tables[0].Rows[i]["PR_UPP"],
+                                        objDs.Tables[0].Rows[i]["PR_Bulk_UTID"], objDs.Tables[0].Rows[i]["PR_QUTID"]);
                                     }
                                     grdPurchaseOrder.DataSource = dtMappedProduct;
                                     grdPurchaseOrder.Columns[0].HeaderText = "";
@@ -130,8 +150,18 @@ namespace ROMS
                                     grdPurchaseOrder.Columns["Reorder Qty"].ReadOnly = true;
                                     grdPurchaseOrder.Columns["ordervalue"].Visible = false; 
                                     grdPurchaseOrder.Columns["PR_UTID"].Visible = false; 
-                                    grdPurchaseOrder.Columns["Reorder Qty"].Visible = false; 
-
+                                    grdPurchaseOrder.Columns["Reorder Qty"].Visible = false;
+                                    grdPurchaseOrder.Columns["Unit Wt"].Visible = false;
+                                    grdPurchaseOrder.Columns["Unit Per box"].Visible = false;
+                                    grdPurchaseOrder.Columns["B.Unit Weight"].Visible = false;
+                                    grdPurchaseOrder.Columns["bunit"].Visible = false;
+                                    grdPurchaseOrder.Columns["qtyunit"].Visible = false;
+                                    grdPurchaseOrder.Columns["totunit"].Visible = false;
+                                    grdPurchaseOrder.Columns["finalunit"].Visible = false;
+                                    grdPurchaseOrder.Columns["PR_NettWeight"].Visible = false;
+                                    grdPurchaseOrder.Columns["PR_UPP"].Visible = false;
+                                    grdPurchaseOrder.Columns["B.UTID"].Visible = false;
+                                    grdPurchaseOrder.Columns["T.UTID"].Visible = false; 
                                 }
                                 else { lblNoRecordsFound.Visible = true; }
                             }
@@ -239,13 +269,19 @@ namespace ROMS
                                     defflag = "4";
                                 }
                             }
-                        }
+                        } 
                         MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Add(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Count + 1,
-                        grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value,grdPurchaseOrder.Rows[i].Cells["Product Name"].Value,grdPurchaseOrder.Rows[i].Cells["Unit"].Value, grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value), 
-                        (grdPurchaseOrder.Rows[i].Cells["Stock"].Value),grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value,grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),
-                        grdPurchaseOrder.Rows[i].Cells["ordervalue"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), defflag, 1,"","", (grdPurchaseOrder.Rows[i].Cells["PR_UTID"].Value) );
+                        grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value, grdPurchaseOrder.Rows[i].Cells["Product Name"].Value, grdPurchaseOrder.Rows[i].Cells["Unit"].Value,
+                        grdPurchaseOrder.Rows[i].Cells["Unit Wt"].Value, grdPurchaseOrder.Rows[i].Cells["Unit Per box"].Value, grdPurchaseOrder.Rows[i].Cells["B.Unit Weight"].Value, 
+                        grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value),
+                        (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value, grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, 
+                        (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),"", grdPurchaseOrder.Rows[i].Cells["bunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["qtyunit"].Value,
+                        "",grdPurchaseOrder.Rows[i].Cells["totunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["finalunit"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 
+                        defflag, 1, "", "", (grdPurchaseOrder.Rows[i].Cells["PR_UTID"].Value), (grdPurchaseOrder.Rows[i].Cells["PR_NettWeight"].Value),
+                        (grdPurchaseOrder.Rows[i].Cells["PR_UPP"].Value), "",(grdPurchaseOrder.Rows[i].Cells["B.UTID"].Value), (grdPurchaseOrder.Rows[i].Cells["T.UTID"].Value)
+                        );
                         VARFLAG = 1;
-                    }
+                     }
                 }
 
                 if(VARFLAG != 0)

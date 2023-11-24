@@ -1939,7 +1939,7 @@ namespace ROMS
 
         // added by venkat on 13/10/2023 for PO.No. Save
         public string udfnPurchaseEntry(int paraViewType, int ParaPOID, int paraCompanyId,string paraPONumber,int paraSupplierID,int paraScheduleID,string paraLastTrnsno
-            ,string paraOriginator,string paraRemarks,string paraTAT,DataTable objPurchaseOrder,string paraIssuedDate,string paraIssuedBy,string paraIssuedMode,string paraIssuedModeRemarks,int paraFinalStatus,string paraPODate,int ParaUnitId)
+            ,string paraOriginator,string paraRemarks,string paraTAT,DataTable objPurchaseOrder,string paraIssuedDate,string paraIssuedBy,string paraIssuedMode,string paraIssuedModeRemarks,int paraFinalStatus,string paraPODate,int ParaUnitId,double paraTotalKg)
         {
             string result = "";
             try
@@ -1968,6 +1968,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPODate", paraPODate);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@ParaUnitId", ParaUnitId);
+                varSqlCommand.Parameters.AddWithValue("@paraTotalKg", paraTotalKg);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
