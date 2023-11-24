@@ -877,7 +877,6 @@
             // 
             this.clmquantity.HeaderText = "Quantity";
             this.clmquantity.Name = "clmquantity";
-            this.clmquantity.ReadOnly = true;
             // 
             // clmUnit
             // 
