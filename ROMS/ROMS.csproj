@@ -193,6 +193,7 @@
     <Compile Include="CP_SupplierPopup.designer.cs">
       <DependentUpon>CP_SupplierPopup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRNS_StockHold.cs" />
     <Compile Include="Model\TRN_Damage.cs" />
     <Compile Include="PUR_POScheduleSummary.cs">
       <SubType>Form</SubType>
