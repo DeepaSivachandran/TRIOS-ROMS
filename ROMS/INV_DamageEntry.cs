@@ -1253,25 +1253,26 @@ namespace ROMS
                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSave.Enabled = true;
                     btnSave.Focus();
-                    //if (varvalue[0] == "5")
-                    //{
-                    //    string[] varFirstList = varvalue[2].Split('|');
-                    //    for (int i = 0; i < varFirstList.Length; i++)
-                    //    {
-                    //        string[] varSecondList = varFirstList[i].Split(',');
-                    //        string varPRID = varSecondList[0];
-                    //        string varMRP = varSecondList[1];
-                    //        string varExpiryDate = varSecondList[2];
-                    //        string varBatchNo = varSecondList[3];
-                    //        for (int j = 0; j < grdDamageEntry.RowCount; j++)
-                    //        {
-                    //            if (Convert.ToString(grdDamageEntry.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmbatchno"].Value) == varBatchNo)
-                    //            {
-                    //                grdDamageEntry.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
-                    //            }
-                    //        }
-                    //    }
-                    //}
+                    if (varvalue[0] == "5")
+                    {
+                        string[] varFirstList = varvalue[2].Split('|');
+                        for (int i = 0; i < varFirstList.Length; i++)
+                        {
+                            string[] varSecondList = varFirstList[i].Split(',');
+                            string varPRID = varSecondList[0];
+                            string varMRP = varSecondList[1];
+                            string varExpiryDate = varSecondList[2];
+                            string varBatchNo = varSecondList[3];
+                            string varRack = varSecondList[4];
+                            for (int j = 0; j < grdDamageEntry.RowCount; j++)
+                            {
+                                if (Convert.ToString(grdDamageEntry.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmbatchno"].Value) == varBatchNo)
+                                {
+                                    grdDamageEntry.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                }
+                            }
+                        }
+                    }
                 }
 
             }
@@ -1427,7 +1428,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,txtProductName.Text.Trim(),0,"","",null,0);
+                    objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,txtProductName.Text.Trim(),0,"","",null, varID);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
