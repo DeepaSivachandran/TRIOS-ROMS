@@ -1266,7 +1266,7 @@ namespace ROMS
                             string varRack = varSecondList[4];
                             for (int j = 0; j < grdDamageEntry.RowCount; j++)
                             {
-                                if (Convert.ToString(grdDamageEntry.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmbatchno"].Value) == varBatchNo)
+                                if (Convert.ToString(grdDamageEntry.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmbatchno"].Value) == varBatchNo && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmRKID"].Value) == varRack)
                                 {
                                     grdDamageEntry.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
                                 }
