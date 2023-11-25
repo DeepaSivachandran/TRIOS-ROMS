@@ -1785,6 +1785,14 @@ namespace ROMS
                     grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 }
+                else if (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == "")
+                {
+                    grdStockTransfer.Rows[e.RowIndex].Cells["clmQuantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
                 else
                 {
                     grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
