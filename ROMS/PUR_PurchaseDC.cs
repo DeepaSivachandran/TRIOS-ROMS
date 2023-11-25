@@ -179,6 +179,14 @@ namespace ROMS
                 lblStockLocationCode.Text = "0";
                 txtRack.Text = "";
                 lblRackCode.Text = "0";
+                txtProductName.BackColor = Color.White;
+                txtMrp.BackColor = Color.White;
+                txtDay.BackColor = Color.White;
+                txtMonth.BackColor = Color.White;
+                txtYear.BackColor = Color.White;
+                txtBatchNo.BackColor = Color.White;
+                txtActualQty.BackColor = Color.White;
+                txtRack.BackColor = Color.White;
                 this.ActiveControl = txtProductName;
                 epPurchaseDC.Clear();
             }
