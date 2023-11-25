@@ -132,17 +132,42 @@ namespace ROMS
                                 grdsupplieradd.Rows.Clear();
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
+                                    string bulk = "0", unit = "0";
+                                    if (Convert.ToString(objDs.Tables[0].Rows[i]["ORDERQTY"]) == "0")
+                                    {
+                                        bulk = "-";
+                                    }
+                                    else
+                                    {
+                                        bulk = Convert.ToString(objDs.Tables[0].Rows[i]["ORDERQTY"]);
+                                    }
+                                    if (Convert.ToString(objDs.Tables[0].Rows[i]["unitqty"]) == "0")
+                                    {
+                                        unit = "-";
+                                    }
+                                    else
+                                    {
+                                        unit = Convert.ToString(objDs.Tables[0].Rows[i]["unitqty"]);
+                                    }
                                     lblNoRecordsFound.Visible = false;
                                     grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString(),
                                     objDs.Tables[0].Rows[i]["Product Name"].ToString(), objDs.Tables[0].Rows[i]["Unit"].ToString(),
+                                    objDs.Tables[0].Rows[i]["Unit Wt"].ToString(), objDs.Tables[0].Rows[i]["Unit Per box"].ToString(),
+                                    objDs.Tables[0].Rows[i]["B.Unit Weight"].ToString(), 
                                     objDs.Tables[0].Rows[i]["GST_Text"].ToString(), objDs.Tables[0].Rows[i]["MSQ"].ToString(), objDs.Tables[0].Rows[i]["MXSQ"].ToString(),
                                     objDs.Tables[0].Rows[i]["STOCK"].ToString(), objDs.Tables[0].Rows[i]["PREVIOUS"].ToString(),
-                                    objDs.Tables[0].Rows[i]["PARTIAL"].ToString(), objDs.Tables[0].Rows[i]["Reorder"].ToString()
-                                    , objDs.Tables[0].Rows[i]["ORDERQTY"].ToString(), objDs.Tables[0].Rows[i]["Productid"].ToString(),
-                                    objDs.Tables[0].Rows[i]["FLAG"].ToString(), Convert.ToString(objDs.Tables[0].Rows[i]["EDITFLAG"]),
-                                    objDs.Tables[0].Rows[i]["STATUS"].ToString(), objDs.Tables[0].Rows[i]["PRSTSID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString());
+                                    objDs.Tables[0].Rows[i]["PARTIAL"].ToString(), objDs.Tables[0].Rows[i]["Reorder"].ToString() 
+                                    , bulk, objDs.Tables[0].Rows[i]["bunit"].ToString(), unit, objDs.Tables[0].Rows[i]["Unit"].ToString()
+                                    , objDs.Tables[0].Rows[i]["totalqty"].ToString(), objDs.Tables[0].Rows[i]["totunit"].ToString()
+                                    , objDs.Tables[0].Rows[i]["Finaltot"].ToString(), objDs.Tables[0].Rows[i]["finalunit"].ToString() 
+                                    , objDs.Tables[0].Rows[i]["Productid"].ToString(),objDs.Tables[0].Rows[i]["FLAG"].ToString(),Convert.ToString(objDs.Tables[0].Rows[i]["EDITFLAG"]),
+                                    objDs.Tables[0].Rows[i]["STATUS"].ToString(), objDs.Tables[0].Rows[i]["PRSTSID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString()
+                                    , objDs.Tables[0].Rows[i]["PR_NettWeight"].ToString(), objDs.Tables[0].Rows[i]["PR_UPP"].ToString()
+                                    , objDs.Tables[0].Rows[i]["bulkwtval"].ToString(), objDs.Tables[0].Rows[i]["B.UTID"].ToString(), objDs.Tables[0].Rows[i]["T.UTID"].ToString()
+                                    );
                                     grdsupplieradd.Columns[10].ReadOnly = false;
-                                }
+                                } 
+
                                 cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString();
                                 //cmbUnit.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString();
                                 dpPlanDate.Text = objDs.Tables[0].Rows[0]["PODATE"].ToString();
@@ -151,6 +176,7 @@ namespace ROMS
                                 txtSupplier.Text = objDs.Tables[0].Rows[0]["Supplier"].ToString();
                                 lblSupplierCode.Text = objDs.Tables[0].Rows[0]["SPID"].ToString();
                                 lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
+                                lblKG.Text = objDs.Tables[0].Rows[0]["PO_PRTotQty"].ToString();
                                 btnSave.Text = "Update";
                                 cmbStatus.Enabled = true;
                                 udfnsupplierLoad();
@@ -604,8 +630,7 @@ namespace ROMS
                                             this.ActiveControl = txtSupplier;
                                             MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
                                             udfnClear();
-                                            varupdate = "1";
-
+                                            varupdate = "1"; 
                                             SPDataService objDServ = new SPDataService();
                                             string varMessage = objDServ.udfnGetMessages(87);
                                             objDServ.CloseConnection();
@@ -3559,7 +3584,6 @@ namespace ROMS
                                      objDs.Tables[3].Rows[i]["UTID"].ToString(), Convert.ToString(objDs.Tables[3].Rows[i]["PR_NettWeight"]),
                                      Convert.ToString(objDs.Tables[3].Rows[i]["PR_UPP"]), Convert.ToString(objDs.Tables[3].Rows[i]["bulkwtval"]),
                                      Convert.ToString(objDs.Tables[3].Rows[i]["B.UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["T.UTID"])
-
                                      );
                                     grdsupplieradd.Columns[10].ReadOnly = false;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);

@@ -897,7 +897,8 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
                             grdPurchaseorderlist.Columns["Status"].Width = 100;
-                            grdPurchaseorderlist.Columns["clmView"].Width = 60;
+                            grdPurchaseorderlist.Columns["clmView"].Width = 40;
+                            grdPurchaseorderlist.Columns["clmPrint"].Width = 40;
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
                             grdPurchaseorderlist.Columns["STS1"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_ID"].Visible = false;
