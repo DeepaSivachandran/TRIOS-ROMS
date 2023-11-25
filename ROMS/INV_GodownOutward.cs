@@ -32,7 +32,7 @@ namespace ROMS
         public int varGOId = 0;
         public int varUpdate = 0,VarUpdateFlag=0;
         public int varCompanyId = 0, varDestSLID = 0, varDestRKID = 0;
-        string varProductID = "", varMRP = "", varExpiryDate = "", varBatchNo = "";
+        string varProductID = "", varMRP = "", varExpiryDate = "", varBatchNo = "",varRackId="";
         DataTable dtStock = new DataTable();
         public string vargroupcode;
         public String pbFormStatus;
@@ -595,8 +595,6 @@ namespace ROMS
                 udfnTransactionData();
                 dtpOutwardDate.MaxDate = DateTime.Now;
                 DGV_inward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
-
-
                 if (btnSave.Text == "Save")
                 {
 
@@ -634,7 +632,6 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
             }
             catch (Exception ex)
             {
@@ -885,7 +882,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
                     varPRID = selectedItem.SubItems[0].Text;
-                    txtProduct.Text = selectedItem.SubItems[4].Text;
+                    txtProduct.Text = selectedItem.SubItems[3].Text;
                     varPICode = selectedItem.SubItems[1].Text;
                     txtRack.Text = selectedItem.SubItems[5].Text;
                     txtMrp.Text = selectedItem.SubItems[6].Text;
@@ -961,6 +958,11 @@ namespace ROMS
             return dtStock;
         }
 
+        private void TxtOutwardQuantity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void DtpOutwardDate_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -994,7 +996,7 @@ namespace ROMS
                 if (Convert.ToInt32(OutwardcellValue) > Convert.ToInt32(StockcellValue))
                 {
                     DGV_inward.CurrentRow.Cells["clmOutward"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
+                    //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
                     tpConcern.ShowAlways = true;
                     tpConcern.Show("Please enter valid outward qty", DGV_inward, 5000);
                     SPDataService objDServ = new SPDataService();
@@ -1181,7 +1183,8 @@ namespace ROMS
                                         varMRP = varSecondList[1];
                                         varExpiryDate = varSecondList[2];
                                         varBatchNo = varSecondList[3];
-                                    if (Convert.ToString(DGV_inward.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(DGV_inward.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(DGV_inward.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(DGV_inward.Rows[j].Cells["clmBatchNo"].Value) == varBatchNo)
+                                        varRackId = varSecondList[4];
+                                    if (Convert.ToString(DGV_inward.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(DGV_inward.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(DGV_inward.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(DGV_inward.Rows[j].Cells["clmBatchNo"].Value) == varBatchNo && Convert.ToString(DGV_inward.Rows[j].Cells["clmRKID"].Value) == varRackId)
                                     {
 
                                           DGV_inward.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
