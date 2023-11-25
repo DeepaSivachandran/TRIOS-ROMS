@@ -1787,7 +1787,7 @@ namespace ROMS
                 }
                 else if (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == "")
                 {
-                    grdStockTransfer.Rows[e.RowIndex].Cells["clmQuantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
