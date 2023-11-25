@@ -1412,7 +1412,7 @@ namespace ROMS
         public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup,
             string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode, int paraStatusId, int paraBrandID, int ParaScheduleid,
             int paraScheduleDay, int paraRackId, int paraHsnId, int paraGstId, int paraLocationId, int paraLocationType, int paraGodownType,
-            int paraRKGId, int paraEMPId,string paraProductName,int ParaSupplierId,string ParaProductsCode,string paraHSNCode, DataTable paraStockTransfer) {
+            int paraRKGId, int paraEMPId,string paraProductName,int ParaSupplierId,string ParaProductsCode,string paraHSNCode, DataTable paraStockTransfer,int paraId) {
             DataSet ds = new DataSet();
             try
             {
@@ -1445,6 +1445,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", ParaSupplierId);
                 varSqlCommand.Parameters.AddWithValue("@ParaProductsCode", ParaProductsCode);
                 varSqlCommand.Parameters.AddWithValue("@paraHSNCode", paraHSNCode);
+                varSqlCommand.Parameters.AddWithValue("@paraId", paraId);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
