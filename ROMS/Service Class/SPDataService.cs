@@ -2320,6 +2320,69 @@ namespace ROMS
             }
             return ds;
         }
+
+        public string udfnStockHold(TRNS_StockHold objTRNS_StockHold)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_StockHold]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNS_StockHold.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraSHID", objTRNS_StockHold.paraSHID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanycode", objTRNS_StockHold.paraCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNS_StockHold.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNS_StockHold.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKID", objTRNS_StockHold.paraRKID);
+                varSqlCommand.Parameters.AddWithValue("@paraMrp", objTRNS_StockHold.paraMrp);
+                varSqlCommand.Parameters.AddWithValue("@paraExpiryDate", objTRNS_StockHold.paraExpiryDate);
+                varSqlCommand.Parameters.AddWithValue("@paraBatchNo", objTRNS_StockHold.paraBatchNo);
+                varSqlCommand.Parameters.AddWithValue("@paraUTID", objTRNS_StockHold.paraUTID);
+                varSqlCommand.Parameters.AddWithValue("@paraQty", objTRNS_StockHold.paraQty);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_StockHold.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        public DataSet udfnStockHoldList(int ViewType)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_StockHold]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }
