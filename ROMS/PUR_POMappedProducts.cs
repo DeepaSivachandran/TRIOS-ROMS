@@ -51,8 +51,7 @@ namespace ROMS
             {
                 if (Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text) != 0)
                 {
-                    lblNoRecordsFound.Visible = false;
-                    this.ActiveControl = txtSearchByProduct2;
+                    lblNoRecordsFound.Visible = false; 
                     this.Text = MainForm.objPUR_PurchaseOrder.txtSupplier.Text;
                     dtMappedProduct = new DataTable();
                     dtMappedProduct.Columns.Add("", typeof(Boolean));
@@ -152,7 +151,7 @@ namespace ROMS
                                     grdPurchaseOrder.Columns["PR_UTID"].Visible = false; 
                                     grdPurchaseOrder.Columns["Reorder Qty"].Visible = false;
                                     grdPurchaseOrder.Columns["Unit Wt"].Visible = false;
-                                    grdPurchaseOrder.Columns["Unit Per box"].Visible = false;
+                                    grdPurchaseOrder.Columns["Unit Per box"].Visible = true;
                                     grdPurchaseOrder.Columns["B.Unit Weight"].Visible = false;
                                     grdPurchaseOrder.Columns["bunit"].Visible = false;
                                     grdPurchaseOrder.Columns["qtyunit"].Visible = false;
@@ -187,19 +186,7 @@ namespace ROMS
                 lblPC.Text = grdPurchaseOrder.Rows.Count.ToString();
             }
         }
-
-        private void TxtSearchByProduct2_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                (grdPurchaseOrder.DataSource as BindingSource).Filter = "([Product Name]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void GrdPurchaseOrder_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
@@ -274,14 +261,12 @@ namespace ROMS
                         grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value, grdPurchaseOrder.Rows[i].Cells["Product Name"].Value, grdPurchaseOrder.Rows[i].Cells["Unit"].Value,
                         grdPurchaseOrder.Rows[i].Cells["Unit Wt"].Value, grdPurchaseOrder.Rows[i].Cells["Unit Per box"].Value, grdPurchaseOrder.Rows[i].Cells["B.Unit Weight"].Value, 
                         grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value),
-                        (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value, grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, 
+                        (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), Convert.ToString(grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value), grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, 
                         (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),"", grdPurchaseOrder.Rows[i].Cells["bunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["qtyunit"].Value,
                         "",grdPurchaseOrder.Rows[i].Cells["totunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["finalunit"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 
                         defflag, 1, "", 10, (grdPurchaseOrder.Rows[i].Cells["PR_UTID"].Value), (grdPurchaseOrder.Rows[i].Cells["PR_NettWeight"].Value),
-                        (grdPurchaseOrder.Rows[i].Cells["PR_UPP"].Value), "",(grdPurchaseOrder.Rows[i].Cells["B.UTID"].Value), (grdPurchaseOrder.Rows[i].Cells["T.UTID"].Value)
-                        );
-                        VARFLAG = 1;
-                     }
+                        (grdPurchaseOrder.Rows[i].Cells["PR_UPP"].Value),"",(grdPurchaseOrder.Rows[i].Cells["B.UTID"].Value), (grdPurchaseOrder.Rows[i].Cells["T.UTID"].Value));
+                        VARFLAG = 1;}
                 }
 
                 if(VARFLAG != 0)
@@ -361,45 +346,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtSearchByProduct2_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtSearchByProduct2.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtSearchByProduct2_Leave(object sender, EventArgs e)
-        {
-            try { txtSearchByProduct2.BackColor = Color.White; }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtSearchByProduct2_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void BtnSave_Leave(object sender, EventArgs e)
         {

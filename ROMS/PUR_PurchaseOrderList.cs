@@ -892,7 +892,7 @@ namespace ROMS
                     if (objDs.Tables.Count != 0)
                     {
                         lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
+                        if (objDs.Tables[0].Rows.Count > 0)
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
@@ -941,15 +941,18 @@ namespace ROMS
                             lblNoRecordsFound.BringToFront();
                             grdPurchaseorderlist.Columns["clmView"].Visible = false;
                         }
-                        if (objDs.Tables[1].Rows.Count != 0)
+                        if (objDs.Tables[1].Rows.Count > 0)
                         {
                             lblPartial.Text = objDs.Tables[1].Rows[0]["PartialCount"].ToString();
                             lblIssued.Text = objDs.Tables[1].Rows[0]["IssuedCount"].ToString();
                             lblNotissued.Text = objDs.Tables[1].Rows[0]["NotIssuedCount"].ToString();
                             lblDelayed.Text = objDs.Tables[1].Rows[0]["DelayedCount"].ToString();
-                            lblTotal.Text = Convert.ToString(Convert.ToInt32(lblPartial.Text) + Convert.ToInt32(lblIssued.Text) + Convert.ToInt32(lblNotissued.Text) + Convert.ToInt32(lblDelayed.Text));
+                            if (Convert.ToString(lblPartial.Text) != "" && Convert.ToString(lblIssued.Text) != "" && Convert.ToString(lblNotissued.Text) != "" && Convert.ToString(lblDelayed.Text) != "") 
+                            {
+                                lblTotal.Text = Convert.ToString(Convert.ToInt32(lblPartial.Text) + Convert.ToInt32(lblIssued.Text) + Convert.ToInt32(lblNotissued.Text) + Convert.ToInt32(lblDelayed.Text));
+                            }
                         }
-                        if (objDs.Tables[2].Rows.Count != 0)
+                        if (objDs.Tables[2].Rows.Count > 0)
                         {
                             if (Convert.ToInt32(objDs.Tables[2].Rows[0]["SupplierPend"].ToString().Replace("''", "'")) != 0)
                             {
@@ -966,6 +969,7 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                         grdPurchaseorderlist.Columns["clmView"].Visible = false;
+                        grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
                     }
                 }
                 else
@@ -973,6 +977,8 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                     grdPurchaseorderlist.Columns["clmView"].Visible = false;
+                    grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
+
                 }
 
                 udfnSearchGridHead();

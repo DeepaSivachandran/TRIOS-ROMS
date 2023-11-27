@@ -36,8 +36,6 @@
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
-            this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.btnselectall = new System.Windows.Forms.Button();
@@ -57,7 +55,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.submit;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(721, 460);
+            this.btnSave.Location = new System.Drawing.Point(849, 460);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(81, 33);
@@ -74,7 +72,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(806, 460);
+            this.btnClose.Location = new System.Drawing.Point(936, 460);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 33);
@@ -85,29 +83,6 @@
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
             this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
-            // txtSearchByProduct2
-            // 
-            this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchByProduct2.Location = new System.Drawing.Point(483, 6);
-            this.txtSearchByProduct2.MaxLength = 50;
-            this.txtSearchByProduct2.Name = "txtSearchByProduct2";
-            this.txtSearchByProduct2.Size = new System.Drawing.Size(395, 27);
-            this.txtSearchByProduct2.TabIndex = 1;
-            this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
-            this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
-            this.txtSearchByProduct2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByProduct2_KeyDown);
-            this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
-            // 
-            // lblSearchByProduct2
-            // 
-            this.lblSearchByProduct2.AutoSize = true;
-            this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchByProduct2.Location = new System.Drawing.Point(277, 9);
-            this.lblSearchByProduct2.Name = "lblSearchByProduct2";
-            this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
-            this.lblSearchByProduct2.TabIndex = 1111147;
-            this.lblSearchByProduct2.Text = "Search by Product Name/P.I Code";
             // 
             // grdPurchaseOrder
             // 
@@ -144,7 +119,7 @@
             this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdPurchaseOrder.RowTemplate.Height = 25;
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseOrder.Size = new System.Drawing.Size(866, 415);
+            this.grdPurchaseOrder.Size = new System.Drawing.Size(996, 415);
             this.grdPurchaseOrder.TabIndex = 2;
             this.grdPurchaseOrder.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdPurchaseOrder_CurrentCellDirtyStateChanged);
             // 
@@ -193,7 +168,7 @@
             this.lblPC.AutoSize = true;
             this.lblPC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblPC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblPC.Location = new System.Drawing.Point(625, 466);
+            this.lblPC.Location = new System.Drawing.Point(816, 466);
             this.lblPC.Name = "lblPC";
             this.lblPC.Size = new System.Drawing.Size(17, 20);
             this.lblPC.TabIndex = 1111192;
@@ -204,7 +179,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(527, 466);
+            this.label7.Location = new System.Drawing.Point(718, 466);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 20);
             this.label7.TabIndex = 1111191;
@@ -215,15 +190,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(890, 502);
+            this.ClientSize = new System.Drawing.Size(1020, 502);
             this.Controls.Add(this.lblPC);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnunselectall);
             this.Controls.Add(this.btnselectall);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.grdPurchaseOrder);
-            this.Controls.Add(this.txtSearchByProduct2);
-            this.Controls.Add(this.lblSearchByProduct2);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -249,8 +222,6 @@
         private System.Windows.Forms.ErrorProvider errUnit;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.TextBox txtSearchByProduct2;
-        private System.Windows.Forms.Label lblSearchByProduct2;
         public System.Windows.Forms.DataGridView grdPurchaseOrder;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.Button btnunselectall;
