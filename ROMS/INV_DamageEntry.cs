@@ -16,11 +16,13 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        private ToolTip tpplno = new ToolTip();
+        private ToolTip tpProduct = new ToolTip();
         private ToolTip tpMRP = new ToolTip();
-        private ToolTip tpMonth = new ToolTip();
-        private ToolTip tpYear = new ToolTip();
+        private ToolTip tpLocation = new ToolTip();
+        private ToolTip tpRack = new ToolTip();
+        private ToolTip tpExpiryDate = new ToolTip();
         private ToolTip tpBatchNo = new ToolTip();
+        private ToolTip tpStockQty = new ToolTip();
         private ToolTip tpQuantity = new ToolTip();
         private ToolTip tpSupplierName = new ToolTip();
         private ToolTip tpcompanyname = new ToolTip();
@@ -269,6 +271,8 @@ namespace ROMS
             try
             {
                 udfnTransferNo();
+                grdDamageEntry.Rows.Clear();
+                dtDamage.Rows.Clear();
             }
             catch (Exception ex)
 
@@ -369,8 +373,8 @@ namespace ROMS
                 {
                     epDamageEntry.SetError(txtProductName, "Please enter product name or P.I Code");
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpplno.ShowAlways = true;
-                    tpplno.Show("Please enter product name or P.I Code", txtProductName, 5000);
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please enter product name or P.I Code", txtProductName, 5000);
                 }
                 else
                 {
@@ -831,8 +835,56 @@ namespace ROMS
                 {
                     epDamageEntry.SetError(txtProductName, "Please enter product name or P.I Code.");
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpplno.ShowAlways = true;
-                    tpplno.Show("Please enter product name or P.I Code.", txtProductName, 5000);
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please enter product name or P.I Code.", txtProductName, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtLocation.Text == "")
+                {
+                    epDamageEntry.SetError(txtLocation, "Please enter location name");
+                    txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpLocation.ShowAlways = true;
+                    tpLocation.Show("Please enter location name", txtLocation, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtRack.Text == "")
+                {
+                    epDamageEntry.SetError(txtRack, "Please enter rack name");
+                    txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRack.ShowAlways = true;
+                    tpRack.Show("Please enter rack name", txtRack, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtMrp.Text == "")
+                {
+                    epDamageEntry.SetError(txtMrp, "Please enter mrp");
+                    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMRP.ShowAlways = true;
+                    tpMRP.Show("Please enter mrp", txtMrp, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtExpiryDate.Text == "")
+                {
+                    epDamageEntry.SetError(txtExpiryDate, "Please enter expiry date");
+                    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpExpiryDate.ShowAlways = true;
+                    tpExpiryDate.Show("Please enter expiry date", txtExpiryDate, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtBatchNo.Text == "")
+                {
+                    epDamageEntry.SetError(txtBatchNo, "Please enter batch no.");
+                    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpBatchNo.ShowAlways = true;
+                    tpBatchNo.Show("Please enter batch no.", txtBatchNo, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtStockQty.Text == "")
+                {
+                    epDamageEntry.SetError(txtStockQty, "Please enter stock qty");
+                    txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStockQty.ShowAlways = true;
+                    tpStockQty.Show("Please enter stock qty", txtStockQty, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtQuantity.Text).Trim() != "")
@@ -1415,14 +1467,14 @@ namespace ROMS
         {
             try
             {
-                //if (txtProductName.Text == "")
-                //{
-                //    txtMrp.Text = "";
-                //    txtExpiryDate.Text = "";
-                //    txtBatchNo.Text = "";
-                //    txtStockQty.Text = "";
-                //    txtQuantity.Text = "";
-                //}
+                txtLocation.Text = "";
+                txtRack.Text = "";
+                txtMrp.Text = "";
+                txtExpiryDate.Text = "";
+                txtBatchNo.Text = "";
+                txtStockQty.Text = "";
+                txtQuantity.Text = "";
+                txtsuppliername.Text = "";
                 lvProduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
