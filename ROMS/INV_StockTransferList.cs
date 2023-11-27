@@ -198,7 +198,7 @@ namespace ROMS
             dpTrannsferFromDate.MaxDate = DateTime.Now;
             dpTransferToDate.MaxDate = DateTime.Now;
             udfnCmbConcern();
-            cmbConcern.SelectedValue = 0;
+            cmbConcern.SelectedValue = 1;
             udfnList();
         }
         public void udfnCmbConcern()

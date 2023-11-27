@@ -529,6 +529,18 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_Stock.cs">
+      <DependentUpon>RPT_Stock.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="REPORT_Stock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock.designer.cs">
+      <DependentUpon>REPORT_Stock.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_CP_Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1883,6 +1895,9 @@
       <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Stock.resx">
+      <DependentUpon>REPORT_Stock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Product.resx">
       <DependentUpon>REPORT_CP_Product.cs</DependentUpon>
     </EmbeddedResource>
@@ -1930,6 +1945,10 @@
     </EmbeddedResource>
     <None Include="Resources\add - left.png" />
     <None Include="Resources\clipboard.png" />
+    <Content Include="Reports\RPT_Stock.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Stock.cs</LastGenOutput>
+    </Content>
     <Content Include="Resources\Issue.png" />
     <Content Include="Resources\RPT_PUR_SupplierProductList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

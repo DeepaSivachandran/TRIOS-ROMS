@@ -352,7 +352,7 @@ namespace ROMS
             cmbconcern.Focus();
             dpFromDate.MaxDate = DateTime.Now;
             udfnCmbConcern();
-            cmbconcern.SelectedValue = 0;
+            cmbconcern.SelectedValue = 1;
             udfnList();
         }
         public void udfnCmbConcern()
