@@ -750,7 +750,7 @@ namespace ROMS
                         else
                         {
                             udfnclear();
-                            MainForm.objCP_Supplierlist.udfnList();
+                            //MainForm.objCP_Supplierlist.udfnList();
                             btnSave.Text = "Save";
                             pbSupplierid = "0";
                         }
@@ -895,7 +895,7 @@ namespace ROMS
                 txtSPShortName.Text = "";
                 txtArea.Text = "";
                 txtaddress2.Text = "";
-                cmbState.SelectedIndex = 0;
+                cmbState.SelectedIndex = 27;
                 txtCity.Text = "";
                 txtPincode.Text = "";
                 txtContactNumber.Text = "";
@@ -944,7 +944,10 @@ namespace ROMS
                 }
                 else
                 {
-                    if (varupdate == "1") { this.Close(); }
+                    if (varupdate == "1")
+                    {
+                        this.Close();
+                    }
                     else
                     {
                         DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -954,6 +957,17 @@ namespace ROMS
                         }
                     }
                     MainForm.objCP_Supplierlist.udfnList();
+                }
+                if (PoScheduleFlag == 0)
+                {
+                    if (varMasterid == 0)
+                    {
+                        MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                    }
+                    //else
+                    //{
+                    //    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
+                    //}
                 }
                 if (PoScheduleFlag == 1)
                 {
@@ -968,14 +982,7 @@ namespace ROMS
             }
             finally
             {
-                if (varMasterid == 0)
-                {
-                    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
-                }
-                else
-                {
-                    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
-                }
+               
             }
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -992,14 +999,14 @@ namespace ROMS
 
             finally
             {
-                if (varMasterid == 0)
-                {
-                    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
-                }
-                else
-                {
-                    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
-                }
+                //if (varMasterid == 0)
+                //{
+                //    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                //}
+                //else
+                //{
+                //    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
+                //}
             }
         }
 
@@ -2284,7 +2291,6 @@ namespace ROMS
         {
             try
             {
-
                 BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
                 txtCity.Text = "";
             }
@@ -5825,25 +5831,22 @@ namespace ROMS
                     tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
                     errorflag = 1;
                 }
-                if (btnAdd.Text == "Save")
+                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
                 {
-                    if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
+                    for (int i = 0; i < grddays.Rows.Count; i++)
                     {
-                        for (int i = 0; i < grddays.Rows.Count; i++)
+                        if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
                         {
-                            if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
-                            {
-                                count = count + 1;
-                            }
+                            count = count + 1;
                         }
-                        if (count == 0)
-                        {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(56);
-                            objDServ.CloseConnection();
-                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            errorflag = 1;
-                        }
+                    }
+                    if (count == 0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(56);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        errorflag = 1;
                     }
                 }
                 if (errorflag == 0)
@@ -6183,7 +6186,6 @@ namespace ROMS
                     txtCity.Text = selectedItem.SubItems[0].Text;
                     lblcity.Text = selectedItem.SubItems[2].Text;
                     lvCity.Visible = false;
-
                 }
 
             }
@@ -6487,11 +6489,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void LvCity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void TxtMappingGroup_Enter(object sender, EventArgs e)

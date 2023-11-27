@@ -88,6 +88,7 @@ namespace ROMS
                 {
                     pnlStatus.Enabled = true;
                     udfnLoad();
+                    lvLocation.Visible = false;
                 }
                 if (varFormFlag != 0) {
                     //MainForm.objCP_RackList.picLoader.Visible = false;

@@ -659,7 +659,7 @@ namespace ROMS
                             {
                                 for (int k = 0; k < objdatabrand.Rows.Count; k++)
                                 {
-                                    if (Convert.ToInt32(dtBrand.Rows[i]["ID"]) == Convert.ToInt32(dtBrand .Rows[k]["ID"]))
+                                    if (Convert.ToInt32(dtBrand.Rows[i]["ID"]) == Convert.ToInt32(objdatabrand.Rows[k]["ID"]))
                                     {
                                         dtBrand.Rows[i][0] = true;
                                     }
