@@ -17,7 +17,7 @@ namespace ROMS
             , totalBulkqty = 0, totalUnitqty = 0, totalOrderQty = 0, varUPP = 0, qtyFlag = 0,
         varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0;
         public double totalKgQty = 0;
-        public string vardays = "", unitweight = "", unitperbox = "", bulkunitweight = "";
+        public string vardays = "", unitweight = "", unitperbox = "", bulkunitweight = "", varUPPValue ="" ;
         private ToolTip tpsalesman = new ToolTip();
         private ToolTip tpsalemanph = new ToolTip();
         private ToolTip tpSuppliername = new ToolTip();
@@ -614,7 +614,8 @@ namespace ROMS
                                     objPurchaseOrder.Columns.Add("POPR_KGORDERQTY", typeof(float));
                                     objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
                                     objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
-
+                                    objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
+                                    objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float)); 
                                     objPurchaseOrder = udfnPurchaseProduct();
                                     if (varcount == 0)
                                     {
@@ -624,13 +625,22 @@ namespace ROMS
                                         );
                                         objspdservice.CloseConnection();
                                         string[] varvalue = result.Split('~');
+                                        string POUpdatevalue = "0";
                                         if (varvalue[0] == "3")
                                         {
                                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             this.ActiveControl = txtSupplier;
                                             MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
                                             udfnClear();
-                                            varupdate = "1"; 
+                                            varupdate = "1";
+                                            if (btnSave.Text != "Update")
+                                            {
+                                                POUpdatevalue = varvalue[2];
+                                            }
+                                            else
+                                            {
+                                                POUpdatevalue = Convert.ToString(POUpdate);
+                                            }
                                             SPDataService objDServ = new SPDataService();
                                             string varMessage = objDServ.udfnGetMessages(87);
                                             objDServ.CloseConnection();
@@ -644,7 +654,12 @@ namespace ROMS
                                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO.rpt");
                                                     varHeader = "Purchase Order";
-                                                    objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdate));
+                                                    objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[0].Name.ToString());
+                                                    objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[1].Name.ToString());
+                                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
                                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -917,10 +932,14 @@ namespace ROMS
                             {
                                 unit = Convert.ToString(varFinalUnit);
                             }
+                            udfnProductAdd();
+                            string[] unitparts = unitperbox.Split('/');
+
+                            string bunits = unitparts[0].Trim() +'/' + Convert.ToString(cmbUnit.Text);
                             grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, (varPICode).Trim(), (varEName).Trim(), (var_Symbol).Trim(),
-                            (unitweight), unitperbox, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (var_MXSQ).Trim(), (varSTOCK).Trim(), (varPrevious).Trim(), (varPARITAL).Trim(),
+                            (unitweight), bunits, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (var_MXSQ).Trim(), (varSTOCK).Trim(), (varPrevious).Trim(), (varPARITAL).Trim(),
                             (varReOrderQty).Trim(), bulk, var_BulkSymbol, unit, var_Symbol, varFinalTotalQty, var_Symbol, varFinalTotalKg, var_TotSymbol,
-                            (addproductid).Trim(), defflag, 1, "", "", (Convert.ToInt32(cmbUnit.SelectedValue)), varNetweight, varUPP, 0, varBulkunitvalue, varTotalunitvalue);
+                            (addproductid).Trim(), defflag, 1, "", 10, (Convert.ToInt32(cmbUnit.SelectedValue)), varNetweight, varUPP, 0, varBulkunitvalue, varTotalunitvalue);
 
                             grdsupplieradd.Columns[10].ReadOnly = false;
                             udfnrowclear();
@@ -984,6 +1003,8 @@ namespace ROMS
                 objPurchaseOrder.Columns.Add("POPR_KGORDERQTY", typeof(float));
                 objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
                 objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
+                objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
+                objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
                 for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                 {
 
@@ -1066,7 +1087,8 @@ namespace ROMS
                             Convert.ToInt32(grdsupplieradd.Rows[i].Cells["UTID"].Value), Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmeditflag"].Value),
                             Convert.ToDouble(unit), Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value),
                             Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmtotalkg"].Value), Convert.ToInt32(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value),
-                            Convert.ToInt32(grdsupplieradd.Rows[i].Cells["QTID"].Value)
+                            Convert.ToInt32(grdsupplieradd.Rows[i].Cells["QTID"].Value), Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmUPP"].Value),
+                            Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmNettWeight"].Value)
                             );
                         }
                     }
@@ -1086,7 +1108,7 @@ namespace ROMS
                 lblProductcode.Text = "0";
                 txtProductName.Text = "";
                 txtProductQty.Text = "";
-                cmbUnit.SelectedIndex = 0;
+                cmbUnit.DataSource = null;
             }
             catch (Exception ex)
             {
@@ -1137,6 +1159,9 @@ namespace ROMS
                 }
                 MainForm.objPUR_POMappedProducts = new PUR_POMappedProducts();
                 MainForm.objPUR_POMappedProducts.ShowDialog();
+
+                DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                Grdsupplieradd_DataBindingComplete(grdsupplieradd, args2);
             }
             catch (Exception ex)
             {
@@ -2655,7 +2680,9 @@ namespace ROMS
                     {
                         case "clmRemove":
 
-                            if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "0")
+                            if ((Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "0" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "-")
+                                && (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) == "0" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) == "-")
+                                && (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) == "0" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) == "-"))
                             {
                                 DataGridViewRow row = grdsupplieradd.Rows[e.RowIndex];
                                 grdsupplieradd.Rows.Remove(row);
@@ -2979,7 +3006,9 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_TOTOrderQty", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_KGORDERQTY", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
-                        objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int)); 
+                        objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, 0, "", 0, 0
                         , "", varorginator, "", txtTurnAroundTime.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBy.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtissuemodevalue.Text, 11, "", 0,0);
                         objspdservice.CloseConnection();
@@ -3363,12 +3392,12 @@ namespace ROMS
         private void Grdsupplieradd_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
-            {
-                if (grdsupplieradd.CurrentCell.ColumnIndex == 10)
-                {
-                    e.Control.KeyPress -= udfnHandleKeyPress;
-                    e.Control.KeyPress += udfnHandleKeyPress;
-                }
+            { 
+                    if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty")
+                    {
+                        e.Control.KeyPress -= udfnHandleKeyPress;
+                        e.Control.KeyPress += udfnHandleKeyPress;
+                    }
             }
             catch (Exception ex)
             {
@@ -3380,16 +3409,16 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) )
                 {
                     e.Handled = true;  // Disallow the character
                 }
                 TextBox vartb = sender as TextBox;
-                if (e.KeyChar == '.' && vartb.Text.Contains('.'))
-                {
-                    e.Handled = true;
-                }
-                if (vartb.Text.Length >= 7 && !char.IsControl(e.KeyChar))
+                //if (e.KeyChar == '.' && vartb.Text.Contains('.'))
+                //{
+                //    e.Handled = true;
+                //}
+                if (vartb.Text.Length >= 5 && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }

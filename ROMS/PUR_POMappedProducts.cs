@@ -277,7 +277,7 @@ namespace ROMS
                         (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value, grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, 
                         (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),"", grdPurchaseOrder.Rows[i].Cells["bunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["qtyunit"].Value,
                         "",grdPurchaseOrder.Rows[i].Cells["totunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["finalunit"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 
-                        defflag, 1, "", "", (grdPurchaseOrder.Rows[i].Cells["PR_UTID"].Value), (grdPurchaseOrder.Rows[i].Cells["PR_NettWeight"].Value),
+                        defflag, 1, "", 10, (grdPurchaseOrder.Rows[i].Cells["PR_UTID"].Value), (grdPurchaseOrder.Rows[i].Cells["PR_NettWeight"].Value),
                         (grdPurchaseOrder.Rows[i].Cells["PR_UPP"].Value), "",(grdPurchaseOrder.Rows[i].Cells["B.UTID"].Value), (grdPurchaseOrder.Rows[i].Cells["T.UTID"].Value)
                         );
                         VARFLAG = 1;
