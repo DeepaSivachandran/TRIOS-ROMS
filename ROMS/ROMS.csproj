@@ -1746,8 +1746,8 @@
     </Content>
     <Content Include="Reports\RPT_PUR_PO-SubReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_PO-SubReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_PUR_PO-SubReport1.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\RPT_PUR_PO.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

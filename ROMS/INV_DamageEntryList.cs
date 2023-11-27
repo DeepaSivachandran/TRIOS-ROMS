@@ -487,19 +487,18 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdDamageEntryList.Rows.Count; i++)
-                //{
-                //    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "1")
-                //    {
-                //        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                //        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //    else
-                //    {
-                //        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                //        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //}
+                for (int i = 0; i < grdDamageEntryList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "20")
+                    {
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                    }
+                    //else
+                    //{
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    //}
+                }
             }
             catch (Exception ex)
             {

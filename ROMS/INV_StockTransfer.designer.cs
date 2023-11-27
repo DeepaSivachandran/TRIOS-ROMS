@@ -382,7 +382,7 @@
             this.clmproductname.HeaderText = "Product Name";
             this.clmproductname.Name = "clmproductname";
             this.clmproductname.ReadOnly = true;
-            this.clmproductname.Width = 300;
+            this.clmproductname.Width = 250;
             // 
             // clmSourceRack
             // 
@@ -470,7 +470,6 @@
             // 
             this.clmStockQty.HeaderText = "Stock Qty";
             this.clmStockQty.Name = "clmStockQty";
-            this.clmStockQty.Visible = false;
             // 
             // clmRemove
             // 
@@ -505,10 +504,10 @@
             // txtRemarks
             // 
             this.txtRemarks.Location = new System.Drawing.Point(71, 589);
-            this.txtRemarks.MaxLength = 100;
+            this.txtRemarks.MaxLength = 200;
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtRemarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtRemarks.Size = new System.Drawing.Size(540, 39);
             this.txtRemarks.TabIndex = 14;
             this.txtRemarks.Enter += new System.EventHandler(this.TxtRemarks_Enter);

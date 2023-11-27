@@ -47,6 +47,7 @@ namespace ROMS
         public int varSLID = 0;
         public int varDLID = 0;
         public int VarConcernID = 0;
+        public int varModifiedFlag = 0;
         public string VarSource = "0";
         public string VarDestination = "0";
 
@@ -82,7 +83,17 @@ namespace ROMS
             try
             {
                 udfnToolTipClear();
-                if (varUpdate == 1) { this.Close(); }
+                if (varModifiedFlag == 1)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objINV_StockTransferList.udfnList();
+                    }
+                    else
+                    { btnSave.Focus(); }
+                }
                 else
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -389,6 +400,46 @@ namespace ROMS
                     errStockTransfer.Clear();
                     txtSLocation.BackColor = Color.White;
                 }
+                if (txtSLocation.Text == "")
+                {
+                    txtProductNamePICode.Focus();
+                    lvSLocation.Visible = false;
+                }
+                else
+                {
+                    lvSLocation.Focus();
+
+                    if (grdStockTransfer.Rows.Count > 0)
+                    {
+                        udfnSLocationValid();
+                        if (Convert.ToString(varlocationcode) != Convert.ToString(lblSLocation.Text))
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(78);
+                            objDServ.CloseConnection();
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdStockTransfer.Rows.Clear();
+                                dtStock.Rows.Clear();
+                                txtDLocation.Focus();
+                                txtProductNamePICode.Text = "";
+                                txtMRP.Text = "";
+                                txtSRack.Text = "";
+                                txtExpiryDate.Text = "";
+                                txtBatchNo.Text = "";
+                                txtStockQty.Text = "";
+                                txtQuantity.Text = "";
+                                txtDLocation.Text = "";
+                                cmbDRack.Text = "None"; cmbDRack.Enabled = false;
+                            }
+                            else
+                            {
+                                txtSLocation.Text = varLocation;
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -427,13 +478,24 @@ namespace ROMS
         {
             try
             {
-                udfnDLocationValid();
+                if (txtDLocation.Text != "" || txtProductNamePICode.Text!="")
+                {
+                    txtProductNamePICode.Text = "";
+                    txtMRP.Text = "";
+                    txtSRack.Text = "";
+                    txtExpiryDate.Text = "";
+                    txtBatchNo.Text = "";
+                    txtStockQty.Text = "";
+                    txtQuantity.Text = "";
+                    txtDLocation.Text = "";
+                    cmbDRack.Text = "None"; cmbDRack.Enabled = false;
+                }
                 lvSLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtSLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(lblDLocation.Text), 0, txtSLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -536,27 +598,7 @@ namespace ROMS
         {
             try
             {
-                if (grdStockTransfer.Rows.Count > 0)
-                {
-                    udfnSLocationValid();
-                    if (Convert.ToString(varlocationcode) != Convert.ToString(lblSLocation.Text))
-                    {
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(78);
-                        objDServ.CloseConnection();
-                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            grdStockTransfer.Rows.Clear();
-                            dtStock.Rows.Clear();
-                            txtDLocation.Focus();
-                        }
-                        else
-                        {
-                            txtSLocation.Text = varLocation;
-                        }
-                    }
-                }
+                udfnSLocationValid();
                 lvSLocation.Visible = false;
                 lvProduct.Visible = false;
                 txtDLocation.BackColor = Color.LemonChiffon;
@@ -832,7 +874,7 @@ namespace ROMS
         private void TxtProductNamePICode_TextChanged(object sender, EventArgs e)
         {
             try
-            {
+           {
                 
                     txtMRP.Text = "";
                     txtSRack.Text = "";
@@ -981,6 +1023,7 @@ namespace ROMS
             {
                 udfnTransferNo();
                 grdStockTransfer.Rows.Clear();
+                dtStock.Rows.Clear();
                 if (btnSave.Text == "Save")
                 {
                     txtSLocation.Text = "";
@@ -1149,6 +1192,7 @@ namespace ROMS
                     grdStockTransfer.Columns["clmbatchno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                     grdStockTransfer.Columns["clmquantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdStockTransfer.Columns["clmExpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    varModifiedFlag = 1;
                     txtProductNamePICode.Focus();
                     errStockTransfer.Clear();
                     udfnProductClear();
@@ -1158,6 +1202,17 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (grdStockTransfer.Rows.Count > 0)
+                {
+                    txtSLocation.Enabled = false;
+                }
+                else
+                {
+                    txtSLocation.Enabled = true;
+                }
             }
         }
         public void udfnProductClear()
@@ -1301,6 +1356,7 @@ namespace ROMS
                             {
                                 grdStockTransfer.Rows[i].Cells["clmdsno"].Value = i + 1;
                             }
+                            varModifiedFlag = 1;
                             for (int i = 0; i < dtStock.Rows.Count; i++)
                             {
                                 if (Convert.ToInt32(dtStock.Rows[i]["STK_PRID"]) == Convert.ToInt32(varProductID) && Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo && Convert.ToString(dtStock.Rows[i]["STK_Source_RKID"]) == varSRKID)
@@ -1342,6 +1398,14 @@ namespace ROMS
             finally
             {
                 txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
+                if (grdStockTransfer.Rows.Count > 0)
+                {
+                    txtSLocation.Enabled = false;
+                }
+                else
+                {
+                    txtSLocation.Enabled = true;
+                }
             }
         }
         private void BtnSave_Click(object sender, EventArgs e)
@@ -1374,6 +1438,14 @@ namespace ROMS
                     tpSStockLocation.ShowAlways = true;
                     tpSStockLocation.Show("Please enter source location", txtSLocation, 5000);
                     blnErrorFlag = true;
+                }
+                else
+                {
+                    udfnSLocationValid();
+                    if(lblSLocation.Text=="0" || lblSLocation.Text=="-1")
+                    {
+                        blnErrorFlag = true;
+                    }
                 }
                 if(grdStockTransfer.Rows.Count<1)
                 {
@@ -1488,6 +1560,7 @@ namespace ROMS
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objINV_StockTransferList.udfnList();
                     udfnClear();
+                    varModifiedFlag = 0;
                     this.Close();
                 }
                 else
@@ -1644,10 +1717,19 @@ namespace ROMS
         {
             try
             {
+                int varRKID = 0;
+                if(lblSLocation.Text!=lblDLocation.Text)
+                {
+                    varRKID = 0;
+                }
+                else
+                {
+                    varRKID =Convert.ToInt32(varSRKID);
+                }
                 //udfnDLocationValid();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnRackList(16,0,0,Convert.ToInt32(lblDLocation.Text) ,0,"",0,0);
+                objDT = objdserv.udfnRackList(16,0,0,Convert.ToInt32(lblDLocation.Text),varRKID,"",0,0);
                 objdserv.CloseConnection();
                 cmbDRack.DataSource = null;
                 if (objDT != null)

@@ -38,7 +38,8 @@ namespace ROMS
         public string varSPID = "";
         public string varSPSCID = "";
         public int varID = 0;
-        public int varUpdate = 0;
+        //public int varUpdate = 0;
+        public int varModifiedFlag = 0;
 
         DataTable dtDamage = new DataTable();
 
@@ -66,6 +67,7 @@ namespace ROMS
                 grdDamageEntry.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID),Convert.ToString(txtMrp.Text.Trim()),Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim());
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
+                varModifiedFlag = 1;
                 txtProductName.Focus();
                 epDamageEntry.Clear();
                 udfnProductClear();
@@ -185,7 +187,17 @@ namespace ROMS
         {
             try
             {
-                if (varUpdate == 1) { this.Close(); }
+                if (varModifiedFlag == 1)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objINV_DamageEntryList.udfnList();
+                    }
+                    else
+                    { btnSave.Focus(); }
+                }
                 else
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1091,8 +1103,8 @@ namespace ROMS
         {
             try
             {
-                int PRID = 0,SLID=0,MRP=0;
-                string ExpiryDate = "", BatchNo = "",SPID="",RKID;
+                int PRID = 0,SLID=0;
+                string ExpiryDate = "", BatchNo = "",SPID="",RKID="", MRP="";
                 if (e.RowIndex != -1)
                 {
                     switch (grdDamageEntry.Columns[e.ColumnIndex].Name)
@@ -1104,7 +1116,7 @@ namespace ROMS
                                 PRID = Convert.ToInt32(grdDamageEntry.SelectedRows[0].Cells["clmPRID"].Value);
                                 SLID = Convert.ToInt32(grdDamageEntry.SelectedRows[0].Cells["clmSLID"].Value);
                                 RKID = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmRKID"].Value);
-                                MRP = Convert.ToInt32(grdDamageEntry.SelectedRows[0].Cells["clmmrp"].Value);
+                                MRP = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmmrp"].Value);
                                 ExpiryDate = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmexpirydate"].Value);
                                 BatchNo = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmBatchNo"].Value);
                                 SPID = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmSPID"].Value);
@@ -1113,15 +1125,16 @@ namespace ROMS
                             {
                                 grdDamageEntry.Rows[i].Cells["clmdsno"].Value = i + 1;
                             }
-                                for (int i = 0; i < dtDamage.Rows.Count; i++)
+                            varModifiedFlag = 1;
+                            for (int i = 0; i < dtDamage.Rows.Count; i++)
+                            {
+                                if (Convert.ToInt32(dtDamage.Rows[i]["DM_PRID"]) == Convert.ToInt32(PRID) && Convert.ToInt32(dtDamage.Rows[i]["DM_SLID"]) == SLID && Convert.ToString(dtDamage.Rows[i]["DM_RKID"]) == RKID && Convert.ToString(dtDamage.Rows[i]["DM_MRP"]) == MRP && Convert.ToString(dtDamage.Rows[i]["DM_ExpiryDate"]) == ExpiryDate && Convert.ToString(dtDamage.Rows[i]["DM_BatchNo"]) == BatchNo && Convert.ToString(dtDamage.Rows[i]["DM_SPID"]) == SPID)
                                 {
-                                    if (Convert.ToInt32(dtDamage.Rows[i]["DM_PRID"]) == Convert.ToInt32(PRID) && Convert.ToInt32(dtDamage.Rows[i]["DM_SLID"]) == SLID && Convert.ToString(dtDamage.Rows[i]["DM_RKID"]) == RKID && Convert.ToInt32(dtDamage.Rows[i]["DM_MRP"]) == MRP && Convert.ToString(dtDamage.Rows[i]["DM_ExpiryDate"]) == ExpiryDate && Convert.ToString(dtDamage.Rows[i]["DM_BatchNo"]) == BatchNo && Convert.ToString(dtDamage.Rows[i]["DM_SPID"]) == SPID)
-                                    {
-                                        dtDamage.Rows[i].Delete();
-                                        dtDamage.AcceptChanges();
-                                    }
+                                    dtDamage.Rows[i].Delete();
+                                    dtDamage.AcceptChanges();
                                 }
                             }
+                        }
                         break;
                     }
                 }
@@ -1296,6 +1309,7 @@ namespace ROMS
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objINV_DamageEntryList.udfnList();
                     udfnClear();
+                    varModifiedFlag = 0;
                     this.Close();
                 }
                 else
@@ -1624,6 +1638,14 @@ namespace ROMS
             finally
             {
                 lvProduct.Visible = false;
+                txtLocation.BackColor = Color.LightGray;
+                txtRack.BackColor = Color.LightGray;
+                txtMrp.BackColor = Color.LightGray;
+                txtExpiryDate.BackColor = Color.LightGray;
+                txtBatchNo.BackColor = Color.LightGray;
+                txtStockQty.BackColor = Color.LightGray;
+                txtQuantity.BackColor = Color.White;
+                txtsuppliername.BackColor = Color.White;
             }
         }
 

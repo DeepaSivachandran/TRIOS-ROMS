@@ -732,12 +732,21 @@ namespace ROMS
         {
             try
             {
+                int varViewType = 0;
+                if(Convert.ToInt32(cmbConcern.SelectedValue)==0)
+                {
+                    varViewType = 13;
+                }
+                else
+                {
+                    varViewType = 11;
+                }
                 lvSLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtSLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(11, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(varViewType, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -884,19 +893,18 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
-                //{
-                //    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "1")
-                //    {
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //    else
-                //    {
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //}
+                for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "21")
+                    {
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                    }
+                    //else
+                    //{
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    //}
+                }
             }
             catch (Exception ex)
             {
