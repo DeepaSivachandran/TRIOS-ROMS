@@ -551,6 +551,7 @@ namespace ROMS
                 //pbSupplierpend = 0;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
+                grdRepDetails.DataSource = null;
                 //if (lblSupplierCode.Text != "0")
                 //{
                 //    tbSupplierDetails.Enabled = true;
@@ -576,27 +577,27 @@ namespace ROMS
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
                             varReturnApplicable = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnType = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURNCYCLEID"].ToString());
-                            if (varReturnApplicable == 22)
-                            { lblReturn.Text = "Return Applicable - Yes"; }
-                            else if (varReturnApplicable == 23)
-                            { lblReturn.Text = "Return Applicable - No"; }
-                            if (varReturnType == 24)
-                            { lblReturnType.Text = "Return Cycle - Any Time"; }
-                            if (varReturnType == 25)
-                            { lblReturnType.Text = "Return Cycle - Weekly"; }
-                            if (varReturnType == 26)
-                            { lblReturnType.Text = "Return Cycle - Monthly"; }
-                            if (varReturnType == 27)
-                            { lblReturnType.Text = "Return Cycle - Quarterly"; }
+                            //if (varReturnApplicable == 22)
+                            //{ lblReturn.Text = "Return Applicable - Yes"; }
+                            //else if (varReturnApplicable == 23)
+                            //{ lblReturn.Text = "Return Applicable - No"; }
+                            //if (varReturnType == 24)
+                            //{ lblReturnType.Text = "Return Cycle - Any Time"; }
+                            //if (varReturnType == 25)
+                            //{ lblReturnType.Text = "Return Cycle - Weekly"; }
+                            //if (varReturnType == 26)
+                            //{ lblReturnType.Text = "Return Cycle - Monthly"; }
+                            //if (varReturnType == 27)
+                            //{ lblReturnType.Text = "Return Cycle - Quarterly"; }
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
                             if (objDs.Tables[1].Rows[0]["SPSC_SMName"].ToString() != "")
-                            { lblSalesmanName.Text = "Supplier Name -" + objDs.Tables[1].Rows[0]["SPSC_SMName"].ToString(); }
+                            { lblSalesmanName.Text = "Salesman Name - " + objDs.Tables[1].Rows[0]["SPSC_SMName"].ToString(); }
                             if (objDs.Tables[1].Rows[0]["SPSC_SMMobileNo"].ToString() != "")
-                            { lblMobileNo.Text = "Mobile No. -" + objDs.Tables[1].Rows[0]["SPSC_SMMobileNo"].ToString(); }
+                            { lblMobileNo.Text = "Mobile No. - " + objDs.Tables[1].Rows[0]["SPSC_SMMobileNo"].ToString(); }
                             if (objDs.Tables[1].Rows[0]["SPSC_SMWhatsAppNo"].ToString() != "")
-                            { lblWhatsAppNo.Text = "WhatsApp No. -" + objDs.Tables[1].Rows[0]["SPSC_SMWhatsAppNo"].ToString(); }
+                            { lblWhatsAppNo.Text = "WhatsApp No. - " + objDs.Tables[1].Rows[0]["SPSC_SMWhatsAppNo"].ToString(); }
                         }
                         if (objDs.Tables[2].Rows.Count > 0)
                         {
@@ -1054,7 +1055,20 @@ namespace ROMS
                 if (txtYear.Text.Trim() == "")
                 {
                     txtYear.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtYear, "Please enter MRP");
+                    epPurchaseDC.SetError(txtYear, "Please enter year.");
+                }
+                else
+                {
+                    txtYear.BackColor = Color.White;
+                    epPurchaseDC.Clear();
+                }
+                if (txtYear.Text.Trim() != "")
+                {
+                    if (txtYear.Text.Length < 4)
+                    {
+                        txtYear.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        epPurchaseDC.SetError(txtYear, "Please enter year.");
+                    }
                 }
                 else
                 {
@@ -1689,6 +1703,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void PUR_PurchaseDC_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1910,18 +1925,19 @@ namespace ROMS
         {
             try
             {
-                if (txtRack.Text.Trim() == "")
-                {
-                    txtRack.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtRack, "Please enter rack.");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter rack.", txtRack, 5000);
-                }
-                else
-                {
-                    txtRack.BackColor = Color.White;
-                    epPurchaseDC.Clear();
-                }
+                //if (txtRack.Text.Trim() == "")
+                //{
+                //    txtRack.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    epPurchaseDC.SetError(txtRack, "Please enter rack.");
+                //    tpRack.ShowAlways = true;
+                //    tpRack.Show("Please enter rack.", txtRack, 5000);
+                //}
+                //else
+                //{
+                //    txtRack.BackColor = Color.White;
+                //    epPurchaseDC.Clear();
+                //}
+                txtRack.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1992,7 +2008,7 @@ namespace ROMS
                 int varflag = 0;
                 if (Convert.ToString(txtProductName.Text).Trim() == "")
                 {
-                    epPurchaseDC.SetError(txtProductName, "Please enter product");
+                    epPurchaseDC.SetError(txtProductName, "Please enter product.");
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProduct.ShowAlways = true;
                     tpProduct.Show("Please enter product.", txtProductName, 5000);
@@ -2001,7 +2017,7 @@ namespace ROMS
                 if (txtMrp.Text.Trim() == "")
                 {
                     txtMrp.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtMrp, "Please enter MRP");
+                    epPurchaseDC.SetError(txtMrp, "Please enter MRP.");
                     tpMRP.ShowAlways = true;
                     tpMRP.Show("Please enter MRP.", txtMrp, 5000);
                     blnErrorFlag = true;
@@ -2009,13 +2025,13 @@ namespace ROMS
                 if (txtMonth.Text.Trim() == "")
                 {
                     txtMonth.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtMonth, "Please enter MRP");
+                    epPurchaseDC.SetError(txtMonth, "Please enter month.");
                     blnErrorFlag = true;
                 }
                 if (txtYear.Text.Trim() == "")
                 {
                     txtYear.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtYear, "Please enter MRP");
+                    epPurchaseDC.SetError(txtYear, "Please enter year.");
                     blnErrorFlag = true;
                 }
                 if (txtBatchNo.Text.Trim() == "")
@@ -2037,19 +2053,19 @@ namespace ROMS
                 if (txtStockLocation.Text.Trim() == "")
                 {
                     txtStockLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtStockLocation, "Please enter stock location.");
+                    epPurchaseDC.SetError(txtStockLocation, "Please enter location.");
                     tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter stock location.", txtStockLocation, 5000);
+                    tpStockLocation.Show("Please enter location.", txtStockLocation, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtRack.Text.Trim() == "")
-                {
-                    txtRack.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtRack, "Please enter rack.");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter rack.", txtRack, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtRack.Text.Trim() == "")
+                //{
+                //    txtRack.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    epPurchaseDC.SetError(txtRack, "Please enter rack.");
+                //    tpRack.ShowAlways = true;
+                //    tpRack.Show("Please enter rack.", txtRack, 5000);
+                //    blnErrorFlag = true;
+                //}
                 /*Checking valid product or not */
                 if (Convert.ToString(txtProductName.Text) != "")
                 {
@@ -2071,10 +2087,15 @@ namespace ROMS
                     if (varproductID == "-1")
                     {
                         lblProductcode.Text = "0";
-                        epPurchaseDC.SetError(txtProductName, "Invalid product");
-                        txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpProduct.ShowAlways = true;
-                        tpProduct.Show("Invalid product", txtProductName, 5000);
+                        //epPurchaseDC.SetError(txtProductName, "Invalid product");
+                        //txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        //tpProduct.ShowAlways = true;
+                        //tpProduct.Show("Invalid product", txtProductName, 5000);
+                        SPDataService objDser = new SPDataService();
+                        txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        string varMessage = objDser.udfnGetMessages(91);
+                        objDser.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         blnErrorFlag = true;
                     }
                     else
@@ -2114,33 +2135,58 @@ namespace ROMS
                     }
                 }
                 /*check location have a rack or not*/
+                string varId_PurchaseRack = "0";
+                DataSet objDsPurchaseRack = new DataSet();
+                SPDataService objDServ6 = new SPDataService();
+                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblStockLocationCode.Text), 0, txtRack.Text.Trim(), 0, 0);
+                objDServ6.CloseConnection();
                 if (txtRack.Text.Trim() != "")
                 {
                     if (lblStockLocationCode.Text != "0")
                     {
-                        string varRackId = "0";
-                        DataSet objDsRack = new DataSet();
-                        SPDataService objDServ6 = new SPDataService();
-                        objDsRack = objDServ6.udfnRackList(9, 0, 0, Convert.ToInt32(lblStockLocationCode.Text), 0, txtRack.Text.Trim(), 0, 0);
-
-                        objDServ6.CloseConnection();
-                        if (objDsRack != null)
+                        if (objDsPurchaseRack != null)
                         {
-                            if (objDsRack.Tables.Count > 0)
+                            if (objDsPurchaseRack.Tables.Count > 0)
                             {
-                                if (objDsRack.Tables[0].Rows.Count > 0)
+                                if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
                                 {
-                                    varRackId = Convert.ToString(objDsRack.Tables[0].Rows[0][0]);
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
                                 }
                             }
                         }
-                        lblRackCode.Text = Convert.ToString(varRackId);
-                        if (varRackId == "0" || varRackId == "-1")
+                        lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                        if (varId_PurchaseRack == "0" || varId_PurchaseRack == "-1")
                         {
-                            epPurchaseDC.SetError(txtRack, "Please select valid rack");
+                            epPurchaseDC.SetError(txtRack, "Please select valid purchase rack");
                             txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tpRack.ShowAlways = true;
-                            tpRack.Show("Please select valid rack", txtRack, 5000);
+                            tpRack.Show("Please select valid purchase rack", txtRack, 5000);
+                            blnErrorFlag = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (lblStockLocationCode.Text != "0")
+                    {
+
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                }
+                            }
+                        }
+                        lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                        if (varId_PurchaseRack != "0")
+                        {
+                            epPurchaseDC.SetError(txtRack, "Please enter rack");
+                            txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpRack.ShowAlways = true;
+                            tpRack.Show("Please enter rack", txtRack, 5000);
                             blnErrorFlag = true;
                         }
                     }
@@ -2236,25 +2282,37 @@ namespace ROMS
         {
             try
             {
-                string varDay = "", varMonth = "", varYear = "", varDate = "";
+                string varDay = "", varMonth = "", varYear = "", varDate = ""; int errorflag = 0;
                 SPDataService objDServ = new SPDataService();
                 DataSet objDS = new DataSet();
-                if (txtDay.Text.Trim() == "")
+               
+                if(Convert.ToInt64(txtMonth.Text)>12 || Convert.ToInt64(txtMonth.Text)<=0)
                 {
-                    varDay = "01"; varMonth = Convert.ToString(txtMonth.Text.Trim());
-                    varYear = Convert.ToString(txtYear.Text.Trim());
-                    varDate = varDay + "/" + varMonth + "/" + varYear;
-                    objDS = objDServ.udfnMaster(5, 0, 0, varDate,"",0);
+                    errorflag = 1;
+                    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    string varMessage = objDServ.udfnGetMessages(90);
                     objDServ.CloseConnection();
-                    if (objDS.Tables[0].Rows.Count > 0)
-                    {
-                        varExpiryDate = objDS.Tables[0].Rows[0]["DD/MM/YYYY"].ToString();
-                    }
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else
+                if (errorflag == 0)
                 {
-                    varExpiryDate = txtDay.Text.Trim() + "/" + txtMonth.Text.Trim() + "/" + txtYear.Text.Trim();
-                }
+                    if (txtDay.Text.Trim() == "")
+                    {
+                        varDay = "01"; varMonth = Convert.ToString(txtMonth.Text.Trim());
+                        varYear = Convert.ToString(txtYear.Text.Trim());
+                        varDate = varDay + "/" + varMonth + "/" + varYear;
+                        objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0);
+                        objDServ.CloseConnection();
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            varExpiryDate = objDS.Tables[0].Rows[0]["DD/MM/YYYY"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        varExpiryDate = txtDay.Text.Trim() + "/" + txtMonth.Text.Trim() + "/" + txtYear.Text.Trim();
+                    }
+                }  
             }
             catch(Exception ex)
             {
