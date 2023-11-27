@@ -2686,6 +2686,8 @@ namespace ROMS
                             {
                                 DataGridViewRow row = grdsupplieradd.Rows[e.RowIndex];
                                 grdsupplieradd.Rows.Remove(row);
+                                grdsupplieradd.SuspendLayout();
+
                             }
                             else
                             {
