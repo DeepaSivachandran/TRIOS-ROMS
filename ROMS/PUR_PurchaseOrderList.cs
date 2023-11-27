@@ -122,6 +122,9 @@ namespace ROMS
                         case "clmPrint":
                             try
                             {
+
+                                string POUpdatevalue = "0"; 
+                                    POUpdatevalue = Convert.ToString((grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString())); 
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
@@ -133,12 +136,19 @@ namespace ROMS
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO.rpt");
-                                    varHeader = "Purchase Order";
-                                    objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()));
+                                    varHeader = "Purchase Order"; 
+
+                                    objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
                                     objValidation.CrySqlConnection(objBillreport);
 
                                     MainForm.objReportLoad = new ReportLoad();
@@ -1755,6 +1765,8 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_KGORDERQTY", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
                         objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
                         SPDataService objspdservice = new SPDataService();
                         result = "";
                         result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", objPurchaseOrder, "", "", "", "", 0, "",0,0);

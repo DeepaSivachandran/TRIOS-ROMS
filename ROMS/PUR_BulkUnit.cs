@@ -274,6 +274,11 @@ namespace ROMS
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     varCloseFlag = 1;
                     MainForm.objPUR_PurchaseOrder.varcmbunitid = Convert.ToInt32(varvalue[2]);
+
+                    if (MainForm.objPUR_PurchaseOrder.varcmbunitid != 0)
+                    {
+                        MainForm.objPUR_PurchaseOrder.varUPP =Convert.ToInt32(txtUpp.Text);
+                    }
                     udfnclose();
                     //MainForm.objCP_Itemlist.udfnDropdownbind();
                     //MainForm.objCP_Itemlist.udfnList();

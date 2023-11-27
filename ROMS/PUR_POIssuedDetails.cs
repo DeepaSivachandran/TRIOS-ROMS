@@ -150,6 +150,8 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_KGORDERQTY", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
                         objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
+                        objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, 0, "", 0, 0
                         , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text,11,"",0,0);
                         objspdservice.CloseConnection();
