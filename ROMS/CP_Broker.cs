@@ -21,6 +21,7 @@ namespace ROMS
         private ToolTip tpWhatsAppNo = new ToolTip();
         private ToolTip tpAddressLine1 = new ToolTip();
         private ToolTip tpCity = new ToolTip();
+        private ToolTip tpState = new ToolTip();
         private ToolTip tpPincode = new ToolTip();
         private ToolTip tpBankName = new ToolTip();
         private ToolTip tpBankShortName = new ToolTip();
@@ -32,6 +33,7 @@ namespace ROMS
         public int PbConcernID = 0;
         public string varCityName="";
         public int varstatus;
+        public int varStateID=0;
         public string vargroupcode;
         public string varBrokerCode = "0";
         public string varBrokerid="", varstatusid = "0", varSlNo="0";
@@ -63,9 +65,10 @@ namespace ROMS
                             txtWhatsAppNo.Text = objDS.Tables[0].Rows[0]["Whatsapp"].ToString().Replace("''", "'");
                             txtAddressLine1.Text = objDS.Tables[0].Rows[0]["Address1"].ToString().Replace("''", "'");
                             txtAddressLine2.Text = objDS.Tables[0].Rows[0]["Address2"].ToString().Replace("''", "'");
-                            txtCity.Text = objDS.Tables[0].Rows[0]["City"].ToString().Replace("''", "'");
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["Concern"].ToString();
+                            cmbState.SelectedValue = objDS.Tables[0].Rows[0]["StateId"].ToString();
                             lblcityid.Text = objDS.Tables[0].Rows[0]["CityID"].ToString();
+                            txtCity.Text = objDS.Tables[0].Rows[0]["City"].ToString().Replace("''", "'");
                             txtPincode.Text = objDS.Tables[0].Rows[0]["Pincode"].ToString();
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                             btnSave.Text = "Update";
@@ -136,7 +139,7 @@ namespace ROMS
                         varType = 1;
                     }
                     objBankTable = udfnBankSave();
-                    varResult = objspservice.udfnBroker(varType, Convert.ToInt32(Brokerid) , Convert.ToInt16(cmbConcern.SelectedValue),(txtBrokerConcern.Text).Trim(),(txtGstinNo.Text).Trim(), (txtBrokerName.Text).Trim(), (txtAddressLine1.Text).Trim(), (txtAddressLine2.Text).Trim(), varcityid, (txtPincode.Text).Trim(), (txtWhatsAppNo.Text).Trim(), (txtMobileNo.Text).Trim(),varstatus, varoriginator, objBankTable,MainForm.pbUserID,0);
+                    varResult = objspservice.udfnBroker(varType, Convert.ToInt32(Brokerid) , Convert.ToInt16(cmbConcern.SelectedValue),(txtBrokerConcern.Text).Trim(),(txtGstinNo.Text).Trim(), (txtBrokerName.Text).Trim(), (txtAddressLine1.Text).Trim(), (txtAddressLine2.Text).Trim(), Convert.ToInt32(cmbState.SelectedValue), varcityid, (txtPincode.Text).Trim(), (txtWhatsAppNo.Text).Trim(), (txtMobileNo.Text).Trim(),varstatus, varoriginator, objBankTable,MainForm.pbUserID,0);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -404,9 +407,12 @@ namespace ROMS
                 {
                     varViewType = 3;
                 }
-                
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind = null;
                 objDs = objdserv.udfnCompanyList(varViewType,PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
+                 cmbState.SelectedValue = 27;
                 cmbConcern.DataSource = null;
                 pnlBStatus.Enabled = false;
                 rbBankActive.Checked = true;
@@ -587,10 +593,12 @@ namespace ROMS
         {
             try
             {
+                varStateID = Convert.ToInt32(cmbState.SelectedValue);
                 MainForm.objCP_City = new CP_City();
                 MainForm.objCP_City.varmastertype = 1;
                 MainForm.objCP_City.varflog = 1;
                 MainForm.objCP_City.ShowDialog();
+
                 udfnListView();
                 txtCity.Text = varCityName;
                 lblcityid.Text = Convert.ToString(varCityCode);
@@ -900,7 +908,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCity.Focus();
+                    cmbState.Focus();
                 }
             }
             catch (Exception ex)
@@ -1409,6 +1417,14 @@ namespace ROMS
                     tpAddressLine1.Show("Please enter address", txtAddressLine1, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
+                {
+                    epBroker.SetError(cmbState, "Please Select State Name");
+                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpState.ShowAlways = true;
+                    tpState.Show("Please Select State Name", cmbState, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtCity.Text).Trim() == "")
                 {
                     epBroker.SetError(txtCity, "Please enter city");
@@ -1456,6 +1472,53 @@ namespace ROMS
                     tpPincode.Show("Please enter pincode", txtPincode, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(txtCity.Text) != "")
+                {
+                    if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
+                    {
+                        epBroker.SetError(cmbState, "Please Select State Name");
+                        cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpState.ShowAlways = true;
+                        tpState.Show("Please Select State Name", cmbState, 5000);
+                        blnErrorFlag = true;
+                    }
+                    else
+                    {
+                        epBroker.Clear();
+                        cmbState.BackColor = Color.White;
+                        string VarCity = "0";
+                        //DataService objDserv = new DataService();
+                        //VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                        DataSet objDsCity = new DataSet();
+                        SPDataService objDserv = new SPDataService();
+                        objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0, 0);
+                        objDserv.CloseConnection();
+                        if (objDsCity != null)
+                        {
+                            if (objDsCity.Tables.Count > 0)
+                            {
+                                if (objDsCity.Tables[0].Rows.Count > 0)
+                                {
+                                    VarCity = Convert.ToString(objDsCity.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                        if (VarCity == "0" || VarCity == "-1")
+                        {
+                            lblcityid.Text = "0";
+                            epBroker.SetError(txtCity, "Invalid city");
+                            txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpCity.ShowAlways = true;
+                            tpCity.Show("Invalid city", txtCity, 5000);
+                            blnErrorFlag = true;
+                        }
+                        else
+                        {
+                            lblcityid.Text = VarCity;
+                        }
+                    }
+
+                }
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -1483,6 +1546,7 @@ namespace ROMS
                 tpMobileNo.Active = false;
                 tpWhatsAppNo.Active = false;
                 tpCity.Active = false;
+                tpState.Active = false;
                 tpAddressLine1.Active = false;
                 tpPincode.Active = false;
                 tpBankName.Active = false;
@@ -1829,8 +1893,8 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvCity.SelectedItems[0];
                     txtCity.Text = selectedItem.SubItems[0].Text;
-                    lblcityid.Text = selectedItem.SubItems[1].Text;
-                //    lvCity.Visible = false;
+                    lblcityid.Text = selectedItem.SubItems[2].Text;
+                    lvCity.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1891,12 +1955,13 @@ namespace ROMS
         {
             try
             {
+
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtCity.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,0,0);
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text, Convert.ToInt32(cmbState.SelectedValue), 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1906,26 +1971,13 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(),objDs.Tables[0].Rows[i]["CTYID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
-                                    lvCity.Columns[1].Width = 0;
                                     lvCity.Items.Add(objList);
                                 }
                                 lvCity.Visible = true;
                             }
-                            else
-                            {
-                                lvCity.Visible = false;
-                            }
                         }
-                        else
-                        {
-                            lvCity.Visible = false;
-                        }
-                    }
-                    else
-                    {
-                        lvCity.Visible = false;
                     }
                 }
                 else
@@ -2130,6 +2182,85 @@ namespace ROMS
             try
             {
                 txtBrokerConcern.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbState_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
+                {
+                    epBroker.SetError(cmbState, "Please Select State Name.");
+                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpState.ShowAlways = true;
+                    tpState.Show("Please Select State Name.", cmbState, 5000);
+                }
+                else
+                {
+                    epBroker.Clear();
+                    cmbState.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbState_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCity.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbState_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
+                txtCity.Text = "";
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbState_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbState.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {

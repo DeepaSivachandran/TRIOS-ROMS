@@ -782,7 +782,7 @@ namespace ROMS
         }
         //Created By :-Sathish ; Created On :-24/08/2023
         public string udfnBroker(int paraviewType, int paraBrokerId, int paraConcern,string paraBrokerConcern, string paraGstinNo, string paraBrokerName,
-            string paraAddressLine1, string paraAddressLine2, int paraCityId, string paraPincode, string paraWhatsappNumber,
+            string paraAddressLine1, string paraAddressLine2,int paraStateId, int paraCityId, string paraPincode, string paraWhatsappNumber,
             string paraMobileNumber, int paraStatusId, string paraOriginator, DataTable ParaMR_Broker_Bank,string paraUserID,int paraDeleteFlag)
         {
             string varResult = "";
@@ -800,6 +800,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraAddressLine1", paraAddressLine1);
                 varSqlCommand.Parameters.AddWithValue("@paraAddressLine2", paraAddressLine2);
                 varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
+                varSqlCommand.Parameters.AddWithValue("@paraStateId", paraStateId);
                 varSqlCommand.Parameters.AddWithValue("@paraPincode", paraPincode);
                 varSqlCommand.Parameters.AddWithValue("@paraWhatsappNumber", paraWhatsappNumber);
                 varSqlCommand.Parameters.AddWithValue("@paraMobileNumber", paraMobileNumber);
