@@ -216,9 +216,6 @@
             this.BulkUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblMxsq = new System.Windows.Forms.Label();
             this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
             this.grppurchaseorder.SuspendLayout();
@@ -272,9 +269,6 @@
             // grppurchaseorder
             // 
             this.grppurchaseorder.BackColor = System.Drawing.Color.White;
-            this.grppurchaseorder.Controls.Add(this.lblMxsq);
-            this.grppurchaseorder.Controls.Add(this.label14);
-            this.grppurchaseorder.Controls.Add(this.label15);
             this.grppurchaseorder.Controls.Add(this.lblWeightvalue);
             this.grppurchaseorder.Controls.Add(this.label13);
             this.grppurchaseorder.Controls.Add(this.lblKG);
@@ -437,7 +431,7 @@
             // lblSupplierCode
             // 
             this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(1082, 122);
+            this.lblSupplierCode.Location = new System.Drawing.Point(1065, 122);
             this.lblSupplierCode.Name = "lblSupplierCode";
             this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 1111208;
@@ -951,7 +945,7 @@
             this.btnViewedProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnViewedProduct.Image = global::ROMS.Properties.Resources.New;
             this.btnViewedProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewedProduct.Location = new System.Drawing.Point(1106, 114);
+            this.btnViewedProduct.Location = new System.Drawing.Point(1070, 114);
             this.btnViewedProduct.Name = "btnViewedProduct";
             this.btnViewedProduct.Size = new System.Drawing.Size(153, 29);
             this.btnViewedProduct.TabIndex = 8;
@@ -966,7 +960,6 @@
             // 
             this.btnNewUnit.BackColor = System.Drawing.SystemColors.Control;
             this.btnNewUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.btnNewUnit.Enabled = false;
             this.btnNewUnit.Image = global::ROMS.Properties.Resources.New;
             this.btnNewUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNewUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1801,9 +1794,8 @@
             this.lblWeightvalue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWeightvalue.Location = new System.Drawing.Point(977, 118);
             this.lblWeightvalue.Name = "lblWeightvalue";
-            this.lblWeightvalue.Size = new System.Drawing.Size(44, 20);
+            this.lblWeightvalue.Size = new System.Drawing.Size(0, 20);
             this.lblWeightvalue.TabIndex = 1111213;
-            this.lblWeightvalue.Text = "88888";
             this.lblWeightvalue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label13
@@ -2091,37 +2083,6 @@
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.Width = 70;
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(1091, 121);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(0, 20);
-            this.label14.TabIndex = 1111215;
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1016, 118);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(50, 20);
-            this.label15.TabIndex = 1111216;
-            this.label15.Text = "MXSQ : ";
-            // 
-            // lblMxsq
-            // 
-            this.lblMxsq.AutoSize = true;
-            this.lblMxsq.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMxsq.Location = new System.Drawing.Point(1060, 118);
-            this.lblMxsq.Name = "lblMxsq";
-            this.lblMxsq.Size = new System.Drawing.Size(44, 20);
-            this.lblMxsq.TabIndex = 1111217;
-            this.lblMxsq.Text = "88888";
-            this.lblMxsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // PUR_PurchaseOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -2327,8 +2288,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BulkUTID;
         private System.Windows.Forms.DataGridViewTextBoxColumn QTID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lblMxsq;
     }
 }

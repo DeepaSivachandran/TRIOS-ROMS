@@ -24,8 +24,8 @@ namespace ROMS
         {
             try
             {
-                if (this.cryptview != null)
-                {
+                if (this.cryptview != null) { 
+                    cryptview.EnableDrillDown = false;
                     this.cryptview.ReportSource = null;
                     this.cryptview.Dispose();
                     GC.Collect();

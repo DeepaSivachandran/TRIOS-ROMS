@@ -442,19 +442,19 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdUserList.DataSource = objDs.Tables[0];
-                            grdUserList.Columns["S.No"].Width = 50;
+                            grdUserList.Columns["S.No."].Width = 50;
                             grdUserList.Columns["Concern"].Width = 120;
                             grdUserList.Columns["Outward Date"].Width = 120;
-                            grdUserList.Columns["Outward No"].Width = 120;
-                            grdUserList.Columns["Stock Location"].Width = 120;
+                            grdUserList.Columns["Outward No."].Width = 120;
+                            grdUserList.Columns["Stock Location"].Width = 150;
                             grdUserList.Columns["Transaction Type"].Width = 120;
                             grdUserList.Columns["GOID"].Visible = false;
-                            grdUserList.Columns["TotalProducts"].Width = 120;
+                            grdUserList.Columns["Total Products"].Width = 120;
                             grdUserList.Columns["Created By"].Width = 120;
                             grdUserList.Columns["STSID"].Visible = false;
                             grdUserList.Columns["Status"].Width = 120;
-                            grdUserList.Columns["S.No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdUserList.Columns["TotalProducts"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdUserList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdUserList.Columns["Outward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                         }
@@ -509,10 +509,12 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
                 dtpOutwardDate.MaxDate = DateTime.Now;
                 dtpOutwardDate2.MaxDate = DateTime.Now;
+                cmbConcern.SelectedValue = 0;
+
             }
             catch (Exception ex)
             {
@@ -559,7 +561,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "", "",null,0);
+                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "", "", null,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1105,7 +1107,7 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "Concern" || col.Name == "Outward Date" || col.Name == "Outward No" || col.Name == "Stock Location" || col.Name == "Transaction Type" || col.Name == "TotalProducts")
+                            if (col.Name == "Concern" || col.Name == "Outward Date" || col.Name == "Outward No." || col.Name == "Stock Location" || col.Name == "Transaction Type" || col.Name == "Total Products")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
@@ -1113,11 +1115,12 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            if (col.Name == "S.No")
+                            if (col.Name == "S.No.")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "TotalProducts")
+                            
+                            if (col.Name == "Total Products")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
@@ -1266,8 +1269,6 @@ namespace ROMS
                         objTRNS_GoodsOutward.paraOriginator = "Goods Outward Delete";
                         string result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
                         objspdservice.CloseConnection();
-                        //string result = objspdservice.udfnGoodsOutwardDel(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["GOID"].Value.ToString()), 0, "", 0, 0, "", 0, dtStock,"Stock Transfer Delete" );
-                        //objspdservice.CloseConnection();
                         if (result.Split('~')[0] == "3")
                         {
                             MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1311,6 +1312,11 @@ namespace ROMS
                     grdUserList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                 }
             }
+        }
+
+        private void Lbloutwarddate_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void LvProduct_SelectedIndexChanged(object sender, EventArgs e)
