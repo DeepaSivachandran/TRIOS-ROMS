@@ -492,6 +492,7 @@ namespace ROMS
                     if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "20")
                     {
                         grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     //else
                     //{
