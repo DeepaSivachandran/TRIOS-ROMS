@@ -63,12 +63,15 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseorder = new System.Windows.Forms.Panel();
             this.grppurchaseorder = new System.Windows.Forms.GroupBox();
+            this.lblMxsq = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lblWeightvalue = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.lblKG = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbUnit = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.lblschedule = new System.Windows.Forms.Label();
-            this.lblProductcode = new System.Windows.Forms.Label();
             this.lvproduct = new System.Windows.Forms.ListView();
             this.RMcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -76,7 +79,6 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -178,10 +180,6 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grdsupplieradd = new System.Windows.Forms.DataGridView();
-            this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.lblWeightvalue = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -216,9 +214,11 @@
             this.BulkUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblMxsq = new System.Windows.Forms.Label();
+            this.lblschedule = new System.Windows.Forms.Label();
+            this.lblProductcode = new System.Windows.Forms.Label();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
             this.grppurchaseorder.SuspendLayout();
@@ -329,6 +329,56 @@
             this.grppurchaseorder.TabIndex = 958788;
             this.grppurchaseorder.TabStop = false;
             // 
+            // lblMxsq
+            // 
+            this.lblMxsq.AutoSize = true;
+            this.lblMxsq.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMxsq.Location = new System.Drawing.Point(1060, 118);
+            this.lblMxsq.Name = "lblMxsq";
+            this.lblMxsq.Size = new System.Drawing.Size(0, 20);
+            this.lblMxsq.TabIndex = 1111217;
+            this.lblMxsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(1091, 121);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(0, 20);
+            this.label14.TabIndex = 1111215;
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(1016, 118);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(50, 20);
+            this.label15.TabIndex = 1111216;
+            this.label15.Text = "MXSQ : ";
+            // 
+            // lblWeightvalue
+            // 
+            this.lblWeightvalue.AutoSize = true;
+            this.lblWeightvalue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeightvalue.Location = new System.Drawing.Point(977, 118);
+            this.lblWeightvalue.Name = "lblWeightvalue";
+            this.lblWeightvalue.Size = new System.Drawing.Size(0, 20);
+            this.lblWeightvalue.TabIndex = 1111213;
+            this.lblWeightvalue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(873, 118);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(111, 20);
+            this.label13.TabIndex = 1111214;
+            this.label13.Text = "Unit Per Box-Bag : ";
+            // 
             // lblKG
             // 
             this.lblKG.AutoSize = true;
@@ -380,26 +430,6 @@
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
             this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
-            // lblschedule
-            // 
-            this.lblschedule.AutoSize = true;
-            this.lblschedule.Location = new System.Drawing.Point(1140, 122);
-            this.lblschedule.Name = "lblschedule";
-            this.lblschedule.Size = new System.Drawing.Size(16, 20);
-            this.lblschedule.TabIndex = 1111210;
-            this.lblschedule.Text = "0";
-            this.lblschedule.Visible = false;
-            // 
-            // lblProductcode
-            // 
-            this.lblProductcode.AutoSize = true;
-            this.lblProductcode.Location = new System.Drawing.Point(1091, 122);
-            this.lblProductcode.Name = "lblProductcode";
-            this.lblProductcode.Size = new System.Drawing.Size(16, 20);
-            this.lblProductcode.TabIndex = 1111209;
-            this.lblProductcode.Text = "0";
-            this.lblProductcode.Visible = false;
-            // 
             // lvproduct
             // 
             this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -433,16 +463,6 @@
             // RMEName
             // 
             this.RMEName.Width = 200;
-            // 
-            // lblSupplierCode
-            // 
-            this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(1082, 122);
-            this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
-            this.lblSupplierCode.TabIndex = 1111208;
-            this.lblSupplierCode.Text = "0";
-            this.lblSupplierCode.Visible = false;
             // 
             // LV_Supplier
             // 
@@ -1783,39 +1803,6 @@
             this.grdsupplieradd.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.Grdsupplieradd_DataBindingComplete);
             this.grdsupplieradd.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grdsupplieradd_EditingControlShowing);
             // 
-            // errPO
-            // 
-            this.errPO.ContainerControl = this;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Remove";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.Width = 70;
-            // 
-            // lblWeightvalue
-            // 
-            this.lblWeightvalue.AutoSize = true;
-            this.lblWeightvalue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWeightvalue.Location = new System.Drawing.Point(977, 118);
-            this.lblWeightvalue.Name = "lblWeightvalue";
-            this.lblWeightvalue.Size = new System.Drawing.Size(44, 20);
-            this.lblWeightvalue.TabIndex = 1111213;
-            this.lblWeightvalue.Text = "88888";
-            this.lblWeightvalue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(873, 118);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(111, 20);
-            this.label13.TabIndex = 1111214;
-            this.label13.Text = "Unit Per Box-Bag : ";
-            // 
             // clmsno
             // 
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -2091,36 +2078,47 @@
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.Width = 70;
             // 
-            // label14
+            // lblschedule
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(1091, 121);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(0, 20);
-            this.label14.TabIndex = 1111215;
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblschedule.AutoSize = true;
+            this.lblschedule.Location = new System.Drawing.Point(1140, 122);
+            this.lblschedule.Name = "lblschedule";
+            this.lblschedule.Size = new System.Drawing.Size(16, 20);
+            this.lblschedule.TabIndex = 1111210;
+            this.lblschedule.Text = "0";
+            this.lblschedule.Visible = false;
             // 
-            // label15
+            // lblProductcode
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1016, 118);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(50, 20);
-            this.label15.TabIndex = 1111216;
-            this.label15.Text = "MXSQ : ";
+            this.lblProductcode.AutoSize = true;
+            this.lblProductcode.Location = new System.Drawing.Point(1091, 122);
+            this.lblProductcode.Name = "lblProductcode";
+            this.lblProductcode.Size = new System.Drawing.Size(16, 20);
+            this.lblProductcode.TabIndex = 1111209;
+            this.lblProductcode.Text = "0";
+            this.lblProductcode.Visible = false;
             // 
-            // lblMxsq
+            // lblSupplierCode
             // 
-            this.lblMxsq.AutoSize = true;
-            this.lblMxsq.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMxsq.Location = new System.Drawing.Point(1060, 118);
-            this.lblMxsq.Name = "lblMxsq";
-            this.lblMxsq.Size = new System.Drawing.Size(44, 20);
-            this.lblMxsq.TabIndex = 1111217;
-            this.lblMxsq.Text = "88888";
-            this.lblMxsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.Location = new System.Drawing.Point(1082, 122);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.TabIndex = 1111208;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
+            // 
+            // errPO
+            // 
+            this.errPO.ContainerControl = this;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Remove";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.Width = 70;
             // 
             // PUR_PurchaseOrder
             // 
