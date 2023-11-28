@@ -309,7 +309,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
-            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
@@ -458,7 +458,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGridPro.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_SearchGridPro.RowTemplate.Height = 25;
-            this.DGV_SearchGridPro.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_SearchGridPro.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_SearchGridPro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGridPro.ShowRowErrors = false;
             this.DGV_SearchGridPro.Size = new System.Drawing.Size(1348, 56);
@@ -1052,6 +1052,7 @@
             this.lblscheduleName.TabIndex = 1111171;
             this.lblscheduleName.Text = "Schedule Name";
             this.lblscheduleName.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblscheduleName.Visible = false;
             // 
             // txtSupplier
             // 
@@ -1310,14 +1311,14 @@
             // 
             // clmView
             // 
-            this.clmView.HeaderText = "";
+            this.clmView.HeaderText = "Issue";
             this.clmView.Image = global::ROMS.Properties.Resources.Issue;
             this.clmView.Name = "clmView";
             this.clmView.ReadOnly = true;
             // 
             // clmPrint
             // 
-            this.clmPrint.HeaderText = "";
+            this.clmPrint.HeaderText = "Print";
             this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmPrint.Name = "clmPrint";
             this.clmPrint.ReadOnly = true;
