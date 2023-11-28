@@ -2405,10 +2405,18 @@ namespace ROMS
         {
             try
             {
-                string varDay = "", varMonth = "", varYear = "", varDate = ""; string varDcDay = "";
+                string varDay = "", varMonth = "", varYear = "", varDate = ""; string varDcDay = "", varDcMonth = "", varDcYear = "";
                 SPDataService objDServ = new SPDataService();
                 DataSet objDS = new DataSet();
-                if (txtMonth.Text != "")
+                if(txtDay.Text.Trim()=="")
+                {
+                    varDay = "01";
+                }
+                else
+                {
+                    varDay = txtDay.Text.Trim();
+                }
+                if (txtMonth.Text.Trim() != "")
                 {
                     if (Convert.ToInt64(txtMonth.Text) > 12 || Convert.ToInt64(txtMonth.Text) <= 0)
                     {
@@ -2434,7 +2442,7 @@ namespace ROMS
                 {
                     if (txtDay.Text.Trim() == "")
                     {
-                        varDay = "01"; varMonth = Convert.ToString(txtMonth.Text.Trim());
+                        varMonth = Convert.ToString(txtMonth.Text.Trim());
                         varYear = Convert.ToString(txtYear.Text.Trim());
                         varDate = varDay + "/" + varMonth + "/" + varYear;
                         objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0);
@@ -2444,24 +2452,48 @@ namespace ROMS
                             varExpiryDate = objDS.Tables[0].Rows[0]["DD/MM/YYYY"].ToString();
                         }
                     }
-                    else
+                    varMonth = Convert.ToString(txtMonth.Text.Trim());
+                    varYear = Convert.ToString(txtYear.Text.Trim());
+                    varDate = varDay + "/" + varMonth + "/" + varYear;
+                    string[] date = dpDCDate.Text.Split('/');
+                    varDay = date[0].ToString();
+                    varDcMonth = date[1].ToString();
+                    varDcYear = date[2].ToString();
+                    if(Convert.ToInt32(varYear)<Convert.ToInt32(varDcYear))
                     {
-                        string[] date = dpDCDate.Text.Split('/');
-                        varDay = date[0].ToString();
-                        if (Convert.ToInt32(txtDay.Text)<Convert.ToInt32(varDay))
+                        if(Convert.ToInt32(varMonth) < Convert.ToInt32(varDcMonth) && Convert.ToInt32(varDay) < Convert.ToInt32(varDcDay))
                         {
                             pbDateflag = 1;
-                            txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            string varMessage = objDServ.udfnGetMessages(95);
+                            txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                           txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            string varMessage = objDServ.udfnGetMessages(94);
                             objDServ.CloseConnection();
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        else
-                        {
-                            varExpiryDate = txtDay.Text.Trim() + "/" + txtMonth.Text.Trim() + "/" + txtYear.Text.Trim();
-                        }
                     }
-                }  
+                    else
+                    {
+                        varExpiryDate = txtDay.Text.Trim() + "/" + txtMonth.Text.Trim() + "/" + txtYear.Text.Trim();
+                    }
+                    //else
+                    //{
+                    //    string[] date = dpDCDate.Text.Split('/');
+                    //    varDay = date[0].ToString();
+                    //    if (Convert.ToInt32(txtDay.Text)<Convert.ToInt32(varDay))
+                    //    {
+                    //        pbDateflag = 1;
+                    //        txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        string varMessage = objDServ.udfnGetMessages(95);
+                    //        objDServ.CloseConnection();
+                    //        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    }
+                    //    else
+                    //    {
+                    //        varExpiryDate = txtDay.Text.Trim() + "/" + txtMonth.Text.Trim() + "/" + txtYear.Text.Trim();
+                    //    }
+                    //}
+                }
             }
             catch(Exception ex)
             {
