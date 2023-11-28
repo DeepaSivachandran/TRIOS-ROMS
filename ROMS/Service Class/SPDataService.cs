@@ -690,6 +690,36 @@ namespace ROMS
             }
             return varResult;
         }
+
+        //Added By Sathish On:-28-11-2023
+        public DataSet udfnStock(TRNG_Stock objTRNG_Stock)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Stock]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_Stock.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_Stock.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraCOMID", objTRNG_Stock.paraCOMID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIpAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
         // added by venkat on 16/10/2023 for purchase damage list
         public DataSet udfnproductDamage(int paraViewType,int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID,int paraStatus,string ParaDMFromDate,string ParaDMToDate)
         {

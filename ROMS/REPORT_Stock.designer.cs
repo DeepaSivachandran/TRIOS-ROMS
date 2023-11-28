@@ -103,7 +103,7 @@
             this.lvProduct.HideSelection = false;
             this.lvProduct.Location = new System.Drawing.Point(189, 74);
             this.lvProduct.Name = "lvProduct";
-            this.lvProduct.Size = new System.Drawing.Size(489, 194);
+            this.lvProduct.Size = new System.Drawing.Size(638, 194);
             this.lvProduct.TabIndex = 111111144;
             this.lvProduct.UseCompatibleStateImageBehavior = false;
             this.lvProduct.View = System.Windows.Forms.View.Details;
@@ -188,9 +188,9 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(186, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 20);
+            this.label1.Size = new System.Drawing.Size(132, 20);
             this.label1.TabIndex = 1111232;
-            this.label1.Text = "Product Name";
+            this.label1.Text = "Product Name/PI Code";
             // 
             // btnListPrint
             // 

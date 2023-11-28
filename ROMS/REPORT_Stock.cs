@@ -48,6 +48,10 @@ namespace ROMS
         {
             try
             {
+                if(txtProductName.Text=="")
+                {
+                    lblProduct.Text = "0";
+                }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -57,7 +61,11 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnCitylist(3, "", 0, Convert.ToInt32(cmbConcern.SelectedValue));
+                Model.TRNG_Stock objTRNG_Stock = new Model.TRNG_Stock();
+                objTRNG_Stock.ViewType = 0;
+                objTRNG_Stock.paraPRID = Convert.ToInt32(lblProduct.Text.Trim());
+                objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
+                objDs = objspservice.udfnStock(objTRNG_Stock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
