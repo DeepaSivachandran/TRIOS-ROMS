@@ -1009,21 +1009,21 @@ namespace ROMS
                 {
 
                     double orderqty = 0;
-                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "0")
+                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "")
                     {
                         orderqty = 0;
                         varcount++;
                         grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.BackColor = Color.LightPink;
                         grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.ForeColor = Color.Black;
                     }
-                    else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmunitorderqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmunitorderqty"].Value) == "0")
+                    else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmunitorderqty"].Value) == "")
                     {
                         orderqty = 0;
                         varcount++;
                         grdsupplieradd.Rows[i].Cells["clmunitorderqty"].Style.BackColor = Color.LightPink;
                         grdsupplieradd.Rows[i].Cells["clmunitorderqty"].Style.ForeColor = Color.Black;
                     }
-                    else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "0")
+                    else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "")
                     {
                         orderqty = 0;
                         varcount++;
@@ -1625,7 +1625,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(30, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, varPOID, "");
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, varPOID, "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1830,21 +1830,7 @@ namespace ROMS
             try
             {
                 lvproduct.Visible = false;
-                txtProductQty.BackColor = Color.LemonChiffon; 
-                if (txtProductName.Text == "")
-                {
-                    lblProductcode.Text = "0";
-                }
-                if (Convert.ToInt32(lblProductcode.Text) != 0)
-                {
-                    btnNewUnit.Enabled = true;
-                }
-                else
-                { 
-                    btnNewUnit.Enabled = false;
-                    lblWeightvalue.Text = "";
-                    lblMxsq.Text = "";
-                }
+                txtProductQty.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -3112,11 +3098,7 @@ namespace ROMS
 
         private void CmbUnit_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                cmbUnit.BackColor = Color.LemonChiffon;
-             
-            }
+            try { cmbUnit.BackColor = Color.LemonChiffon; }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -3852,7 +3834,6 @@ namespace ROMS
                             varUnitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
                             varTotalunitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["T.UTID"]);
                             lblWeightvalue.Text = unitperbox; 
-                            lblMxsq.Text = Convert.ToString(var_MXSQ); 
                             flag = "3";
                             udfnUnitDropdownload();
                         }
