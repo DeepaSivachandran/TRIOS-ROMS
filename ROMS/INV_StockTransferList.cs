@@ -125,11 +125,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnscrollVisible(DataGridView DGV,DataGridView grdGroupList)
+        public void udfnscrollVisible(DataGridView DGV,DataGridView grdStockTransfer)
         {
             try
             {
-                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdStockTransfer.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -898,6 +898,7 @@ namespace ROMS
                     if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "21")
                     {
                         grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     //else
                     //{

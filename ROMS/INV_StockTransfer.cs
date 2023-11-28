@@ -874,16 +874,15 @@ namespace ROMS
         private void TxtProductNamePICode_TextChanged(object sender, EventArgs e)
         {
             try
-           {
-                
-                    txtMRP.Text = "";
-                    txtSRack.Text = "";
-                    txtExpiryDate.Text = "";
-                    txtBatchNo.Text = "";
-                    txtStockQty.Text = "";
-                    txtQuantity.Text = "";
-                    txtDLocation.Text = "";
-                    cmbDRack.Text = "None";cmbDRack.Enabled = false;
+            {
+                txtMRP.Text = "";
+                txtSRack.Text = "";
+                txtExpiryDate.Text = "";
+                txtBatchNo.Text = "";
+                txtStockQty.Text = "";
+                txtQuantity.Text = "";
+                txtDLocation.Text = "";
+                cmbDRack.Text = "None";cmbDRack.Enabled = false;
                 varlocationcode = lblSLocation.Text;
                 lvProduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
