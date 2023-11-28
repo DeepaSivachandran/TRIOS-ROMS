@@ -788,19 +788,19 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdPurchaseDCList.Rows.Count; i++)
-                //{
-                //    if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "1")
-                //    {
-                //        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                //        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //    else
-                //    {
-                //        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                //        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //}
+                for (int i = 0; i < grdPurchaseDCList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "18")
+                    {
+                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
             }
             catch (Exception ex)
             {

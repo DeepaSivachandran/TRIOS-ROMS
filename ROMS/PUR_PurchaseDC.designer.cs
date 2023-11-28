@@ -48,7 +48,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblStockLocationCode = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
-            this.lblReturnType = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtRack = new System.Windows.Forms.TextBox();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
@@ -190,7 +189,6 @@
             this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.lblStockLocationCode);
             this.groupBox1.Controls.Add(this.lblProductcode);
-            this.groupBox1.Controls.Add(this.lblReturnType);
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.txtRack);
             this.groupBox1.Controls.Add(this.txtStockLocation);
@@ -244,7 +242,7 @@
             this.columnHeader1});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(112, 141);
+            this.LV_Supplier.Location = new System.Drawing.Point(116, 127);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(366, 93);
             this.LV_Supplier.TabIndex = 1111208;
@@ -285,18 +283,6 @@
             this.lblProductcode.TabIndex = 1111209;
             this.lblProductcode.Text = "0";
             this.lblProductcode.Visible = false;
-            // 
-            // lblReturnType
-            // 
-            this.lblReturnType.AutoSize = true;
-            this.lblReturnType.BackColor = System.Drawing.Color.White;
-            this.lblReturnType.Font = new System.Drawing.Font("Oswald Regular", 7.25F);
-            this.lblReturnType.Location = new System.Drawing.Point(430, 119);
-            this.lblReturnType.Name = "lblReturnType";
-            this.lblReturnType.Size = new System.Drawing.Size(48, 14);
-            this.lblReturnType.TabIndex = 1111208;
-            this.lblReturnType.Text = "Retrun Type";
-            this.lblReturnType.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnAdd
             // 
@@ -509,7 +495,7 @@
             this.groupBox2.Controls.Add(this.lblsupplierGST);
             this.groupBox2.Controls.Add(this.lblSupplierCity);
             this.groupBox2.Controls.Add(this.lblSuppliername);
-            this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 7F);
+            this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(423, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(209, 123);
@@ -521,10 +507,10 @@
             // 
             this.lblReturn.AutoSize = true;
             this.lblReturn.BackColor = System.Drawing.Color.White;
-            this.lblReturn.Font = new System.Drawing.Font("Oswald Regular", 7.25F);
-            this.lblReturn.Location = new System.Drawing.Point(7, 93);
+            this.lblReturn.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturn.Location = new System.Drawing.Point(7, 105);
             this.lblReturn.Name = "lblReturn";
-            this.lblReturn.Size = new System.Drawing.Size(30, 14);
+            this.lblReturn.Size = new System.Drawing.Size(37, 16);
             this.lblReturn.TabIndex = 1111207;
             this.lblReturn.Text = "Retrun";
             this.lblReturn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -533,10 +519,10 @@
             // 
             this.lblSupplierOrderpolicy.AutoSize = true;
             this.lblSupplierOrderpolicy.BackColor = System.Drawing.Color.White;
-            this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 7.25F);
-            this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(6, 80);
+            this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(6, 91);
             this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
-            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(48, 14);
+            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(61, 16);
             this.lblSupplierOrderpolicy.TabIndex = 1111206;
             this.lblSupplierOrderpolicy.Text = "Order policy";
             this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -545,10 +531,10 @@
             // 
             this.lblsupplierpayment.AutoSize = true;
             this.lblsupplierpayment.BackColor = System.Drawing.Color.White;
-            this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 7.25F);
-            this.lblsupplierpayment.Location = new System.Drawing.Point(6, 66);
+            this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupplierpayment.Location = new System.Drawing.Point(6, 75);
             this.lblsupplierpayment.Name = "lblsupplierpayment";
-            this.lblsupplierpayment.Size = new System.Drawing.Size(38, 14);
+            this.lblsupplierpayment.Size = new System.Drawing.Size(46, 16);
             this.lblsupplierpayment.TabIndex = 1111205;
             this.lblsupplierpayment.Text = "Payment";
             this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -557,10 +543,10 @@
             // 
             this.lblsupplierScheduletype.AutoSize = true;
             this.lblsupplierScheduletype.BackColor = System.Drawing.Color.White;
-            this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 7.25F);
-            this.lblsupplierScheduletype.Location = new System.Drawing.Point(6, 54);
+            this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupplierScheduletype.Location = new System.Drawing.Point(6, 60);
             this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
-            this.lblsupplierScheduletype.Size = new System.Drawing.Size(56, 14);
+            this.lblsupplierScheduletype.Size = new System.Drawing.Size(70, 16);
             this.lblsupplierScheduletype.TabIndex = 1111204;
             this.lblsupplierScheduletype.Text = "Schedule Type";
             this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -569,10 +555,10 @@
             // 
             this.lblsupplierGST.AutoSize = true;
             this.lblsupplierGST.BackColor = System.Drawing.Color.White;
-            this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 7.25F);
-            this.lblsupplierGST.Location = new System.Drawing.Point(6, 40);
+            this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupplierGST.Location = new System.Drawing.Point(6, 44);
             this.lblsupplierGST.Name = "lblsupplierGST";
-            this.lblsupplierGST.Size = new System.Drawing.Size(18, 14);
+            this.lblsupplierGST.Size = new System.Drawing.Size(21, 16);
             this.lblsupplierGST.TabIndex = 1111203;
             this.lblsupplierGST.Text = "gst";
             this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -581,10 +567,10 @@
             // 
             this.lblSupplierCity.AutoSize = true;
             this.lblSupplierCity.BackColor = System.Drawing.Color.White;
-            this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 7.25F);
-            this.lblSupplierCity.Location = new System.Drawing.Point(6, 27);
+            this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupplierCity.Location = new System.Drawing.Point(6, 30);
             this.lblSupplierCity.Name = "lblSupplierCity";
-            this.lblSupplierCity.Size = new System.Drawing.Size(20, 14);
+            this.lblSupplierCity.Size = new System.Drawing.Size(25, 16);
             this.lblSupplierCity.TabIndex = 1111202;
             this.lblSupplierCity.Text = "city";
             this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -593,10 +579,10 @@
             // 
             this.lblSuppliername.AutoSize = true;
             this.lblSuppliername.BackColor = System.Drawing.Color.White;
-            this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSuppliername.Location = new System.Drawing.Point(6, 13);
             this.lblSuppliername.Name = "lblSuppliername";
-            this.lblSuppliername.Size = new System.Drawing.Size(41, 15);
+            this.lblSuppliername.Size = new System.Drawing.Size(46, 17);
             this.lblSuppliername.TabIndex = 1111201;
             this.lblSuppliername.Text = "supplier";
             this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -963,11 +949,11 @@
             this.clmRKID,
             this.clmUnitID,
             this.clmRemove});
+            this.grdPurchaseDC.Enabled = false;
             this.grdPurchaseDC.EnableHeadersVisualStyles = false;
             this.grdPurchaseDC.GridColor = System.Drawing.Color.White;
             this.grdPurchaseDC.Location = new System.Drawing.Point(9, 23);
             this.grdPurchaseDC.Name = "grdPurchaseDC";
-            this.grdPurchaseDC.ReadOnly = true;
             this.grdPurchaseDC.RowHeadersVisible = false;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -977,12 +963,13 @@
             this.grdPurchaseDC.Size = new System.Drawing.Size(1289, 360);
             this.grdPurchaseDC.TabIndex = 1111170;
             this.grdPurchaseDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDC_CellContentClick);
+            this.grdPurchaseDC.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDC_CellEndEdit);
+            this.grdPurchaseDC.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdPurchaseDC_EditingControlShowing);
             // 
             // clmSno
             // 
             this.clmSno.HeaderText = "S.No.";
             this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
             this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmSno.Width = 50;
@@ -991,87 +978,74 @@
             // 
             this.clmPICode.HeaderText = "P.I Code";
             this.clmPICode.Name = "clmPICode";
-            this.clmPICode.ReadOnly = true;
             this.clmPICode.Width = 90;
             // 
             // clmProductName
             // 
             this.clmProductName.HeaderText = "Product Name";
             this.clmProductName.Name = "clmProductName";
-            this.clmProductName.ReadOnly = true;
             this.clmProductName.Width = 220;
             // 
             // clmMRP
             // 
             this.clmMRP.HeaderText = "MRP";
             this.clmMRP.Name = "clmMRP";
-            this.clmMRP.ReadOnly = true;
             // 
             // clmExpiryDate
             // 
             this.clmExpiryDate.HeaderText = "Expiry Date";
             this.clmExpiryDate.Name = "clmExpiryDate";
-            this.clmExpiryDate.ReadOnly = true;
             // 
             // clmBatchNo
             // 
             this.clmBatchNo.HeaderText = "Batch No.";
             this.clmBatchNo.Name = "clmBatchNo";
-            this.clmBatchNo.ReadOnly = true;
             // 
             // clmQuantity
             // 
             this.clmQuantity.HeaderText = "Qty";
             this.clmQuantity.Name = "clmQuantity";
-            this.clmQuantity.ReadOnly = true;
             this.clmQuantity.Width = 75;
             // 
             // clmUnit
             // 
             this.clmUnit.HeaderText = "Unit";
             this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
             this.clmUnit.Width = 75;
             // 
             // clmStockLocation
             // 
             this.clmStockLocation.HeaderText = "Stock Location";
             this.clmStockLocation.Name = "clmStockLocation";
-            this.clmStockLocation.ReadOnly = true;
             this.clmStockLocation.Width = 200;
             // 
             // clmRack
             // 
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
             // 
             // ClmPRID
             // 
             this.ClmPRID.HeaderText = "PRID";
             this.ClmPRID.Name = "ClmPRID";
-            this.ClmPRID.ReadOnly = true;
             this.ClmPRID.Visible = false;
             // 
             // clmSLID
             // 
             this.clmSLID.HeaderText = "SLID";
             this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
             this.clmSLID.Visible = false;
             // 
             // clmRKID
             // 
             this.clmRKID.HeaderText = "RKID";
             this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
             this.clmRKID.Visible = false;
             // 
             // clmUnitID
             // 
             this.clmUnitID.HeaderText = "UTID";
             this.clmUnitID.Name = "clmUnitID";
-            this.clmUnitID.ReadOnly = true;
             this.clmUnitID.Visible = false;
             // 
             // clmRemove
@@ -1079,7 +1053,6 @@
             this.clmRemove.HeaderText = "Remove";
             this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
@@ -1329,7 +1302,6 @@
         private System.Windows.Forms.Label lblsupplierpayment;
         private System.Windows.Forms.Label lblSupplierOrderpolicy;
         private System.Windows.Forms.Label lblReturn;
-        private System.Windows.Forms.Label lblReturnType;
         private System.Windows.Forms.Label lblSalesmanName;
         private System.Windows.Forms.Label lblMobileNo;
         private System.Windows.Forms.Label lblWhatsAppNo;
