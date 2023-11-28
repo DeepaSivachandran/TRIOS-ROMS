@@ -829,7 +829,7 @@ namespace ROMS
                     string varproductID = "0";
                     DataSet objDsproductId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsproductId = objDserv.udfnproductmasterlist(39, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text),"", "", null,0);
+                    objDsproductId = objDserv.udfnproductmasterlist(39, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), "","", null,0);
                     objDserv.CloseConnection();
                     if (objDsproductId != null)
                     {
@@ -1030,7 +1030,6 @@ namespace ROMS
                         grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
                         grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.ForeColor = Color.Black;
                     }
-
                     else
                     {
                         grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.BackColor = Color.PaleGreen;
@@ -1131,6 +1130,8 @@ namespace ROMS
                 MainForm.objPUR_BulkUnit = new PUR_BulkUnit();
                 MainForm.objPUR_BulkUnit.ShowDialog();
                 udfnUnitDropdownload();
+
+                udfnProductAdd();
                 //cmbConcern.SelectedValue = varcmbconcernid;
                 cmbUnit.SelectedValue = varcmbunitid;
             }
@@ -2437,7 +2438,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes,"", null, 0);
+                    objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes, "",null,0);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
@@ -2446,7 +2447,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["pr_retailrate"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -2454,9 +2455,11 @@ namespace ROMS
                                 }
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 100;
-                                lvproduct.Columns[1].Width = 250;
+                                lvproduct.Columns[1].Width = 0;
                                 lvproduct.Columns[2].Width = 250;
                                 lvproduct.Columns[3].Width = 0;
+                                lvproduct.Columns[4].Width = 100;
+                                lvproduct.Columns[5].Width = 100;
                             }
                         }
                     }
@@ -3830,9 +3833,7 @@ namespace ROMS
                             varBulkunitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["B.UTID"]);
                             varUnitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
                             varTotalunitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["T.UTID"]);
-
-
-
+                            lblWeightvalue.Text = unitperbox; 
                             flag = "3";
                             udfnUnitDropdownload();
                         }

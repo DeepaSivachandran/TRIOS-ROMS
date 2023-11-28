@@ -259,7 +259,7 @@ namespace ROMS
             {
                 errNewProduct.Clear();
                 cmbUnit.BackColor = Color.White;
-                   SPDataService objspdservice = new SPDataService();
+                  SPDataService objspdservice = new SPDataService();
                 string result = "", varorignator, varupdate;
                 int varviewtype;
                 varviewtype = 12;
@@ -309,7 +309,7 @@ namespace ROMS
                     txtUnittype.Text = MainForm.objPUR_PurchaseOrder.pbunitname;
                 }
                 this.ActiveControl= cmbUnit;
-                int varViewType = 1; 
+                int varViewType = 5; 
                 DataSet objDT = new DataSet();
                 DataSet objDTBulkUnit = new DataSet();
                 SPDataService objdserv = new SPDataService();

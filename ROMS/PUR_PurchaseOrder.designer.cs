@@ -73,6 +73,9 @@
             this.RMcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMEName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -177,6 +180,8 @@
             this.grdsupplieradd = new System.Windows.Forms.DataGridView();
             this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lblWeightvalue = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -264,14 +269,13 @@
             // grppurchaseorder
             // 
             this.grppurchaseorder.BackColor = System.Drawing.Color.White;
+            this.grppurchaseorder.Controls.Add(this.lblWeightvalue);
+            this.grppurchaseorder.Controls.Add(this.label13);
             this.grppurchaseorder.Controls.Add(this.lblKG);
             this.grppurchaseorder.Controls.Add(this.label12);
             this.grppurchaseorder.Controls.Add(this.cmbUnit);
             this.grppurchaseorder.Controls.Add(this.btnAdd);
-            this.grppurchaseorder.Controls.Add(this.lblschedule);
-            this.grppurchaseorder.Controls.Add(this.lblProductcode);
             this.grppurchaseorder.Controls.Add(this.lvproduct);
-            this.grppurchaseorder.Controls.Add(this.lblSupplierCode);
             this.grppurchaseorder.Controls.Add(this.LV_Supplier);
             this.grppurchaseorder.Controls.Add(this.groupBox2);
             this.grppurchaseorder.Controls.Add(this.btnDamage);
@@ -310,6 +314,9 @@
             this.grppurchaseorder.Controls.Add(this.txtProductName);
             this.grppurchaseorder.Controls.Add(this.label3);
             this.grppurchaseorder.Controls.Add(this.grdsupplieradd);
+            this.grppurchaseorder.Controls.Add(this.lblschedule);
+            this.grppurchaseorder.Controls.Add(this.lblProductcode);
+            this.grppurchaseorder.Controls.Add(this.lblSupplierCode);
             this.grppurchaseorder.Location = new System.Drawing.Point(7, 1);
             this.grppurchaseorder.Name = "grppurchaseorder";
             this.grppurchaseorder.Size = new System.Drawing.Size(1339, 633);
@@ -392,7 +399,10 @@
             this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.RMcode,
             this.RMTname,
-            this.RMEName});
+            this.RMEName,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvproduct.HideSelection = false;
@@ -935,7 +945,7 @@
             this.btnViewedProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnViewedProduct.Image = global::ROMS.Properties.Resources.New;
             this.btnViewedProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewedProduct.Location = new System.Drawing.Point(875, 114);
+            this.btnViewedProduct.Location = new System.Drawing.Point(1070, 114);
             this.btnViewedProduct.Name = "btnViewedProduct";
             this.btnViewedProduct.Size = new System.Drawing.Size(153, 29);
             this.btnViewedProduct.TabIndex = 8;
@@ -1044,6 +1054,7 @@
             this.txtProductQty.Name = "txtProductQty";
             this.txtProductQty.Size = new System.Drawing.Size(58, 27);
             this.txtProductQty.TabIndex = 4;
+            this.txtProductQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtProductQty.Enter += new System.EventHandler(this.TxtProductQty_Enter);
             this.txtProductQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductQty_KeyDown);
             this.txtProductQty.Leave += new System.EventHandler(this.TxtProductQty_Leave);
@@ -1777,6 +1788,26 @@
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 70;
             // 
+            // lblWeightvalue
+            // 
+            this.lblWeightvalue.AutoSize = true;
+            this.lblWeightvalue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeightvalue.Location = new System.Drawing.Point(977, 118);
+            this.lblWeightvalue.Name = "lblWeightvalue";
+            this.lblWeightvalue.Size = new System.Drawing.Size(0, 20);
+            this.lblWeightvalue.TabIndex = 1111213;
+            this.lblWeightvalue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(873, 118);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(111, 20);
+            this.label13.TabIndex = 1111214;
+            this.label13.Text = "Unit Per Box-Bag : ";
+            // 
             // clmsno
             // 
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -1831,7 +1862,7 @@
             this.clmBulkUnit.HeaderText = "B.Unit Weight";
             this.clmBulkUnit.Name = "clmBulkUnit";
             this.clmBulkUnit.ReadOnly = true;
-            this.clmBulkUnit.Width = 90;
+            this.clmBulkUnit.Width = 70;
             // 
             // clmgst
             // 
@@ -1850,7 +1881,7 @@
             this.clmMSQ.HeaderText = "MISQ";
             this.clmMSQ.Name = "clmMSQ";
             this.clmMSQ.ReadOnly = true;
-            this.clmMSQ.Width = 70;
+            this.clmMSQ.Width = 50;
             // 
             // clmMXSQ
             // 
@@ -1859,7 +1890,7 @@
             this.clmMXSQ.HeaderText = "MXSQ";
             this.clmMXSQ.Name = "clmMXSQ";
             this.clmMXSQ.ReadOnly = true;
-            this.clmMXSQ.Width = 70;
+            this.clmMXSQ.Width = 50;
             // 
             // clmstock
             // 
@@ -1875,19 +1906,19 @@
             // 
             dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmpreviouspend.DefaultCellStyle = dataGridViewCellStyle18;
-            this.clmpreviouspend.HeaderText = "Prev. Pending Qty";
+            this.clmpreviouspend.HeaderText = "Pre Pdg";
             this.clmpreviouspend.Name = "clmpreviouspend";
             this.clmpreviouspend.ReadOnly = true;
-            this.clmpreviouspend.Width = 90;
+            this.clmpreviouspend.Width = 70;
             // 
             // clmPartialPendingQty
             // 
             dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmPartialPendingQty.DefaultCellStyle = dataGridViewCellStyle19;
-            this.clmPartialPendingQty.HeaderText = "Partial Pending Qty";
+            this.clmPartialPendingQty.HeaderText = "Par Pdg";
             this.clmPartialPendingQty.Name = "clmPartialPendingQty";
             this.clmPartialPendingQty.ReadOnly = true;
-            this.clmPartialPendingQty.Width = 90;
+            this.clmPartialPendingQty.Width = 70;
             // 
             // clmreorderqty
             // 
@@ -1907,13 +1938,13 @@
             this.clmOrderqty.DefaultCellStyle = dataGridViewCellStyle21;
             this.clmOrderqty.HeaderText = "Order Qty Bulk Unit";
             this.clmOrderqty.Name = "clmOrderqty";
-            this.clmOrderqty.Width = 80;
+            this.clmOrderqty.Width = 70;
             // 
             // Column2
             // 
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.Column2.DefaultCellStyle = dataGridViewCellStyle22;
-            this.Column2.HeaderText = "";
+            this.Column2.HeaderText = "Unit";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Width = 40;
@@ -1926,13 +1957,13 @@
             this.clmunitorderqty.DefaultCellStyle = dataGridViewCellStyle23;
             this.clmunitorderqty.HeaderText = "Order Qty Unit";
             this.clmunitorderqty.Name = "clmunitorderqty";
-            this.clmunitorderqty.Width = 80;
+            this.clmunitorderqty.Width = 70;
             // 
             // Column1
             // 
             dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.Column1.DefaultCellStyle = dataGridViewCellStyle24;
-            this.Column1.HeaderText = "";
+            this.Column1.HeaderText = "Unit";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 40;
@@ -1945,13 +1976,13 @@
             this.clmordertotalqty.DefaultCellStyle = dataGridViewCellStyle25;
             this.clmordertotalqty.HeaderText = "Order Qty Total";
             this.clmordertotalqty.Name = "clmordertotalqty";
-            this.clmordertotalqty.Width = 80;
+            this.clmordertotalqty.Width = 70;
             // 
             // u
             // 
             dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.u.DefaultCellStyle = dataGridViewCellStyle26;
-            this.u.HeaderText = "";
+            this.u.HeaderText = "Unit";
             this.u.Name = "u";
             this.u.ReadOnly = true;
             this.u.Width = 40;
@@ -1965,13 +1996,13 @@
             this.clmtotalkg.HeaderText = "Total Kg";
             this.clmtotalkg.Name = "clmtotalkg";
             this.clmtotalkg.ReadOnly = true;
-            this.clmtotalkg.Width = 80;
+            this.clmtotalkg.Width = 70;
             // 
             // uu
             // 
             dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.uu.DefaultCellStyle = dataGridViewCellStyle28;
-            this.uu.HeaderText = "";
+            this.uu.HeaderText = "Unit";
             this.uu.Name = "uu";
             this.uu.ReadOnly = true;
             this.uu.Width = 40;
@@ -2218,6 +2249,11 @@
         public System.Windows.Forms.ComboBox cmbUnit;
         private System.Windows.Forms.Label lblKG;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Label lblWeightvalue;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
