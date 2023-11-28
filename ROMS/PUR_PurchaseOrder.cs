@@ -933,8 +933,7 @@ namespace ROMS
                                 unit = Convert.ToString(varFinalUnit);
                             }
                             udfnProductAdd();
-                            //string[] unitparts = unitperbox.Split('/');
-
+                            //string[] unitparts = unitperbox.Split('/'); 
                             //string bunits = unitparts[0].Trim() +'/' + Convert.ToString(cmbUnit.Text);
                             grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, (varPICode).Trim(), (varEName).Trim(), (var_Symbol).Trim(),
                             (unitweight), unitperbox, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (var_MXSQ).Trim(), (varSTOCK).Trim(), (varPrevious).Trim(), (varPARITAL).Trim(),

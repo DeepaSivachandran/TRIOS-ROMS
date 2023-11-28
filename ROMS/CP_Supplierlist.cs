@@ -69,8 +69,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void CP_Supplierlist_Load(object sender, EventArgs e)
         {
             try
