@@ -2513,12 +2513,29 @@ namespace ROMS
                     if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Order_List.rpt");
+                        objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
+                        objBillreport.SetParameterValue("paraSupplierScheduleid ", Convert.ToInt32(lblschedleCode.Text));
+                        objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                        objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                        objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbstatus.SelectedValue));
+                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
+                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpPlanDate.Text));
+                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dptoPlanDate.Text));
+                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        objValidation.CrySqlConnection(objBillreport);
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
                     }
                     else
                     {
                         objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                         if (cbPoNo.Checked == true && cbSupplier.Checked == true)
                         {
+
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
                         }
                         else
