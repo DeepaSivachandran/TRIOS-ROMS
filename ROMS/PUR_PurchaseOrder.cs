@@ -1130,6 +1130,8 @@ namespace ROMS
                 MainForm.objPUR_BulkUnit = new PUR_BulkUnit();
                 MainForm.objPUR_BulkUnit.ShowDialog();
                 udfnUnitDropdownload();
+
+                udfnProductAdd();
                 //cmbConcern.SelectedValue = varcmbconcernid;
                 cmbUnit.SelectedValue = varcmbunitid;
             }
@@ -3831,9 +3833,7 @@ namespace ROMS
                             varBulkunitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["B.UTID"]);
                             varUnitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
                             varTotalunitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["T.UTID"]);
-
-
-
+                            lblWeightvalue.Text = unitperbox; 
                             flag = "3";
                             udfnUnitDropdownload();
                         }

@@ -939,7 +939,9 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
+                        grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
                             grdPurchaseorderlist.Columns["clmView"].Visible = false;
+                            lblTotal.Text = "0";
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
@@ -970,6 +972,7 @@ namespace ROMS
                         lblNoRecordsFound.BringToFront();
                         grdPurchaseorderlist.Columns["clmView"].Visible = false;
                         grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
+                        lblTotal.Text = "0";
                     }
                 }
                 else
@@ -978,6 +981,7 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                     grdPurchaseorderlist.Columns["clmView"].Visible = false;
                     grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
+                    lblTotal.Text = "0";
 
                 }
 
