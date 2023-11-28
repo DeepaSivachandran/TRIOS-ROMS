@@ -930,6 +930,12 @@ namespace ROMS
         {
             try
             {
+                if (PoScheduleFlag == 1)
+                {
+                    this.Close();
+                    MainForm.objPUR_SupplierScheduleList.udfnList();
+                    PoScheduleFlag = 0;
+                }
                 if (varModifiedFlag == 1)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -957,22 +963,6 @@ namespace ROMS
                         }
                     }
                     MainForm.objCP_Supplierlist.udfnList();
-                }
-                if (PoScheduleFlag == 0)
-                {
-                    if (varMasterid == 0)
-                    {
-                        MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
-                    }
-                    //else
-                    //{
-                    //    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
-                    //}
-                }
-                if (PoScheduleFlag == 1)
-                {
-                    MainForm.objPUR_SupplierScheduleList.udfnList();
-                    PoScheduleFlag = 0;
                 }
             }
             catch (Exception ex)
@@ -8090,25 +8080,48 @@ namespace ROMS
         }
         private void udfnsearchgridHead_MappedProducts()
         {
+            //try
+            //{
+            //    udfnGridSearchHeading(grdViewSupplierMapping, DGV_SearchGridPro);
+            //    List<int> visibleColumns = new List<int>();
+            //    DGV_SearchGridPro.Rows.Clear();
+            //    DGV_SearchGridPro.Rows.Add();
+            //    foreach (DataGridViewColumn col in grdViewSupplierMapping.Columns)
+            //    {
+            //        DGV_SearchGridPro.Columns.Add((DataGridViewColumn)col.Clone());
+            //        visibleColumns.Add(col.Index);
+            //    }
+               
+            //    if (DGV_SearchGridPro.ColumnCount > 1)
+            //    {
+            //        for (int i = 1; i < visibleColumns.Count; i++)
+            //        {
+            //            if (i == 0)
+            //            { DGV_SearchGridPro.Rows[0].Cells[i].ReadOnly = true; }
+            //            else
+            //            { DGV_SearchGridPro.Rows[0].Cells[i].ReadOnly = false; }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
             try
             {
                 udfnGridSearchHeading(grdViewSupplierMapping, DGV_SearchGridPro);
+                DGV_SearchGridPro.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
                 foreach (DataGridViewColumn col in grdViewSupplierMapping.Columns)
                 {
                     DGV_SearchGridPro.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
                 }
-                if (DGV_SearchGridPro.ColumnCount > 1)
+                int rowIndex = 0;
+                DGV_SearchGridPro.Rows.Clear();
+                DGV_SearchGridPro.Rows.Add();
+                for (int i = 0; i < visibleColumns.Count; i++)
                 {
-                    for (int i = 1; i < visibleColumns.Count; i++)
-                    {
-                        if (i == 0)
-                        { DGV_SearchGridPro.Rows[0].Cells[i].ReadOnly = true; }
-                        else
-                        { DGV_SearchGridPro.Rows[0].Cells[i].ReadOnly = false; }
-                    }
+                    DGV_SearchGridPro.Rows[rowIndex].Cells[i].Value = "";
                 }
+                DGV_SearchGridPro.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -8175,6 +8188,7 @@ namespace ROMS
                 {
                     grdSupplierMappingLoad.Rows[i].Cells[0].Value = true;
                 }
+                btnRemove.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -8191,6 +8205,8 @@ namespace ROMS
                 {
                     grdSupplierMappingLoad.Rows[i].Cells[0].Value = false;
                 }
+                BtnaddMove.Enabled = true;
+                btnRemove.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -8207,6 +8223,7 @@ namespace ROMS
                 {
                     grdFinalSupplierMapping.Rows[i].Cells[0].Value = true;
                 }
+                BtnaddMove.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -8223,6 +8240,8 @@ namespace ROMS
                 {
                     grdFinalSupplierMapping.Rows[i].Cells[0].Value = false;
                 }
+                BtnaddMove.Enabled = true;
+                btnRemove.Enabled = true;
             }
             catch (Exception ex)
             {
