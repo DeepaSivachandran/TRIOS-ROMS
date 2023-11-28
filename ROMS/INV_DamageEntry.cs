@@ -853,50 +853,50 @@ namespace ROMS
                 }
                 if (txtLocation.Text == "")
                 {
-                    epDamageEntry.SetError(txtLocation, "Please enter location name");
+                    epDamageEntry.SetError(txtLocation, "Invalid location");
                     txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLocation.ShowAlways = true;
-                    tpLocation.Show("Please enter location name", txtLocation, 5000);
+                    tpLocation.Show("Invalid location", txtLocation, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtRack.Text == "")
                 {
-                    epDamageEntry.SetError(txtRack, "Please enter rack name");
+                    epDamageEntry.SetError(txtRack, "Invalid rack");
                     txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter rack name", txtRack, 5000);
+                    tpRack.Show("Invalid rack", txtRack, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtMrp.Text == "")
                 {
-                    epDamageEntry.SetError(txtMrp, "Please enter mrp");
+                    epDamageEntry.SetError(txtMrp, "Invalid mrp");
                     txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMRP.ShowAlways = true;
-                    tpMRP.Show("Please enter mrp", txtMrp, 5000);
+                    tpMRP.Show("Invalid mrp", txtMrp, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtExpiryDate.Text == "")
                 {
-                    epDamageEntry.SetError(txtExpiryDate, "Please enter expiry date");
+                    epDamageEntry.SetError(txtExpiryDate, "Invalid expiry date");
                     txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpExpiryDate.ShowAlways = true;
-                    tpExpiryDate.Show("Please enter expiry date", txtExpiryDate, 5000);
+                    tpExpiryDate.Show("Invalid expiry date", txtExpiryDate, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtBatchNo.Text == "")
                 {
-                    epDamageEntry.SetError(txtBatchNo, "Please enter batch no.");
+                    epDamageEntry.SetError(txtBatchNo, "Invalid batch no.");
                     txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBatchNo.ShowAlways = true;
-                    tpBatchNo.Show("Please enter batch no.", txtBatchNo, 5000);
+                    tpBatchNo.Show("Invalid batch no.", txtBatchNo, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtStockQty.Text == "")
                 {
-                    epDamageEntry.SetError(txtStockQty, "Please enter stock qty");
+                    epDamageEntry.SetError(txtStockQty, "Invalid stock qty");
                     txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockQty.ShowAlways = true;
-                    tpStockQty.Show("Please enter stock qty", txtStockQty, 5000);
+                    tpStockQty.Show("Invalid stock qty", txtStockQty, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtQuantity.Text).Trim() != "")
