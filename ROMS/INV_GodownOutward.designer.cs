@@ -182,7 +182,7 @@
             this.columnHeader6});
             this.lvStockLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvStockLocation.HideSelection = false;
-            this.lvStockLocation.Location = new System.Drawing.Point(412, 145);
+            this.lvStockLocation.Location = new System.Drawing.Point(408, 75);
             this.lvStockLocation.Name = "lvStockLocation";
             this.lvStockLocation.Size = new System.Drawing.Size(322, 157);
             this.lvStockLocation.TabIndex = 958806;
@@ -191,6 +191,7 @@
             this.lvStockLocation.Visible = false;
             this.lvStockLocation.DoubleClick += new System.EventHandler(this.LvStockLocation_DoubleClick);
             this.lvStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvStockLocation_KeyDown);
+            this.lvStockLocation.Leave += new System.EventHandler(this.LvStockLocation_Leave);
             // 
             // columnHeader4
             // 
@@ -567,9 +568,9 @@
             this.lblGodown.AutoSize = true;
             this.lblGodown.Location = new System.Drawing.Point(397, 12);
             this.lblGodown.Name = "lblGodown";
-            this.lblGodown.Size = new System.Drawing.Size(87, 20);
+            this.lblGodown.Size = new System.Drawing.Size(127, 20);
             this.lblGodown.TabIndex = 86;
-            this.lblGodown.Text = "Stock Location";
+            this.lblGodown.Text = "Source Stock Location";
             // 
             // lbloutwarddate
             // 
@@ -647,9 +648,10 @@
             this.txtStockQuantity.Location = new System.Drawing.Point(959, 40);
             this.txtStockQuantity.Name = "txtStockQuantity";
             this.txtStockQuantity.ReadOnly = true;
-            this.txtStockQuantity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtStockQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtStockQuantity.Size = new System.Drawing.Size(100, 27);
             this.txtStockQuantity.TabIndex = 91;
+            this.txtStockQuantity.TextChanged += new System.EventHandler(this.TxtStockQuantity_TextChanged);
             // 
             // lblRack
             // 
@@ -704,7 +706,7 @@
             // 
             this.txtOutwardQuantity.Location = new System.Drawing.Point(1065, 39);
             this.txtOutwardQuantity.Name = "txtOutwardQuantity";
-            this.txtOutwardQuantity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtOutwardQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtOutwardQuantity.Size = new System.Drawing.Size(104, 27);
             this.txtOutwardQuantity.TabIndex = 5;
             this.txtOutwardQuantity.TextChanged += new System.EventHandler(this.TxtOutwardQuantity_TextChanged);
@@ -736,9 +738,10 @@
             this.txtMrp.Location = new System.Drawing.Point(512, 40);
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.ReadOnly = true;
-            this.txtMrp.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtMrp.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtMrp.Size = new System.Drawing.Size(114, 27);
             this.txtMrp.TabIndex = 2;
+            this.txtMrp.TextChanged += new System.EventHandler(this.TxtMrp_TextChanged);
             // 
             // txtExpiryDate
             // 
@@ -748,6 +751,7 @@
             this.txtExpiryDate.ReadOnly = true;
             this.txtExpiryDate.Size = new System.Drawing.Size(161, 27);
             this.txtExpiryDate.TabIndex = 3;
+            this.txtExpiryDate.TextChanged += new System.EventHandler(this.TxtExpiryDate_TextChanged);
             // 
             // lblStock
             // 

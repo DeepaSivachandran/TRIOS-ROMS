@@ -267,6 +267,7 @@
             this.txtStockQty.ReadOnly = true;
             this.txtStockQty.Size = new System.Drawing.Size(113, 27);
             this.txtStockQty.TabIndex = 1111251;
+            this.txtStockQty.TextChanged += new System.EventHandler(this.TxtStockQty_TextChanged);
             // 
             // txtRack
             // 
@@ -467,6 +468,7 @@
             this.txtExpiryDate.ReadOnly = true;
             this.txtExpiryDate.Size = new System.Drawing.Size(100, 27);
             this.txtExpiryDate.TabIndex = 3;
+            this.txtExpiryDate.TextChanged += new System.EventHandler(this.TxtExpiryDate_TextChanged);
             // 
             // txtBatchNo
             // 
@@ -515,6 +517,7 @@
             this.txtMrp.ReadOnly = true;
             this.txtMrp.Size = new System.Drawing.Size(75, 27);
             this.txtMrp.TabIndex = 2;
+            this.txtMrp.TextChanged += new System.EventHandler(this.TxtMrp_TextChanged);
             // 
             // txtQty
             // 
@@ -527,6 +530,7 @@
             this.txtQty.TextChanged += new System.EventHandler(this.TxtQty_TextChanged);
             this.txtQty.Enter += new System.EventHandler(this.TxtQty_Enter);
             this.txtQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQty_KeyDown);
+            this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQty_KeyPress);
             this.txtQty.Leave += new System.EventHandler(this.TxtQty_Leave);
             // 
             // label2
