@@ -63,7 +63,7 @@
             this.lblRemark = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.DGV_inward = new System.Windows.Forms.DataGridView();
+            this.grdGoodsOutward = new System.Windows.Forms.DataGridView();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,7 +113,7 @@
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
             this.grpGoodsOutward.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGoodsOutward)).BeginInit();
             this.grbgodownoutward.SuspendLayout();
             this.grpproductname.SuspendLayout();
             this.SuspendLayout();
@@ -165,7 +165,7 @@
             this.grpGoodsOutward.Controls.Add(this.lblRemark);
             this.grpGoodsOutward.Controls.Add(this.btnSave);
             this.grpGoodsOutward.Controls.Add(this.btnClose);
-            this.grpGoodsOutward.Controls.Add(this.DGV_inward);
+            this.grpGoodsOutward.Controls.Add(this.grdGoodsOutward);
             this.grpGoodsOutward.Controls.Add(this.grbgodownoutward);
             this.grpGoodsOutward.Controls.Add(this.grpproductname);
             this.grpGoodsOutward.Location = new System.Drawing.Point(11, 3);
@@ -316,13 +316,13 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click_1);
             // 
-            // DGV_inward
+            // grdGoodsOutward
             // 
-            this.DGV_inward.AllowUserToAddRows = false;
-            this.DGV_inward.AllowUserToDeleteRows = false;
-            this.DGV_inward.AllowUserToResizeRows = false;
-            this.DGV_inward.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_inward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdGoodsOutward.AllowUserToAddRows = false;
+            this.grdGoodsOutward.AllowUserToDeleteRows = false;
+            this.grdGoodsOutward.AllowUserToResizeRows = false;
+            this.grdGoodsOutward.BackgroundColor = System.Drawing.Color.White;
+            this.grdGoodsOutward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -330,10 +330,10 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGV_inward.ColumnHeadersHeight = 30;
-            this.DGV_inward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_inward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdGoodsOutward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdGoodsOutward.ColumnHeadersHeight = 30;
+            this.grdGoodsOutward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdGoodsOutward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmdsno,
             this.clmPRID,
             this.clmicode,
@@ -356,24 +356,25 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DGV_inward.EnableHeadersVisualStyles = false;
-            this.DGV_inward.GridColor = System.Drawing.Color.White;
-            this.DGV_inward.Location = new System.Drawing.Point(0, 160);
-            this.DGV_inward.Name = "DGV_inward";
-            this.DGV_inward.RowHeadersVisible = false;
+            this.grdGoodsOutward.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdGoodsOutward.EnableHeadersVisualStyles = false;
+            this.grdGoodsOutward.GridColor = System.Drawing.Color.White;
+            this.grdGoodsOutward.Location = new System.Drawing.Point(0, 160);
+            this.grdGoodsOutward.Name = "grdGoodsOutward";
+            this.grdGoodsOutward.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.DGV_inward.RowTemplate.Height = 25;
-            this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGV_inward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_inward.ShowRowErrors = false;
-            this.DGV_inward.Size = new System.Drawing.Size(1325, 404);
-            this.DGV_inward.TabIndex = 2;
-            this.DGV_inward.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_inward_CellContentClick);
-            this.DGV_inward.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_inward_CellEndEdit);
-            this.DGV_inward.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DGV_inward_DataBindingComplete);
+            this.grdGoodsOutward.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdGoodsOutward.RowTemplate.Height = 25;
+            this.grdGoodsOutward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.grdGoodsOutward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGoodsOutward.ShowRowErrors = false;
+            this.grdGoodsOutward.Size = new System.Drawing.Size(1325, 404);
+            this.grdGoodsOutward.TabIndex = 2;
+            this.grdGoodsOutward.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_inward_CellContentClick);
+            this.grdGoodsOutward.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_inward_CellEndEdit);
+            this.grdGoodsOutward.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DGV_inward_DataBindingComplete);
+            this.grdGoodsOutward.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_inward_EditingControlShowing);
             // 
             // clmdsno
             // 
@@ -561,6 +562,7 @@
             this.dtpOutwardDate.Size = new System.Drawing.Size(107, 27);
             this.dtpOutwardDate.TabIndex = 1;
             this.dtpOutwardDate.ValueChanged += new System.EventHandler(this.DtpOutwardDate_ValueChanged);
+            this.dtpOutwardDate.Enter += new System.EventHandler(this.DtpOutwardDate_Enter);
             this.dtpOutwardDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtpOutwardDate_KeyDown);
             // 
             // lblGodown
@@ -568,9 +570,9 @@
             this.lblGodown.AutoSize = true;
             this.lblGodown.Location = new System.Drawing.Point(397, 12);
             this.lblGodown.Name = "lblGodown";
-            this.lblGodown.Size = new System.Drawing.Size(127, 20);
+            this.lblGodown.Size = new System.Drawing.Size(87, 20);
             this.lblGodown.TabIndex = 86;
-            this.lblGodown.Text = "Source Stock Location";
+            this.lblGodown.Text = "Stock Location";
             // 
             // lbloutwarddate
             // 
@@ -712,6 +714,7 @@
             this.txtOutwardQuantity.TextChanged += new System.EventHandler(this.TxtOutwardQuantity_TextChanged);
             this.txtOutwardQuantity.Enter += new System.EventHandler(this.TxtOutwardQuantity_Enter);
             this.txtOutwardQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtOutwardQuantity_KeyDown);
+            this.txtOutwardQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtOutwardQuantity_KeyPress);
             this.txtOutwardQuantity.Leave += new System.EventHandler(this.TxtOutwardQuantity_Leave);
             // 
             // txtBatchNo
@@ -789,6 +792,7 @@
             this.txtProduct.TextChanged += new System.EventHandler(this.TxtProduct_TextChanged);
             this.txtProduct.Enter += new System.EventHandler(this.TxtProduct_Enter);
             this.txtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProduct_KeyDown);
+            this.txtProduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtProduct_KeyPress);
             this.txtProduct.Leave += new System.EventHandler(this.TxtProduct_Leave);
             // 
             // lblProductName
@@ -827,7 +831,7 @@
             this.pnlGoodsOutward.ResumeLayout(false);
             this.grpGoodsOutward.ResumeLayout(false);
             this.grpGoodsOutward.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGoodsOutward)).EndInit();
             this.grbgodownoutward.ResumeLayout(false);
             this.grbgodownoutward.PerformLayout();
             this.grpproductname.ResumeLayout(false);
@@ -843,7 +847,7 @@
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlGoodsOutward;
         private System.Windows.Forms.GroupBox grpGoodsOutward;
-        public System.Windows.Forms.DataGridView DGV_inward;
+        public System.Windows.Forms.DataGridView grdGoodsOutward;
         private System.Windows.Forms.GroupBox grbgodownoutward;
         private System.Windows.Forms.TextBox txtOutwardNo;
         private System.Windows.Forms.DateTimePicker dtpOutwardDate;
