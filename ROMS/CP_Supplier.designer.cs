@@ -1028,14 +1028,13 @@
             this.columnHeader3});
             this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(121, 186);
+            this.lvCity.Location = new System.Drawing.Point(121, 187);
             this.lvCity.Name = "lvCity";
             this.lvCity.Size = new System.Drawing.Size(396, 106);
             this.lvCity.TabIndex = 77;
             this.lvCity.UseCompatibleStateImageBehavior = false;
             this.lvCity.View = System.Windows.Forms.View.Details;
             this.lvCity.Visible = false;
-            this.lvCity.SelectedIndexChanged += new System.EventHandler(this.LvCity_SelectedIndexChanged);
             this.lvCity.DoubleClick += new System.EventHandler(this.LvCity_DoubleClick);
             this.lvCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvCity_KeyDown);
             // 
@@ -1070,7 +1069,7 @@
             this.txtwhatsapp.MaxLength = 10;
             this.txtwhatsapp.Name = "txtwhatsapp";
             this.txtwhatsapp.Size = new System.Drawing.Size(186, 27);
-            this.txtwhatsapp.TabIndex = 11;
+            this.txtwhatsapp.TabIndex = 9;
             this.txtwhatsapp.Enter += new System.EventHandler(this.Txtwhatsapp_Enter);
             this.txtwhatsapp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtwhatsapp_KeyDown);
             this.txtwhatsapp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtwhatsapp_KeyPress);
@@ -1182,7 +1181,7 @@
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(397, 27);
-            this.txtEmail.TabIndex = 12;
+            this.txtEmail.TabIndex = 10;
             this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
             this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
@@ -1218,7 +1217,7 @@
             this.txtAContactNumber.MaxLength = 10;
             this.txtAContactNumber.Name = "txtAContactNumber";
             this.txtAContactNumber.Size = new System.Drawing.Size(186, 27);
-            this.txtAContactNumber.TabIndex = 9;
+            this.txtAContactNumber.TabIndex = 8;
             this.txtAContactNumber.Enter += new System.EventHandler(this.txtAContactNumber_Enter);
             this.txtAContactNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAContactNumber_KeyDown);
             this.txtAContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAContactNumber_KeyPress);

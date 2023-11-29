@@ -3172,11 +3172,11 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 //cmbHSNName.SelectedValue = -1;
                 cmbUnit.SelectedValue = -1;
-                    cmbBulkUnit.SelectedValue = -1;
-                    cmbProductCategory.SelectedValue = -1;
-                    cmbPeriod.SelectedValue = -1;
-                    cmbBatchNoEntry.SelectedValue = -1;
-                    cmbBatchNoGeneration.SelectedValue = -1;
+                cmbBulkUnit.SelectedValue = -1;
+                cmbProductCategory.SelectedValue = -1;
+                cmbPeriod.SelectedValue = -1;
+                cmbBatchNoEntry.SelectedValue = 72;
+                cmbBatchNoGeneration.SelectedValue = -1;
                 udfnEdit();
             }
             catch (Exception ex)
