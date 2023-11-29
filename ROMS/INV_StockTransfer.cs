@@ -809,6 +809,18 @@ namespace ROMS
             try
             {
                 udfnSLocationValid();
+                if (Convert.ToString(lblSLocation.Text).Trim() == "0" || Convert.ToString(lblSLocation.Text).Trim()=="-1")
+                {
+                    errStockTransfer.SetError(txtSLocation, "Please enter valid location");
+                    txtSLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSStockLocation.ShowAlways = true;
+                    tpSStockLocation.Show("Please enter valid location", txtSLocation, 5000);
+                }
+                else
+                {
+                    errStockTransfer.Clear();
+                    txtSLocation.BackColor = Color.White;
+                }
                 lvDLocation.Visible = false;
                 lvSLocation.Visible = false;
                 txtProductNamePICode.BackColor = Color.LemonChiffon;
