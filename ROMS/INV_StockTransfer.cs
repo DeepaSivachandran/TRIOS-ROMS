@@ -809,7 +809,7 @@ namespace ROMS
             try
             {
                 udfnSLocationValid();
-                if (Convert.ToString(lblSLocation.Text).Trim() == "0" || Convert.ToString(lblSLocation.Text).Trim()=="-1")
+                if (Convert.ToString(lblSLocation.Text).Trim() == "0" || Convert.ToString(lblSLocation.Text).Trim() == "-1")
                 {
                     errStockTransfer.SetError(txtSLocation, "Please enter valid location");
                     txtSLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");

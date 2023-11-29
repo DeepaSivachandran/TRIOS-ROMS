@@ -95,7 +95,6 @@ namespace ROMS
                     tpcompanyname.Show("Please select company", cmbConcern, 5000);
                     blnErrorFlag = true;
                 }
-
                 if (Convert.ToString(txtItemNameEnglish.Text).Trim() == "")
                 {
                     errItems.SetError(txtItemNameEnglish, "Please enter product name in english");
