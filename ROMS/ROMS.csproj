@@ -535,6 +535,7 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="REPORT_Stock.cs">
       <SubType>Form</SubType>
@@ -1949,6 +1950,7 @@
     <Content Include="Reports\RPT_Stock.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Issue.png" />
     <Content Include="Resources\RPT_PUR_SupplierProductList.rpt">
