@@ -969,6 +969,13 @@ namespace ROMS
             finally
             {
                 lblPC.Text = grdsupplieradd.Rows.Count.ToString();
+                udfnTotalKG();
+            }
+        }
+        public void udfnTotalKG()
+        {
+            try
+            {
                 decimal vartot = 0;
                 foreach (DataGridViewRow row in grdsupplieradd.Rows)
                 {
@@ -978,7 +985,12 @@ namespace ROMS
                         vartot += cellValue;
                     }
                 }
-                lblKG.Text = Convert.ToString(vartot); 
+                lblKG.Text = Convert.ToString(vartot);
+            }
+              catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -2729,17 +2741,7 @@ namespace ROMS
             }
             finally
             {
-                lblPC.Text = grdsupplieradd.Rows.Count.ToString();
-                decimal vartot = 0;
-                foreach (DataGridViewRow row in grdsupplieradd.Rows)
-                {
-                    // Check if the cell value is not null and can be converted to a decimal
-                    if (row.Cells["clmtotalkg"].Value != null && decimal.TryParse(row.Cells["clmtotalkg"].Value.ToString(), out decimal cellValue))
-                    {
-                        vartot += cellValue;
-                    }
-                }
-                lblKG.Text = Convert.ToString(vartot);
+                lblPC.Text = grdsupplieradd.Rows.Count.ToString(); udfnTotalKG();
             }
         }
 
@@ -3182,6 +3184,7 @@ namespace ROMS
                 grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value = varFinalTotalQty;
                 grdsupplieradd.Rows[e.RowIndex].Cells["clmtotalkg"].Value = varFinalTotalKg;
                 varFinalBulkUnit = 0; varFinalUnit = 0; varFinalTotalQty = 0; varFinalTotalKg = 0;
+                udfnTotalKG();
             }
         }
 
@@ -3301,6 +3304,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                udfnTotalKG();
             }
         }
 
