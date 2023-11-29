@@ -57,8 +57,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=4 AND STSID in (8,9)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
-                objDataBind = null;
+                 objDataBind = null;
                 this.ActiveControl = cmbConcern;
                 udfnDropdownLoad();
                 cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
@@ -76,7 +75,7 @@ namespace ROMS
                     if (VarStatusId == 9)
                     {
                         btnSave.Enabled = false;
-                        cmbStatus.Enabled = false;
+                        chkStatus.Enabled = false;
                         gpissued.Enabled = false;
                     }
                     else
@@ -116,7 +115,7 @@ namespace ROMS
                 if (varPOID != 0)
                 {
                     Application.DoEvents();
-                    cmbStatus.SelectedValue = Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString());
+                    //cmbStatus.SelectedValue = Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString());
                     //********** To display a data in a grid  ******************  
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
@@ -178,7 +177,7 @@ namespace ROMS
                                 lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
                                 lblKG.Text = objDs.Tables[0].Rows[0]["PO_PRTotQty"].ToString();
                                 btnSave.Text = "Update";
-                                cmbStatus.Enabled = true;
+                                chkStatus.Enabled = true;
                                 udfnsupplierLoad();
                                 grdsupplieradd.Columns["clmStsname"].Visible = true;
                             }
@@ -349,7 +348,7 @@ namespace ROMS
                 tppono.Active = false;
                 tpsts.Active = false;
                 txtpono.BackColor = Color.White;
-                cmbStatus.BackColor = Color.White;
+                chkStatus.BackColor = Color.White;
                 tpIssuemodeValues.Active = false;
                 cmbIssueMode.BackColor = Color.White;
                 tpIssueby.Active = false;
@@ -473,7 +472,7 @@ namespace ROMS
                 txtProductQty.Text = "";
                 grdsupplieradd.Rows.Clear();
                 cmbConcern.SelectedValue = "-1";
-                cmbStatus.SelectedValue = "-1";
+                
                 cmbUnit.SelectedIndex = 0;
                 txtRemark.Text = "";
                 lblPC.Text = "0";
@@ -563,14 +562,14 @@ namespace ROMS
                             txtSupplier.BackColor = Color.White;
                         }
                     }
-                    if (Convert.ToInt64(cmbStatus.SelectedValue) == -1)
-                    {
-                        errPO.SetError(cmbStatus, "Please select status");
-                        cmbStatus.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpsts.ShowAlways = true;
-                        tpsts.Show("Please select status.", cmbStatus, 5000);
-                        varErrorFlag = false;
-                    }
+                    //if (Convert.ToInt64(cmbStatus.SelectedValue) == -1)
+                    //{
+                    //    errPO.SetError(cmbStatus, "Please select status");
+                    //    cmbStatus.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpsts.ShowAlways = true;
+                    //    tpsts.Show("Please select status.", cmbStatus, 5000);
+                    //    varErrorFlag = false;
+                    //}
 
                     if (varErrorFlag == true)
                     {
@@ -3408,7 +3407,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    chkStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -3931,11 +3930,11 @@ namespace ROMS
             }
         }
 
-        private void CmbStatus_Leave(object sender, EventArgs e)
+        private void ChkStatus_Leave(object sender, EventArgs e)
         {
             try
             {
-                cmbStatus.BackColor = Color.White;
+                chkStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -3944,11 +3943,11 @@ namespace ROMS
             }
         }
 
-        private void CmbStatus_Enter(object sender, EventArgs e)
+        private void ChkStatus_Enter(object sender, EventArgs e)
         {
             try
             {
-                cmbStatus.BackColor = Color.LemonChiffon;
+                chkStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -3956,34 +3955,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbStatus.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
+         
 
         private void Lvproduct_KeyDown(object sender, KeyEventArgs e)
         {

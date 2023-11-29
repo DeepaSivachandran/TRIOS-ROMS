@@ -2316,6 +2316,9 @@ namespace ROMS
                                         }
                                         else
                                         {
+                                            //ExcelSheet.Row(i + 2).Style.Fill.PatternType = ExcelFillStyle.Solid;
+                                            //ExcelSheet.Row(i + 2).Style.Fill.BackgroundColor.SetColor(Color.Red);
+
                                             ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
                                         }
                                     }
