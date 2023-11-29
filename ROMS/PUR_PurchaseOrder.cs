@@ -41,7 +41,7 @@ namespace ROMS
         private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
             try
-            {
+            {  
                 if (btnSave.Text == "Save")
                 {
                     SPDataService objDServ = new SPDataService();
@@ -72,7 +72,7 @@ namespace ROMS
                 }
                 else
                 {
-                    if (VarStatusId == 9)
+                    if (VarStatusId == 14)
                     {
                         btnSave.Enabled = false;
                         chkStatus.Enabled = false;
@@ -116,6 +116,15 @@ namespace ROMS
                 {
                     Application.DoEvents();
                     //cmbStatus.SelectedValue = Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString());
+
+                    if (Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString()) == 8)
+                    {
+                        chkStatus.Checked = false;
+                    }
+                    else if (Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString()) == 9)
+                    {
+                        chkStatus.Checked = true;
+                    }
                     //********** To display a data in a grid  ******************  
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
@@ -616,11 +625,21 @@ namespace ROMS
                                     objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
                                     objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float)); 
                                     objPurchaseOrder = udfnPurchaseProduct();
+
+                                    int varstatus = 0;
+                                    if (chkStatus.Checked == true)
+                                    {
+                                        varstatus = 9;
+                                    }
+                                    else
+                                    {
+                                        varstatus = 8;
+                                    }
                                     if (varcount == 0)
                                     {
                                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
                                         txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
-                                        txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(cmbStatus.SelectedValue), dpPlanDate.Text, Convert.ToInt32(cmbUnit.SelectedValue),Convert.ToDouble(lblKG.Text)
+                                        txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(varstatus), dpPlanDate.Text, Convert.ToInt32(cmbUnit.SelectedValue),Convert.ToDouble(lblKG.Text)
                                         );
                                         objspdservice.CloseConnection();
                                         string[] varvalue = result.Split('~');
@@ -2604,6 +2623,23 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+
+        private void Lvproduct_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            //try
+            //{
+            //    e.DrawDefault = true; 
+
+            //    e.Graphics.FillRectangle(Brushes.SlateGray, e.Bounds); 
+            //    e.Graphics.DrawString(e.Header.Text, lvproduct.Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void CmbIssueMode_Leave(object sender, EventArgs e)

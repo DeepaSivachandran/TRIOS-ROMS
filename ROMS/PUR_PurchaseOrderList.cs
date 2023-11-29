@@ -233,7 +233,7 @@ namespace ROMS
                 }
             }
             DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Status", "STSID NOT IN (8,9,12) AND STS_ModuleID=4 OR STSID=0  OR STSID=9", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+            objDataBind.BindComboBoxListSelected("DEF_Status", "STSID NOT IN (8,9,12) AND STS_ModuleID=4 OR STSID=0  OR STSID=14", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
             objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=15 AND MSTID IN (135,136)", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
             objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=50 OR MSTID=0", "MST_DisplayText,MSTID", cmbGroup, "", "MST_DisplayText", "MSTID");
             objDataBind = null;
@@ -2318,8 +2318,10 @@ namespace ROMS
                                         {
                                             //ExcelSheet.Row(i + 2).Style.Fill.PatternType = ExcelFillStyle.Solid;
                                             //ExcelSheet.Row(i + 2).Style.Fill.BackgroundColor.SetColor(Color.Red);
-
+                                            //rowa.Interior.Color = System.Drawing.Color.Red;
                                             ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
+
+                                            
                                         }
                                     }
                                 }
