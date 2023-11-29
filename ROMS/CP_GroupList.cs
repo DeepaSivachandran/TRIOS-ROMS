@@ -713,7 +713,8 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
-                DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
+                //TxtSearchProduct_TextChanged(sender,e);
+                //DGV_SearchGrid_CurrentCell(DirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {

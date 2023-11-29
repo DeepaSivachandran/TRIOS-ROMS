@@ -3248,8 +3248,12 @@ namespace ROMS
         {
             try
             {
-
                 txtSearchByProduct2.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGridPro.ColumnCount; i++)
+                {
+                    DGV_SearchGridPro.Rows[0].Cells[i].Value = "";
+                }
+                DGV_SearchGridPro_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -4642,6 +4646,11 @@ namespace ROMS
             {
                 udfnLvHide();
                 txtSearchByProduct1.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -4670,6 +4679,11 @@ namespace ROMS
             {
                 udfnLvHide();
                 txtmappingproductsearch2.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGrid1.ColumnCount; i++)
+                {
+                    DGV_SearchGrid1.Rows[0].Cells[i].Value = "";
+                }
+                DGV_SearchGrid1_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {
