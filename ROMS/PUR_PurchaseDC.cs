@@ -698,6 +698,7 @@ namespace ROMS
             try
             {
                 udfnListViewData();
+                txtProductName.Focus();
             }
             catch (Exception ex)
             {
@@ -712,6 +713,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
+                    txtProductName.Focus();
                 }
             }
             catch (Exception ex)
@@ -1269,7 +1271,16 @@ namespace ROMS
         }
         private void LvStockLocation_DoubleClick(object sender, EventArgs e)
         {
-            udfnPurLocationAutocomplete();
+            try
+            {
+                udfnPurLocationAutocomplete();
+                txtRack.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtRack_TextChanged(object sender, EventArgs e)
@@ -1332,8 +1343,16 @@ namespace ROMS
 
         private void LvRack_DoubleClick(object sender, EventArgs e)
         {
-            udfnPurRackAutocomplete();
-            btnAdd.Focus();
+            try
+            {
+                udfnPurRackAutocomplete();
+                btnAdd.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnPurRackAutocomplete()
         {
@@ -1807,6 +1826,19 @@ namespace ROMS
 
         }
 
+        private void Lvproduct_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnListviewProduct();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdPurchaseDC_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1846,8 +1878,19 @@ namespace ROMS
 
         private void LvRack_KeyDown(object sender, KeyEventArgs e)
         {
-            udfnPurRackAutocomplete();
-            btnAdd.Focus();
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnPurRackAutocomplete();
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdPurchaseDC_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -2704,6 +2747,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListviewProduct();
+                    txtMrp.Focus();
                 }
             }
             catch (Exception ex)

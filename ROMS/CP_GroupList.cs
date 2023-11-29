@@ -869,7 +869,7 @@ namespace ROMS
             try
             {
                 udfnLvGroup();
-                btnView.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
