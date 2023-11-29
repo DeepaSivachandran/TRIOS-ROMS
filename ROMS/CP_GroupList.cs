@@ -157,6 +157,7 @@ namespace ROMS
                 lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
                 varGroupCode = Convert.ToInt32(varGroupId);
                 txtSearchProduct.Text = "";
+                SearchFlag = 0;
             }
         }
         private void udfnSearchGridHead()
@@ -713,8 +714,7 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
-                //TxtSearchProduct_TextChanged(sender,e);
-                //DGV_SearchGrid_CurrentCell(DirtyStateChanged(sender, e);
+                udfnList();
             }
             catch (Exception ex)
             {

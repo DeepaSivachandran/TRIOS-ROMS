@@ -192,8 +192,8 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
-                btnView.Focus();
                 txtSearchbyLocationName.Text = "";
+                SearchFlag = 0;
             }
         }
         private void udfnSearchGridHead()
@@ -521,6 +521,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnView.Enabled = true;
+                btnView.Focus();
+            }
         }
         private void BtnExport_Click(object sender, EventArgs e)
         {
@@ -701,7 +706,8 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
-                DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
+                udfnList();
+               // DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {

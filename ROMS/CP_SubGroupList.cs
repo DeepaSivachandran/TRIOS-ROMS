@@ -263,6 +263,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
                 txtSearchProduct.Text = "";
+                SearchFlag = 0;
                 //varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
             }
         }
@@ -794,7 +795,8 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
-                DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
+                udfnList();
+                //DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {

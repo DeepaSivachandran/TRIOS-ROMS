@@ -17,6 +17,7 @@ namespace ROMS
         DataTable dtPaymentMode = new DataTable();
         Boolean BlnSearchImageYN = false;
 
+        public int SearchFlag = 0;
         public string varcompanycode;
         public string pbFormStatus;
         public string varstatecode = "", varupdate = "0", vardays = "";
@@ -3260,6 +3261,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                SearchFlag = 0;
+            }
         }
 
         private void Btn_Close2_Enter(object sender, EventArgs e)
@@ -4650,7 +4655,8 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
-                DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
+                udfnMappingGridsLoad();
+               // DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -5576,9 +5582,17 @@ namespace ROMS
 
         private void TxtSearchByProduct2_TextChanged(object sender, EventArgs e)
         {
+            //(grdViewSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             try
             {
-                (grdViewSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+                if (SearchFlag == 1)
+                {
+                    (grdViewSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+                }
+                else
+                {
+                    (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+                }
             }
             catch (Exception ex)
             {
@@ -7760,6 +7774,10 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally
+            {
+                SearchFlag = 1;
+            }
         }
 
         private void DGV_SearchGridPro_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
