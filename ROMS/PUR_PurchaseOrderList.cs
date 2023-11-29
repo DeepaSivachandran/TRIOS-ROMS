@@ -2107,7 +2107,6 @@ namespace ROMS
                     }
                     else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "3")
                     {
-
                         grdPurchaseorderlist.Rows[i].DefaultCellStyle.BackColor = Color.LimeGreen;
                         grdPurchaseorderlist.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                         //cell.Style.BackColor = Color.LimeGreen;
