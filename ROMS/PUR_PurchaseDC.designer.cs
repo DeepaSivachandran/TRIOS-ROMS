@@ -818,6 +818,7 @@
             this.lvRack.UseCompatibleStateImageBehavior = false;
             this.lvRack.View = System.Windows.Forms.View.Details;
             this.lvRack.Visible = false;
+            this.lvRack.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.LvRack_ItemSelectionChanged);
             this.lvRack.DoubleClick += new System.EventHandler(this.LvRack_DoubleClick);
             this.lvRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvRack_KeyDown);
             // 

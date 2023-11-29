@@ -1801,6 +1801,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void LvRack_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+
+        }
+
         private void GrdPurchaseDC_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -2291,7 +2297,7 @@ namespace ROMS
                             }
                         }
                         lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
-                        if (varId_PurchaseRack != "0")
+                        if (Convert.ToInt32( varId_PurchaseRack )> 0)
                         {
                             epPurchaseDC.SetError(txtRack, "Please enter rack.");
                             txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -2299,10 +2305,11 @@ namespace ROMS
                             tpRack.Show("Please enter rack.", txtRack, 5000);
                             blnErrorFlag = true;
                         }
-                        else
+                        if (varId_PurchaseRack == "0")
                         {
                             txtRack.Text = "None";
                             txtRack.Enabled = false;
+                            lblRackCode.Text = "-2";
                         }
                     }
                 }
