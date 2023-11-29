@@ -69,15 +69,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void CP_Supplierlist_Load(object sender, EventArgs e)
         {
             try
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,46) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("(SELECT STSID,STS_Name,STS_ModuleID FROM DEF_Status WHERE STS_ModuleID IN(0, 1) AND STSID<>-1 UNION ALL  SELECT -2, 'Not defined',1)AS DIV", "1=1", "STSID, STS_Name", cmbStatus, "", "STS_Name", "STSID");
                 this.ActiveControl = txtSupplier;
                 objDataBind = null;
                 cmbDay.SelectedValue = 0;
@@ -759,6 +757,45 @@ namespace ROMS
         {
             try
             {
+                //if (Convert.ToString(txtSupplier.Text) != "")
+                //{
+                //    string varsuppliername = "0";
+                //    DataService objDserv = new DataService();
+                //    varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text.Split('-')[0].Trim() + "'");
+                //    if (varsuppliername == "0")
+                //    {
+                //        lblSupplierCode.Text = "0";
+                //        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
+                //        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpSupplier.ShowAlways = true;
+                //        tpSupplier.Show("Invalid supplier", txtSupplier, 5000);
+                //    }
+                //    else
+                //    {
+                //        ep_Supplierlist.Clear();
+                //        txtSupplier.BackColor = Color.White;
+                //    }
+                //}
+                //if (Convert.ToString(txtSupplier.Text) != "")
+                //{
+                //    string varsuppliername = "0";
+                //    DataService objDserv = new DataService();
+                //    varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text.Split('-')[0].Trim() + "'");
+                //    if (varsuppliername == "0")
+                //    {
+                //        lblSupplierCode.Text = "0";
+                //        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
+                //        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpSupplier.ShowAlways = true;
+                //        tpSupplier.Show("Invalid supplier", txtSupplier, 5000);
+                //    }
+                //    else
+                //    {
+                //        ep_Supplierlist.Clear();
+                //        txtSupplier.BackColor = Color.White;
+                //    }
+                //}
+
                 int cmbsuppleirid = 0;
                 if (lblSupplierCode.Text == "0")
                 {
@@ -773,30 +810,10 @@ namespace ROMS
                     lblSupplierCode.Text = "0";
                     cmbsuppleirid = 0;
                 }
-                if (Convert.ToString(txtSupplier.Text) != "")
-                {
-                    string varsuppliername = "0";
-                    DataService objDserv = new DataService();
-                    varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text.Split('-')[0].Trim() + "'");
-                    if (varsuppliername == "0")
-                    {
-                        lblSupplierCode.Text = "0";
-                        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
-                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpSupplier.ShowAlways = true;
-                        tpSupplier.Show("Invalid supplier", txtSupplier, 5000);
-                    }
-                    else
-                    {
-                        ep_Supplierlist.Clear();
-                        txtSupplier.BackColor = Color.White;
-                    }
-                }
-
-
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSCID=0", "SPSC_Name,SPSCID", cmbStatus, "", "SPSC_Name", "SPSCID");
                 objDataBind = null;
+                
 
             }
 
@@ -1269,7 +1286,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnPrint_Click(object sender, EventArgs e)
         {
             try
@@ -1317,6 +1333,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
+                // objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbDay.SelectedValue), 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "");
                 objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbDay.SelectedValue), 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "");
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -1329,9 +1346,10 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_List.rpt");
-                    objBillreport.SetParameterValue("paraSupplierid ", varSupplierId);
-                    objBillreport.SetParameterValue("paraSupplierScheduleid ", Convert.ToInt32(lblschedule.Text));
+                    objBillreport.SetParameterValue("paraSupplierid", varSupplierId);
+                    objBillreport.SetParameterValue("paraSupplierScheduleid", Convert.ToInt32(lblschedule.Text));
                     objBillreport.SetParameterValue("paraOrderId ", Convert.ToInt32(0));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);

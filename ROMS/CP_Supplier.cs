@@ -25,6 +25,8 @@ namespace ROMS
         public int varGroupId = 0;
         public int varSubGroupId = 0,varSLNO = 0;
         public int varModifiedFlag = 0;
+        public int PoScheduleFlag = 0;
+        public int varSupplierStatusID = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -748,7 +750,7 @@ namespace ROMS
                         else
                         {
                             udfnclear();
-                            MainForm.objCP_Supplierlist.udfnList();
+                            //MainForm.objCP_Supplierlist.udfnList();
                             btnSave.Text = "Save";
                             pbSupplierid = "0";
                         }
@@ -893,7 +895,7 @@ namespace ROMS
                 txtSPShortName.Text = "";
                 txtArea.Text = "";
                 txtaddress2.Text = "";
-                cmbState.SelectedIndex = 0;
+                cmbState.SelectedIndex = 27;
                 txtCity.Text = "";
                 txtPincode.Text = "";
                 txtContactNumber.Text = "";
@@ -928,6 +930,12 @@ namespace ROMS
         {
             try
             {
+                if (PoScheduleFlag == 1)
+                {
+                    this.Close();
+                    MainForm.objPUR_SupplierScheduleList.udfnList();
+                    PoScheduleFlag = 0;
+                }
                 if (varModifiedFlag == 1)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -942,7 +950,10 @@ namespace ROMS
                 }
                 else
                 {
-                    if (varupdate == "1") { this.Close(); }
+                    if (varupdate == "1")
+                    {
+                        this.Close();
+                    }
                     else
                     {
                         DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -961,14 +972,7 @@ namespace ROMS
             }
             finally
             {
-                if (varMasterid == 0)
-                {
-                    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
-                }
-                else
-                {
-                    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
-                }
+               
             }
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -985,14 +989,14 @@ namespace ROMS
 
             finally
             {
-                if (varMasterid == 0)
-                {
-                    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
-                }
-                else
-                {
-                    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
-                }
+                //if (varMasterid == 0)
+                //{
+                //    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                //}
+                //else
+                //{
+                //    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
+                //}
             }
         }
 
@@ -1209,7 +1213,16 @@ namespace ROMS
                                 cmbPolicyContent.SelectedValue = objDS.Tables[0].Rows[0]["MONTHID"].ToString();
                                 cmbSecondLevel.SelectedValue = objDS.Tables[0].Rows[0]["DAYOFMONTHID"].ToString();
                             }
-                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1")
+                            {
+                                rbActive.Checked = true;
+                                varSupplierStatusID = 1;
+                            }
+                            else
+                            {
+                                rbInactive.Checked = true;
+                                varSupplierStatusID = 2;
+                            }
 
                             btnSave.Text = "Update";
                             panelStatus.Enabled = true;
@@ -2268,7 +2281,6 @@ namespace ROMS
         {
             try
             {
-
                 BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
                 txtCity.Text = "";
             }
@@ -3300,6 +3312,15 @@ namespace ROMS
 
                 if (tcSupplier.SelectedIndex == 1)
                 {
+                    if (btnSave.Text == "Update")
+                    {
+                        if (varSupplierStatusID == 2)
+                        {
+                            gpSupplier.Enabled = false;
+                            grdSupplierList.Columns["clmedit"].Visible = false;
+                            grddays.Enabled = false;
+                        }
+                    }
                     txtScheduleName.Focus();
 
                     txtScheduleName.SelectionStart = txtScheduleName.Text.Length;
@@ -4894,6 +4915,13 @@ namespace ROMS
                                         }
                                     }
                                 }
+                                if(objDS.Tables[0].Rows[0]["StatusId"].ToString() == "2")
+                                {
+                                    txtScheduleName.Enabled = false;
+                                    grpSalesmanDetails.Enabled = false;
+                                    grpOrderDetails.Enabled = false;
+                                    grddays.Enabled = false;
+                                }
                             }
                             break;
 
@@ -5888,6 +5916,7 @@ namespace ROMS
                         foreach (DataGridViewRow row in grdSupplierList.Rows)
                         {
                             //if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value) && row.Cells[1].Value != null)
+                           
                             if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(varSLNO) && row.Cells[1].Value != null)
                             {
                                 //string gridValue1 = row.Cells[5].Value.ToString();
@@ -5900,7 +5929,7 @@ namespace ROMS
                                 if (string.Equals(gridValue2, txtScheduleName.Text.Trim().ToUpper(), StringComparison.OrdinalIgnoreCase))
                                 {
                                     varflag = 2;
-                                }
+                                }    
                             }
                         }
                     }
@@ -6009,6 +6038,10 @@ namespace ROMS
                             udfnSaveGrdAdd();
                             udfnScheduleClear();
                             btnAdd.Text = "Save";
+                            txtScheduleName.Enabled = true;
+                            grpSalesmanDetails.Enabled = true;
+                            grpOrderDetails.Enabled = true;
+                            grddays.Enabled = true;
                             rbScheduleActive.Checked = true;
                             pnlScheduleStatus.Enabled = false;
                             cmbOrderType.SelectedValue = 144;
@@ -6143,7 +6176,6 @@ namespace ROMS
                     txtCity.Text = selectedItem.SubItems[0].Text;
                     lblcity.Text = selectedItem.SubItems[2].Text;
                     lvCity.Visible = false;
-
                 }
 
             }
@@ -6447,11 +6479,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void LvCity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void TxtMappingGroup_Enter(object sender, EventArgs e)
@@ -8053,25 +8080,48 @@ namespace ROMS
         }
         private void udfnsearchgridHead_MappedProducts()
         {
+            //try
+            //{
+            //    udfnGridSearchHeading(grdViewSupplierMapping, DGV_SearchGridPro);
+            //    List<int> visibleColumns = new List<int>();
+            //    DGV_SearchGridPro.Rows.Clear();
+            //    DGV_SearchGridPro.Rows.Add();
+            //    foreach (DataGridViewColumn col in grdViewSupplierMapping.Columns)
+            //    {
+            //        DGV_SearchGridPro.Columns.Add((DataGridViewColumn)col.Clone());
+            //        visibleColumns.Add(col.Index);
+            //    }
+               
+            //    if (DGV_SearchGridPro.ColumnCount > 1)
+            //    {
+            //        for (int i = 1; i < visibleColumns.Count; i++)
+            //        {
+            //            if (i == 0)
+            //            { DGV_SearchGridPro.Rows[0].Cells[i].ReadOnly = true; }
+            //            else
+            //            { DGV_SearchGridPro.Rows[0].Cells[i].ReadOnly = false; }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
             try
             {
                 udfnGridSearchHeading(grdViewSupplierMapping, DGV_SearchGridPro);
+                DGV_SearchGridPro.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
                 foreach (DataGridViewColumn col in grdViewSupplierMapping.Columns)
                 {
                     DGV_SearchGridPro.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
                 }
-                if (DGV_SearchGridPro.ColumnCount > 1)
+                int rowIndex = 0;
+                DGV_SearchGridPro.Rows.Clear();
+                DGV_SearchGridPro.Rows.Add();
+                for (int i = 0; i < visibleColumns.Count; i++)
                 {
-                    for (int i = 1; i < visibleColumns.Count; i++)
-                    {
-                        if (i == 0)
-                        { DGV_SearchGridPro.Rows[0].Cells[i].ReadOnly = true; }
-                        else
-                        { DGV_SearchGridPro.Rows[0].Cells[i].ReadOnly = false; }
-                    }
+                    DGV_SearchGridPro.Rows[rowIndex].Cells[i].Value = "";
                 }
+                DGV_SearchGridPro.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -8138,6 +8188,7 @@ namespace ROMS
                 {
                     grdSupplierMappingLoad.Rows[i].Cells[0].Value = true;
                 }
+                btnRemove.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -8154,6 +8205,8 @@ namespace ROMS
                 {
                     grdSupplierMappingLoad.Rows[i].Cells[0].Value = false;
                 }
+                BtnaddMove.Enabled = true;
+                btnRemove.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -8170,6 +8223,7 @@ namespace ROMS
                 {
                     grdFinalSupplierMapping.Rows[i].Cells[0].Value = true;
                 }
+                BtnaddMove.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -8186,6 +8240,8 @@ namespace ROMS
                 {
                     grdFinalSupplierMapping.Rows[i].Cells[0].Value = false;
                 }
+                BtnaddMove.Enabled = true;
+                btnRemove.Enabled = true;
             }
             catch (Exception ex)
             {

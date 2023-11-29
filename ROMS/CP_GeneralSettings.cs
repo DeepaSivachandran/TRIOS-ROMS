@@ -20,7 +20,10 @@ namespace ROMS
         private ToolTip tpGRNQty = new ToolTip();
         private ToolTip tpReturnAlertDays = new ToolTip();
         private ToolTip tpInvoiceEditDays = new ToolTip();
-        
+        private ToolTip tpTransactionType = new ToolTip();
+        private ToolTip tpReportText = new ToolTip();
+        DataSet objDs = new DataSet();
+
         public int varSettingID = 0;
         public CP_GeneralSettings()
         {
@@ -80,11 +83,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnEditLoad()
+        public void udfnList()
         {
             try
             {
-                DataSet objDs = new DataSet();
+                
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnGeneralSettingList(0);
                 objdserv.CloseConnection();
@@ -111,6 +114,13 @@ namespace ROMS
                             grdOrderType.Columns["Days"].Width = 50;
                             grdOrderType.Columns["Order Type"].ReadOnly = true;
                         }
+                        if (objDs.Tables[2].Rows.Count != 0)
+                        {
+                            for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
+                            {
+                                grdReport.Rows.Add(Convert.ToString(objDs.Tables[2].Rows[i]["Transaction"]),Convert.ToString(objDs.Tables[2].Rows[i]["Report Text"]), objDs.Tables[2].Rows[i]["TransactionID"] );
+                            }
+                        }
                     }
                 }
             }
@@ -130,15 +140,26 @@ namespace ROMS
                 string varOriginator = "GeneralSettings Updation";
                 SPDataService objspdservice = new SPDataService();
                 DataTable objGeneralSettings = new DataTable();
+                DataTable objGeneralSettingsRPT = new DataTable();
+                DataTable objRE = new DataTable();
                 objGeneralSettings.TableName = "[MR_GeneralSettings_TAT]";
                 objGeneralSettings.Columns.Add("GSTAT_GSID", typeof(int));
                 objGeneralSettings.Columns.Add("GSTAT_OrderType", typeof(int));
                 objGeneralSettings.Columns.Add("GSTAT_OrderDays", typeof(int));
-                for(int i=0;i<grdOrderType.Rows.Count;i++)
+
+                objGeneralSettingsRPT.TableName = "[MR_GeneralSettings_RPTText]";
+                objGeneralSettingsRPT.Columns.Add("GSRPT_GSID", typeof(int));
+                objGeneralSettingsRPT.Columns.Add("GSRPT_MSTID", typeof(int));
+                objGeneralSettingsRPT.Columns.Add("GSRPT_Text", typeof(string));
+                for (int i = 0; i < grdReport.Rows.Count; i++)
+                {
+                    objGeneralSettingsRPT.Rows.Add(varSettingID, Convert.ToInt32(grdReport.Rows[i].Cells["clmTransactionID"].Value), Convert.ToString(grdReport.Rows[i].Cells["clmReportText"].Value).Trim());
+                }
+                for (int i=0;i<grdOrderType.Rows.Count;i++)
                 {
                     objGeneralSettings.Rows.Add(varSettingID,Convert.ToInt32(grdOrderType.Rows[i].Cells["Order_TypeID"].Value), Convert.ToInt32(grdOrderType.Rows[i].Cells["Days"].Value));
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, varOriginator);
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator);
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -150,7 +171,8 @@ namespace ROMS
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnUpdate.Focus();
                 }
-                udfnEditLoad();
+                grdReport.Rows.Clear();
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -167,8 +189,11 @@ namespace ROMS
         {
             try
             {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=49 OR MSTID=-1 ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbTransactionType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 //udfnTurnAroundTimeLoad();
-                udfnEditLoad();
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -423,7 +448,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnUpdate.Focus();
+                    cmbTransactionType.Focus();
                 }
             }
             catch (Exception ex)
@@ -720,6 +745,277 @@ namespace ROMS
                 tpGRNQty.Active = false;
                 tpInvoiceEditDays.Active = false;
                 tpReturnAlertDays.Active = false;
+                tpTransactionType.Active = false;
+                tpReportText.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbTransactionType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbTransactionType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbTransactionType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbTransactionType.SelectedValue) == "0" || Convert.ToString(cmbTransactionType.SelectedValue) == "-1")
+                {
+                    epGeneralSettings.SetError(cmbTransactionType, "Please select transaction type.");
+                    cmbTransactionType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTransactionType.ShowAlways = true;
+                    tpTransactionType.Show("Please select transaction type.", cmbTransactionType, 5000);
+                }
+                else
+                {
+                    epGeneralSettings.Clear();
+                    cmbTransactionType.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbTransactionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbTransactionType.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbTransactionType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtReportText.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbTransactionType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtReportText_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtReportText.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtReportText_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtReportText_Leave(object sender, EventArgs e)
+        {
+            if (Convert.ToString(txtReportText.Text).Trim() == "")
+            {
+                epGeneralSettings.SetError(txtReportText, "Please enter report text.");
+                txtReportText.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpReportText.ShowAlways = true;
+                tpReportText.Show("Please enter reprt text.", txtReportText, 5000);
+            }
+            else
+            {
+                epGeneralSettings.Clear();
+                txtReportText.BackColor = Color.White;
+            }
+        }
+
+        private void BtnAdd_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool blnErrorFlag = false;
+                if (Convert.ToString(cmbTransactionType.SelectedValue) == "0" || Convert.ToString(cmbTransactionType.SelectedValue) == "-1")
+                {
+                    epGeneralSettings.SetError(cmbTransactionType, "Please select transaction type.");
+                    cmbTransactionType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTransactionType.ShowAlways = true;
+                    tpTransactionType.Show("Please select transaction type.", cmbTransactionType, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtReportText.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtReportText, "Please enter report text.");
+                    txtReportText.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportText.ShowAlways = true;
+                    tpReportText.Show("Please enter reprt text.", txtReportText, 5000);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    udfnAdd();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnAdd()
+        {
+            try
+            {
+                int varFlag = 0; int varTransactionType = 0;
+                varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
+                for (int i = 0; i < grdReport.Rows.Count; i++)
+                {
+                    if (varTransactionType == Convert.ToInt32(grdReport.Rows[i].Cells["clmTransactionID"].Value))
+                    {
+                        varFlag = 1;
+                    }
+                }
+                if (varFlag == 0)
+                {
+                    grdReport.Rows.Add( cmbTransactionType.Text.Trim(),txtReportText.Text.Trim(), cmbTransactionType.SelectedValue);
+                    cmbTransactionType.SelectedValue = -1;
+                    txtReportText.Text = "";
+                    cmbTransactionType.Focus();
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(88);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdReport_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdReport.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmRemove":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdReport.Rows.RemoveAt(this.grdReport.SelectedRows[0].Index);
+                                //for (int i = 0; i < grdReport.RowCount; i++)
+                                //{
+                                //    grdReport.Rows[i].Cells["clmsno"].Value = i + 1;
+                                //}
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnAdd_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdReport_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdReport.ClearSelection();
             }
             catch (Exception ex)
             {

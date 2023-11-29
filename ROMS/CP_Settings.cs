@@ -98,6 +98,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=14 OR MSTID=-1 ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbTransactionType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=34 OR MSTID=-1  ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbResetOn, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COMID NOT IN(0) ORDER BY COM_ShortName,COMID", "COMID,COM_ShortName", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
@@ -352,18 +353,6 @@ namespace ROMS
                     epSettings.Clear();
                     cmbTransactionType.BackColor = Color.White;
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbTransactionType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbTransactionType.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -797,6 +786,12 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                cmbConcern.Enabled = true;
+                cmbTransactionType.Enabled = true;
+                btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            }
         }
         private void BtnSave_Enter(object sender, EventArgs e)
         {
@@ -1006,7 +1001,11 @@ namespace ROMS
                             txtStartingNo.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["clmStartingNo"].Value);
                             cmbResetOn.SelectedValue = Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["clmResetOnId"].Value);
                             varsno = Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["clmsno"].Value);
-                            cmbConcern.Focus();
+                            cmbConcern.Enabled = false;
+                            cmbTransactionType.Enabled = false;
+                            btnAdd.Image = global::ROMS.Properties.Resources.save;
+                            txtPrefix.Focus();
+                            epSettings.Clear();
                             break;
                     }
                 }
@@ -1082,6 +1081,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbTransactionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbTransactionType.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtNoOfDegits_KeyPress(object sender, KeyPressEventArgs e)
         {
             try

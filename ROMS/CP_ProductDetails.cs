@@ -45,11 +45,14 @@ namespace ROMS
                             txtDescription.Text = varDescription;
                             grdProductDetails.DataSource = objDs.Tables[0];
                             grdProductDetails.Columns["PR_UTID"].Visible = false;
+                            grdProductDetails.Columns["Product Name in English"].Visible = false;
                             grdProductDetails.Columns["PR_PUR_RKID"].Visible = false;
-                            grdProductDetails.Columns["Product Name in English"].Width = 250;
+                           // grdProductDetails.Columns["Product Name in English"].Width = 250;
+                            grdProductDetails.Columns["Product Name in Tamil"].Width = 250;
                             grdProductDetails.Columns["S.No."].Width = 50;
                             grdProductDetails.Columns["R.Sales Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdProductDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdProductDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProductDetails.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                     }
                 }

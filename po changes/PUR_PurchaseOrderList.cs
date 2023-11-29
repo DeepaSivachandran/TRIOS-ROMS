@@ -650,7 +650,7 @@ namespace ROMS
                     string varsuppliername = "";
                     ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                     varsuppliername = selectedItem.SubItems[0].Text;
-                    lblSupplierCode.Text = varsuppliername;
+                    lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedleCode.Text = selectedItem.SubItems[2].Text;
                     txtSupplier.Text = selectedItem.SubItems[3].Text;
                     lblscheduleName.Text = selectedItem.SubItems[4].Text; ;
@@ -901,22 +901,23 @@ namespace ROMS
                             //grdPurchaseorderlist.Columns["clmView"].DisplayIndex = 0;
                             //grdPurchaseorderlist.Columns["clmView"].Width = 110;
                             grdPurchaseorderlist.Columns["S.No."].Width = 50;
-                            grdPurchaseorderlist.Columns["Concern"].Width = 50;
+                            grdPurchaseorderlist.Columns["Concern"].Width = 80;
                             grdPurchaseorderlist.Columns["PO.No"].Width = 100;
                             grdPurchaseorderlist.Columns["PO Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Supplier"].Width = 300;
-                            grdPurchaseorderlist.Columns["City"].Width = 100; 
-                            grdPurchaseorderlist.Columns["T.Pro"].Width = 50;
-                            grdPurchaseorderlist.Columns["T.Qty"].Width = 50;
-                            grdPurchaseorderlist.Columns["TAT"].Width = 70;
+                            grdPurchaseorderlist.Columns["City"].Width = 100;
+                            grdPurchaseorderlist.Columns["GSTIN"].Width = 120;
+                            grdPurchaseorderlist.Columns["Total Products"].Width = 100;
+                            grdPurchaseorderlist.Columns["Total Qty"].Width = 100;
+                            grdPurchaseorderlist.Columns["Turn Around Time"].Width = 120;
                             grdPurchaseorderlist.Columns["Created By"].Width = 100;
                             grdPurchaseorderlist.Columns["Created On"].Width = 150;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
                             grdPurchaseorderlist.Columns["Status"].Width = 100;
-                            grdPurchaseorderlist.Columns["clmView"].Width = 50;
-                            grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
+                            grdPurchaseorderlist.Columns["clmView"].Width = 40;
+                            grdPurchaseorderlist.Columns["clmPrint"].Width = 40;
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
                             grdPurchaseorderlist.Columns["STS1"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_ID"].Visible = false;
@@ -926,9 +927,9 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["PO_Remarks"].Visible = false;
                             grdPurchaseorderlist.Columns["SPSC_OrderType"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_Created"].Visible = false;
-                            grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseorderlist.Columns["T.Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["Total Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["Turn Around Time"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["Issue Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -2208,8 +2209,8 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                                 }
-                                if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date"   || col.Name == "Created On"
-                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
+                                if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date" || col.Name == "GSTIN" || col.Name == "Created On"
+                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "Turn Around Time" || col.Name == "Total Products")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                                 }
@@ -2241,15 +2242,15 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
-                                if (col.Name == "T.Pro")
+                                if (col.Name == "Total Products")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
-                                if (col.Name == "T.Qty")
+                                if (col.Name == "Total Qty")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
-                                if (col.Name == "TAT")
+                                if (col.Name == "Turn Around Time")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
@@ -2384,7 +2385,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex ].ColumnWidth = 15;
                             }
-                            if (col.Name == "Product Name"  )
+                            if (col.Name == "Product Name" || col.Name == "GSTIN")
                             {
                                 ExcelSheet.Columns[cIndex ].ColumnWidth = 25;
                             }
