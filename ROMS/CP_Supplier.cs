@@ -3724,7 +3724,8 @@ namespace ROMS
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SPSC_OrderType"]) != "")
                             {
                                 txtMappedOrderDay.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DayNames"]);
-                                cmbMappedorderrype.Text = Convert.ToString( objDS.Tables[0].Rows[0]["SPSC_OrderType"]);
+                                cmbMappedorderrype.Text = Convert.ToString(objDS.Tables[0].Rows[0]["SPSC_OrderType"]);
+                                //cmbMappedorderrype.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["OrderID"]);
                             }
                         }
                         else
@@ -3732,6 +3733,12 @@ namespace ROMS
                             cmbMappedorderrype.SelectedValue = 0;
                             txtMappedOrderDay.Text = "";
                         }
+                        //if(objDS.Tables[1].Rows.Count !=0)
+                        //{
+                        //    cmbMappedorderrype.ValueMember = "OrderID";
+                        //    cmbMappedorderrype.DisplayMember = "OrderType";
+                        //    cmbMappedorderrype.DataSource = objDS.Tables[1];
+                        //}
                     }
                 }
             }
