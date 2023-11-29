@@ -739,6 +739,8 @@ namespace ROMS
         {
             try
             {
+                RPTViewer.Visible = false;
+                RPTViewer.SendToBack();
                 udfnList();
             }
             catch (Exception ex)
@@ -977,6 +979,8 @@ namespace ROMS
         {
             try
             {
+                RPTViewer.Visible = false;
+                RPTViewer.SendToBack();
                 udfnImport();
             }
             catch (Exception ex)
@@ -1348,7 +1352,7 @@ namespace ROMS
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_List.rpt");
                     objBillreport.SetParameterValue("paraSupplierid", varSupplierId);
                     objBillreport.SetParameterValue("paraSupplierScheduleid", Convert.ToInt32(lblschedule.Text));
-                    objBillreport.SetParameterValue("paraOrderId ", Convert.ToInt32(0));
+                    objBillreport.SetParameterValue("paraOrderId", Convert.ToInt32(0));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);

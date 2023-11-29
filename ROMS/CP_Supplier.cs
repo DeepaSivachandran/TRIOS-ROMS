@@ -5582,27 +5582,35 @@ namespace ROMS
 
         private void TxtSearchByProduct2_TextChanged(object sender, EventArgs e)
         {
-            //(grdViewSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             try
             {
-                if (SearchFlag == 1)
-                {
-                    (grdViewSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
-                }
-                else
-                {
-                    (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
-                }
+                (grdViewSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-                lblMappedproductcountlist.Text = Convert.ToString(grdViewSupplierMapping.Rows.Count);
-            }
+            //try
+            //{
+            //    if (SearchFlag == 1)
+            //    {
+            //        (grdViewSupplierMapping.DataSource as BindingSource).Filter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+            //    }
+            //    else
+            //    {
+            //        (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+            //finally
+            //{
+            //    lblMappedproductcountlist.Text = Convert.ToString(grdViewSupplierMapping.Rows.Count);
+            //}
         }
 
         private void GrdSupplierList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
