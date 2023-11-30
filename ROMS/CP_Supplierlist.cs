@@ -709,6 +709,11 @@ namespace ROMS
                     {
                         grdSupplierList.Rows[i].Cells["Order Type"].Style.BackColor = Color.MediumSpringGreen;
                     }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["Order Type"].Value) == "Not Defined") // Unscheduled supplier order type
+                    {
+                        grdSupplierList.Rows[i].Cells["Order Type"].Style.BackColor = Color.SteelBlue;
+                        grdSupplierList.Rows[i].Cells["Order Type"].Style.ForeColor = Color.White;
+                    }
                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["Days"].Value) == "Unscheduled") // Unscheduled order type
                     {
                         grdSupplierList.Rows[i].Cells["Days"].Style.BackColor = Color.Purple;

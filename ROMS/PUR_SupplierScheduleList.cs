@@ -1246,6 +1246,11 @@ namespace ROMS
                     {
                         dgvSupplierScheduleList.Rows[i].Cells["Order Type"].Style.BackColor = Color.MediumSpringGreen;
                     }
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Order Type"].Value) == "Not Defined") // Unscheduled supplier order type
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Order Type"].Style.BackColor = Color.SteelBlue;
+                        dgvSupplierScheduleList.Rows[i].Cells["Order Type"].Style.ForeColor = Color.White;
+                    }
                     if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Days"].Value) == "Unscheduled") // Unscheduled order type
                     {
                         dgvSupplierScheduleList.Rows[i].Cells["Days"].Style.BackColor = Color.Purple;

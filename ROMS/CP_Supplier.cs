@@ -5883,6 +5883,8 @@ namespace ROMS
                 {
                     udfnSupplierOrderSave();
                     udfntphide();
+                    CmbMappingorderschedule_SelectedIndexChanged(sender, e);
+                   
                 }
             }
             catch (Exception ex)
@@ -6086,6 +6088,7 @@ namespace ROMS
                             pnlScheduleStatus.Enabled = false;
                             cmbOrderType.SelectedValue = 144;
                             udfnSetRegularText();
+                            udfnLoadOrderSchedule();
                         }
                         else
                         {
@@ -8233,6 +8236,7 @@ namespace ROMS
                     grdSupplierMappingLoad.Rows[i].Cells[0].Value = true;
                 }
                 btnRemove.Enabled = false;
+                BtnaddMove.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -8249,8 +8253,10 @@ namespace ROMS
                 {
                     grdSupplierMappingLoad.Rows[i].Cells[0].Value = false;
                 }
-                BtnaddMove.Enabled = true;
                 btnRemove.Enabled = true;
+                BtnaddMove.Enabled = false;
+                //BtnaddMove.Enabled = true;
+                //btnRemove.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -8268,6 +8274,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Rows[i].Cells[0].Value = true;
                 }
                 BtnaddMove.Enabled = false;
+                btnRemove.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -8284,8 +8291,9 @@ namespace ROMS
                 {
                     grdFinalSupplierMapping.Rows[i].Cells[0].Value = false;
                 }
+                btnRemove.Enabled = false;
                 BtnaddMove.Enabled = true;
-                btnRemove.Enabled = true;
+                //btnRemove.Enabled = true;
             }
             catch (Exception ex)
             {
