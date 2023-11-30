@@ -14,9 +14,11 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtStock = new DataTable();
 
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpProduct = new ToolTip();
+        private ToolTip tpStockQty = new ToolTip();
         private ToolTip tpRequiredQty = new ToolTip();
 
         public string VarAdd = "0";
@@ -70,6 +72,11 @@ namespace ROMS
                 //grdGodownStock.Rows.Add("Godown1","100 Pkts");
                 //grdGodownStock.Rows.Add("Godown2","200 Pkts");
                 //grdGodownStock.ColumnHeadersVisible = false;
+                dtStock.TableName = "TRN_StockRequest_Details";
+                dtStock.Columns.Add("SRQ_PRID", typeof(int));
+                dtStock.Columns.Add("SRQ_SLID", typeof(int));
+                dtStock.Columns.Add("SRQ_RKID", typeof(int));
+                dtStock.Columns.Add("SRQ_RequestedQty", typeof(float));
                 dpDate.Value = DateTime.Today;
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = 1;
@@ -459,6 +466,9 @@ namespace ROMS
         {
             try
             {
+                txtStockQty.Text = "";txtStockQty.BackColor = Color.LightGray;
+                txtRequiredQty.Text = "";
+                grdGodownStock.Rows.Clear();
                 lvProduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -559,6 +569,7 @@ namespace ROMS
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
                     lblProduct.Text = selectedItem.SubItems[4].Text;
+                    VarAdd = "1";
                     udfnStockLoad();
                 }
             }
@@ -582,7 +593,7 @@ namespace ROMS
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {
-                    if (VarAdd == "0")
+                    if (VarAdd == "1")
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -596,7 +607,7 @@ namespace ROMS
                             }
                         }
                     }
-                    if(VarAdd=="1")
+                    if(VarAdd=="2")
                     {
                         if (objDS.Tables[2].Rows.Count > 0)
                         {
@@ -604,7 +615,15 @@ namespace ROMS
                             {
                                 grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[2].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[2].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[2].Rows[i]["EMP_Name"]), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Symbol"]));
                             }
+                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),0,0,Convert.ToString(txtRequiredQty.Text));
+                            VarAdd = "0";
                             txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+                            errStockRequest.Clear();
+                            txtProductNamePICode.Text = "";
+                            txtStockQty.Text = "";
+                            txtRequiredQty.Text = "";
+                            grdGodownStock.Rows.Clear();
+                            txtProductNamePICode.Focus();
                         }
                     }
                 }
@@ -795,6 +814,14 @@ namespace ROMS
                     tpProduct.Show("Please enter product name", txtProductNamePICode, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(txtStockQty.Text).Trim() == "")
+                {
+                    errStockRequest.SetError(txtStockQty, "Invalid stock");
+                    txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStockQty.ShowAlways = true;
+                    tpStockQty.Show("Invalid stock", txtStockQty, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtRequiredQty.Text).Trim() != "")
                 {
                     if (Convert.ToInt32(txtStockQty.Text.Trim()) >= Convert.ToInt32(txtRequiredQty.Text.Trim()))
@@ -821,9 +848,9 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
-                    VarAdd = "1";
+                    VarAdd = "2";
+                    udfnStockLoad();
                 }
-                udfnStockLoad();
             }
             catch (Exception ex)
             {
