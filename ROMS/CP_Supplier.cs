@@ -5398,81 +5398,91 @@ namespace ROMS
             {
                 if (SupplierUpdate != 0 && SupplierUpdate != -1)
                 {
-                    btnMappingsave.Enabled = false;
-                    txtmappingproductsearch2.Text = "";
-                    for (int i = 1; i < DGV_SearchGrid1.ColumnCount; i++)
+                    if (cmbMappingorderschedule.Text != "" || Convert.ToString(cmbMappingorderschedule.SelectedValue) != null)
                     {
-                        DGV_SearchGrid1.Rows[0].Cells[i].Value = "";
-                    }
-                    DGV_SearchGrid1_CurrentCellDirtyStateChanged(sender, e);
-                    if (Convert.ToInt32(grdFinalSupplierMapping.Rows.Count) > 0)
-                    {
-                        string VarproductId = "", result = "", varoriginator = "";
-                        int Vartype = 0;
-                        SPDataService objspdservice = new SPDataService();
-                        for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
+                        btnMappingsave.Enabled = false;
+                        txtmappingproductsearch2.Text = "";
+                        for (int i = 1; i < DGV_SearchGrid1.ColumnCount; i++)
                         {
-                            //if (Convert.ToBoolean(grdFinalSupplierMapping.Rows[i].Cells[0].Value) == true)
-                            //{
-                            if (VarproductId == "")
+                            DGV_SearchGrid1.Rows[0].Cells[i].Value = "";
+                        }
+                        DGV_SearchGrid1_CurrentCellDirtyStateChanged(sender, e);
+                        if (Convert.ToInt32(grdFinalSupplierMapping.Rows.Count) > 0)
+                        {
+                            string VarproductId = "", result = "", varoriginator = "";
+                            int Vartype = 0;
+                            SPDataService objspdservice = new SPDataService();
+                            for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
                             {
-                                VarproductId = Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                                //if (Convert.ToBoolean(grdFinalSupplierMapping.Rows[i].Cells[0].Value) == true)
+                                //{
+                                if (VarproductId == "")
+                                {
+                                    VarproductId = Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                                }
+                                else
+                                {
+                                    VarproductId = VarproductId + ',' + Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                                }
+                                //  }
+                            }
+
+                            if (btnMappingsave.Text == "Save")
+                            {
+                                varoriginator = "Supplier mapping create";
+                                Vartype = 7;
+
                             }
                             else
                             {
-                                VarproductId = VarproductId + ',' + Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                                varoriginator = "Supplier mapping update";
+                                Vartype = 8;
                             }
-                            //  }
-                        }
-
-                        if (btnMappingsave.Text == "Save")
-                        {
-                            varoriginator = "Supplier mapping create";
-                            Vartype = 7;
-
-                        }
-                        else
-                        {
-                            varoriginator = "Supplier mapping update";
-                            Vartype = 8;
-                        }
-                        result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
-                            0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId, "", "", "", "", "", "", "", "", 0, "");
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            varModifiedFlag = 0;
-                            MainForm.objCP_Supplierlist.udfnList();
-                            cmbMappingorderschedule.Focus();
-                            if (btnMappingsave.Text == "Update")
+                            result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
+                                0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId, "", "", "", "", "", "", "", "", 0, "");
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
                             {
-                                varupdate = "1";
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                varModifiedFlag = 0;
+                                MainForm.objCP_Supplierlist.udfnList();
+                                cmbMappingorderschedule.Focus();
+                                if (btnMappingsave.Text == "Update")
+                                {
+                                    varupdate = "1";
 
-                                //udfnclose();
+                                    //udfnclose();
+                                }
+                                txtMappingGroup.Text = "";
+                                varGroupId = 0;
+                                txtMappingSubGroup.Text = "";
+                                varSubGroupId = 0;
+                                txtBrand.Text = "";
+                                varBrandId = 0;
+                                cmbStatus.SelectedValue = 0;
+                                txtSearchByProduct1.Text = "";
+                                txtmappingproductsearch2.Text = "";
+                                CmbMappingorderschedule_SelectedIndexChanged(sender, e);
+                                //udfnMappingClear();
                             }
-                            txtMappingGroup.Text = "";
-                            varGroupId = 0;
-                            txtMappingSubGroup.Text = "";
-                            varSubGroupId = 0;
-                            txtBrand.Text = "";
-                            varBrandId = 0;
-                            cmbStatus.SelectedValue = 0;
-                            txtSearchByProduct1.Text = "";
-                            txtmappingproductsearch2.Text = "";
-                            CmbMappingorderschedule_SelectedIndexChanged(sender, e);
-                            //udfnMappingClear();
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            objspdservice.CloseConnection();
                         }
                         else
                         {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(38);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        objspdservice.CloseConnection();
                     }
                     else
                     {
                         SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(38);
+                        string varMessage = objDServ.udfnGetMessages(65);
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
