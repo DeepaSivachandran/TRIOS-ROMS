@@ -164,10 +164,10 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                int varSupplierId = 0;
+                string varSupplierId = "0";
                 if (txtSupplier.Text == "")
                 {
-                    varSupplierId = 0;
+                    varSupplierId = "0";
                     lblschedule.Text = "0";
                 }
                 //else
@@ -190,7 +190,7 @@ namespace ROMS
                         {
                             if (objDsSupplierId.Tables[0].Rows.Count > 0)
                             {
-                                varSupplierId = Convert.ToInt32(objDsSupplierId.Tables[0].Rows[0][0]);
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
                                 values = Convert.ToString(varSupplierId).Split(',');
                             }
                         }
@@ -217,7 +217,7 @@ namespace ROMS
                 }
                 if (Varflag == 0)
                 {
-                    objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrder.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDs = objdserv.udfnSupplierList(8, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrder.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "");
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
