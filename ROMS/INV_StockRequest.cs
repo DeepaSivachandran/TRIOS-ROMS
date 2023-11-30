@@ -470,7 +470,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvProduct.Items.Add(objList);
                                 }
@@ -478,8 +478,9 @@ namespace ROMS
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 150;
                                 lvProduct.Columns[1].Width = 250;
-                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[2].Width = 100;
                                 lvProduct.Columns[3].Width = 0;
+                                lvProduct.Columns[4].Width = 0;
                             }
                             else
                             {
@@ -515,12 +516,54 @@ namespace ROMS
 
         private void LvProduct_DoubleClick(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnProductEvent();
+                txtRequiredQty.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void LvProduct_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnProductEvent();
+                    txtRequiredQty.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnProductEvent()
+        {
+            try
+            {
+                if (txtProductNamePICode.Text != "")
+                {
+                    ListViewItem selectedItem = lvProduct.SelectedItems[0];
+                    txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
+                    lblProduct.Text = selectedItem.SubItems[4].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvProduct.Visible = false;
+            }
         }
 
         private void TxtRequiredQty_Enter(object sender, EventArgs e)
