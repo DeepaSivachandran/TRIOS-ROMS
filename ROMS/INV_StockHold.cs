@@ -202,6 +202,7 @@ namespace ROMS
                 udfnList();
                 udfnCmbConcern();
                 this.ActiveControl = cmbConcern;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
@@ -438,14 +439,22 @@ namespace ROMS
         }
         public void udfnClear()
         {
-            txtProductNamePICode.Text = "";
-            txtStockLoc.Text = "";
-            txtRack.Text = "";
-            txtExpiryDate.Text = "";
-            txtBatchNo.Text = "";
-            txtMrp.Text = "";
-            txtStockQty.Text = "";
-            txtQty.Text = "";
+            try
+            {
+                txtProductNamePICode.Text = "";
+                txtStockLoc.Text = "";
+                txtRack.Text = "";
+                txtExpiryDate.Text = "";
+                txtBatchNo.Text = "";
+                txtMrp.Text = "";
+                txtStockQty.Text = "";
+                txtQty.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtProductName_TextChanged(object sender, EventArgs e)
@@ -458,7 +467,7 @@ namespace ROMS
                 if (txtProductName.Text.Length > 0)
                 {
                     var ViewType = 42;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "","", null,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "", "",null,0,null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -756,7 +765,15 @@ namespace ROMS
 
         private void TxtQty_TextChanged(object sender, EventArgs e)
         {
-            txtQty.TextAlign = HorizontalAlignment.Right;
+            try
+            {
+                txtQty.TextAlign = HorizontalAlignment.Right;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
 
         }
 
@@ -1061,6 +1078,13 @@ namespace ROMS
 
         private void Lvproduct_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try {
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
 
         }
 
@@ -1108,6 +1132,11 @@ namespace ROMS
         {
             try
             {
+                 bool IsSpecialCharacter(char integers)
+                {
+                    string allowedCharacters = "0123456789\b";
+                    return !allowedCharacters.Contains(integers);
+                }
                 if (IsSpecialCharacter(e.KeyChar))
                 {
                     // Cancel the keypress event if the character is a special character
@@ -1121,11 +1150,7 @@ namespace ROMS
             }
 
         }
-        private bool IsSpecialCharacter(char integers)
-        {         
-                string allowedCharacters = "0123456789\b";
-                return !allowedCharacters.Contains(integers);
-        }
+       
 
         private void INV_StockHold_KeyDown_1(object sender, KeyEventArgs e)
         {
@@ -1247,7 +1272,6 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
@@ -1299,7 +1323,7 @@ namespace ROMS
                 if (txtProductNamePICode.Text.Length > 0)
                 {
                     var ViewType = 42;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "","", null,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "", "",null,0,null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

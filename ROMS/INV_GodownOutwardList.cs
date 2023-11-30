@@ -260,34 +260,34 @@ namespace ROMS
 
         private void BtnView_KeyDown(object sender, KeyEventArgs e)
         {
-            //try
-            //{
-            //    if (e.KeyCode == Keys.Enter)
-            //    {
-            //        btnExport.Focus();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                //    if (e.KeyCode == Keys.Enter)
+                //    {
+                //        btnExport.Focus();
+                //    }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void BtnExport_KeyDown(object sender, KeyEventArgs e)
         {
-            //try
-            //{
-            //    if (e.KeyCode == Keys.Enter)
-            //    {
-            //        cmbConcern.Focus();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                //    if (e.KeyCode == Keys.Enter)
+                //    {
+                //        cmbConcern.Focus();
+                //    }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void CmbConcern_Enter(object sender, EventArgs e)
@@ -869,8 +869,16 @@ namespace ROMS
 
         private void DtpOutwardDate_ValueChanged(object sender, EventArgs e)
         {
-            DateTime varmindate = DateTime.ParseExact(dtpOutwardDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            dtpOutwardDate2.MinDate = varmindate;
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dtpOutwardDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dtpOutwardDate2.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DtpOutwardDate_Leave(object sender, EventArgs e)
@@ -1293,23 +1301,32 @@ namespace ROMS
 
         private void GrdUserList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            for (int i = 0; i < grdOutwardList.Rows.Count; i++)
+            try
             {
-                if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 22)
+
+                for (int i = 0; i < grdOutwardList.Rows.Count; i++)
                 {
-                    grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
-                    grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 22)
+                    {
+                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 25)
+                    {
+                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 26)
+                    {
+                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.PaleGreen;
+                        grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
-                else if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 25)
-                {
-                    grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                }
-                else if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 26)
-                {
-                    grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.PaleGreen;
-                    grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

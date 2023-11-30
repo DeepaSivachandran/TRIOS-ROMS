@@ -640,7 +640,6 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                 udfnCmbConcern();
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnTransactionData();
                 dtpOutwardDate.MaxDate = DateTime.Now;
                 grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
@@ -652,6 +651,7 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
@@ -716,30 +716,39 @@ namespace ROMS
         }
         public void udfnSLocationValid()
         {
-            /* Check purchase stock location is valid or not*/
-            string varId_PurLocation = "0";
-            if (txtStockLocation.Text == "")
+            try
             {
-                varId_PurLocation = "0";
-            }
-            else
-            {
-                DataSet objDsPurLoc = new DataSet();
-                SPDataService objDServ3 = new SPDataService();
-                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text,0, 0, 0);
-                objDServ3.CloseConnection();
-                if (objDsPurLoc != null)
+                /* Check purchase stock location is valid or not*/
+                string varId_PurLocation = "0";
+                if (txtStockLocation.Text == "")
                 {
-                    if (objDsPurLoc.Tables.Count > 0)
+                    varId_PurLocation = "0";
+                }
+                else
+                {
+                    DataSet objDsPurLoc = new DataSet();
+                    SPDataService objDServ3 = new SPDataService();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text, 0, 0, 0);
+                    objDServ3.CloseConnection();
+                    if (objDsPurLoc != null)
                     {
-                        if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                        if (objDsPurLoc.Tables.Count > 0)
                         {
-                            varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                            if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                            {
+                                varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                            }
                         }
                     }
                 }
+                varStockLocationId = Convert.ToString(varId_PurLocation);
             }
-            varStockLocationId = Convert.ToString(varId_PurLocation);
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
         private void TxtStockLocation_TextChanged(object sender, EventArgs e)
        {
@@ -859,7 +868,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
 
                     var ViewType = 37;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text, 0, "","", dtStock,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text, 0, "", "",dtStock,0,null);
                     objspdservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -1030,45 +1039,69 @@ namespace ROMS
 
         private void TxtStockQuantity_TextChanged(object sender, EventArgs e)
         {
-            txtStockQuantity.TextAlign = HorizontalAlignment.Right;
+            try
+            {
+                txtStockQuantity.TextAlign = HorizontalAlignment.Right;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtMrp_TextChanged(object sender, EventArgs e)
         {
-            txtMrp.TextAlign = HorizontalAlignment.Right;
+            try
+            {
+                txtMrp.TextAlign = HorizontalAlignment.Right;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtExpiryDate_TextChanged(object sender, EventArgs e)
         {
-            txtExpiryDate.TextAlign = HorizontalAlignment.Center;
+            try
+            {
+                txtExpiryDate.TextAlign = HorizontalAlignment.Center;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void LvStockLocation_Leave(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (DGV_inward.Rows.Count > 0)
-            //    {
-            //        udfnSLocationValid();
-            //        if (Convert.ToString(SLID) != Convert.ToString(varStockLocationId))
-            //        {
-            //            //SPDataService objDServ = new SPDataService();
-            //            //string varMessage = objDServ.udfnGetMessages(78);
-            //            //objDServ.CloseConnection();
-            //            DialogResult dialogResult = MessageBox.Show("This will clear all the products from the Grid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            DGV_inward.Rows.Clear();
-            //            dtStock.Rows.Clear();
-            //            txtStockLocation.Focus();
-            //            //varStockLocationId = varLocation;
-            //        }
-            //    }
-            //    lvStockLocation.Visible = false;&
-            //}        
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                //    if (DGV_inward.Rows.Count > 0)
+                //    {
+                //        udfnSLocationValid();
+                //        if (Convert.ToString(SLID) != Convert.ToString(varStockLocationId))
+                //        {
+                //            //SPDataService objDServ = new SPDataService();
+                //            //string varMessage = objDServ.udfnGetMessages(78);
+                //            //objDServ.CloseConnection();
+                //            DialogResult dialogResult = MessageBox.Show("This will clear all the products from the Grid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //            DGV_inward.Rows.Clear();
+                //            dtStock.Rows.Clear();
+                //            txtStockLocation.Focus();
+                //            //varStockLocationId = varLocation;
+                //        }
+                //    }
+                //    lvStockLocation.Visible = false;&
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DtpOutwardDate_Enter(object sender, EventArgs e)
@@ -1087,10 +1120,19 @@ namespace ROMS
 
         private void DGV_inward_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (grdGoodsOutward.CurrentCell.OwningColumn.Name == "clmOutward")
+            try
             {
-                e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
-                return;
+                if (grdGoodsOutward.CurrentCell.OwningColumn.Name == "clmOutward")
+
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void allowonlynumber(object sender, KeyPressEventArgs e)
@@ -1119,34 +1161,51 @@ namespace ROMS
 
         private void TxtProduct_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //try
-            //{
-            //    udfnListviewProduct();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtOutwardQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (IsSpecialCharacter(e.KeyChar))
+            try
             {
-                // Cancel the keypress event if the character is a special character
-                e.Handled = true;
+                bool udfnIsSpecialCharacter(char integers)
+                {
+
+                    string allowedCharacters = "0123456789\b";
+                    return !allowedCharacters.Contains(integers);
+                }
+                if (udfnIsSpecialCharacter(e.KeyChar))
+                {
+                    // Cancel the keypress event if the character is a special character
+                    e.Handled = true;
+                }
             }
-        }
-        private bool IsSpecialCharacter(char integers)
-        {
-            string allowedCharacters = "0123456789\b";
-            return !allowedCharacters.Contains(integers);
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtOutwardQuantity_TextChanged(object sender, EventArgs e)
         {
-            txtOutwardQuantity.TextAlign = HorizontalAlignment.Right;
+            try
+            {
+                txtOutwardQuantity.TextAlign = HorizontalAlignment.Right;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DtpOutwardDate_KeyDown(object sender, KeyEventArgs e)
@@ -1405,12 +1464,19 @@ namespace ROMS
         }
         public void udfnClear()
         {
-
-            btnSave.Enabled = true;
-            cmbConcern.Text = "";
-            txtOutwardNo.Text = "";
-            txtStockLocation.Text = "";
-            cmbTransactionType.Text = "";
+            try
+            {
+                btnSave.Enabled = true;
+                cmbConcern.Text = "";
+                txtOutwardNo.Text = "";
+                txtStockLocation.Text = "";
+                cmbTransactionType.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfntooltiphide()
         {
@@ -1458,18 +1524,26 @@ namespace ROMS
         }
         public void udfnProductClear()
         {
-            txtProduct.Text = "";
-            txtRack.Text = "";
-            txtMrp.Text = "";
-            txtExpiryDate.Text = "";
-            txtBatchNo.Text = "";
-            txtStockQuantity.Text = "";
-            txtOutwardQuantity.Text = "";
-            varPRID = "";
-            varPICode = "";
-            varRKID = "";
-            varUTID = "";
-            lblQuantity.Text = "Pkts";
+            try
+            {
+                txtProduct.Text = "";
+                txtRack.Text = "";
+                txtMrp.Text = "";
+                txtExpiryDate.Text = "";
+                txtBatchNo.Text = "";
+                txtStockQuantity.Text = "";
+                txtOutwardQuantity.Text = "";
+                varPRID = "";
+                varPICode = "";
+                varRKID = "";
+                varUTID = "";
+                lblQuantity.Text = "Pkts";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DGV_inward_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1664,7 +1738,7 @@ namespace ROMS
             {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnproductmasterlist(13, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, txtProduct.Text, 0,"", "",dtStock,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(13, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, txtProduct.Text, 0, "","",dtStock,0,null);
 
                 if (objDs != null)
                 {
