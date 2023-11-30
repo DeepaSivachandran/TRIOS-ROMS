@@ -27,7 +27,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
 
-        public string varStockLocationId = "";
+        public string varStockLocationId = "", varErrQty="0";
         public int varCloseFlag = 0;
         public int varGOId = 0;
         public int varUpdate = 0,VarUpdateFlag=0;
@@ -1238,7 +1238,7 @@ namespace ROMS
                 int StockcellValue =Convert.ToInt32( grdGoodsOutward.CurrentRow.Cells["clmQty"].Value);
                 int OutwardcellValue = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmOutward"].Value);
 
-                if (Convert.ToInt32(OutwardcellValue) > Convert.ToInt32(StockcellValue))
+                if (Convert.ToInt32(OutwardcellValue) > Convert.ToInt32(StockcellValue) || Convert.ToInt32(OutwardcellValue) ==0 ||  Convert.ToString(OutwardcellValue) == "")
                 {
                     grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
@@ -1246,12 +1246,13 @@ namespace ROMS
                     tpConcern.Show("Please enter valid outward qty", grdGoodsOutward, 5000);
                     SPDataService objDServ = new SPDataService();
                     objDServ.CloseConnection();
+                    varErrQty = "1";
                     //MessageBox.Show("Please Enter Valid Outward Quantity", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = Color.PaleGreen;
-
+                    grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = Color.PaleGreen; 
+                    varErrQty = "0";
                 }
                 object varEditQty = grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     // Update the same column value in the DataTable
@@ -1374,6 +1375,14 @@ namespace ROMS
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(38);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = false;
+                }
+                if (varErrQty == "1")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
