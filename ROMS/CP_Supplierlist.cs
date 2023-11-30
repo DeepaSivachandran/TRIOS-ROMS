@@ -1300,6 +1300,11 @@ namespace ROMS
             }
         }
 
+        private void GrdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void BtnPrint_Leave(object sender, EventArgs e)
         {
             try

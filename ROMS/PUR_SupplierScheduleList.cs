@@ -13,6 +13,7 @@ namespace ROMS
 {
     public partial class PUR_SupplierScheduleList : Form
     {
+       int Varflag=0;
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -167,64 +168,113 @@ namespace ROMS
                 if (txtSupplier.Text == "")
                 {
                     varSupplierId = 0;
+                    lblschedule.Text = "0";
                 }
+                //else
+                //{
+                //    DataService objDServ = new DataService();
+                //    string varId_Supplier = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SPID FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') END AS SPID ");
+                //    objDServ.CloseConnection();
+                //    varSupplierId = Convert.ToInt32(varId_Supplier);
+                //} else
                 else
                 {
-                    DataService objDServ = new DataService();
-                    string varId_Supplier = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SPID FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') END AS SPID ");
-                    objDServ.CloseConnection();
-                    varSupplierId = Convert.ToInt32(varId_Supplier);
-                }
-                objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrder.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue),0,"",0,0,0,0,0,0,"");
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
+                    string[] values = new string[0];
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(31, 0, Convert.ToInt32(lblschedule.Text), 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
                     {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
+                        if (objDsSupplierId.Tables.Count > 0)
                         {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            dgvSupplierScheduleList.DataSource = objDs.Tables[0];
-                            //grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-                            dgvSupplierScheduleList.Columns["S.No."].Width = 40;
-                            dgvSupplierScheduleList.Columns["Supplier"].Width = 300;
-                            dgvSupplierScheduleList.Columns["GSTIN"].Width =120;
-                            dgvSupplierScheduleList.Columns["City"].Width = 130;
-                            dgvSupplierScheduleList.Columns["Schedule Status"].Width = 120;
-                            dgvSupplierScheduleList.Columns["Order Type"].Width = 90;
-                            dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 90;
-                            dgvSupplierScheduleList.Columns["Days"].Width = 90;
-                            dgvSupplierScheduleList.Columns["Pro. Mapping"].Width = 90;
-                            dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 80; 
-                            dgvSupplierScheduleList.Columns["Scheduleid"].Visible = false;
-                            dgvSupplierScheduleList.Columns["SupplierID"].Visible = false;
-                            dgvSupplierScheduleList.Columns["ORDERTYPE"].Visible = false;
-                            dgvSupplierScheduleList.Columns["MappedStatus"].Visible = false;
-                            dgvSupplierScheduleList.Columns["STATUS CODE"].Visible = false;
-                            dgvSupplierScheduleList.Columns["SP_ReturnApplicable"].Visible = false;
-                            dgvSupplierScheduleList.Columns["SPSC_OrderType"].Visible = false;
-                            dgvSupplierScheduleList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            dgvSupplierScheduleList.Columns["Ret. Policy"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            dgvSupplierScheduleList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToInt32(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
                         }
                     }
+                    if (values[0] == "-1")
+                    {
+                        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSupplier.ShowAlways = true;
+                        tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
+                        lblSupplierCode.Text = "0";
+                        lblschedule.Text = "0";
+                        Varflag = 1;
+                    }
+                    else
+                    {
+                        ep_Supplierlist.Clear();
+                        lblSupplierCode.Text = values[0];
+                        lblschedule.Text = values[1];
+                        txtSupplier.BackColor = Color.White;
+
+                    }
+                    //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                }
+                if (Varflag == 0)
+                {
+                    objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrder.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                lblNoRecordsFound.Visible = false;
+                                lblNoRecordsFound.SendToBack();
+                                dgvSupplierScheduleList.DataSource = objDs.Tables[0];
+                                //grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                //grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                                dgvSupplierScheduleList.Columns["S.No."].Width = 40;
+                                dgvSupplierScheduleList.Columns["Supplier"].Width = 300;
+                                dgvSupplierScheduleList.Columns["GSTIN"].Width = 120;
+                                dgvSupplierScheduleList.Columns["City"].Width = 130;
+                                dgvSupplierScheduleList.Columns["Schedule Status"].Width = 120;
+                                dgvSupplierScheduleList.Columns["Order Type"].Width = 90;
+                                dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 90;
+                                dgvSupplierScheduleList.Columns["Days"].Width = 90;
+                                dgvSupplierScheduleList.Columns["Pro. Mapping"].Width = 90;
+                                dgvSupplierScheduleList.Columns["Ret. Policy"].Width = 80;
+                                dgvSupplierScheduleList.Columns["Scheduleid"].Visible = false;
+                                dgvSupplierScheduleList.Columns["SupplierID"].Visible = false;
+                                dgvSupplierScheduleList.Columns["ORDERTYPE"].Visible = false;
+                                dgvSupplierScheduleList.Columns["MappedStatus"].Visible = false;
+                                dgvSupplierScheduleList.Columns["STATUS CODE"].Visible = false;
+                                dgvSupplierScheduleList.Columns["SP_ReturnApplicable"].Visible = false;
+                                dgvSupplierScheduleList.Columns["SPSC_OrderType"].Visible = false;
+                                dgvSupplierScheduleList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                dgvSupplierScheduleList.Columns["Ret. Policy"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                dgvSupplierScheduleList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            }
+                            else
+                            {
+                                lblNoRecordsFound.Visible = true;
+                                lblNoRecordsFound.BringToFront();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                    udfnSearchGridHead();
                 }
                 else
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
+                    dgvSupplierScheduleList.DataSource = null;
+
                 }
 
-                udfnSearchGridHead();
             }
             catch (Exception ex)
             {
@@ -1114,11 +1164,23 @@ namespace ROMS
         {
             try
             {
+            //    if (txtSupplier.Text != "")
+            //    {
+            //        ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
+            //        txtSupplier.Text = selectedItem.SubItems[0].Text;
+            //        lblSupplierCode.Text = selectedItem.SubItems[1].Text;
+            //    }
+            //    cmbStatus.Focus();
                 if (txtSupplier.Text != "")
                 {
                     ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
+                    lblschedule.Text = selectedItem.SubItems[2].Text;
+                    if (lblschedule.Text == "")
+                    {
+                        lblschedule.Text = "0";
+                    }
                 }
                 cmbStatus.Focus();
             }
