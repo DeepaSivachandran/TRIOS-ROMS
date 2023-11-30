@@ -5881,9 +5881,8 @@ namespace ROMS
                 }
                 if (errorflag == 0)
                 {
-                    udfnSupplierOrderSave();
+                    udfnSupplierOrderSave(sender, e);
                     udfntphide();
-                    CmbMappingorderschedule_SelectedIndexChanged(sender, e);
                    
                 }
             }
@@ -5897,7 +5896,7 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void udfnSupplierOrderSave()
+        public void udfnSupplierOrderSave(object sender,EventArgs e)
         {
             try
             {
@@ -6088,7 +6087,7 @@ namespace ROMS
                             pnlScheduleStatus.Enabled = false;
                             cmbOrderType.SelectedValue = 144;
                             udfnSetRegularText();
-                            udfnLoadOrderSchedule();
+                            CmbMappingorderschedule_SelectedIndexChanged(sender, e);
                         }
                         else
                         {
