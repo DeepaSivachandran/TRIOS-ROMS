@@ -63,6 +63,7 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseorder = new System.Windows.Forms.Panel();
             this.grppurchaseorder = new System.Windows.Forms.GroupBox();
+            this.chkStatus = new System.Windows.Forms.CheckBox();
             this.lblMxsq = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -117,8 +118,6 @@
             this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.btnViewedProduct = new System.Windows.Forms.Button();
             this.btnNewUnit = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -272,6 +271,7 @@
             // grppurchaseorder
             // 
             this.grppurchaseorder.BackColor = System.Drawing.Color.White;
+            this.grppurchaseorder.Controls.Add(this.chkStatus);
             this.grppurchaseorder.Controls.Add(this.lblMxsq);
             this.grppurchaseorder.Controls.Add(this.label14);
             this.grppurchaseorder.Controls.Add(this.label15);
@@ -287,8 +287,6 @@
             this.grppurchaseorder.Controls.Add(this.btnDamage);
             this.grppurchaseorder.Controls.Add(this.tbSupplierDetails);
             this.grppurchaseorder.Controls.Add(this.btnClear);
-            this.grppurchaseorder.Controls.Add(this.cmbStatus);
-            this.grppurchaseorder.Controls.Add(this.label17);
             this.grppurchaseorder.Controls.Add(this.btnViewedProduct);
             this.grppurchaseorder.Controls.Add(this.btnNewUnit);
             this.grppurchaseorder.Controls.Add(this.label11);
@@ -329,11 +327,23 @@
             this.grppurchaseorder.TabIndex = 958788;
             this.grppurchaseorder.TabStop = false;
             // 
+            // chkStatus
+            // 
+            this.chkStatus.AutoSize = true;
+            this.chkStatus.Enabled = false;
+            this.chkStatus.Location = new System.Drawing.Point(898, 588);
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Size = new System.Drawing.Size(85, 24);
+            this.chkStatus.TabIndex = 1111218;
+            this.chkStatus.Text = "Pre Closed";
+            this.chkStatus.UseVisualStyleBackColor = true;
+            // 
             // lblMxsq
             // 
             this.lblMxsq.AutoSize = true;
             this.lblMxsq.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMxsq.Location = new System.Drawing.Point(1060, 118);
+            this.lblMxsq.ForeColor = System.Drawing.Color.Crimson;
+            this.lblMxsq.Location = new System.Drawing.Point(1062, 118);
             this.lblMxsq.Name = "lblMxsq";
             this.lblMxsq.Size = new System.Drawing.Size(0, 20);
             this.lblMxsq.TabIndex = 1111217;
@@ -353,7 +363,8 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1016, 118);
+            this.label15.ForeColor = System.Drawing.Color.Crimson;
+            this.label15.Location = new System.Drawing.Point(1018, 118);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(50, 20);
             this.label15.TabIndex = 1111216;
@@ -363,6 +374,7 @@
             // 
             this.lblWeightvalue.AutoSize = true;
             this.lblWeightvalue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeightvalue.ForeColor = System.Drawing.Color.Crimson;
             this.lblWeightvalue.Location = new System.Drawing.Point(977, 118);
             this.lblWeightvalue.Name = "lblWeightvalue";
             this.lblWeightvalue.Size = new System.Drawing.Size(0, 20);
@@ -373,6 +385,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Crimson;
             this.label13.Location = new System.Drawing.Point(873, 118);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(111, 20);
@@ -440,7 +453,7 @@
             this.columnHeader3,
             this.columnHeader4});
             this.lvproduct.FullRowSelect = true;
-            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(148, 145);
             this.lvproduct.Name = "lvproduct";
@@ -449,11 +462,13 @@
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
             this.lvproduct.Visible = false;
+            this.lvproduct.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.Lvproduct_DrawColumnHeader);
             this.lvproduct.DoubleClick += new System.EventHandler(this.Lvproduct_DoubleClick);
             this.lvproduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lvproduct_KeyDown);
             // 
             // RMcode
             // 
+            this.RMcode.Text = "P.I Code";
             this.RMcode.Width = 0;
             // 
             // RMTname
@@ -462,7 +477,17 @@
             // 
             // RMEName
             // 
+            this.RMEName.Text = "Product Name";
             this.RMEName.Width = 200;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Unit";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "R.Rate";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // LV_Supplier
             // 
@@ -940,31 +965,6 @@
             this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.Enabled = false;
-            this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(870, 588);
-            this.cmbStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(114, 27);
-            this.cmbStatus.TabIndex = 12;
-            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
-            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
-            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
-            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
-            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(822, 588);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 20);
-            this.label17.TabIndex = 1111195;
-            this.label17.Text = "Status";
             // 
             // btnViewedProduct
             // 
@@ -2091,7 +2091,7 @@
             // lblProductcode
             // 
             this.lblProductcode.AutoSize = true;
-            this.lblProductcode.Location = new System.Drawing.Point(1091, 122);
+            this.lblProductcode.Location = new System.Drawing.Point(1163, 208);
             this.lblProductcode.Name = "lblProductcode";
             this.lblProductcode.Size = new System.Drawing.Size(16, 20);
             this.lblProductcode.TabIndex = 1111209;
@@ -2101,7 +2101,7 @@
             // lblSupplierCode
             // 
             this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(1082, 122);
+            this.lblSupplierCode.Location = new System.Drawing.Point(1154, 208);
             this.lblSupplierCode.Name = "lblSupplierCode";
             this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 1111208;
@@ -2226,7 +2226,6 @@
         private System.Windows.Forms.Button btnViewedProduct;
         private System.Windows.Forms.Button btnSalesmanUndo;
         private System.Windows.Forms.Button btnSalesmanSave;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TabControl tbSupplierDetails;
         private System.Windows.Forms.TabPage tabPage2;
@@ -2272,7 +2271,6 @@
         public System.Windows.Forms.Label lblPOCreateby;
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.TextBox txtRemark;
-        public System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ComboBox cmbIssueMode;
@@ -2328,5 +2326,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblMxsq;
+        private System.Windows.Forms.CheckBox chkStatus;
     }
 }

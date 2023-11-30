@@ -13,7 +13,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varcount = 0, SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0,
-            varPOID = 0, VarStatusId = 10, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0
+            varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0
             , totalBulkqty = 0, totalUnitqty = 0, totalOrderQty = 0, varUPP = 0, qtyFlag = 0,
         varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0;
         public double totalKgQty = 0;
@@ -41,7 +41,7 @@ namespace ROMS
         private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
             try
-            {
+            {  
                 if (btnSave.Text == "Save")
                 {
                     SPDataService objDServ = new SPDataService();
@@ -57,8 +57,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=4 AND STSID in (8,9)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
-                objDataBind = null;
+                 objDataBind = null;
                 this.ActiveControl = cmbConcern;
                 udfnDropdownLoad();
                 cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
@@ -67,16 +66,16 @@ namespace ROMS
                 string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
                 objDservice.CloseConnection();
                 dpPlanDate.Text = vardate;
-                if (VarStatusId == 10)
+                if (VarStatusId == 12)
                 {
                     btnSave.Enabled = true;
                 }
                 else
                 {
-                    if (VarStatusId == 9)
+                    if (VarStatusId == 14)
                     {
                         btnSave.Enabled = false;
-                        cmbStatus.Enabled = false;
+                        chkStatus.Enabled = false;
                         gpissued.Enabled = false;
                     }
                     else
@@ -116,7 +115,16 @@ namespace ROMS
                 if (varPOID != 0)
                 {
                     Application.DoEvents();
-                    cmbStatus.SelectedValue = Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString());
+                    //cmbStatus.SelectedValue = Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString());
+
+                    if (Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString()) == 8)
+                    {
+                        chkStatus.Checked = false;
+                    }
+                    else if (Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString()) == 9)
+                    {
+                        chkStatus.Checked = true;
+                    }
                     //********** To display a data in a grid  ******************  
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
@@ -178,7 +186,7 @@ namespace ROMS
                                 lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
                                 lblKG.Text = objDs.Tables[0].Rows[0]["PO_PRTotQty"].ToString();
                                 btnSave.Text = "Update";
-                                cmbStatus.Enabled = true;
+                                chkStatus.Enabled = true;
                                 udfnsupplierLoad();
                                 grdsupplieradd.Columns["clmStsname"].Visible = true;
                             }
@@ -213,7 +221,7 @@ namespace ROMS
                 txtIssuedBy.ReadOnly = false;
                 txtissuemodevalue.ReadOnly = false;
                 txtTurnAroundTime.ReadOnly = false;
-                if (VarStatusId != 10)
+                if (VarStatusId != 12)
                 {
                     dpissuedateandtime.Enabled = false;
                     txtTurnAroundTime.Enabled = false;
@@ -349,7 +357,7 @@ namespace ROMS
                 tppono.Active = false;
                 tpsts.Active = false;
                 txtpono.BackColor = Color.White;
-                cmbStatus.BackColor = Color.White;
+                chkStatus.BackColor = Color.White;
                 tpIssuemodeValues.Active = false;
                 cmbIssueMode.BackColor = Color.White;
                 tpIssueby.Active = false;
@@ -473,7 +481,7 @@ namespace ROMS
                 txtProductQty.Text = "";
                 grdsupplieradd.Rows.Clear();
                 cmbConcern.SelectedValue = "-1";
-                cmbStatus.SelectedValue = "-1";
+                
                 cmbUnit.SelectedIndex = 0;
                 txtRemark.Text = "";
                 lblPC.Text = "0";
@@ -563,14 +571,14 @@ namespace ROMS
                             txtSupplier.BackColor = Color.White;
                         }
                     }
-                    if (Convert.ToInt64(cmbStatus.SelectedValue) == -1)
-                    {
-                        errPO.SetError(cmbStatus, "Please select status");
-                        cmbStatus.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpsts.ShowAlways = true;
-                        tpsts.Show("Please select status.", cmbStatus, 5000);
-                        varErrorFlag = false;
-                    }
+                    //if (Convert.ToInt64(cmbStatus.SelectedValue) == -1)
+                    //{
+                    //    errPO.SetError(cmbStatus, "Please select status");
+                    //    cmbStatus.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpsts.ShowAlways = true;
+                    //    tpsts.Show("Please select status.", cmbStatus, 5000);
+                    //    varErrorFlag = false;
+                    //}
 
                     if (varErrorFlag == true)
                     {
@@ -617,11 +625,21 @@ namespace ROMS
                                     objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
                                     objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float)); 
                                     objPurchaseOrder = udfnPurchaseProduct();
+
+                                    int varstatus = 0;
+                                    if (chkStatus.Checked == true)
+                                    {
+                                        varstatus = 9;
+                                    }
+                                    else
+                                    {
+                                        varstatus = 8;
+                                    }
                                     if (varcount == 0)
                                     {
                                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
                                         txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
-                                        txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(cmbStatus.SelectedValue), dpPlanDate.Text, Convert.ToInt32(cmbUnit.SelectedValue),Convert.ToDouble(lblKG.Text)
+                                        txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(varstatus), dpPlanDate.Text, Convert.ToInt32(cmbUnit.SelectedValue),Convert.ToDouble(lblKG.Text)
                                         );
                                         objspdservice.CloseConnection();
                                         string[] varvalue = result.Split('~');
@@ -933,8 +951,7 @@ namespace ROMS
                                 unit = Convert.ToString(varFinalUnit);
                             }
                             udfnProductAdd();
-                            //string[] unitparts = unitperbox.Split('/');
-
+                            //string[] unitparts = unitperbox.Split('/'); 
                             //string bunits = unitparts[0].Trim() +'/' + Convert.ToString(cmbUnit.Text);
                             grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, (varPICode).Trim(), (varEName).Trim(), (var_Symbol).Trim(),
                             (unitweight), unitperbox, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (var_MXSQ).Trim(), (varSTOCK).Trim(), (varPrevious).Trim(), (varPARITAL).Trim(),
@@ -970,6 +987,13 @@ namespace ROMS
             finally
             {
                 lblPC.Text = grdsupplieradd.Rows.Count.ToString();
+                udfnTotalKG();
+            }
+        }
+        public void udfnTotalKG()
+        {
+            try
+            {
                 decimal vartot = 0;
                 foreach (DataGridViewRow row in grdsupplieradd.Rows)
                 {
@@ -979,7 +1003,12 @@ namespace ROMS
                         vartot += cellValue;
                     }
                 }
-                lblKG.Text = Convert.ToString(vartot); 
+                lblKG.Text = Convert.ToString(vartot);
+            }
+              catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -2596,6 +2625,23 @@ namespace ROMS
 
         }
 
+        private void Lvproduct_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            //try
+            //{
+            //    e.DrawDefault = true; 
+
+            //    e.Graphics.FillRectangle(Brushes.SlateGray, e.Bounds); 
+            //    e.Graphics.DrawString(e.Header.Text, lvproduct.Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
         private void CmbIssueMode_Leave(object sender, EventArgs e)
         {
             try
@@ -2730,17 +2776,7 @@ namespace ROMS
             }
             finally
             {
-                lblPC.Text = grdsupplieradd.Rows.Count.ToString();
-                decimal vartot = 0;
-                foreach (DataGridViewRow row in grdsupplieradd.Rows)
-                {
-                    // Check if the cell value is not null and can be converted to a decimal
-                    if (row.Cells["clmtotalkg"].Value != null && decimal.TryParse(row.Cells["clmtotalkg"].Value.ToString(), out decimal cellValue))
-                    {
-                        vartot += cellValue;
-                    }
-                }
-                lblKG.Text = Convert.ToString(vartot);
+                lblPC.Text = grdsupplieradd.Rows.Count.ToString(); udfnTotalKG();
             }
         }
 
@@ -3183,6 +3219,7 @@ namespace ROMS
                 grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value = varFinalTotalQty;
                 grdsupplieradd.Rows[e.RowIndex].Cells["clmtotalkg"].Value = varFinalTotalKg;
                 varFinalBulkUnit = 0; varFinalUnit = 0; varFinalTotalQty = 0; varFinalTotalKg = 0;
+                udfnTotalKG();
             }
         }
 
@@ -3303,6 +3340,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                udfnTotalKG();
+            }
         }
 
         private void CmbUnit_KeyPress(object sender, KeyPressEventArgs e)
@@ -3367,18 +3408,25 @@ namespace ROMS
         }
 
         private void GrdPendingorder_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
+        { 
             for (int i = 0; i < grdPendingorder.Rows.Count; i++)
             {
+
+                DataGridView dataGridView = (DataGridView)sender;
+                DataGridViewCell cell = dataGridView.Rows[i].Cells["clmpono"];
                 if (Convert.ToString(grdPendingorder.Rows[i].Cells["PLID"].Value) == "10" || Convert.ToString(grdPendingorder.Rows[i].Cells["PLID"].Value) == "11")
                 {
-                    grdPendingorder.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("255, 128, 0");
-                    grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    //grdPendingorder.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                    //grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    cell.Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                    cell.Style.ForeColor = Color.White;
                 }
                 else
                 {
-                    grdPendingorder.Rows[i].DefaultCellStyle.BackColor = Color.RoyalBlue;
-                    grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    //grdPendingorder.Rows[i].DefaultCellStyle.BackColor = Color.RoyalBlue;
+                    //grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    cell.Style.BackColor = Color.RoyalBlue;
+                    cell.Style.ForeColor = Color.White;
                 }
             }
         }
@@ -3402,7 +3450,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    chkStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -3509,7 +3557,7 @@ namespace ROMS
                 if (txtSupplier.Text != "")
                 {
                     cmbReturnType.SelectedValue = -1;
-                    if (VarStatusId == 10)
+                    if (VarStatusId == 12)
                     {
                         ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                         txtSupplier.Text = selectedItem.SubItems[0].Text;
@@ -3925,11 +3973,11 @@ namespace ROMS
             }
         }
 
-        private void CmbStatus_Leave(object sender, EventArgs e)
+        private void ChkStatus_Leave(object sender, EventArgs e)
         {
             try
             {
-                cmbStatus.BackColor = Color.White;
+                chkStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -3938,11 +3986,11 @@ namespace ROMS
             }
         }
 
-        private void CmbStatus_Enter(object sender, EventArgs e)
+        private void ChkStatus_Enter(object sender, EventArgs e)
         {
             try
             {
-                cmbStatus.BackColor = Color.LemonChiffon;
+                chkStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -3950,34 +3998,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbStatus.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
+         
 
         private void Lvproduct_KeyDown(object sender, KeyEventArgs e)
         {
