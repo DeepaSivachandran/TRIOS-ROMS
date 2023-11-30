@@ -18,6 +18,8 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpProduct = new ToolTip();
         private ToolTip tpRequiredQty = new ToolTip();
+
+        public string VarAdd = "0";
         public INV_StockRequest()
         {
             InitializeComponent();
@@ -52,6 +54,7 @@ namespace ROMS
         {
             try
             { 
+
             }
             catch (Exception ex)
             {
@@ -64,11 +67,12 @@ namespace ROMS
         {
             try
             {
-                grdGodownStock.Rows.Add("Godown1","100 Pkts");
-                grdGodownStock.Rows.Add("Godown2","200 Pkts");
-                grdGodownStock.ColumnHeadersVisible = false;
+                //grdGodownStock.Rows.Add("Godown1","100 Pkts");
+                //grdGodownStock.Rows.Add("Godown2","200 Pkts");
+                //grdGodownStock.ColumnHeadersVisible = false;
                 dpDate.Value = DateTime.Today;
                 udfnCmbConcern();
+                cmbConcern.SelectedValue = 1;
             }
             catch (Exception ex)
             {
@@ -357,7 +361,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     DataService objDservice = new DataService();
                     vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpDate.Text + "',103)");
-                    varResult = objspdservice.udfngetPONO("44", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                    varResult = objspdservice.udfngetPONO("43", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                     objspdservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varResult != "")
@@ -472,6 +476,8 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;
@@ -553,6 +559,7 @@ namespace ROMS
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
                     lblProduct.Text = selectedItem.SubItems[4].Text;
+                    udfnStockLoad();
                 }
             }
             catch (Exception ex)
@@ -565,7 +572,49 @@ namespace ROMS
                 lvProduct.Visible = false;
             }
         }
-
+        public void udfnStockLoad()
+        {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                DataSet objDS;
+                objDS = objspservice.udfnproductmasterlist(43,Convert.ToInt32(lblProduct.Text),0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,"",0,null);
+                objspservice.CloseConnection();
+                if (objDS != null)
+                {
+                    if (VarAdd == "0")
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            txtStockQty.Text = objDS.Tables[0].Rows[0]["Stock"].ToString().Replace("''", "'");
+                        }
+                        if (objDS.Tables[1].Rows.Count > 0)
+                        {
+                            for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
+                            {
+                                grdGodownStock.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["SL_ShortName"]), Convert.ToString(objDS.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[1].Rows[i]["STK_Qty"]));
+                            }
+                        }
+                    }
+                    if(VarAdd=="1")
+                    {
+                        if (objDS.Tables[2].Rows.Count > 0)
+                        {
+                            for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
+                            {
+                                grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[2].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[2].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[2].Rows[i]["EMP_Name"]), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Symbol"]));
+                            }
+                            txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtRequiredQty_Enter(object sender, EventArgs e)
         {
             try
@@ -599,7 +648,18 @@ namespace ROMS
         {
             try
             {
-                txtRequiredQty.BackColor = Color.White;
+                if (txtRequiredQty.Text.Trim() == "")
+                {
+                    errStockRequest.SetError(txtRequiredQty, "Please enter quentity");
+                    txtRequiredQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRequiredQty.ShowAlways = true;
+                    tpRequiredQty.Show("Please enter quentity", txtRequiredQty, 5000);
+                }
+                else
+                {
+                    errStockRequest.Clear();
+                    txtRequiredQty.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -714,6 +774,56 @@ namespace ROMS
             try
             {
                 btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool blnErrorFlag = false;
+                if (Convert.ToString(txtProductNamePICode.Text).Trim() == "")
+                {
+                    errStockRequest.SetError(txtProductNamePICode, "Please enter product name");
+                    txtProductNamePICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please enter product name", txtProductNamePICode, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtRequiredQty.Text).Trim() != "")
+                {
+                    if (Convert.ToInt32(txtStockQty.Text.Trim()) >= Convert.ToInt32(txtRequiredQty.Text.Trim()))
+                    {
+                        errStockRequest.Clear();
+                        txtRequiredQty.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        errStockRequest.SetError(txtRequiredQty, "Please enter valid quentity");
+                        txtRequiredQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpRequiredQty.ShowAlways = true;
+                        tpRequiredQty.Show("Please enter valid quentity", txtRequiredQty, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                else
+                {
+                    errStockRequest.SetError(txtRequiredQty, "Please enter quentity");
+                    txtRequiredQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRequiredQty.ShowAlways = true;
+                    tpRequiredQty.Show("Please enter quentity", txtRequiredQty, 5000);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    VarAdd = "1";
+                }
+                udfnStockLoad();
             }
             catch (Exception ex)
             {
