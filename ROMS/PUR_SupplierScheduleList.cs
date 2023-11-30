@@ -13,7 +13,7 @@ namespace ROMS
 {
     public partial class PUR_SupplierScheduleList : Form
     {
-        int varflag = 0;
+        
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -202,7 +202,7 @@ namespace ROMS
                         tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
                         lblSupplierCode.Text = "0";
                         lblschedule.Text = "0";
-                        Varflag = 1;
+                       // Varflag = 1;
                     }
                     else
                     {
