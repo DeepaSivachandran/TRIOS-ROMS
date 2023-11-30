@@ -8747,7 +8747,7 @@ namespace ROMS
                 int varschedulenameflag = 0;
                 for (int i = 0; i < grdSupplierList.RowCount; i++)
                 {
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmsupname"].Value) == "Regular")
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmsupname"].Value).ToLower() == "regular")
                     {
                         varschedulenameflag++;
                     }
