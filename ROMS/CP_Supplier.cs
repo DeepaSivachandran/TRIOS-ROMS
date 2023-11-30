@@ -3383,8 +3383,12 @@ namespace ROMS
                 {
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", " SPSC_SPID='" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) oR  SPSC_SPID= 0 order by SPSCID, SPSC_Name", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
+                cmbOrderschedule.DataSource = null; cmbOrderschedule.Text = "";
+                cmbMappedorderrype.DataSource = null; cmbMappedorderrype.Text = "";
+                grdViewSupplierMapping.DataSource = null;
+                DGV_SearchGridPro.DataSource = null;
+                 DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", " SPSC_SPID='" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) oR  SPSC_SPID= 0  order by SPSCID, SPSC_Name", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
                 //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbMappedorderrype, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
@@ -3449,6 +3453,11 @@ namespace ROMS
                     Application.DoEvents();
                     this.ActiveControl = cmbMappingorderschedule;
                     DataBind objDataBind = new DataBind();
+
+                    cmbMappingorderschedule.DataSource = null; cmbMappingorderschedule.Text = "";
+                    cmbOrderschedule.DataSource = null; cmbOrderschedule.Text = "";
+                    grdViewSupplierMapping.DataSource = null;
+                    DGV_SearchGridPro.DataSource = null;
                     if (Convert.ToInt32(varsupplierID) != 0)
                     {
                         SupplierUpdate = Convert.ToInt32(varsupplierID);
@@ -5398,7 +5407,7 @@ namespace ROMS
             {
                 if (SupplierUpdate != 0 && SupplierUpdate != -1)
                 {
-                    if (cmbMappingorderschedule.Text != "" || Convert.ToString(cmbMappingorderschedule.SelectedValue) != null)
+                    if (cmbMappingorderschedule.Text != "" )
                     {
                         btnMappingsave.Enabled = false;
                         txtmappingproductsearch2.Text = "";
@@ -5481,6 +5490,7 @@ namespace ROMS
                     }
                     else
                     {
+                        grdFinalSupplierMapping.DataSource = null;
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(65);
                         objDServ.CloseConnection();
@@ -6097,7 +6107,7 @@ namespace ROMS
                             pnlScheduleStatus.Enabled = false;
                             cmbOrderType.SelectedValue = 144;
                             udfnSetRegularText();
-                            CmbMappingorderschedule_SelectedIndexChanged(sender, e);
+                             
                         }
                         else
                         {
