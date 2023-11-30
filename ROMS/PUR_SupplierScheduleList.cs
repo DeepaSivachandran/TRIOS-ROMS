@@ -1008,12 +1008,43 @@ namespace ROMS
         {
             try
             {
-                LV_Supplier.Items.Clear();
+                //LV_Supplier.Items.Clear();
+                //SPDataService objspdservice = new SPDataService();
+                //DataSet objDs = new DataSet();
+                //if (txtSupplier.Text.Length > 0)
+                //{
+                //    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0,0,"",0,0,0,0,0,0,"");
+                //    objspdservice.CloseConnection();
+                //    if (objDs != null)
+                //    {
+                //        if (objDs.Tables.Count != 0)
+                //        {
+                //            if (objDs.Tables[0].Rows.Count != 0)
+                //            {
+                //                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                //                {
+                //                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString() };
+                //                    ListViewItem objList = new ListViewItem(row);
+                //                    LV_Supplier.Items.Add(objList);
+                //                }
+                //                LV_Supplier.Visible = true;
+                //                LV_Supplier.Columns[1].Width = 0;
+                //                LV_Supplier.BringToFront();
+                //            }
+                //        }
+                //    }
+                //    objspdservice.CloseConnection();
+                //}
+                //else
+                //{
+                //    LV_Supplier.Visible = false;
+                //    LV_Supplier.Items.Clear();
+                //}LV_Supplier.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0,0,"",0,0,0,0,0,0,"");
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1088,7 +1119,6 @@ namespace ROMS
                     ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
-
                 }
                 cmbStatus.Focus();
             }
