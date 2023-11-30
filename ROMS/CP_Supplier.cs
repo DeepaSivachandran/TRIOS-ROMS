@@ -3536,6 +3536,7 @@ namespace ROMS
                 else
                 {
                     lblMappedNoRecords.Visible = true;
+                    btnListPrint.Image = global::ROMS.Properties.Resources.view;
                 }
                 objspservice.CloseConnection();
                 DGV_SearchGridPro.DataSource = null;
@@ -8275,7 +8276,7 @@ namespace ROMS
                     int varPrint = 0;
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"");
+                    objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"");
                     objspservice.CloseConnection();
                     if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                     if (varPrint == 1)
@@ -8301,6 +8302,8 @@ namespace ROMS
                     else
                     {
                         lblNoRecordsFound.Visible = true;
+                        btnListPrint.Image = global::ROMS.Properties.Resources.view;
+                        RPTViewer.Visible = false;
                     }
                 }
                 catch (Exception ex)
@@ -8317,7 +8320,8 @@ namespace ROMS
                     GC.Collect();
                 }
             }
-            else {
+            else
+            {
                 CmbOrderschedule_SelectedIndexChanged(sender,e);
             }
         }
