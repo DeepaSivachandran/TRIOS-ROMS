@@ -13,7 +13,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varcount = 0, SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0,
-            varPOID = 0, VarStatusId = 10, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0
+            varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0
             , totalBulkqty = 0, totalUnitqty = 0, totalOrderQty = 0, varUPP = 0, qtyFlag = 0,
         varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0;
         public double totalKgQty = 0;
@@ -66,7 +66,7 @@ namespace ROMS
                 string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
                 objDservice.CloseConnection();
                 dpPlanDate.Text = vardate;
-                if (VarStatusId == 10)
+                if (VarStatusId == 12)
                 {
                     btnSave.Enabled = true;
                 }
@@ -221,7 +221,7 @@ namespace ROMS
                 txtIssuedBy.ReadOnly = false;
                 txtissuemodevalue.ReadOnly = false;
                 txtTurnAroundTime.ReadOnly = false;
-                if (VarStatusId != 10)
+                if (VarStatusId != 12)
                 {
                     dpissuedateandtime.Enabled = false;
                     txtTurnAroundTime.Enabled = false;
@@ -3408,18 +3408,25 @@ namespace ROMS
         }
 
         private void GrdPendingorder_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
+        { 
             for (int i = 0; i < grdPendingorder.Rows.Count; i++)
             {
+
+                DataGridView dataGridView = (DataGridView)sender;
+                DataGridViewCell cell = dataGridView.Rows[i].Cells["clmpono"];
                 if (Convert.ToString(grdPendingorder.Rows[i].Cells["PLID"].Value) == "10" || Convert.ToString(grdPendingorder.Rows[i].Cells["PLID"].Value) == "11")
                 {
-                    grdPendingorder.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("255, 128, 0");
-                    grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    //grdPendingorder.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                    //grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    cell.Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                    cell.Style.ForeColor = Color.White;
                 }
                 else
                 {
-                    grdPendingorder.Rows[i].DefaultCellStyle.BackColor = Color.RoyalBlue;
-                    grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    //grdPendingorder.Rows[i].DefaultCellStyle.BackColor = Color.RoyalBlue;
+                    //grdPendingorder.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    cell.Style.BackColor = Color.RoyalBlue;
+                    cell.Style.ForeColor = Color.White;
                 }
             }
         }
@@ -3550,7 +3557,7 @@ namespace ROMS
                 if (txtSupplier.Text != "")
                 {
                     cmbReturnType.SelectedValue = -1;
-                    if (VarStatusId == 10)
+                    if (VarStatusId == 12)
                     {
                         ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                         txtSupplier.Text = selectedItem.SubItems[0].Text;
