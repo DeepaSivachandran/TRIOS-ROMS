@@ -37,6 +37,7 @@ namespace ROMS
         public string varRKID = "";
         public string varSPID = "";
         public string varSPSCID = "";
+        public string varErrQty = "0";
         public int varID = 0;
         //public int varUpdate = 0;
         public int varModifiedFlag = 0;
@@ -1244,7 +1245,15 @@ namespace ROMS
                 if (grdDamageEntry.Rows.Count < 1)
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(53);
+                    string varMessage = objDServ.udfnGetMessages(38);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
+                if(varErrQty=="1")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
@@ -1785,6 +1794,7 @@ namespace ROMS
                 if (Convert.ToInt32(TransferQty) > Convert.ToInt32(StockQty))
                 {
                     grdDamageEntry.Rows[e.RowIndex].Cells["clmQuantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    varErrQty = "1";
                 }
                 else if(Convert.ToString(TransferQty)=="0" || Convert.ToString(TransferQty) == "")
                 {
@@ -1793,10 +1803,12 @@ namespace ROMS
                     string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    varErrQty = "1";
                 }
                 else
                 {
                     grdDamageEntry.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
+                    varErrQty = "0";
                 }
                 object varEditQty = grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable

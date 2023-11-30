@@ -883,6 +883,7 @@
             // 
             this.clmStockQty.HeaderText = "Stock Qty";
             this.clmStockQty.Name = "clmStockQty";
+            this.clmStockQty.ReadOnly = true;
             // 
             // clmquantity
             // 

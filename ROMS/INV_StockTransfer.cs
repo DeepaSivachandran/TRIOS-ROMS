@@ -50,6 +50,7 @@ namespace ROMS
         public int varModifiedFlag = 0;
         public string VarSource = "0";
         public string VarDestination = "0";
+        public string varErrQty = "0";
 
         DataTable dtStock = new DataTable();
 
@@ -1465,7 +1466,15 @@ namespace ROMS
                 if(grdStockTransfer.Rows.Count<1)
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(53);
+                    string varMessage = objDServ.udfnGetMessages(38);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
+                if(varErrQty=="1")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
@@ -1881,6 +1890,7 @@ namespace ROMS
                     //grdStockTransfer.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
                     grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    varErrQty = "1";
                 }
                 else if (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == "")
                 {
@@ -1889,10 +1899,12 @@ namespace ROMS
                     string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    varErrQty = "1";
                 }
                 else
                 {
                     grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
+                    varErrQty = "0";
                 }
                 object varEditQty = grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
