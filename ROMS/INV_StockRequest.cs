@@ -22,7 +22,7 @@ namespace ROMS
         private ToolTip tpRequiredQty = new ToolTip();
 
         public string VarAdd = "0";
-        public string varProducts = "0";
+        public string varProducts = "";
         public INV_StockRequest()
         {
             InitializeComponent();
@@ -615,6 +615,14 @@ namespace ROMS
                             for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
                             {
                                 grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[2].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[2].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[2].Rows[i]["EMP_Name"]), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Symbol"]),Convert.ToString(lblProduct.Text));
+                                if (varProducts == "")
+                                {
+                                    varProducts = Convert.ToString(grdStockRequest.Rows[i].Cells["clmPRID"].Value);
+                                }
+                                else
+                                {
+                                    varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[i].Cells["clmPRID"].Value);
+                                }
                             }
                             dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),0,0,Convert.ToString(txtRequiredQty.Text));
                             VarAdd = "0";
