@@ -241,7 +241,7 @@
             this.textBox4.Size = new System.Drawing.Size(112, 27);
             this.textBox4.TabIndex = 1111179;
             this.textBox4.TabStop = false;
-            this.textBox4.Text = "Turn Around Time";
+            this.textBox4.Text = "Turn Around Day";
             // 
             // txtIssuemodeValues
             // 
