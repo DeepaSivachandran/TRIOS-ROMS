@@ -1211,6 +1211,7 @@ namespace ROMS
                     varModifiedFlag = 1;
                     txtProductNamePICode.Focus();
                     errStockTransfer.Clear();
+                    grdStockTransfer.ClearSelection();
                     udfnProductClear();
                 }
             }
