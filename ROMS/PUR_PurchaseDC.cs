@@ -1632,6 +1632,7 @@ namespace ROMS
                         {
                             varErrorFlag = false;
                             grdPurchaseDC.Rows[i].Cells["clmError"].Value = 1;
+                            grdPurchaseDC.Rows[i].Cells["clmQuantity"].Style.BackColor = Color.LightPink;
                         }
                         else
                         {
@@ -1896,34 +1897,34 @@ namespace ROMS
         }
         private void GrdPurchaseDC_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (e.RowIndex != -1)
-                {
-                    switch (grdPurchaseDC.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmQuantity":
-                            if (Convert.ToString(grdPurchaseDC.Rows[e.RowIndex].Cells["clmQuantity"].Value) == "" || Convert.ToString(grdPurchaseDC.Rows[e.RowIndex].Cells["clmQuantity"].Value) == "0")
-                            {
-                                grdPurchaseDC.CurrentRow.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                            }
-                            else
-                            {
-                                DataGridView dataGridView = (DataGridView)sender;
-                                DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmOrderqty"];
-                                grdPurchaseDC.CurrentRow.DefaultCellStyle.BackColor = Color.White;
-                                cell.Style.BackColor = Color.PaleGreen;
-                                cell.Style.ForeColor = Color.Black;// Set the background color to the default background color}
-                            }
-                            break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    if (e.RowIndex != -1)
+            //    {
+            //        switch (grdPurchaseDC.Columns[e.ColumnIndex].Name)
+            //        {
+            //            case "clmQuantity":
+            //                if (Convert.ToString(grdPurchaseDC.Rows[e.RowIndex].Cells["clmQuantity"].Value) == "" || Convert.ToString(grdPurchaseDC.Rows[e.RowIndex].Cells["clmQuantity"].Value) == "0")
+            //                {
+            //                    grdPurchaseDC.CurrentRow.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#fabdbd");
+            //                }
+            //                else
+            //                {
+            //                    DataGridView dataGridView = (DataGridView)sender;
+            //                    DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmOrderqty"];
+            //                    grdPurchaseDC.CurrentRow.DefaultCellStyle.BackColor = Color.White;
+            //                    cell.Style.BackColor = Color.PaleGreen;
+            //                    cell.Style.ForeColor = Color.Black;// Set the background color to the default background color}
+            //                }
+            //                break;
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
         private void PUR_PurchaseDC_KeyDown(object sender, KeyEventArgs e)
         {
