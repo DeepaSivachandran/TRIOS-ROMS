@@ -39,6 +39,7 @@ namespace ROMS
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
         public string pbFormStatus;
         public int VarPrevSupplierid = 0,varDCID=0, varCloseFlag=0;
+        public string varErrQty = "0";
 
         public PUR_PurchaseDC()
         {
@@ -698,6 +699,7 @@ namespace ROMS
             try
             {
                 udfnListViewData();
+                txtProductName.Focus();
             }
             catch (Exception ex)
             {
@@ -712,6 +714,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
+                    txtProductName.Focus();
                 }
             }
             catch (Exception ex)
@@ -1269,7 +1272,16 @@ namespace ROMS
         }
         private void LvStockLocation_DoubleClick(object sender, EventArgs e)
         {
-            udfnPurLocationAutocomplete();
+            try
+            {
+                udfnPurLocationAutocomplete();
+                txtRack.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtRack_TextChanged(object sender, EventArgs e)
@@ -1332,8 +1344,16 @@ namespace ROMS
 
         private void LvRack_DoubleClick(object sender, EventArgs e)
         {
-            udfnPurRackAutocomplete();
-            btnAdd.Focus();
+            try
+            {
+                udfnPurRackAutocomplete();
+                btnAdd.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnPurRackAutocomplete()
         {
@@ -1588,7 +1608,7 @@ namespace ROMS
                             tpSuppliername.Show("Invalid supplier.", txtSupplier, 5000);
                             lblSupplierCode.Text = "0";
                             lblschedule.Text = "0";
-                            varErrorFlag = true;
+                            varErrorFlag = false;
                         }
                         else
                         {
@@ -1606,7 +1626,20 @@ namespace ROMS
                         tpDcNo.Show("DC No. is empty.", txtDcNo, 5000);
                         varErrorFlag = false;
                     }
-                    if (varErrorFlag == true)
+                    for(int i=0;i<grdPurchaseDC.Rows.Count;i++)
+                    {
+                        if(Convert.ToString( grdPurchaseDC.Rows[i].Cells["clmQuantity"].Value)=="0")
+                        {
+                            varErrorFlag = false;
+                            grdPurchaseDC.Rows[i].Cells["clmError"].Value = 1;
+                        }
+                        else
+                        {
+                            grdPurchaseDC.CurrentRow.DefaultCellStyle.BackColor = Color.White;
+                            grdPurchaseDC.Rows[i].Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
+                        }
+                    }
+                    if (varErrorFlag == true && varErrQty=="0")
                     {
                         udfnTooltipHide(); int varDC_PURID = 0; int varStatusID = 18;
                         if (grdPurchaseDC.Rows.Count > 0)
@@ -1807,12 +1840,52 @@ namespace ROMS
 
         }
 
-        private void GrdPurchaseDC_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void Lvproduct_DoubleClick(object sender, EventArgs e)
         {
             try
             {
+                udfnListviewProduct();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdPurchaseDC_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            //try
+            //{
+            //    object varEditQty = grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            //    //Update the same column value in the DataTable
+            //    dtPurchaseDC.Rows[e.RowIndex]["DCPR_Qty"] = varEditQty;
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+            try
+            {
+                int Quantity = Convert.ToInt32(grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Value);
+                if (Convert.ToString(Quantity) == "0" || Convert.ToString(Quantity) == "")
+                {
+                    grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.LightPink;
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    varErrQty = "1";
+                    grdPurchaseDC.Rows[e.RowIndex].Cells["clmError"].Value = varErrQty;
+                }
+                else
+                {
+                    grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
+                    varErrQty = "0";
+                    grdPurchaseDC.Rows[e.RowIndex].Cells["clmError"].Value = varErrQty;
+                }
                 object varEditQty = grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                // Update the same column value in the DataTable
+                //Update the same column value in the DataTable
                 dtPurchaseDC.Rows[e.RowIndex]["DCPR_Qty"] = varEditQty;
             }
             catch (Exception ex)
@@ -1821,7 +1894,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void GrdPurchaseDC_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPurchaseDC.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmQuantity":
+                            if (Convert.ToString(grdPurchaseDC.Rows[e.RowIndex].Cells["clmQuantity"].Value) == "" || Convert.ToString(grdPurchaseDC.Rows[e.RowIndex].Cells["clmQuantity"].Value) == "0")
+                            {
+                                grdPurchaseDC.CurrentRow.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                            }
+                            else
+                            {
+                                DataGridView dataGridView = (DataGridView)sender;
+                                DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmOrderqty"];
+                                grdPurchaseDC.CurrentRow.DefaultCellStyle.BackColor = Color.White;
+                                cell.Style.BackColor = Color.PaleGreen;
+                                cell.Style.ForeColor = Color.Black;// Set the background color to the default background color}
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_PurchaseDC_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1846,8 +1949,19 @@ namespace ROMS
 
         private void LvRack_KeyDown(object sender, KeyEventArgs e)
         {
-            udfnPurRackAutocomplete();
-            btnAdd.Focus();
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnPurRackAutocomplete();
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdPurchaseDC_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -2685,6 +2799,7 @@ namespace ROMS
                     lblProductcode.Text = selectedItem.SubItems[3].Text;
                     udfnProductAdd();
                 }
+                udfnDefalutLocation();
                 txtMrp.Focus();
             }
             catch (Exception ex)
@@ -2704,6 +2819,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListviewProduct();
+                    txtMrp.Focus();
                 }
             }
             catch (Exception ex)
