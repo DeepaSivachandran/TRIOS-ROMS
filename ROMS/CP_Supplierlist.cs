@@ -1377,9 +1377,9 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_List.rpt");
-                    objBillreport.SetParameterValue("paraSupplierid", varSupplierId);
-                    objBillreport.SetParameterValue("paraSupplierScheduleid", Convert.ToInt32(lblschedule.Text));
-                    objBillreport.SetParameterValue("paraOrderId", Convert.ToInt32(0));
+                    objBillreport.SetParameterValue("paraSupplierid ", varSupplierId);
+                    objBillreport.SetParameterValue("paraSupplierScheduleid ", Convert.ToInt32(lblschedule.Text));
+                    objBillreport.SetParameterValue("paraOrderId ", Convert.ToInt32(0));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
