@@ -941,7 +941,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["City"].Width = 100; 
                             grdPurchaseorderlist.Columns["T.Pro"].Width = 50;
                             grdPurchaseorderlist.Columns["T.Qty"].Width = 50;
-                            grdPurchaseorderlist.Columns["TAT"].Width = 70;
+                            grdPurchaseorderlist.Columns["TAD"].Width = 70;
                             grdPurchaseorderlist.Columns["Created By"].Width = 100;
                             grdPurchaseorderlist.Columns["Created On"].Width = 150;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
@@ -966,7 +966,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["GSTIN"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["TAD"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["Issue Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -2281,7 +2281,7 @@ namespace ROMS
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                                 }
                                 if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date"   || col.Name == "Created On"
-                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
+                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAD" || col.Name == "Total Products")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                                 }
@@ -2321,7 +2321,7 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
-                                if (col.Name == "TAT")
+                                if (col.Name == "TAD")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }

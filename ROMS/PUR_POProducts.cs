@@ -94,7 +94,8 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     grdPurchaseOrder.Rows.Clear();
                 }
-
+                 
+                grdPurchaseOrder.ClearSelection();
             }
             catch (Exception ex)
             {
