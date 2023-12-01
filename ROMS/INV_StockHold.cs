@@ -201,7 +201,7 @@ namespace ROMS
             {
                 udfnList();
                 udfnCmbConcern();
-                this.ActiveControl = cmbConcern;
+                this.ActiveControl = txtProductNamePICode;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
@@ -348,6 +348,7 @@ namespace ROMS
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        udfnClear();
                     }
                 }
                 
@@ -362,6 +363,7 @@ namespace ROMS
                 btnSave.Text = "Save";
                 cmbConcern.Enabled = true;
                 txtProductNamePICode.Enabled = true;
+                grdStockHold.ClearSelection();
             }
         }
         public void udfnList()
@@ -688,8 +690,10 @@ namespace ROMS
                             }
                             break;
                         case "clmEdit":
+                            udfnEdit();
                             lvproduct.Visible = false;
-                            udfnEdit();                           
+                            txtProductNamePICode.BackColor = Color.White;
+                            tpProductNamePICode.Active = false;
                             break;
                     }
                 }
@@ -700,6 +704,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
                 
+        }
+        public void udfntooltiphide()
+        {
+            try
+            {
+                epStockHold.Clear();
+                tpConcern.Active = false;
+                tpProductNamePICode.Active = false;
+                tpQty.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnEdit()
         {
@@ -721,6 +740,8 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                            udfntooltiphide();
+                            tpProductNamePICode.Active = false;
                             cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMID"];
                             txtProductNamePICode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Product"]);
                             lblUnit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Unit"]);
@@ -1317,6 +1338,13 @@ namespace ROMS
         {
             try
             {
+                txtStockLoc.Text = "";
+                txtRack.Text = "";
+                txtMrp.Text = "";
+                txtExpiryDate.Text = "";
+                txtBatchNo.Text = "";
+                txtStockQty.Text = "";
+                txtQty.Text = "";
                 lvproduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
