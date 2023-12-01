@@ -226,12 +226,12 @@ namespace ROMS
                     dpissuedateandtime.Enabled = false;
                     txtTurnAroundTime.Enabled = false;
                     grdsupplieradd.Columns["clmRemove"].Visible = false;
-                    grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
-                    grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;
-                    grdsupplieradd.Columns["clmordertotalqty"].ReadOnly = true; 
-                    grdsupplieradd.Columns["Column2"].DefaultCellStyle.BackColor = Color.LightGray;
-                    grdsupplieradd.Columns["clmordertotalqty"].DefaultCellStyle.BackColor = Color.LightGray; 
-                    grdsupplieradd.Columns["clmunitorderqty"].DefaultCellStyle.BackColor = Color.LightGray; 
+                    //grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
+                    //grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;
+                    //grdsupplieradd.Columns["clmordertotalqty"].ReadOnly = true; 
+                    //grdsupplieradd.Columns["Column2"].DefaultCellStyle.BackColor = Color.LightGray;
+                    //grdsupplieradd.Columns["clmordertotalqty"].DefaultCellStyle.BackColor = Color.LightGray; 
+                    //grdsupplieradd.Columns["clmunitorderqty"].DefaultCellStyle.BackColor = Color.LightGray; 
 
 
                     btnViewedProduct.Enabled = false;
@@ -2804,8 +2804,8 @@ namespace ROMS
                     {
 
                         case "clmunitorderqty":
-                            if (VarStatusId == 12 || VarStatusId == 0)
-                            {
+                            //if (VarStatusId == 12 || VarStatusId == 0)
+                            //{
                                 if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) == "")
                                 {
                                     DataGridView dataGridView = (DataGridView)sender;
@@ -2829,11 +2829,11 @@ namespace ROMS
                                     cell3.Style.BackColor = Color.PaleGreen;
                                     cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color}
                                 }
-                            }
+                            //}
                             break;
                         case "clmOrderqty":
-                            if (VarStatusId == 12 || VarStatusId == 0)
-                            {
+                            //if (VarStatusId == 12 || VarStatusId == 0)
+                            //{
                                 if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value) != "0")
                                 {
                                     if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) == "")
@@ -2860,11 +2860,11 @@ namespace ROMS
                                         cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color}
                                     }
                                 }
-                            }
+                            ///}
                             break;
                         case "clmordertotalqty":
-                            if (VarStatusId == 12 || VarStatusId == 0)
-                            {
+                           // if (VarStatusId == 12 || VarStatusId == 0)
+                           // {
                                 if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) == "")
                                 {
                                     DataGridView dataGridView = (DataGridView)sender;
@@ -2888,7 +2888,7 @@ namespace ROMS
                                     cell3.Style.BackColor = Color.PaleGreen;
                                     cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color}
                                 }
-                            }
+                          //  }
                                 break;
                             
                     }
@@ -3186,8 +3186,8 @@ namespace ROMS
         {
             try
             {
-                if (VarStatusId == 12 || VarStatusId == 0)
-                {
+                //if (VarStatusId == 12 || VarStatusId == 0)
+                //{
                     switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                     {
                         case "clmOrderqty":
@@ -3208,7 +3208,7 @@ namespace ROMS
                                 qtyFlag = 3;
                             }
                             break;
-                    }
+                  //  }
                     int varUPP = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value) != "-") { varUPP = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value); }
                     double varNettWeight = 0; if (Convert.ToString(Convert.ToDouble(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value)) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value) != "-") { varNettWeight = Convert.ToDouble(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value); }
                     double varBulkUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "-") { varBulkUnitQty = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value); }
@@ -3225,8 +3225,8 @@ namespace ROMS
             }
             finally
             {
-                if (VarStatusId == 12 || VarStatusId == 0)
-                {
+                //if (VarStatusId == 12 || VarStatusId == 0)
+                //{
                     if (varFinalBulkUnit == 0)
                     {
                         grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value = "-";
@@ -3247,7 +3247,7 @@ namespace ROMS
                     grdsupplieradd.Rows[e.RowIndex].Cells["clmtotalkg"].Value = varFinalTotalKg;
                     varFinalBulkUnit = 0; varFinalUnit = 0; varFinalTotalQty = 0; varFinalTotalKg = 0;
                     udfnTotalKG();
-                }
+               // }
             }
         }
 
@@ -3255,8 +3255,8 @@ namespace ROMS
         {
             try
             {
-                if (VarStatusId == 12 || VarStatusId == 0)
-                {
+              //  if (VarStatusId == 12 || VarStatusId == 0)
+              //  {
                     if (qtyFlag == 1)
                     {
                         totalBulkqty = Convert.ToInt32(varBulkUnitQty);
@@ -3361,7 +3361,7 @@ namespace ROMS
                                 varFinalTotalKg = totalKgQty;
                             }
                         }
-                    }
+                   // }
                 }
 
             }
