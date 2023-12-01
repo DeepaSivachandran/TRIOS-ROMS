@@ -91,8 +91,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void PUR_SupplierScheduleList_Load(object sender, EventArgs e)
         {
             try
@@ -155,6 +153,7 @@ namespace ROMS
         {
             try
             {
+                Varflag = 0;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -211,7 +210,6 @@ namespace ROMS
                         lblSupplierCode.Text = values[0];
                         lblschedule.Text = values[1];
                         txtSupplier.BackColor = Color.White;
-
                     }
                     //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                 }
@@ -1930,41 +1928,95 @@ namespace ROMS
         {
             try
             {
-                int varSupplierId = 0;
+                string varSupplierId = "0";
                 if (txtSupplier.Text == "")
                 {
-                    varSupplierId = 0;
+                    varSupplierId = "0";
                 }
                 else
                 {
-                    DataService objDServ = new DataService();
-                    string varId_Supplier = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SPID FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') END AS SPID ");
-                    objDServ.CloseConnection();
-                    varSupplierId = Convert.ToInt32(varId_Supplier);
+                    string[] values = new string[0];
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(31, 0, Convert.ToInt32(lblschedule.Text), 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
+                    {
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                        }
+                    }
+                    if (values[0] == "-1")
+                    {
+                        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSupplier.ShowAlways = true;
+                        tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
+                        lblSupplierCode.Text = "0";
+                        lblschedule.Text = "0";
+                        Varflag = 1;
+                    }
+                    else
+                    {
+                        ep_Supplierlist.Clear();
+                        lblSupplierCode.Text = values[0];
+                        lblschedule.Text = values[1];
+                        txtSupplier.BackColor = Color.White;
+
+                    }
+                    //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                 }
-                btnListPrint.Enabled = false;
-                RPTViewer.Visible = true;
-                RPTViewer.BringToFront();
-                RPTViewer.ReuseParameterValuesOnRefresh = true;
-                RPTViewer.RefreshReport();
-                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                //objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrder.SelectedValue), 
-                //    "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "");
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleList.rpt");
-                objBillreport.SetParameterValue("paraSupplierid", Convert.ToInt32(varSupplierId));
-                objBillreport.SetParameterValue("paradayid", Convert.ToInt32(cmbDay.SelectedValue));
-                objBillreport.SetParameterValue("paraSupplierScheduleid", Convert.ToInt32(cmbOrderSchedule.SelectedValue));
-                //objBillreport.SetParameterValue("paraSupplierid", Convert.ToInt32(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                objBillreport.SetParameterValue("paraStatusName", cmbStatus.Text);
-                objBillreport.SetParameterValue("paraStatusId",Convert.ToInt32(cmbStatus.SelectedValue));
-                objValidation.CrySqlConnection(objBillreport);
-                RPTViewer.ReportSource = objBillreport;
-                RPTViewer.Refresh();
+                //else
+                //{
+                //    DataService objDServ = new DataService();
+                //    string varId_Supplier = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SPID FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') END AS SPID ");
+                //    objDServ.CloseConnection();
+                //    varSupplierId = Convert.ToInt32(varId_Supplier);
+                //}
+                if (Varflag == 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objDs = objDServ.udfnSupplierList(8, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrder.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDServ.CloseConnection();
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+                        btnListPrint.Enabled = false;
+                        RPTViewer.Visible = true;
+                        RPTViewer.BringToFront();
+                        RPTViewer.ReuseParameterValuesOnRefresh = true;
+                        RPTViewer.RefreshReport();
+                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleList.rpt");
+                        objBillreport.SetParameterValue("paraSupplierid", Convert.ToInt32(lblSupplierCode.Text));
+                        objBillreport.SetParameterValue("paradayid", Convert.ToInt32(cmbDay.SelectedValue));
+                        objBillreport.SetParameterValue("paraSupplierScheduleid", Convert.ToInt32(cmbOrderSchedule.SelectedValue));
+                        //objBillreport.SetParameterValue("paraSupplierid", Convert.ToInt32(cmbStatus.SelectedValue));
+                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        objBillreport.SetParameterValue("paraStatusName", cmbStatus.Text);
+                        objBillreport.SetParameterValue("paraOrderId", Convert.ToInt32(cmbOrder.SelectedValue));
+                        objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                        objValidation.CrySqlConnection(objBillreport);
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                    dgvSupplierScheduleList.DataSource = null;
+
+                }
             }
             catch (Exception ex)
             {
