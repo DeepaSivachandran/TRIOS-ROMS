@@ -511,8 +511,7 @@ namespace ROMS
                 }
                 udfnList();
                 dtpOutwardDate.MaxDate = DateTime.Now;
-                dtpOutwardDate2.MaxDate = DateTime.Now;
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dtpOutwardDate2.MaxDate = DateTime.Now; cmbConcern.SelectedValue = MainForm.pbDefaultComId;
 
             }
             catch (Exception ex)

@@ -44,6 +44,8 @@
             this.txtPONo = new System.Windows.Forms.TextBox();
             this.txtPODate = new System.Windows.Forms.TextBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtUserData = new System.Windows.Forms.TextBox();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,8 +56,7 @@
             this.clmRcvdQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPendingQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtUserData = new System.Windows.Forms.TextBox();
+            this.STSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -92,7 +93,8 @@
             this.clmQtyUnit,
             this.clmRcvdQty,
             this.clmPendingQty,
-            this.clmStatus});
+            this.clmStatus,
+            this.STSID});
             this.grdPurchaseOrder.EnableHeadersVisualStyles = false;
             this.grdPurchaseOrder.GridColor = System.Drawing.Color.White;
             this.grdPurchaseOrder.Location = new System.Drawing.Point(12, 45);
@@ -106,6 +108,7 @@
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseOrder.Size = new System.Drawing.Size(1116, 435);
             this.grdPurchaseOrder.TabIndex = 1111144;
+            this.grdPurchaseOrder.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseOrder_DataBindingComplete);
             // 
             // label1
             // 
@@ -148,12 +151,30 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(374, 252);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(517, 252);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 1111150;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(332, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 20);
+            this.label3.TabIndex = 1111151;
+            this.label3.Text = "User";
+            // 
+            // txtUserData
+            // 
+            this.txtUserData.Enabled = false;
+            this.txtUserData.Location = new System.Drawing.Point(372, 9);
+            this.txtUserData.Name = "txtUserData";
+            this.txtUserData.ReadOnly = true;
+            this.txtUserData.Size = new System.Drawing.Size(529, 28);
+            this.txtUserData.TabIndex = 1111152;
             // 
             // clmsno
             // 
@@ -231,23 +252,12 @@
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
             // 
-            // label3
+            // STSID
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(332, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 20);
-            this.label3.TabIndex = 1111151;
-            this.label3.Text = "User";
-            // 
-            // txtUserData
-            // 
-            this.txtUserData.Enabled = false;
-            this.txtUserData.Location = new System.Drawing.Point(372, 9);
-            this.txtUserData.Name = "txtUserData";
-            this.txtUserData.ReadOnly = true;
-            this.txtUserData.Size = new System.Drawing.Size(529, 28);
-            this.txtUserData.TabIndex = 1111152;
+            this.STSID.HeaderText = "STSID";
+            this.STSID.Name = "STSID";
+            this.STSID.ReadOnly = true;
+            this.STSID.Visible = false;
             // 
             // PUR_POProducts
             // 
@@ -290,6 +300,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblNoRecordsFound;
+        private System.Windows.Forms.TextBox txtUserData;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -300,7 +312,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRcvdQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPendingQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
-        private System.Windows.Forms.TextBox txtUserData;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STSID;
     }
 }

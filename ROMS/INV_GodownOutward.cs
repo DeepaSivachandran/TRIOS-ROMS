@@ -27,7 +27,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
 
-        public string varStockLocationId = "", varErrQty="0";
+        public string varStockLocationId = "";
         public int varCloseFlag = 0;
         public int varGOId = 0;
         public int varUpdate = 0,VarUpdateFlag=0;
@@ -217,7 +217,7 @@ namespace ROMS
                 {
                     if (lvStockLocation.Items.Count == 0 || txtStockLocation.Text == "")
                     {
-                        cmbTransactionType.Focus();
+                        txtProduct.Focus();
                         lvStockLocation.Visible = false;
                     }
                     else
@@ -231,7 +231,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbTransactionType.Focus();
+                    txtProduct.Focus();
                 }
             }
             catch (Exception ex)
@@ -640,6 +640,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                 udfnCmbConcern();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnTransactionData();
                 dtpOutwardDate.MaxDate = DateTime.Now;
                 grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
@@ -651,7 +652,6 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
@@ -805,7 +805,7 @@ namespace ROMS
             try
             {
                 udfnLvStockLocation();
-                cmbTransactionType.Focus();
+                txtProduct.Focus();
             }
             catch (Exception ex)
             {
@@ -842,7 +842,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnLvStockLocation();
-                    cmbTransactionType.Focus();
+                    txtProduct.Focus();
                 }
             }
             catch (Exception ex)
@@ -888,8 +888,8 @@ namespace ROMS
                             lvproduct.Columns[0].Width = 0;
                             lvproduct.Columns[1].Width = 100;
                             lvproduct.Columns[2].Width = 550;
-                            lvproduct.Columns[3].Width = 220;
-                            lvproduct.Columns[4].Width = 0;
+                            lvproduct.Columns[3].Width = 0;
+                            lvproduct.Columns[4].Width = 220;
                             lvproduct.Columns[5].Width = 0;
                             lvproduct.Columns[6].Width = 0;
                             lvproduct.Columns[7].Width = 0;
@@ -921,6 +921,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtProduct.BackColor = Color.White;
+                epGoodsOutward.Clear();
             }
         }
 
@@ -960,7 +965,7 @@ namespace ROMS
             { 
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
                     varPRID = selectedItem.SubItems[0].Text;
-                    txtProduct.Text = selectedItem.SubItems[3].Text;
+                    txtProduct.Text = selectedItem.SubItems[4].Text;
                     varPICode = selectedItem.SubItems[1].Text;
                     txtRack.Text = selectedItem.SubItems[5].Text;
                     txtMrp.Text = selectedItem.SubItems[6].Text;
@@ -1238,7 +1243,7 @@ namespace ROMS
                 int StockcellValue =Convert.ToInt32( grdGoodsOutward.CurrentRow.Cells["clmQty"].Value);
                 int OutwardcellValue = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmOutward"].Value);
 
-                if (Convert.ToInt32(OutwardcellValue) > Convert.ToInt32(StockcellValue) || Convert.ToInt32(OutwardcellValue) ==0 ||  Convert.ToString(OutwardcellValue) == "")
+                if (Convert.ToInt32(OutwardcellValue) > Convert.ToInt32(StockcellValue))
                 {
                     grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
@@ -1246,13 +1251,12 @@ namespace ROMS
                     tpConcern.Show("Please enter valid outward qty", grdGoodsOutward, 5000);
                     SPDataService objDServ = new SPDataService();
                     objDServ.CloseConnection();
-                    varErrQty = "1";
                     //MessageBox.Show("Please Enter Valid Outward Quantity", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = Color.PaleGreen; 
-                    varErrQty = "0";
+                    grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = Color.PaleGreen;
+
                 }
                 object varEditQty = grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     // Update the same column value in the DataTable
@@ -1375,14 +1379,6 @@ namespace ROMS
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(38);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    blnErrorFlag = false;
-                }
-                if (varErrQty == "1")
-                {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
@@ -1677,7 +1673,7 @@ namespace ROMS
 
                 if (varErrorFlag == true)
                 {
-                    int varflag = 0; 
+                    int varflag = 0;
 
                     if (varflag == 0)
                     {
@@ -1691,7 +1687,7 @@ namespace ROMS
                         else
                         {
                             //SLID = varStockLocationId;
-                            grdGoodsOutward.Rows.Add(grdGoodsOutward.Rows.Count + 1,varPRID, varPICode, (txtProduct.Text),varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text).Trim(),varUnit, varUTID);
+                            grdGoodsOutward.Rows.Add(grdGoodsOutward.Rows.Count + 1, varPRID, varPICode, (txtProduct.Text), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text).Trim(), varUnit, varUTID);
                             dtStock.Rows.Add(varPRID, (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtOutwardQuantity.Text).Trim(), varRKID, varDestSLID, varDestRKID);
                             txtTotalItem.Text = Convert.ToString(grdGoodsOutward.Rows.Count);
                             //varTotalItem = Convert.ToString(DGV_inward.Rows.Count);
@@ -1701,7 +1697,7 @@ namespace ROMS
                             grdGoodsOutward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             udfnProductClear();
                             txtProduct.Focus();
-                            
+
                         }
                     }
                     else
@@ -1712,8 +1708,9 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
+
+                    varChangeFlag = false;
                 }
-                varChangeFlag = false;
             }
             catch (Exception ex)
             {
@@ -1723,7 +1720,8 @@ namespace ROMS
             finally
             {
                 grdGoodsOutward.Rows.Count.ToString();
-                if(grdGoodsOutward.Rows.Count>0)
+                grdGoodsOutward.ClearSelection();
+                if (grdGoodsOutward.Rows.Count > 0)
                 {
                     txtStockLocation.Enabled = false;
                 }

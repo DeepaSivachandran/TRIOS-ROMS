@@ -72,6 +72,7 @@ namespace ROMS
                 varModifiedFlag = 1;
                 txtProductName.Focus();
                 epDamageEntry.Clear();
+                grdDamageEntry.ClearSelection();
                 udfnProductClear();
             }
             catch(Exception ex)
@@ -1660,7 +1661,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtsuppliername.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtsuppliername.Text, 0, 0, 0, "", 0, 0, 0, 0, 0,0,"");
+                    objDs = objspdservice.udfnSupplierList(30, 0, 0, 0, 0, txtsuppliername.Text, 0, 0, 0, "", 0, 0, 0, 0, 0,0,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

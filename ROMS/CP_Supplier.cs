@@ -8439,6 +8439,11 @@ namespace ROMS
             }
         }
 
+        private void GrpSupplierDetails_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         private void BtnRemove_Leave(object sender, EventArgs e)
         {
             try
