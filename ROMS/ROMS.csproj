@@ -187,6 +187,7 @@
     <Compile Include="MaskedTextColumn.cs" />
     <Compile Include="Model\TRNG_Stock.cs" />
     <Compile Include="Model\TRNS_GoodsOutward.cs" />
+    <Compile Include="Model\TRNS_StockRequest.cs" />
     <Compile Include="Model\TRN_Purchase_DC.cs" />
     <Compile Include="Model\TRNS_GRN.cs" />
     <Compile Include="CP_SupplierPopup.cs">

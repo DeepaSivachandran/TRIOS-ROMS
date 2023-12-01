@@ -691,7 +691,39 @@ namespace ROMS
             }
             return varResult;
         }
-
+        //Added By Sathish On:-01-12-2023
+        public string udfnStockRequest(TRNS_StockRequest objTRNS_StockRequest)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_StockRequest]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNS_StockRequest.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraStockRequestID", objTRNS_StockRequest.paraStockRequestID);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objTRNS_StockRequest.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraRequestDate", objTRNS_StockRequest.paraRequestDate);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRNS_StockRequest.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRNS_StockRequest.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_StockRequest.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraStockRequest", objTRNS_StockRequest.paraStockRequest);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
         //Added By Sathish On:-28-11-2023
         public DataSet udfnStock(TRNG_Stock objTRNG_Stock)
         {

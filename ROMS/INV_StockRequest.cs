@@ -23,6 +23,8 @@ namespace ROMS
 
         public string VarAdd = "0";
         public string varProducts = "";
+        public int varModifiedFlag = 0;
+        public int varID = 0;
         public INV_StockRequest()
         {
             InitializeComponent();
@@ -263,7 +265,7 @@ namespace ROMS
         {
             try
             {
-                if (chkCompleted.Checked) { btnSave.Text = "Save && Print"; } else { btnSave.Text = "Draft"; }
+                if (chkCompleted.Checked) { btnSave.Text = "Save && Print"; } else { btnSave.Text = "Save as Draft"; }
             }
             catch (Exception ex)
             {
@@ -475,7 +477,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,"","",null,0, null);
+                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,varProducts,"",null,0, null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -615,16 +617,20 @@ namespace ROMS
                             for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
                             {
                                 grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[2].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[2].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[2].Rows[i]["EMP_Name"]), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Symbol"]),Convert.ToString(lblProduct.Text));
+                            }
+                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),0,0,Convert.ToString(txtRequiredQty.Text));
+                            for(int j=0;j<grdStockRequest.Rows.Count;j++)
+                            {
                                 if (varProducts == "")
                                 {
-                                    varProducts = Convert.ToString(grdStockRequest.Rows[i].Cells["clmPRID"].Value);
+                                    varProducts = Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
                                 }
                                 else
                                 {
-                                    varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[i].Cells["clmPRID"].Value);
+                                    varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
                                 }
                             }
-                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),0,0,Convert.ToString(txtRequiredQty.Text));
+
                             VarAdd = "0";
                             txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
                             errStockRequest.Clear();
@@ -632,6 +638,7 @@ namespace ROMS
                             txtStockQty.Text = "";
                             txtRequiredQty.Text = "";
                             grdGodownStock.Rows.Clear();
+                            grdStockRequest.ClearSelection();
                             txtProductNamePICode.Focus();
                         }
                     }
@@ -865,6 +872,156 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockRequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int varProductID = 0;
+                string varMRP = "", varExpiryDate = "", varBatchNo = "", varSRKID = "";
+                if (e.RowIndex != -1)
+                {
+                    switch (grdStockRequest.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmRemove":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdStockRequest.Rows.RemoveAt(this.grdStockRequest.SelectedRows[0].Index);
+                                for (int i = 0; i < grdStockRequest.RowCount; i++)
+                                {
+                                    grdStockRequest.Rows[i].Cells["clmdsno"].Value = i + 1;
+                                }
+                                varModifiedFlag = 1;
+                                for (int i = 0; i < dtStock.Rows.Count; i++)
+                                {
+                                    if (Convert.ToInt32(dtStock.Rows[i]["STK_PRID"]) == Convert.ToInt32(varProductID) && Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo && Convert.ToString(dtStock.Rows[i]["STK_Source_RKID"]) == varSRKID)
+                                    {
+                                        dtStock.Rows[i].Delete();
+                                        dtStock.AcceptChanges();
+                                    }
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+            }
+        }
+
+        private void TxtRemarks_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemarks.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                errStockRequest.Clear();
+                bool blnErrorFlag = false;
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    errStockRequest.SetError(cmbConcern, "Please select concern");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
+                    blnErrorFlag = true;
+                }
+                if (grdStockRequest.Rows.Count < 1)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(38);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    errStockRequest.Clear();
+                    btnSave.Enabled = false;
+                    udfnSave(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        public void udfnSave(object sender, EventArgs e)
+        {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
+                if (btnSave.Text == "Save as Draft")
+                {
+                    varoriginator = "Stock Request Creation";
+                    varType = 0;
+                }
+                else
+                {
+                    varoriginator = "Stock Request Updation";
+                    varType = 1;
+                }
+                Model.TRNS_StockRequest objTRNS_StockRequest = new Model.TRNS_StockRequest();
+                objTRNS_StockRequest.ViewType = varType;
+                objTRNS_StockRequest.paraStockRequestID = varID;
+                objTRNS_StockRequest.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNS_StockRequest.paraRequestDate = dpDate.Text;
+                objTRNS_StockRequest.paraRemarks = txtRemarks.Text;
+                objTRNS_StockRequest.paraOriginator = varoriginator;
+                objTRNS_StockRequest.paraStockRequest = dtStock;
+                varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
+                objspservice.CloseConnection();
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MainForm.objINV_StockRequestList.udfnList();
+                    varModifiedFlag = 0;
+                    this.Close();
+                }
+                else
+                {
+                    errStockRequest.Clear();
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
