@@ -989,9 +989,6 @@ namespace ROMS
             }
         }
 
-        private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
         private void udfnSearchGridHead()
         {
             try
