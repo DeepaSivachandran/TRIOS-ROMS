@@ -833,6 +833,11 @@ namespace ROMS
                                     lvStockLocation.Visible = false;
                                 }
                             }
+                            else
+                            {
+                                lblStockLocationCode.Text = "0";
+                                txtStockLocation.Text = "";
+                            }
                         }
                     }
                 }
@@ -853,6 +858,8 @@ namespace ROMS
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProduct.ShowAlways = true;
                     tpProduct.Show("Please enter product.", txtProductName, 5000);
+                    txtStockLocation.Text = "";
+                    lblStockLocationCode.Text = "0";
                 }
                 else
                 {
@@ -872,6 +879,7 @@ namespace ROMS
         {
             try
             {
+                lvproduct.Visible = false;
                 txtMrp.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2116,6 +2124,7 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
                 txtRack.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2198,6 +2207,8 @@ namespace ROMS
         {
             try
             {
+                lvproduct.Visible = false;
+                lvRack.Visible = false;
                 btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

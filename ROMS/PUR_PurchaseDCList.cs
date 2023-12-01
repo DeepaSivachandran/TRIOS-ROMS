@@ -84,12 +84,12 @@ namespace ROMS
                             grdPurchaseDCList.DataSource = objDs.Tables[0];
                             grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseDCList.Columns["DC_Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseDCList.Columns["Concern"].Width = 150;
-                            grdPurchaseDCList.Columns["DC_Date"].Width = 100;
-                            grdPurchaseDCList.Columns["DC_No"].Width = 100;
-                            grdPurchaseDCList.Columns["SP_Name"].Width = 250;
+                            grdPurchaseDCList.Columns["DC Date"].Width = 100;
+                            grdPurchaseDCList.Columns["DC No."].Width = 100;
+                            grdPurchaseDCList.Columns["Supplier"].Width = 300;
                             grdPurchaseDCList.Columns["Total Products"].Width = 100;
                             grdPurchaseDCList.Columns["GSTIN"].Width = 170;
                             grdPurchaseDCList.Columns["Status"].Width = 80;
@@ -942,6 +942,7 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
