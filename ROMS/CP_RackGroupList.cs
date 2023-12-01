@@ -74,22 +74,32 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
+                        string varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", 0, "Rack Group Deletion", varUserID, 0);
+                        objDser.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
                         {
-                            string varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", 0, "Rack Group Deletion", varUserID);
-                            objDser.CloseConnection();
-                            if (varResult.Split('~')[0] == "3")
+                            if (varResult.Split('~')[1] == "1")
                             {
-                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                udfnList();
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    objDser = new SPDataService();
+                                    varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", 0, "Rack Group Deletion", varUserID, 1);
+                                    objDser.CloseConnection();
+                                    if (varResult.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
                             }
-                            else if (varResult.Split('~')[0] == "4")
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                        }
+                        else if (varResult.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -102,8 +112,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
             }
 
         }
@@ -274,7 +283,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                int varViewType = 2;
+                int varViewType = 8;
                 objDT = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
@@ -302,6 +311,7 @@ namespace ROMS
             try
             {
                 udfnCmbConcern();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
                 this.ActiveControl = cmbConcern;
             }
@@ -315,6 +325,7 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -505,7 +516,7 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+              //  DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -604,10 +615,21 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdRackGroupList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    if (Convert.ToString(rowa.Cells[col.Index].Value) != "")
+                                    {
+                                        ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                        varSLno++;
+                                    }
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
                             }
                         }
                     }
@@ -635,6 +657,7 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -767,6 +790,10 @@ namespace ROMS
                     {
                         grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.White;
                     }
+                    if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Employee Name"].Value) == "")
+                    {
+                        grdRackGroupList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                    }
                 }
             }
             catch (Exception ex)
@@ -858,7 +885,7 @@ namespace ROMS
                     }
                     else
                     {
-                        varViewType = 20;
+                        varViewType = 22;
                     }
                     objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text,0, 0,0);
                     objspdservice.CloseConnection();
@@ -892,7 +919,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvStockLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -909,7 +935,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvStockLocation_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -941,7 +966,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -955,7 +979,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try

@@ -123,6 +123,7 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdEmployeeList.DataSource = objDs.Tables[0];
+                            grdEmployeeList.Columns["CT_SINO"].Visible = false;
                             grdEmployeeList.Columns["EMPID"].Visible = false;
                             grdEmployeeList.Columns["CategoryID"].Visible = false;
                             grdEmployeeList.Columns["StatusID"].Visible = false;
@@ -174,23 +175,32 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objspservice = new SPDataService();
-                        varResult = "";
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
+                        varResult = objspservice.udfnEmployee(2, Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["EMPID"].Value.ToString()), "", "", 0, 0, "Employee Deletion", varUserID, 0);
+                        objspservice.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
                         {
-                            varResult = objspservice.udfnEmployee(2, Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["EMPID"].Value.ToString()), "", "", 0, 0, "Employee Deletion", varUserID);
-                            objspservice.CloseConnection();
-                            if (varResult.Split('~')[0] == "3")
+                            if (varResult.Split('~')[1] == "1")
                             {
-                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                udfnList();
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    objspservice = new SPDataService();
+                                    varResult = objspservice.udfnEmployee(2, Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["EMPID"].Value.ToString()), "", "", 0, 0, "Employee Deletion", varUserID, 1);
+                                    objspservice.CloseConnection();
+                                    if (varResult.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
                             }
-                            else
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -724,9 +734,18 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
+                            int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdEmployeeList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 1)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    varSLno++;
+                                }
+                                else
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                }
                             }
                         }
                     }
@@ -835,6 +854,7 @@ namespace ROMS
         {
             try
             {
+                lvUserList.Visible = false;
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -903,6 +923,7 @@ namespace ROMS
         {
             try
             {
+                lvUserList.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

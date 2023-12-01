@@ -168,8 +168,8 @@ namespace ROMS
                 cmbType.SelectedIndex = 0;
                 cmbPurchaseType.SelectedIndex = 0;
                 dpInvoiceDate.Enabled = true;
-               // this.tbDetails.DrawMode = TabDrawMode.OwnerDrawFixed;
-              //  this.tbDetails.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TbDetails_DrawItem);
+                // this.tbDetails.DrawMode = TabDrawMode.OwnerDrawFixed;
+                //  this.tbDetails.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TbDetails_DrawItem);
             }
             catch (Exception ex)
             {
@@ -315,6 +315,33 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupplierList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.grdSupplierList.Columns[e.ColumnIndex].Name == "clmExpDate")
+            {
+                ShortFormDateFormat(e);
+            }
+        }
+        private static void ShortFormDateFormat(DataGridViewCellFormattingEventArgs formatting)
+        {
+            if (formatting.Value != null)
+            {
+                try
+                {
+                    DateTime theDate = DateTime.Parse(formatting.Value.ToString());
+                    String dateString = theDate.ToString("dd-MM-yy");
+                    formatting.Value = dateString;
+                    formatting.FormattingApplied = true;
+                }
+                catch (FormatException)
+                {
+                    // Set to false in case there are other handlers interested trying to
+                    // format this DataGridViewCellFormattingEventArgs instance.
+                    formatting.FormattingApplied = false;
+                }
             }
         }
     }

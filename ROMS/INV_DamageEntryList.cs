@@ -238,11 +238,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnscrollVisible(DataGridView DGV,DataGridView grdGroupList)
+        public void udfnscrollVisible(DataGridView DGV,DataGridView grdDamageEntryList)
         {
             try
             {
-                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdDamageEntryList.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -352,7 +352,7 @@ namespace ROMS
             cmbconcern.Focus();
             dpFromDate.MaxDate = DateTime.Now;
             udfnCmbConcern();
-            cmbconcern.SelectedValue = 0;
+            cmbconcern.SelectedValue = 1;
             udfnList();
         }
         public void udfnCmbConcern()
@@ -487,19 +487,19 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdDamageEntryList.Rows.Count; i++)
-                //{
-                //    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "1")
-                //    {
-                //        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                //        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //    else
-                //    {
-                //        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                //        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //}
+                for (int i = 0; i < grdDamageEntryList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "20")
+                    {
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    //else
+                    //{
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    //}
+                }
             }
             catch (Exception ex)
             {
@@ -756,7 +756,7 @@ namespace ROMS
                     string varSupplierId = "0";
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplierName.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplierName.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"");
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -1019,7 +1019,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplierName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplierName.Text, 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplierName.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1281,7 +1281,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -49,7 +49,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService(); 
-                objDs = objdserv.udfnSupplierList(9, 0, 0, 0, 0, "", 0,0,Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue),"",0,0,0,0,0);
+                objDs = objdserv.udfnSupplierList(9, 0, 0, 0, 0, "", 0,0,Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue),"",0,0,0,0,0,0,"");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -62,23 +62,19 @@ namespace ROMS
                             {
                                 if (column.Index > 1)  
                                 {
-                                    column.Width = 200;
+                                    column.Width = 230;
                                 }
                             }
-
                         }
-
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
                             grdPOSchedule.DataSource = objDs.Tables[1];
                             grdPOSchedule.Columns["DYID"].Visible = false;
-                            grdPOSchedule.Columns["S.No."].Width = 50;
-                            grdPOSchedule.Columns["Order Day"].Width = 100;
                             foreach (DataGridViewColumn column in grdPOSchedule.Columns)
                             {
                                 if (column.Index > 1)
                                 {
-                                    column.Width = 100;
+                                    column.Width = 85;
                                 }
                                 string[] parts = column.HeaderText.Split('-');
                                  
@@ -90,6 +86,42 @@ namespace ROMS
                             if (grdPOSchedule.Rows.Count > 0) // Check if there are any rows
                             {
                                 grdPOSchedule.Rows[grdPOSchedule.Rows.Count - 1].Cells[1].Value = null;
+                                grdPOSchedule.Columns["clmPrint8"].DisplayIndex = grdPOSchedule.Columns.Count - 3;
+                                grdPOSchedule.Columns["clmPrint8"].Width = 30;
+                                grdPOSchedule.Columns["clmPrint7"].DisplayIndex = grdPOSchedule.Columns.Count - 5;
+                                grdPOSchedule.Columns["clmPrint7"].Width = 30;
+                                grdPOSchedule.Columns["clmPrint6"].DisplayIndex = grdPOSchedule.Columns.Count - 7;
+                                grdPOSchedule.Columns["clmPrint6"].Width = 30;
+                                grdPOSchedule.Columns["clmPrint5"].DisplayIndex = grdPOSchedule.Columns.Count - 9;
+                                grdPOSchedule.Columns["clmPrint5"].Width = 30;
+                                grdPOSchedule.Columns["clmPrint4"].DisplayIndex = grdPOSchedule.Columns.Count - 11;
+                                grdPOSchedule.Columns["clmPrint4"].Width = 30;
+                                grdPOSchedule.Columns["clmPrint3"].DisplayIndex = grdPOSchedule.Columns.Count - 13;
+                                grdPOSchedule.Columns["clmPrint3"].Width = 30;
+                                grdPOSchedule.Columns["clmPrint2"].DisplayIndex = grdPOSchedule.Columns.Count - 15;
+                                grdPOSchedule.Columns["clmPrint2"].Width = 30;
+                                grdPOSchedule.Columns["clmPrint1"].DisplayIndex = grdPOSchedule.Columns.Count - 17;
+                                grdPOSchedule.Columns["clmPrint1"].Width = 30;
+                                grdPOSchedule.Columns["S.No."].Width = 50;
+                               grdPOSchedule.Columns["Order Day"].Width = 100;
+                                //grdPOSchedule.Columns["clmPrint1"].DisplayIndex = 4;
+                                //grdPOSchedule.Columns["clmPrint2"].DisplayIndex = 5;
+                                //grdPOSchedule.Columns["clmPrint3"].DisplayIndex = 8;
+                                //grdPOSchedule.Columns["clmPrint4"].DisplayIndex = 9;
+                                //grdPOSchedule.Columns["clmPrint5"].DisplayIndex = 12;
+                                //grdPOSchedule.Columns["clmPrint6"].DisplayIndex = 13;
+                                grdPOSchedule.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns["Order Day"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                                grdPOSchedule.Columns[19].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[20].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[18].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[17].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[16].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[15].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPOSchedule.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                         }
                         if (objDs.Tables[2].Rows.Count != 0)
@@ -104,6 +136,18 @@ namespace ROMS
                                 lastCell.Value = Convert.ToString(objDs.Tables[2].Rows[0]["ProCount"].ToString().Replace("''", "'")); ;
                             } 
                         }
+                        //grdPOSchedule.Rows[7].DefaultCellStyle.BackColor = Color.MistyRose;
+                        //grdPOSchedule.Rows[7].DefaultCellStyle.ForeColor = Color.Black;
+                        grdPOSchedule.Rows[7].DefaultCellStyle.BackColor = Color.RosyBrown;
+                        grdPOSchedule.Rows[7].DefaultCellStyle.ForeColor = Color.White;
+                        foreach (DataGridViewColumn column in grdHeaderview.Columns)
+                        {
+                            column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                        }
+                        foreach (DataGridViewColumn column in grdPOSchedule.Columns)
+                        {
+                            column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                        }
                     }
                 } 
             }
@@ -112,6 +156,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             } 
+            finally
+            {
+                grdPOSchedule.ClearSelection();
+            }
         }
 
         private void BtnPrintdaywise_Enter(object sender, EventArgs e)
@@ -194,6 +242,70 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+
+        private void GrdPOSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    int varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
+                    string varHeader = "";
+                    switch (grdPOSchedule.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint1": case "clmPrint3": case "clmPrint5": case "clmPrint7":
+                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport1 = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport1 = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport1.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.rpt");
+                            varHeader = "Day Wise Supplier List";
+                            objBillreport1.SetParameterValue("@paracompanycode", Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue));
+                            objBillreport1.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport1.SetParameterValue("paraUserName", MainForm.pbUserName);
+                            objBillreport1.SetParameterValue("@pardayid", varDYID);
+                            objValidation.CrySqlConnection(objBillreport1);
+
+                            MainForm.objReportLoad = new ReportLoad();
+                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport1;
+                            MainForm.objReportLoad.Text = varHeader;
+                            MainForm.objReportLoad.ShowDialog();
+                            break;
+                        case "clmPrint2": case "clmPrint4":  case "clmPrint6": case "clmPrint8":
+                            int varlanguage = 0;
+                            if (rbEnglish.Checked == true)
+                            {
+                                varlanguage = 1;
+                            }
+                            else { varlanguage = 2; }
+                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
+                            objBillreport.SetParameterValue("@paracompanycode", 0);
+                            objBillreport.SetParameterValue("@paraOrderID", 0);
+                            objBillreport.SetParameterValue("@parascheduleid", 0);
+                            objBillreport.SetParameterValue("@parasupplierid", 0);
+                            objBillreport.SetParameterValue("@paraProductType", varlanguage);
+                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                            objBillreport.SetParameterValue("pardayid", varDYID);
+                            objValidation.CrySqlConnection(objBillreport);
+                            MainForm.objReportLoad = new ReportLoad();
+                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                            MainForm.objReportLoad.Text = varHeader;
+                            MainForm.objReportLoad.ShowDialog();
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
         }
     }
 }

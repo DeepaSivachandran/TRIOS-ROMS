@@ -38,6 +38,7 @@ namespace ROMS
         public int varCmbFlag = 0;
         public int varCompanyId = 0;
         public int varCheckAllFlag = 0;
+        public int varModifiedFlag = 0;
 
         public CP_RackGroup()
         {
@@ -86,6 +87,7 @@ namespace ROMS
                 dtEmployee.Columns.Add("Employee Name", typeof(string));
                 dtEmployee.Columns.Add("Employee Category", typeof(string));
                 dtEmployee.Columns.Add("EMPID", typeof(int));
+                dtEmployee.Columns.Add("CT_SINO", typeof(int));
 
 
                 DataSet objDs = new DataSet();
@@ -107,6 +109,7 @@ namespace ROMS
                 }
 
                 udfnCmbConcern();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnemployeeload();
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 if (btnSave.Text == "Save")
@@ -160,10 +163,10 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                int varViewType = 3, varConcernId = 0;
+                int varViewType = 9, varConcernId = 0;
                 if (btnSave.Text == "Update")
                 {
-                    varViewType = 4;
+                    varViewType = 10;
                     varConcernId = varCompanyId;
                 }
                 objDT = objdserv.udfnCompanyList(varViewType, varConcernId, MainForm.pbUserID, MainForm.pbIpAddress, 0);
@@ -211,7 +214,7 @@ namespace ROMS
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
                         dtEmployee.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Employee Code"], objDs.Tables[0].Rows[i]["Employee Name"],
-                           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"]);
+                           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"], objDs.Tables[0].Rows[i]["CT_SINO"]);
                     }
                 }
                 grdEmployee.DataSource = null;
@@ -224,8 +227,13 @@ namespace ROMS
                 grdEmployee.Columns["Employee Name"].Width = 180;
                 grdEmployee.Columns["Employee Category"].Width = 150;
                 grdEmployee.Columns["EMPID"].Visible = false;
+                grdEmployee.Columns["CT_SINO"].Visible = false;
                 grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
+                grdEmployee.Columns["S.No."].ReadOnly = true;
+                grdEmployee.Columns["Employee Code"].ReadOnly = true;
+                grdEmployee.Columns["Employee Name"].ReadOnly = true;
+                grdEmployee.Columns["Employee Category"].ReadOnly = true;
                 udfnEmpGridRemove();
 
             }
@@ -301,7 +309,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfncmbShopLocation()
         {
             try
@@ -401,6 +408,7 @@ namespace ROMS
                 grdRack.Columns[0].ReadOnly = false;
                 grdRack.Columns["S.No."].ReadOnly = true;
                 grdRack.Columns["Rack"].ReadOnly = true;
+                grdRack.Columns["Stock Location"].ReadOnly = true;
                 grdRack.Columns["Description"].ReadOnly = true;
                 grdRack.Columns["Total Products"].ReadOnly = true;
 
@@ -445,7 +453,7 @@ namespace ROMS
                     {
                         for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                         {
-                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]));
+                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_SINO"]));
                         }
                     }
 
@@ -486,7 +494,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
+            }
+            finally
+            {
+                grdStaffDetails.Sort(grdStaffDetails.Columns["clmSINO"], ListSortDirection.Ascending);
             }
         }
         public void udfnSave(object sender, EventArgs e)
@@ -533,12 +544,13 @@ namespace ROMS
                     }
                 }
                 SPDataService objDser = new SPDataService();
-                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator,MainForm.pbUserID);
+                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator,MainForm.pbUserID,0);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    varModifiedFlag = 0;
                     if (btnSave.Text == "Save")
                     {
                         udfnClear();
@@ -579,6 +591,7 @@ namespace ROMS
                 chkRack.Checked = false;
                 chkEmployee.Checked = false;
                 tpStaffName.Active = false;
+                lblTotalProduct.Text = "0";
                 cmbConcern.Focus();
                 foreach (DataGridViewRow row in grdEmployee.Rows)
                 {
@@ -686,17 +699,31 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
+                if (varModifiedFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();
                         MainForm.objCP_RackGroupList.Show();
                         MainForm.objCP_RackGroupList.udfnList();
-                    }
+                    }else
+                    { btnSave.Focus(); }
                 }
-                else { this.Close(); }
+                else
+                {
+                    if (varCloseFlag == 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                            MainForm.objCP_RackGroupList.Show();
+                            MainForm.objCP_RackGroupList.udfnList();
+                        }
+                    }
+                    else { this.Close(); }
+                }
             }
             catch (Exception ex)
             {
@@ -709,7 +736,6 @@ namespace ROMS
             try
             {
                 udfnclose();
-
             }
             catch (Exception ex)
             {
@@ -872,6 +898,7 @@ namespace ROMS
                                 dtEmployee.AcceptChanges();
                                 grdEmployee.DataSource = dtEmployee;
                                 BtnViewEmployee_Click(sender, e);
+                                varModifiedFlag = 1;
                             }
                             break;
                     }
@@ -892,44 +919,27 @@ namespace ROMS
         }
         private void DGV_Racklist_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            try
-            {
-                if (Convert.ToInt32(grdRack.SelectedRows[0].Cells["Total Products"].Value) != 0)
-                {
-                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
-                    MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdRack.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdRack.SelectedRows[0].Cells["Rack"].Value);
-                    MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdRack.SelectedRows[0].Cells["Description"].Value);
-                    MainForm.objCP_ProductDetails.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
-            }
         }
 
         private void GrdSelectedRackList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            try
-            {
-                if (Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["clmTotalProducts"].Value) != 0)
-                {
-                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
-                    MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value);
-                    MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value);
-                    MainForm.objCP_ProductDetails.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+            //try
+            //{
+            //    if (Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["clmTotalProducts"].Value) != 0)
+            //    {
+            //        MainForm.objCP_ProductDetails = new CP_ProductDetails();
+            //        MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["ID"].Value);
+            //        MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value);
+            //        MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value);
+            //        MainForm.objCP_ProductDetails.ShowDialog();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
 
-            }
+            //}
         }
 
         private void CmbConcern_Enter(object sender, EventArgs e)
@@ -1498,6 +1508,7 @@ namespace ROMS
                                 grdSelectedRack.Rows.Add(Convert.ToInt32(grdSelectedRack.Rows.Count) + 1, grdRack.Rows[i].Cells["Stock Location"].Value, grdRack.Rows[i].Cells["Rack"].Value, grdRack.Rows[i].Cells["Description"].Value, 
                                     grdRack.Rows[i].Cells["Total Products"].Value, grdRack.Rows[i].Cells["ID"].Value);
                             }
+                            varModifiedFlag = 1;
                         }
 
                     }
@@ -1615,6 +1626,7 @@ namespace ROMS
 
                                 dtRack.AcceptChanges();
                                 grdRack.DataSource = dtRack;
+                                varModifiedFlag = 1;
                             }
                             break;
 
@@ -1782,9 +1794,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void BtnAddemployee_Click(object sender, EventArgs e)
         {
             try
@@ -1828,8 +1838,9 @@ namespace ROMS
                             if (varFlag == 0)
                             {
                                 grdStaffDetails.Rows.Add(Convert.ToInt32(grdStaffDetails.Rows.Count) + 1, grdEmployee.Rows[i].Cells["Employee Code"].Value, grdEmployee.Rows[i].Cells["Employee Name"].Value,
-                                    grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value);
+                                grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value, Convert.ToString(grdEmployee.Rows[i].Cells["CT_SINO"].Value));
                             }
+                            varModifiedFlag = 1;
                         }
                     }
                     udfnEmpGridRemove();
@@ -1838,12 +1849,21 @@ namespace ROMS
                 {
                     MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdStaffDetails.Sort(grdStaffDetails.Columns[5], ListSortDirection.Ascending);
+
+                //For SNO Count For Right Side Grid
+                for (int i = 0; i < grdStaffDetails.Rows.Count; i++)
+                {
+                    grdStaffDetails.Rows[i].Cells["clmSno"].Value = i + 1;
+                }
             }
         }
 
@@ -1929,6 +1949,48 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRack_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(grdRack.SelectedRows[0].Cells["Total Products"].Value) != 0 && grdRack.SelectedRows[0].Cells[e.ColumnIndex].OwningColumn.Name == "Rack")
+                {
+                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
+                    MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdRack.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdRack.SelectedRows[0].Cells["Rack"].Value);
+                    MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdRack.SelectedRows[0].Cells["Description"].Value);
+                    MainForm.objCP_ProductDetails.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void GrdSelectedRack_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["clmTotalProducts"].Value) != 0 && grdSelectedRack.SelectedRows[0].Cells[e.ColumnIndex].OwningColumn.Name == "clmRack")
+                {
+                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
+                    MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value);
+                    MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value);
+                    MainForm.objCP_ProductDetails.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
 

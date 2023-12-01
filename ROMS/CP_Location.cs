@@ -35,6 +35,7 @@ namespace ROMS
         public int PbStockApplicableID = 0;
         public string PbDefault;
         public string PbRKCreationID;
+        public string PbRKGCreationID;
         public int PbStatus = 0;
         public int PbGodownTypeStatus = 0;
         public int varUpdate = 0;
@@ -69,7 +70,7 @@ namespace ROMS
                 txtLocationNameInTamil.Text = "";
                 txtShortName.Text = "";
                 cmbLocationType.SelectedIndex = 0;
-                cmbStockApplicable.SelectedIndex = 0;
+                cmbStockApplicable.SelectedIndex = 2;
                 cmbLocationType.Focus();
                 this.ActiveControl = cmbLocationType;
             }
@@ -143,6 +144,7 @@ namespace ROMS
         {
             try
             {
+                chkRKGCreation.Enabled = false;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 4;
@@ -165,15 +167,16 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,3) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,4) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbStockApplicable, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                //if (MainForm.objCP_LocationList.varStockApplicable == 1)
-                //{
-                //    cmbStockApplicable.SelectedValue = 12;
-                //}
+                if (MainForm.objCP_LocationList.varStockApplicable == 1)
+                {
+                    cmbStockApplicable.SelectedValue = 12;
+                }
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -183,6 +186,7 @@ namespace ROMS
                     if (btnSave.Visible)
                     {
                         pnlStatus.Enabled = true;
+                        pnlGodownType.Enabled = true;
                     }
                     udfnLoad();
                 }
@@ -212,11 +216,19 @@ namespace ROMS
                 cmbConcern.SelectedValue = PbConcernID;
                 cmbLocationType.SelectedValue = PbLocationTypeID;
                 cmbStockApplicable.SelectedValue = PbStockApplicableID;
-                if (PbGodownTypeStatus == 86) { rbInside.Checked = true; } else { rbOutside.Checked = true; }
+                //if (PbGodownTypeStatus != 0)
+                //{
+                    if (PbGodownTypeStatus == 86)
+                    { rbInside.Checked = true; }
+                    else
+                    { rbOutside.Checked = true; }
+                //}
+                pnlStatus.Enabled = true;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if (PbStockApplicableID==11) { varStockApplicableId = PbStockApplicableID; }
                 if (PbRKCreationID == "1") { chkRKCreation.Checked = true; } else { chkRKCreation.Checked = false; }
-                if(PbDefault=="1" || PbDefault=="2")
+                if (PbRKGCreationID == "1") { chkRKGCreation.Checked = true; } else { chkRKGCreation.Checked = false; }
+                if (PbDefault=="1" || PbDefault=="2")
                 {
                     cmbConcern.Enabled = false;
                     cmbLocationType.Enabled = false;
@@ -227,6 +239,7 @@ namespace ROMS
                     cmbStockApplicable.Enabled = false;
                     pnlStatus.Enabled = false;
                     chkRKCreation.Enabled = false;
+                    chkRKGCreation.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -255,14 +268,14 @@ namespace ROMS
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
 
-                if (pnlGodownType.Enabled == false)
-                {
-                    rbInside.Checked = false;
-                    rbOutside.Checked = false;
-                    varGodownType = 0;
-                }
-                else
-                {
+                //if (pnlGodownType.Enabled == false)
+                //{
+                //    rbInside.Checked = false;
+                //    rbOutside.Checked = false;
+                //    varGodownType = 0;
+                //}
+                //else
+                //{
                     if (rbInside.Checked == true)
                     {
                         varGodownType = 86; 
@@ -271,7 +284,7 @@ namespace ROMS
                     {
                         varGodownType = 87;
                     }
-                }
+                //}
                 int RKCheck = 0;
                 if(chkRKCreation.Checked==true)
                 {
@@ -280,6 +293,15 @@ namespace ROMS
                 else
                 {
                     RKCheck = 0;
+                }
+                int RKGCheck = 0;
+                if (chkRKGCreation.Checked == true)
+                {
+                    RKGCheck = 1;
+                }
+                else
+                {
+                    RKGCheck = 0;
                 }
 
                 SPDataService objspservice = new SPDataService();
@@ -321,7 +343,7 @@ namespace ROMS
                 }
                 if (saveflag == 0)
                 {
-                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID,RKCheck);
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID,RKCheck,RKGCheck,0);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -467,7 +489,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //rbActive.Focus();
+                    cmbStockApplicable.Focus();
                 }
             }
             catch (Exception ex)
@@ -482,7 +504,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    chkRKCreation.Focus();
                 }
             }
             catch (Exception ex)
@@ -497,7 +519,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    chkRKCreation.Focus();
                 }
             }
             catch (Exception ex)
@@ -800,11 +822,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
+                    if (pnlStatus.Enabled==true)
                     {
-                        rbActive.Focus();
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
                     }
-                    else { btnSave.Focus(); }
+                    else { chkRKCreation.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -965,9 +994,16 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlGodownType.Enabled)
+                    if (pnlGodownType.Enabled==true)
                     {
-                        rbInside.Focus();
+                        if(rbInside.Checked==true)
+                        {
+                            rbInside.Focus();
+                        }
+                        else
+                        {
+                            rbOutside.Focus();
+                        }
                     }
                     else
                     {
@@ -1003,20 +1039,10 @@ namespace ROMS
             }
             else
             {
-                //if (btnSave.Text == "Save")
-                //{
-                //    pnlGodownType.Enabled = false;
-                //    rbInside.Checked = true;
-                //}
-                //else
-                //{
-                //    pnlGodownType.Enabled = true;
-                //}
                 pnlGodownType.Enabled = false;
                 rbInside.Checked = true;
             }
         }
-
         private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1030,6 +1056,110 @@ namespace ROMS
                 {
                     pnlStatus.Enabled = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKCreation_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkRKCreation.Checked==true)
+            {
+                chkRKGCreation.Enabled = true;
+            }
+            else
+            {
+                chkRKGCreation.Enabled = false;
+                chkRKGCreation.Checked = false;
+            }
+        }
+
+        private void ChkRKCreation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if(chkRKGCreation.Enabled==true)
+                    {
+                        chkRKGCreation.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKGCreation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKCreation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkRKCreation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKCreation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkRKCreation.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKGCreation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkRKGCreation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRKGCreation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkRKGCreation.BackColor = Color.White;
             }
             catch (Exception ex)
             {

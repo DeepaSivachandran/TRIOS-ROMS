@@ -50,6 +50,7 @@
             this.clmTransactionTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmResetOnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpVoucherSettings = new System.Windows.Forms.GroupBox();
             this.txtFyyear = new System.Windows.Forms.TextBox();
             this.lblFyyr = new System.Windows.Forms.Label();
@@ -172,7 +173,8 @@
             this.clmConcernId,
             this.clmTransactionTypeID,
             this.clmResetOnId,
-            this.clmRemove});
+            this.clmRemove,
+            this.clmEdit});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -203,6 +205,7 @@
             this.clmsno.HeaderText = "S.No.";
             this.clmsno.Name = "clmsno";
             this.clmsno.ReadOnly = true;
+            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmsno.Width = 80;
             // 
             // clmConcern
@@ -210,12 +213,14 @@
             this.clmConcern.HeaderText = "Concern";
             this.clmConcern.Name = "clmConcern";
             this.clmConcern.ReadOnly = true;
+            this.clmConcern.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmTransactionType
             // 
             this.clmTransactionType.HeaderText = "Transaction Type";
             this.clmTransactionType.Name = "clmTransactionType";
             this.clmTransactionType.ReadOnly = true;
+            this.clmTransactionType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmTransactionType.Width = 200;
             // 
             // clmPrefix
@@ -223,36 +228,42 @@
             this.clmPrefix.HeaderText = "Prefix";
             this.clmPrefix.Name = "clmPrefix";
             this.clmPrefix.ReadOnly = true;
+            this.clmPrefix.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmSuffix
             // 
             this.clmSuffix.HeaderText = "Suffix";
             this.clmSuffix.Name = "clmSuffix";
             this.clmSuffix.ReadOnly = true;
+            this.clmSuffix.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmStartingNo
             // 
             this.clmStartingNo.HeaderText = "Starting No";
             this.clmStartingNo.Name = "clmStartingNo";
             this.clmStartingNo.ReadOnly = true;
+            this.clmStartingNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmNoofdigits
             // 
             this.clmNoofdigits.HeaderText = "No.of Digits";
             this.clmNoofdigits.Name = "clmNoofdigits";
             this.clmNoofdigits.ReadOnly = true;
+            this.clmNoofdigits.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmResetOn
             // 
             this.clmResetOn.HeaderText = "Reset On";
             this.clmResetOn.Name = "clmResetOn";
             this.clmResetOn.ReadOnly = true;
+            this.clmResetOn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmSampleTransactionNo
             // 
             this.clmSampleTransactionNo.HeaderText = "Sample Transaction No";
             this.clmSampleTransactionNo.Name = "clmSampleTransactionNo";
             this.clmSampleTransactionNo.ReadOnly = true;
+            this.clmSampleTransactionNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmSampleTransactionNo.Width = 150;
             // 
             // clmConcernId
@@ -260,18 +271,21 @@
             this.clmConcernId.HeaderText = "Concern ID";
             this.clmConcernId.Name = "clmConcernId";
             this.clmConcernId.ReadOnly = true;
+            this.clmConcernId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmTransactionTypeID
             // 
             this.clmTransactionTypeID.HeaderText = "Transaction Type ID";
             this.clmTransactionTypeID.Name = "clmTransactionTypeID";
             this.clmTransactionTypeID.ReadOnly = true;
+            this.clmTransactionTypeID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmResetOnId
             // 
             this.clmResetOnId.HeaderText = "Reset On ID";
             this.clmResetOnId.Name = "clmResetOnId";
             this.clmResetOnId.ReadOnly = true;
+            this.clmResetOnId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmRemove
             // 
@@ -280,6 +294,14 @@
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.ReadOnly = true;
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.Visible = false;
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.HeaderText = "Edit";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.ReadOnly = true;
             // 
             // grpVoucherSettings
             // 
@@ -331,12 +353,13 @@
             // txtNoOfDegits
             // 
             this.txtNoOfDegits.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoOfDegits.Location = new System.Drawing.Point(680, 46);
+            this.txtNoOfDegits.Location = new System.Drawing.Point(933, 46);
             this.txtNoOfDegits.MaxLength = 1;
             this.txtNoOfDegits.Name = "txtNoOfDegits";
             this.txtNoOfDegits.Size = new System.Drawing.Size(89, 27);
             this.txtNoOfDegits.TabIndex = 6;
             this.txtNoOfDegits.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNoOfDegits.Visible = false;
             this.txtNoOfDegits.Enter += new System.EventHandler(this.TxtNoOfDegits_Enter);
             this.txtNoOfDegits.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNoOfDegits_KeyDown);
             this.txtNoOfDegits.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNoOfDegits_KeyPress);
@@ -346,22 +369,23 @@
             // 
             this.lblNoOfDigits.AutoSize = true;
             this.lblNoOfDigits.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoOfDigits.Location = new System.Drawing.Point(680, 23);
+            this.lblNoOfDigits.Location = new System.Drawing.Point(933, 23);
             this.lblNoOfDigits.Name = "lblNoOfDigits";
             this.lblNoOfDigits.Size = new System.Drawing.Size(71, 20);
             this.lblNoOfDigits.TabIndex = 1111171;
             this.lblNoOfDigits.Text = "No.of Digits";
+            this.lblNoOfDigits.Visible = false;
             // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(888, 46);
+            this.btnAdd.Location = new System.Drawing.Point(708, 46);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 8;
+            this.btnAdd.Size = new System.Drawing.Size(27, 27);
+            this.btnAdd.TabIndex = 7;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -373,10 +397,10 @@
             this.cmbResetOn.FormattingEnabled = true;
             this.cmbResetOn.Items.AddRange(new object[] {
             "Continuous"});
-            this.cmbResetOn.Location = new System.Drawing.Point(785, 46);
+            this.cmbResetOn.Location = new System.Drawing.Point(613, 46);
             this.cmbResetOn.Name = "cmbResetOn";
             this.cmbResetOn.Size = new System.Drawing.Size(89, 27);
-            this.cmbResetOn.TabIndex = 7;
+            this.cmbResetOn.TabIndex = 6;
             this.cmbResetOn.SelectedIndexChanged += new System.EventHandler(this.CmbResetOn_SelectedIndexChanged);
             this.cmbResetOn.Enter += new System.EventHandler(this.CmbResetOn_Enter);
             this.cmbResetOn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbResetOn_KeyDown);
@@ -387,7 +411,7 @@
             // 
             this.lblResetOn.AutoSize = true;
             this.lblResetOn.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResetOn.Location = new System.Drawing.Point(785, 23);
+            this.lblResetOn.Location = new System.Drawing.Point(613, 23);
             this.lblResetOn.Name = "lblResetOn";
             this.lblResetOn.Size = new System.Drawing.Size(58, 20);
             this.lblResetOn.TabIndex = 1111168;
@@ -396,7 +420,7 @@
             // txtStartingNo
             // 
             this.txtStartingNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStartingNo.Location = new System.Drawing.Point(572, 46);
+            this.txtStartingNo.Location = new System.Drawing.Point(520, 46);
             this.txtStartingNo.MaxLength = 5;
             this.txtStartingNo.Name = "txtStartingNo";
             this.txtStartingNo.Size = new System.Drawing.Size(89, 27);
@@ -411,7 +435,7 @@
             // 
             this.lblStartingNo.AutoSize = true;
             this.lblStartingNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartingNo.Location = new System.Drawing.Point(572, 23);
+            this.lblStartingNo.Location = new System.Drawing.Point(520, 23);
             this.lblStartingNo.Name = "lblStartingNo";
             this.lblStartingNo.Size = new System.Drawing.Size(71, 20);
             this.lblStartingNo.TabIndex = 48;
@@ -420,7 +444,7 @@
             // txtSuffix
             // 
             this.txtSuffix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSuffix.Location = new System.Drawing.Point(468, 46);
+            this.txtSuffix.Location = new System.Drawing.Point(427, 46);
             this.txtSuffix.MaxLength = 10;
             this.txtSuffix.Name = "txtSuffix";
             this.txtSuffix.Size = new System.Drawing.Size(89, 27);
@@ -433,7 +457,7 @@
             // 
             this.lblSuffix.AutoSize = true;
             this.lblSuffix.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuffix.Location = new System.Drawing.Point(468, 23);
+            this.lblSuffix.Location = new System.Drawing.Point(427, 23);
             this.lblSuffix.Name = "lblSuffix";
             this.lblSuffix.Size = new System.Drawing.Size(40, 20);
             this.lblSuffix.TabIndex = 44;
@@ -442,7 +466,7 @@
             // txtPrefix
             // 
             this.txtPrefix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrefix.Location = new System.Drawing.Point(364, 46);
+            this.txtPrefix.Location = new System.Drawing.Point(334, 46);
             this.txtPrefix.MaxLength = 10;
             this.txtPrefix.Name = "txtPrefix";
             this.txtPrefix.Size = new System.Drawing.Size(89, 27);
@@ -455,7 +479,7 @@
             // 
             this.lblPrefix.AutoSize = true;
             this.lblPrefix.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrefix.Location = new System.Drawing.Point(364, 23);
+            this.lblPrefix.Location = new System.Drawing.Point(333, 23);
             this.lblPrefix.Name = "lblPrefix";
             this.lblPrefix.Size = new System.Drawing.Size(40, 20);
             this.lblPrefix.TabIndex = 42;
@@ -464,7 +488,7 @@
             // cmbTransactionType
             // 
             this.cmbTransactionType.FormattingEnabled = true;
-            this.cmbTransactionType.Location = new System.Drawing.Point(217, 46);
+            this.cmbTransactionType.Location = new System.Drawing.Point(199, 46);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(131, 27);
             this.cmbTransactionType.TabIndex = 2;
@@ -478,7 +502,7 @@
             // 
             this.lblTransactionType.AutoSize = true;
             this.lblTransactionType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransactionType.Location = new System.Drawing.Point(217, 23);
+            this.lblTransactionType.Location = new System.Drawing.Point(199, 23);
             this.lblTransactionType.Name = "lblTransactionType";
             this.lblTransactionType.Size = new System.Drawing.Size(100, 20);
             this.lblTransactionType.TabIndex = 40;
@@ -488,7 +512,7 @@
             // 
             this.cmbConcern.FormattingEnabled = true;
             this.epSettings.SetIconPadding(this.cmbConcern, 1);
-            this.cmbConcern.Location = new System.Drawing.Point(117, 46);
+            this.cmbConcern.Location = new System.Drawing.Point(111, 46);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(83, 27);
             this.cmbConcern.TabIndex = 0;
@@ -502,7 +526,7 @@
             // 
             this.lblDEConcern.AutoSize = true;
             this.lblDEConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEConcern.Location = new System.Drawing.Point(117, 23);
+            this.lblDEConcern.Location = new System.Drawing.Point(111, 23);
             this.lblDEConcern.Name = "lblDEConcern";
             this.lblDEConcern.Size = new System.Drawing.Size(54, 20);
             this.lblDEConcern.TabIndex = 35;
@@ -587,11 +611,9 @@
         public System.Windows.Forms.DataGridView grdSettings;
         private System.Windows.Forms.GroupBox grpVoucherSettings;
         private System.Windows.Forms.Label lblDEConcern;
-        private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.ComboBox cmbTransactionType;
         private System.Windows.Forms.Label lblTransactionType;
         private System.Windows.Forms.Label lblPrefix;
-        private System.Windows.Forms.TextBox txtPrefix;
         private System.Windows.Forms.TextBox txtSuffix;
         private System.Windows.Forms.Label lblSuffix;
         private System.Windows.Forms.TextBox txtStartingNo;
@@ -608,6 +630,10 @@
         private System.Windows.Forms.TextBox txtNoOfDegits;
         private System.Windows.Forms.Label lblNoOfDigits;
         public System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txtFyyear;
+        private System.Windows.Forms.Label lblFyyr;
+        public System.Windows.Forms.ComboBox cmbConcern;
+        public System.Windows.Forms.TextBox txtPrefix;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransactionType;
@@ -621,7 +647,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransactionTypeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmResetOnId;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
-        private System.Windows.Forms.TextBox txtFyyear;
-        private System.Windows.Forms.Label lblFyyr;
+        private System.Windows.Forms.DataGridViewImageColumn clmEdit;
     }
 }

@@ -923,7 +923,7 @@
             this.txtDReOrderQty.Size = new System.Drawing.Size(111, 27);
             this.txtDReOrderQty.TabIndex = 86;
             this.txtDReOrderQty.TabStop = false;
-            this.txtDReOrderQty.Text = "Reorder Qty";
+            this.txtDReOrderQty.Text = "Reorder Qty (ROQ)";
             // 
             // txtMinStock
             // 
@@ -950,7 +950,7 @@
             this.txtDMinStock.Size = new System.Drawing.Size(111, 27);
             this.txtDMinStock.TabIndex = 23;
             this.txtDMinStock.TabStop = false;
-            this.txtDMinStock.Text = "Min.Stock";
+            this.txtDMinStock.Text = "Min.Stock (MSQ)";
             // 
             // txtMaxStock
             // 
@@ -977,7 +977,7 @@
             this.txtDMaxStock.Size = new System.Drawing.Size(111, 27);
             this.txtDMaxStock.TabIndex = 22;
             this.txtDMaxStock.TabStop = false;
-            this.txtDMaxStock.Text = "Max.Stock";
+            this.txtDMaxStock.Text = "Max.Stock (MXSQ)";
             // 
             // txtWeight
             // 
@@ -1243,7 +1243,9 @@
             this.rbInActive.TabStop = true;
             this.rbInActive.Text = "InActive";
             this.rbInActive.UseVisualStyleBackColor = true;
+            this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
             this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown);
+            this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
             // 
             // rbActive
             // 
@@ -1257,7 +1259,9 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
+            this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // txtDStatus
             // 
@@ -1715,18 +1719,17 @@
             this.groupBox3.Controls.Add(this.lblDPicode);
             this.groupBox3.Location = new System.Drawing.Point(567, -6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(278, 100);
+            this.groupBox3.Size = new System.Drawing.Size(278, 114);
             this.groupBox3.TabIndex = 95;
             this.groupBox3.TabStop = false;
             // 
             // txtRTamilName
             // 
-            this.txtRTamilName.AutoSize = true;
-            this.txtRTamilName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRTamilName.Font = new System.Drawing.Font("Baamini", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRTamilName.ForeColor = System.Drawing.Color.Red;
             this.txtRTamilName.Location = new System.Drawing.Point(7, 74);
             this.txtRTamilName.Name = "txtRTamilName";
-            this.txtRTamilName.Size = new System.Drawing.Size(0, 20);
+            this.txtRTamilName.Size = new System.Drawing.Size(266, 35);
             this.txtRTamilName.TabIndex = 7;
             // 
             // txtREnglishName

@@ -171,7 +171,7 @@ namespace ROMS
                 string filter = "";
                 for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
                 {
-                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "Image")
+                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "Image" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "CheckBox")
                     {
                         if (filter != "") filter += "And ";
                         if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))

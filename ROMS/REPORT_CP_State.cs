@@ -117,6 +117,10 @@ namespace ROMS
         }
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
+            
+        }
+        public void udfnState()
+        {
             try
             {
                 btnListPrint.Enabled = false;
@@ -139,11 +143,8 @@ namespace ROMS
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
-
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_State.rpt");
-                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -171,7 +172,6 @@ namespace ROMS
                 GC.Collect();
             }
         }
-
         private void REPORT_CP_City_Load(object sender, EventArgs e)
         {
             try
@@ -184,6 +184,7 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                udfnState();
             }
             catch (Exception ex)
             {

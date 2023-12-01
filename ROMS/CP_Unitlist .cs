@@ -68,24 +68,33 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
                         SPDataService objspservice = new SPDataService();
-                        varResult = "";
-                        if (MainForm.objCP_Verify.flag == 1)
+                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0,0);
+                        objspservice.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
                         {
-                            varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID);
-                            objspservice.CloseConnection();
-                            if (varResult.Split('~')[0] == "3")
+                            if (varResult.Split('~')[1] == "1")
                             {
-                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                udfnList();
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    objspservice = new SPDataService();
+                                    varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 1);
+                                    objspservice.CloseConnection();
+                                    if (varResult.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
                             }
-                            else
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -118,6 +127,7 @@ namespace ROMS
                     MainForm.objCP_Unit.PbNoOfDecimals = Convert.ToString(grdUnitList.SelectedRows[0].Cells["No.of Decimals"].Value);
                     MainForm.objCP_Unit.PbStatus = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objCP_Unit.pbInvoiceUnit = Convert.ToString(grdUnitList.SelectedRows[0].Cells["E-Invoice Unit"].Value);
+                    MainForm.objCP_Unit.varBulkUnitId = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["BulkUnitId"].Value);
                     MainForm.objCP_Unit.ShowDialog();
                 }
             }
@@ -139,7 +149,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************    
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnUnitList(0, 0);
+                objDs = objspservice.udfnUnitList(0, 0,0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -154,8 +164,11 @@ namespace ROMS
                             grdUnitList.Columns["ID"].Visible = false;
                             grdUnitList.Columns["DecimalID"].Visible = false;
                             grdUnitList.Columns["StatusID"].Visible = false;
+                            grdUnitList.Columns["BulkUnitId"].Visible = false;
                             grdUnitList.Columns["S.No."].Width = 50;
                             grdUnitList.Columns["Status"].Width = 80;
+                            grdUnitList.Columns["Bulk Unit"].Width = 100;
+                            grdUnitList.Columns["Bulk Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUnitList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUnitList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUnitList.Columns["No.of Decimals"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

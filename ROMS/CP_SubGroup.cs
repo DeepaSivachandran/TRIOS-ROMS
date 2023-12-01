@@ -48,6 +48,19 @@ namespace ROMS
         {
             InitializeComponent();
         }
+        public void udfnLvHide()
+        {
+            try
+            {
+                lvGroupName.Visible = false;
+                lvLocation.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_SubGroup_Leave(object sender, EventArgs e)
         {
             try
@@ -291,7 +304,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId,MainForm.pbUserID);
+                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId,MainForm.pbUserID,0);
                     objDser.CloseConnection();
                     btnSave.Enabled = true;
                     if (varResult.Split('~')[0] == "3")
@@ -628,7 +641,7 @@ namespace ROMS
         {
             try
             {
-                lvGroupName.Visible = false;
+                udfnLvHide();
                 txtESubGroupNameEnglish.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -679,6 +692,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 txtESubGroupNameTamil.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -772,6 +786,7 @@ namespace ROMS
         {
             try
             {
+                udfnLvHide();
                 cmbBatchNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -927,7 +942,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvGroupName.Columns[1].Width = 0;
                                     lvGroupName.Items.Add(objList);
                                 }
@@ -1022,6 +1037,7 @@ namespace ROMS
         {
             try
             {
+                lvLocation.Visible = false;
                 txtProductGroupName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1091,6 +1107,7 @@ namespace ROMS
         {
             try
             {
+                lvGroupName.Visible = false;
                 txtLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1104,7 +1121,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     if (lvLocation.Items.Count == 0 || txtLocation.Text == "")
                     {
@@ -1210,7 +1227,7 @@ namespace ROMS
             try
             {
                 udfnLocationEvent();
-                grdRackList.Focus();
+                txtRack.Focus();
             }
             catch (Exception ex)
             {
@@ -1226,7 +1243,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnLocationEvent();
-                    grdRackList.Focus();
+                    txtRack.Focus();
                 }
             }
             catch (Exception ex)
@@ -1306,7 +1323,7 @@ namespace ROMS
 
         private void TxtRack_TextChanged(object sender, EventArgs e)
         {
-            try {// (grdRackList.DataSource as DataTable).DefaultView.RowFilter = "([RK_Name]) LIKE '%" + txtRack.Text + "%'";
+            try {// (grdRackList.DataSource as BindingSource).Filter = "([RK_Name]) LIKE '%" + txtRack.Text + "%'";
                 dtRackList.DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtRack.Text.Trim() + "%'";
             }
             catch (Exception ex)
@@ -1323,9 +1340,25 @@ namespace ROMS
 
         private void TxtRack_KeyDown(object sender, KeyEventArgs e)
         {
-            try {
-                if (e.KeyCode == Keys.Enter) {
-                    btnSave.Focus();
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if(pnlStatus.Enabled==true)
+                    {
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1440,7 +1473,11 @@ namespace ROMS
 
         private void TxtRack_Enter(object sender, EventArgs e)
         {
-            try { txtRack.BackColor = Color.LemonChiffon; }
+            try
+            {
+                udfnLvHide();
+                txtRack.BackColor = Color.LemonChiffon;
+            }
             catch (Exception ex)
             {
                 objError = new DataError();

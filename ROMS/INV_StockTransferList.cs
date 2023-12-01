@@ -125,11 +125,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnscrollVisible(DataGridView DGV,DataGridView grdGroupList)
+        public void udfnscrollVisible(DataGridView DGV,DataGridView grdStockTransfer)
         {
             try
             {
-                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdStockTransfer.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -198,7 +198,7 @@ namespace ROMS
             dpTrannsferFromDate.MaxDate = DateTime.Now;
             dpTransferToDate.MaxDate = DateTime.Now;
             udfnCmbConcern();
-            cmbConcern.SelectedValue = 0;
+            cmbConcern.SelectedValue = 1;
             udfnList();
         }
         public void udfnCmbConcern()
@@ -732,12 +732,21 @@ namespace ROMS
         {
             try
             {
+                int varViewType = 0;
+                if(Convert.ToInt32(cmbConcern.SelectedValue)==0)
+                {
+                    varViewType = 13;
+                }
+                else
+                {
+                    varViewType = 11;
+                }
                 lvSLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtSLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(11, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(varViewType, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -884,19 +893,19 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
-                //{
-                //    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "1")
-                //    {
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //    else
-                //    {
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //}
+                for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "21")
+                    {
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    //else
+                    //{
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    //}
+                }
             }
             catch (Exception ex)
             {
@@ -1026,21 +1035,12 @@ namespace ROMS
         {
             try
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                dtStock.Columns.Add("STK_UTID", typeof(string));
-                dtStock.Columns.Add("STK_QTY", typeof(string));
-
                 lvProduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36,0,0,0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue), 0,0,0,0,0,0,0,0,0,0,0,txtProductNamePICode.Text,0,dtStock);
+                    objDs = objspdservice.udfnproductmasterlist(36,0,0,0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue), 0,0,0,0,0,0,0,0,0,0,0,0,txtProductNamePICode.Text,0,"","",null,0,null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1052,6 +1052,8 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString()};
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;

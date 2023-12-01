@@ -227,7 +227,7 @@
             this.txtDConfirmPassword.ReadOnly = true;
             this.txtDConfirmPassword.Size = new System.Drawing.Size(181, 27);
             this.txtDConfirmPassword.TabIndex = 7;
-            this.txtDConfirmPassword.Text = "Conform Password";
+            this.txtDConfirmPassword.Text = "Confirm Password";
             // 
             // txtConfirmPassword
             // 

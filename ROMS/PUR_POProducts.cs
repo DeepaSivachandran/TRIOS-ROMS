@@ -20,24 +20,19 @@ namespace ROMS
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
-        public string pbFormStatus;
+        public string pbFormStatus,pbSupplierCode="0",pbScheduleCode="0",pbPoid="0";
         public PUR_POProducts()
         {
             InitializeComponent();
         }
 
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            udfnclose();
-        }
-        public void udfnclose()
+        private void PUR_POProducts_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (e.KeyCode == Keys.Escape)
                 {
-                    this.Close();
+                    udfnclose();
                 }
             }
             catch (Exception ex)
@@ -46,5 +41,103 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdPurchaseOrder_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+            try
+            {
+                for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
+                {
+
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStatus"];
+
+                    if (Convert.ToString(grdPurchaseOrder.Rows[i].Cells["STSID"].Value) == "10")
+                    {
+                        cell.Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else
+                    {
+                        cell.Style.BackColor = Color.RoyalBlue;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnclose()
+        {
+            try
+            { 
+               this.Close(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_POProducts_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+
+                DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                GrdPurchaseOrder_DataBindingComplete(grdPurchaseOrder, args);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+        public void udfnList()
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(pbSupplierCode), Convert.ToInt32(pbScheduleCode), 0, 0, "", 0, 0, 0,"",0,0,0,0,0, Convert.ToInt32(pbPoid),"");
+                objspdservice.CloseConnection();
+                if (objDs.Tables[6].Rows.Count > 0)
+                { 
+                    grdPurchaseOrder.Rows.Clear();
+                    for (int i = 0; i < objDs.Tables[6].Rows.Count; i++)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        grdPurchaseOrder.Rows.Add(grdPurchaseOrder.Rows.Count + 1, objDs.Tables[6].Rows[i]["PR_PICode"].ToString(),
+                        objDs.Tables[6].Rows[i]["PR_TName"].ToString(), objDs.Tables[6].Rows[i]["UT_Symbol"].ToString(),
+                         objDs.Tables[6].Rows[i]["Unit Per box"].ToString(),
+                        objDs.Tables[6].Rows[i]["POPR_OrderQty"].ToString(), objDs.Tables[6].Rows[i]["OrderQtyUnit"].ToString(), 
+                        objDs.Tables[6].Rows[i]["RECEIVED"].ToString(), 
+                        objDs.Tables[6].Rows[i]["POPR_RemainingQty"].ToString(), objDs.Tables[6].Rows[i]["STATUS"].ToString(), objDs.Tables[6].Rows[i]["STSID"].ToString()); 
+                    }
+                    txtPONo.Text = objDs.Tables[6].Rows[0]["PO_No"].ToString();
+                    txtPODate.Text = objDs.Tables[6].Rows[0]["PO_Date"].ToString();
+                    txtUserData.Text = objDs.Tables[6].Rows[0]["MakerDetails"].ToString();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    grdPurchaseOrder.Rows.Clear();
+                }
+                 
+                grdPurchaseOrder.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }  
     }
 }

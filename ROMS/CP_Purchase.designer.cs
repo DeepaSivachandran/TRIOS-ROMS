@@ -215,7 +215,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -676,7 +676,7 @@
             this.Column2,
             this.Column6,
             this.Column3,
-            this.Column19,
+            this.clmExpDate,
             this.Column7,
             this.Column8,
             this.Column9,
@@ -693,6 +693,7 @@
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSupplierList.Size = new System.Drawing.Size(1292, 237);
             this.grdSupplierList.TabIndex = 1111200;
+            this.grdSupplierList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdSupplierList_CellFormatting);
             // 
             // label16
             // 
@@ -2176,10 +2177,10 @@
             this.Column3.HeaderText = "Invoice MRP";
             this.Column3.Name = "Column3";
             // 
-            // Column19
+            // clmExpDate
             // 
-            this.Column19.HeaderText = "Expiry Date";
-            this.Column19.Name = "Column19";
+            this.clmExpDate.HeaderText = "Expiry Date";
+            this.clmExpDate.Name = "clmExpDate";
             // 
             // Column7
             // 
@@ -2465,7 +2466,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
