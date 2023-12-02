@@ -16,6 +16,7 @@ namespace ROMS
         DataError objError;
         Boolean BlnSearchImageYN = false;
         public int Supplierpend = 0;
+        public string varUserID = "0";
         public PUR_PurchaseOrderList()
         {
             InitializeComponent();
@@ -1446,7 +1447,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0");
+                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1466,6 +1467,7 @@ namespace ROMS
                             grdProDetails.Columns["Unit"].Width = 80;
                             grdProDetails.Columns["Quantity"].Width = 80;
                             grdProDetails.Columns["STSID"].Visible = false;
+                            grdProDetails.Columns["STS1"].Visible = false;
                             grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
                             {
@@ -1483,8 +1485,7 @@ namespace ROMS
                                 grdProDetails.Columns["GSTIN"].Visible = false;
                                 grdProDetails.Columns["PO No."].Width = 80;
                                 grdProDetails.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            }
-                            
+                            } 
                         }
                         else
                         {
@@ -1819,36 +1820,42 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        DataTable objPurchaseOrder = new DataTable();
-                        objPurchaseOrder.TableName = "TRN_PO_Product";
-                        objPurchaseOrder.Columns.Add("POPR_PRID", typeof(int));
-                        objPurchaseOrder.Columns.Add("POPR_MSQ", typeof(float));
-                        objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
-                        objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
-                        objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
-                        objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
-                        objPurchaseOrder.Columns.Add("POPR_UTID", typeof(int));
-                        objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
-                        objPurchaseOrder.Columns.Add("POPR_UTOrderQty", typeof(float));
-                        objPurchaseOrder.Columns.Add("POPR_TOTOrderQty", typeof(float));
-                        objPurchaseOrder.Columns.Add("POPR_KGORDERQTY", typeof(float));
-                        objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
-                        objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
-                        objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
-                        objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
-                        SPDataService objspdservice = new SPDataService();
-                        result = "";
-                        result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", objPurchaseOrder, "", "", "", "", 0, "",0,0);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnPOEntryLoad();
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            DataTable objPurchaseOrder = new DataTable();
+                            objPurchaseOrder.TableName = "TRN_PO_Product";
+                            objPurchaseOrder.Columns.Add("POPR_PRID", typeof(int));
+                            objPurchaseOrder.Columns.Add("POPR_MSQ", typeof(float));
+                            objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
+                            objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
+                            objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
+                            objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
+                            objPurchaseOrder.Columns.Add("POPR_UTID", typeof(int));
+                            objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
+                            objPurchaseOrder.Columns.Add("POPR_UTOrderQty", typeof(float));
+                            objPurchaseOrder.Columns.Add("POPR_TOTOrderQty", typeof(float));
+                            objPurchaseOrder.Columns.Add("POPR_KGORDERQTY", typeof(float));
+                            objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
+                            objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
+                            objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
+                            objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
+                            SPDataService objspdservice = new SPDataService();
+                            result = "";
+                            result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", objPurchaseOrder, "", "", "", "", 0, "", 0, 0);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
+                            {
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnPOEntryLoad();
+                            }
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
