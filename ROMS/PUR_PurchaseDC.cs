@@ -2404,10 +2404,11 @@ namespace ROMS
                             }
                         }
                         lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
-                        if (Convert.ToInt32( varId_PurchaseRack )> 0 || varId_PurchaseRack == "-1")
+                        if (Convert.ToInt32( varId_PurchaseRack )< 0 || varId_PurchaseRack == "-1")
                         {
                             epPurchaseDC.SetError(txtRack, "Please enter valid rack.");
                             txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
                             tpRack.ShowAlways = true;
                             tpRack.Show("Please enter valid rack", txtRack, 5000);
                             blnErrorFlag = true;
