@@ -1340,11 +1340,11 @@ namespace ROMS
             {
                 lvProduct.Visible = false;
                 errStockTransfer.Clear();
-                txtSRack.BackColor = Color.LightGray;//txtSRack.Enabled = false;
-                txtMRP.BackColor = Color.LightGray;
-                txtExpiryDate.BackColor = Color.LightGray;
-                txtBatchNo.BackColor = Color.LightGray;
-                txtStockQty.BackColor = Color.LightGray;
+                txtSRack.BackColor = SystemColors.Control;
+                txtMRP.BackColor = SystemColors.Control;
+                txtExpiryDate.BackColor = SystemColors.Control;
+                txtBatchNo.BackColor = SystemColors.Control;
+                txtStockQty.BackColor =SystemColors.Control;
                 txtDLocation.BackColor = Color.White;
                 txtQuantity.BackColor = Color.White;
             }
