@@ -1485,8 +1485,7 @@ namespace ROMS
                                 grdProDetails.Columns["GSTIN"].Visible = false;
                                 grdProDetails.Columns["PO No."].Width = 80;
                                 grdProDetails.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            }
-                            
+                            } 
                         }
                         else
                         {
