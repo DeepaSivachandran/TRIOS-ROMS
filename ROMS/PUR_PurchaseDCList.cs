@@ -514,6 +514,7 @@ namespace ROMS
             try
             {
                 udfncmbDropdown();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
             }
             catch (Exception ex)
