@@ -116,7 +116,7 @@ namespace ROMS
                                     objDs.Tables[1].Rows[i]["Quantity"].ToString(), objDs.Tables[1].Rows[i]["Unit"].ToString(),
                                     objDs.Tables[1].Rows[i]["Stock Location"].ToString(), objDs.Tables[1].Rows[i]["Rack"].ToString()
                                     , objDs.Tables[1].Rows[i]["PRID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
-                                    objDs.Tables[1].Rows[i]["RKID"].ToString(), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]));
+                                    objDs.Tables[1].Rows[i]["RKID"].ToString(), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), objDs.Tables[1].Rows[i]["Stock"].ToString());
                                     grdPurchaseDC.Columns[14].ReadOnly = false;
 
                                     dtPurchaseDC.Rows.Add(objDs.Tables[1].Rows[i]["PRID"],
@@ -295,12 +295,12 @@ namespace ROMS
                 ClearSupplier();
                 udfnUddtTable();
                 udfnCmbConcern();
-                DataService objDservice = new DataService();
-                string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
-                objDservice.CloseConnection();
+                //DataService objDservice = new DataService();
+                //string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
+                //objDservice.CloseConnection();
+                //dpDCDate.Text = vardate;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                dpDCDate.Text = vardate;
-                dpDCDate.MaxDate = DateTime.Now;
+                dpDCDate.MaxDate = MainForm.pbCurrentDate;
                 if(btnSave.Text=="Update")
                 {
                     EditLoad();
@@ -1724,7 +1724,8 @@ namespace ROMS
                                             Expirydate = varSecondList[1];
                                             if (Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmExpiryDate"].Value) == Expirydate)
                                             {
-                                                grdPurchaseDC.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                              //  grdPurchaseDC.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                                grdPurchaseDC.Rows[j].Cells["clmQuantity"].Style.BackColor = Color.LightPink;
                                             }
                                         }
                                     }
@@ -1882,24 +1883,45 @@ namespace ROMS
             try
             {
                 int Quantity = Convert.ToInt32(grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Value);
+                int Stock = Convert.ToInt32(grdPurchaseDC.CurrentRow.Cells["clmStockQuantity"].Value);
                 if (Convert.ToString(Quantity) == "0" || Convert.ToString(Quantity) == "")
                 {
-                    grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.LightPink;
+                    varErrQty = "1";
+                }
+                else
+                {
+                    varErrQty = "0";
+                }
+                if(btnSave.Text=="Update")
+                {
+                    if (Quantity <= Stock)
+                    {
+                       // grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.Red;
+                        varErrQty = "1";
+                       // grdPurchaseDC.Rows[e.RowIndex].Cells["clmError"].Value = varErrQty;
+                    }
+                    else
+                    {
+                        varErrQty = "0";
+                    }
+                }
+                if(varErrQty == "1")
+                {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    varErrQty = "1";
+                    grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.LightPink;
                     grdPurchaseDC.Rows[e.RowIndex].Cells["clmError"].Value = varErrQty;
                 }
                 else
                 {
-                    grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
                     varErrQty = "0";
+                    grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
                     grdPurchaseDC.Rows[e.RowIndex].Cells["clmError"].Value = varErrQty;
                 }
-                object varEditQty = grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 //Update the same column value in the DataTable
+                object varEditQty = grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 dtPurchaseDC.Rows[e.RowIndex]["DCPR_Qty"] = varEditQty;
             }
             catch (Exception ex)
@@ -1908,6 +1930,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdPurchaseDC_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdPurchaseDC.Rows.Clear();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdPurchaseDC_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             //try

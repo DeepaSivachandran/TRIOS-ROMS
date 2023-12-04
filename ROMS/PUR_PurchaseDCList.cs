@@ -516,6 +516,9 @@ namespace ROMS
                 udfncmbDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
+                dpDcFromDate.MinDate = MainForm.pbFYStartDate;
+                dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpdctodate.MinDate = dpDcFromDate.MaxDate;
             }
             catch (Exception ex)
             {
@@ -1044,5 +1047,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 }
