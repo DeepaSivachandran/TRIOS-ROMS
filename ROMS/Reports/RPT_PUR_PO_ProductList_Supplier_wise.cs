@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_PO_ProductList_Supplierwise : ReportClass {
+    public class RPT_PUR_PO_ProductList_Supplier_wise : ReportClass {
         
-        public RPT_PUR_PO_ProductList_Supplierwise() {
+        public RPT_PUR_PO_ProductList_Supplier_wise() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_PO_ProductList_Supplierwise.rpt";
+                return "RPT_PUR_PO_ProductList_Supplier_wise.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_PO_ProductList_Supplierwise.rpt";
+                return "ROMS.Reports.RPT_PUR_PO_ProductList_Supplier_wise.rpt";
             }
             set {
                 // Do nothing
@@ -82,7 +82,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection1 {
             get {
                 return this.ReportDefinition.Sections[4];
             }
@@ -90,7 +90,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[5];
             }
@@ -98,9 +98,33 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
             get {
                 return this.ReportDefinition.Sections[6];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
+            get {
+                return this.ReportDefinition.Sections[7];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+            get {
+                return this.ReportDefinition.Sections[8];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+            get {
+                return this.ReportDefinition.Sections[9];
             }
         }
         
@@ -215,12 +239,36 @@ namespace ROMS.Reports {
                 return this.DataDefinition.ParameterFields[13];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ParaPO {
+            get {
+                return this.DataDefinition.ParameterFields[14];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ParaSupplier {
+            get {
+                return this.DataDefinition.ParameterFields[15];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_varHeader {
+            get {
+                return this.DataDefinition.ParameterFields[16];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_PO_ProductList_Supplierwise : Component, ICachedReport {
+    public class CachedRPT_PUR_PO_ProductList_Supplier_wise : Component, ICachedReport {
         
-        public CachedRPT_PUR_PO_ProductList_Supplierwise() {
+        public CachedRPT_PUR_PO_ProductList_Supplier_wise() {
         }
         
         [Browsable(false)]
@@ -257,7 +305,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_PO_ProductList_Supplierwise rpt = new RPT_PUR_PO_ProductList_Supplierwise();
+            RPT_PUR_PO_ProductList_Supplier_wise rpt = new RPT_PUR_PO_ProductList_Supplier_wise();
             rpt.Site = this.Site;
             return rpt;
         }

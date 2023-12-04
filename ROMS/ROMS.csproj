@@ -283,6 +283,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_PO_ProductList_Supplier_wise.cs">
+      <DependentUpon>RPT_PUR_PO_ProductList_Supplier_wise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_PO_ProductList_Product_wise.cs">
       <DependentUpon>RPT_PUR_PO_ProductList_Product_wise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -291,12 +297,6 @@
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_ProductList_PO_wise.cs">
       <DependentUpon>RPT_PUR_PO_ProductList_PO_wise.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reports\RPT_PUR_PO_ProductList_Supplierwise.cs">
-      <DependentUpon>RPT_PUR_PO_ProductList_Supplierwise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -1765,6 +1765,11 @@
       <LastGenOutput>RPT_PUR_PO.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_PO_ProductList_Supplier_wise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_PO_ProductList_Supplier_wise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_PO_ProductList_Product_wise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_PO_ProductList_Product_wise.cs</LastGenOutput>
@@ -1773,11 +1778,6 @@
     <EmbeddedResource Include="Reports\RPT_PUR_PO_ProductList_PO_wise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_PO_ProductList_PO_wise.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_PUR_PO_ProductList_Supplierwise.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_PO_ProductList_Supplierwise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_PO_ProductList.rpt">
