@@ -168,7 +168,7 @@ namespace ROMS
         }
         // Sivabharathi    Create date: 26/09/2023    Description: Voucher Settings
         public string udfnVoucherSettings(int ViewType,int paraConcernId,int paraTransactionId, string paraPrefix, string paraSufix,int ParaNoOfDigit, int paraStartingNo, 
-           string ParaSampleTransaction, int ParaResetOn, string paraOriginator)
+           string ParaSampleTransaction, int ParaResetOn,int paraVoucherSettingId, string paraOriginator)
         {
             string varResult = "";
             try
@@ -184,6 +184,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaNoOfDigit", ParaNoOfDigit);
                 varSqlCommand.Parameters.AddWithValue("@ParaResetOn", ParaResetOn);
                 varSqlCommand.Parameters.AddWithValue("@ParaSampleTransaction", ParaSampleTransaction);
+                varSqlCommand.Parameters.AddWithValue("@paraVoucherSettingId", paraVoucherSettingId);
                 varSqlCommand.Parameters.AddWithValue("@paraStartingNo", paraStartingNo);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);

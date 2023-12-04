@@ -18,7 +18,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public string varconcernvalue="-1",varValues="-1";
         public int varsno = 0,varEditFlag=0;
-        public string varSampleTransation = "";
+        public string varSampleTransation = ""; int varId = 0;
         //tool tip
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
@@ -91,12 +91,41 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnCmbTransaction()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnMaster(12,Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "", 0);
+                objdserv.CloseConnection();
+                cmbTransactionType.DataSource = null;
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbTransactionType.ValueMember = "MSTID";
+                            cmbTransactionType.DisplayMember = "MST_DisplayText";
+                            cmbTransactionType.DataSource = objDs.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
         public void udfnCmbLoad()
         {
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=14 OR MSTID=-1 ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbTransactionType, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=14 OR MSTID=-1 ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbTransactionType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=34 OR MSTID=-1  ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbResetOn, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COMID NOT IN(0) ORDER BY COM_ShortName,COMID", "COMID,COM_ShortName", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
@@ -191,6 +220,8 @@ namespace ROMS
                             grdSettings.Columns["Sample Transaction No."].Width =150;
                             grdSettings.Columns["Transaction Type"].Width =150;
                             grdSettings.Columns["Concern ID"].Visible = false;
+                            grdSettings.Columns["No.of Digits"].Visible = false;
+                            grdSettings.Columns["ID"].Visible = false;
                             grdSettings.Columns["Transaction TypeID"].Visible = false;
                             grdSettings.Columns["Reset OnID"].Visible = false;
                         }
@@ -230,6 +261,8 @@ namespace ROMS
             try
             {
                 udfnCmbLoad();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                udfnCmbTransaction();
                 udfnList();
             }
             catch (Exception ex)
@@ -325,6 +358,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                udfnCmbTransaction();
             }
             catch (Exception ex)
             {
@@ -554,7 +588,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAdd.Focus();
+                    btnUpdate.Focus();
                 }
             }
             catch (Exception ex)
@@ -877,7 +911,10 @@ namespace ROMS
                 txtStartingNo.Text = "";
                 txtNoOfDegits.Text = "";
                 cmbResetOn.SelectedValue = -1;
-                cmbTransactionType.Focus();            }
+                cmbTransactionType.Focus();
+                cmbConcern.Enabled = true;
+                cmbTransactionType.Enabled = true;
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -896,44 +933,25 @@ namespace ROMS
                     DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
                 }
-                DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                 int rowIndex = 0;
                 DGV_SearchGrid.Rows.Clear();
                 DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
+                DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
+                for (int i = 2; i < visibleColumns.Count; i++)
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                 DGV_SearchGrid.Columns[0].ReadOnly = true;
+                DGV_SearchGrid.Columns[1].ReadOnly = true;
                 DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
         {
-            //try
-            //{
-            //    //dgv2.DataSource = null;
-            //    dgv2.Columns.Clear();
-            //    List<int> visibleColumns = new List<int>();
-            //    foreach (DataGridViewColumn col in dgv1.Columns)
-            //    {
-            //        if (col.Visible)
-            //        {
-            //            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-            //            visibleColumns.Add(col.Index);
-            //        }
-            //    }
-            //    int rowIndex = 0;
-            //    dgv2.Rows.Clear();
-            //    dgv2.Rows.Add();
-            //    for (int i = 0; i < visibleColumns.Count; i++)
-            //    {
-            //        dgv2.Rows[rowIndex].Cells[i].Value = "";
-            //    }
-            //}
-            //catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
             try
             {
                 dgv2.Columns.Clear();
@@ -974,9 +992,7 @@ namespace ROMS
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                objError = new DataError(); objError.WriteFile(ex); }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
         public void udfnSave()
         {
@@ -1036,16 +1052,27 @@ namespace ROMS
                 //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //}
                 int varFlag = 0; int varConcern = 0; int varTransactionType = 0; string varStartingNum = ""; int varConcernId = 0;
-                string result = ""; string varOriginator = "VoucherSettings Updation";
+                string result = "", varOriginator = "";
+                int viewType = 0;
                 SPDataService objspdservice = new SPDataService();
                 varConcern = Convert.ToInt32(cmbConcern.SelectedValue);
                 varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
-                for (int i = 0; i < grdSettings.Rows.Count; i++)
+                if (btnUpdate.Text=="Save")
                 {
-                    if (varConcern == Convert.ToInt32(grdSettings.Rows[i].Cells["Concern ID"].Value) && varTransactionType == Convert.ToInt32(grdSettings.Rows[i].Cells["Transaction TypeID"].Value))
+                    varOriginator = "VoucherSettings Save";
+                    viewType = 0; varId = 0;
+                    for (int i = 0; i < grdSettings.Rows.Count; i++)
                     {
-                        varFlag = 1;
+                        if (varConcern == Convert.ToInt32(grdSettings.Rows[i].Cells["Concern ID"].Value) && varTransactionType == Convert.ToInt32(grdSettings.Rows[i].Cells["Transaction TypeID"].Value))
+                        {
+                            varFlag = 1;
+                        }
                     }
+                }
+                else
+                {
+                    varOriginator = "VoucherSettings Updation";
+                    viewType = 1;
                 }
                 if (varFlag == 0)
                 {
@@ -1055,7 +1082,7 @@ namespace ROMS
                     btnUpdate.Enabled = false;
                     SPDataService objDSer = new SPDataService();
                     varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + txtStartingNo.Text.Trim() + Convert.ToString(txtSuffix.Text.Trim());
-                    result = objDSer.udfnVoucherSettings(0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToInt32(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varOriginator);
+                    result = objDSer.udfnVoucherSettings(viewType, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToInt32(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varId,varOriginator);
                     objDSer.CloseConnection();
                     btnUpdate.Enabled = true;
                     string[] varvalue = result.Split('~');
@@ -1063,12 +1090,15 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         udfnClear();
-                        cmbConcern.SelectedIndex = 0;
                         udfnToolTip();
-                        cmbConcern.Focus();
-                        cmbTransactionType.BackColor = Color.White;
                         epSettings.Clear();
                         udfnList();
+                        btnUpdate.Text = "Save";
+                        if(varEditFlag==1)
+                        { cmbConcern.SelectedValue = MainForm.pbDefaultComId; }
+                        varEditFlag = 0;
+                        this.ActiveControl = cmbTransactionType;
+                        cmbTransactionType.Focus();
                     }
                     else
                     {
@@ -1098,7 +1128,59 @@ namespace ROMS
         {
             try
             {
-                udfnSave();
+                bool blnErrorFlag = false;
+                if (Convert.ToString(cmbConcern.SelectedValue) == "0" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epSettings.SetError(cmbConcern, "Please select concern.");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please select concern.", cmbConcern, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(cmbTransactionType.SelectedValue) == "0" || Convert.ToString(cmbTransactionType.SelectedValue) == "-1")
+                {
+                    epSettings.SetError(cmbTransactionType, "Please select transaction type.");
+                    cmbTransactionType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTransactionType.ShowAlways = true;
+                    tpTransactionType.Show("Please select transaction type.", cmbTransactionType, 5000);
+                    blnErrorFlag = true;
+                }
+                //if (txtPrefix.Text.Trim() == "")
+                //{
+                //    epSettings.SetError(txtPrefix, "Please enter prefix.");
+                //    txtPrefix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpPrefix.ShowAlways = true;
+                //    tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
+                //    blnErrorFlag = true;
+                //}
+                if (txtStartingNo.Text.Trim() == "")
+                {
+                    epSettings.SetError(txtStartingNo, "Please enter starting no.");
+                    txtStartingNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStartingNo.ShowAlways = true;
+                    tpStartingNo.Show("Please enter starting no.", txtStartingNo, 5000);
+                    blnErrorFlag = true;
+                }
+                //if (txtNoOfDegits.Text.Trim() == "")
+                //{
+                //    epSettings.SetError(txtNoOfDegits, "Please enter No.of digits.");
+                //    txtNoOfDegits.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpNoofdigits.ShowAlways = true;
+                //    tpNoofdigits.Show("Please enter No.of digits.", txtNoOfDegits, 5000);
+                //    blnErrorFlag = true;
+                //}
+                if (Convert.ToString(cmbResetOn.SelectedValue) == "0" || Convert.ToString(cmbResetOn.SelectedValue) == "-1")
+                {
+                    epSettings.SetError(cmbResetOn, "Please select reset on.");
+                    cmbResetOn.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpResetOn.ShowAlways = true;
+                    tpResetOn.Show("Please select reset on.", cmbResetOn, 5000);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    udfnSave();
+                }
             }
             catch (Exception ex)
             {
@@ -1172,16 +1254,20 @@ namespace ROMS
 
                         case "clmEdit":
                             varEditFlag = 1;
-                            cmbConcern.SelectedValue=Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["clmConcernId"].Value);
-                            cmbTransactionType.SelectedValue=Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["clmTransactionTypeID"].Value);
-                            txtPrefix.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["clmPrefix"].Value);
-                            txtSuffix.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["clmSuffix"].Value);
-                            txtStartingNo.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["clmStartingNo"].Value);
-                            cmbResetOn.SelectedValue = Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["clmResetOnId"].Value);
-                            varsno = Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["clmsno"].Value);
+                            btnUpdate.Text = "Update";
+                            cmbConcern.SelectedValue=Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["Concern ID"].Value);
+                            cmbTransactionType.SelectedValue=Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["Transaction TypeID"].Value);
+                            txtPrefix.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["Prefix"].Value);
+                            txtSuffix.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["Suffix"].Value);
+                            txtStartingNo.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["Strating No."].Value);
+                            cmbResetOn.SelectedValue = Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["Reset OnID"].Value);
+                            varsno = Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["S.No."].Value);
+                            varId = Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["ID"].Value);
                             cmbConcern.Enabled = false;
                             cmbTransactionType.Enabled = false;
-                            btnAdd.Image = global::ROMS.Properties.Resources.save;
+                            txtStartingNo.BackColor = Color.White;
+                            cmbResetOn.BackColor = Color.White;
+                           // btnAdd.Image = global::ROMS.Properties.Resources.save;
                             txtPrefix.Focus();
                             epSettings.Clear();
                             break;
@@ -1283,11 +1369,7 @@ namespace ROMS
                 grdSettings.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -1296,36 +1378,30 @@ namespace ROMS
             {
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if ((e.ColumnIndex == 0) || (e.ColumnIndex == 1))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
-                    return;
+                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
+                                                                   //return;
 
-                if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                {
-                    e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                        & ~(DataGridViewPaintParts.ContentForeground));
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                            & ~(DataGridViewPaintParts.ContentForeground));
 
-                    TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                        e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
 
-                    e.Handled = true;
-                }
+                        e.Handled = true;
+                    }
+
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
-            catch (Exception ex)
-            {
-                objError = new DataError(); objError.WriteFile(ex); }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
-                int i = e.ColumnIndex + 2;
-                if (e.ColumnIndex == 0)
-                {
-                    i = e.ColumnIndex;
-                }
-                DataGridViewColumn newColumn = grdSettings.Columns[i];
+                DataGridViewColumn newColumn = grdSettings.Columns[e.ColumnIndex];
                 DataGridViewColumn oldColumn = grdSettings.SortedColumn;
                 ListSortDirection direction;
 
@@ -1350,14 +1426,17 @@ namespace ROMS
                     direction = ListSortDirection.Ascending;
                 }
                 grdSettings.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
+
                 DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                 DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
                 DGV_SearchGrid.HorizontalScrollingOffset = grdSettings.HorizontalScrollingOffset;
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
-            catch (Exception ex) {
-                objError = new DataError(); objError.WriteFile(ex); }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -1387,7 +1466,6 @@ namespace ROMS
                     // Commit the changes immediately
                     DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdSettings.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSettings);
