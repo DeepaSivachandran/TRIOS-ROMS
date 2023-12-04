@@ -99,17 +99,41 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void udfnEdit()
         {
-           
-
+            try
+            {
+                if (grdStockRequestList.SelectedRows.Count > 0)
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objINV_StockRequest = new INV_StockRequest();
+                    MainForm.objINV_StockRequest.MdiParent = ParentForm;
+                    if(Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value)==28)
+                    {
+                        MainForm.objINV_StockRequest.btnSave.Text = "Save as Draft";
+                    }
+                    else
+                    {
+                        MainForm.objINV_StockRequest.btnSave.Text = "Update";
+                    }
+                    MainForm.objINV_StockRequest.varStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value);
+                    MainForm.objINV_StockRequest.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+            }
         }
-         
-
-      
         private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
         {
             try

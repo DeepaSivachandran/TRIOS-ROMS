@@ -351,13 +351,9 @@ namespace ROMS
         {
             cmbconcern.Focus();
             udfnCmbConcern();
-            DataSet objDs = new DataSet();
-            SPDataService objspservice = new SPDataService();
-            objDs = objspservice.udfnMaster(4, 0, 0, "", "", 0);
-            DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            dpFromDate.MaxDate = varmaxdate;
+            dpFromDate.MinDate = MainForm.pbFYStartDate;
+            dpFromDate.MaxDate = MainForm.pbCurrentDate;
             dpToDate.MinDate = dpFromDate.MaxDate;
-            objspservice.CloseConnection();
             cmbconcern.SelectedValue = 1;
             udfnList();
         }

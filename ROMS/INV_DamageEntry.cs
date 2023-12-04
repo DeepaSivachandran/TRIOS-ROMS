@@ -145,12 +145,7 @@ namespace ROMS
             {
                 udfnCmbConcernLoad();
                 cmbConcern.SelectedValue = 1;
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(4, 6, 0,"","",0);
-                DateTime varmaxdate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dpEntryDate.MaxDate = varmaxdate;
-                objDServ.CloseConnection();
+                dpEntryDate.MaxDate = MainForm.pbCurrentDate;
                 dtDamage.TableName = "TRN_DM_Product_AutoComplete";
                 dtDamage.Columns.Add("DM_PRID", typeof(int));
                 dtDamage.Columns.Add("DM_SLID", typeof(int));
