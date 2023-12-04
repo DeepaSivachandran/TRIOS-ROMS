@@ -131,7 +131,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0");
+                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0",0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -241,7 +241,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0");
+                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0",0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1182,7 +1182,10 @@ namespace ROMS
                 lblProductcode.Text = "0";
                 txtProductName.Text = "";
                 txtProductQty.Text = "";
+                lblWeightvalue.Text = "";
+                lblMxsq.Text = "";
                 cmbUnit.DataSource = null;
+
             }
             catch (Exception ex)
             {
@@ -2690,19 +2693,57 @@ namespace ROMS
 
         private void Lvproduct_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
         {
-            //try
-            //{
-            //    e.DrawDefault = true; 
+            try
+            { // Set the background color of the header
+                using (Brush brush = new SolidBrush(Color.SlateGray)) // Change this to your desired color
+                {
+                    e.Graphics.FillRectangle(brush, e.Bounds);
+                }
 
-            //    e.Graphics.FillRectangle(Brushes.SlateGray, e.Bounds); 
-            //    e.Graphics.DrawString(e.Header.Text, lvproduct.Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);
+                // Draw the header text
+                using (StringFormat sf = new StringFormat())
+                {
+                    sf.Alignment = StringAlignment.Center;
+                    sf.LineAlignment = StringAlignment.Center;
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //} 
+                    using (Font headerFont = new Font("Oswald Regular", 10)) // Change this to your desired font
+                    {
+                        e.Graphics.DrawString(e.Header.Text, headerFont, Brushes.White, e.Bounds, sf);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Lvproduct_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            try
+            {
+                e.DrawDefault = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Lvproduct_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        {
+            try
+            {
+                e.DrawText();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtProductQty_KeyPress(object sender, KeyPressEventArgs e)
@@ -4235,11 +4276,20 @@ namespace ROMS
                 {
                     cmbReturnType.Visible = true;
                     txtDReturnCycle.Visible = true;
+                    cmbReturnType.SelectedIndex = 0;
+                    //cmbPolicyContent.Visible = true;
+                    //cmbSecondLevel.Visible = true;
+                    //txtReturnText.Visible = true;
+                    //txtNextLevel.Visible = true;
                 }
                 else
                 {
                     cmbReturnType.Visible = false;
                     txtDReturnCycle.Visible = false;
+                    cmbPolicyContent.Visible = false;
+                    cmbSecondLevel.Visible = false;
+                    txtReturnText.Visible = false;
+                    txtNextLevel.Visible = false;
                 }
             }
             catch (Exception ex)
