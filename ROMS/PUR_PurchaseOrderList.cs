@@ -1482,6 +1482,9 @@ namespace ROMS
                             grdProDetails.Columns["Quantity"].Width = 80;
                             grdProDetails.Columns["STSID"].Visible = false;
                             grdProDetails.Columns["STS1"].Visible = false;
+                            grdProDetails.Columns["SPSC_SMName"].Visible = false;
+                            grdProDetails.Columns["SPSC_SMMobileNo"].Visible = false;
+                            grdProDetails.Columns["SP_PhoneNo"].Visible = false; 
                             grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
                             {
@@ -2607,14 +2610,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 int varstatus = 0;
-                if (rbComplete.Checked == true)
-                {
-                    varstatus = 14;
-                }
-                else
-                {
-                    varstatus = Convert.ToInt32(cmbstatus.SelectedValue);
-                }
+               
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0");
                 objdserv.CloseConnection();
@@ -2642,13 +2638,21 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
                     {
+                        if (rbComplete.Checked == true)
+                        {
+                            varstatus = 14;
+                        }
+                        else
+                        {
+                            varstatus = Convert.ToInt32(cmbstatus.SelectedValue);
+                        }
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Order_List.rpt");
                         objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
                         objBillreport.SetParameterValue("paraSupplierScheduleid ", Convert.ToInt32(lblschedleCode.Text));
                         objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
                         objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
-                        objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(varstatus));
-                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
+                        objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbProductStatus.SelectedValue));
+                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbProductStatus.Text));
                         objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpPlanDate.Text));
                         objBillreport.SetParameterValue("paraToDate", Convert.ToString(dptoPlanDate.Text));
                         objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -2661,22 +2665,26 @@ namespace ROMS
                     }
                     else
                     {  
-                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
                         if (Convert.ToInt32(cmbGroup.SelectedValue) == 0)
-                        { 
+                        {
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
                             objBillreport.SetParameterValue("ParaPO", 0);
                             objBillreport.SetParameterValue("ParaSupplier", 0);
                             objBillreport.SetParameterValue("varHeader", "PO Product List");
                         }
                         if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
                         {
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
                             objBillreport.SetParameterValue("ParaPO", 1);
                             objBillreport.SetParameterValue("ParaSupplier",0);
                             objBillreport.SetParameterValue("varHeader", "PO Product List - PO Wise");
                         }
                         if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
                         {
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_Supplier_wise.rpt"); 
                             objBillreport.SetParameterValue("ParaPO", 0);
                             objBillreport.SetParameterValue("ParaSupplier", 1);
                             objBillreport.SetParameterValue("varHeader", "PO Product List - Supplier Wise");
@@ -2701,8 +2709,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
                         objBillreport.SetParameterValue("ParaScheduleId ", Convert.ToInt32(lblschedleCode.Text));
                         objBillreport.SetParameterValue("paraCompanyID ", Convert.ToInt32(cmbConcern.SelectedValue));
-                        objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(varstatus));
-                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
+                        objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbProductStatus.SelectedValue));
+                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbProductStatus.Text));
                         objBillreport.SetParameterValue("ParaPOFromDate", Convert.ToString(dpPlanDate.Text));
                         objBillreport.SetParameterValue("ParaPOToDate", Convert.ToString(dptoPlanDate.Text));
                         objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
