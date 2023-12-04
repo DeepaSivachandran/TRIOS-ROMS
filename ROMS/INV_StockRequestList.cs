@@ -58,14 +58,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        
-        private void CP_Supplierlist_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
         public void udfndelete()
         {
             try
@@ -76,16 +68,20 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-
                         SPDataService objspdservice = new SPDataService();
                         result = "";
-                   
+                        Model.TRN_StockRequest objTRNS_StockRequest = new Model.TRN_StockRequest();
+                        objTRNS_StockRequest.ViewType = 2;
+                        objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                        objTRNS_StockRequest.paraOriginator = "Stock Request Delete";
+                        result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
+                        objspdservice.CloseConnection();
+
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                             
-
+                            udfnList();
                         }
                         else
                         {
@@ -98,6 +94,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void udfnEdit()
@@ -111,7 +111,7 @@ namespace ROMS
                     Application.DoEvents();
                     MainForm.objINV_StockRequest = new INV_StockRequest();
                     MainForm.objINV_StockRequest.MdiParent = ParentForm;
-                    if(Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value)==28)
+                    if(Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value)==29)
                     {
                         MainForm.objINV_StockRequest.btnSave.Text = "Save as Draft";
                     }
@@ -120,6 +120,7 @@ namespace ROMS
                         MainForm.objINV_StockRequest.btnSave.Text = "Update";
                     }
                     MainForm.objINV_StockRequest.varStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value);
+                    MainForm.objINV_StockRequest.varStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objINV_StockRequest.Show();
                 }
             }
@@ -145,6 +146,14 @@ namespace ROMS
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
                     tsbEdit_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
+                }
+                if ((e.KeyCode == Keys.Delete))
+                {
+                    tsbDelete_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -591,15 +600,15 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void INV_StockRequestList_Load(object sender, EventArgs e)
         {
             try
             {
                 cmbConcern.Focus();
-                dpFromDate.MaxDate = DateTime.Now;
-                dpEntryToDate.MaxDate = DateTime.Now;
                 udfnCmbConcern();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpEntryToDate.MinDate = dpFromDate.MaxDate;
                 cmbConcern.SelectedValue = 1;
                 udfnList();
             }
@@ -1076,6 +1085,10 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
+                }
             }
             catch (Exception ex)
             {
@@ -1112,11 +1125,11 @@ namespace ROMS
                         grdStockRequestList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdStockRequestList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    //else
-                    //{
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    //}
+                    else
+                    {
+                        grdStockRequestList.Rows[i].Cells["Status"].Style.BackColor = Color.Salmon;
+                        grdStockRequestList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
