@@ -27,6 +27,7 @@ namespace ROMS
         public int varStockRequestID = 0;
         public int varID = 0;
         public int varStatus = 0;
+        public string varErrQty = "0";
         public INV_StockRequest()
         {
             InitializeComponent();
@@ -168,7 +169,7 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
-                                grdStockRequest.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]),0, Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
+                                grdStockRequest.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["STOCK"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
                                 dtStock.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), 0, 0, Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]));
                             }
                             for (int j = 0; j < grdStockRequest.Rows.Count; j++)
@@ -185,6 +186,7 @@ namespace ROMS
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                     }
@@ -680,6 +682,7 @@ namespace ROMS
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             VarAdd = "0";
                             txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
@@ -1004,6 +1007,14 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
+                if (varErrQty == "1")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     errStockRequest.Clear();
@@ -1081,6 +1092,43 @@ namespace ROMS
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void GrdStockRequest_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int RequiredQty = Convert.ToInt32(grdStockRequest.CurrentRow.Cells["clmRequiredQty"].Value);
+                int StockQty = Convert.ToInt32(grdStockRequest.CurrentRow.Cells["clmStockQty"].Value);
+
+                if (Convert.ToInt32(RequiredQty) > Convert.ToInt32(StockQty))
+                {
+                    grdStockRequest.Rows[e.RowIndex].Cells["clmRequiredQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    varErrQty = "1";
+                }
+                else if (Convert.ToString(RequiredQty) == "0" || Convert.ToString(RequiredQty) == "")
+                {
+                    grdStockRequest.Rows[e.RowIndex].Cells["clmRequiredQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    varErrQty = "1";
+                }
+                else
+                {
+                    grdStockRequest.CurrentRow.Cells["clmRequiredQty"].Style.BackColor = Color.PaleGreen;
+                    varErrQty = "0";
+                }
+                object varEditQty = grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                // Update the same column value in the DataTable
+                dtStock.Rows[e.RowIndex]["SRQ_RequestedQty"] = varEditQty;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
