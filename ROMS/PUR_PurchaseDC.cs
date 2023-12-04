@@ -1208,6 +1208,7 @@ namespace ROMS
             {
                 string varProductsCodes = "0";
                 txtRack.Text = "";
+                txtRack.Enabled = true;
                 lblRackCode.Text = "0";
                 lvproduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
@@ -2107,6 +2108,7 @@ namespace ROMS
                     epPurchaseDC.SetError(txtStockLocation, "Please enter stock location.");
                     tpStockLocation.ShowAlways = true;
                     tpStockLocation.Show("Please enter stock location.", txtStockLocation, 5000);
+                    txtRack.Enabled = true;
                 }
                 else
                 {
@@ -2124,6 +2126,10 @@ namespace ROMS
         {
             try
             {
+                if(txtRack.Text=="")
+                {
+                    txtRack.Enabled = true;
+                }
                 lvStockLocation.Visible = false;
                 txtRack.BackColor = Color.LemonChiffon;
             }
@@ -2398,7 +2404,7 @@ namespace ROMS
                             }
                         }
                         lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
-                        if (varId_PurchaseRack == "0" || varId_PurchaseRack == "-1")
+                        if (Convert.ToInt32( varId_PurchaseRack )> 0 || varId_PurchaseRack == "-1")
                         {
                             epPurchaseDC.SetError(txtRack, "Please enter valid rack.");
                             txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -2435,7 +2441,11 @@ namespace ROMS
                         {
                             txtRack.Text = "None";
                             txtRack.Enabled = false;
-                            lblRackCode.Text = "-2";
+                            lblRackCode.Text = "0";
+                        }
+                        else
+                        {
+                            txtRack.Enabled = true;
                         }
                     }
                 }
@@ -2548,7 +2558,16 @@ namespace ROMS
                 }
                 else
                 {
-                    varDay = txtDay.Text.Trim();
+                    if (Convert.ToInt64(txtDay.Text) > 31 || Convert.ToInt64(txtDay.Text) <= 0)
+                    {
+                        pbDateflag = 1;
+                        txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        string varMessage = objDServ.udfnGetMessages(95);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    { varDay = txtDay.Text.Trim(); }
                 }
                 if (txtMonth.Text.Trim() != "")
                 {
@@ -2589,7 +2608,7 @@ namespace ROMS
                     varMonth = Convert.ToString(txtMonth.Text.Trim());
                     varYear = Convert.ToString(txtYear.Text.Trim());
                     varExpiryDate = varDay + "/" + varMonth + "/" + varYear;
-                    objDS = objDServ.udfnMaster(10, 0, 0, dpDCDate.Text.Trim(), varExpiryDate, 0);
+                    objDS = objDServ.udfnMaster(10, 0, 0, dpDCDate.Text.Trim(), varExpiryDate,Convert.ToInt32(lblProductcode.Text.Trim()));
                     if (objDS.Tables.Count != 0)
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
@@ -2609,7 +2628,23 @@ namespace ROMS
                     }
                     else
                     {
-                        pbDateflag = 0;
+                        if (objDS.Tables.Count > 1)
+                        {
+                            if (Convert.ToInt32(objDS.Tables[1].Rows[0]["DATEVALIDATE"])== 0)
+                            {
+                                pbDateflag = 1;
+                                txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                string varMessage = objDServ.udfnGetMessages(94);
+                                objDServ.CloseConnection();
+                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        else
+                        {
+                            pbDateflag = 0;
+                        }
                     }
                     //string[] date = dpDCDate.Text.Split('/');
                     //varDay = date[0].ToString();
