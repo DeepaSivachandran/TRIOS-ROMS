@@ -59,7 +59,7 @@ namespace ROMS
         {
             try
             {
-                if (grdUserList.SelectedRows.Count > 0)
+                if (grdOutwardList.SelectedRows.Count > 0)
                 {
                     picLoader.Visible = true;
                     picLoader.BringToFront();
@@ -67,7 +67,7 @@ namespace ROMS
                     MainForm.objINV_GodownOutward = new INV_GodownOutward();
                     MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
                     MainForm.objINV_GodownOutward.btnSave.Text = "Update";
-                    MainForm.objINV_GodownOutward.varGOId = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["GOID"].Value);
+                    MainForm.objINV_GodownOutward.varGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value);
                     MainForm.objINV_GodownOutward.Show();
                 }
             }
@@ -104,10 +104,10 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdUserList, DGV_SearchGrid);
+                udfnGridSearchHeading(grdOutwardList, DGV_SearchGrid);
                 DGV_SearchGrid.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdUserList.Columns)
+                foreach (DataGridViewColumn col in grdOutwardList.Columns)
                 {
                     DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
@@ -260,34 +260,34 @@ namespace ROMS
 
         private void BtnView_KeyDown(object sender, KeyEventArgs e)
         {
-            //try
-            //{
-            //    if (e.KeyCode == Keys.Enter)
-            //    {
-            //        btnExport.Focus();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                //    if (e.KeyCode == Keys.Enter)
+                //    {
+                //        btnExport.Focus();
+                //    }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void BtnExport_KeyDown(object sender, KeyEventArgs e)
         {
-            //try
-            //{
-            //    if (e.KeyCode == Keys.Enter)
-            //    {
-            //        cmbConcern.Focus();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                //    if (e.KeyCode == Keys.Enter)
+                //    {
+                //        cmbConcern.Focus();
+                //    }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void CmbConcern_Enter(object sender, EventArgs e)
@@ -426,7 +426,7 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdUserList.DataSource = null;
+                grdOutwardList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
@@ -441,21 +441,21 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdUserList.DataSource = objDs.Tables[0];
-                            grdUserList.Columns["S.No"].Width = 50;
-                            grdUserList.Columns["Concern"].Width = 120;
-                            grdUserList.Columns["Outward Date"].Width = 120;
-                            grdUserList.Columns["Outward No"].Width = 120;
-                            grdUserList.Columns["Stock Location"].Width = 120;
-                            grdUserList.Columns["Transaction Type"].Width = 120;
-                            grdUserList.Columns["GOID"].Visible = false;
-                            grdUserList.Columns["TotalProducts"].Width = 120;
-                            grdUserList.Columns["Created By"].Width = 120;
-                            grdUserList.Columns["STSID"].Visible = false;
-                            grdUserList.Columns["Status"].Width = 120;
-                            grdUserList.Columns["S.No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdUserList.Columns["TotalProducts"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdUserList.Columns["Outward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdOutwardList.DataSource = objDs.Tables[0];
+                            grdOutwardList.Columns["S.No."].Width = 50;
+                            grdOutwardList.Columns["Concern"].Width = 120;
+                            grdOutwardList.Columns["Outward Date"].Width = 120;
+                            grdOutwardList.Columns["Outward No."].Width = 120;
+                            grdOutwardList.Columns["Stock Location"].Width = 150;
+                            grdOutwardList.Columns["Transaction Type"].Width = 120;
+                            grdOutwardList.Columns["GOID"].Visible = false;
+                            grdOutwardList.Columns["Total Products"].Width = 120;
+                            grdOutwardList.Columns["Created By"].Width = 120;
+                            grdOutwardList.Columns["STSID"].Visible = false;
+                            grdOutwardList.Columns["Status"].Width = 120;
+                            grdOutwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdOutwardList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdOutwardList.Columns["Outward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                         }
                         else
@@ -509,10 +509,10 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
                 udfnList();
                 dtpOutwardDate.MaxDate = DateTime.Now;
-                dtpOutwardDate2.MaxDate = DateTime.Now;
+                dtpOutwardDate2.MaxDate = DateTime.Now; cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+
             }
             catch (Exception ex)
             {
@@ -559,7 +559,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "", "",null,0);
+                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "", "",null,0,null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -868,8 +868,16 @@ namespace ROMS
 
         private void DtpOutwardDate_ValueChanged(object sender, EventArgs e)
         {
-            DateTime varmindate = DateTime.ParseExact(dtpOutwardDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            dtpOutwardDate2.MinDate = varmindate;
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dtpOutwardDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dtpOutwardDate2.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DtpOutwardDate_Leave(object sender, EventArgs e)
@@ -904,9 +912,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdUserList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUserList);
+                grdOutwardList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdOutwardList);
                 objDser.CloseConnection();
-                grdUserList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdOutwardList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -942,8 +950,8 @@ namespace ROMS
         {
             try
             {
-                DataGridViewColumn newColumn = grdUserList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdUserList.SortedColumn;
+                DataGridViewColumn newColumn = grdOutwardList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdOutwardList.SortedColumn;
                 ListSortDirection direction;
 
                 // If oldColumn is null, then the DataGridView is not sorted.
@@ -951,7 +959,7 @@ namespace ROMS
                 {
                     // Sort the same column again, reversing the SortOrder.
                     if (oldColumn == newColumn &&
-                        grdUserList.SortOrder == SortOrder.Ascending)
+                        grdOutwardList.SortOrder == SortOrder.Ascending)
                     {
                         direction = ListSortDirection.Descending;
                     }
@@ -966,7 +974,7 @@ namespace ROMS
                 {
                     direction = ListSortDirection.Ascending;
                 }
-                grdUserList.Sort(newColumn, direction);
+                grdOutwardList.Sort(newColumn, direction);
                 newColumn.HeaderCell.SortGlyphDirection =
                     direction == ListSortDirection.Ascending ?
                     SortOrder.Ascending : SortOrder.Descending;
@@ -974,7 +982,7 @@ namespace ROMS
                 DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                 DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-                DGV_SearchGrid.HorizontalScrollingOffset = grdUserList.HorizontalScrollingOffset;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdOutwardList.HorizontalScrollingOffset;
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -984,10 +992,10 @@ namespace ROMS
         {
             try
             {
-                if (grdUserList.ColumnCount > 0)
+                if (grdOutwardList.ColumnCount > 0)
                 {
-                    grdUserList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdUserList.HorizontalScrollingOffset;
+                    grdOutwardList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdOutwardList.HorizontalScrollingOffset;
                     //grdBrandList.HorizontalScrollingOffset = 0;
                 }
             }
@@ -1009,9 +1017,9 @@ namespace ROMS
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdUserList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUserList);
+                grdOutwardList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdOutwardList);
                 objDser.CloseConnection();
-                grdUserList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdOutwardList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //grdCompanyList(sender,e); 
             }
             catch (Exception ex)
@@ -1027,9 +1035,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdUserList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUserList);
+                grdOutwardList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdOutwardList);
                 objDser.CloseConnection();
-                grdUserList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdOutwardList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1040,10 +1048,10 @@ namespace ROMS
             try
             {
                 int totalWidth = 0;
-                int offSetValue = grdUserList.HorizontalScrollingOffset;
+                int offSetValue = grdOutwardList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
-                if (totalWidth - grdUserList.Width > grdUserList.HorizontalScrollingOffset && grdUserList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdOutwardList.Width > grdOutwardList.HorizontalScrollingOffset && grdOutwardList.HorizontalScrollingOffset > 0)
                 {
                     offSetValue = offSetValue;
                 }
@@ -1062,7 +1070,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
-                if ((grdUserList.Rows.Count > 0))
+                if ((grdOutwardList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
                     // creating new WorkBook within Excel application  
@@ -1077,7 +1085,7 @@ namespace ROMS
                     ExcelSheet.Name = "GoodsOutward List";
                     int cIndex = 0;
                     int count = 0;
-                    foreach (DataGridViewColumn col in grdUserList.Columns)
+                    foreach (DataGridViewColumn col in grdOutwardList.Columns)
                     {
                         if (col.Visible)
                         {
@@ -1097,7 +1105,7 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
 
 
-                    foreach (DataGridViewColumn col in grdUserList.Columns)
+                    foreach (DataGridViewColumn col in grdOutwardList.Columns)
                     {
                         if (col.Visible)
                         {
@@ -1105,7 +1113,7 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "Concern" || col.Name == "Outward Date" || col.Name == "Outward No" || col.Name == "Stock Location" || col.Name == "Transaction Type" || col.Name == "TotalProducts")
+                            if (col.Name == "Concern" || col.Name == "Outward Date" || col.Name == "Outward No." || col.Name == "Stock Location" || col.Name == "Transaction Type" || col.Name == "Total Products")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
@@ -1113,15 +1121,16 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            if (col.Name == "S.No")
+                            if (col.Name == "S.No.")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "TotalProducts")
+                            
+                            if (col.Name == "Total Products")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-                            foreach (DataGridViewRow rowa in grdUserList.Rows)
+                            foreach (DataGridViewRow rowa in grdOutwardList.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
                             }
@@ -1185,16 +1194,16 @@ namespace ROMS
             try
             {
                 int totalWidth = 0;
-                int offSetValue = grdUserList.HorizontalScrollingOffset;
+                int offSetValue = grdOutwardList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
-                if (totalWidth - grdUserList.Width > grdUserList.HorizontalScrollingOffset && grdUserList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdOutwardList.Width > grdOutwardList.HorizontalScrollingOffset && grdOutwardList.HorizontalScrollingOffset > 0)
                 {
                     offSetValue = offSetValue;
                 }
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdUserList);
+                udfnscrollVisible(DGV_SearchGrid, grdOutwardList);
             }
             catch (Exception ex)
             {
@@ -1247,7 +1256,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Source_RKID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
-                if (grdUserList.SelectedRows.Count > 0)
+                if (grdOutwardList.SelectedRows.Count > 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
@@ -1256,7 +1265,7 @@ namespace ROMS
                         DataTable objGrnPO = new DataTable();
                         TRNS_GoodsOutward objTRNS_GoodsOutward = new TRNS_GoodsOutward();
                         objTRNS_GoodsOutward.ViewType = 2;
-                        objTRNS_GoodsOutward.ParaGOId = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["GOID"].Value.ToString());
+                        objTRNS_GoodsOutward.ParaGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
                         objTRNS_GoodsOutward.ParaCompanyCode = 0;
                         objTRNS_GoodsOutward.paraOutwardDate = "";
                         objTRNS_GoodsOutward.paraTransferType = 0;
@@ -1266,8 +1275,6 @@ namespace ROMS
                         objTRNS_GoodsOutward.paraOriginator = "Goods Outward Delete";
                         string result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
                         objspdservice.CloseConnection();
-                        //string result = objspdservice.udfnGoodsOutwardDel(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["GOID"].Value.ToString()), 0, "", 0, 0, "", 0, dtStock,"Stock Transfer Delete" );
-                        //objspdservice.CloseConnection();
                         if (result.Split('~')[0] == "3")
                         {
                             MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1293,24 +1300,43 @@ namespace ROMS
 
         private void GrdUserList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            for (int i = 0; i < grdUserList.Rows.Count; i++)
+            try
             {
-                if (Convert.ToInt32(grdUserList.Rows[i].Cells["STSID"].Value) == 22)
+
+                for (int i = 0; i < grdOutwardList.Rows.Count; i++)
                 {
-                    grdUserList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
-                    grdUserList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                }
-                else if (Convert.ToInt32(grdUserList.Rows[i].Cells["STSID"].Value) == 25)
-                {
-                    grdUserList.Rows[i].Cells["Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    grdUserList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                }
-                else if (Convert.ToInt32(grdUserList.Rows[i].Cells["STSID"].Value) == 26)
-                {
-                    grdUserList.Rows[i].Cells["Status"].Style.BackColor = Color.PaleGreen;
-                    grdUserList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 22)
+                    {
+                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 25)
+                    {
+                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 26)
+                    {
+                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.PaleGreen;
+                        grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Lbloutwarddate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbConcern_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
         }
 
         private void LvProduct_SelectedIndexChanged(object sender, EventArgs e)

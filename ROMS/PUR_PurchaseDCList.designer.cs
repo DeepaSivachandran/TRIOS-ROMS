@@ -422,7 +422,7 @@
             // txtSupplier
             // 
             this.txtSupplier.Location = new System.Drawing.Point(527, 23);
-            this.txtSupplier.MaxLength = 2;
+            this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(264, 27);
             this.txtSupplier.TabIndex = 3;
