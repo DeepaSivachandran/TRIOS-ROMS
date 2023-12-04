@@ -86,6 +86,7 @@ namespace ROMS
                             if (grdPOSchedule.Rows.Count > 0) // Check if there are any rows
                             {
                                 grdPOSchedule.Rows[grdPOSchedule.Rows.Count - 1].Cells[1].Value = null;
+                                grdPOSchedule.Rows[grdPOSchedule.Rows.Count - 1].Cells["S.No."].Value = "";
                                 grdPOSchedule.Columns["clmPrint8"].DisplayIndex = grdPOSchedule.Columns.Count - 3;
                                 grdPOSchedule.Columns["clmPrint8"].Width = 30;
                                 grdPOSchedule.Columns["clmPrint7"].DisplayIndex = grdPOSchedule.Columns.Count - 5;
@@ -250,7 +251,11 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
-                    int varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
+                    int varDYID = 0;
+                    if (e.ColumnIndex == grdPOSchedule.Rows.Count - 1)
+                    {
+                        varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
+                    }
                     string varHeader = "";
                     switch (grdPOSchedule.Columns[e.ColumnIndex].Name)
                     {
