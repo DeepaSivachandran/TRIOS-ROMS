@@ -961,7 +961,7 @@ namespace ROMS
                     varoriginator = "Stock Request Updation";
                     varType = 1;
                 }
-                Model.TRNS_StockRequest objTRNS_StockRequest = new Model.TRNS_StockRequest();
+                Model.TRN_StockRequest objTRNS_StockRequest = new Model.TRN_StockRequest();
                 objTRNS_StockRequest.ViewType = varType;
                 objTRNS_StockRequest.paraStockRequestID = varID;
                 objTRNS_StockRequest.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);

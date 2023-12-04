@@ -350,8 +350,14 @@ namespace ROMS
         private void INV_DamageEntryList_Load(object sender, EventArgs e)
         {
             cmbconcern.Focus();
-            dpFromDate.MaxDate = DateTime.Now;
             udfnCmbConcern();
+            DataSet objDs = new DataSet();
+            SPDataService objspservice = new SPDataService();
+            objDs = objspservice.udfnMaster(4, 0, 0, "", "", 0);
+            DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            dpFromDate.MaxDate = varmaxdate;
+            dpToDate.MinDate = dpFromDate.MaxDate;
+            objspservice.CloseConnection();
             cmbconcern.SelectedValue = 1;
             udfnList();
         }

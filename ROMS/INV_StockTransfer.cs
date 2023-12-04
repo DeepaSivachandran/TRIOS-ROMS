@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -210,7 +211,8 @@ namespace ROMS
         {
             try
             {
-                dpTrannsferDate.MaxDate = DateTime.Now;
+                string varMaxDate = "";
+                
                 dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
                 dtStock.Columns.Add("STK_PRID", typeof(int));
                 dtStock.Columns.Add("STK_MRP", typeof(string));
@@ -222,6 +224,12 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
                 udfnCmbConcern();
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnMaster(4, 0, 0, "", "", 0);
+                DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpTrannsferDate.MaxDate = varmaxdate;
+                objspservice.CloseConnection();
                 cmbConcern.SelectedValue = 1;
                 if (btnSave.Text=="Save")
                 {
