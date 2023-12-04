@@ -15,6 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        Boolean BlnSearchImageYN = false;
         public string varconcernvalue="-1",varValues="-1";
         public int varsno = 0,varEditFlag=0;
         public string varSampleTransation = "";
@@ -136,34 +137,62 @@ namespace ROMS
         {
             try
             {
-                cmbConcern.SelectedValue = varconcernvalue;
-                cmbTransactionType.SelectedValue = varValues;
-                grdSettings.Columns["clmConcernId"].Visible = false;
-                grdSettings.Columns["clmTransactionTypeID"].Visible = false;
-                grdSettings.Columns["clmResetOnId"].Visible = false;
-                grdSettings.Columns["clmNoofdigits"].Visible = false;
-                grdSettings.Columns["clmStartingNo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdSettings.Columns["clmNoofdigits"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdSettings.Columns["clmsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdSettings.DataSource = null;
                 DataSet objDS = new DataSet();
+                //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 objDS = objdserv.udfnVoucherSettingList(0);
                 objdserv.CloseConnection();
+                //cmbConcern.SelectedValue = varconcernvalue;
+                //cmbTransactionType.SelectedValue = varValues;
+                //grdSettings.Columns["clmConcernId"].Visible = false;
+                //grdSettings.Columns["clmTransactionTypeID"].Visible = false;
+                //grdSettings.Columns["clmResetOnId"].Visible = false;
+                //grdSettings.Columns["clmNoofdigits"].Visible = false;
+                //grdSettings.Columns["clmStartingNo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                //grdSettings.Columns["clmNoofdigits"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                //grdSettings.Columns["clmsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+               
                 txtFyyear.Text = Convert.ToString(objDS.Tables[1].Rows[0]["FY_financialYear"]);
                 if (objDS != null)
                 {
                     if (objDS.Tables.Count != 0)
                     {
+                        //lblNoRecordsFound.Visible = false;
+                        //if (objDS.Tables[0].Rows.Count != 0)
+                        //{
+                        //    for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
+                        //    {
+                        //        grdSettings.Rows.Add(objDS.Tables[0].Rows[i]["S.No."], objDS.Tables[0].Rows[i]["Concern"], objDS.Tables[0].Rows[i]["TransactionType"], objDS.Tables[0].Rows[i]["Prefix"], objDS.Tables[0].Rows[i]["Suffix"],
+                        //            objDS.Tables[0].Rows[i]["Strating No."], objDS.Tables[0].Rows[i]["No.of Digits"], objDS.Tables[0].Rows[i]["Reset On"], objDS.Tables[0].Rows[i]["Sample Transaction No."],
+                        //             objDS.Tables[0].Rows[i]["Concern-ID"], objDS.Tables[0].Rows[i]["Transaction Type-ID"], objDS.Tables[0].Rows[i]["Reset On-ID"]);
+                        //    }
+                            
+                        //}
+                        //else
+                        //{
+                        //    lblNoRecordsFound.Visible = true;
+                        //    lblNoRecordsFound.BringToFront();
+                        //}
                         lblNoRecordsFound.Visible = false;
                         if (objDS.Tables[0].Rows.Count != 0)
                         {
-                            for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
-                            {
-                                grdSettings.Rows.Add(objDS.Tables[0].Rows[i]["S.No."], objDS.Tables[0].Rows[i]["Concern"], objDS.Tables[0].Rows[i]["TransactionType"], objDS.Tables[0].Rows[i]["Prefix"], objDS.Tables[0].Rows[i]["Suffix"],
-                                    objDS.Tables[0].Rows[i]["Strating No."], objDS.Tables[0].Rows[i]["No.of Digits"], objDS.Tables[0].Rows[i]["Reset On"], objDS.Tables[0].Rows[i]["Sample Transaction No."],
-                                     objDS.Tables[0].Rows[i]["Concern-ID"], objDS.Tables[0].Rows[i]["Transaction Type-ID"], objDS.Tables[0].Rows[i]["Reset On-ID"]);
-                            }
-                            
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdSettings.DataSource = objDS.Tables[0];
+                            grdSettings.Columns["Strating No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdSettings.Columns["No.of Digits"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdSettings.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSettings.Columns["S.No."].Width = 50;
+                            grdSettings.Columns["Sample Transaction No."].Width =150;
+                            grdSettings.Columns["Transaction Type"].Width =150;
+                            grdSettings.Columns["Concern ID"].Visible = false;
+                            grdSettings.Columns["Transaction TypeID"].Visible = false;
+                            grdSettings.Columns["Reset OnID"].Visible = false;
                         }
                         else
                         {
@@ -182,6 +211,7 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
+                udfnSearchGridHead();
             }
             catch (Exception ex)
             {
@@ -189,7 +219,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
-            { grdSettings.ClearSelection(); }
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                grdSettings.ClearSelection();
+            }
         }
         private void CP_Settings_Load(object sender, EventArgs e)
         {
@@ -850,34 +884,178 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void udfnSearchGridHead()
+        {
+            try
+            {
+                udfnGridSearchHeading(grdSettings, DGV_SearchGrid);
+                DGV_SearchGrid.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in grdSettings.Columns)
+                {
+                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                    visibleColumns.Add(col.Index);
+                }
+                DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                int rowIndex = 0;
+                DGV_SearchGrid.Rows.Clear();
+                DGV_SearchGrid.Rows.Add();
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                }
+                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+                DGV_SearchGrid.Columns[0].ReadOnly = true;
+                DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
+        {
+            //try
+            //{
+            //    //dgv2.DataSource = null;
+            //    dgv2.Columns.Clear();
+            //    List<int> visibleColumns = new List<int>();
+            //    foreach (DataGridViewColumn col in dgv1.Columns)
+            //    {
+            //        if (col.Visible)
+            //        {
+            //            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+            //            visibleColumns.Add(col.Index);
+            //        }
+            //    }
+            //    int rowIndex = 0;
+            //    dgv2.Rows.Clear();
+            //    dgv2.Rows.Add();
+            //    for (int i = 0; i < visibleColumns.Count; i++)
+            //    {
+            //        dgv2.Rows[rowIndex].Cells[i].Value = "";
+            //    }
+            //}
+            //catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            try
+            {
+                dgv2.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in dgv1.Columns)
+                {
+                    if (col.Visible)
+                    {
+                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                }
+                int rowIndex = 0;
+                int ColIndex = 0;
+                dgv2.Rows.Clear();
+                dgv2.Rows.Add();
+                BlnSearchImageYN = false;
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                    if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                    {
+                        //dgv2.Rows[rowIndex].Visible = false;
+                        BlnSearchImageYN = true;
+                        ColIndex = i;
+                        dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                        dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                        ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                    {
+                        BlnSearchImageYN = true;
+                        dgv2.Rows[rowIndex].Cells[i].Value = false;
+                    }
+                    else
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError(); objError.WriteFile(ex); }
+        }
         public void udfnSave()
         {
             try
             {
-                if (grdSettings.Rows.Count != 0)
+                //if (grdSettings.Rows.Count != 0)
+                //{
+                //    DataTable objSettings = new DataTable();
+                //    objSettings.TableName = "[MR_VoucherSettings]";
+                //    objSettings.Columns.Add("STG_COMID", typeof(int));
+                //    objSettings.Columns.Add("STG_TransactionType", typeof(int));
+                //    objSettings.Columns.Add("STG_Prefix", typeof(string));
+                //    objSettings.Columns.Add("STG_Sufix", typeof(string));
+                //    objSettings.Columns.Add("STG_StartingNo", typeof(int));
+                //    objSettings.Columns.Add("STG_SampleTransNo", typeof(string));
+                //    objSettings.Columns.Add("STG_NoOfDigit", typeof(int));
+                //    objSettings.Columns.Add("STG_ResetOn", typeof(int));
+                //    for (int i = 0; i < grdSettings.Rows.Count; i++)
+                //    {
+                //        // objSettings.Rows.Add(grdSettings.Rows[i].Cells["HSN Name-New"].Value).Trim(), cmbTransactionType.SelectedValue, txtPrefix.Text, txtSuffix.Text, txtStartingNo.Text, txtNoOfDegits.Text, cmbResetOn.SelectedValue);
+                //        objSettings.Rows.Add(Convert.ToInt32(grdSettings.Rows[i].Cells["clmConcernId"].Value), Convert.ToInt32(grdSettings.Rows[i].Cells["clmTransactionTypeID"].Value), Convert.ToString(grdSettings.Rows[i].Cells["clmPrefix"].Value).Trim(),
+                //            Convert.ToString(grdSettings.Rows[i].Cells["clmSuffix"].Value).Trim(), Convert.ToInt32(grdSettings.Rows[i].Cells["clmStartingNo"].Value), Convert.ToString(grdSettings.Rows[i].Cells["clmSampleTransactionNo"].Value).Trim(), Convert.ToInt32(grdSettings.Rows[i].Cells["clmNoofdigits"].Value),
+                //             Convert.ToInt32(grdSettings.Rows[i].Cells["clmResetOnId"].Value));
+                //    }
+                //    DataService objdservice = new DataService();
+                //    // varStartingNum = objdservice.displaydata("SELECT RIGHT('00000000'+ CONVERT(nvarchar,"+ txtStartingNo.Text.Trim()+ "),"+txtNoOfDegits.Text.Trim()+") AS sampleTransactionno FROM MR_VoucherSettings");
+
+                //    udfnClear();
+                //    btnUpdate.Enabled = false;
+                //    SPDataService objDSer = new SPDataService();
+                //    varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + txtStartingNo.Text.Trim() + Convert.ToString(txtSuffix.Text.Trim());
+                //    result = objDSer.udfnVoucherSettings(0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToInt32(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varOriginator);
+                //    objDSer.CloseConnection();
+                //    btnUpdate.Enabled = true;
+                //    string[] varvalue = result.Split('~');
+                //    if (varvalue[0] == "3")
+                //    {
+                //        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //        udfnClear();
+                //        cmbConcern.SelectedIndex = 0;
+                //        udfnToolTip();
+                //        cmbConcern.Focus();
+                //        cmbTransactionType.BackColor = Color.White;
+                //        epSettings.Clear();
+                //        udfnList();
+                //    }
+                //    else
+                //    {
+                //        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    }
+                //}
+                //else
+                //{
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(64);
+                //    objDServ.CloseConnection();
+                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
+                int varFlag = 0; int varConcern = 0; int varTransactionType = 0; string varStartingNum = ""; int varConcernId = 0;
+                string result = ""; string varOriginator = "VoucherSettings Updation";
+                SPDataService objspdservice = new SPDataService();
+                varConcern = Convert.ToInt32(cmbConcern.SelectedValue);
+                varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
+                for (int i = 0; i < grdSettings.Rows.Count; i++)
                 {
-                    string result = ""; string varOriginator = "VoucherSettings Updation";
-                    SPDataService objspdservice = new SPDataService();
-                    DataTable objSettings = new DataTable();
-                    objSettings.TableName = "[MR_VoucherSettings]";
-                    objSettings.Columns.Add("STG_COMID", typeof(int));
-                    objSettings.Columns.Add("STG_TransactionType", typeof(int));
-                    objSettings.Columns.Add("STG_Prefix", typeof(string));
-                    objSettings.Columns.Add("STG_Sufix", typeof(string));
-                    objSettings.Columns.Add("STG_StartingNo", typeof(int));
-                    objSettings.Columns.Add("STG_SampleTransNo", typeof(string));
-                    objSettings.Columns.Add("STG_NoOfDigit", typeof(int));
-                    objSettings.Columns.Add("STG_ResetOn", typeof(int));
-                    for (int i = 0; i < grdSettings.Rows.Count; i++)
+                    if (varConcern == Convert.ToInt32(grdSettings.Rows[i].Cells["Concern ID"].Value) && varTransactionType == Convert.ToInt32(grdSettings.Rows[i].Cells["Transaction TypeID"].Value))
                     {
-                        // objSettings.Rows.Add(grdSettings.Rows[i].Cells["HSN Name-New"].Value).Trim(), cmbTransactionType.SelectedValue, txtPrefix.Text, txtSuffix.Text, txtStartingNo.Text, txtNoOfDegits.Text, cmbResetOn.SelectedValue);
-                        objSettings.Rows.Add(Convert.ToInt32(grdSettings.Rows[i].Cells["clmConcernId"].Value), Convert.ToInt32(grdSettings.Rows[i].Cells["clmTransactionTypeID"].Value), Convert.ToString(grdSettings.Rows[i].Cells["clmPrefix"].Value).Trim(),
-                            Convert.ToString(grdSettings.Rows[i].Cells["clmSuffix"].Value).Trim(), Convert.ToInt32(grdSettings.Rows[i].Cells["clmStartingNo"].Value), Convert.ToString(grdSettings.Rows[i].Cells["clmSampleTransactionNo"].Value).Trim(), Convert.ToInt32(grdSettings.Rows[i].Cells["clmNoofdigits"].Value),
-                             Convert.ToInt32(grdSettings.Rows[i].Cells["clmResetOnId"].Value));
+                        varFlag = 1;
                     }
+                }
+                if (varFlag == 0)
+                {
+                    DataService objdservice = new DataService();
+                    // varStartingNum = objdservice.displaydata("SELECT RIGHT('00000000'+ CONVERT(nvarchar,"+ txtStartingNo.Text.Trim()+ "),"+txtNoOfDegits.Text.Trim()+") AS sampleTransactionno FROM MR_VoucherSettings");
+                    
                     btnUpdate.Enabled = false;
                     SPDataService objDSer = new SPDataService();
-                    result = objDSer.udfnVoucherSettings(0, objSettings, varOriginator);
+                    varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + txtStartingNo.Text.Trim() + Convert.ToString(txtSuffix.Text.Trim());
+                    result = objDSer.udfnVoucherSettings(0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToInt32(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varOriginator);
                     objDSer.CloseConnection();
                     btnUpdate.Enabled = true;
                     string[] varvalue = result.Split('~');
@@ -890,7 +1068,7 @@ namespace ROMS
                         cmbConcern.Focus();
                         cmbTransactionType.BackColor = Color.White;
                         epSettings.Clear();
-                        //udfnList();
+                        udfnList();
                     }
                     else
                     {
@@ -900,7 +1078,7 @@ namespace ROMS
                 else
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(64);
+                    string varMessage = objDServ.udfnGetMessages(63);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -1094,7 +1272,223 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdSettings.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSettings);
+                objDser.CloseConnection();
+                grdSettings.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                    return;
+                if ((e.ColumnIndex == 0) || (e.ColumnIndex == 1))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                    return;
+
+                if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                        & ~(DataGridViewPaintParts.ContentForeground));
+
+                    TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                        e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                    e.Handled = true;
+                }
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                int i = e.ColumnIndex + 2;
+                if (e.ColumnIndex == 0)
+                {
+                    i = e.ColumnIndex;
+                }
+                DataGridViewColumn newColumn = grdSettings.Columns[i];
+                DataGridViewColumn oldColumn = grdSettings.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
+                {
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn &&
+                        grdSettings.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
+                }
+                else
+                {
+                    direction = ListSortDirection.Ascending;
+                }
+                grdSettings.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdSettings.HorizontalScrollingOffset;
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex) {
+                objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdSettings.ColumnCount > 0)
+                {
+                    grdSettings.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdSettings.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdSettings.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSettings);
+                objDser.CloseConnection();
+                grdSettings.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdSettings.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSettings);
+                objDser.CloseConnection();
+                grdSettings.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdSettings.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdSettings.Width > grdSettings.HorizontalScrollingOffset && grdSettings.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdSettings_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdSettings.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdSettings.Width > grdSettings.HorizontalScrollingOffset && grdSettings.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdSettings);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
+        {
+            try
+            {
+                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtNoOfDegits_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
