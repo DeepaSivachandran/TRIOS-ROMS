@@ -2651,8 +2651,8 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSupplierScheduleid ", Convert.ToInt32(lblschedleCode.Text));
                         objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
                         objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
-                        objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbProductStatus.SelectedValue));
-                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbProductStatus.Text));
+                        objBillreport.SetParameterValue("paraStatusId", Convert.ToString(varstatus));
+                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
                         objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpPlanDate.Text));
                         objBillreport.SetParameterValue("paraToDate", Convert.ToString(dptoPlanDate.Text));
                         objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
