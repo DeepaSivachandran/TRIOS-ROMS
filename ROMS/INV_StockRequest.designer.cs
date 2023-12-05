@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsStockRequest = new System.Windows.Forms.ToolStrip();
             this.tspStockRequest = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -63,11 +63,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.grdGodownStock = new System.Windows.Forms.DataGridView();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -78,15 +74,6 @@
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.lblRemarks = new System.Windows.Forms.Label();
             this.grdStockRequest = new System.Windows.Forms.DataGridView();
-            this.txtStockQty = new System.Windows.Forms.TextBox();
-            this.lblRequiredQty = new System.Windows.Forms.Label();
-            this.txtProductNamePICode = new System.Windows.Forms.TextBox();
-            this.lblDEProductName = new System.Windows.Forms.Label();
-            this.txtRequestNo = new System.Windows.Forms.TextBox();
-            this.lblRequestNo = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.errStockRequest = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductnameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,6 +85,19 @@
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtStockQty = new System.Windows.Forms.TextBox();
+            this.lblRequiredQty = new System.Windows.Forms.Label();
+            this.txtProductNamePICode = new System.Windows.Forms.TextBox();
+            this.lblDEProductName = new System.Windows.Forms.Label();
+            this.txtRequestNo = new System.Windows.Forms.TextBox();
+            this.lblRequestNo = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.errStockRequest = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
             this.grpStockRequest.SuspendLayout();
@@ -154,12 +154,12 @@
             // grpStockRequest
             // 
             this.grpStockRequest.BackColor = System.Drawing.Color.White;
+            this.grpStockRequest.Controls.Add(this.cmbStatus);
             this.grpStockRequest.Controls.Add(this.lblProduct);
             this.grpStockRequest.Controls.Add(this.lvProduct);
             this.grpStockRequest.Controls.Add(this.btnAdd);
             this.grpStockRequest.Controls.Add(this.cmbConcern);
             this.grpStockRequest.Controls.Add(this.label3);
-            this.grpStockRequest.Controls.Add(this.chkCompleted);
             this.grpStockRequest.Controls.Add(this.grdGodownStock);
             this.grpStockRequest.Controls.Add(this.txttotalitem);
             this.grpStockRequest.Controls.Add(this.lbltotalproducts);
@@ -277,17 +277,6 @@
             this.label3.TabIndex = 1111214;
             this.label3.Text = "Concern";
             // 
-            // chkCompleted
-            // 
-            this.chkCompleted.AutoSize = true;
-            this.chkCompleted.Location = new System.Drawing.Point(1029, 592);
-            this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(86, 24);
-            this.chkCompleted.TabIndex = 9;
-            this.chkCompleted.Text = "Completed";
-            this.chkCompleted.UseVisualStyleBackColor = true;
-            this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
-            // 
             // grdGodownStock
             // 
             this.grdGodownStock.AllowUserToAddRows = false;
@@ -296,36 +285,36 @@
             this.grdGodownStock.AllowUserToResizeRows = false;
             this.grdGodownStock.BackgroundColor = System.Drawing.Color.White;
             this.grdGodownStock.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGodownStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle64.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle64.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle64.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle64.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle64.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle64.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGodownStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle64;
             this.grdGodownStock.ColumnHeadersHeight = 30;
             this.grdGodownStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGodownStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column5,
             this.clmSRack,
             this.Column6});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGodownStock.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle65.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle65.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle65.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle65.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle65.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle65.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGodownStock.DefaultCellStyle = dataGridViewCellStyle65;
             this.grdGodownStock.EnableHeadersVisualStyles = false;
             this.grdGodownStock.GridColor = System.Drawing.Color.White;
             this.grdGodownStock.Location = new System.Drawing.Point(970, 11);
             this.grdGodownStock.Name = "grdGodownStock";
             this.grdGodownStock.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGodownStock.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGodownStock.RowsDefaultCellStyle = dataGridViewCellStyle66;
             this.grdGodownStock.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.SystemColors.Highlight;
             this.grdGodownStock.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
             this.grdGodownStock.RowTemplate.Height = 25;
@@ -333,24 +322,9 @@
             this.grdGodownStock.Size = new System.Drawing.Size(345, 64);
             this.grdGodownStock.TabIndex = 1111212;
             // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Location";
-            this.Column5.Name = "Column5";
-            // 
-            // clmSRack
-            // 
-            this.clmSRack.HeaderText = "Rack";
-            this.clmSRack.Name = "clmSRack";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Stock";
-            this.Column6.Name = "Column6";
-            // 
             // txttotalitem
             // 
-            this.txttotalitem.Location = new System.Drawing.Point(961, 591);
+            this.txttotalitem.Location = new System.Drawing.Point(983, 591);
             this.txttotalitem.Name = "txttotalitem";
             this.txttotalitem.ReadOnly = true;
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
@@ -360,7 +334,7 @@
             // lbltotalproducts
             // 
             this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(868, 594);
+            this.lbltotalproducts.Location = new System.Drawing.Point(890, 594);
             this.lbltotalproducts.Name = "lbltotalproducts";
             this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 1111209;
@@ -449,14 +423,14 @@
             this.grdStockRequest.AllowUserToResizeRows = false;
             this.grdStockRequest.BackgroundColor = System.Drawing.Color.White;
             this.grdStockRequest.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdStockRequest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle67.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle67.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle67.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle67.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle67.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle67.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdStockRequest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle67;
             this.grdStockRequest.ColumnHeadersHeight = 30;
             this.grdStockRequest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdStockRequest.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -471,22 +445,22 @@
             this.clmUnit,
             this.clmPRID,
             this.clmRemove});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdStockRequest.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle71.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle71.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle71.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle71.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle71.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle71.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdStockRequest.DefaultCellStyle = dataGridViewCellStyle71;
             this.grdStockRequest.EnableHeadersVisualStyles = false;
             this.grdStockRequest.GridColor = System.Drawing.Color.White;
             this.grdStockRequest.Location = new System.Drawing.Point(10, 81);
             this.grdStockRequest.Name = "grdStockRequest";
             this.grdStockRequest.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.grdStockRequest.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle72.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle72.SelectionForeColor = System.Drawing.Color.White;
+            this.grdStockRequest.RowsDefaultCellStyle = dataGridViewCellStyle72;
             this.grdStockRequest.RowTemplate.Height = 25;
             this.grdStockRequest.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.grdStockRequest.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -495,6 +469,85 @@
             this.grdStockRequest.TabIndex = 1111167;
             this.grdStockRequest.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockRequest_CellContentClick);
             this.grdStockRequest.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockRequest_CellEndEdit);
+            // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmSno.Width = 50;
+            // 
+            // clmPICode
+            // 
+            this.clmPICode.HeaderText = "P.I Code";
+            this.clmPICode.Name = "clmPICode";
+            this.clmPICode.ReadOnly = true;
+            // 
+            // clmProductnameInEnglish
+            // 
+            dataGridViewCellStyle68.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clmProductnameInEnglish.DefaultCellStyle = dataGridViewCellStyle68;
+            this.clmProductnameInEnglish.HeaderText = "Product Name";
+            this.clmProductnameInEnglish.Name = "clmProductnameInEnglish";
+            this.clmProductnameInEnglish.ReadOnly = true;
+            this.clmProductnameInEnglish.Width = 300;
+            // 
+            // clmRackGroup
+            // 
+            this.clmRackGroup.HeaderText = "Rack Group";
+            this.clmRackGroup.Name = "clmRackGroup";
+            this.clmRackGroup.ReadOnly = true;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            // 
+            // clmIncharge
+            // 
+            this.clmIncharge.HeaderText = "Rack In-charge";
+            this.clmIncharge.Name = "clmIncharge";
+            this.clmIncharge.ReadOnly = true;
+            this.clmIncharge.Width = 350;
+            // 
+            // clmStockQty
+            // 
+            dataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmStockQty.DefaultCellStyle = dataGridViewCellStyle69;
+            this.clmStockQty.HeaderText = "Stock Qty";
+            this.clmStockQty.Name = "clmStockQty";
+            this.clmStockQty.ReadOnly = true;
+            // 
+            // clmRequiredQty
+            // 
+            dataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle70.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle70.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            dataGridViewCellStyle70.ForeColor = System.Drawing.Color.Black;
+            this.clmRequiredQty.DefaultCellStyle = dataGridViewCellStyle70;
+            this.clmRequiredQty.HeaderText = "Required Qty";
+            this.clmRequiredQty.Name = "clmRequiredQty";
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            // 
+            // clmPRID
+            // 
+            this.clmPRID.HeaderText = "PRID";
+            this.clmPRID.Name = "clmPRID";
+            this.clmPRID.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // txtStockQty
             // 
@@ -598,84 +651,35 @@
             // 
             this.errStockRequest.ContainerControl = this;
             // 
-            // clmSno
+            // Column5
             // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmSno.Width = 50;
+            this.Column5.HeaderText = "Location";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 120;
             // 
-            // clmPICode
+            // clmSRack
             // 
-            this.clmPICode.HeaderText = "P.I Code";
-            this.clmPICode.Name = "clmPICode";
-            this.clmPICode.ReadOnly = true;
+            this.clmSRack.HeaderText = "Rack";
+            this.clmSRack.Name = "clmSRack";
+            this.clmSRack.Width = 120;
             // 
-            // clmProductnameInEnglish
+            // Column6
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clmProductnameInEnglish.DefaultCellStyle = dataGridViewCellStyle5;
-            this.clmProductnameInEnglish.HeaderText = "Product Name";
-            this.clmProductnameInEnglish.Name = "clmProductnameInEnglish";
-            this.clmProductnameInEnglish.ReadOnly = true;
-            this.clmProductnameInEnglish.Width = 300;
+            this.Column6.HeaderText = "Stock";
+            this.Column6.Name = "Column6";
             // 
-            // clmRackGroup
+            // cmbStatus
             // 
-            this.clmRackGroup.HeaderText = "Rack Group";
-            this.clmRackGroup.Name = "clmRackGroup";
-            this.clmRackGroup.ReadOnly = true;
-            // 
-            // clmRack
-            // 
-            this.clmRack.HeaderText = "Rack";
-            this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
-            // 
-            // clmIncharge
-            // 
-            this.clmIncharge.HeaderText = "Rack In-charge";
-            this.clmIncharge.Name = "clmIncharge";
-            this.clmIncharge.ReadOnly = true;
-            this.clmIncharge.Width = 350;
-            // 
-            // clmStockQty
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmStockQty.DefaultCellStyle = dataGridViewCellStyle6;
-            this.clmStockQty.HeaderText = "Stock Qty";
-            this.clmStockQty.Name = "clmStockQty";
-            this.clmStockQty.ReadOnly = true;
-            // 
-            // clmRequiredQty
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            this.clmRequiredQty.DefaultCellStyle = dataGridViewCellStyle7;
-            this.clmRequiredQty.HeaderText = "Required Qty";
-            this.clmRequiredQty.Name = "clmRequiredQty";
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            // 
-            // clmPRID
-            // 
-            this.clmPRID.HeaderText = "PRID";
-            this.clmPRID.Name = "clmPRID";
-            this.clmPRID.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(1051, 591);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(64, 27);
+            this.cmbStatus.TabIndex = 111111144;
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
             // 
             // INV_StockRequest
             // 
@@ -733,13 +737,9 @@
         private System.Windows.Forms.TextBox txttotalitem;
         private System.Windows.Forms.Label lbltotalproducts;
         public System.Windows.Forms.DataGridView grdGodownStock;
-        private System.Windows.Forms.CheckBox chkCompleted;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSRack;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.ErrorProvider errStockRequest;
         public System.Windows.Forms.ListView lvProduct;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -770,5 +770,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSRack;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.ComboBox cmbStatus;
     }
 }

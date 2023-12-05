@@ -84,6 +84,9 @@ namespace ROMS
                 dtStock.Columns.Add("SRQ_RKID", typeof(int));
                 dtStock.Columns.Add("SRQ_RequestedQty", typeof(float));
                 udfnCmbConcern();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=11", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null;
                 dpDate.Value = MainForm.pbCurrentDate;
                 if (varStockRequestID!=0)
                 {
@@ -132,23 +135,23 @@ namespace ROMS
             {
                 if (varStockRequestID != 0)
                 {
-                    if(btnSave.Text=="Update")
-                    {
-                        chkCompleted.Enabled = false;
-                    }
-                    else
-                    {
-                        chkCompleted.Enabled = true;
-                    }
-                    if(varStatus==28)
-                    {
-                        chkCompleted.Checked = true;
-                        btnSave.Text = "Update";
-                    }
-                    else
-                    {
-                        chkCompleted.Checked = false;
-                    }
+                    //if(btnSave.Text=="Update")
+                    //{
+                    //    chkCompleted.Enabled = false;
+                    //}
+                    //else
+                    //{
+                    //    chkCompleted.Enabled = true;
+                    //}
+                    //if(varStatus==28)
+                    //{
+                    //    chkCompleted.Checked = true;
+                    //    btnSave.Text = "Update";
+                    //}
+                    //else
+                    //{
+                    //    chkCompleted.Checked = false;
+                    //}
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     Model.TRN_StockRequest objTRNG_StockRequest = new Model.TRN_StockRequest();
@@ -185,6 +188,7 @@ namespace ROMS
                             }
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
+                            grdStockRequest.Columns["clmStockQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -308,15 +312,15 @@ namespace ROMS
         }
         private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (chkCompleted.Checked) { btnSave.Text = "Save && Print"; } else { btnSave.Text = "Save as Draft"; }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    if (chkCompleted.Checked) { btnSave.Text = "Save && Print"; } else { btnSave.Text = "Save as Draft"; }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void CmbConcern_Enter(object sender, EventArgs e)
@@ -681,6 +685,7 @@ namespace ROMS
                             }
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
+                            grdStockRequest.Columns["clmStockQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -801,14 +806,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if(chkCompleted.Enabled==true)
-                    {
-                        chkCompleted.Focus();
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    //if(chkCompleted.Enabled==true)
+                    //{
+                    //    chkCompleted.Focus();
+                    //}
+                    //else
+                    //{
+                    //    btnSave.Focus();
+                    //}
                 }
             }
             catch (Exception ex)
@@ -1039,14 +1044,14 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0,varStatus = 0;
-                if(chkCompleted.Checked==true)
-                {
-                    varStatus = 28;
-                }
-                else
-                {
-                    varStatus = 29;
-                }
+                //if(chkCompleted.Checked==true)
+                //{
+                //    varStatus = 28;
+                //}
+                //else
+                //{
+                //    varStatus = 29;
+                //}
                 if (btnSave.Text == "Save as Draft" || btnSave.Text== "Save && Print")
                 {
                     varoriginator = "Stock Request Creation";
@@ -1124,6 +1129,61 @@ namespace ROMS
                 object varEditQty = grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["SRQ_RequestedQty"] = varEditQty;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {
