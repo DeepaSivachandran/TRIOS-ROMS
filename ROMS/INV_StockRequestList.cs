@@ -113,10 +113,6 @@ namespace ROMS
                     MainForm.objINV_StockRequest.MdiParent = ParentForm;
                     if(Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value)==29)
                     {
-                        MainForm.objINV_StockRequest.btnSave.Text = "Save as Draft";
-                    }
-                    else
-                    {
                         MainForm.objINV_StockRequest.btnSave.Text = "Update";
                     }
                     MainForm.objINV_StockRequest.varStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value);
