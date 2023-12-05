@@ -1044,15 +1044,8 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0,varStatus = 0;
-                //if(chkCompleted.Checked==true)
-                //{
-                //    varStatus = 28;
-                //}
-                //else
-                //{
-                //    varStatus = 29;
-                //}
-                if (btnSave.Text == "Save as Draft" || btnSave.Text== "Save && Print")
+                varStatus = Convert.ToInt32(cmbStatus.SelectedValue);
+                if (btnSave.Text== "Save && Print")
                 {
                     varoriginator = "Stock Request Creation";
                     varType = 0;
