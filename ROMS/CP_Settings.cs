@@ -125,7 +125,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=14 OR MSTID=-1 ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbTransactionType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=14 OR MSTID=-1 ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbTransactionType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=34 OR MSTID=-1  ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbResetOn, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COMID NOT IN(0) ORDER BY COM_ShortName,COMID", "COMID,COM_ShortName", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
@@ -262,7 +262,10 @@ namespace ROMS
             {
                 udfnCmbLoad();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                udfnCmbTransaction();
+                if (btnUpdate.Text == "Save")
+                {
+                    udfnCmbTransaction();
+                }
                 udfnList();
             }
             catch (Exception ex)
@@ -358,7 +361,6 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                udfnCmbTransaction();
             }
             catch (Exception ex)
             {
@@ -1099,6 +1101,8 @@ namespace ROMS
                         varEditFlag = 0;
                         this.ActiveControl = cmbTransactionType;
                         cmbTransactionType.Focus();
+                        BeginInvoke(new Action(() => cmbTransactionType.Select(int.MaxValue, 0)));
+                        udfnCmbTransaction();
                     }
                     else
                     {
@@ -1254,8 +1258,10 @@ namespace ROMS
 
                         case "clmEdit":
                             varEditFlag = 1;
+                            udfnCmbLoad();
                             btnUpdate.Text = "Update";
                             cmbConcern.SelectedValue=Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["Concern ID"].Value);
+                            //cmbTransactionType.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["Transaction Type"].Value);
                             cmbTransactionType.SelectedValue=Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["Transaction TypeID"].Value);
                             txtPrefix.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["Prefix"].Value);
                             txtSuffix.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["Suffix"].Value);
@@ -1266,6 +1272,7 @@ namespace ROMS
                             cmbConcern.Enabled = false;
                             cmbTransactionType.Enabled = false;
                             txtStartingNo.BackColor = Color.White;
+                           // cmbTransactionType.SelectedValue = Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["Transaction TypeID"].Value);
                             cmbResetOn.BackColor = Color.White;
                            // btnAdd.Image = global::ROMS.Properties.Resources.save;
                             txtPrefix.Focus();
