@@ -2926,8 +2926,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void TxtProductSearch_Enter(object sender, EventArgs e)
         {
             try
@@ -2956,8 +2955,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void CmbProductStatus_KeyDown(object sender, KeyEventArgs e)
         {
             try

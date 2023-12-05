@@ -918,8 +918,7 @@ namespace ROMS
                         lblProductcode.Text = varproductID;
                         errPO.Clear();
                         txtProductName.BackColor = Color.White;
-                    }
-
+                    } 
                 }
                 if (varErrorFlag == true)
                 {
@@ -937,7 +936,6 @@ namespace ROMS
                             }
                         }
                     }
-
                     if (Convert.ToInt32(lblProductcode.Text) != 0 && Convert.ToInt32(lblSupplierCode.Text) != 0)
                     {
                         if (varflag == 0)
@@ -1185,6 +1183,8 @@ namespace ROMS
                 lblWeightvalue.Text = "";
                 lblMxsq.Text = "";
                 cmbUnit.DataSource = null;
+                grdpossiblesupplier.Rows.Clear();
+                lblPossibleSupplierRecords.Visible = true;
 
             }
             catch (Exception ex)
