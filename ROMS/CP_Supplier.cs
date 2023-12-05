@@ -3317,7 +3317,6 @@ namespace ROMS
         {
             try
             {
-
                 errCompany.Clear();
                 udfntphide();
                 udfncolorchange();
@@ -3468,7 +3467,7 @@ namespace ROMS
                     }
                     if (SupplierUpdate != 0)
                     {
-                        objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) OR SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
+                        objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) ", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
                     }
                     else
                     {
@@ -4960,8 +4959,16 @@ namespace ROMS
                                 {
                                     txtScheduleName.Enabled = false;
                                     grpSalesmanDetails.Enabled = false;
-                                    grpOrderDetails.Enabled = false;
-                                    grddays.Enabled = false;
+                                    if (Convert.ToInt32(cmbOrderType.SelectedValue) == 36 || Convert.ToInt32(cmbOrderType.SelectedValue) == 144)
+                                    {
+                                        grpOrderDetails.Enabled = true;
+                                        grddays.Enabled = true;
+                                    }
+                                    else if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
+                                    {
+                                        grpOrderDetails.Enabled = true;
+                                        grddays.Enabled = true;
+                                    }
                                 }
                             }
                             break;
@@ -5889,29 +5896,31 @@ namespace ROMS
                     tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
                     errorflag = 1;
                 }
-                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
+                if (rbScheduleActive.Checked == true)
                 {
-                    for (int i = 0; i < grddays.Rows.Count; i++)
+                    if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
                     {
-                        if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
+                        for (int i = 0; i < grddays.Rows.Count; i++)
                         {
-                            count = count + 1;
+                            if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
+                            {
+                                count = count + 1;
+                            }
                         }
-                    }
-                    if (count == 0)
-                    {
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(56);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        errorflag = 1;
+                        if (count == 0)
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(56);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            errorflag = 1;
+                        }
                     }
                 }
                 if (errorflag == 0)
                 {
                     udfnSupplierOrderSave(sender, e);
                     udfntphide();
-                   
                 }
             }
             catch (Exception ex)
@@ -5933,31 +5942,6 @@ namespace ROMS
                 int varflag = 0;
                 errCompany.Clear();
                 udfnSchedulecolorchange();
-                //if (txtScheduleName.Text == "")
-                //{
-                //    errCompany.SetError(txtScheduleName, "Please enter the schedule");
-                //    txtScheduleName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpschedule.ShowAlways = true;
-                //    tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
-                //    blnErrorFlag = true;
-                //}
-                //if (txtsalesmanname.Text == "")
-                //{
-                //    errCompany.SetError(txtsalesmanname, "Please enter salesman name");
-                //    txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpsalesman.ShowAlways = true;
-                //    tpsalesman.Show("Please enter salesman name", txtsalesmanname, 5000);
-                //    blnErrorFlag = true;
-                //}
-                //if (txtsalesmanmobile.Text == "")
-                //{
-                //    errCompany.SetError(txtsalesmanmobile, "Please enter salesman mobile No.");
-                //    txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpsalemanph.ShowAlways = true;
-                //    tpsalemanph.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
-                //    blnErrorFlag = true;
-                //}
-                //grdSupplierList.SelectedRows[0].Cells["clmsno"].Value.ToString()
                 if (blnErrorFlag == false)
                 {
                     if (btnAdd.Text == "Save")
@@ -6115,7 +6099,6 @@ namespace ROMS
                             pnlScheduleStatus.Enabled = false;
                             cmbOrderType.SelectedValue = 144;
                             udfnSetRegularText();
-                             
                         }
                         else
                         {
@@ -7172,7 +7155,9 @@ namespace ROMS
                     if (Convert.ToBoolean(dtSubGroupMapping.Rows[i][0]) == true)
                     {
                         int varSlNo = 1;
-                        if (dtSubGroup != null) { varSlNo = dtSubGroup.Rows.Count + 1; }
+                        if (dtSubGroup != null)
+                        { varSlNo = dtSubGroup.Rows.Count + 1; }
+                        varModifiedFlag = 1;
                         dtSubGroup.Rows.Add(false, varSlNo, dtSubGroupMapping.Rows[i]["P.I Code"],
                         dtSubGroupMapping.Rows[i]["Product Name in Tamil"],
                         dtSubGroupMapping.Rows[i]["Unit"],
@@ -7184,16 +7169,15 @@ namespace ROMS
                         dtSubGroupMapping.Rows[i]["PRODUCTID"], dtSubGroupMapping.Rows[i]["Product Name in English"],
                         dtSubGroupMapping.Rows[i]["MappedCount"]);
                         dtSubGroup.AcceptChanges();
-                        for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
-                        {
-                            if (Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value) == Convert.ToString(dtSubGroupMapping.Rows[j]["PRODUCTID"]))
-                            {
-                                dtSubGroupMapping.Rows.RemoveAt(j);
+                        //for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
+                        //{
+                        //    if (Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value) == Convert.ToString(dtSubGroupMapping.Rows[j]["PRODUCTID"]))
+                        //    {
+                                dtSubGroupMapping.Rows.RemoveAt(i);
                                 dtSubGroupMapping.AcceptChanges();
                                 goto L;
-                            }
-                            varModifiedFlag = 1;
-                        }
+                          //  }
+                      //  }
                     }
                 }
                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
@@ -7780,8 +7764,11 @@ namespace ROMS
         {
             try
             {
-                int varProId = Convert.ToInt16(grdSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
-                udfnGetProductCount(varProId);
+                if (e.ColumnIndex == 0)
+                {
+                    int varProId = Convert.ToInt16(grdSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
+                    udfnGetProductCount(varProId);
+                }
             }
             catch (Exception ex)
             {
@@ -8732,7 +8719,7 @@ namespace ROMS
                         varMappedProductCount++;
                     }
                 }
-                if (Convert.ToBoolean(grdFinalSupplierMapping.SelectedRows[0].Cells[0].EditedFormattedValue) == true)
+                if (Convert.ToBoolean(grdFinalSupplierMapping.SelectedRows[0].Cells[0].Value) == true)
                 {
                     DataRow dr = dtSubGroupMapping.Select("PRODUCTID=" + varPRID).FirstOrDefault();
                     if (dr != null)
@@ -8773,7 +8760,7 @@ namespace ROMS
                 int varschedulenameflag = 0;
                 for (int i = 0; i < grdSupplierList.RowCount; i++)
                 {
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmsupname"].Value).ToLower() == "regular")
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmsupname"].Value).ToUpper() == "REGULAR")
                     {
                         varschedulenameflag++;
                     }
