@@ -198,7 +198,6 @@
     </Compile>
     <Compile Include="Model\TRNS_StockHold.cs" />
     <Compile Include="Model\TRN_Damage.cs" />
-    <Compile Include="Model\TRN_Purchase_DC.cs" />
     <Compile Include="PUR_POScheduleSummary.cs">
       <SubType>Form</SubType>
     </Compile>
