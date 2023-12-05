@@ -181,7 +181,7 @@ namespace ROMS
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
-        
+        public static DateTime pbCurrentDate, pbFYStartDate, pbFYEndDate;
 
         public MainForm()
         {
@@ -414,7 +414,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        //Get Date
+        public void GetDate()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnMaster(4, 0, 0, "", "", 0);
+                DateTime varDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime varFYStartDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_StartDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime varFYEndDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_EndDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                pbCurrentDate = varDate;
+                pbFYStartDate = varFYStartDate;
+                pbFYEndDate = varFYEndDate;
+                objspservice.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
         //Get IP address
         public void GetLocalIPAddress()
         {
