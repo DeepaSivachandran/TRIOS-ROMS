@@ -50,6 +50,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblCompany.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;

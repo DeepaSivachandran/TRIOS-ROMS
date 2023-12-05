@@ -1023,6 +1023,7 @@ namespace ROMS
                 if ((grdSupplierList.Rows.Count > 0))
                 {
                     btnExport.Enabled = false;
+                    lblStatus.Focus();
                     Excel._Application ExcelObj = new Excel.Application();
                     // creating new WorkBook within Excel application  
                     Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
@@ -1356,6 +1357,7 @@ namespace ROMS
                     if (varScheduleName == "") { lblschedule.Text = "0"; }
                 }
                 btnPrint.Enabled = false;
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;

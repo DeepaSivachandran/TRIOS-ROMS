@@ -115,10 +115,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
-        {
-            
-        }
         public void udfnState()
         {
             try

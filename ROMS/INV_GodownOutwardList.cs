@@ -483,6 +483,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnView.Enabled = true;
+                btnView.Focus();
+            }
         }
         private void INV_GodownOutwardList_Load(object sender, EventArgs e)
         {
@@ -533,7 +538,8 @@ namespace ROMS
         {
             try
             {
-                btnView.Enabled = true;
+                btnView.Enabled = false;
+                lblDProductNamePicode.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -1073,6 +1079,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
+                lblDProductNamePicode.Focus();
                 if ((grdOutwardList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();

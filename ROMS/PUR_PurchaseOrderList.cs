@@ -2258,6 +2258,7 @@ namespace ROMS
             {
 
                 btnExport.Enabled = false;
+                lblStatus.Focus();
                 if ((grdPurchaseorderlist.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -2425,6 +2426,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
+                lblStatus.Focus();
                 if ((grdProDetails.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -2646,6 +2648,7 @@ namespace ROMS
                     grpProFilter.BringToFront();
                     grpProFilter.Visible=true;
                     btnPrint.Enabled = false;
+                    lblStatus.Focus();
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;

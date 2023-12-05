@@ -275,6 +275,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblProductNamePICode.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -1173,7 +1174,8 @@ namespace ROMS
         {
             try
             {
-                btnExport.Enabled = false;
+                btnExport.Enabled = false; 
+                lblProductNamePICode.Focus();
                 if ((grdStockTransfer.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();

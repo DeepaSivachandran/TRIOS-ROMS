@@ -402,12 +402,12 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblDProduct.Text = "Serach by P.I Code";
+                        lblDProduct.Text = "Search by P.I Code";
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblDProduct.Text = "Serach by Product Name";
+                        lblDProduct.Text = "Search by Product Name";
                     }
                 }
             }
@@ -672,10 +672,15 @@ namespace ROMS
                                     {
                                         varstatus = 9;
                                     }
-                                    else
+                                    else if (chkStatus.Checked == false)
                                     {
                                         varstatus = 8;
                                     }
+                                    if (VarStatusId == 11)
+                                    {
+                                        varstatus = 11;
+                                    }
+                                    
                                     if (varcount == 0)
                                     {
                                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),

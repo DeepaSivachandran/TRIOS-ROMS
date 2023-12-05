@@ -67,7 +67,7 @@
             this.lblschedule = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
@@ -416,7 +416,6 @@
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierList.Size = new System.Drawing.Size(1348, 501);
             this.grdSupplierList.TabIndex = 958797;
-            //this.grdSupplierList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellContentClick);
             this.grdSupplierList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierList_DataBindingComplete);
             this.grdSupplierList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupplierList_Scroll);
             this.grdSupplierList.DoubleClick += new System.EventHandler(this.GrdSupplierList_DoubleClick);
@@ -441,7 +440,7 @@
             this.grbFilterBySupplier.Controls.Add(this.lblschedule);
             this.grbFilterBySupplier.Controls.Add(this.cmbStatus);
             this.grbFilterBySupplier.Controls.Add(this.txtSupplier);
-            this.grbFilterBySupplier.Controls.Add(this.label3);
+            this.grbFilterBySupplier.Controls.Add(this.lblStatus);
             this.grbFilterBySupplier.Controls.Add(this.btnExport);
             this.grbFilterBySupplier.Controls.Add(this.btnView);
             this.grbFilterBySupplier.Controls.Add(this.btnPrint);
@@ -490,14 +489,14 @@
             this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
             this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
             // 
-            // label3
+            // lblStatus
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(410, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 20);
-            this.label3.TabIndex = 958804;
-            this.label3.Text = "Status";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(410, 29);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.TabIndex = 958804;
+            this.lblStatus.Text = "Status";
             // 
             // btnExport
             // 
@@ -698,7 +697,7 @@
         private System.Windows.Forms.ComboBox cmbDay;
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblStatus;
         public System.Windows.Forms.DataGridView grdDaywiseProduct;
         public System.Windows.Forms.ListView LV_Supplier;
         private System.Windows.Forms.ColumnHeader columnHeader5;
