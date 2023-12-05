@@ -79,14 +79,14 @@ namespace ROMS
                     int varviewtype = 1;
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
-                    objTRNG_Purchase_DC.ViewType = varviewtype;
-                    objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                    objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
-                    objTRNG_Purchase_DC.paraDCID = varDCID;
-                    objTRNG_Purchase_DC.paraSupplierID = pbSupplierId;
-                    objTRNG_Purchase_DC.paraScheduleID = pbScheduleid;
-                    objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
+                    //TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
+                    //objTRNG_Purchase_DC.ViewType = varviewtype;
+                    //objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    //objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                    //objTRNG_Purchase_DC.paraDCID = varDCID;
+                    //objTRNG_Purchase_DC.paraSupplierID = pbSupplierId;
+                    //objTRNG_Purchase_DC.paraScheduleID = pbScheduleid;
+                    //objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -1662,27 +1662,25 @@ namespace ROMS
                                 {
                                     varviewtype = 1;
                                     varorginator = "Purchase DC Update";
-                                }
-
-                                
-                            TRN_Purchase_DC objTRNS_Purchase_DC = new TRN_Purchase_DC();
-                            objTRNS_Purchase_DC.ViewType = varviewtype;
-                            objTRNS_Purchase_DC.paraUserID =Convert.ToInt32( MainForm.pbUserID);
-                            objTRNS_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
-                            objTRNS_Purchase_DC.paraOriginator = varorginator;
-                            objTRNS_Purchase_DC.paraDCID = varDCID;
-                            objTRNS_Purchase_DC.paraCompanyId =Convert.ToInt32( cmbConcern.SelectedValue);
-                            objTRNS_Purchase_DC.paraDC_Date = dpDCDate.Text;
-                            objTRNS_Purchase_DC.paraDC_NO = txtDcNo.Text.Trim();
-                            objTRNS_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text.Trim());
-                            objTRNS_Purchase_DC.paraScheduleID = Convert.ToInt32( lblschedule.Text.Trim());
-                            objTRNS_Purchase_DC.paraDC_Remarks = txtRemark.Text.Trim();
-                            objTRNS_Purchase_DC.paraDC_PURID = varDC_PURID;
-                            objTRNS_Purchase_DC.paraStatusID = varStatusID;
-                            objTRNS_Purchase_DC.ParaTRN_Purchase_DC = dtPurchaseDC;
-                            SPDataService objspdservice = new SPDataService();
-                            result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
-                            objspdservice.CloseConnection();
+                                } 
+                           // TRN_Purchase_DC objTRNS_Purchase_DC = new TRN_Purchase_DC();
+                            //objTRNS_Purchase_DC.ViewType = varviewtype;
+                            //objTRNS_Purchase_DC.paraUserID =Convert.ToInt32( MainForm.pbUserID);
+                            //objTRNS_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                            //objTRNS_Purchase_DC.paraOriginator = varorginator;
+                            //objTRNS_Purchase_DC.paraDCID = varDCID;
+                            //objTRNS_Purchase_DC.paraCompanyId =Convert.ToInt32( cmbConcern.SelectedValue);
+                            //objTRNS_Purchase_DC.paraDC_Date = dpDCDate.Text;
+                            //objTRNS_Purchase_DC.paraDC_NO = txtDcNo.Text.Trim();
+                            //objTRNS_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text.Trim());
+                            //objTRNS_Purchase_DC.paraScheduleID = Convert.ToInt32( lblschedule.Text.Trim());
+                            //objTRNS_Purchase_DC.paraDC_Remarks = txtRemark.Text.Trim();
+                            //objTRNS_Purchase_DC.paraDC_PURID = varDC_PURID;
+                            //objTRNS_Purchase_DC.paraStatusID = varStatusID;
+                            //objTRNS_Purchase_DC.ParaTRN_Purchase_DC = dtPurchaseDC;
+                            //SPDataService objspdservice = new SPDataService();
+                            //result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
+                           // objspdservice.CloseConnection();
                             string[] varvalue = result.Split('~');
                             if (varvalue[0] == "3")
                             {

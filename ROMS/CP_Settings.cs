@@ -97,7 +97,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnMaster(12,Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "", 0);
+                objDs = objdserv.udfnMaster(12,Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "",0,"" );
                 objdserv.CloseConnection();
                 cmbTransactionType.DataSource = null;
                 if (objDs != null)
@@ -1084,7 +1084,7 @@ namespace ROMS
                     btnUpdate.Enabled = false;
                     SPDataService objDSer = new SPDataService();
                     varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + txtStartingNo.Text.Trim() + Convert.ToString(txtSuffix.Text.Trim());
-                    result = objDSer.udfnVoucherSettings(viewType, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToInt32(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varId,varOriginator);
+                    result = objDSer.udfnVoucherSettings(viewType, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToString(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varId,varOriginator);
                     objDSer.CloseConnection();
                     btnUpdate.Enabled = true;
                     string[] varvalue = result.Split('~');
