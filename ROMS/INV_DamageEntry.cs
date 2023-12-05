@@ -1617,6 +1617,7 @@ namespace ROMS
                     lblProduct.Text = selectedItem.SubItems[8].Text;
                     varSLID = selectedItem.SubItems[9].Text;
                     varUTID = selectedItem.SubItems[11].Text;
+                    lblUnit.Text = selectedItem.SubItems[12].Text;
                     varUnitSymbol = selectedItem.SubItems[12].Text;
                     varMRP = selectedItem.SubItems[4].Text;
                     varExpiryDate = selectedItem.SubItems[5].Text;
@@ -1653,7 +1654,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtsuppliername.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(30, 0, 0, 0, 0, txtsuppliername.Text, 0, 0, 0, "", 0, 0, 0, 0, 0,0,"");
+                    objDs = objspdservice.udfnSupplierList(32, 0, 0, 0, 0, txtsuppliername.Text, 0, 0, 0, "", 0, 0, 0, 0, 0,0,lblProduct.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

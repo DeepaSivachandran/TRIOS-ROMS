@@ -1324,6 +1324,7 @@ namespace ROMS
                     lblProduct.Text = selectedItem.SubItems[8].Text;
                     varUTID = selectedItem.SubItems[9].Text;
                     varUnitSymbol = selectedItem.SubItems[10].Text;
+                    lblUnit.Text = selectedItem.SubItems[10].Text;
                     varMRP = selectedItem.SubItems[4].Text;
                     varExpiryDate = selectedItem.SubItems[5].Text;
                     varBatchNo = selectedItem.SubItems[6].Text;
