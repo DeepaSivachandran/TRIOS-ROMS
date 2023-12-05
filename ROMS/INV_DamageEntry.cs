@@ -974,13 +974,13 @@ namespace ROMS
                     {
                         if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                         {
-                            string gridValue1 = row.Cells[16].Value.ToString();
-                            string gridValue2 = row.Cells[17].Value.ToString();
-                            string gridValue3 = row.Cells[18].Value.ToString();
-                            string gridValue4 = row.Cells[6].Value.ToString();
-                            string gridValue5 = row.Cells[7].Value.ToString();
-                            string gridValue6 = row.Cells[8].Value.ToString();
-                            string gridValue7 = row.Cells[20].Value.ToString();
+                            string gridValue1 = row.Cells[15].Value.ToString();     //PRID
+                            string gridValue2 = row.Cells[16].Value.ToString();     //SLID
+                            string gridValue3 = row.Cells[17].Value.ToString();     //RKID
+                            string gridValue4 = row.Cells[5].Value.ToString();      //MRP
+                            string gridValue5 = row.Cells[6].Value.ToString();      //EXPIRYDATE
+                            string gridValue6 = row.Cells[7].Value.ToString();      //BATCHNO
+                            string gridValue7 = row.Cells[19].Value.ToString();     //SUPPLIERID
 
                             if (gridValue1.ToUpper() == (lblProduct.Text).Trim().ToUpper() && gridValue2.ToUpper() == (varSLID).Trim().ToUpper() && gridValue3.ToUpper() == (varRKID).Trim().ToUpper() && gridValue4.ToUpper() == (txtMrp.Text).Trim().ToUpper() && gridValue5.ToUpper() == (txtExpiryDate.Text).Trim().ToUpper() && gridValue6.ToUpper() == (txtBatchNo.Text).Trim().ToUpper() && gridValue7.ToUpper() == (lblSupplierCode.Text).Trim().ToUpper())
                             {
@@ -1617,6 +1617,7 @@ namespace ROMS
                     lblProduct.Text = selectedItem.SubItems[8].Text;
                     varSLID = selectedItem.SubItems[9].Text;
                     varUTID = selectedItem.SubItems[11].Text;
+                    lblUnit.Text = selectedItem.SubItems[12].Text;
                     varUnitSymbol = selectedItem.SubItems[12].Text;
                     varMRP = selectedItem.SubItems[4].Text;
                     varExpiryDate = selectedItem.SubItems[5].Text;
@@ -1653,7 +1654,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtsuppliername.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(30, 0, 0, 0, 0, txtsuppliername.Text, 0, 0, 0, "", 0, 0, 0, 0, 0,0,"");
+                    objDs = objspdservice.udfnSupplierList(32, 0, 0, 0, 0, txtsuppliername.Text, 0, 0, 0, "", 0, 0, 0, 0, 0,0,lblProduct.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
