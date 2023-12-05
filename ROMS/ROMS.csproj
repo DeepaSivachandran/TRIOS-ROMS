@@ -185,6 +185,7 @@
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
     <Compile Include="MaskedTextColumn.cs" />
+    <Compile Include="Model\TRNG_Stock.cs" />
     <Compile Include="Model\TRNS_GoodsOutward.cs" />
     <Compile Include="Model\TRNS_GRN.cs" />
     <Compile Include="CP_SupplierPopup.cs">
@@ -193,7 +194,9 @@
     <Compile Include="CP_SupplierPopup.designer.cs">
       <DependentUpon>CP_SupplierPopup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRNS_StockHold.cs" />
     <Compile Include="Model\TRN_Damage.cs" />
+    <Compile Include="Model\TRN_Purchase_DC.cs" />
     <Compile Include="PUR_POScheduleSummary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -526,6 +529,18 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_SupplierScheduleList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_PUR_SupplierScheduleList.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_Stock.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_Stock.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="REPORT_CP_Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -609,6 +624,12 @@
     </Compile>
     <Compile Include="ReportLoad.designer.cs">
       <DependentUpon>ReportLoad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_Stock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock.designer.cs">
+      <DependentUpon>REPORT_Stock.cs</DependentUpon>
     </Compile>
     <Compile Include="Resources\RPT_PUR_SupplierProductList.cs">
       <DependentUpon>RPT_PUR_SupplierProductList.rpt</DependentUpon>
@@ -1879,6 +1900,14 @@
       <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_SupplierScheduleList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_SupplierScheduleList.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Stock.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Stock.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Product.resx">
       <DependentUpon>REPORT_CP_Product.cs</DependentUpon>
     </EmbeddedResource>
@@ -1932,6 +1961,9 @@
       <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_Stock.resx">
+      <DependentUpon>REPORT_Stock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ServerSettings.resx">
       <DependentUpon>ServerSettings.cs</DependentUpon>
     </EmbeddedResource>

@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_CP_Supplier_List : ReportClass {
+    public class RPT_Purchase_Order_List : ReportClass {
         
-        public RPT_CP_Supplier_List() {
+        public RPT_Purchase_Order_List() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_CP_Supplier_List.rpt";
+                return "RPT_Purchase_Order_List.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_CP_Supplier_List.rpt";
+                return "ROMS.Reports.RPT_Purchase_Order_List.rpt";
             }
             set {
                 // Do nothing
@@ -146,7 +146,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraOrderId_ {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierid_ {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -154,7 +154,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierid_ {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierScheduleid_ {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -162,7 +162,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierScheduleid_ {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraCompanyID {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -170,17 +170,41 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraStatusId {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraFromDate {
             get {
                 return this.DataDefinition.ParameterFields[8];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraStatusId {
+            get {
+                return this.DataDefinition.ParameterFields[9];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraToDate {
+            get {
+                return this.DataDefinition.ParameterFields[10];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraConcernName {
+            get {
+                return this.DataDefinition.ParameterFields[11];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_CP_Supplier_List : Component, ICachedReport {
+    public class CachedRPT_Purchase_Order_List : Component, ICachedReport {
         
-        public CachedRPT_CP_Supplier_List() {
+        public CachedRPT_Purchase_Order_List() {
         }
         
         [Browsable(false)]
@@ -217,7 +241,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_CP_Supplier_List rpt = new RPT_CP_Supplier_List();
+            RPT_Purchase_Order_List rpt = new RPT_Purchase_Order_List();
             rpt.Site = this.Site;
             return rpt;
         }
