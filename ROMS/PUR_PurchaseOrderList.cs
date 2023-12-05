@@ -1869,6 +1869,7 @@ namespace ROMS
                             objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
                             objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
                             objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
+                            objPurchaseOrder.Columns.Add("POPR_Remarks", typeof(string));
                             SPDataService objspdservice = new SPDataService();
                             result = "";
                             result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", objPurchaseOrder, "", "", "", "", 0, "", 0, 0);
@@ -2143,36 +2144,31 @@ namespace ROMS
             try
             {
                 for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
-                {
-
+                { 
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
-
+                    DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmView"]; 
+                    if (Convert.ToInt32(grdPurchaseorderlist.Rows[i].Cells["STS"].Value.ToString()) == 11)
+                    { 
+                        cell1.Style.BackColor = Color.LightGray; 
+                    } 
                     if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "1")
-                    {
-                        //grdPurchaseorderlist.Rows[i].DefaultCellStyle.BackColor = Color.Olive;
-                        //grdPurchaseorderlist.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    { 
                         cell.Style.BackColor = Color.Olive;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "2")
-                    {
-                        //grdPurchaseorderlist.Rows[i].DefaultCellStyle.BackColor = Color.BlueViolet;
-                        //grdPurchaseorderlist.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    { 
                         cell.Style.BackColor = Color.BlueViolet;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "3")
-                    {
-                        //grdPurchaseorderlist.Rows[i].DefaultCellStyle.BackColor = Color.LimeGreen;
-                        //grdPurchaseorderlist.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    { 
                         cell.Style.BackColor = Color.LimeGreen;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "4")
-                    {
-                        //grdPurchaseorderlist.Rows[i].DefaultCellStyle.BackColor = Color.Tomato;
-                        //grdPurchaseorderlist.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    { 
                         cell.Style.BackColor = Color.Tomato;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
