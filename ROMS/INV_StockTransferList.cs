@@ -195,9 +195,10 @@ namespace ROMS
         private void INV_StockTransferList_Load(object sender, EventArgs e)
         {
             cmbConcern.Focus();
-            dpTrannsferFromDate.MaxDate = DateTime.Now;
-            dpTransferToDate.MaxDate = DateTime.Now;
             udfnCmbConcern();
+            dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
+            dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
+            dpTransferToDate.MinDate = dpTrannsferFromDate.MaxDate;
             cmbConcern.SelectedValue = 1;
             udfnList();
         }

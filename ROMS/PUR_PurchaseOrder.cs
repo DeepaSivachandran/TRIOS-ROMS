@@ -131,7 +131,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0");
+                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0",0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -173,7 +173,8 @@ namespace ROMS
                                     , objDs.Tables[0].Rows[i]["Productid"].ToString(),objDs.Tables[0].Rows[i]["FLAG"].ToString(),Convert.ToString(objDs.Tables[0].Rows[i]["EDITFLAG"]),
                                     objDs.Tables[0].Rows[i]["STATUS"].ToString(), objDs.Tables[0].Rows[i]["PRSTSID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString()
                                     , objDs.Tables[0].Rows[i]["PR_NettWeight"].ToString(), objDs.Tables[0].Rows[i]["PR_UPP"].ToString()
-                                    , objDs.Tables[0].Rows[i]["bulkwtval"].ToString(), objDs.Tables[0].Rows[i]["B.UTID"].ToString(), objDs.Tables[0].Rows[i]["T.UTID"].ToString()
+                                    , objDs.Tables[0].Rows[i]["bulkwtval"].ToString(), objDs.Tables[0].Rows[i]["B.UTID"].ToString(), objDs.Tables[0].Rows[i]["T.UTID"].ToString(),
+                                    objDs.Tables[0].Rows[i]["P.Remarks"].ToString()
                                     );
                                     grdsupplieradd.Columns[10].ReadOnly = false;
                                 } 
@@ -241,7 +242,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0");
+                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0",0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -462,11 +463,7 @@ namespace ROMS
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        this.Close();
-                    }
+                     this.Close();
                 }
             }
             catch (Exception ex)
@@ -666,7 +663,8 @@ namespace ROMS
                                     objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
                                     objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
                                     objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
-                                    objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float)); 
+                                    objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
+                                    objPurchaseOrder.Columns.Add("POPR_Remarks", typeof(string));
                                     objPurchaseOrder = udfnPurchaseProduct();
 
                                     int varstatus = 0;
@@ -918,8 +916,7 @@ namespace ROMS
                         lblProductcode.Text = varproductID;
                         errPO.Clear();
                         txtProductName.BackColor = Color.White;
-                    }
-
+                    } 
                 }
                 if (varErrorFlag == true)
                 {
@@ -937,7 +934,6 @@ namespace ROMS
                             }
                         }
                     }
-
                     if (Convert.ToInt32(lblProductcode.Text) != 0 && Convert.ToInt32(lblSupplierCode.Text) != 0)
                     {
                         if (varflag == 0)
@@ -1080,6 +1076,7 @@ namespace ROMS
                 objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
                 objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
                 objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
+                objPurchaseOrder.Columns.Add("POPR_Remarks", typeof(string));
                 for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                 {
 
@@ -1162,7 +1159,8 @@ namespace ROMS
                             Convert.ToDouble(unit), Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value),
                             Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmtotalkg"].Value), Convert.ToInt32(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value),
                             Convert.ToInt32(grdsupplieradd.Rows[i].Cells["QTID"].Value), Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmUPP"].Value),
-                            Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmNettWeight"].Value)
+                            Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmNettWeight"].Value),
+                            Convert.ToString(grdsupplieradd.Rows[i].Cells["clmremarks"].Value)
                             );
                         }
                     }
@@ -1182,7 +1180,12 @@ namespace ROMS
                 lblProductcode.Text = "0";
                 txtProductName.Text = "";
                 txtProductQty.Text = "";
+                lblWeightvalue.Text = "";
+                lblMxsq.Text = "";
                 cmbUnit.DataSource = null;
+                grdpossiblesupplier.Rows.Clear();
+                lblPossibleSupplierRecords.Visible = true;
+
             }
             catch (Exception ex)
             {
@@ -1193,8 +1196,7 @@ namespace ROMS
         private void BtnNewUnit_Click(object sender, EventArgs e)
         {
             try
-            {
-
+            { 
                 pbunitname = "";
                 int varcmbconcernid = Convert.ToInt32(cmbConcern.SelectedValue);
                 varcmbunitid = 0;
@@ -2530,11 +2532,11 @@ namespace ROMS
                 {
                     if (VarSearchFlag == true)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0,"", Convert.ToInt32(lblSupplierCode.Text), varProductsCodes, null);
+                        objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0,"", Convert.ToInt32(lblSupplierCode.Text), varProductsCodes,"", null,0,null);
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes, null);
+                        objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), "", varProductsCodes, null,0, null);
                     }
                     if (objDs != null)
                     {
@@ -2690,19 +2692,70 @@ namespace ROMS
 
         private void Lvproduct_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
         {
-            //try
-            //{
-            //    e.DrawDefault = true; 
+            try
+            { // Set the background color of the header
+                //using (Brush brush = new SolidBrush(Color.SlateGray)) // Change this to your desired color
+                //{
+                //    e.Graphics.FillRectangle(brush, e.Bounds);
+                //}
 
-            //    e.Graphics.FillRectangle(Brushes.SlateGray, e.Bounds); 
-            //    e.Graphics.DrawString(e.Header.Text, lvproduct.Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);
+                //// Draw the header text
+                //using (StringFormat sf = new StringFormat())
+                //{
+                //    sf.Alignment = StringAlignment.Center;
+                //    sf.LineAlignment = StringAlignment.Center;
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //} 
+                //    using (Font headerFont = new Font("Oswald Regular", 10)) // Change this to your desired font
+                //    {
+                //        e.Graphics.DrawString(e.Header.Text, headerFont, Brushes.White, e.Bounds, sf);
+                //    }
+                //} 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Lvproduct_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            try
+            {
+                // Handle the drawing for selected items
+                //if ((e.State & ListViewItemStates.Selected) != 0)
+                //{
+                //    using (Brush brush = new SolidBrush(Color.White))
+                //    {
+                //        e.Graphics.FillRectangle(brush, e.Bounds);
+                //    }
+
+                //    // Change the text color for selected items
+                //    e.DrawText(TextFormatFlags.VerticalCenter | TextFormatFlags.Left);
+                //}
+                //else
+                //{
+                //    e.DrawDefault = true;
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Lvproduct_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        {
+            try
+            {
+                //e.DrawText();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtProductQty_KeyPress(object sender, KeyPressEventArgs e)
@@ -3163,6 +3216,7 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int)); 
                         objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_Remarks", typeof(string));
                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, 0, "", 0, 0
                         , "", varorginator, "", txtTurnAroundTime.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBy.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtissuemodevalue.Text, 11, "", 0,0);
                         objspdservice.CloseConnection();
@@ -3590,11 +3644,11 @@ namespace ROMS
         {
             try
             { 
-                    if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty")
-                    {
-                        e.Control.KeyPress -= udfnHandleKeyPress;
-                        e.Control.KeyPress += udfnHandleKeyPress;
-                    }
+                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmremarks")
+                {
+                    e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress;
+                }
             }
             catch (Exception ex)
             {
@@ -3606,19 +3660,32 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) )
-                {
-                    e.Handled = true;  // Disallow the character
+                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty")
+                { 
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;  // Disallow the character
+                    }
+                    TextBox vartb = sender as TextBox;
+                    //if (e.KeyChar == '.' && vartb.Text.Contains('.'))
+                    //{
+                    //    e.Handled = true;
+                    //}
+                    if (vartb.Text.Length >= 5 && !char.IsControl(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
                 }
-                TextBox vartb = sender as TextBox;
-                //if (e.KeyChar == '.' && vartb.Text.Contains('.'))
-                //{
-                //    e.Handled = true;
-                //}
-                if (vartb.Text.Length >= 5 && !char.IsControl(e.KeyChar))
+                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmremarks" )
                 {
-                    e.Handled = true;
+
+                    TextBox vartb = sender as TextBox;
+                    if (vartb.Text.Length >= 100 && !char.IsControl(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -3994,7 +4061,7 @@ namespace ROMS
                     productcode=Convert.ToInt32(lblProductcode.Text);
                 } 
 
-                objDs = objspdservice.udfnproductmasterlist(44, Convert.ToInt32(productcode), 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(lblSupplierCode.Text), "0", null);
+                objDs = objspdservice.udfnproductmasterlist(44, Convert.ToInt32(productcode), 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(lblSupplierCode.Text),"", "0", null,0,null);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -4235,11 +4302,20 @@ namespace ROMS
                 {
                     cmbReturnType.Visible = true;
                     txtDReturnCycle.Visible = true;
+                    cmbReturnType.SelectedIndex = 0;
+                    //cmbPolicyContent.Visible = true;
+                    //cmbSecondLevel.Visible = true;
+                    //txtReturnText.Visible = true;
+                    //txtNextLevel.Visible = true;
                 }
                 else
                 {
                     cmbReturnType.Visible = false;
                     txtDReturnCycle.Visible = false;
+                    cmbPolicyContent.Visible = false;
+                    cmbSecondLevel.Visible = false;
+                    txtReturnText.Visible = false;
+                    txtNextLevel.Visible = false;
                 }
             }
             catch (Exception ex)

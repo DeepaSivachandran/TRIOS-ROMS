@@ -580,7 +580,7 @@
             this.grdStockHold.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdStockHold.EnableHeadersVisualStyles = false;
             this.grdStockHold.GridColor = System.Drawing.Color.White;
-            this.grdStockHold.Location = new System.Drawing.Point(10, 145);
+            this.grdStockHold.Location = new System.Drawing.Point(31, 145);
             this.grdStockHold.Name = "grdStockHold";
             this.grdStockHold.ReadOnly = true;
             this.grdStockHold.RowHeadersVisible = false;

@@ -55,6 +55,11 @@ namespace ROMS
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
+                if (txtSupplier.Text == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedule.Text = "0";
+                }
                 //********** To display a data in a grid  ******************
                 grdPurchaseDCList.DataSource = null;
                 DataSet objDs = new DataSet();
@@ -516,6 +521,9 @@ namespace ROMS
                 udfncmbDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
+                dpDcFromDate.MinDate = MainForm.pbFYStartDate;
+                dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpdctodate.MinDate = dpDcFromDate.MaxDate;
             }
             catch (Exception ex)
             {
@@ -1044,5 +1052,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 }

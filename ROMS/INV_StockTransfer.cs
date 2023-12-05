@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -210,7 +211,6 @@ namespace ROMS
         {
             try
             {
-                dpTrannsferDate.MaxDate = DateTime.Now;
                 dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
                 dtStock.Columns.Add("STK_PRID", typeof(int));
                 dtStock.Columns.Add("STK_MRP", typeof(string));
@@ -222,6 +222,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
                 udfnCmbConcern();
+                dpTrannsferDate.MaxDate = MainForm.pbCurrentDate;
                 cmbConcern.SelectedValue = 1;
                 if (btnSave.Text=="Save")
                 {
@@ -1340,11 +1341,11 @@ namespace ROMS
             {
                 lvProduct.Visible = false;
                 errStockTransfer.Clear();
-                txtSRack.BackColor = Color.LightGray;//txtSRack.Enabled = false;
-                txtMRP.BackColor = Color.LightGray;
-                txtExpiryDate.BackColor = Color.LightGray;
-                txtBatchNo.BackColor = Color.LightGray;
-                txtStockQty.BackColor = Color.LightGray;
+                txtSRack.BackColor = SystemColors.Control;
+                txtMRP.BackColor = SystemColors.Control;
+                txtExpiryDate.BackColor = SystemColors.Control;
+                txtBatchNo.BackColor = SystemColors.Control;
+                txtStockQty.BackColor =SystemColors.Control;
                 txtDLocation.BackColor = Color.White;
                 txtQuantity.BackColor = Color.White;
             }
