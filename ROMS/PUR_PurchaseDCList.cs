@@ -60,17 +60,17 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
-                objTRNG_Purchase_DC.ViewType = varviewtype;
-                objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                objTRNG_Purchase_DC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRNG_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
-                objTRNG_Purchase_DC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
-                objTRNG_Purchase_DC.paraFromDate = dpDcFromDate.Text;
-                objTRNG_Purchase_DC.paraToDate = dpdctodate.Text;
-                objTRNG_Purchase_DC.@paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
-                objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
-                objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
+                //TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
+                //objTRNG_Purchase_DC.ViewType = varviewtype;
+                //objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                //objTRNG_Purchase_DC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                //objTRNG_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                //objTRNG_Purchase_DC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                //objTRNG_Purchase_DC.paraFromDate = dpDcFromDate.Text;
+                //objTRNG_Purchase_DC.paraToDate = dpdctodate.Text;
+                //objTRNG_Purchase_DC.@paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                //objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                //objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
