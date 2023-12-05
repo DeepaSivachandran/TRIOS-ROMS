@@ -1725,40 +1725,10 @@ namespace ROMS
                                             if (Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmExpiryDate"].Value) == Expirydate)
                                             {
                                               //  grdPurchaseDC.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
-                                                grdPurchaseDC.Rows[j].Cells["clmQuantity"].Style.BackColor = Color.LightPink;
+                                                grdPurchaseDC.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
                                             }
                                         }
                                     }
-                                }
-                                //else
-                                //{
-                                //    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                //    if (varvalue[0] == "5")
-                                //    {
-                                //        string[] values = varvalue[2].Split(',');
-                                //        for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
-                                //        {
-                                //            foreach (string value in values)
-                                //            {
-                                //                if (Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value || Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value) == value)
-                                //                {
-
-                                //                    grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
-                                //                    grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
-                                //                }
-                                //            }
-                                //        }
-                                //    }
-                                //}
-                                //this.ActiveControl = cmbConcern;
-                                //}
-                                //else
-                                //{
-                                //    SPDataService objDServ = new SPDataService();
-                                //    string varMessage = objDServ.udfnGetMessages(77);
-                                //    objDServ.CloseConnection();
-                                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                //}
                             }
                         }
                     }
@@ -2242,11 +2212,12 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
             }
         }
         private void BtnAdd_Enter(object sender, EventArgs e)
