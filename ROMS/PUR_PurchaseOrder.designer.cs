@@ -1830,7 +1830,7 @@
             this.grdsupplieradd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grdsupplieradd_CellContentClick);
             this.grdsupplieradd.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grdsupplieradd_CellEndEdit);
             this.grdsupplieradd.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grdsupplieradd_CellLeave);
-            this.grdsupplieradd.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.Grdsupplieradd_CellPainting);
+            //this.grdsupplieradd.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.Grdsupplieradd_CellPainting);
             this.grdsupplieradd.CurrentCellDirtyStateChanged += new System.EventHandler(this.Grdsupplieradd_CurrentCellDirtyStateChanged);
             this.grdsupplieradd.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.Grdsupplieradd_DataBindingComplete);
             this.grdsupplieradd.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grdsupplieradd_EditingControlShowing);

@@ -95,7 +95,6 @@ namespace ROMS
                     tpcompanyname.Show("Please select company", cmbConcern, 5000);
                     blnErrorFlag = true;
                 }
-
                 if (Convert.ToString(txtItemNameEnglish.Text).Trim() == "")
                 {
                     errItems.SetError(txtItemNameEnglish, "Please enter product name in english");
@@ -3173,11 +3172,11 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 //cmbHSNName.SelectedValue = -1;
                 cmbUnit.SelectedValue = -1;
-                    cmbBulkUnit.SelectedValue = -1;
-                    cmbProductCategory.SelectedValue = -1;
-                    cmbPeriod.SelectedValue = -1;
-                    cmbBatchNoEntry.SelectedValue = -1;
-                    cmbBatchNoGeneration.SelectedValue = -1;
+                cmbBulkUnit.SelectedValue = -1;
+                cmbProductCategory.SelectedValue = -1;
+                cmbPeriod.SelectedValue = -1;
+                cmbBatchNoEntry.SelectedValue = 72;
+                cmbBatchNoGeneration.SelectedValue = -1;
                 udfnEdit();
             }
             catch (Exception ex)
@@ -3334,7 +3333,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     lblDPicode.Visible = true;                    
-                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"",null);
+                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"","",null,0,null);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -5071,7 +5070,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"",null);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {

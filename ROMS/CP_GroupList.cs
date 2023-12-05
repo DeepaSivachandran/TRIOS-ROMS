@@ -157,6 +157,7 @@ namespace ROMS
                 lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
                 varGroupCode = Convert.ToInt32(varGroupId);
                 txtSearchProduct.Text = "";
+                SearchFlag = 0;
             }
         }
         private void udfnSearchGridHead()
@@ -709,6 +710,11 @@ namespace ROMS
             {
                 lvGroup.Visible = false;
                 txtSearchProduct.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -869,7 +875,7 @@ namespace ROMS
             try
             {
                 udfnLvGroup();
-                btnView.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
