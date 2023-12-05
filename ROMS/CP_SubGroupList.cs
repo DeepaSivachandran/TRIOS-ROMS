@@ -407,6 +407,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblProductgroup.Focus();
                 udfnList();
             }
             catch (Exception ex)
