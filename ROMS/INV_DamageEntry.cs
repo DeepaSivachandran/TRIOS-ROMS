@@ -145,15 +145,7 @@ namespace ROMS
             {
                 udfnCmbConcernLoad();
                 cmbConcern.SelectedValue = 1;
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(4, 6, 0,"","",0, "");
-                if (objd.Tables[1].Rows.Count != 0)
-                {
-                    DateTime varmaxdate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpEntryDate.MaxDate = varmaxdate;
-                }
-
+                dpEntryDate.MaxDate = MainForm.pbCurrentDate;
                 dtDamage.TableName = "TRN_DM_Product_AutoComplete";
                 dtDamage.Columns.Add("DM_PRID", typeof(int));
                 dtDamage.Columns.Add("DM_SLID", typeof(int));
@@ -1641,12 +1633,12 @@ namespace ROMS
             finally
             {
                 lvProduct.Visible = false;
-                txtLocation.BackColor = Color.LightGray;
-                txtRack.BackColor = Color.LightGray;
-                txtMrp.BackColor = Color.LightGray;
-                txtExpiryDate.BackColor = Color.LightGray;
-                txtBatchNo.BackColor = Color.LightGray;
-                txtStockQty.BackColor = Color.LightGray;
+                txtLocation.BackColor = SystemColors.Control;
+                txtRack.BackColor = SystemColors.Control;
+                txtMrp.BackColor = SystemColors.Control;
+                txtExpiryDate.BackColor = SystemColors.Control;
+                txtBatchNo.BackColor = SystemColors.Control;
+                txtStockQty.BackColor = SystemColors.Control;
                 txtQuantity.BackColor = Color.White;
                 txtsuppliername.BackColor = Color.White;
             }

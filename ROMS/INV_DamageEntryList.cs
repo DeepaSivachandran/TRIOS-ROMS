@@ -350,8 +350,10 @@ namespace ROMS
         private void INV_DamageEntryList_Load(object sender, EventArgs e)
         {
             cmbconcern.Focus();
-            dpFromDate.MaxDate = DateTime.Now;
             udfnCmbConcern();
+            dpFromDate.MinDate = MainForm.pbFYStartDate;
+            dpFromDate.MaxDate = MainForm.pbCurrentDate;
+            dpToDate.MinDate = dpFromDate.MaxDate;
             cmbconcern.SelectedValue = 1;
             udfnList();
         }

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using System.Globalization;
+
 namespace ROMS
 {
     public partial class MainForm : Form
@@ -36,6 +38,7 @@ namespace ROMS
         public static bool isFormClosed = false;
         public static bool isClose = false;
         public static bool isFormClosedMenu = false;
+        public static DateTime pbCurrentDate, pbFYStartDate, pbFYEndDate;
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart;
@@ -274,6 +277,7 @@ namespace ROMS
             {
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
+                GetDate();
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
@@ -419,6 +423,27 @@ namespace ROMS
                 pbIpAddress = Dns.GetHostAddresses(Dns.GetHostName()).First(a => a.AddressFamily == AddressFamily.InterNetwork).ToString();
             }
             catch (Exception ex) { throw new Exception(ex.ToString()); }
+        }
+        //Get Date
+        public void GetDate()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnMaster(4, 0, 0, "", "", 0);
+                DateTime varDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime varFYStartDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_StartDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime varFYEndDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_EndDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                pbCurrentDate = varDate;
+                pbFYStartDate = varFYStartDate;
+                pbFYEndDate = varFYEndDate;
+                objspservice.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
         private void tsbSettings_Click(object sender, EventArgs e)
         {
