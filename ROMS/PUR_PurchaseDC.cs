@@ -187,6 +187,7 @@ namespace ROMS
         {
             try
             {
+                lblUnit.Text = "";
                 txtProductName.Text = "";
                 lblProductcode.Text = "0";
                 txtMrp.Text = "";
@@ -290,6 +291,7 @@ namespace ROMS
         {
             try
             {
+                lblUnit.Text = "";
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
                 ClearSupplier();
@@ -2714,7 +2716,7 @@ namespace ROMS
         {
             try
             {
-                if (txtActualQty.Text.Trim() == "0")
+                if(txtActualQty.Text.Trim() == "0")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(77);

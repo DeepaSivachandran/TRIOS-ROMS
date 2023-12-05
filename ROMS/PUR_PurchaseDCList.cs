@@ -65,17 +65,17 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                //TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
-                //objTRNG_Purchase_DC.ViewType = varviewtype;
-                //objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                //objTRNG_Purchase_DC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                //objTRNG_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
-                //objTRNG_Purchase_DC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
-                //objTRNG_Purchase_DC.paraFromDate = dpDcFromDate.Text;
-                //objTRNG_Purchase_DC.paraToDate = dpdctodate.Text;
-                //objTRNG_Purchase_DC.@paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
-                //objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
-                //objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
+                TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
+                objTRNG_Purchase_DC.ViewType = varviewtype;
+                objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_Purchase_DC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                objTRNG_Purchase_DC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                objTRNG_Purchase_DC.paraFromDate = dpDcFromDate.Text;
+                objTRNG_Purchase_DC.paraToDate = dpdctodate.Text;
+                objTRNG_Purchase_DC.@paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -139,17 +139,20 @@ namespace ROMS
         {
             try
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objPUR_PurchaseDC = new PUR_PurchaseDC();
-                MainForm.objPUR_PurchaseDC.varDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                MainForm.objPUR_PurchaseDC.btnSave.Text = "Update";
-                MainForm.objPUR_PurchaseDC.pbScheduleid = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPSCID"].Value.ToString());
-                MainForm.objPUR_PurchaseDC.pbSupplierId = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPID"].Value.ToString());
-                //MainForm.objPUR_PurchaseDC.txtRemark.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
-                MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseDC.Show();
+                if (grdPurchaseDCList.SelectedRows.Count > 0)
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objPUR_PurchaseDC = new PUR_PurchaseDC();
+                    MainForm.objPUR_PurchaseDC.varDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                    MainForm.objPUR_PurchaseDC.btnSave.Text = "Update";
+                    MainForm.objPUR_PurchaseDC.pbScheduleid = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPSCID"].Value.ToString());
+                    MainForm.objPUR_PurchaseDC.pbSupplierId = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPID"].Value.ToString());
+                    //MainForm.objPUR_PurchaseDC.txtRemark.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
+                    MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
+                    MainForm.objPUR_PurchaseDC.Show();
+                }
             }
             catch (Exception ex)
             {
@@ -889,6 +892,7 @@ namespace ROMS
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            varviewtype = 1;
                             udfnList();
                         }
                         else if (result.Split('~')[0] == "4")
@@ -1030,6 +1034,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
+                    btnView.Focus();
                     BtnView_Click(sender, e);
                 }
             }
