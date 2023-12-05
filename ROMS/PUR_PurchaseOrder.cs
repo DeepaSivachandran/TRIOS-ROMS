@@ -12,11 +12,11 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        public bool VarSearchFlag = true;
         public int varcount = 0, SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0,
             varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0
             , totalBulkqty = 0, totalUnitqty = 0, totalOrderQty = 0, varUPP = 0, qtyFlag = 0,varModifiedFlag = 0,
-        varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0;
+        varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag=0, productcode=0;
         public double totalKgQty = 0;
         public string vardays = "", unitweight = "", unitperbox = "", bulkunitweight = "", varUPPValue ="" ;
         private ToolTip tpsalesman = new ToolTip();
@@ -56,7 +56,7 @@ namespace ROMS
                 {
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
-                    objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0);
+                    objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "");
                     if (objd.Tables[1].Rows.Count != 0)
                     {
                         DateTime varmindate = DateTime.ParseExact(objd.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -270,7 +270,7 @@ namespace ROMS
                             txtissuemodevalue.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString();
                             SPDataService objDServ = new SPDataService();
                             DataSet objd = new DataSet();
-                            objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0);
+                            objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "");
                             if (objd.Tables[0].Rows.Count != 0)
                             {
                                 DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
@@ -395,6 +395,19 @@ namespace ROMS
                 if (e.KeyCode == Keys.Escape)
                 {
                     udfnclose();
+                }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblDProduct.Text = "Serach by P.I Code";
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblDProduct.Text = "Serach by Product Name";
+                    }
                 }
             }
             catch (Exception ex)
@@ -2515,7 +2528,14 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes,"",null,0,null);
+                    if (VarSearchFlag == true)
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0,"", Convert.ToInt32(lblSupplierCode.Text), varProductsCodes, null);
+                    }
+                    else
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes, null);
+                    }
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
@@ -2531,12 +2551,21 @@ namespace ROMS
                                     lvproduct.Items.Add(objList);
                                 }
                                 lvproduct.Visible = true;
+
                                 lvproduct.Columns[0].Width = 100;
-                                lvproduct.Columns[1].Width = 0;
-                                lvproduct.Columns[2].Width = 250;
                                 lvproduct.Columns[3].Width = 0;
                                 lvproduct.Columns[4].Width = 100;
                                 lvproduct.Columns[5].Width = 100;
+                                if (VarSearchFlag == false)
+                                { 
+                                    lvproduct.Columns[1].Width = 250;
+                                    lvproduct.Columns[2].Width = 0;
+                                }
+                                else
+                                { 
+                                    lvproduct.Columns[1].Width = 0;
+                                    lvproduct.Columns[2].Width = 250;
+                                }
                             }
                         }
                     }
@@ -2821,7 +2850,13 @@ namespace ROMS
                                 grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
                             }
                             varModifiedFlag = 1;
+                       break;
+                        case "clmproductname":
+                            varprodFlag = 1;
+                            productcode = Convert.ToInt32((grdsupplieradd.Rows[e.RowIndex].Cells["ID"].Value));
+                            udfnPossibleSupplierLoad();
                             break;
+
                     }
                 }
             }
@@ -3479,6 +3514,22 @@ namespace ROMS
                     cell.Style.ForeColor = Color.Black;
                     cell.ReadOnly = false;
                 }
+                if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmpreviouspend"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmpreviouspend"].Value) != "-" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmpreviouspend"].Value) != "")
+                {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmpreviouspend"];
+                    cell.Style.BackColor = Color.Moccasin;
+                    cell.Style.ForeColor = Color.Black;
+                    cell.ReadOnly = true;
+                }
+                if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmPartialPendingQty"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmPartialPendingQty"].Value) != "-" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmPartialPendingQty"].Value) != "")
+                {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmPartialPendingQty"];
+                    cell.Style.BackColor = Color.Moccasin;
+                    cell.Style.ForeColor = Color.Black;
+                    cell.ReadOnly = true;
+                }
             }
         }
 
@@ -3929,7 +3980,61 @@ namespace ROMS
             finally
             {
                 lvproduct.Visible = false;
+                udfnPossibleSupplierLoad();
             }
+        }
+        public void udfnPossibleSupplierLoad()
+        {
+            try
+            { 
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (varprodFlag==0)
+                {
+                    productcode=Convert.ToInt32(lblProductcode.Text);
+                } 
+
+                objDs = objspdservice.udfnproductmasterlist(44, Convert.ToInt32(productcode), 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(lblSupplierCode.Text), "0", null);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            grdpossiblesupplier.Rows.Clear();
+                            lblPossibleSupplierRecords.Visible = false;
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            {
+                                grdpossiblesupplier.Rows.Add(grdpossiblesupplier.Rows.Count + 1, objDs.Tables[0].Rows[i]["SUPPLIER"].ToString(),
+                                objDs.Tables[0].Rows[i]["INVOICEDATE"].ToString(), objDs.Tables[0].Rows[i]["INVOICENO"].ToString(),
+                                objDs.Tables[0].Rows[i]["INVOICERATE"].ToString(), objDs.Tables[0].Rows[i]["Status"].ToString(),
+                                objDs.Tables[0].Rows[i]["sts"].ToString()); 
+                            } 
+                        }
+                        else
+                        {
+                            grdpossiblesupplier.Rows.Clear();
+                            lblPossibleSupplierRecords.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        grdpossiblesupplier.Rows.Clear();
+                        lblPossibleSupplierRecords.Visible = true;
+                    }
+                }
+                else
+                {
+                    grdpossiblesupplier.Rows.Clear();
+                    lblPossibleSupplierRecords.Visible = true;
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally { varprodFlag = 0; }
         }
 
         public void udfnProductAdd()

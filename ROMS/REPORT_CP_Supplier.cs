@@ -621,7 +621,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnMaster(6,0,0,"","",0);
+                objDT = objdserv.udfnMaster(6,0,0,"","",0, "");
                 objdserv.CloseConnection();
                 cmbOrderType.DataSource = null;
                 if (objDT != null)

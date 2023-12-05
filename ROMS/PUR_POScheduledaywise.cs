@@ -86,6 +86,7 @@ namespace ROMS
                             if (grdPOSchedule.Rows.Count > 0) // Check if there are any rows
                             {
                                 grdPOSchedule.Rows[grdPOSchedule.Rows.Count - 1].Cells[1].Value = null;
+                                grdPOSchedule.Rows[grdPOSchedule.Rows.Count - 1].Cells["S.No."].Value = "";
                                 grdPOSchedule.Columns["clmPrint8"].DisplayIndex = grdPOSchedule.Columns.Count - 3;
                                 grdPOSchedule.Columns["clmPrint8"].Width = 30;
                                 grdPOSchedule.Columns["clmPrint7"].DisplayIndex = grdPOSchedule.Columns.Count - 5;
@@ -250,11 +251,43 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
-                    int varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
+                    int varDYID = 0;
+                    if (e.ColumnIndex == grdPOSchedule.Rows.Count - 1)
+                    {
+                        varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
+                    }
                     string varHeader = "";
                     switch (grdPOSchedule.Columns[e.ColumnIndex].Name)
                     {
                         case "clmPrint1": case "clmPrint3": case "clmPrint5": case "clmPrint7":
+                            string varOrderTypeName = "";
+                            int varOrderId = 0;
+                            if (grdPOSchedule.Columns[e.ColumnIndex].Name == "clmPrint1") {
+                                varOrderTypeName= grdHeaderview.Columns[2].Name;
+                            }
+                            if (grdPOSchedule.Columns[e.ColumnIndex].Name == "clmPrint3")
+                            {
+                                varOrderTypeName = grdHeaderview.Columns[3].Name;
+                            }
+                            if (grdPOSchedule.Columns[e.ColumnIndex].Name == "clmPrint5")
+                            {
+                                varOrderTypeName = grdHeaderview.Columns[4].Name;
+                            }
+                            if (grdPOSchedule.Columns[e.ColumnIndex].Name == "clmPrint7")
+                            {
+                                varOrderTypeName = grdHeaderview.Columns[5].Name;
+                            }
+                            if (varOrderTypeName != "") {
+                                DataSet objDs = new DataSet();
+                                SPDataService objDserv = new SPDataService();
+                                objDs = objDserv.udfnMaster(11,13,0,"","",0,varOrderTypeName);
+                                objDserv.CloseConnection();
+                                if (objDs != null) {
+                                    if (objDs.Tables.Count > 0) {
+                                        varOrderId = Convert.ToInt32(objDs.Tables[0].Rows[0]["MSTID"]);
+                                    }
+                                }
+                            }
                             CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport1 = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport1 = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport1.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.rpt");
@@ -263,6 +296,7 @@ namespace ROMS
                             objBillreport1.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport1.SetParameterValue("paraUserName", MainForm.pbUserName);
                             objBillreport1.SetParameterValue("@pardayid", varDYID);
+                            objBillreport1.SetParameterValue("paraOrderId", varOrderId);
                             objValidation.CrySqlConnection(objBillreport1);
 
                             MainForm.objReportLoad = new ReportLoad();
@@ -271,6 +305,38 @@ namespace ROMS
                             MainForm.objReportLoad.ShowDialog();
                             break;
                         case "clmPrint2": case "clmPrint4":  case "clmPrint6": case "clmPrint8":
+                            varOrderTypeName = "";
+                            varOrderId = 0;
+                            if (grdPOSchedule.Columns[e.ColumnIndex].Name == "clmPrint2")
+                            {
+                                varOrderTypeName = grdHeaderview.Columns[2].Name;
+                            }
+                            if (grdPOSchedule.Columns[e.ColumnIndex].Name == "clmPrint4")
+                            {
+                                varOrderTypeName = grdHeaderview.Columns[3].Name;
+                            }
+                            if (grdPOSchedule.Columns[e.ColumnIndex].Name == "clmPrint6")
+                            {
+                                varOrderTypeName = grdHeaderview.Columns[4].Name;
+                            }
+                            if (grdPOSchedule.Columns[e.ColumnIndex].Name == "clmPrint8")
+                            {
+                                varOrderTypeName = grdHeaderview.Columns[5].Name;
+                            }
+                            if (varOrderTypeName != "")
+                            {
+                                DataSet objDs = new DataSet();
+                                SPDataService objDserv = new SPDataService();
+                                objDs = objDserv.udfnMaster(11, 13, 0, "", "", 0, varOrderTypeName);
+                                objDserv.CloseConnection();
+                                if (objDs != null)
+                                {
+                                    if (objDs.Tables.Count > 0)
+                                    {
+                                        varOrderId = Convert.ToInt32(objDs.Tables[0].Rows[0]["MSTID"]);
+                                    }
+                                }
+                            }
                             int varlanguage = 0;
                             if (rbEnglish.Checked == true)
                             {
@@ -280,8 +346,8 @@ namespace ROMS
                             CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
-                            objBillreport.SetParameterValue("@paracompanycode", 0);
-                            objBillreport.SetParameterValue("@paraOrderID", 0);
+                            objBillreport.SetParameterValue("@paracompanycode", Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue));
+                            objBillreport.SetParameterValue("@paraOrderID", varOrderId);
                             objBillreport.SetParameterValue("@parascheduleid", 0);
                             objBillreport.SetParameterValue("@parasupplierid", 0);
                             objBillreport.SetParameterValue("@paraProductType", varlanguage);
