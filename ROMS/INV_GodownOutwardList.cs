@@ -510,8 +510,10 @@ namespace ROMS
                     }
                 }
                 udfnList();
-                dtpOutwardDate.MaxDate = DateTime.Now;
-                dtpOutwardDate2.MaxDate = DateTime.Now; cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
+                dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
+                dtpOutwardDate2.MinDate = dtpOutwardDate.MaxDate;
+                cmbConcern.SelectedValue = 0;
 
             }
             catch (Exception ex)
@@ -559,7 +561,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "", "",null,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "", null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -617,6 +619,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.BringToFront();
                 udfnProductEvent();
                 btnView.Focus();
             }
@@ -1082,7 +1085,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "GoodsOutward List";
+                    ExcelSheet.Name = "Goods Outward List";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdOutwardList.Columns)
@@ -1095,7 +1098,7 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "GoodsOutward List";
+                    ExcelSheet.Cells[1, 1].Value = "Goods Outward List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -1335,6 +1338,11 @@ namespace ROMS
         }
 
         private void CmbConcern_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GrdOutwardList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
