@@ -149,10 +149,19 @@ namespace ROMS
                     if (varStatus == 29)
                     {
                         btnSave.Text = "Update";
+                        txtProductNamePICode.ReadOnly = true;
+                        txtRequiredQty.ReadOnly = true;
+                        btnAdd.Enabled = false;
+                        txtRemarks.ReadOnly = true;
+                        btnSave.Enabled = false;
+                        cmbStatus.Enabled = false;
+                        grdStockRequest.ReadOnly = true;
+                        cmbStatus.SelectedValue = 29;
+                        btnClose.Focus();
                     }
                     else
                     {
-                        
+                        cmbStatus.SelectedValue = 28;
                     }
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
