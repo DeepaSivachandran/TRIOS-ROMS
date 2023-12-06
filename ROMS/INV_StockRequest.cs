@@ -146,18 +146,17 @@ namespace ROMS
             {
                 if (varStockRequestID != 0)
                 {
+                    btnSave.Text = "Update";
                     if (varStatus == 29)
                     {
-                        btnSave.Text = "Update";
-                        txtProductNamePICode.ReadOnly = true;
-                        txtRequiredQty.ReadOnly = true;
+                        txtRemarks.Focus();
+                        txtProductNamePICode.Enabled = false;
+                        txtRequiredQty.Enabled = false;
                         btnAdd.Enabled = false;
-                        txtRemarks.ReadOnly = true;
                         btnSave.Enabled = false;
                         cmbStatus.Enabled = false;
                         grdStockRequest.ReadOnly = true;
                         cmbStatus.SelectedValue = 29;
-                        btnClose.Focus();
                     }
                     else
                     {
@@ -540,7 +539,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,varProducts,"",null,0, null);
+                    objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,varProducts,"",null,0, null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -634,6 +633,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
+                    lblUnit.Text = selectedItem.SubItems[2].Text;
                     lblProduct.Text = selectedItem.SubItems[4].Text;
                     VarAdd = "1";
                     udfnStockLoad();
