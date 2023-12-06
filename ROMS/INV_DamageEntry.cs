@@ -307,7 +307,7 @@ namespace ROMS
                     string[] EntryNo = value.Split('/');
                     if (varResult != "")
                     {
-                        txtEntryNo.Text = EntryNo[0];
+                        txtEntryNo.Text =value;
                     }
                     else
                     {

@@ -87,12 +87,23 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=11", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
-                dpDate.Value = MainForm.pbCurrentDate;
-                if (varStockRequestID!=0)
+                if (btnSave.Text == "Save && Print")
+                {
+                    if (varStockRequestID == 0)
+                    {
+                        udfnTransferNo();
+                        dpDate.Value = MainForm.pbCurrentDate;
+                        cmbConcern.SelectedValue = 1;
+                    }
+                    else
+                    {
+                        udfnEdit();
+                    }
+                }
+                else
                 {
                     udfnEdit();
                 }
-                cmbConcern.SelectedValue = 1;
             }
             catch (Exception ex)
             {
@@ -135,23 +146,23 @@ namespace ROMS
             {
                 if (varStockRequestID != 0)
                 {
-                    //if(btnSave.Text=="Update")
-                    //{
-                    //    chkCompleted.Enabled = false;
-                    //}
-                    //else
-                    //{
-                    //    chkCompleted.Enabled = true;
-                    //}
-                    //if(varStatus==28)
-                    //{
-                    //    chkCompleted.Checked = true;
-                    //    btnSave.Text = "Update";
-                    //}
-                    //else
-                    //{
-                    //    chkCompleted.Checked = false;
-                    //}
+                    if (varStatus == 29)
+                    {
+                        btnSave.Text = "Update";
+                        txtProductNamePICode.ReadOnly = true;
+                        txtRequiredQty.ReadOnly = true;
+                        btnAdd.Enabled = false;
+                        txtRemarks.ReadOnly = true;
+                        btnSave.Enabled = false;
+                        cmbStatus.Enabled = false;
+                        grdStockRequest.ReadOnly = true;
+                        cmbStatus.SelectedValue = 29;
+                        btnClose.Focus();
+                    }
+                    else
+                    {
+                        cmbStatus.SelectedValue = 28;
+                    }
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     Model.TRN_StockRequest objTRNG_StockRequest = new Model.TRN_StockRequest();
@@ -411,43 +422,46 @@ namespace ROMS
         }
         public void udfnTransferNo()
         {
-            if (btnSave.Text == "Save as Draft")
+            if (varStockRequestID == 0)
             {
-                if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
+                if (btnSave.Text == "Save && Print")
                 {
-                    string vardate = "", varResult = "";
-                    SPDataService objspdservice = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    DataService objDservice = new DataService();
-                    vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpDate.Text + "',103)");
-                    varResult = objspdservice.udfngetPONO("43", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
-                    objspdservice.CloseConnection();
-                    string[] varvalue = varResult.Split('~');
-                    if (varResult != "")
+                    if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
                     {
-                        txtRequestNo.Text = varvalue[0];
+                        string vardate = "", varResult = "";
+                        SPDataService objspdservice = new SPDataService();
+                        DataSet objDs = new DataSet();
+                        DataService objDservice = new DataService();
+                        vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpDate.Text + "',103)");
+                        varResult = objspdservice.udfngetPONO("43", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        objspdservice.CloseConnection();
+                        string[] varvalue = varResult.Split('~');
+                        if (varResult != "")
+                        {
+                            txtRequestNo.Text = varvalue[0];
+                        }
+                        else
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(75);
+                            objDServ.CloseConnection();
+                            txtRequestNo.Text = "";
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                MainForm.objCP_Settings = new CP_Settings();
+                                //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                                //MainForm.objCP_Settings.varValues = Convert.ToString(44);
+                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                                MainForm.objCP_Settings.Show();
+                                this.Close();
+                            }
+                        }
                     }
                     else
                     {
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(75);
-                        objDServ.CloseConnection();
                         txtRequestNo.Text = "";
-                        DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            MainForm.objCP_Settings = new CP_Settings();
-                            //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
-                            //MainForm.objCP_Settings.varValues = Convert.ToString(44);
-                            MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                            MainForm.objCP_Settings.Show();
-                            this.Close();
-                        }
                     }
-                }
-                else
-                {
-                    txtRequestNo.Text = "";
                 }
             }
         }
@@ -1044,15 +1058,8 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0,varStatus = 0;
-                //if(chkCompleted.Checked==true)
-                //{
-                //    varStatus = 28;
-                //}
-                //else
-                //{
-                //    varStatus = 29;
-                //}
-                if (btnSave.Text == "Save as Draft" || btnSave.Text== "Save && Print")
+                varStatus = Convert.ToInt32(cmbStatus.SelectedValue);
+                if (btnSave.Text== "Save && Print")
                 {
                     varoriginator = "Stock Request Creation";
                     varType = 0;
@@ -1068,7 +1075,7 @@ namespace ROMS
                 objTRNS_StockRequest.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRNS_StockRequest.paraRequestDate = dpDate.Text;
                 objTRNS_StockRequest.paraRemarks = txtRemarks.Text;
-                objTRNS_StockRequest.paraStatusId = varStatus;
+                objTRNS_StockRequest.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNS_StockRequest.paraOriginator = varoriginator;
                 objTRNS_StockRequest.paraStockRequest = dtStock;
                 varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
