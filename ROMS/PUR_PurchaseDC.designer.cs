@@ -897,7 +897,6 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdPurchaseDC.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPurchaseDC.RowTemplate.Height = 25;
-            this.grdPurchaseDC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdPurchaseDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseDC.ShowRowErrors = false;
             this.grdPurchaseDC.Size = new System.Drawing.Size(1289, 360);

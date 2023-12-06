@@ -1847,7 +1847,7 @@ namespace ROMS
         {
             try
             {
-                (grdViewProduct.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchProductName1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName1.Text + "%' ";
+                //(grdViewProduct.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchProductName1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName1.Text + "%' ";
             }
             catch (Exception ex)
             {
