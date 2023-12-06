@@ -422,7 +422,7 @@ namespace ROMS
                 {
                      varPRID = 0;
                 }
-                // picLoader.Visible = true;
+                picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
@@ -483,13 +483,19 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnView.Enabled = true;
+                btnView.Focus();
+            }
         }
         private void INV_GodownOutwardList_Load(object sender, EventArgs e)
         {
             try
             {
                 this.ActiveControl = cmbConcern;
-
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 2;
@@ -513,7 +519,7 @@ namespace ROMS
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
                 dtpOutwardDate2.MinDate = dtpOutwardDate.MaxDate;
-                cmbConcern.SelectedValue = 0;
+                cmbConcern.SelectedValue = 1;
 
             }
             catch (Exception ex)
@@ -521,6 +527,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
         }
 
 
@@ -561,7 +568,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text,0,"","",null,0, null);
+                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "", "",null,0,null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -701,9 +701,8 @@
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Location = new System.Drawing.Point(1175, 42);
             this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(33, 20);
+            this.lblQuantity.Size = new System.Drawing.Size(0, 20);
             this.lblQuantity.TabIndex = 958834;
-            this.lblQuantity.Text = "Pkts";
             // 
             // txtOutwardQuantity
             // 

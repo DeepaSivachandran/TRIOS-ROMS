@@ -29,6 +29,7 @@ namespace ROMS
         private ToolTip tpTransactionType = new ToolTip();
 
         public string varStockLocationId = "";
+        public string varStockApplicable = "";
         public int varErrQty = 0;
         public int varCloseFlag = 0;
         public int varGOId = 0;
@@ -644,7 +645,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                 udfnCmbConcern();
-                //this.ActiveControl = txtStockLocation;
+                this.ActiveControl = txtStockLocation;
                 cmbConcern.SelectedValue = 1;
                 udfnTransactionData();
                 //dtpOutwardDate.MaxDate = DateTime.Now;
@@ -869,6 +870,7 @@ namespace ROMS
                 txtBatchNo.Text = "";
                 txtStockQuantity.Text = "";
                 txtOutwardQuantity.Text = "";
+                lblQuantity.Text = "";
                 SLID = varStockLocationId;
                 lvproduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
@@ -876,7 +878,7 @@ namespace ROMS
                 if (txtProduct.Text.Length > 0 || txtProduct.Text==" ")
                 {
                     var ViewType = 37;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text.Trim(),0,"","", dtStock,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text.Trim(), 0,"", "", dtStock,0,null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1543,6 +1545,7 @@ namespace ROMS
                 txtOutwardNo.Text = "";
                 txtStockLocation.Text = "";
                 cmbTransactionType.Text = "";
+                lblQuantity.Text = "";
             }
             catch (Exception ex)
             {
@@ -1609,7 +1612,7 @@ namespace ROMS
                 varPICode = "";
                 varRKID = "";
                 varUTID = "";
-                lblQuantity.Text = "Pkts";
+                lblQuantity.Text = "";
             }
             catch (Exception ex)
             {
@@ -1812,7 +1815,7 @@ namespace ROMS
             {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnproductmasterlist(13, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, txtProduct.Text, 0, "","",dtStock,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(13, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, txtProduct.Text, 0,"", "",dtStock,0,null);
 
                 if (objDs != null)
                 {
