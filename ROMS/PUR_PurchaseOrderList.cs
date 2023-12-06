@@ -200,7 +200,7 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0);
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "");
                 if (objd.Tables[0].Rows.Count != 0)
                 {
                     DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -2258,6 +2258,7 @@ namespace ROMS
             {
 
                 btnExport.Enabled = false;
+                lblStatus.Focus();
                 if ((grdPurchaseorderlist.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -2425,6 +2426,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
+                lblStatus.Focus();
                 if ((grdProDetails.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -2646,6 +2648,7 @@ namespace ROMS
                     grpProFilter.BringToFront();
                     grpProFilter.Visible=true;
                     btnPrint.Enabled = false;
+                    lblStatus.Focus();
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;

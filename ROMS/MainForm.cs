@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using System.Globalization;
+
 namespace ROMS
 {
     public partial class MainForm : Form
@@ -36,6 +38,7 @@ namespace ROMS
         public static bool isFormClosed = false;
         public static bool isClose = false;
         public static bool isFormClosedMenu = false;
+        public static DateTime pbCurrentDate, pbFYStartDate, pbFYEndDate;
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart;
@@ -172,12 +175,11 @@ namespace ROMS
         public static REPORT_CP_Rackgroup objREPORT_CP_Rackgroup;
         public static REPORT_CP_Supplier objREPORT_CP_Supplier;
         public static REPORT_CP_Product objREPORT_CP_Product;
+        public static REPORT_Stock objREPORT_Stock;
          
         //public static CP_SL_Verify objCP_SL_Verify;
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
-
-        
 
         public MainForm()
         {
@@ -273,6 +275,7 @@ namespace ROMS
             {
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
+                GetDate();
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
@@ -409,7 +412,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        //Get Date
+        public void GetDate()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnMaster(4, 0, 0, "", "", 0,"");
+                DateTime varDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime varFYStartDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_StartDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime varFYEndDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_EndDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                pbCurrentDate = varDate;
+                pbFYStartDate = varFYStartDate;
+                pbFYEndDate = varFYEndDate;
+                objspservice.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
         //Get IP address
         public void GetLocalIPAddress()
         {
@@ -1481,6 +1504,23 @@ namespace ROMS
                 MainForm.objREPORT_CP_Product = new REPORT_CP_Product();
                 MainForm.objREPORT_CP_Product.MdiParent = this;
                 MainForm.objREPORT_CP_Product.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void StockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Stock = new REPORT_Stock();
+                MainForm.objREPORT_Stock.MdiParent = this;
+                MainForm.objREPORT_Stock.Show();
             }
             catch (Exception ex)
             {

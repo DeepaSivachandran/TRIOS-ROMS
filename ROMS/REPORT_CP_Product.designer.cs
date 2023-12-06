@@ -43,6 +43,8 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.txtSearchByPICode = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblGroupCode = new System.Windows.Forms.Label();
             this.lblSubGroupCode = new System.Windows.Forms.Label();
             this.txtGroup = new System.Windows.Forms.TextBox();
@@ -57,8 +59,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSearchByPICode = new System.Windows.Forms.TextBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.lblConcern = new System.Windows.Forms.Label();
             this.ReportProduct.SuspendLayout();
             this.pnlReportProduct.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -114,7 +116,7 @@
             this.columnHeader29});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(668, 48);
+            this.lvSubGroup.Location = new System.Drawing.Point(668, 94);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(457, 157);
             this.lvSubGroup.TabIndex = 1111229;
@@ -156,7 +158,7 @@
             this.columnHeader13});
             this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(431, 48);
+            this.lvGroup.Location = new System.Drawing.Point(431, 94);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(457, 157);
             this.lvGroup.TabIndex = 1111230;
@@ -180,6 +182,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.lblConcern);
+            this.grpfilter.Controls.Add(this.cmbConcern);
             this.grpfilter.Controls.Add(this.txtSearchByPICode);
             this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Controls.Add(this.lblGroupCode);
@@ -195,15 +199,37 @@
             this.grpfilter.Controls.Add(this.lblReportType);
             this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1348, 58);
+            this.grpfilter.Size = new System.Drawing.Size(1348, 86);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // txtSearchByPICode
+            // 
+            this.txtSearchByPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSearchByPICode.Location = new System.Drawing.Point(1005, 45);
+            this.txtSearchByPICode.MaxLength = 20;
+            this.txtSearchByPICode.Name = "txtSearchByPICode";
+            this.txtSearchByPICode.Size = new System.Drawing.Size(219, 27);
+            this.txtSearchByPICode.TabIndex = 5;
+            this.txtSearchByPICode.Enter += new System.EventHandler(this.TxtSearchByPICode_Enter);
+            this.txtSearchByPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByPICode_KeyDown);
+            this.txtSearchByPICode.Leave += new System.EventHandler(this.TxtSearchByPICode_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1005, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 20);
+            this.label1.TabIndex = 1111232;
+            this.label1.Text = "PI Code";
+            // 
             // lblGroupCode
             // 
             this.lblGroupCode.AutoSize = true;
-            this.lblGroupCode.Location = new System.Drawing.Point(402, 3);
+            this.lblGroupCode.Location = new System.Drawing.Point(558, 3);
             this.lblGroupCode.Name = "lblGroupCode";
             this.lblGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblGroupCode.TabIndex = 1111231;
@@ -213,7 +239,7 @@
             // lblSubGroupCode
             // 
             this.lblSubGroupCode.AutoSize = true;
-            this.lblSubGroupCode.Location = new System.Drawing.Point(607, 3);
+            this.lblSubGroupCode.Location = new System.Drawing.Point(758, 3);
             this.lblSubGroupCode.Name = "lblSubGroupCode";
             this.lblSubGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblSubGroupCode.TabIndex = 1111231;
@@ -223,7 +249,7 @@
             // txtGroup
             // 
             this.txtGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGroup.Location = new System.Drawing.Point(428, 19);
+            this.txtGroup.Location = new System.Drawing.Point(510, 45);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(167, 27);
@@ -236,7 +262,7 @@
             // txtSubGroup
             // 
             this.txtSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSubGroup.Location = new System.Drawing.Point(665, 19);
+            this.txtSubGroup.Location = new System.Drawing.Point(683, 45);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
             this.txtSubGroup.Size = new System.Drawing.Size(167, 27);
@@ -250,7 +276,7 @@
             // 
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroup.Location = new System.Drawing.Point(380, 22);
+            this.lblGroup.Location = new System.Drawing.Point(510, 22);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(42, 20);
             this.lblGroup.TabIndex = 1111181;
@@ -259,7 +285,7 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(888, 19);
+            this.cmbStatus.Location = new System.Drawing.Point(856, 45);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(143, 27);
             this.cmbStatus.TabIndex = 4;
@@ -272,7 +298,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(835, 22);
+            this.lblStatus.Location = new System.Drawing.Point(856, 22);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 1111182;
@@ -282,7 +308,7 @@
             // 
             this.lblSubgroup.AutoSize = true;
             this.lblSubgroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubgroup.Location = new System.Drawing.Point(598, 22);
+            this.lblSubgroup.Location = new System.Drawing.Point(683, 22);
             this.lblSubgroup.Name = "lblSubgroup";
             this.lblSubgroup.Size = new System.Drawing.Size(62, 20);
             this.lblSubgroup.TabIndex = 1111180;
@@ -293,7 +319,7 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1264, 18);
+            this.btnListPrint.Location = new System.Drawing.Point(1230, 44);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
@@ -308,7 +334,7 @@
             // cmbReportType
             // 
             this.cmbReportType.FormattingEnabled = true;
-            this.cmbReportType.Location = new System.Drawing.Point(85, 19);
+            this.cmbReportType.Location = new System.Drawing.Point(10, 45);
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(286, 27);
             this.cmbReportType.TabIndex = 0;
@@ -322,7 +348,7 @@
             // 
             this.lblReportType.AutoSize = true;
             this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportType.Location = new System.Drawing.Point(6, 22);
+            this.lblReportType.Location = new System.Drawing.Point(10, 22);
             this.lblReportType.Name = "lblReportType";
             this.lblReportType.Size = new System.Drawing.Size(73, 20);
             this.lblReportType.TabIndex = 1111176;
@@ -347,9 +373,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 66);
+            this.picLoader.Location = new System.Drawing.Point(3, 94);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1351, 576);
+            this.picLoader.Size = new System.Drawing.Size(1351, 548);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
@@ -360,35 +386,35 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(3, 66);
+            this.RPTViewer.Location = new System.Drawing.Point(3, 94);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1348, 573);
+            this.RPTViewer.Size = new System.Drawing.Size(1348, 545);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // label1
+            // cmbConcern
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1037, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 20);
-            this.label1.TabIndex = 1111232;
-            this.label1.Text = "PI Code";
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(302, 45);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(202, 27);
+            this.cmbConcern.TabIndex = 1;
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
-            // txtSearchByPICode
+            // lblConcern
             // 
-            this.txtSearchByPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSearchByPICode.Location = new System.Drawing.Point(1091, 19);
-            this.txtSearchByPICode.MaxLength = 20;
-            this.txtSearchByPICode.Name = "txtSearchByPICode";
-            this.txtSearchByPICode.Size = new System.Drawing.Size(167, 27);
-            this.txtSearchByPICode.TabIndex = 5;
-            this.txtSearchByPICode.Enter += new System.EventHandler(this.TxtSearchByPICode_Enter);
-            this.txtSearchByPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByPICode_KeyDown);
-            this.txtSearchByPICode.Leave += new System.EventHandler(this.TxtSearchByPICode_Leave);
+            this.lblConcern.AutoSize = true;
+            this.lblConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConcern.Location = new System.Drawing.Point(302, 22);
+            this.lblConcern.Name = "lblConcern";
+            this.lblConcern.Size = new System.Drawing.Size(54, 20);
+            this.lblConcern.TabIndex = 1111237;
+            this.lblConcern.Text = "Concern";
             // 
             // REPORT_CP_Product
             // 
@@ -452,5 +478,7 @@
         private System.Windows.Forms.Label lblGroupCode;
         private System.Windows.Forms.TextBox txtSearchByPICode;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbConcern;
+        private System.Windows.Forms.Label lblConcern;
     }
 }

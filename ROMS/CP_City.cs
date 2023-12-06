@@ -70,7 +70,7 @@ namespace ROMS
                 else
                 {
                     DataBind objDTBind = new DataBind();
-                    objDTBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID =27", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                    objDTBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID ="+ MainForm.objCP_CP_Broker.varStateID, "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                     cmbState.Enabled = false;
                     objDTBind = null;
                 }
@@ -132,6 +132,7 @@ namespace ROMS
                         varCityName = Convert.ToString(varResult.Split('~')[2]);
                         MainForm.objCP_CP_Broker.varCityName = txtCityName.Text;
                         MainForm.objCP_CP_Broker.varCityCode = varCityCode;
+                        MainForm.objCP_CP_Broker.varStateID = Convert.ToInt32(cmbState.SelectedValue);
                         udfnclose();
                     }
                     else
