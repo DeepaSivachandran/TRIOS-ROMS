@@ -3555,8 +3555,8 @@ namespace ROMS
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStsname"];
                             cell.Style.BackColor = Color.LimeGreen;
                             cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                                                               //grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LimeGreen;
-                                                               //grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                            //grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LimeGreen;
+                            //grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                         }
                     }
                     if (Convert.ToString(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value) == "0" || Convert.ToString(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value) == "-1")

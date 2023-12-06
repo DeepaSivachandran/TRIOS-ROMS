@@ -155,6 +155,7 @@ namespace ROMS
             {
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
+                lblStatus.Focus();
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
                 picLoader.BringToFront();
@@ -208,6 +209,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 int varcityid = 0;
                 string varCityName = "";
                 if(txtCity.Text=="")
