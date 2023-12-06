@@ -999,6 +999,7 @@
             // 
             // txtSPShortName
             // 
+            this.txtSPShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSPShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSPShortName.Location = new System.Drawing.Point(121, 53);
             this.txtSPShortName.MaxLength = 10;
