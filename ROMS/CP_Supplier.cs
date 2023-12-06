@@ -1026,34 +1026,16 @@ namespace ROMS
                 dtPaymentMode.Columns.Add("MSTID", typeof(int));
 
                 this.ActiveControl = txtName;
-                udfnLoadState();
-                BindDataGrid();
+                //udfnLoadState();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (10,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDesignation, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (12,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentTerm, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbfinance, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,47) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbMappingordertype, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbMappingordeDay, "", "DY_Name", "DYID");
-                objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmborderday, "", "DY_Name", "DYID");
-                objDataBind = null;
                 cmbState.SelectedValue = 27;
-                if (btnSave.Text == "Save")
-                {
-                    cmbPaymentTerm.SelectedValue = 33;
-                    cmbReturnPolicy.SelectedIndex = 0;
-                    cmbReturnType.SelectedIndex = 0;
-                    cmborderday.SelectedIndex = 0;
-                }
-                txtReturnText.Visible = false;
-                cmbPolicyContent.Visible = false;
-                txtNextLevel.Visible = false;
-                cmbSecondLevel.Visible = false;
                 udfnEdit();
                 BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
                 btnListPrint.Image = global::ROMS.Properties.Resources.print;
@@ -1072,7 +1054,13 @@ namespace ROMS
         {
             try
             {
-                DataSet objDs = new DataSet();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,47) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmborderday, "", "DY_Name", "DYID");
+                objDataBind = null; DataSet objDs = new DataSet();
                 DataService objdserv = new DataService();
                 objDs = objdserv.GetDataset("SELECT DYID,DY_Name from DEF_Days WHERE DYID NOT IN (0,-1)");
                 objdserv.CloseConnection();
@@ -1089,29 +1077,17 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = null;
-                objDs = objdserv.GetDataset("SELECT MSTID,MST_DisplayText FROM DEF_Master WHERE MST_TransactionID=31");
-                objdserv.CloseConnection();
-                if (objDs != null)
+                if (btnSave.Text == "Save")
                 {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            dtPaymentMode.Rows.Clear();
-                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                            {
-                                dtPaymentMode.Rows.Add(false, objDs.Tables[0].Rows[i]["MST_DisplayText"], objDs.Tables[0].Rows[i]["MSTID"]);
-                            }
-                            grdPaymentMode.DataSource = dtPaymentMode;
-                            grdPaymentMode.Columns["MSTID"].Visible = false;
-                            grdPaymentMode.Columns[0].Width = 30;
-                            grdPaymentMode.Columns["DisplayText"].Width = 100;
-                            grdPaymentMode.Columns["DisplayText"].ReadOnly = true;
-                            grdPaymentMode.ClearSelection();
-                        }
-                    }
+                    cmbPaymentTerm.SelectedValue = 33;
+                    cmbReturnPolicy.SelectedIndex = 0;
+                    cmbReturnType.SelectedIndex = 0;
+                    cmborderday.SelectedIndex = 0;
                 }
+                txtReturnText.Visible = false;
+                cmbPolicyContent.Visible = false;
+                txtNextLevel.Visible = false;
+                cmbSecondLevel.Visible = false;
 
             }
             catch (Exception ex)
@@ -1481,6 +1457,32 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "Status=1 and 1=1 Order by State", "State,StateCode", cmbState, "", "State", "StateCode");
                 objDataBind = null;
                 if (varstatecode != "") { cmbState.SelectedValue = varstatecode; }
+
+                DataSet objDs = new DataSet();
+                DataService objdserv = new DataService();
+                objDs = null;
+                objDs = objdserv.GetDataset("SELECT MSTID,MST_DisplayText FROM DEF_Master WHERE MST_TransactionID=31");
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            dtPaymentMode.Rows.Clear();
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            {
+                                dtPaymentMode.Rows.Add(false, objDs.Tables[0].Rows[i]["MST_DisplayText"], objDs.Tables[0].Rows[i]["MSTID"]);
+                            }
+                            grdPaymentMode.DataSource = dtPaymentMode;
+                            grdPaymentMode.Columns["MSTID"].Visible = false;
+                            grdPaymentMode.Columns[0].Width = 30;
+                            grdPaymentMode.Columns["DisplayText"].Width = 100;
+                            grdPaymentMode.Columns["DisplayText"].ReadOnly = true;
+                            grdPaymentMode.ClearSelection();
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -3407,8 +3409,8 @@ namespace ROMS
             {
                 try
                 {
-                    this.ActiveControl = txtScheduleName;
-
+                    this.ActiveControl = txtScheduleName; 
+                    BindDataGrid();
                 }
                 catch (Exception ex)
                 {
