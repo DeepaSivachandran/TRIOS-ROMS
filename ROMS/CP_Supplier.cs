@@ -1130,7 +1130,7 @@ namespace ROMS
             {
                 string varReturnTypeID = "";
                 int varReturPolicyId = 0;
-                if (pbSupplierid != "")
+                if (pbSupplierid != "0")
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
