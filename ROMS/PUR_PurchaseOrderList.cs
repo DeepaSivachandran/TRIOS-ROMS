@@ -662,7 +662,7 @@ namespace ROMS
                     varsuppliername = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedleCode.Text = selectedItem.SubItems[2].Text;
-                    txtSupplier.Text = selectedItem.SubItems[3].Text;
+                    txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblscheduleName.Text = selectedItem.SubItems[4].Text; ;
                 }
                 cmbstatus.Focus();
