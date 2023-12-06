@@ -85,6 +85,9 @@ namespace ROMS
         {
             try
             {
+
+                btnView.Enabled = false;
+                lblStatus.Focus();
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -167,6 +170,8 @@ namespace ROMS
                 }
                 lblActiveCount.Text = Convert.ToString(ActiveCount);
                 lblInactiveCount.Text = Convert.ToString(InactiveCount);
+                btnView.Enabled = true;
+                btnView.Focus();
             }
         }
 
@@ -401,6 +406,8 @@ namespace ROMS
         {
             try
             {
+                btnExport.Enabled = false;
+                lblStatus.Focus();
                 if ((grdGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -479,6 +486,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
             }
         }
 

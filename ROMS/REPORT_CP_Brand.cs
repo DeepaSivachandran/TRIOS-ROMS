@@ -139,6 +139,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -194,6 +195,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 string varId_Brand = "0";
                 string varBrandName = "";
                 if (txtBrand.Text == "")
@@ -281,6 +283,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
                 string varSubgroupName = "";

@@ -135,8 +135,8 @@ namespace ROMS
             try
             {
                 string varResult = "";
-                btnUpdate.Enabled = false;
-                SPDataService objDser = new SPDataService();
+                btnUpdate.Enabled = false; lblReportname.Focus();
+                 SPDataService objDser = new SPDataService();
                 string varOriginator = "GeneralSettings Updation";
                 SPDataService objspdservice = new SPDataService();
                 DataTable objGeneralSettings = new DataTable();

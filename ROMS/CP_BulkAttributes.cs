@@ -1945,6 +1945,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblStatus.Focus();
                 if (txtProductGroup.Text != "")
                 {
                     DataSet objDgroup = new DataSet();

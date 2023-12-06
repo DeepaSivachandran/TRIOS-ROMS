@@ -278,6 +278,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 /* Check product group is valid or not*/
                 string varId_Group = "0";
                 string varGroupName = "";
@@ -530,6 +531,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
                 string varSubgroupName = "";
@@ -656,6 +658,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
                 string varSubgroupName = "";
@@ -782,6 +785,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
                 string varSubgroupName = "";
@@ -908,6 +912,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
                 string varSubgroupName = "";

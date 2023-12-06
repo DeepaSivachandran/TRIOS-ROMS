@@ -129,6 +129,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -182,6 +183,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;

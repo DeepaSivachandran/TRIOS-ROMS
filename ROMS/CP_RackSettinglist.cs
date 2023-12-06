@@ -428,7 +428,19 @@ namespace ROMS
         }
         private void BtnView_Click(object sender, EventArgs e)
         {
-            udfnList();
+            try
+            {
+                udfnList();
+            }
+              catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvRack.Visible = false;
+            }
         }
         private void GrdRackSettingList_DoubleClick(object sender, EventArgs e)
         {
