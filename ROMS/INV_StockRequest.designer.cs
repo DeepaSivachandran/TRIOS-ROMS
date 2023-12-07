@@ -65,6 +65,9 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grdGodownStock = new System.Windows.Forms.DataGridView();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.lblUnit = new System.Windows.Forms.Label();
@@ -95,9 +98,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errStockRequest = new System.Windows.Forms.ErrorProvider(this.components);
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
             this.grpStockRequest.SuspendLayout();
@@ -335,6 +335,26 @@
             this.grdGodownStock.Size = new System.Drawing.Size(345, 64);
             this.grdGodownStock.TabIndex = 1111212;
             // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Location";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 110;
+            // 
+            // clmSRack
+            // 
+            this.clmSRack.HeaderText = "Rack";
+            this.clmSRack.Name = "clmSRack";
+            this.clmSRack.ReadOnly = true;
+            this.clmSRack.Width = 110;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Stock";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // txttotalitem
             // 
             this.txttotalitem.Enabled = false;
@@ -359,9 +379,8 @@
             this.lblUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnit.Location = new System.Drawing.Point(908, 51);
             this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(33, 20);
+            this.lblUnit.Size = new System.Drawing.Size(0, 20);
             this.lblUnit.TabIndex = 1111182;
-            this.lblUnit.Text = "Pkts";
             // 
             // txtRequiredQty
             // 
@@ -664,26 +683,6 @@
             // errStockRequest
             // 
             this.errStockRequest.ContainerControl = this;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Location";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 110;
-            // 
-            // clmSRack
-            // 
-            this.clmSRack.HeaderText = "Rack";
-            this.clmSRack.Name = "clmSRack";
-            this.clmSRack.ReadOnly = true;
-            this.clmSRack.Width = 110;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Stock";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
             // 
             // INV_StockRequest
             // 

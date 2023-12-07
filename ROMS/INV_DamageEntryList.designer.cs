@@ -591,13 +591,13 @@
             this.grdDamageEntryList.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.grdDamageEntryList.RowTemplate.Height = 25;
             this.grdDamageEntryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDamageEntryList.Size = new System.Drawing.Size(1348, 570);
+            this.grdDamageEntryList.Size = new System.Drawing.Size(1348, 510);
             this.grdDamageEntryList.TabIndex = 958797;
-            this.grdDamageEntryList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInwardList_CellDoubleClick);
-            this.grdDamageEntryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInwardList_DataBindingComplete);
-            this.grdDamageEntryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdInwardList_Scroll);
-            this.grdDamageEntryList.DoubleClick += new System.EventHandler(this.GrdInwardList_DoubleClick);
-            this.grdDamageEntryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdInwardList_KeyDown);
+            this.grdDamageEntryList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDamageEntryList_CellDoubleClick);
+            this.grdDamageEntryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDamageEntryList_DataBindingComplete);
+            this.grdDamageEntryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdDamageEntryList_Scroll);
+            this.grdDamageEntryList.DoubleClick += new System.EventHandler(this.GrdDamageEntryList_DoubleClick);
+            this.grdDamageEntryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdDamageEntryList_KeyDown);
             // 
             // picLoader
             // 

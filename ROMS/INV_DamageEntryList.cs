@@ -218,7 +218,6 @@ namespace ROMS
         {
             try
             {
-
                 int totalWidth = 0;
                 int offSetValue = grdDamageEntryList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
@@ -442,22 +441,6 @@ namespace ROMS
             }
         }
 
-        private void GrdInwardList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex == -1)
-                {
-                    return;
-                }
-                //udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void udfnEdit()
         {
             try
@@ -483,54 +466,6 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
-            }
-        }
-        private void GrdInwardList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            try
-            {
-                for (int i = 0; i < grdDamageEntryList.Rows.Count; i++)
-                {
-                    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "20")
-                    {
-                        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
-                        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    }
-                    //else
-                    //{
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    //}
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdDamageEntryList.ClearSelection();
-            }
-        }
-
-        private void GrdInwardList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnEdit();
-                }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
             }
         }
         public void udfndelete()
@@ -573,42 +508,6 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void GrdInwardList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void GrdInwardList_Scroll(object sender, ScrollEventArgs e)
-        {
-            try
-            {
-                int totalWidth = 0;
-                int offSetValue = grdDamageEntryList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdDamageEntryList.Width > grdDamageEntryList.HorizontalScrollingOffset && grdDamageEntryList.HorizontalScrollingOffset > 0)
-                {
-                    offSetValue = offSetValue;
-                }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdDamageEntryList);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (DGV_SearchGrid.IsCurrentCellDirty)
@@ -1322,6 +1221,108 @@ namespace ROMS
             finally
             {
 
+            }
+        }
+
+        private void GrdDamageEntryList_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdDamageEntryList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdDamageEntryList.Width > grdDamageEntryList.HorizontalScrollingOffset && grdDamageEntryList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdDamageEntryList);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntryList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex == -1)
+                {
+                    return;
+                }
+                //udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntryList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdDamageEntryList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "20")
+                    {
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    //else
+                    //{
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdDamageEntryList.ClearSelection();
+            }
+        }
+
+        private void GrdDamageEntryList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntryList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
