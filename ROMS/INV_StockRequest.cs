@@ -905,14 +905,14 @@ namespace ROMS
                     tpProduct.Show("Please enter product name", txtProductNamePICode, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtStockQty.Text).Trim() == "")
-                {
-                    errStockRequest.SetError(txtStockQty, "Invalid stock");
-                    txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpStockQty.ShowAlways = true;
-                    tpStockQty.Show("Invalid stock", txtStockQty, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(txtStockQty.Text).Trim() == "")
+                //{
+                //    errStockRequest.SetError(txtStockQty, "Invalid stock");
+                //    txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpStockQty.ShowAlways = true;
+                //    tpStockQty.Show("Invalid stock", txtStockQty, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(txtRequiredQty.Text).Trim() != "")
                 {
                     //if (Convert.ToInt32(txtStockQty.Text.Trim()) >= Convert.ToInt32(txtRequiredQty.Text.Trim()))
