@@ -513,6 +513,7 @@ namespace ROMS
         {
             try
             {
+                lblStatus.Focus();
                 btnView.Enabled = false;
                 udfnList();
             }
@@ -532,6 +533,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
+                lblStatus.Focus();
                 if ((grdGodownList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();

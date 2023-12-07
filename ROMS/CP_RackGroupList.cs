@@ -393,6 +393,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblDShopGodown.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -551,6 +552,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
+                lblDShopGodown.Focus();
                 if ((grdRackGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();

@@ -372,7 +372,7 @@
             this.grdGoodsOutward.Size = new System.Drawing.Size(1325, 404);
             this.grdGoodsOutward.TabIndex = 2;
             this.grdGoodsOutward.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_inward_CellContentClick);
-            this.grdGoodsOutward.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_inward_CellEndEdit);
+            this.grdGoodsOutward.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGoodsOutward_CellEndEdit);
             this.grdGoodsOutward.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DGV_inward_DataBindingComplete);
             this.grdGoodsOutward.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_inward_EditingControlShowing);
             // 
@@ -701,9 +701,8 @@
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Location = new System.Drawing.Point(1175, 42);
             this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(33, 20);
+            this.lblQuantity.Size = new System.Drawing.Size(0, 20);
             this.lblQuantity.TabIndex = 958834;
-            this.lblQuantity.Text = "Pkts";
             // 
             // txtOutwardQuantity
             // 

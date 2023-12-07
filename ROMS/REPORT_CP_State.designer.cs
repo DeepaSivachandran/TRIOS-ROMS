@@ -106,7 +106,6 @@
             this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
-            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
             this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
             this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
             // 

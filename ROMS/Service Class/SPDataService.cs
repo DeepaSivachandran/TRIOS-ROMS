@@ -135,7 +135,7 @@ namespace ROMS
             return result;
         }
         // Sivabharathi    Create date: 20/09/2023    Description:	Master list Sp
-        public DataSet udfnMaster(int ViewType, int paraID,int paraPOID,string paraDate,string ParaExpiryDate, int paraProductId)
+        public DataSet udfnMaster(int ViewType, int paraID,int paraPOID,string paraDate,string ParaExpiryDate, int paraProductId,string paraText)
         {
             DataSet ds = new DataSet();
             try
@@ -151,6 +151,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDate", paraDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaExpiryDate", ParaExpiryDate);
                 varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraText", paraText);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -167,7 +168,8 @@ namespace ROMS
             return ds;
         }
         // Sivabharathi    Create date: 26/09/2023    Description: Voucher Settings
-        public string udfnVoucherSettings(int ViewType, DataTable ParaMRS_VoucherSettings, string paraOriginator)
+        public string udfnVoucherSettings(int ViewType,int paraConcernId,int paraTransactionId, string paraPrefix, string paraSufix,int ParaNoOfDigit, string paraStartingNo, 
+           string ParaSampleTransaction, int ParaResetOn,int paraVoucherSettingId, string paraOriginator)
         {
             string varResult = "";
             try
@@ -176,7 +178,15 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("MRS_VoucherSettings", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@ParaMRS_VoucherSettings", ParaMRS_VoucherSettings);
+                varSqlCommand.Parameters.AddWithValue("@paraConcernId", paraConcernId);
+                varSqlCommand.Parameters.AddWithValue("@paraTransactionId", paraTransactionId);
+                varSqlCommand.Parameters.AddWithValue("@paraPrefix", paraPrefix);
+                varSqlCommand.Parameters.AddWithValue("@paraSufix", paraSufix);
+                varSqlCommand.Parameters.AddWithValue("@ParaNoOfDigit", ParaNoOfDigit);
+                varSqlCommand.Parameters.AddWithValue("@ParaResetOn", ParaResetOn);
+                varSqlCommand.Parameters.AddWithValue("@ParaSampleTransaction", ParaSampleTransaction);
+                varSqlCommand.Parameters.AddWithValue("@paraVoucherSettingId", paraVoucherSettingId);
+                varSqlCommand.Parameters.AddWithValue("@paraStartingNo", paraStartingNo);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
@@ -2220,7 +2230,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 17/10/2023 for PO list
-        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string ParaPOFromDate, string ParaPOToDate,int paraPOID,int paraStatus,string paraPendingPOIDs)
+        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string ParaPOFromDate, string ParaPOToDate,int paraPOID,int paraStatus,string paraPendingPOIDs,int parafilter)
         {
             DataSet ds = new DataSet();
             try
@@ -2244,6 +2254,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPOID", paraPOID);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
                 varSqlCommand.Parameters.AddWithValue("@paraPendingPOIDs", paraPendingPOIDs);
+                varSqlCommand.Parameters.AddWithValue("@parafilter", parafilter);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

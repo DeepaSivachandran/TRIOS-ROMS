@@ -181,8 +181,6 @@ namespace ROMS
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
-        
-
         public MainForm()
         {
             try
@@ -414,16 +412,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        //Get IP address
-        public void GetLocalIPAddress()
-        {
-            try
-            {
-                pbIpAddress = Dns.GetHostAddresses(Dns.GetHostName()).First(a => a.AddressFamily == AddressFamily.InterNetwork).ToString();
-            }
-            catch (Exception ex) { throw new Exception(ex.ToString()); }
-        }
         //Get Date
         public void GetDate()
         {
@@ -431,7 +419,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnMaster(4, 0, 0, "", "", 0);
+                objDs = objspservice.udfnMaster(4, 0, 0, "", "", 0,"");
                 DateTime varDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime varFYStartDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_StartDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime varFYEndDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_EndDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -444,6 +432,15 @@ namespace ROMS
             {
                 throw new Exception(ex.ToString());
             }
+        }
+        //Get IP address
+        public void GetLocalIPAddress()
+        {
+            try
+            {
+                pbIpAddress = Dns.GetHostAddresses(Dns.GetHostName()).First(a => a.AddressFamily == AddressFamily.InterNetwork).ToString();
+            }
+            catch (Exception ex) { throw new Exception(ex.ToString()); }
         }
         private void tsbSettings_Click(object sender, EventArgs e)
         {

@@ -14,7 +14,7 @@ namespace ROMS
     {
         ToolTip tpSupplier = new ToolTip();
         public string varUserID = "";
-        public int varActiveCount = 0, varInactiveCount = 0, varTotalCount = 0, Varflag=0;
+        public int varActiveCount = 0, varInactiveCount = 0, varTotalCount = 0, Varflag=0, varNotDefinedCount=0;
 
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -700,7 +700,7 @@ namespace ROMS
         {
             try
             {
-                varActiveCount = 0; varInactiveCount = 0; varTotalCount = 0;
+                varActiveCount = 0; varInactiveCount = 0; varTotalCount = 0; varNotDefinedCount = 0;
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
                     varTotalCount++;
@@ -714,6 +714,7 @@ namespace ROMS
                     {
                         grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.SteelBlue;
                         grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+                        varNotDefinedCount++;
                     }
                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
                     {
@@ -759,6 +760,7 @@ namespace ROMS
                 lblActiveCount.Text = Convert.ToString(varActiveCount);
                 lblInactiveCount.Text = Convert.ToString(varInactiveCount);
                 lblTotal.Text = Convert.ToString(varTotalCount);
+                //lblNotDefinedCount.Text = Convert.ToString(varNotDefinedCount);
             }
         }
 
@@ -1023,6 +1025,7 @@ namespace ROMS
                 if ((grdSupplierList.Rows.Count > 0))
                 {
                     btnExport.Enabled = false;
+                    lblStatus.Focus();
                     Excel._Application ExcelObj = new Excel.Application();
                     // creating new WorkBook within Excel application  
                     Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
@@ -1356,6 +1359,7 @@ namespace ROMS
                     if (varScheduleName == "") { lblschedule.Text = "0"; }
                 }
                 btnPrint.Enabled = false;
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;

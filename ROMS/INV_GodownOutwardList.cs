@@ -422,7 +422,7 @@ namespace ROMS
                 {
                      varPRID = 0;
                 }
-                // picLoader.Visible = true;
+                picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
@@ -483,13 +483,19 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnView.Enabled = true;
+                btnView.Focus();
+            }
         }
         private void INV_GodownOutwardList_Load(object sender, EventArgs e)
         {
             try
             {
                 this.ActiveControl = cmbConcern;
-
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 2;
@@ -510,8 +516,10 @@ namespace ROMS
                     }
                 }
                 udfnList();
-                dtpOutwardDate.MaxDate = DateTime.Now;
-                dtpOutwardDate2.MaxDate = DateTime.Now; cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
+                dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
+                dtpOutwardDate2.MinDate = dtpOutwardDate.MaxDate;
+                cmbConcern.SelectedValue = 1;
 
             }
             catch (Exception ex)
@@ -519,6 +527,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
         }
 
 
@@ -617,6 +626,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.BringToFront();
                 udfnProductEvent();
                 btnView.Focus();
             }
@@ -1082,7 +1092,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "GoodsOutward List";
+                    ExcelSheet.Name = "Goods Outward List";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdOutwardList.Columns)
@@ -1095,7 +1105,7 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "GoodsOutward List";
+                    ExcelSheet.Cells[1, 1].Value = "Goods Outward List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -1335,6 +1345,11 @@ namespace ROMS
         }
 
         private void CmbConcern_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GrdOutwardList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

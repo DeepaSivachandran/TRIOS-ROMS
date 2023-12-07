@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_PO : ReportClass {
+    public class RPT_Purchase_Order_List : ReportClass {
         
-        public RPT_PUR_PO() {
+        public RPT_Purchase_Order_List() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_PO.rpt";
+                return "RPT_Purchase_Order_List.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_PO.rpt";
+                return "ROMS.Reports.RPT_Purchase_Order_List.rpt";
             }
             set {
                 // Do nothing
@@ -66,7 +66,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section PageHeaderSection2 {
             get {
                 return this.ReportDefinition.Sections[2];
             }
@@ -74,7 +74,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section PageHeaderSection3 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,7 +82,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[4];
             }
@@ -138,7 +138,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt_paraUserName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraStatusName {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -146,7 +146,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt_paraHostName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierid_ {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -154,7 +154,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt_paraUserID {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierScheduleid_ {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -162,7 +162,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt_paraIPAddress {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraCompanyID {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -170,7 +170,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt_paraPOID {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraFromDate {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
@@ -178,7 +178,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt___01_paraUserName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraStatusId {
             get {
                 return this.DataDefinition.ParameterFields[9];
             }
@@ -186,7 +186,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt___01_paraHostName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraToDate {
             get {
                 return this.DataDefinition.ParameterFields[10];
             }
@@ -194,33 +194,17 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt___01_paraUserID {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraConcernName {
             get {
                 return this.DataDefinition.ParameterFields[11];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt___01_paraIPAddress {
-            get {
-                return this.DataDefinition.ParameterFields[12];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_PO_SubReportrpt___01_paraPOID {
-            get {
-                return this.DataDefinition.ParameterFields[13];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_PO : Component, ICachedReport {
+    public class CachedRPT_Purchase_Order_List : Component, ICachedReport {
         
-        public CachedRPT_PUR_PO() {
+        public CachedRPT_Purchase_Order_List() {
         }
         
         [Browsable(false)]
@@ -257,7 +241,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_PO rpt = new RPT_PUR_PO();
+            RPT_Purchase_Order_List rpt = new RPT_Purchase_Order_List();
             rpt.Site = this.Site;
             return rpt;
         }

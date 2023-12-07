@@ -283,7 +283,9 @@ namespace ROMS
             {
                 //  grdreplist.ClearSelection();
                 picLoader.Visible = false;
-                picLoader.SendToBack();
+                picLoader.SendToBack(); 
+                btnView.Enabled = true;
+                btnView.Focus();
             }
         }
         private void TxtSupplier_Leave(object sender, EventArgs e)
@@ -1386,6 +1388,8 @@ namespace ROMS
         {
             try
             {
+                btnView.Enabled = false; 
+                lblStatus.Focus();
                 udfnList();
                 RPTViewer.Visible = false; 
                 RPTViewer.SendToBack();
@@ -1782,6 +1786,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
+                lblStatus.Focus();
                 if ((dgvSupplierScheduleList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -1988,6 +1993,7 @@ namespace ROMS
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
                         btnListPrint.Enabled = false;
+                        lblStatus.Focus();
                         RPTViewer.Visible = true;
                         RPTViewer.BringToFront();
                         RPTViewer.ReuseParameterValuesOnRefresh = true;

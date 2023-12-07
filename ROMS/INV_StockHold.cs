@@ -32,6 +32,9 @@ namespace ROMS
         {
             try
             {
+                udfnCmbConcern();
+                cmbConcern.SelectedValue = 1;
+                lblUnit.Text = "";
                 udfnList();
             }
             catch (Exception ex)
@@ -48,10 +51,12 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    lvproduct.Visible = false;
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    BtnSave_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -160,6 +165,7 @@ namespace ROMS
             try
             {
                 txtQty.BackColor = Color.LemonChiffon;
+                lvproduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -202,7 +208,6 @@ namespace ROMS
                 udfnList();
                 udfnCmbConcern();
                 this.ActiveControl = txtProductNamePICode;
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
@@ -264,7 +269,6 @@ namespace ROMS
             try
             {
                 udfnSave();
-                txtProductNamePICode.Focus();
             }
             catch (Exception ex)
             {
@@ -304,7 +308,7 @@ namespace ROMS
                     tpProductNamePICode.Show("Please enter Product Name", txtProductNamePICode, 5000);
                     blnErrorFlag = false;
                 }
-                if (Convert.ToInt32(txtQty.Text) > Convert.ToInt32(txtStockQty.Text))
+                if (Convert.ToInt32(txtQty.Text) > Convert.ToInt32(txtStockQty.Text) || Convert.ToInt32(txtQty.Text)==0)
                 {
                     //epGoodsOutward.SetError(txtQty, "Please enter a correct Outward Quantity");
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -315,6 +319,8 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
+                    txtQty.Focus();
+
                 }
                 if (blnErrorFlag == true)
                 {
@@ -360,7 +366,6 @@ namespace ROMS
             }
             finally
             {
-                btnSave.Text = "Save";
                 cmbConcern.Enabled = true;
                 txtProductNamePICode.Enabled = true;
                 grdStockHold.ClearSelection();
@@ -443,6 +448,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Text = "Save";
                 txtProductNamePICode.Text = "";
                 txtStockLoc.Text = "";
                 txtRack.Text = "";
@@ -451,6 +457,8 @@ namespace ROMS
                 txtMrp.Text = "";
                 txtStockQty.Text = "";
                 txtQty.Text = "";
+                lblUnit.Text = "";
+                txtProductNamePICode.Focus();
             }
             catch (Exception ex)
             {
@@ -469,7 +477,7 @@ namespace ROMS
                 if (txtProductName.Text.Length > 0)
                 {
                     var ViewType = 42;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "", "",null,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0,"", "", null,0,null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -639,6 +647,7 @@ namespace ROMS
             try
             {
                 cmbConcern.BackColor = Color.LemonChiffon;
+                lvproduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1179,8 +1188,13 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
+                    lvproduct.Visible = false;
                     udfnclose();
-                } 
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    BtnSave_Click(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -1293,6 +1307,7 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = 1;
             }
             catch (Exception ex)
             {
@@ -1345,13 +1360,14 @@ namespace ROMS
                 txtBatchNo.Text = "";
                 txtStockQty.Text = "";
                 txtQty.Text = "";
+                lblUnit.Text = "";
                 lvproduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
                     var ViewType = 42;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "", "",null,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0,"", "", null,0,null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -161,6 +161,7 @@
             this.panel1.Controls.Add(this.DGV_SearchGrid);
             this.panel1.Controls.Add(this.grdOutwardList);
             this.panel1.Controls.Add(this.lvSLocation);
+            this.panel1.Controls.Add(this.lvProduct);
             this.panel1.Controls.Add(this.grbFilterBy);
             this.panel1.Controls.Add(this.lblNoRecordsFound);
             this.panel1.Controls.Add(this.picLoader);
@@ -256,6 +257,7 @@
             this.grdOutwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdOutwardList.Size = new System.Drawing.Size(1328, 510);
             this.grdOutwardList.TabIndex = 111111133;
+            this.grdOutwardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdOutwardList_CellContentClick);
             this.grdOutwardList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdUserList_CellDoubleClick);
             this.grdOutwardList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
             this.grdOutwardList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserList_Scroll);
@@ -301,7 +303,7 @@
             this.columnHeader6});
             this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvProduct.HideSelection = false;
-            this.lvProduct.Location = new System.Drawing.Point(798, 52);
+            this.lvProduct.Location = new System.Drawing.Point(802, 54);
             this.lvProduct.Name = "lvProduct";
             this.lvProduct.Size = new System.Drawing.Size(524, 157);
             this.lvProduct.TabIndex = 958812;
@@ -329,7 +331,6 @@
             this.grbFilterBy.Controls.Add(this.txtStockLocation);
             this.grbFilterBy.Controls.Add(this.dtpOutwardDate2);
             this.grbFilterBy.Controls.Add(this.txtProductName);
-            this.grbFilterBy.Controls.Add(this.lvProduct);
             this.grbFilterBy.Controls.Add(this.lblDProductNamePicode);
             this.grbFilterBy.Controls.Add(this.dtpOutwardDate);
             this.grbFilterBy.Controls.Add(this.lblDGodown);

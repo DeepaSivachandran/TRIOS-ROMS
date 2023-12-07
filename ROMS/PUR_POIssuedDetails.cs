@@ -152,6 +152,7 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
                         objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
+                        objPurchaseOrder.Columns.Add("POPR_Remarks", typeof(string));
                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, 0, "", 0, 0
                         , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text,11,"",0,0);
                         objspdservice.CloseConnection();
@@ -225,7 +226,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID,0,"0");
+                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID,0,"0",0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -257,7 +258,7 @@ namespace ROMS
                             txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString();
                             SPDataService objDServ = new SPDataService();
                             DataSet objd = new DataSet();
-                            objd = objDServ.udfnMaster(4, 6,varPOID,"","",0);
+                            objd = objDServ.udfnMaster(4, 6,varPOID,"","",0, "");
                             if (objd.Tables[0].Rows.Count != 0)
                             { 
                                 DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);

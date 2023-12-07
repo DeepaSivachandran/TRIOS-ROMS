@@ -534,6 +534,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled=true;
+                lblStatus.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -564,6 +565,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled=false;
+                lblStatus.Focus();
                 if ((grdGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();

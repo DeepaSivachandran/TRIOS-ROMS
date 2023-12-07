@@ -328,7 +328,7 @@
             // cmbConcern
             // 
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(6, 34);
+            this.cmbConcern.Location = new System.Drawing.Point(10, 34);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(89, 27);
             this.cmbConcern.TabIndex = 0;
@@ -453,7 +453,6 @@
             this.lblUnit.ReadOnly = true;
             this.lblUnit.Size = new System.Drawing.Size(31, 27);
             this.lblUnit.TabIndex = 1111244;
-            this.lblUnit.Text = "Pkts";
             // 
             // lblExpiryDate
             // 
@@ -615,10 +614,10 @@
             // txtProductNamePICode
             // 
             this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductNamePICode.Location = new System.Drawing.Point(101, 34);
+            this.txtProductNamePICode.Location = new System.Drawing.Point(105, 34);
             this.txtProductNamePICode.MaxLength = 50;
             this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(322, 27);
+            this.txtProductNamePICode.Size = new System.Drawing.Size(318, 27);
             this.txtProductNamePICode.TabIndex = 1;
             this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
             this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
@@ -629,7 +628,7 @@
             // 
             this.lblDEProductName.AutoSize = true;
             this.lblDEProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEProductName.Location = new System.Drawing.Point(99, 12);
+            this.lblDEProductName.Location = new System.Drawing.Point(101, 12);
             this.lblDEProductName.Name = "lblDEProductName";
             this.lblDEProductName.Size = new System.Drawing.Size(134, 20);
             this.lblDEProductName.TabIndex = 1111161;

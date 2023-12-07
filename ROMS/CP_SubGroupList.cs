@@ -408,6 +408,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblProductgroup.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -651,6 +652,7 @@ namespace ROMS
                 btnExport.Enabled = false;
                 if ((grdSubGroupList.Rows.Count > 0))
                 {
+                    lblProductgroup.Focus();
                     Excel._Application ExcelObj = new Excel.Application();
                     // creating new WorkBook within Excel application  
                     Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);

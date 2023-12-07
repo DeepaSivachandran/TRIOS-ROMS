@@ -161,7 +161,8 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
-                picLoader.SendToBack();
+                picLoader.SendToBack(); btnView.Enabled = true;
+                btnView.Focus();
             }
         }
         public void udfndelete()
@@ -661,6 +662,8 @@ namespace ROMS
             try
             {
                 lvUserList.Visible = false;
+                btnView.Enabled = false;
+                lblStatus.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -675,6 +678,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
+                lblStatus.Focus();
                 if ((grdEmployeeList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();

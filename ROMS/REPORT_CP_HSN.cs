@@ -132,6 +132,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -197,7 +198,8 @@ namespace ROMS
                     varHSNCode = txtHsnName.Text.Trim();
                     HSNCodeName = txtHsnName.Text.Trim();
                 }
-                btnListPrint.Enabled = false;
+                btnListPrint.Enabled = false; 
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -268,6 +270,7 @@ namespace ROMS
                     HSNCodeName = txtHsnName.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
