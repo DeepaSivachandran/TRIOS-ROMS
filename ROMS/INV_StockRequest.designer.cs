@@ -65,9 +65,6 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grdGodownStock = new System.Windows.Forms.DataGridView();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.lblUnit = new System.Windows.Forms.Label();
@@ -98,6 +95,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errStockRequest = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
             this.grpStockRequest.SuspendLayout();
@@ -192,7 +192,7 @@
             this.cmbStatus.Location = new System.Drawing.Point(1051, 591);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(64, 27);
-            this.cmbStatus.TabIndex = 111111144;
+            this.cmbStatus.TabIndex = 9;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
@@ -335,28 +335,11 @@
             this.grdGodownStock.Size = new System.Drawing.Size(345, 64);
             this.grdGodownStock.TabIndex = 1111212;
             // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Location";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 110;
-            // 
-            // clmSRack
-            // 
-            this.clmSRack.HeaderText = "Rack";
-            this.clmSRack.Name = "clmSRack";
-            this.clmSRack.Width = 110;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Stock";
-            this.Column6.Name = "Column6";
-            // 
             // txttotalitem
             // 
+            this.txttotalitem.Enabled = false;
             this.txttotalitem.Location = new System.Drawing.Point(983, 591);
             this.txttotalitem.Name = "txttotalitem";
-            this.txttotalitem.ReadOnly = true;
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
             this.txttotalitem.TabIndex = 8;
             this.txttotalitem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -391,6 +374,7 @@
             this.txtRequiredQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRequiredQty.Enter += new System.EventHandler(this.TxtRequiredQty_Enter);
             this.txtRequiredQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRequiredQty_KeyDown);
+            this.txtRequiredQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRequiredQty_KeyPress);
             this.txtRequiredQty.Leave += new System.EventHandler(this.TxtRequiredQty_Leave);
             // 
             // label2
@@ -680,6 +664,26 @@
             // errStockRequest
             // 
             this.errStockRequest.ContainerControl = this;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Location";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 110;
+            // 
+            // clmSRack
+            // 
+            this.clmSRack.HeaderText = "Rack";
+            this.clmSRack.Name = "clmSRack";
+            this.clmSRack.ReadOnly = true;
+            this.clmSRack.Width = 110;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Stock";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
             // 
             // INV_StockRequest
             // 
