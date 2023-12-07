@@ -55,6 +55,11 @@ namespace ROMS
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
+                if (txtSupplier.Text == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedule.Text = "0";
+                }
                 //********** To display a data in a grid  ******************
                 grdPurchaseDCList.DataSource = null;
                 DataSet objDs = new DataSet();
@@ -84,12 +89,12 @@ namespace ROMS
                             grdPurchaseDCList.DataSource = objDs.Tables[0];
                             grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseDCList.Columns["DC_Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseDCList.Columns["Concern"].Width = 150;
-                            grdPurchaseDCList.Columns["DC_Date"].Width = 100;
-                            grdPurchaseDCList.Columns["DC_No"].Width = 100;
-                            grdPurchaseDCList.Columns["SP_Name"].Width = 250;
+                            grdPurchaseDCList.Columns["DC Date"].Width = 100;
+                            grdPurchaseDCList.Columns["DC No."].Width = 100;
+                            grdPurchaseDCList.Columns["Supplier"].Width = 300;
                             grdPurchaseDCList.Columns["Total Products"].Width = 100;
                             grdPurchaseDCList.Columns["GSTIN"].Width = 170;
                             grdPurchaseDCList.Columns["Status"].Width = 80;
@@ -134,17 +139,20 @@ namespace ROMS
         {
             try
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objPUR_PurchaseDC = new PUR_PurchaseDC();
-                MainForm.objPUR_PurchaseDC.varDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                MainForm.objPUR_PurchaseDC.btnSave.Text = "Update";
-                MainForm.objPUR_PurchaseDC.pbScheduleid = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPSCID"].Value.ToString());
-                MainForm.objPUR_PurchaseDC.pbSupplierId = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPID"].Value.ToString());
-                //MainForm.objPUR_PurchaseDC.txtRemark.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
-                MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseDC.Show();
+                if (grdPurchaseDCList.SelectedRows.Count > 0)
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objPUR_PurchaseDC = new PUR_PurchaseDC();
+                    MainForm.objPUR_PurchaseDC.varDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                    MainForm.objPUR_PurchaseDC.btnSave.Text = "Update";
+                    MainForm.objPUR_PurchaseDC.pbScheduleid = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPSCID"].Value.ToString());
+                    MainForm.objPUR_PurchaseDC.pbSupplierId = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPID"].Value.ToString());
+                    //MainForm.objPUR_PurchaseDC.txtRemark.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
+                    MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
+                    MainForm.objPUR_PurchaseDC.Show();
+                }
             }
             catch (Exception ex)
             {
@@ -514,7 +522,11 @@ namespace ROMS
             try
             {
                 udfncmbDropdown();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
+                dpDcFromDate.MinDate = MainForm.pbFYStartDate;
+                dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpdctodate.MinDate = dpDcFromDate.MaxDate;
             }
             catch (Exception ex)
             {
@@ -880,6 +892,7 @@ namespace ROMS
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            varviewtype = 1;
                             udfnList();
                         }
                         else if (result.Split('~')[0] == "4")
@@ -942,6 +955,7 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1020,6 +1034,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
+                    btnView.Focus();
                     BtnView_Click(sender, e);
                 }
             }
@@ -1042,5 +1057,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 }

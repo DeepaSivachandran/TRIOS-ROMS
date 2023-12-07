@@ -1626,23 +1626,41 @@ namespace ROMS
                 if (blnErrorFlag == false)
                 {
                     pnlBStatus.Enabled = false;
-                    if (varSlNo != "0") { varflag = 0; }
-                    else
-                    {
-                        foreach (DataGridViewRow row in grdBankDetails.Rows)
-                        {
-                            if (row.Cells[0].Value != null && row.Cells[1].Value != null)
-                            {
-                                string gridValue1 = row.Cells[1].Value.ToString();
-                                string gridValue2 = row.Cells[3].Value.ToString();
+                    //if (varSlNo != "0") { varflag = 0; }
+                    //else
+                    //{
+                    //foreach (DataGridViewRow row in grdBankDetails.Rows)
+                    //{
+                    //    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                    //    {
+                    //        string gridValue1 = row.Cells[1].Value.ToString();
+                    //        string gridValue2 = row.Cells[3].Value.ToString();
 
-                                if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
-                                {
-                                    varflag = 1;
-                                }
+                    //        if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                    //        {
+                    //            varflag = 1;
+                    //        }
+                    //    }
+                    //}
+                    foreach (DataGridViewRow row in grdBankDetails.Rows)
+                    {
+                        if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                        {
+                            string gridValue1 = row.Cells[1].Value.ToString();
+                            string gridValue2 = row.Cells[3].Value.ToString();//varSlNo
+                            string varUpdateSlNo = row.Cells["clmsno"].Value.ToString();
+                            string varUpdateAccNo = row.Cells["clmaccno"].Value.ToString();
+                            if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim() && gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                            {
+                                varflag = 1;
+                            }
+                            if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim())
+                            {
+                                varflag = 1;
                             }
                         }
                     }
+                    // }
                     if (varflag == 0)
                     {
                         if (rbBankActive.Checked == true)

@@ -350,8 +350,10 @@ namespace ROMS
         private void INV_DamageEntryList_Load(object sender, EventArgs e)
         {
             cmbconcern.Focus();
-            dpFromDate.MaxDate = DateTime.Now;
             udfnCmbConcern();
+            dpFromDate.MinDate = MainForm.pbFYStartDate;
+            dpFromDate.MaxDate = MainForm.pbCurrentDate;
+            dpToDate.MinDate = dpFromDate.MaxDate;
             cmbconcern.SelectedValue = 1;
             udfnList();
         }
@@ -737,7 +739,8 @@ namespace ROMS
         {
             try
             {
-                btnView.Enabled = false;
+                btnView.Enabled = false; 
+                lblDSupplier.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -891,6 +894,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
+                lblDSupplier.Focus();
                 if ((grdDamageEntryList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();

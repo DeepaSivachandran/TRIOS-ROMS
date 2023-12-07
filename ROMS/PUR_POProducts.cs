@@ -42,6 +42,36 @@ namespace ROMS
             }
         }
 
+        private void GrdPurchaseOrder_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+            try
+            {
+                for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
+                {
+
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStatus"];
+
+                    if (Convert.ToString(grdPurchaseOrder.Rows[i].Cells["STSID"].Value) == "10")
+                    {
+                        cell.Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else
+                    {
+                        cell.Style.BackColor = Color.RoyalBlue;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnclose()
         {
             try
@@ -60,6 +90,9 @@ namespace ROMS
             try
             {
                 udfnList();
+
+                DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                GrdPurchaseOrder_DataBindingComplete(grdPurchaseOrder, args);
             }
             catch (Exception ex)
             {
@@ -83,18 +116,22 @@ namespace ROMS
                         lblNoRecordsFound.Visible = false;
                         grdPurchaseOrder.Rows.Add(grdPurchaseOrder.Rows.Count + 1, objDs.Tables[6].Rows[i]["PR_PICode"].ToString(),
                         objDs.Tables[6].Rows[i]["PR_TName"].ToString(), objDs.Tables[6].Rows[i]["UT_Symbol"].ToString(),
-                        objDs.Tables[6].Rows[i]["POPR_OrderQty"].ToString(), objDs.Tables[6].Rows[i]["RECEIVED"].ToString(),
-                        objDs.Tables[6].Rows[i]["POPR_RemainingQty"].ToString()); 
+                         objDs.Tables[6].Rows[i]["Unit Per box"].ToString(),
+                        objDs.Tables[6].Rows[i]["POPR_OrderQty"].ToString(), objDs.Tables[6].Rows[i]["OrderQtyUnit"].ToString(), 
+                        objDs.Tables[6].Rows[i]["RECEIVED"].ToString(), 
+                        objDs.Tables[6].Rows[i]["POPR_RemainingQty"].ToString(), objDs.Tables[6].Rows[i]["STATUS"].ToString(), objDs.Tables[6].Rows[i]["STSID"].ToString()); 
                     }
                     txtPONo.Text = objDs.Tables[6].Rows[0]["PO_No"].ToString();
                     txtPODate.Text = objDs.Tables[6].Rows[0]["PO_Date"].ToString();
+                    txtUserData.Text = objDs.Tables[6].Rows[0]["MakerDetails"].ToString();
                 }
                 else
                 {
                     lblNoRecordsFound.Visible = true;
                     grdPurchaseOrder.Rows.Clear();
                 }
-
+                 
+                grdPurchaseOrder.ClearSelection();
             }
             catch (Exception ex)
             {

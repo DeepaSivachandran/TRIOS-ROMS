@@ -263,6 +263,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
                 txtSearchProduct.Text = "";
+                SearchFlag = 0;
                 //varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
             }
         }
@@ -407,6 +408,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblProductgroup.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -650,6 +652,7 @@ namespace ROMS
                 btnExport.Enabled = false;
                 if ((grdSubGroupList.Rows.Count > 0))
                 {
+                    lblProductgroup.Focus();
                     Excel._Application ExcelObj = new Excel.Application();
                     // creating new WorkBook within Excel application  
                     Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
@@ -790,6 +793,12 @@ namespace ROMS
             {
                 udfnLvHide();
                 txtSearchProduct.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                udfnList();
+                //DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {

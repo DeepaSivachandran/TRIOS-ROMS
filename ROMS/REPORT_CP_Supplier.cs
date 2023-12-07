@@ -163,6 +163,7 @@ namespace ROMS
                     CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -253,6 +254,7 @@ namespace ROMS
                     CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -339,6 +341,7 @@ namespace ROMS
                     CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -425,6 +428,7 @@ namespace ROMS
                     CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -621,7 +625,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnMaster(6,0,0,"","",0);
+                objDT = objdserv.udfnMaster(6,0,0,"","",0, "");
                 objdserv.CloseConnection();
                 cmbOrderType.DataSource = null;
                 if (objDT != null)

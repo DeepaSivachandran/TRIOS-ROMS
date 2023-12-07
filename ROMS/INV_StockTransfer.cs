@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -210,7 +211,6 @@ namespace ROMS
         {
             try
             {
-                dpTrannsferDate.MaxDate = DateTime.Now;
                 dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
                 dtStock.Columns.Add("STK_PRID", typeof(int));
                 dtStock.Columns.Add("STK_MRP", typeof(string));
@@ -222,6 +222,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
                 udfnCmbConcern();
+                dpTrannsferDate.MaxDate = MainForm.pbCurrentDate;
                 cmbConcern.SelectedValue = 1;
                 if (btnSave.Text=="Save")
                 {
@@ -269,31 +270,36 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
-                                //grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode,
-                                //(txtProductNamePICode.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), 
-                                //(txtBatchNo.Text).Trim(), (txtQuantity.Text).Trim(), varUnitSymbol, (lblProduct.Text).Trim(),
-                                //varUTID, (txtQuantity.Text).Trim());
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]),
                                 Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Destination"]), Convert.ToString(objDS.Tables[0].Rows[i]["Destination Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]),
-                                Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]));
+                                Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Current StockQty"]));
+
                                 dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]),Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
-                                //dtStock.Rows.Add((lblProduct.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtQuantity.Text).Trim());
-                                grdStockTransfer.Columns["clmdsno"].Width = 50;
-                                grdStockTransfer.Columns["clmmrp"].Width = 50;
-                                grdStockTransfer.Columns["clmquantity"].Width = 100;
-                                grdStockTransfer.Columns["clmExpirydate"].Width = 90;
-                                grdStockTransfer.Columns["clmbatchno"].Width = 70;
-                                grdStockTransfer.Columns["clmDestLocation"].Width = 140;
-                                grdStockTransfer.Columns["clmDestRack"].Width = 140;
-                                grdStockTransfer.Columns["clmUnit"].Width = 60;
-                                grdStockTransfer.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdStockTransfer.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdStockTransfer.Columns["clmbatchno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                                grdStockTransfer.Columns["clmquantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdStockTransfer.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdStockTransfer.Columns["clmExpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                
+                                int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
+                                int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
+
+                                if (Convert.ToInt32(CurrentStockQty) < Convert.ToInt32(TransferQty))
+                                {
+                                    ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
+                                    //grdStockTransfer.Rows[i].Cells["clmRemove"].ReadOnly = true;
+                                }
                             }
                             btnSave.Text = "Update";
+                            grdStockTransfer.Columns["clmdsno"].Width = 50;
+                            grdStockTransfer.Columns["clmmrp"].Width = 50;
+                            grdStockTransfer.Columns["clmquantity"].Width = 100;
+                            grdStockTransfer.Columns["clmExpirydate"].Width = 90;
+                            grdStockTransfer.Columns["clmbatchno"].Width = 70;
+                            grdStockTransfer.Columns["clmDestLocation"].Width = 140;
+                            grdStockTransfer.Columns["clmDestRack"].Width = 140;
+                            grdStockTransfer.Columns["clmUnit"].Width = 60;
+                            grdStockTransfer.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdStockTransfer.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdStockTransfer.Columns["clmbatchno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                            grdStockTransfer.Columns["clmquantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdStockTransfer.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdStockTransfer.Columns["clmExpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                     }
                     lvSLocation.Visible = false;
@@ -302,7 +308,6 @@ namespace ROMS
                     dpTrannsferDate.Enabled = false;
                     txtSLocation.Enabled = false;
                 }
-
             }
             catch(Exception ex)
             {
@@ -1192,7 +1197,7 @@ namespace ROMS
                         DRKID =Convert.ToString(cmbDRack.SelectedValue);
                     }
                     varLocation = txtSLocation.Text;
-                    grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtSRack.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtDLocation.Text).Trim(), (cmbDRack.Text).Trim(), (txtStockQty.Text).Trim(), (txtQuantity.Text).Trim(), varUnitSymbol, (lblProduct.Text).Trim(), varSRKID,varUTID, (txtQuantity.Text).Trim());
+                    grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtSRack.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtDLocation.Text).Trim(), (cmbDRack.Text).Trim(), (txtStockQty.Text).Trim(), (txtQuantity.Text).Trim(), varUnitSymbol, (lblProduct.Text).Trim(), varSRKID,varUTID, (txtQuantity.Text).Trim(),0);
                     dtStock.Rows.Add((lblProduct.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtQuantity.Text).Trim(), varSRKID,(lblDLocation.Text).Trim(),DRKID);
                     txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
                     grdStockTransfer.Columns["clmdsno"].Width = 50;
@@ -1323,6 +1328,7 @@ namespace ROMS
                     lblProduct.Text = selectedItem.SubItems[8].Text;
                     varUTID = selectedItem.SubItems[9].Text;
                     varUnitSymbol = selectedItem.SubItems[10].Text;
+                    lblUnit.Text = selectedItem.SubItems[10].Text;
                     varMRP = selectedItem.SubItems[4].Text;
                     varExpiryDate = selectedItem.SubItems[5].Text;
                     varBatchNo = selectedItem.SubItems[6].Text;
@@ -1340,11 +1346,11 @@ namespace ROMS
             {
                 lvProduct.Visible = false;
                 errStockTransfer.Clear();
-                txtSRack.BackColor = Color.LightGray;//txtSRack.Enabled = false;
-                txtMRP.BackColor = Color.LightGray;
-                txtExpiryDate.BackColor = Color.LightGray;
-                txtBatchNo.BackColor = Color.LightGray;
-                txtStockQty.BackColor = Color.LightGray;
+                txtSRack.BackColor = SystemColors.Control;
+                txtMRP.BackColor = SystemColors.Control;
+                txtExpiryDate.BackColor = SystemColors.Control;
+                txtBatchNo.BackColor = SystemColors.Control;
+                txtStockQty.BackColor =SystemColors.Control;
                 txtDLocation.BackColor = Color.White;
                 txtQuantity.BackColor = Color.White;
             }

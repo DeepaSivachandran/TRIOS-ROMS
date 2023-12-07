@@ -134,6 +134,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -191,6 +192,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 /* Check purchase stock location is valid or not*/
                 string varId_PurLocation = "0";
                 string varLocationName = "";
@@ -286,6 +288,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 /* Check purchase stock location is valid or not*/
                 udfnGroupValid();
                 udfnSubgroupValid();

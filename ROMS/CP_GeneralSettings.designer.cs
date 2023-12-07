@@ -42,8 +42,12 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdReport = new System.Windows.Forms.DataGridView();
+            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReportText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtReportText = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblReportname = new System.Windows.Forms.Label();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.lblTransactionType = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,10 +68,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.epGeneralSettings = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReportText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tshSettings.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.grpGeneralsettings.SuspendLayout();
@@ -117,7 +117,7 @@
             this.grpGeneralsettings.Controls.Add(this.btnAdd);
             this.grpGeneralsettings.Controls.Add(this.groupBox2);
             this.grpGeneralsettings.Controls.Add(this.txtReportText);
-            this.grpGeneralsettings.Controls.Add(this.label2);
+            this.grpGeneralsettings.Controls.Add(this.lblReportname);
             this.grpGeneralsettings.Controls.Add(this.cmbTransactionType);
             this.grpGeneralsettings.Controls.Add(this.lblTransactionType);
             this.grpGeneralsettings.Controls.Add(this.label7);
@@ -214,6 +214,37 @@
             this.grdReport.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReport_CellContentClick);
             this.grdReport.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReport_DataBindingComplete);
             // 
+            // clmTransaction
+            // 
+            this.clmTransaction.HeaderText = "Transaction";
+            this.clmTransaction.Name = "clmTransaction";
+            this.clmTransaction.ReadOnly = true;
+            this.clmTransaction.Width = 150;
+            // 
+            // clmReportText
+            // 
+            this.clmReportText.HeaderText = "Report Text";
+            this.clmReportText.Name = "clmReportText";
+            this.clmReportText.ReadOnly = true;
+            this.clmReportText.Width = 450;
+            // 
+            // clmTransactionID
+            // 
+            this.clmTransactionID.HeaderText = "Transaction ID";
+            this.clmTransactionID.Name = "clmTransactionID";
+            this.clmTransactionID.ReadOnly = true;
+            this.clmTransactionID.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemove.Width = 60;
+            // 
             // txtReportText
             // 
             this.txtReportText.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -227,15 +258,15 @@
             this.txtReportText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReportText_KeyDown);
             this.txtReportText.Leave += new System.EventHandler(this.TxtReportText_Leave);
             // 
-            // label2
+            // lblReportname
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(860, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 20);
-            this.label2.TabIndex = 1111210;
-            this.label2.Text = "Report Text";
+            this.lblReportname.AutoSize = true;
+            this.lblReportname.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportname.Location = new System.Drawing.Point(860, 23);
+            this.lblReportname.Name = "lblReportname";
+            this.lblReportname.Size = new System.Drawing.Size(72, 20);
+            this.lblReportname.TabIndex = 1111210;
+            this.lblReportname.Text = "Report Text";
             // 
             // cmbTransactionType
             // 
@@ -503,37 +534,6 @@
             // 
             this.epGeneralSettings.ContainerControl = this;
             // 
-            // clmTransaction
-            // 
-            this.clmTransaction.HeaderText = "Transaction";
-            this.clmTransaction.Name = "clmTransaction";
-            this.clmTransaction.ReadOnly = true;
-            this.clmTransaction.Width = 150;
-            // 
-            // clmReportText
-            // 
-            this.clmReportText.HeaderText = "Report Text";
-            this.clmReportText.Name = "clmReportText";
-            this.clmReportText.ReadOnly = true;
-            this.clmReportText.Width = 450;
-            // 
-            // clmTransactionID
-            // 
-            this.clmTransactionID.HeaderText = "Transaction ID";
-            this.clmTransactionID.Name = "clmTransactionID";
-            this.clmTransactionID.ReadOnly = true;
-            this.clmTransactionID.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemove.Width = 60;
-            // 
             // CP_GeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -593,7 +593,7 @@
         private System.Windows.Forms.ErrorProvider epGeneralSettings;
         private System.Windows.Forms.ComboBox cmbTransactionType;
         private System.Windows.Forms.Label lblTransactionType;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblReportname;
         private System.Windows.Forms.TextBox txtReportText;
         private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.DataGridView grdReport;

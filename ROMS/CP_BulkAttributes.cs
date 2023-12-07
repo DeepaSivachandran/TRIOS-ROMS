@@ -154,12 +154,12 @@ namespace ROMS
                 objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0,0);
                 objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0,0);
 
-                objDSShelfLifeType = objDServ.udfnMaster(0, 6,0,"","",0);
-                objDSQTYUnit = objDServ.udfnMaster(2, 0,0,"","",0);
-                objDSProductCategory = objDServ.udfnMaster(0, 5,0,"","",0);
-                objDSRMPRO = objDServ.udfnMaster(1, 0,0,"","",0);
-                objDSBatchNo = objDServ.udfnMaster(0, 25,0,"","",0);
-                objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0,"","",0);
+                objDSShelfLifeType = objDServ.udfnMaster(0, 6,0,"","",0,"");
+                objDSQTYUnit = objDServ.udfnMaster(2, 0,0,"","",0, "");
+                objDSProductCategory = objDServ.udfnMaster(0, 5,0,"","",0, "");
+                objDSRMPRO = objDServ.udfnMaster(1, 0,0,"","",0, "");
+                objDSBatchNo = objDServ.udfnMaster(0, 25,0,"","",0, "");
+                objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0,"","",0, "");
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "",0);
                 objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null);
                 objDServ.CloseConnection();
@@ -1945,6 +1945,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblStatus.Focus();
                 if (txtProductGroup.Text != "")
                 {
                     DataSet objDgroup = new DataSet();

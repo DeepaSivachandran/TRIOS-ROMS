@@ -245,6 +245,7 @@
             // 
             // txtGstinNo
             // 
+            this.txtGstinNo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtGstinNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGstinNo.Location = new System.Drawing.Point(182, 54);
             this.txtGstinNo.MaxLength = 15;

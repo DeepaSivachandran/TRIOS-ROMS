@@ -47,16 +47,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvSLocation = new System.Windows.Forms.ListView();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -93,7 +83,7 @@
             this.lblProduct = new System.Windows.Forms.Label();
             this.txtDLocation = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblUnit = new System.Windows.Forms.Label();
             this.txtStockQty = new System.Windows.Forms.TextBox();
             this.txtBatchNo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -122,6 +112,7 @@
             this.clmSRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCurrentStockQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
@@ -206,17 +197,7 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader15});
+            this.columnHeader5});
             this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvProduct.FullRowSelect = true;
             this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -339,6 +320,7 @@
             this.clmSRID,
             this.clmUTID,
             this.clmQTY,
+            this.clmCurrentStockQty,
             this.clmRemove});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -576,7 +558,7 @@
             this.grbDStockTransfer.Controls.Add(this.lblProduct);
             this.grbDStockTransfer.Controls.Add(this.txtDLocation);
             this.grbDStockTransfer.Controls.Add(this.textBox5);
-            this.grbDStockTransfer.Controls.Add(this.label2);
+            this.grbDStockTransfer.Controls.Add(this.lblUnit);
             this.grbDStockTransfer.Controls.Add(this.txtStockQty);
             this.grbDStockTransfer.Controls.Add(this.txtBatchNo);
             this.grbDStockTransfer.Controls.Add(this.label1);
@@ -694,14 +676,14 @@
             this.textBox5.TabIndex = 1111236;
             this.textBox5.Text = "₹";
             // 
-            // label2
+            // lblUnit
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1261, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 20);
-            this.label2.TabIndex = 958817;
-            this.label2.Text = "Pkts";
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.Location = new System.Drawing.Point(1261, 43);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(33, 20);
+            this.lblUnit.TabIndex = 958817;
+            this.lblUnit.Text = "Pkts";
             // 
             // txtStockQty
             // 
@@ -926,6 +908,13 @@
             this.clmQTY.Name = "clmQTY";
             this.clmQTY.Visible = false;
             // 
+            // clmCurrentStockQty
+            // 
+            this.clmCurrentStockQty.HeaderText = "Current Stock Qty";
+            this.clmCurrentStockQty.Name = "clmCurrentStockQty";
+            this.clmCurrentStockQty.Visible = false;
+            this.clmCurrentStockQty.Width = 50;
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -992,7 +981,7 @@
         private System.Windows.Forms.Label lblTransferDate;
         private System.Windows.Forms.DateTimePicker dpTrannsferDate;
         private System.Windows.Forms.GroupBox grbDStockTransfer;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.TextBox txtStockQty;
         private System.Windows.Forms.TextBox txtBatchNo;
         private System.Windows.Forms.Label label1;
@@ -1026,23 +1015,13 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.TextBox txttotalitem;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cmbDRack;
         private System.Windows.Forms.TextBox txtSRack;
         private System.Windows.Forms.Label lbltxtSourceRack;
         private System.Windows.Forms.Label lblDestRack;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
-        private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
@@ -1059,6 +1038,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCurrentStockQty;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }

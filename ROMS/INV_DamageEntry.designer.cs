@@ -29,30 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.lvSupplier = new System.Windows.Forms.ListView();
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvProduct = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
@@ -102,7 +106,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtStockQty = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblUnit = new System.Windows.Forms.Label();
             this.txtBatchNo = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
             this.lblExpiryDate = new System.Windows.Forms.Label();
@@ -116,10 +120,6 @@
             this.lblMrp = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epDamageEntry = new System.Windows.Forms.ErrorProvider(this.components);
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDamageEntry)).BeginInit();
@@ -173,17 +173,28 @@
             // lvSupplier
             // 
             this.lvSupplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader16,
-            this.columnHeader17,
-            this.columnHeader18,
-            this.columnHeader19});
+            this.columnHeader21,
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24,
+            this.columnHeader25,
+            this.columnHeader26,
+            this.columnHeader27,
+            this.columnHeader28,
+            this.columnHeader29,
+            this.columnHeader30,
+            this.columnHeader31,
+            this.columnHeader32,
+            this.columnHeader33,
+            this.columnHeader34,
+            this.columnHeader35});
             this.lvSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvSupplier.FullRowSelect = true;
             this.lvSupplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(977, 136);
+            this.lvSupplier.Location = new System.Drawing.Point(1085, 136);
             this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(365, 219);
+            this.lvSupplier.Size = new System.Drawing.Size(257, 219);
             this.lvSupplier.TabIndex = 111111143;
             this.lvSupplier.UseCompatibleStateImageBehavior = false;
             this.lvSupplier.View = System.Windows.Forms.View.Details;
@@ -191,24 +202,25 @@
             this.lvSupplier.DoubleClick += new System.EventHandler(this.LvSupplier_DoubleClick);
             this.lvSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSupplier_KeyDown);
             // 
+            // columnHeader21
+            // 
+            this.columnHeader21.Width = 120;
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 0;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 0;
+            // 
             // lvProduct
             // 
             this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader15});
+            this.columnHeader4});
             this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvProduct.FullRowSelect = true;
             this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -316,14 +328,14 @@
             this.grdDamageEntry.AllowUserToResizeRows = false;
             this.grdDamageEntry.BackgroundColor = System.Drawing.Color.White;
             this.grdDamageEntry.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDamageEntry.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdDamageEntry.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.grdDamageEntry.ColumnHeadersHeight = 30;
             this.grdDamageEntry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdDamageEntry.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -349,22 +361,22 @@
             this.clmSPID,
             this.clmSPSCID,
             this.clmremove});
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdDamageEntry.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdDamageEntry.DefaultCellStyle = dataGridViewCellStyle15;
             this.grdDamageEntry.EnableHeadersVisualStyles = false;
             this.grdDamageEntry.GridColor = System.Drawing.Color.White;
             this.grdDamageEntry.Location = new System.Drawing.Point(3, 157);
             this.grdDamageEntry.Name = "grdDamageEntry";
             this.grdDamageEntry.RowHeadersVisible = false;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdDamageEntry.RowsDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdDamageEntry.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.grdDamageEntry.RowTemplate.Height = 25;
             this.grdDamageEntry.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.grdDamageEntry.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -436,11 +448,11 @@
             // 
             // clmQuantity
             // 
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.Black;
-            this.clmQuantity.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            this.clmQuantity.DefaultCellStyle = dataGridViewCellStyle14;
             this.clmQuantity.HeaderText = "Transfer Qty";
             this.clmQuantity.Name = "clmQuantity";
             // 
@@ -651,7 +663,7 @@
             this.grpproductname.Controls.Add(this.btnAdd);
             this.grpproductname.Controls.Add(this.txtStockQty);
             this.grpproductname.Controls.Add(this.textBox5);
-            this.grpproductname.Controls.Add(this.label3);
+            this.grpproductname.Controls.Add(this.lblUnit);
             this.grpproductname.Controls.Add(this.txtBatchNo);
             this.grpproductname.Controls.Add(this.lblbatchno);
             this.grpproductname.Controls.Add(this.lblExpiryDate);
@@ -770,14 +782,14 @@
             this.textBox5.TabStop = false;
             this.textBox5.Text = "₹";
             // 
-            // label3
+            // lblUnit
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1044, 40);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 20);
-            this.label3.TabIndex = 1111186;
-            this.label3.Text = "Pkts";
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.Location = new System.Drawing.Point(1044, 40);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(33, 20);
+            this.lblUnit.TabIndex = 1111186;
+            this.lblUnit.Text = "Pkts";
             // 
             // txtBatchNo
             // 
@@ -907,22 +919,6 @@
             // 
             this.epDamageEntry.ContainerControl = this;
             // 
-            // columnHeader16
-            // 
-            this.columnHeader16.Width = 200;
-            // 
-            // columnHeader17
-            // 
-            this.columnHeader17.Width = 0;
-            // 
-            // columnHeader18
-            // 
-            this.columnHeader18.Width = 0;
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.Width = 0;
-            // 
             // INV_DamageEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -987,7 +983,7 @@
         private System.Windows.Forms.Label lbEntryNo;
         private System.Windows.Forms.Label lblEntryDate;
         private System.Windows.Forms.DateTimePicker dpEntryDate;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ErrorProvider epDamageEntry;
@@ -1003,21 +999,25 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
-        private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.Label lblProduct;
         private System.Windows.Forms.Label lblScheduleCode;
         private System.Windows.Forms.Label lblSupplierCode;
         public System.Windows.Forms.ListView lvSupplier;
+        private System.Windows.Forms.ColumnHeader columnHeader21;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.ColumnHeader columnHeader25;
+        private System.Windows.Forms.ColumnHeader columnHeader26;
+        private System.Windows.Forms.ColumnHeader columnHeader27;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.ColumnHeader columnHeader30;
+        private System.Windows.Forms.ColumnHeader columnHeader31;
+        private System.Windows.Forms.ColumnHeader columnHeader32;
+        private System.Windows.Forms.ColumnHeader columnHeader33;
+        private System.Windows.Forms.ColumnHeader columnHeader34;
+        private System.Windows.Forms.ColumnHeader columnHeader35;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
@@ -1040,9 +1040,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSPID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSPSCID;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
-        private System.Windows.Forms.ColumnHeader columnHeader16;
-        private System.Windows.Forms.ColumnHeader columnHeader17;
-        private System.Windows.Forms.ColumnHeader columnHeader18;
-        private System.Windows.Forms.ColumnHeader columnHeader19;
     }
 }

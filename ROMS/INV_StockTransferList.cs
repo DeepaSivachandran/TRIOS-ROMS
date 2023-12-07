@@ -195,9 +195,10 @@ namespace ROMS
         private void INV_StockTransferList_Load(object sender, EventArgs e)
         {
             cmbConcern.Focus();
-            dpTrannsferFromDate.MaxDate = DateTime.Now;
-            dpTransferToDate.MaxDate = DateTime.Now;
             udfnCmbConcern();
+            dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
+            dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
+            dpTransferToDate.MinDate = dpTrannsferFromDate.MaxDate;
             cmbConcern.SelectedValue = 1;
             udfnList();
         }
@@ -274,6 +275,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblProductNamePICode.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -1172,7 +1174,8 @@ namespace ROMS
         {
             try
             {
-                btnExport.Enabled = false;
+                btnExport.Enabled = false; 
+                lblProductNamePICode.Focus();
                 if ((grdStockTransfer.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();

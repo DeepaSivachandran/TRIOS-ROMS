@@ -54,7 +54,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDT = null;
-                objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0");
+                objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0",0);
                 objdserv.CloseConnection();
                 cmbPONo.DataSource = null;
                 if (objDT != null)
@@ -83,7 +83,7 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0);
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "");
                 if (objd.Tables[1].Rows.Count != 0)
                 {
                     DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -1290,7 +1290,7 @@ namespace ROMS
                     string dateString = e.FormattedValue.ToString();
                     DataSet objDS = new DataSet();
                     SPDataService objDServ = new SPDataService();
-                    objDS = objDServ.udfnMaster(8, 0, 0, dateString, "", 0);
+                    objDS = objDServ.udfnMaster(8, 0, 0, dateString, "", 0, "");
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
@@ -1738,7 +1738,7 @@ namespace ROMS
                     DataSet objDS = new DataSet();
                     if (varExpiryDate != "")
                     {
-                        objDS = objDServ.udfnMaster(7, 0, 0, dpGrnDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text));
+                        objDS = objDServ.udfnMaster(7, 0, 0, dpGrnDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "");
                         objDServ.CloseConnection();
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -1868,7 +1868,7 @@ namespace ROMS
                     varDay = "01"; varMonth = Convert.ToString(txtMonth.Text.Trim());
                     varYear = Convert.ToString(txtYear.Text.Trim());
                     varDate = varDay + "/" + varMonth + "/" + varYear;
-                    objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0);
+                    objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0, "");
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
