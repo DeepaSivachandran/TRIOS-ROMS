@@ -237,7 +237,7 @@ namespace ROMS
                     }
                     if (values[0] == "-1")
                     {
-                        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
+                        ep_Supplierlist.SetError(txtSupplier, "Invalid supplier.");
                         txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpSupplier.ShowAlways = true;
                         tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
@@ -334,7 +334,6 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                     grdSupplierList.DataSource = null;
-
                 }
             }
             catch (Exception ex)
