@@ -664,7 +664,7 @@ namespace ROMS
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblscheduleName.Text = selectedItem.SubItems[4].Text; ;
                 }
-                cmbstatus.Focus();
+                cmbShow.Focus();
             }
             catch (Exception ex)
             {
@@ -794,7 +794,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlProduct.Enabled == false)
+                    if (pnlProduct.Visible == false)
                     {
                         cmbstatus.Focus();
                     }

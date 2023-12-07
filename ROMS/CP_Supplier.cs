@@ -1039,6 +1039,12 @@ namespace ROMS
                 udfnEdit();
                 BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
                 btnListPrint.Image = global::ROMS.Properties.Resources.print;
+                if (pbSupplierid == "0")
+                {
+                    tcSupplier.TabPages[1].Enabled = false; // Second tab
+                    tcSupplier.TabPages[2].Enabled = false; // Third tab
+                    tcSupplier.TabPages[3].Enabled = false; // Fourth tab
+                }
             }
             catch (Exception ex)
             {
@@ -3319,51 +3325,55 @@ namespace ROMS
         {
             try
             {
-                errCompany.Clear();
-                udfntphide();
-                udfncolorchange();
-                udfnSchedulecolorchange();
+                if (pbSupplierid != "0")
+                { 
 
-                if (tcSupplier.SelectedIndex == 1)
-                {
-                    if (btnSave.Text == "Update")
+                    errCompany.Clear();
+                    udfntphide();
+                    udfncolorchange();
+                    udfnSchedulecolorchange();
+
+                    if (tcSupplier.SelectedIndex == 1)
                     {
-                        if (varSupplierStatusID == 2)
+                        if (btnSave.Text == "Update")
                         {
-                            gpSupplier.Enabled = false;
-                            grdSupplierList.Columns["clmedit"].Visible = false;
-                            grddays.Enabled = false;
+                            if (varSupplierStatusID == 2)
+                            {
+                                gpSupplier.Enabled = false;
+                                grdSupplierList.Columns["clmedit"].Visible = false;
+                                grddays.Enabled = false;
+                            }
                         }
+                        txtScheduleName.Focus();
+
+                        txtScheduleName.SelectionStart = txtScheduleName.Text.Length;
+                        cmbOrderType.SelectedValue = 144;
                     }
-                    txtScheduleName.Focus();
+                    if (tcSupplier.SelectedIndex == 0)
+                    {
+                        txtName.Focus();
+                        txtName.SelectionStart = txtName.Text.Length;
+                    }
+                    if (tcSupplier.SelectedIndex == 3)
+                    {
 
-                    txtScheduleName.SelectionStart = txtScheduleName.Text.Length;
-                    cmbOrderType.SelectedValue = 144;
-                }
-                if (tcSupplier.SelectedIndex == 0)
-                {
-                    txtName.Focus();
-                    txtName.SelectionStart = txtName.Text.Length;
-                }
-                if (tcSupplier.SelectedIndex == 3)
-                {
+                        cmbOrderschedule.Focus();
+                        BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
+                        cmborderday.SelectedIndex = 0;
+                        cmbOrderschedule.SelectedIndex = 0;
 
-                    cmbOrderschedule.Focus();
-                    BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
-                    cmborderday.SelectedIndex = 0;
-                    cmbOrderschedule.SelectedIndex = 0;
+                    }
+                    if (tcSupplier.SelectedIndex == 2)
+                    {
+                        //picLoader.Visible = true;
+                        //picLoader.BringToFront();
+                        //Application.DoEvents();
+                        txtSupplier.Focus();
+                        cmborderday.SelectedIndex = 0;
+                        cmbOrderschedule.SelectedIndex = 0;
+                        this.ActiveControl = cmbMappingorderschedule;
 
-                }
-                if (tcSupplier.SelectedIndex == 2)
-                {
-                    //picLoader.Visible = true;
-                    //picLoader.BringToFront();
-                    //Application.DoEvents();
-                    txtSupplier.Focus();
-                    cmborderday.SelectedIndex = 0;
-                    cmbOrderschedule.SelectedIndex = 0;
-                    this.ActiveControl = cmbMappingorderschedule;
-
+                    }
                 }
             }
             catch (Exception ex)
@@ -3404,112 +3414,105 @@ namespace ROMS
 
         private void TcSupplier_Selected(object sender, TabControlEventArgs e)
         {
+            if (pbSupplierid != "0")
+            { 
 
-            if (e.TabPageIndex == 1)
-            {
-                try
+                if (e.TabPageIndex == 1)
                 {
-                    this.ActiveControl = txtScheduleName; 
-                    BindDataGrid();
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
-            }
-            if (e.TabPageIndex == 3)
-            {
-                try
-                {
-
-
-                    this.ActiveControl = cmbOrderschedule;
-                    udfnLoadOrderSchedule();
-                    //DataBind objDataBind = new DataBind();
-                    //if (Convert.ToInt32(varsupplierID) != 0)
-                    //{
-                    //    SupplierUpdate = Convert.ToInt32(varsupplierID);
-                    //}
-                    //else
-                    //{
-                    //    SupplierUpdate = Convert.ToInt32(pbSupplierid);
-                    //} 
-                    //objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
-                    //objDataBind = null;
-
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
-            }
-            if (e.TabPageIndex == 2)
-            {
-                try
-                {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    this.ActiveControl = cmbMappingorderschedule;
-                    DataBind objDataBind = new DataBind();
-
-                    cmbMappingorderschedule.DataSource = null; cmbMappingorderschedule.Text = "";
-                    cmbOrderschedule.DataSource = null; cmbOrderschedule.Text = "";
-                    grdViewSupplierMapping.DataSource = null;
-                    DGV_SearchGridPro.DataSource = null;
-                    if (Convert.ToInt32(varsupplierID) != 0)
+                    try
                     {
-                        SupplierUpdate = Convert.ToInt32(varsupplierID);
+                        this.ActiveControl = txtScheduleName;
+                        BindDataGrid();
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                        objError = new DataError();
+                        objError.WriteFile(ex);
                     }
-                    if (SupplierUpdate != 0)
+                }
+                if (e.TabPageIndex == 3)
+                {
+                    try
                     {
-                        objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) ", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
-                    }
-                    else
-                    {
-                        objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_STSID NOT IN (2) OR SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID"); }
-                    
-                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
-                    objDataBind = null;
-                    DataSet objDT = new DataSet();
-                    SPDataService objdserv = new SPDataService();
-                    int varViewType = 3;
-                    objDT = objdserv.udfnGroupList(varViewType, 0, 0, "", 0);
-                    objdserv.CloseConnection();
-                    picLoader.Visible = false;
-                    picLoader.SendToBack();
-                    //if (objDT != null)
-                    //{
-                    //    if (objDT.Tables.Count > 0)
-                    //    {
-                    //        if (objDT.Tables[0].Rows.Count > 0)
-                    //        {
-                    //            cmbMappingGroup.ValueMember = "PRGID";
-                    //            cmbMappingGroup.DisplayMember = "PRG_EName";
-                    //            cmbMappingGroup.DataSource = objDT.Tables[0];
-                    //        }
-                    //    }
-                    //}
-                    objdserv.CloseConnection();
 
+
+                        this.ActiveControl = cmbOrderschedule;
+                        udfnLoadOrderSchedule();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
                 }
-                catch (Exception ex)
+                if (e.TabPageIndex == 2)
                 {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
+                    try
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        this.ActiveControl = cmbMappingorderschedule;
+                        DataBind objDataBind = new DataBind();
+
+                        cmbMappingorderschedule.DataSource = null; cmbMappingorderschedule.Text = "";
+                        cmbOrderschedule.DataSource = null; cmbOrderschedule.Text = "";
+                        grdViewSupplierMapping.DataSource = null;
+                        DGV_SearchGridPro.DataSource = null;
+                        if (Convert.ToInt32(varsupplierID) != 0)
+                        {
+                            SupplierUpdate = Convert.ToInt32(varsupplierID);
+                        }
+                        else
+                        {
+                            SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                        }
+                        if (SupplierUpdate != 0)
+                        {
+                            objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) ", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
+                        }
+                        else
+                        {
+                            objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_STSID NOT IN (2) OR SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
+                        }
+
+                        objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID = '" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
+                        objDataBind = null;
+                        DataSet objDT = new DataSet();
+                        SPDataService objdserv = new SPDataService();
+                        int varViewType = 3;
+                        objDT = objdserv.udfnGroupList(varViewType, 0, 0, "", 0);
+                        objdserv.CloseConnection();
+                        picLoader.Visible = false;
+                        picLoader.SendToBack();
+                        //if (objDT != null)
+                        //{
+                        //    if (objDT.Tables.Count > 0)
+                        //    {
+                        //        if (objDT.Tables[0].Rows.Count > 0)
+                        //        {
+                        //            cmbMappingGroup.ValueMember = "PRGID";
+                        //            cmbMappingGroup.DisplayMember = "PRG_EName";
+                        //            cmbMappingGroup.DataSource = objDT.Tables[0];
+                        //        }
+                        //    }
+                        //}
+                        objdserv.CloseConnection();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
+                    finally
+                    {
+                        lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
+                    }
                 }
-                finally
-                {
-                    lblTotalProducts.Text = grdSupplierMappingLoad.Rows.Count.ToString();
-                }
+                grdSupplierList.ClearSelection();
             }
-            grdSupplierList.ClearSelection();
         }
 
 
