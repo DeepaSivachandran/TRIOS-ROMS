@@ -521,12 +521,14 @@ namespace ROMS
         {
             try
             {
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfncmbDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
                 dpDcFromDate.MinDate = MainForm.pbFYStartDate;
                 dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpdctodate.MinDate = dpDcFromDate.MaxDate;
+                this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
             {
