@@ -400,7 +400,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.F5)
                 {
-                    udfnsave();
+                    //udfnsave();
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -2577,7 +2577,7 @@ namespace ROMS
                                 lvproduct.Columns[5].Width = 100;
                                 if (VarSearchFlag == false)
                                 { 
-                                    lvproduct.Columns[1].Width = 250;
+                                    lvproduct.Columns[1].Width = 350;
                                     lvproduct.Columns[2].Width = 0;
                                 }
                                 else

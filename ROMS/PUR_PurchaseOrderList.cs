@@ -51,8 +51,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
             finally { picLoader.Visible = false; }
         }
@@ -951,7 +950,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Supplier"].Width = 300;
                             grdPurchaseorderlist.Columns["City"].Width = 100; 
                             grdPurchaseorderlist.Columns["T.Pro"].Width = 50;
-                            grdPurchaseorderlist.Columns["T.Case"].Width = 50;
+                            grdPurchaseorderlist.Columns["T.Units"].Width = 50;
                             grdPurchaseorderlist.Columns["TAT"].Width = 70;
                             grdPurchaseorderlist.Columns["Created By"].Width = 100;
                             grdPurchaseorderlist.Columns["Created On"].Width = 150;
@@ -976,7 +975,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Turn Around Time"].Visible = false;
                             grdPurchaseorderlist.Columns["GSTIN"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseorderlist.Columns["T.Case"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["Issue Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1505,6 +1504,7 @@ namespace ROMS
                             grdProDetails.Columns["STS1"].Visible = false;
                             grdProDetails.Columns["SPSC_SMName"].Visible = false;
                             grdProDetails.Columns["SPSC_SMMobileNo"].Visible = false;
+                            grdProDetails.Columns["status1"].Visible = false;
                             grdProDetails.Columns["SP_PhoneNo"].Visible = false; 
                             grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
@@ -2227,6 +2227,7 @@ namespace ROMS
 
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    DataGridViewCell cell1 = dataGridView.Rows[i].Cells["PO Status"];
 
                     if (Convert.ToString(grdProDetails.Rows[i].Cells["STSID"].Value) == "10")
                     {
@@ -2237,6 +2238,32 @@ namespace ROMS
                     {
                         cell.Style.BackColor = Color.RoyalBlue;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
+                    }
+                     
+                    if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "1")
+                    {
+                        cell1.Style.BackColor = Color.Olive;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "2")
+                    {
+                        cell1.Style.BackColor = Color.BlueViolet;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "3")
+                    {
+                        cell1.Style.BackColor = Color.LimeGreen;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "4")
+                    {
+                        cell1.Style.BackColor = Color.Tomato;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color 
+                    }
+                    else if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "5")
+                    { 
+                        cell1.Style.BackColor = Color.SteelBlue;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
                 }
             }
@@ -2378,7 +2405,7 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
-                                if (col.Name == "T.Case")
+                                if (col.Name == "T.Units")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
