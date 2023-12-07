@@ -684,11 +684,12 @@ namespace ROMS
                                     else if (chkStatus.Checked == false)
                                     {
                                         varstatus = 8;
+                                        if (VarStatusId == 11)
+                                        {
+                                            varstatus = 11;
+                                        }
                                     }
-                                    if (VarStatusId == 11)
-                                    {
-                                        varstatus = 11;
-                                    }
+                                   
                                     
                                     if (varcount == 0)
                                     {
