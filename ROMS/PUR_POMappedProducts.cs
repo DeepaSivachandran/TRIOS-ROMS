@@ -332,7 +332,7 @@ namespace ROMS
                     dtMappedProduct.Columns.Add("P.I Code", typeof(string));
                     dtMappedProduct.Columns.Add("Product Name", typeof(string));
                     dtMappedProduct.Columns.Add("Unit", typeof(string));
-                    dtMappedProduct.Columns.Add("Unit Per box", typeof(string));
+                    dtMappedProduct.Columns.Add("Unit Per case", typeof(string));
                     dtMappedProduct.Columns.Add("R.Rate", typeof(string));
                     dtMappedProduct.Columns.Add("W.Rate", typeof(string));
                     dtMappedProduct.Columns.Add("Min Qty", typeof(string));
@@ -374,7 +374,7 @@ namespace ROMS
                                     { 
                                         dtMappedProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"]
                                         , objDs.Tables[0].Rows[i]["Unit"],
-                                        objDs.Tables[0].Rows[i]["Unit Per box"], objDs.Tables[0].Rows[i]["SalesRate"], objDs.Tables[0].Rows[i]["WholeSaleRate"] , objDs.Tables[0].Rows[i]["Min Qty"], objDs.Tables[0].Rows[i]["Max Qty"] , objDs.Tables[0].Rows[i]["Stock"],
+                                        objDs.Tables[0].Rows[i]["Unit Per case"], objDs.Tables[0].Rows[i]["SalesRate"], objDs.Tables[0].Rows[i]["WholeSaleRate"] , objDs.Tables[0].Rows[i]["Min Qty"], objDs.Tables[0].Rows[i]["Max Qty"] , objDs.Tables[0].Rows[i]["Stock"],
                                         objDs.Tables[0].Rows[i]["Reorder"], objDs.Tables[0].Rows[i]["Productid"], objDs.Tables[0].Rows[i]["GST_Text"],
                                         objDs.Tables[0].Rows[i]["PREVIOUS"], objDs.Tables[0].Rows[i]["PARTIAL"], objDs.Tables[0].Rows[i]["ordervalue"], 
                                         objDs.Tables[0].Rows[i]["PR_UTID"], objDs.Tables[0].Rows[i]["Unit Wt"], objDs.Tables[0].Rows[i]["B.Unit Weight"],
@@ -534,7 +534,7 @@ namespace ROMS
                         } 
                         MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Add(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Count + 1,
                         grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value, grdPurchaseOrder.Rows[i].Cells["Product Name"].Value, grdPurchaseOrder.Rows[i].Cells["Unit"].Value,
-                        grdPurchaseOrder.Rows[i].Cells["Unit Wt"].Value, grdPurchaseOrder.Rows[i].Cells["Unit Per box"].Value, grdPurchaseOrder.Rows[i].Cells["B.Unit Weight"].Value, 
+                        grdPurchaseOrder.Rows[i].Cells["Unit Wt"].Value, grdPurchaseOrder.Rows[i].Cells["Unit Per case"].Value, grdPurchaseOrder.Rows[i].Cells["B.Unit Weight"].Value, 
                         grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value),
                         (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), Convert.ToString(grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value), grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, 
                         (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),"", grdPurchaseOrder.Rows[i].Cells["bunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["qtyunit"].Value,
