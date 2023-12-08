@@ -163,10 +163,10 @@ namespace ROMS
                 if (txtStockLocation.Text == "")
                 {
                     varStockLocationId = "0";
-                    epGoodsOutward.SetError(txtStockLocation, "Please enter StockLocation");
+                    epGoodsOutward.SetError(txtStockLocation, "Please enter stock location");
                     txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter StockLocation", txtStockLocation, 5000);
+                    tpStockLocation.Show("Please enter stock location", txtStockLocation, 5000);
                 }
                 else
                 {
@@ -268,10 +268,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbTransactionType.SelectedValue) == "" || Convert.ToString(cmbTransactionType.SelectedValue) == "-1")
                 {
-                    epGoodsOutward.SetError(cmbTransactionType, "Please select TransactionType");
+                    epGoodsOutward.SetError(cmbTransactionType, "Please select transaction type");
                     cmbTransactionType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpTransactionType.ShowAlways = true;
-                    tpTransactionType.Show("Please select TransactionType", cmbTransactionType, 5000);
+                    tpTransactionType.Show("Please select transaction type", cmbTransactionType, 5000);
                 }
                 else
                 {
@@ -878,7 +878,7 @@ namespace ROMS
                 if (txtProduct.Text.Length > 0 || txtProduct.Text==" ")
                 {
                     var ViewType = 37;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text.Trim(), 0,"", "", dtStock,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text.Trim(), 0,"", dtStock);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1116,6 +1116,8 @@ namespace ROMS
                 //        }
                 //    }
                 //    lvStockLocation.Visible = false;&
+                txtStockLocation.Enabled = false;
+
             }
             catch (Exception ex)
             {
@@ -1228,7 +1230,7 @@ namespace ROMS
                     grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please enter valid outward qty", grdGoodsOutward, 5000);
+                    tpConcern.Show("Please enter valid outward quantity", grdGoodsOutward, 5000);
                     SPDataService objDServ = new SPDataService();
                     objDServ.CloseConnection();
                     varErrQty = 1;
@@ -1309,7 +1311,7 @@ namespace ROMS
                     grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please enter valid outward qty", grdGoodsOutward, 5000);
+                    tpConcern.Show("Please enter valid outward quantity", grdGoodsOutward, 5000);
                     SPDataService objDServ = new SPDataService();
                     objDServ.CloseConnection();
                     //MessageBox.Show("Please Enter Valid Outward Quantity", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1398,15 +1400,15 @@ namespace ROMS
                     epGoodsOutward.SetError(txtStockLocation, "Please enter stock location");
                     txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter Stock location", txtStockLocation, 5000);
+                    tpStockLocation.Show("Please enter stock location", txtStockLocation, 5000);
                     blnErrorFlag = false;
                 }
                 if (Convert.ToString(cmbTransactionType.SelectedValue) == "" || Convert.ToString(cmbTransactionType.SelectedValue) == "-1")
                 {
-                    epGoodsOutward.SetError(cmbTransactionType, "Please select Transaction Type");
+                    epGoodsOutward.SetError(cmbTransactionType, "Please select transaction type");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please select Transaction Type", cmbTransactionType, 5000);
+                    tpConcern.Show("Please select transaction type", cmbTransactionType, 5000);
                     blnErrorFlag = false;
                 }
                 //if (txtStockLocation.Text !="")
@@ -1686,7 +1688,7 @@ namespace ROMS
                 varErrorFlag = true;
                 if (txtProduct.Text == "")
                 {
-                    epGoodsOutward.SetError(txtProduct, "Please enter product");
+                    epGoodsOutward.SetError(txtProduct, "Please enter product name");
                     txtProduct.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProduct.ShowAlways = true;
                     tpProduct.Show("Please enter product name", txtProduct, 5000);
@@ -1694,50 +1696,50 @@ namespace ROMS
                 }
                 if (txtRack.Text == "")
                 {
-                    epGoodsOutward.SetError(txtRack, "Please enter the RackName");
+                    epGoodsOutward.SetError(txtRack, "Please enter the rack name");
                     txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpOutwardQuantity.ShowAlways = true;
-                    tpOutwardQuantity.Show("Please enter the RackName", txtRack, 5000);
+                    tpOutwardQuantity.Show("Please enter the rack name", txtRack, 5000);
                     varErrorFlag = false;
                 }
                 if (txtMrp.Text == "")
                 {
-                    epGoodsOutward.SetError(txtMrp, "Please enter MRP");
+                    epGoodsOutward.SetError(txtMrp, "Please enter mrp");
                     txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpOutwardQuantity.ShowAlways = true;
-                    tpOutwardQuantity.Show("Please enter MRP", txtMrp, 5000);
+                    tpOutwardQuantity.Show("Please enter mrp", txtMrp, 5000);
                     varErrorFlag = false;
                 }
                 if (txtExpiryDate.Text == "")
                 {
-                    epGoodsOutward.SetError(txtExpiryDate, "Please enter ExpiryDate");
+                    epGoodsOutward.SetError(txtExpiryDate, "Please enter expiry date");
                     txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpOutwardQuantity.ShowAlways = true;
-                    tpOutwardQuantity.Show("Please enter ExpiryDate", txtExpiryDate, 5000);
+                    tpOutwardQuantity.Show("Please enter expiry date", txtExpiryDate, 5000);
                     varErrorFlag = false;
                 }
                 if (txtBatchNo.Text == "")
                 {
-                    epGoodsOutward.SetError(txtBatchNo, "Please enter Batch Number");
+                    epGoodsOutward.SetError(txtBatchNo, "Please enter batch number");
                     txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpOutwardQuantity.ShowAlways = true;
-                    tpOutwardQuantity.Show("Please enter Batch number", txtBatchNo, 5000);
+                    tpOutwardQuantity.Show("Please enter batch number", txtBatchNo, 5000);
                     varErrorFlag = false;
                 }
                 if (txtStockQuantity.Text == "")
                 {
-                    epGoodsOutward.SetError(txtStockQuantity, "Please enter Stock qty");
+                    epGoodsOutward.SetError(txtStockQuantity, "Please enter stock quantity");
                     txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpOutwardQuantity.ShowAlways = true;
-                    tpOutwardQuantity.Show("Please enter Stock qty", txtStockQuantity, 5000);
+                    tpOutwardQuantity.Show("Please enter stock quantity", txtStockQuantity, 5000);
                     varErrorFlag = false;
                 }
                 if (txtOutwardQuantity.Text == "")
                 {
-                    epGoodsOutward.SetError(txtOutwardQuantity, "Please enter outward qty");
+                    epGoodsOutward.SetError(txtOutwardQuantity, "Please enter outward quantity");
                     txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpOutwardQuantity.ShowAlways = true;
-                    tpOutwardQuantity.Show("Please enter orderqty.", txtOutwardQuantity, 5000);
+                    tpOutwardQuantity.Show("Please enter outward quantity", txtOutwardQuantity, 5000);
                     varErrorFlag = false;
                 }
 
@@ -1749,10 +1751,11 @@ namespace ROMS
                     {
                         if (Convert.ToInt32(txtOutwardQuantity.Text) > Convert.ToInt32(txtStockQuantity.Text) || Convert.ToInt32(txtOutwardQuantity.Text)==0)
                         {
-                            epGoodsOutward.SetError(txtOutwardQuantity, "Please enter a correct Outward Quantity");
+                            txtOutwardQuantity.Focus();
+                            epGoodsOutward.SetError(txtOutwardQuantity, "Please enter a valid outward quantity");
                             txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tpOutwardQuantity.ShowAlways = true;
-                            tpOutwardQuantity.Show("Please enter a correct Outward Quantity", txtOutwardQuantity, 5000);
+                            tpOutwardQuantity.Show("Please enter a valid outward quantity", txtOutwardQuantity, 5000);
                         }
                         else
                         {
@@ -1815,7 +1818,7 @@ namespace ROMS
             {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnproductmasterlist(13, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, txtProduct.Text, 0,"", "",dtStock,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(13, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, txtProduct.Text, 0,"",dtStock);
 
                 if (objDs != null)
                 {

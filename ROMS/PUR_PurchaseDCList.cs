@@ -15,8 +15,10 @@ namespace ROMS
     public partial class PUR_PurchaseDCList : Form
     {
         public int varviewtype = 0;
+        public int Varflag = 0; 
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        ToolTip tpSupplier = new ToolTip();
         public PUR_PurchaseDCList()
         {
             InitializeComponent();
@@ -52,58 +54,107 @@ namespace ROMS
         {
             try
             {
+                Varflag = 0;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
-                if (txtSupplier.Text == "")
-                {
-                    lblSupplierCode.Text = "0";
-                    lblschedule.Text = "0";
-                }
                 //********** To display a data in a grid  ******************
+                ep_PurchaseDC.Clear();
                 grdPurchaseDCList.DataSource = null;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
-                objTRNG_Purchase_DC.ViewType = varviewtype;
-                objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                objTRNG_Purchase_DC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRNG_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
-                objTRNG_Purchase_DC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
-                objTRNG_Purchase_DC.paraFromDate = dpDcFromDate.Text;
-                objTRNG_Purchase_DC.paraToDate = dpdctodate.Text;
-                objTRNG_Purchase_DC.@paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
-                objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
-                objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
-                objdserv.CloseConnection();
-                if (objDs != null)
+                string varSupplierId = "0";
+                //**** To call the function from SP ********* 
+                if (txtSupplier.Text == "")
                 {
-                    if (objDs.Tables.Count != 0)
+                    varSupplierId = "0";
+                    lblschedule.Text = "0";
+                }
+                else
+                {
+                    string[] values = new string[0];
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(31, 0, Convert.ToInt32(lblschedule.Text), 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
                     {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                        }
+                    }
+                    if (values[0] == "-1")
+                    {
+                        ep_PurchaseDC.SetError(txtSupplier, "Invalid supplier.");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSupplier.ShowAlways = true;
+                        tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
+                        lblSupplierCode.Text = "0";
+                        lblschedule.Text = "0";
+                        Varflag = 1;
+                    }
+                    else
+                    {
+                        ep_PurchaseDC.Clear();
+                        lblSupplierCode.Text = values[0];
+                        lblschedule.Text = values[1];
+                        txtSupplier.BackColor = Color.White;
+
+                    }
+                    //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                }
+                if (Varflag == 0)
+                {
+                    SPDataService objdserv = new SPDataService();
+                    TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
+                    objTRNG_Purchase_DC.ViewType = varviewtype;
+                    objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRNG_Purchase_DC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objTRNG_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                    objTRNG_Purchase_DC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                    objTRNG_Purchase_DC.paraFromDate = dpDcFromDate.Text;
+                    objTRNG_Purchase_DC.paraToDate = dpdctodate.Text;
+                    objTRNG_Purchase_DC.@paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                    objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                    objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
                         {
                             lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdPurchaseDCList.DataSource = objDs.Tables[0];
-                            grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseDCList.Columns["Concern"].Width = 150;
-                            grdPurchaseDCList.Columns["DC Date"].Width = 100;
-                            grdPurchaseDCList.Columns["DC No."].Width = 100;
-                            grdPurchaseDCList.Columns["Supplier"].Width = 300;
-                            grdPurchaseDCList.Columns["Total Products"].Width = 100;
-                            grdPurchaseDCList.Columns["GSTIN"].Width = 170;
-                            grdPurchaseDCList.Columns["Status"].Width = 80;
-                            grdPurchaseDCList.Columns["S.No."].Width = 50;
-                            grdPurchaseDCList.Columns["ID"].Visible = false;
-                            grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
-                            grdPurchaseDCList.Columns["Status ID"].Visible = false;
-                            grdPurchaseDCList.Columns["COMID"].Visible = false;
-                            grdPurchaseDCList.Columns["DC_SPSCID"].Visible = false;
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                lblNoRecordsFound.Visible = false;
+                                lblNoRecordsFound.SendToBack();
+                                grdPurchaseDCList.DataSource = objDs.Tables[0];
+                                grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdPurchaseDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdPurchaseDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPurchaseDCList.Columns["Concern"].Width = 150;
+                                grdPurchaseDCList.Columns["DC Date"].Width = 100;
+                                grdPurchaseDCList.Columns["DC No."].Width = 100;
+                                grdPurchaseDCList.Columns["Supplier"].Width = 300;
+                                grdPurchaseDCList.Columns["Total Products"].Width = 100;
+                                grdPurchaseDCList.Columns["GSTIN"].Width = 170;
+                                grdPurchaseDCList.Columns["Status"].Width = 80;
+                                grdPurchaseDCList.Columns["S.No."].Width = 50;
+                                grdPurchaseDCList.Columns["ID"].Visible = false;
+                                grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
+                                grdPurchaseDCList.Columns["Status ID"].Visible = false;
+                                grdPurchaseDCList.Columns["COMID"].Visible = false;
+                                grdPurchaseDCList.Columns["DC_SPSCID"].Visible = false;
+                            }
+                            else
+                            {
+                                lblNoRecordsFound.Visible = true;
+                                lblNoRecordsFound.BringToFront();
+                            }
                         }
                         else
                         {
@@ -116,13 +167,15 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
+                    udfnSearchGridHead();
                 }
                 else
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
+                    grdPurchaseDCList.DataSource = null;
+                    DGV_SearchGrid.DataSource = null;
                 }
-                udfnSearchGridHead();
             }
             catch (Exception ex)
             {
@@ -521,12 +574,14 @@ namespace ROMS
         {
             try
             {
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfncmbDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                udfnList();
                 dpDcFromDate.MinDate = MainForm.pbFYStartDate;
                 dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpdctodate.MinDate = dpDcFromDate.MaxDate;
+                this.ActiveControl = cmbConcern;
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -892,7 +947,7 @@ namespace ROMS
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            varviewtype = 1;
+                            varviewtype = 0;
                             udfnList();
                         }
                         else if (result.Split('~')[0] == "4")
