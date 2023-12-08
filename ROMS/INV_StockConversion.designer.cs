@@ -33,77 +33,98 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(INV_StockConversion));
-            this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epBatchConversion = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnldl = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblbatchno = new System.Windows.Forms.Label();
-            this.lblExpiryDate = new System.Windows.Forms.Label();
-            this.lblMrp = new System.Windows.Forms.Label();
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.lvproduct = new System.Windows.Forms.ListView();
+            this.PRID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PICODE = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.STK_SLID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RK_ShortName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.STK_MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.STK_ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.STK_BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.STK_Qty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UT_Symbol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UTID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Unitname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtTotalUnit = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.totalQty = new System.Windows.Forms.TextBox();
+            this.txtUnit3 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Label();
+            this.txtBatchNo2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtQty2 = new System.Windows.Forms.TextBox();
             this.lblActualQty = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtMrp2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtYear = new System.Windows.Forms.TextBox();
             this.txtDay = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtMonth = new System.Windows.Forms.TextBox();
             this.lblYyyy = new System.Windows.Forms.Label();
             this.lblMM = new System.Windows.Forms.Label();
             this.lblDd = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdBatchConversion = new System.Windows.Forms.DataGridView();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtRack = new System.Windows.Forms.TextBox();
+            this.txtStockLocation = new System.Windows.Forms.TextBox();
+            this.lblMrp = new System.Windows.Forms.Label();
+            this.lblExpiryDate = new System.Windows.Forms.Label();
+            this.lblbatchno = new System.Windows.Forms.Label();
+            this.txtUnit = new System.Windows.Forms.TextBox();
             this.txtStock = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtunit = new System.Windows.Forms.TextBox();
-            this.txtunitrate = new System.Windows.Forms.TextBox();
+            this.txtUnit2 = new System.Windows.Forms.TextBox();
+            this.txtBatchNo = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtExpiryDate = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.txtgrnno = new System.Windows.Forms.TextBox();
+            this.txtConversionNo = new System.Windows.Forms.TextBox();
             this.lblDEVisitDay = new System.Windows.Forms.Label();
-            this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.dpConversionDate = new System.Windows.Forms.DateTimePicker();
+            this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtMrp = new System.Windows.Forms.TextBox();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtActualQty = new System.Windows.Forms.TextBox();
+            this.txtQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epBatchConversion)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpExcessProduct.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBatchConversion)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // errUnit
+            // epBatchConversion
             // 
-            this.errUnit.ContainerControl = this;
+            this.epBatchConversion.ContainerControl = this;
             // 
             // tsPurchaseInvoiceList
             // 
@@ -141,9 +162,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lblbatchno);
-            this.groupBox1.Controls.Add(this.lblExpiryDate);
-            this.groupBox1.Controls.Add(this.lblMrp);
             this.groupBox1.Controls.Add(this.grpExcessProduct);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Location = new System.Drawing.Point(12, 4);
@@ -152,55 +170,29 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // lblbatchno
-            // 
-            this.lblbatchno.AutoSize = true;
-            this.lblbatchno.Location = new System.Drawing.Point(835, 28);
-            this.lblbatchno.Name = "lblbatchno";
-            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
-            this.lblbatchno.TabIndex = 1111227;
-            this.lblbatchno.Text = "Batch No.";
-            // 
-            // lblExpiryDate
-            // 
-            this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(727, 27);
-            this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
-            this.lblExpiryDate.TabIndex = 1111228;
-            this.lblExpiryDate.Text = "Expiry Date";
-            // 
-            // lblMrp
-            // 
-            this.lblMrp.AutoSize = true;
-            this.lblMrp.Location = new System.Drawing.Point(669, 27);
-            this.lblMrp.Name = "lblMrp";
-            this.lblMrp.Size = new System.Drawing.Size(34, 20);
-            this.lblMrp.TabIndex = 1111223;
-            this.lblMrp.Text = "MRP";
-            // 
             // grpExcessProduct
             // 
-            this.grpExcessProduct.Controls.Add(this.textBox11);
-            this.grpExcessProduct.Controls.Add(this.label5);
-            this.grpExcessProduct.Controls.Add(this.textBox10);
-            this.grpExcessProduct.Controls.Add(this.textBox2);
-            this.grpExcessProduct.Controls.Add(this.textBox3);
-            this.grpExcessProduct.Controls.Add(this.textBox5);
             this.grpExcessProduct.Controls.Add(this.btnAdd);
+            this.grpExcessProduct.Controls.Add(this.lvproduct);
+            this.grpExcessProduct.Controls.Add(this.txtTotalUnit);
+            this.grpExcessProduct.Controls.Add(this.label5);
+            this.grpExcessProduct.Controls.Add(this.totalQty);
+            this.grpExcessProduct.Controls.Add(this.txtUnit3);
+            this.grpExcessProduct.Controls.Add(this.textBox3);
+            this.grpExcessProduct.Controls.Add(this.txtBatchNo2);
             this.grpExcessProduct.Controls.Add(this.label2);
-            this.grpExcessProduct.Controls.Add(this.textBox6);
+            this.grpExcessProduct.Controls.Add(this.txtQty2);
             this.grpExcessProduct.Controls.Add(this.lblActualQty);
             this.grpExcessProduct.Controls.Add(this.label3);
-            this.grpExcessProduct.Controls.Add(this.textBox7);
+            this.grpExcessProduct.Controls.Add(this.txtMrp2);
             this.grpExcessProduct.Controls.Add(this.label4);
-            this.grpExcessProduct.Controls.Add(this.textBox8);
+            this.grpExcessProduct.Controls.Add(this.txtYear);
             this.grpExcessProduct.Controls.Add(this.txtDay);
-            this.grpExcessProduct.Controls.Add(this.textBox9);
+            this.grpExcessProduct.Controls.Add(this.txtMonth);
             this.grpExcessProduct.Controls.Add(this.lblYyyy);
             this.grpExcessProduct.Controls.Add(this.lblMM);
             this.grpExcessProduct.Controls.Add(this.lblDd);
-            this.grpExcessProduct.Controls.Add(this.dataGridView1);
+            this.grpExcessProduct.Controls.Add(this.grdBatchConversion);
             this.grpExcessProduct.Controls.Add(this.btnClose);
             this.grpExcessProduct.Controls.Add(this.btnSave);
             this.grpExcessProduct.Location = new System.Drawing.Point(9, 96);
@@ -209,15 +201,68 @@
             this.grpExcessProduct.TabIndex = 1111204;
             this.grpExcessProduct.TabStop = false;
             // 
-            // textBox11
+            // btnAdd
             // 
-            this.textBox11.Enabled = false;
-            this.textBox11.Location = new System.Drawing.Point(843, 488);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(31, 28);
-            this.textBox11.TabIndex = 1111263;
-            this.textBox11.Text = "Pkts";
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(511, 46);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(25, 24);
+            this.btnAdd.TabIndex = 17;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            // 
+            // lvproduct
+            // 
+            this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.PRID,
+            this.PICODE,
+            this.PRODUCTLIST,
+            this.STK_SLID,
+            this.PR_TName,
+            this.PR_EName,
+            this.RK_ShortName,
+            this.STK_MRP,
+            this.STK_ExpiryDate,
+            this.STK_BatchNo,
+            this.STK_Qty,
+            this.UT_Symbol,
+            this.UTID,
+            this.Unitname});
+            this.lvproduct.FullRowSelect = true;
+            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvproduct.HideSelection = false;
+            this.lvproduct.Location = new System.Drawing.Point(322, 0);
+            this.lvproduct.Name = "lvproduct";
+            this.lvproduct.Size = new System.Drawing.Size(861, 253);
+            this.lvproduct.TabIndex = 1111265;
+            this.lvproduct.UseCompatibleStateImageBehavior = false;
+            this.lvproduct.View = System.Windows.Forms.View.Details;
+            this.lvproduct.Visible = false;
+            this.lvproduct.SelectedIndexChanged += new System.EventHandler(this.Lvproduct_SelectedIndexChanged);
+            this.lvproduct.DoubleClick += new System.EventHandler(this.Lvproduct_DoubleClick);
+            this.lvproduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lvproduct_KeyDown);
+            // 
+            // PRID
+            // 
+            this.PRID.Width = 0;
+            // 
+            // PICODE
+            // 
+            this.PICODE.Width = 200;
+            // 
+            // PRODUCTLIST
+            // 
+            this.PRODUCTLIST.Width = 200;
+            // 
+            // txtTotalUnit
+            // 
+            this.txtTotalUnit.Enabled = false;
+            this.txtTotalUnit.Location = new System.Drawing.Point(843, 488);
+            this.txtTotalUnit.Name = "txtTotalUnit";
+            this.txtTotalUnit.ReadOnly = true;
+            this.txtTotalUnit.Size = new System.Drawing.Size(31, 28);
+            this.txtTotalUnit.TabIndex = 1111263;
             // 
             // label5
             // 
@@ -228,52 +273,45 @@
             this.label5.TabIndex = 1111262;
             this.label5.Text = "Total Qty";
             // 
-            // textBox10
+            // totalQty
             // 
-            this.textBox10.Location = new System.Drawing.Point(766, 488);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(77, 28);
-            this.textBox10.TabIndex = 1111261;
+            this.totalQty.Enabled = false;
+            this.totalQty.Location = new System.Drawing.Point(766, 488);
+            this.totalQty.Name = "totalQty";
+            this.totalQty.ReadOnly = true;
+            this.totalQty.Size = new System.Drawing.Size(77, 28);
+            this.totalQty.TabIndex = 17;
             // 
-            // textBox2
+            // txtUnit3
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(463, 43);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(31, 28);
-            this.textBox2.TabIndex = 1111260;
-            this.textBox2.Text = "Pkts";
+            this.txtUnit3.Enabled = false;
+            this.txtUnit3.Location = new System.Drawing.Point(463, 43);
+            this.txtUnit3.Name = "txtUnit3";
+            this.txtUnit3.ReadOnly = true;
+            this.txtUnit3.Size = new System.Drawing.Size(31, 28);
+            this.txtUnit3.TabIndex = 1111260;
             // 
             // textBox3
             // 
+            this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
-            this.textBox3.Location = new System.Drawing.Point(7, 43);
+            this.textBox3.Location = new System.Drawing.Point(8, 43);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(17, 27);
             this.textBox3.TabIndex = 1111259;
             this.textBox3.Text = "₹";
             // 
-            // textBox5
+            // txtBatchNo2
             // 
-            this.textBox5.Location = new System.Drawing.Point(290, 43);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(115, 28);
-            this.textBox5.TabIndex = 1111253;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(499, 46);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 1111207;
-            this.btnAdd.Text = "        ";
+            this.txtBatchNo2.Location = new System.Drawing.Point(290, 43);
+            this.txtBatchNo2.Name = "txtBatchNo2";
+            this.txtBatchNo2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBatchNo2.Size = new System.Drawing.Size(115, 28);
+            this.txtBatchNo2.TabIndex = 15;
+            this.txtBatchNo2.Enter += new System.EventHandler(this.TxtBatchNo2_Enter);
+            this.txtBatchNo2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo2_KeyDown);
+            this.txtBatchNo2.Leave += new System.EventHandler(this.TxtBatchNo2_Leave);
             // 
             // label2
             // 
@@ -284,13 +322,19 @@
             this.label2.TabIndex = 1111254;
             this.label2.Text = "Batch No.";
             // 
-            // textBox6
+            // txtQty2
             // 
-            this.textBox6.Location = new System.Drawing.Point(417, 43);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(46, 28);
-            this.textBox6.TabIndex = 1111249;
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtQty2.Location = new System.Drawing.Point(417, 43);
+            this.txtQty2.Name = "txtQty2";
+            this.txtQty2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtQty2.Size = new System.Drawing.Size(46, 28);
+            this.txtQty2.TabIndex = 16;
+            this.txtQty2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtQty2.TextChanged += new System.EventHandler(this.TxtQty2_TextChanged);
+            this.txtQty2.Enter += new System.EventHandler(this.TxtQty2_Enter);
+            this.txtQty2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQty2_KeyDown);
+            this.txtQty2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQty2_KeyPress);
+            this.txtQty2.Leave += new System.EventHandler(this.TxtQty2_Leave);
             // 
             // lblActualQty
             // 
@@ -310,12 +354,17 @@
             this.label3.TabIndex = 1111255;
             this.label3.Text = "Expiry Date";
             // 
-            // textBox7
+            // txtMrp2
             // 
-            this.textBox7.Location = new System.Drawing.Point(24, 43);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(75, 28);
-            this.textBox7.TabIndex = 1111246;
+            this.txtMrp2.Location = new System.Drawing.Point(24, 43);
+            this.txtMrp2.Name = "txtMrp2";
+            this.txtMrp2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtMrp2.Size = new System.Drawing.Size(75, 28);
+            this.txtMrp2.TabIndex = 11;
+            this.txtMrp2.TextChanged += new System.EventHandler(this.TxtMrp2_TextChanged);
+            this.txtMrp2.Enter += new System.EventHandler(this.TxtMrp2_Enter);
+            this.txtMrp2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMrp2_KeyDown);
+            this.txtMrp2.Leave += new System.EventHandler(this.TxtMrp2_Leave);
             // 
             // label4
             // 
@@ -326,29 +375,42 @@
             this.label4.TabIndex = 1111247;
             this.label4.Text = "MRP";
             // 
-            // textBox8
+            // txtYear
             // 
-            this.textBox8.Location = new System.Drawing.Point(247, 43);
-            this.textBox8.MaxLength = 2;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(34, 28);
-            this.textBox8.TabIndex = 1111252;
+            this.txtYear.Enabled = false;
+            this.txtYear.Location = new System.Drawing.Point(247, 43);
+            this.txtYear.MaxLength = 4;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.ReadOnly = true;
+            this.txtYear.Size = new System.Drawing.Size(34, 28);
+            this.txtYear.TabIndex = 14;
+            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtYear_KeyDown);
+            this.txtYear.Leave += new System.EventHandler(this.TxtYear_Leave);
             // 
             // txtDay
             // 
+            this.txtDay.Enabled = false;
             this.txtDay.Location = new System.Drawing.Point(180, 43);
             this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
+            this.txtDay.ReadOnly = true;
             this.txtDay.Size = new System.Drawing.Size(33, 28);
-            this.txtDay.TabIndex = 1111250;
+            this.txtDay.TabIndex = 12;
+            this.txtDay.TextChanged += new System.EventHandler(this.TxtDay_TextChanged);
+            this.txtDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDay_KeyDown);
             // 
-            // textBox9
+            // txtMonth
             // 
-            this.textBox9.Location = new System.Drawing.Point(213, 43);
-            this.textBox9.MaxLength = 2;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(34, 28);
-            this.textBox9.TabIndex = 1111251;
+            this.txtMonth.Enabled = false;
+            this.txtMonth.Location = new System.Drawing.Point(213, 43);
+            this.txtMonth.MaxLength = 2;
+            this.txtMonth.Name = "txtMonth";
+            this.txtMonth.ReadOnly = true;
+            this.txtMonth.Size = new System.Drawing.Size(34, 28);
+            this.txtMonth.TabIndex = 13;
+            this.txtMonth.TextChanged += new System.EventHandler(this.TxtMonth_TextChanged);
+            this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonth_KeyDown);
+            this.txtMonth.Leave += new System.EventHandler(this.TxtMonth_Leave);
             // 
             // lblYyyy
             // 
@@ -380,14 +442,14 @@
             this.lblDd.TabIndex = 1111256;
             this.lblDd.Text = "DD";
             // 
-            // dataGridView1
+            // grdBatchConversion
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdBatchConversion.AllowUserToAddRows = false;
+            this.grdBatchConversion.AllowUserToDeleteRows = false;
+            this.grdBatchConversion.AllowUserToResizeColumns = false;
+            this.grdBatchConversion.AllowUserToResizeRows = false;
+            this.grdBatchConversion.BackgroundColor = System.Drawing.Color.White;
+            this.grdBatchConversion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -395,18 +457,20 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeight = 30;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.Column3,
-            this.Column4,
-            this.Column10,
-            this.Column2,
-            this.Column1,
-            this.dataGridViewTextBoxColumn3,
-            this.Column6,
+            this.grdBatchConversion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdBatchConversion.ColumnHeadersHeight = 30;
+            this.grdBatchConversion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdBatchConversion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmSno,
+            this.clmPicode,
+            this.clmProduct,
+            this.clmMrp,
+            this.clmExpiryDate,
+            this.clmBatchNo,
+            this.clmQty,
+            this.clmPRID,
+            this.clmRKID,
+            this.clmSLID,
             this.clmRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -415,78 +479,94 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 77);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
+            this.grdBatchConversion.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdBatchConversion.EnableHeadersVisualStyles = false;
+            this.grdBatchConversion.GridColor = System.Drawing.Color.White;
+            this.grdBatchConversion.Location = new System.Drawing.Point(9, 77);
+            this.grdBatchConversion.Name = "grdBatchConversion";
+            this.grdBatchConversion.ReadOnly = true;
+            this.grdBatchConversion.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1289, 403);
-            this.dataGridView1.TabIndex = 1111170;
+            this.grdBatchConversion.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdBatchConversion.RowTemplate.Height = 25;
+            this.grdBatchConversion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdBatchConversion.Size = new System.Drawing.Size(1289, 403);
+            this.grdBatchConversion.TabIndex = 1111333456;
+            this.grdBatchConversion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBatchConversion_CellContentClick);
             // 
-            // dataGridViewTextBoxColumn1
+            // clmSno
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 50;
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmSno.Width = 50;
             // 
-            // Column3
+            // clmPicode
             // 
-            this.Column3.HeaderText = "P.I Code";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.clmPicode.HeaderText = "P.I Code";
+            this.clmPicode.Name = "clmPicode";
+            this.clmPicode.ReadOnly = true;
             // 
-            // Column4
+            // clmProduct
             // 
-            this.Column4.HeaderText = "Product Name";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 300;
+            this.clmProduct.HeaderText = "Product Name";
+            this.clmProduct.Name = "clmProduct";
+            this.clmProduct.ReadOnly = true;
+            this.clmProduct.Width = 300;
             // 
-            // Column10
+            // clmMrp
             // 
-            this.Column10.HeaderText = "MRP";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
+            this.clmMrp.HeaderText = "MRP";
+            this.clmMrp.Name = "clmMrp";
+            this.clmMrp.ReadOnly = true;
             // 
-            // Column2
+            // clmExpiryDate
             // 
-            this.Column2.HeaderText = "Expiry Date";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.clmExpiryDate.HeaderText = "Expiry Date";
+            this.clmExpiryDate.Name = "clmExpiryDate";
+            this.clmExpiryDate.ReadOnly = true;
             // 
-            // Column1
+            // clmBatchNo
             // 
-            this.Column1.HeaderText = "Batch No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.clmBatchNo.HeaderText = "Batch No.";
+            this.clmBatchNo.Name = "clmBatchNo";
+            this.clmBatchNo.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // clmQty
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Qty";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 75;
+            this.clmQty.HeaderText = "Qty";
+            this.clmQty.Name = "clmQty";
+            this.clmQty.ReadOnly = true;
+            this.clmQty.Width = 75;
             // 
-            // Column6
+            // clmPRID
             // 
-            this.Column6.HeaderText = "Unit";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 75;
+            this.clmPRID.HeaderText = "PRID";
+            this.clmPRID.Name = "clmPRID";
+            this.clmPRID.ReadOnly = true;
+            this.clmPRID.Visible = false;
+            // 
+            // clmRKID
+            // 
+            this.clmRKID.HeaderText = "RKID";
+            this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
+            this.clmRKID.Visible = false;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
+            this.clmSLID.Visible = false;
             // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.ReadOnly = true;
             // 
@@ -498,7 +578,7 @@
             this.btnClose.Location = new System.Drawing.Point(1223, 488);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 1111202;
+            this.btnClose.TabIndex = 19;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -512,123 +592,202 @@
             this.btnSave.Location = new System.Drawing.Point(1134, 488);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 1111201;
+            this.btnSave.TabIndex = 18;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox12);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.txtRack);
+            this.groupBox3.Controls.Add(this.txtStockLocation);
+            this.groupBox3.Controls.Add(this.lblMrp);
+            this.groupBox3.Controls.Add(this.lblExpiryDate);
+            this.groupBox3.Controls.Add(this.lblbatchno);
+            this.groupBox3.Controls.Add(this.txtUnit);
             this.groupBox3.Controls.Add(this.txtStock);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.txtunit);
-            this.groupBox3.Controls.Add(this.txtunitrate);
+            this.groupBox3.Controls.Add(this.txtUnit2);
+            this.groupBox3.Controls.Add(this.txtBatchNo);
             this.groupBox3.Controls.Add(this.textBox4);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.txtExpiryDate);
             this.groupBox3.Controls.Add(this.cmbConcern);
-            this.groupBox3.Controls.Add(this.txtgrnno);
+            this.groupBox3.Controls.Add(this.txtConversionNo);
             this.groupBox3.Controls.Add(this.lblDEVisitDay);
-            this.groupBox3.Controls.Add(this.dpPlanDate);
-            this.groupBox3.Controls.Add(this.txtSupplier);
+            this.groupBox3.Controls.Add(this.dpConversionDate);
+            this.groupBox3.Controls.Add(this.txtProductName);
             this.groupBox3.Controls.Add(this.txtMrp);
             this.groupBox3.Controls.Add(this.lblDESupplier);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.txtActualQty);
+            this.groupBox3.Controls.Add(this.txtQty);
             this.groupBox3.Controls.Add(this.lblQty);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Location = new System.Drawing.Point(9, 14);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1313, 76);
-            this.groupBox3.TabIndex = 1111221;
+            this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             // 
-            // textBox12
+            // label8
             // 
-            this.textBox12.Enabled = false;
-            this.textBox12.Location = new System.Drawing.Point(1000, 39);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.ReadOnly = true;
-            this.textBox12.Size = new System.Drawing.Size(31, 28);
-            this.textBox12.TabIndex = 1111249;
-            this.textBox12.Text = "Pkts";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(745, 17);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 20);
+            this.label8.TabIndex = 1111264;
+            this.label8.Text = "Rack";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(627, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 20);
+            this.label7.TabIndex = 1111264;
+            this.label7.Text = "Stock Location";
+            // 
+            // txtRack
+            // 
+            this.txtRack.Enabled = false;
+            this.txtRack.Location = new System.Drawing.Point(749, 38);
+            this.txtRack.Name = "txtRack";
+            this.txtRack.ReadOnly = true;
+            this.txtRack.Size = new System.Drawing.Size(76, 28);
+            this.txtRack.TabIndex = 5;
+            // 
+            // txtStockLocation
+            // 
+            this.txtStockLocation.Enabled = false;
+            this.txtStockLocation.Location = new System.Drawing.Point(631, 38);
+            this.txtStockLocation.Name = "txtStockLocation";
+            this.txtStockLocation.ReadOnly = true;
+            this.txtStockLocation.Size = new System.Drawing.Size(112, 28);
+            this.txtStockLocation.TabIndex = 4;
+            // 
+            // lblMrp
+            // 
+            this.lblMrp.AutoSize = true;
+            this.lblMrp.Location = new System.Drawing.Point(826, 17);
+            this.lblMrp.Name = "lblMrp";
+            this.lblMrp.Size = new System.Drawing.Size(34, 20);
+            this.lblMrp.TabIndex = 1111223;
+            this.lblMrp.Text = "MRP";
+            // 
+            // lblExpiryDate
+            // 
+            this.lblExpiryDate.AutoSize = true;
+            this.lblExpiryDate.Location = new System.Drawing.Point(902, 14);
+            this.lblExpiryDate.Name = "lblExpiryDate";
+            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
+            this.lblExpiryDate.TabIndex = 1111228;
+            this.lblExpiryDate.Text = "Expiry Date";
+            // 
+            // lblbatchno
+            // 
+            this.lblbatchno.AutoSize = true;
+            this.lblbatchno.Location = new System.Drawing.Point(1014, 14);
+            this.lblbatchno.Name = "lblbatchno";
+            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
+            this.lblbatchno.TabIndex = 1111227;
+            this.lblbatchno.Text = "Batch No.";
+            // 
+            // txtUnit
+            // 
+            this.txtUnit.Enabled = false;
+            this.txtUnit.Location = new System.Drawing.Point(1176, 39);
+            this.txtUnit.Name = "txtUnit";
+            this.txtUnit.ReadOnly = true;
+            this.txtUnit.Size = new System.Drawing.Size(31, 28);
+            this.txtUnit.TabIndex = 1111249;
             // 
             // txtStock
             // 
             this.txtStock.Enabled = false;
-            this.txtStock.Location = new System.Drawing.Point(946, 39);
+            this.txtStock.Location = new System.Drawing.Point(1122, 39);
             this.txtStock.Name = "txtStock";
             this.txtStock.ReadOnly = true;
+            this.txtStock.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtStock.Size = new System.Drawing.Size(54, 28);
-            this.txtStock.TabIndex = 1111248;
+            this.txtStock.TabIndex = 9;
+            this.txtStock.TextChanged += new System.EventHandler(this.TxtStock_TextChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(946, 14);
+            this.label6.Location = new System.Drawing.Point(1118, 17);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 20);
             this.label6.TabIndex = 1111247;
             this.label6.Text = "Stock";
+            this.label6.Click += new System.EventHandler(this.Label6_Click);
             // 
-            // txtunit
+            // txtUnit2
             // 
-            this.txtunit.Enabled = false;
-            this.txtunit.Location = new System.Drawing.Point(1088, 39);
-            this.txtunit.Name = "txtunit";
-            this.txtunit.ReadOnly = true;
-            this.txtunit.Size = new System.Drawing.Size(31, 28);
-            this.txtunit.TabIndex = 1111246;
-            this.txtunit.Text = "Pkts";
+            this.txtUnit2.Enabled = false;
+            this.txtUnit2.Location = new System.Drawing.Point(1267, 39);
+            this.txtUnit2.Name = "txtUnit2";
+            this.txtUnit2.ReadOnly = true;
+            this.txtUnit2.Size = new System.Drawing.Size(31, 28);
+            this.txtUnit2.TabIndex = 1111246;
             // 
-            // txtunitrate
+            // txtBatchNo
             // 
-            this.txtunitrate.Enabled = false;
-            this.txtunitrate.Location = new System.Drawing.Point(824, 39);
-            this.txtunitrate.Name = "txtunitrate";
-            this.txtunitrate.ReadOnly = true;
-            this.txtunitrate.Size = new System.Drawing.Size(119, 28);
-            this.txtunitrate.TabIndex = 1111226;
+            this.txtBatchNo.Enabled = false;
+            this.txtBatchNo.Location = new System.Drawing.Point(1018, 38);
+            this.txtBatchNo.Name = "txtBatchNo";
+            this.txtBatchNo.ReadOnly = true;
+            this.txtBatchNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBatchNo.Size = new System.Drawing.Size(98, 28);
+            this.txtBatchNo.TabIndex = 8;
             // 
             // textBox4
             // 
+            this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Rupee Foradian", 13F);
-            this.textBox4.Location = new System.Drawing.Point(643, 39);
+            this.textBox4.Location = new System.Drawing.Point(831, 38);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(17, 28);
             this.textBox4.TabIndex = 1111235;
             this.textBox4.Text = "₹";
+            this.textBox4.TextChanged += new System.EventHandler(this.TextBox4_TextChanged);
             // 
-            // textBox1
+            // txtExpiryDate
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(715, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(106, 28);
-            this.textBox1.TabIndex = 1111229;
+            this.txtExpiryDate.Enabled = false;
+            this.txtExpiryDate.Location = new System.Drawing.Point(906, 38);
+            this.txtExpiryDate.Name = "txtExpiryDate";
+            this.txtExpiryDate.ReadOnly = true;
+            this.txtExpiryDate.Size = new System.Drawing.Size(106, 28);
+            this.txtExpiryDate.TabIndex = 7;
+            this.txtExpiryDate.TextChanged += new System.EventHandler(this.TxtExpiryDate_TextChanged);
             // 
             // cmbConcern
             // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(7, 39);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(98, 27);
-            this.cmbConcern.TabIndex = 1111170;
+            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
-            // txtgrnno
+            // txtConversionNo
             // 
-            this.txtgrnno.Enabled = false;
-            this.txtgrnno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtgrnno.Location = new System.Drawing.Point(218, 39);
-            this.txtgrnno.MaxLength = 50;
-            this.txtgrnno.Name = "txtgrnno";
-            this.txtgrnno.ReadOnly = true;
-            this.txtgrnno.Size = new System.Drawing.Size(98, 27);
-            this.txtgrnno.TabIndex = 1111166;
+            this.txtConversionNo.Enabled = false;
+            this.txtConversionNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConversionNo.Location = new System.Drawing.Point(218, 39);
+            this.txtConversionNo.MaxLength = 50;
+            this.txtConversionNo.Name = "txtConversionNo";
+            this.txtConversionNo.ReadOnly = true;
+            this.txtConversionNo.Size = new System.Drawing.Size(98, 27);
+            this.txtConversionNo.TabIndex = 2;
             // 
             // lblDEVisitDay
             // 
@@ -640,33 +799,40 @@
             this.lblDEVisitDay.TabIndex = 1111163;
             this.lblDEVisitDay.Text = "Conversion Date";
             // 
-            // dpPlanDate
+            // dpConversionDate
             // 
-            this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
-            this.dpPlanDate.Enabled = false;
-            this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpPlanDate.Location = new System.Drawing.Point(112, 38);
-            this.dpPlanDate.Name = "dpPlanDate";
-            this.dpPlanDate.Size = new System.Drawing.Size(100, 28);
-            this.dpPlanDate.TabIndex = 1111167;
+            this.dpConversionDate.CustomFormat = "dd/MM/yyyy";
+            this.dpConversionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpConversionDate.Location = new System.Drawing.Point(112, 38);
+            this.dpConversionDate.Name = "dpConversionDate";
+            this.dpConversionDate.Size = new System.Drawing.Size(100, 28);
+            this.dpConversionDate.TabIndex = 1;
+            this.dpConversionDate.ValueChanged += new System.EventHandler(this.DpConversionDate_ValueChanged);
+            this.dpConversionDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpConversionDate_KeyDown);
             // 
-            // txtSupplier
+            // txtProductName
             // 
-            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(322, 39);
-            this.txtSupplier.MaxLength = 50;
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(316, 27);
-            this.txtSupplier.TabIndex = 1111164;
+            this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductName.Location = new System.Drawing.Point(322, 39);
+            this.txtProductName.MaxLength = 50;
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(303, 27);
+            this.txtProductName.TabIndex = 3;
+            this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
+            this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
+            this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
+            this.txtProductName.Leave += new System.EventHandler(this.TxtProductName_Leave);
             // 
             // txtMrp
             // 
             this.txtMrp.Enabled = false;
-            this.txtMrp.Location = new System.Drawing.Point(660, 39);
+            this.txtMrp.Location = new System.Drawing.Point(848, 38);
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.ReadOnly = true;
+            this.txtMrp.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtMrp.Size = new System.Drawing.Size(52, 28);
-            this.txtMrp.TabIndex = 1111222;
+            this.txtMrp.TabIndex = 6;
+            this.txtMrp.TextChanged += new System.EventHandler(this.TxtMrp_TextChanged);
             // 
             // lblDESupplier
             // 
@@ -688,21 +854,28 @@
             this.label1.TabIndex = 1111165;
             this.label1.Text = "Conversion No.";
             // 
-            // txtActualQty
+            // txtQty
             // 
-            this.txtActualQty.Location = new System.Drawing.Point(1034, 39);
-            this.txtActualQty.Name = "txtActualQty";
-            this.txtActualQty.Size = new System.Drawing.Size(54, 28);
-            this.txtActualQty.TabIndex = 1111225;
+            this.txtQty.Location = new System.Drawing.Point(1213, 39);
+            this.txtQty.Name = "txtQty";
+            this.txtQty.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtQty.Size = new System.Drawing.Size(54, 28);
+            this.txtQty.TabIndex = 10;
+            this.txtQty.TextChanged += new System.EventHandler(this.TxtQty_TextChanged);
+            this.txtQty.Enter += new System.EventHandler(this.TxtQty_Enter);
+            this.txtQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQty_KeyDown);
+            this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQty_KeyPress);
+            this.txtQty.Leave += new System.EventHandler(this.TxtQty_Leave);
             // 
             // lblQty
             // 
             this.lblQty.AutoSize = true;
-            this.lblQty.Location = new System.Drawing.Point(1034, 14);
+            this.lblQty.Location = new System.Drawing.Point(1209, 14);
             this.lblQty.Name = "lblQty";
             this.lblQty.Size = new System.Drawing.Size(56, 20);
             this.lblQty.TabIndex = 1111224;
             this.lblQty.Text = "Quantity";
+            this.lblQty.Click += new System.EventHandler(this.LblQty_Click);
             // 
             // label12
             // 
@@ -733,15 +906,15 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Returns";
             this.Load += new System.EventHandler(this.INV_StockConversion_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_StockConversion_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.epBatchConversion)).EndInit();
             this.tsPurchaseInvoiceList.ResumeLayout(false);
             this.tsPurchaseInvoiceList.PerformLayout();
             this.pnldl.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.grpExcessProduct.ResumeLayout(false);
             this.grpExcessProduct.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBatchConversion)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -750,64 +923,85 @@
         }
 
         #endregion
-        private System.Windows.Forms.ErrorProvider errUnit;
+        private System.Windows.Forms.ErrorProvider epBatchConversion;
         private System.Windows.Forms.ToolStrip tsPurchaseInvoiceList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnldl;
         private System.Windows.Forms.GroupBox groupBox1;
-        internal System.Windows.Forms.Label btnAdd;
         private System.Windows.Forms.GroupBox grpExcessProduct;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.Button btnSave;
-        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView grdBatchConversion;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cmbConcern;
-        private System.Windows.Forms.TextBox txtgrnno;
+        private System.Windows.Forms.TextBox txtConversionNo;
         private System.Windows.Forms.Label lblDEVisitDay;
-        private System.Windows.Forms.DateTimePicker dpPlanDate;
-        private System.Windows.Forms.TextBox txtSupplier;
+        private System.Windows.Forms.DateTimePicker dpConversionDate;
+        private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label lblDESupplier;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtunitrate;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBatchNo;
+        private System.Windows.Forms.TextBox txtExpiryDate;
         private System.Windows.Forms.Label lblbatchno;
         private System.Windows.Forms.Label lblExpiryDate;
-        private System.Windows.Forms.TextBox txtActualQty;
+        private System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.Label lblQty;
         private System.Windows.Forms.TextBox txtMrp;
         private System.Windows.Forms.Label lblMrp;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox txtunit;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtUnit2;
+        private System.Windows.Forms.TextBox txtUnit3;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtBatchNo2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtQty2;
         private System.Windows.Forms.Label lblActualQty;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtMrp2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.TextBox txtDay;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtMonth;
         private System.Windows.Forms.Label lblYyyy;
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDd;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewImageColumn clmRemove;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox totalQty;
+        private System.Windows.Forms.TextBox txtTotalUnit;
+        private System.Windows.Forms.TextBox txtUnit;
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtRack;
+        private System.Windows.Forms.TextBox txtStockLocation;
+        private System.Windows.Forms.ListView lvproduct;
+        private System.Windows.Forms.ColumnHeader PRID;
+        private System.Windows.Forms.ColumnHeader PICODE;
+        private System.Windows.Forms.ColumnHeader PRODUCTLIST;
+        private System.Windows.Forms.ColumnHeader STK_SLID;
+        private System.Windows.Forms.ColumnHeader PR_TName;
+        private System.Windows.Forms.ColumnHeader PR_EName;
+        private System.Windows.Forms.ColumnHeader RK_ShortName;
+        private System.Windows.Forms.ColumnHeader STK_MRP;
+        private System.Windows.Forms.ColumnHeader STK_ExpiryDate;
+        private System.Windows.Forms.ColumnHeader STK_BatchNo;
+        private System.Windows.Forms.ColumnHeader STK_Qty;
+        private System.Windows.Forms.ColumnHeader UT_Symbol;
+        private System.Windows.Forms.ColumnHeader UTID;
+        private System.Windows.Forms.ColumnHeader Unitname;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMrp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
