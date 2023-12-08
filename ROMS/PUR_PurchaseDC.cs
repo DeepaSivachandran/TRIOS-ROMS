@@ -147,6 +147,7 @@ namespace ROMS
             finally
             {
                 LV_Supplier.Visible = false;
+                grdPurchaseDC.ClearSelection();
             }
         }
         public void udfnDiscard()
