@@ -65,9 +65,12 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grdGodownStock = new System.Windows.Forms.DataGridView();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblUnit = new System.Windows.Forms.Label();
             this.txtRequiredQty = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dpDate = new System.Windows.Forms.DateTimePicker();
@@ -95,9 +98,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errStockRequest = new System.Windows.Forms.ErrorProvider(this.components);
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
             this.grpStockRequest.SuspendLayout();
@@ -163,7 +163,7 @@
             this.grpStockRequest.Controls.Add(this.grdGodownStock);
             this.grpStockRequest.Controls.Add(this.txttotalitem);
             this.grpStockRequest.Controls.Add(this.lbltotalproducts);
-            this.grpStockRequest.Controls.Add(this.label1);
+            this.grpStockRequest.Controls.Add(this.lblUnit);
             this.grpStockRequest.Controls.Add(this.txtRequiredQty);
             this.grpStockRequest.Controls.Add(this.label2);
             this.grpStockRequest.Controls.Add(this.dpDate);
@@ -192,7 +192,7 @@
             this.cmbStatus.Location = new System.Drawing.Point(1051, 591);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(64, 27);
-            this.cmbStatus.TabIndex = 111111144;
+            this.cmbStatus.TabIndex = 9;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
@@ -335,11 +335,31 @@
             this.grdGodownStock.Size = new System.Drawing.Size(345, 64);
             this.grdGodownStock.TabIndex = 1111212;
             // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Location";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 110;
+            // 
+            // clmSRack
+            // 
+            this.clmSRack.HeaderText = "Rack";
+            this.clmSRack.Name = "clmSRack";
+            this.clmSRack.ReadOnly = true;
+            this.clmSRack.Width = 110;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Stock";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // txttotalitem
             // 
+            this.txttotalitem.Enabled = false;
             this.txttotalitem.Location = new System.Drawing.Point(983, 591);
             this.txttotalitem.Name = "txttotalitem";
-            this.txttotalitem.ReadOnly = true;
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
             this.txttotalitem.TabIndex = 8;
             this.txttotalitem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -353,15 +373,14 @@
             this.lbltotalproducts.TabIndex = 1111209;
             this.lbltotalproducts.Text = "Total Products";
             // 
-            // label1
+            // lblUnit
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(908, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 20);
-            this.label1.TabIndex = 1111182;
-            this.label1.Text = "Pkts";
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnit.Location = new System.Drawing.Point(908, 51);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(0, 20);
+            this.lblUnit.TabIndex = 1111182;
             // 
             // txtRequiredQty
             // 
@@ -374,6 +393,7 @@
             this.txtRequiredQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRequiredQty.Enter += new System.EventHandler(this.TxtRequiredQty_Enter);
             this.txtRequiredQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRequiredQty_KeyDown);
+            this.txtRequiredQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRequiredQty_KeyPress);
             this.txtRequiredQty.Leave += new System.EventHandler(this.TxtRequiredQty_Leave);
             // 
             // label2
@@ -664,23 +684,6 @@
             // 
             this.errStockRequest.ContainerControl = this;
             // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Location";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 110;
-            // 
-            // clmSRack
-            // 
-            this.clmSRack.HeaderText = "Rack";
-            this.clmSRack.Name = "clmSRack";
-            this.clmSRack.Width = 110;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Stock";
-            this.Column6.Name = "Column6";
-            // 
             // INV_StockRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -731,7 +734,7 @@
         private System.Windows.Forms.Label lblRemarks;
         private System.Windows.Forms.DateTimePicker dpDate;
         private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.TextBox txtRequiredQty;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txttotalitem;
