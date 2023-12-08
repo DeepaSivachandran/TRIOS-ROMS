@@ -1555,26 +1555,21 @@ namespace ROMS
         {
             try
             {
-
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
-                //    return;
-                if ((e.ColumnIndex == 0 || e.ColumnIndex == 1 || e.ColumnIndex == 2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
-                    return;
+                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
+                                                                   //return;
 
-                if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                {
-                    e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                        & ~(DataGridViewPaintParts.ContentForeground));
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                            & ~(DataGridViewPaintParts.ContentForeground));
 
-                    TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                        e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
 
-                    e.Handled = true;
-                }
-
-
+                        e.Handled = true;
+                    }
 
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
@@ -1695,41 +1690,43 @@ namespace ROMS
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int i = e.ColumnIndex + 2;
-            if (e.ColumnIndex == 0)
+            try
             {
-                i = e.ColumnIndex;
-            }
-            DataGridViewColumn newColumn = grdPurchaseorderlist.Columns[i];
-            DataGridViewColumn oldColumn = grdPurchaseorderlist.SortedColumn;
-            ListSortDirection direction;
+                DataGridViewColumn newColumn = grdPurchaseorderlist.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdPurchaseorderlist.SortedColumn;
+                ListSortDirection direction;
 
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
-            {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    grdPurchaseorderlist.SortOrder == SortOrder.Ascending)
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
                 {
-                    direction = ListSortDirection.Descending;
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn && grdPurchaseorderlist.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
                 }
                 else
                 {
-                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
+                grdPurchaseorderlist.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
+
+                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseorderlist.HorizontalScrollingOffset;
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            grdPurchaseorderlist.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
-            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-            DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseorderlist.HorizontalScrollingOffset;
-            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
@@ -1829,7 +1826,6 @@ namespace ROMS
                     // Commit the changes immediately
                     DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdPurchaseorderlist.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseorderlist);
@@ -1946,27 +1942,21 @@ namespace ROMS
 
         private void DGV_SearchGridPro_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-
             try
             {
-
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if ((e.ColumnIndex == 0) || (e.ColumnIndex == 1))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
-                    return;
+                if (!(e.ColumnIndex == 0))  /*If not our desired columns*/
+                                            //return;
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                            & ~(DataGridViewPaintParts.ContentForeground));
 
-                if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                {
-                    e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                        & ~(DataGridViewPaintParts.ContentForeground));
+                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font, e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
 
-                    TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                        e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
-
-                    e.Handled = true;
-                }
-
-
+                        e.Handled = true;
+                    }
 
                 DGV_SearchGridPro.FirstDisplayedScrollingRowIndex = 0;
             }
@@ -1975,7 +1965,6 @@ namespace ROMS
 
         private void DGV_SearchGridPro_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
             int i = e.ColumnIndex + 2;
             if (e.ColumnIndex == 0)
             {
@@ -2032,7 +2021,6 @@ namespace ROMS
 
         private void DGV_SearchGridPro_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-
             try
             {
                 if (DGV_SearchGridPro.IsCurrentCellDirty)
@@ -2040,7 +2028,6 @@ namespace ROMS
                     // Commit the changes immediately
                     DGV_SearchGridPro.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdProDetails.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGridPro, grdProDetails);
@@ -2059,29 +2046,29 @@ namespace ROMS
         {
             try
             {
-                //udfnGridSearchHeading(grdPurchaseorderlist, DGV_SearchGrid);
-                //DGV_SearchGrid.Columns.Clear();
-                //List<int> visibleColumns = new List<int>();
-                //foreach (DataGridViewColumn col in grdPurchaseorderlist.Columns)
-                //{
-                //    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                //    visibleColumns.Add(col.Index);
-                //}
-                //int rowIndex = 0;
-                //DGV_SearchGrid.Rows.Clear();
-                //DGV_SearchGrid.Rows.Add();
-                //for (int i = 0; i < visibleColumns.Count; i++)
-                //{
-                //    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                //}
-                //DGV_SearchGrid.Columns["S.No."].ReadOnly = true; 
-                //DGV_SearchGrid.Columns["clmView"].ReadOnly = true;
                 udfnSearchGridHeadpro(grdProDetails, DGV_SearchGridPro);
-                if (DGV_SearchGridPro.ColumnCount > 1)
+                DGV_SearchGridPro.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in grdPurchaseorderlist.Columns)
                 {
-                    DGV_SearchGridPro.Columns["S.No."].ReadOnly = true;
-                    // DGV_SearchGridPro.Columns["clmView"].ReadOnly = true;
+                    DGV_SearchGridPro.Columns.Add((DataGridViewColumn)col.Clone());
+                    visibleColumns.Add(col.Index);
                 }
+                int rowIndex = 0;
+                DGV_SearchGridPro.Rows.Clear();
+                DGV_SearchGridPro.Rows.Add();
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                }
+                DGV_SearchGridPro.Columns["S.No."].ReadOnly = true;
+        //        DGV_SearchGridPro.Columns["clmView"].ReadOnly = true;
+                //udfnSearchGridHeadpro(grdProDetails, DGV_SearchGridPro);
+                //if (DGV_SearchGridPro.ColumnCount > 1)
+                //{
+                //    DGV_SearchGridPro.Columns["S.No."].ReadOnly = true;
+                //    // DGV_SearchGridPro.Columns["clmView"].ReadOnly = true;
+                //}
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -3037,6 +3024,62 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdPurchaseorderlist.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseorderlist);
+                objDser.CloseConnection();
+                grdPurchaseorderlist.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdPurchaseorderlist.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseorderlist);
+                objDser.CloseConnection();
+                grdPurchaseorderlist.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGridPro_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdProDetails.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGridPro, grdProDetails);
+                objDser.CloseConnection();
+                grdProDetails.HorizontalScrollingOffset = DGV_SearchGridPro.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGridPro_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdProDetails.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGridPro, grdProDetails);
+                objDser.CloseConnection();
+                grdProDetails.HorizontalScrollingOffset = DGV_SearchGridPro.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void CmbProductStatus_KeyDown(object sender, KeyEventArgs e)
