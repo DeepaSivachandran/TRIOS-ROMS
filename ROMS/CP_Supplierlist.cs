@@ -179,7 +179,6 @@ namespace ROMS
                 Application.DoEvents();
                 if (grdSupplierList.SelectedRows.Count > 0)
                 {
-
                     MainForm.objCP_Supplier = new CP_Supplier();
                     MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                     MainForm.objCP_Supplier.btnSave.Text = "Update";
