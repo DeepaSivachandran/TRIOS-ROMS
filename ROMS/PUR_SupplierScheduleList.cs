@@ -1971,7 +1971,7 @@ namespace ROMS
                         ep_Supplierlist.Clear();
                         lblSupplierCode.Text = values[0];
                         lblschedule.Text = values[1];
-                        txtSupplier.BackColor = Color.White;
+                        txtSupplier.BackColor = Color.White; 
 
                     }
                     //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
@@ -2021,7 +2021,6 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                     dgvSupplierScheduleList.DataSource = null;
-
                 }
             }
             catch (Exception ex)
