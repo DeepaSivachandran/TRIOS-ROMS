@@ -127,6 +127,14 @@ namespace ROMS
                     tpIssueby.Show("Please enter issuedby.", txtIssuedBY, 5000);
                     varErrorFlag = false;
                 }
+                if (txtTAT.Text == "0")
+                {
+                    errIssued.SetError(txtTAT, "Invalid turn around time");
+                    txtTAT.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIssueby.ShowAlways = true;
+                    tpIssueby.Show("Invalid turn around time.", txtTAT, 5000);
+                    varErrorFlag = false;
+                }
                 if (varErrorFlag == true)
                 {
                     if (varPOID != 0)
@@ -154,7 +162,7 @@ namespace ROMS
                         objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
                         objPurchaseOrder.Columns.Add("POPR_Remarks", typeof(string));
                         result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, 0, "", 0, 0
-                        , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text,11,"",0,0);
+                        , "", varorginator, "", txtTAT.Text, objPurchaseOrder, dpissuedateandtime.Text, txtIssuedBY.Text, Convert.ToString(cmbIssueMode.SelectedValue), txtIssuemodeValues.Text,11,"",0,0,0);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
