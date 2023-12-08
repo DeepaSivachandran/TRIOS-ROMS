@@ -102,24 +102,6 @@
             this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMEName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdPurchaseDC = new System.Windows.Forms.DataGridView();
-            this.lblTotalProducts = new System.Windows.Forms.Label();
-            this.txtTotalProducts = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtRemark = new System.Windows.Forms.TextBox();
-            this.grdPurchaseDC1 = new System.Windows.Forms.DataGridView();
-            this.grpDCSupplier = new System.Windows.Forms.GroupBox();
-            this.lblschedule = new System.Windows.Forms.Label();
-            this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.txtDcNo = new System.Windows.Forms.TextBox();
-            this.lblDEVisitDay = new System.Windows.Forms.Label();
-            this.dpDCDate = new System.Windows.Forms.DateTimePicker();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.lblDESupplier = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,6 +120,24 @@
             this.clmRemoveFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTotalProducts = new System.Windows.Forms.Label();
+            this.txtTotalProducts = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtRemark = new System.Windows.Forms.TextBox();
+            this.grdPurchaseDC1 = new System.Windows.Forms.DataGridView();
+            this.grpDCSupplier = new System.Windows.Forms.GroupBox();
+            this.lblschedule = new System.Windows.Forms.Label();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.txtDcNo = new System.Windows.Forms.TextBox();
+            this.lblDEVisitDay = new System.Windows.Forms.Label();
+            this.dpDCDate = new System.Windows.Forms.DateTimePicker();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.lblDESupplier = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -463,11 +463,12 @@
             // txtYear
             // 
             this.txtYear.Location = new System.Drawing.Point(552, 154);
-            this.txtYear.MaxLength = 4;
+            this.txtYear.MaxLength = 2;
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(34, 26);
             this.txtYear.TabIndex = 7;
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtYear.TextChanged += new System.EventHandler(this.TxtYear_TextChanged);
             this.txtYear.Enter += new System.EventHandler(this.TxtYear_Enter);
             this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtYear_KeyDown);
             this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtYear_KeyPress);
@@ -481,6 +482,7 @@
             this.txtDay.Size = new System.Drawing.Size(33, 26);
             this.txtDay.TabIndex = 5;
             this.txtDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDay.TextChanged += new System.EventHandler(this.TxtDay_TextChanged);
             this.txtDay.Enter += new System.EventHandler(this.TxtDay_Enter);
             this.txtDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDay_KeyDown);
             this.txtDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDay_KeyPress);
@@ -596,6 +598,7 @@
             this.txtMonth.Size = new System.Drawing.Size(34, 26);
             this.txtMonth.TabIndex = 6;
             this.txtMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMonth.TextChanged += new System.EventHandler(this.TxtMonth_TextChanged);
             this.txtMonth.Enter += new System.EventHandler(this.TxtMonth_Enter);
             this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonth_KeyDown);
             this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMonth_KeyPress);
@@ -605,11 +608,11 @@
             // 
             this.lblYyyy.AutoSize = true;
             this.lblYyyy.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblYyyy.Location = new System.Drawing.Point(554, 134);
+            this.lblYyyy.Location = new System.Drawing.Point(559, 134);
             this.lblYyyy.Name = "lblYyyy";
-            this.lblYyyy.Size = new System.Drawing.Size(32, 16);
+            this.lblYyyy.Size = new System.Drawing.Size(20, 16);
             this.lblYyyy.TabIndex = 1111237;
-            this.lblYyyy.Text = "YYYY";
+            this.lblYyyy.Text = "YY";
             // 
             // lblMM
             // 
@@ -815,7 +818,7 @@
             this.RMTname,
             this.RMEName});
             this.lvproduct.FullRowSelect = true;
-            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(2, 0);
             this.lvproduct.Name = "lvproduct";
@@ -829,14 +832,17 @@
             // 
             // RMcode
             // 
+            this.RMcode.Text = "";
             this.RMcode.Width = 0;
             // 
             // RMTname
             // 
+            this.RMTname.Text = "see";
             this.RMTname.Width = 200;
             // 
             // RMEName
             // 
+            this.RMEName.Text = "see2";
             this.RMEName.Width = 200;
             // 
             // grdPurchaseDC
@@ -901,6 +907,121 @@
             this.grdPurchaseDC.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDC_CellLeave);
             this.grdPurchaseDC.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseDC_DataBindingComplete);
             this.grdPurchaseDC.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdPurchaseDC_EditingControlShowing);
+            // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 80;
+            // 
+            // clmPICode
+            // 
+            this.clmPICode.HeaderText = "P.I Code";
+            this.clmPICode.Name = "clmPICode";
+            this.clmPICode.ReadOnly = true;
+            // 
+            // clmProductName
+            // 
+            this.clmProductName.HeaderText = "Product Name";
+            this.clmProductName.Name = "clmProductName";
+            this.clmProductName.ReadOnly = true;
+            this.clmProductName.Width = 200;
+            // 
+            // clmMRP
+            // 
+            this.clmMRP.HeaderText = "MRP";
+            this.clmMRP.Name = "clmMRP";
+            this.clmMRP.ReadOnly = true;
+            // 
+            // clmExpiryDate
+            // 
+            this.clmExpiryDate.HeaderText = "Expiry Date";
+            this.clmExpiryDate.Name = "clmExpiryDate";
+            this.clmExpiryDate.ReadOnly = true;
+            // 
+            // clmBatchNo
+            // 
+            this.clmBatchNo.HeaderText = "Batch No.";
+            this.clmBatchNo.Name = "clmBatchNo";
+            this.clmBatchNo.ReadOnly = true;
+            // 
+            // clmQuantity
+            // 
+            this.clmQuantity.HeaderText = "Qty";
+            this.clmQuantity.Name = "clmQuantity";
+            this.clmQuantity.ReadOnly = true;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            // 
+            // clmStockLocation
+            // 
+            this.clmStockLocation.HeaderText = "Stock Location";
+            this.clmStockLocation.Name = "clmStockLocation";
+            this.clmStockLocation.ReadOnly = true;
+            this.clmStockLocation.Width = 180;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            // 
+            // ClmPRID
+            // 
+            this.ClmPRID.HeaderText = "PRID";
+            this.ClmPRID.Name = "ClmPRID";
+            this.ClmPRID.ReadOnly = true;
+            this.ClmPRID.Visible = false;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
+            this.clmSLID.Visible = false;
+            // 
+            // clmRKID
+            // 
+            this.clmRKID.HeaderText = "RKID";
+            this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
+            this.clmRKID.Visible = false;
+            // 
+            // clmUnitID
+            // 
+            this.clmUnitID.HeaderText = "Unit ID";
+            this.clmUnitID.Name = "clmUnitID";
+            this.clmUnitID.ReadOnly = true;
+            this.clmUnitID.Visible = false;
+            // 
+            // clmStockQuantity
+            // 
+            this.clmStockQuantity.HeaderText = "Stock Quantity";
+            this.clmStockQuantity.Name = "clmStockQuantity";
+            this.clmStockQuantity.Visible = false;
+            // 
+            // clmRemoveFlag
+            // 
+            this.clmRemoveFlag.HeaderText = "Remove Flag";
+            this.clmRemoveFlag.Name = "clmRemoveFlag";
+            this.clmRemoveFlag.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            // 
+            // clmError
+            // 
+            this.clmError.HeaderText = "Error";
+            this.clmError.Name = "clmError";
+            this.clmError.Visible = false;
             // 
             // lblTotalProducts
             // 
@@ -1146,121 +1267,6 @@
             this.label12.Size = new System.Drawing.Size(54, 20);
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
-            // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 80;
-            // 
-            // clmPICode
-            // 
-            this.clmPICode.HeaderText = "P.I Code";
-            this.clmPICode.Name = "clmPICode";
-            this.clmPICode.ReadOnly = true;
-            // 
-            // clmProductName
-            // 
-            this.clmProductName.HeaderText = "Product Name";
-            this.clmProductName.Name = "clmProductName";
-            this.clmProductName.ReadOnly = true;
-            this.clmProductName.Width = 200;
-            // 
-            // clmMRP
-            // 
-            this.clmMRP.HeaderText = "MRP";
-            this.clmMRP.Name = "clmMRP";
-            this.clmMRP.ReadOnly = true;
-            // 
-            // clmExpiryDate
-            // 
-            this.clmExpiryDate.HeaderText = "Expiry Date";
-            this.clmExpiryDate.Name = "clmExpiryDate";
-            this.clmExpiryDate.ReadOnly = true;
-            // 
-            // clmBatchNo
-            // 
-            this.clmBatchNo.HeaderText = "Batch No.";
-            this.clmBatchNo.Name = "clmBatchNo";
-            this.clmBatchNo.ReadOnly = true;
-            // 
-            // clmQuantity
-            // 
-            this.clmQuantity.HeaderText = "Qty";
-            this.clmQuantity.Name = "clmQuantity";
-            this.clmQuantity.ReadOnly = true;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            // 
-            // clmStockLocation
-            // 
-            this.clmStockLocation.HeaderText = "Stock Location";
-            this.clmStockLocation.Name = "clmStockLocation";
-            this.clmStockLocation.ReadOnly = true;
-            this.clmStockLocation.Width = 180;
-            // 
-            // clmRack
-            // 
-            this.clmRack.HeaderText = "Rack";
-            this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
-            // 
-            // ClmPRID
-            // 
-            this.ClmPRID.HeaderText = "PRID";
-            this.ClmPRID.Name = "ClmPRID";
-            this.ClmPRID.ReadOnly = true;
-            this.ClmPRID.Visible = false;
-            // 
-            // clmSLID
-            // 
-            this.clmSLID.HeaderText = "SLID";
-            this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
-            this.clmSLID.Visible = false;
-            // 
-            // clmRKID
-            // 
-            this.clmRKID.HeaderText = "RKID";
-            this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
-            this.clmRKID.Visible = false;
-            // 
-            // clmUnitID
-            // 
-            this.clmUnitID.HeaderText = "Unit ID";
-            this.clmUnitID.Name = "clmUnitID";
-            this.clmUnitID.ReadOnly = true;
-            this.clmUnitID.Visible = false;
-            // 
-            // clmStockQuantity
-            // 
-            this.clmStockQuantity.HeaderText = "Stock Quantity";
-            this.clmStockQuantity.Name = "clmStockQuantity";
-            this.clmStockQuantity.Visible = false;
-            // 
-            // clmRemoveFlag
-            // 
-            this.clmRemoveFlag.HeaderText = "Remove Flag";
-            this.clmRemoveFlag.Name = "clmRemoveFlag";
-            this.clmRemoveFlag.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            // 
-            // clmError
-            // 
-            this.clmError.HeaderText = "Error";
-            this.clmError.Name = "clmError";
-            this.clmError.Visible = false;
             // 
             // PUR_PurchaseDC
             // 

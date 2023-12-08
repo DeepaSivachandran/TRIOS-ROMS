@@ -1221,6 +1221,10 @@ namespace ROMS
         {
             try
             {
+                if(txtProductName.Text!="")
+                {
+                    udfnAddClear();
+                }
                 string varProductsCodes = "0";
                 txtRack.Text = "";
                 txtRack.Enabled = true;
@@ -1953,6 +1957,53 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void TxtDay_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtDay.Text.Length == 2)
+                {
+                    txtMonth.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMonth_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtMonth.Text.Length == 2)
+                {
+                    txtYear.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtYear_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtYear.Text.Length == 2)
+                {
+                    txtBatchNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void GrdPurchaseDC_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
@@ -2653,7 +2704,7 @@ namespace ROMS
                     if (txtDay.Text.Trim() == "")
                     {
                         varMonth = Convert.ToString(txtMonth.Text.Trim());
-                        varYear = Convert.ToString(txtYear.Text.Trim());
+                        varYear = "20"+Convert.ToString(txtYear.Text.Trim());
                         varDate = varDay + "/" + varMonth + "/" + varYear;
                         objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0, "");
                         objDServ.CloseConnection();
