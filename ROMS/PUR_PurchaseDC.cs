@@ -147,6 +147,7 @@ namespace ROMS
             finally
             {
                 LV_Supplier.Visible = false;
+                grdPurchaseDC.ClearSelection();
             }
         }
         public void udfnDiscard()
@@ -1163,7 +1164,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(26, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1721,6 +1722,7 @@ namespace ROMS
                                 }
                                 if (varvalue[0] == "5")
                                 {
+                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     string varProductID = "", Expirydate = "";
                                     for (int j = 0; j < grdPurchaseDC.RowCount; j++)
                                     {
@@ -1742,6 +1744,7 @@ namespace ROMS
                                 }
                                 if (varvalue[0] == "6")
                                 {
+                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     string varProductID = "", varMRP = "", varSLID = "", varRKID = "", varBatchNo = "", Expirydate = "";
                                     for (int j = 0; j < grdPurchaseDC.RowCount; j++)
                                     {
@@ -1942,7 +1945,7 @@ namespace ROMS
         {
             try
             {
-                grdPurchaseDC.Rows.Clear();
+                grdPurchaseDC.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -2395,7 +2398,7 @@ namespace ROMS
                         //tpProduct.ShowAlways = true;
                         //tpProduct.Show("Invalid product", txtProductName, 5000);
                         SPDataService objDser = new SPDataService();
-                        txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         string varMessage = objDser.udfnGetMessages(91);
                         objDser.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -2564,7 +2567,7 @@ namespace ROMS
                                     //txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                     //tpProduct.ShowAlways = true;
                                     //tpProduct.Show("Product already Exist for this location", txtProductName, 5000);
-                                    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                     string varMessage = objDServ.udfnGetMessages(93);
                                     objDServ.CloseConnection();
                                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -2690,7 +2693,7 @@ namespace ROMS
                                 txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                 txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                 txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                                string varMessage = objDServ.udfnGetMessages(94);
+                                string varMessage = objDServ.udfnGetMessages(98);
                                 objDServ.CloseConnection();
                                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
@@ -2779,6 +2782,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdPurchaseDC.ClearSelection();
             }
         }
         public void udfnVocherno()

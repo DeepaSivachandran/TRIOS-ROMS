@@ -1443,7 +1443,7 @@ namespace ROMS
              string paraUpp, int paraPurStklocation, int paraSaleStklocation, int paraPurRack, int parasaleRack, int paraRkMOQ, int paraBatchNo,
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight, double paraMaxstk, double paraGrossweight, double paraMinstk,
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
-             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag)
+             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag,string paraIDs)
         {
             string result = "";
             try
@@ -1493,7 +1493,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraNetQtyUnit", paraNetQtyUnit);
                 varSqlCommand.Parameters.AddWithValue("@paraMR_Product_BulkUpdate", paraMR_Product_BulkUpdate);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteflag", paraDeleteflag);
-
+                varSqlCommand.Parameters.AddWithValue("@paraIDs", paraIDs);
 
                 varSqlCommand.CommandTimeout = 0;
 
