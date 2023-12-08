@@ -214,8 +214,8 @@ namespace ROMS
                 string varTAT = "" ;
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=44 AND MSTID NOT IN (135,136) OR MSTID=-1", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null; 
-                varTAT = objdservice.displaydata("SELECT GSTAT_OrderDays FROM MR_GeneralSettings_TAT  WHERE GSTAT_OrderType='"+Varordertype+"'");
-                txtTAT.Text = varTAT;
+                //varTAT = objdservice.displaydata("SELECT GSTAT_OrderDays FROM MR_GeneralSettings_TAT  WHERE GSTAT_OrderType='"+Varordertype+"'");
+                txtTAT.Text = Convert.ToString(Varordertype);
                 cmbIssueMode.SelectedIndex = 0;
                 udfnEditLoad();
             }

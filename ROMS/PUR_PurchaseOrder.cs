@@ -1341,7 +1341,7 @@ namespace ROMS
                     udfnSchedulecolorchange();
                     result = objspdservice.udfnSupplierMaster(11, Convert.ToInt32(lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", "", 0,
                     0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, txtSalesManName.Text,
-                    "", txtSalesManMobile.Text, txtSalesManwhatsapp.Text, 0, "", Convert.ToInt32(lblschedule.Text), 0, "", "", "", "", "", "", "", "", "", 0, "");
+                    "", txtSalesManMobile.Text, txtSalesManwhatsapp.Text, 0, "", Convert.ToInt32(lblschedule.Text), 0, "", "", "", "", "", "", "", "", "", 0, "",0);
 
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -2466,7 +2466,7 @@ namespace ROMS
                     //{
                     //    SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     //} 
-                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "");
+                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "",0);
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -3861,6 +3861,10 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
+                            if (btnSave.Text == "Save")
+                            {
+                                txtTurnAroundTime.Text = objDs.Tables[0].Rows[0]["SPSC_TAT"].ToString();
+                            }
                             lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
                             lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
@@ -3943,14 +3947,7 @@ namespace ROMS
                                 lblNoRecordsFound.Visible = true;
                                 grdsupplieradd.Rows.Clear();
                             }
-                        }
-                        if (objDs.Tables[4].Rows.Count > 0)
-                        {
-                            if (btnSave.Text == "Save")
-                            {
-                                txtTurnAroundTime.Text = objDs.Tables[4].Rows[0]["GSTAT_OrderDays"].ToString();
-                            }
-                        }
+                        } 
                         if (objDs.Tables[5].Rows.Count > 0)
                         {
                             varpendingPOID = "0";
