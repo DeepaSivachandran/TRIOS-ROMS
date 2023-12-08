@@ -149,20 +149,6 @@
             this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesmanWhatsapp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmscheduleid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOrderdays = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.daysid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmScheduleStatusId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
             this.cmbTat = new System.Windows.Forms.ComboBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -273,6 +259,21 @@
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesmanWhatsapp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmscheduleid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOrderdays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.daysid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmScheduleStatusId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -1543,6 +1544,7 @@
             this.clmOrderType,
             this.clmscheduleid,
             this.clmOrderdays,
+            this.clmTAT,
             this.daysid,
             this.ID,
             this.clmStatus,
@@ -1572,106 +1574,6 @@
             this.grdSupplierList.TabIndex = 19;
             this.grdSupplierList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellContentClick);
             this.grdSupplierList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierList_DataBindingComplete);
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmsupname
-            // 
-            this.clmsupname.HeaderText = "Schedule Name";
-            this.clmsupname.Name = "clmsupname";
-            this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 140;
-            // 
-            // clmsalesname
-            // 
-            this.clmsalesname.HeaderText = "Salesman Name";
-            this.clmsalesname.Name = "clmsalesname";
-            this.clmsalesname.ReadOnly = true;
-            this.clmsalesname.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Salesman Mobile No.";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 130;
-            // 
-            // clmSalesmanWhatsapp
-            // 
-            this.clmSalesmanWhatsapp.HeaderText = "Salesman WhatsApp No.";
-            this.clmSalesmanWhatsapp.Name = "clmSalesmanWhatsapp";
-            this.clmSalesmanWhatsapp.ReadOnly = true;
-            this.clmSalesmanWhatsapp.Width = 150;
-            // 
-            // clmOrderType
-            // 
-            this.clmOrderType.HeaderText = "Order Type";
-            this.clmOrderType.Name = "clmOrderType";
-            this.clmOrderType.ReadOnly = true;
-            this.clmOrderType.Width = 130;
-            // 
-            // clmscheduleid
-            // 
-            this.clmscheduleid.HeaderText = "scheduleid";
-            this.clmscheduleid.Name = "clmscheduleid";
-            this.clmscheduleid.ReadOnly = true;
-            this.clmscheduleid.Visible = false;
-            this.clmscheduleid.Width = 5;
-            // 
-            // clmOrderdays
-            // 
-            this.clmOrderdays.HeaderText = "Order Days";
-            this.clmOrderdays.Name = "clmOrderdays";
-            this.clmOrderdays.ReadOnly = true;
-            this.clmOrderdays.Width = 300;
-            // 
-            // daysid
-            // 
-            this.daysid.HeaderText = "Column4";
-            this.daysid.Name = "daysid";
-            this.daysid.ReadOnly = true;
-            this.daysid.Visible = false;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Column9";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            // 
-            // clmScheduleStatusId
-            // 
-            this.clmScheduleStatusId.HeaderText = "ScheduleStatusId";
-            this.clmScheduleStatusId.Name = "clmScheduleStatusId";
-            this.clmScheduleStatusId.ReadOnly = true;
-            this.clmScheduleStatusId.Visible = false;
-            // 
-            // clmedit
-            // 
-            this.clmedit.HeaderText = "Edit";
-            this.clmedit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmedit.Name = "clmedit";
-            this.clmedit.ReadOnly = true;
-            this.clmedit.Width = 60;
-            // 
-            // clmDelete
-            // 
-            this.clmDelete.HeaderText = "Delete";
-            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmDelete.Name = "clmDelete";
-            this.clmDelete.ReadOnly = true;
-            this.clmDelete.Width = 60;
             // 
             // gpSupplier
             // 
@@ -3289,6 +3191,113 @@
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
             // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmsupname
+            // 
+            this.clmsupname.HeaderText = "Schedule Name";
+            this.clmsupname.Name = "clmsupname";
+            this.clmsupname.ReadOnly = true;
+            this.clmsupname.Width = 140;
+            // 
+            // clmsalesname
+            // 
+            this.clmsalesname.HeaderText = "Salesman Name";
+            this.clmsalesname.Name = "clmsalesname";
+            this.clmsalesname.ReadOnly = true;
+            this.clmsalesname.Width = 150;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Salesman Mobile No.";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 130;
+            // 
+            // clmSalesmanWhatsapp
+            // 
+            this.clmSalesmanWhatsapp.HeaderText = "Salesman WhatsApp No.";
+            this.clmSalesmanWhatsapp.Name = "clmSalesmanWhatsapp";
+            this.clmSalesmanWhatsapp.ReadOnly = true;
+            this.clmSalesmanWhatsapp.Width = 145;
+            // 
+            // clmOrderType
+            // 
+            this.clmOrderType.HeaderText = "Order Type";
+            this.clmOrderType.Name = "clmOrderType";
+            this.clmOrderType.ReadOnly = true;
+            // 
+            // clmscheduleid
+            // 
+            this.clmscheduleid.HeaderText = "scheduleid";
+            this.clmscheduleid.Name = "clmscheduleid";
+            this.clmscheduleid.ReadOnly = true;
+            this.clmscheduleid.Visible = false;
+            this.clmscheduleid.Width = 5;
+            // 
+            // clmOrderdays
+            // 
+            this.clmOrderdays.HeaderText = "Order Days";
+            this.clmOrderdays.Name = "clmOrderdays";
+            this.clmOrderdays.ReadOnly = true;
+            this.clmOrderdays.Width = 300;
+            // 
+            // clmTAT
+            // 
+            this.clmTAT.HeaderText = "TAT";
+            this.clmTAT.Name = "clmTAT";
+            this.clmTAT.ReadOnly = true;
+            this.clmTAT.Width = 70;
+            // 
+            // daysid
+            // 
+            this.daysid.HeaderText = "Column4";
+            this.daysid.Name = "daysid";
+            this.daysid.ReadOnly = true;
+            this.daysid.Visible = false;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Column9";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            this.clmStatus.Width = 80;
+            // 
+            // clmScheduleStatusId
+            // 
+            this.clmScheduleStatusId.HeaderText = "ScheduleStatusId";
+            this.clmScheduleStatusId.Name = "clmScheduleStatusId";
+            this.clmScheduleStatusId.ReadOnly = true;
+            this.clmScheduleStatusId.Visible = false;
+            // 
+            // clmedit
+            // 
+            this.clmedit.HeaderText = "Edit";
+            this.clmedit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmedit.Name = "clmedit";
+            this.clmedit.ReadOnly = true;
+            this.clmedit.Width = 60;
+            // 
+            // clmDelete
+            // 
+            this.clmDelete.HeaderText = "Delete";
+            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmDelete.Name = "clmDelete";
+            this.clmDelete.ReadOnly = true;
+            this.clmDelete.Width = 60;
+            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -3550,20 +3559,6 @@
         private System.Windows.Forms.TextBox txtMappedOrderDay;
         private System.Windows.Forms.TextBox txtSupplierOrderDays;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesmanWhatsapp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmscheduleid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderdays;
-        private System.Windows.Forms.DataGridViewTextBoxColumn daysid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmScheduleStatusId;
-        private System.Windows.Forms.DataGridViewImageColumn clmedit;
-        private System.Windows.Forms.DataGridViewImageColumn clmDelete;
         private System.Windows.Forms.Label lblTotalProducts;
         private System.Windows.Forms.Label label15;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
@@ -3583,5 +3578,20 @@
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.ComboBox cmbTat;
         private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesmanWhatsapp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmscheduleid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderdays;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTAT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn daysid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmScheduleStatusId;
+        private System.Windows.Forms.DataGridViewImageColumn clmedit;
+        private System.Windows.Forms.DataGridViewImageColumn clmDelete;
     }
 }
