@@ -115,7 +115,7 @@ namespace ROMS
                         case "clmView":
                             MainForm.objPUR_POIssuedDetails = new PUR_POIssuedDetails();
                             MainForm.objPUR_POIssuedDetails.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
-                            MainForm.objPUR_POIssuedDetails.Varordertype = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["SPSC_OrderType"].Value.ToString());
+                            MainForm.objPUR_POIssuedDetails.Varordertype = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["SPSC_TAT"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.varsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.ShowDialog();
                             break;
@@ -974,6 +974,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Total Qty"].Visible = false;
                             grdPurchaseorderlist.Columns["Turn Around Time"].Visible = false;
                             grdPurchaseorderlist.Columns["GSTIN"].Visible = false;
+                            grdPurchaseorderlist.Columns["SPSC_TAT"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

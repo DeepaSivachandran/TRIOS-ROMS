@@ -164,6 +164,8 @@
             this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
+            this.cmbTat = new System.Windows.Forms.ComboBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.pnlScheduleStatus = new System.Windows.Forms.Panel();
             this.rbScheduleActive = new System.Windows.Forms.RadioButton();
             this.rbScheduleInactive = new System.Windows.Forms.RadioButton();
@@ -409,7 +411,6 @@
             this.grpSupplierDetails.Size = new System.Drawing.Size(1305, 610);
             this.grpSupplierDetails.TabIndex = 71;
             this.grpSupplierDetails.TabStop = false;
-            this.grpSupplierDetails.Enter += new System.EventHandler(this.GrpSupplierDetails_Enter);
             // 
             // groupBox5
             // 
@@ -1674,6 +1675,8 @@
             // 
             // gpSupplier
             // 
+            this.gpSupplier.Controls.Add(this.cmbTat);
+            this.gpSupplier.Controls.Add(this.textBox10);
             this.gpSupplier.Controls.Add(this.pnlScheduleStatus);
             this.gpSupplier.Controls.Add(this.txtDStatus);
             this.gpSupplier.Controls.Add(this.txtScheduleName);
@@ -1688,6 +1691,35 @@
             this.gpSupplier.Size = new System.Drawing.Size(684, 282);
             this.gpSupplier.TabIndex = 958801;
             this.gpSupplier.TabStop = false;
+            // 
+            // cmbTat
+            // 
+            this.cmbTat.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTat.FormattingEnabled = true;
+            this.cmbTat.Items.AddRange(new object[] {
+            "Phone",
+            "Visit",
+            "Mobile App"});
+            this.cmbTat.Location = new System.Drawing.Point(436, 249);
+            this.cmbTat.Name = "cmbTat";
+            this.cmbTat.Size = new System.Drawing.Size(93, 27);
+            this.cmbTat.TabIndex = 12;
+            this.cmbTat.Enter += new System.EventHandler(this.CmbTat_Enter);
+            this.cmbTat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTat_KeyDown);
+            this.cmbTat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTat_KeyPress);
+            this.cmbTat.Leave += new System.EventHandler(this.CmbTat_Leave);
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox10.Location = new System.Drawing.Point(398, 249);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(38, 27);
+            this.textBox10.TabIndex = 1111183;
+            this.textBox10.Text = "TAT";
             // 
             // pnlScheduleStatus
             // 
@@ -1951,7 +1983,7 @@
             this.grddays.RowTemplate.Height = 25;
             this.grddays.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grddays.Size = new System.Drawing.Size(132, 177);
-            this.grddays.TabIndex = 12;
+            this.grddays.TabIndex = 9999999;
             this.grddays.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grddays_CellContentClick);
             this.grddays.CurrentCellDirtyStateChanged += new System.EventHandler(this.Grddays_CurrentCellDirtyStateChanged);
             this.grddays.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.Grddays_DataBindingComplete);
@@ -3549,5 +3581,7 @@
         public System.Windows.Forms.Button btnMappingSelectAll;
         private System.Windows.Forms.Button btnListPrint;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
+        private System.Windows.Forms.ComboBox cmbTat;
+        private System.Windows.Forms.TextBox textBox10;
     }
 }
