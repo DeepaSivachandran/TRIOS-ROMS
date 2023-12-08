@@ -1443,7 +1443,7 @@ namespace ROMS
              string paraUpp, int paraPurStklocation, int paraSaleStklocation, int paraPurRack, int parasaleRack, int paraRkMOQ, int paraBatchNo,
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight, double paraMaxstk, double paraGrossweight, double paraMinstk,
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
-             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag)
+             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag,string paraIDs)
         {
             string result = "";
             try
@@ -1493,7 +1493,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraNetQtyUnit", paraNetQtyUnit);
                 varSqlCommand.Parameters.AddWithValue("@paraMR_Product_BulkUpdate", paraMR_Product_BulkUpdate);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteflag", paraDeleteflag);
-
+                varSqlCommand.Parameters.AddWithValue("@paraIDs", paraIDs);
 
                 varSqlCommand.CommandTimeout = 0;
 
@@ -2048,7 +2048,7 @@ namespace ROMS
 
         // added by venkat on 13/10/2023 for PO.No. Save
         public string udfnPurchaseEntry(int paraViewType, int ParaPOID, int paraCompanyId,string paraPONumber,int paraSupplierID,int paraScheduleID,string paraLastTrnsno
-            ,string paraOriginator,string paraRemarks,string paraTAT,DataTable objPurchaseOrder,string paraIssuedDate,string paraIssuedBy,string paraIssuedMode,string paraIssuedModeRemarks,int paraFinalStatus,string paraPODate,int ParaUnitId,double paraTotalKg)
+            ,string paraOriginator,string paraRemarks,string paraTAT,DataTable objPurchaseOrder,string paraIssuedDate,string paraIssuedBy,string paraIssuedMode,string paraIssuedModeRemarks,int paraFinalStatus,string paraPODate,int ParaUnitId,double paraTotalKg,int paraDeleteFlag)
         {
             string result = "";
             try
@@ -2078,6 +2078,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@ParaUnitId", ParaUnitId);
                 varSqlCommand.Parameters.AddWithValue("@paraTotalKg", paraTotalKg);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

@@ -55,10 +55,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtMoveLocation = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.lvDLocation = new System.Windows.Forms.ListView();
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblMoveRack = new System.Windows.Forms.Label();
             this.lblMoveLocation = new System.Windows.Forms.Label();
             this.lblProductSubGroupId = new System.Windows.Forms.Label();
@@ -95,6 +91,10 @@
             this.btnMoveSave = new System.Windows.Forms.Button();
             this.txtSubGroup = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lvDLocation = new System.Windows.Forms.ListView();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblDRack = new System.Windows.Forms.Label();
             this.lblDLocation = new System.Windows.Forms.Label();
             this.txtDRack = new System.Windows.Forms.TextBox();
@@ -163,12 +163,12 @@
             // grbMove
             // 
             this.grbMove.BackColor = System.Drawing.Color.White;
+            this.grbMove.Controls.Add(this.lvDLocation);
             this.grbMove.Controls.Add(this.lvMoveLocation);
             this.grbMove.Controls.Add(this.BtnProductSelectAll);
             this.grbMove.Controls.Add(this.btnSubGrupUnSelectAll);
             this.grbMove.Controls.Add(this.lvMoveRack);
             this.grbMove.Controls.Add(this.groupBox2);
-            this.grbMove.Controls.Add(this.lvDLocation);
             this.grbMove.Controls.Add(this.lblMoveRack);
             this.grbMove.Controls.Add(this.lblMoveLocation);
             this.grbMove.Controls.Add(this.lblProductSubGroupId);
@@ -354,37 +354,6 @@
             this.label4.TabIndex = 111111137;
             this.label4.Text = "Stock Location";
             // 
-            // lvDLocation
-            // 
-            this.lvDLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24});
-            this.lvDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvDLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvDLocation.HideSelection = false;
-            this.lvDLocation.Location = new System.Drawing.Point(129, 59);
-            this.lvDLocation.Name = "lvDLocation";
-            this.lvDLocation.Size = new System.Drawing.Size(241, 93);
-            this.lvDLocation.TabIndex = 111111130;
-            this.lvDLocation.UseCompatibleStateImageBehavior = false;
-            this.lvDLocation.View = System.Windows.Forms.View.Details;
-            this.lvDLocation.Visible = false;
-            this.lvDLocation.DoubleClick += new System.EventHandler(this.LvDLocation_DoubleClick);
-            this.lvDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvDLocation_KeyDown);
-            // 
-            // columnHeader22
-            // 
-            this.columnHeader22.Width = 180;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Width = 120;
-            // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Width = 0;
-            // 
             // lblMoveRack
             // 
             this.lblMoveRack.AutoSize = true;
@@ -430,7 +399,7 @@
             this.lvDRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvDRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvDRack.HideSelection = false;
-            this.lvDRack.Location = new System.Drawing.Point(129, 91);
+            this.lvDRack.Location = new System.Drawing.Point(129, 92);
             this.lvDRack.Name = "lvDRack";
             this.lvDRack.Size = new System.Drawing.Size(241, 93);
             this.lvDRack.TabIndex = 111111114;
@@ -803,6 +772,37 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Source";
+            // 
+            // lvDLocation
+            // 
+            this.lvDLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24});
+            this.lvDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvDLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvDLocation.HideSelection = false;
+            this.lvDLocation.Location = new System.Drawing.Point(129, 59);
+            this.lvDLocation.Name = "lvDLocation";
+            this.lvDLocation.Size = new System.Drawing.Size(241, 93);
+            this.lvDLocation.TabIndex = 111111130;
+            this.lvDLocation.UseCompatibleStateImageBehavior = false;
+            this.lvDLocation.View = System.Windows.Forms.View.Details;
+            this.lvDLocation.Visible = false;
+            this.lvDLocation.DoubleClick += new System.EventHandler(this.LvDLocation_DoubleClick);
+            this.lvDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvDLocation_KeyDown);
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 180;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 120;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
             // 
             // lblDRack
             // 

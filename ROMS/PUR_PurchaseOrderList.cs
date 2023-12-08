@@ -51,8 +51,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
             finally { picLoader.Visible = false; }
         }
@@ -332,8 +331,8 @@ namespace ROMS
                     txtProductSearch.Visible = true;
                     lblDSearch.Visible = true;
                     txtProductSearch.Text = "";
+                    Statuschange = 1;
                     udfnProductDetails();
-                    cmbProductStatus.SelectedValue=0;
                 }
             }
             catch (Exception ex)
@@ -556,7 +555,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbstatus.Focus();
+                    cmbShow.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -665,7 +664,7 @@ namespace ROMS
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblscheduleName.Text = selectedItem.SubItems[4].Text; ;
                 }
-                cmbstatus.Focus();
+                cmbShow.Focus();
             }
             catch (Exception ex)
             {
@@ -713,7 +712,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    btnViewProducts.Focus();
                 }
             }
             catch (Exception ex)
@@ -795,13 +794,13 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbGroup.Enabled == true)
+                    if (pnlProduct.Visible == false)
                     {
-                        cmbGroup.Focus();
+                        cmbstatus.Focus();
                     }
                     else
                     {
-                        btnViewProducts.Focus();
+                        cmbProductStatus.Focus();
                     }
                 }
                
@@ -859,11 +858,18 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbShow.Select(int.MaxValue, 0)));
                 if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
                 {
-                    cmbGroup.Enabled = false;
+                    cmbGroup.SelectedIndex = 0;
+                    cmbstatus.SelectedValue = 0;
+                    pnlProduct.Visible = false;
+                    pnlPO.Visible = true;
                 }
                 else
                 {
-                    cmbGroup.Enabled = true;
+                    cmbProductStatus.SelectedIndex = 0;
+                    cmbGroup.SelectedIndex = 0;
+                    cmbstatus.SelectedValue = 0;
+                    pnlProduct.Visible = true;
+                    pnlPO.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -944,8 +950,8 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Supplier"].Width = 300;
                             grdPurchaseorderlist.Columns["City"].Width = 100; 
                             grdPurchaseorderlist.Columns["T.Pro"].Width = 50;
-                            grdPurchaseorderlist.Columns["T.Qty"].Width = 50;
-                            grdPurchaseorderlist.Columns["TAD"].Width = 70;
+                            grdPurchaseorderlist.Columns["T.Units"].Width = 50;
+                            grdPurchaseorderlist.Columns["TAT"].Width = 70;
                             grdPurchaseorderlist.Columns["Created By"].Width = 100;
                             grdPurchaseorderlist.Columns["Created On"].Width = 150;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
@@ -969,8 +975,8 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Turn Around Time"].Visible = false;
                             grdPurchaseorderlist.Columns["GSTIN"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseorderlist.Columns["T.Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseorderlist.Columns["TAD"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["Issue Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1410,8 +1416,6 @@ namespace ROMS
         {
             try
             {
-                Statuschange = 1;
-                udfnProductDetails();
             }
             catch (Exception ex)
             {
@@ -1500,6 +1504,7 @@ namespace ROMS
                             grdProDetails.Columns["STS1"].Visible = false;
                             grdProDetails.Columns["SPSC_SMName"].Visible = false;
                             grdProDetails.Columns["SPSC_SMMobileNo"].Visible = false;
+                            grdProDetails.Columns["status1"].Visible = false;
                             grdProDetails.Columns["SP_PhoneNo"].Visible = false; 
                             grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
@@ -1784,6 +1789,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnProscrollVisible(DataGridView DGV, DataGridView grdGroupList)
+        {
+            try
+            {
+                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+
+                    int I = DGV_SearchGridPro.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGridPro.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGridPro.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
@@ -1847,44 +1883,37 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
-                        {
-                            DataTable objPurchaseOrder = new DataTable();
-                            objPurchaseOrder.TableName = "TRN_PO_Product";
-                            objPurchaseOrder.Columns.Add("POPR_PRID", typeof(int));
-                            objPurchaseOrder.Columns.Add("POPR_MSQ", typeof(float));
-                            objPurchaseOrder.Columns.Add("POPR_ReorderQty", typeof(float));
-                            objPurchaseOrder.Columns.Add("POPR_OrderQty", typeof(float));
-                            objPurchaseOrder.Columns.Add("POPR_Flag", typeof(int));
-                            objPurchaseOrder.Columns.Add("POPR_SPSCID", typeof(int));
-                            objPurchaseOrder.Columns.Add("POPR_UTID", typeof(int));
-                            objPurchaseOrder.Columns.Add("POPR_EditFlag", typeof(int));
-                            objPurchaseOrder.Columns.Add("POPR_UTOrderQty", typeof(float));
-                            objPurchaseOrder.Columns.Add("POPR_TOTOrderQty", typeof(float));
-                            objPurchaseOrder.Columns.Add("POPR_KGORDERQTY", typeof(float));
-                            objPurchaseOrder.Columns.Add("POPR_BulkUTID", typeof(int));
-                            objPurchaseOrder.Columns.Add("POPR_QUTID", typeof(int));
-                            objPurchaseOrder.Columns.Add("POPR_UPP", typeof(float));
-                            objPurchaseOrder.Columns.Add("POPR_NetWeight", typeof(float));
-                            objPurchaseOrder.Columns.Add("POPR_Remarks", typeof(string));
-                            SPDataService objspdservice = new SPDataService();
-                            result = "";
-                            result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", objPurchaseOrder, "", "", "", "", 0, "", 0, 0);
-                            objspdservice.CloseConnection();
-                            string[] varvalue = result.Split('~');
-                            if (varvalue[0] == "3")
+                        SPDataService objspdservice = new SPDataService();
+                        result = "";
+                        result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0,0);
+                        objspdservice.CloseConnection();
+                        string[] varvalue = result.Split('~'); 
+                            if (result.Split('~')[1] == "1")
                             {
-                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                udfnPOEntryLoad();
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    result = "";
+                                    result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0, 1);
+                                    objspdservice.CloseConnection();
+                                    string[] varvalue1 = result.Split('~');
+                                    if (varvalue1[0] == "3")
+                                    {
+                                        MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnPOEntryLoad();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                }
                             }
                             else
                             {
                                 MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                        }
+                            } 
                     }
                 }
             }
@@ -2130,7 +2159,7 @@ namespace ROMS
                 }
                 DGV_SearchGridPro.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGridPro.Invalidate();
-                udfnscrollVisible(DGV_SearchGridPro, grdProDetails);
+                udfnProscrollVisible(DGV_SearchGridPro, grdProDetails);
             }
             catch (Exception ex)
             {
@@ -2198,6 +2227,7 @@ namespace ROMS
 
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    DataGridViewCell cell1 = dataGridView.Rows[i].Cells["PO Status"];
 
                     if (Convert.ToString(grdProDetails.Rows[i].Cells["STSID"].Value) == "10")
                     {
@@ -2208,6 +2238,32 @@ namespace ROMS
                     {
                         cell.Style.BackColor = Color.RoyalBlue;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
+                    }
+                     
+                    if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "1")
+                    {
+                        cell1.Style.BackColor = Color.Olive;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "2")
+                    {
+                        cell1.Style.BackColor = Color.BlueViolet;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "3")
+                    {
+                        cell1.Style.BackColor = Color.LimeGreen;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    else if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "4")
+                    {
+                        cell1.Style.BackColor = Color.Tomato;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color 
+                    }
+                    else if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "5")
+                    { 
+                        cell1.Style.BackColor = Color.SteelBlue;
+                        cell1.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
                 }
             }
@@ -2313,7 +2369,7 @@ namespace ROMS
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                                 }
                                 if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date"   || col.Name == "Created On"
-                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAD" || col.Name == "Total Products")
+                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                                 }
@@ -2349,11 +2405,11 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
-                                if (col.Name == "T.Qty")
+                                if (col.Name == "T.Units")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
-                                if (col.Name == "TAD")
+                                if (col.Name == "TAT")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
@@ -2954,14 +3010,42 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void LblDSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DGV_SearchGridPro_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdProDetails.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGridPro.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdProDetails.Width > grdProDetails.HorizontalScrollingOffset && grdProDetails.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGridPro.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGridPro.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbProductStatus_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnProductView.Focus();
+                    cmbGroup.Focus();
                 }
             }
             catch (Exception ex)
