@@ -2693,7 +2693,7 @@ namespace ROMS
                                 txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                 txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                 txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                                string varMessage = objDServ.udfnGetMessages(94);
+                                string varMessage = objDServ.udfnGetMessages(98);
                                 objDServ.CloseConnection();
                                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
@@ -2782,6 +2782,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdPurchaseDC.ClearSelection();
             }
         }
         public void udfnVocherno()

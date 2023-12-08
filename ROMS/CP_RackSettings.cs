@@ -448,19 +448,24 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtDRack.Text).Trim() == "")
+                //if (Convert.ToString(txtDRack.Text).Trim() == "")
+                //{
+                //    epRackSettings.SetError(txtDRack, "Please enter rack.");
+                //    txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tppRack.ShowAlways = true;
+                //    tppRack.Show("Please enter rack.", txtDRack, 5000);
+                //    lblDRack.Text = "0";
+                //}
+                //else
+                //{
+                //    epRackSettings.Clear();
+                //    txtDRack.BackColor = Color.White;
+                //}
+                if(txtDRack.Text=="")
                 {
-                    epRackSettings.SetError(txtDRack, "Please enter rack.");
-                    txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tppRack.ShowAlways = true;
-                    tppRack.Show("Please enter rack.", txtDRack, 5000);
-                    lblDRack.Text = "0";
+                    txtDRack.ReadOnly = false;
                 }
-                else
-                {
-                    epRackSettings.Clear();
-                    txtDRack.BackColor = Color.White;
-                }
+                txtDRack.BackColor = Color.White;
             }
             catch (Exception ex)
             {
