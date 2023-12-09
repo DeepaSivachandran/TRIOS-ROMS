@@ -350,14 +350,21 @@ namespace ROMS
         {
             cmbconcern.Focus();
             udfnCmbConcern();
-            dpFromDate.MinDate = MainForm.pbFYStartDate;
-            dpFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpToDate.MinDate = dpFromDate.MaxDate;
             cmbconcern.SelectedValue = 1;
             DataBind objDataBind = new DataBind();
             objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (3) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
             objDataBind = null;
             cmbStatus.SelectedValue = 6;
+            DataSet objDs = new DataSet();
+            SPDataService objspservice = new SPDataService();
+            objDs = objspservice.udfnMaster(13, 0, 0, "", "", 0, "");
+            DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            dpFromDate.MinDate = varDate;
+            objspservice.CloseConnection();
+
+            //dpFromDate.MinDate = MainForm.pbFYStartDate;
+            dpFromDate.MaxDate = MainForm.pbCurrentDate;
+            dpToDate.MinDate = dpFromDate.MaxDate;
             udfnList();
         }
         public void udfnCmbConcern()
@@ -709,7 +716,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(1,0,Convert.ToInt32(lblSupplierCode.Text),0,Convert.ToInt32(cmbconcern.SelectedValue),0,dpFromDate.Text, dpToDate.Text);
+                objDs = objspservice.udfnproductDamage(1,0,Convert.ToInt32(lblSupplierCode.Text),0,Convert.ToInt32(cmbconcern.SelectedValue),0,dpFromDate.Text, dpToDate.Text,"");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -926,7 +933,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplierName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplierName.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"");
+                    objDs = objspdservice.udfnproductDamage(3, 0,0, 0, Convert.ToInt32(cmbconcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text,txtSupplierName.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
