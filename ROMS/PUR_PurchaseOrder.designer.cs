@@ -466,7 +466,7 @@
             this.lvproduct.Location = new System.Drawing.Point(148, 145);
             this.lvproduct.MultiSelect = false;
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(586, 140);
+            this.lvproduct.Size = new System.Drawing.Size(688, 140);
             this.lvproduct.TabIndex = 1111156;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;

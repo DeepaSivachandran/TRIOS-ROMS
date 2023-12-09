@@ -85,7 +85,7 @@
             this.txtMrp = new System.Windows.Forms.TextBox();
             this.lblMrp = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
             this.lvStockLocation = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -99,8 +99,12 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvproduct = new System.Windows.Forms.ListView();
             this.RMcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMEName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdPurchaseDC = new System.Windows.Forms.DataGridView();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,6 +142,8 @@
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -220,7 +226,7 @@
             this.groupBox1.Controls.Add(this.txtMrp);
             this.groupBox1.Controls.Add(this.lblMrp);
             this.groupBox1.Controls.Add(this.txtProductName);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lblProductName);
             this.groupBox1.Controls.Add(this.grpExcessProduct);
             this.groupBox1.Controls.Add(this.grpDCSupplier);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 10.25F);
@@ -719,15 +725,15 @@
             this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
             this.txtProductName.Leave += new System.EventHandler(this.TxtProductName_Leave);
             // 
-            // label4
+            // lblProductName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(11, 135);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 20);
-            this.label4.TabIndex = 1111205;
-            this.label4.Text = "Product Name / P.I Code";
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductName.Location = new System.Drawing.Point(11, 135);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(108, 20);
+            this.lblProductName.TabIndex = 1111205;
+            this.lblProductName.Text = "Serach by P.I Code";
             // 
             // grpExcessProduct
             // 
@@ -815,14 +821,20 @@
             // 
             this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.RMcode,
+            this.RMEName,
             this.RMTname,
-            this.RMEName});
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15,
+            this.columnHeader16,
+            this.columnHeader17,
+            this.columnHeader18});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(2, 0);
+            this.lvproduct.Location = new System.Drawing.Point(2, 1);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(690, 140);
+            this.lvproduct.Size = new System.Drawing.Size(575, 140);
             this.lvproduct.TabIndex = 1111174;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -832,18 +844,39 @@
             // 
             // RMcode
             // 
-            this.RMcode.Text = "";
-            this.RMcode.Width = 0;
-            // 
-            // RMTname
-            // 
-            this.RMTname.Text = "see";
-            this.RMTname.Width = 200;
+            this.RMcode.Text = "P.I Code";
+            this.RMcode.Width = 250;
             // 
             // RMEName
             // 
-            this.RMEName.Text = "see2";
-            this.RMEName.Width = 200;
+            this.RMEName.DisplayIndex = 2;
+            this.RMEName.Text = "Product Name";
+            this.RMEName.Width = 100;
+            // 
+            // RMTname
+            // 
+            this.RMTname.DisplayIndex = 1;
+            this.RMTname.Text = "Product Name";
+            this.RMTname.Width = 250;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "prid";
+            this.columnHeader13.Width = 0;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Unit";
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Batch no";
+            this.columnHeader15.Width = 10;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Batch no generation";
+            this.columnHeader16.Width = 0;
             // 
             // grdPurchaseDC
             // 
@@ -1319,7 +1352,7 @@
         private System.Windows.Forms.Panel pnldl;
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.TextBox txtProductName;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.GroupBox grpExcessProduct;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.Button btnSave;
@@ -1414,5 +1447,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRemoveFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
     }
 }

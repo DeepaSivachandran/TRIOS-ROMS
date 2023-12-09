@@ -510,7 +510,7 @@ namespace ROMS
 
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet(); 
-                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode);
+                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode,"","",0);
                 objspdservice.CloseConnection();
 
                 for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
