@@ -599,8 +599,8 @@ namespace ROMS
                 objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",1);
                 if (objd.Tables[0].Rows.Count != 0)
                 {
-                    DateTime varmaxdate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpDcFromDate.MaxDate = varmaxdate;
+                //    DateTime varmaxdate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    dpDcFromDate.MaxDate = varmaxdate;
                     dpDcFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE"]);
                 }
             }
@@ -953,22 +953,40 @@ namespace ROMS
                     {
                         string varorginator = "Purchase DC Deletion", result = "";
                         varviewtype = 2;
+                        string varUserID = "";
                         TRN_Purchase_DC objTRNS_Purchase_DC = new TRN_Purchase_DC();
                         objTRNS_Purchase_DC.ViewType = varviewtype;
                         objTRNS_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                         objTRNS_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
                         objTRNS_Purchase_DC.paraOriginator = varorginator;
                         objTRNS_Purchase_DC.paraDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-
+                        objTRNS_Purchase_DC.paraDeleteFlag = 0;
                         SPDataService objspdservice = new SPDataService();
                         result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            varviewtype = 0;
-                            udfnList();
+                            if (result.Split('~')[1] == "1")
+                            {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                result = MainForm.objCP_Verify.varUserId;
+                             //   objTRNS_Purchase_DC.paraUserID = result;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+
+                                    result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
+                                    objspdservice.CloseConnection();
+                                    if (result.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
+                           
                         }
                         else if (result.Split('~')[0] == "4")
                         {
