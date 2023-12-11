@@ -173,7 +173,8 @@ namespace ROMS
                     }
                     else
                     {
-                        varLocationId = Convert.ToInt32(lblLocation.Text);
+                        lblLocation.Text =Convert.ToString(varLocationId);
+                        //Convert.ToInt32(lblLocation.Text) = varLocationId;
                         txtLocation.BackColor = Color.White;
                         tpStockLocation.ShowAlways = false;
                     }

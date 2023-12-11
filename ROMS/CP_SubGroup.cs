@@ -1455,11 +1455,14 @@ namespace ROMS
             {
                 MainForm.objCP_Rack = new CP_Rack();
                 MainForm.objCP_Rack.varFormFlag = 1;
+                MainForm.objCP_Rack.cmbConcern.Enabled = false;
+                MainForm.objCP_Rack.txtLocation.Text = txtLocation.Text;
+                MainForm.objCP_Rack.txtLocation.Enabled = false;
                 MainForm.objCP_Rack.ShowDialog();
                 txtLocation.Text = varStockLocationName;
                 lblLocation.Text = Convert.ToString(varLocationCode);
-                //  txtRack.Text = varRackName;
-                //  lblRack.Text = Convert.ToString(varRackCode);
+                txtRack.Text = varRackName;
+                lblRack.Text = Convert.ToString(varRackCode);
                 //  lvRack.Visible = false;
                 udfnLoadRackList();
                 btnSave.Focus();

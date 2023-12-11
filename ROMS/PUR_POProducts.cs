@@ -106,7 +106,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(pbSupplierCode), Convert.ToInt32(pbScheduleCode), 0, 0, "", 0, 0, 0,"",0,0,0,0,0, Convert.ToInt32(pbPoid),"", "", "");
+                objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(pbSupplierCode), Convert.ToInt32(pbScheduleCode), 0, 0, "", 0, 0, 0,"",0,0,0,0,0, Convert.ToInt32(pbPoid),"","","",0);
                 objspdservice.CloseConnection();
                 if (objDs.Tables[6].Rows.Count > 0)
                 { 
