@@ -7458,6 +7458,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void udfnScrollVisible(DataGridView DGV, DataGridView grdCityList)
         {
             try
@@ -7478,6 +7479,36 @@ namespace ROMS
                         for (int i = 0; i < visibleColumns.Count; i++)
                         {
                             DGV_SearchGrid1.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfntab4scrollVisible(DataGridView DGV, DataGridView grdCityList)
+        {
+            try
+            {
+                var vScrollbar = grdViewSupplierMapping.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+                    int I = DGV_SearchGridPro.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGridPro.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGridPro.Rows[rowIndex].Cells[i].Value = "";
                         }
                     }
                 }
@@ -8139,7 +8170,7 @@ namespace ROMS
                 }
                 DGV_SearchGridPro.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGridPro.Invalidate();
-                udfnscrollVisible(DGV_SearchGridPro, grdViewSupplierMapping);
+                udfntab4scrollVisible(DGV_SearchGridPro, grdViewSupplierMapping);
             }
             catch (Exception ex)
             {
