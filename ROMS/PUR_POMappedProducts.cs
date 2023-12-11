@@ -374,7 +374,7 @@ namespace ROMS
                                     { 
                                         dtMappedProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"]
                                         , objDs.Tables[0].Rows[i]["Unit"],
-                                        objDs.Tables[0].Rows[i]["Unit Per case"], objDs.Tables[0].Rows[i]["SalesRate"], objDs.Tables[0].Rows[i]["WholeSaleRate"] , objDs.Tables[0].Rows[i]["Min Qty"], objDs.Tables[0].Rows[i]["Max Qty"] , objDs.Tables[0].Rows[i]["Stock"],
+                                        objDs.Tables[0].Rows[i]["Unit Per box"], objDs.Tables[0].Rows[i]["SalesRate"], objDs.Tables[0].Rows[i]["WholeSaleRate"] , objDs.Tables[0].Rows[i]["Min Qty"], objDs.Tables[0].Rows[i]["Max Qty"] , objDs.Tables[0].Rows[i]["Stock"],
                                         objDs.Tables[0].Rows[i]["Reorder"], objDs.Tables[0].Rows[i]["Productid"], objDs.Tables[0].Rows[i]["GST_Text"],
                                         objDs.Tables[0].Rows[i]["PREVIOUS"], objDs.Tables[0].Rows[i]["PARTIAL"], objDs.Tables[0].Rows[i]["ordervalue"], 
                                         objDs.Tables[0].Rows[i]["PR_UTID"], objDs.Tables[0].Rows[i]["Unit Wt"], objDs.Tables[0].Rows[i]["B.Unit Weight"],
@@ -510,7 +510,7 @@ namespace ROMS
 
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet(); 
-                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode);
+                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode, "", "");
                 objspdservice.CloseConnection();
 
                 for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)

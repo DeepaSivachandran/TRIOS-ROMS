@@ -588,7 +588,7 @@ namespace ROMS
                         string[] values = new string[0];
                         DataSet objDsSupplierId = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
+                        objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "");
                         objDserv.CloseConnection();
                         if (objDsSupplierId != null)
                         {
@@ -954,7 +954,7 @@ namespace ROMS
                         {
                             SPDataService objspdservice = new SPDataService();
                             DataSet objDs = new DataSet();
-                            objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0, addproductid);
+                            objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0, addproductid, "", "");
                             objspdservice.CloseConnection();
                             string defflag = "0";
                             if (objDs != null)
@@ -1717,7 +1717,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(30, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, varPOID, "");
+                    objDs = objspdservice.udfnSupplierList(30, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, varPOID, "", "", "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1772,7 +1772,7 @@ namespace ROMS
                     string varSupplierId = "0";
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "");
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -2502,7 +2502,7 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
-                    objDs = objspdservice.udfnSupplierList(27, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, varPOID, "");
+                    objDs = objspdservice.udfnSupplierList(27, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, varPOID, "", "", "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2577,13 +2577,13 @@ namespace ROMS
                                 lvproduct.Columns[5].Width = 100;
                                 if (VarSearchFlag == false)
                                 { 
-                                    lvproduct.Columns[1].Width = 350;
+                                    lvproduct.Columns[1].Width = 250;
                                     lvproduct.Columns[2].Width = 0;
                                 }
                                 else
                                 { 
                                     lvproduct.Columns[1].Width = 0;
-                                    lvproduct.Columns[2].Width = 250;
+                                    lvproduct.Columns[2].Width = 350;
                                 }
                             }
                         }
@@ -3855,7 +3855,7 @@ namespace ROMS
                 }
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, varPOID, "");
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, varPOID, "", "", "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -4009,7 +4009,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(17, 0, Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDs = objspdservice.udfnSupplierList(17, 0, Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -4042,7 +4042,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(18, Convert.ToInt32(lblSupplierCode.Text), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDs = objspdservice.udfnSupplierList(18, Convert.ToInt32(lblSupplierCode.Text), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

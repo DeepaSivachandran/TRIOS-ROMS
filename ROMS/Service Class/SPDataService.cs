@@ -1885,7 +1885,9 @@ namespace ROMS
             }
             return result;
         }
-        public DataSet udfnSupplierList(int ViewType,int paraSupplierid,int paraSupplierScheduleid,int pardayid,int paraOrderId,string @paraSupplierName,int paraordertype,int paraStatusId,int paraCompanycode,string paraProductType,int paraCityId,int paraStateId,int paraGstType,int paraPaymentTerm,int paraReturnPolicy,int ParaPOID,string paraProducts)
+        public DataSet udfnSupplierList(int ViewType,int paraSupplierid,int paraSupplierScheduleid,int pardayid,int paraOrderId,string @paraSupplierName,int paraordertype,
+            int paraStatusId,int paraCompanycode,string paraProductType,int paraCityId,int paraStateId,int paraGstType,int paraPaymentTerm,int paraReturnPolicy,int ParaPOID,
+            string paraProducts,string ParaFromDate,string ParaToDate)
         {
             DataSet ds = new DataSet();
             try
@@ -1912,6 +1914,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPaymentTerm", paraPaymentTerm);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnPolicy", paraReturnPolicy);
                 varSqlCommand.Parameters.AddWithValue("@paraProducts", paraProducts);
+                varSqlCommand.Parameters.AddWithValue("@ParaFromDate", ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaToDate", ParaToDate);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

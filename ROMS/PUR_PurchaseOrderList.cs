@@ -579,12 +579,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
-        {
-
+        { 
             try
             {
                 LV_Supplier.Items.Clear();
@@ -592,7 +590,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "");
+                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplier.Text, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0,0, 0, 0, "",dpPlanDate.Text,dptoPlanDate.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

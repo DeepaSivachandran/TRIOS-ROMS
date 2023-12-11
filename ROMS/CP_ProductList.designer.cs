@@ -270,6 +270,7 @@
             // 
             this.grdItemList.AllowUserToAddRows = false;
             this.grdItemList.AllowUserToDeleteRows = false;
+            this.grdItemList.AllowUserToResizeColumns = false;
             this.grdItemList.AllowUserToResizeRows = false;
             this.grdItemList.BackgroundColor = System.Drawing.Color.White;
             this.grdItemList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
