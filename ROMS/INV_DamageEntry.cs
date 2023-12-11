@@ -1035,7 +1035,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnproductDamage(2,varID, 0,0, 0, 0, "", "");
+                    objDS = objspservice.udfnproductDamage(2,varID, 0,0, 0, 0, "", "","");
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {

@@ -796,7 +796,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 16/10/2023 for purchase damage list
-        public DataSet udfnproductDamage(int paraViewType,int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID,int paraStatus,string ParaDMFromDate,string ParaDMToDate)
+        public DataSet udfnproductDamage(int paraViewType,int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID,int paraStatus,string ParaDMFromDate,string ParaDMToDate,string paraSuppliername)
         {
             DataSet ds = new DataSet();
             try
@@ -812,6 +812,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
                 varSqlCommand.Parameters.AddWithValue("@ParaDMFromDate", ParaDMFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaDMToDate", ParaDMToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSuppliername", paraSuppliername);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
