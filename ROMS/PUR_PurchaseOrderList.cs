@@ -840,6 +840,7 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
                 cmbShow.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

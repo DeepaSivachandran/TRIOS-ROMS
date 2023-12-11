@@ -689,7 +689,7 @@ namespace ROMS
                         SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     }
                     string varorginator = "", varpaymentmethod = "";
-                    int varviewtype = 0, varretuencycle = 0, varreturnapplicable = 0;
+                    int varviewtype = 0, varretuencycle = 0, varreturnapplicable = -1;
                     if (btnSave.Text == "Save")
                     {
                         varviewtype = 0;
@@ -1135,7 +1135,7 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID"); 
                     objDataBind = null;
-
+                    //cmbReturnPolicy.SelectedValue = -1;
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
@@ -1175,7 +1175,7 @@ namespace ROMS
                             txtOtherBrands.Text = objDS.Tables[0].Rows[0]["SP_Brand"].ToString().Replace("''", "'");
 
                             //cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
-                            varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
+                             varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnTypeID = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
 
                             cmbReturnPolicy.SelectedValue = Convert.ToInt64(varReturPolicyId);
@@ -2577,10 +2577,10 @@ namespace ROMS
                 cmbSupplierType.BackColor = Color.White;
                 if (Convert.ToString(cmbSupplierType.SelectedValue) == "" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
                 {
-                    errCompany.SetError(cmbSupplierType, "Please Select Supplier Type");
+                    errCompany.SetError(cmbSupplierType, "Please select supplier type");
                     cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpstate.ShowAlways = true;
-                    tpstate.Show("Please Select Payment Supplier Type", cmbSupplierType, 5000);
+                    tpstate.Show("Please select supplier type", cmbSupplierType, 5000);
                 }
                 else
                 {
@@ -4845,25 +4845,25 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
 
-                                SPDataService objspdservice = new SPDataService();
-                                result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",0);
-                                string[] varvalue = result.Split('~');
-                                if (varvalue[0] == "3")
-                                {
-                                    this.ActiveControl = txtScheduleName;
-                                    grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
-                                    for (int i = 0; i < grdSupplierList.RowCount; i++)
-                                    {
-                                        grdSupplierList.Rows[i].Cells["clmsno"].Value = i + 1;
-                                    }
-                                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    MainForm.objCP_Supplierlist.udfnList();
-                                }
-                                else
-                                {
-                                    DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    if (dialogResult1 == DialogResult.Yes)
-                                    {
+                                //SPDataService objspdservice = new SPDataService();
+                                //result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",0);
+                                //string[] varvalue = result.Split('~');
+                                //if (varvalue[0] == "3")
+                                //{
+                                //    this.ActiveControl = txtScheduleName;
+                                //    grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
+                                //    for (int i = 0; i < grdSupplierList.RowCount; i++)
+                                //    {
+                                //        grdSupplierList.Rows[i].Cells["clmsno"].Value = i + 1;
+                                //    }
+                                //    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //    MainForm.objCP_Supplierlist.udfnList();
+                                //}
+                                //else
+                                //{
+                                    //DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    //if (dialogResult1 == DialogResult.Yes)
+                                    //{
                                         SPDataService objspdservice1 = new SPDataService();
                                         result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",0);
                                         string[] varvalue1 = result.Split('~');
@@ -4886,9 +4886,9 @@ namespace ROMS
 
                                         udfnScheduleClear();
                                         btnAdd.Text = "Save";
-                                    }
-                                }
-                                objspdservice.CloseConnection();
+                                    //}
+                                //}
+                                objspdservice1.CloseConnection();
                                 udfnScheduleClear();
                                 btnAdd.Text = "Save";
                                 udfnSetRegularText();

@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle201 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle202 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle203 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle204 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle205 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle206 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle207 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle208 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle209 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle210 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -46,8 +46,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
-            this.txtProductSearch = new System.Windows.Forms.TextBox();
-            this.lblDSearch = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,34 +81,9 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvGroup = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvSubGroup = new System.Windows.Forms.ListView();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.grpProFilter = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbProductStatus = new System.Windows.Forms.ComboBox();
-            this.txtProductSubGroup = new System.Windows.Forms.TextBox();
-            this.txtProductGroup = new System.Windows.Forms.TextBox();
-            this.grpGroupBy = new System.Windows.Forms.GroupBox();
-            this.cbPoNo = new System.Windows.Forms.CheckBox();
-            this.cbSupplier = new System.Windows.Forms.CheckBox();
-            this.btnProductView = new System.Windows.Forms.Button();
-            this.lblDESubGroup = new System.Windows.Forms.Label();
-            this.lblDEGroup = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.cmbGroup = new System.Windows.Forms.ComboBox();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.lblschedleCode = new System.Windows.Forms.Label();
-            this.cmbShow = new System.Windows.Forms.ComboBox();
-            this.btnViewProducts = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.lblPartial = new System.Windows.Forms.Label();
@@ -123,21 +96,31 @@
             this.lblIssued = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnView = new System.Windows.Forms.Button();
             this.grpfilter = new System.Windows.Forms.GroupBox();
-            this.gpStatus = new System.Windows.Forms.GroupBox();
-            this.rbNotcomplete = new System.Windows.Forms.RadioButton();
-            this.rbComplete = new System.Windows.Forms.RadioButton();
-            this.cmbstatus = new System.Windows.Forms.ComboBox();
+            this.pnlProduct = new System.Windows.Forms.Panel();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.cmbProductStatus = new System.Windows.Forms.ComboBox();
+            this.cmbGroup = new System.Windows.Forms.ComboBox();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnViewProducts = new System.Windows.Forms.Button();
             this.lblGroupId = new System.Windows.Forms.Label();
             this.lblSubGroupId = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.dptoPlanDate = new System.Windows.Forms.DateTimePicker();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cmbShow = new System.Windows.Forms.ComboBox();
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnView = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.pnlPO = new System.Windows.Forms.Panel();
+            this.rbNotcomplete = new System.Windows.Forms.RadioButton();
+            this.cmbstatus = new System.Windows.Forms.ComboBox();
+            this.rbComplete = new System.Windows.Forms.RadioButton();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -145,25 +128,42 @@
             this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.txtProductSearch = new System.Windows.Forms.TextBox();
+            this.lblDSearch = new System.Windows.Forms.Label();
+            this.lvGroup = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvSubGroup = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.grpProFilter = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtProductSubGroup = new System.Windows.Forms.TextBox();
+            this.txtProductGroup = new System.Windows.Forms.TextBox();
+            this.grpGroupBy = new System.Windows.Forms.GroupBox();
+            this.cbPoNo = new System.Windows.Forms.CheckBox();
+            this.cbSupplier = new System.Windows.Forms.CheckBox();
+            this.btnProductView = new System.Windows.Forms.Button();
+            this.lblDESubGroup = new System.Windows.Forms.Label();
+            this.lblDEGroup = new System.Windows.Forms.Label();
+            this.gpStatus = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.pnlPO = new System.Windows.Forms.Panel();
-            this.pnlProduct = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).BeginInit();
-            this.grpProFilter.SuspendLayout();
-            this.grpGroupBy.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpfilter.SuspendLayout();
+            this.pnlProduct.SuspendLayout();
+            this.pnlPO.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseorderlist)).BeginInit();
-            this.pnlPO.SuspendLayout();
-            this.pnlProduct.SuspendLayout();
+            this.grpProFilter.SuspendLayout();
+            this.grpGroupBy.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -250,13 +250,12 @@
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
+            this.pnlpurchaseapproval.Controls.Add(this.groupBox1);
+            this.pnlpurchaseapproval.Controls.Add(this.btnView);
             this.pnlpurchaseapproval.Controls.Add(this.DGV_SearchGrid);
             this.pnlpurchaseapproval.Controls.Add(this.DGV_SearchGridPro);
             this.pnlpurchaseapproval.Controls.Add(this.lblscheduleName);
             this.pnlpurchaseapproval.Controls.Add(this.LV_Supplier);
-            this.pnlpurchaseapproval.Controls.Add(this.groupBox2);
-            this.pnlpurchaseapproval.Controls.Add(this.groupBox1);
-            this.pnlpurchaseapproval.Controls.Add(this.btnView);
             this.pnlpurchaseapproval.Controls.Add(this.grpfilter);
             this.pnlpurchaseapproval.Controls.Add(this.grdProDetails);
             this.pnlpurchaseapproval.Controls.Add(this.picLoader);
@@ -267,34 +266,11 @@
             this.pnlpurchaseapproval.Controls.Add(this.lblDSearch);
             this.pnlpurchaseapproval.Controls.Add(this.lvGroup);
             this.pnlpurchaseapproval.Controls.Add(this.lvSubGroup);
-            this.pnlpurchaseapproval.Controls.Add(this.grpProFilter);
             this.pnlpurchaseapproval.Controls.Add(this.gpStatus);
             this.pnlpurchaseapproval.Location = new System.Drawing.Point(0, 31);
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
             this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
             this.pnlpurchaseapproval.TabIndex = 958789;
-            // 
-            // txtProductSearch
-            // 
-            this.txtProductSearch.Location = new System.Drawing.Point(1140, 108);
-            this.txtProductSearch.Name = "txtProductSearch";
-            this.txtProductSearch.Size = new System.Drawing.Size(266, 27);
-            this.txtProductSearch.TabIndex = 13;
-            this.txtProductSearch.Visible = false;
-            this.txtProductSearch.TextChanged += new System.EventHandler(this.TxtProductSearch_TextChanged);
-            this.txtProductSearch.Enter += new System.EventHandler(this.TxtProductSearch_Enter);
-            this.txtProductSearch.Leave += new System.EventHandler(this.TxtProductSearch_Leave);
-            // 
-            // lblDSearch
-            // 
-            this.lblDSearch.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDSearch.Location = new System.Drawing.Point(1033, 105);
-            this.lblDSearch.Name = "lblDSearch";
-            this.lblDSearch.Size = new System.Drawing.Size(101, 32);
-            this.lblDSearch.TabIndex = 1111229;
-            this.lblDSearch.Text = "Search by P.I Code / Product Name";
-            this.lblDSearch.Visible = false;
-            this.lblDSearch.Click += new System.EventHandler(this.LblDSearch_Click);
             // 
             // DGV_SearchGrid
             // 
@@ -303,14 +279,14 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle201.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle201.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle201.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle201.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle201.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle201.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle201.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle201;
+            dataGridViewCellStyle61.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle61.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle61.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle61.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle61.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle61.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle61.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle61;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -328,23 +304,23 @@
             this.clmdinwarddate,
             this.clmdenterby,
             this.clmdstatus});
-            dataGridViewCellStyle202.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle202.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle202.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle202.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle202.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle202.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle202.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle202;
+            dataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle62.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle62.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle62.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle62.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle62.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle62.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle62;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 103);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle203.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle203.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle203;
+            dataGridViewCellStyle63.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle63.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle63;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -452,14 +428,14 @@
             this.DGV_SearchGridPro.AllowUserToResizeRows = false;
             this.DGV_SearchGridPro.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGridPro.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle204.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle204.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle204.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle204.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle204.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle204.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle204.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGridPro.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle204;
+            dataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle64.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle64.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle64.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle64.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle64.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle64.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGridPro.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle64;
             this.DGV_SearchGridPro.ColumnHeadersHeight = 30;
             this.DGV_SearchGridPro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_SearchGridPro.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -477,23 +453,23 @@
             this.dataGridViewTextBoxColumn12,
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14});
-            dataGridViewCellStyle205.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle205.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle205.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle205.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle205.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle205.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle205.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGridPro.DefaultCellStyle = dataGridViewCellStyle205;
+            dataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle65.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle65.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle65.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle65.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle65.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle65.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGridPro.DefaultCellStyle = dataGridViewCellStyle65;
             this.DGV_SearchGridPro.EnableHeadersVisualStyles = false;
             this.DGV_SearchGridPro.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGridPro.Location = new System.Drawing.Point(3, 103);
             this.DGV_SearchGridPro.Name = "DGV_SearchGridPro";
             this.DGV_SearchGridPro.RowHeadersVisible = false;
             this.DGV_SearchGridPro.RowHeadersWidth = 70;
-            dataGridViewCellStyle206.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle206.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGridPro.RowsDefaultCellStyle = dataGridViewCellStyle206;
+            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGridPro.RowsDefaultCellStyle = dataGridViewCellStyle66;
             this.DGV_SearchGridPro.RowTemplate.Height = 25;
             this.DGV_SearchGridPro.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_SearchGridPro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -638,265 +614,17 @@
             // 
             this.columnHeader9.Width = 0;
             // 
-            // lvGroup
-            // 
-            this.lvGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader1,
-            this.columnHeader6});
-            this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(104, 317);
-            this.lvGroup.Name = "lvGroup";
-            this.lvGroup.Size = new System.Drawing.Size(457, 157);
-            this.lvGroup.TabIndex = 1111181;
-            this.lvGroup.UseCompatibleStateImageBehavior = false;
-            this.lvGroup.View = System.Windows.Forms.View.Details;
-            this.lvGroup.Visible = false;
-            this.lvGroup.DoubleClick += new System.EventHandler(this.LvGroup_DoubleClick);
-            this.lvGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGroup_KeyDown);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 180;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 10;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Width = 0;
-            // 
-            // lvSubGroup
-            // 
-            this.lvSubGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader7});
-            this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(387, 317);
-            this.lvSubGroup.Name = "lvSubGroup";
-            this.lvSubGroup.Size = new System.Drawing.Size(457, 157);
-            this.lvSubGroup.TabIndex = 1111180;
-            this.lvSubGroup.UseCompatibleStateImageBehavior = false;
-            this.lvSubGroup.View = System.Windows.Forms.View.Details;
-            this.lvSubGroup.Visible = false;
-            this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
-            this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 180;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 10;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Width = 0;
-            // 
-            // grpProFilter
-            // 
-            this.grpProFilter.Controls.Add(this.label3);
-            this.grpProFilter.Controls.Add(this.txtProductSubGroup);
-            this.grpProFilter.Controls.Add(this.txtProductGroup);
-            this.grpProFilter.Controls.Add(this.grpGroupBy);
-            this.grpProFilter.Controls.Add(this.btnProductView);
-            this.grpProFilter.Controls.Add(this.lblDESubGroup);
-            this.grpProFilter.Controls.Add(this.lblDEGroup);
-            this.grpProFilter.Location = new System.Drawing.Point(948, 181);
-            this.grpProFilter.Name = "grpProFilter";
-            this.grpProFilter.Size = new System.Drawing.Size(311, 31);
-            this.grpProFilter.TabIndex = 10;
-            this.grpProFilter.TabStop = false;
-            this.grpProFilter.Text = "Filter By";
-            this.grpProFilter.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(547, 25);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 20);
-            this.label3.TabIndex = 1111230;
-            this.label3.Text = "Status";
-            // 
-            // cmbProductStatus
-            // 
-            this.cmbProductStatus.Enabled = false;
-            this.cmbProductStatus.FormattingEnabled = true;
-            this.cmbProductStatus.Location = new System.Drawing.Point(5, 6);
-            this.cmbProductStatus.Name = "cmbProductStatus";
-            this.cmbProductStatus.Size = new System.Drawing.Size(148, 27);
-            this.cmbProductStatus.TabIndex = 8;
-            this.cmbProductStatus.Enter += new System.EventHandler(this.CmbProductStatus_Enter);
-            this.cmbProductStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductStatus_KeyDown);
-            this.cmbProductStatus.Leave += new System.EventHandler(this.CmbProductStatus_Leave);
-            // 
-            // txtProductSubGroup
-            // 
-            this.txtProductSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductSubGroup.Location = new System.Drawing.Point(396, 22);
-            this.txtProductSubGroup.MaxLength = 30;
-            this.txtProductSubGroup.Name = "txtProductSubGroup";
-            this.txtProductSubGroup.Size = new System.Drawing.Size(140, 27);
-            this.txtProductSubGroup.TabIndex = 11;
-            this.txtProductSubGroup.TextChanged += new System.EventHandler(this.TxtProductSubGroup_TextChanged);
-            this.txtProductSubGroup.Enter += new System.EventHandler(this.TxtProductSubGroup_Enter);
-            this.txtProductSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductSubGroup_KeyDown);
-            this.txtProductSubGroup.Leave += new System.EventHandler(this.TxtProductSubGroup_Leave);
-            // 
-            // txtProductGroup
-            // 
-            this.txtProductGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductGroup.Location = new System.Drawing.Point(109, 22);
-            this.txtProductGroup.MaxLength = 30;
-            this.txtProductGroup.Name = "txtProductGroup";
-            this.txtProductGroup.Size = new System.Drawing.Size(163, 27);
-            this.txtProductGroup.TabIndex = 10;
-            this.txtProductGroup.TextChanged += new System.EventHandler(this.TxtProductGroup_TextChanged);
-            this.txtProductGroup.Enter += new System.EventHandler(this.TxtProductGroup_Enter);
-            this.txtProductGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductGroup_KeyDown);
-            this.txtProductGroup.Leave += new System.EventHandler(this.TxtProductGroup_Leave);
-            // 
-            // grpGroupBy
-            // 
-            this.grpGroupBy.Controls.Add(this.cbPoNo);
-            this.grpGroupBy.Controls.Add(this.cbSupplier);
-            this.grpGroupBy.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpGroupBy.Location = new System.Drawing.Point(1048, 11);
-            this.grpGroupBy.Name = "grpGroupBy";
-            this.grpGroupBy.Size = new System.Drawing.Size(225, 39);
-            this.grpGroupBy.TabIndex = 13;
-            this.grpGroupBy.TabStop = false;
-            this.grpGroupBy.Text = "Group By";
-            this.grpGroupBy.Visible = false;
-            // 
-            // cbPoNo
-            // 
-            this.cbPoNo.AutoSize = true;
-            this.cbPoNo.Checked = true;
-            this.cbPoNo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbPoNo.Location = new System.Drawing.Point(149, 13);
-            this.cbPoNo.Name = "cbPoNo";
-            this.cbPoNo.Size = new System.Drawing.Size(63, 24);
-            this.cbPoNo.TabIndex = 14;
-            this.cbPoNo.Text = "PO No.";
-            this.cbPoNo.UseVisualStyleBackColor = true;
-            this.cbPoNo.CheckedChanged += new System.EventHandler(this.CbPoNo_CheckedChanged);
-            // 
-            // cbSupplier
-            // 
-            this.cbSupplier.AutoSize = true;
-            this.cbSupplier.Checked = true;
-            this.cbSupplier.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSupplier.Location = new System.Drawing.Point(70, 13);
-            this.cbSupplier.Name = "cbSupplier";
-            this.cbSupplier.Size = new System.Drawing.Size(73, 24);
-            this.cbSupplier.TabIndex = 13;
-            this.cbSupplier.Text = "Supplier";
-            this.cbSupplier.UseVisualStyleBackColor = true;
-            this.cbSupplier.CheckedChanged += new System.EventHandler(this.CbSupplier_CheckedChanged);
-            // 
-            // btnProductView
-            // 
-            this.btnProductView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProductView.Image = global::ROMS.Properties.Resources.view;
-            this.btnProductView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductView.Location = new System.Drawing.Point(785, 21);
-            this.btnProductView.Name = "btnProductView";
-            this.btnProductView.Size = new System.Drawing.Size(75, 29);
-            this.btnProductView.TabIndex = 13;
-            this.btnProductView.Text = "View";
-            this.btnProductView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnProductView.UseVisualStyleBackColor = true;
-            this.btnProductView.Click += new System.EventHandler(this.BtnProductView_Click);
-            // 
-            // lblDESubGroup
-            // 
-            this.lblDESubGroup.AutoSize = true;
-            this.lblDESubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDESubGroup.Location = new System.Drawing.Point(278, 25);
-            this.lblDESubGroup.Name = "lblDESubGroup";
-            this.lblDESubGroup.Size = new System.Drawing.Size(112, 20);
-            this.lblDESubGroup.TabIndex = 34;
-            this.lblDESubGroup.Text = "Product Sub Group";
-            // 
-            // lblDEGroup
-            // 
-            this.lblDEGroup.AutoSize = true;
-            this.lblDEGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEGroup.Location = new System.Drawing.Point(15, 25);
-            this.lblDEGroup.Name = "lblDEGroup";
-            this.lblDEGroup.Size = new System.Drawing.Size(88, 20);
-            this.lblDEGroup.TabIndex = 32;
-            this.lblDEGroup.Text = "Product Group";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblSupplierCode);
             this.groupBox2.Controls.Add(this.lblschedleCode);
-            this.groupBox2.Location = new System.Drawing.Point(1233, 120);
+            this.groupBox2.Location = new System.Drawing.Point(242, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(10, 15);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Show";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(155, 9);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(57, 20);
-            this.lblStatus.TabIndex = 1111230;
-            this.lblStatus.Text = "Order By";
-            // 
-            // cmbGroup
-            // 
-            this.cmbGroup.FormattingEnabled = true;
-            this.cmbGroup.Items.AddRange(new object[] {
-            "Purchase Order List",
-            "Product List"});
-            this.cmbGroup.Location = new System.Drawing.Point(213, 6);
-            this.cmbGroup.Name = "cmbGroup";
-            this.cmbGroup.Size = new System.Drawing.Size(102, 27);
-            this.cmbGroup.TabIndex = 9;
-            this.cmbGroup.Enter += new System.EventHandler(this.CmbGroup_Enter);
-            this.cmbGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroup_KeyDown);
-            this.cmbGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGroup_KeyPress);
-            this.cmbGroup.Leave += new System.EventHandler(this.CmbGroup_Leave);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(1043, 19);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(32, 33);
-            this.btnPrint.TabIndex = 12;
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1007, 19);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(32, 33);
-            this.btnExport.TabIndex = 11;
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
-            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
-            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
+            this.groupBox2.Visible = false;
             // 
             // lblSupplierCode
             // 
@@ -918,36 +646,6 @@
             this.lblschedleCode.Text = "0";
             this.lblschedleCode.Visible = false;
             // 
-            // cmbShow
-            // 
-            this.cmbShow.FormattingEnabled = true;
-            this.cmbShow.Items.AddRange(new object[] {
-            "Purchase Order List",
-            "Product List"});
-            this.cmbShow.Location = new System.Drawing.Point(465, 23);
-            this.cmbShow.Name = "cmbShow";
-            this.cmbShow.Size = new System.Drawing.Size(131, 27);
-            this.cmbShow.TabIndex = 7;
-            this.cmbShow.SelectedIndexChanged += new System.EventHandler(this.CmbShow_SelectedIndexChanged);
-            this.cmbShow.Enter += new System.EventHandler(this.CmbShow_Enter);
-            this.cmbShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbShow_KeyDown);
-            this.cmbShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShow_KeyPress);
-            this.cmbShow.Leave += new System.EventHandler(this.CmbShow_Leave);
-            // 
-            // btnViewProducts
-            // 
-            this.btnViewProducts.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewProducts.Image = global::ROMS.Properties.Resources.view;
-            this.btnViewProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewProducts.Location = new System.Drawing.Point(969, 19);
-            this.btnViewProducts.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnViewProducts.Name = "btnViewProducts";
-            this.btnViewProducts.Size = new System.Drawing.Size(32, 33);
-            this.btnViewProducts.TabIndex = 10;
-            this.btnViewProducts.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewProducts.UseVisualStyleBackColor = true;
-            this.btnViewProducts.Click += new System.EventHandler(this.BtnViewProducts_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label11);
@@ -955,15 +653,17 @@
             this.groupBox1.Controls.Add(this.lblPartialPending);
             this.groupBox1.Controls.Add(this.lblDelayed);
             this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.lblNotissued);
             this.groupBox1.Controls.Add(this.lblTotal);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.lblIssued);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.grpProFilter);
             this.groupBox1.Location = new System.Drawing.Point(1102, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(243, 100);
+            this.groupBox1.Size = new System.Drawing.Size(249, 100);
             this.groupBox1.TabIndex = 1111170;
             this.groupBox1.TabStop = false;
             // 
@@ -1077,6 +777,23 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Not Issued";
             // 
+            // btnView
+            // 
+            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(1342, 0);
+            this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(10, 10);
+            this.btnView.TabIndex = 8;
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Visible = false;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
+            // 
             // grpfilter
             // 
             this.grpfilter.Controls.Add(this.pnlProduct);
@@ -1103,58 +820,112 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
-            // gpStatus
+            // pnlProduct
             // 
-            this.gpStatus.Location = new System.Drawing.Point(1203, 121);
-            this.gpStatus.Name = "gpStatus";
-            this.gpStatus.Size = new System.Drawing.Size(20, 27);
-            this.gpStatus.TabIndex = 5;
-            this.gpStatus.TabStop = false;
-            this.gpStatus.Visible = false;
+            this.pnlProduct.Controls.Add(this.lblStatus);
+            this.pnlProduct.Controls.Add(this.cmbProductStatus);
+            this.pnlProduct.Controls.Add(this.cmbGroup);
+            this.pnlProduct.Location = new System.Drawing.Point(641, 17);
+            this.pnlProduct.Name = "pnlProduct";
+            this.pnlProduct.Size = new System.Drawing.Size(325, 47);
+            this.pnlProduct.TabIndex = 8;
             // 
-            // rbNotcomplete
+            // lblStatus
             // 
-            this.rbNotcomplete.AutoSize = true;
-            this.rbNotcomplete.Checked = true;
-            this.rbNotcomplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbNotcomplete.Location = new System.Drawing.Point(7, 7);
-            this.rbNotcomplete.Name = "rbNotcomplete";
-            this.rbNotcomplete.Size = new System.Drawing.Size(97, 21);
-            this.rbNotcomplete.TabIndex = 8;
-            this.rbNotcomplete.TabStop = true;
-            this.rbNotcomplete.Text = "Not Completed";
-            this.rbNotcomplete.UseVisualStyleBackColor = true;
-            this.rbNotcomplete.CheckedChanged += new System.EventHandler(this.RbNotcomplete_CheckedChanged);
-            this.rbNotcomplete.Enter += new System.EventHandler(this.RbNotcomplete_Enter);
-            this.rbNotcomplete.Leave += new System.EventHandler(this.RbNotcomplete_Leave);
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(155, 9);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(57, 20);
+            this.lblStatus.TabIndex = 1111230;
+            this.lblStatus.Text = "Order By";
             // 
-            // rbComplete
+            // cmbProductStatus
             // 
-            this.rbComplete.AutoSize = true;
-            this.rbComplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbComplete.Location = new System.Drawing.Point(110, 7);
-            this.rbComplete.Name = "rbComplete";
-            this.rbComplete.Size = new System.Drawing.Size(77, 21);
-            this.rbComplete.TabIndex = 9;
-            this.rbComplete.Text = "Completed";
-            this.rbComplete.UseVisualStyleBackColor = true;
-            this.rbComplete.CheckedChanged += new System.EventHandler(this.RbComplete_CheckedChanged);
-            this.rbComplete.Enter += new System.EventHandler(this.RbComplete_Enter);
-            this.rbComplete.Leave += new System.EventHandler(this.RbComplete_Leave);
+            this.cmbProductStatus.Enabled = false;
+            this.cmbProductStatus.FormattingEnabled = true;
+            this.cmbProductStatus.Location = new System.Drawing.Point(5, 6);
+            this.cmbProductStatus.Name = "cmbProductStatus";
+            this.cmbProductStatus.Size = new System.Drawing.Size(148, 27);
+            this.cmbProductStatus.TabIndex = 8;
+            this.cmbProductStatus.Enter += new System.EventHandler(this.CmbProductStatus_Enter);
+            this.cmbProductStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductStatus_KeyDown);
+            this.cmbProductStatus.Leave += new System.EventHandler(this.CmbProductStatus_Leave);
             // 
-            // cmbstatus
+            // cmbGroup
             // 
-            this.cmbstatus.Enabled = false;
-            this.cmbstatus.FormattingEnabled = true;
-            this.cmbstatus.Location = new System.Drawing.Point(7, 47);
-            this.cmbstatus.Name = "cmbstatus";
-            this.cmbstatus.Size = new System.Drawing.Size(180, 27);
-            this.cmbstatus.TabIndex = 10;
-            this.cmbstatus.SelectedIndexChanged += new System.EventHandler(this.Cmbstatus_SelectedIndexChanged);
-            this.cmbstatus.Enter += new System.EventHandler(this.Cmbstatus_Enter);
-            this.cmbstatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbstatus_KeyDown);
-            this.cmbstatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmbstatus_KeyPress);
-            this.cmbstatus.Leave += new System.EventHandler(this.Cmbstatus_Leave);
+            this.cmbGroup.FormattingEnabled = true;
+            this.cmbGroup.Items.AddRange(new object[] {
+            "Purchase Order List",
+            "Product List"});
+            this.cmbGroup.Location = new System.Drawing.Point(214, 6);
+            this.cmbGroup.Name = "cmbGroup";
+            this.cmbGroup.Size = new System.Drawing.Size(106, 27);
+            this.cmbGroup.TabIndex = 9;
+            this.cmbGroup.Enter += new System.EventHandler(this.CmbGroup_Enter);
+            this.cmbGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroup_KeyDown);
+            this.cmbGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGroup_KeyPress);
+            this.cmbGroup.Leave += new System.EventHandler(this.CmbGroup_Leave);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(1037, 19);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(32, 33);
+            this.btnPrint.TabIndex = 12;
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(593, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(45, 20);
+            this.label9.TabIndex = 1111231;
+            this.label9.Text = "Status";
+            // 
+            // btnExport
+            // 
+            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(1002, 19);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(32, 33);
+            this.btnExport.TabIndex = 11;
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
+            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(418, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 20);
+            this.label7.TabIndex = 1111174;
+            this.label7.Text = "Show";
+            // 
+            // btnViewProducts
+            // 
+            this.btnViewProducts.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewProducts.Image = global::ROMS.Properties.Resources.view;
+            this.btnViewProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewProducts.Location = new System.Drawing.Point(967, 19);
+            this.btnViewProducts.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnViewProducts.Name = "btnViewProducts";
+            this.btnViewProducts.Size = new System.Drawing.Size(32, 33);
+            this.btnViewProducts.TabIndex = 10;
+            this.btnViewProducts.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnViewProducts.UseVisualStyleBackColor = true;
+            this.btnViewProducts.Click += new System.EventHandler(this.BtnViewProducts_Click);
             // 
             // lblGroupId
             // 
@@ -1193,7 +964,7 @@
             // 
             this.dptoPlanDate.CustomFormat = "dd/MM/yyyy";
             this.dptoPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptoPlanDate.Location = new System.Drawing.Point(316, 23);
+            this.dptoPlanDate.Location = new System.Drawing.Point(312, 23);
             this.dptoPlanDate.Name = "dptoPlanDate";
             this.dptoPlanDate.Size = new System.Drawing.Size(103, 27);
             this.dptoPlanDate.TabIndex = 3;
@@ -1205,7 +976,7 @@
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(66, 23);
+            this.cmbConcern.Location = new System.Drawing.Point(65, 23);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(83, 27);
             this.cmbConcern.TabIndex = 1;
@@ -1219,17 +990,33 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(153, 26);
+            this.label1.Location = new System.Drawing.Point(151, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 20);
             this.label1.TabIndex = 1111139;
             this.label1.Text = "PO Date";
             // 
+            // cmbShow
+            // 
+            this.cmbShow.FormattingEnabled = true;
+            this.cmbShow.Items.AddRange(new object[] {
+            "Purchase Order List",
+            "Product List"});
+            this.cmbShow.Location = new System.Drawing.Point(459, 23);
+            this.cmbShow.Name = "cmbShow";
+            this.cmbShow.Size = new System.Drawing.Size(131, 27);
+            this.cmbShow.TabIndex = 7;
+            this.cmbShow.SelectedIndexChanged += new System.EventHandler(this.CmbShow_SelectedIndexChanged);
+            this.cmbShow.Enter += new System.EventHandler(this.CmbShow_Enter);
+            this.cmbShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbShow_KeyDown);
+            this.cmbShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShow_KeyPress);
+            this.cmbShow.Leave += new System.EventHandler(this.CmbShow_Leave);
+            // 
             // dpPlanDate
             // 
             this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
             this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpPlanDate.Location = new System.Drawing.Point(209, 23);
+            this.dpPlanDate.Location = new System.Drawing.Point(206, 23);
             this.dpPlanDate.Name = "dpPlanDate";
             this.dpPlanDate.Size = new System.Drawing.Size(103, 27);
             this.dpPlanDate.TabIndex = 2;
@@ -1248,22 +1035,6 @@
             this.label10.TabIndex = 1111168;
             this.label10.Text = "Concern";
             // 
-            // btnView
-            // 
-            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1146, 110);
-            this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(32, 33);
-            this.btnView.TabIndex = 8;
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
-            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
-            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -1274,6 +1045,60 @@
             this.label2.TabIndex = 1111140;
             this.label2.Text = "Supplier ";
             // 
+            // pnlPO
+            // 
+            this.pnlPO.Controls.Add(this.rbNotcomplete);
+            this.pnlPO.Controls.Add(this.cmbstatus);
+            this.pnlPO.Controls.Add(this.rbComplete);
+            this.pnlPO.Location = new System.Drawing.Point(641, 17);
+            this.pnlPO.Name = "pnlPO";
+            this.pnlPO.Size = new System.Drawing.Size(325, 35);
+            this.pnlPO.TabIndex = 8;
+            // 
+            // rbNotcomplete
+            // 
+            this.rbNotcomplete.AutoSize = true;
+            this.rbNotcomplete.Checked = true;
+            this.rbNotcomplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbNotcomplete.Location = new System.Drawing.Point(7, 7);
+            this.rbNotcomplete.Name = "rbNotcomplete";
+            this.rbNotcomplete.Size = new System.Drawing.Size(97, 21);
+            this.rbNotcomplete.TabIndex = 8;
+            this.rbNotcomplete.TabStop = true;
+            this.rbNotcomplete.Text = "Not Completed";
+            this.rbNotcomplete.UseVisualStyleBackColor = true;
+            this.rbNotcomplete.CheckedChanged += new System.EventHandler(this.RbNotcomplete_CheckedChanged);
+            this.rbNotcomplete.Enter += new System.EventHandler(this.RbNotcomplete_Enter);
+            this.rbNotcomplete.Leave += new System.EventHandler(this.RbNotcomplete_Leave);
+            // 
+            // cmbstatus
+            // 
+            this.cmbstatus.Enabled = false;
+            this.cmbstatus.FormattingEnabled = true;
+            this.cmbstatus.Location = new System.Drawing.Point(213, 4);
+            this.cmbstatus.Name = "cmbstatus";
+            this.cmbstatus.Size = new System.Drawing.Size(106, 27);
+            this.cmbstatus.TabIndex = 10;
+            this.cmbstatus.SelectedIndexChanged += new System.EventHandler(this.Cmbstatus_SelectedIndexChanged);
+            this.cmbstatus.Enter += new System.EventHandler(this.Cmbstatus_Enter);
+            this.cmbstatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbstatus_KeyDown);
+            this.cmbstatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmbstatus_KeyPress);
+            this.cmbstatus.Leave += new System.EventHandler(this.Cmbstatus_Leave);
+            // 
+            // rbComplete
+            // 
+            this.rbComplete.AutoSize = true;
+            this.rbComplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbComplete.Location = new System.Drawing.Point(120, 7);
+            this.rbComplete.Name = "rbComplete";
+            this.rbComplete.Size = new System.Drawing.Size(77, 21);
+            this.rbComplete.TabIndex = 9;
+            this.rbComplete.Text = "Completed";
+            this.rbComplete.UseVisualStyleBackColor = true;
+            this.rbComplete.CheckedChanged += new System.EventHandler(this.RbComplete_CheckedChanged);
+            this.rbComplete.Enter += new System.EventHandler(this.RbComplete_Enter);
+            this.rbComplete.Leave += new System.EventHandler(this.RbComplete_Leave);
+            // 
             // grdProDetails
             // 
             this.grdProDetails.AllowUserToAddRows = false;
@@ -1282,14 +1107,14 @@
             this.grdProDetails.AllowUserToResizeRows = false;
             this.grdProDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdProDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle207.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle207.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle207.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle207.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle207.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle207.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle207.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdProDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle207;
+            dataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle67.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle67.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle67.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle67.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle67.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle67.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle67;
             this.grdProDetails.ColumnHeadersHeight = 30;
             this.grdProDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdProDetails.ColumnHeadersVisible = false;
@@ -1300,9 +1125,9 @@
             this.grdProDetails.ReadOnly = true;
             this.grdProDetails.RowHeadersVisible = false;
             this.grdProDetails.RowHeadersWidth = 100;
-            dataGridViewCellStyle208.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle208.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdProDetails.RowsDefaultCellStyle = dataGridViewCellStyle208;
+            dataGridViewCellStyle68.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle68.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdProDetails.RowsDefaultCellStyle = dataGridViewCellStyle68;
             this.grdProDetails.RowTemplate.Height = 25;
             this.grdProDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdProDetails.Size = new System.Drawing.Size(1348, 480);
@@ -1345,14 +1170,14 @@
             this.grdPurchaseorderlist.AllowUserToResizeRows = false;
             this.grdPurchaseorderlist.BackgroundColor = System.Drawing.Color.White;
             this.grdPurchaseorderlist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle209.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle209.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle209.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle209.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle209.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle209.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle209.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseorderlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle209;
+            dataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle69.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle69.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle69.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle69.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle69.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle69.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseorderlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle69;
             this.grdPurchaseorderlist.ColumnHeadersHeight = 30;
             this.grdPurchaseorderlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseorderlist.ColumnHeadersVisible = false;
@@ -1366,9 +1191,9 @@
             this.grdPurchaseorderlist.ReadOnly = true;
             this.grdPurchaseorderlist.RowHeadersVisible = false;
             this.grdPurchaseorderlist.RowHeadersWidth = 100;
-            dataGridViewCellStyle210.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle210.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdPurchaseorderlist.RowsDefaultCellStyle = dataGridViewCellStyle210;
+            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle70.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdPurchaseorderlist.RowsDefaultCellStyle = dataGridViewCellStyle70;
             this.grdPurchaseorderlist.RowTemplate.Height = 25;
             this.grdPurchaseorderlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseorderlist.Size = new System.Drawing.Size(1348, 480);
@@ -1406,61 +1231,238 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
+            // txtProductSearch
+            // 
+            this.txtProductSearch.Location = new System.Drawing.Point(1140, 108);
+            this.txtProductSearch.Name = "txtProductSearch";
+            this.txtProductSearch.Size = new System.Drawing.Size(266, 27);
+            this.txtProductSearch.TabIndex = 13;
+            this.txtProductSearch.Visible = false;
+            this.txtProductSearch.TextChanged += new System.EventHandler(this.TxtProductSearch_TextChanged);
+            this.txtProductSearch.Enter += new System.EventHandler(this.TxtProductSearch_Enter);
+            this.txtProductSearch.Leave += new System.EventHandler(this.TxtProductSearch_Leave);
+            // 
+            // lblDSearch
+            // 
+            this.lblDSearch.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDSearch.Location = new System.Drawing.Point(1033, 105);
+            this.lblDSearch.Name = "lblDSearch";
+            this.lblDSearch.Size = new System.Drawing.Size(101, 32);
+            this.lblDSearch.TabIndex = 1111229;
+            this.lblDSearch.Text = "Search by P.I Code / Product Name";
+            this.lblDSearch.Visible = false;
+            this.lblDSearch.Click += new System.EventHandler(this.LblDSearch_Click);
+            // 
+            // lvGroup
+            // 
+            this.lvGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader1,
+            this.columnHeader6});
+            this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvGroup.HideSelection = false;
+            this.lvGroup.Location = new System.Drawing.Point(104, 317);
+            this.lvGroup.Name = "lvGroup";
+            this.lvGroup.Size = new System.Drawing.Size(457, 157);
+            this.lvGroup.TabIndex = 1111181;
+            this.lvGroup.UseCompatibleStateImageBehavior = false;
+            this.lvGroup.View = System.Windows.Forms.View.Details;
+            this.lvGroup.Visible = false;
+            this.lvGroup.DoubleClick += new System.EventHandler(this.LvGroup_DoubleClick);
+            this.lvGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGroup_KeyDown);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 180;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 10;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
+            // 
+            // lvSubGroup
+            // 
+            this.lvSubGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader7});
+            this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSubGroup.HideSelection = false;
+            this.lvSubGroup.Location = new System.Drawing.Point(387, 317);
+            this.lvSubGroup.Name = "lvSubGroup";
+            this.lvSubGroup.Size = new System.Drawing.Size(457, 157);
+            this.lvSubGroup.TabIndex = 1111180;
+            this.lvSubGroup.UseCompatibleStateImageBehavior = false;
+            this.lvSubGroup.View = System.Windows.Forms.View.Details;
+            this.lvSubGroup.Visible = false;
+            this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
+            this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 180;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 10;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Width = 0;
+            // 
+            // grpProFilter
+            // 
+            this.grpProFilter.Controls.Add(this.label3);
+            this.grpProFilter.Controls.Add(this.txtProductSubGroup);
+            this.grpProFilter.Controls.Add(this.txtProductGroup);
+            this.grpProFilter.Controls.Add(this.grpGroupBy);
+            this.grpProFilter.Controls.Add(this.btnProductView);
+            this.grpProFilter.Controls.Add(this.lblDESubGroup);
+            this.grpProFilter.Controls.Add(this.lblDEGroup);
+            this.grpProFilter.Location = new System.Drawing.Point(242, 0);
+            this.grpProFilter.Name = "grpProFilter";
+            this.grpProFilter.Size = new System.Drawing.Size(10, 16);
+            this.grpProFilter.TabIndex = 10;
+            this.grpProFilter.TabStop = false;
+            this.grpProFilter.Text = "Filter By";
+            this.grpProFilter.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(547, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 20);
+            this.label3.TabIndex = 1111230;
+            this.label3.Text = "Status";
+            // 
+            // txtProductSubGroup
+            // 
+            this.txtProductSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtProductSubGroup.Location = new System.Drawing.Point(396, 22);
+            this.txtProductSubGroup.MaxLength = 30;
+            this.txtProductSubGroup.Name = "txtProductSubGroup";
+            this.txtProductSubGroup.Size = new System.Drawing.Size(140, 27);
+            this.txtProductSubGroup.TabIndex = 11;
+            this.txtProductSubGroup.TextChanged += new System.EventHandler(this.TxtProductSubGroup_TextChanged);
+            this.txtProductSubGroup.Enter += new System.EventHandler(this.TxtProductSubGroup_Enter);
+            this.txtProductSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductSubGroup_KeyDown);
+            this.txtProductSubGroup.Leave += new System.EventHandler(this.TxtProductSubGroup_Leave);
+            // 
+            // txtProductGroup
+            // 
+            this.txtProductGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtProductGroup.Location = new System.Drawing.Point(109, 22);
+            this.txtProductGroup.MaxLength = 30;
+            this.txtProductGroup.Name = "txtProductGroup";
+            this.txtProductGroup.Size = new System.Drawing.Size(163, 27);
+            this.txtProductGroup.TabIndex = 10;
+            this.txtProductGroup.TextChanged += new System.EventHandler(this.TxtProductGroup_TextChanged);
+            this.txtProductGroup.Enter += new System.EventHandler(this.TxtProductGroup_Enter);
+            this.txtProductGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductGroup_KeyDown);
+            this.txtProductGroup.Leave += new System.EventHandler(this.TxtProductGroup_Leave);
+            // 
+            // grpGroupBy
+            // 
+            this.grpGroupBy.Controls.Add(this.cbPoNo);
+            this.grpGroupBy.Controls.Add(this.cbSupplier);
+            this.grpGroupBy.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpGroupBy.Location = new System.Drawing.Point(1048, 11);
+            this.grpGroupBy.Name = "grpGroupBy";
+            this.grpGroupBy.Size = new System.Drawing.Size(225, 39);
+            this.grpGroupBy.TabIndex = 13;
+            this.grpGroupBy.TabStop = false;
+            this.grpGroupBy.Text = "Group By";
+            this.grpGroupBy.Visible = false;
+            // 
+            // cbPoNo
+            // 
+            this.cbPoNo.AutoSize = true;
+            this.cbPoNo.Checked = true;
+            this.cbPoNo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPoNo.Location = new System.Drawing.Point(149, 13);
+            this.cbPoNo.Name = "cbPoNo";
+            this.cbPoNo.Size = new System.Drawing.Size(63, 24);
+            this.cbPoNo.TabIndex = 14;
+            this.cbPoNo.Text = "PO No.";
+            this.cbPoNo.UseVisualStyleBackColor = true;
+            this.cbPoNo.CheckedChanged += new System.EventHandler(this.CbPoNo_CheckedChanged);
+            // 
+            // cbSupplier
+            // 
+            this.cbSupplier.AutoSize = true;
+            this.cbSupplier.Checked = true;
+            this.cbSupplier.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSupplier.Location = new System.Drawing.Point(70, 13);
+            this.cbSupplier.Name = "cbSupplier";
+            this.cbSupplier.Size = new System.Drawing.Size(73, 24);
+            this.cbSupplier.TabIndex = 13;
+            this.cbSupplier.Text = "Supplier";
+            this.cbSupplier.UseVisualStyleBackColor = true;
+            this.cbSupplier.CheckedChanged += new System.EventHandler(this.CbSupplier_CheckedChanged);
+            // 
+            // btnProductView
+            // 
+            this.btnProductView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductView.Image = global::ROMS.Properties.Resources.view;
+            this.btnProductView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProductView.Location = new System.Drawing.Point(785, 21);
+            this.btnProductView.Name = "btnProductView";
+            this.btnProductView.Size = new System.Drawing.Size(75, 29);
+            this.btnProductView.TabIndex = 13;
+            this.btnProductView.Text = "View";
+            this.btnProductView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnProductView.UseVisualStyleBackColor = true;
+            this.btnProductView.Click += new System.EventHandler(this.BtnProductView_Click);
+            // 
+            // lblDESubGroup
+            // 
+            this.lblDESubGroup.AutoSize = true;
+            this.lblDESubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDESubGroup.Location = new System.Drawing.Point(278, 25);
+            this.lblDESubGroup.Name = "lblDESubGroup";
+            this.lblDESubGroup.Size = new System.Drawing.Size(112, 20);
+            this.lblDESubGroup.TabIndex = 34;
+            this.lblDESubGroup.Text = "Product Sub Group";
+            // 
+            // lblDEGroup
+            // 
+            this.lblDEGroup.AutoSize = true;
+            this.lblDEGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDEGroup.Location = new System.Drawing.Point(15, 25);
+            this.lblDEGroup.Name = "lblDEGroup";
+            this.lblDEGroup.Size = new System.Drawing.Size(88, 20);
+            this.lblDEGroup.TabIndex = 32;
+            this.lblDEGroup.Text = "Product Group";
+            // 
+            // gpStatus
+            // 
+            this.gpStatus.Location = new System.Drawing.Point(1338, 0);
+            this.gpStatus.Name = "gpStatus";
+            this.gpStatus.Size = new System.Drawing.Size(10, 10);
+            this.gpStatus.TabIndex = 5;
+            this.gpStatus.TabStop = false;
+            this.gpStatus.Visible = false;
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::ROMS.Properties.Resources.view;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1059, 28);
+            this.button1.Location = new System.Drawing.Point(1060, 30);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(11, 12);
+            this.button1.Size = new System.Drawing.Size(10, 10);
             this.button1.TabIndex = 1111142;
             this.button1.Text = "new";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(423, 26);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 20);
-            this.label7.TabIndex = 1111174;
-            this.label7.Text = "Show";
-            // 
-            // pnlPO
-            // 
-            this.pnlPO.Controls.Add(this.rbNotcomplete);
-            this.pnlPO.Controls.Add(this.cmbstatus);
-            this.pnlPO.Controls.Add(this.rbComplete);
-            this.pnlPO.Location = new System.Drawing.Point(649, 17);
-            this.pnlPO.Name = "pnlPO";
-            this.pnlPO.Size = new System.Drawing.Size(193, 77);
-            this.pnlPO.TabIndex = 8;
-            // 
-            // pnlProduct
-            // 
-            this.pnlProduct.Controls.Add(this.lblStatus);
-            this.pnlProduct.Controls.Add(this.cmbProductStatus);
-            this.pnlProduct.Controls.Add(this.cmbGroup);
-            this.pnlProduct.Location = new System.Drawing.Point(649, 17);
-            this.pnlProduct.Name = "pnlProduct";
-            this.pnlProduct.Size = new System.Drawing.Size(319, 77);
-            this.pnlProduct.TabIndex = 8;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(600, 25);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 20);
-            this.label9.TabIndex = 1111231;
-            this.label9.Text = "Status";
             // 
             // PUR_PurchaseOrderList
             // 
@@ -1486,23 +1488,23 @@
             this.pnlpurchaseapproval.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).EndInit();
-            this.grpProFilter.ResumeLayout(false);
-            this.grpProFilter.PerformLayout();
-            this.grpGroupBy.ResumeLayout(false);
-            this.grpGroupBy.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
+            this.pnlProduct.ResumeLayout(false);
+            this.pnlProduct.PerformLayout();
+            this.pnlPO.ResumeLayout(false);
+            this.pnlPO.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseorderlist)).EndInit();
-            this.pnlPO.ResumeLayout(false);
-            this.pnlPO.PerformLayout();
-            this.pnlProduct.ResumeLayout(false);
-            this.pnlProduct.PerformLayout();
+            this.grpProFilter.ResumeLayout(false);
+            this.grpProFilter.PerformLayout();
+            this.grpGroupBy.ResumeLayout(false);
+            this.grpGroupBy.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
