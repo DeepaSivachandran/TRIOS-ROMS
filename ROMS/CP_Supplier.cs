@@ -8185,7 +8185,7 @@ namespace ROMS
                 {
                     DGV_SearchGridPro.Rows[rowIndex].Cells[i].Value = "";
                 }
-                //DGV_SearchGridPro.Columns["SI.No."].ReadOnly = true;
+             //   DGV_SearchGridPro.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
