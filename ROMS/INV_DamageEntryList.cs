@@ -16,7 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        
+        public string varUserID = "";
 
         public INV_DamageEntryList()
         {
@@ -296,6 +296,10 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
+                }
             }
             catch (Exception ex)
             {
@@ -357,7 +361,7 @@ namespace ROMS
             cmbStatus.SelectedValue = 6;
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
-            objDs = objspservice.udfnMaster(13, 0, 0, "", "", 0, "");
+            objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",3);
             DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
             dpFromDate.MinDate = varDate;
             objspservice.CloseConnection();
@@ -499,8 +503,28 @@ namespace ROMS
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
+                            if (varResult.Split('~')[1] == "1")
+                            {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    //SPDataService objDser = new SPDataService();
+                                    //Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
+                                    objTRN_Damage.ViewType = 2;
+                                    objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                                    objTRN_Damage.paraOriginator = "Damage Entry Delete";
+                                    objTRN_Damage.paraDeleteFlag = 1;
+                                    varResult = objDser.udfnDamageEntry(objTRN_Damage);
+                                    if (varResult.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
                         }
                         else if (varResult.Split('~')[0] == "4")
                         {
@@ -716,7 +740,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(1,0,Convert.ToInt32(lblSupplierCode.Text),0,Convert.ToInt32(cmbconcern.SelectedValue),0,dpFromDate.Text, dpToDate.Text,"");
+                objDs = objspservice.udfnproductDamage(1,0,Convert.ToInt32(lblSupplierCode.Text),0,Convert.ToInt32(cmbconcern.SelectedValue),Convert.ToInt32(cmbStatus.SelectedValue),dpFromDate.Text, dpToDate.Text,"");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -933,7 +957,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplierName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplierName.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplierName.Text, 0, 0,Convert.ToInt32(cmbconcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,"",dpFromDate.Text,dpToDate.Text,2);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1283,7 +1307,7 @@ namespace ROMS
             {
                 for (int i = 0; i < grdDamageEntryList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "20")
+                    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "6")
                     {
                         grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
@@ -1327,10 +1351,10 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
-                }
+                //if (e.KeyCode == Keys.Delete)
+                //{
+                //    udfndelete();
+                //}
             }
             catch (Exception ex)
             {

@@ -280,7 +280,7 @@ namespace ROMS
                             if (varOrderTypeName != "") {
                                 DataSet objDs = new DataSet();
                                 SPDataService objDserv = new SPDataService();
-                                objDs = objDserv.udfnMaster(11,13,0,"","",0,varOrderTypeName);
+                                objDs = objDserv.udfnMaster(11,13,0,"","",0,varOrderTypeName,0);
                                 objDserv.CloseConnection();
                                 if (objDs != null) {
                                     if (objDs.Tables.Count > 0) {
@@ -327,7 +327,7 @@ namespace ROMS
                             {
                                 DataSet objDs = new DataSet();
                                 SPDataService objDserv = new SPDataService();
-                                objDs = objDserv.udfnMaster(11, 13, 0, "", "", 0, varOrderTypeName);
+                                objDs = objDserv.udfnMaster(11, 13, 0, "", "", 0, varOrderTypeName,0);
                                 objDserv.CloseConnection();
                                 if (objDs != null)
                                 {

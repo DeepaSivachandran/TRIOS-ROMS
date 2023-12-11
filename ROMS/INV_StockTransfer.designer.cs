@@ -921,9 +921,9 @@
             this.lblProductNamePICode.AutoSize = true;
             this.lblProductNamePICode.Location = new System.Drawing.Point(5, 15);
             this.lblProductNamePICode.Name = "lblProductNamePICode";
-            this.lblProductNamePICode.Size = new System.Drawing.Size(134, 20);
+            this.lblProductNamePICode.Size = new System.Drawing.Size(108, 20);
             this.lblProductNamePICode.TabIndex = 958809;
-            this.lblProductNamePICode.Text = "Product Name/P.I Code";
+            this.lblProductNamePICode.Text = "Search by P.I Code";
             // 
             // INV_StockTransfer
             // 

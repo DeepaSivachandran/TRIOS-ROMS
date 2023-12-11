@@ -261,7 +261,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","");
+                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","","");
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -481,7 +481,7 @@ namespace ROMS
             {
                 DataSet objDsPurLoc = new DataSet();
                 SPDataService objDServ3 = new SPDataService();
-                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0);
+                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0,"","");
                 objDServ3.CloseConnection();
                 if (objDsPurLoc != null)
                 {
@@ -517,7 +517,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -698,7 +698,7 @@ namespace ROMS
             {
                 DataSet objDsPurLoc = new DataSet();
                 SPDataService objDServ3 = new SPDataService();
-                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0);
+                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","");
                 objDServ3.CloseConnection();
                 if (objDsPurLoc != null)
                 {
@@ -723,7 +723,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(24, Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text) , 0, txtDLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(24, Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text) , 0, txtDLocation.Text, 0, 0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -925,11 +925,11 @@ namespace ROMS
                 {
                     if (VarSearchFlag == true)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "", "", dtStock, varStockTransferID, null);
+                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0,txtProductNamePICode.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, "", 0, "", "", dtStock, varStockTransferID, null,"","");
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "", "", dtStock, varStockTransferID, null);
+                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "", "", dtStock, varStockTransferID, null,"","");
                     }
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -940,16 +940,16 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 480;
+                                lvProduct.Columns[1].Width = 500;
                                 lvProduct.Columns[2].Width = 250;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;
@@ -1341,7 +1341,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     varPICode = selectedItem.SubItems[0].Text;
-                    txtProductNamePICode.Text = selectedItem.SubItems[3].Text;
+                    txtProductNamePICode.Text = selectedItem.SubItems[2].Text;
                     txtMRP.Text = selectedItem.SubItems[4].Text;
                     txtExpiryDate.Text = selectedItem.SubItems[5].Text;
                     txtBatchNo.Text = selectedItem.SubItems[6].Text;
@@ -1548,7 +1548,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0);
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","");
                     objDServ5.CloseConnection();
                     if (objDsSalesLoc != null)
                     {
@@ -1604,7 +1604,7 @@ namespace ROMS
                 //{
                 //    lblDLocation.Text = "0";
                 //}
-                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(),0,varoriginator,dtStock);
+                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(),0,varoriginator,dtStock,0);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")

@@ -26,6 +26,7 @@ namespace ROMS
         private ToolTip tpQuantity = new ToolTip();
         private ToolTip tpSupplierName = new ToolTip();
         private ToolTip tpcompanyname = new ToolTip();
+        public bool VarSearchFlag = true;
         public string varPICode = "";
         public string varUnitSymbol = "";
         public string varUTID = "";
@@ -1402,6 +1403,19 @@ namespace ROMS
                     btnSave.Focus();
                     BtnSave_Click(sender, e);
                 }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                    }
+                }
             }
             catch(Exception ex)
             {
@@ -1487,7 +1501,14 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,txtProductName.Text.Trim(),0,"","",null, varID,dtDamage);
+                    if (VarSearchFlag == true)
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", "", null, varID, dtDamage,"","");
+                    }
+                    else
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "", "", null, varID, dtDamage,"","");
+                    }
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1497,10 +1518,10 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_ShortName"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_ShortName"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;
@@ -1607,7 +1628,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     varPICode = selectedItem.SubItems[0].Text;
-                    txtProductName.Text = selectedItem.SubItems[3].Text;
+                    txtProductName.Text = selectedItem.SubItems[2].Text;
                     txtLocation.Text = selectedItem.SubItems[10].Text;
                     txtRack.Text = selectedItem.SubItems[14].Text;
                     txtMrp.Text = selectedItem.SubItems[4].Text;

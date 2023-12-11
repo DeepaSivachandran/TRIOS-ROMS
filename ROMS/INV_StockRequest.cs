@@ -542,7 +542,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,varProducts,"",null,0, null);
+                    objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,varProducts,"",null,0, null,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -660,7 +660,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 DataSet objDS;
-                objDS = objspservice.udfnproductmasterlist(43,Convert.ToInt32(lblProduct.Text),0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null);
+                objDS = objspservice.udfnproductmasterlist(43,Convert.ToInt32(lblProduct.Text),0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {
