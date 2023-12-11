@@ -95,22 +95,31 @@ namespace ROMS
         {
             try
             {
-                DataSet objDs = new DataSet();
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnMaster(12,Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "",0,"" );
-                objdserv.CloseConnection();
-                cmbTransactionType.DataSource = null;
-                if (objDs != null)
+                if (btnUpdate.Text == "Save")
                 {
-                    if (objDs.Tables.Count > 0)
+                    DataSet objDs = new DataSet();
+                    SPDataService objdserv = new SPDataService();
+                    objDs = objdserv.udfnMaster(12, Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "", 0, "", 0);
+                    objdserv.CloseConnection();
+                    cmbTransactionType.DataSource = null;
+                    if (objDs != null)
                     {
-                        if (objDs.Tables[0].Rows.Count > 0)
+                        if (objDs.Tables.Count > 0)
                         {
-                            cmbTransactionType.ValueMember = "MSTID";
-                            cmbTransactionType.DisplayMember = "MST_DisplayText";
-                            cmbTransactionType.DataSource = objDs.Tables[0];
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                cmbTransactionType.ValueMember = "MSTID";
+                                cmbTransactionType.DisplayMember = "MST_DisplayText";
+                                cmbTransactionType.DataSource = objDs.Tables[0];
+                            }
                         }
                     }
+                }
+                if (btnUpdate.Text == "Update")
+                {
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=14 OR MSTID=-1 ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbTransactionType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
                 }
             }
             catch (Exception ex)
@@ -361,6 +370,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                udfnCmbTransaction();
             }
             catch (Exception ex)
             {
@@ -1259,8 +1269,8 @@ namespace ROMS
 
                         case "clmEdit":
                             varEditFlag = 1;
-                            udfnCmbLoad();
                             btnUpdate.Text = "Update";
+                            udfnCmbTransaction();
                             cmbConcern.SelectedValue=Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["Concern ID"].Value);
                             //cmbTransactionType.Text = Convert.ToString(grdSettings.Rows[e.RowIndex].Cells["Transaction Type"].Value);
                             cmbTransactionType.SelectedValue=Convert.ToInt32(grdSettings.Rows[e.RowIndex].Cells["Transaction TypeID"].Value);
