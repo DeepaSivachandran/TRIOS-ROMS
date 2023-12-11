@@ -579,6 +579,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpDcFromDate.MinDate = MainForm.pbFYStartDate;
                 dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
+                udfnDate();
                 dpdctodate.MinDate = dpDcFromDate.MaxDate;
                 this.ActiveControl = cmbConcern;
                 udfnList();
@@ -589,7 +590,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnDate()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",1);
+                if (objd.Tables[0].Rows.Count != 0)
+                {
+                    DateTime varmaxdate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpDcFromDate.MaxDate = varmaxdate;
+                    dpDcFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtSupplier_KeyDown(object sender, KeyEventArgs e)
         {
             try

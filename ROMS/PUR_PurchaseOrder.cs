@@ -57,7 +57,7 @@ namespace ROMS
                     btnViewedProduct.Enabled = false;
                        SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
-                    objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "");
+                    objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "",0);
                     if (objd.Tables[1].Rows.Count != 0)
                     {
                         DateTime varmindate = DateTime.ParseExact(objd.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -280,7 +280,7 @@ namespace ROMS
                             txtissuemodevalue.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString();
                             SPDataService objDServ = new SPDataService();
                             DataSet objd = new DataSet();
-                            objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "");
+                            objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "",0);
                             if (objd.Tables[0].Rows.Count != 0)
                             {
                                 DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
