@@ -569,7 +569,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void PUR_PurchaseDCList_Load(object sender, EventArgs e)
         {
             try
