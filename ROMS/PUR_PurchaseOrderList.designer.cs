@@ -329,13 +329,13 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958798;
-            this.DGV_SearchGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellContentClick);
+          //  this.DGV_SearchGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellContentClick);
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
-            this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
+           // this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // clmdsno
@@ -481,13 +481,13 @@
             this.DGV_SearchGridPro.ShowRowErrors = false;
             this.DGV_SearchGridPro.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGridPro.TabIndex = 1111184;
-            this.DGV_SearchGridPro.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridPro_CellContentClick);
+          //  this.DGV_SearchGridPro.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridPro_CellContentClick);
             this.DGV_SearchGridPro.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridPro_CellEndEdit);
             this.DGV_SearchGridPro.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGridPro_CellPainting);
             this.DGV_SearchGridPro.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGridPro_ColumnHeaderMouseClick);
             this.DGV_SearchGridPro.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGridPro_ColumnWidthChanged);
             this.DGV_SearchGridPro.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGridPro_CurrentCellDirtyStateChanged);
-            this.DGV_SearchGridPro.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGridPro_EditingControlShowing);
+          //  this.DGV_SearchGridPro.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGridPro_EditingControlShowing);
             this.DGV_SearchGridPro.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGridPro_Scroll);
             // 
             // dataGridViewTextBoxColumn1

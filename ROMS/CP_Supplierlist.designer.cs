@@ -74,6 +74,8 @@
             this.lblDay = new System.Windows.Forms.Label();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ep_Supplierlist = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblNotDefined = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tsSupplierList.SuspendLayout();
             this.pnlsupplier.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -218,6 +220,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblNotDefined);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.lblTotal);
             this.groupBox1.Controls.Add(this.lblSubGroup);
             this.groupBox1.Controls.Add(this.lblInactiveCount);
@@ -226,7 +230,7 @@
             this.groupBox1.Controls.Add(this.lblTotProducts);
             this.groupBox1.Location = new System.Drawing.Point(856, 1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(416, 65);
+            this.groupBox1.Size = new System.Drawing.Size(403, 65);
             this.groupBox1.TabIndex = 1111172;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Supplier - Schedule Status";
@@ -236,7 +240,7 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.BackColor = System.Drawing.Color.BlueViolet;
             this.lblTotal.ForeColor = System.Drawing.Color.White;
-            this.lblTotal.Location = new System.Drawing.Point(367, 27);
+            this.lblTotal.Location = new System.Drawing.Point(353, 27);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(44, 20);
             this.lblTotal.TabIndex = 25;
@@ -245,7 +249,7 @@
             // lblSubGroup
             // 
             this.lblSubGroup.AutoSize = true;
-            this.lblSubGroup.Location = new System.Drawing.Point(328, 27);
+            this.lblSubGroup.Location = new System.Drawing.Point(314, 27);
             this.lblSubGroup.Name = "lblSubGroup";
             this.lblSubGroup.Size = new System.Drawing.Size(35, 20);
             this.lblSubGroup.TabIndex = 24;
@@ -256,7 +260,7 @@
             this.lblInactiveCount.AutoSize = true;
             this.lblInactiveCount.BackColor = System.Drawing.Color.Tomato;
             this.lblInactiveCount.ForeColor = System.Drawing.Color.White;
-            this.lblInactiveCount.Location = new System.Drawing.Point(154, 27);
+            this.lblInactiveCount.Location = new System.Drawing.Point(148, 27);
             this.lblInactiveCount.Name = "lblInactiveCount";
             this.lblInactiveCount.Size = new System.Drawing.Size(44, 20);
             this.lblInactiveCount.TabIndex = 21;
@@ -276,7 +280,7 @@
             // lblGroup
             // 
             this.lblGroup.AutoSize = true;
-            this.lblGroup.Location = new System.Drawing.Point(101, 27);
+            this.lblGroup.Location = new System.Drawing.Point(95, 27);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(52, 20);
             this.lblGroup.TabIndex = 17;
@@ -295,7 +299,7 @@
             // 
             this.btnSummary.Image = global::ROMS.Properties.Resources.clipboard;
             this.btnSummary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSummary.Location = new System.Drawing.Point(1218, 27);
+            this.btnSummary.Location = new System.Drawing.Point(1262, 27);
             this.btnSummary.Name = "btnSummary";
             this.btnSummary.Size = new System.Drawing.Size(83, 29);
             this.btnSummary.TabIndex = 958806;
@@ -619,6 +623,26 @@
             // 
             this.ep_Supplierlist.ContainerControl = this;
             // 
+            // lblNotDefined
+            // 
+            this.lblNotDefined.AutoSize = true;
+            this.lblNotDefined.BackColor = System.Drawing.Color.SteelBlue;
+            this.lblNotDefined.ForeColor = System.Drawing.Color.White;
+            this.lblNotDefined.Location = new System.Drawing.Point(267, 27);
+            this.lblNotDefined.Name = "lblNotDefined";
+            this.lblNotDefined.Size = new System.Drawing.Size(44, 20);
+            this.lblNotDefined.TabIndex = 27;
+            this.lblNotDefined.Text = "00000";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(195, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 20);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Not Defined";
+            // 
             // CP_Supplierlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -697,5 +721,7 @@
         private System.Windows.Forms.Label lblTotProducts;
         private System.Windows.Forms.Button btnPrint;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
+        private System.Windows.Forms.Label lblNotDefined;
+        private System.Windows.Forms.Label label2;
     }
 }
