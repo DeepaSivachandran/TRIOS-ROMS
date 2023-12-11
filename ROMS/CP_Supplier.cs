@@ -689,7 +689,7 @@ namespace ROMS
                         SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     }
                     string varorginator = "", varpaymentmethod = "";
-                    int varviewtype = 0, varretuencycle = 0, varreturnapplicable = 0;
+                    int varviewtype = 0, varretuencycle = 0, varreturnapplicable = -1;
                     if (btnSave.Text == "Save")
                     {
                         varviewtype = 0;
@@ -1068,6 +1068,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,47) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmborderday, "", "DY_Name", "DYID"); 
                 objDataBind = null;
+                cmbOrderType.SelectedIndex = 0;
                 DataSet objDs = new DataSet();
                 DataService objdserv = new DataService();
                 objDs = objdserv.GetDataset("SELECT DYID,DY_Name from DEF_Days WHERE DYID NOT IN (0,-1)");
@@ -1134,7 +1135,7 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID"); 
                     objDataBind = null;
-
+                    //cmbReturnPolicy.SelectedValue = -1;
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
@@ -1174,7 +1175,7 @@ namespace ROMS
                             txtOtherBrands.Text = objDS.Tables[0].Rows[0]["SP_Brand"].ToString().Replace("''", "'");
 
                             //cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
-                            varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
+                             varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnTypeID = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
 
                             cmbReturnPolicy.SelectedValue = Convert.ToInt64(varReturPolicyId);
@@ -2117,82 +2118,86 @@ namespace ROMS
                 else
                 {
                     cmbPolicyContent.Visible = false;
-                    cmbSecondLevel.Visible = false;
+                    cmbSecondLevel.Visible = false; 
                     txtReturnText.Visible = false;
                     txtNextLevel.Visible = false;
                 }
                 BeginInvoke(new Action(() => cmbReturnType.Select(int.MaxValue, 0)));
-                if (Convert.ToString(cmbReturnType.SelectedValue) == "24")
-                {
-                    vardayMonthID = 0; varWeekID = 0; vardayID = 0; varrecyclecode = 0; varMonthID = 0;
-                    cmbPolicyContent.DataSource = null;
-                    txtReturnText.Visible = false;
-                    cmbPolicyContent.Visible = false;
-                    txtNextLevel.Visible = false;
-                    cmbSecondLevel.Visible = false;
-                    varrecyclecode = Convert.ToInt32(cmbReturnType.SelectedValue);
-                }
-                else if ((Convert.ToString(cmbReturnType.SelectedValue) == "25"))
-                {
-                    txtReturnText.Text = "Day";
-                    vardayMonthID = 0; varWeekID = 0; vardayID = 0; varrecyclecode = 0; varMonthID = 0;
-                    cmbPolicyContent.Enabled = true;
-                    cmbPolicyContent.DataSource = null;
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbPolicyContent, "", "DY_Name", "DYID");
-                    objDataBind = null;
-                    cmbPolicyContent.SelectedIndex = 0;
-                    txtReturnText.Visible = true;
-                    cmbPolicyContent.Visible = true;
-                    txtNextLevel.Visible = false;
-                    cmbSecondLevel.Visible = false;
-                    vardayID = Convert.ToInt32(cmbPolicyContent.SelectedValue);
-                }
-                else if ((Convert.ToString(cmbReturnType.SelectedValue) == "26"))
-                {
-                    vardayMonthID = 0; varWeekID = 0; vardayID = 0; varrecyclecode = 0; varMonthID = 0;
-                    txtReturnText.Text = "Week No.";
-                    txtReturnText.Visible = true;
-                    cmbPolicyContent.DataSource = null;
-                    cmbSecondLevel.DataSource = null;
-                    cmbPolicyContent.Visible = true;
-                    cmbPolicyContent.Enabled = true;
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (28,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPolicyContent, "", "MST_DisplayText", "MSTID");
-                    objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbSecondLevel, "", "DY_Name", "DYID");
-                    varWeekID = Convert.ToInt32(cmbPolicyContent.SelectedValue);
-                    vardayID = Convert.ToInt32(cmbSecondLevel.SelectedValue);
-                    cmbPolicyContent.SelectedIndex = 0;
-                    cmbSecondLevel.SelectedIndex = 0;
-                    txtNextLevel.Text = "Day";
 
-                    objDataBind = null;
-                    txtNextLevel.Visible = true;
-                    cmbSecondLevel.Visible = true;
-                }
-                else if ((Convert.ToString(cmbReturnType.SelectedValue) == "27"))
+                if (cmbReturnPolicy.Text == "Yes")
                 {
-                    txtReturnText.Text = "Month";
-                    vardays = "";
-                    vardayMonthID = 0; varWeekID = 0; vardayID = 0; varrecyclecode = 0; varMonthID = 0;
-                    txtReturnText.Visible = true;
-                    cmbPolicyContent.Visible = true;
-                    cmbPolicyContent.Enabled = true;
-                    cmbPolicyContent.DataSource = null;
-                    cmbSecondLevel.DataSource = null;
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Months", "MONID NOT IN (0,-1)", "MON_Name,MONID", cmbPolicyContent, "", "MON_Name", "MONID");
-                    cmbPolicyContent.SelectedIndex = 0;
-                    DataService objds = new DataService();
-                    vardays = objds.displaydata("SELECT MON_DAY FROM DEF_Months WHERE MONID ='" + Convert.ToString(cmbPolicyContent.SelectedValue) + "'");
-                    objds.CloseConnection();
-                    txtNextLevel.Visible = true;
-                    cmbSecondLevel.Visible = true;
-                    txtNextLevel.Text = "Day of the month";
-                    objDataBind.BindComboBoxListSelected("DEF_Month_Days", "MONDID <='" + vardays + "'", "MOND_Name,MONDID", cmbSecondLevel, "", "MOND_Name", "MONDID");
-                    objDataBind = null;
-                    cmbSecondLevel.SelectedIndex = 0;
-                    varMonthID = Convert.ToInt32(cmbPolicyContent.SelectedValue);
+                    if (Convert.ToString(cmbReturnType.SelectedValue) == "24")
+                    {
+                        vardayMonthID = 0; varWeekID = 0; vardayID = 0; varrecyclecode = 0; varMonthID = 0;
+                        cmbPolicyContent.DataSource = null;
+                        txtReturnText.Visible = false;
+                        cmbPolicyContent.Visible = false;
+                        txtNextLevel.Visible = false;
+                        cmbSecondLevel.Visible = false;
+                        varrecyclecode = Convert.ToInt32(cmbReturnType.SelectedValue);
+                    }
+                    else if ((Convert.ToString(cmbReturnType.SelectedValue) == "25"))
+                    {
+                        txtReturnText.Text = "Day";
+                        vardayMonthID = 0; varWeekID = 0; vardayID = 0; varrecyclecode = 0; varMonthID = 0;
+                        cmbPolicyContent.Enabled = true;
+                        cmbPolicyContent.DataSource = null;
+                        DataBind objDataBind = new DataBind();
+                        objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbPolicyContent, "", "DY_Name", "DYID");
+                        objDataBind = null;
+                        cmbPolicyContent.SelectedIndex = 0;
+                        txtReturnText.Visible = true;
+                        cmbPolicyContent.Visible = true;
+                        txtNextLevel.Visible = false;
+                        cmbSecondLevel.Visible = false;
+                        vardayID = Convert.ToInt32(cmbPolicyContent.SelectedValue);
+                    }
+                    else if ((Convert.ToString(cmbReturnType.SelectedValue) == "26"))
+                    {
+                        vardayMonthID = 0; varWeekID = 0; vardayID = 0; varrecyclecode = 0; varMonthID = 0;
+                        txtReturnText.Text = "Week No.";
+                        txtReturnText.Visible = true;
+                        cmbPolicyContent.DataSource = null;
+                        cmbSecondLevel.DataSource = null;
+                        cmbPolicyContent.Visible = true;
+                        cmbPolicyContent.Enabled = true;
+                        DataBind objDataBind = new DataBind();
+                        objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (28,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPolicyContent, "", "MST_DisplayText", "MSTID");
+                        objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbSecondLevel, "", "DY_Name", "DYID");
+                        varWeekID = Convert.ToInt32(cmbPolicyContent.SelectedValue);
+                        vardayID = Convert.ToInt32(cmbSecondLevel.SelectedValue);
+                        cmbPolicyContent.SelectedIndex = 0;
+                        cmbSecondLevel.SelectedIndex = 0;
+                        txtNextLevel.Text = "Day";
+
+                        objDataBind = null;
+                        txtNextLevel.Visible = true;
+                        cmbSecondLevel.Visible = true;
+                    }
+                    else if ((Convert.ToString(cmbReturnType.SelectedValue) == "27"))
+                    {
+                        txtReturnText.Text = "Month";
+                        vardays = "";
+                        vardayMonthID = 0; varWeekID = 0; vardayID = 0; varrecyclecode = 0; varMonthID = 0;
+                        txtReturnText.Visible = true;
+                        cmbPolicyContent.Visible = true;
+                        cmbPolicyContent.Enabled = true;
+                        cmbPolicyContent.DataSource = null;
+                        cmbSecondLevel.DataSource = null;
+                        DataBind objDataBind = new DataBind();
+                        objDataBind.BindComboBoxListSelected("DEF_Months", "MONID NOT IN (0,-1)", "MON_Name,MONID", cmbPolicyContent, "", "MON_Name", "MONID");
+                        cmbPolicyContent.SelectedIndex = 0;
+                        DataService objds = new DataService();
+                        vardays = objds.displaydata("SELECT MON_DAY FROM DEF_Months WHERE MONID ='" + Convert.ToString(cmbPolicyContent.SelectedValue) + "'");
+                        objds.CloseConnection();
+                        txtNextLevel.Visible = true;
+                        cmbSecondLevel.Visible = true;
+                        txtNextLevel.Text = "Day of the month";
+                        objDataBind.BindComboBoxListSelected("DEF_Month_Days", "MONDID <='" + vardays + "'", "MOND_Name,MONDID", cmbSecondLevel, "", "MOND_Name", "MONDID");
+                        objDataBind = null;
+                        cmbSecondLevel.SelectedIndex = 0;
+                        varMonthID = Convert.ToInt32(cmbPolicyContent.SelectedValue);
+                    }
                 }
             }
             catch (Exception ex)
@@ -2572,10 +2577,10 @@ namespace ROMS
                 cmbSupplierType.BackColor = Color.White;
                 if (Convert.ToString(cmbSupplierType.SelectedValue) == "" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
                 {
-                    errCompany.SetError(cmbSupplierType, "Please Select Supplier Type");
+                    errCompany.SetError(cmbSupplierType, "Please select supplier type");
                     cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpstate.ShowAlways = true;
-                    tpstate.Show("Please Select Payment Supplier Type", cmbSupplierType, 5000);
+                    tpstate.Show("Please select supplier type", cmbSupplierType, 5000);
                 }
                 else
                 {
@@ -4840,25 +4845,25 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
 
-                                SPDataService objspdservice = new SPDataService();
-                                result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",0);
-                                string[] varvalue = result.Split('~');
-                                if (varvalue[0] == "3")
-                                {
-                                    this.ActiveControl = txtScheduleName;
-                                    grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
-                                    for (int i = 0; i < grdSupplierList.RowCount; i++)
-                                    {
-                                        grdSupplierList.Rows[i].Cells["clmsno"].Value = i + 1;
-                                    }
-                                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    MainForm.objCP_Supplierlist.udfnList();
-                                }
-                                else
-                                {
-                                    DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    if (dialogResult1 == DialogResult.Yes)
-                                    {
+                                //SPDataService objspdservice = new SPDataService();
+                                //result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",0);
+                                //string[] varvalue = result.Split('~');
+                                //if (varvalue[0] == "3")
+                                //{
+                                //    this.ActiveControl = txtScheduleName;
+                                //    grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
+                                //    for (int i = 0; i < grdSupplierList.RowCount; i++)
+                                //    {
+                                //        grdSupplierList.Rows[i].Cells["clmsno"].Value = i + 1;
+                                //    }
+                                //    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //    MainForm.objCP_Supplierlist.udfnList();
+                                //}
+                                //else
+                                //{
+                                    //DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    //if (dialogResult1 == DialogResult.Yes)
+                                    //{
                                         SPDataService objspdservice1 = new SPDataService();
                                         result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",0);
                                         string[] varvalue1 = result.Split('~');
@@ -4881,9 +4886,9 @@ namespace ROMS
 
                                         udfnScheduleClear();
                                         btnAdd.Text = "Save";
-                                    }
-                                }
-                                objspdservice.CloseConnection();
+                                    //}
+                                //}
+                                objspdservice1.CloseConnection();
                                 udfnScheduleClear();
                                 btnAdd.Text = "Save";
                                 udfnSetRegularText();
@@ -7453,6 +7458,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void udfnScrollVisible(DataGridView DGV, DataGridView grdCityList)
         {
             try
@@ -7473,6 +7479,36 @@ namespace ROMS
                         for (int i = 0; i < visibleColumns.Count; i++)
                         {
                             DGV_SearchGrid1.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfntab4scrollVisible(DataGridView DGV, DataGridView grdCityList)
+        {
+            try
+            {
+                var vScrollbar = grdViewSupplierMapping.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+                    int I = DGV_SearchGridPro.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGridPro.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGridPro.Rows[rowIndex].Cells[i].Value = "";
                         }
                     }
                 }
@@ -8134,7 +8170,7 @@ namespace ROMS
                 }
                 DGV_SearchGridPro.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGridPro.Invalidate();
-                udfnscrollVisible(DGV_SearchGridPro, grdViewSupplierMapping);
+                udfntab4scrollVisible(DGV_SearchGridPro, grdViewSupplierMapping);
             }
             catch (Exception ex)
             {

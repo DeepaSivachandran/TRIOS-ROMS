@@ -590,7 +590,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "","","",0);
+                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "",dpPlanDate.Text,dptoPlanDate.Text,1);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -840,6 +840,7 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
                 cmbShow.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -975,6 +976,8 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["SPSC_TAT"].Visible = false;
                             grdPurchaseorderlist.Columns["POVALUE"].Visible = false;
                             grdPurchaseorderlist.Columns["turn"].Visible = false;
+                            grdPurchaseorderlist.Columns["Mode of details"].Visible = false;
+                            grdPurchaseorderlist.Columns["Issued DATES"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
