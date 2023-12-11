@@ -431,6 +431,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                lblTotalBrands.Text = grdRepBrand.Rows.Count.ToString();
+            }
         }
 
         private void udfnSearchGridHead()
@@ -557,13 +561,10 @@ namespace ROMS
                                     objDS.Tables[1].AcceptChanges();
                                 }
                             }
-                            objdatabrand = objDS.Tables[1]; 
-                        } 
-
-
+                            objdatabrand = objDS.Tables[1];
+                        }
                     } 
                 }
-
             }
             catch (Exception ex)
             {
@@ -693,7 +694,7 @@ namespace ROMS
             finally
             {
                 grdRepBrand.ClearSelection();
-                //this.grdRepBrand.Sort(this.grdRepBrand.Columns[0], ListSortDirection.Descending); 
+                this.grdRepBrand.Sort(this.grdRepBrand.Columns[0], ListSortDirection.Descending); 
             }
         }
 

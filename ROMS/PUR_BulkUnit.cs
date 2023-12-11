@@ -266,7 +266,7 @@ namespace ROMS
                 varorignator = "Product Update"; 
                 result = objspdservice.udfnProductMaster(varviewtype, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblProductcode.Text), "", "", "", 0, 0, 0, 0, 0, 0,
                 Convert.ToInt32(cmbUnit.SelectedValue),txtUpp.Text, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "",
-                MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null,0);
+                MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null,0,"");
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")

@@ -375,16 +375,16 @@
         private System.Windows.Forms.TextBox txtDShortName;
         private System.Windows.Forms.TextBox txtShortName;
         private System.Windows.Forms.TextBox txtStockLocation;
-        private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtDConcern;
         private System.Windows.Forms.TextBox txtDDescription;
         private System.Windows.Forms.TextBox txtDescription;
         public System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtLocation;
         public System.Windows.Forms.ListView lvLocation;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label lblLocation;
+        public System.Windows.Forms.ComboBox cmbConcern;
+        public System.Windows.Forms.TextBox txtLocation;
     }
 }

@@ -146,18 +146,16 @@ namespace ROMS
             {
                 if (varStockRequestID != 0)
                 {
+                    btnSave.Text = "Update";
                     if (varStatus == 29)
                     {
-                        btnSave.Text = "Update";
-                        txtProductNamePICode.ReadOnly = true;
-                        txtRequiredQty.ReadOnly = true;
+                        txtRemarks.Focus();
+                        txtProductNamePICode.Enabled = false;
+                        txtRequiredQty.Enabled = false;
                         btnAdd.Enabled = false;
-                        txtRemarks.ReadOnly = true;
-                        btnSave.Enabled = false;
                         cmbStatus.Enabled = false;
                         grdStockRequest.ReadOnly = true;
                         cmbStatus.SelectedValue = 29;
-                        btnClose.Focus();
                     }
                     else
                     {
@@ -195,6 +193,10 @@ namespace ROMS
                                 else
                                 {
                                     varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
+                                }
+                                if(varStatus==29)
+                                {
+                                    ((DataGridViewImageCell)grdStockRequest.Rows[j].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
                                 }
                             }
                             grdStockRequest.Columns["clmSno"].Width = 50;
@@ -540,7 +542,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,varProducts,"",null,0, null);
+                    objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,varProducts,"",null,0, null);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -634,6 +636,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
+                    lblUnit.Text = selectedItem.SubItems[2].Text;
                     lblProduct.Text = selectedItem.SubItems[4].Text;
                     VarAdd = "1";
                     udfnStockLoad();
@@ -820,14 +823,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //if(chkCompleted.Enabled==true)
-                    //{
-                    //    chkCompleted.Focus();
-                    //}
-                    //else
-                    //{
-                    //    btnSave.Focus();
-                    //}
+                    if (cmbStatus.Enabled == true)
+                    {
+                        cmbStatus.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -902,29 +905,29 @@ namespace ROMS
                     tpProduct.Show("Please enter product name", txtProductNamePICode, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtStockQty.Text).Trim() == "")
-                {
-                    errStockRequest.SetError(txtStockQty, "Invalid stock");
-                    txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpStockQty.ShowAlways = true;
-                    tpStockQty.Show("Invalid stock", txtStockQty, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(txtStockQty.Text).Trim() == "")
+                //{
+                //    errStockRequest.SetError(txtStockQty, "Invalid stock");
+                //    txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpStockQty.ShowAlways = true;
+                //    tpStockQty.Show("Invalid stock", txtStockQty, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(txtRequiredQty.Text).Trim() != "")
                 {
-                    if (Convert.ToInt32(txtStockQty.Text.Trim()) >= Convert.ToInt32(txtRequiredQty.Text.Trim()))
-                    {
-                        errStockRequest.Clear();
-                        txtRequiredQty.BackColor = Color.White;
-                    }
-                    else
-                    {
-                        errStockRequest.SetError(txtRequiredQty, "Please enter valid quentity");
-                        txtRequiredQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpRequiredQty.ShowAlways = true;
-                        tpRequiredQty.Show("Please enter valid quentity", txtRequiredQty, 5000);
-                        blnErrorFlag = true;
-                    }
+                    //if (Convert.ToInt32(txtStockQty.Text.Trim()) >= Convert.ToInt32(txtRequiredQty.Text.Trim()))
+                    //{
+                    //    errStockRequest.Clear();
+                    //    txtRequiredQty.BackColor = Color.White;
+                    //}
+                    //else
+                    //{
+                    //    errStockRequest.SetError(txtRequiredQty, "Please enter valid quentity");
+                    //    txtRequiredQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpRequiredQty.ShowAlways = true;
+                    //    tpRequiredQty.Show("Please enter valid quentity", txtRequiredQty, 5000);
+                    //    blnErrorFlag = true;
+                    //}
                 }
                 else
                 {
@@ -951,8 +954,6 @@ namespace ROMS
         {
             try
             {
-                int varProductID = 0;
-                string varMRP = "", varExpiryDate = "", varBatchNo = "", varSRKID = "";
                 if (e.RowIndex != -1)
                 {
                     switch (grdStockRequest.Columns[e.ColumnIndex].Name)
@@ -969,11 +970,8 @@ namespace ROMS
                             varModifiedFlag = 1;
                             for (int i = 0; i < dtStock.Rows.Count; i++)
                             {
-                               //if (Convert.ToInt32(dtStock.Rows[i]["STK_PRID"]) == Convert.ToInt32(varProductID) && Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo && Convert.ToString(dtStock.Rows[i]["STK_Source_RKID"]) == varSRKID)
-                                //{
-                                    dtStock.Rows[i].Delete();
-                                    dtStock.AcceptChanges();
-                                //}
+                                dtStock.Rows[i].Delete();
+                                dtStock.AcceptChanges();
                             }
                         }
                         break;
@@ -1191,6 +1189,22 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRequiredQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {

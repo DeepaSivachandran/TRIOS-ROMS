@@ -124,6 +124,12 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_RackSettings_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackSettings_Copy.designer.cs">
+      <DependentUpon>CP_RackSettings_Copy.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Verify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,7 @@
     <Compile Include="MaskedTextColumn.cs" />
     <Compile Include="Model\TRNG_Stock.cs" />
     <Compile Include="Model\TRNS_GoodsOutward.cs" />
+    <Compile Include="Model\TRN_BatchConversion.cs" />
     <Compile Include="Model\TRN_StockRequest.cs" />
     <Compile Include="Model\TRN_Purchase_DC.cs" />
     <Compile Include="Model\TRNS_GRN.cs" />
@@ -547,6 +554,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Stock.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="REPORT_CP_Product.cs">
       <SubType>Form</SubType>
@@ -1311,6 +1319,9 @@
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackSettings_Copy.resx">
+      <DependentUpon>CP_RackSettings_Copy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Verify.resx">
       <DependentUpon>CP_Verify.cs</DependentUpon>
     </EmbeddedResource>
@@ -1918,6 +1929,7 @@
     <EmbeddedResource Include="Reports\RPT_Stock.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Product.resx">
       <DependentUpon>REPORT_CP_Product.cs</DependentUpon>
