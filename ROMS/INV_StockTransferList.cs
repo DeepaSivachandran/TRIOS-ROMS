@@ -209,6 +209,7 @@ namespace ROMS
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);
             DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
             dpTrannsferFromDate.MinDate = varDate;
+            dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
             objspservice.CloseConnection();
             //dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;

@@ -205,7 +205,7 @@
             this.lvProduct.Location = new System.Drawing.Point(11, 147);
             this.lvProduct.MultiSelect = false;
             this.lvProduct.Name = "lvProduct";
-            this.lvProduct.Size = new System.Drawing.Size(1070, 220);
+            this.lvProduct.Size = new System.Drawing.Size(874, 220);
             this.lvProduct.TabIndex = 111111141;
             this.lvProduct.UseCompatibleStateImageBehavior = false;
             this.lvProduct.View = System.Windows.Forms.View.Details;
@@ -226,7 +226,15 @@
             // lvclmProductEName
             // 
             this.lvclmProductEName.Text = "Product English Name";
-            this.lvclmProductEName.Width = 0;
+            this.lvclmProductEName.Width = 10;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 0;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 0;
             // 
             // lvSLocation
             // 

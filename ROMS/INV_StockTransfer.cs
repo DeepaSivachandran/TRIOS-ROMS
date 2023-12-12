@@ -949,8 +949,8 @@ namespace ROMS
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 500;
-                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[1].Width = 680;
+                                lvProduct.Columns[2].Width = 0;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;
                                 lvProduct.Columns[5].Width = 0;
@@ -1142,30 +1142,30 @@ namespace ROMS
                     tpsRack.Show("Invalid source rack", txtSRack, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtMRP.Text).Trim() == "")
-                {
-                    errStockTransfer.SetError(txtMRP, "Invalid mrp");
-                    txtMRP.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMRP.ShowAlways = true;
-                    tpMRP.Show("Invalid mrp", txtMRP, 5000);
-                    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtExpiryDate.Text).Trim() == "")
-                {
-                    errStockTransfer.SetError(txtExpiryDate, "Invalid expiry date");
-                    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpExpiryDate.ShowAlways = true;
-                    tpExpiryDate.Show("Invalid expiry date", txtExpiryDate, 5000);
-                    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtBatchNo.Text).Trim() == "")
-                {
-                    errStockTransfer.SetError(txtBatchNo, "Invalid batchno");
-                    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBatchNo.ShowAlways = true;
-                    tpBatchNo.Show("Invalid batchno", txtBatchNo, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(txtMRP.Text).Trim() == "")
+                //{
+                //    errStockTransfer.SetError(txtMRP, "Invalid mrp");
+                //    txtMRP.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpMRP.ShowAlways = true;
+                //    tpMRP.Show("Invalid mrp", txtMRP, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (Convert.ToString(txtExpiryDate.Text).Trim() == "")
+                //{
+                //    errStockTransfer.SetError(txtExpiryDate, "Invalid expiry date");
+                //    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpExpiryDate.ShowAlways = true;
+                //    tpExpiryDate.Show("Invalid expiry date", txtExpiryDate, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (Convert.ToString(txtBatchNo.Text).Trim() == "")
+                //{
+                //    errStockTransfer.SetError(txtBatchNo, "Invalid batchno");
+                //    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpBatchNo.ShowAlways = true;
+                //    tpBatchNo.Show("Invalid batchno", txtBatchNo, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(txtStockQty.Text).Trim() == "")
                 {
                     errStockTransfer.SetError(txtStockQty, "Invalid stock qty");
@@ -1238,6 +1238,7 @@ namespace ROMS
                     txtProductNamePICode.Focus();
                     errStockTransfer.Clear();
                     grdStockTransfer.ClearSelection();
+                    lblUnit.Text = "";
                     udfnProductClear();
                 }
             }

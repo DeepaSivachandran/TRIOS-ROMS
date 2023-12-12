@@ -364,6 +364,7 @@ namespace ROMS
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",3);
             DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
             dpFromDate.MinDate = varDate;
+            dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
             objspservice.CloseConnection();
 
             //dpFromDate.MinDate = MainForm.pbFYStartDate;

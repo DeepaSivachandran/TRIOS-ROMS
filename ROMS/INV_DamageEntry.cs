@@ -75,6 +75,7 @@ namespace ROMS
                 epDamageEntry.Clear();
                 grdDamageEntry.ClearSelection();
                 udfnProductClear();
+                lblUnit.Text = "";
             }
             catch(Exception ex)
             {
@@ -865,30 +866,30 @@ namespace ROMS
                     tpRack.Show("Invalid rack", txtRack, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtMrp.Text == "")
-                {
-                    epDamageEntry.SetError(txtMrp, "Invalid mrp");
-                    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMRP.ShowAlways = true;
-                    tpMRP.Show("Invalid mrp", txtMrp, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtExpiryDate.Text == "")
-                {
-                    epDamageEntry.SetError(txtExpiryDate, "Invalid expiry date");
-                    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpExpiryDate.ShowAlways = true;
-                    tpExpiryDate.Show("Invalid expiry date", txtExpiryDate, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtBatchNo.Text == "")
-                {
-                    epDamageEntry.SetError(txtBatchNo, "Invalid batch no.");
-                    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBatchNo.ShowAlways = true;
-                    tpBatchNo.Show("Invalid batch no.", txtBatchNo, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtMrp.Text == "")
+                //{
+                //    epDamageEntry.SetError(txtMrp, "Invalid mrp");
+                //    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpMRP.ShowAlways = true;
+                //    tpMRP.Show("Invalid mrp", txtMrp, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtExpiryDate.Text == "")
+                //{
+                //    epDamageEntry.SetError(txtExpiryDate, "Invalid expiry date");
+                //    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpExpiryDate.ShowAlways = true;
+                //    tpExpiryDate.Show("Invalid expiry date", txtExpiryDate, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtBatchNo.Text == "")
+                //{
+                //    epDamageEntry.SetError(txtBatchNo, "Invalid batch no.");
+                //    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpBatchNo.ShowAlways = true;
+                //    tpBatchNo.Show("Invalid batch no.", txtBatchNo, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (txtStockQty.Text == "")
                 {
                     epDamageEntry.SetError(txtStockQty, "Invalid stock qty");
@@ -1527,8 +1528,8 @@ namespace ROMS
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 550;
-                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[1].Width = 680;
+                                lvProduct.Columns[2].Width = 0;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;
                                 lvProduct.Columns[5].Width = 0;
