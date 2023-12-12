@@ -99,14 +99,8 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvproduct = new System.Windows.Forms.ListView();
             this.RMcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RMEName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdPurchaseDC = new System.Windows.Forms.DataGridView();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -144,6 +138,8 @@
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -821,20 +817,16 @@
             // 
             this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.RMcode,
-            this.RMEName,
             this.RMTname,
             this.columnHeader13,
             this.columnHeader14,
-            this.columnHeader15,
-            this.columnHeader16,
-            this.columnHeader17,
-            this.columnHeader18});
+            this.columnHeader15});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(2, 1);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(575, 140);
+            this.lvproduct.Size = new System.Drawing.Size(704, 140);
             this.lvproduct.TabIndex = 1111174;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -847,36 +839,15 @@
             this.RMcode.Text = "P.I Code";
             this.RMcode.Width = 250;
             // 
-            // RMEName
-            // 
-            this.RMEName.DisplayIndex = 2;
-            this.RMEName.Text = "Product Name";
-            this.RMEName.Width = 100;
-            // 
             // RMTname
             // 
-            this.RMTname.DisplayIndex = 1;
             this.RMTname.Text = "Product Name";
             this.RMTname.Width = 250;
             // 
             // columnHeader13
             // 
-            this.columnHeader13.Text = "prid";
+            this.columnHeader13.Text = "Unit";
             this.columnHeader13.Width = 0;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "Unit";
-            // 
-            // columnHeader15
-            // 
-            this.columnHeader15.Text = "Batch no";
-            this.columnHeader15.Width = 10;
-            // 
-            // columnHeader16
-            // 
-            this.columnHeader16.Text = "Batch no generation";
-            this.columnHeader16.Width = 0;
             // 
             // grdPurchaseDC
             // 
@@ -946,7 +917,7 @@
             this.clmSno.HeaderText = "S.No.";
             this.clmSno.Name = "clmSno";
             this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 80;
+            this.clmSno.Width = 50;
             // 
             // clmPICode
             // 
@@ -959,13 +930,14 @@
             this.clmProductName.HeaderText = "Product Name";
             this.clmProductName.Name = "clmProductName";
             this.clmProductName.ReadOnly = true;
-            this.clmProductName.Width = 200;
+            this.clmProductName.Width = 300;
             // 
             // clmMRP
             // 
             this.clmMRP.HeaderText = "MRP";
             this.clmMRP.Name = "clmMRP";
             this.clmMRP.ReadOnly = true;
+            this.clmMRP.Width = 80;
             // 
             // clmExpiryDate
             // 
@@ -978,18 +950,21 @@
             this.clmBatchNo.HeaderText = "Batch No.";
             this.clmBatchNo.Name = "clmBatchNo";
             this.clmBatchNo.ReadOnly = true;
+            this.clmBatchNo.Width = 80;
             // 
             // clmQuantity
             // 
             this.clmQuantity.HeaderText = "Qty";
             this.clmQuantity.Name = "clmQuantity";
             this.clmQuantity.ReadOnly = true;
+            this.clmQuantity.Width = 80;
             // 
             // clmUnit
             // 
             this.clmUnit.HeaderText = "Unit";
             this.clmUnit.Name = "clmUnit";
             this.clmUnit.ReadOnly = true;
+            this.clmUnit.Width = 80;
             // 
             // clmStockLocation
             // 
@@ -1301,6 +1276,14 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Width = 0;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Width = 0;
+            // 
             // PUR_PurchaseDC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1395,7 +1378,6 @@
         private System.Windows.Forms.ListView lvproduct;
         private System.Windows.Forms.ColumnHeader RMcode;
         private System.Windows.Forms.ColumnHeader RMTname;
-        private System.Windows.Forms.ColumnHeader RMEName;
         private System.Windows.Forms.TextBox txtRack;
         private System.Windows.Forms.TextBox txtStockLocation;
         private System.Windows.Forms.Button btnAdd;
@@ -1429,6 +1411,7 @@
         public System.Windows.Forms.TextBox txtTotalProducts;
         public System.Windows.Forms.DataGridView grdPurchaseDC;
         public System.Windows.Forms.DataGridView grdRepDetails;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductName;
@@ -1447,11 +1430,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRemoveFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
-        private System.Windows.Forms.ColumnHeader columnHeader16;
-        private System.Windows.Forms.ColumnHeader columnHeader17;
-        private System.Windows.Forms.ColumnHeader columnHeader18;
     }
 }
