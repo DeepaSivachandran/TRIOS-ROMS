@@ -357,7 +357,7 @@ namespace ROMS
             cmbStatus.SelectedValue = 6;
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
-            objDs = objspservice.udfnMaster(13, 0, 0, "", "", 0, "");
+            objDs = objspservice.udfnMaster(13, 0, 0, "", "", 0, "",0);
             DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
             dpFromDate.MinDate = varDate;
             objspservice.CloseConnection();
