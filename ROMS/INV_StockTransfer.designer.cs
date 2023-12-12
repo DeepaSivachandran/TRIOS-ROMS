@@ -276,9 +276,9 @@
             this.lvDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvDLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvDLocation.HideSelection = false;
-            this.lvDLocation.Location = new System.Drawing.Point(903, 147);
+            this.lvDLocation.Location = new System.Drawing.Point(891, 147);
             this.lvDLocation.Name = "lvDLocation";
-            this.lvDLocation.Size = new System.Drawing.Size(327, 115);
+            this.lvDLocation.Size = new System.Drawing.Size(305, 220);
             this.lvDLocation.TabIndex = 111111140;
             this.lvDLocation.UseCompatibleStateImageBehavior = false;
             this.lvDLocation.View = System.Windows.Forms.View.Details;

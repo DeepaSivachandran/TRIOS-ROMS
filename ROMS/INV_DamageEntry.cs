@@ -115,7 +115,7 @@ namespace ROMS
         {
             try
             {
-                cmbConcern.Focus();
+                //cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3, varConcernId = 0;
@@ -179,6 +179,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                this.ActiveControl = txtProductName;
             }
         }
         public void udfnclose()
@@ -246,7 +250,6 @@ namespace ROMS
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1713,7 +1716,7 @@ namespace ROMS
                                 lvSupplier.BringToFront();
                                 lvSupplier.Columns[1].Width = 0;
                                 lvSupplier.Columns[2].Width = 0;
-                                lvSupplier.Columns[0].Width = 250;
+                                lvSupplier.Columns[0].Width = 300;
                                 lvSupplier.Columns[3].Width = 0;
                             }
                         }

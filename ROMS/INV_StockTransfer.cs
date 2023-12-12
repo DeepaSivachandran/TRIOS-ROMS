@@ -240,7 +240,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = 1;
                 if (btnSave.Text=="Save")
                 {
-                    
+                    this.ActiveControl = txtSLocation;
                 }
                 else
                 {
@@ -251,6 +251,9 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
             }
         }
         public void udfnEdit()
@@ -337,7 +340,7 @@ namespace ROMS
         {
             try
             {
-                cmbConcern.Focus();
+                //cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 objDT = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
@@ -1270,7 +1273,7 @@ namespace ROMS
             txtBatchNo.Text = "";
             txtStockQty.Text = "";
             txtDLocation.Text = "";
-            cmbDRack.Text = "None";
+            cmbDRack.Text = "";
             txtQuantity.Text = "";
         }
         public void udfnClear()
