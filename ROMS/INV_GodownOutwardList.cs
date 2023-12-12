@@ -783,7 +783,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue),0, 0, txtStockLocation.Text, 1, 0, 0, dtpOutwardDate.Text, dtpOutwardDate2.Text);
+                    objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue),0, 0, txtStockLocation.Text, 1, 0, 0, dtpOutwardDate.Text, dtpOutwardDate2.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
