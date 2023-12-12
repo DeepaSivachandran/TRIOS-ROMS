@@ -41,6 +41,7 @@ namespace ROMS
         public String pbFormStatus;
         private bool varErrorFlag;
         public bool varChangeFlag=true;
+        public bool VarSearchFlag = true;
         string SLID = "";
         int GOId = 0;
         string varLocation="";
@@ -117,6 +118,19 @@ namespace ROMS
                 if (e.KeyCode == Keys.F5)
                 {
                     BtnSave_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                    }
                 }
             }
             catch (Exception ex)
@@ -651,6 +665,8 @@ namespace ROMS
                 //dtpOutwardDate.MaxDate = DateTime.Now;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
                 grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                VarSearchFlag = true;
+                lblProductName.Text = "Search by P.I Code";
                 if (btnSave.Text == "Save")
                 {
 
@@ -735,7 +751,7 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text, 0, 0, 0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text, 0, 0, 0,"","");
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -765,8 +781,10 @@ namespace ROMS
                 lvStockLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
+                if (txtStockLocation.Text.Length > 0 || txtStockLocation.Text == " ")
+                {
                     var ViewType = 23;
-                    objDs = objspdservice.udfnStockLocationList(ViewType, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(ViewType, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text, 0, 0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -779,6 +797,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SL_TName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvStockLocation.Items.Add(objList);
                                 }
                                 lvStockLocation.Visible = true;
@@ -793,7 +812,12 @@ namespace ROMS
                             lvStockLocation.Visible = false;
                         }
                     }
-                 
+                    else
+                    {
+                        lvStockLocation.Visible = false;
+                    }
+                }
+
                 else
                 {
                     lvStockLocation.Visible = false;
@@ -878,7 +902,14 @@ namespace ROMS
                 if (txtProduct.Text.Length > 0 || txtProduct.Text==" ")
                 {
                     var ViewType = 37;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text.Trim(), 0,"","", dtStock,0,null);
+                    if (VarSearchFlag == false)
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0,"", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text.Trim(), 0, "","", dtStock,0,null,"","");
+                    }
+                    else
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, txtProduct.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0,"", 0, "","", dtStock, 0, null, "", "");
+                    }
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -891,7 +922,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PRODUCTLIST"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["STK_Qty"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["UT_Name"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[3].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[4].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvproduct.Items.Add(objList);
                                 }
                                 lvproduct.Visible = true;
@@ -1116,7 +1147,6 @@ namespace ROMS
                 //        }
                 //    }
                 //    lvStockLocation.Visible = false;&
-                txtStockLocation.Enabled = false;
 
             }
             catch (Exception ex)
@@ -1818,7 +1848,7 @@ namespace ROMS
             {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnproductmasterlist(13, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, txtProduct.Text, 0,"","",dtStock,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(13, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, txtProduct.Text, 0,"","",dtStock,0,null,"","");
 
                 if (objDs != null)
                 {

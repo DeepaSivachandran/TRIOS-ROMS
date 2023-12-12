@@ -10,6 +10,7 @@ namespace ROMS.Model
     {
         public int ViewType { get; set; } = 0;
         public int paraSHID { get; set; } = 0;
+        public int paraUserID { get; set; } = 0;
         public int paraCompanycode { get; set; } = 0;
         public int paraPRID { get; set; } = 0;
         public int paraSLID { get; set; } = 0;

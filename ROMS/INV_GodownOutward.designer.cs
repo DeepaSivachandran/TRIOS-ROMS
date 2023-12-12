@@ -182,7 +182,7 @@
             this.columnHeader6});
             this.lvStockLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvStockLocation.HideSelection = false;
-            this.lvStockLocation.Location = new System.Drawing.Point(408, 75);
+            this.lvStockLocation.Location = new System.Drawing.Point(409, 76);
             this.lvStockLocation.Name = "lvStockLocation";
             this.lvStockLocation.Size = new System.Drawing.Size(322, 157);
             this.lvStockLocation.TabIndex = 958806;
@@ -212,8 +212,8 @@
             this.PICODE,
             this.PRODUCTLIST,
             this.STK_SLID,
-            this.PR_TName,
             this.PR_EName,
+            this.PR_TName,
             this.RK_ShortName,
             this.STK_MRP,
             this.STK_ExpiryDate,
@@ -223,11 +223,11 @@
             this.UTID,
             this.Unitname});
             this.lvproduct.FullRowSelect = true;
-            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(24, 145);
+            this.lvproduct.Location = new System.Drawing.Point(24, 146);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(940, 140);
+            this.lvproduct.Size = new System.Drawing.Size(780, 179);
             this.lvproduct.TabIndex = 1111157;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -238,15 +238,67 @@
             // 
             // PRID
             // 
+            this.PRID.Text = "Product Id";
             this.PRID.Width = 0;
             // 
             // PICODE
             // 
+            this.PICODE.Text = "P.I Code";
             this.PICODE.Width = 200;
             // 
             // PRODUCTLIST
             // 
+            this.PRODUCTLIST.Text = "Product List";
             this.PRODUCTLIST.Width = 200;
+            // 
+            // STK_SLID
+            // 
+            this.STK_SLID.Text = "Stock location Id";
+            this.STK_SLID.Width = 166;
+            // 
+            // PR_TName
+            // 
+            this.PR_TName.DisplayIndex = 4;
+            this.PR_TName.Text = "Product tamil name";
+            this.PR_TName.Width = 174;
+            // 
+            // PR_EName
+            // 
+            this.PR_EName.DisplayIndex = 5;
+            this.PR_EName.Text = "Product english name";
+            this.PR_EName.Width = 158;
+            // 
+            // RK_ShortName
+            // 
+            this.RK_ShortName.Text = "Rack name";
+            // 
+            // STK_MRP
+            // 
+            this.STK_MRP.Text = "MRP";
+            // 
+            // STK_ExpiryDate
+            // 
+            this.STK_ExpiryDate.Text = "Expiry date";
+            // 
+            // STK_BatchNo
+            // 
+            this.STK_BatchNo.Text = "Batch number";
+            // 
+            // STK_Qty
+            // 
+            this.STK_Qty.Text = "Stock quantity";
+            // 
+            // UT_Symbol
+            // 
+            this.UT_Symbol.Text = "Unit";
+            // 
+            // UTID
+            // 
+            this.UTID.Text = "Unit Id";
+            // 
+            // Unitname
+            // 
+            this.Unitname.Text = "Unit name";
             // 
             // txtTotalItem
             // 
@@ -530,6 +582,7 @@
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(135, 27);
             this.cmbTransactionType.TabIndex = 4;
+            this.cmbTransactionType.Visible = false;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.cmbTransactionType_SelectedIndexChanged);
             this.cmbTransactionType.Enter += new System.EventHandler(this.cmbTransactionType_Enter);
             this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
@@ -539,11 +592,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Enabled = false;
             this.label1.Location = new System.Drawing.Point(541, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 90;
             this.label1.Text = "Transaction Type";
+            this.label1.Visible = false;
             // 
             // txtOutwardNo
             // 

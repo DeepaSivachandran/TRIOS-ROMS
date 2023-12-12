@@ -20,6 +20,7 @@ namespace ROMS
         public string  varStockLocation="", varStockLocationId = "";
         public int varGOID = 0;
         public int varPRID = 0;
+        public string varUserID = "";
 
         public INV_GodownOutwardList()
         {
@@ -400,7 +401,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0);
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(27, 0, 0, 0, txtStockLocation.Text.Trim(), 1, 0, 0,dtpOutwardDate.Text,dtpOutwardDate2.Text);
                     objDServ5.CloseConnection();
                     if (objDsSalesLoc != null)
                     {
@@ -568,7 +569,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36,0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "","",null,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(46,0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0,"","",null,1,null,dtpOutwardDate.Text,dtpOutwardDate2.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -782,7 +783,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue),0, 0, txtStockLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue),0, 0, txtStockLocation.Text, 1, 0, 0, dtpOutwardDate.Text, dtpOutwardDate2.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1274,25 +1275,31 @@ namespace ROMS
                         SPDataService objspdservice = new SPDataService();
                         DataTable objGrnPO = new DataTable();
                         TRNS_GoodsOutward objTRNS_GoodsOutward = new TRNS_GoodsOutward();
-                        objTRNS_GoodsOutward.ViewType = 2;
-                        objTRNS_GoodsOutward.ParaGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
-                        objTRNS_GoodsOutward.ParaCompanyCode = 0;
-                        objTRNS_GoodsOutward.paraOutwardDate = "";
-                        objTRNS_GoodsOutward.paraTransferType = 0;
-                        objTRNS_GoodsOutward.paraRemarks = "";
-                        objTRNS_GoodsOutward.paraSLID = 0;
-                        objTRNS_GoodsOutward.paraStockTransfer = dtStock;
-                        objTRNS_GoodsOutward.paraOriginator = "Goods Outward Delete";
-                        string result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
-                        objspdservice.CloseConnection();
-                        if (result.Split('~')[0] == "3")
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else if (result.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            objTRNS_GoodsOutward.ViewType = 2;
+                            objTRNS_GoodsOutward.ParaGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
+                            objTRNS_GoodsOutward.ParaCompanyCode = 0;
+                            objTRNS_GoodsOutward.paraOutwardDate = "";
+                            objTRNS_GoodsOutward.paraTransferType = 0;
+                            objTRNS_GoodsOutward.paraRemarks = "";
+                            objTRNS_GoodsOutward.paraSLID = 0;
+                            objTRNS_GoodsOutward.paraStockTransfer = dtStock;
+                            objTRNS_GoodsOutward.paraOriginator = "Goods Outward Delete";
+                            string result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
+                            objspdservice.CloseConnection();
+                            if (result.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else if (result.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
