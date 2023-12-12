@@ -157,6 +157,7 @@
             this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmscheduleid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmOrderdays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.daysid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -164,6 +165,8 @@
             this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
+            this.cmbTat = new System.Windows.Forms.ComboBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.pnlScheduleStatus = new System.Windows.Forms.Panel();
             this.rbScheduleActive = new System.Windows.Forms.RadioButton();
             this.rbScheduleInactive = new System.Windows.Forms.RadioButton();
@@ -998,6 +1001,7 @@
             // 
             // txtSPShortName
             // 
+            this.txtSPShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSPShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSPShortName.Location = new System.Drawing.Point(121, 53);
             this.txtSPShortName.MaxLength = 10;
@@ -1540,6 +1544,7 @@
             this.clmOrderType,
             this.clmscheduleid,
             this.clmOrderdays,
+            this.clmTAT,
             this.daysid,
             this.ID,
             this.clmStatus,
@@ -1603,14 +1608,13 @@
             this.clmSalesmanWhatsapp.HeaderText = "Salesman WhatsApp No.";
             this.clmSalesmanWhatsapp.Name = "clmSalesmanWhatsapp";
             this.clmSalesmanWhatsapp.ReadOnly = true;
-            this.clmSalesmanWhatsapp.Width = 150;
+            this.clmSalesmanWhatsapp.Width = 145;
             // 
             // clmOrderType
             // 
             this.clmOrderType.HeaderText = "Order Type";
             this.clmOrderType.Name = "clmOrderType";
             this.clmOrderType.ReadOnly = true;
-            this.clmOrderType.Width = 130;
             // 
             // clmscheduleid
             // 
@@ -1626,6 +1630,13 @@
             this.clmOrderdays.Name = "clmOrderdays";
             this.clmOrderdays.ReadOnly = true;
             this.clmOrderdays.Width = 300;
+            // 
+            // clmTAT
+            // 
+            this.clmTAT.HeaderText = "TAT";
+            this.clmTAT.Name = "clmTAT";
+            this.clmTAT.ReadOnly = true;
+            this.clmTAT.Width = 70;
             // 
             // daysid
             // 
@@ -1646,6 +1657,7 @@
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
+            this.clmStatus.Width = 80;
             // 
             // clmScheduleStatusId
             // 
@@ -1672,6 +1684,8 @@
             // 
             // gpSupplier
             // 
+            this.gpSupplier.Controls.Add(this.cmbTat);
+            this.gpSupplier.Controls.Add(this.textBox10);
             this.gpSupplier.Controls.Add(this.pnlScheduleStatus);
             this.gpSupplier.Controls.Add(this.txtDStatus);
             this.gpSupplier.Controls.Add(this.txtScheduleName);
@@ -1686,6 +1700,35 @@
             this.gpSupplier.Size = new System.Drawing.Size(684, 282);
             this.gpSupplier.TabIndex = 958801;
             this.gpSupplier.TabStop = false;
+            // 
+            // cmbTat
+            // 
+            this.cmbTat.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTat.FormattingEnabled = true;
+            this.cmbTat.Items.AddRange(new object[] {
+            "Phone",
+            "Visit",
+            "Mobile App"});
+            this.cmbTat.Location = new System.Drawing.Point(436, 249);
+            this.cmbTat.Name = "cmbTat";
+            this.cmbTat.Size = new System.Drawing.Size(93, 27);
+            this.cmbTat.TabIndex = 12;
+            this.cmbTat.Enter += new System.EventHandler(this.CmbTat_Enter);
+            this.cmbTat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTat_KeyDown);
+            this.cmbTat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTat_KeyPress);
+            this.cmbTat.Leave += new System.EventHandler(this.CmbTat_Leave);
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox10.Location = new System.Drawing.Point(398, 249);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(38, 27);
+            this.textBox10.TabIndex = 1111183;
+            this.textBox10.Text = "TAT";
             // 
             // pnlScheduleStatus
             // 
@@ -1949,7 +1992,7 @@
             this.grddays.RowTemplate.Height = 25;
             this.grddays.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grddays.Size = new System.Drawing.Size(132, 177);
-            this.grddays.TabIndex = 12;
+            this.grddays.TabIndex = 9999999;
             this.grddays.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grddays_CellContentClick);
             this.grddays.CurrentCellDirtyStateChanged += new System.EventHandler(this.Grddays_CurrentCellDirtyStateChanged);
             this.grddays.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.Grddays_DataBindingComplete);
@@ -2908,7 +2951,7 @@
             this.DGV_SearchGridPro.DefaultCellStyle = dataGridViewCellStyle23;
             this.DGV_SearchGridPro.EnableHeadersVisualStyles = false;
             this.DGV_SearchGridPro.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGridPro.Location = new System.Drawing.Point(37, 71);
+            this.DGV_SearchGridPro.Location = new System.Drawing.Point(15, 71);
             this.DGV_SearchGridPro.Name = "DGV_SearchGridPro";
             this.DGV_SearchGridPro.RowHeadersVisible = false;
             dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.LemonChiffon;
@@ -2918,7 +2961,7 @@
             this.DGV_SearchGridPro.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGridPro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGridPro.ShowRowErrors = false;
-            this.DGV_SearchGridPro.Size = new System.Drawing.Size(1248, 56);
+            this.DGV_SearchGridPro.Size = new System.Drawing.Size(1277, 56);
             this.DGV_SearchGridPro.TabIndex = 958826;
             this.DGV_SearchGridPro.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridPro_CellContentClick);
             this.DGV_SearchGridPro.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridPro_CellEndEdit);
@@ -3167,7 +3210,7 @@
             this.grdViewSupplierMapping.DefaultCellStyle = dataGridViewCellStyle26;
             this.grdViewSupplierMapping.EnableHeadersVisualStyles = false;
             this.grdViewSupplierMapping.GridColor = System.Drawing.Color.White;
-            this.grdViewSupplierMapping.Location = new System.Drawing.Point(37, 127);
+            this.grdViewSupplierMapping.Location = new System.Drawing.Point(15, 127);
             this.grdViewSupplierMapping.Name = "grdViewSupplierMapping";
             this.grdViewSupplierMapping.ReadOnly = true;
             this.grdViewSupplierMapping.RowHeadersVisible = false;
@@ -3176,7 +3219,7 @@
             this.grdViewSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle27;
             this.grdViewSupplierMapping.RowTemplate.Height = 25;
             this.grdViewSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdViewSupplierMapping.Size = new System.Drawing.Size(1248, 449);
+            this.grdViewSupplierMapping.Size = new System.Drawing.Size(1277, 449);
             this.grdViewSupplierMapping.TabIndex = 958809;
             this.grdViewSupplierMapping.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdViewSupplierMapping_DataBindingComplete);
             this.grdViewSupplierMapping.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdViewSupplierMapping_Scroll);
@@ -3222,9 +3265,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(22, 41);
+            this.picLoader.Location = new System.Drawing.Point(12, 41);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1309, 596);
+            this.picLoader.Size = new System.Drawing.Size(1319, 596);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958807;
             this.picLoader.TabStop = false;
@@ -3516,20 +3559,6 @@
         private System.Windows.Forms.TextBox txtMappedOrderDay;
         private System.Windows.Forms.TextBox txtSupplierOrderDays;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesmanWhatsapp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmscheduleid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderdays;
-        private System.Windows.Forms.DataGridViewTextBoxColumn daysid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmScheduleStatusId;
-        private System.Windows.Forms.DataGridViewImageColumn clmedit;
-        private System.Windows.Forms.DataGridViewImageColumn clmDelete;
         private System.Windows.Forms.Label lblTotalProducts;
         private System.Windows.Forms.Label label15;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
@@ -3547,5 +3576,22 @@
         public System.Windows.Forms.Button btnMappingSelectAll;
         private System.Windows.Forms.Button btnListPrint;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
+        private System.Windows.Forms.ComboBox cmbTat;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesmanWhatsapp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmscheduleid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderdays;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTAT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn daysid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmScheduleStatusId;
+        private System.Windows.Forms.DataGridViewImageColumn clmedit;
+        private System.Windows.Forms.DataGridViewImageColumn clmDelete;
     }
 }

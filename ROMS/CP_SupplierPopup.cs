@@ -48,7 +48,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService(); 
-                objDs = objdserv.udfnSupplierList(25, 0, 0, 0, 0, "", 0,0,0,"",0,0,0,0,0,0,"");
+                objDs = objdserv.udfnSupplierList(25, 0, 0, 0, 0, "", 0,0,0,"",0,0,0,0,0,0,"","","",0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

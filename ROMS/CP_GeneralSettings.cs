@@ -60,7 +60,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnMaster(0, 13,0,"","",0);
+                objDs = objdserv.udfnMaster(0, 13,0,"","",0, "",0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -135,8 +135,8 @@ namespace ROMS
             try
             {
                 string varResult = "";
-                btnUpdate.Enabled = false;
-                SPDataService objDser = new SPDataService();
+                btnUpdate.Enabled = false; lblReportname.Focus();
+                 SPDataService objDser = new SPDataService();
                 string varOriginator = "GeneralSettings Updation";
                 SPDataService objspdservice = new SPDataService();
                 DataTable objGeneralSettings = new DataTable();

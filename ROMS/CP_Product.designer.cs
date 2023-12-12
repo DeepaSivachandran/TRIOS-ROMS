@@ -1474,7 +1474,6 @@
             this.txtRackDescriptionSales.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtRackDescriptionSales.Location = new System.Drawing.Point(135, 86);
             this.txtRackDescriptionSales.Name = "txtRackDescriptionSales";
-            this.txtRackDescriptionSales.ReadOnly = true;
             this.txtRackDescriptionSales.Size = new System.Drawing.Size(388, 27);
             this.txtRackDescriptionSales.TabIndex = 92;
             this.txtRackDescriptionSales.TabStop = false;

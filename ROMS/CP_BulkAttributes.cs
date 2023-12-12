@@ -151,17 +151,17 @@ namespace ROMS
                 objDSGroup = objDServ.udfnGroupList(0, 0, 0, "",0);
                 objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0);
                 objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"",0);
-                objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0,0);
+                objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0,0,"","");
                 objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0,0);
 
-                objDSShelfLifeType = objDServ.udfnMaster(0, 6,0,"","",0);
-                objDSQTYUnit = objDServ.udfnMaster(2, 0,0,"","",0);
-                objDSProductCategory = objDServ.udfnMaster(0, 5,0,"","",0);
-                objDSRMPRO = objDServ.udfnMaster(1, 0,0,"","",0);
-                objDSBatchNo = objDServ.udfnMaster(0, 25,0,"","",0);
-                objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0,"","",0);
+                objDSShelfLifeType = objDServ.udfnMaster(0, 6,0,"","",0,"",0);
+                objDSQTYUnit = objDServ.udfnMaster(2, 0,0,"","",0, "",0);
+                objDSProductCategory = objDServ.udfnMaster(0, 5,0,"","",0, "",0);
+                objDSRMPRO = objDServ.udfnMaster(1, 0,0,"","",0, "",0);
+                objDSBatchNo = objDServ.udfnMaster(0, 25,0,"","",0, "",0);
+                objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0,"","",0, "",0);
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "",0);
-                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null);
+                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -837,7 +837,7 @@ namespace ROMS
                     {
                         varUserID = MainForm.objCP_BulkAttributeVerify.varUserId;
                         SPDataService objDSer = new SPDataService();
-                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "",varUserID,MainForm.pbIpAddress,varOriginator, 0, objBulkUpdate,0);
+                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "",varUserID,MainForm.pbIpAddress,varOriginator, 0, objBulkUpdate,0,"");
                         objDSer.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
@@ -987,7 +987,7 @@ namespace ROMS
                 grdBulkAttributes.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1945,6 +1945,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblStatus.Focus();
                 if (txtProductGroup.Text != "")
                 {
                     DataSet objDgroup = new DataSet();

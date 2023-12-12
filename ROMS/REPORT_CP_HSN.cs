@@ -132,6 +132,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -197,7 +198,8 @@ namespace ROMS
                     varHSNCode = txtHsnName.Text.Trim();
                     HSNCodeName = txtHsnName.Text.Trim();
                 }
-                btnListPrint.Enabled = false;
+                btnListPrint.Enabled = false; 
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -206,7 +208,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(16, 0, 0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0, 0, Convert.ToInt32(cmbGST.SelectedValue),0,0,0,0,0,"",0,"",varHSNCode,null,0,null);
+                objDs = objspservice.udfnproductmasterlist(16, 0, 0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0, 0, Convert.ToInt32(cmbGST.SelectedValue),0,0,0,0,0,"",0,"",varHSNCode,null,0,null,"","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -268,6 +270,7 @@ namespace ROMS
                     HSNCodeName = txtHsnName.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;

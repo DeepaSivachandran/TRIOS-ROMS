@@ -332,7 +332,7 @@ namespace ROMS
                     dtMappedProduct.Columns.Add("P.I Code", typeof(string));
                     dtMappedProduct.Columns.Add("Product Name", typeof(string));
                     dtMappedProduct.Columns.Add("Unit", typeof(string));
-                    dtMappedProduct.Columns.Add("Unit Per box", typeof(string));
+                    dtMappedProduct.Columns.Add("Unit Per case", typeof(string));
                     dtMappedProduct.Columns.Add("R.Rate", typeof(string));
                     dtMappedProduct.Columns.Add("W.Rate", typeof(string));
                     dtMappedProduct.Columns.Add("Min Qty", typeof(string));
@@ -362,7 +362,7 @@ namespace ROMS
                     {
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode,"",null,0,null);
+                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode,"",null,0,null,"","");
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -510,7 +510,7 @@ namespace ROMS
 
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet(); 
-                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode);
+                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode,"","",0);
                 objspdservice.CloseConnection();
 
                 for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
@@ -534,7 +534,7 @@ namespace ROMS
                         } 
                         MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Add(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Count + 1,
                         grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value, grdPurchaseOrder.Rows[i].Cells["Product Name"].Value, grdPurchaseOrder.Rows[i].Cells["Unit"].Value,
-                        grdPurchaseOrder.Rows[i].Cells["Unit Wt"].Value, grdPurchaseOrder.Rows[i].Cells["Unit Per box"].Value, grdPurchaseOrder.Rows[i].Cells["B.Unit Weight"].Value, 
+                        grdPurchaseOrder.Rows[i].Cells["Unit Wt"].Value, grdPurchaseOrder.Rows[i].Cells["Unit Per case"].Value, grdPurchaseOrder.Rows[i].Cells["B.Unit Weight"].Value, 
                         grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value),
                         (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), Convert.ToString(grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value), grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, 
                         (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),"", grdPurchaseOrder.Rows[i].Cells["bunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["qtyunit"].Value,

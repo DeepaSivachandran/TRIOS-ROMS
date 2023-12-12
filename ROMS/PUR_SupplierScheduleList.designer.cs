@@ -41,6 +41,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlSupplierScheduleList = new System.Windows.Forms.Panel();
+            this.lblschedule = new System.Windows.Forms.Label();
             this.lvSupplerName = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -74,7 +75,7 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
@@ -159,6 +160,7 @@
             // pnlSupplierScheduleList
             // 
             this.pnlSupplierScheduleList.BackColor = System.Drawing.Color.White;
+            this.pnlSupplierScheduleList.Controls.Add(this.lblschedule);
             this.pnlSupplierScheduleList.Controls.Add(this.lvSupplerName);
             this.pnlSupplierScheduleList.Controls.Add(this.LV_Supplier);
             this.pnlSupplierScheduleList.Controls.Add(this.DGV_SearchGrid);
@@ -173,6 +175,16 @@
             this.pnlSupplierScheduleList.Name = "pnlSupplierScheduleList";
             this.pnlSupplierScheduleList.Size = new System.Drawing.Size(1354, 642);
             this.pnlSupplierScheduleList.TabIndex = 958788;
+            // 
+            // lblschedule
+            // 
+            this.lblschedule.AutoSize = true;
+            this.lblschedule.Location = new System.Drawing.Point(280, 109);
+            this.lblschedule.Name = "lblschedule";
+            this.lblschedule.Size = new System.Drawing.Size(16, 20);
+            this.lblschedule.TabIndex = 1111178;
+            this.lblschedule.Text = "0";
+            this.lblschedule.Visible = false;
             // 
             // lvSupplerName
             // 
@@ -544,7 +556,7 @@
             this.grpfilter.Controls.Add(this.btnPrint);
             this.grpfilter.Controls.Add(this.btnExport);
             this.grpfilter.Controls.Add(this.cmbStatus);
-            this.grpfilter.Controls.Add(this.label5);
+            this.grpfilter.Controls.Add(this.lblStatus);
             this.grpfilter.Controls.Add(this.btnView);
             this.grpfilter.Controls.Add(this.label2);
             this.grpfilter.Controls.Add(this.txtSupplier);
@@ -604,15 +616,15 @@
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
             this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
             // 
-            // label5
+            // lblStatus
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(212, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 20);
-            this.label5.TabIndex = 1111176;
-            this.label5.Text = "Status";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(212, 26);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.TabIndex = 1111176;
+            this.lblStatus.Text = "Status";
             // 
             // btnView
             // 
@@ -695,6 +707,7 @@
             // 
             this.dgvSupplierScheduleList.AllowUserToAddRows = false;
             this.dgvSupplierScheduleList.AllowUserToDeleteRows = false;
+            this.dgvSupplierScheduleList.AllowUserToResizeColumns = false;
             this.dgvSupplierScheduleList.AllowUserToResizeRows = false;
             this.dgvSupplierScheduleList.BackgroundColor = System.Drawing.Color.White;
             this.dgvSupplierScheduleList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -833,7 +846,7 @@
         private System.Windows.Forms.Button btnSchedulePopup;
         private System.Windows.Forms.ComboBox cmbDay;
         private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cmbOrderSchedule;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.ListView LV_Supplier;
@@ -859,5 +872,6 @@
         public System.Windows.Forms.ToolStripButton tsbList;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Label lblschedule;
     }
 }

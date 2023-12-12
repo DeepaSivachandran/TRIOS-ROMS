@@ -169,7 +169,7 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(),0,0,0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(),0,0,0,"","");
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -393,6 +393,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblDShopGodown.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -551,6 +552,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
+                lblDShopGodown.Focus();
                 if ((grdRackGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -887,7 +889,7 @@ namespace ROMS
                     {
                         varViewType = 22;
                     }
-                    objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text,0, 0,0);
+                    objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text,0, 0,0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
