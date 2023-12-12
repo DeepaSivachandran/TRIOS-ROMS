@@ -1013,6 +1013,17 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
+            finally
+            {
+                if (grdDamageEntry.Rows.Count > 0)
+                {
+                    cmbConcern.Enabled = false;
+                }
+                else
+                {
+                    cmbConcern.Enabled = true;
+                }
+            }
         }
         private void BtnAdd_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1134,6 +1145,14 @@ namespace ROMS
             finally
             {
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
+                if (grdDamageEntry.Rows.Count > 0)
+                {
+                    cmbConcern.Enabled = false;
+                }
+                else
+                {
+                    cmbConcern.Enabled = true;
+                }
             }
         }
         private void TxtRemark_Enter(object sender, EventArgs e)

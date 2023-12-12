@@ -261,7 +261,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","","");
+                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","");
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -1252,10 +1252,12 @@ namespace ROMS
                 if (grdStockTransfer.Rows.Count > 0)
                 {
                     txtSLocation.Enabled = false;
+                    cmbConcern.Enabled = false;
                 }
                 else
                 {
                     txtSLocation.Enabled = true;
+                    cmbConcern.Enabled = true;
                 }
             }
         }
@@ -1446,10 +1448,12 @@ namespace ROMS
                 if (grdStockTransfer.Rows.Count > 0)
                 {
                     txtSLocation.Enabled = false;
+                    cmbConcern.Enabled = false;
                 }
                 else
                 {
                     txtSLocation.Enabled = true;
+                    cmbConcern.Enabled = true;
                 }
             }
         }
