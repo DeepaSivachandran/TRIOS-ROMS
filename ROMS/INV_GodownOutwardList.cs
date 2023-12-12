@@ -401,7 +401,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0);
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(27, 0, 0, 0, txtStockLocation.Text.Trim(), 1, 0, 0,dtpOutwardDate.Text,dtpOutwardDate2.Text);
                     objDServ5.CloseConnection();
                     if (objDsSalesLoc != null)
                     {
@@ -569,7 +569,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(46,0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "",null);
+                    objDs = objspdservice.udfnproductmasterlist(46,0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0,"","",null,1,null,dtpOutwardDate.Text,dtpOutwardDate2.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -783,7 +783,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue),0, 0, txtStockLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue),0, 0, txtStockLocation.Text, 1, 0, 0, dtpOutwardDate.Text, dtpOutwardDate2.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -23,6 +23,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         public string varResult = "";
         public string varUserID = "";
+        
         public string varPICode="",varSHID="", varMrp="";
         public int SHID=0,varPRID = 0, varUTID = 0, varStockLocationId = 0, varRKID=0,varCOMID=0;
         Boolean BlnSearchImageYN = false;
@@ -483,7 +484,7 @@ namespace ROMS
                 if (txtProductName.Text.Length > 0)
                 {
                     var ViewType = 42;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "", null);
+                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "","", null,0,null,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1272,7 +1273,7 @@ namespace ROMS
                     objTRNS_StockHold.paraBatchNo = "";
                     objTRNS_StockHold.paraUTID = 0;
                     objTRNS_StockHold.paraQty = 0;
-                    objTRNS_StockHold.paraUserID = varUserID;
+                    objTRNS_StockHold.paraUserID = Convert.ToInt32(varUserID);
                     objTRNS_StockHold.paraOriginator = varoriginator;
                     result = objspservice.udfnStockHold(objTRNS_StockHold);
                     varSHID = grdStockHold.SelectedRows[0].Cells["SHID"].Value.ToString();
@@ -1407,11 +1408,11 @@ namespace ROMS
                     var ViewType = 42;
                     if (VarSearchFlag == false)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "", null);
+                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "","", null,0,null,"","");
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", null);
+                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "","", null,0,null,"","");
 
                     }
                     objspdservice.CloseConnection();

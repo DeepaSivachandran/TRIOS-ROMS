@@ -234,15 +234,15 @@ namespace ROMS
                     txtRackDescription.Text = "";
                     blnErrorFlag = true;
                 }
-                if (txtSaleLocation.Text == "")
-                {
-                    txtSaleLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtSaleLocation, "Please enter sales location");
-                    txtSaleRack.Text = "";
-                    lblSaleRackCode.Text = "0";
-                    txtRackDescriptionSales.Text = "";
-                    blnErrorFlag = true;
-                }
+                //if (txtSaleLocation.Text == "")
+                //{
+                //    txtSaleLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtSaleLocation, "Please enter sales location");
+                //    txtSaleRack.Text = "";
+                //    lblSaleRackCode.Text = "0";
+                //    txtRackDescriptionSales.Text = "";
+                //    blnErrorFlag = true;
+                //}
                 //if (Convert.ToString(cmbBrand.SelectedValue) == "" || Convert.ToString(cmbBrand.SelectedValue) == "-1")
                 //{
                 //    errItems.SetError(cmbBrand, "Please select Brand");
@@ -626,7 +626,7 @@ namespace ROMS
                         }
                     }
                 }
-                /* Check sales stock location is valid or not*/
+                /* Check sales stock location is valid or not
                 if (txtSaleLocation.Text != "")
                 {
                     string varId_SalesLocation = "0";
@@ -655,7 +655,7 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                /*check Sales location have a rack or not*/
+                //check Sales location have a rack or not//
                 string varId_SalesRack = "0";
                 DataSet objDsSalesRack = new DataSet();
                 SPDataService objDServ7 = new SPDataService();
@@ -711,7 +711,7 @@ namespace ROMS
                             blnErrorFlag = true;
                         }
                     }
-                }
+                }*/
 
                 if (blnErrorFlag == false)
                 {
