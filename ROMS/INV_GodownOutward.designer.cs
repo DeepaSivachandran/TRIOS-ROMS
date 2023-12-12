@@ -47,8 +47,8 @@
             this.PICODE = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.STK_SLID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RK_ShortName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.STK_MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.STK_ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -227,7 +227,7 @@
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(24, 146);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(780, 179);
+            this.lvproduct.Size = new System.Drawing.Size(942, 179);
             this.lvproduct.TabIndex = 1111157;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -248,7 +248,7 @@
             // 
             // PRODUCTLIST
             // 
-            this.PRODUCTLIST.Text = "Product List";
+            this.PRODUCTLIST.Text = "Product Name";
             this.PRODUCTLIST.Width = 200;
             // 
             // STK_SLID
@@ -256,17 +256,17 @@
             this.STK_SLID.Text = "Stock location Id";
             this.STK_SLID.Width = 166;
             // 
-            // PR_TName
-            // 
-            this.PR_TName.DisplayIndex = 4;
-            this.PR_TName.Text = "Product tamil name";
-            this.PR_TName.Width = 174;
-            // 
             // PR_EName
             // 
             this.PR_EName.DisplayIndex = 5;
             this.PR_EName.Text = "Product english name";
             this.PR_EName.Width = 158;
+            // 
+            // PR_TName
+            // 
+            this.PR_TName.DisplayIndex = 4;
+            this.PR_TName.Text = "Product tamil name";
+            this.PR_TName.Width = 174;
             // 
             // RK_ShortName
             // 
@@ -427,6 +427,7 @@
             this.grdGoodsOutward.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGoodsOutward_CellEndEdit);
             this.grdGoodsOutward.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DGV_inward_DataBindingComplete);
             this.grdGoodsOutward.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_inward_EditingControlShowing);
+            this.grdGoodsOutward.Enter += new System.EventHandler(this.GrdGoodsOutward_Enter);
             // 
             // clmdsno
             // 

@@ -922,7 +922,7 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PRODUCTLIST"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["STK_Qty"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["UT_Name"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[4].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvproduct.Items.Add(objList);
                                 }
                                 lvproduct.Visible = true;
@@ -930,7 +930,7 @@ namespace ROMS
                                 lvproduct.Columns[1].Width = 100;
                                 lvproduct.Columns[2].Width = 550;
                                 lvproduct.Columns[3].Width = 0;
-                                lvproduct.Columns[4].Width = 220;
+                                lvproduct.Columns[4].Width = 0;
                                 lvproduct.Columns[5].Width = 0;
                                 lvproduct.Columns[6].Width = 0;
                                 lvproduct.Columns[7].Width = 0;
@@ -1285,6 +1285,20 @@ namespace ROMS
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGoodsOutward_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvproduct.Visible = false;
+                lvStockLocation.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1732,30 +1746,30 @@ namespace ROMS
                     tpOutwardQuantity.Show("Please enter the rack name", txtRack, 5000);
                     varErrorFlag = false;
                 }
-                if (txtMrp.Text == "")
-                {
-                    epGoodsOutward.SetError(txtMrp, "Please enter mrp");
-                    txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpOutwardQuantity.ShowAlways = true;
-                    tpOutwardQuantity.Show("Please enter mrp", txtMrp, 5000);
-                    varErrorFlag = false;
-                }
-                if (txtExpiryDate.Text == "")
-                {
-                    epGoodsOutward.SetError(txtExpiryDate, "Please enter expiry date");
-                    txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpOutwardQuantity.ShowAlways = true;
-                    tpOutwardQuantity.Show("Please enter expiry date", txtExpiryDate, 5000);
-                    varErrorFlag = false;
-                }
-                if (txtBatchNo.Text == "")
-                {
-                    epGoodsOutward.SetError(txtBatchNo, "Please enter batch number");
-                    txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpOutwardQuantity.ShowAlways = true;
-                    tpOutwardQuantity.Show("Please enter batch number", txtBatchNo, 5000);
-                    varErrorFlag = false;
-                }
+                //if (txtMrp.Text == "")
+                //{
+                //    epGoodsOutward.SetError(txtMrp, "Please enter mrp");
+                //    txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpOutwardQuantity.ShowAlways = true;
+                //    tpOutwardQuantity.Show("Please enter mrp", txtMrp, 5000);
+                //    varErrorFlag = false;
+                //}
+                //if (txtExpiryDate.Text == "")
+                //{
+                //    epGoodsOutward.SetError(txtExpiryDate, "Please enter expiry date");
+                //    txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpOutwardQuantity.ShowAlways = true;
+                //    tpOutwardQuantity.Show("Please enter expiry date", txtExpiryDate, 5000);
+                //    varErrorFlag = false;
+                //}
+                //if (txtBatchNo.Text == "")
+                //{
+                //    epGoodsOutward.SetError(txtBatchNo, "Please enter batch number");
+                //    txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpOutwardQuantity.ShowAlways = true;
+                //    tpOutwardQuantity.Show("Please enter batch number", txtBatchNo, 5000);
+                //    varErrorFlag = false;
+                //}
                 if (txtStockQuantity.Text == "")
                 {
                     epGoodsOutward.SetError(txtStockQuantity, "Please enter stock quantity");
