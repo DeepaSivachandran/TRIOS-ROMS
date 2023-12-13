@@ -123,7 +123,7 @@ namespace ROMS
                                     objDs.Tables[1].Rows[i]["Remove Flag"].ToString());
 
                                     if (objDs.Tables[1].Rows[i]["Remove Flag"].ToString() == "1")
-                                    {
+                                    {                           
                                         ((DataGridViewImageCell)grdPurchaseDC.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
                                     }
                                     dtPurchaseDC.Rows.Add(objDs.Tables[1].Rows[i]["PRID"],
@@ -1076,16 +1076,21 @@ namespace ROMS
         {
             try
             {
-                if (txtMonth.Text.Trim() == "")
+                if (expirydateFlag == 1)
                 {
-                    txtMonth.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtMonth, "Please enter month.");
+                    if (txtMonth.Text.Trim() == "")
+                    {
+                        txtMonth.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        epPurchaseDC.SetError(txtMonth, "Please enter month.");
+                    }
+                    else
+                    {
+                        txtMonth.BackColor = Color.White;
+                        epPurchaseDC.Clear();
+                    }
                 }
                 else
-                {
-                    txtMonth.BackColor = Color.White;
-                    epPurchaseDC.Clear();
-                }
+                { txtMonth.BackColor = Color.White; }
             }
             catch (Exception ex)
             {
@@ -1111,8 +1116,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if(txtBatchNo.Enabled==true)
-                    txtBatchNo.Focus();
+                    if (txtBatchNo.Enabled == true)
+                    {
+                        txtBatchNo.Focus();
+                    }
+                    else
+                    {
+                        txtActualQty.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1140,16 +1151,20 @@ namespace ROMS
         {
             try
             {
-                if (txtYear.Text.Trim() == "")
+                if (expirydateFlag == 1)
                 {
-                    txtYear.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtYear, "Please enter year.");
+                    if (txtYear.Text.Trim() == "")
+                    {
+                        txtYear.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        epPurchaseDC.SetError(txtYear, "Please enter year.");
+                    }
+                    else
+                    {
+                        txtYear.BackColor = Color.White;
+                        epPurchaseDC.Clear();
+                    }
                 }
-                else
-                {
-                    txtYear.BackColor = Color.White;
-                    epPurchaseDC.Clear();
-                }
+                else { txtYear.BackColor = Color.White; }
             }
             catch (Exception ex)
             {
@@ -2248,10 +2263,10 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if(txtRack.Enabled==false)
-                    { btnAdd.Focus(); }
-                    else
+                    if(txtRack.Enabled==true)
                     { txtRack.Focus(); }
+                    else
+                    { btnAdd.Focus(); }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -2471,7 +2486,7 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if (varBatchNoGeneration == "74")
+                if (varBatchNoGeneration == "75")
                 {
                     if (txtBatchNo.Text.Trim() == "")
                     {
@@ -2569,7 +2584,7 @@ namespace ROMS
                         epPurchaseDC.SetError(txtStockLocation, "Please select valid location.");
                         txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpStockLocation.ShowAlways = true;
-                        tpStockLocation.Show("Please select purchase stock location.", txtStockLocation, 5000);
+                        tpStockLocation.Show("Please select location.", txtStockLocation, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -2642,8 +2657,10 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtProductName.Text.Trim()) != "")
                 {
-                    
-                    udfnExpiryDate();
+                    if (expirydateFlag == 1|| txtDay.Text!="" || txtMonth.Text!="" || txtYear.Text!="")
+                    {
+                        udfnExpiryDate();
+                    }
                     SPDataService objDServ = new SPDataService();
                     DataSet objDS = new DataSet();
                     DataSet objDSExpiry = new DataSet();
@@ -2944,7 +2961,7 @@ namespace ROMS
                         udfnAddClear();
                         txtProductName.Text = "";
                         lblProductcode.Text = "0";
-                        txtProductName.BackColor = Color.White;
+                      //  txtProductName.BackColor = Color.White;
                         udfnProductCount();
                     }
                 }
@@ -3110,8 +3127,9 @@ namespace ROMS
                             if(objDs.Tables[0]!=null)
                             {
                                 if (objDs.Tables[0].Rows.Count != 0)
-                                { txtBatchNo.Text = objDs.Tables[0].Rows[0]["Date"].ToString();
-                                  txtBatchNo.Enabled = false;
+                                {
+                                    txtBatchNo.Text = objDs.Tables[0].Rows[0]["Date"].ToString();
+                                    txtBatchNo.Enabled = false;
                                 }
                             }
                         }
