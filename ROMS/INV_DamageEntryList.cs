@@ -363,13 +363,13 @@ namespace ROMS
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",3);
             DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            dpFromDate.MinDate = varDate;
+            //dpFromDate.MinDate = varDate;
             dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
             objspservice.CloseConnection();
-
-            //dpFromDate.MinDate = MainForm.pbFYStartDate;
+            dpFromDate.MinDate = MainForm.pbFYStartDate;
             dpFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpToDate.MinDate = dpFromDate.MaxDate;
+            dpToDate.MinDate = varDate;
+            dpToDate.MaxDate = MainForm.pbCurrentDate;
             udfnList();
         }
         public void udfnCmbConcern()
@@ -758,7 +758,7 @@ namespace ROMS
                             grdDamageEntryList.Columns["DMID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 80;
-                            grdDamageEntryList.Columns["Supplier"].Width = 200;
+                            grdDamageEntryList.Columns["Supplier"].Width = 330;
                             grdDamageEntryList.Columns["City"].Width = 120;
                             grdDamageEntryList.Columns["GSTIN"].Width = 150;
                             grdDamageEntryList.Columns["Created By"].Width = 120;

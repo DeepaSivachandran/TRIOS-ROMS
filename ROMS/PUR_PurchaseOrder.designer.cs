@@ -417,11 +417,11 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(1013, 613);
+            this.label12.Location = new System.Drawing.Point(1026, 613);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(66, 17);
+            this.label12.Size = new System.Drawing.Size(53, 17);
             this.label12.TabIndex = 1111211;
-            this.label12.Text = "Total Units :";
+            this.label12.Text = "Total Kg :";
             // 
             // cmbUnit
             // 
@@ -1933,7 +1933,6 @@
             this.clmunitperbox.HeaderText = "Unit Per Box-Bag";
             this.clmunitperbox.Name = "clmunitperbox";
             this.clmunitperbox.ReadOnly = true;
-            this.clmunitperbox.Width = 90;
             // 
             // clmBulkUnit
             // 
@@ -1943,7 +1942,7 @@
             this.clmBulkUnit.HeaderText = "B.Unit Wt";
             this.clmBulkUnit.Name = "clmBulkUnit";
             this.clmBulkUnit.ReadOnly = true;
-            this.clmBulkUnit.Width = 70;
+            this.clmBulkUnit.Width = 90;
             // 
             // clmgst
             // 
@@ -1977,10 +1976,9 @@
             // 
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmstock.DefaultCellStyle = dataGridViewCellStyle22;
-            this.clmstock.HeaderText = "Stock";
+            this.clmstock.HeaderText = "Recm.O.Qty";
             this.clmstock.Name = "clmstock";
             this.clmstock.ReadOnly = true;
-            this.clmstock.Visible = false;
             this.clmstock.Width = 70;
             // 
             // clmpreviouspend

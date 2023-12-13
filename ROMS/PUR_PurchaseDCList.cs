@@ -579,7 +579,9 @@ namespace ROMS
                 dpDcFromDate.MinDate = MainForm.pbFYStartDate;
                 dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
                 udfnDate();
-                this.ActiveControl = cmbConcern;
+                dpdctodate.MaxDate = MainForm.pbCurrentDate;
+                 this.ActiveControl = cmbConcern;
+                //txtSupplier.Focus();
                 cmbStatus.SelectedValue = 18; //pending
                 udfnList();
             }
