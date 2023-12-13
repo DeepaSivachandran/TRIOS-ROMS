@@ -365,6 +365,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == true)
                 {
+                    //string varMrp = string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim())));
                     //varResult = objspservice.udfnStockHold(ViewType,SHID,Convert.ToInt32(cmbConcern.SelectedValue), varPRID, varStockLocationId, varRKID,Convert.ToString(txtMrp.Text), Convert.ToString(txtExpiryDate.Text),Convert.ToString(txtBatchNo.Text),varUTID,Convert.ToInt32(txtQty.Text), varoriginator);
                     SPDataService objspservice = new SPDataService();
                     DataTable objGrnPO = new DataTable();
@@ -375,7 +376,7 @@ namespace ROMS
                     objTRNS_StockHold.paraPRID = varPRID;
                     objTRNS_StockHold.paraSLID = varStockLocationId;
                     objTRNS_StockHold.paraRKID = varRKID;
-                    objTRNS_StockHold.paraMrp = Convert.ToString(txtMrp.Text);
+                    objTRNS_StockHold.paraMrp = Convert.ToDecimal(string.Format("{0:G29}", decimal.Parse(txtMrp.Text.Trim())));
                     objTRNS_StockHold.paraExpiryDate = Convert.ToString(txtExpiryDate.Text);
                     objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
                     objTRNS_StockHold.paraUTID = varUTID;
@@ -431,21 +432,21 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdStockHold.DataSource = objDS.Tables[0];
-                            grdStockHold.Columns["S.No."].Width = 50;
-                            grdStockHold.Columns["Created On"].Width = 100;
+                            grdStockHold.Columns["S.No."].Width = 40;
+                            grdStockHold.Columns["Created On"].Width = 140;
                             grdStockHold.Columns["Concern"].Width = 70;
                             grdStockHold.Columns["P.I Code"].Width = 100;
                             grdStockHold.Columns["Product Name"].Width = 300;
                             grdStockHold.Columns["Unit"].Width = 50;
                             grdStockHold.Columns["Stock Location"].Width = 100;
-                            grdStockHold.Columns["Rack"].Width = 70;
-                            grdStockHold.Columns["MRP"].Width = 70;
-                            grdStockHold.Columns["Expiry Date"].Width = 100;
+                            grdStockHold.Columns["Rack"].Width = 60;
+                            grdStockHold.Columns["MRP"].Width = 60;
+                            grdStockHold.Columns["Expiry Date"].Width = 90;
                             grdStockHold.Columns["Batch No."].Width = 70;
                             grdStockHold.Columns["Hold Qty"].Width = 70;
-                            grdStockHold.Columns["Created By"].Width = 100;
-                            grdStockHold.Columns["clmDelete"].Width = 50;
-                            grdStockHold.Columns["clmEdit"].Width = 50;
+                            grdStockHold.Columns["Created By"].Width = 80;
+                            grdStockHold.Columns["clmDelete"].Width = 40;
+                            grdStockHold.Columns["clmEdit"].Width = 30;
                             grdStockHold.Columns["PRID"].Visible = false;
                             grdStockHold.Columns["SLID"].Visible = false;
                             grdStockHold.Columns["UTID"].Visible = false;
@@ -1231,6 +1232,19 @@ namespace ROMS
             }
         }
 
+        private void DGV_SearchGrid_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvproduct.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void INV_StockHold_KeyDown_1(object sender, KeyEventArgs e)
         {
             try
@@ -1317,7 +1331,7 @@ namespace ROMS
                     objTRNS_StockHold.paraPRID = 0;
                     objTRNS_StockHold.paraSLID = 0;
                     objTRNS_StockHold.paraRKID = 0;
-                    objTRNS_StockHold.paraMrp = "";
+                    objTRNS_StockHold.paraMrp = 0;
                     objTRNS_StockHold.paraExpiryDate = "";
                     objTRNS_StockHold.paraBatchNo = "";
                     objTRNS_StockHold.paraUTID = 0;

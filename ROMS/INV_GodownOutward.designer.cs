@@ -48,15 +48,6 @@
             this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.STK_SLID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RK_ShortName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_Qty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.UT_Symbol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.UTID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Unitname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtTotalItem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
@@ -212,22 +203,13 @@
             this.PICODE,
             this.PRODUCTLIST,
             this.STK_SLID,
-            this.PR_EName,
-            this.PR_TName,
-            this.RK_ShortName,
-            this.STK_MRP,
-            this.STK_ExpiryDate,
-            this.STK_BatchNo,
-            this.STK_Qty,
-            this.UT_Symbol,
-            this.UTID,
-            this.Unitname});
+            this.PR_EName});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(24, 146);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(942, 179);
+            this.lvproduct.Size = new System.Drawing.Size(780, 179);
             this.lvproduct.TabIndex = 1111157;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -258,47 +240,8 @@
             // 
             // PR_EName
             // 
-            this.PR_EName.DisplayIndex = 5;
             this.PR_EName.Text = "Product english name";
             this.PR_EName.Width = 158;
-            // 
-            // PR_TName
-            // 
-            this.PR_TName.DisplayIndex = 4;
-            this.PR_TName.Text = "Product tamil name";
-            this.PR_TName.Width = 174;
-            // 
-            // RK_ShortName
-            // 
-            this.RK_ShortName.Text = "Rack name";
-            // 
-            // STK_MRP
-            // 
-            this.STK_MRP.Text = "MRP";
-            // 
-            // STK_ExpiryDate
-            // 
-            this.STK_ExpiryDate.Text = "Expiry date";
-            // 
-            // STK_BatchNo
-            // 
-            this.STK_BatchNo.Text = "Batch number";
-            // 
-            // STK_Qty
-            // 
-            this.STK_Qty.Text = "Stock quantity";
-            // 
-            // UT_Symbol
-            // 
-            this.UT_Symbol.Text = "Unit";
-            // 
-            // UTID
-            // 
-            this.UTID.Text = "Unit Id";
-            // 
-            // Unitname
-            // 
-            this.Unitname.Text = "Unit name";
             // 
             // txtTotalItem
             // 
@@ -547,6 +490,7 @@
             // 
             // cmbConcern
             // 
+            this.cmbConcern.BackColor = System.Drawing.SystemColors.Control;
             this.cmbConcern.DropDownWidth = 94;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
@@ -564,6 +508,7 @@
             // txtStockLocation
             // 
             this.txtStockLocation.BackColor = System.Drawing.SystemColors.Window;
+            this.txtStockLocation.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtStockLocation.Location = new System.Drawing.Point(398, 36);
             this.txtStockLocation.Name = "txtStockLocation";
             this.txtStockLocation.Size = new System.Drawing.Size(131, 27);
@@ -946,19 +891,10 @@
         private System.Windows.Forms.Label lblRack;
         private System.Windows.Forms.TextBox txtRack;
         private System.Windows.Forms.ColumnHeader STK_SLID;
-        private System.Windows.Forms.ColumnHeader PR_TName;
         private System.Windows.Forms.ColumnHeader PR_EName;
-        private System.Windows.Forms.ColumnHeader RK_ShortName;
-        private System.Windows.Forms.ColumnHeader STK_MRP;
-        private System.Windows.Forms.ColumnHeader STK_ExpiryDate;
-        private System.Windows.Forms.ColumnHeader STK_BatchNo;
-        private System.Windows.Forms.ColumnHeader STK_Qty;
-        private System.Windows.Forms.ColumnHeader UT_Symbol;
         private System.Windows.Forms.TextBox txtStockQuantity;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ColumnHeader UTID;
-        private System.Windows.Forms.ColumnHeader Unitname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmicode;
