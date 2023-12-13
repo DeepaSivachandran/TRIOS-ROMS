@@ -626,7 +626,7 @@ namespace ROMS
                         }
                     }
                 }
-                /* Check sales stock location is valid or not
+                /* Check sales stock location is valid or not*/
                 if (txtSaleLocation.Text != "")
                 {
                     string varId_SalesLocation = "0";
@@ -675,7 +675,7 @@ namespace ROMS
                                 }
                             }
                         }
-                        lblPurRackCode.Text = Convert.ToString(varId_SalesRack);
+                        lblSaleRackCode.Text = Convert.ToString(varId_SalesRack);
                         if (varId_SalesRack == "0" || varId_SalesRack == "-1")
                         {
                             errItems.SetError(txtSaleRack, "Please select valid sales rack");
@@ -711,7 +711,7 @@ namespace ROMS
                             blnErrorFlag = true;
                         }
                     }
-                }*/
+                }
 
                 if (blnErrorFlag == false)
                 {
