@@ -68,7 +68,7 @@ namespace ROMS
                 grdDamageEntry.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID),Convert.ToString(txtMrp.Text.Trim()),Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim());
+                dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim());
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
                 varModifiedFlag = 1;
                 txtProductName.Focus();
@@ -115,7 +115,7 @@ namespace ROMS
         {
             try
             {
-                cmbConcern.Focus();
+                //cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3, varConcernId = 0;
@@ -152,7 +152,7 @@ namespace ROMS
                 dtDamage.Columns.Add("DM_PRID", typeof(int));
                 dtDamage.Columns.Add("DM_SLID", typeof(int));
                 dtDamage.Columns.Add("DM_RKID", typeof(int));
-                dtDamage.Columns.Add("DM_MRP", typeof(string));
+                dtDamage.Columns.Add("DM_MRP", typeof(float));
                 dtDamage.Columns.Add("DM_DD", typeof(int));
                 dtDamage.Columns.Add("DM_MM", typeof(int));
                 dtDamage.Columns.Add("DM_YYYY", typeof(int));
@@ -179,6 +179,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                this.ActiveControl = txtProductName;
             }
         }
         public void udfnclose()
@@ -246,7 +250,6 @@ namespace ROMS
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1114,7 +1117,7 @@ namespace ROMS
                                 PRID = Convert.ToInt32(grdDamageEntry.SelectedRows[0].Cells["clmPRID"].Value);
                                 SLID = Convert.ToInt32(grdDamageEntry.SelectedRows[0].Cells["clmSLID"].Value);
                                 RKID = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmRKID"].Value);
-                                MRP = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmmrp"].Value);
+                                MRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmmrp"].Value)));
                                 ExpiryDate = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmexpirydate"].Value);
                                 BatchNo = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmBatchNo"].Value);
                                 SPID = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmSPID"].Value);
@@ -1713,7 +1716,7 @@ namespace ROMS
                                 lvSupplier.BringToFront();
                                 lvSupplier.Columns[1].Width = 0;
                                 lvSupplier.Columns[2].Width = 0;
-                                lvSupplier.Columns[0].Width = 250;
+                                lvSupplier.Columns[0].Width = 300;
                                 lvSupplier.Columns[3].Width = 0;
                             }
                         }

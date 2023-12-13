@@ -198,7 +198,6 @@ namespace ROMS
 
         private void INV_StockTransferList_Load(object sender, EventArgs e)
         {
-            cmbConcern.Focus();
             udfnCmbConcern();
             DataBind objDataBind = new DataBind();
             objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (6) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -208,13 +207,15 @@ namespace ROMS
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);
             DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            dpTrannsferFromDate.MinDate = varDate;
+            //dpTrannsferFromDate.MinDate = varDate;
             dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
             objspservice.CloseConnection();
-            //dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
+            dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpTransferToDate.MinDate = dpTrannsferFromDate.MaxDate;
+            dpTransferToDate.MinDate = varDate;
+            dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
             cmbConcern.SelectedValue = 1;
+            this.ActiveControl = txtSLocation;
             udfnList();
         }
         public void udfnCmbConcern()
