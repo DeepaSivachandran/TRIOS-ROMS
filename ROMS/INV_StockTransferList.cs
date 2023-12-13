@@ -173,10 +173,6 @@ namespace ROMS
                 {
                     TsbDelete_Click(sender, e);
                 }
-                if ((e.KeyCode == Keys.Delete))
-                {
-                    TsbDelete_Click(sender, e);
-                }
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();

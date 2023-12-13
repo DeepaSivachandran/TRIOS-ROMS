@@ -221,7 +221,7 @@
             // lvclmProductName
             // 
             this.lvclmProductName.Text = "Product Name";
-            this.lvclmProductName.Width = 200;
+            this.lvclmProductName.Width = 293;
             // 
             // lvclmProductEName
             // 
@@ -482,6 +482,7 @@
             // 
             // btnRemarks
             // 
+            this.btnRemarks.Enabled = false;
             this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
             this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
