@@ -702,7 +702,7 @@ namespace ROMS
                                         if (varRecqty != 0)
                                         {
                                             SPDataService objDServ = new SPDataService();
-                                            string varMessage = objDServ.udfnGetMessages(72);
+                                            string varMessage = objDServ.udfnGetMessages(99);
                                             objDServ.CloseConnection();
                                             result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                         }
@@ -3540,7 +3540,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (varUPP > totalOrderQty && varUPP > 0)
+                        if (varUPP > varTotalQty && varUPP > 0)
                         {
                             totalUnitqty = Convert.ToInt32(varTotalQty);
                             totalOrderQty = totalUnitqty;
