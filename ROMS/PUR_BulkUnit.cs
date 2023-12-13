@@ -381,7 +381,18 @@ namespace ROMS
 
         private void TxtUpp_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
