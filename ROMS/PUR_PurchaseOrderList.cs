@@ -200,7 +200,7 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "");
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",0);
                 objDServ.CloseConnection();
                 if (objd.Tables[0].Rows.Count != 0)
                 {
@@ -209,7 +209,7 @@ namespace ROMS
                     dpPlanDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
                 objd = null;
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "");
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
                 objDServ.CloseConnection();
                 if (objd.Tables[1].Rows.Count != 0)
                 {
