@@ -29,44 +29,43 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle164 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle165 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle166 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle168 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle169 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle167 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle170 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle174 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle175 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle171 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle172 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle173 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle141 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle163 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle142 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle143 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle144 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle145 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle146 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle147 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle148 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle149 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle150 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle151 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle152 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle153 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle154 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle155 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle156 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle157 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle158 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle159 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle160 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle161 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle162 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseOrder));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPOList = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseorder = new System.Windows.Forms.Panel();
             this.grppurchaseorder = new System.Windows.Forms.GroupBox();
             this.chkStatus = new System.Windows.Forms.CheckBox();
@@ -78,7 +77,6 @@
             this.lblKG = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbUnit = new System.Windows.Forms.ComboBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.lvproduct = new System.Windows.Forms.ListView();
             this.RMcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -99,12 +97,9 @@
             this.lblSuppliername = new System.Windows.Forms.Label();
             this.lblsupplierGST = new System.Windows.Forms.Label();
             this.lblsupplierpayment = new System.Windows.Forms.Label();
-            this.btnDamage = new System.Windows.Forms.Button();
             this.tbSupplierDetails = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnSalesmanUndo = new System.Windows.Forms.Button();
             this.txtSalesManMobile = new System.Windows.Forms.TextBox();
-            this.btnSalesmanSave = new System.Windows.Forms.Button();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.txtSalesManwhatsapp = new System.Windows.Forms.TextBox();
             this.txtSalesManName = new System.Windows.Forms.TextBox();
@@ -113,8 +108,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.grdRepDetails = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnReturnUndo = new System.Windows.Forms.Button();
-            this.btnReturnSave = new System.Windows.Forms.Button();
             this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
             this.txtNextLevel = new System.Windows.Forms.TextBox();
             this.cmbPolicyContent = new System.Windows.Forms.ComboBox();
@@ -123,9 +116,6 @@
             this.txtDReturnCycle = new System.Windows.Forms.TextBox();
             this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnViewedProduct = new System.Windows.Forms.Button();
-            this.btnNewUnit = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblPC = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -137,11 +127,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
-            this.btnDC = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblGodown = new System.Windows.Forms.Label();
             this.gpissued = new System.Windows.Forms.GroupBox();
-            this.btnIssued = new System.Windows.Forms.Button();
             this.cmbIssueMode = new System.Windows.Forms.ComboBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.txtDmode = new System.Windows.Forms.TextBox();
@@ -153,12 +141,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtDTamilName = new System.Windows.Forms.TextBox();
             this.dpissuedateandtime = new System.Windows.Forms.DateTimePicker();
-            this.btnSave = new System.Windows.Forms.Button();
             this.txtpono = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.lblRemark = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -187,11 +173,6 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblDProduct = new System.Windows.Forms.Label();
             this.grdsupplieradd = new System.Windows.Forms.DataGridView();
-            this.lblschedule = new System.Windows.Forms.Label();
-            this.lblProductcode = new System.Windows.Forms.Label();
-            this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -226,7 +207,27 @@
             this.BulkUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmremarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblschedule = new System.Windows.Forms.Label();
+            this.lblProductcode = new System.Windows.Forms.Label();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDamage = new System.Windows.Forms.Button();
+            this.btnSalesmanUndo = new System.Windows.Forms.Button();
+            this.btnSalesmanSave = new System.Windows.Forms.Button();
+            this.btnReturnUndo = new System.Windows.Forms.Button();
+            this.btnReturnSave = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnViewedProduct = new System.Windows.Forms.Button();
+            this.btnNewUnit = new System.Windows.Forms.Label();
+            this.btnDC = new System.Windows.Forms.Button();
+            this.btnIssued = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
             this.grppurchaseorder.SuspendLayout();
@@ -258,16 +259,6 @@
             this.tsPOList.TabIndex = 35;
             this.tsPOList.Text = "Purchase Order";
             // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(109, 22);
-            this.tspHeader.Text = "Purchase Order";
-            // 
             // pnlpurchaseorder
             // 
             this.pnlpurchaseorder.BackColor = System.Drawing.Color.White;
@@ -280,6 +271,7 @@
             // grppurchaseorder
             // 
             this.grppurchaseorder.BackColor = System.Drawing.Color.White;
+            this.grppurchaseorder.Controls.Add(this.btnCancel);
             this.grppurchaseorder.Controls.Add(this.chkStatus);
             this.grppurchaseorder.Controls.Add(this.lblMxsq);
             this.grppurchaseorder.Controls.Add(this.label14);
@@ -340,7 +332,7 @@
             // 
             this.chkStatus.AutoSize = true;
             this.chkStatus.Enabled = false;
-            this.chkStatus.Location = new System.Drawing.Point(898, 588);
+            this.chkStatus.Location = new System.Drawing.Point(820, 588);
             this.chkStatus.Name = "chkStatus";
             this.chkStatus.Size = new System.Drawing.Size(80, 24);
             this.chkStatus.TabIndex = 1111218;
@@ -406,7 +398,7 @@
             this.lblKG.AutoSize = true;
             this.lblKG.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKG.ForeColor = System.Drawing.Color.Crimson;
-            this.lblKG.Location = new System.Drawing.Point(1083, 611);
+            this.lblKG.Location = new System.Drawing.Point(1005, 611);
             this.lblKG.Name = "lblKG";
             this.lblKG.Size = new System.Drawing.Size(17, 20);
             this.lblKG.TabIndex = 1111212;
@@ -417,7 +409,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(1026, 613);
+            this.label12.Location = new System.Drawing.Point(948, 613);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(53, 17);
             this.label12.TabIndex = 1111211;
@@ -436,21 +428,6 @@
             this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUnit_KeyDown);
             this.cmbUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbUnit_KeyPress);
             this.cmbUnit.Leave += new System.EventHandler(this.CmbUnit_Leave);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(844, 117);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 22);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
             // lvproduct
             // 
@@ -628,20 +605,6 @@
             this.lblsupplierpayment.TabIndex = 1111202;
             this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnDamage
-            // 
-            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
-            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDamage.Location = new System.Drawing.Point(145, 595);
-            this.btnDamage.Name = "btnDamage";
-            this.btnDamage.Size = new System.Drawing.Size(80, 29);
-            this.btnDamage.TabIndex = 1111199;
-            this.btnDamage.Text = "Damages";
-            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDamage.UseVisualStyleBackColor = true;
-            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
-            // 
             // tbSupplierDetails
             // 
             this.tbSupplierDetails.Controls.Add(this.tabPage1);
@@ -672,20 +635,6 @@
             this.tabPage1.Text = "Salesman Details";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btnSalesmanUndo
-            // 
-            this.btnSalesmanUndo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSalesmanUndo.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnSalesmanUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnSalesmanUndo.Image")));
-            this.btnSalesmanUndo.Location = new System.Drawing.Point(256, 47);
-            this.btnSalesmanUndo.Name = "btnSalesmanUndo";
-            this.btnSalesmanUndo.Size = new System.Drawing.Size(24, 25);
-            this.btnSalesmanUndo.TabIndex = 1111198;
-            this.btnSalesmanUndo.UseVisualStyleBackColor = false;
-            this.btnSalesmanUndo.Click += new System.EventHandler(this.BtnSalesmanUndo_Click);
-            this.btnSalesmanUndo.Enter += new System.EventHandler(this.BtnSalesmanUndo_Enter);
-            this.btnSalesmanUndo.Leave += new System.EventHandler(this.BtnSalesmanUndo_Leave);
-            // 
             // txtSalesManMobile
             // 
             this.txtSalesManMobile.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -698,20 +647,6 @@
             this.txtSalesManMobile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesManMobile_KeyDown);
             this.txtSalesManMobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSalesManMobile_KeyPress);
             this.txtSalesManMobile.Leave += new System.EventHandler(this.TxtSalesManMobile_Leave);
-            // 
-            // btnSalesmanSave
-            // 
-            this.btnSalesmanSave.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSalesmanSave.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnSalesmanSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSalesmanSave.Image")));
-            this.btnSalesmanSave.Location = new System.Drawing.Point(229, 47);
-            this.btnSalesmanSave.Name = "btnSalesmanSave";
-            this.btnSalesmanSave.Size = new System.Drawing.Size(24, 25);
-            this.btnSalesmanSave.TabIndex = 1111197;
-            this.btnSalesmanSave.UseVisualStyleBackColor = false;
-            this.btnSalesmanSave.Click += new System.EventHandler(this.BtnSalesmanSave_Click);
-            this.btnSalesmanSave.Enter += new System.EventHandler(this.BtnSalesmanSave_Enter);
-            this.btnSalesmanSave.Leave += new System.EventHandler(this.BtnSalesmanSave_Leave);
             // 
             // textBox18
             // 
@@ -795,14 +730,14 @@
             this.grdRepDetails.AllowUserToResizeColumns = false;
             this.grdRepDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdRepDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdRepDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle164.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle164.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle164.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle164.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle164.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle164.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle164.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdRepDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle164;
             this.grdRepDetails.ColumnHeadersHeight = 18;
             this.grdRepDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdRepDetails.EnableHeadersVisualStyles = false;
@@ -812,9 +747,9 @@
             this.grdRepDetails.ReadOnly = true;
             this.grdRepDetails.RowHeadersVisible = false;
             this.grdRepDetails.RowHeadersWidth = 38;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdRepDetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle165.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle165.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdRepDetails.RowsDefaultCellStyle = dataGridViewCellStyle165;
             this.grdRepDetails.RowTemplate.Height = 16;
             this.grdRepDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRepDetails.Size = new System.Drawing.Size(557, 69);
@@ -839,30 +774,6 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Return Cycle";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btnReturnUndo
-            // 
-            this.btnReturnUndo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnReturnUndo.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnReturnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnUndo.Image")));
-            this.btnReturnUndo.Location = new System.Drawing.Point(231, 51);
-            this.btnReturnUndo.Name = "btnReturnUndo";
-            this.btnReturnUndo.Size = new System.Drawing.Size(24, 23);
-            this.btnReturnUndo.TabIndex = 1111200;
-            this.btnReturnUndo.UseVisualStyleBackColor = false;
-            this.btnReturnUndo.Click += new System.EventHandler(this.BtnReturnUndo_Click);
-            // 
-            // btnReturnSave
-            // 
-            this.btnReturnSave.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnReturnSave.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnReturnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnSave.Image")));
-            this.btnReturnSave.Location = new System.Drawing.Point(204, 51);
-            this.btnReturnSave.Name = "btnReturnSave";
-            this.btnReturnSave.Size = new System.Drawing.Size(24, 23);
-            this.btnReturnSave.TabIndex = 1111199;
-            this.btnReturnSave.UseVisualStyleBackColor = false;
-            this.btnReturnSave.Click += new System.EventHandler(this.BtnReturnSave_Click);
             // 
             // cmbSecondLevel
             // 
@@ -966,54 +877,6 @@
             this.textBox20.TabIndex = 82;
             this.textBox20.Text = "Returns Applicable";
             // 
-            // btnClear
-            // 
-            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1264, 114);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(69, 29);
-            this.btnClear.TabIndex = 9;
-            this.btnClear.Text = "Clear";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
-            // btnViewedProduct
-            // 
-            this.btnViewedProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnViewedProduct.Image = global::ROMS.Properties.Resources.New;
-            this.btnViewedProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewedProduct.Location = new System.Drawing.Point(1106, 114);
-            this.btnViewedProduct.Name = "btnViewedProduct";
-            this.btnViewedProduct.Size = new System.Drawing.Size(153, 29);
-            this.btnViewedProduct.TabIndex = 8;
-            this.btnViewedProduct.Text = "Add Mapped Products";
-            this.btnViewedProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewedProduct.UseVisualStyleBackColor = true;
-            this.btnViewedProduct.Click += new System.EventHandler(this.BtnViewedProduct_Click);
-            this.btnViewedProduct.Enter += new System.EventHandler(this.BtnViewedProduct_Enter);
-            this.btnViewedProduct.Leave += new System.EventHandler(this.BtnViewedProduct_Leave);
-            // 
-            // btnNewUnit
-            // 
-            this.btnNewUnit.BackColor = System.Drawing.SystemColors.Control;
-            this.btnNewUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.btnNewUnit.Enabled = false;
-            this.btnNewUnit.Image = global::ROMS.Properties.Resources.New;
-            this.btnNewUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNewUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewUnit.Location = new System.Drawing.Point(724, 117);
-            this.btnNewUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnNewUnit.Name = "btnNewUnit";
-            this.btnNewUnit.Size = new System.Drawing.Size(112, 22);
-            this.btnNewUnit.TabIndex = 6;
-            this.btnNewUnit.Text = "        New Bulk Unit";
-            this.btnNewUnit.Click += new System.EventHandler(this.BtnNewUnit_Click);
-            this.btnNewUnit.Enter += new System.EventHandler(this.BtnNewUnit_Enter);
-            this.btnNewUnit.Leave += new System.EventHandler(this.BtnNewUnit_Leave);
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -1029,7 +892,7 @@
             this.lblPC.AutoSize = true;
             this.lblPC.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblPC.Location = new System.Drawing.Point(1083, 588);
+            this.lblPC.Location = new System.Drawing.Point(1005, 588);
             this.lblPC.Name = "lblPC";
             this.lblPC.Size = new System.Drawing.Size(17, 20);
             this.lblPC.TabIndex = 1111190;
@@ -1040,7 +903,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(996, 590);
+            this.label7.Location = new System.Drawing.Point(918, 590);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 17);
             this.label7.TabIndex = 1111189;
@@ -1134,20 +997,6 @@
             this.dpPlanDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpPlanDate_KeyDown);
             this.dpPlanDate.Leave += new System.EventHandler(this.DpPlanDate_Leave);
             // 
-            // btnDC
-            // 
-            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
-            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDC.Location = new System.Drawing.Point(7, 595);
-            this.btnDC.Name = "btnDC";
-            this.btnDC.Size = new System.Drawing.Size(132, 29);
-            this.btnDC.TabIndex = 1111180;
-            this.btnDC.Text = "Purchase Return";
-            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDC.UseVisualStyleBackColor = true;
-            this.btnDC.Click += new System.EventHandler(this.btnDC_Click);
-            // 
             // cmbConcern
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1193,20 +1042,6 @@
             this.gpissued.Size = new System.Drawing.Size(339, 161);
             this.gpissued.TabIndex = 1111175;
             this.gpissued.TabStop = false;
-            // 
-            // btnIssued
-            // 
-            this.btnIssued.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnIssued.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnIssued.Image = ((System.Drawing.Image)(resources.GetObject("btnIssued.Image")));
-            this.btnIssued.Location = new System.Drawing.Point(312, 128);
-            this.btnIssued.Name = "btnIssued";
-            this.btnIssued.Size = new System.Drawing.Size(24, 27);
-            this.btnIssued.TabIndex = 5;
-            this.btnIssued.UseVisualStyleBackColor = false;
-            this.btnIssued.Click += new System.EventHandler(this.BtnIssued_Click);
-            this.btnIssued.Enter += new System.EventHandler(this.BtnIssued_Enter);
-            this.btnIssued.Leave += new System.EventHandler(this.BtnIssued_Leave);
             // 
             // cmbIssueMode
             // 
@@ -1358,20 +1193,6 @@
             this.dpissuedateandtime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Dpissuedateandtime_KeyDown);
             this.dpissuedateandtime.Leave += new System.EventHandler(this.Dpissuedateandtime_Leave);
             // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1156, 594);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 13;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
             // txtpono
             // 
             this.txtpono.Enabled = false;
@@ -1413,20 +1234,6 @@
             this.lblRemark.Size = new System.Drawing.Size(56, 20);
             this.lblRemark.TabIndex = 1111166;
             this.lblRemark.Text = "Remarks";
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1245, 594);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 14;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // txtSupplier
             // 
@@ -1497,14 +1304,14 @@
             this.grdpossiblesupplier.AllowUserToResizeRows = false;
             this.grdpossiblesupplier.BackgroundColor = System.Drawing.Color.White;
             this.grdpossiblesupplier.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdpossiblesupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle166.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle166.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle166.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle166.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle166.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle166.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle166.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdpossiblesupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle166;
             this.grdpossiblesupplier.ColumnHeadersHeight = 30;
             this.grdpossiblesupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdpossiblesupplier.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1515,23 +1322,23 @@
             this.clmlastpurchaserate,
             this.clmLastSupplierStatus,
             this.sts});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdpossiblesupplier.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle168.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle168.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle168.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle168.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle168.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle168.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle168.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdpossiblesupplier.DefaultCellStyle = dataGridViewCellStyle168;
             this.grdpossiblesupplier.EnableHeadersVisualStyles = false;
             this.grdpossiblesupplier.GridColor = System.Drawing.Color.White;
             this.grdpossiblesupplier.Location = new System.Drawing.Point(6, 20);
             this.grdpossiblesupplier.Name = "grdpossiblesupplier";
             this.grdpossiblesupplier.ReadOnly = true;
             this.grdpossiblesupplier.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdpossiblesupplier.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle169.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle169.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdpossiblesupplier.RowsDefaultCellStyle = dataGridViewCellStyle169;
             this.grdpossiblesupplier.RowTemplate.Height = 25;
             this.grdpossiblesupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdpossiblesupplier.Size = new System.Drawing.Size(549, 135);
@@ -1539,8 +1346,8 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle167.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle167;
             this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1643,14 +1450,14 @@
             this.grdPendingorder.AllowUserToResizeRows = false;
             this.grdPendingorder.BackgroundColor = System.Drawing.Color.White;
             this.grdPendingorder.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPendingorder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle170.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle170.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle170.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle170.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle170.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle170.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle170.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPendingorder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle170;
             this.grdPendingorder.ColumnHeadersHeight = 30;
             this.grdPendingorder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPendingorder.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1660,23 +1467,23 @@
             this.clmtotalitem,
             this.PLID,
             this.poid});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPendingorder.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle174.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle174.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle174.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle174.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle174.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle174.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle174.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPendingorder.DefaultCellStyle = dataGridViewCellStyle174;
             this.grdPendingorder.EnableHeadersVisualStyles = false;
             this.grdPendingorder.GridColor = System.Drawing.Color.White;
             this.grdPendingorder.Location = new System.Drawing.Point(9, 20);
             this.grdPendingorder.Name = "grdPendingorder";
             this.grdPendingorder.ReadOnly = true;
             this.grdPendingorder.RowHeadersVisible = false;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdPendingorder.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle175.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle175.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdPendingorder.RowsDefaultCellStyle = dataGridViewCellStyle175;
             this.grdPendingorder.RowTemplate.Height = 25;
             this.grdPendingorder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdPendingorder.Size = new System.Drawing.Size(394, 113);
@@ -1688,8 +1495,8 @@
             // 
             // clmpsno
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmpsno.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle171.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmpsno.DefaultCellStyle = dataGridViewCellStyle171;
             this.clmpsno.HeaderText = "S.No.";
             this.clmpsno.Name = "clmpsno";
             this.clmpsno.ReadOnly = true;
@@ -1703,16 +1510,16 @@
             // 
             // clmdate
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.clmdate.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle172.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clmdate.DefaultCellStyle = dataGridViewCellStyle172;
             this.clmdate.HeaderText = "PO Date";
             this.clmdate.Name = "clmdate";
             this.clmdate.ReadOnly = true;
             // 
             // clmtotalitem
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmtotalitem.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle173.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmtotalitem.DefaultCellStyle = dataGridViewCellStyle173;
             this.clmtotalitem.HeaderText = "Total Products";
             this.clmtotalitem.Name = "clmtotalitem";
             this.clmtotalitem.ReadOnly = true;
@@ -1773,14 +1580,14 @@
             this.grdsupplieradd.AllowUserToResizeRows = false;
             this.grdsupplieradd.BackgroundColor = System.Drawing.Color.White;
             this.grdsupplieradd.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdsupplieradd.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle141.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle141.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle141.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle141.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle141.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle141.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle141.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdsupplieradd.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle141;
             this.grdsupplieradd.ColumnHeadersHeight = 45;
             this.grdsupplieradd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdsupplieradd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1824,9 +1631,9 @@
             this.grdsupplieradd.Location = new System.Drawing.Point(8, 146);
             this.grdsupplieradd.Name = "grdsupplieradd";
             this.grdsupplieradd.RowHeadersVisible = false;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdsupplieradd.RowsDefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle163.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle163.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdsupplieradd.RowsDefaultCellStyle = dataGridViewCellStyle163;
             this.grdsupplieradd.RowTemplate.Height = 25;
             this.grdsupplieradd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdsupplieradd.Size = new System.Drawing.Size(1325, 277);
@@ -1838,52 +1645,10 @@
             this.grdsupplieradd.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.Grdsupplieradd_DataBindingComplete);
             this.grdsupplieradd.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Grdsupplieradd_EditingControlShowing);
             // 
-            // lblschedule
-            // 
-            this.lblschedule.AutoSize = true;
-            this.lblschedule.Location = new System.Drawing.Point(1140, 122);
-            this.lblschedule.Name = "lblschedule";
-            this.lblschedule.Size = new System.Drawing.Size(16, 20);
-            this.lblschedule.TabIndex = 1111210;
-            this.lblschedule.Text = "0";
-            this.lblschedule.Visible = false;
-            // 
-            // lblProductcode
-            // 
-            this.lblProductcode.AutoSize = true;
-            this.lblProductcode.Location = new System.Drawing.Point(1163, 208);
-            this.lblProductcode.Name = "lblProductcode";
-            this.lblProductcode.Size = new System.Drawing.Size(16, 20);
-            this.lblProductcode.TabIndex = 1111209;
-            this.lblProductcode.Text = "0";
-            this.lblProductcode.Visible = false;
-            // 
-            // lblSupplierCode
-            // 
-            this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(1154, 208);
-            this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
-            this.lblSupplierCode.TabIndex = 1111208;
-            this.lblSupplierCode.Text = "0";
-            this.lblSupplierCode.Visible = false;
-            // 
-            // errPO
-            // 
-            this.errPO.ContainerControl = this;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Remove";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.Width = 70;
-            // 
             // clmsno
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.clmsno.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle142.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clmsno.DefaultCellStyle = dataGridViewCellStyle142;
             this.clmsno.Frozen = true;
             this.clmsno.HeaderText = "S.No.";
             this.clmsno.Name = "clmsno";
@@ -1900,8 +1665,8 @@
             // 
             // clmproductname
             // 
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clmproductname.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle143.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clmproductname.DefaultCellStyle = dataGridViewCellStyle143;
             this.clmproductname.Frozen = true;
             this.clmproductname.HeaderText = "Product Name";
             this.clmproductname.Name = "clmproductname";
@@ -1917,9 +1682,9 @@
             // 
             // clmunitwt
             // 
-            dataGridViewCellStyle16.Format = "541985616516516516521561651165165156165165";
-            dataGridViewCellStyle16.NullValue = null;
-            this.clmunitwt.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle144.Format = "541985616516516516521561651165165156165165";
+            dataGridViewCellStyle144.NullValue = null;
+            this.clmunitwt.DefaultCellStyle = dataGridViewCellStyle144;
             this.clmunitwt.HeaderText = "Unit Wt";
             this.clmunitwt.Name = "clmunitwt";
             this.clmunitwt.ReadOnly = true;
@@ -1927,18 +1692,18 @@
             // 
             // clmunitperbox
             // 
-            dataGridViewCellStyle17.Format = "1234156156666666561561516561561165561561156165156156651156156651156654";
-            dataGridViewCellStyle17.NullValue = null;
-            this.clmunitperbox.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle145.Format = "1234156156666666561561516561561165561561156165156156651156156651156654";
+            dataGridViewCellStyle145.NullValue = null;
+            this.clmunitperbox.DefaultCellStyle = dataGridViewCellStyle145;
             this.clmunitperbox.HeaderText = "Unit Per Box-Bag";
             this.clmunitperbox.Name = "clmunitperbox";
             this.clmunitperbox.ReadOnly = true;
             // 
             // clmBulkUnit
             // 
-            dataGridViewCellStyle18.Format = "11111111111111";
-            dataGridViewCellStyle18.NullValue = null;
-            this.clmBulkUnit.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle146.Format = "11111111111111";
+            dataGridViewCellStyle146.NullValue = null;
+            this.clmBulkUnit.DefaultCellStyle = dataGridViewCellStyle146;
             this.clmBulkUnit.HeaderText = "B.Unit Wt";
             this.clmBulkUnit.Name = "clmBulkUnit";
             this.clmBulkUnit.ReadOnly = true;
@@ -1946,8 +1711,8 @@
             // 
             // clmgst
             // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmgst.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle147.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmgst.DefaultCellStyle = dataGridViewCellStyle147;
             this.clmgst.HeaderText = "GST %";
             this.clmgst.Name = "clmgst";
             this.clmgst.ReadOnly = true;
@@ -1956,8 +1721,8 @@
             // 
             // clmMSQ
             // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmMSQ.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle148.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmMSQ.DefaultCellStyle = dataGridViewCellStyle148;
             this.clmMSQ.HeaderText = "MISQ";
             this.clmMSQ.Name = "clmMSQ";
             this.clmMSQ.ReadOnly = true;
@@ -1965,8 +1730,8 @@
             // 
             // clmMXSQ
             // 
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmMXSQ.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle149.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmMXSQ.DefaultCellStyle = dataGridViewCellStyle149;
             this.clmMXSQ.HeaderText = "MXSQ";
             this.clmMXSQ.Name = "clmMXSQ";
             this.clmMXSQ.ReadOnly = true;
@@ -1974,8 +1739,8 @@
             // 
             // clmstock
             // 
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmstock.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle150.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmstock.DefaultCellStyle = dataGridViewCellStyle150;
             this.clmstock.HeaderText = "Recm.O.Qty";
             this.clmstock.Name = "clmstock";
             this.clmstock.ReadOnly = true;
@@ -1983,8 +1748,8 @@
             // 
             // clmpreviouspend
             // 
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmpreviouspend.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle151.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmpreviouspend.DefaultCellStyle = dataGridViewCellStyle151;
             this.clmpreviouspend.HeaderText = "Pre Pdg";
             this.clmpreviouspend.Name = "clmpreviouspend";
             this.clmpreviouspend.ReadOnly = true;
@@ -1992,8 +1757,8 @@
             // 
             // clmPartialPendingQty
             // 
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmPartialPendingQty.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle152.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmPartialPendingQty.DefaultCellStyle = dataGridViewCellStyle152;
             this.clmPartialPendingQty.HeaderText = "Par Pdg";
             this.clmPartialPendingQty.Name = "clmPartialPendingQty";
             this.clmPartialPendingQty.ReadOnly = true;
@@ -2001,8 +1766,8 @@
             // 
             // clmreorderqty
             // 
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmreorderqty.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle153.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmreorderqty.DefaultCellStyle = dataGridViewCellStyle153;
             this.clmreorderqty.HeaderText = "Reorder Qty";
             this.clmreorderqty.Name = "clmreorderqty";
             this.clmreorderqty.ReadOnly = true;
@@ -2010,19 +1775,19 @@
             // 
             // clmOrderqty
             // 
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Black;
-            this.clmOrderqty.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle154.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle154.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle154.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            dataGridViewCellStyle154.ForeColor = System.Drawing.Color.Black;
+            this.clmOrderqty.DefaultCellStyle = dataGridViewCellStyle154;
             this.clmOrderqty.HeaderText = "Bulk Unit Order Qty ";
             this.clmOrderqty.Name = "clmOrderqty";
             this.clmOrderqty.Width = 70;
             // 
             // Column2
             // 
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle155.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle155;
             this.Column2.HeaderText = "Bulk Unit";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
@@ -2030,18 +1795,18 @@
             // 
             // clmunitorderqty
             // 
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.clmunitorderqty.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle156.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle156.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle156.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.clmunitorderqty.DefaultCellStyle = dataGridViewCellStyle156;
             this.clmunitorderqty.HeaderText = "Unit Order Qty ";
             this.clmunitorderqty.Name = "clmunitorderqty";
             this.clmunitorderqty.Width = 70;
             // 
             // Column1
             // 
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle157.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle157;
             this.Column1.HeaderText = "Unit";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -2049,18 +1814,18 @@
             // 
             // clmordertotalqty
             // 
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.clmordertotalqty.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle158.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle158.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle158.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.clmordertotalqty.DefaultCellStyle = dataGridViewCellStyle158;
             this.clmordertotalqty.HeaderText = "Total Order Qty ";
             this.clmordertotalqty.Name = "clmordertotalqty";
             this.clmordertotalqty.Width = 70;
             // 
             // u
             // 
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.u.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle159.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.u.DefaultCellStyle = dataGridViewCellStyle159;
             this.u.HeaderText = "Unit";
             this.u.Name = "u";
             this.u.ReadOnly = true;
@@ -2068,10 +1833,10 @@
             // 
             // clmtotalkg
             // 
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle32.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.clmtotalkg.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle160.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle160.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle160.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.clmtotalkg.DefaultCellStyle = dataGridViewCellStyle160;
             this.clmtotalkg.HeaderText = "Total Wt";
             this.clmtotalkg.Name = "clmtotalkg";
             this.clmtotalkg.ReadOnly = true;
@@ -2079,8 +1844,8 @@
             // 
             // uu
             // 
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.uu.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle161.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.uu.DefaultCellStyle = dataGridViewCellStyle161;
             this.uu.HeaderText = "Unit";
             this.uu.Name = "uu";
             this.uu.ReadOnly = true;
@@ -2156,11 +1921,253 @@
             // 
             // clmremarks
             // 
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmremarks.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle162.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmremarks.DefaultCellStyle = dataGridViewCellStyle162;
             this.clmremarks.HeaderText = "Product Remarks";
             this.clmremarks.Name = "clmremarks";
             this.clmremarks.Width = 70;
+            // 
+            // lblschedule
+            // 
+            this.lblschedule.AutoSize = true;
+            this.lblschedule.Location = new System.Drawing.Point(1140, 122);
+            this.lblschedule.Name = "lblschedule";
+            this.lblschedule.Size = new System.Drawing.Size(16, 20);
+            this.lblschedule.TabIndex = 1111210;
+            this.lblschedule.Text = "0";
+            this.lblschedule.Visible = false;
+            // 
+            // lblProductcode
+            // 
+            this.lblProductcode.AutoSize = true;
+            this.lblProductcode.Location = new System.Drawing.Point(1163, 208);
+            this.lblProductcode.Name = "lblProductcode";
+            this.lblProductcode.Size = new System.Drawing.Size(16, 20);
+            this.lblProductcode.TabIndex = 1111209;
+            this.lblProductcode.Text = "0";
+            this.lblProductcode.Visible = false;
+            // 
+            // lblSupplierCode
+            // 
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.Location = new System.Drawing.Point(1154, 208);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.TabIndex = 1111208;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
+            // 
+            // errPO
+            // 
+            this.errPO.ContainerControl = this;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Remove";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.Width = 70;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnCancel.Image = global::ROMS.Properties.Resources.newcancelBill;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(1259, 594);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 29);
+            this.btnCancel.TabIndex = 1111219;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Enter += new System.EventHandler(this.BtnCancel_Enter);
+            this.btnCancel.Leave += new System.EventHandler(this.BtnCancel_Leave);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(844, 117);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 22);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
+            // btnDamage
+            // 
+            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
+            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDamage.Location = new System.Drawing.Point(145, 595);
+            this.btnDamage.Name = "btnDamage";
+            this.btnDamage.Size = new System.Drawing.Size(80, 29);
+            this.btnDamage.TabIndex = 1111199;
+            this.btnDamage.Text = "Damages";
+            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDamage.UseVisualStyleBackColor = true;
+            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
+            // 
+            // btnSalesmanUndo
+            // 
+            this.btnSalesmanUndo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSalesmanUndo.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnSalesmanUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnSalesmanUndo.Image")));
+            this.btnSalesmanUndo.Location = new System.Drawing.Point(256, 47);
+            this.btnSalesmanUndo.Name = "btnSalesmanUndo";
+            this.btnSalesmanUndo.Size = new System.Drawing.Size(24, 25);
+            this.btnSalesmanUndo.TabIndex = 1111198;
+            this.btnSalesmanUndo.UseVisualStyleBackColor = false;
+            this.btnSalesmanUndo.Click += new System.EventHandler(this.BtnSalesmanUndo_Click);
+            this.btnSalesmanUndo.Enter += new System.EventHandler(this.BtnSalesmanUndo_Enter);
+            this.btnSalesmanUndo.Leave += new System.EventHandler(this.BtnSalesmanUndo_Leave);
+            // 
+            // btnSalesmanSave
+            // 
+            this.btnSalesmanSave.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSalesmanSave.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnSalesmanSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSalesmanSave.Image")));
+            this.btnSalesmanSave.Location = new System.Drawing.Point(229, 47);
+            this.btnSalesmanSave.Name = "btnSalesmanSave";
+            this.btnSalesmanSave.Size = new System.Drawing.Size(24, 25);
+            this.btnSalesmanSave.TabIndex = 1111197;
+            this.btnSalesmanSave.UseVisualStyleBackColor = false;
+            this.btnSalesmanSave.Click += new System.EventHandler(this.BtnSalesmanSave_Click);
+            this.btnSalesmanSave.Enter += new System.EventHandler(this.BtnSalesmanSave_Enter);
+            this.btnSalesmanSave.Leave += new System.EventHandler(this.BtnSalesmanSave_Leave);
+            // 
+            // btnReturnUndo
+            // 
+            this.btnReturnUndo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnReturnUndo.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnReturnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnUndo.Image")));
+            this.btnReturnUndo.Location = new System.Drawing.Point(231, 51);
+            this.btnReturnUndo.Name = "btnReturnUndo";
+            this.btnReturnUndo.Size = new System.Drawing.Size(24, 23);
+            this.btnReturnUndo.TabIndex = 1111200;
+            this.btnReturnUndo.UseVisualStyleBackColor = false;
+            this.btnReturnUndo.Click += new System.EventHandler(this.BtnReturnUndo_Click);
+            // 
+            // btnReturnSave
+            // 
+            this.btnReturnSave.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnReturnSave.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnReturnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnSave.Image")));
+            this.btnReturnSave.Location = new System.Drawing.Point(204, 51);
+            this.btnReturnSave.Name = "btnReturnSave";
+            this.btnReturnSave.Size = new System.Drawing.Size(24, 23);
+            this.btnReturnSave.TabIndex = 1111199;
+            this.btnReturnSave.UseVisualStyleBackColor = false;
+            this.btnReturnSave.Click += new System.EventHandler(this.BtnReturnSave_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(1264, 114);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(69, 29);
+            this.btnClear.TabIndex = 9;
+            this.btnClear.Text = "Clear";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // btnViewedProduct
+            // 
+            this.btnViewedProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnViewedProduct.Image = global::ROMS.Properties.Resources.New;
+            this.btnViewedProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewedProduct.Location = new System.Drawing.Point(1106, 114);
+            this.btnViewedProduct.Name = "btnViewedProduct";
+            this.btnViewedProduct.Size = new System.Drawing.Size(153, 29);
+            this.btnViewedProduct.TabIndex = 8;
+            this.btnViewedProduct.Text = "Add Mapped Products";
+            this.btnViewedProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnViewedProduct.UseVisualStyleBackColor = true;
+            this.btnViewedProduct.Click += new System.EventHandler(this.BtnViewedProduct_Click);
+            this.btnViewedProduct.Enter += new System.EventHandler(this.BtnViewedProduct_Enter);
+            this.btnViewedProduct.Leave += new System.EventHandler(this.BtnViewedProduct_Leave);
+            // 
+            // btnNewUnit
+            // 
+            this.btnNewUnit.BackColor = System.Drawing.SystemColors.Control;
+            this.btnNewUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnNewUnit.Enabled = false;
+            this.btnNewUnit.Image = global::ROMS.Properties.Resources.New;
+            this.btnNewUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNewUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNewUnit.Location = new System.Drawing.Point(724, 117);
+            this.btnNewUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnNewUnit.Name = "btnNewUnit";
+            this.btnNewUnit.Size = new System.Drawing.Size(112, 22);
+            this.btnNewUnit.TabIndex = 6;
+            this.btnNewUnit.Text = "        New Bulk Unit";
+            this.btnNewUnit.Click += new System.EventHandler(this.BtnNewUnit_Click);
+            this.btnNewUnit.Enter += new System.EventHandler(this.BtnNewUnit_Enter);
+            this.btnNewUnit.Leave += new System.EventHandler(this.BtnNewUnit_Leave);
+            // 
+            // btnDC
+            // 
+            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
+            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDC.Location = new System.Drawing.Point(7, 595);
+            this.btnDC.Name = "btnDC";
+            this.btnDC.Size = new System.Drawing.Size(132, 29);
+            this.btnDC.TabIndex = 1111180;
+            this.btnDC.Text = "Purchase Return";
+            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDC.UseVisualStyleBackColor = true;
+            this.btnDC.Click += new System.EventHandler(this.btnDC_Click);
+            // 
+            // btnIssued
+            // 
+            this.btnIssued.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnIssued.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnIssued.Image = ((System.Drawing.Image)(resources.GetObject("btnIssued.Image")));
+            this.btnIssued.Location = new System.Drawing.Point(312, 128);
+            this.btnIssued.Name = "btnIssued";
+            this.btnIssued.Size = new System.Drawing.Size(24, 27);
+            this.btnIssued.TabIndex = 5;
+            this.btnIssued.UseVisualStyleBackColor = false;
+            this.btnIssued.Click += new System.EventHandler(this.BtnIssued_Click);
+            this.btnIssued.Enter += new System.EventHandler(this.BtnIssued_Enter);
+            this.btnIssued.Leave += new System.EventHandler(this.BtnIssued_Leave);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1094, 594);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1181, 594);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // clmRemove
             // 
@@ -2169,6 +2176,16 @@
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.Width = 70;
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(109, 22);
+            this.tspHeader.Text = "Purchase Order";
             // 
             // PUR_PurchaseOrder
             // 
@@ -2380,5 +2397,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn QTID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmremarks;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        public System.Windows.Forms.Button btnCancel;
     }
 }

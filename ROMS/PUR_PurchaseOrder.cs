@@ -75,7 +75,7 @@ namespace ROMS
                 //}
                 //else
                 //{
-                if (VarStatusId == 14)
+                if (VarStatusId == 14 || VarStatusId == 33)
                 {
                     btnSave.Enabled = false;
                     chkStatus.Enabled = false;
@@ -1788,7 +1788,7 @@ namespace ROMS
                 LV_Supplier.Visible = false;
                 if (Convert.ToString(txtSupplier.Text) != "")
                 {
-                    if (VarStatusId != 14)
+                    if (VarStatusId != 14 || VarStatusId != 33)
                     {
                         if (lblSupplierCode.Text != "0")
                         {
@@ -2762,6 +2762,33 @@ namespace ROMS
             }
         }
 
+        private void BtnCancel_Enter(object sender, EventArgs e)
+        { 
+            try
+            {
+                btnCancel.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnCancel_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnCancel.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
         private void Lvproduct_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
             try
@@ -2970,7 +2997,7 @@ namespace ROMS
                 if (e.RowIndex != -1)
                 {
 
-                    if (VarStatusId != 14)
+                    if (VarStatusId != 14 || VarStatusId != 33)
                     {
                         switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                         {
@@ -3646,7 +3673,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (VarStatusId == 14)
+                        if (VarStatusId == 14 || VarStatusId == 33)
                         {
 
                             DataGridView dataGridView = (DataGridView)sender;
@@ -3690,7 +3717,7 @@ namespace ROMS
             }
             finally
             {
-                if (VarStatusId == 14)
+                if (VarStatusId == 14 || VarStatusId == 33)
                 {
                     grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
                     grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;
