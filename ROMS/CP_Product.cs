@@ -360,33 +360,33 @@ namespace ROMS
                     }
                 }
 
-                if (Convert.ToString(cmbPeriod.SelectedValue) == "" || Convert.ToString(cmbPeriod.SelectedValue) == "-1")
-                {
-                    if (cmbPeriod.Visible == true)
-                    {
-                        errItems.SetError(cmbPeriod, "Please select shelflife");
-                        cmbPeriod.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpcompanyname.ShowAlways = true;
-                        tpcompanyname.Show("Please select shelflife", cmbPeriod, 5000);
-                        blnErrorFlag = true;
-                    }
-                    else
-                    {
-                        errItems.SetError(cbExpiry, "Please select shelflife");
-                        cbExpiry.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpcompanyname.ShowAlways = true;
-                        tpcompanyname.Show("Please select shelflife", cbExpiry, 5000);
-                        blnErrorFlag = true;
-                    }
-                }
-                if(cbExpiry.Checked==false)
-                {
-                    errItems.SetError(cbExpiry, "Please select shelflife");
-                    cbExpiry.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select shelflife", cbExpiry, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(cmbPeriod.SelectedValue) == "" || Convert.ToString(cmbPeriod.SelectedValue) == "-1")
+                //{
+                //    if (cmbPeriod.Visible == true)
+                //    {
+                //        errItems.SetError(cmbPeriod, "Please select shelflife");
+                //        cmbPeriod.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpcompanyname.ShowAlways = true;
+                //        tpcompanyname.Show("Please select shelflife", cmbPeriod, 5000);
+                //        blnErrorFlag = true;
+                //    }
+                //    else
+                //    {
+                //        errItems.SetError(cbExpiry, "Please select shelflife");
+                //        cbExpiry.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpcompanyname.ShowAlways = true;
+                //        tpcompanyname.Show("Please select shelflife", cbExpiry, 5000);
+                //        blnErrorFlag = true;
+                //    }
+                //}
+                //if(cbExpiry.Checked==false)
+                //{
+                //    errItems.SetError(cbExpiry, "Please select shelflife");
+                //    cbExpiry.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpcompanyname.ShowAlways = true;
+                //    tpcompanyname.Show("Please select shelflife", cbExpiry, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToInt32(cmbBatchNoEntry.SelectedValue)==72 && Convert.ToInt32(cmbBatchNoGeneration.SelectedValue) == -1)
                 { 
                     errItems.SetError(cmbBatchNoGeneration, "Please select batcn no. generation");

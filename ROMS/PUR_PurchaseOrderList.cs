@@ -2139,7 +2139,7 @@ namespace ROMS
                 DataSet objd = new DataSet();
                 DateTime varmindate = DateTime.ParseExact(dpPlanDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dptoPlanDate.MinDate = varmindate;
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "");
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
                 if (objd.Tables[1].Rows.Count != 0)
                 { 
                     DateTime varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
