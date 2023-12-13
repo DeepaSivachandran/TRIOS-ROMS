@@ -202,8 +202,8 @@ namespace ROMS
                 objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "");
                 if (objd.Tables[0].Rows.Count != 0)
                 {
-                    DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpPlanDate.MinDate = varmindate;
+                    //DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    //dpPlanDate.MinDate = varmindate;
                     dpPlanDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
             }
@@ -2135,8 +2135,17 @@ namespace ROMS
         {
             try
             {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
                 DateTime varmindate = DateTime.ParseExact(dpPlanDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dptoPlanDate.MinDate = varmindate;
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "");
+                if (objd.Tables[1].Rows.Count != 0)
+                { 
+                    DateTime varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    
+                    dptoPlanDate.MaxDate = varmaxdate;
+                }
             }
             catch (Exception ex)
             {

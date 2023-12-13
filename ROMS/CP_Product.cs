@@ -5598,17 +5598,21 @@ namespace ROMS
         private void TxtUpp_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
-            {
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+            { 
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 {
                     e.Handled = true;
-                }
+                } 
+                //if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                //{
+                //    e.Handled = true;
+                //}
 
                 // Allow only one decimal point
-                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
-                {
-                    e.Handled = true;
-                }
+                //if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                //{
+                //    e.Handled = true;
+                //}
             }
             catch (Exception ex)
             {
