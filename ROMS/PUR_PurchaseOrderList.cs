@@ -17,6 +17,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public int Supplierpend = 0, Statuschange=0, SearchFlag=0;
         public string varUserID = "0";
+        DateTime varmaxdate;
         public PUR_PurchaseOrderList()
         {
             InitializeComponent();
@@ -199,13 +200,23 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",0);
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "");
+                objDServ.CloseConnection();
                 if (objd.Tables[0].Rows.Count != 0)
                 {
-                    //DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    //dpPlanDate.MinDate = varmindate;
+                    DateTime varmindate = MainForm.pbFYStartDate;
+                    dpPlanDate.MinDate = varmindate;
                     dpPlanDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
+                objd = null;
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "");
+                objDServ.CloseConnection();
+                if (objd.Tables[1].Rows.Count != 0)
+                {
+                    varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture); 
+                }
+
+                dpPlanDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
             {
@@ -1454,8 +1465,8 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
                 {
-                    varsupplier = 1;
-                    varpono = 1;
+                    varsupplier = 0;
+                    varpono = 0;
                 }
                 if (Convert.ToInt32(cmbGroup.SelectedValue) == 161)
                 {
@@ -2139,13 +2150,7 @@ namespace ROMS
                 DataSet objd = new DataSet();
                 DateTime varmindate = DateTime.ParseExact(dpPlanDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dptoPlanDate.MinDate = varmindate;
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
-                if (objd.Tables[1].Rows.Count != 0)
-                { 
-                    DateTime varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    
-                    dptoPlanDate.MaxDate = varmaxdate;
-                }
+                dptoPlanDate.MaxDate = varmaxdate; 
             }
             catch (Exception ex)
             {
