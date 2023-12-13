@@ -46,14 +46,14 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlRackSettings = new System.Windows.Forms.Panel();
             this.grbMove = new System.Windows.Forms.GroupBox();
-            this.lvMoveRack = new System.Windows.Forms.ListView();
-            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvMoveLocation = new System.Windows.Forms.ListView();
             this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvMoveRack = new System.Windows.Forms.ListView();
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvDLocation = new System.Windows.Forms.ListView();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -217,37 +217,6 @@
             this.grbMove.TabIndex = 0;
             this.grbMove.TabStop = false;
             // 
-            // lvMoveRack
-            // 
-            this.lvMoveRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader19,
-            this.columnHeader20,
-            this.columnHeader21});
-            this.lvMoveRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvMoveRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvMoveRack.HideSelection = false;
-            this.lvMoveRack.Location = new System.Drawing.Point(521, 88);
-            this.lvMoveRack.Name = "lvMoveRack";
-            this.lvMoveRack.Size = new System.Drawing.Size(241, 93);
-            this.lvMoveRack.TabIndex = 111111138;
-            this.lvMoveRack.UseCompatibleStateImageBehavior = false;
-            this.lvMoveRack.View = System.Windows.Forms.View.Details;
-            this.lvMoveRack.Visible = false;
-            this.lvMoveRack.DoubleClick += new System.EventHandler(this.LvMoveRack_DoubleClick);
-            this.lvMoveRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvMoveRack_KeyDown);
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.Width = 180;
-            // 
-            // columnHeader20
-            // 
-            this.columnHeader20.Width = 120;
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.Width = 0;
-            // 
             // lvMoveLocation
             // 
             this.lvMoveLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -278,6 +247,37 @@
             // columnHeader30
             // 
             this.columnHeader30.Width = 0;
+            // 
+            // lvMoveRack
+            // 
+            this.lvMoveRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader19,
+            this.columnHeader20,
+            this.columnHeader21});
+            this.lvMoveRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvMoveRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvMoveRack.HideSelection = false;
+            this.lvMoveRack.Location = new System.Drawing.Point(521, 88);
+            this.lvMoveRack.Name = "lvMoveRack";
+            this.lvMoveRack.Size = new System.Drawing.Size(241, 93);
+            this.lvMoveRack.TabIndex = 111111138;
+            this.lvMoveRack.UseCompatibleStateImageBehavior = false;
+            this.lvMoveRack.View = System.Windows.Forms.View.Details;
+            this.lvMoveRack.Visible = false;
+            this.lvMoveRack.DoubleClick += new System.EventHandler(this.LvMoveRack_DoubleClick);
+            this.lvMoveRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvMoveRack_KeyDown);
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Width = 180;
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Width = 120;
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.Width = 0;
             // 
             // lvDLocation
             // 
@@ -464,6 +464,7 @@
             this.DGV_SearchGridMove.TabIndex = 111111143;
             this.DGV_SearchGridMove.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridMove_CellContentClick);
             this.DGV_SearchGridMove.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridMove_CellEndEdit);
+            this.DGV_SearchGridMove.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_SearchGridMove_CellFormatting);
             this.DGV_SearchGridMove.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGridMove_CellPainting);
             this.DGV_SearchGridMove.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGridMove_ColumnHeaderMouseClick);
             this.DGV_SearchGridMove.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGridMove_ColumnWidthChanged);
@@ -692,6 +693,7 @@
             this.grdMoveProduct.GridColor = System.Drawing.Color.White;
             this.grdMoveProduct.Location = new System.Drawing.Point(673, 215);
             this.grdMoveProduct.Name = "grdMoveProduct";
+            this.grdMoveProduct.ReadOnly = true;
             this.grdMoveProduct.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
@@ -709,6 +711,7 @@
             this.clmRemoveProduct.HeaderText = "Remove";
             this.clmRemoveProduct.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemoveProduct.Name = "clmRemoveProduct";
+            this.clmRemoveProduct.ReadOnly = true;
             this.clmRemoveProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemoveProduct.Width = 70;
             // 
