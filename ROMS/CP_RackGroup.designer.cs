@@ -298,6 +298,7 @@
             // 
             this.grdSelectedRack.AllowUserToAddRows = false;
             this.grdSelectedRack.AllowUserToDeleteRows = false;
+            this.grdSelectedRack.AllowUserToResizeColumns = false;
             this.grdSelectedRack.AllowUserToResizeRows = false;
             this.grdSelectedRack.BackgroundColor = System.Drawing.Color.White;
             this.grdSelectedRack.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -332,7 +333,6 @@
             this.grdSelectedRack.GridColor = System.Drawing.Color.White;
             this.grdSelectedRack.Location = new System.Drawing.Point(689, 143);
             this.grdSelectedRack.Name = "grdSelectedRack";
-            this.grdSelectedRack.ReadOnly = true;
             this.grdSelectedRack.RowHeadersVisible = false;
             this.grdSelectedRack.RowHeadersWidth = 70;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -340,10 +340,8 @@
             this.grdSelectedRack.RowsDefaultCellStyle = dataGridViewCellStyle11;
             this.grdSelectedRack.RowTemplate.Height = 25;
             this.grdSelectedRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSelectedRack.ShowRowErrors = false;
             this.grdSelectedRack.Size = new System.Drawing.Size(628, 241);
             this.grdSelectedRack.TabIndex = 61454;
-            this.grdSelectedRack.TabStop = false;
             this.grdSelectedRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSelectedRack_CellContentClick);
             this.grdSelectedRack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSelectedRack_CellDoubleClick);
             this.grdSelectedRack.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GrdSelectedRackList_CellMouseDoubleClick);
@@ -356,27 +354,23 @@
             this.columnSNo.DefaultCellStyle = dataGridViewCellStyle8;
             this.columnSNo.HeaderText = "S.No.";
             this.columnSNo.Name = "columnSNo";
-            this.columnSNo.ReadOnly = true;
             this.columnSNo.Width = 40;
             // 
             // clmStockLocation
             // 
             this.clmStockLocation.HeaderText = "Stock Location";
             this.clmStockLocation.Name = "clmStockLocation";
-            this.clmStockLocation.ReadOnly = true;
             this.clmStockLocation.Width = 150;
             // 
             // clmRack
             // 
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
             // 
             // clmDescription
             // 
             this.clmDescription.HeaderText = "Description";
             this.clmDescription.Name = "clmDescription";
-            this.clmDescription.ReadOnly = true;
             this.clmDescription.Width = 140;
             // 
             // clmTotalProducts
@@ -385,14 +379,12 @@
             this.clmTotalProducts.DefaultCellStyle = dataGridViewCellStyle9;
             this.clmTotalProducts.HeaderText = "Total Products";
             this.clmTotalProducts.Name = "clmTotalProducts";
-            this.clmTotalProducts.ReadOnly = true;
             this.clmTotalProducts.Width = 110;
             // 
             // ID
             // 
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
             this.ID.Visible = false;
             // 
             // clmRemoveRack
@@ -400,7 +392,6 @@
             this.clmRemoveRack.HeaderText = "Remove";
             this.clmRemoveRack.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemoveRack.Name = "clmRemoveRack";
-            this.clmRemoveRack.ReadOnly = true;
             this.clmRemoveRack.Width = 50;
             // 
             // btnView
@@ -432,6 +423,7 @@
             // 
             this.grdRack.AllowUserToAddRows = false;
             this.grdRack.AllowUserToDeleteRows = false;
+            this.grdRack.AllowUserToResizeColumns = false;
             this.grdRack.AllowUserToResizeRows = false;
             this.grdRack.BackgroundColor = System.Drawing.Color.White;
             this.grdRack.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -465,10 +457,8 @@
             this.grdRack.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.grdRack.RowTemplate.Height = 25;
             this.grdRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRack.ShowRowErrors = false;
             this.grdRack.Size = new System.Drawing.Size(628, 241);
             this.grdRack.TabIndex = 512;
-            this.grdRack.TabStop = false;
             this.grdRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellContentClick);
             this.grdRack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellDoubleClick);
             this.grdRack.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_Racklist_CellMouseDoubleClick);
