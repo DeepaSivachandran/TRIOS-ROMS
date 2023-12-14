@@ -260,6 +260,12 @@ namespace ROMS
         {
             try
             {
+                if(varStatusID==32)
+                {
+                    grdStockTransfer.ReadOnly = true;
+                    btnSave.Enabled = false;
+                    chkStatus.Checked = true;
+                }
                 if(varStockTransferID!=0)
                 {
                     SPDataService objspservice = new SPDataService();
@@ -281,7 +287,7 @@ namespace ROMS
                             txtRemarks.Text = objDS.Tables[0].Rows[0]["Remarks"].ToString();
                             lblSLocation.Text = objDS.Tables[0].Rows[0]["SLID"].ToString();
                             lblDLocation.Text = objDS.Tables[0].Rows[0]["DLID"].ToString();
-                            btnSave.Text = "Update";
+                            //btnSave.Text = "Update";
                         }
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -302,7 +308,7 @@ namespace ROMS
                                     //grdStockTransfer.Rows[i].Cells["clmRemove"].ReadOnly = true;
                                 }
                             }
-                            btnSave.Text = "Update";
+                            //btnSave.Text = "Update";
                             grdStockTransfer.Columns["clmdsno"].Width = 50;
                             grdStockTransfer.Columns["clmmrp"].Width = 50;
                             grdStockTransfer.Columns["clmquantity"].Width = 100;
@@ -1540,7 +1546,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
-                if (btnSave.Text == "Save")
+                if (btnSave.Text == "Draft")
                 {
                     varoriginator = "Stock Transfer Creation";
                     varType = 0;
@@ -1550,7 +1556,10 @@ namespace ROMS
                      varoriginator = "Stock Transfer Updation";
                     varType = 1;
                 }
-
+                if(varStockTransferID!=0)
+                {
+                    varType = 1;
+                }
                 /* Check source stock location is valid or not*/
                 if (txtSLocation.Text != "")
                 {
@@ -1613,7 +1622,16 @@ namespace ROMS
                 //{
                 //    lblDLocation.Text = "0";
                 //}
-                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(),0,varoriginator,dtStock,0);
+                int varStatus = 0;
+                if(chkStatus.Checked==true)
+                {
+                    varStatus = 32;
+                }
+                else
+                {
+                    varStatus = 21;
+                }
+                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(), varStatus, varoriginator,dtStock,0);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -1893,7 +1911,8 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnRemarks.Focus();
+                    //btnRemarks.Focus();
+                    chkStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1947,6 +1966,68 @@ namespace ROMS
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkStatus.Checked == true)
+                {
+                    btnSave.Text = "Save";
+                }
+                else
+                {
+                    btnSave.Text = "Draft";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
             }
             catch (Exception ex)
             {

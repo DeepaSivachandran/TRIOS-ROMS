@@ -844,8 +844,9 @@ namespace ROMS
                     Application.DoEvents();
                     MainForm.objINV_StockTransfer = new INV_StockTransfer();
                     MainForm.objINV_StockTransfer.MdiParent = ParentForm;
-                    MainForm.objINV_StockTransfer.btnSave.Text = "Update";
+                    //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
                     MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
+                    MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objINV_StockTransfer.Show();
                 }
             }
