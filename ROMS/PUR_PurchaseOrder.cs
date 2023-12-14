@@ -710,8 +710,8 @@ namespace ROMS
                                         if (result1 == DialogResult.Yes)
                                         {
                                             result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
-                                        txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
-                                        txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(varstatus), dpPlanDate.Text, Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToDouble(lblKG.Text), 0);
+                                            txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
+                                            txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(varstatus), dpPlanDate.Text, Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToDouble(lblKG.Text), 0);
                                             objspdservice.CloseConnection();
                                             string[] varvalue = result.Split('~');
                                             string POUpdatevalue = "0";
@@ -3654,7 +3654,6 @@ namespace ROMS
                         }
                         else
                         {
-
                             DataGridView dataGridView = (DataGridView)sender;
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStsname"];
                             cell.Style.BackColor = Color.LimeGreen;

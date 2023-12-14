@@ -57,8 +57,7 @@ namespace ROMS
             try
             {
                 if (Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text) != 0)
-                {
-
+                { 
                     dtPendingPO = new DataTable();
                     dtPendingPO.Columns.Add("", typeof(Boolean));
                     dtPendingPO.Columns.Add("S.No.", typeof(string));
@@ -82,8 +81,12 @@ namespace ROMS
                         }
                         grdPurchaseOrder.DataSource = dtPendingPO;
                         grdPurchaseOrder.Columns[0].HeaderText = "";
-                        grdPurchaseOrder.Columns[0].Width = 30;
-                        grdPurchaseOrder.ReadOnly= false;
+                        grdPurchaseOrder.Columns[0].Width = 30; 
+                        grdPurchaseOrder.Columns[0].ReadOnly = false;
+                        grdPurchaseOrder.Columns["S.No."].ReadOnly = true;
+                        grdPurchaseOrder.Columns["PO.No"].ReadOnly = true;
+                        grdPurchaseOrder.Columns["PO Date"].ReadOnly = true;
+                        grdPurchaseOrder.Columns["Total Products"].ReadOnly = true;
                         grdPurchaseOrder.Columns["S.No."].Width = 50;
                         grdPurchaseOrder.Columns["PO.No"].Width = 100;
                         grdPurchaseOrder.Columns["PO Date"].Width = 100;
@@ -217,6 +220,22 @@ namespace ROMS
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_GRNOrderType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
                 }
             }
             catch (Exception ex)

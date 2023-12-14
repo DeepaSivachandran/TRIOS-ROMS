@@ -153,6 +153,7 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
