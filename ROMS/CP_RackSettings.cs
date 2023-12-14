@@ -45,7 +45,8 @@ namespace ROMS
         public string PbPICode = "";
         public string PbProductName = "";
         public string PbUnit = "";
-
+        public int SearchFlag = 0;
+        public int SearchFlag1 = 0;
         public int sourceFalg = 0;
         public string varRackid="0",varLocationid="0";
 
@@ -140,6 +141,10 @@ namespace ROMS
             txtDRack.Text = "";
             txtMoveLocation.Text = "";
             txtMoveRack.Text = "";
+            grdViewProduct.DataSource = null;
+            dtMoveProduct.Rows.Clear();
+            grdMoveProduct.DataSource = null;
+            dtViewProduct.Rows.Clear();
         } 
         private void TxtDLocation_TextChanged(object sender, EventArgs e)
         {
@@ -1069,7 +1074,7 @@ namespace ROMS
                     grdViewProduct.Columns[0].HeaderText = "";
                     grdViewProduct.Columns[0].Width = 50;
                     grdViewProduct.Columns["S.No."].Width = 50;
-                    grdViewProduct.Columns["PRODUCTID"].Visible = false;
+                    //grdViewProduct.Columns["PRODUCTID"].Visible = false;
                     grdViewProduct.Columns["P.I Code"].Width = 100;
                     grdViewProduct.Columns["Product Name in English"].Width = 250;
                     grdViewProduct.Columns["Product Name in Tamil"].Width = 250;
@@ -1081,6 +1086,7 @@ namespace ROMS
                     grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     udfnSearchGridHead();
                 }
+                SearchFlag = 0;
             }
             catch (Exception ex)
             {
@@ -1512,7 +1518,15 @@ namespace ROMS
             try
             {
                 //(grdViewProduct.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchProductName1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName1.Text + "%' ";
-                (grdViewProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchProductName1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName1.Text + "%' ";
+
+                if (SearchFlag == 1)
+                {
+                    (grdViewProduct.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchProductName1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName1.Text + "%' ";
+                }
+                else
+                {
+                    (grdViewProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchProductName1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName1.Text + "%' ";
+                }
             }
             catch (Exception ex)
             {
@@ -1549,7 +1563,14 @@ namespace ROMS
             try
             {
                // (grdMoveProduct.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchProductName2.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName2.Text + "%' ";
-                (grdMoveProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchProductName2.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName2.Text + "%' ";
+                if (SearchFlag1 == 1)
+                {
+                    (grdMoveProduct.DataSource as BindingSource).Filter = "([Product Name in English]) LIKE '%" + txtSearchProductName2.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName2.Text + "%' ";
+                }
+                else
+                {
+                    (grdMoveProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchProductName2.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName2.Text + "%' ";
+                }
             }
             catch (Exception ex)
             {
@@ -1675,6 +1696,7 @@ namespace ROMS
                     grdMoveProduct.Columns[0].ReadOnly = false;
                     grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     udfnSearchGridHeadMove();
+                    SearchFlag1 = 0;
                 }
                 else
                 {
@@ -2779,6 +2801,7 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally { SearchFlag = 1; }
         }
         private void DGV_SearchGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -3048,6 +3071,7 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally { SearchFlag1 = 1; }
         }
 
         private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -3238,7 +3262,6 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_RackSettinglist.grdRackSettingList.ClearSelection();
                 dtSupplierMapping = new DataTable();
                 dtSupplierMapping.Columns.Add("", typeof(Boolean));
                 dtSupplierMapping.Columns.Add("S.No.", typeof(string));
