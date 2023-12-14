@@ -1073,7 +1073,7 @@ namespace ROMS
                             {
                                 //grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1, varPICode, txtProductName.Text.Trim(), txtMrp.Text.Trim(), txtExpiryDate.Text.Trim(), txtBatchNo.Text.Trim(), txtQuantity.Text.Trim(), varUnitSymbol, txtsuppliername.Text.Trim(), Day, Month, Year, (lblProduct.Text).Trim(), varSLID, varRKID, varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
                                 grdDamageEntry.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Rack"]),
-                                 string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]),
+                                 Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]),
                                  Convert.ToString(objDS.Tables[0].Rows[i]["Supplier"]), Convert.ToString(objDS.Tables[0].Rows[i]["Day"]), Convert.ToString(objDS.Tables[0].Rows[i]["Month"]), Convert.ToString(objDS.Tables[0].Rows[i]["Year"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]),Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]),
                                  Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]));
 
@@ -1541,28 +1541,28 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_ShortName"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["SL_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() , objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(),  objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString()};
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[3].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 680;
+                                lvProduct.Columns[1].Width = 0;
                                 lvProduct.Columns[2].Width = 0;
-                                lvProduct.Columns[3].Width = 0;
-                                lvProduct.Columns[4].Width = 0;
-                                lvProduct.Columns[5].Width = 0;
-                                lvProduct.Columns[6].Width = 0;
-                                lvProduct.Columns[7].Width = 0;
-                                lvProduct.Columns[8].Width = 0;
-                                lvProduct.Columns[9].Width = 0;
+                                lvProduct.Columns[3].Width = 280;
+                                lvProduct.Columns[4].Width = 80;
+                                lvProduct.Columns[5].Width = 80;
+                                lvProduct.Columns[6].Width = 70;
+                                lvProduct.Columns[7].Width = 90;
+                                lvProduct.Columns[8].Width = 60;
+                                lvProduct.Columns[9].Width = 80;
                                 lvProduct.Columns[10].Width = 0;
                                 lvProduct.Columns[11].Width = 0;
                                 lvProduct.Columns[12].Width = 0;
-                                lvProduct.Columns[13].Width = 0;
+                                lvProduct.Columns[13].Width = 80;
                                 lvProduct.Columns[14].Width = 0;
                             }
                             else
@@ -1651,23 +1651,23 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     varPICode = selectedItem.SubItems[0].Text;
-                    txtProductName.Text = selectedItem.SubItems[2].Text;
-                    txtLocation.Text = selectedItem.SubItems[10].Text;
-                    txtRack.Text = selectedItem.SubItems[14].Text;
-                    txtMrp.Text = selectedItem.SubItems[4].Text;
-                    txtExpiryDate.Text = selectedItem.SubItems[5].Text;
-                    txtBatchNo.Text = selectedItem.SubItems[6].Text;
-                    txtStockQty.Text = selectedItem.SubItems[7].Text;
-                    lblProduct.Text = selectedItem.SubItems[8].Text;
-                    varSLID = selectedItem.SubItems[9].Text;
-                    varUTID = selectedItem.SubItems[11].Text;
-                    lblUnit.Text = selectedItem.SubItems[12].Text;
-                    varUnitSymbol = selectedItem.SubItems[12].Text;
-                    varMRP = selectedItem.SubItems[4].Text;
-                    varExpiryDate = selectedItem.SubItems[5].Text;
-                    varBatchNo = selectedItem.SubItems[6].Text;
-                    varProductCode = selectedItem.SubItems[8].Text;
-                    varRKID = selectedItem.SubItems[13].Text;
+                    txtProductName.Text = selectedItem.SubItems[3].Text;
+                    txtLocation.Text = selectedItem.SubItems[4].Text;
+                    txtRack.Text = selectedItem.SubItems[5].Text;
+                    txtMrp.Text = selectedItem.SubItems[6].Text;
+                    txtExpiryDate.Text = selectedItem.SubItems[7].Text;
+                    txtBatchNo.Text = selectedItem.SubItems[8].Text;
+                    txtStockQty.Text = selectedItem.SubItems[9].Text;
+                    lblProduct.Text = selectedItem.SubItems[10].Text;
+                    varSLID = selectedItem.SubItems[11].Text;
+                    varUTID = selectedItem.SubItems[12].Text;
+                    lblUnit.Text = selectedItem.SubItems[13].Text;
+                    varUnitSymbol = selectedItem.SubItems[13].Text;
+                    varMRP = selectedItem.SubItems[6].Text;
+                    varExpiryDate = selectedItem.SubItems[7].Text;
+                    varBatchNo = selectedItem.SubItems[8].Text;
+                    varProductCode = selectedItem.SubItems[10].Text;
+                    varRKID = selectedItem.SubItems[14].Text;
                 }
             }
             catch (Exception ex)

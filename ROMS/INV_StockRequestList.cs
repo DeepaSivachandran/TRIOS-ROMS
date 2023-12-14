@@ -680,6 +680,7 @@ namespace ROMS
                 //objTRNG_StockRequest.paraStatusId = Convert.ToInt32(lblProduct.Text);
                 objTRNG_StockRequest.ParaSTFromDate = Convert.ToString(dpFromDate.Text);
                 objTRNG_StockRequest.ParaSTToDate = Convert.ToString(dpEntryToDate.Text);
+                objTRNG_StockRequest.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objDs = objspservice.udfnStockRequestList(objTRNG_StockRequest);
                 objspservice.CloseConnection();
                 if (objDs != null)
@@ -807,7 +808,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductNamePICode.Text, 0, "", "", null, 0, null,"","");
+                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductNamePICode.Text, 0, "", "", null, 0, null,dpFromDate.Text,dpEntryToDate.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -826,8 +827,8 @@ namespace ROMS
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 250;
-                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[1].Width = 220;
+                                lvProduct.Columns[2].Width = 220;
                                 lvProduct.Columns[3].Width = 0;
                             }
                             else

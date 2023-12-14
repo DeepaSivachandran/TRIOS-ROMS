@@ -943,26 +943,26 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[3].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
-                                lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 680;
+                                lvProduct.Columns[0].Width = 110;
+                                lvProduct.Columns[1].Width = 0;
                                 lvProduct.Columns[2].Width = 0;
-                                lvProduct.Columns[3].Width = 0;
-                                lvProduct.Columns[4].Width = 0;
-                                lvProduct.Columns[5].Width = 0;
-                                lvProduct.Columns[6].Width = 0;
-                                lvProduct.Columns[7].Width = 0;
-                                lvProduct.Columns[8].Width = 0;
+                                lvProduct.Columns[3].Width = 280;
+                                lvProduct.Columns[4].Width = 80;
+                                lvProduct.Columns[5].Width = 70;
+                                lvProduct.Columns[6].Width = 90;
+                                lvProduct.Columns[7].Width = 60;
+                                lvProduct.Columns[8].Width = 80;
                                 lvProduct.Columns[9].Width = 0;
                                 lvProduct.Columns[10].Width = 0;
-                                lvProduct.Columns[11].Width = 0;
+                                lvProduct.Columns[11].Width = 80;
                                 lvProduct.Columns[12].Width = 0;
                             }
                             else
@@ -1348,21 +1348,21 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     varPICode = selectedItem.SubItems[0].Text;
-                    txtProductNamePICode.Text = selectedItem.SubItems[2].Text;
-                    txtMRP.Text = selectedItem.SubItems[4].Text;
-                    txtExpiryDate.Text = selectedItem.SubItems[5].Text;
-                    txtBatchNo.Text = selectedItem.SubItems[6].Text;
-                    txtStockQty.Text = selectedItem.SubItems[7].Text;
-                    lblProduct.Text = selectedItem.SubItems[8].Text;
-                    varUTID = selectedItem.SubItems[9].Text;
-                    varUnitSymbol = selectedItem.SubItems[10].Text;
-                    lblUnit.Text = selectedItem.SubItems[10].Text;
-                    varMRP = selectedItem.SubItems[4].Text;
-                    varExpiryDate = selectedItem.SubItems[5].Text;
-                    varBatchNo = selectedItem.SubItems[6].Text;
-                    varProductCode = selectedItem.SubItems[8].Text;
-                    varSRKID = selectedItem.SubItems[11].Text;
-                    txtSRack.Text = selectedItem.SubItems[12].Text;
+                    txtProductNamePICode.Text = selectedItem.SubItems[3].Text;
+                    txtMRP.Text = selectedItem.SubItems[5].Text;
+                    txtExpiryDate.Text = selectedItem.SubItems[6].Text;
+                    txtBatchNo.Text = selectedItem.SubItems[7].Text;
+                    txtStockQty.Text = selectedItem.SubItems[8].Text;
+                    lblProduct.Text = selectedItem.SubItems[9].Text;
+                    varUTID = selectedItem.SubItems[10].Text;
+                    varUnitSymbol = selectedItem.SubItems[11].Text;
+                    lblUnit.Text = selectedItem.SubItems[11].Text;
+                    varMRP = selectedItem.SubItems[5].Text;
+                    varExpiryDate = selectedItem.SubItems[6].Text;
+                    varBatchNo = selectedItem.SubItems[7].Text;
+                    varProductCode = selectedItem.SubItems[9].Text;
+                    varSRKID = selectedItem.SubItems[12].Text;
+                    txtSRack.Text = selectedItem.SubItems[4].Text;
                 }
             }
             catch (Exception ex)

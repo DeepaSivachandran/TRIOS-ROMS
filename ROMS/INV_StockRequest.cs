@@ -76,9 +76,6 @@ namespace ROMS
         {
             try
             {
-                //grdGodownStock.Rows.Add("Godown1","100 Pkts");
-                //grdGodownStock.Rows.Add("Godown2","200 Pkts");
-                //grdGodownStock.ColumnHeadersVisible = false;
                 dtStock.TableName = "TRN_StockRequest_Details";
                 dtStock.Columns.Add("SRQ_PRID", typeof(int));
                 dtStock.Columns.Add("SRQ_SLID", typeof(int));
