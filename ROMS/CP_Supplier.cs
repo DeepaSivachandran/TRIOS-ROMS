@@ -4967,16 +4967,16 @@ namespace ROMS
                                 {
                                     txtScheduleName.Enabled = false;
                                     grpSalesmanDetails.Enabled = false;
-                                    if (Convert.ToInt32(cmbOrderType.SelectedValue) == 36 || Convert.ToInt32(cmbOrderType.SelectedValue) == 144)
-                                    {
-                                        grpOrderDetails.Enabled = true;
-                                        grddays.Enabled = true;
-                                    }
-                                    else if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
-                                    {
-                                        grpOrderDetails.Enabled = true;
-                                        grddays.Enabled = true;
-                                    }
+                                    //if (Convert.ToInt32(cmbOrderType.SelectedValue) == 36 || Convert.ToInt32(cmbOrderType.SelectedValue) == 144)
+                                    //{
+                                    //    grpOrderDetails.Enabled = false;
+                                    //    grddays.Enabled = false;
+                                    //}
+                                    //else if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
+                                    //{
+                                    //    grpOrderDetails.Enabled = true;
+                                    //    grddays.Enabled = true;
+                                    //}
                                 }
                             }
                             break;
