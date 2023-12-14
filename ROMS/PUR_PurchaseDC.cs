@@ -42,6 +42,7 @@ namespace ROMS
         public string varBatchNo = "0";
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0";
         public string varErrQty = "0"; int varShelflife =0,expirydateFlag = 0;
+        public int editFlag=0;
 
         public PUR_PurchaseDC()
         {
@@ -104,7 +105,7 @@ namespace ROMS
                                 lblSupplierCode.Text = objDs.Tables[0].Rows[0]["SPID"].ToString();
                                 lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
                                 txtRemark.Text = objDs.Tables[0].Rows[0]["DC_Remarks"].ToString();
-                                btnSave.Text = "Update";
+                                //btnSave.Text = "Update";
                                 udfnsupplierLoad();
                             }
                             if (objDs.Tables[1].Rows.Count != 0)
@@ -317,10 +318,19 @@ namespace ROMS
                 dpDCDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();
-                if(btnSave.Text=="Update")
+                if(editFlag==0)
+                {
+                    btnSave.Enabled = true;
+                }
+                else
                 {
                     EditLoad();
                     grpDCSupplier.Enabled = false;
+                    if (editFlag==2)
+                    { btnSave.Enabled = false;
+                        grpExcessProduct.Enabled = false;
+                        btnAdd.Enabled = false;
+                    }
                 }
                 ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
                 grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
@@ -343,12 +353,12 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 int varconcerntype = 4;
-                if (btnSave.Text == "Save")
-                {
-                    varconcerntype = 3;
-                }
+                //if (btnSave.Text == "Save")
+                //{
+                //    varconcerntype = 3;
+                //}
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objDT = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)
@@ -856,7 +866,12 @@ namespace ROMS
                                     lblStockLocationCode.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SLID"]);
                                     txtStockLocation.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SL_EName"]);
                                     lblRackCode.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RKID"]);
-                                    txtRack.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RK_ShortName"]);
+                                    if (lblRackCode.Text == "0")
+                                    { txtRack.Text = "None"; }
+                                    else
+                                    {
+                                        txtRack.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RK_ShortName"]);
+                                    }
                                     lvStockLocation.Visible = false;
                                     lvRack.Visible = false;
                                 }
@@ -1091,6 +1106,19 @@ namespace ROMS
                 }
                 else
                 { txtMonth.BackColor = Color.White; }
+                if(txtMonth.Text!="" )
+                {
+                    if(Convert.ToInt32(txtMonth.Text.Trim())>12)
+                    {
+                        txtMonth.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        epPurchaseDC.SetError(txtMonth, "Please enter valid month.");
+                    }
+                    else
+                    {
+                        txtMonth.BackColor = Color.White;
+                        epPurchaseDC.Clear();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1165,6 +1193,19 @@ namespace ROMS
                     }
                 }
                 else { txtYear.BackColor = Color.White; }
+                if(txtYear.Text.Trim()!="")
+                {
+                    if(txtYear.Text.Trim()=="00")
+                    {
+                        txtYear.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        epPurchaseDC.SetError(txtYear, "Please enter valid year.");
+                    }
+                    else
+                    {
+                        txtYear.BackColor = Color.White;
+                        epPurchaseDC.Clear();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1743,14 +1784,28 @@ namespace ROMS
                     }
                     if (varErrorFlag == true && varErrQty == "0")
                     {
-                        udfnTooltipHide(); int varDC_PURID = 0; int varStatusID = 18;
+                        udfnTooltipHide(); int varDC_PURID = 0;
+                        int varStatusID = 0;
                         if (grdPurchaseDC.Rows.Count > 0)
                         {
                             if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
                             {
                                 string result = "", varorginator = "Purchase DC";
                                 int varviewtype = 0;
-                                if (btnSave.Text == "Update")
+                                //if (btnSave.Text == "Draft")
+                                //{
+                                //    varviewtype = 1;
+                                //    varorginator = "Purchase DC Update";
+                                //}
+                                if (chkCompleted.Checked == true)
+                                { varStatusID = 34; }
+                                else { varStatusID = 18; }
+                                if (editFlag==0)
+                                {
+                                    varviewtype = 0;
+                                    varorginator = "Purchase DC Insert";
+                                }
+                                else
                                 {
                                     varviewtype = 1;
                                     varorginator = "Purchase DC Update";
@@ -1835,8 +1890,8 @@ namespace ROMS
                                             varRKID = varSecondList[3];
                                            /// varBatchNo = varSecondList[4];
                                             //Expirydate = varSecondList[5];
-                                            if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmExpiryDate"].Value) == Expirydate && Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmSLID"].Value) == varSLID && Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmRKID"].Value) == varRKID )
-                                                //Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmMRP"].Value) == varMRP && Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmBatchNo"].Value) == varBatchNo)
+                                            if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmExpiryDate"].Value) == Expirydate && Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmSLID"].Value) == varSLID && Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmRKID"].Value) == varRKID &&
+                                                Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmMRP"].Value) == varMRP && Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmBatchNo"].Value) == varBatchNo)
                                             {
                                                // grdPurchaseDC.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
                                                  grdPurchaseDC.Rows[j].Cells["clmQuantity"].Style.BackColor = Color.LightPink;
@@ -2009,6 +2064,21 @@ namespace ROMS
                 //Update the same column value in the DataTable
                 object varEditQty = grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 dtPurchaseDC.Rows[e.RowIndex]["DCPR_Qty"] = varEditQty;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(chkCompleted.Checked==true)
+                { btnSave.Text = "Save";  }
+                else { btnSave.Text = "Draft"; }
             }
             catch (Exception ex)
             {

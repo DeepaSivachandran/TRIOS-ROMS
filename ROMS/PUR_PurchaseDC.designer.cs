@@ -140,6 +140,7 @@
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.chkCompleted = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -736,6 +737,7 @@
             this.grpExcessProduct.Controls.Add(this.lvStockLocation);
             this.grpExcessProduct.Controls.Add(this.lvRack);
             this.grpExcessProduct.Controls.Add(this.lvproduct);
+            this.grpExcessProduct.Controls.Add(this.chkCompleted);
             this.grpExcessProduct.Controls.Add(this.grdPurchaseDC);
             this.grpExcessProduct.Controls.Add(this.lblTotalProducts);
             this.grpExcessProduct.Controls.Add(this.txtTotalProducts);
@@ -824,7 +826,7 @@
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(2, 1);
+            this.lvproduct.Location = new System.Drawing.Point(3, 2);
             this.lvproduct.Name = "lvproduct";
             this.lvproduct.Size = new System.Drawing.Size(704, 140);
             this.lvproduct.TabIndex = 1111174;
@@ -1284,6 +1286,17 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
+            // chkCompleted
+            // 
+            this.chkCompleted.AutoSize = true;
+            this.chkCompleted.Location = new System.Drawing.Point(913, 421);
+            this.chkCompleted.Name = "chkCompleted";
+            this.chkCompleted.Size = new System.Drawing.Size(82, 23);
+            this.chkCompleted.TabIndex = 1111214;
+            this.chkCompleted.Text = "Completed";
+            this.chkCompleted.UseVisualStyleBackColor = true;
+            this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
+            // 
             // PUR_PurchaseDC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1432,5 +1445,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.CheckBox chkCompleted;
     }
 }
