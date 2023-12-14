@@ -97,7 +97,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnMaster(12,Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "",0,"" );
+                objDs = objdserv.udfnMaster(12,Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "",0,"",0 );
                 objdserv.CloseConnection();
                 cmbTransactionType.DataSource = null;
                 if (objDs != null)

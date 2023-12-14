@@ -42,7 +42,7 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "");
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",6);
                 objDServ.CloseConnection();
                 if (objd.Tables[0].Rows.Count != 0)
                 {
@@ -51,7 +51,7 @@ namespace ROMS
                     dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
                 objd = null;
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "");
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
                 objDServ.CloseConnection();
                 if (objd.Tables[1].Rows.Count != 0)
                 {
@@ -136,7 +136,7 @@ namespace ROMS
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
-                this.ActiveControl = cmbConcern;
+                this.ActiveControl = dpFromDate;
                 //********** To display a data in a grid  ****************** 
                 grdGRNList.DataSource = null;
                 DataSet objDs = new DataSet();
@@ -298,11 +298,13 @@ namespace ROMS
         public void udfnEdit()
         {
             try
-            {
+            { 
+
                 MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
                 MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
-                MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
+                MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString()); 
                 MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
+                MainForm.objPUR_GRNDetails.pbPOIdS = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.Show();
             }
             catch (Exception ex)

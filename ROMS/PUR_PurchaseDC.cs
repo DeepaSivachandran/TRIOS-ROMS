@@ -2753,7 +2753,7 @@ namespace ROMS
                         varMonth = Convert.ToString(txtMonth.Text.Trim());
                         varYear = "20"+Convert.ToString(txtYear.Text.Trim());
                         varDate = varDay + "/" + varMonth + "/" + varYear;
-                        objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0, "");
+                        objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0, "",0);
                         objDServ.CloseConnection();
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -2763,7 +2763,7 @@ namespace ROMS
                     varMonth = Convert.ToString(txtMonth.Text.Trim());
                     varYear = Convert.ToString(txtYear.Text.Trim());
                     varExpiryDate = varDay + "/" + varMonth + "/" + varYear;
-                    objDS = objDServ.udfnMaster(10, 0, 0, dpDCDate.Text.Trim(), varExpiryDate,Convert.ToInt32(lblProductcode.Text.Trim()), "");
+                    objDS = objDServ.udfnMaster(10, 0, 0, dpDCDate.Text.Trim(), varExpiryDate,Convert.ToInt32(lblProductcode.Text.Trim()), "",0);
                     if (objDS.Tables.Count != 0)
                     {
                         if (objDS.Tables[0].Rows.Count > 0)

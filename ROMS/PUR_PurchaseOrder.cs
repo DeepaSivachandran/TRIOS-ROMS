@@ -57,7 +57,7 @@ namespace ROMS
                     btnViewedProduct.Enabled = false;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
-                    objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "");
+                    objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "",0);
                     if (objd.Tables[1].Rows.Count != 0)
                     {
                         DateTime varmindate = DateTime.ParseExact(objd.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -82,6 +82,7 @@ namespace ROMS
                     gpissued.Enabled = false;
                     btnAdd.Enabled = false;
                     btnViewedProduct.Enabled = false;
+                    grdsupplieradd.Columns["clmRemove"].Visible = false;
                 }
                 else
                 {
@@ -282,7 +283,7 @@ namespace ROMS
                             txtissuemodevalue.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString();
                             SPDataService objDServ = new SPDataService();
                             DataSet objd = new DataSet();
-                            objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "");
+                            objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "",0);
                             if (objd.Tables[0].Rows.Count != 0)
                             {
                                 DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
@@ -699,12 +700,16 @@ namespace ROMS
                                     }  
                                     if (varcount == 0)
                                     {
-                                        if (varRecqty != 0)
+                                        if (chkStatus.Checked == false)
                                         {
-                                            SPDataService objDServ = new SPDataService();
-                                            string varMessage = objDServ.udfnGetMessages(99);
-                                            objDServ.CloseConnection();
-                                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                            if (varRecqty != 0)
+                                            {
+                                                SPDataService objDServ = new SPDataService();
+                                                string varMessage = objDServ.udfnGetMessages(99);
+                                                objDServ.CloseConnection();
+                                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                            }
+                                            else { result1 = DialogResult.Yes; }
                                         }
                                         else { result1 = DialogResult.Yes; }
                                         if (result1 == DialogResult.Yes)
@@ -2594,14 +2599,16 @@ namespace ROMS
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[0].Font = new Font("Oswald Regular", 11.25F);  
+                                    objList.SubItems[5].Font = new Font("Oswald Regular", 11.25F);  
                                     lvproduct.Items.Add(objList);
                                 }
                                 lvproduct.Visible = true;
 
                                 lvproduct.Columns[0].Width = 100;
                                 lvproduct.Columns[3].Width = 0;
-                                lvproduct.Columns[4].Width = 100;
-                                lvproduct.Columns[5].Width = 100;
+                                lvproduct.Columns[4].Width = 50;
+                                lvproduct.Columns[5].Width = 60;
                                 if (VarSearchFlag == false)
                                 {
                                     lvproduct.Columns[1].Width = 250;
@@ -2610,7 +2617,7 @@ namespace ROMS
                                 else
                                 {
                                     lvproduct.Columns[1].Width = 0;
-                                    lvproduct.Columns[2].Width = 350;
+                                    lvproduct.Columns[2].Width = 320;
                                 }
                             }
                         }
@@ -4290,6 +4297,10 @@ namespace ROMS
                             lblMxsq.Text = Convert.ToString(var_MXSQ);
                             flag = "3";
                             udfnUnitDropdownload();
+                            if (Convert.ToString(varBulkunitvalue) != "-1")
+                            { 
+                                cmbUnit.SelectedValue= varBulkunitvalue;
+                            }
                         }
                     }
                 }
