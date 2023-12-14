@@ -4681,8 +4681,8 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
-                udfnMappingGridsLoad();
-               // DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
+                //udfnMappingGridsLoad();
+               DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -5133,31 +5133,39 @@ namespace ROMS
         {
             try
             {
-                //(grdFinalSupplierMapping.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
-                DataTable objdtnew = new DataTable();
-                objdtnew = dtSubGroupMapping.Copy();
-                objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
-                grdFinalSupplierMapping.DataSource = objdtnew;
-                //  grdFinalSupplierMapping.Columns[0].Frozen = true;
-                grdFinalSupplierMapping.Columns[0].HeaderText = "";
-                grdFinalSupplierMapping.Columns[0].Width = 30;
-                grdFinalSupplierMapping.Columns["S.No."].Width = 50;
-                grdFinalSupplierMapping.Columns["P.I Code"].Width = 100;
-                grdFinalSupplierMapping.Columns["Product Name in Tamil"].Width = 220;
-                grdFinalSupplierMapping.Columns["Unit"].Width = 60;
-                grdFinalSupplierMapping.Columns["Product SubGroup"].Width = 120;
-                grdFinalSupplierMapping.Columns["GROUPID"].Visible = false;
-                grdFinalSupplierMapping.Columns["SUBGROUPID"].Visible = false;
-                grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
-                grdFinalSupplierMapping.Columns["MappedCount"].Visible = false;
-                grdFinalSupplierMapping.Columns["Product Name in English"].Visible = false;
-                grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                grdFinalSupplierMapping.Columns["S.No."].ReadOnly = true;
-                grdFinalSupplierMapping.Columns["P.I Code"].ReadOnly = true;
-                grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
-                grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
-                grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
+                (grdFinalSupplierMapping.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //DataTable objdtnew = new DataTable();
+                //objdtnew = dtSubGroupMapping.Copy();
+                //objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //grdFinalSupplierMapping.DataSource = objdtnew;
+                ////  grdFinalSupplierMapping.Columns[0].Frozen = true;
+                //grdFinalSupplierMapping.Columns[0].HeaderText = "";
+                //grdFinalSupplierMapping.Columns[0].Width = 30;
+                //grdFinalSupplierMapping.Columns["S.No."].Width = 50;
+                //grdFinalSupplierMapping.Columns["P.I Code"].Width = 100;
+                //grdFinalSupplierMapping.Columns["Product Name in Tamil"].Width = 220;
+                //grdFinalSupplierMapping.Columns["Unit"].Width = 60;
+                //grdFinalSupplierMapping.Columns["Product SubGroup"].Width = 120;
+                //grdFinalSupplierMapping.Columns["GROUPID"].Visible = false;
+                //grdFinalSupplierMapping.Columns["SUBGROUPID"].Visible = false;
+                //grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
+                //grdFinalSupplierMapping.Columns["MappedCount"].Visible = false;
+                //grdFinalSupplierMapping.Columns["Product Name in English"].Visible = false;
+                //grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                //grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                //grdFinalSupplierMapping.Columns["S.No."].ReadOnly = true;
+                //grdFinalSupplierMapping.Columns["P.I Code"].ReadOnly = true;
+                //grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
+                //grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
+                //grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
+                //if (SearchFlag == 0)
+                //{
+                //    (grdFinalSupplierMapping.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //}
+                //else
+                //{
+                //    (grdFinalSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //}
             }
             catch (Exception ex)
             {
@@ -5236,6 +5244,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns[0].ReadOnly = false;
                     grdSupplierMappingLoad.Columns[0].ReadOnly = false;
                 }
+                SearchFlag = 0;
             }
         }
         public void udfnSubGroupAdd()
@@ -7264,6 +7273,7 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            
         }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -7558,6 +7568,7 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally { SearchFlag = 1; }
         }
 
         private void DGV_SearchGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
