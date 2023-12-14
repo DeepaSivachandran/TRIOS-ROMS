@@ -202,13 +202,15 @@ namespace ROMS
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);
-            DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            //dpTrannsferFromDate.MinDate = varDate;
-            dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            if (objDs.Tables[0].Rows.Count > 0)
+            {
+                DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpTransferToDate.MinDate = varDate;
+                dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            }
             objspservice.CloseConnection();
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpTransferToDate.MinDate = varDate;
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
             cmbConcern.SelectedValue = 1;
             this.ActiveControl = txtSLocation;

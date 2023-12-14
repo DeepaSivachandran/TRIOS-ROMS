@@ -358,13 +358,15 @@ namespace ROMS
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",3);
-            DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            //dpFromDate.MinDate = varDate;
-            dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            if (objDs.Tables[0].Rows.Count > 0)
+            {
+                DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varDate;
+                dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            }
             objspservice.CloseConnection();
             dpFromDate.MinDate = MainForm.pbFYStartDate;
             dpFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpToDate.MinDate = varDate;
             dpToDate.MaxDate = MainForm.pbCurrentDate;
             udfnList();
         }
