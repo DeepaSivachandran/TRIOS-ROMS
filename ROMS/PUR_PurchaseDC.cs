@@ -1358,6 +1358,7 @@ namespace ROMS
                     {
                         objDs = objspdservice.udfnproductmasterlist(29,0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), varProductsCodes, "", null, 0, null);
                     }
+                    lvproduct.BeginUpdate();
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
@@ -1375,7 +1376,7 @@ namespace ROMS
                                 }
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 130;
-                                lvproduct.Columns[1].Width = 400;
+                                lvproduct.Columns[1].Width = 500;
                                 lvproduct.Columns[2].Width = 50;
                                 //lvproduct.Columns[3].Width = 0;
                                 //lvproduct.Columns[4].Width = 0;
@@ -1384,7 +1385,7 @@ namespace ROMS
                                 //lvproduct.Columns[7].Width = 0;
                                 //lvproduct.Columns[8].Width = 0;
                                 //lvproduct.Columns[9].Width = 0;
-                                
+
                                 //if (VarSearchFlag == false)
                                 //{
                                 //    lvproduct.Columns[1].Width = 250;
@@ -1395,6 +1396,8 @@ namespace ROMS
                                 //    lvproduct.Columns[1].Width = 0;
                                 //    lvproduct.Columns[2].Width = 350;
                                 //}
+
+                                lvproduct.EndUpdate();
                             }
                         }
                     }
