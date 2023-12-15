@@ -2005,8 +2005,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void TxtProductName_Leave(object sender, EventArgs e)
         {
             try
