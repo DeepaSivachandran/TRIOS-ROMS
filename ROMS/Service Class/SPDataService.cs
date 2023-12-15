@@ -1521,46 +1521,43 @@ namespace ROMS
 
         //Product Master List
         //created by Venkat,Created on 16/08/2023
-        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup,
-            string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode, int paraStatusId, int paraBrandID, int ParaScheduleid,
-            int paraScheduleDay, int paraRackId, int paraHsnId, int paraGstId, int paraLocationId, int paraLocationType, int paraGodownType,
-            int paraRKGId, int paraEMPId,string paraProductName,int ParaSupplierId,string ParaProductsCode,string paraHSNCode, DataTable paraStockTransfer,int paraId,DataTable paraDamageEntry,string ParaFromDate,string ParaToDate) {
+        public DataSet udfnproductmasterlist(MR_Product objMR_Product) {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("MRG_Product", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@paraViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@ParaProductCode", ParaProductCode);
-                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", paraProductCategory);
-                varSqlCommand.Parameters.AddWithValue("@paraGroup", paraGroup);
-                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", paraSubgroup);
-                varSqlCommand.Parameters.AddWithValue("@paraPicode", paraPicode);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
-                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", ParaCompanycode);
-                varSqlCommand.Parameters.AddWithValue("@ParaScheduleid", ParaScheduleid);
-                varSqlCommand.Parameters.AddWithValue("@paraScheduleDay", paraScheduleDay);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraBrandID", paraBrandID);
-                varSqlCommand.Parameters.AddWithValue("@paraRackId", paraRackId);
-                varSqlCommand.Parameters.AddWithValue("@paraHsnId", paraHsnId);
-                varSqlCommand.Parameters.AddWithValue("@paraGstId", paraGstId);
-                varSqlCommand.Parameters.AddWithValue("@paraLocationId", paraLocationId);
-                varSqlCommand.Parameters.AddWithValue("@paraLocationType", paraLocationType);
-                varSqlCommand.Parameters.AddWithValue("@paraGodownType", paraGodownType);
-                varSqlCommand.Parameters.AddWithValue("@paraRKGId", paraRKGId);
-                varSqlCommand.Parameters.AddWithValue("@paraEMPId", paraEMPId);
-                varSqlCommand.Parameters.AddWithValue("@paraProductName", paraProductName);
-                varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", paraStockTransfer);
-                varSqlCommand.Parameters.AddWithValue("@paraDamageEntry", paraDamageEntry);
-                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", ParaSupplierId);
-                varSqlCommand.Parameters.AddWithValue("@ParaProductsCode", ParaProductsCode);
-                varSqlCommand.Parameters.AddWithValue("@paraHSNCode", paraHSNCode);
-                varSqlCommand.Parameters.AddWithValue("@paraId", paraId);
-                varSqlCommand.Parameters.AddWithValue("@ParaFromDate", ParaFromDate);
-                varSqlCommand.Parameters.AddWithValue("@ParaToDate", ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Product.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaProductCode", objMR_Product.ParaProductCode);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objMR_Product.paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraGroup", objMR_Product.paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objMR_Product.paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraPicode", objMR_Product.paraPicode);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objMR_Product.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objMR_Product.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_Product.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleid", objMR_Product.ParaScheduleid);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleDay", objMR_Product.paraScheduleDay);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Product.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_Product.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@paraRackId", objMR_Product.paraRackId);
+                varSqlCommand.Parameters.AddWithValue("@paraHsnId", objMR_Product.paraHsnId);
+                varSqlCommand.Parameters.AddWithValue("@paraGstId", objMR_Product.paraGstId);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationId", objMR_Product.paraLocationId);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationType", objMR_Product.paraLocationType);
+                varSqlCommand.Parameters.AddWithValue("@paraGodownType", objMR_Product.paraGodownType);
+                varSqlCommand.Parameters.AddWithValue("@paraRKGId", objMR_Product.paraRKGId);
+                varSqlCommand.Parameters.AddWithValue("@paraEMPId", objMR_Product.paraEMPId);
+                varSqlCommand.Parameters.AddWithValue("@paraProductName", objMR_Product.paraProductName);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", objMR_Product.paraStockTransfer);
+                varSqlCommand.Parameters.AddWithValue("@paraDamageEntry", objMR_Product.paraDamageEntry);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objMR_Product.ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@ParaProductsCode", objMR_Product.ParaProductsCode);
+                varSqlCommand.Parameters.AddWithValue("@paraHSNCode", objMR_Product.paraHSNCode);
+                varSqlCommand.Parameters.AddWithValue("@paraId", objMR_Product.paraId);
+                varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objMR_Product.ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_Product.ParaToDate);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

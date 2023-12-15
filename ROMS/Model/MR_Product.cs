@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ROMS.Model
 {
-    class MR_Product
+    public class MR_Product
     {
         public int paraViewType = 0;
         public int ParaProductCode = 0;
@@ -24,9 +24,16 @@ namespace ROMS.Model
         public string paraScheduleDay = "";
         public int paraRackId = 0;
         public int paraHsnId = 0;
-        public int paraGstId AS INT =0, @paraLocationId AS INT =0, @paraLocationType AS INT =0, @paraGodownType AS INT =0, @paraRKGId AS INT = 0, @paraEMPId as INT =0,@paraProductName AS NVARCHAR(150)=NULL,@ParaSupplierId as int =0,@ParaFromDate AS NVARCHAR(100)='',@ParaToDate AS NVARCHAR(100)='',
-
-
+        public int paraGstId = 0;
+        public int paraLocationId = 0;
+        public int paraLocationType = 0;
+        public int paraGodownType = 0;
+        public int paraRKGId = 0;
+        public int paraEMPId = 0;
+        public string paraProductName = "";
+        public int ParaSupplierId = 0;
+        public string ParaFromDate = "";
+        public string ParaToDate = "";
         public string ParaProductsCode = "";
         public string paraHSNCode = "";
         public DataTable paraStockTransfer = null;

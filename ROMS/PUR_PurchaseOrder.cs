@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -923,9 +924,14 @@ namespace ROMS
                     //}
                     //objDserv.CloseConnection(); 
                     string varproductID = "0";
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 39;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Product.paraProductName = txtProductName.Text;
                     DataSet objDsproductId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsproductId = objDserv.udfnproductmasterlist(39, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), "","", null,0,null,"","");
+                    objDsproductId = objDserv.udfnproductmasterlist(objMR_Product);
                     objDserv.CloseConnection();
                     if (objDsproductId != null)
                     {
@@ -2579,14 +2585,21 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 34;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.ParaScheduleid = Convert.ToString(lblschedule.Text);
+                    objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Product.ParaProductsCode = varProductsCodes;
                     if (VarSearchFlag == true)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0,"", Convert.ToInt32(lblSupplierCode.Text), varProductsCodes,"", null,0,null,"","");
+                        objMR_Product.paraPicode = txtProductName.Text;
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text),  varProductsCodes,"", null,0, null,"","");
+                        objMR_Product.paraProductName = txtProductName.Text;
                     }
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
@@ -4201,14 +4214,20 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (varprodFlag == 0)
                 {
                     productcode = Convert.ToInt32(lblProductcode.Text);
                 }
-
-                objDs = objspdservice.udfnproductmasterlist(44, Convert.ToInt32(productcode), 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(lblSupplierCode.Text),"", "0", null,0,null,"","");
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 44;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.ParaScheduleid = Convert.ToString(lblschedule.Text);
+                objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                objMR_Product.paraProductName = txtProductName.Text;
+                objMR_Product.ParaProductCode = Convert.ToInt32(productcode);
+                SPDataService objspdservice = new SPDataService();
+                objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -4261,9 +4280,14 @@ namespace ROMS
                     varPARITAL = ""; varReOrderQty = ""; varorderSaleQty = ""; addproductid = ""; varunitid = ""; var_MXSQ = ""; flag = "0";
                     varUPP = 0; varNetweight = 0; varBulkunitvalue = 0; varUnitvalue = 0; varTotalunitvalue = 0; var_BulkSymbol = ""; var_TotSymbol = "";
                     varBulkunitqty = 0; varUnitqty = 0; varTotalunitqty = 0; unitweight = ""; unitperbox = ""; bulkunitweight = "";
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 34;
+                    objMR_Product.ParaProductCode = Convert.ToInt32(lblProductcode.Text);
+                    objMR_Product.ParaScheduleid = Convert.ToString(lblschedule.Text);
+                    objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnproductmasterlist(34, Convert.ToInt32(lblProductcode.Text), 0, 0, 0, "", "", "", 0, 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(lblSupplierCode.Text), "","",null,0,null,"","");
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

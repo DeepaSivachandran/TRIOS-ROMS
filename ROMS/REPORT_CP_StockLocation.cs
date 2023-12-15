@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -232,10 +233,15 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 19;
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraLocationId = Convert.ToInt32(lblLocationCode.Text);
+                objMR_Product.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
+                objMR_Product.paraGodownType = Convert.ToInt32(cmbGodownType.SelectedValue);
                 DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                
-                objDs = objspservice.udfnproductmasterlist(19,0,0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0,0,0, Convert.ToInt32(lblLocationCode.Text), Convert.ToInt32(cmbLocationType.SelectedValue), Convert.ToInt32(cmbGodownType.SelectedValue), 0,0,"",0,"", "",null,0,null,"","");
+                SPDataService objspservice = new SPDataService();                
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -329,10 +335,16 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 40;
+                objMR_Product.ParaProductCode = Convert.ToInt32(lblProductId.Text);
+                objMR_Product.paraGroup = Convert.ToInt32(lblGroupId.Text);
+                objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupId.Text);
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-
-                objDs = objspservice.udfnproductmasterlist(40,Convert.ToInt32(lblProductId.Text), 0,Convert.ToInt32(lblGroupId.Text),Convert.ToInt32(lblSubGroupId.Text), "", "", "",Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, "", 0, "","", null,0,null,"","");
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -1391,11 +1403,17 @@ namespace ROMS
             try
             {
                 lvProduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProduct.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(41, 0, 0, Convert.ToInt32(lblGroupId.Text),Convert.ToInt32(lblSubGroupId.Text), "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProduct.Text, 0, "", "",null,0,null,"","");
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 41;
+                    objMR_Product.paraGroup = Convert.ToInt32(lblGroupId.Text);
+                    objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupId.Text);
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraProductName = txtProduct.Text;
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
