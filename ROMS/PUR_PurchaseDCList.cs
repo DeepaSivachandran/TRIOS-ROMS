@@ -892,6 +892,11 @@ namespace ROMS
                         grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
                         grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+                    else if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "34")
+                    {
+                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                     else
                     {
                         grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;

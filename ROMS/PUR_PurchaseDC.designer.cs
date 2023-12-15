@@ -41,7 +41,7 @@
             this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnldl = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpDC = new System.Windows.Forms.GroupBox();
             this.lblRackCode = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -103,6 +103,7 @@
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.grdPurchaseDC = new System.Windows.Forms.DataGridView();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -140,11 +141,15 @@
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.chkCompleted = new System.Windows.Forms.CheckBox();
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpDC.SuspendLayout();
             this.grpSalesmanDetails.SuspendLayout();
             this.grpRepresentativeDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRepDetails)).BeginInit();
@@ -186,52 +191,53 @@
             // pnldl
             // 
             this.pnldl.BackColor = System.Drawing.Color.White;
-            this.pnldl.Controls.Add(this.groupBox1);
+            this.pnldl.Controls.Add(this.btnClose);
+            this.pnldl.Controls.Add(this.grpDC);
             this.pnldl.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pnldl.Location = new System.Drawing.Point(0, 29);
             this.pnldl.Name = "pnldl";
             this.pnldl.Size = new System.Drawing.Size(1354, 643);
             this.pnldl.TabIndex = 37;
             // 
-            // groupBox1
+            // grpDC
             // 
-            this.groupBox1.Controls.Add(this.lblRackCode);
-            this.groupBox1.Controls.Add(this.LV_Supplier);
-            this.groupBox1.Controls.Add(this.lblStockLocationCode);
-            this.groupBox1.Controls.Add(this.lblProductcode);
-            this.groupBox1.Controls.Add(this.btnAdd);
-            this.groupBox1.Controls.Add(this.txtRack);
-            this.groupBox1.Controls.Add(this.txtStockLocation);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.grpSalesmanDetails);
-            this.groupBox1.Controls.Add(this.lblExpiryDate);
-            this.groupBox1.Controls.Add(this.textBox13);
-            this.groupBox1.Controls.Add(this.grpRepresentativeDetails);
-            this.groupBox1.Controls.Add(this.txtYear);
-            this.groupBox1.Controls.Add(this.txtDay);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.txtMonth);
-            this.groupBox1.Controls.Add(this.lblYyyy);
-            this.groupBox1.Controls.Add(this.lblMM);
-            this.groupBox1.Controls.Add(this.lblDd);
-            this.groupBox1.Controls.Add(this.lblUnit);
-            this.groupBox1.Controls.Add(this.txtBatchNo);
-            this.groupBox1.Controls.Add(this.lblbatchno);
-            this.groupBox1.Controls.Add(this.txtActualQty);
-            this.groupBox1.Controls.Add(this.lblQty);
-            this.groupBox1.Controls.Add(this.txtMrp);
-            this.groupBox1.Controls.Add(this.lblMrp);
-            this.groupBox1.Controls.Add(this.txtProductName);
-            this.groupBox1.Controls.Add(this.lblProductName);
-            this.groupBox1.Controls.Add(this.grpExcessProduct);
-            this.groupBox1.Controls.Add(this.grpDCSupplier);
-            this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 10.25F);
-            this.groupBox1.Location = new System.Drawing.Point(12, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1330, 636);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
+            this.grpDC.Controls.Add(this.lblRackCode);
+            this.grpDC.Controls.Add(this.LV_Supplier);
+            this.grpDC.Controls.Add(this.lblStockLocationCode);
+            this.grpDC.Controls.Add(this.lblProductcode);
+            this.grpDC.Controls.Add(this.btnAdd);
+            this.grpDC.Controls.Add(this.txtRack);
+            this.grpDC.Controls.Add(this.txtStockLocation);
+            this.grpDC.Controls.Add(this.label6);
+            this.grpDC.Controls.Add(this.label2);
+            this.grpDC.Controls.Add(this.grpSalesmanDetails);
+            this.grpDC.Controls.Add(this.lblExpiryDate);
+            this.grpDC.Controls.Add(this.textBox13);
+            this.grpDC.Controls.Add(this.grpRepresentativeDetails);
+            this.grpDC.Controls.Add(this.txtYear);
+            this.grpDC.Controls.Add(this.txtDay);
+            this.grpDC.Controls.Add(this.groupBox2);
+            this.grpDC.Controls.Add(this.txtMonth);
+            this.grpDC.Controls.Add(this.lblYyyy);
+            this.grpDC.Controls.Add(this.lblMM);
+            this.grpDC.Controls.Add(this.lblDd);
+            this.grpDC.Controls.Add(this.lblUnit);
+            this.grpDC.Controls.Add(this.txtBatchNo);
+            this.grpDC.Controls.Add(this.lblbatchno);
+            this.grpDC.Controls.Add(this.txtActualQty);
+            this.grpDC.Controls.Add(this.lblQty);
+            this.grpDC.Controls.Add(this.txtMrp);
+            this.grpDC.Controls.Add(this.lblMrp);
+            this.grpDC.Controls.Add(this.txtProductName);
+            this.grpDC.Controls.Add(this.lblProductName);
+            this.grpDC.Controls.Add(this.grpExcessProduct);
+            this.grpDC.Controls.Add(this.grpDCSupplier);
+            this.grpDC.Font = new System.Drawing.Font("Oswald Regular", 10.25F);
+            this.grpDC.Location = new System.Drawing.Point(12, 4);
+            this.grpDC.Name = "grpDC";
+            this.grpDC.Size = new System.Drawing.Size(1330, 635);
+            this.grpDC.TabIndex = 1;
+            this.grpDC.TabStop = false;
             // 
             // lblRackCode
             // 
@@ -741,7 +747,6 @@
             this.grpExcessProduct.Controls.Add(this.grdPurchaseDC);
             this.grpExcessProduct.Controls.Add(this.lblTotalProducts);
             this.grpExcessProduct.Controls.Add(this.txtTotalProducts);
-            this.grpExcessProduct.Controls.Add(this.btnClose);
             this.grpExcessProduct.Controls.Add(this.btnSave);
             this.grpExcessProduct.Controls.Add(this.label5);
             this.grpExcessProduct.Controls.Add(this.txtRemark);
@@ -822,7 +827,12 @@
             this.RMTname,
             this.columnHeader13,
             this.columnHeader14,
-            this.columnHeader15});
+            this.columnHeader15,
+            this.columnHeader16,
+            this.columnHeader17,
+            this.columnHeader18,
+            this.columnHeader19,
+            this.columnHeader20});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
@@ -858,6 +868,17 @@
             // columnHeader15
             // 
             this.columnHeader15.Width = 0;
+            // 
+            // chkCompleted
+            // 
+            this.chkCompleted.AutoSize = true;
+            this.chkCompleted.Location = new System.Drawing.Point(891, 421);
+            this.chkCompleted.Name = "chkCompleted";
+            this.chkCompleted.Size = new System.Drawing.Size(82, 23);
+            this.chkCompleted.TabIndex = 1111214;
+            this.chkCompleted.Text = "Completed";
+            this.chkCompleted.UseVisualStyleBackColor = true;
+            this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
             // 
             // grdPurchaseDC
             // 
@@ -1045,7 +1066,7 @@
             // 
             this.lblTotalProducts.AutoSize = true;
             this.lblTotalProducts.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalProducts.Location = new System.Drawing.Point(994, 421);
+            this.lblTotalProducts.Location = new System.Drawing.Point(978, 421);
             this.lblTotalProducts.Name = "lblTotalProducts";
             this.lblTotalProducts.Size = new System.Drawing.Size(87, 20);
             this.lblTotalProducts.TabIndex = 1111212;
@@ -1054,7 +1075,7 @@
             // txtTotalProducts
             // 
             this.txtTotalProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalProducts.Location = new System.Drawing.Point(1084, 419);
+            this.txtTotalProducts.Location = new System.Drawing.Point(1068, 419);
             this.txtTotalProducts.MaxLength = 50;
             this.txtTotalProducts.Multiline = true;
             this.txtTotalProducts.Name = "txtTotalProducts";
@@ -1069,9 +1090,9 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1223, 418);
+            this.btnClose.Location = new System.Drawing.Point(1249, 601);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.Size = new System.Drawing.Size(71, 29);
             this.btnClose.TabIndex = 15;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1086,11 +1107,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1134, 418);
+            this.btnSave.Location = new System.Drawing.Point(1116, 418);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.Size = new System.Drawing.Size(109, 29);
             this.btnSave.TabIndex = 14;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save as draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
@@ -1286,16 +1307,25 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
-            // chkCompleted
+            // columnHeader16
             // 
-            this.chkCompleted.AutoSize = true;
-            this.chkCompleted.Location = new System.Drawing.Point(913, 421);
-            this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(82, 23);
-            this.chkCompleted.TabIndex = 1111214;
-            this.chkCompleted.Text = "Completed";
-            this.chkCompleted.UseVisualStyleBackColor = true;
-            this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
+            this.columnHeader16.Width = 0;
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Width = 0;
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Width = 0;
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Width = 0;
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Width = 0;
             // 
             // PUR_PurchaseDC
             // 
@@ -1322,8 +1352,8 @@
             this.tsPurchaseInvoiceList.ResumeLayout(false);
             this.tsPurchaseInvoiceList.PerformLayout();
             this.pnldl.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpDC.ResumeLayout(false);
+            this.grpDC.PerformLayout();
             this.grpSalesmanDetails.ResumeLayout(false);
             this.grpSalesmanDetails.PerformLayout();
             this.grpRepresentativeDetails.ResumeLayout(false);
@@ -1346,7 +1376,7 @@
         private System.Windows.Forms.ToolStrip tsPurchaseInvoiceList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnldl;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpDC;
         public System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.GroupBox grpExcessProduct;
@@ -1446,5 +1476,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.CheckBox chkCompleted;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
+        private System.Windows.Forms.ColumnHeader columnHeader19;
+        private System.Windows.Forms.ColumnHeader columnHeader20;
     }
 }
