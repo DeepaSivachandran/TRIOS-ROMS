@@ -25,7 +25,7 @@ namespace ROMS
         ToolTip tpyear = new ToolTip();
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
             , varorderSaleQty = "", varorderqty = "", addproductid = "", varunitid = "0", varDamage = "0", varReturnDC = "0", pbGRNId = "0", pbSupplierId = "0", dcid = "0",
-            varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varTName = "", varexp = "", pbScheduleId="0", pbPOIdS="0"
+            varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0"
             ;
         public int varGrnId = 0, varCloseflag = 0;
         public bool VarSearchFlag = true;
@@ -56,7 +56,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDT = null;
-                objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0",0);
+                objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0", 0);
                 objdserv.CloseConnection();
                 cmbPONo.DataSource = null;
                 if (objDT != null)
@@ -85,7 +85,7 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
                 if (objd.Tables[1].Rows.Count != 0)
                 {
                     DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -437,7 +437,7 @@ namespace ROMS
                     objGRNProd.Columns.Add("GRNPR_ShelfLifeType", typeof(int));
                     objGRNProd.Columns.Add("GRNPR_POID", typeof(int));
                     objGRNProd.Columns.Add("GRNPR_ShelfLife_Per", typeof(int));
-                    objGRNProd = udfnobjGRNProd(); 
+                    objGRNProd = udfnobjGRNProd();
                     SPDataService objspdservice = new SPDataService();
                     varGrnId = Convert.ToInt32(pbGRNId);
                     TRNS_GRN objTRNS_GRN = new TRNS_GRN();
@@ -481,9 +481,9 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
-        } 
+        }
         public DataTable udfnobjGRNProd()
-        { 
+        {
             DataTable objGRNProd = new DataTable();
             try
             {
@@ -502,12 +502,12 @@ namespace ROMS
                 objGRNProd.Columns.Add("GRNPR_ShelfLife_Per", typeof(float));
                 objGRNProd.Columns.Add("GRNPR_Expirydate", typeof(string));
                 for (int i = 0; i < grdGrnlist.Rows.Count; i++)
-                {  
+                {
                     DataService objDser = new DataService();
-                    objGRNProd.Rows.Add(Convert.ToInt32(pbGRNId),Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmProid"].Value),
+                    objGRNProd.Rows.Add(Convert.ToInt32(pbGRNId), Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmProid"].Value),
                     Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmUtid"].Value), Convert.ToDouble(grdGrnlist.Rows[i].Cells["clmmrp"].Value),
-                    0,0,0, Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchno"].Value), 0,0, Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmPOid"].Value)
-                    ,0,""); 
+                    0, 0, 0, Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchno"].Value), 0, 0, Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmPOid"].Value)
+                    , 0, "");
                 }
             }
             catch (Exception ex)
@@ -516,7 +516,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             return objGRNProd;
-        } 
+        }
         private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -644,7 +644,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "", 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1200,7 +1200,6 @@ namespace ROMS
             }
         }
 
-
         private void TxtProductName_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1211,7 +1210,6 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-
                     if (VarSearchFlag == true)
                     {
                         objDs = objspdservice.udfnproductmasterlist(29, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(lblSupplierCode.Text), varProductsCodes, "", null, 0, null,"","");
@@ -1300,7 +1298,7 @@ namespace ROMS
                     string dateString = e.FormattedValue.ToString();
                     DataSet objDS = new DataSet();
                     SPDataService objDServ = new SPDataService();
-                    objDS = objDServ.udfnMaster(8, 0, 0, dateString, "", 0, "",0);
+                    objDS = objDServ.udfnMaster(8, 0, 0, dateString, "", 0, "", 0);
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
@@ -1571,14 +1569,14 @@ namespace ROMS
                 for (int i = 0; i < grdPODetails.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdPODetails.Rows[i].Cells["clmsts"].Value) == "13")
-                    { 
+                    {
                         grdPODetails.Rows[i].DefaultCellStyle.BackColor = Color.RoyalBlue;
                         grdPODetails.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                     }
                     else
                     {
                         grdPODetails.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("255, 128, 0");
-                        grdPODetails.Rows[i].DefaultCellStyle.ForeColor = Color.White; 
+                        grdPODetails.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                     }
                 }
             }
@@ -1763,7 +1761,7 @@ namespace ROMS
                     DataSet objDS = new DataSet();
                     if (varExpiryDate != "")
                     {
-                        objDS = objDServ.udfnMaster(7, 0, 0, dpGrnDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "",0);
+                        objDS = objDServ.udfnMaster(7, 0, 0, dpGrnDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
                         objDServ.CloseConnection();
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -1893,7 +1891,7 @@ namespace ROMS
                     varDay = "01"; varMonth = Convert.ToString(txtMonth.Text.Trim());
                     varYear = Convert.ToString(txtYear.Text.Trim());
                     varDate = varDay + "/" + varMonth + "/" + varYear;
-                    objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0, "",0);
+                    objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0, "", 0);
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
@@ -2172,7 +2170,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0, "", "", "", 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
