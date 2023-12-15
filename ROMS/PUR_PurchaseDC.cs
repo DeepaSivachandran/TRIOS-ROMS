@@ -328,11 +328,31 @@ namespace ROMS
                     grpDCSupplier.Enabled = false;
                     if (editFlag==2)
                     {
-                        grpDC.Enabled = false;
-                        epPurchaseDC.Clear();
+                        //grpDC.Enabled = false;
+                        txtProductName.Enabled = false;
+                        txtMrp.Enabled = false;
+                        txtDay.Enabled = false;
+                        txtMonth.Enabled = false;
+                        txtYear.Enabled = false;
+                        txtBatchNo.Enabled = false;
+                        txtActualQty.Enabled = false;
+                        txtStockLocation.Enabled = false;
+                        txtRack.Enabled = false;
+                        btnAdd.Enabled = false;
+                        btnSave.Enabled = false;
+                        txtRemark.Enabled = false;
+                        chkCompleted.Enabled = false;
+                        txtTotalProducts.Enabled = false;
+                        grdPurchaseDC.ReadOnly = true;
                         txtProductName.BackColor = Color.White;
+                        txtActualQty.BackColor = Color.White;
+                        txtStockLocation.BackColor = Color.White;
+                        txtRack.BackColor = Color.White;
                         tpProduct.Active = false;
                         btnClose.Enabled = true;
+                        grdPurchaseDC.Columns["clmRemove"].Visible = false;
+                        epPurchaseDC.Clear();
+                        chkCompleted.Checked = true;
                     }
                 }
                 ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
