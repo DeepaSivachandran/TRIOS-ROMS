@@ -200,7 +200,7 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",0);
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0,"",0);
                 objDServ.CloseConnection();
                 if (objd.Tables[0].Rows.Count != 0)
                 {
@@ -209,7 +209,7 @@ namespace ROMS
                     dpPlanDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
                 objd = null;
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
                 objDServ.CloseConnection();
                 if (objd.Tables[1].Rows.Count != 0)
                 {
@@ -962,6 +962,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["T.Pro"].Width = 50;
                             grdPurchaseorderlist.Columns["T.Units"].Width = 50;
                             grdPurchaseorderlist.Columns["TAT"].Width = 70;
+                            grdPurchaseorderlist.Columns["DTAT"].Width = 70;
                             grdPurchaseorderlist.Columns["Created By"].Width = 100;
                             grdPurchaseorderlist.Columns["Created On"].Width = 150;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
@@ -987,11 +988,13 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["SPSC_TAT"].Visible = false;
                             grdPurchaseorderlist.Columns["POVALUE"].Visible = false;
                             grdPurchaseorderlist.Columns["turn"].Visible = false;
+                            grdPurchaseorderlist.Columns["DELAYVALUE"].Visible = false;
                             grdPurchaseorderlist.Columns["Mode of details"].Visible = false;
                             grdPurchaseorderlist.Columns["Issued DATES"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["DTAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["Issue Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

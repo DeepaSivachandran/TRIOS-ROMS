@@ -75,13 +75,14 @@ namespace ROMS
                 //}
                 //else
                 //{
-                if (VarStatusId == 14)
+                if (VarStatusId == 14 || VarStatusId == 33)
                 {
                     btnSave.Enabled = false;
                     chkStatus.Enabled = false;
                     gpissued.Enabled = false;
                     btnAdd.Enabled = false;
                     btnViewedProduct.Enabled = false;
+                    grdsupplieradd.Columns["clmRemove"].Visible = false;
                 }
                 else
                 {
@@ -699,19 +700,23 @@ namespace ROMS
                                     }  
                                     if (varcount == 0)
                                     {
-                                        if (varRecqty != 0)
+                                        if (chkStatus.Checked == false)
                                         {
-                                            SPDataService objDServ = new SPDataService();
-                                            string varMessage = objDServ.udfnGetMessages(99);
-                                            objDServ.CloseConnection();
-                                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                            if (varRecqty != 0)
+                                            {
+                                                SPDataService objDServ = new SPDataService();
+                                                string varMessage = objDServ.udfnGetMessages(99);
+                                                objDServ.CloseConnection();
+                                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                            }
+                                            else { result1 = DialogResult.Yes; }
                                         }
                                         else { result1 = DialogResult.Yes; }
                                         if (result1 == DialogResult.Yes)
                                         {
                                             result = objspdservice.udfnPurchaseEntry(varviewtype, POUpdate, Convert.ToInt32(cmbConcern.SelectedValue),
-                                        txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
-                                        txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(varstatus), dpPlanDate.Text, Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToDouble(lblKG.Text), 0);
+                                            txtpono.Text, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), "", varorginator, txtRemark.Text,
+                                            txtTurnAroundTime.Text, objPurchaseOrder, "", "", "", "", Convert.ToInt32(varstatus), dpPlanDate.Text, Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToDouble(lblKG.Text), 0);
                                             objspdservice.CloseConnection();
                                             string[] varvalue = result.Split('~');
                                             string POUpdatevalue = "0";
@@ -1788,7 +1793,7 @@ namespace ROMS
                 LV_Supplier.Visible = false;
                 if (Convert.ToString(txtSupplier.Text) != "")
                 {
-                    if (VarStatusId != 14)
+                    if (VarStatusId != 14 || VarStatusId != 33)
                     {
                         if (lblSupplierCode.Text != "0")
                         {
@@ -2594,14 +2599,16 @@ namespace ROMS
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[0].Font = new Font("Oswald Regular", 11.25F);  
+                                    objList.SubItems[5].Font = new Font("Oswald Regular", 11.25F);  
                                     lvproduct.Items.Add(objList);
                                 }
                                 lvproduct.Visible = true;
 
                                 lvproduct.Columns[0].Width = 100;
                                 lvproduct.Columns[3].Width = 0;
-                                lvproduct.Columns[4].Width = 100;
-                                lvproduct.Columns[5].Width = 100;
+                                lvproduct.Columns[4].Width = 50;
+                                lvproduct.Columns[5].Width = 60;
                                 if (VarSearchFlag == false)
                                 {
                                     lvproduct.Columns[1].Width = 250;
@@ -2610,7 +2617,7 @@ namespace ROMS
                                 else
                                 {
                                     lvproduct.Columns[1].Width = 0;
-                                    lvproduct.Columns[2].Width = 350;
+                                    lvproduct.Columns[2].Width = 320;
                                 }
                             }
                         }
@@ -2760,6 +2767,33 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void BtnCancel_Enter(object sender, EventArgs e)
+        { 
+            try
+            {
+                btnCancel.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnCancel_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnCancel.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
 
         private void Lvproduct_DrawItem(object sender, DrawListViewItemEventArgs e)
@@ -2970,7 +3004,7 @@ namespace ROMS
                 if (e.RowIndex != -1)
                 {
 
-                    if (VarStatusId != 14)
+                    if (VarStatusId != 14 || VarStatusId != 33)
                     {
                         switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                         {
@@ -3627,7 +3661,6 @@ namespace ROMS
                         }
                         else
                         {
-
                             DataGridView dataGridView = (DataGridView)sender;
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStsname"];
                             cell.Style.BackColor = Color.LimeGreen;
@@ -3646,7 +3679,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (VarStatusId == 14)
+                        if (VarStatusId == 14 || VarStatusId == 33)
                         {
 
                             DataGridView dataGridView = (DataGridView)sender;
@@ -3690,7 +3723,7 @@ namespace ROMS
             }
             finally
             {
-                if (VarStatusId == 14)
+                if (VarStatusId == 14 || VarStatusId == 33)
                 {
                     grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
                     grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;
@@ -4264,6 +4297,10 @@ namespace ROMS
                             lblMxsq.Text = Convert.ToString(var_MXSQ);
                             flag = "3";
                             udfnUnitDropdownload();
+                            if (Convert.ToString(varBulkunitvalue) != "-1")
+                            { 
+                                cmbUnit.SelectedValue= varBulkunitvalue;
+                            }
                         }
                     }
                 }

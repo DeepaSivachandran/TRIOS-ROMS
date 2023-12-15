@@ -65,7 +65,7 @@ namespace ROMS
         {
             try
             {
-                this.ActiveControl = cmbConcern;
+                this.ActiveControl = txtSupplier;
                 udfnDropdownLoad();
                 udfnUnitListGrid();
                 udfnEditLoad();
@@ -153,6 +153,7 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
@@ -1130,7 +1131,7 @@ namespace ROMS
                         {
                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        this.ActiveControl = cmbConcern;
+                        this.ActiveControl = txtSupplier;
                     }
                 }
             }
