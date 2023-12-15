@@ -889,14 +889,27 @@ namespace ROMS
                                     lblStockLocationCode.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SLID"]);
                                     txtStockLocation.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SL_EName"]);
                                     lblRackCode.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RKID"]);
-                                    if (lblRackCode.Text == "0")
+                                    //if (lblRackCode.Text == "0")
+                                    //{
+                                    //    txtRack.Text = "None";
+                                    //    txtRack.Enabled = false;
+                                    //}
+                                    //else
+                                    //{
+                                    //    txtRack.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RK_ShortName"]);
+                                    //}
+                                    if(Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RK_ShortName"])!="")
                                     {
-                                        txtRack.Text = "None";
-                                        txtRack.Enabled = false;
+                                        txtRack.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RK_ShortName"]);
                                     }
                                     else
                                     {
-                                        txtRack.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RK_ShortName"]);
+                                        if (Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RKNAME"]) != "")
+                                        {
+                                            txtRack.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RKNAME"]);
+                                            txtRack.Enabled = false;
+                                            lblRackCode.Text = "0";
+                                        }
                                     }
                                     lvStockLocation.Visible = false;
                                     lvRack.Visible = false;
@@ -1542,7 +1555,7 @@ namespace ROMS
         {
             try
             {
-                if (varBatchNoGeneration == "74")
+                if (varBatchNoGeneration == "75")
                 {
                     if (txtBatchNo.Text.Trim() == "")
                     {
