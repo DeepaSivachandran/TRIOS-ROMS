@@ -40,6 +40,11 @@ namespace ROMS
         public string varSPSCID = "";
         public string varErrQty = "0";
         public int varID = 0;
+        public int varStatusID = 0;
+        public string varTempDay = "";
+        public string varTempMonth = "";
+        public string varTempYear = "";
+        public string varEmployeeId = "";
         //public int varUpdate = 0;
         public int varModifiedFlag = 0;
 
@@ -53,13 +58,16 @@ namespace ROMS
         {
             try
             {
-                string varExpiryDate = "",Day = "", Month = "", Year = ""; ;
-                varExpiryDate = txtExpiryDate.Text.Trim();
-                string[] DMY = varExpiryDate.Split('/');
-                Day = DMY[0];
-                Month = DMY[1];
-                Year = DMY[2];
-                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(), txtLocation.Text.Trim(), txtRack.Text.Trim(), Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(), (txtStockQty.Text).Trim(), txtQuantity.Text.Trim(), varUnitSymbol,txtsuppliername.Text.Trim(),Day,Month,Year,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
+                if(txtExpiryDate.Text!="")
+                {
+                    string varExpiryDate = "";
+                    varExpiryDate = txtExpiryDate.Text.Trim();
+                    string[] DMY = varExpiryDate.Split('/');
+                    varTempDay = DMY[0];
+                    varTempMonth = DMY[1];
+                    varTempYear = DMY[2];
+                }
+                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(), txtLocation.Text.Trim(), txtRack.Text.Trim(), Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(), (txtStockQty.Text).Trim(), txtQuantity.Text.Trim(), varUnitSymbol,cmbSupplier.Text.Trim(),varTempDay,varTempMonth,varTempYear,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
                 grdDamageEntry.Columns["clmDay"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmMonth"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmYear"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -68,7 +76,7 @@ namespace ROMS
                 grdDamageEntry.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim());
+                dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), Convert.ToInt32(varTempDay), Convert.ToInt32(varTempMonth), Convert.ToInt32(varTempYear), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim());
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
                 varModifiedFlag = 1;
                 txtProductName.Focus();
@@ -93,7 +101,7 @@ namespace ROMS
             txtBatchNo.Text = "";
             txtStockQty.Text = "";
             txtQuantity.Text = "";
-            txtsuppliername.Text = "";
+            cmbSupplier.Text = "";
         }
         public void udfnClear()
         {
@@ -103,7 +111,7 @@ namespace ROMS
                 txtMrp.Text = "";
                 txtBatchNo.Text = "";
                 txtQuantity.Text = "";
-                txtsuppliername.Text = "";
+                cmbSupplier.Text = "";
             }
             catch(Exception ex)
             {
@@ -147,6 +155,7 @@ namespace ROMS
             {
                 udfnCmbConcernLoad();
                 cmbConcern.SelectedValue = 1;
+                udfnemployeeload();
                 dpEntryDate.MaxDate = MainForm.pbCurrentDate;
                 dtDamage.TableName = "TRN_DM_Product_AutoComplete";
                 dtDamage.Columns.Add("DM_PRID", typeof(int));
@@ -163,10 +172,11 @@ namespace ROMS
                 dtDamage.Columns.Add("DM_STSID", typeof(string));
                 dtDamage.Columns.Add("DM_SPID", typeof(string));
                 dtDamage.Columns.Add("DM_SPSCID", typeof(string));
-                if (btnSave.Text == "Save")
+                if (varID == 0)
                 {
                     cmbConcern.Enabled = true;
                     dpEntryDate.Enabled = true;
+                    this.ActiveControl = txtProductName;
                 }
                 else
                 {
@@ -182,7 +192,47 @@ namespace ROMS
             }
             finally
             {
-                this.ActiveControl = txtProductName;
+            }
+        }
+        public void udfnemployeeload()
+        {
+            try
+            {
+                int varViewType = 6;
+                //if (btnSave.Text == "Update")
+                //{
+                //    varViewType = 7;
+                //}
+                Application.DoEvents();
+                grdEmployee.DataSource = null;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnEmployeeList(varViewType, "", 0, "", 1,0,0);
+                objdserv.CloseConnection();
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        grdEmployee.Rows.Add(false,Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["EMPID"]), Convert.ToString(objDs.Tables[0].Rows[i]["CT_SINO"]),
+                          Convert.ToString(objDs.Tables[0].Rows[i]["Employee Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Employee Name"]), Convert.ToString(objDs.Tables[0].Rows[i]["Employee Category"]));
+                    }
+                }
+                grdEmployee.Columns[0].HeaderText = "";
+                grdEmployee.Columns[0].Width = 30;
+                //grdEmployee.Columns["S.No."].Width = 40;
+                //grdEmployee.Columns["S.No."].Visible = false;
+                //grdEmployee.Columns["Employee Code"].Width = 100;
+                //grdEmployee.Columns["Employee Name"].Width = 180;
+                //grdEmployee.Columns["Employee Category"].Width = 150;
+                //grdEmployee.Columns["EMPID"].Visible = false;
+                //grdEmployee.Columns["CT_SINO"].Visible = false;
+                //grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnclose()
@@ -225,22 +275,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
-        private void INV_Inward_Load(object sender, EventArgs e)
-        {
-            if (btnSave.Text == "Save")
-            {
-                grpproductname.Visible = true;
-                txtsuppliername.Enabled = true;
-            }
-            else
-            {
-                grpproductname.Visible = false;
-                txtsuppliername.Enabled = false;
-                //cmbvoucherno.Enabled = false;
-                //cmbPoNo.Enabled = false;
-                //cmbinwardtype.Enabled = false;
             }
         }
         private void CmbConcern_Enter(object sender, EventArgs e)
@@ -296,7 +330,7 @@ namespace ROMS
         }
         public void udfnTransferNo()
         {
-            if (btnSave.Text == "Save")
+            if (varID==0)
             {
                 if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
                 {
@@ -738,73 +772,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtsuppliername.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void Txtsuppliername_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtsuppliername.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void Txtsuppliername_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtsuppliername.Text == "")
-                {
-                    epDamageEntry.SetError(txtsuppliername, "Please enter supplier name.");
-                    txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSupplierName.ShowAlways = true;
-                    tpSupplierName.Show("Please enter supplier name.", txtsuppliername, 5000);
-                }
-                else
-                {
-                    txtsuppliername.BackColor = Color.White;
-                    epDamageEntry.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void Txtsuppliername_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
-                {
-                    if (lvSupplier.Items.Count == 0 || txtsuppliername.Text == "")
-                    {
-                        txtsuppliername.Focus();
-                        lvSupplier.Visible = false;
-                    }
-                    else
-                    {
-                        lvSupplier.Focus();
-                    }
-                    if (lvSupplier.Items.Count > 0)
-                    {
-                        lvSupplier.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnAdd.Focus();
+                    cmbSupplier.Focus();
                 }
             }
             catch (Exception ex)
@@ -817,7 +785,6 @@ namespace ROMS
         {
             try
             {
-                lvSupplier.Visible = false;
                 lvProduct.Visible = false;
                 btnAdd.BackColor = Color.LemonChiffon;
             }
@@ -925,15 +892,14 @@ namespace ROMS
                     tpQuantity.Show("Please enter quentity", txtQuantity, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtsuppliername.Text == "")
+                if(cmbSupplier.Text!="")
                 {
-                    epDamageEntry.SetError(txtsuppliername, "Please enter supplier name.");
-                    txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSupplierName.ShowAlways = true;
-                    tpSupplierName.Show("Please enter supplier name.", txtsuppliername, 5000);
-                    blnErrorFlag = true;
+                    string varSupplier = Convert.ToString(cmbSupplier.SelectedValue);
+                    string[] Result = varSupplier.Split('-');
+                    lblSupplierCode.Text = Result[0];
+                    lblScheduleCode.Text = Result[1];
                 }
-                if (Convert.ToString(txtsuppliername.Text) != "")
+                /*if (Convert.ToString(txtsuppliername.Text) != "")
                 {
                     string[] values = new string[0];
                     string varSupplierId = "0";
@@ -969,11 +935,10 @@ namespace ROMS
                         lblScheduleCode.Text = values[1];
                         txtsuppliername.BackColor = Color.White;
                     }
-                }
+                }*/
                 if (blnErrorFlag == false)
                 {
                     lvProduct.Visible = false;
-                    lvSupplier.Visible = false;
                 /////IF add any additional column in the grdDamageEntry then Change the upcoming row.cells value[] /////
                     foreach (DataGridViewRow row in grdDamageEntry.Rows)
                     {
@@ -1085,7 +1050,22 @@ namespace ROMS
 
                                 grdDamageEntry.Columns["clmdsno"].Width = 50;
                             }
-                            btnSave.Text = "Update";
+                        }
+                    }
+                    if (varStatusID == 20)
+                    {
+                        grdDamageEntry.ReadOnly = true;
+                        btnSave.Enabled = false;
+                        chkStatus.Checked = true; chkStatus.Enabled = false;
+                        txtProductName.Enabled = false;
+                        txtQuantity.Enabled = false;
+                        txtQuantity.Enabled = false;
+                        btnAdd.Enabled = false;
+                        txtRemark.Enabled = false;
+                        this.ActiveControl = btnClose;
+                        for (int i = 0; i < grdDamageEntry.Rows.Count; i++)
+                        {
+                            ((DataGridViewImageCell)grdDamageEntry.Rows[i].Cells["clmremove"]).Value = new System.Drawing.Bitmap(1, 1); ;
                         }
                     }
                 }
@@ -1188,7 +1168,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    chkStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1275,6 +1255,23 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
+                if (grdEmployee.Rows.Count > 0)
+                {
+                    for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdEmployee.Rows[i].Cells[0].Value) == true)
+                        {
+                            if(varEmployeeId == "")
+                            {
+                                varEmployeeId = Convert.ToString(grdEmployee.Rows[i].Cells["clmEMPID"].Value);
+                            }
+                            else
+                            {
+                                varEmployeeId = varEmployeeId + ',' + Convert.ToString(grdEmployee.Rows[i].Cells["clmEMPID"].Value);
+                            }
+                        }
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     epDamageEntry.Clear();
@@ -1299,7 +1296,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
-                if (btnSave.Text == "Save")
+                if (btnSave.Text == "Save as Draft")
                 {
                     varoriginator = "Damage Entry Creation";
                     varType = 0;
@@ -1307,7 +1304,16 @@ namespace ROMS
                 else
                 {
                     varoriginator = "Damage Entry Updation";
-                    varType = 1;
+                    varType = 0;
+                }
+                int varStatus = 0;
+                if (chkStatus.Checked == true)
+                {
+                    varStatus = 20;
+                }
+                else
+                {
+                    varStatus = 6;
                 }
                 TRN_Damage objTRN_Damage = new TRN_Damage();
                 objTRN_Damage.ViewType = varType;
@@ -1316,8 +1322,10 @@ namespace ROMS
                 objTRN_Damage.paraTransferDate = dpEntryDate.Text;
                 objTRN_Damage.paraLocationID = Convert.ToInt32(varSLID);
                 objTRN_Damage.paraRemarks = txtRemark.Text.Trim();
+                objTRN_Damage.paraStatusId = varStatus;
                 objTRN_Damage.paraOriginator = varoriginator;
                 objTRN_Damage.paraDamageEntry = dtDamage;
+                objTRN_Damage.paraEmployeeId = varEmployeeId;
                 varResult = objspservice.udfnDamageEntry(objTRN_Damage);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
@@ -1377,7 +1385,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.LemonChiffon;
+                btnClose.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1389,7 +1397,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.Transparent;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -1518,7 +1526,7 @@ namespace ROMS
                 txtBatchNo.Text = "";
                 txtStockQty.Text = "";
                 txtQuantity.Text = "";
-                txtsuppliername.Text = "";
+                cmbSupplier.Text = ""; cmbSupplier.Enabled = false;
                 lvProduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -1668,6 +1676,7 @@ namespace ROMS
                     varBatchNo = selectedItem.SubItems[8].Text;
                     varProductCode = selectedItem.SubItems[10].Text;
                     varRKID = selectedItem.SubItems[14].Text;
+                    udfnSupplierLoad();
                 }
             }
             catch (Exception ex)
@@ -1685,82 +1694,36 @@ namespace ROMS
                 txtBatchNo.BackColor = SystemColors.Control;
                 txtStockQty.BackColor = SystemColors.Control;
                 txtQuantity.BackColor = Color.White;
-                txtsuppliername.BackColor = Color.White;
+                cmbSupplier.BackColor = Color.White;
             }
         }
-
-        private void Txtsuppliername_TextChanged(object sender, EventArgs e)
+        public void udfnSupplierLoad()
         {
             try
             {
-                lvSupplier.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtsuppliername.Text.Length > 0)
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnSupplierList(32, 0, 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, lblProduct.Text, "", "", 0);
+                objdserv.CloseConnection();
+                cmbSupplier.DataSource = null;
+                if (objDT != null)
                 {
-                    objDs = objspdservice.udfnSupplierList(32, 0, 0, 0, 0, txtsuppliername.Text, 0, 0, 0, "", 0, 0, 0, 0, 0,0,lblProduct.Text,"","",0);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    if (objDT.Tables.Count > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        if (objDT.Tables[0].Rows.Count > 0)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvSupplier.Items.Add(objList);
-                                }
-                                lvSupplier.Visible = true;
-                                lvSupplier.BringToFront();
-                                lvSupplier.Columns[1].Width = 0;
-                                lvSupplier.Columns[2].Width = 0;
-                                lvSupplier.Columns[0].Width = 300;
-                                lvSupplier.Columns[3].Width = 0;
-                            }
+                            cmbSupplier.Enabled = true;
+                            cmbSupplier.ValueMember = "SUPPLIER";
+                            cmbSupplier.DisplayMember = "SP_NAME";
+                            cmbSupplier.DataSource = objDT.Tables[0];
+                        }
+                        else
+                        {
+                            cmbSupplier.Text = "None";
+                            cmbSupplier.Enabled = false;
+                            txtQuantity.Focus();
                         }
                     }
-                    objspdservice.CloseConnection();
-                }
-                else
-                {
-                    lvSupplier.Visible = false;
-                    lvSupplier.Items.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-        private void LvSupplier_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnListViewData();
-                btnAdd.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void LvSupplier_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnListViewData();
-                    btnAdd.Focus();
                 }
             }
             catch (Exception ex)
@@ -1769,30 +1732,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnListViewData()
-        {
-            try
-            {
-                if (txtsuppliername.Text != "")
-                {
-                        ListViewItem selectedItem = lvSupplier.SelectedItems[0];
-                        txtsuppliername.Text = selectedItem.SubItems[0].Text;
-                        lblSupplierCode.Text = selectedItem.SubItems[1].Text;
-                        lblScheduleCode.Text = selectedItem.SubItems[2].Text;
-                        //varSuppliervalue = selectedItem.SubItems[3].Text;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                lvSupplier.Visible = false;
-            }
-        }
-
         private void TxtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1852,6 +1791,123 @@ namespace ROMS
                 // Update the same column value in the DataTable
                 dtDamage.Rows[e.RowIndex]["DM_Qty"] = varEditQty;
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkStatus.Checked == true)
+                {
+                    btnSave.Text = "Save";
+                }
+                else
+                {
+                    btnSave.Text = "Save as Draft";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSupplier_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSupplier.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSupplier_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSupplier_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSupplier.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSupplier_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {

@@ -18,6 +18,7 @@ namespace ROMS.Model
         public string paraRemarks { get; set; } = "";
         public int paraStatusId { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
+        public string paraEmployeeId { get; set; } = "";
         public DataTable paraDamageEntry { get; set; } = null;
     }
 }

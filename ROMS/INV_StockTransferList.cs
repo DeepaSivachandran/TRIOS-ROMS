@@ -933,11 +933,11 @@ namespace ROMS
                         grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    //else
-                    //{
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    //}
+                    else
+                    {
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)

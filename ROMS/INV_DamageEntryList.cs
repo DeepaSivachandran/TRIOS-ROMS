@@ -466,8 +466,8 @@ namespace ROMS
                     Application.DoEvents();
                     MainForm.objINV_DamageEntry = new INV_DamageEntry();
                     MainForm.objINV_DamageEntry.MdiParent = ParentForm;
-                    MainForm.objINV_DamageEntry.btnSave.Text = "Update";
                     MainForm.objINV_DamageEntry.varID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value);
+                    MainForm.objINV_DamageEntry.varStatusID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objINV_DamageEntry.Show();
                 }
             }
@@ -756,9 +756,9 @@ namespace ROMS
                             grdDamageEntryList.Columns["DMID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 80;
-                            grdDamageEntryList.Columns["Supplier"].Width = 330;
-                            grdDamageEntryList.Columns["City"].Width = 120;
-                            grdDamageEntryList.Columns["GSTIN"].Width = 150;
+                            //grdDamageEntryList.Columns["Supplier"].Width = 330;
+                            //grdDamageEntryList.Columns["City"].Width = 120;
+                            //grdDamageEntryList.Columns["GSTIN"].Width = 150;
                             grdDamageEntryList.Columns["Created By"].Width = 120;
                             grdDamageEntryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdDamageEntryList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1311,11 +1311,11 @@ namespace ROMS
                         grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    //else
-                    //{
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    //}
+                    else
+                    {
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)

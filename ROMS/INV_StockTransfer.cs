@@ -238,13 +238,13 @@ namespace ROMS
                 udfnCmbConcern();
                 dpTrannsferDate.MaxDate = MainForm.pbCurrentDate;
                 cmbConcern.SelectedValue = 1;
-                if (btnSave.Text=="Save")
+                if(varStockTransferID!=0)
                 {
-                    this.ActiveControl = txtSLocation;
+                    udfnEdit();
                 }
                 else
                 {
-                    udfnEdit();
+                    this.ActiveControl = txtSLocation;
                 }
             }
             catch (Exception ex)
@@ -260,12 +260,6 @@ namespace ROMS
         {
             try
             {
-                if(varStatusID==32)
-                {
-                    grdStockTransfer.ReadOnly = true;
-                    btnSave.Enabled = false;
-                    chkStatus.Checked = true;
-                }
                 if(varStockTransferID!=0)
                 {
                     SPDataService objspservice = new SPDataService();
@@ -323,6 +317,23 @@ namespace ROMS
                             grdStockTransfer.Columns["clmquantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockTransfer.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockTransfer.Columns["clmExpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                    }
+                    if (varStatusID == 32)
+                    {
+                        grdStockTransfer.ReadOnly = true;
+                        btnSave.Enabled = false;
+                        chkStatus.Checked = true;chkStatus.Enabled = false;
+                        txtProductNamePICode.Enabled = false;
+                        txtDLocation.Enabled = false;
+                        txtQuantity.Enabled = false;
+                        cmbDRack.Enabled = false;
+                        btnAdd.Enabled = false;
+                        txtRemarks.Enabled = false;
+                        this.ActiveControl = btnClose;
+                        for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
+                        {
+                            ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
                         }
                     }
                     lvSLocation.Visible = false;
@@ -1090,7 +1101,7 @@ namespace ROMS
         }
         public void udfnTransferNo()
         {
-            if (btnSave.Text == "Save")
+            if (varStockTransferID==0)
             {
                 if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
                 {
@@ -1546,19 +1557,15 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
-                if (btnSave.Text == "Draft")
+                if (btnSave.Text == "Save as Draft")
                 {
                     varoriginator = "Stock Transfer Creation";
                     varType = 0;
                 }
                 else
                 {
-                     varoriginator = "Stock Transfer Updation";
-                    varType = 1;
-                }
-                if(varStockTransferID!=0)
-                {
-                    varType = 1;
+                    varoriginator = "Stock Transfer Updation";
+                    varType = 0;
                 }
                 /* Check source stock location is valid or not*/
                 if (txtSLocation.Text != "")
@@ -2010,7 +2017,7 @@ namespace ROMS
                 }
                 else
                 {
-                    btnSave.Text = "Draft";
+                    btnSave.Text = "Save as Draft";
                 }
             }
             catch (Exception ex)

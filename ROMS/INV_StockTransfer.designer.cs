@@ -41,6 +41,7 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grpStockTransfer = new System.Windows.Forms.GroupBox();
+            this.chkStatus = new System.Windows.Forms.CheckBox();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lvProduct = new System.Windows.Forms.ListView();
             this.lvclmPICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -120,7 +121,6 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
-            this.chkStatus = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -188,10 +188,24 @@
             this.grpStockTransfer.TabIndex = 0;
             this.grpStockTransfer.TabStop = false;
             // 
+            // chkStatus
+            // 
+            this.chkStatus.AutoSize = true;
+            this.chkStatus.Location = new System.Drawing.Point(895, 591);
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Size = new System.Drawing.Size(86, 24);
+            this.chkStatus.TabIndex = 16;
+            this.chkStatus.Text = "Completed";
+            this.chkStatus.UseVisualStyleBackColor = true;
+            this.chkStatus.CheckedChanged += new System.EventHandler(this.ChkStatus_CheckedChanged);
+            this.chkStatus.Enter += new System.EventHandler(this.ChkStatus_Enter);
+            this.chkStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChkStatus_KeyDown);
+            this.chkStatus.Leave += new System.EventHandler(this.ChkStatus_Leave);
+            // 
             // txttotalitem
             // 
             this.txttotalitem.Enabled = false;
-            this.txttotalitem.Location = new System.Drawing.Point(1103, 590);
+            this.txttotalitem.Location = new System.Drawing.Point(1075, 590);
             this.txttotalitem.Name = "txttotalitem";
             this.txttotalitem.ReadOnly = true;
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
@@ -546,7 +560,7 @@
             // lbltotalproducts
             // 
             this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(1010, 593);
+            this.lbltotalproducts.Location = new System.Drawing.Point(982, 593);
             this.lbltotalproducts.Name = "lbltotalproducts";
             this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 1111227;
@@ -579,11 +593,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1171, 589);
+            this.btnSave.Location = new System.Drawing.Point(1143, 589);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.Size = new System.Drawing.Size(114, 29);
             this.btnSave.TabIndex = 18;
-            this.btnSave.Text = "Draft";
+            this.btnSave.Text = "Save as Draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
@@ -982,20 +996,6 @@
             this.lblProductNamePICode.Size = new System.Drawing.Size(108, 20);
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Search by P.I Code";
-            // 
-            // chkStatus
-            // 
-            this.chkStatus.AutoSize = true;
-            this.chkStatus.Location = new System.Drawing.Point(918, 591);
-            this.chkStatus.Name = "chkStatus";
-            this.chkStatus.Size = new System.Drawing.Size(86, 24);
-            this.chkStatus.TabIndex = 16;
-            this.chkStatus.Text = "Completed";
-            this.chkStatus.UseVisualStyleBackColor = true;
-            this.chkStatus.CheckedChanged += new System.EventHandler(this.ChkStatus_CheckedChanged);
-            this.chkStatus.Enter += new System.EventHandler(this.ChkStatus_Enter);
-            this.chkStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChkStatus_KeyDown);
-            this.chkStatus.Leave += new System.EventHandler(this.ChkStatus_Leave);
             // 
             // INV_StockTransfer
             // 
