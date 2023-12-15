@@ -41,7 +41,7 @@ namespace ROMS
         public int VarPrevSupplierid = 0,varDCID=0, varCloseFlag=0;
         public string varBatchNo = "0";
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0";
-        public string varErrQty = "0"; int varShelflife =0,expirydateFlag = 0;
+        public string varErrQty = "0"; int expirydateFlag = 0;
         public int editFlag=0;
 
         public PUR_PurchaseDC()
