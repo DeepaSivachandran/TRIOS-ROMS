@@ -1042,19 +1042,28 @@ namespace ROMS
                                  Convert.ToString(objDS.Tables[0].Rows[i]["Supplier"]), Convert.ToString(objDS.Tables[0].Rows[i]["Day"]), Convert.ToString(objDS.Tables[0].Rows[i]["Month"]), Convert.ToString(objDS.Tables[0].Rows[i]["Year"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]),Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]),
                                  Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]));
 
-
-
                                 dtDamage.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Day"]), Convert.ToString(objDS.Tables[0].Rows[i]["Month"]), Convert.ToString(objDS.Tables[0].Rows[i]["Year"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), 20,Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]));
 
                                 //dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()), Convert.ToInt32(varSLID), Convert.ToInt32(varRKID), Convert.ToDouble(txtMrp.Text.Trim()), Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(), txtBatchNo.Text.Trim(), txtQuantity.Text.Trim(), varUTID, 20, lblSupplierCode.Text.Trim(), lblScheduleCode.Text.Trim());
 
                                 grdDamageEntry.Columns["clmdsno"].Width = 50;
                             }
+                            for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                            {
+                                for (int j = 0; j < objDS.Tables[1].Rows.Count; j++)
+                                {
+                                    if (Convert.ToString(grdEmployee.Rows[i].Cells["clmEMPID"].Value) == Convert.ToString(objDS.Tables[1].Rows[j]["EMPID"]))
+                                    {
+                                        grdEmployee.Rows[i].Cells[0].Value = true;
+                                    }
+                                }
+                            }
                         }
                     }
                     if (varStatusID == 20)
                     {
                         grdDamageEntry.ReadOnly = true;
+                        grdEmployee.ReadOnly = true;
                         btnSave.Enabled = false;
                         chkStatus.Checked = true; chkStatus.Enabled = false;
                         txtProductName.Enabled = false;
@@ -1078,6 +1087,8 @@ namespace ROMS
             finally
             {
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
+                grdEmployee.ClearSelection();
+                this.grdEmployee.Sort(this.grdEmployee.Columns[0], ListSortDirection.Descending);
             }
         }
         private void GrdDamageEntry_CellContentClick(object sender, DataGridViewCellEventArgs e)

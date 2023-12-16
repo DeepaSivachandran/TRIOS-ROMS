@@ -754,6 +754,7 @@ namespace ROMS
                             grdDamageEntryList.Columns["ConcernID"].Visible = false;
                             grdDamageEntryList.Columns["StatusID"].Visible = false;
                             grdDamageEntryList.Columns["DMID"].Visible = false;
+                            grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 80;
                             //grdDamageEntryList.Columns["Supplier"].Width = 330;
@@ -1299,7 +1300,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdDamageEntryList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
