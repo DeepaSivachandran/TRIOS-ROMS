@@ -28,6 +28,7 @@ namespace ROMS
         public int varID = 0;
         public int varStatus = 0;
         public string varErrQty = "0";
+        public bool VarSearchFlag = true;
         public INV_StockRequest()
         {
             InitializeComponent();
@@ -75,9 +76,6 @@ namespace ROMS
         {
             try
             {
-                //grdGodownStock.Rows.Add("Godown1","100 Pkts");
-                //grdGodownStock.Rows.Add("Godown2","200 Pkts");
-                //grdGodownStock.ColumnHeadersVisible = false;
                 dtStock.TableName = "TRN_StockRequest_Details";
                 dtStock.Columns.Add("SRQ_PRID", typeof(int));
                 dtStock.Columns.Add("SRQ_SLID", typeof(int));
@@ -234,6 +232,19 @@ namespace ROMS
                 {
                     btnSave.Focus();
                     BtnSave_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblDEProductName.Text = "Search by P.I Code";
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblDEProductName.Text = "Search by Product Name";
+                    }
                 }
             }
             catch (Exception ex)
@@ -542,7 +553,14 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,varProducts,"",null,0, null,"","");
+                    if (VarSearchFlag == true)
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, txtProductNamePICode.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"" , 0, varProducts, "", null, 0, null, "", "");
+                    }
+                    else
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductNamePICode.Text, 0, varProducts, "", null, 0, null, "", "");
+                    }
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -560,9 +578,9 @@ namespace ROMS
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
-                                lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 250;
-                                lvProduct.Columns[2].Width = 100;
+                                lvProduct.Columns[0].Width = 120;
+                                lvProduct.Columns[1].Width = 350;
+                                lvProduct.Columns[2].Width = 60;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;
                             }

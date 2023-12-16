@@ -202,13 +202,15 @@ namespace ROMS
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);
-            DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            //dpTrannsferFromDate.MinDate = varDate;
-            dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            if (objDs.Tables[0].Rows.Count > 0)
+            {
+                DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpTransferToDate.MinDate = varDate;
+                dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            }
             objspservice.CloseConnection();
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpTransferToDate.MinDate = varDate;
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
             cmbConcern.SelectedValue = 1;
             this.ActiveControl = txtSLocation;
@@ -842,8 +844,9 @@ namespace ROMS
                     Application.DoEvents();
                     MainForm.objINV_StockTransfer = new INV_StockTransfer();
                     MainForm.objINV_StockTransfer.MdiParent = ParentForm;
-                    MainForm.objINV_StockTransfer.btnSave.Text = "Update";
+                    //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
                     MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
+                    MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objINV_StockTransfer.Show();
                 }
             }
@@ -930,11 +933,11 @@ namespace ROMS
                         grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    //else
-                    //{
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    //}
+                    else
+                    {
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
