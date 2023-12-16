@@ -355,9 +355,9 @@ namespace ROMS
                             grdStockTransfer.Columns["StatusID"].Visible = false;
                             grdStockTransfer.Columns["STRID"].Visible = false;
                             grdStockTransfer.Columns["S.No."].Width = 50;
-                            grdStockTransfer.Columns["Status"].Width = 80;
+                            grdStockTransfer.Columns["Status"].Width = 120;
                             grdStockTransfer.Columns["Source"].Width = 120;
-                            grdStockTransfer.Columns["Created By"].Width = 180;
+                            grdStockTransfer.Columns["Created By"].Width = 100;
                             grdStockTransfer.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

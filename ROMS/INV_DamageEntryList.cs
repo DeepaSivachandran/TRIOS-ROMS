@@ -756,11 +756,11 @@ namespace ROMS
                             grdDamageEntryList.Columns["DMID"].Visible = false;
                             grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
-                            grdDamageEntryList.Columns["Status"].Width = 80;
+                            grdDamageEntryList.Columns["Status"].Width = 120;
                             //grdDamageEntryList.Columns["Supplier"].Width = 330;
                             //grdDamageEntryList.Columns["City"].Width = 120;
                             //grdDamageEntryList.Columns["GSTIN"].Width = 150;
-                            grdDamageEntryList.Columns["Created By"].Width = 120;
+                            grdDamageEntryList.Columns["Created By"].Width = 100;
                             grdDamageEntryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdDamageEntryList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdDamageEntryList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

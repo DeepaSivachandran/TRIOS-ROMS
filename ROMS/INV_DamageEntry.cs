@@ -49,6 +49,7 @@ namespace ROMS
         public int varModifiedFlag = 0;
 
         DataTable dtDamage = new DataTable();
+        DataTable dtEmployee = new DataTable();
 
         public INV_DamageEntry()
         {
@@ -66,6 +67,12 @@ namespace ROMS
                     varTempDay = DMY[0];
                     varTempMonth = DMY[1];
                     varTempYear = DMY[2];
+                }
+                else
+                {
+                    varTempDay = "0";
+                    varTempMonth = "0";
+                    varTempYear = "0";
                 }
                 grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(), txtLocation.Text.Trim(), txtRack.Text.Trim(), Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(), (txtStockQty.Text).Trim(), txtQuantity.Text.Trim(), varUnitSymbol,cmbSupplier.Text.Trim(),varTempDay,varTempMonth,varTempYear,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
                 grdDamageEntry.Columns["clmDay"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -172,6 +179,15 @@ namespace ROMS
                 dtDamage.Columns.Add("DM_STSID", typeof(string));
                 dtDamage.Columns.Add("DM_SPID", typeof(string));
                 dtDamage.Columns.Add("DM_SPSCID", typeof(string));
+
+
+                dtEmployee.Columns.Add("", typeof(Boolean));
+                dtEmployee.Columns.Add("S.No.", typeof(string));
+                dtEmployee.Columns.Add("Employee Code", typeof(string));
+                dtEmployee.Columns.Add("Employee Name", typeof(string));
+                dtEmployee.Columns.Add("Employee Category", typeof(string));
+                dtEmployee.Columns.Add("EMPID", typeof(int));
+                dtEmployee.Columns.Add("CT_SINO", typeof(int));
                 if (varID == 0)
                 {
                     cmbConcern.Enabled = true;
@@ -836,6 +852,14 @@ namespace ROMS
                     tpRack.Show("Invalid rack", txtRack, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(cmbSupplier.Text) == "-Select-")
+                {
+                    epDamageEntry.SetError(cmbSupplier, "Please select supplier");
+                    cmbSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSupplierName.ShowAlways = true;
+                    tpSupplierName.Show("Please select supplier", cmbSupplier, 5000);
+                    blnErrorFlag = true;
+                }
                 //if (txtMrp.Text == "")
                 //{
                 //    epDamageEntry.SetError(txtMrp, "Invalid mrp");
@@ -1060,7 +1084,7 @@ namespace ROMS
                             }
                         }
                     }
-                    if (varStatusID == 20)
+                    if (varStatusID != 6)
                     {
                         grdDamageEntry.ReadOnly = true;
                         grdEmployee.ReadOnly = true;
