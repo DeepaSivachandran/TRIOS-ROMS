@@ -67,8 +67,9 @@ namespace ROMS
                     Application.DoEvents();
                     MainForm.objINV_GodownOutward = new INV_GodownOutward();
                     MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
-                    MainForm.objINV_GodownOutward.btnSave.Text = "Update";
+                    MainForm.objINV_GodownOutward.btnSave.Text = "Save as Draft";
                     MainForm.objINV_GodownOutward.varGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value);
+                    MainForm.objINV_GodownOutward.varSTSID = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["STSID"].Value);
                     MainForm.objINV_GodownOutward.Show();
                 }
             }
@@ -523,11 +524,10 @@ namespace ROMS
                 DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 //dpFromDate.MinDate = varDate;
                 dtpOutwardDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
-                objspservice.CloseConnection();
-                objspservice.CloseConnection();
+                dtpOutwardDate2.MinDate = varDate;
+                objspservice.CloseConnection();                
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
-                dtpOutwardDate2.MinDate = varDate;
                 dtpOutwardDate2.MaxDate = MainForm.pbCurrentDate;
                 cmbConcern.SelectedValue = 1;
 
@@ -596,9 +596,9 @@ namespace ROMS
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
-                                lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 250;
-                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[0].Width = 90;
+                                lvProduct.Columns[1].Width = 200;
+                                lvProduct.Columns[2].Width = 230;
                                 lvProduct.Columns[3].Width = 0;
                             }
                             else
@@ -1333,7 +1333,7 @@ namespace ROMS
 
                 for (int i = 0; i < grdOutwardList.Rows.Count; i++)
                 {
-                    if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 22)
+                    if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 35)
                     {
                         grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
                         grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
@@ -1345,7 +1345,7 @@ namespace ROMS
                     }
                     else if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 26)
                     {
-                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.PaleGreen;
+                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                 }
