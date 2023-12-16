@@ -32,23 +32,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.grdEmployee = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmEMPID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCT_SINO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmEmployeeCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chkStatus = new System.Windows.Forms.CheckBox();
             this.lvProduct = new System.Windows.Forms.ListView();
             this.lvclmPICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -129,6 +122,13 @@
             this.lblMrp = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epDamageEntry = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEMPID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCT_SINO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEmployeeCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdEmployee)).BeginInit();
@@ -228,57 +228,6 @@
             this.grdEmployee.ShowRowErrors = false;
             this.grdEmployee.Size = new System.Drawing.Size(794, 138);
             this.grdEmployee.TabIndex = 111111143;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "SNO.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.Visible = false;
-            this.clmSno.Width = 5;
-            // 
-            // clmEMPID
-            // 
-            this.clmEMPID.HeaderText = "EMPID";
-            this.clmEMPID.Name = "clmEMPID";
-            this.clmEMPID.Visible = false;
-            this.clmEMPID.Width = 5;
-            // 
-            // clmCT_SINO
-            // 
-            this.clmCT_SINO.HeaderText = "CT_SINO";
-            this.clmCT_SINO.Name = "clmCT_SINO";
-            this.clmCT_SINO.Visible = false;
-            this.clmCT_SINO.Width = 5;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Employee Code";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 180;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Employee Name";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 230;
-            // 
-            // clmEmployeeCategory
-            // 
-            this.clmEmployeeCategory.HeaderText = "Employee Category";
-            this.clmEmployeeCategory.Name = "clmEmployeeCategory";
-            this.clmEmployeeCategory.Width = 180;
             // 
             // chkStatus
             // 
@@ -1071,6 +1020,57 @@
             // epDamageEntry
             // 
             this.epDamageEntry.ContainerControl = this;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "SNO.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.Visible = false;
+            this.clmSno.Width = 5;
+            // 
+            // clmEMPID
+            // 
+            this.clmEMPID.HeaderText = "EMPID";
+            this.clmEMPID.Name = "clmEMPID";
+            this.clmEMPID.Visible = false;
+            this.clmEMPID.Width = 5;
+            // 
+            // clmCT_SINO
+            // 
+            this.clmCT_SINO.HeaderText = "CT_SINO";
+            this.clmCT_SINO.Name = "clmCT_SINO";
+            this.clmCT_SINO.Visible = false;
+            this.clmCT_SINO.Width = 5;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Employee Code";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Employee Name";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 180;
+            // 
+            // clmEmployeeCategory
+            // 
+            this.clmEmployeeCategory.HeaderText = "Employee Category";
+            this.clmEmployeeCategory.Name = "clmEmployeeCategory";
+            this.clmEmployeeCategory.Width = 150;
             // 
             // INV_DamageEntry
             // 
