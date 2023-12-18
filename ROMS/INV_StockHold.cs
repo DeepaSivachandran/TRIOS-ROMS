@@ -43,6 +43,14 @@ namespace ROMS
                 cmbConcern.SelectedValue = 1;
                 lblUnit.Text = "";
                 udfnList();
+                if(grdStockHold.Rows.Count==0)
+                {
+                    if (DGV_SearchGrid.ColumnCount != 0)
+                    {
+                        DGV_SearchGrid.Columns[0].Visible = false;
+                        DGV_SearchGrid.Columns[1].Visible = false;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -80,6 +88,11 @@ namespace ROMS
                 DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
                     this.Close();
                 }
             }
@@ -232,7 +245,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    txtRemark.Focus();
                 }
             }
             catch (Exception ex)
@@ -314,7 +327,7 @@ namespace ROMS
                     epStockHold.SetError(txtProductNamePICode, "Please enter product name");
                     txtProductNamePICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProductNamePICode.ShowAlways = true;
-                    tpProductNamePICode.Show("Please enter Product Name", txtProductNamePICode, 5000);
+                    tpProductNamePICode.Show("Please enter Product name", txtProductNamePICode, 5000);
                     blnErrorFlag = false;
                 }
                 if (Convert.ToString(txtStockLoc.Text).Trim() == "")
@@ -354,7 +367,7 @@ namespace ROMS
                     //epGoodsOutward.SetError(txtQty, "Please enter a correct Outward Quantity");
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpQty.ShowAlways = true;
-                    tpQty.Show("Please enter a correct Outward Quantity", txtQty, 5000);
+                    tpQty.Show("Please enter a correct outward quantity", txtQty, 5000);
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(96);
                     objDServ.CloseConnection();
@@ -382,6 +395,7 @@ namespace ROMS
                     objTRNS_StockHold.paraUTID = varUTID;
                     objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
                     objTRNS_StockHold.paraQty = Convert.ToInt32(txtQty.Text);
+                    objTRNS_StockHold.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
                     objTRNS_StockHold.paraOriginator = varoriginator;
                     varResult = objspservice.udfnStockHold(objTRNS_StockHold);
                     objspservice.CloseConnection();
@@ -445,6 +459,8 @@ namespace ROMS
                             grdStockHold.Columns["Batch No."].Width = 70;
                             grdStockHold.Columns["Hold Qty"].Width = 70;
                             grdStockHold.Columns["Created By"].Width = 80;
+                            grdStockHold.Columns["clmDelete"].Visible = true;
+                            grdStockHold.Columns["clmEdit"].Visible = true;
                             grdStockHold.Columns["clmDelete"].Width = 40;
                             grdStockHold.Columns["clmEdit"].Width = 30;
                             grdStockHold.Columns["PRID"].Visible = false;
@@ -464,6 +480,8 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
+                            grdStockHold.Columns["clmDelete"].Visible = false;
+                            grdStockHold.Columns["clmEdit"].Visible = false;
                         }
                     }
                     else
@@ -501,6 +519,7 @@ namespace ROMS
                 txtStockQty.Text = "";
                 txtQty.Text = "";
                 lblUnit.Text = "";
+                txtRemark.Text = "";
                 txtProductNamePICode.Focus();
             }
             catch (Exception ex)
@@ -802,7 +821,7 @@ namespace ROMS
                             varPRID = Convert.ToInt32(objDs.Tables[0].Rows[0]["PRID"]);
                             varRKID = Convert.ToInt32(objDs.Tables[0].Rows[0]["RKID"]);
                             varUTID = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
-
+                            txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Remarks"]);
                             btnSave.Text = "Update";
                         }
                     }
@@ -1239,6 +1258,47 @@ namespace ROMS
                 lvproduct.Visible = false;
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemark_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemark.BackColor = Color.LemonChiffon;  
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemark_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemark.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtRemark_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch(Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
