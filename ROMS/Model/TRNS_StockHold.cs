@@ -18,6 +18,7 @@ namespace ROMS.Model
         public decimal paraMrp { get; set; } = 0;
         public string paraExpiryDate { get; set; } = "";
         public string paraBatchNo { get; set; } = "";
+        public string paraRemarks { get; set; } = "";
         public int paraUTID { get; set; } = 0;
         public int paraQty { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
