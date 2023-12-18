@@ -51,9 +51,8 @@ namespace ROMS
                         DGV_SearchGrid.Columns[1].Visible = false;
                     }
                 }
-            }
-                grdStockHold.Columns["clmDelete"].Visible = false;
-                grdStockHold.Columns["clmEdit"].Visible = false;
+                //grdStockHold.Columns["clmDelete"].Visible = false;
+                //grdStockHold.Columns["clmEdit"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -241,8 +240,8 @@ namespace ROMS
                 //}
                 //else
                 //{
-                    grdStockHold.Columns["clmDelete"].Visible = false;
-                    grdStockHold.Columns["clmEdit"].Visible = false;
+                    //grdStockHold.Columns["clmDelete"].Visible = false;
+                    //grdStockHold.Columns["clmEdit"].Visible = false;
                 //}
             }
             catch (Exception ex)
