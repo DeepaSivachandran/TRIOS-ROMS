@@ -43,16 +43,6 @@ namespace ROMS
                 cmbConcern.SelectedValue = 1;
                 lblUnit.Text = "";
                 udfnList();
-                if(grdStockHold.Rows.Count==0)
-                {
-                    if (DGV_SearchGrid.ColumnCount != 0)
-                    {
-                        DGV_SearchGrid.Columns[0].Visible = false;
-                        DGV_SearchGrid.Columns[1].Visible = false;
-                    }
-                }
-                //grdStockHold.Columns["clmDelete"].Visible = false;
-                //grdStockHold.Columns["clmEdit"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -304,9 +294,6 @@ namespace ROMS
             try
             {
                 udfnSave();
-                grdStockHold.Columns["clmDelete"].Visible = false;
-                grdStockHold.Columns["clmEdit"].Visible = false;
-
             }
             catch (Exception ex)
             {
@@ -462,6 +449,8 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
+                            grdStockHold.Columns["clmDelete"].Visible = true;
+                            grdStockHold.Columns["clmEdit"].Visible = true;
                             grdStockHold.DataSource = objDS.Tables[0];
                             grdStockHold.Columns["S.No."].Width = 40;
                             grdStockHold.Columns["Created On"].Width = 140;
@@ -476,8 +465,6 @@ namespace ROMS
                             grdStockHold.Columns["Batch No."].Width = 70;
                             grdStockHold.Columns["Hold Qty"].Width = 70;
                             grdStockHold.Columns["Created By"].Width = 80;
-                            grdStockHold.Columns["clmDelete"].Visible = true;
-                            grdStockHold.Columns["clmEdit"].Visible = true;
                             grdStockHold.Columns["clmDelete"].Width = 40;
                             grdStockHold.Columns["clmEdit"].Width = 30;
                             grdStockHold.Columns["PRID"].Visible = false;
@@ -826,7 +813,8 @@ namespace ROMS
                             udfntooltiphide();
                             tpProductNamePICode.Active = false;
                             cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMID"];
-                            txtProductNamePICode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Product"]);
+                            //txtProductNamePICode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Product"]);
+                            txtProductNamePICode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Product Name"]);
                             lblUnit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Unit"]);
                             varStockLocationId = Convert.ToInt32(objDs.Tables[0].Rows[0]["SLID"]);
                             txtStockLoc.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Stock Location"]);
@@ -1505,7 +1493,7 @@ namespace ROMS
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
                     varPRID = Convert.ToInt32(selectedItem.SubItems[0].Text);
                     varPICode = selectedItem.SubItems[1].Text;
-                    txtProductNamePICode.Text = selectedItem.SubItems[3].Text;
+                    txtProductNamePICode.Text = selectedItem.SubItems[4].Text;
                     txtStockLoc.Text = selectedItem.SubItems[5].Text;
                     txtRack.Text = selectedItem.SubItems[6].Text;
                     txtMrp.Text = selectedItem.SubItems[7].Text;

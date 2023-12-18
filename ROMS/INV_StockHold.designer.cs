@@ -40,6 +40,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlStockRequest = new System.Windows.Forms.Panel();
             this.grpStockRequest = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtRemark = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
@@ -71,9 +73,15 @@
             this.PRID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PICODE = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_SLID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StockLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Rack = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Stock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblUnit = new System.Windows.Forms.TextBox();
@@ -90,8 +98,6 @@
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.epStockHold = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtRemark = new System.Windows.Forms.TextBox();
             this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockRequest.SuspendLayout();
@@ -187,6 +193,28 @@
             this.grpStockRequest.Size = new System.Drawing.Size(1329, 634);
             this.grpStockRequest.TabIndex = 0;
             this.grpStockRequest.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1000, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 20);
+            this.label7.TabIndex = 1110000991;
+            this.label7.Text = "Remarks";
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemark.Location = new System.Drawing.Point(1000, 34);
+            this.txtRemark.MaxLength = 200;
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Size = new System.Drawing.Size(249, 27);
+            this.txtRemark.TabIndex = 3;
+            this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
+            this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
+            this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
             // 
             // button1
             // 
@@ -340,7 +368,7 @@
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(10, 34);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(50, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(58, 27);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -394,15 +422,21 @@
             this.PRID,
             this.PICODE,
             this.PRODUCTLIST,
-            this.STK_SLID,
+            this.PR_TName,
             this.PR_EName,
-            this.PR_TName});
+            this.StockLocation,
+            this.Rack,
+            this.MRP,
+            this.ExpiryDate,
+            this.BatchNo,
+            this.Stock,
+            this.Unit});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(58, 63);
+            this.lvproduct.Location = new System.Drawing.Point(70, 63);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(861, 178);
+            this.lvproduct.Size = new System.Drawing.Size(841, 178);
             this.lvproduct.TabIndex = 1111245;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -421,24 +455,37 @@
             this.PICODE.Text = "P.I Code";
             this.PICODE.Width = 200;
             // 
-            // PRODUCTLIST
-            // 
-            this.PRODUCTLIST.Text = "Product Name";
-            this.PRODUCTLIST.Width = 200;
-            // 
-            // STK_SLID
-            // 
-            this.STK_SLID.Text = "Location Id";
-            // 
-            // PR_EName
-            // 
-            this.PR_EName.DisplayIndex = 5;
-            this.PR_EName.Text = "Product English Name";
-            // 
             // PR_TName
             // 
-            this.PR_TName.DisplayIndex = 4;
-            this.PR_TName.Text = "Product tamil name";
+            this.PR_TName.Text = "Product Name";
+            // 
+            // StockLocation
+            // 
+            this.StockLocation.Text = "Location";
+            // 
+            // Rack
+            // 
+            this.Rack.Text = "Rack";
+            // 
+            // MRP
+            // 
+            this.MRP.Text = "MRP";
+            // 
+            // ExpiryDate
+            // 
+            this.ExpiryDate.Text = "Expiry date";
+            // 
+            // BatchNo
+            // 
+            this.BatchNo.Text = "Batch No.";
+            // 
+            // Stock
+            // 
+            this.Stock.Text = "Stock Qty";
+            // 
+            // Unit
+            // 
+            this.Unit.Text = "Unit";
             // 
             // groupBox2
             // 
@@ -617,10 +664,10 @@
             // txtProductNamePICode
             // 
             this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductNamePICode.Location = new System.Drawing.Point(63, 34);
+            this.txtProductNamePICode.Location = new System.Drawing.Point(71, 34);
             this.txtProductNamePICode.MaxLength = 50;
             this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(318, 27);
+            this.txtProductNamePICode.Size = new System.Drawing.Size(311, 27);
             this.txtProductNamePICode.TabIndex = 1;
             this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
             this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
@@ -640,28 +687,6 @@
             // 
             this.epStockHold.ContainerControl = this;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(1000, 12);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 20);
-            this.label7.TabIndex = 1110000991;
-            this.label7.Text = "Remarks";
-            // 
-            // txtRemark
-            // 
-            this.txtRemark.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemark.Location = new System.Drawing.Point(1000, 34);
-            this.txtRemark.MaxLength = 200;
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(249, 27);
-            this.txtRemark.TabIndex = 3;
-            this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
-            this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
-            this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
-            // 
             // clmDelete
             // 
             this.clmDelete.HeaderText = "Delete";
@@ -669,7 +694,6 @@
             this.clmDelete.Name = "clmDelete";
             this.clmDelete.ReadOnly = true;
             this.clmDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmDelete.Visible = false;
             // 
             // clmEdit
             // 
@@ -678,7 +702,6 @@
             this.clmEdit.Name = "clmEdit";
             this.clmEdit.ReadOnly = true;
             this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmEdit.Visible = false;
             // 
             // INV_StockHold
             // 
@@ -736,10 +759,6 @@
         private System.Windows.Forms.ListView lvproduct;
         private System.Windows.Forms.ColumnHeader PRID;
         private System.Windows.Forms.ColumnHeader PICODE;
-        private System.Windows.Forms.ColumnHeader PRODUCTLIST;
-        private System.Windows.Forms.ColumnHeader STK_SLID;
-        private System.Windows.Forms.ColumnHeader PR_TName;
-        private System.Windows.Forms.ColumnHeader PR_EName;
         private System.Windows.Forms.ListView lvproductPICode;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -769,6 +788,16 @@
         public System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.TextBox txtRemark;
+        private System.Windows.Forms.ColumnHeader PRODUCTLIST;
+        private System.Windows.Forms.ColumnHeader PR_TName;
+        private System.Windows.Forms.ColumnHeader PR_EName;
+        private System.Windows.Forms.ColumnHeader StockLocation;
+        private System.Windows.Forms.ColumnHeader Rack;
+        private System.Windows.Forms.ColumnHeader MRP;
+        private System.Windows.Forms.ColumnHeader ExpiryDate;
+        private System.Windows.Forms.ColumnHeader BatchNo;
+        private System.Windows.Forms.ColumnHeader Stock;
+        private System.Windows.Forms.ColumnHeader Unit;
         private System.Windows.Forms.DataGridViewImageColumn clmDelete;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
     }
