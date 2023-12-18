@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,10 +47,13 @@ namespace ROMS
             try
             { 
                 grdHeaderview.DataSource = null;
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 24;
+                objMR_Supplier.paraCompanycode = Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue);
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService(); 
-                objDs = objdserv.udfnSupplierList(24, 0, 0, 0, 0, "", 0,0,Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue),"",0,0,0,0,0,0, "","","",0);
+                objDs = objdserv.udfnSupplierList(objMR_Supplier);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

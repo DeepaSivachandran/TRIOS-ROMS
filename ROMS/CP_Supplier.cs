@@ -1137,9 +1137,12 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID"); 
                     objDataBind = null;
                     //cmbReturnPolicy.SelectedValue = -1;
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 2;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(pbSupplierid);
                     SPDataService objspservice = new SPDataService();
-                    DataSet objDS;
-                    objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                    DataSet objDS = new DataSet(); ;
+                    objDS = objspservice.udfnSupplierList(objMR_Supplier);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -3547,7 +3550,13 @@ namespace ROMS
                 {
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
-                objDs = objspservice.udfnSupplierList(5, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbOrderschedule.SelectedValue), Convert.ToInt32(cmborderday.SelectedValue), 0, "", Convert.ToInt32(cmbMappedorderrype.SelectedValue), 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 5;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbOrderschedule.SelectedValue);
+                objMR_Supplier.pardayid = Convert.ToInt32(cmborderday.SelectedValue);
+                objMR_Supplier.paraordertype = Convert.ToInt32(cmbMappedorderrype.SelectedValue);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 if (objDs.Tables[0].Rows.Count > 0)
                 {
                     grdViewSupplierMapping.DataSource = objDs.Tables[0];
@@ -3706,13 +3715,18 @@ namespace ROMS
                 btnListPrint.Visible = false;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                if(Convert.ToInt32(cmbOrderschedule.SelectedValue)==0)
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 28;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(pbSupplierid);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbOrderschedule.SelectedValue);
+                if (Convert.ToInt32(cmbOrderschedule.SelectedValue)==0)
                 {
-                    objDs = objspservice.udfnSupplierList(28, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0,0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 }
                 else
                 {
-                    objDs = objspservice.udfnSupplierList(28, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objMR_Supplier.paraordertype = Convert.ToInt32(cmbMappedorderrype.SelectedValue);
+                    objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 }
                 objspservice.CloseConnection();
                 if (objDs != null)
@@ -3739,10 +3753,14 @@ namespace ROMS
             {
                 txtMappedOrderDay.Text ="";
                 cmbMappedorderrype.Text = "";
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 21;
+                objMR_Supplier.paraSupplierid = SupplierUpdate;
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbOrderschedule.SelectedValue);
                 SPDataService objSPservice = new SPDataService();
                 DataSet objDS = new DataSet();
                 cmborderday.DataSource = null;
-                objDS = objSPservice.udfnSupplierList(21, SupplierUpdate, Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                objDS = objSPservice.udfnSupplierList(objMR_Supplier);
                 objSPservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -4230,10 +4248,14 @@ namespace ROMS
         {
             try
             {
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 0;
+                objMR_Supplier.paraSupplierid = SupplierUpdate;
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbMappingorderschedule.SelectedValue);
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 cmbMappingordeDay.DataSource = null;
-                objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -4250,11 +4272,14 @@ namespace ROMS
                     }
                     objspservice.CloseConnection();
                 }
-
+                MR_Supplier objMR_Supplier1 = new MR_Supplier();
+                objMR_Supplier1.ViewType = 21;
+                objMR_Supplier1.paraSupplierid = SupplierUpdate;
+                objMR_Supplier1.paraSupplierScheduleid = Convert.ToInt32(cmbMappingorderschedule.SelectedValue);
                 SPDataService objSPservice = new SPDataService();
                 DataSet objDS = new DataSet();
                 cmborderday.DataSource = null;
-                objDS = objSPservice.udfnSupplierList(21, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                objDS = objSPservice.udfnSupplierList(objMR_Supplier1);
                 objSPservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -4383,8 +4408,11 @@ namespace ROMS
                 {
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
-                objDs = objspservice.udfnSupplierList(4, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
-
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 4;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbMappingorderschedule.SelectedValue);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 dtSubGroupMapping = new DataTable();
                 dtSubGroupMapping.Columns.Add("", typeof(Boolean));
                 dtSubGroupMapping.Columns.Add("S.No.", typeof(string));
@@ -4937,7 +4965,11 @@ namespace ROMS
                                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                                 }
                                 varSLNO = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value.ToString());
-                                objDS = objspservice.udfnSupplierList(varview, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                                MR_Supplier objMR_Supplier = new MR_Supplier();
+                                objMR_Supplier.ViewType = varview;
+                                objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
+                                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                objDS = objspservice.udfnSupplierList(objMR_Supplier);
                                 objspservice.CloseConnection();
                                 if (objDS != null)
                                 {
@@ -6176,10 +6208,12 @@ namespace ROMS
         }
         public void udfnSaveGrdAdd()
         {
-
+            MR_Supplier objMR_Supplier = new MR_Supplier();
+            objMR_Supplier.ViewType = 7;
+            objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
             SPDataService objspservice = new SPDataService();
             DataSet objDS;
-            objDS = objspservice.udfnSupplierList(7, Convert.ToInt32(SupplierUpdate), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+            objDS = objspservice.udfnSupplierList(objMR_Supplier);
             objspservice.CloseConnection();
             if (objDS.Tables[0].Rows.Count > 0)
             {
@@ -8380,9 +8414,13 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     int varPrint = 0;
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 22;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(pbSupplierid);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbOrderschedule.SelectedValue);
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objDs = objspservice.udfnSupplierList(objMR_Supplier);
                     objspservice.CloseConnection();
                     if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                     if (varPrint == 1)

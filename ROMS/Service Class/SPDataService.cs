@@ -1891,7 +1891,7 @@ namespace ROMS
             }
             return result;
         }
-        public DataSet udfnSupplierList(int ViewType, int paraSupplierid, int paraSupplierScheduleid, int pardayid, int paraOrderId, string @paraSupplierName, int paraordertype, int paraStatusId, int paraCompanycode, string paraProductType, int paraCityId, int paraStateId, int paraGstType, int paraPaymentTerm, int paraReturnPolicy, int ParaPOID, string paraProducts, string ParaFromDate, string ParaToDate, int paraFlag)
+        public DataSet udfnSupplierList(MR_Supplier objMR_Supplier)
         {
             DataSet ds = new DataSet();
             try
@@ -1899,28 +1899,28 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[MRG_Supplier]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Supplier.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraSupplierid", paraSupplierid);
-                varSqlCommand.Parameters.AddWithValue("@paraSupplierScheduleid", paraSupplierScheduleid);
-                varSqlCommand.Parameters.AddWithValue("@pardayid", pardayid);
-                varSqlCommand.Parameters.AddWithValue("@paraOrderId", paraOrderId);
-                varSqlCommand.Parameters.AddWithValue("@paraSupplierName", paraSupplierName);
-                varSqlCommand.Parameters.AddWithValue("@paraordertype", paraordertype);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraCompanycode", paraCompanycode);
-                varSqlCommand.Parameters.AddWithValue("@ParaPOID", ParaPOID);
-                varSqlCommand.Parameters.AddWithValue("@paraProductType", paraProductType);
-                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
-                varSqlCommand.Parameters.AddWithValue("@paraStateId", paraStateId);
-                varSqlCommand.Parameters.AddWithValue("@paraGstType", paraGstType);
-                varSqlCommand.Parameters.AddWithValue("@paraPaymentTerm", paraPaymentTerm);
-                varSqlCommand.Parameters.AddWithValue("@paraReturnPolicy", paraReturnPolicy);
-                varSqlCommand.Parameters.AddWithValue("@paraProducts", paraProducts);
-                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
-                varSqlCommand.Parameters.AddWithValue("@ParaFromDate", ParaFromDate);
-                varSqlCommand.Parameters.AddWithValue("@ParaToDate", ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierid", objMR_Supplier.paraSupplierid);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierScheduleid", objMR_Supplier.paraSupplierScheduleid);
+                varSqlCommand.Parameters.AddWithValue("@pardayid", objMR_Supplier.pardayid);
+                varSqlCommand.Parameters.AddWithValue("@paraOrderId", objMR_Supplier.paraOrderId);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierName", objMR_Supplier.paraSupplierName);
+                varSqlCommand.Parameters.AddWithValue("@paraordertype", objMR_Supplier.paraordertype);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Supplier.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanycode", objMR_Supplier.paraCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@ParaPOID", objMR_Supplier.ParaPOID);
+                varSqlCommand.Parameters.AddWithValue("@paraProductType", objMR_Supplier.paraProductType);
+                varSqlCommand.Parameters.AddWithValue("@paraCityId", objMR_Supplier.paraCityId);
+                varSqlCommand.Parameters.AddWithValue("@paraStateId", objMR_Supplier.paraStateId);
+                varSqlCommand.Parameters.AddWithValue("@paraGstType", objMR_Supplier.paraGstType);
+                varSqlCommand.Parameters.AddWithValue("@paraPaymentTerm", objMR_Supplier.paraPaymentTerm);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnPolicy", objMR_Supplier.paraReturnPolicy);
+                varSqlCommand.Parameters.AddWithValue("@paraProducts", objMR_Supplier.paraProducts);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Supplier.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objMR_Supplier.ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_Supplier.ParaToDate);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
