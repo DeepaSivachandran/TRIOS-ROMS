@@ -84,7 +84,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=25 OR MSTID=-1", "MST_DisplayText,MSTID", cmbBatchNo, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=25 ", "MST_DisplayText,MSTID", cmbBatchNo, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -430,14 +430,14 @@ namespace ROMS
                     blnErrorFlag = true;
 
                 }
-                if (Convert.ToString(cmbBatchNo.SelectedValue) == "0" || Convert.ToString(cmbBatchNo.SelectedValue) == "-1")
-                {
-                    epSubGroup.SetError(cmbBatchNo, "Please select batch No. status");
-                    cmbBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBatchNo.ShowAlways = true;
-                    tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(cmbBatchNo.SelectedValue) == "0" || Convert.ToString(cmbBatchNo.SelectedValue) == "-1")
+                //{
+                //    epSubGroup.SetError(cmbBatchNo, "Please select batch No. status");
+                //    cmbBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpBatchNo.ShowAlways = true;
+                //    tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (txtLocation.Text.Trim() != "")
                 {
                     string varLocation = "0";
@@ -707,7 +707,8 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBatchNo.Focus();
+                    //cmbBatchNo.Focus();
+                    txtLocation.Focus();
                 }
             }
             catch (Exception ex)
