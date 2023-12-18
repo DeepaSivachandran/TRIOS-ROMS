@@ -18,6 +18,7 @@ namespace ROMS
 
 
         private ToolTip tpConcern = new ToolTip();
+        private ToolTip tpDRack = new ToolTip();
         private ToolTip tpTransferNo = new ToolTip();
         private ToolTip tpProductName = new ToolTip();
         private ToolTip tpSStockLocation = new ToolTip();
@@ -319,7 +320,7 @@ namespace ROMS
                             grdStockTransfer.Columns["clmExpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                     }
-                    if (varStatusID == 32)
+                    if (varStatusID != 21)
                     {
                         grdStockTransfer.ReadOnly = true;
                         btnSave.Enabled = false;
@@ -1162,6 +1163,14 @@ namespace ROMS
                     tpsRack.Show("Invalid source rack", txtSRack, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(cmbDRack.Text).Trim() == "-Select-")
+                {
+                    errStockTransfer.SetError(cmbDRack, "Please select destination rack");
+                    cmbDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpDRack.ShowAlways = true;
+                    tpDRack.Show("Please select destination rack", cmbDRack, 5000);
+                    blnErrorFlag = true;
+                }
                 //if (Convert.ToString(txtMRP.Text).Trim() == "")
                 //{
                 //    errStockTransfer.SetError(txtMRP, "Invalid mrp");
@@ -1822,7 +1831,7 @@ namespace ROMS
                 {
                     if (objDT.Tables.Count > 0)
                     {
-                        if (objDT.Tables[0].Rows.Count > 0)
+                        if (objDT.Tables[0].Rows.Count > 1)
                         {
                             cmbDRack.Enabled = true;
                             cmbDRack.ValueMember = "RKID";

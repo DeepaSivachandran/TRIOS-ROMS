@@ -191,11 +191,11 @@
             // chkStatus
             // 
             this.chkStatus.AutoSize = true;
-            this.chkStatus.Location = new System.Drawing.Point(895, 591);
+            this.chkStatus.Location = new System.Drawing.Point(858, 591);
             this.chkStatus.Name = "chkStatus";
-            this.chkStatus.Size = new System.Drawing.Size(86, 24);
+            this.chkStatus.Size = new System.Drawing.Size(118, 24);
             this.chkStatus.TabIndex = 16;
-            this.chkStatus.Text = "Completed";
+            this.chkStatus.Text = "Entry Completed";
             this.chkStatus.UseVisualStyleBackColor = true;
             this.chkStatus.CheckedChanged += new System.EventHandler(this.ChkStatus_CheckedChanged);
             this.chkStatus.Enter += new System.EventHandler(this.ChkStatus_Enter);
