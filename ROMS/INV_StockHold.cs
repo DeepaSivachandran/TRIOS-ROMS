@@ -515,12 +515,15 @@ namespace ROMS
             try
             {
                 lvproductPICode.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     var ViewType = 42;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "","", null,0,null,"","");
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = ViewType;
+                    objMR_Product.paraProductName = txtProductName.Text.Trim();
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1468,14 +1471,19 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
+                    MR_Product objMR_Product = new MR_Product();
                     var ViewType = 42;
+                    objMR_Product.paraViewType = ViewType;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     if (VarSearchFlag == false)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "","", null,0,null,"","");
+                        objMR_Product.paraProductName = txtProductNamePICode.Text.Trim();
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "","", null,0,null,"","");
+                        objMR_Product.paraPicode = txtProductNamePICode.Text.Trim();
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
 
                     }
                     objspdservice.CloseConnection();

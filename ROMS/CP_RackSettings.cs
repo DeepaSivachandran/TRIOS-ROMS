@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -1544,8 +1545,13 @@ namespace ROMS
                 //        tppRack.Show("Please select valid rack.", txtDRack, 5000);
                 //    }
                 //}
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0,
-                    0, 0, 0,Convert.ToInt32(varId_PurchaseRack),0,0, Convert.ToInt32(varId_PurLocation), 0,0,0,0,"",0,"","", null,0,null,"","");
+                MR_Product objMRG_Product = new MR_Product();
+                objMRG_Product.paraViewType = varViewType;
+                objMRG_Product.paraGroup = Convert.ToInt32(varGroupId);
+                objMRG_Product.paraSubgroup = Convert.ToInt32(varSubGroupId);
+                objMRG_Product.paraRackId = Convert.ToInt32(varId_PurchaseRack);
+                objMRG_Product.paraLocationId = Convert.ToInt32(varId_PurLocation);
+                objDs = objdserv.udfnproductmasterlist(objMRG_Product);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[1].Rows.Count != 0)

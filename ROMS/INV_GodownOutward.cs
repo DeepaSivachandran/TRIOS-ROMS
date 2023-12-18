@@ -912,13 +912,21 @@ namespace ROMS
                     var ViewType = 37;
                     int varEntry = 0;
                     if (btnSave.Text == "Update") { varEntry = varGOId; }
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = ViewType;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraLocationId = Convert.ToInt32(varStockLocationId);
+                    objMR_Product.paraStockTransfer = dtStock;
+                    objMR_Product.paraId = varEntry;
                     if (VarSearchFlag == false)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0,"", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text.Trim(), 0, "","", dtStock,varEntry,null,"","");
+                        objMR_Product.paraProductName = txtProduct.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, txtProduct.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0,"", 0, "","", dtStock, varEntry, null, "", "");
+                        objMR_Product.paraPicode = txtProduct.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     objspdservice.CloseConnection();
                     if (objDs != null)

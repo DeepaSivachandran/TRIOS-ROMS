@@ -1534,8 +1534,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraGroup", objMR_Product.paraGroup);
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objMR_Product.paraSubgroup);
                 varSqlCommand.Parameters.AddWithValue("@paraPicode", objMR_Product.paraPicode);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", objMR_Product.paraUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objMR_Product.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_Product.ParaCompanycode);
                 varSqlCommand.Parameters.AddWithValue("@ParaScheduleid", objMR_Product.ParaScheduleid);
                 varSqlCommand.Parameters.AddWithValue("@paraScheduleDay", objMR_Product.paraScheduleDay);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -4009,12 +4010,20 @@ namespace ROMS
             {
                 lblNoRecordsFound.Visible = false;
                 grdSupplierMappingLoad.DataSource = null;
-                SPDataService objspservice = new SPDataService();
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 3;
+                objMR_Product.paraGroup = varGroupId;
+                objMR_Product.paraSubgroup = varSubGroupId;
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraBrandID = varBrandId;
+                objMR_Product.ParaScheduleid = Convert.ToString(cmbMappingorderschedule.SelectedValue);
+                objMR_Product.paraScheduleDay = Convert.ToString(cmbMappingordeDay.SelectedValue);
                 DataSet objDs = new DataSet();
                 dtSubGroup = null;
                 udfnInitSubgroup();
+                SPDataService objspservice = new SPDataService();
                 //objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
-                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, Convert.ToInt32(cmbStatus.SelectedValue), varBrandId, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "","", null,0,null,"","");
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)

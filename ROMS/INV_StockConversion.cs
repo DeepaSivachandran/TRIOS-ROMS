@@ -791,12 +791,16 @@ namespace ROMS
                 txtTotalUnit.Text = "";
                 txtStock.BackColor = Color.White;
                 lvproduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
                     var ViewType = 42;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "","", null,0,null,"","");
+                    DataSet objDs = new DataSet();
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = ViewType;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraProductName = txtProductName.Text.Trim();
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -360,9 +361,15 @@ namespace ROMS
 
                     if (Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text) != 0)
                     {
+                        MR_Product objMR_Product = new MR_Product();
+                        objMR_Product.paraViewType = 33;
+                        objMR_Product.ParaCompanycode = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
+                        objMR_Product.ParaScheduleid = Convert.ToString(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
+                        objMR_Product.ParaSupplierId = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
+                        objMR_Product.ParaProductsCode = MainForm.objPUR_PurchaseOrder.pbProductsCode;
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode,"",null,0,null,"","");
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {

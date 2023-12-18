@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -538,11 +539,16 @@ namespace ROMS
                 txtRequiredQty.Text = "";
                 grdGodownStock.Rows.Clear();
                 lvProduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, txtProductNamePICode.Text, 0,varProducts,"",null,0, null,"","");
+                    DataSet objDs = new DataSet();
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 45;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraProductName = txtProductNamePICode.Text;
+                    objMR_Product.ParaProductsCode = varProducts;
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -658,9 +664,12 @@ namespace ROMS
         {
             try
             {
+                DataSet objDS = new DataSet() ;
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 43;
+                objMR_Product.ParaProductCode = Convert.ToInt32(lblProduct.Text);
                 SPDataService objspservice = new SPDataService();
-                DataSet objDS;
-                objDS = objspservice.udfnproductmasterlist(43,Convert.ToInt32(lblProduct.Text),0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
+                objDS = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {

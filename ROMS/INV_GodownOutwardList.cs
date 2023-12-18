@@ -574,11 +574,17 @@ namespace ROMS
                 dtStock.Columns.Add("STK_QTY", typeof(string));
 
                 lvProduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(46,0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0,"","",null,1,null,dtpOutwardDate.Text,dtpOutwardDate2.Text);
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 46;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraProductName = txtProductName.Text;
+                    objMR_Product.ParaFromDate = dtpOutwardDate.Text;
+                    objMR_Product.ParaToDate = dtpOutwardDate2.Text;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

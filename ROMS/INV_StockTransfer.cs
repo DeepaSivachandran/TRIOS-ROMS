@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -926,13 +927,21 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 35;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraId = varStockTransferID;
+                    objMR_Product.paraLocationId = Convert.ToInt32(lblSLocation.Text);
+                    objMR_Product.paraStockTransfer = dtStock;
                     if (VarSearchFlag == true)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0,txtProductNamePICode.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, "", 0, "", "", dtStock, varStockTransferID, null,"","");
+                        objMR_Product.paraPicode = txtProductNamePICode.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "", "", dtStock, varStockTransferID, null,"","");
+                        objMR_Product.paraProductName = txtProductNamePICode.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     objspdservice.CloseConnection();
                     if (objDs != null)
