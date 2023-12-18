@@ -955,10 +955,10 @@ namespace ROMS
             try
             {
                 lvSupplier.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplierName.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplierName.Text, 0, 0,Convert.ToInt32(cmbconcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,"",dpFromDate.Text,dpToDate.Text,2);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -1217,10 +1217,10 @@ namespace ROMS
             try
             {
                 lvSupplierName.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)

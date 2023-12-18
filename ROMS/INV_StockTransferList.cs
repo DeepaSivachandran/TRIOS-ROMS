@@ -758,10 +758,10 @@ namespace ROMS
                     varViewType = 11;
                 }
                 lvSLocation.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSLocation.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnStockLocationList(27,Convert.ToInt32(cmbConcern.SelectedValue),0,0,txtSLocation.Text,0,0,0,dpTrannsferFromDate.Text,dpTransferToDate.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -1069,10 +1069,10 @@ namespace ROMS
             try
             {
                 lvProduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnproductmasterlist(46,0,0,0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue), 0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,0,txtProductNamePICode.Text,0,"","",null,0,null,dpTrannsferFromDate.Text,dpTransferToDate.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
