@@ -16,7 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        
+        public string varUserID = "";
 
         public INV_DamageEntryList()
         {
@@ -285,16 +285,16 @@ namespace ROMS
                 {
                     TsbDelete_Click(sender, e);
                 }
-                if ((e.KeyCode == Keys.Delete))
-                {
-                    TsbDelete_Click(sender, e);
-                }
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
                 }
             }
             catch (Exception ex)
@@ -350,10 +350,22 @@ namespace ROMS
         {
             cmbconcern.Focus();
             udfnCmbConcern();
+            cmbconcern.SelectedValue = 1;
+            DataBind objDataBind = new DataBind();
+            objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (3) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+            objDataBind = null;
+            cmbStatus.SelectedValue = 6;
+            DataSet objDs = new DataSet();
+            SPDataService objspservice = new SPDataService();
+            objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",3);
+            DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            //dpFromDate.MinDate = varDate;
+            dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            objspservice.CloseConnection();
             dpFromDate.MinDate = MainForm.pbFYStartDate;
             dpFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpToDate.MinDate = dpFromDate.MaxDate;
-            cmbconcern.SelectedValue = 1;
+            dpToDate.MinDate = varDate;
+            dpToDate.MaxDate = MainForm.pbCurrentDate;
             udfnList();
         }
         public void udfnCmbConcern()
@@ -488,8 +500,28 @@ namespace ROMS
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
+                            if (varResult.Split('~')[1] == "1")
+                            {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    //SPDataService objDser = new SPDataService();
+                                    //Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
+                                    objTRN_Damage.ViewType = 2;
+                                    objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                                    objTRN_Damage.paraOriginator = "Damage Entry Delete";
+                                    objTRN_Damage.paraDeleteFlag = 1;
+                                    varResult = objDser.udfnDamageEntry(objTRN_Damage);
+                                    if (varResult.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
                         }
                         else if (varResult.Split('~')[0] == "4")
                         {
@@ -611,7 +643,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -705,7 +737,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(1,0,Convert.ToInt32(lblSupplierCode.Text),0,Convert.ToInt32(cmbconcern.SelectedValue),0,dpFromDate.Text, dpToDate.Text);
+                objDs = objspservice.udfnproductDamage(1,0,Convert.ToInt32(lblSupplierCode.Text),0,Convert.ToInt32(cmbconcern.SelectedValue),Convert.ToInt32(cmbStatus.SelectedValue),dpFromDate.Text, dpToDate.Text,"");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -722,7 +754,7 @@ namespace ROMS
                             grdDamageEntryList.Columns["DMID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 80;
-                            grdDamageEntryList.Columns["Supplier"].Width = 200;
+                            grdDamageEntryList.Columns["Supplier"].Width = 330;
                             grdDamageEntryList.Columns["City"].Width = 120;
                             grdDamageEntryList.Columns["GSTIN"].Width = 150;
                             grdDamageEntryList.Columns["Created By"].Width = 120;
@@ -922,7 +954,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplierName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplierName.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplierName.Text, 0, 0,Convert.ToInt32(cmbconcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,"",dpFromDate.Text,dpToDate.Text,2);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -985,7 +1017,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1272,7 +1304,7 @@ namespace ROMS
             {
                 for (int i = 0; i < grdDamageEntryList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "20")
+                    if (Convert.ToString(grdDamageEntryList.Rows[i].Cells["StatusID"].Value) == "6")
                     {
                         grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
@@ -1316,10 +1348,65 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
-                if (e.KeyCode == Keys.Delete)
+                //if (e.KeyCode == Keys.Delete)
+                //{
+                //    udfndelete();
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    udfndelete();
+                    btnView.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {

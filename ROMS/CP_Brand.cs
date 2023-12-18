@@ -412,6 +412,9 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                Application.DoEvents();
+                grdGroup.SelectedRows[0].Cells[0].ReadOnly = true;
                 int varviewtype = 6;
                 if (btnSave.Text == "Update")
                 {
@@ -547,7 +550,8 @@ namespace ROMS
                 grdSubGroup.ClearSelection();
                 this.grdSubGroup.Sort(this.grdSubGroup.Columns[1], ListSortDirection.Ascending);
                 //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
-                txtProductSubGroup.Text = "";
+                txtProductSubGroup.Text = ""; 
+                grdGroup.SelectedRows[0].Cells[0].ReadOnly = false;
             }
         }
 
@@ -1393,13 +1397,12 @@ namespace ROMS
         {
             try
             {
-                picLoader.Visible = true;
-                Application.DoEvents();
                 if (e.ColumnIndex == 0)
                 {
                     udfnCaculateCheckedCount_Group();
                 }
-                varGroup = ""; string varRemoveGroup = "";
+                varGroup = ""; string varRemoveGroup = ""; 
+                
                 if (Convert.ToBoolean(grdGroup.SelectedRows[0].Cells[0].EditedFormattedValue) == true)
                 {
                     varGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
@@ -2251,6 +2254,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void GrdGroup_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 

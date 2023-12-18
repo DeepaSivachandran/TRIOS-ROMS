@@ -26,6 +26,7 @@ namespace ROMS
         private ToolTip tpQuantity = new ToolTip();
         private ToolTip tpSupplierName = new ToolTip();
         private ToolTip tpcompanyname = new ToolTip();
+        public bool VarSearchFlag = true;
         public string varPICode = "";
         public string varUnitSymbol = "";
         public string varUTID = "";
@@ -67,13 +68,14 @@ namespace ROMS
                 grdDamageEntry.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID),Convert.ToString(txtMrp.Text.Trim()),Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim());
+                dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim());
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
                 varModifiedFlag = 1;
                 txtProductName.Focus();
                 epDamageEntry.Clear();
                 grdDamageEntry.ClearSelection();
                 udfnProductClear();
+                lblUnit.Text = "";
             }
             catch(Exception ex)
             {
@@ -113,7 +115,7 @@ namespace ROMS
         {
             try
             {
-                cmbConcern.Focus();
+                //cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3, varConcernId = 0;
@@ -150,7 +152,7 @@ namespace ROMS
                 dtDamage.Columns.Add("DM_PRID", typeof(int));
                 dtDamage.Columns.Add("DM_SLID", typeof(int));
                 dtDamage.Columns.Add("DM_RKID", typeof(int));
-                dtDamage.Columns.Add("DM_MRP", typeof(string));
+                dtDamage.Columns.Add("DM_MRP", typeof(decimal));
                 dtDamage.Columns.Add("DM_DD", typeof(int));
                 dtDamage.Columns.Add("DM_MM", typeof(int));
                 dtDamage.Columns.Add("DM_YYYY", typeof(int));
@@ -177,6 +179,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                this.ActiveControl = txtProductName;
             }
         }
         public void udfnclose()
@@ -244,7 +250,6 @@ namespace ROMS
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -864,30 +869,30 @@ namespace ROMS
                     tpRack.Show("Invalid rack", txtRack, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtMrp.Text == "")
-                {
-                    epDamageEntry.SetError(txtMrp, "Invalid mrp");
-                    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMRP.ShowAlways = true;
-                    tpMRP.Show("Invalid mrp", txtMrp, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtExpiryDate.Text == "")
-                {
-                    epDamageEntry.SetError(txtExpiryDate, "Invalid expiry date");
-                    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpExpiryDate.ShowAlways = true;
-                    tpExpiryDate.Show("Invalid expiry date", txtExpiryDate, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtBatchNo.Text == "")
-                {
-                    epDamageEntry.SetError(txtBatchNo, "Invalid batch no.");
-                    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBatchNo.ShowAlways = true;
-                    tpBatchNo.Show("Invalid batch no.", txtBatchNo, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtMrp.Text == "")
+                //{
+                //    epDamageEntry.SetError(txtMrp, "Invalid mrp");
+                //    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpMRP.ShowAlways = true;
+                //    tpMRP.Show("Invalid mrp", txtMrp, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtExpiryDate.Text == "")
+                //{
+                //    epDamageEntry.SetError(txtExpiryDate, "Invalid expiry date");
+                //    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpExpiryDate.ShowAlways = true;
+                //    tpExpiryDate.Show("Invalid expiry date", txtExpiryDate, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtBatchNo.Text == "")
+                //{
+                //    epDamageEntry.SetError(txtBatchNo, "Invalid batch no.");
+                //    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpBatchNo.ShowAlways = true;
+                //    tpBatchNo.Show("Invalid batch no.", txtBatchNo, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (txtStockQty.Text == "")
                 {
                     epDamageEntry.SetError(txtStockQty, "Invalid stock qty");
@@ -1011,6 +1016,17 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
+            finally
+            {
+                if (grdDamageEntry.Rows.Count > 0)
+                {
+                    cmbConcern.Enabled = false;
+                }
+                else
+                {
+                    cmbConcern.Enabled = true;
+                }
+            }
         }
         private void BtnAdd_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1035,7 +1051,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnproductDamage(2,varID, 0,0, 0, 0, "", "");
+                    objDS = objspservice.udfnproductDamage(2,varID, 0,0, 0, 0, "", "","");
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -1057,7 +1073,7 @@ namespace ROMS
                             {
                                 //grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1, varPICode, txtProductName.Text.Trim(), txtMrp.Text.Trim(), txtExpiryDate.Text.Trim(), txtBatchNo.Text.Trim(), txtQuantity.Text.Trim(), varUnitSymbol, txtsuppliername.Text.Trim(), Day, Month, Year, (lblProduct.Text).Trim(), varSLID, varRKID, varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
                                 grdDamageEntry.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Rack"]),
-                                Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]),
+                                 string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]),
                                  Convert.ToString(objDS.Tables[0].Rows[i]["Supplier"]), Convert.ToString(objDS.Tables[0].Rows[i]["Day"]), Convert.ToString(objDS.Tables[0].Rows[i]["Month"]), Convert.ToString(objDS.Tables[0].Rows[i]["Year"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]),Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]),
                                  Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]));
 
@@ -1101,7 +1117,7 @@ namespace ROMS
                                 PRID = Convert.ToInt32(grdDamageEntry.SelectedRows[0].Cells["clmPRID"].Value);
                                 SLID = Convert.ToInt32(grdDamageEntry.SelectedRows[0].Cells["clmSLID"].Value);
                                 RKID = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmRKID"].Value);
-                                MRP = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmmrp"].Value);
+                                MRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmmrp"].Value)));
                                 ExpiryDate = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmexpirydate"].Value);
                                 BatchNo = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmBatchNo"].Value);
                                 SPID = Convert.ToString(grdDamageEntry.SelectedRows[0].Cells["clmSPID"].Value);
@@ -1132,6 +1148,14 @@ namespace ROMS
             finally
             {
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
+                if (grdDamageEntry.Rows.Count > 0)
+                {
+                    cmbConcern.Enabled = false;
+                }
+                else
+                {
+                    cmbConcern.Enabled = true;
+                }
             }
         }
         private void TxtRemark_Enter(object sender, EventArgs e)
@@ -1402,6 +1426,19 @@ namespace ROMS
                     btnSave.Focus();
                     BtnSave_Click(sender, e);
                 }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                    }
+                }
             }
             catch(Exception ex)
             {
@@ -1487,7 +1524,14 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,txtProductName.Text.Trim(),0,"","",null, varID,dtDamage);
+                    if (VarSearchFlag == true)
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", "", null, varID, dtDamage,"","");
+                    }
+                    else
+                    {
+                        objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "", "", null, varID, dtDamage,"","");
+                    }
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1497,17 +1541,17 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_ShortName"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_ShortName"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 550;
-                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[1].Width = 680;
+                                lvProduct.Columns[2].Width = 0;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;
                                 lvProduct.Columns[5].Width = 0;
@@ -1607,7 +1651,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     varPICode = selectedItem.SubItems[0].Text;
-                    txtProductName.Text = selectedItem.SubItems[3].Text;
+                    txtProductName.Text = selectedItem.SubItems[2].Text;
                     txtLocation.Text = selectedItem.SubItems[10].Text;
                     txtRack.Text = selectedItem.SubItems[14].Text;
                     txtMrp.Text = selectedItem.SubItems[4].Text;
@@ -1672,7 +1716,7 @@ namespace ROMS
                                 lvSupplier.BringToFront();
                                 lvSupplier.Columns[1].Width = 0;
                                 lvSupplier.Columns[2].Width = 0;
-                                lvSupplier.Columns[0].Width = 250;
+                                lvSupplier.Columns[0].Width = 300;
                                 lvSupplier.Columns[3].Width = 0;
                             }
                         }

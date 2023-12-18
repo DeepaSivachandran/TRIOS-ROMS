@@ -796,7 +796,7 @@ namespace ROMS
                 if (txtProductName.Text.Length > 0)
                 {
                     var ViewType = 42;
-                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "","", null,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "","", null,0,null,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

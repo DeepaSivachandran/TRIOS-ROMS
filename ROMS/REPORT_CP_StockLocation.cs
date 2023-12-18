@@ -143,7 +143,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockLocationList(16,Convert.ToInt32(cmbConcern.SelectedValue),0,0,"",0,0, Convert.ToInt32(cmbStatus.SelectedValue));
+                objDs = objspservice.udfnStockLocationList(16,Convert.ToInt32(cmbConcern.SelectedValue),0,0,"",0,0, Convert.ToInt32(cmbStatus.SelectedValue),"","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -205,7 +205,7 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(), 0, 0, 0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(), 0, 0, 0,"","");
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -235,7 +235,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 
-                objDs = objspservice.udfnproductmasterlist(19,0,0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0,0,0, Convert.ToInt32(lblLocationCode.Text), Convert.ToInt32(cmbLocationType.SelectedValue), Convert.ToInt32(cmbGodownType.SelectedValue), 0,0,"",0,"", "",null,0,null);
+                objDs = objspservice.udfnproductmasterlist(19,0,0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0,0,0, Convert.ToInt32(lblLocationCode.Text), Convert.ToInt32(cmbLocationType.SelectedValue), Convert.ToInt32(cmbGodownType.SelectedValue), 0,0,"",0,"", "",null,0,null,"","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -332,7 +332,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
 
-                objDs = objspservice.udfnproductmasterlist(40,Convert.ToInt32(lblProductId.Text), 0,Convert.ToInt32(lblGroupId.Text),Convert.ToInt32(lblSubGroupId.Text), "", "", "",Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, "", 0, "","", null,0,null);
+                objDs = objspservice.udfnproductmasterlist(40,Convert.ToInt32(lblProductId.Text), 0,Convert.ToInt32(lblGroupId.Text),Convert.ToInt32(lblSubGroupId.Text), "", "", "",Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, "", 0, "","", null,0,null,"","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -559,7 +559,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text, 0, 0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1395,7 +1395,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProduct.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(41, 0, 0, Convert.ToInt32(lblGroupId.Text),Convert.ToInt32(lblSubGroupId.Text), "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProduct.Text, 0, "", "",null,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(41, 0, 0, Convert.ToInt32(lblGroupId.Text),Convert.ToInt32(lblSubGroupId.Text), "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProduct.Text, 0, "", "",null,0,null,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

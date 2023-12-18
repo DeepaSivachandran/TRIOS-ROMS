@@ -14,7 +14,7 @@ namespace ROMS
     {
         ToolTip tpSupplier = new ToolTip();
         public string varUserID = "";
-        public int varActiveCount = 0, varInactiveCount = 0, varTotalCount = 0, Varflag=0, varNotDefinedCount=0;
+        public int varActiveCount = 0, varInactiveCount = 0, varTotalCount = 0, Varflag = 0, varNotDefinedCount = 0;
 
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -131,7 +131,7 @@ namespace ROMS
                             varscheduleid = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString());
                         }
                         SPDataService objspdservice = new SPDataService();
-                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 0,"",0);
+                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 0, "", 0);
                         string[] varvalue = varResult.Split('~');
                         objspdservice.CloseConnection();
                         if (varvalue[0] == "3")
@@ -144,7 +144,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objspdservice = new SPDataService();
-                                    varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 1,"",0);
+                                    varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 1, "", 0);
                                     objspdservice.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -758,7 +758,7 @@ namespace ROMS
                 lblActiveCount.Text = Convert.ToString(varActiveCount);
                 lblInactiveCount.Text = Convert.ToString(varInactiveCount);
                 lblTotal.Text = Convert.ToString(varTotalCount);
-                //lblNotDefinedCount.Text = Convert.ToString(varNotDefinedCount);
+                lblNotDefined.Text = Convert.ToString(varNotDefinedCount);
             }
         }
 
@@ -842,7 +842,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSCID=0", "SPSC_Name,SPSCID", cmbStatus, "", "SPSC_Name", "SPSCID");
                 objDataBind = null;
-                
+
 
             }
 
@@ -1432,8 +1432,8 @@ namespace ROMS
         {
             try
             {
-               // picLoader.Visible = true;
-               // picLoader.BringToFront();
+                // picLoader.Visible = true;
+                // picLoader.BringToFront();
                 MainForm.objCP_SupplierPopup = new CP_SupplierPopup();
                 MainForm.objCP_SupplierPopup.ShowDialog();
             }
@@ -1445,7 +1445,7 @@ namespace ROMS
             }
             finally
             {
-               // picLoader.Visible = false;
+                // picLoader.Visible = false;
             }
         }
     }

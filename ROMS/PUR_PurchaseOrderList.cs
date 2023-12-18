@@ -17,6 +17,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public int Supplierpend = 0, Statuschange=0, SearchFlag=0;
         public string varUserID = "0";
+        DateTime varmaxdate;
         public PUR_PurchaseOrderList()
         {
             InitializeComponent();
@@ -199,13 +200,23 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",0);
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0,"",0);
+                objDServ.CloseConnection();
                 if (objd.Tables[0].Rows.Count != 0)
                 {
-                    DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    DateTime varmindate = MainForm.pbFYStartDate;
                     dpPlanDate.MinDate = varmindate;
                     dpPlanDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
+                objd = null;
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
+                objDServ.CloseConnection();
+                if (objd.Tables[1].Rows.Count != 0)
+                {
+                    varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture); 
+                }
+
+                dpPlanDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
             {
@@ -579,12 +590,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
-        {
-
+        { 
             try
             {
                 LV_Supplier.Items.Clear();
@@ -592,7 +601,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "","","",0);
+                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "",dpPlanDate.Text,dptoPlanDate.Text,1);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -842,6 +851,7 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
                 cmbShow.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -952,6 +962,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["T.Pro"].Width = 50;
                             grdPurchaseorderlist.Columns["T.Units"].Width = 50;
                             grdPurchaseorderlist.Columns["TAT"].Width = 70;
+                            grdPurchaseorderlist.Columns["DTAT"].Width = 70;
                             grdPurchaseorderlist.Columns["Created By"].Width = 100;
                             grdPurchaseorderlist.Columns["Created On"].Width = 150;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
@@ -977,9 +988,13 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["SPSC_TAT"].Visible = false;
                             grdPurchaseorderlist.Columns["POVALUE"].Visible = false;
                             grdPurchaseorderlist.Columns["turn"].Visible = false;
+                            grdPurchaseorderlist.Columns["DELAYVALUE"].Visible = false;
+                            grdPurchaseorderlist.Columns["Mode of details"].Visible = false;
+                            grdPurchaseorderlist.Columns["Issued DATES"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["DTAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["Issue Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1453,8 +1468,8 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
                 {
-                    varsupplier = 1;
-                    varpono = 1;
+                    varsupplier = 0;
+                    varpono = 0;
                 }
                 if (Convert.ToInt32(cmbGroup.SelectedValue) == 161)
                 {
@@ -2134,8 +2149,11 @@ namespace ROMS
         {
             try
             {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
                 DateTime varmindate = DateTime.ParseExact(dpPlanDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dptoPlanDate.MinDate = varmindate;
+                dptoPlanDate.MaxDate = varmaxdate; 
             }
             catch (Exception ex)
             {

@@ -345,6 +345,7 @@
             this.grdGroup.Size = new System.Drawing.Size(339, 418);
             this.grdGroup.TabIndex = 1111140;
             this.grdGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGroup_CellContentClick);
+            this.grdGroup.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGroup_CellContentDoubleClick);
             this.grdGroup.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGroup_CurrentCellDirtyStateChanged);
             this.grdGroup.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGroup_DataBindingComplete);
             // 

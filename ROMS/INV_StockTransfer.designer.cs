@@ -42,9 +42,9 @@
             this.grpStockTransfer = new System.Windows.Forms.GroupBox();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lvProduct = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvclmPICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvclmProductName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvclmProductEName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvSLocation = new System.Windows.Forms.ListView();
@@ -193,18 +193,19 @@
             // lvProduct
             // 
             this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
+            this.lvclmPICode,
+            this.lvclmProductName,
+            this.lvclmProductEName,
             this.columnHeader4,
             this.columnHeader5});
             this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvProduct.FullRowSelect = true;
-            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvProduct.HideSelection = false;
             this.lvProduct.Location = new System.Drawing.Point(11, 147);
+            this.lvProduct.MultiSelect = false;
             this.lvProduct.Name = "lvProduct";
-            this.lvProduct.Size = new System.Drawing.Size(1070, 220);
+            this.lvProduct.Size = new System.Drawing.Size(874, 220);
             this.lvProduct.TabIndex = 111111141;
             this.lvProduct.UseCompatibleStateImageBehavior = false;
             this.lvProduct.View = System.Windows.Forms.View.Details;
@@ -212,17 +213,28 @@
             this.lvProduct.DoubleClick += new System.EventHandler(this.LvProduct_DoubleClick);
             this.lvProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvProduct_KeyDown);
             // 
-            // columnHeader1
+            // lvclmPICode
             // 
-            this.columnHeader1.Width = 120;
+            this.lvclmPICode.Text = "PI Code";
+            this.lvclmPICode.Width = 120;
             // 
-            // columnHeader2
+            // lvclmProductName
             // 
-            this.columnHeader2.Width = 0;
+            this.lvclmProductName.Text = "Product Name";
+            this.lvclmProductName.Width = 293;
             // 
-            // columnHeader3
+            // lvclmProductEName
             // 
-            this.columnHeader3.Width = 0;
+            this.lvclmProductEName.Text = "Product English Name";
+            this.lvclmProductEName.Width = 10;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 0;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 0;
             // 
             // lvSLocation
             // 
@@ -264,9 +276,9 @@
             this.lvDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvDLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvDLocation.HideSelection = false;
-            this.lvDLocation.Location = new System.Drawing.Point(903, 147);
+            this.lvDLocation.Location = new System.Drawing.Point(891, 147);
             this.lvDLocation.Name = "lvDLocation";
-            this.lvDLocation.Size = new System.Drawing.Size(327, 115);
+            this.lvDLocation.Size = new System.Drawing.Size(305, 220);
             this.lvDLocation.TabIndex = 111111140;
             this.lvDLocation.UseCompatibleStateImageBehavior = false;
             this.lvDLocation.View = System.Windows.Forms.View.Details;
@@ -470,6 +482,7 @@
             // 
             // btnRemarks
             // 
+            this.btnRemarks.Enabled = false;
             this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
             this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -917,9 +930,9 @@
             this.lblProductNamePICode.AutoSize = true;
             this.lblProductNamePICode.Location = new System.Drawing.Point(5, 15);
             this.lblProductNamePICode.Name = "lblProductNamePICode";
-            this.lblProductNamePICode.Size = new System.Drawing.Size(134, 20);
+            this.lblProductNamePICode.Size = new System.Drawing.Size(108, 20);
             this.lblProductNamePICode.TabIndex = 958809;
-            this.lblProductNamePICode.Text = "Product Name/P.I Code";
+            this.lblProductNamePICode.Text = "Search by P.I Code";
             // 
             // INV_StockTransfer
             // 
@@ -1007,11 +1020,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader30;
         private System.Windows.Forms.Label lblSLocation;
         private System.Windows.Forms.Label lblDLocation;
-        public System.Windows.Forms.ListView lvProduct;
         private System.Windows.Forms.Label lblProduct;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader lvclmPICode;
+        private System.Windows.Forms.ColumnHeader lvclmProductName;
+        private System.Windows.Forms.ColumnHeader lvclmProductEName;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button btnAdd;
@@ -1039,5 +1051,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCurrentStockQty;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.ListView lvProduct;
     }
 }

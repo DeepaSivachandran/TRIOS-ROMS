@@ -40,6 +40,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlStockRequest = new System.Windows.Forms.Panel();
             this.grpStockRequest = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -71,16 +72,8 @@
             this.PICODE = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.STK_SLID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RK_ShortName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_Qty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.UT_Symbol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.UTID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Unitname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblUnit = new System.Windows.Forms.TextBox();
@@ -97,7 +90,7 @@
             this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
-            this.lblDEProductName = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
             this.epStockHold = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
@@ -156,6 +149,7 @@
             // grpStockRequest
             // 
             this.grpStockRequest.BackColor = System.Drawing.Color.White;
+            this.grpStockRequest.Controls.Add(this.button1);
             this.grpStockRequest.Controls.Add(this.DGV_SearchGrid);
             this.grpStockRequest.Controls.Add(this.label6);
             this.grpStockRequest.Controls.Add(this.label5);
@@ -183,12 +177,25 @@
             this.grpStockRequest.Controls.Add(this.label2);
             this.grpStockRequest.Controls.Add(this.grdStockHold);
             this.grpStockRequest.Controls.Add(this.txtProductNamePICode);
-            this.grpStockRequest.Controls.Add(this.lblDEProductName);
+            this.grpStockRequest.Controls.Add(this.lblProductName);
             this.grpStockRequest.Location = new System.Drawing.Point(12, 3);
             this.grpStockRequest.Name = "grpStockRequest";
             this.grpStockRequest.Size = new System.Drawing.Size(1329, 634);
             this.grpStockRequest.TabIndex = 0;
             this.grpStockRequest.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.button1.Image = global::ROMS.Properties.Resources.print;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(1251, 32);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(69, 29);
+            this.button1.TabIndex = 1110000989;
+            this.button1.Text = "Print";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // DGV_SearchGrid
             // 
@@ -236,6 +243,7 @@
             this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
+            this.DGV_SearchGrid.Enter += new System.EventHandler(this.DGV_SearchGrid_Enter);
             // 
             // label6
             // 
@@ -270,7 +278,7 @@
             this.txtStockQty.Location = new System.Drawing.Point(967, 34);
             this.txtStockQty.Name = "txtStockQty";
             this.txtStockQty.ReadOnly = true;
-            this.txtStockQty.Size = new System.Drawing.Size(113, 27);
+            this.txtStockQty.Size = new System.Drawing.Size(85, 27);
             this.txtStockQty.TabIndex = 1111251;
             this.txtStockQty.TextChanged += new System.EventHandler(this.TxtStockQty_TextChanged);
             // 
@@ -385,18 +393,10 @@
             this.PICODE,
             this.PRODUCTLIST,
             this.STK_SLID,
-            this.PR_TName,
             this.PR_EName,
-            this.RK_ShortName,
-            this.STK_MRP,
-            this.STK_ExpiryDate,
-            this.STK_BatchNo,
-            this.STK_Qty,
-            this.UT_Symbol,
-            this.UTID,
-            this.Unitname});
+            this.PR_TName});
             this.lvproduct.FullRowSelect = true;
-            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(100, 63);
             this.lvproduct.Name = "lvproduct";
@@ -411,19 +411,36 @@
             // 
             // PRID
             // 
+            this.PRID.Text = "Product Id";
             this.PRID.Width = 0;
             // 
             // PICODE
             // 
+            this.PICODE.Text = "P.I Code";
             this.PICODE.Width = 200;
             // 
             // PRODUCTLIST
             // 
+            this.PRODUCTLIST.Text = "Product Name";
             this.PRODUCTLIST.Width = 200;
+            // 
+            // STK_SLID
+            // 
+            this.STK_SLID.Text = "Location Id";
+            // 
+            // PR_EName
+            // 
+            this.PR_EName.DisplayIndex = 5;
+            this.PR_EName.Text = "Product English Name";
+            // 
+            // PR_TName
+            // 
+            this.PR_TName.DisplayIndex = 4;
+            this.PR_TName.Text = "Product tamil name";
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(1284, 34);
+            this.groupBox2.Location = new System.Drawing.Point(1214, 273);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(36, 31);
             this.groupBox2.TabIndex = 134097;
@@ -436,9 +453,9 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1192, 32);
+            this.btnSave.Location = new System.Drawing.Point(1164, 32);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(86, 29);
+            this.btnSave.Size = new System.Drawing.Size(81, 29);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -448,7 +465,7 @@
             // lblUnit
             // 
             this.lblUnit.Enabled = false;
-            this.lblUnit.Location = new System.Drawing.Point(1155, 34);
+            this.lblUnit.Location = new System.Drawing.Point(1127, 34);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.ReadOnly = true;
             this.lblUnit.Size = new System.Drawing.Size(31, 27);
@@ -526,7 +543,7 @@
             // txtQty
             // 
             this.txtQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQty.Location = new System.Drawing.Point(1086, 34);
+            this.txtQty.Location = new System.Drawing.Point(1058, 34);
             this.txtQty.MaxLength = 50;
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(69, 27);
@@ -541,7 +558,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1082, 13);
+            this.label2.Location = new System.Drawing.Point(1054, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 20);
             this.label2.TabIndex = 1111179;
@@ -594,6 +611,7 @@
             this.grdStockHold.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockHold_CellDoubleClick);
             this.grdStockHold.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.GrdStockHold_ColumnWidthChanged);
             this.grdStockHold.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockHold_Scroll);
+            this.grdStockHold.Enter += new System.EventHandler(this.GrdStockHold_Enter);
             // 
             // clmDelete
             // 
@@ -624,15 +642,14 @@
             this.txtProductNamePICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductNamePICode_KeyDown);
             this.txtProductNamePICode.Leave += new System.EventHandler(this.TxtProductNamePICode_Leave);
             // 
-            // lblDEProductName
+            // lblProductName
             // 
-            this.lblDEProductName.AutoSize = true;
-            this.lblDEProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEProductName.Location = new System.Drawing.Point(101, 12);
-            this.lblDEProductName.Name = "lblDEProductName";
-            this.lblDEProductName.Size = new System.Drawing.Size(134, 20);
-            this.lblDEProductName.TabIndex = 1111161;
-            this.lblDEProductName.Text = "Product Name/P.I Code";
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductName.Location = new System.Drawing.Point(101, 12);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(0, 20);
+            this.lblProductName.TabIndex = 1111161;
             // 
             // epStockHold
             // 
@@ -676,7 +693,7 @@
         private System.Windows.Forms.Panel pnlStockRequest;
         private System.Windows.Forms.GroupBox grpStockRequest;
         private System.Windows.Forms.TextBox txtProductNamePICode;
-        private System.Windows.Forms.Label lblDEProductName;
+        private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox4;
@@ -698,14 +715,6 @@
         private System.Windows.Forms.ColumnHeader STK_SLID;
         private System.Windows.Forms.ColumnHeader PR_TName;
         private System.Windows.Forms.ColumnHeader PR_EName;
-        private System.Windows.Forms.ColumnHeader RK_ShortName;
-        private System.Windows.Forms.ColumnHeader STK_MRP;
-        private System.Windows.Forms.ColumnHeader STK_ExpiryDate;
-        private System.Windows.Forms.ColumnHeader STK_BatchNo;
-        private System.Windows.Forms.ColumnHeader STK_Qty;
-        private System.Windows.Forms.ColumnHeader UT_Symbol;
-        private System.Windows.Forms.ColumnHeader UTID;
-        private System.Windows.Forms.ColumnHeader Unitname;
         private System.Windows.Forms.ListView lvproductPICode;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -734,5 +743,6 @@
         private System.Windows.Forms.DataGridViewImageColumn clmDelete;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
         private System.Windows.Forms.ErrorProvider epStockHold;
+        public System.Windows.Forms.Button button1;
     }
 }

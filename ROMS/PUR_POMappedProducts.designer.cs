@@ -107,6 +107,7 @@
             // 
             this.grdPurchaseOrder.AllowUserToAddRows = false;
             this.grdPurchaseOrder.AllowUserToDeleteRows = false;
+            this.grdPurchaseOrder.AllowUserToResizeColumns = false;
             this.grdPurchaseOrder.AllowUserToResizeRows = false;
             this.grdPurchaseOrder.BackgroundColor = System.Drawing.Color.White;
             this.grdPurchaseOrder.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;

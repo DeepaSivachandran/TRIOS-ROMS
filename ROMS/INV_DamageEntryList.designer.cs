@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -80,13 +80,16 @@
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblToDate = new System.Windows.Forms.Label();
             this.lblScheduleCode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.dpToDate = new System.Windows.Forms.DateTimePicker();
             this.txtSupplierName = new System.Windows.Forms.TextBox();
             this.lblDSupplier = new System.Windows.Forms.Label();
             this.dpFromDate = new System.Windows.Forms.DateTimePicker();
-            this.lblentrydate = new System.Windows.Forms.Label();
+            this.lblFromDate = new System.Windows.Forms.Label();
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
@@ -218,9 +221,9 @@
             this.lvSupplierName.FullRowSelect = true;
             this.lvSupplierName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSupplierName.HideSelection = false;
-            this.lvSupplierName.Location = new System.Drawing.Point(1049, 52);
+            this.lvSupplierName.Location = new System.Drawing.Point(1000, 78);
             this.lvSupplierName.Name = "lvSupplierName";
-            this.lvSupplierName.Size = new System.Drawing.Size(291, 219);
+            this.lvSupplierName.Size = new System.Drawing.Size(340, 219);
             this.lvSupplierName.TabIndex = 111111145;
             this.lvSupplierName.UseCompatibleStateImageBehavior = false;
             this.lvSupplierName.View = System.Windows.Forms.View.Details;
@@ -262,9 +265,9 @@
             this.lvSupplier.FullRowSelect = true;
             this.lvSupplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(582, 52);
+            this.lvSupplier.Location = new System.Drawing.Point(376, 78);
             this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(440, 219);
+            this.lvSupplier.Size = new System.Drawing.Size(452, 219);
             this.lvSupplier.TabIndex = 111111144;
             this.lvSupplier.UseCompatibleStateImageBehavior = false;
             this.lvSupplier.View = System.Windows.Forms.View.Details;
@@ -291,10 +294,10 @@
             this.grpprint.Controls.Add(this.btnPrint);
             this.grpprint.Controls.Add(this.txtSupplier);
             this.grpprint.Controls.Add(this.label3);
-            this.grpprint.Location = new System.Drawing.Point(954, 2);
+            this.grpprint.Location = new System.Drawing.Point(994, 2);
             this.grpprint.Name = "grpprint";
-            this.grpprint.Size = new System.Drawing.Size(393, 67);
-            this.grpprint.TabIndex = 6;
+            this.grpprint.Size = new System.Drawing.Size(353, 95);
+            this.grpprint.TabIndex = 7;
             this.grpprint.TabStop = false;
             this.grpprint.Text = "Print By";
             // 
@@ -321,11 +324,11 @@
             this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(318, 20);
+            this.btnPrint.Location = new System.Drawing.Point(278, 46);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(68, 33);
-            this.btnPrint.TabIndex = 7;
+            this.btnPrint.TabIndex = 8;
             this.btnPrint.Text = "Print";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -336,11 +339,11 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(95, 23);
+            this.txtSupplier.Location = new System.Drawing.Point(6, 49);
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(220, 27);
-            this.txtSupplier.TabIndex = 6;
+            this.txtSupplier.Size = new System.Drawing.Size(268, 27);
+            this.txtSupplier.TabIndex = 7;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
             this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
@@ -350,7 +353,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(4, 26);
+            this.label3.Location = new System.Drawing.Point(6, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 20);
             this.label3.TabIndex = 1111173;
@@ -358,13 +361,16 @@
             // 
             // grbFilterBy
             // 
+            this.grbFilterBy.Controls.Add(this.cmbStatus);
+            this.grbFilterBy.Controls.Add(this.lblStatus);
+            this.grbFilterBy.Controls.Add(this.lblToDate);
             this.grbFilterBy.Controls.Add(this.lblScheduleCode);
             this.grbFilterBy.Controls.Add(this.lblSupplierCode);
             this.grbFilterBy.Controls.Add(this.dpToDate);
             this.grbFilterBy.Controls.Add(this.txtSupplierName);
             this.grbFilterBy.Controls.Add(this.lblDSupplier);
             this.grbFilterBy.Controls.Add(this.dpFromDate);
-            this.grbFilterBy.Controls.Add(this.lblentrydate);
+            this.grbFilterBy.Controls.Add(this.lblFromDate);
             this.grbFilterBy.Controls.Add(this.lblDConcern);
             this.grbFilterBy.Controls.Add(this.btnExport);
             this.grbFilterBy.Controls.Add(this.btnView);
@@ -373,10 +379,41 @@
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(947, 67);
+            this.grbFilterBy.Size = new System.Drawing.Size(985, 95);
             this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(616, 49);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(209, 27);
+            this.cmbStatus.TabIndex = 4;
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblStatus.Location = new System.Drawing.Point(616, 24);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.TabIndex = 958815;
+            this.lblStatus.Text = "Status";
+            // 
+            // lblToDate
+            // 
+            this.lblToDate.AutoSize = true;
+            this.lblToDate.Location = new System.Drawing.Point(263, 24);
+            this.lblToDate.Name = "lblToDate";
+            this.lblToDate.Size = new System.Drawing.Size(49, 20);
+            this.lblToDate.TabIndex = 958814;
+            this.lblToDate.Text = "To Date";
             // 
             // lblScheduleCode
             // 
@@ -400,7 +437,7 @@
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(376, 23);
+            this.dpToDate.Location = new System.Drawing.Point(263, 49);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(104, 27);
             this.dpToDate.TabIndex = 2;
@@ -410,10 +447,10 @@
             // 
             // txtSupplierName
             // 
-            this.txtSupplierName.Location = new System.Drawing.Point(579, 23);
+            this.txtSupplierName.Location = new System.Drawing.Point(373, 49);
             this.txtSupplierName.MaxLength = 2;
             this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.Size = new System.Drawing.Size(214, 27);
+            this.txtSupplierName.Size = new System.Drawing.Size(237, 27);
             this.txtSupplierName.TabIndex = 3;
             this.txtSupplierName.TextChanged += new System.EventHandler(this.TxtSupplierName_TextChanged);
             this.txtSupplierName.Enter += new System.EventHandler(this.TxtSupplierName_Enter);
@@ -423,7 +460,7 @@
             // lblDSupplier
             // 
             this.lblDSupplier.AutoSize = true;
-            this.lblDSupplier.Location = new System.Drawing.Point(486, 26);
+            this.lblDSupplier.Location = new System.Drawing.Point(373, 24);
             this.lblDSupplier.Name = "lblDSupplier";
             this.lblDSupplier.Size = new System.Drawing.Size(87, 20);
             this.lblDSupplier.TabIndex = 958811;
@@ -433,7 +470,7 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(266, 23);
+            this.dpFromDate.Location = new System.Drawing.Point(153, 49);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(104, 27);
             this.dpFromDate.TabIndex = 1;
@@ -442,20 +479,20 @@
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Dtpoutwarddate_KeyDown);
             this.dpFromDate.Leave += new System.EventHandler(this.Dtpoutwarddate_Leave);
             // 
-            // lblentrydate
+            // lblFromDate
             // 
-            this.lblentrydate.AutoSize = true;
-            this.lblentrydate.Location = new System.Drawing.Point(194, 26);
-            this.lblentrydate.Name = "lblentrydate";
-            this.lblentrydate.Size = new System.Drawing.Size(66, 20);
-            this.lblentrydate.TabIndex = 92;
-            this.lblentrydate.Text = "Entry Date";
+            this.lblFromDate.AutoSize = true;
+            this.lblFromDate.Location = new System.Drawing.Point(153, 24);
+            this.lblFromDate.Name = "lblFromDate";
+            this.lblFromDate.Size = new System.Drawing.Size(64, 20);
+            this.lblFromDate.TabIndex = 92;
+            this.lblFromDate.Text = "From Date";
             // 
             // lblDConcern
             // 
             this.lblDConcern.AutoSize = true;
             this.lblDConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblDConcern.Location = new System.Drawing.Point(6, 26);
+            this.lblDConcern.Location = new System.Drawing.Point(6, 24);
             this.lblDConcern.Name = "lblDConcern";
             this.lblDConcern.Size = new System.Drawing.Size(54, 20);
             this.lblDConcern.TabIndex = 36;
@@ -465,10 +502,10 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(868, 22);
+            this.btnExport.Location = new System.Drawing.Point(906, 48);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(73, 29);
-            this.btnExport.TabIndex = 5;
+            this.btnExport.TabIndex = 6;
             this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
@@ -480,10 +517,10 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(796, 22);
+            this.btnView.Location = new System.Drawing.Point(831, 48);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(69, 29);
-            this.btnView.TabIndex = 4;
+            this.btnView.TabIndex = 5;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -494,9 +531,9 @@
             // cmbconcern
             // 
             this.cmbconcern.FormattingEnabled = true;
-            this.cmbconcern.Location = new System.Drawing.Point(66, 23);
+            this.cmbconcern.Location = new System.Drawing.Point(6, 49);
             this.cmbconcern.Name = "cmbconcern";
-            this.cmbconcern.Size = new System.Drawing.Size(122, 27);
+            this.cmbconcern.Size = new System.Drawing.Size(141, 27);
             this.cmbconcern.TabIndex = 0;
             this.cmbconcern.Enter += new System.EventHandler(this.Cmbconcern_Enter);
             this.cmbconcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbconcern_KeyDown);
@@ -510,32 +547,32 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 102);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -554,7 +591,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(622, 381);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 389);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958798;
@@ -569,29 +606,29 @@
             this.grdDamageEntryList.AllowUserToResizeRows = false;
             this.grdDamageEntryList.BackgroundColor = System.Drawing.Color.White;
             this.grdDamageEntryList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDamageEntryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdDamageEntryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdDamageEntryList.ColumnHeadersHeight = 30;
             this.grdDamageEntryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdDamageEntryList.ColumnHeadersVisible = false;
             this.grdDamageEntryList.EnableHeadersVisualStyles = false;
             this.grdDamageEntryList.GridColor = System.Drawing.Color.White;
-            this.grdDamageEntryList.Location = new System.Drawing.Point(3, 130);
+            this.grdDamageEntryList.Location = new System.Drawing.Point(3, 156);
             this.grdDamageEntryList.Name = "grdDamageEntryList";
             this.grdDamageEntryList.ReadOnly = true;
             this.grdDamageEntryList.RowHeadersVisible = false;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            this.grdDamageEntryList.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.grdDamageEntryList.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.grdDamageEntryList.RowTemplate.Height = 25;
             this.grdDamageEntryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDamageEntryList.Size = new System.Drawing.Size(1348, 510);
+            this.grdDamageEntryList.Size = new System.Drawing.Size(1348, 484);
             this.grdDamageEntryList.TabIndex = 958797;
             this.grdDamageEntryList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDamageEntryList_CellDoubleClick);
             this.grdDamageEntryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDamageEntryList_DataBindingComplete);
@@ -605,9 +642,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 76);
+            this.picLoader.Location = new System.Drawing.Point(3, 103);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1344, 565);
+            this.picLoader.Size = new System.Drawing.Size(1344, 538);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
@@ -661,7 +698,7 @@
         private System.Windows.Forms.TextBox txtSupplierName;
         private System.Windows.Forms.Label lblDSupplier;
         private System.Windows.Forms.DateTimePicker dpFromDate;
-        private System.Windows.Forms.Label lblentrydate;
+        private System.Windows.Forms.Label lblFromDate;
         private System.Windows.Forms.Label lblDConcern;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
@@ -709,5 +746,8 @@
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblSPSCID;
         private System.Windows.Forms.Label lblSPID;
+        private System.Windows.Forms.Label lblToDate;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Label lblStatus;
     }
 }
