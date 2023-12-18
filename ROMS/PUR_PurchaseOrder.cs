@@ -18,7 +18,7 @@ namespace ROMS
             , totalBulkqty = 0, totalUnitqty = 0, totalOrderQty = 0, varUPP = 0, qtyFlag = 0, varModifiedFlag = 0,
         varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag = 0, productcode = 0;
         public double totalKgQty = 0;
-        public string vardays = "", unitweight = "", unitperbox = "", bulkunitweight = "", varUPPValue = "";
+        public string vardays = "", unitweight = "", unitperbox = "", bulkunitweight = "", varUPPValue = "",varOtherSupPrevious = "", varOtherSupPartial = "";
         private ToolTip tpsalesman = new ToolTip();
         private ToolTip tpsalemanph = new ToolTip();
         private ToolTip tpSuppliername = new ToolTip();
@@ -169,8 +169,8 @@ namespace ROMS
                                     objDs.Tables[0].Rows[i]["Unit Wt"].ToString(), objDs.Tables[0].Rows[i]["Unit Per box"].ToString(),
                                     objDs.Tables[0].Rows[i]["B.Unit Weight"].ToString(),
                                     objDs.Tables[0].Rows[i]["GST_Text"].ToString(), objDs.Tables[0].Rows[i]["MSQ"].ToString(), objDs.Tables[0].Rows[i]["MXSQ"].ToString(),
-                                    objDs.Tables[0].Rows[i]["MXSTK"].ToString(), objDs.Tables[0].Rows[i]["PREVIOUS"].ToString(),
-                                    objDs.Tables[0].Rows[i]["PARTIAL"].ToString(), objDs.Tables[0].Rows[i]["Reorder"].ToString()
+                                    objDs.Tables[0].Rows[i]["MXSTK"].ToString(), objDs.Tables[0].Rows[i]["PREVIOUS"].ToString(), objDs.Tables[0].Rows[i]["Other Supplier PRE.PEND"].ToString(),
+                                    objDs.Tables[0].Rows[i]["PARTIAL"].ToString(), objDs.Tables[0].Rows[i]["Other Supplier PARITAL"].ToString(), objDs.Tables[0].Rows[i]["Reorder"].ToString()
                                     , bulk, objDs.Tables[0].Rows[i]["bunit"].ToString(), unit, objDs.Tables[0].Rows[i]["Unit"].ToString()
                                     , objDs.Tables[0].Rows[i]["totalqty"].ToString(), objDs.Tables[0].Rows[i]["totunit"].ToString()
                                     , objDs.Tables[0].Rows[i]["Finaltot"].ToString(), objDs.Tables[0].Rows[i]["finalunit"].ToString()
@@ -1030,8 +1030,8 @@ namespace ROMS
                             //string[] unitparts = unitperbox.Split('/'); 
                             //string bunits = unitparts[0].Trim() +'/' + Convert.ToString(cmbUnit.Text);
                             grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, (varPICode).Trim(), (varEName).Trim(), (var_Symbol).Trim(),
-                            (unitweight), unitperbox, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (var_MXSQ).Trim(), (varSTOCK).Trim(), (varPrevious).Trim(), (varPARITAL).Trim(),
-                            (varReOrderQty).Trim(), bulk, var_BulkSymbol, unit, var_Symbol, varFinalTotalQty, var_Symbol, varFinalTotalKg, var_TotSymbol,
+                            (unitweight), unitperbox, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (var_MXSQ).Trim(), (varSTOCK).Trim(), (varPrevious).Trim(), (varOtherSupPrevious).Trim(),
+                            (varPARITAL).Trim(),(varOtherSupPartial).Trim(), (varReOrderQty).Trim(), bulk, var_BulkSymbol, unit, var_Symbol, varFinalTotalQty, var_Symbol, varFinalTotalKg, var_TotSymbol,
                             (addproductid).Trim(), defflag, 1, "", 10, (Convert.ToInt32(cmbUnit.SelectedValue)), varNetweight, varUPP, 0, varBulkunitvalue, varTotalunitvalue);
 
                             grdsupplieradd.Columns[10].ReadOnly = false;
@@ -3713,6 +3713,22 @@ namespace ROMS
                         cell.Style.ForeColor = Color.Black;
                         cell.ReadOnly = true;
                     }
+                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOtherSupplierprevious"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOtherSupplierprevious"].Value) != "-" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOtherSupplierprevious"].Value) != "")
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmOtherSupplierprevious"];
+                        cell.Style.BackColor = Color.Moccasin;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = true;
+                    }
+                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmothersupplierpartialpending"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmothersupplierpartialpending"].Value) != "-" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmothersupplierpartialpending"].Value) != "")
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmothersupplierpartialpending"];
+                        cell.Style.BackColor = Color.Moccasin;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -4021,8 +4037,9 @@ namespace ROMS
                                     Convert.ToString(objDs.Tables[3].Rows[i]["Unit Wt"]), Convert.ToString(objDs.Tables[3].Rows[i]["Unit Per box"]),
                                     Convert.ToString(objDs.Tables[3].Rows[i]["B.Unit Weight"]),
                                     objDs.Tables[3].Rows[i]["GST_Text"].ToString(), objDs.Tables[3].Rows[i]["PR_MinStock"].ToString(), objDs.Tables[3].Rows[i]["PR_MaxStock"].ToString(),
-                                    objDs.Tables[3].Rows[i]["MXSTK"].ToString(), objDs.Tables[3].Rows[i]["PRE.PEND"].ToString(),
-                                    objDs.Tables[3].Rows[i]["PARITAL"].ToString(), objDs.Tables[3].Rows[i]["PR_ReOrderQty"].ToString(),
+                                    objDs.Tables[3].Rows[i]["MXSTK"].ToString(), objDs.Tables[3].Rows[i]["PRE.PEND"].ToString(), objDs.Tables[3].Rows[i]["Other Supplier PRE.PEND"].ToString()
+                                    ,objDs.Tables[3].Rows[i]["PARITAL"].ToString(),objDs.Tables[3].Rows[i]["Other Supplier PARITAL"].ToString()
+                                    ,objDs.Tables[3].Rows[i]["PR_ReOrderQty"].ToString(),
                                     objDs.Tables[3].Rows[i]["ORDERBQTY"].ToString().Trim(), objDs.Tables[3].Rows[i]["bunit"].ToString().Trim()
                                     , Convert.ToString(objDs.Tables[3].Rows[i]["unitqty"]), Convert.ToString(objDs.Tables[3].Rows[i]["qtyunit"])
                                     , Convert.ToString(objDs.Tables[3].Rows[i]["totalqty"]), Convert.ToString(objDs.Tables[3].Rows[i]["totunit"]),
@@ -4260,8 +4277,8 @@ namespace ROMS
                     varPICode = ""; varEName = ""; var_Symbol = ""; var_Text = ""; var_RMinSaleQty = ""; varSTOCK = ""; varPrevious = "";
                     varPARITAL = ""; varReOrderQty = ""; varorderSaleQty = ""; addproductid = ""; varunitid = ""; var_MXSQ = ""; flag = "0";
                     varUPP = 0; varNetweight = 0; varBulkunitvalue = 0; varUnitvalue = 0; varTotalunitvalue = 0; var_BulkSymbol = ""; var_TotSymbol = "";
-                    varBulkunitqty = 0; varUnitqty = 0; varTotalunitqty = 0; unitweight = ""; unitperbox = ""; bulkunitweight = "";
-                    SPDataService objspdservice = new SPDataService();
+                    varBulkunitqty = 0; varUnitqty = 0; varTotalunitqty = 0; unitweight = ""; unitperbox = ""; bulkunitweight = ""; varOtherSupPrevious = ""; varOtherSupPartial = "";
+                      SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnproductmasterlist(34, Convert.ToInt32(lblProductcode.Text), 0, 0, 0, "", "", "", 0, 0, 0, Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(lblSupplierCode.Text), "", "", null, 0, null);
                     objspdservice.CloseConnection();
@@ -4293,6 +4310,8 @@ namespace ROMS
                             varBulkunitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["B.UTID"]);
                             varUnitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
                             varTotalunitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["T.UTID"]);
+                            varOtherSupPrevious = Convert.ToString(objDs.Tables[0].Rows[0]["Other Supplier PRE.PEND"]);
+                            varOtherSupPartial = Convert.ToString(objDs.Tables[0].Rows[0]["Other Supplier PARITAL"]);
                             lblWeightvalue.Text = unitperbox;
                             lblMxsq.Text = Convert.ToString(var_MXSQ);
                             flag = "3";

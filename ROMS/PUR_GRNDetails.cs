@@ -1393,6 +1393,7 @@ namespace ROMS
                 {
                     if (grdGrnlist.Columns[e.ColumnIndex].Name == "clmexpirydate")
                     {
+                        varExpiryDate = "";
                         string dateString = e.FormattedValue.ToString();
                         DataSet objDS = new DataSet();
                         SPDataService objDServ = new SPDataService();
@@ -1405,6 +1406,10 @@ namespace ROMS
                                 varErrorFormat = 1;
                                 MessageBox.Show("Invalid date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 e.Cancel = true;
+                            }
+                            else
+                            {
+                                varExpiryDate = e.FormattedValue.ToString();
                             }
                         }
                     }
