@@ -323,6 +323,7 @@ namespace ROMS
                     if (varStatusID != 21)
                     {
                         grdStockTransfer.ReadOnly = true;
+                        grdStockTransfer.Columns["clmRemove"].Visible = false;
                         btnSave.Enabled = false;
                         chkStatus.Checked = true;chkStatus.Enabled = false;
                         txtProductNamePICode.Enabled = false;
@@ -534,10 +535,10 @@ namespace ROMS
                     cmbDRack.Text = "None"; cmbDRack.Enabled = false;
                 }
                 lvSLocation.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSLocation.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -740,10 +741,10 @@ namespace ROMS
             {
                 udfnSLocationValid();
                 lvDLocation.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtDLocation.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnStockLocationList(24, Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text) , 0, txtDLocation.Text, 0, 0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -940,10 +941,10 @@ namespace ROMS
                 cmbDRack.Text = "None";cmbDRack.Enabled = false;
                 varlocationcode = lblSLocation.Text;
                 lvProduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     if (VarSearchFlag == true)
                     {
                         objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0,txtProductNamePICode.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, "", 0, "", "", dtStock, varStockTransferID, null,"","");

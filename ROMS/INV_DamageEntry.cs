@@ -1152,7 +1152,6 @@ namespace ROMS
                             varRKID= objDS.Tables[0].Rows[0]["RKID"].ToString().Replace("''", "'");
                             varSPID= objDS.Tables[0].Rows[0]["Supplier ID"].ToString().Replace("''", "'");
                             lblProduct.Text= objDS.Tables[0].Rows[0]["PRID"].ToString().Replace("''", "'");
-                            btnSave.Text = "Update";
                         }
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -1185,6 +1184,7 @@ namespace ROMS
                     if (varStatusID != 6)
                     {
                         grdDamageEntry.ReadOnly = true;
+                        grdDamageEntry.Columns["clmremove"].Visible = false;
                         grdEmployee.ReadOnly = true;
                         btnSave.Enabled = false;
                         chkStatus.Checked = true; chkStatus.Enabled = false;
@@ -1563,10 +1563,13 @@ namespace ROMS
                     btnClose.Focus();
                     udfnclose();
                 }
-                if (e.KeyCode == Keys.F5)
+                if (btnSave.Enabled == true)
                 {
-                    btnSave.Focus();
-                    BtnSave_Click(sender, e);
+                    if (e.KeyCode == Keys.F5)
+                    {
+                        btnSave.Focus();
+                        BtnSave_Click(sender, e);
+                    }
                 }
                 if (e.KeyCode == Keys.F11)
                 {
@@ -1662,10 +1665,10 @@ namespace ROMS
                 txtQuantity.Text = "";
                 cmbSupplier.Text = ""; cmbSupplier.Enabled = false;
                 lvProduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     if (VarSearchFlag == true)
                     {
                         objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", "", null, varID, dtDamage,"","");
