@@ -24,7 +24,7 @@ namespace ROMS
         private ToolTip tppProductGroup = new ToolTip();
         private ToolTip tpProductSubGroup = new ToolTip();
         private ToolTip tppProductSubGroup = new ToolTip();
-
+        Boolean BlnSearchImageYN = false;
         public DataTable dtSupplierMapping = new DataTable();
         public DataTable dtViewProduct = new DataTable();
         public DataTable dtViewSupplierMapping = new DataTable();
@@ -181,13 +181,15 @@ namespace ROMS
         {
             try
             {
+                txtDRack.ReadOnly = false;
+                txtDRack.Text = "";
+                lblDRack.Text = "";
                 lvDLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtDLocation.Text.Length > 0)
                 {
-
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtDLocation.Text, 0,0,0);
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtDLocation.Text, 0,0,0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -378,7 +380,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0, 0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0, 0,"","");
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -1144,7 +1146,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0,0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0,0,"","");
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -1189,12 +1191,12 @@ namespace ROMS
                             }
                         }
                         lblDRack.Text = Convert.ToString(varId_PurchaseRack);
-                        if (Convert.ToInt32(varId_PurchaseRack) < 0 || varId_PurchaseRack == "-1")
+                        if (Convert.ToInt32(varId_PurchaseRack) < 0 )
                         {
                             epRackSettings.SetError(txtDRack, "Please enter valid rack.");
                             txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tpRack.ShowAlways = true;
-                            tpRack.Show("Please enter valid rack", txtDRack, 5000);
+                            tpRack.Show("Please enter valid rack.", txtDRack, 5000);
                             blnErrorFlag = true;
                         }
                     }
@@ -1225,92 +1227,21 @@ namespace ROMS
                         if (varId_PurchaseRack == "0")
                         {
                             txtDRack.Text = "None";
-                            txtDRack.Enabled = false;
+                            txtDRack.ReadOnly = true;
                             lblDRack.Text = "0";
                         }
                         else
                         {
-                            txtDRack.ReadOnly = true;
+                            txtDRack.ReadOnly = false;
                         }
                     }
                 }
-                /* Check purchase rack is valid or not*/
-                //if (txtDRack.Text != "")
-                //{
-                //    DataSet objDsPurRack = new DataSet();
-                //    SPDataService objDServ4 = new SPDataService();
-                //    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, Convert.ToInt32(lblDLocation.Text), 0, txtDRack.Text.Trim(), 0, 0);
-                //    objDServ4.CloseConnection();
-                //    if (objDsPurRack != null)
-                //    {
-                //        if (objDsPurRack.Tables.Count > 0)
-                //        {
-                //            if (objDsPurRack.Tables[0].Rows.Count > 0)
-                //            {
-                //                varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
-                //            }
-                //        }
-                //    }
-                //    lblDRack.Text = Convert.ToString(varId_PurRack);
-                //    if (varId_PurRack == "0" || varId_PurRack == "-1")
-                //    {
-                //        epRackSettings.SetError(txtDRack, "Please select valid rack.");
-                //        txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tppRack.ShowAlways = true;
-                //        tppRack.Show("Please select valid rack.", txtDRack, 5000);
-                //        grdViewProduct.DataSource = null;
-                //        //dtViewProduct.Rows.Clear();
-                //        blnErrorFlag = true;
-                //    }
-                //}
-                //if (varId_PurRack != "0" && varId_PurRack != "-1")
-                //{
-                //    if (txtDLocation.Text != "")
-                //    {
-                //        DataSet objDsRack = new DataSet();
-                //        SPDataService objDserv4 = new SPDataService();
-                //        objDsRack = objDserv4.udfnRackList(7, 0, 0, Convert.ToInt32(lblDLocation.Text), 0, txtDRack.Text, 0, 0);
-                //        objDserv4.CloseConnection();
-                //        if (objDsRack != null)
-                //        {
-                //            if (objDsRack.Tables.Count > 0)
-                //            {
-                //                if (objDsRack.Tables[0].Rows.Count > 0)
-                //                {
-                //                    varId_Rack = Convert.ToString(objDsRack.Tables[0].Rows[0][0]);
-                //                }
-                //            }
-                //        }
-                //    }
-                //    if (varId_PurRack == varId_Rack)
-                //    {
-                //        lblDRack.Text = Convert.ToString(varId_PurRack);
-                //    }
-                //    else
-                //    {
-                //        grdViewProduct.DataSource = null;
-                //        //dtViewProduct.Rows.Clear();
-                //        SPDataService objDServ = new SPDataService();
-                //        string varMessage = objDServ.udfnGetMessages(59);
-                //        objDServ.CloseConnection();
-                //        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //        txtDRack.Text = "";
-                //        txtDRack.Focus();
-                //        blnErrorFlag = true;
-                //    }
-                //}
+                
                 if (blnErrorFlag == false)
                 {
                     try
                     {
                         udfnMoveList();
-                        //for (int j = 0; j < grdViewProduct.RowCount; j++)
-                        //{
-                        //    if (Convert.ToString(grdMoveProduct.Rows[j].Cells["productid"].Value) == Convert.ToString(grdViewProduct.Rows[j].Cells["PRODUCTID"].Value))
-                        //    {
-                        //        grdViewProduct.Rows[j].Cells[0].Value = true;
-                        //    }
-                        //}
                     }
                     catch (Exception ex)
                     {
@@ -1325,10 +1256,89 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void udfnSearchGridHead()
+        {
+            try
+            {
+                udfnGridSearchHeading(grdViewProduct, DGV_SearchGrid);
+                DGV_SearchGrid.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in grdViewProduct.Columns)
+                {
+                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                    visibleColumns.Add(col.Index);
+                }
+                if (DGV_SearchGrid.ColumnCount > 1)
+                {
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        if (i == 0)
+                        { DGV_SearchGrid.Rows[0].Cells[i].ReadOnly = true; }
+                        else
+                        { DGV_SearchGrid.Rows[0].Cells[i].ReadOnly = false; }
+                    }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
+        {
+            try
+            {
+                //dgv2.DataSource = null;
+                dgv2.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in dgv1.Columns)
+                {
+                    if (col.Visible)
+                    {
+                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                }
+                int rowIndex = 0;
+                int ColIndex = 0;
+                dgv2.Rows.Clear();
+                dgv2.Rows.Add();
+                BlnSearchImageYN = false;
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                    if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                    {
+                        //dgv2.Rows[rowIndex].Visible = false;
+                        BlnSearchImageYN = true;
+                        ColIndex = i;
+                        dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                        dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                        ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                    {
+                        BlnSearchImageYN = true;
+                        dgv2.Rows[rowIndex].Cells[i].Value = false;
+                    }
+                    else
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
         private void udfnMoveList()
         {
             try
             {
+                int varDLocationId = 0, varDRackId = 0;
                 int varViewType = 14;
                 dtViewProduct.Rows.Clear();
                 Application.DoEvents();
@@ -1346,7 +1356,7 @@ namespace ROMS
                     /* Check product group is valid or not*/
                     DataSet objDsGroup = new DataSet();
                     SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(),0);
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(), 0);
                     objDServ1.CloseConnection();
                     if (objDsGroup != null)
                     {
@@ -1399,50 +1409,143 @@ namespace ROMS
                         tppProductSubGroup.Show("Please select valid subgroup.", txtSubGroup, 5000);
                     }
                 }
-
-                string varRackId = "0";
-                int varDLocationId = 0;
-                if (lblDLocation.Text == "" || lblDLocation.Text == "-1" || lblDLocation.Text == "0")
+                string varId_PurLocation = "0";
+                if (txtDLocation.Text != "")
                 {
-                    varDLocationId = 0;
-                }
-                else { varDLocationId = Convert.ToInt32(lblDLocation.Text); }
-
-                if (Convert.ToString(txtDRack.Text).Trim() == "")
-                {
-                    epRackSettings.SetError(txtDRack, "Please enter rack.");
-                    txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tppRack.ShowAlways = true;
-                    tppRack.Show("Please enter rack.", txtDRack, 5000);
-                }
-                else
-                {
-                    //string varId_PurRack = "0";
-                    DataSet objDsPurRack = new DataSet();
-                    SPDataService objDServ4 = new SPDataService();
-                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, varDLocationId, 0, txtDRack.Text.Trim(), 0, 0);
-                    objDServ4.CloseConnection();
-                    if (objDsPurRack != null)
+                    DataSet objDsPurLoc = new DataSet();
+                    SPDataService objDServ3 = new SPDataService();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0,"","");
+                    objDServ3.CloseConnection();
+                    if (objDsPurLoc != null)
                     {
-                        if (objDsPurRack.Tables.Count > 0)
+                        if (objDsPurLoc.Tables.Count > 0)
                         {
-                            if (objDsPurRack.Tables[0].Rows.Count > 0)
+                            if (objDsPurLoc.Tables[0].Rows.Count > 0)
                             {
-                                varRackId = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                                varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
                             }
                         }
                     }
-                    lblDRack.Text = Convert.ToString(varRackId);
-                    if (varRackId == "0" || varRackId == "-1")
+                    lblDLocation.Text = Convert.ToString(varId_PurLocation);
+                    if (varId_PurLocation == "0" || varId_PurLocation == "-1")
                     {
-                        epRackSettings.SetError(txtDRack, "Please select valid rack.");
-                        txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tppRack.ShowAlways = true;
-                        tppRack.Show("Please select valid rack.", txtDRack, 5000);
+                        epRackSettings.SetError(txtDLocation, "Please select valid stock location.");
+                        txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tppStockLocation.ShowAlways = true;
+                        tppStockLocation.Show("Please select valid stock location.", txtDLocation, 5000);
+                        //blnErrorFlag = true;
                     }
                 }
+                string varId_PurRack = "0";
+                string varId_Rack = "0";
+                /*check location have a rack or not*/
+                string varId_PurchaseRack = "0";
+                DataSet objDsPurchaseRack = new DataSet();
+                SPDataService objDServ6 = new SPDataService();
+                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblDLocation.Text), 0, txtDRack.Text.Trim(), 0, 0);
+                objDServ6.CloseConnection();
+                if (txtDRack.Text.Trim() != "")
+                {
+                    if (lblDLocation.Text != "0")
+                    {
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                        lblDRack.Text = Convert.ToString(varId_PurchaseRack);
+                        if (Convert.ToInt32(varId_PurchaseRack) < 0 || varId_PurchaseRack == "-1")
+                        {
+                            epRackSettings.SetError(txtDRack, "Please enter valid rack.");
+                            txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpRack.ShowAlways = true;
+                            tpRack.Show("Please enter valid rack.", txtDRack, 5000);
+                           // blnErrorFlag = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (lblDLocation.Text != "0")
+                    {
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                }
+                            }
+                        }
+                        lblDRack.Text = Convert.ToString(varId_PurchaseRack);
+                        if (Convert.ToInt32(varId_PurchaseRack) > 0)
+                        {
+                            epRackSettings.SetError(txtDRack, "Please enter rack.");
+                            txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpRack.ShowAlways = true;
+                            tpRack.Show("Please enter rack.", txtDRack, 5000);
+                        }
+                        if (varId_PurchaseRack == "0")
+                        {
+                            txtDRack.Text = "None";
+                            txtDRack.ReadOnly = true;
+                            lblDRack.Text = "0";
+                        }
+                        else
+                        {
+                            txtDRack.ReadOnly = false;
+                        }
+                    }
+                }
+                //string varRackId = "0";
+                //int varDLocationId = 0;
+                //if (lblDLocation.Text == "" || lblDLocation.Text == "-1" || lblDLocation.Text == "0")
+                //{
+                //    varDLocationId = 0;
+                //}
+                //else { varDLocationId = Convert.ToInt32(lblDLocation.Text); }
+
+                //if (Convert.ToString(txtDRack.Text).Trim() == "")
+                //{
+                //    epRackSettings.SetError(txtDRack, "Please enter rack.");
+                //    txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tppRack.ShowAlways = true;
+                //    tppRack.Show("Please enter rack.", txtDRack, 5000);
+                //}
+                //else
+                //{
+                //    //string varId_PurRack = "0";
+                //    DataSet objDsPurRack = new DataSet();
+                //    SPDataService objDServ4 = new SPDataService();
+                //    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, varDLocationId, 0, txtDRack.Text.Trim(), 0, 0);
+                //    objDServ4.CloseConnection();
+                //    if (objDsPurRack != null)
+                //    {
+                //        if (objDsPurRack.Tables.Count > 0)
+                //        {
+                //            if (objDsPurRack.Tables[0].Rows.Count > 0)
+                //            {
+                //                varRackId = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                //            }
+                //        }
+                //    }
+                //    lblDRack.Text = Convert.ToString(varRackId);
+                //    if (varRackId == "0" || varRackId == "-1")
+                //    {
+                //        epRackSettings.SetError(txtDRack, "Please select valid rack.");
+                //        txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tppRack.ShowAlways = true;
+                //        tppRack.Show("Please select valid rack.", txtDRack, 5000);
+                //    }
+                //}
                 objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0,
-                    0, 0, 0,Convert.ToInt32(varRackId),0,0,varDLocationId,0,0,0,0,"",0,"","", null,0,null);
+                    0, 0, 0,Convert.ToInt32(varId_PurchaseRack),0,0, Convert.ToInt32(varId_PurLocation), 0,0,0,0,"",0,"","", null,0,null,"","");
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[1].Rows.Count != 0)
@@ -1468,6 +1571,7 @@ namespace ROMS
                 grdViewProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                 grdViewProduct.Columns["Unit"].ReadOnly = true;
                 grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                udfnSearchGridHead();
                 //grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
             }
             catch (Exception ex)
@@ -2105,10 +2209,10 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtDLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtDLocation, "Please enter location");
+                    epRackSettings.SetError(txtDLocation, "Please enter location.");
                     txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tppStockLocation.ShowAlways = true;
-                    tppStockLocation.Show("Please enter location", txtDLocation, 5000);
+                    tppStockLocation.Show("Please enter location.", txtDLocation, 5000);
                     blnErrorFlag = true;
                 }
                 else
@@ -2118,7 +2222,7 @@ namespace ROMS
                         string varId_PurLocation = "0";
                         DataSet objDsPurLoc = new DataSet();
                         SPDataService objDServ3 = new SPDataService();
-                        objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0, 0);
+                        objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0, 0,"","");
                         objDServ3.CloseConnection();
                         if (objDsPurLoc != null)
                         {
@@ -2133,20 +2237,20 @@ namespace ROMS
                         lblDLocation.Text = Convert.ToString(varId_PurLocation);
                         if (varId_PurLocation == "0" || varId_PurLocation == "-1")
                         {
-                            epRackSettings.SetError(txtDLocation, "Please select valid stock location");
+                            epRackSettings.SetError(txtDLocation, "Please select valid stock location.");
                             txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tppStockLocation.ShowAlways = true;
-                            tppStockLocation.Show("Please select valid stock location", txtDLocation, 5000);
+                            tppStockLocation.Show("Please select valid stock location.", txtDLocation, 5000);
                             blnErrorFlag = true;
                         }
                     }
                 }
                 if (Convert.ToString(txtDRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtDRack, "Please enter rack");
+                    epRackSettings.SetError(txtDRack, "Please enter rack.");
                     txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tppRack.ShowAlways = true;
-                    tppRack.Show("Please enter rack", txtDRack, 5000);
+                    tppRack.Show("Please enter rack.", txtDRack, 5000);
                     blnErrorFlag = true;
                 }
                 else
@@ -2171,20 +2275,20 @@ namespace ROMS
                         lblDRack.Text = Convert.ToString(varIdRack);
                         if (varIdRack == "0" || varIdRack == "-1")
                         {
-                            epRackSettings.SetError(txtDRack, "Please select valid rack");
+                            epRackSettings.SetError(txtDRack, "Please select valid rack.");
                             txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tppRack.ShowAlways = true;
-                            tppRack.Show("Please select valid rack", txtDRack, 5000);
+                            tppRack.Show("Please select valid rack.", txtDRack, 5000);
                             blnErrorFlag = true;
                         }
                     }
                 }
                 if (Convert.ToString(txtMoveLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtMoveLocation, "Please enter location");
+                    epRackSettings.SetError(txtMoveLocation, "Please enter location.");
                     txtMoveLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tppStockLocation.ShowAlways = true;
-                    tppStockLocation.Show("Please enter location", txtMoveLocation, 5000);
+                    tppStockLocation.Show("Please enter location.", txtMoveLocation, 5000);
                     blnErrorFlag = true;
                 }
                 else
@@ -2194,7 +2298,7 @@ namespace ROMS
                         string varId_PurLocation = "0";
                         DataSet objDsPurLoc = new DataSet();
                         SPDataService objDServ3 = new SPDataService();
-                        objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtMoveLocation.Text.Trim(),0, 0,0);
+                        objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtMoveLocation.Text.Trim(),0, 0,0,"","");
                         objDServ3.CloseConnection();
                         if (objDsPurLoc != null)
                         {
@@ -2209,20 +2313,20 @@ namespace ROMS
                         lblMoveLocation.Text = Convert.ToString(varId_PurLocation);
                         if (varId_PurLocation == "0" || varId_PurLocation == "-1")
                         {
-                            epRackSettings.SetError(txtMoveLocation, "Please select valid stock location");
+                            epRackSettings.SetError(txtMoveLocation, "Please select valid stock location.");
                             txtMoveLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tppStockLocation.ShowAlways = true;
-                            tppStockLocation.Show("Please select valid stock location", txtMoveLocation, 5000);
+                            tppStockLocation.Show("Please select valid stock location.", txtMoveLocation, 5000);
                             blnErrorFlag = true;
                         }
                     }
                 }
                 if (Convert.ToString(txtMoveRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtMoveRack, "Please enter rack");
+                    epRackSettings.SetError(txtMoveRack, "Please enter rack.");
                     txtMoveRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tppRack.ShowAlways = true;
-                    tppRack.Show("Please enter rack", txtMoveRack, 5000);
+                    tppRack.Show("Please enter rack.", txtMoveRack, 5000);
                     blnErrorFlag = true;
                 }
                 string varId_PurRack = "0";
@@ -2529,7 +2633,7 @@ namespace ROMS
                 if (txtMoveLocation.Text.Length > 0)
                 {
 
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtMoveLocation.Text,0,0,0);
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtMoveLocation.Text,0,0,0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2586,7 +2690,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtMoveLocation.Text.Trim(),0,0,0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtMoveLocation.Text.Trim(),0,0,0,"","");
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -3190,7 +3294,347 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-     
+        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdViewProduct.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdViewProduct);
+                objDser.CloseConnection();
+                grdViewProduct.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void DGV_SearchGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            {
+                e.Value = null;
+            }
+        }
+        private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                    return;
+                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                            & ~(DataGridViewPaintParts.ContentForeground));
 
+                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                        e.Handled = true;
+                    }
+
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    if (e.Value == null || !(bool)e.Value)
+                    {
+                        e.PaintBackground(e.CellBounds, false);
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex != 0)
+                {
+                    DataGridViewColumn newColumn = grdViewProduct.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdViewProduct.SortedColumn;
+                    ListSortDirection direction;
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
+                    {
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdViewProduct.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
+                    }
+                    else
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    grdViewProduct.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdViewProduct.HorizontalScrollingOffset;
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdViewProduct.ColumnCount > 0)
+                {
+                    grdViewProduct.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdViewProduct.HorizontalScrollingOffset;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdViewProduct.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdMoveProduct);
+                objDser.CloseConnection();
+                grdMoveProduct.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                lblTotalProducts.Text = grdViewProduct.Rows.Count.ToString();
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void DGV_SearchGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdViewProduct.RowCount; i++)
+                {
+                    if (Convert.ToString(grdViewProduct.Rows[i].Cells["MappedCount"].Value) != "0")
+                    {
+                        grdViewProduct.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdViewProduct.ClearSelection();
+            }
+        }
+        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdViewProduct.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdViewProduct.Width > grdViewProduct.HorizontalScrollingOffset && grdViewProduct.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdViewProduct_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdViewProduct.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdViewProduct.Width > grdViewProduct.HorizontalScrollingOffset && grdViewProduct.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdViewProduct);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
+        {
+            try
+            {
+                var vScrollbar = grdViewProduct.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdViewProduct_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdViewProduct.IsCurrentCellDirty)
+                {
+                    grdViewProduct.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DGV_SearchGridMove_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdMoveProduct.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGridMove, grdMoveProduct);
+                objDser.CloseConnection();
+                grdMoveProduct.HorizontalScrollingOffset = DGV_SearchGridMove.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void DGV_SearchGridMove_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                    return;
+                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
+                                                                   //return;
+
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                            & ~(DataGridViewPaintParts.ContentForeground));
+
+                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                        e.Handled = true;
+                    }
+
+                DGV_SearchGridMove.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGridMove_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                DataGridViewColumn newColumn = grdMoveProduct.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdMoveProduct.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
+                {
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn &&
+                        grdMoveProduct.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
+                }
+                else
+                {
+                    direction = ListSortDirection.Ascending;
+                }
+                grdMoveProduct.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
+
+                DataGridViewColumn DGV = DGV_SearchGridMove.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                DGV_SearchGridMove.HorizontalScrollingOffset = grdMoveProduct.HorizontalScrollingOffset;
+                DGV_SearchGridMove.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGridMove_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdMoveProduct.ColumnCount > 0)
+                {
+                    grdMoveProduct.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGridMove.HorizontalScrollingOffset = grdMoveProduct.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

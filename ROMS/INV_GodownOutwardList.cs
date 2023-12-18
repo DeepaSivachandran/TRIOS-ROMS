@@ -20,6 +20,7 @@ namespace ROMS
         public string  varStockLocation="", varStockLocationId = "";
         public int varGOID = 0;
         public int varPRID = 0;
+        public string varUserID = "";
 
         public INV_GodownOutwardList()
         {
@@ -66,8 +67,9 @@ namespace ROMS
                     Application.DoEvents();
                     MainForm.objINV_GodownOutward = new INV_GodownOutward();
                     MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
-                    MainForm.objINV_GodownOutward.btnSave.Text = "Update";
+                    MainForm.objINV_GodownOutward.btnSave.Text = "Save as Draft";
                     MainForm.objINV_GodownOutward.varGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value);
+                    MainForm.objINV_GodownOutward.varSTSID = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["STSID"].Value);
                     MainForm.objINV_GodownOutward.Show();
                 }
             }
@@ -400,7 +402,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0);
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(27, 0, 0, 0, txtStockLocation.Text.Trim(), 1, 0, 0,dtpOutwardDate.Text,dtpOutwardDate2.Text);
                     objDServ5.CloseConnection();
                     if (objDsSalesLoc != null)
                     {
@@ -516,9 +518,17 @@ namespace ROMS
                     }
                 }
                 udfnList();
+                DataSet objDS = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 4);
+                DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //dpFromDate.MinDate = varDate;
+                dtpOutwardDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
+                dtpOutwardDate2.MinDate = varDate;
+                objspservice.CloseConnection();                
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
-                dtpOutwardDate2.MinDate = dtpOutwardDate.MaxDate;
+                dtpOutwardDate2.MaxDate = MainForm.pbCurrentDate;
                 cmbConcern.SelectedValue = 1;
 
             }
@@ -557,7 +567,7 @@ namespace ROMS
                 DataTable dtStock = new DataTable();
                 dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
                 dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(decimal));
                 dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                 dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 dtStock.Columns.Add("STK_UTID", typeof(string));
@@ -568,7 +578,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36,0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0, "","",null,0,null);
+                    objDs = objspdservice.udfnproductmasterlist(46,0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, 0,"","",null,1,null,dtpOutwardDate.Text,dtpOutwardDate2.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -580,13 +590,15 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
-                                lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 250;
-                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[0].Width = 90;
+                                lvProduct.Columns[1].Width = 200;
+                                lvProduct.Columns[2].Width = 230;
                                 lvProduct.Columns[3].Width = 0;
                             }
                             else
@@ -782,7 +794,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue),0, 0, txtStockLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue),0, 1, txtStockLocation.Text, 0, 0, 0, dtpOutwardDate.Text, dtpOutwardDate2.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1258,7 +1270,7 @@ namespace ROMS
                 DataTable dtStock = new DataTable();
                 dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
                 dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_MRP", typeof(decimal));
                 dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                 dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 dtStock.Columns.Add("STK_UTID", typeof(string));
@@ -1274,25 +1286,31 @@ namespace ROMS
                         SPDataService objspdservice = new SPDataService();
                         DataTable objGrnPO = new DataTable();
                         TRNS_GoodsOutward objTRNS_GoodsOutward = new TRNS_GoodsOutward();
-                        objTRNS_GoodsOutward.ViewType = 2;
-                        objTRNS_GoodsOutward.ParaGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
-                        objTRNS_GoodsOutward.ParaCompanyCode = 0;
-                        objTRNS_GoodsOutward.paraOutwardDate = "";
-                        objTRNS_GoodsOutward.paraTransferType = 0;
-                        objTRNS_GoodsOutward.paraRemarks = "";
-                        objTRNS_GoodsOutward.paraSLID = 0;
-                        objTRNS_GoodsOutward.paraStockTransfer = dtStock;
-                        objTRNS_GoodsOutward.paraOriginator = "Goods Outward Delete";
-                        string result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
-                        objspdservice.CloseConnection();
-                        if (result.Split('~')[0] == "3")
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else if (result.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            objTRNS_GoodsOutward.ViewType = 2;
+                            objTRNS_GoodsOutward.ParaGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
+                            objTRNS_GoodsOutward.ParaCompanyCode = 0;
+                            objTRNS_GoodsOutward.paraOutwardDate = "";
+                            objTRNS_GoodsOutward.paraTransferType = 0;
+                            objTRNS_GoodsOutward.paraRemarks = "";
+                            objTRNS_GoodsOutward.paraSLID = 0;
+                            objTRNS_GoodsOutward.paraStockTransfer = dtStock;
+                            objTRNS_GoodsOutward.paraOriginator = "Goods Outward Delete";
+                            string result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
+                            objspdservice.CloseConnection();
+                            if (result.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else if (result.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
@@ -1315,7 +1333,7 @@ namespace ROMS
 
                 for (int i = 0; i < grdOutwardList.Rows.Count; i++)
                 {
-                    if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 22)
+                    if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 35)
                     {
                         grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
                         grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
@@ -1327,7 +1345,7 @@ namespace ROMS
                     }
                     else if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 26)
                     {
-                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.PaleGreen;
+                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                 }

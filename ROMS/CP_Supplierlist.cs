@@ -758,7 +758,7 @@ namespace ROMS
                 lblActiveCount.Text = Convert.ToString(varActiveCount);
                 lblInactiveCount.Text = Convert.ToString(varInactiveCount);
                 lblTotal.Text = Convert.ToString(varTotalCount);
-                //lblNotDefinedCount.Text = Convert.ToString(varNotDefinedCount);
+                lblNotDefined.Text = Convert.ToString(varNotDefinedCount);
             }
         }
 

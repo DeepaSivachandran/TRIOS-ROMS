@@ -14,9 +14,11 @@ namespace ROMS.Model
         public int ParaCompanycode { get; set; } = 0;
         public string paraTransferDate { get; set; } = "";
         public int paraLocationID { get; set; } = 0;
+        public int paraDeleteFlag { get; set; } = 0;
         public string paraRemarks { get; set; } = "";
         public int paraStatusId { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
+        public string paraEmployeeId { get; set; } = "";
         public DataTable paraDamageEntry { get; set; } = null;
     }
 }

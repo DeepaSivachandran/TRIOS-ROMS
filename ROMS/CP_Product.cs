@@ -234,15 +234,15 @@ namespace ROMS
                     txtRackDescription.Text = "";
                     blnErrorFlag = true;
                 }
-                if (txtSaleLocation.Text == "")
-                {
-                    txtSaleLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtSaleLocation, "Please enter sales location");
-                    txtSaleRack.Text = "";
-                    lblSaleRackCode.Text = "0";
-                    txtRackDescriptionSales.Text = "";
-                    blnErrorFlag = true;
-                }
+                //if (txtSaleLocation.Text == "")
+                //{
+                //    txtSaleLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtSaleLocation, "Please enter sales location");
+                //    txtSaleRack.Text = "";
+                //    lblSaleRackCode.Text = "0";
+                //    txtRackDescriptionSales.Text = "";
+                //    blnErrorFlag = true;
+                //}
                 //if (Convert.ToString(cmbBrand.SelectedValue) == "" || Convert.ToString(cmbBrand.SelectedValue) == "-1")
                 //{
                 //    errItems.SetError(cmbBrand, "Please select Brand");
@@ -546,7 +546,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0,txtPurLocation.Text.Trim(), 0, 0, 0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0,txtPurLocation.Text.Trim(), 0, 0, 0,"","");
                     //  objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtPurLocation.Text.Trim(),0,0,0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
@@ -626,13 +626,13 @@ namespace ROMS
                         }
                     }
                 }
-                /* Check sales stock location is valid or not*/
+                /* Check sales stock location is valid or not
                 if (txtSaleLocation.Text != "")
                 {
                     string varId_SalesLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSaleLocation.Text.Trim(), 0, 0, 0);
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSaleLocation.Text.Trim(), 0, 0, 0,"","");
                     objDServ5.CloseConnection();
                     if (objDsSalesLoc != null)
 
@@ -655,7 +655,7 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                /*check Sales location have a rack or not*/
+                //check Sales location have a rack or not//
                 string varId_SalesRack = "0";
                 DataSet objDsSalesRack = new DataSet();
                 SPDataService objDServ7 = new SPDataService();
@@ -711,7 +711,7 @@ namespace ROMS
                             blnErrorFlag = true;
                         }
                     }
-                }
+                }*/
 
                 if (blnErrorFlag == false)
                 {
@@ -3377,7 +3377,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     lblDPicode.Visible = true;                    
-                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"","",null,0,null);
+                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -4125,7 +4125,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtPurLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtPurLocation.Text.Trim(),0,0,0);
+                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtPurLocation.Text.Trim(),0,0,0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -4386,7 +4386,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSaleLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSaleLocation.Text.Trim(),0,0, 0);
+                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSaleLocation.Text.Trim(),0,0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -5114,7 +5114,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {
