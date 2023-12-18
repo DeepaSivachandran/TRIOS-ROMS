@@ -70,16 +70,16 @@
             this.lvproduct = new System.Windows.Forms.ListView();
             this.PRID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PICODE = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.StockLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Rack = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Stock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.StockLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.Rack = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.Stock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            //this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblUnit = new System.Windows.Forms.TextBox();
@@ -398,17 +398,7 @@
             // 
             this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.PRID,
-            this.PICODE,
-            this.PRODUCTLIST,
-            this.PR_TName,
-            this.PR_EName,
-            this.StockLocation,
-            this.Rack,
-            this.MRP,
-            this.ExpiryDate,
-            this.BatchNo,
-            this.Stock,
-            this.Unit});
+            this.PICODE });
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
@@ -433,53 +423,53 @@
             this.PICODE.Text = "P.I Code";
             this.PICODE.Width = 200;
             // 
-            // PRODUCTLIST
-            // 
-            this.PRODUCTLIST.DisplayIndex = 10;
-            // 
-            // PR_TName
-            // 
-            this.PR_TName.DisplayIndex = 2;
-            this.PR_TName.Text = "Product name";
-            // 
-            // PR_EName
-            // 
-            this.PR_EName.DisplayIndex = 11;
-            // 
-            // StockLocation
-            // 
-            this.StockLocation.DisplayIndex = 3;
-            this.StockLocation.Text = "Location";
-            // 
-            // Rack
-            // 
-            this.Rack.DisplayIndex = 4;
-            this.Rack.Text = "Rack";
-            // 
-            // MRP
-            // 
-            this.MRP.DisplayIndex = 5;
-            this.MRP.Text = "MRP";
-            // 
-            // ExpiryDate
-            // 
-            this.ExpiryDate.DisplayIndex = 6;
-            this.ExpiryDate.Text = "Expiry date";
-            // 
-            // BatchNo
-            // 
-            this.BatchNo.DisplayIndex = 7;
-            this.BatchNo.Text = "Batch No.";
-            // 
-            // Stock
-            // 
-            this.Stock.DisplayIndex = 8;
-            this.Stock.Text = "Stock Qty";
-            // 
-            // Unit
-            // 
-            this.Unit.DisplayIndex = 9;
-            this.Unit.Text = "Unit";
+            //// PRODUCTLIST
+            //// 
+            //this.PRODUCTLIST.DisplayIndex = 10;
+            //// 
+            //// PR_TName
+            //// 
+            //this.PR_TName.DisplayIndex = 2;
+            //this.PR_TName.Text = "Product name";
+            //// 
+            //// PR_EName
+            //// 
+            //this.PR_EName.DisplayIndex = 11;
+            //// 
+            //// StockLocation
+            //// 
+            //this.StockLocation.DisplayIndex = 3;
+            //this.StockLocation.Text = "Location";
+            //// 
+            //// Rack
+            //// 
+            //this.Rack.DisplayIndex = 4;
+            //this.Rack.Text = "Rack";
+            //// 
+            //// MRP
+            //// 
+            //this.MRP.DisplayIndex = 5;
+            //this.MRP.Text = "MRP";
+            //// 
+            //// ExpiryDate
+            //// 
+            //this.ExpiryDate.DisplayIndex = 6;
+            //this.ExpiryDate.Text = "Expiry date";
+            //// 
+            //// BatchNo
+            //// 
+            //this.BatchNo.DisplayIndex = 7;
+            //this.BatchNo.Text = "Batch No.";
+            //// 
+            //// Stock
+            //// 
+            //this.Stock.DisplayIndex = 8;
+            //this.Stock.Text = "Stock Qty";
+            //// 
+            //// Unit
+            //// 
+            //this.Unit.DisplayIndex = 9;
+            //this.Unit.Text = "Unit";
             // 
             // groupBox2
             // 
