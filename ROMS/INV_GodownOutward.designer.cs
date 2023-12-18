@@ -38,16 +38,24 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlGoodsOutward = new System.Windows.Forms.Panel();
             this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
+            this.cbCompleted = new System.Windows.Forms.CheckBox();
             this.lvStockLocation = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvproduct = new System.Windows.Forms.ListView();
             this.PRID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PICODE = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_SLID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Productlist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TamilName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Rack = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Stock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtTotalItem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
@@ -148,6 +156,7 @@
             // grpGoodsOutward
             // 
             this.grpGoodsOutward.BackColor = System.Drawing.Color.White;
+            this.grpGoodsOutward.Controls.Add(this.cbCompleted);
             this.grpGoodsOutward.Controls.Add(this.lvStockLocation);
             this.grpGoodsOutward.Controls.Add(this.lvproduct);
             this.grpGoodsOutward.Controls.Add(this.txtTotalItem);
@@ -164,6 +173,18 @@
             this.grpGoodsOutward.Size = new System.Drawing.Size(1331, 638);
             this.grpGoodsOutward.TabIndex = 958819;
             this.grpGoodsOutward.TabStop = false;
+            // 
+            // cbCompleted
+            // 
+            this.cbCompleted.AutoSize = true;
+            this.cbCompleted.Location = new System.Drawing.Point(1033, 603);
+            this.cbCompleted.Name = "cbCompleted";
+            this.cbCompleted.Size = new System.Drawing.Size(86, 24);
+            this.cbCompleted.TabIndex = 1111158;
+            this.cbCompleted.Text = "Completed";
+            this.cbCompleted.UseVisualStyleBackColor = true;
+            this.cbCompleted.CheckedChanged += new System.EventHandler(this.CbCompleted_CheckedChanged);
+            this.cbCompleted.TextChanged += new System.EventHandler(this.CbCompleted_TextChanged);
             // 
             // lvStockLocation
             // 
@@ -200,10 +221,17 @@
             // 
             this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.PRID,
-            this.PICODE,
-            this.PRODUCTLIST,
-            this.STK_SLID,
-            this.PR_EName});
+            this.PICode,
+            this.Productlist,
+            this.TamilName,
+            this.PR_EName,
+            this.Rack,
+            this.MRP,
+            this.ExpiryDate,
+            this.BatchNo,
+            this.Stock,
+            this.Unit,
+            this.columnHeader1});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
@@ -220,33 +248,60 @@
             // 
             // PRID
             // 
-            this.PRID.Text = "Product Id";
-            this.PRID.Width = 0;
+            this.PRID.DisplayIndex = 9;
             // 
-            // PICODE
+            // PICode
             // 
-            this.PICODE.Text = "P.I Code";
-            this.PICODE.Width = 200;
+            this.PICode.DisplayIndex = 0;
+            this.PICode.Text = "P.I Code";
             // 
-            // PRODUCTLIST
+            // Productlist
             // 
-            this.PRODUCTLIST.Text = "Product Name";
-            this.PRODUCTLIST.Width = 200;
+            this.Productlist.DisplayIndex = 8;
             // 
-            // STK_SLID
+            // TamilName
             // 
-            this.STK_SLID.Text = "Stock location Id";
-            this.STK_SLID.Width = 166;
+            this.TamilName.DisplayIndex = 1;
+            this.TamilName.Text = "Product Name";
             // 
             // PR_EName
             // 
-            this.PR_EName.Text = "Product english name";
-            this.PR_EName.Width = 158;
+            this.PR_EName.DisplayIndex = 10;
+            // 
+            // Rack
+            // 
+            this.Rack.DisplayIndex = 2;
+            this.Rack.Text = "Rack";
+            // 
+            // MRP
+            // 
+            this.MRP.DisplayIndex = 3;
+            this.MRP.Text = "MRP";
+            // 
+            // ExpiryDate
+            // 
+            this.ExpiryDate.DisplayIndex = 4;
+            this.ExpiryDate.Text = "Expiry date";
+            // 
+            // BatchNo
+            // 
+            this.BatchNo.DisplayIndex = 5;
+            this.BatchNo.Text = "Batch No.";
+            // 
+            // Stock
+            // 
+            this.Stock.DisplayIndex = 6;
+            this.Stock.Text = "Stock Qty";
+            // 
+            // Unit
+            // 
+            this.Unit.DisplayIndex = 7;
+            this.Unit.Text = "Unit";
             // 
             // txtTotalItem
             // 
             this.txtTotalItem.Enabled = false;
-            this.txtTotalItem.Location = new System.Drawing.Point(1084, 601);
+            this.txtTotalItem.Location = new System.Drawing.Point(956, 600);
             this.txtTotalItem.Name = "txtTotalItem";
             this.txtTotalItem.ReadOnly = true;
             this.txtTotalItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -257,7 +312,7 @@
             // lbltotalproducts
             // 
             this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(994, 604);
+            this.lbltotalproducts.Location = new System.Drawing.Point(863, 603);
             this.lbltotalproducts.Name = "lbltotalproducts";
             this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 958825;
@@ -288,14 +343,16 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1156, 600);
+            this.btnSave.Location = new System.Drawing.Point(1125, 600);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(85, 29);
+            this.btnSave.Size = new System.Drawing.Size(116, 29);
             this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save as Draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // btnClose
             // 
@@ -310,6 +367,8 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click_1);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // grdGoodsOutward
             // 
@@ -786,9 +845,10 @@
             // 
             // txtProduct
             // 
+            this.txtProduct.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
             this.txtProduct.Location = new System.Drawing.Point(13, 40);
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(370, 27);
+            this.txtProduct.Size = new System.Drawing.Size(370, 26);
             this.txtProduct.TabIndex = 0;
             this.txtProduct.TextChanged += new System.EventHandler(this.TxtProduct_TextChanged);
             this.txtProduct.Enter += new System.EventHandler(this.TxtProduct_Enter);
@@ -885,13 +945,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ListView lvproduct;
-        private System.Windows.Forms.ColumnHeader PRID;
-        private System.Windows.Forms.ColumnHeader PICODE;
-        private System.Windows.Forms.ColumnHeader PRODUCTLIST;
         private System.Windows.Forms.Label lblRack;
         private System.Windows.Forms.TextBox txtRack;
-        private System.Windows.Forms.ColumnHeader STK_SLID;
-        private System.Windows.Forms.ColumnHeader PR_EName;
         private System.Windows.Forms.TextBox txtStockQuantity;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -910,5 +965,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.ColumnHeader PICode;
+        private System.Windows.Forms.ColumnHeader TamilName;
+        private System.Windows.Forms.ColumnHeader Rack;
+        private System.Windows.Forms.ColumnHeader MRP;
+        private System.Windows.Forms.ColumnHeader ExpiryDate;
+        private System.Windows.Forms.ColumnHeader BatchNo;
+        private System.Windows.Forms.ColumnHeader Stock;
+        private System.Windows.Forms.ColumnHeader Unit;
+        private System.Windows.Forms.ColumnHeader PRID;
+        private System.Windows.Forms.ColumnHeader Productlist;
+        private System.Windows.Forms.ColumnHeader PR_EName;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.CheckBox cbCompleted;
     }
 }

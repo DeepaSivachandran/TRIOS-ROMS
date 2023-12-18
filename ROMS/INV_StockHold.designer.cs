@@ -71,9 +71,15 @@
             this.PRID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PICODE = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_SLID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StockLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Rack = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Stock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblUnit = new System.Windows.Forms.TextBox();
@@ -394,9 +400,15 @@
             this.PRID,
             this.PICODE,
             this.PRODUCTLIST,
-            this.STK_SLID,
+            this.PR_TName,
             this.PR_EName,
-            this.PR_TName});
+            this.StockLocation,
+            this.Rack,
+            this.MRP,
+            this.ExpiryDate,
+            this.BatchNo,
+            this.Stock,
+            this.Unit});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
@@ -423,22 +435,51 @@
             // 
             // PRODUCTLIST
             // 
-            this.PRODUCTLIST.Text = "Product Name";
-            this.PRODUCTLIST.Width = 200;
-            // 
-            // STK_SLID
-            // 
-            this.STK_SLID.Text = "Location Id";
-            // 
-            // PR_EName
-            // 
-            this.PR_EName.DisplayIndex = 5;
-            this.PR_EName.Text = "Product English Name";
+            this.PRODUCTLIST.DisplayIndex = 10;
             // 
             // PR_TName
             // 
-            this.PR_TName.DisplayIndex = 4;
-            this.PR_TName.Text = "Product tamil name";
+            this.PR_TName.DisplayIndex = 2;
+            this.PR_TName.Text = "Product name";
+            // 
+            // PR_EName
+            // 
+            this.PR_EName.DisplayIndex = 11;
+            // 
+            // StockLocation
+            // 
+            this.StockLocation.DisplayIndex = 3;
+            this.StockLocation.Text = "Location";
+            // 
+            // Rack
+            // 
+            this.Rack.DisplayIndex = 4;
+            this.Rack.Text = "Rack";
+            // 
+            // MRP
+            // 
+            this.MRP.DisplayIndex = 5;
+            this.MRP.Text = "MRP";
+            // 
+            // ExpiryDate
+            // 
+            this.ExpiryDate.DisplayIndex = 6;
+            this.ExpiryDate.Text = "Expiry date";
+            // 
+            // BatchNo
+            // 
+            this.BatchNo.DisplayIndex = 7;
+            this.BatchNo.Text = "Batch No.";
+            // 
+            // Stock
+            // 
+            this.Stock.DisplayIndex = 8;
+            this.Stock.Text = "Stock Qty";
+            // 
+            // Unit
+            // 
+            this.Unit.DisplayIndex = 9;
+            this.Unit.Text = "Unit";
             // 
             // groupBox2
             // 
@@ -620,7 +661,7 @@
             this.txtProductNamePICode.Location = new System.Drawing.Point(63, 34);
             this.txtProductNamePICode.MaxLength = 50;
             this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(318, 27);
+            this.txtProductNamePICode.Size = new System.Drawing.Size(318, 26);
             this.txtProductNamePICode.TabIndex = 1;
             this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
             this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
@@ -736,10 +777,6 @@
         private System.Windows.Forms.ListView lvproduct;
         private System.Windows.Forms.ColumnHeader PRID;
         private System.Windows.Forms.ColumnHeader PICODE;
-        private System.Windows.Forms.ColumnHeader PRODUCTLIST;
-        private System.Windows.Forms.ColumnHeader STK_SLID;
-        private System.Windows.Forms.ColumnHeader PR_TName;
-        private System.Windows.Forms.ColumnHeader PR_EName;
         private System.Windows.Forms.ListView lvproductPICode;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;

@@ -33,7 +33,7 @@ namespace ROMS
 
         DataTable dtPurchaseDC = new DataTable();
         public bool varDiscardFlag = true;
-        public int pbScheduleid = 0, pbSupplierId = 0,pbDateflag=0;
+        public int pbScheduleid = 0, pbSupplierId = 0,pbDateflag=0, varShelflife=0;
         public string varSuppliervalue = "",  varExpiryDate = "";
         public string varPICode = "", varTName="", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "",
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
@@ -41,7 +41,7 @@ namespace ROMS
         public int VarPrevSupplierid = 0,varDCID=0, varCloseFlag=0;
         public string varBatchNo = "0";
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0";
-        public string varErrQty = "0"; int varShelflife =0,expirydateFlag = 0;
+        public string varErrQty = "0"; int expirydateFlag = 0;
         public int editFlag=0;
 
         public PUR_PurchaseDC()
@@ -2886,7 +2886,7 @@ namespace ROMS
                 int varExpiryDays = 0; int error = 0;
                 SPDataService objDServ = new SPDataService();
                 DataSet objDS = new DataSet();
-                if(txtDay.Text.Trim()=="")
+                if (txtDay.Text.Trim() == "")
                 {
                     varDay = "01";
                 }
@@ -2927,7 +2927,7 @@ namespace ROMS
                 {
                     if (txtYear.Text.Length < 2)
                     {
-                       pbDateflag = 1;
+                        pbDateflag = 1;
                         txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         string varMessage = objDServ.udfnGetMessages(92);
                         objDServ.CloseConnection();
@@ -3052,7 +3052,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
+        } 
         public void udfnAdd()
         {
             try

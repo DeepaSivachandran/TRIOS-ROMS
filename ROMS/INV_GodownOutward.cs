@@ -33,8 +33,9 @@ namespace ROMS
         public int varErrQty = 0;
         public int varCloseFlag = 0;
         public int varGOId = 0;
+        public int varSTSID = 0;
         public int varUpdate = 0,VarUpdateFlag=0;
-        public int varCompanyId = 0, varDestSLID = 0, varDestRKID = 0;
+        public int varCompanyId = 0, varDestSLID = 0, varDestRKID = 0,varStatusId=0;
         string varProductID = "", varMRP = "", varExpiryDate = "", varBatchNo = "",varRackId="";
         DataTable dtStock = new DataTable();
         public string vargroupcode;
@@ -552,7 +553,7 @@ namespace ROMS
             {
                 udfnVocherno();
                 grdGoodsOutward.Rows.Clear();
-                if (btnSave.Text == "Save")
+                if (btnSave.Text == "Save as Draft")
                 {
                     txtStockLocation.Text = "";
                     txtTotalItem.Text = Convert.ToString(grdGoodsOutward.Rows.Count);
@@ -569,7 +570,7 @@ namespace ROMS
         {
             try
             {
-                if (btnSave.Text == "Save")
+                if (btnSave.Text == "Save as Draft")
                 {
                     if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
                     {
@@ -659,20 +660,21 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                 udfnCmbConcern();
-                this.ActiveControl = txtStockLocation;
                 cmbConcern.SelectedValue = 1;
                 udfnTransactionData();
                 //dtpOutwardDate.MaxDate = DateTime.Now;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
                 grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                VarSearchFlag = true;
+                //txtStockLocation.BackColor = Color.White;
                 lblProductName.Text = "Search by P.I Code";
-                if (btnSave.Text == "Save")
+                VarSearchFlag = true;
+                if (varGOId == 0)
                 {
-
+                    this.ActiveControl = txtStockLocation;
                 }
                 else
                 {
+                    this.ActiveControl = txtProduct;
                     udfnEdit();
                 }
             }
@@ -911,7 +913,7 @@ namespace ROMS
                 {
                     var ViewType = 37;
                     int varEntry = 0;
-                    if (btnSave.Text == "Update") { varEntry = varGOId; }
+                    if (btnSave.Text == "Save") { varEntry = varGOId; }
                     if (VarSearchFlag == false)
                     {
                         objDs = objspdservice.udfnproductmasterlist(ViewType, 0, 0, 0, 0,"", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(varStockLocationId), 0, 0, 0, 0, txtProduct.Text.Trim(), 0, "","", dtStock,varEntry,null,"","");
@@ -932,21 +934,21 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PRODUCTLIST"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["STK_Qty"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["UT_Name"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[3].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvproduct.Items.Add(objList);
                                 }
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 0;
                                 lvproduct.Columns[1].Width = 100;
-                                lvproduct.Columns[2].Width = 650;
-                                lvproduct.Columns[3].Width = 0;
+                                lvproduct.Columns[2].Width = 0;
+                                lvproduct.Columns[3].Width = 250;
                                 lvproduct.Columns[4].Width = 0;
-                                lvproduct.Columns[5].Width = 0;
-                                lvproduct.Columns[6].Width = 0;
-                                lvproduct.Columns[7].Width = 0;
-                                lvproduct.Columns[8].Width = 0;
-                                lvproduct.Columns[9].Width = 0;
-                                lvproduct.Columns[10].Width = 0;
+                                lvproduct.Columns[5].Width = 60;
+                                lvproduct.Columns[6].Width = 60;
+                                lvproduct.Columns[7].Width = 90;
+                                lvproduct.Columns[8].Width = 80;
+                                lvproduct.Columns[9].Width = 70;
+                                lvproduct.Columns[10].Width = 50;
                                 lvproduct.Columns[11].Width = 0;
                                 lvproduct.Columns[12].Width = 0;
                                 lvproduct.Columns[13].Width = 0;
@@ -1021,7 +1023,7 @@ namespace ROMS
             { 
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
                     varPRID = selectedItem.SubItems[0].Text;
-                    txtProduct.Text = selectedItem.SubItems[4].Text;
+                    txtProduct.Text = selectedItem.SubItems[3].Text;
                     varPICode = selectedItem.SubItems[1].Text;
                     txtRack.Text = selectedItem.SubItems[5].Text;
                     txtMrp.Text = selectedItem.SubItems[6].Text;
@@ -1303,6 +1305,101 @@ namespace ROMS
             }
         }
 
+        private void CbCompleted_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int varStatusId = 0;
+                if (cbCompleted.Checked)
+                {
+                    BtnSave_Click(sender,e);
+                }
+                else
+                {
+                    btnSave.Text = "Save As Draft";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void BtnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CbCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbCompleted.Checked)
+                {
+                    btnSave.Text = "Save";
+                    varStatusId = 26;
+                }
+                else
+                {
+                    btnSave.Text = "Save As Draft";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdGoodsOutward_Enter(object sender, EventArgs e)
         {
             try
@@ -1427,17 +1524,41 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 string varoriginator = ""; int ViewType = 0;
-                if (btnSave.Text == "Save")
+                varoriginator = "Goods Outward Creation";
+                ViewType = 0;
+                bool GOID = Convert.ToBoolean(varGOId);
+                if (btnSave.Text == "Save as Draft" && cbCompleted.Checked == false && !GOID)
                 {
-                    varoriginator = "Goods Outward Creation";
                     ViewType = 0;
+                    varStatusId = 35;
                 }
-                else
+                else if (btnSave.Text == "Save" && cbCompleted.Checked == true && GOID)
                 {
-                    varoriginator = "Goods Outward Updation";
-                    ViewType = 1;
+                    ViewType = 0;
+                    varStatusId = 26;
                 }
-
+                else if (btnSave.Text == "Save" && cbCompleted.Checked == true && !GOID)
+                {
+                    ViewType = 0;
+                    varStatusId = 26;
+                }
+                else if (btnSave.Text == "Save as Draft" && cbCompleted.Checked == false && GOID)
+                {
+                    ViewType = 0;
+                    varStatusId = 35;
+                }
+                //if(btnSave.Text=="Save as Draft")
+                //{
+                //    ViewType = 0;
+                //    varStatusId = 35;
+                //    varoriginator = "Goods Outward Creation";
+                //}
+                //if (btnSave.Text == "Save")
+                //{
+                //    ViewType = 0;
+                //    varStatusId = 26;
+                //    varoriginator = "Goods Outward Updation";
+                //}
                 epGoodsOutward.Clear();
                 bool blnErrorFlag = true;
 
@@ -1524,6 +1645,7 @@ namespace ROMS
                     objTRNS_GoodsOutward.paraSLID = Convert.ToInt32(varStockLocationId);
                     objTRNS_GoodsOutward.paraStockTransfer = dtStock;
                     objTRNS_GoodsOutward.paraOriginator = varoriginator;
+                    objTRNS_GoodsOutward.paraStatusId = varStatusId;
                     result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
                     objspdservice.CloseConnection();
 
@@ -1620,7 +1742,7 @@ namespace ROMS
                 tpTransactionType.Active = false;
                 txtStockLocation.BackColor = Color.White;
                 tpStockLocation.Active = false;
-                txtProduct.BackColor = Color.White;
+                //txtProduct.BackColor = Color.White;
                 tpProduct.Active = false;
                 txtOutwardQuantity.BackColor = Color.White;
                 tpOutwardQuantity.Active = false;
@@ -1631,7 +1753,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         } 
-
         private void cmbTransactionType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1736,6 +1857,8 @@ namespace ROMS
                     cmbConcern.Enabled = true;
                     txtStockLocation.Enabled = true;
                     txtStockLocation.BackColor = Color.White;
+                    cmbConcern.BackColor = Color.White;
+
                 }
             }
         }
@@ -1818,6 +1941,7 @@ namespace ROMS
                         }
                         else
                         {
+                            grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGoodsOutward.Rows.Add(grdGoodsOutward.Rows.Count + 1, varPRID, varPICode, (txtProduct.Text), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text).Trim(), varUnit, varUTID);
                             dtStock.Rows.Add(varPRID, string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtOutwardQuantity.Text).Trim(), varRKID, varDestSLID, varDestRKID);
                             txtTotalItem.Text = Convert.ToString(grdGoodsOutward.Rows.Count);
@@ -1917,7 +2041,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     int ViewType = 1;
-                    objDs = objdserv.udfnGOList(ViewType, varGOId,0, "", "", 0, 0);
+                    objDs = objdserv.udfnGOList(ViewType, varGOId,0, "", "", 0, 0,0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -1931,13 +2055,14 @@ namespace ROMS
                             varTransType = objDs.Tables[0].Rows[0]["GO_TransactionType"].ToString();
                             cmbTransactionType.Text = objDs.Tables[0].Rows[0]["Transaction Type"].ToString();
                             txtRemark.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
-                            btnSave.Text = "Update";
                         }
+
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
                             for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                             {
-                                grdGoodsOutward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]),Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_EName"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]),Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]),
+                                grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdGoodsOutward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]),Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]),Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]),
                                 Convert.ToString(objDs.Tables[1].Rows[i]["STKQTY"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["GOPR_ReqQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["GOPR_OutwardQty"]),Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]));
                                 dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]),Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GOPR_OutwardQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]),0,0);
                                 grdGoodsOutward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1947,15 +2072,41 @@ namespace ROMS
                                 //DGV_inward.Rows.Add(DGV_inward.Rows.Count + 1, varPRID, varPICode, (txtProduct.Text).Trim(), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text).Trim(), varUnit, varUTID);
                                 //DGV_inward.Columns[10].ReadOnly = false;
                             }
-                            btnSave.Text = "Update";
                         }
                     }
+                    
                     lvStockLocation.Visible = false;
                     cmbConcern.Enabled = false;
                     dtpOutwardDate.Enabled = false;
                     txtOutwardNo.Enabled = false;
                     txtStockLocation.Enabled = false;
                     cmbTransactionType.Enabled = false;
+                    epGoodsOutward.Clear();
+                    udfntooltiphide();
+                    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
+                    if (varSTSID == 26)
+                    {
+                        txtProduct.Enabled = false;
+                        txtOutwardQuantity.Enabled = false;
+                        txtRemark.Enabled = false;
+                        cbCompleted.Checked = true;
+                        btnSave.Enabled = false;
+                        cbCompleted.Enabled = false;
+                        btnAdd.Enabled = false;
+                        txtProduct.BackColor = Color.White;
+                        this.ActiveControl = btnClose;
+                        epGoodsOutward.Clear();
+                        grdGoodsOutward.ReadOnly = true;
+                        udfntooltiphide();
+                        txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
+                        txtProduct.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
+                        txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
+                        for (int i = 0; i < grdGoodsOutward.Rows.Count; i++)
+                        {
+                            ((DataGridViewImageCell)grdGoodsOutward.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
+                        }
+
+                    }
                 }
             }
             catch (Exception ex)
