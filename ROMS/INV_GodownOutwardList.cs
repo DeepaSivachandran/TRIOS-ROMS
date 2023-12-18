@@ -432,7 +432,20 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnGOList(0, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToString(dtpOutwardDate.Text), Convert.ToString(dtpOutwardDate2.Text), Convert.ToInt32(varStockLocationId), varPRID);
+                objDs = objspservice.udfnGOList(0, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToString(dtpOutwardDate.Text), Convert.ToString(dtpOutwardDate2.Text), Convert.ToInt32(varStockLocationId), varPRID, Convert.ToInt32(cmbStatus.SelectedValue));
+                //DataTable objGrnPO = new DataTable();
+                //TRNS_GoodsOutward objTRNG_GoodsOutward = new TRNG_GoodsOutward();
+                //objTRNG_GoodsOutward.ViewType = ViewType;
+                //objTRNG_GoodsOutward.ParaGOId = varGOId;
+                //objTRNG_GoodsOutward.ParaCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
+                //objTRNG_GoodsOutward.paraOutwardDate = dtpOutwardDate.Text;
+                //objTRNG_GoodsOutward.paraTransferType = Convert.ToInt32(cmbTransactionType.SelectedValue);
+                //objTRNG_GoodsOutward.paraRemarks = txtRemark.Text.Trim();
+                //objTRNG_GoodsOutward.paraSLID = Convert.ToInt32(varStockLocationId);
+                //objTRNG_GoodsOutward.paraStockTransfer = dtStock;
+                //objTRNG_GoodsOutward.paraOriginator = varoriginator;
+                //objTRNG_GoodsOutward.paraStatusId = varStatusId;
+                //result = objGrnPO.udfnGoodsOutward(objTRNG_GoodsOutward);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -517,7 +530,10 @@ namespace ROMS
                         }
                     }
                 }
-                udfnList();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (10) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null;
+                cmbStatus.SelectedValue = 35;
                 DataSet objDS = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 4);
@@ -530,6 +546,7 @@ namespace ROMS
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
                 dtpOutwardDate2.MaxDate = MainForm.pbCurrentDate;
                 cmbConcern.SelectedValue = 1;
+                udfnList();
 
             }
             catch (Exception ex)
@@ -656,7 +673,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnProductEvent();
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -775,6 +792,7 @@ namespace ROMS
         {
             try
             {
+                lvSLocation.BringToFront();
                 udfnLvStockLocation();
                 txtProductName.Focus();
             }
@@ -789,6 +807,7 @@ namespace ROMS
         {
             try
             {
+                lvSLocation.BringToFront();
                 lvSLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -809,8 +828,8 @@ namespace ROMS
                                     lvSLocation.Columns[1].Width = 0;
                                     lvSLocation.Items.Add(objList);
                                 }
-                                lvSLocation.BringToFront();
                                 lvSLocation.Visible = true;
+                                lvSLocation.BringToFront();
                             }
                             else
                             {
@@ -892,8 +911,8 @@ namespace ROMS
         {
             try
             {
-                DateTime varmindate = DateTime.ParseExact(dtpOutwardDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dtpOutwardDate2.MinDate = varmindate;
+                //DateTime varmindate = DateTime.ParseExact(dtpOutwardDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //dtpOutwardDate2.MinDate = varmindate;
             }
             catch (Exception ex)
             {
@@ -1368,6 +1387,45 @@ namespace ROMS
         }
 
         private void GrdOutwardList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void CmbStatus_Leave(object sender, EventArgs e)
         {
 
         }

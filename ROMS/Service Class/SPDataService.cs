@@ -2412,7 +2412,7 @@ namespace ROMS
         }
 
         //Created By :-Kavitha ; Created On :-09/11/2023
-        public DataSet udfnGOList(int paraviewType, int paraGOID, int paraConcern, string paraFromDate, string paraToDate, int paraSLID, int paraPRID)
+        public DataSet udfnGOList(int paraviewType, int paraGOID, int paraConcern, string paraFromDate, string paraToDate, int paraSLID, int paraPRID, int paraStatusId)
         {
             DataSet ds = new DataSet();
             try
@@ -2427,6 +2427,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", paraToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraSLID", paraSLID);
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

@@ -666,6 +666,7 @@ namespace ROMS
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
                 grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
                 //txtStockLocation.BackColor = Color.White;
+                lblProductName.Text = "Search by P.I Code";
                 VarSearchFlag = true;
                 if (varGOId == 0)
                 {
@@ -945,7 +946,7 @@ namespace ROMS
                                 lvproduct.Columns[5].Width = 60;
                                 lvproduct.Columns[6].Width = 60;
                                 lvproduct.Columns[7].Width = 90;
-                                lvproduct.Columns[8].Width = 65;
+                                lvproduct.Columns[8].Width = 80;
                                 lvproduct.Columns[9].Width = 70;
                                 lvproduct.Columns[10].Width = 50;
                                 lvproduct.Columns[11].Width = 0;
@@ -2040,7 +2041,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     int ViewType = 1;
-                    objDs = objdserv.udfnGOList(ViewType, varGOId,0, "", "", 0, 0);
+                    objDs = objdserv.udfnGOList(ViewType, varGOId,0, "", "", 0, 0,0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -2090,6 +2091,7 @@ namespace ROMS
                         txtRemark.Enabled = false;
                         cbCompleted.Checked = true;
                         btnSave.Enabled = false;
+                        cbCompleted.Enabled = false;
                         btnAdd.Enabled = false;
                         txtProduct.BackColor = Color.White;
                         this.ActiveControl = btnClose;

@@ -43,6 +43,8 @@ namespace ROMS
                 cmbConcern.SelectedValue = 1;
                 lblUnit.Text = "";
                 udfnList();
+                grdStockHold.Columns["clmDelete"].Visible = false;
+                grdStockHold.Columns["clmEdit"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -212,11 +214,22 @@ namespace ROMS
         {
             try
             {
-                udfnList();
                 udfnCmbConcern();
                 this.ActiveControl = txtProductNamePICode;
                 VarSearchFlag = true;
-                lblProductName.Text = "Search by P.I Code";
+                lblProductName.Text = "Search by P.I Code";               
+                lblUnit.Text = "";
+                udfnList();
+                //if (grdStockHold.Rows.Count>0)
+                //{
+                //    grdStockHold.Columns["clmDelete"].Visible = true;
+                //    grdStockHold.Columns["clmEdit"].Visible = true;
+                //}
+                //else
+                //{
+                    grdStockHold.Columns["clmDelete"].Visible = false;
+                    grdStockHold.Columns["clmEdit"].Visible = false;
+                //}
             }
             catch (Exception ex)
             {
@@ -278,6 +291,9 @@ namespace ROMS
             try
             {
                 udfnSave();
+                grdStockHold.Columns["clmDelete"].Visible = false;
+                grdStockHold.Columns["clmEdit"].Visible = false;
+
             }
             catch (Exception ex)
             {
