@@ -257,11 +257,10 @@ namespace ROMS
                 grdEmployee.Columns["Employee Name"].ReadOnly = true;
                 grdEmployee.Columns["Employee Category"].ReadOnly = true;
                 udfnSearchGridHead();
-
-                for (int i = 1; i < DGV_SearchGridLeft.ColumnCount; i++)
-                {
-                    DGV_SearchGridLeft.Rows[0].Cells[0].Value = "";
-                }
+                //for (int i = 1; i < DGV_SearchGridLeft.ColumnCount; i++)
+                //{
+                //    DGV_SearchGridLeft.Rows[0].Cells[0].Value = "";
+                //}
             }
             catch (Exception ex)
             {
@@ -2077,24 +2076,6 @@ namespace ROMS
         {
             try
             {
-                //if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
-                //    return;
-                ////if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
-                ////    return;
-                //if ((e.ColumnIndex == 0))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
-                //    return;
-
-                //if (e.Value != DBNull.Value && e.Value == "")  /*If value is null*/
-                //{
-                //    e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                //        & ~(DataGridViewPaintParts.ContentForeground));
-
-                //    TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                //        e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
-
-                //    e.Handled = true;
-                //}
-                //DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
                 if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
@@ -2118,6 +2099,7 @@ namespace ROMS
                         e.Handled = true;
                     }
                 }
+
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -2199,7 +2181,6 @@ namespace ROMS
                 grdEmployee.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGridLeft, grdEmployee);
                 objDser.CloseConnection();
                 grdEmployee.HorizontalScrollingOffset = DGV_SearchGridLeft.HorizontalScrollingOffset;
-                txttotalitem.Text = grdEmployee.Rows.Count.ToString();
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
