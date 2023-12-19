@@ -560,7 +560,7 @@ namespace ROMS
                     SPDataService objspdservice = new SPDataService();
                     if (VarSearchFlag == true)
                     {
-                        objMR_Product.paraPICode = txtProductNamePICode.Text;
+                        objMR_Product.paraPicode = txtProductNamePICode.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else

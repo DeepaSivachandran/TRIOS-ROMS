@@ -944,6 +944,8 @@ namespace ROMS
                 lvProduct.Items.Clear();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
                     MR_Product objMR_Product = new MR_Product();
                     objMR_Product.paraViewType = 35;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);

@@ -1848,9 +1848,12 @@ namespace ROMS
         {
             try
             {
-                SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnSupplierList(32, 0, 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, lblProduct.Text, "", "", 0);
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 32;
+                objMR_Supplier.paraProducts = lblProduct.Text;
+                SPDataService objdserv = new SPDataService();
+                objDT = objdserv.udfnSupplierList(objMR_Supplier);
                 objdserv.CloseConnection();
                 cmbSupplier.DataSource = null;
                 if (objDT != null)
