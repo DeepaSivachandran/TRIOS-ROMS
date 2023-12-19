@@ -563,8 +563,9 @@ namespace ROMS
                 txtQty.Text = "";
                 lblUnit.Text = "";
                 txtRemark.Text = "";
-                txtProductNamePICode.Focus();
                 SHID = 0;
+                this.ActiveControl = txtProductNamePICode;
+                txtProductNamePICode.Focus();
             }
             catch (Exception ex)
             {
