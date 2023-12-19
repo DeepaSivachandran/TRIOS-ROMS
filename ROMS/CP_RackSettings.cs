@@ -124,6 +124,11 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        MainForm objMainForm = new MainForm();
+                        objMainForm.udfnCloseChildForms();
+                        MainForm.objStart = new DEF_Start();
+                        MainForm.objStart.MdiParent = this.ParentForm;
+                        MainForm.objStart.Show();
                         this.Close();
                     }
                 }
@@ -615,6 +620,9 @@ namespace ROMS
                 {
                     int varViewType = 14;
                     dtViewProduct.Rows.Clear();
+                    dtMoveProduct.Rows.Clear();
+                    dtMoveProduct.AcceptChanges();
+                    grdMoveProduct.DataSource = null;
                     Application.DoEvents();
                     grdViewProduct.DataSource = null;
                     DataSet objDs = new DataSet();
@@ -655,6 +663,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblTotalProducts.Text = Convert.ToString(grdViewProduct.Rows.Count);
             }
         }
         
@@ -1111,6 +1123,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { lblMoveProCount.Text = Convert.ToString(grdMoveProduct.Rows.Count); }
         }
         private void GrdViewProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1283,7 +1297,8 @@ namespace ROMS
                 {
                     udfnSLocationValidation();
                     udfnDLocationValidation();
-                    if (Convert.ToString(cmbSourceRack.SelectedValue) == "" || Convert.ToString(cmbSourceRack.SelectedValue) == "-1")
+                   // if (Convert.ToString(cmbSourceRack.SelectedValue) == "" || Convert.ToString(cmbSourceRack.SelectedValue) == "-1")
+                    if ( Convert.ToString(cmbSourceRack.SelectedValue) == "-1")
                     {
                         epRackSettings.SetError(cmbSourceRack, "Please select source rack.");
                         cmbSourceRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1291,7 +1306,8 @@ namespace ROMS
                         tpSourceRack.Show("Please select source rack.", cmbSourceRack, 5000);
                         sourceFalg = 1;
                     }
-                    if (Convert.ToString(cmbDestinationRack.SelectedValue) == "" || Convert.ToString(cmbDestinationRack.SelectedValue) == "-1")
+                    //if (Convert.ToString(cmbDestinationRack.SelectedValue) == "" || Convert.ToString(cmbDestinationRack.SelectedValue) == "-1")
+                    if (Convert.ToString(cmbDestinationRack.SelectedValue) == "-1")
                     {
                         epRackSettings.SetError(cmbDestinationRack, "Please select destination rack.");
                         cmbDestinationRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -2108,6 +2124,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                lblMoveProCount.Text = Convert.ToString(grdMoveProduct.Rows.Count);
+            }
         }
         private void DGV_SearchGridMove_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -2206,6 +2226,8 @@ namespace ROMS
                 udfnCmbConcern();
                 udfnCmbSourceRack();
                 udfnCmbDestinationRack();
+                txtSourceLocation.Focus();
+                this.ActiveControl = txtSourceLocation;
             }
             catch (Exception ex)
             {
@@ -2255,11 +2277,23 @@ namespace ROMS
                 {
                     if (objDs.Tables.Count > 0)
                     {
-                        if (objDs.Tables[0].Rows.Count > 0)
+                        if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            cmbSourceRack.ValueMember = "RKID";
-                            cmbSourceRack.DisplayMember = "RK_Name";
-                            cmbSourceRack.DataSource = objDs.Tables[0];
+                            if (Convert.ToInt32(objDs.Tables[1].Rows[0][0])==0)
+                            {
+                                cmbSourceRack.Text = "None";
+                                varSourceRackID = 0;
+                            }
+                            else
+                            {
+                                if (objDs.Tables[0].Rows.Count > 0)
+                                {
+                                    cmbSourceRack.ValueMember = "RKID";
+                                    cmbSourceRack.DisplayMember = "RK_Name";
+                                    cmbSourceRack.DataSource = objDs.Tables[0];
+                                    cmbSourceRack.Enabled = true;
+                                }
+                            }
                         }
                     }
                 }
@@ -2283,11 +2317,24 @@ namespace ROMS
                 {
                     if (objDs.Tables.Count > 0)
                     {
-                        if (objDs.Tables[0].Rows.Count > 0)
+                        if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            cmbDestinationRack.ValueMember = "RKID";
-                            cmbDestinationRack.DisplayMember = "RK_Name";
-                            cmbDestinationRack.DataSource = objDs.Tables[0];
+                            if (Convert.ToInt32(objDs.Tables[1].Rows[0][0])<=1)
+                            {
+                                cmbDestinationRack.Text = "None";
+                                varDestinationRackID = 0;
+                                cmbDestinationRack.Enabled = false;
+                            }
+                            else
+                            {
+                                if (objDs.Tables[0].Rows.Count > 0)
+                                {
+                                    cmbDestinationRack.ValueMember = "RKID";
+                                    cmbDestinationRack.DisplayMember = "RK_Name";
+                                    cmbDestinationRack.DataSource = objDs.Tables[0];
+                                    cmbDestinationRack.Enabled = true;
+                                }
+                            }
                         }
                     }
                 }
@@ -2336,7 +2383,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDLocation.Focus();
+                    txtSourceLocation.Focus();
                 }
             }
             catch (Exception ex)
@@ -2440,7 +2487,8 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbSourceRack.SelectedValue) == "" || Convert.ToString(cmbSourceRack.SelectedValue) == "-1")
+               // if (Convert.ToString(cmbSourceRack.SelectedValue) == "" || Convert.ToString(cmbSourceRack.SelectedValue) == "-1")
+                if (Convert.ToString(cmbSourceRack.SelectedValue) == "-1")
                 {
                     epRackSettings.SetError(cmbSourceRack, "Please select source rack.");
                     cmbSourceRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -2556,7 +2604,7 @@ namespace ROMS
         }
         private void CmbDestinationRack_Leave(object sender, EventArgs e)
         {
-            if (Convert.ToString(cmbDestinationRack.SelectedValue) == "" || Convert.ToString(cmbDestinationRack.SelectedValue) == "-1")
+            if (Convert.ToString(cmbDestinationRack.SelectedValue) == "-1")
             {
                 epRackSettings.SetError(cmbDestinationRack, "Please select destination rack.");
                 cmbDestinationRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
