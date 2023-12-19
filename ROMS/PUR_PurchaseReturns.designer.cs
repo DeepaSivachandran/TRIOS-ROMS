@@ -36,7 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseReturns));
-            this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epReturnDc = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnldl = new System.Windows.Forms.Panel();
@@ -44,6 +44,11 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
@@ -100,11 +105,11 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.cmbReason = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtgrnno = new System.Windows.Forms.TextBox();
+            this.txtDcNo = new System.Windows.Forms.TextBox();
             this.lblDEVisitDay = new System.Windows.Forms.Label();
-            this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.dpReturnDCDate = new System.Windows.Forms.DateTimePicker();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -112,12 +117,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -129,9 +129,9 @@
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // errUnit
+            // epReturnDc
             // 
-            this.errUnit.ContainerControl = this;
+            this.epReturnDc.ContainerControl = this;
             // 
             // tsPurchaseInvoiceList
             // 
@@ -263,6 +263,40 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(418, 97);
             this.dataGridView2.TabIndex = 1111163;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Rep Name";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Brand";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Phone No.";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Whatsapp No.";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
             // 
             // grbSupplierDetails
             // 
@@ -853,11 +887,11 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.cmbConcern);
-            this.groupBox3.Controls.Add(this.cmbType);
+            this.groupBox3.Controls.Add(this.cmbReason);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.txtgrnno);
+            this.groupBox3.Controls.Add(this.txtDcNo);
             this.groupBox3.Controls.Add(this.lblDEVisitDay);
-            this.groupBox3.Controls.Add(this.dpPlanDate);
+            this.groupBox3.Controls.Add(this.dpReturnDCDate);
             this.groupBox3.Controls.Add(this.txtSupplier);
             this.groupBox3.Controls.Add(this.lblDESupplier);
             this.groupBox3.Controls.Add(this.label1);
@@ -870,29 +904,31 @@
             // 
             // cmbConcern
             // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConcern.Enabled = false;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(7, 36);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(98, 27);
-            this.cmbConcern.TabIndex = 1111170;
+            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
-            // cmbType
+            // cmbReason
             // 
-            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbType.FormattingEnabled = true;
-            this.cmbType.Items.AddRange(new object[] {
+            this.cmbReason.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReason.FormattingEnabled = true;
+            this.cmbReason.Items.AddRange(new object[] {
             "--Select--",
             "Damage",
             "Purchase Return"});
-            this.cmbType.Location = new System.Drawing.Point(215, 88);
-            this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(100, 27);
-            this.cmbType.TabIndex = 1111168;
-            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.CmbType_SelectedIndexChanged);
+            this.cmbReason.Location = new System.Drawing.Point(215, 88);
+            this.cmbReason.Name = "cmbReason";
+            this.cmbReason.Size = new System.Drawing.Size(100, 27);
+            this.cmbReason.TabIndex = 4;
+            this.cmbReason.SelectedIndexChanged += new System.EventHandler(this.CmbType_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -904,16 +940,16 @@
             this.label2.TabIndex = 1111169;
             this.label2.Text = "Reason";
             // 
-            // txtgrnno
+            // txtDcNo
             // 
-            this.txtgrnno.Enabled = false;
-            this.txtgrnno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtgrnno.Location = new System.Drawing.Point(112, 88);
-            this.txtgrnno.MaxLength = 50;
-            this.txtgrnno.Name = "txtgrnno";
-            this.txtgrnno.ReadOnly = true;
-            this.txtgrnno.Size = new System.Drawing.Size(98, 27);
-            this.txtgrnno.TabIndex = 1111166;
+            this.txtDcNo.Enabled = false;
+            this.txtDcNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDcNo.Location = new System.Drawing.Point(112, 88);
+            this.txtDcNo.MaxLength = 50;
+            this.txtDcNo.Name = "txtDcNo";
+            this.txtDcNo.ReadOnly = true;
+            this.txtDcNo.Size = new System.Drawing.Size(98, 27);
+            this.txtDcNo.TabIndex = 3;
             // 
             // lblDEVisitDay
             // 
@@ -925,30 +961,34 @@
             this.lblDEVisitDay.TabIndex = 1111163;
             this.lblDEVisitDay.Text = "DC Date";
             // 
-            // dpPlanDate
+            // dpReturnDCDate
             // 
-            this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
-            this.dpPlanDate.Enabled = false;
-            this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpPlanDate.Location = new System.Drawing.Point(7, 87);
-            this.dpPlanDate.Name = "dpPlanDate";
-            this.dpPlanDate.Size = new System.Drawing.Size(100, 28);
-            this.dpPlanDate.TabIndex = 1111167;
+            this.dpReturnDCDate.CustomFormat = "dd/MM/yyyy";
+            this.dpReturnDCDate.Enabled = false;
+            this.dpReturnDCDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpReturnDCDate.Location = new System.Drawing.Point(7, 87);
+            this.dpReturnDCDate.Name = "dpReturnDCDate";
+            this.dpReturnDCDate.Size = new System.Drawing.Size(100, 28);
+            this.dpReturnDCDate.TabIndex = 2;
+            this.dpReturnDCDate.ValueChanged += new System.EventHandler(this.DpReturnDCDate_ValueChanged);
+            this.dpReturnDCDate.Enter += new System.EventHandler(this.DpReturnDCDate_Enter);
+            this.dpReturnDCDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpReturnDCDate_KeyDown);
+            this.dpReturnDCDate.Leave += new System.EventHandler(this.DpReturnDCDate_Leave);
             // 
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(112, 39);
+            this.txtSupplier.Location = new System.Drawing.Point(112, 36);
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(316, 27);
-            this.txtSupplier.TabIndex = 1111164;
+            this.txtSupplier.TabIndex = 1;
             // 
             // lblDESupplier
             // 
             this.lblDESupplier.AutoSize = true;
             this.lblDESupplier.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDESupplier.Location = new System.Drawing.Point(112, 17);
+            this.lblDESupplier.Location = new System.Drawing.Point(112, 14);
             this.lblDESupplier.Name = "lblDESupplier";
             this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDESupplier.TabIndex = 1111162;
@@ -1005,40 +1045,6 @@
             this.label18.TabIndex = 38;
             this.label18.Text = "Linked with GRN";
             // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Rep Name";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Brand";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Phone No.";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Whatsapp No.";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
             // PUR_PurchaseReturns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1059,7 +1065,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Returns";
             this.Load += new System.EventHandler(this.PUR_PurchaseReturns_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).EndInit();
             this.tsPurchaseInvoiceList.ResumeLayout(false);
             this.tsPurchaseInvoiceList.PerformLayout();
             this.pnldl.ResumeLayout(false);
@@ -1080,7 +1086,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.ErrorProvider errUnit;
+        private System.Windows.Forms.ErrorProvider epReturnDc;
         private System.Windows.Forms.ToolStrip tsPurchaseInvoiceList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnldl;
@@ -1106,11 +1112,11 @@
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cmbConcern;
-        private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.ComboBox cmbReason;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtgrnno;
+        private System.Windows.Forms.TextBox txtDcNo;
         private System.Windows.Forms.Label lblDEVisitDay;
-        private System.Windows.Forms.DateTimePicker dpPlanDate;
+        private System.Windows.Forms.DateTimePicker dpReturnDCDate;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label lblDESupplier;
         private System.Windows.Forms.Label label1;
