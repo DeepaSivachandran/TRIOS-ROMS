@@ -564,7 +564,7 @@ namespace ROMS
                 lblUnit.Text = "";
                 txtRemark.Text = "";
                 txtProductNamePICode.Focus();
-                varSHID = "0";
+                SHID = 0;
             }
             catch (Exception ex)
             {
