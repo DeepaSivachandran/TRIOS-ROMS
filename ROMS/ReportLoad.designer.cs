@@ -37,6 +37,7 @@
             this.cryptview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cryptview.Cursor = System.Windows.Forms.Cursors.Default;
             this.cryptview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cryptview.EnableDrillDown = false;
             this.cryptview.Location = new System.Drawing.Point(0, 0);
             this.cryptview.Name = "cryptview";
             this.cryptview.ShowCloseButton = false;

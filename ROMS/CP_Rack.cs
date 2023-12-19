@@ -88,6 +88,7 @@ namespace ROMS
                 {
                     pnlStatus.Enabled = true;
                     udfnLoad();
+                    lvLocation.Visible = false;
                 }
                 if (varFormFlag != 0) {
                     //MainForm.objCP_RackList.picLoader.Visible = false;
@@ -152,7 +153,7 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0,"","");
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -172,7 +173,8 @@ namespace ROMS
                     }
                     else
                     {
-                        varLocationId = Convert.ToInt32(lblLocation.Text);
+                        lblLocation.Text =Convert.ToString(varLocationId);
+                        //Convert.ToInt32(lblLocation.Text) = varLocationId;
                         txtLocation.BackColor = Color.White;
                         tpStockLocation.ShowAlways = false;
                     }
@@ -745,7 +747,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(20,Convert.ToInt32(cmbConcern.SelectedValue),0,0, txtLocation.Text,0,0,0);
+                    objDs = objspdservice.udfnStockLocationList(20,Convert.ToInt32(cmbConcern.SelectedValue),0,0, txtLocation.Text,0,0,0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

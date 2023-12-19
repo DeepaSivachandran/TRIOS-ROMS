@@ -443,7 +443,7 @@ namespace ROMS
                     string varLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0,"","");
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -1173,7 +1173,7 @@ namespace ROMS
                 if (txtLocation.Text.Length > 0)
                 {
 
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text, 0,0,0);
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text, 0,0,0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1455,11 +1455,14 @@ namespace ROMS
             {
                 MainForm.objCP_Rack = new CP_Rack();
                 MainForm.objCP_Rack.varFormFlag = 1;
+                MainForm.objCP_Rack.cmbConcern.Enabled = false;
+                MainForm.objCP_Rack.txtLocation.Text = txtLocation.Text;
+                MainForm.objCP_Rack.txtLocation.Enabled = false;
                 MainForm.objCP_Rack.ShowDialog();
                 txtLocation.Text = varStockLocationName;
                 lblLocation.Text = Convert.ToString(varLocationCode);
-                //  txtRack.Text = varRackName;
-                //  lblRack.Text = Convert.ToString(varRackCode);
+                txtRack.Text = varRackName;
+                lblRack.Text = Convert.ToString(varRackCode);
                 //  lvRack.Visible = false;
                 udfnLoadRackList();
                 btnSave.Focus();

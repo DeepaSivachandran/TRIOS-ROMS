@@ -60,7 +60,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnMaster(0, 13,0,"","",0);
+                objDs = objdserv.udfnMaster(0, 13,0,"","",0, "",0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -103,6 +103,15 @@ namespace ROMS
                             txtGRNQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_GRNQty"]);
                             txtReturnAlertDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_RAD"]);
                             txtInvoiceEditDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_IED"]);
+
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
+                            {
+                                rbYes.Checked = true;
+                            }
+                            else
+                            {
+                                rbNo.Checked = true;
+                            }
                         }
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
@@ -135,8 +144,9 @@ namespace ROMS
             try
             {
                 string varResult = "";
-                btnUpdate.Enabled = false;
-                SPDataService objDser = new SPDataService();
+                int Varflagstock = 0;
+                btnUpdate.Enabled = false; lblReportname.Focus();
+                 SPDataService objDser = new SPDataService();
                 string varOriginator = "GeneralSettings Updation";
                 SPDataService objspdservice = new SPDataService();
                 DataTable objGeneralSettings = new DataTable();
@@ -151,6 +161,11 @@ namespace ROMS
                 objGeneralSettingsRPT.Columns.Add("GSRPT_GSID", typeof(int));
                 objGeneralSettingsRPT.Columns.Add("GSRPT_MSTID", typeof(int));
                 objGeneralSettingsRPT.Columns.Add("GSRPT_Text", typeof(string));
+
+                if (rbYes.Checked==true)
+                {
+                    Varflagstock = 1;
+                }
                 for (int i = 0; i < grdReport.Rows.Count; i++)
                 {
                     objGeneralSettingsRPT.Rows.Add(varSettingID, Convert.ToInt32(grdReport.Rows[i].Cells["clmTransactionID"].Value), Convert.ToString(grdReport.Rows[i].Cells["clmReportText"].Value).Trim());
@@ -159,7 +174,7 @@ namespace ROMS
                 {
                     objGeneralSettings.Rows.Add(varSettingID,Convert.ToInt32(grdOrderType.Rows[i].Cells["Order_TypeID"].Value), Convert.ToInt32(grdOrderType.Rows[i].Cells["Days"].Value));
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator);
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock);
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -448,7 +463,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbTransactionType.Focus();
+                    rbYes.Focus();
                 }
             }
             catch (Exception ex)
@@ -1016,6 +1031,94 @@ namespace ROMS
             try
             {
                 grdReport.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbYes_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    rbNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbYes_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbYes.BackColor = Color.White;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbYes_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbYes.BackColor = Color.LemonChiffon;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void RbNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbTransactionType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbNo.BackColor = Color.White; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbNo.BackColor = Color.LemonChiffon;
+
             }
             catch (Exception ex)
             {

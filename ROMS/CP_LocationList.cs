@@ -88,7 +88,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataSet objDS = new DataSet();
                 SPDataService objDServ = new SPDataService();
-                objDS = objdserv.udfnStockLocationList(18, 0,0,0,"",0,0,0);
+                objDS = objdserv.udfnStockLocationList(18, 0,0,0,"",0,0,0,"","");
                 objDServ.CloseConnection();
                 cmbLocationType.DataSource = null;
                 if (objDS != null)
@@ -127,7 +127,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0,(Convert.ToInt16(cmbLocationType.SelectedValue)), (Convert.ToInt16(cmbStatus.SelectedValue)));
+                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0,(Convert.ToInt16(cmbLocationType.SelectedValue)), (Convert.ToInt16(cmbStatus.SelectedValue)),"","");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -192,8 +192,8 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
-                btnView.Focus();
                 txtSearchbyLocationName.Text = "";
+                SearchFlag = 0;
             }
         }
         private void udfnSearchGridHead()
@@ -513,6 +513,7 @@ namespace ROMS
         {
             try
             {
+                lblStatus.Focus();
                 btnView.Enabled = false;
                 udfnList();
             }
@@ -521,12 +522,18 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnView.Enabled = true;
+                btnView.Focus();
+            }
         }
         private void BtnExport_Click(object sender, EventArgs e)
         {
             try
             {
                 btnExport.Enabled = false;
+                lblStatus.Focus();
                 if ((grdGodownList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -697,6 +704,12 @@ namespace ROMS
             try
             {
                 txtSearchbyLocationName.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                udfnList();
+               // DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {

@@ -72,6 +72,9 @@ namespace ROMS
                 cmbLocationType.SelectedIndex = 0;
                 cmbStockApplicable.SelectedIndex = 2;
                 cmbLocationType.Focus();
+                chkRKCreation.Enabled = true;
+                chkRKCreation.Checked = false;
+                chkRKGCreation.Checked = false;
                 this.ActiveControl = cmbLocationType;
             }
             catch (Exception ex)

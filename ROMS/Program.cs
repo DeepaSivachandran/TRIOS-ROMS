@@ -22,16 +22,14 @@ namespace ROMS
             {
                 SecurityController _security = new SecurityController();
                 //  DataService objDser = new DataService();
-                string version = "v1.2.1";
+                string version = "v1.3.3";
               //  string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
                 //if (File.Exists(pa th))
                 //{
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     //Application.Run(new Expandablegrd());
-
-
-                   Application.Run(new Authentication());
+                    Application.Run(new Authentication());
                     //DataService objDser = new DataService();
                     ////DataSet getrelease = objDser.GetDataset("select * from TRANS_RELEASEDETAILS where VersionNumber='" + version + "'");
                     ////if (getrelease.Tables[0].Rows.Count == 0)

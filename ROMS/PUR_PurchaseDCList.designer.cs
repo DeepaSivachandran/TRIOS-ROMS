@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -40,7 +41,6 @@
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.grdPurchaseDCList = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
@@ -63,12 +63,15 @@
             this.dpDcFromDate = new System.Windows.Forms.DateTimePicker();
             this.lblInvoicedate = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
+            this.grdPurchaseDCList = new System.Windows.Forms.DataGridView();
+            this.ep_PurchaseDC = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsPurchaseInvoiceList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDCList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlcity.SuspendLayout();
             this.grbFilterBy.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDCList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ep_PurchaseDC)).BeginInit();
             this.SuspendLayout();
             // 
             // tsPurchaseInvoiceList
@@ -156,44 +159,6 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
-            // grdPurchaseDCList
-            // 
-            this.grdPurchaseDCList.AllowUserToAddRows = false;
-            this.grdPurchaseDCList.AllowUserToDeleteRows = false;
-            this.grdPurchaseDCList.AllowUserToResizeColumns = false;
-            this.grdPurchaseDCList.AllowUserToResizeRows = false;
-            this.grdPurchaseDCList.BackgroundColor = System.Drawing.Color.White;
-            this.grdPurchaseDCList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseDCList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdPurchaseDCList.ColumnHeadersHeight = 30;
-            this.grdPurchaseDCList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPurchaseDCList.ColumnHeadersVisible = false;
-            this.grdPurchaseDCList.EnableHeadersVisualStyles = false;
-            this.grdPurchaseDCList.GridColor = System.Drawing.Color.White;
-            this.grdPurchaseDCList.Location = new System.Drawing.Point(3, 130);
-            this.grdPurchaseDCList.Name = "grdPurchaseDCList";
-            this.grdPurchaseDCList.ReadOnly = true;
-            this.grdPurchaseDCList.RowHeadersVisible = false;
-            this.grdPurchaseDCList.RowHeadersWidth = 100;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdPurchaseDCList.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.grdPurchaseDCList.RowTemplate.Height = 25;
-            this.grdPurchaseDCList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseDCList.Size = new System.Drawing.Size(1348, 510);
-            this.grdPurchaseDCList.TabIndex = 1;
-            this.grdPurchaseDCList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseDCList_DataBindingComplete);
-            this.grdPurchaseDCList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseDCList_Scroll);
-            this.grdPurchaseDCList.DoubleClick += new System.EventHandler(this.GrdPurchaseDCList_DoubleClick);
-            this.grdPurchaseDCList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseDCList_KeyDown);
-            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
@@ -213,33 +178,33 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -366,7 +331,7 @@
             "Excess"});
             this.cmbStatus.Location = new System.Drawing.Point(848, 23);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(98, 27);
+            this.cmbStatus.Size = new System.Drawing.Size(105, 27);
             this.cmbStatus.TabIndex = 4;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
@@ -466,7 +431,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(959, 22);
+            this.btnView.Location = new System.Drawing.Point(961, 22);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 5;
@@ -477,6 +442,48 @@
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnView_KeyDown);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
+            // 
+            // grdPurchaseDCList
+            // 
+            this.grdPurchaseDCList.AllowUserToAddRows = false;
+            this.grdPurchaseDCList.AllowUserToDeleteRows = false;
+            this.grdPurchaseDCList.AllowUserToResizeColumns = false;
+            this.grdPurchaseDCList.AllowUserToResizeRows = false;
+            this.grdPurchaseDCList.BackgroundColor = System.Drawing.Color.White;
+            this.grdPurchaseDCList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseDCList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdPurchaseDCList.ColumnHeadersHeight = 30;
+            this.grdPurchaseDCList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPurchaseDCList.ColumnHeadersVisible = false;
+            this.grdPurchaseDCList.EnableHeadersVisualStyles = false;
+            this.grdPurchaseDCList.GridColor = System.Drawing.Color.White;
+            this.grdPurchaseDCList.Location = new System.Drawing.Point(3, 130);
+            this.grdPurchaseDCList.Name = "grdPurchaseDCList";
+            this.grdPurchaseDCList.ReadOnly = true;
+            this.grdPurchaseDCList.RowHeadersVisible = false;
+            this.grdPurchaseDCList.RowHeadersWidth = 100;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdPurchaseDCList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.grdPurchaseDCList.RowTemplate.Height = 25;
+            this.grdPurchaseDCList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPurchaseDCList.Size = new System.Drawing.Size(1348, 510);
+            this.grdPurchaseDCList.TabIndex = 1;
+            this.grdPurchaseDCList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseDCList_DataBindingComplete);
+            this.grdPurchaseDCList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseDCList_Scroll);
+            this.grdPurchaseDCList.DoubleClick += new System.EventHandler(this.GrdPurchaseDCList_DoubleClick);
+            this.grdPurchaseDCList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseDCList_KeyDown);
+            // 
+            // ep_PurchaseDC
+            // 
+            this.ep_PurchaseDC.ContainerControl = this;
             // 
             // PUR_PurchaseDCList
             // 
@@ -497,13 +504,14 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseDCList_KeyDown);
             this.tsPurchaseInvoiceList.ResumeLayout(false);
             this.tsPurchaseInvoiceList.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDCList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.pnlcity.ResumeLayout(false);
             this.pnlcity.PerformLayout();
             this.grbFilterBy.ResumeLayout(false);
             this.grbFilterBy.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDCList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ep_PurchaseDC)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -513,7 +521,6 @@
 
         private System.Windows.Forms.ToolStrip tsPurchaseInvoiceList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
-        public System.Windows.Forms.DataGridView grdPurchaseDCList;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.PictureBox picLoader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
@@ -541,5 +548,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Label lblschedule;
         private System.Windows.Forms.Label lblSupplierCode;
+        public System.Windows.Forms.DataGridView grdPurchaseDCList;
+        private System.Windows.Forms.ErrorProvider ep_PurchaseDC;
     }
 }

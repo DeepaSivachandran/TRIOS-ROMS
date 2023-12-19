@@ -163,6 +163,7 @@ namespace ROMS
                     CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -171,7 +172,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(13,0,0,0,0,"",0,Convert.ToInt32(cmbStatus.SelectedValue),0,"",CityId,Convert.ToInt32(cmbState.SelectedValue), Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbPaymentTerm.SelectedValue),0,0,"");
+                objDs = objspservice.udfnSupplierList(13,0,0,0,0,"",0,Convert.ToInt32(cmbStatus.SelectedValue),0,"",CityId,Convert.ToInt32(cmbState.SelectedValue), Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbPaymentTerm.SelectedValue),0,0,"","","",0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -253,6 +254,7 @@ namespace ROMS
                     CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -261,7 +263,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(14, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue), 0, 0, 0,0,"");
+                objDs = objspservice.udfnSupplierList(14, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue), 0, 0, 0,0,"","","",0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -339,6 +341,7 @@ namespace ROMS
                     CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -347,7 +350,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(20, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0, 0,0,"");
+                objDs = objspservice.udfnSupplierList(20, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0, 0,0,"","","",0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -425,6 +428,7 @@ namespace ROMS
                     CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
+                lblReportType.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -433,7 +437,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(19, 0, 0, 0, 0, "",Convert.ToInt32(cmbOrderType.SelectedValue), 0, 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0,Convert.ToInt32(cmbReturnPolicy.SelectedValue),0,"");
+                objDs = objspservice.udfnSupplierList(19, 0, 0, 0, 0, "",Convert.ToInt32(cmbOrderType.SelectedValue), 0, 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0,Convert.ToInt32(cmbReturnPolicy.SelectedValue),0,"","","",0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -621,7 +625,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnMaster(6,0,0,"","",0);
+                objDT = objdserv.udfnMaster(6,0,0,"","",0, "",0);
                 objdserv.CloseConnection();
                 cmbOrderType.DataSource = null;
                 if (objDT != null)

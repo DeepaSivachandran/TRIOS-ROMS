@@ -259,14 +259,14 @@ namespace ROMS
             {
                 errNewProduct.Clear();
                 cmbUnit.BackColor = Color.White;
-                   SPDataService objspdservice = new SPDataService();
+                  SPDataService objspdservice = new SPDataService();
                 string result = "", varorignator, varupdate;
                 int varviewtype;
                 varviewtype = 12;
                 varorignator = "Product Update"; 
                 result = objspdservice.udfnProductMaster(varviewtype, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblProductcode.Text), "", "", "", 0, 0, 0, 0, 0, 0,
                 Convert.ToInt32(cmbUnit.SelectedValue),txtUpp.Text, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "",
-                MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null,0);
+                MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null,0,"");
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -274,6 +274,11 @@ namespace ROMS
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     varCloseFlag = 1;
                     MainForm.objPUR_PurchaseOrder.varcmbunitid = Convert.ToInt32(varvalue[2]);
+
+                    if (MainForm.objPUR_PurchaseOrder.varcmbunitid != 0)
+                    {
+                        MainForm.objPUR_PurchaseOrder.varUPP =Convert.ToInt32(txtUpp.Text);
+                    }
                     udfnclose();
                     //MainForm.objCP_Itemlist.udfnDropdownbind();
                     //MainForm.objCP_Itemlist.udfnList();
@@ -304,7 +309,7 @@ namespace ROMS
                     txtUnittype.Text = MainForm.objPUR_PurchaseOrder.pbunitname;
                 }
                 this.ActiveControl= cmbUnit;
-                int varViewType = 1; 
+                int varViewType = 5; 
                 DataSet objDT = new DataSet();
                 DataSet objDTBulkUnit = new DataSet();
                 SPDataService objdserv = new SPDataService();
@@ -376,7 +381,18 @@ namespace ROMS
 
         private void TxtUpp_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

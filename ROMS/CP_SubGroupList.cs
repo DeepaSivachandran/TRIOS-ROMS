@@ -162,7 +162,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0,"","");
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -263,6 +263,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
                 txtSearchProduct.Text = "";
+                SearchFlag = 0;
                 //varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
             }
         }
@@ -407,6 +408,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lblProductgroup.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -650,6 +652,7 @@ namespace ROMS
                 btnExport.Enabled = false;
                 if ((grdSubGroupList.Rows.Count > 0))
                 {
+                    lblProductgroup.Focus();
                     Excel._Application ExcelObj = new Excel.Application();
                     // creating new WorkBook within Excel application  
                     Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
@@ -790,6 +793,12 @@ namespace ROMS
             {
                 udfnLvHide();
                 txtSearchProduct.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                udfnList();
+                //DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -1418,7 +1427,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(13, 0, 0, 0, txtStockLocation.Text.Trim(), 0,0,0);
+                    objDs = objspdservice.udfnStockLocationList(13, 0, 0, 0, txtStockLocation.Text.Trim(), 0,0,0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -110,6 +110,7 @@
             // 
             // txtDescription
             // 
+            this.txtDescription.Enabled = false;
             this.txtDescription.Location = new System.Drawing.Point(297, 27);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDescription.Name = "txtDescription";
@@ -132,6 +133,7 @@
             // 
             // txtRackName
             // 
+            this.txtRackName.Enabled = false;
             this.txtRackName.Location = new System.Drawing.Point(87, 27);
             this.txtRackName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRackName.Name = "txtRackName";

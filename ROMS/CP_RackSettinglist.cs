@@ -96,7 +96,7 @@ namespace ROMS
                 {
                     MainForm.objCP_RackSettings = new CP_RackSettings();
                     MainForm.objCP_RackSettings.MdiParent = ParentForm;
-                    MainForm.objCP_RackSettings.btnSave.Text = "Update";
+                    //MainForm.objCP_RackSettings.btnSave.Text = "Update";
                     MainForm.objCP_RackSettings.varRacksettingID = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_RackSettings.PbRKID = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["RKID"].Value);
                     MainForm.objCP_RackSettings.PbStockLocation = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Stock Location"].Value);
@@ -428,7 +428,19 @@ namespace ROMS
         }
         private void BtnView_Click(object sender, EventArgs e)
         {
-            udfnList();
+            try
+            {
+                udfnList();
+            }
+              catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvRack.Visible = false;
+            }
         }
         private void GrdRackSettingList_DoubleClick(object sender, EventArgs e)
         {
