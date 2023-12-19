@@ -488,7 +488,6 @@ namespace ROMS
             {
                 if (grdDamageEntryList.SelectedRows.Count > 0)
                 {
-                    
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -496,6 +495,7 @@ namespace ROMS
                         Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
                         objTRN_Damage.ViewType = 2;
                         objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                        objTRN_Damage.paraStatusId = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value.ToString());
                         objTRN_Damage.paraOriginator = "Damage Entry Delete";
 
                         string varResult = objDser.udfnDamageEntry(objTRN_Damage);
@@ -512,6 +512,7 @@ namespace ROMS
                                     //SPDataService objDser = new SPDataService();
                                     //Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
                                     objTRN_Damage.ViewType = 2;
+                                    objTRN_Damage.paraStatusId = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value.ToString());
                                     objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
                                     objTRN_Damage.paraOriginator = "Damage Entry Delete";
                                     objTRN_Damage.paraDeleteFlag = 1;
@@ -757,6 +758,7 @@ namespace ROMS
                             grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 120;
+                            grdDamageEntryList.Columns["Employees"].Width = 300;
                             //grdDamageEntryList.Columns["Supplier"].Width = 330;
                             //grdDamageEntryList.Columns["City"].Width = 120;
                             //grdDamageEntryList.Columns["GSTIN"].Width = 150;
@@ -953,10 +955,10 @@ namespace ROMS
             try
             {
                 lvSupplier.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplierName.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplierName.Text, 0, 0,Convert.ToInt32(cmbconcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,"",dpFromDate.Text,dpToDate.Text,2);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -1215,10 +1217,10 @@ namespace ROMS
             try
             {
                 lvSupplierName.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
