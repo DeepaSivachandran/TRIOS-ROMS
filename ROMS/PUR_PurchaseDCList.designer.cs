@@ -331,7 +331,7 @@
             "Excess"});
             this.cmbStatus.Location = new System.Drawing.Point(848, 23);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(98, 27);
+            this.cmbStatus.Size = new System.Drawing.Size(105, 27);
             this.cmbStatus.TabIndex = 4;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
@@ -431,7 +431,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(959, 22);
+            this.btnView.Location = new System.Drawing.Point(961, 22);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 5;

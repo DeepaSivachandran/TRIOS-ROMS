@@ -1687,9 +1687,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     objDs = objdserv.udfnGrnListLoad(2, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0,"","",0);
                     objdserv.CloseConnection();
-                    btnSave.Text = "Update && Print";
-
-
+                    btnSave.Text = "Update && Print"; 
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)

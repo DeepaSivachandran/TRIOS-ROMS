@@ -203,13 +203,15 @@ namespace ROMS
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);
-            DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            //dpTrannsferFromDate.MinDate = varDate;
-            dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            if (objDs.Tables[0].Rows.Count > 0)
+            {
+                DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpTransferToDate.MinDate = varDate;
+                dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            }
             objspservice.CloseConnection();
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpTransferToDate.MinDate = varDate;
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
             cmbConcern.SelectedValue = 1;
             this.ActiveControl = txtSLocation;
@@ -354,9 +356,9 @@ namespace ROMS
                             grdStockTransfer.Columns["StatusID"].Visible = false;
                             grdStockTransfer.Columns["STRID"].Visible = false;
                             grdStockTransfer.Columns["S.No."].Width = 50;
-                            grdStockTransfer.Columns["Status"].Width = 80;
+                            grdStockTransfer.Columns["Status"].Width = 120;
                             grdStockTransfer.Columns["Source"].Width = 120;
-                            grdStockTransfer.Columns["Created By"].Width = 180;
+                            grdStockTransfer.Columns["Created By"].Width = 100;
                             grdStockTransfer.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -757,10 +759,10 @@ namespace ROMS
                     varViewType = 11;
                 }
                 lvSLocation.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSLocation.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnStockLocationList(27,Convert.ToInt32(cmbConcern.SelectedValue),0,0,txtSLocation.Text,0,0,0,dpTrannsferFromDate.Text,dpTransferToDate.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -843,8 +845,9 @@ namespace ROMS
                     Application.DoEvents();
                     MainForm.objINV_StockTransfer = new INV_StockTransfer();
                     MainForm.objINV_StockTransfer.MdiParent = ParentForm;
-                    MainForm.objINV_StockTransfer.btnSave.Text = "Update";
+                    //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
                     MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
+                    MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objINV_StockTransfer.Show();
                 }
             }
@@ -880,7 +883,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"",0,"Stock Transfer Delete",dtStock,0);
+                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete",dtStock,0);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -892,7 +895,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objDser = new SPDataService();
-                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", 0, "Stock Transfer Delete", dtStock,1);
+                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock,1);
                                     objDser.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -931,11 +934,11 @@ namespace ROMS
                         grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    //else
-                    //{
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    //}
+                    else
+                    {
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)

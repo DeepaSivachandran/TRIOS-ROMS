@@ -359,13 +359,15 @@ namespace ROMS
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",3);
-            DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            //dpFromDate.MinDate = varDate;
-            dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            if (objDs.Tables[0].Rows.Count > 0)
+            {
+                DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varDate;
+                dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+            }
             objspservice.CloseConnection();
             dpFromDate.MinDate = MainForm.pbFYStartDate;
             dpFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpToDate.MinDate = varDate;
             dpToDate.MaxDate = MainForm.pbCurrentDate;
             udfnList();
         }
@@ -465,8 +467,8 @@ namespace ROMS
                     Application.DoEvents();
                     MainForm.objINV_DamageEntry = new INV_DamageEntry();
                     MainForm.objINV_DamageEntry.MdiParent = ParentForm;
-                    MainForm.objINV_DamageEntry.btnSave.Text = "Update";
                     MainForm.objINV_DamageEntry.varID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value);
+                    MainForm.objINV_DamageEntry.varStatusID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objINV_DamageEntry.Show();
                 }
             }
@@ -487,7 +489,6 @@ namespace ROMS
             {
                 if (grdDamageEntryList.SelectedRows.Count > 0)
                 {
-                    
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -495,6 +496,7 @@ namespace ROMS
                         Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
                         objTRN_Damage.ViewType = 2;
                         objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                        objTRN_Damage.paraStatusId = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value.ToString());
                         objTRN_Damage.paraOriginator = "Damage Entry Delete";
 
                         string varResult = objDser.udfnDamageEntry(objTRN_Damage);
@@ -511,6 +513,7 @@ namespace ROMS
                                     //SPDataService objDser = new SPDataService();
                                     //Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
                                     objTRN_Damage.ViewType = 2;
+                                    objTRN_Damage.paraStatusId = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value.ToString());
                                     objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
                                     objTRN_Damage.paraOriginator = "Damage Entry Delete";
                                     objTRN_Damage.paraDeleteFlag = 1;
@@ -756,12 +759,14 @@ namespace ROMS
                             grdDamageEntryList.Columns["ConcernID"].Visible = false;
                             grdDamageEntryList.Columns["StatusID"].Visible = false;
                             grdDamageEntryList.Columns["DMID"].Visible = false;
+                            //grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
-                            grdDamageEntryList.Columns["Status"].Width = 80;
-                            grdDamageEntryList.Columns["Supplier"].Width = 330;
-                            grdDamageEntryList.Columns["City"].Width = 120;
-                            grdDamageEntryList.Columns["GSTIN"].Width = 150;
-                            grdDamageEntryList.Columns["Created By"].Width = 120;
+                            grdDamageEntryList.Columns["Status"].Width = 120;
+                            grdDamageEntryList.Columns["Employees"].Width = 300;
+                            //grdDamageEntryList.Columns["Supplier"].Width = 330;
+                            //grdDamageEntryList.Columns["City"].Width = 120;
+                            //grdDamageEntryList.Columns["GSTIN"].Width = 150;
+                            grdDamageEntryList.Columns["Created By"].Width = 100;
                             grdDamageEntryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdDamageEntryList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdDamageEntryList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1311,7 +1316,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdDamageEntryList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -1323,11 +1327,11 @@ namespace ROMS
                         grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    //else
-                    //{
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    //    grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    //}
+                    else
+                    {
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdDamageEntryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)

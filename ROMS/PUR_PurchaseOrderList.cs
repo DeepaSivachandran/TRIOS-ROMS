@@ -998,6 +998,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["DELAYVALUE"].Visible = false;
                             grdPurchaseorderlist.Columns["Mode of details"].Visible = false;
                             grdPurchaseorderlist.Columns["Issued DATES"].Visible = false;
+                            grdPurchaseorderlist.Columns["DTURN"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1531,6 +1532,7 @@ namespace ROMS
                             grdProDetails.Columns["SPSC_SMMobileNo"].Visible = false;
                             grdProDetails.Columns["status1"].Visible = false;
                             grdProDetails.Columns["SP_PhoneNo"].Visible = false; 
+                            grdProDetails.Columns["PO_LastTransNo"].Visible = false; 
                             grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
                             {

@@ -20,6 +20,6 @@ namespace ROMS.Model
         public int paraTransferType { get; set; } = 0;
         public string paraRemarks { get; set; } = "";
         public int paraStatusId { get; set; } = 0;
-       public DataTable paraStockTransfer { get; set; } = null;
+        public DataTable paraStockTransfer { get; set; } = null;
     }
 }

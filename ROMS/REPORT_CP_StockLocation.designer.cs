@@ -53,7 +53,6 @@
             this.pnlLocation = new System.Windows.Forms.Panel();
             this.lblProductId = new System.Windows.Forms.Label();
             this.lblSubGroupId = new System.Windows.Forms.Label();
-            this.lblGroupId = new System.Windows.Forms.Label();
             this.lblProduct = new System.Windows.Forms.Label();
             this.lblSubgroup = new System.Windows.Forms.Label();
             this.lblGroup = new System.Windows.Forms.Label();
@@ -61,6 +60,7 @@
             this.txtGroup = new System.Windows.Forms.TextBox();
             this.txtProduct = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.lblGroupId = new System.Windows.Forms.Label();
             this.lblConcern = new System.Windows.Forms.Label();
             this.cmbGodownType = new System.Windows.Forms.ComboBox();
             this.cmbLocationType = new System.Windows.Forms.ComboBox();
@@ -306,24 +306,15 @@
             this.lblSubGroupId.TabIndex = 1111237;
             this.lblSubGroupId.Visible = false;
             // 
-            // lblGroupId
-            // 
-            this.lblGroupId.AutoSize = true;
-            this.lblGroupId.Location = new System.Drawing.Point(393, 18);
-            this.lblGroupId.Name = "lblGroupId";
-            this.lblGroupId.Size = new System.Drawing.Size(0, 20);
-            this.lblGroupId.TabIndex = 1111236;
-            this.lblGroupId.Visible = false;
-            // 
             // lblProduct
             // 
             this.lblProduct.AutoSize = true;
             this.lblProduct.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProduct.Location = new System.Drawing.Point(319, 10);
             this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(52, 20);
+            this.lblProduct.Size = new System.Drawing.Size(134, 20);
             this.lblProduct.TabIndex = 1111235;
-            this.lblProduct.Text = "Product";
+            this.lblProduct.Text = "Product Name/P.I Code";
             // 
             // lblSubgroup
             // 
@@ -395,6 +386,15 @@
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
             this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
+            // 
+            // lblGroupId
+            // 
+            this.lblGroupId.AutoSize = true;
+            this.lblGroupId.Location = new System.Drawing.Point(393, 18);
+            this.lblGroupId.Name = "lblGroupId";
+            this.lblGroupId.Size = new System.Drawing.Size(0, 20);
+            this.lblGroupId.TabIndex = 1111236;
+            this.lblGroupId.Visible = false;
             // 
             // lblConcern
             // 
