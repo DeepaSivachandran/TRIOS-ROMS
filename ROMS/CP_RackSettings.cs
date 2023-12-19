@@ -140,11 +140,20 @@ namespace ROMS
         }
         public void udfnclear()
         {
-            txtDLocation.Text = "";
+            txtSourceLocation.Text = "";
+            varSourceLocationID = 0;
+            varSourceRackID = 0;
+            txtDestinationLocation.Text = "";
+            varDestinationLocationID = 0;
+            varDestinationRackID = 0;
+            udfnCmbSourceRack();
+            udfnCmbDestinationRack();
             grdViewProduct.DataSource = null;
             dtMoveProduct.Rows.Clear();
+            dtMoveProduct.AcceptChanges();
             grdMoveProduct.DataSource = null;
             dtViewProduct.Rows.Clear();
+            dtViewProduct.AcceptChanges();
         } 
         public void udfnProductLoad()
         {
@@ -302,7 +311,7 @@ namespace ROMS
                             }
                         }
                     }
-                    varSourceLocationID = Convert.ToInt32(varId_DestinationLocation);
+                    varDestinationLocationID = Convert.ToInt32(varId_DestinationLocation);
                     if (varId_DestinationLocation == "0" || varId_DestinationLocation == "-1")
                     {
                         epRackSettings.SetError(txtDestinationLocation, "Please select valid destination location.");
@@ -1054,6 +1063,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                lblTotalProducts.Text = Convert.ToString(grdViewProduct.Rows.Count);
+            }
         }
         private void TxtSearchProductName2_Enter(object sender, EventArgs e)
         {
@@ -1161,6 +1174,30 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void RemoveProduct()
+        {
+            try
+            {
+                string varRemoveGroup = "";
+                for (int j = 0; j < dtViewProduct.Rows.Count; j++)
+                {
+                    varRemoveGroup = Convert.ToString(grdViewProduct.Rows[j].Cells["PRODUCTID"].Value);
+                    for (int i = 0; i < dtMoveProduct.Rows.Count; i++)
+                    {
+                        if (varRemoveGroup == Convert.ToString(dtMoveProduct.Rows[i]["PRID"]))
+                        {
+                            dtViewProduct.Rows[i].Delete();
+                            dtViewProduct.AcceptChanges();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnMoveProduct()
         {
             try
@@ -1173,7 +1210,7 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdViewProduct.Rows[i].Cells[0].Value) == true)
                         {
-                            int varFlag = 0, varcount = 1; ;
+                            int varFlag = 0, varcount = 1; 
 
                             for (int j = 0; j < dtMoveProduct.Rows.Count; j++)
                             {
@@ -1215,6 +1252,7 @@ namespace ROMS
                     //grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                     //grdMoveProduct.Columns["Unit"].ReadOnly = true;
                     grdMoveProduct.Columns[0].ReadOnly = false;
+                    RemoveProduct();
                     grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     udfnSearchGridHeadMove();
                     SearchFlag1 = 0;
@@ -1232,6 +1270,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { lblMoveProCount.Text = Convert.ToString(grdMoveProduct.Rows.Count); }
         }
 
         private void BtnMoveSave_Click(object sender, EventArgs e)
@@ -1242,7 +1282,24 @@ namespace ROMS
                 if (grdMoveProduct.Rows.Count > 0)
                 {
                     udfnSLocationValidation();
-                    if(varSourceRackID!=-1 && varDestinationRackID!=-1 && sourceFalg==0 && DestinationFlag==0)
+                    udfnDLocationValidation();
+                    if (Convert.ToString(cmbSourceRack.SelectedValue) == "" || Convert.ToString(cmbSourceRack.SelectedValue) == "-1")
+                    {
+                        epRackSettings.SetError(cmbSourceRack, "Please select source rack.");
+                        cmbSourceRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSourceRack.ShowAlways = true;
+                        tpSourceRack.Show("Please select source rack.", cmbSourceRack, 5000);
+                        sourceFalg = 1;
+                    }
+                    if (Convert.ToString(cmbDestinationRack.SelectedValue) == "" || Convert.ToString(cmbDestinationRack.SelectedValue) == "-1")
+                    {
+                        epRackSettings.SetError(cmbDestinationRack, "Please select destination rack.");
+                        cmbDestinationRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpDestinationRack.ShowAlways = true;
+                        tpDestinationRack.Show("Please select destination rack.", cmbDestinationRack, 5000);
+                        DestinationFlag = 1;
+                    }
+                    if (varSourceRackID!=-1 && varDestinationRackID!=-1 && sourceFalg==0 && DestinationFlag==0)
                     {
                         udfnMoveSave(sender, e);
                     }
@@ -1265,7 +1322,7 @@ namespace ROMS
                     //    btnMoveSave.Enabled = false;
                     //    udfnMoveSave(sender, e);
                     //}
-                }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1311,7 +1368,6 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_RackSettinglist.udfnList();
                     udfnclear();
                 }
                 else
@@ -1474,11 +1530,27 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+                                dtViewProduct.Rows.Add(false,grdViewProduct.Rows.Count+1,grdMoveProduct.SelectedRows[0].Cells["P.I Code"].Value, grdMoveProduct.SelectedRows[0].Cells["Product Name in English"].Value,
+                                   grdMoveProduct.SelectedRows[0].Cells["Product Name in Tamil"].Value, grdMoveProduct.SelectedRows[0].Cells["Unit"].Value, grdMoveProduct.SelectedRows[0].Cells["PRID"].Value);
+                                dtViewProduct.AcceptChanges();
+                                grdMoveProduct.DataSource = null;
+                                grdMoveProduct.DataSource = dtMoveProduct;
+                                // grdMoveProduct.Columns["clmRemoveProduct"].DisplayIndex = 5;
+                                grdMoveProduct.Columns["PRID"].Visible = false;
+                                grdMoveProduct.Columns["P.I Code"].Width = 100;
+                                grdMoveProduct.Columns["Product Name in English"].Width = 250;
+                                grdMoveProduct.Columns["Product Name in Tamil"].Width = 250;
+                                //grdMoveProduct.Columns["P.I Code"].ReadOnly = true;
+                                //grdMoveProduct.Columns["Product Name in English"].ReadOnly = true;
+                                //grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
+                                //grdMoveProduct.Columns["Unit"].ReadOnly = true;
+                                grdMoveProduct.Columns[0].ReadOnly = false;
                                 grdMoveProduct.Rows.RemoveAt(this.grdMoveProduct.SelectedRows[0].Index);
                                 for (int i = 0; i < grdMoveProduct.RowCount; i++)
                                 {
                                     grdMoveProduct.Rows[i].Cells["sno"].Value = i + 1;
                                 }
+                                lblMoveProCount.Text =Convert.ToString(grdViewProduct.Rows.Count);
                             }
                         break;
                     }
@@ -1525,12 +1597,10 @@ namespace ROMS
         {
             try
             {
-
                 foreach (DataGridViewRow row in grdViewProduct.Rows)
                 {
                     row.Cells[0].Value = false;
                 }
-
             }
             catch (Exception ex)
             {
@@ -2683,6 +2753,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
 
         private void TxtDestinationLocation_KeyDown(object sender, KeyEventArgs e)
         {
