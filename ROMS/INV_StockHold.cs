@@ -305,7 +305,7 @@ namespace ROMS
         {
             try
             {
-                string varoriginator = ""; int ViewType = 0;
+                string varoriginator = ""; int ViewType = 0; 
                 //if (btnSave.Text == "Save")
                 if(SHID==0)
                 {
@@ -552,7 +552,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.Text = "Save";
+                //btnSave.Text = "Save";
                 txtProductNamePICode.Text = "";
                 txtStockLoc.Text = "";
                 txtRack.Text = "";
@@ -564,6 +564,7 @@ namespace ROMS
                 lblUnit.Text = "";
                 txtRemark.Text = "";
                 txtProductNamePICode.Focus();
+                varSHID = "0";
             }
             catch (Exception ex)
             {
