@@ -353,6 +353,7 @@ namespace ROMS
                         grdPurchaseDC.Columns["clmRemove"].Visible = false;
                         epPurchaseDC.Clear();
                         chkCompleted.Checked = true;
+                        udfnTooltipHide();
                     }
                 }
                 ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
