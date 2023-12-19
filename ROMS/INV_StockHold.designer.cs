@@ -95,11 +95,11 @@
             this.txtQty = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grdStockHold = new System.Windows.Forms.DataGridView();
+            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.epStockHold = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
             this.grpStockRequest.SuspendLayout();
@@ -506,6 +506,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(34, 29);
             this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
@@ -661,6 +662,22 @@
             this.grdStockHold.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockHold_Scroll);
             this.grdStockHold.Enter += new System.EventHandler(this.GrdStockHold_Enter);
             // 
+            // clmDelete
+            // 
+            this.clmDelete.HeaderText = "Delete";
+            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmDelete.Name = "clmDelete";
+            this.clmDelete.ReadOnly = true;
+            this.clmDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.HeaderText = "Edit";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.ReadOnly = true;
+            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // txtProductNamePICode
             // 
             this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -686,22 +703,6 @@
             // epStockHold
             // 
             this.epStockHold.ContainerControl = this;
-            // 
-            // clmDelete
-            // 
-            this.clmDelete.HeaderText = "Delete";
-            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmDelete.Name = "clmDelete";
-            this.clmDelete.ReadOnly = true;
-            this.clmDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // clmEdit
-            // 
-            this.clmEdit.HeaderText = "Edit";
-            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmEdit.Name = "clmEdit";
-            this.clmEdit.ReadOnly = true;
-            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // INV_StockHold
             // 
