@@ -867,10 +867,10 @@ namespace ROMS
                             varRKID = Convert.ToInt32(objDs.Tables[0].Rows[0]["RKID"]);
                             varUTID = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Remarks"]);
-                            btnSave.Text = "Update";
+                           // btnSave.Text = "Update";
                         }
                     }
-                    btnSave.Text = "Update";
+                   // btnSave.Text = "Update";
                     cmbConcern.Enabled = false;
                     lvproduct.Visible = false;
                     txtProductNamePICode.Enabled = false;
