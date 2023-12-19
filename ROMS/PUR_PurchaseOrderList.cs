@@ -2200,7 +2200,7 @@ namespace ROMS
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
                     DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmView"]; 
-                    if (Convert.ToInt32(grdPurchaseorderlist.Rows[i].Cells["STS"].Value.ToString()) == 11)
+                    if (Convert.ToInt32(grdPurchaseorderlist.Rows[i].Cells["STS"].Value.ToString()) != 12)
                     { 
                         cell1.Style.BackColor = Color.LightGray; 
                     } 

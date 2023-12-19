@@ -417,12 +417,12 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblDProduct.Text = "Search by P.I Code";
+                        lblDProduct.Text = "Search by P.I Code"; 
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblDProduct.Text = "Search by Product Name";
+                        lblDProduct.Text = "Search by Product Name"; 
                     }
                 }
             }
@@ -2562,7 +2562,15 @@ namespace ROMS
         {
             try
             {
-                string varProductsCodes = "0";
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
+                    string varProductsCodes = "0";
                 for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                 {
                     if (varProductsCodes == "")
