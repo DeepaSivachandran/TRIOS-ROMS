@@ -334,10 +334,6 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         txtRemarks.Enabled = false;
                         this.ActiveControl = btnClose;
-                        for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
-                        {
-                            ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
-                        }
                     }
                     lvSLocation.Visible = false;
                     lvDLocation.Visible = false;
