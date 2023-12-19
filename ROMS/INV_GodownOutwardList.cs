@@ -531,7 +531,8 @@ namespace ROMS
                     }
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (10) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+               // objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (10) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (35,26,0) ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 35;
                 DataSet objDS = new DataSet();
@@ -1426,6 +1427,11 @@ namespace ROMS
         }
 
         private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
