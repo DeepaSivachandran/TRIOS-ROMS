@@ -720,8 +720,7 @@ namespace ROMS
                             }
 
                         }
-                    }
-
+                    } 
                     result = objspdservice.udfnSupplierMaster(varviewtype, SupplierUpdate, txtName.Text, txtArea.Text, txtaddress2.Text, cityid
                    , varpincode, txtContactNumber.Text, txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
                    Convert.ToInt32(cmbPaymentTerm.SelectedValue), varreturnapplicable, varretuencycle, Convert.ToInt32(cmbfinance.SelectedValue), openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
@@ -845,6 +844,7 @@ namespace ROMS
                 cmbDesignation.BackColor = Color.White;
                 cmbSupplierType.BackColor = Color.White;
                 cmbPaymentTerm.BackColor = Color.White;
+                txtgstin.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -922,6 +922,10 @@ namespace ROMS
                 txtIFScode.Text = "";
                 BindDataGrid();
                 txtName.Focus();
+                for (int i = 0; i < grdPaymentMode.Rows.Count; i++)
+                {
+                    grdPaymentMode.Rows[i].Cells[0].Value = false;
+                }
             }
             catch (Exception ex)
             {
@@ -6560,16 +6564,7 @@ namespace ROMS
         {
 
         }
-
-        private void TxtBankShortName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TcSupplier_Enter(object sender, EventArgs e)
-        {
-
-        }
+         
 
         private void LvCity_DoubleClick(object sender, EventArgs e)
         {

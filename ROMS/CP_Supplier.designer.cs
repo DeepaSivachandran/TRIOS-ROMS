@@ -480,7 +480,6 @@
             this.txtBankShortName.Name = "txtBankShortName";
             this.txtBankShortName.Size = new System.Drawing.Size(165, 27);
             this.txtBankShortName.TabIndex = 18;
-            this.txtBankShortName.TextChanged += new System.EventHandler(this.TxtBankShortName_TextChanged);
             this.txtBankShortName.Enter += new System.EventHandler(this.TxtBankShortName_Enter);
             this.txtBankShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankShortName_KeyDown);
             this.txtBankShortName.Leave += new System.EventHandler(this.TxtBankShortName_Leave);
