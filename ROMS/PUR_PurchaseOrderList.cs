@@ -991,6 +991,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["DELAYVALUE"].Visible = false;
                             grdPurchaseorderlist.Columns["Mode of details"].Visible = false;
                             grdPurchaseorderlist.Columns["Issued DATES"].Visible = false;
+                            grdPurchaseorderlist.Columns["DTURN"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
