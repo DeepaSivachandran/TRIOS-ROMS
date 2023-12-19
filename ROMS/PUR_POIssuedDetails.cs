@@ -199,7 +199,7 @@ namespace ROMS
                     txtTAT.Enabled = false;
                     this.ActiveControl = txtIssuedBY;
                 }
-                if (varsts == 14 || varsts == 33)
+                if (varsts == 14 || varsts == 33 || varsts == 13)
                 { 
                     gpissued.Enabled = false;
                     gpissued.Enabled = false;
