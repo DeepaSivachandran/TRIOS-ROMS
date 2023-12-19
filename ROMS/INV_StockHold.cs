@@ -306,7 +306,8 @@ namespace ROMS
             try
             {
                 string varoriginator = ""; int ViewType = 0;
-                if (btnSave.Text == "Save")
+                //if (btnSave.Text == "Save")
+                if(SHID==0)
                 {
                     ViewType = 0;
                     varoriginator = "Stock Hold Creation";
@@ -383,9 +384,10 @@ namespace ROMS
                 {
                     //string varMrp = string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim())));
                     //varResult = objspservice.udfnStockHold(ViewType,SHID,Convert.ToInt32(cmbConcern.SelectedValue), varPRID, varStockLocationId, varRKID,Convert.ToString(txtMrp.Text), Convert.ToString(txtExpiryDate.Text),Convert.ToString(txtBatchNo.Text),varUTID,Convert.ToInt32(txtQty.Text), varoriginator);
-                    SPDataService objspservice = new SPDataService();
+
                     DataTable objGrnPO = new DataTable();
                     TRNS_StockHold objTRNS_StockHold = new TRNS_StockHold();
+                    SPDataService objspservice = new SPDataService();
                     objTRNS_StockHold.ViewType = ViewType;
                     objTRNS_StockHold.paraSHID = SHID;
                     objTRNS_StockHold.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
@@ -399,24 +401,60 @@ namespace ROMS
                     objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
                     objTRNS_StockHold.paraQty = Convert.ToInt32(txtQty.Text);
                     objTRNS_StockHold.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
+                    objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRNS_StockHold.paraFlag = 0;
                     objTRNS_StockHold.paraOriginator = varoriginator;
                     varResult = objspservice.udfnStockHold(objTRNS_StockHold);
                     objspservice.CloseConnection();
-
                     string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "3")
+                    if (varResult.Split('~')[0] == "3")
                     {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnClear();
-                        udfnList();
-                    }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        udfnClear();
+                        if (varResult.Split('~')[1] == "1")
+                        {
+                            MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
+                            if (MainForm.objCP_Verify.flag == 1)
+                            {
+                                objspservice = new SPDataService();
+                                objTRNS_StockHold.ViewType = ViewType;
+                                objTRNS_StockHold.paraSHID = SHID;
+                                objTRNS_StockHold.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                                objTRNS_StockHold.paraPRID = varPRID;
+                                objTRNS_StockHold.paraSLID = varStockLocationId;
+                                objTRNS_StockHold.paraRKID = varRKID;
+                                objTRNS_StockHold.paraMrp = Convert.ToDecimal(string.Format("{0:G29}", decimal.Parse(txtMrp.Text.Trim())));
+                                objTRNS_StockHold.paraExpiryDate = Convert.ToString(txtExpiryDate.Text);
+                                objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
+                                objTRNS_StockHold.paraUTID = varUTID;
+                                objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
+                                objTRNS_StockHold.paraQty = Convert.ToInt32(txtQty.Text);
+                                objTRNS_StockHold.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
+                                objTRNS_StockHold.paraUserID = Convert.ToInt32(varUserID);
+                                objTRNS_StockHold.paraFlag = 1;
+                                objTRNS_StockHold.paraOriginator = varoriginator;
+                                varResult = objspservice.udfnStockHold(objTRNS_StockHold);
+                                objspservice.CloseConnection();
+                                string[] varvalue1 = varResult.Split('~');
+                                if (varvalue1[0] == "3")
+                                {
+                                    MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    udfnClear();
+                                    udfnList();
+                                }
+                                else
+                                {
+                                    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    udfnClear();
+                                }
+                            }
+                        }
+                        else if (varResult.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
-                
             }
             catch (Exception ex)
             {
@@ -764,6 +802,7 @@ namespace ROMS
                             lvproduct.Visible = false;
                             txtProductNamePICode.BackColor = Color.White;
                             tpProductNamePICode.Active = false;
+                            txtQty.Focus();
                             break;
                     }
                 }

@@ -21,6 +21,7 @@ namespace ROMS.Model
         public string paraRemarks { get; set; } = "";
         public int paraUTID { get; set; } = 0;
         public int paraQty { get; set; } = 0;
+        public int paraFlag { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
 
     }
