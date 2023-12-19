@@ -755,7 +755,7 @@ namespace ROMS
                             grdDamageEntryList.Columns["ConcernID"].Visible = false;
                             grdDamageEntryList.Columns["StatusID"].Visible = false;
                             grdDamageEntryList.Columns["DMID"].Visible = false;
-                            grdDamageEntryList.Columns["EMPID"].Visible = false;
+                            //grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 120;
                             grdDamageEntryList.Columns["Employees"].Width = 300;
