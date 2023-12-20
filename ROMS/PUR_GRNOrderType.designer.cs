@@ -102,7 +102,6 @@
             this.grdPurchaseOrder.GridColor = System.Drawing.Color.White;
             this.grdPurchaseOrder.Location = new System.Drawing.Point(12, 7);
             this.grdPurchaseOrder.Name = "grdPurchaseOrder";
-            this.grdPurchaseOrder.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -153,6 +152,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Select Purchase Order";
             this.Load += new System.EventHandler(this.PUR_GRNOrderType_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_GRNOrderType_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).EndInit();
             this.ResumeLayout(false);

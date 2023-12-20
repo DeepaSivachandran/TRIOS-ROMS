@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -161,7 +162,8 @@ namespace ROMS
                 objDSBatchNo = objDServ.udfnMaster(0, 25,0,"","",0, "",0);
                 objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0,"","",0, "",0);
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "",0);
-                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
+                MR_Product objMR_Product = new MR_Product();
+                objDSProduct = objDServ.udfnproductmasterlist(objMR_Product);
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -985,9 +987,17 @@ namespace ROMS
                 grdBrand.DataSource = null;
                 grdHSN.DataSource = null;
                 grdBulkAttributes.DataSource = null;
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = varViewType;
+                objMR_Product.paraGroup = varGroupId;
+                objMR_Product.paraSubgroup = varSubGroupId;
+                objMR_Product.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objMR_Product.paraIPAddress = MainForm.pbIpAddress;
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraBrandID = varBrandId;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
+                objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public int Supplierpend = 0, Statuschange=0, SearchFlag=0;
         public string varUserID = "0";
+        DateTime varmaxdate;
         public PUR_PurchaseOrderList()
         {
             InitializeComponent();
@@ -199,13 +201,23 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",0);
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0,"",0);
+                objDServ.CloseConnection();
                 if (objd.Tables[0].Rows.Count != 0)
                 {
-                    //DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    //dpPlanDate.MinDate = varmindate;
+                    DateTime varmindate = MainForm.pbFYStartDate;
+                    dpPlanDate.MinDate = varmindate;
                     dpPlanDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
+                objd = null;
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
+                objDServ.CloseConnection();
+                if (objd.Tables[1].Rows.Count != 0)
+                {
+                    varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture); 
+                }
+
+                dpPlanDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
             {
@@ -586,11 +598,17 @@ namespace ROMS
             try
             {
                 LV_Supplier.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "",dpPlanDate.Text,dptoPlanDate.Text,1);
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 26;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    objMR_Supplier.ParaFromDate = dpPlanDate.Text;
+                    objMR_Supplier.ParaToDate = dptoPlanDate.Text;
+                    objMR_Supplier.paraFlag = 1;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -925,7 +943,7 @@ namespace ROMS
                    varstatus= Convert.ToInt32(cmbstatus.SelectedValue);
                 }
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0",0);
+                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0",0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -951,6 +969,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["T.Pro"].Width = 50;
                             grdPurchaseorderlist.Columns["T.Units"].Width = 50;
                             grdPurchaseorderlist.Columns["TAT"].Width = 70;
+                            grdPurchaseorderlist.Columns["DTAT"].Width = 70;
                             grdPurchaseorderlist.Columns["Created By"].Width = 100;
                             grdPurchaseorderlist.Columns["Created On"].Width = 150;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
@@ -976,11 +995,14 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["SPSC_TAT"].Visible = false;
                             grdPurchaseorderlist.Columns["POVALUE"].Visible = false;
                             grdPurchaseorderlist.Columns["turn"].Visible = false;
+                            grdPurchaseorderlist.Columns["DELAYVALUE"].Visible = false;
                             grdPurchaseorderlist.Columns["Mode of details"].Visible = false;
                             grdPurchaseorderlist.Columns["Issued DATES"].Visible = false;
+                            grdPurchaseorderlist.Columns["DTURN"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["DTAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["Issue Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1454,8 +1476,8 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
                 {
-                    varsupplier = 1;
-                    varpono = 1;
+                    varsupplier = 0;
+                    varpono = 0;
                 }
                 if (Convert.ToInt32(cmbGroup.SelectedValue) == 161)
                 {
@@ -1484,7 +1506,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, productstatus, "0", varFilter);
+                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, productstatus, "0", varFilter,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1510,6 +1532,7 @@ namespace ROMS
                             grdProDetails.Columns["SPSC_SMMobileNo"].Visible = false;
                             grdProDetails.Columns["status1"].Visible = false;
                             grdProDetails.Columns["SP_PhoneNo"].Visible = false; 
+                            grdProDetails.Columns["PO_LastTransNo"].Visible = false; 
                             grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
                             {
@@ -2139,13 +2162,7 @@ namespace ROMS
                 DataSet objd = new DataSet();
                 DateTime varmindate = DateTime.ParseExact(dpPlanDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dptoPlanDate.MinDate = varmindate;
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
-                if (objd.Tables[1].Rows.Count != 0)
-                { 
-                    DateTime varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    
-                    dptoPlanDate.MaxDate = varmaxdate;
-                }
+                dptoPlanDate.MaxDate = varmaxdate; 
             }
             catch (Exception ex)
             {
@@ -2190,7 +2207,7 @@ namespace ROMS
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
                     DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmView"]; 
-                    if (Convert.ToInt32(grdPurchaseorderlist.Rows[i].Cells["STS"].Value.ToString()) == 11)
+                    if (Convert.ToInt32(grdPurchaseorderlist.Rows[i].Cells["STS"].Value.ToString()) != 12)
                     { 
                         cell1.Style.BackColor = Color.LightGray; 
                     } 
@@ -2699,7 +2716,7 @@ namespace ROMS
                 int varstatus = 0;
                
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0", varFilter);
+                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0", varFilter,0);
                 objdserv.CloseConnection();
                
                 if (objDs != null)

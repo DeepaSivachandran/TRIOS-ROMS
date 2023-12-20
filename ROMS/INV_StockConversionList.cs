@@ -18,6 +18,7 @@ namespace ROMS
 
         DataValidation objValidation = new DataValidation();
         public int varPRID = 0;
+        
         DataError objError;
         public INV_StockConversionList()
         {
@@ -209,8 +210,20 @@ namespace ROMS
                 }
                 udfnList();
                 cmbConcern.SelectedValue = 1;
-                dpFromDate.MaxDate = DateTime.Now;
-                dpToDate.MaxDate = DateTime.Now;
+                DataSet objDS = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 7);
+                DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //dpFromDate.MinDate = varDate;
+                if (objDS.Tables[0].Rows.Count > 0)
+                {
+                    dpFromDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
+                    dpToDate.MinDate = varDate;
+                }
+                objspservice.CloseConnection();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
             }
             catch (Exception ex)
             {
@@ -420,11 +433,17 @@ namespace ROMS
             try
             {
                 lvproduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProduct.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProduct.Text, 0, "","", null, 0, null,"","");
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 47;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraProductName = txtProduct.Text;
+                    objMR_Product.ParaFromDate = dpFromDate.Text;
+                    objMR_Product.ParaToDate = dpToDate.Text;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -436,13 +455,15 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvproduct.Items.Add(objList);
                                 }
                                 lvproduct.Visible = true;
                                 lvproduct.BringToFront();
-                                lvproduct.Columns[0].Width = 150;
-                                lvproduct.Columns[1].Width = 250;
-                                lvproduct.Columns[2].Width = 250;
+                                lvproduct.Columns[0].Width = 100;
+                                lvproduct.Columns[1].Width = 150;
+                                lvproduct.Columns[2].Width = 200;
                                 lvproduct.Columns[3].Width = 0;
                             }
                             else
@@ -629,7 +650,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "BatchConversion List";
+                    ExcelSheet.Name = "Batch conversion List";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdConversionList.Columns)
@@ -642,7 +663,7 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "BatchConversion List";
+                    ExcelSheet.Cells[1, 1].Value = "Batch conversion List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -932,7 +953,7 @@ namespace ROMS
         {
             try
             {
-                string result = "";
+                string result = "", varUserID = "";
                 DataTable dtStock = new DataTable();
                 dtStock.TableName = "TRN_BatchConversion_Product";
                 dtStock.Columns.Add("STK_QTY", typeof(string));
@@ -947,29 +968,35 @@ namespace ROMS
                         SPDataService objspdservice = new SPDataService();
                         DataTable objGrnPO = new DataTable();
                         TRN_BatchConversion objTRN_BatchConversion = new TRN_BatchConversion();
-                        objTRN_BatchConversion.ViewType = 2;
-                        objTRN_BatchConversion.paraBTID = Convert.ToInt32(grdConversionList.SelectedRows[0].Cells["BTID"].Value.ToString());
-                        objTRN_BatchConversion.paraCompanyCode = 0;
-                        objTRN_BatchConversion.paraConversionDate = "";
-                        objTRN_BatchConversion.paraPRID = 0;
-                        objTRN_BatchConversion.paraRKID = 0;
-                        objTRN_BatchConversion.paraSLID = 0;
-                        objTRN_BatchConversion.paraMrp = "";
-                        objTRN_BatchConversion.paraExpiryDate = "";
-                        objTRN_BatchConversion.paraBatchNo = "";
-                        objTRN_BatchConversion.paraQuantity = "";
-                        objTRN_BatchConversion.paraOriginator = "Batch Conversion Delete";
-                        objTRN_BatchConversion.paraBatchConversion = dtStock;
-                        result = objspdservice.udfnBatchConversion(objTRN_BatchConversion);
-                        objspdservice.CloseConnection();
-                        if (result.Split('~')[0] == "3")
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else if (result.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            objTRN_BatchConversion.ViewType = 2;
+                            objTRN_BatchConversion.paraBTID = Convert.ToInt32(grdConversionList.SelectedRows[0].Cells["BTID"].Value.ToString());
+                            objTRN_BatchConversion.paraCompanyCode = 0;
+                            objTRN_BatchConversion.paraConversionDate = "";
+                            objTRN_BatchConversion.paraPRID = 0;
+                            objTRN_BatchConversion.paraRKID = 0;
+                            objTRN_BatchConversion.paraSLID = 0;
+                            objTRN_BatchConversion.paraMrp = "";
+                            objTRN_BatchConversion.paraExpiryDate = "";
+                            objTRN_BatchConversion.paraBatchNo = "";
+                            objTRN_BatchConversion.paraQuantity = "";
+                            objTRN_BatchConversion.paraOriginator = "Batch Conversion Delete";
+                            objTRN_BatchConversion.paraBatchConversion = dtStock;
+                            result = objspdservice.udfnBatchConversion(objTRN_BatchConversion);
+                            objspdservice.CloseConnection();
+                            if (result.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else if (result.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
@@ -990,6 +1017,72 @@ namespace ROMS
             try
             {
                 udfndelete();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_ValueChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {

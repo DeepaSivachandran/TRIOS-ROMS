@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -104,9 +105,14 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspdservice = new SPDataService();
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 16;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(pbSupplierCode);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(pbScheduleCode);
+                objMR_Supplier.ParaPOID = Convert.ToInt32(pbPoid);
                 DataSet objDs = new DataSet();
-                objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(pbSupplierCode), Convert.ToInt32(pbScheduleCode), 0, 0, "", 0, 0, 0,"",0,0,0,0,0, Convert.ToInt32(pbPoid),"","","",0);
+                SPDataService objspdservice = new SPDataService();
+                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                 objspdservice.CloseConnection();
                 if (objDs.Tables[6].Rows.Count > 0)
                 { 

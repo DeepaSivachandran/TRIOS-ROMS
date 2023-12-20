@@ -42,19 +42,16 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lvproduct = new System.Windows.Forms.ListView();
             this.PRID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PICODE = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PRODUCTLIST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_SLID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RK_ShortName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.STK_Qty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.UT_Symbol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.UTID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Unitname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StockLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Rack = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MRP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ExpiryDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StockQty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtTotalUnit = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.totalQty = new System.Windows.Forms.TextBox();
@@ -108,11 +105,12 @@
             this.dpConversionDate = new System.Windows.Forms.DateTimePicker();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtMrp = new System.Windows.Forms.TextBox();
-            this.lblDESupplier = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.PRODUCTLST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.epBatchConversion)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -216,25 +214,23 @@
             // 
             this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.PRID,
-            this.PICODE,
-            this.PRODUCTLIST,
-            this.STK_SLID,
+            this.PICode,
+            this.PRODUCTLST,
             this.PR_TName,
             this.PR_EName,
-            this.RK_ShortName,
-            this.STK_MRP,
-            this.STK_ExpiryDate,
-            this.STK_BatchNo,
-            this.STK_Qty,
-            this.UT_Symbol,
-            this.UTID,
-            this.Unitname});
+            this.StockLocation,
+            this.Rack,
+            this.MRP,
+            this.ExpiryDate,
+            this.BatchNo,
+            this.StockQty,
+            this.Unit});
             this.lvproduct.FullRowSelect = true;
-            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(322, 0);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(861, 253);
+            this.lvproduct.Size = new System.Drawing.Size(860, 204);
             this.lvproduct.TabIndex = 1111265;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -245,15 +241,49 @@
             // 
             // PRID
             // 
+            this.PRID.Text = "PRID";
             this.PRID.Width = 0;
             // 
-            // PICODE
+            // PICode
             // 
-            this.PICODE.Width = 200;
+            this.PICode.Text = "P.I Code";
             // 
-            // PRODUCTLIST
+            // PR_TName
             // 
-            this.PRODUCTLIST.Width = 200;
+            this.PR_TName.Text = "Product Name";
+            // 
+            // PR_EName
+            // 
+            this.PR_EName.Text = "PR_EName";
+            this.PR_EName.Width = 0;
+            // 
+            // StockLocation
+            // 
+            this.StockLocation.Text = "Location";
+            // 
+            // Rack
+            // 
+            this.Rack.Text = "Rack";
+            // 
+            // MRP
+            // 
+            this.MRP.Text = "MRP";
+            // 
+            // ExpiryDate
+            // 
+            this.ExpiryDate.Text = "Expiry Date";
+            // 
+            // BatchNo
+            // 
+            this.BatchNo.Text = "Batch No.";
+            // 
+            // StockQty
+            // 
+            this.StockQty.Text = "Stock Qty";
+            // 
+            // Unit
+            // 
+            this.Unit.Text = "Unit";
             // 
             // txtTotalUnit
             // 
@@ -364,6 +394,7 @@
             this.txtMrp2.TextChanged += new System.EventHandler(this.TxtMrp2_TextChanged);
             this.txtMrp2.Enter += new System.EventHandler(this.TxtMrp2_Enter);
             this.txtMrp2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMrp2_KeyDown);
+            this.txtMrp2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMrp2_KeyPress);
             this.txtMrp2.Leave += new System.EventHandler(this.TxtMrp2_Leave);
             // 
             // label4
@@ -583,6 +614,8 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // btnSave
             // 
@@ -597,6 +630,8 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // groupBox3
             // 
@@ -620,7 +655,7 @@
             this.groupBox3.Controls.Add(this.dpConversionDate);
             this.groupBox3.Controls.Add(this.txtProductName);
             this.groupBox3.Controls.Add(this.txtMrp);
-            this.groupBox3.Controls.Add(this.lblDESupplier);
+            this.groupBox3.Controls.Add(this.lblProductName);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.txtQty);
             this.groupBox3.Controls.Add(this.lblQty);
@@ -812,11 +847,11 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
             this.txtProductName.Location = new System.Drawing.Point(322, 39);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(303, 27);
+            this.txtProductName.Size = new System.Drawing.Size(303, 26);
             this.txtProductName.TabIndex = 3;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -834,15 +869,15 @@
             this.txtMrp.TabIndex = 6;
             this.txtMrp.TextChanged += new System.EventHandler(this.TxtMrp_TextChanged);
             // 
-            // lblDESupplier
+            // lblProductName
             // 
-            this.lblDESupplier.AutoSize = true;
-            this.lblDESupplier.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDESupplier.Location = new System.Drawing.Point(322, 17);
-            this.lblDESupplier.Name = "lblDESupplier";
-            this.lblDESupplier.Size = new System.Drawing.Size(140, 20);
-            this.lblDESupplier.TabIndex = 1111162;
-            this.lblDESupplier.Text = "P.I Code / Product Name";
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductName.Location = new System.Drawing.Point(322, 17);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(140, 20);
+            this.lblProductName.TabIndex = 1111162;
+            this.lblProductName.Text = "P.I Code / Product Name";
             // 
             // label1
             // 
@@ -886,6 +921,11 @@
             this.label12.Size = new System.Drawing.Size(54, 20);
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
+            // 
+            // PRODUCTLST
+            // 
+            this.PRODUCTLST.Text = "PRODUCTLIST";
+            this.PRODUCTLST.Width = 0;
             // 
             // INV_StockConversion
             // 
@@ -938,7 +978,7 @@
         private System.Windows.Forms.Label lblDEVisitDay;
         private System.Windows.Forms.DateTimePicker dpConversionDate;
         private System.Windows.Forms.TextBox txtProductName;
-        private System.Windows.Forms.Label lblDESupplier;
+        private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtBatchNo;
@@ -977,20 +1017,6 @@
         private System.Windows.Forms.TextBox txtRack;
         private System.Windows.Forms.TextBox txtStockLocation;
         private System.Windows.Forms.ListView lvproduct;
-        private System.Windows.Forms.ColumnHeader PRID;
-        private System.Windows.Forms.ColumnHeader PICODE;
-        private System.Windows.Forms.ColumnHeader PRODUCTLIST;
-        private System.Windows.Forms.ColumnHeader STK_SLID;
-        private System.Windows.Forms.ColumnHeader PR_TName;
-        private System.Windows.Forms.ColumnHeader PR_EName;
-        private System.Windows.Forms.ColumnHeader RK_ShortName;
-        private System.Windows.Forms.ColumnHeader STK_MRP;
-        private System.Windows.Forms.ColumnHeader STK_ExpiryDate;
-        private System.Windows.Forms.ColumnHeader STK_BatchNo;
-        private System.Windows.Forms.ColumnHeader STK_Qty;
-        private System.Windows.Forms.ColumnHeader UT_Symbol;
-        private System.Windows.Forms.ColumnHeader UTID;
-        private System.Windows.Forms.ColumnHeader Unitname;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
@@ -1003,5 +1029,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.ColumnHeader PRID;
+        private System.Windows.Forms.ColumnHeader PICode;
+        private System.Windows.Forms.ColumnHeader PR_TName;
+        private System.Windows.Forms.ColumnHeader PR_EName;
+        private System.Windows.Forms.ColumnHeader StockLocation;
+        private System.Windows.Forms.ColumnHeader Rack;
+        private System.Windows.Forms.ColumnHeader MRP;
+        private System.Windows.Forms.ColumnHeader ExpiryDate;
+        private System.Windows.Forms.ColumnHeader BatchNo;
+        private System.Windows.Forms.ColumnHeader StockQty;
+        private System.Windows.Forms.ColumnHeader Unit;
+        private System.Windows.Forms.ColumnHeader PRODUCTLST;
     }
 }

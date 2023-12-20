@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ROMS.Model
 {
-    public class TRNS_GRN
+    public class TRN_GRN
     {
         public int ViewType { get; set; } = 0;
         public int paraUserID { get; set; } = 0;

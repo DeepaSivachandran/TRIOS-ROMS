@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -3376,9 +3377,12 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 2;
+                    objMR_Product.paraPicode = txtPICode.Text;
                     SPDataService objdserv = new SPDataService();
                     lblDPicode.Visible = true;                    
-                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
+                    objDs = objdserv.udfnproductmasterlist(objMR_Product);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -5178,10 +5182,12 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 if (varproductcode != 0)
                 {
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 1;
+                    objMR_Product.ParaProductCode = varproductcode;
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
+                    objDS = objdserv.udfnproductmasterlist(objMR_Product);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {

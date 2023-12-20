@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -719,8 +720,7 @@ namespace ROMS
                             }
 
                         }
-                    }
-
+                    } 
                     result = objspdservice.udfnSupplierMaster(varviewtype, SupplierUpdate, txtName.Text, txtArea.Text, txtaddress2.Text, cityid
                    , varpincode, txtContactNumber.Text, txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
                    Convert.ToInt32(cmbPaymentTerm.SelectedValue), varreturnapplicable, varretuencycle, Convert.ToInt32(cmbfinance.SelectedValue), openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
@@ -844,6 +844,7 @@ namespace ROMS
                 cmbDesignation.BackColor = Color.White;
                 cmbSupplierType.BackColor = Color.White;
                 cmbPaymentTerm.BackColor = Color.White;
+                txtgstin.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -921,6 +922,10 @@ namespace ROMS
                 txtIFScode.Text = "";
                 BindDataGrid();
                 txtName.Focus();
+                for (int i = 0; i < grdPaymentMode.Rows.Count; i++)
+                {
+                    grdPaymentMode.Rows[i].Cells[0].Value = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1136,9 +1141,12 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID"); 
                     objDataBind = null;
                     //cmbReturnPolicy.SelectedValue = -1;
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 2;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(pbSupplierid);
                     SPDataService objspservice = new SPDataService();
-                    DataSet objDS;
-                    objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                    DataSet objDS = new DataSet(); ;
+                    objDS = objspservice.udfnSupplierList(objMR_Supplier);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -3546,7 +3554,13 @@ namespace ROMS
                 {
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
-                objDs = objspservice.udfnSupplierList(5, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbOrderschedule.SelectedValue), Convert.ToInt32(cmborderday.SelectedValue), 0, "", Convert.ToInt32(cmbMappedorderrype.SelectedValue), 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 5;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbOrderschedule.SelectedValue);
+                objMR_Supplier.pardayid = Convert.ToInt32(cmborderday.SelectedValue);
+                objMR_Supplier.paraordertype = Convert.ToInt32(cmbMappedorderrype.SelectedValue);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 if (objDs.Tables[0].Rows.Count > 0)
                 {
                     grdViewSupplierMapping.DataSource = objDs.Tables[0];
@@ -3705,13 +3719,18 @@ namespace ROMS
                 btnListPrint.Visible = false;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                if(Convert.ToInt32(cmbOrderschedule.SelectedValue)==0)
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 28;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(pbSupplierid);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbOrderschedule.SelectedValue);
+                if (Convert.ToInt32(cmbOrderschedule.SelectedValue)==0)
                 {
-                    objDs = objspservice.udfnSupplierList(28, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0,0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 }
                 else
                 {
-                    objDs = objspservice.udfnSupplierList(28, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, Convert.ToInt32(cmbMappedorderrype.SelectedValue), "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objMR_Supplier.paraordertype = Convert.ToInt32(cmbMappedorderrype.SelectedValue);
+                    objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 }
                 objspservice.CloseConnection();
                 if (objDs != null)
@@ -3738,10 +3757,14 @@ namespace ROMS
             {
                 txtMappedOrderDay.Text ="";
                 cmbMappedorderrype.Text = "";
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 21;
+                objMR_Supplier.paraSupplierid = SupplierUpdate;
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbOrderschedule.SelectedValue);
                 SPDataService objSPservice = new SPDataService();
                 DataSet objDS = new DataSet();
                 cmborderday.DataSource = null;
-                objDS = objSPservice.udfnSupplierList(21, SupplierUpdate, Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                objDS = objSPservice.udfnSupplierList(objMR_Supplier);
                 objSPservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -4009,12 +4032,20 @@ namespace ROMS
             {
                 lblNoRecordsFound.Visible = false;
                 grdSupplierMappingLoad.DataSource = null;
-                SPDataService objspservice = new SPDataService();
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 3;
+                objMR_Product.paraGroup = varGroupId;
+                objMR_Product.paraSubgroup = varSubGroupId;
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraBrandID = varBrandId;
+                objMR_Product.ParaScheduleid = Convert.ToString(cmbMappingorderschedule.SelectedValue);
+                objMR_Product.paraScheduleDay = Convert.ToString(cmbMappingordeDay.SelectedValue);
                 DataSet objDs = new DataSet();
                 dtSubGroup = null;
                 udfnInitSubgroup();
+                SPDataService objspservice = new SPDataService();
                 //objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
-                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, Convert.ToInt32(cmbStatus.SelectedValue), varBrandId, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "","", null,0,null,"","");
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -4221,10 +4252,14 @@ namespace ROMS
         {
             try
             {
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 0;
+                objMR_Supplier.paraSupplierid = SupplierUpdate;
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbMappingorderschedule.SelectedValue);
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 cmbMappingordeDay.DataSource = null;
-                objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -4241,11 +4276,14 @@ namespace ROMS
                     }
                     objspservice.CloseConnection();
                 }
-
+                MR_Supplier objMR_Supplier1 = new MR_Supplier();
+                objMR_Supplier1.ViewType = 21;
+                objMR_Supplier1.paraSupplierid = SupplierUpdate;
+                objMR_Supplier1.paraSupplierScheduleid = Convert.ToInt32(cmbMappingorderschedule.SelectedValue);
                 SPDataService objSPservice = new SPDataService();
                 DataSet objDS = new DataSet();
                 cmborderday.DataSource = null;
-                objDS = objSPservice.udfnSupplierList(21, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                objDS = objSPservice.udfnSupplierList(objMR_Supplier1);
                 objSPservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -4374,8 +4412,11 @@ namespace ROMS
                 {
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
-                objDs = objspservice.udfnSupplierList(4, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
-
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 4;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbMappingorderschedule.SelectedValue);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 dtSubGroupMapping = new DataTable();
                 dtSubGroupMapping.Columns.Add("", typeof(Boolean));
                 dtSubGroupMapping.Columns.Add("S.No.", typeof(string));
@@ -4928,7 +4969,11 @@ namespace ROMS
                                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                                 }
                                 varSLNO = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value.ToString());
-                                objDS = objspservice.udfnSupplierList(varview, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+                                MR_Supplier objMR_Supplier = new MR_Supplier();
+                                objMR_Supplier.ViewType = varview;
+                                objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
+                                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                objDS = objspservice.udfnSupplierList(objMR_Supplier);
                                 objspservice.CloseConnection();
                                 if (objDS != null)
                                 {
@@ -6167,10 +6212,12 @@ namespace ROMS
         }
         public void udfnSaveGrdAdd()
         {
-
+            MR_Supplier objMR_Supplier = new MR_Supplier();
+            objMR_Supplier.ViewType = 7;
+            objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
             SPDataService objspservice = new SPDataService();
             DataSet objDS;
-            objDS = objspservice.udfnSupplierList(7, Convert.ToInt32(SupplierUpdate), 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0,0,"","","",0);
+            objDS = objspservice.udfnSupplierList(objMR_Supplier);
             objspservice.CloseConnection();
             if (objDS.Tables[0].Rows.Count > 0)
             {
@@ -6517,16 +6564,7 @@ namespace ROMS
         {
 
         }
-
-        private void TxtBankShortName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TcSupplier_Enter(object sender, EventArgs e)
-        {
-
-        }
+         
 
         private void LvCity_DoubleClick(object sender, EventArgs e)
         {
@@ -8371,9 +8409,13 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     int varPrint = 0;
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 22;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(pbSupplierid);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbOrderschedule.SelectedValue);
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnSupplierList(22, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objDs = objspservice.udfnSupplierList(objMR_Supplier);
                     objspservice.CloseConnection();
                     if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                     if (varPrint == 1)
