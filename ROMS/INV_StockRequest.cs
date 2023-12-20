@@ -154,6 +154,7 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         cmbStatus.Enabled = false;
                         grdStockRequest.ReadOnly = true;
+                        grdStockRequest.Columns["clmRemove"].Visible = false;
                         cmbStatus.SelectedValue = 29;
                     }
                     else
@@ -193,10 +194,7 @@ namespace ROMS
                                 {
                                     varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
                                 }
-                                if(varStatus==29)
-                                {
-                                    ((DataGridViewImageCell)grdStockRequest.Rows[j].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
-                                }
+                                
                             }
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;

@@ -1197,10 +1197,6 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         txtRemark.Enabled = false;
                         this.ActiveControl = btnClose;
-                        for (int i = 0; i < grdDamageEntry.Rows.Count; i++)
-                        {
-                            ((DataGridViewImageCell)grdDamageEntry.Rows[i].Cells["clmremove"]).Value = new System.Drawing.Bitmap(1, 1); ;
-                        }
                     }
                 }
             }
