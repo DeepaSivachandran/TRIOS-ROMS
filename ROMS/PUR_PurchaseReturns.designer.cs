@@ -98,7 +98,7 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.lvSupplier = new System.Windows.Forms.ListView();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -472,7 +472,7 @@
             this.grpExcessProduct.Controls.Add(this.textBox6);
             this.grpExcessProduct.Controls.Add(this.label10);
             this.grpExcessProduct.Controls.Add(this.textBox5);
-            this.grpExcessProduct.Controls.Add(this.lvSupplier);
+            this.grpExcessProduct.Controls.Add(this.LV_Supplier);
             this.grpExcessProduct.Controls.Add(this.label5);
             this.grpExcessProduct.Controls.Add(this.textBox2);
             this.grpExcessProduct.Controls.Add(this.label6);
@@ -831,15 +831,15 @@
             this.textBox5.TabIndex = 1111176;
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // lvSupplier
+            // LV_Supplier
             // 
-            this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(2, 0);
-            this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(396, 81);
-            this.lvSupplier.TabIndex = 1111147;
-            this.lvSupplier.UseCompatibleStateImageBehavior = false;
-            this.lvSupplier.Visible = false;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(2, 0);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(396, 81);
+            this.LV_Supplier.TabIndex = 1111147;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.Visible = false;
             // 
             // label5
             // 
@@ -983,6 +983,7 @@
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(316, 27);
             this.txtSupplier.TabIndex = 1;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             // 
             // lblDESupplier
             // 
@@ -1104,7 +1105,7 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.ListView lvSupplier;
+        private System.Windows.Forms.ListView LV_Supplier;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label6;
