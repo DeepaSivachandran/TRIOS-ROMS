@@ -136,7 +136,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0", 0);
+                    objDs = objdserv.udfnPOEntry(3, pbSupplierId, pbScheduleid, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0", 0,0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -255,7 +255,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0", 0);
+                objDs = objdserv.udfnPOEntry(2, 0, 0, 0, 0, 0, 0, 0, 0, "", "", varPOID, 0, "0", 0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -418,12 +418,12 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblDProduct.Text = "Search by P.I Code";
+                        lblDProduct.Text = "Search by P.I Code"; 
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblDProduct.Text = "Search by Product Name";
+                        lblDProduct.Text = "Search by Product Name"; 
                     }
                 }
             }
@@ -2591,7 +2591,15 @@ namespace ROMS
         {
             try
             {
-                string varProductsCodes = "0";
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
+                    string varProductsCodes = "0";
                 for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                 {
                     if (varProductsCodes == "")

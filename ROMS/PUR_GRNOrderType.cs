@@ -67,7 +67,7 @@ namespace ROMS
                     dtPendingPO.Columns.Add("poid", typeof(string));
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnPOEntry(4, Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, MainForm.objPUR_GRNEntry.pbPONO,0);
+                    objDs = objspdservice.udfnPOEntry(4, Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, MainForm.objPUR_GRNEntry.pbPONO,0,0);
                     objspdservice.CloseConnection();
                     if (objDs.Tables[0].Rows.Count > 0)
                     {
