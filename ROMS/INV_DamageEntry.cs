@@ -1466,9 +1466,54 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objINV_DamageEntryList.udfnList();
                     udfnClear();
                     varModifiedFlag = 0;
+                    try
+                    {
+                        if (chkStatus.Checked == true)
+                        {
+                            string DMID = "0";
+                            if (varID == 0)
+                            {
+                                DMID = varvalue[2];
+                            }
+                            else
+                            {
+                                DMID = Convert.ToString(varID);
+                            }
+                            DialogResult result1;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
+                                varHeader = "Damage Entry";
+
+                                objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
+
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
+                    MainForm.objINV_DamageEntryList.udfnList();
                     this.Close();
                 }
                 else
