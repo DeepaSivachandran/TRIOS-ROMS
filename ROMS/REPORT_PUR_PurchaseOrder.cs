@@ -663,7 +663,7 @@ namespace ROMS
                 cmbStatus.SelectedValue = 0;
                 //btnListPrint.Enabled = true; 
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID"); 
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27,14) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=50 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
