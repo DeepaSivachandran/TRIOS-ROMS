@@ -3479,12 +3479,12 @@ namespace ROMS
             try
             {
                 lvBrand.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtGroup.Text != "" && txtSubGroup.Text != "")
                 {
                     if (txtBrand.Text.Length > 0)
                     {
+                        SPDataService objspdservice = new SPDataService();
+                        DataSet objDs = new DataSet();
                         objDs = objspdservice.udfnBrandList(6, "0", 0, Convert.ToInt32(lblSubGroupCode.Text), 0, txtBrand.Text.Trim(),0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
@@ -3659,7 +3659,7 @@ namespace ROMS
                     txtPurRack.Text = "";
                     lblPurRackCode.Text = "0";
                     txtRackDescription.Text = "";
-                    udfnLocationWiseRack();
+                    udfnPLocationWiseRack();
                 }
             }
             catch (Exception ex)
@@ -3672,7 +3672,7 @@ namespace ROMS
                 lvPurLocation.Visible = false;
             }
         }
-        public void udfnLocationWiseRack()
+        public void udfnPLocationWiseRack()
         {
             try
             {
@@ -3737,6 +3737,72 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnSLocationWiseRack()
+        {
+            try
+            {
+                /*check location have a rack or not*/
+                string varId_PurchaseRack = "0";
+                DataSet objDsPurchaseRack = new DataSet();
+                SPDataService objDServ6 = new SPDataService();
+                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblSaleLocationCode.Text), 0, txtSaleRack.Text.Trim(), 0, 0);
+                objDServ6.CloseConnection();
+                if (txtSaleRack.Text.Trim() != "")
+                {
+                    if (lblSaleLocationCode.Text != "0")
+                    {
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                        lblSaleRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                        if (varId_PurchaseRack == "0" || varId_PurchaseRack == "-1")
+                        {
+                            errItems.SetError(txtSaleRack, "Please select valid sales rack");
+                            txtSaleRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpsalesrack.ShowAlways = true;
+                            tpsalesrack.Show("Please select valid sales rack", txtSaleRack, 5000);
+                        }
+                    }
+                }
+                else
+                {
+                    if (lblSaleLocationCode.Text != "0")
+                    {
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                }
+                            }
+                        }
+                        //lblPurRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                        if (varId_PurchaseRack == "0")
+                        {
+                            txtSaleRack.Text = "None";
+                            txtSaleRack.BackColor = Color.White;
+                            txtSaleRack.Enabled = false;
+                            txtRackMOQQty.Enabled = false;
+                            cmbBatchNoEntry.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnPurRackAutocomplete()
         {
             try
@@ -3774,6 +3840,7 @@ namespace ROMS
                     txtSaleRack.Text = "";
                     txtRackDescriptionSales.Text = "";
                     lblSaleRackCode.Text = "0";
+                    udfnSLocationWiseRack();
                 }
             }
             catch (Exception ex)
@@ -3902,10 +3969,10 @@ namespace ROMS
             try
             {
                 lvSubGroup.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSubGroup.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnSubGroupList(8,0,"",0,0,txtSubGroup.Text.Trim(), 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -4035,10 +4102,10 @@ namespace ROMS
             {
                 if (txtGroup.Text.Trim() != "") { 
                 lvGroup.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                     if (txtGroup.Text.Length > 0)
                     {
+                        SPDataService objspdservice = new SPDataService();
+                        DataSet objDs = new DataSet();
                         objDs = objspdservice.udfnGroupList(7, 0, Convert.ToInt32(lblSubGroupCode.Text), txtGroup.Text.Trim(),0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
@@ -4191,11 +4258,13 @@ namespace ROMS
         {
             try
             {
+                txtPurRack.Text = "";
+                txtPurRack.Enabled = true;
                 lvPurLocation.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtPurLocation.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtPurLocation.Text.Trim(),0,0,0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -4211,6 +4280,10 @@ namespace ROMS
                                     lvPurLocation.Items.Add(objList);
                                 }
                                 lvPurLocation.Visible = true;
+                            }
+                            else
+                            {
+                                lvPurLocation.Visible = false;
                             }
                         }
                     }
@@ -4320,10 +4393,10 @@ namespace ROMS
             try
             {
                 lvPurRack.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtPurRack.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnRackList(7,0,0,Convert.ToInt32(lblPurLocationCode.Text),0,txtPurRack.Text.Trim(),0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -4452,11 +4525,13 @@ namespace ROMS
         {
             try
             {
+                txtSaleRack.Text = "";
+                txtSaleRack.Enabled = true;
                 lvSaleLocation.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSaleLocation.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSaleLocation.Text.Trim(),0,0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -4472,6 +4547,10 @@ namespace ROMS
                                     lvSaleLocation.Items.Add(objList);
                                 }
                                 lvSaleLocation.Visible = true;
+                            }
+                            else
+                            {
+                                lvSaleLocation.Visible = false;
                             }
                         }
                     }
@@ -4525,10 +4604,10 @@ namespace ROMS
             try
             {
                 lvSaleRack.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSaleRack.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnRackList(7, 0, 0, Convert.ToInt32(lblSaleLocationCode.Text), 0, txtSaleRack.Text.Trim(), 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -4970,10 +5049,10 @@ namespace ROMS
             {
               lvHsnCode.Items.Clear();
 
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtHSNCode.Text.Length > 0)
                 {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
                     objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, txtHSNCode.Text.Trim(),"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
