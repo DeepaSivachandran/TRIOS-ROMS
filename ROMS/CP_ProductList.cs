@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -230,7 +231,14 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", "",null,0,null,"","");
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 0;
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
+                objMR_Product.paraGroup = varGroupId;
+                objMR_Product.paraSubgroup = varSubGroupId;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

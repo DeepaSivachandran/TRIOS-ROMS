@@ -176,6 +176,7 @@ namespace ROMS
         public static REPORT_CP_Supplier objREPORT_CP_Supplier;
         public static REPORT_CP_Product objREPORT_CP_Product;
         public static REPORT_Stock objREPORT_Stock;
+       // public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
          
         //public static CP_SL_Verify objCP_SL_Verify;
         public static DataTable objDtMenuDetails;
@@ -763,9 +764,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_RackSettinglist = new CP_RackSettinglist();
-                MainForm.objCP_RackSettinglist.MdiParent = this;
-                MainForm.objCP_RackSettinglist.Show();
+                MainForm.objCP_RackSettings = new CP_RackSettings();
+                MainForm.objCP_RackSettings.MdiParent = this;
+                MainForm.objCP_RackSettings.Show();
             }
             catch (Exception ex)
             {
@@ -1487,6 +1488,23 @@ namespace ROMS
                 MainForm.objREPORT_CP_Supplier = new REPORT_CP_Supplier();
                 MainForm.objREPORT_CP_Supplier.MdiParent = this;
                 MainForm.objREPORT_CP_Supplier.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProductWiseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_CP_Product = new REPORT_PUR_PurchaseOrder();
+                //MainForm.objREPORT_CP_Product.MdiParent = this;
+                //MainForm.objREPORT_CP_Product.Show();
             }
             catch (Exception ex)
             {

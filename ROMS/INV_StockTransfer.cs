@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -125,19 +126,6 @@ namespace ROMS
                 {
                     btnSave.Focus();
                     BtnSave_Click(sender,e);
-                }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductNamePICode.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductNamePICode.Text = "Search by Product Name";
-                    }
                 }
             }
             catch (Exception ex)
@@ -333,10 +321,6 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         txtRemarks.Enabled = false;
                         this.ActiveControl = btnClose;
-                        for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
-                        {
-                            ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
-                        }
                     }
                     lvSLocation.Visible = false;
                     lvDLocation.Visible = false;
@@ -897,6 +881,21 @@ namespace ROMS
                 {
                     txtDLocation.Focus();
                 }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductNamePICode.Text = "Search by P.I Code";
+                        txtProductNamePICode.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductNamePICode.Text = "Search by Product Name";
+                        txtProductNamePICode.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -943,15 +942,23 @@ namespace ROMS
                 lvProduct.Items.Clear();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 35;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraId = varStockTransferID;
+                    objMR_Product.paraLocationId = Convert.ToInt32(lblSLocation.Text);
+                    objMR_Product.paraStockTransfer = dtStock;
                     if (VarSearchFlag == true)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0,txtProductNamePICode.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, "", 0, "", "", dtStock, varStockTransferID, null,"","");
+                        objMR_Product.paraPicode = txtProductNamePICode.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "", "", dtStock, varStockTransferID, null,"","");
+                        objMR_Product.paraProductName = txtProductNamePICode.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     objspdservice.CloseConnection();
                     if (objDs != null)

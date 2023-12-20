@@ -42,8 +42,6 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.grdOutwardList = new System.Windows.Forms.DataGridView();
             this.lvSLocation = new System.Windows.Forms.ListView();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,7 +50,11 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.grdOutwardList = new System.Windows.Forms.DataGridView();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
             this.dtpOutwardDate2 = new System.Windows.Forms.DateTimePicker();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -158,10 +160,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.DGV_SearchGrid);
-            this.panel1.Controls.Add(this.grdOutwardList);
             this.panel1.Controls.Add(this.lvSLocation);
             this.panel1.Controls.Add(this.lvProduct);
+            this.panel1.Controls.Add(this.DGV_SearchGrid);
+            this.panel1.Controls.Add(this.grdOutwardList);
             this.panel1.Controls.Add(this.grbFilterBy);
             this.panel1.Controls.Add(this.lblNoRecordsFound);
             this.panel1.Controls.Add(this.picLoader);
@@ -169,6 +171,68 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1354, 643);
             this.panel1.TabIndex = 36;
+            // 
+            // lvSLocation
+            // 
+            this.lvSLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24});
+            this.lvSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvSLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSLocation.HideSelection = false;
+            this.lvSLocation.Location = new System.Drawing.Point(359, 76);
+            this.lvSLocation.Name = "lvSLocation";
+            this.lvSLocation.Size = new System.Drawing.Size(239, 158);
+            this.lvSLocation.TabIndex = 111111132;
+            this.lvSLocation.UseCompatibleStateImageBehavior = false;
+            this.lvSLocation.View = System.Windows.Forms.View.Details;
+            this.lvSLocation.Visible = false;
+            this.lvSLocation.DoubleClick += new System.EventHandler(this.LvSLocation_DoubleClick);
+            this.lvSLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSLocation_KeyDown);
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 180;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 120;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
+            // 
+            // lvProduct
+            // 
+            this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvProduct.HideSelection = false;
+            this.lvProduct.Location = new System.Drawing.Point(604, 76);
+            this.lvProduct.Name = "lvProduct";
+            this.lvProduct.Size = new System.Drawing.Size(524, 157);
+            this.lvProduct.TabIndex = 958812;
+            this.lvProduct.UseCompatibleStateImageBehavior = false;
+            this.lvProduct.View = System.Windows.Forms.View.Details;
+            this.lvProduct.Visible = false;
+            this.lvProduct.SelectedIndexChanged += new System.EventHandler(this.LvProduct_SelectedIndexChanged);
+            this.lvProduct.DoubleClick += new System.EventHandler(this.LvProduct_DoubleClick);
+            this.lvProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvProduct_KeyDown);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 150;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 150;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
             // 
             // DGV_SearchGrid
             // 
@@ -197,14 +261,14 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(2, 74);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(2, 91);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
-            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1329, 56);
@@ -246,7 +310,7 @@
             this.grdOutwardList.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdOutwardList.EnableHeadersVisualStyles = false;
             this.grdOutwardList.GridColor = System.Drawing.Color.White;
-            this.grdOutwardList.Location = new System.Drawing.Point(3, 130);
+            this.grdOutwardList.Location = new System.Drawing.Point(3, 147);
             this.grdOutwardList.Name = "grdOutwardList";
             this.grdOutwardList.ReadOnly = true;
             this.grdOutwardList.RowHeadersVisible = false;
@@ -264,70 +328,10 @@
             this.grdOutwardList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
             this.grdOutwardList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
             // 
-            // lvSLocation
-            // 
-            this.lvSLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24});
-            this.lvSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvSLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSLocation.HideSelection = false;
-            this.lvSLocation.Location = new System.Drawing.Point(534, 54);
-            this.lvSLocation.Name = "lvSLocation";
-            this.lvSLocation.Size = new System.Drawing.Size(255, 158);
-            this.lvSLocation.TabIndex = 111111132;
-            this.lvSLocation.UseCompatibleStateImageBehavior = false;
-            this.lvSLocation.View = System.Windows.Forms.View.Details;
-            this.lvSLocation.Visible = false;
-            this.lvSLocation.DoubleClick += new System.EventHandler(this.LvSLocation_DoubleClick);
-            this.lvSLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSLocation_KeyDown);
-            // 
-            // columnHeader22
-            // 
-            this.columnHeader22.Width = 180;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Width = 120;
-            // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Width = 0;
-            // 
-            // lvProduct
-            // 
-            this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
-            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvProduct.HideSelection = false;
-            this.lvProduct.Location = new System.Drawing.Point(802, 54);
-            this.lvProduct.Name = "lvProduct";
-            this.lvProduct.Size = new System.Drawing.Size(524, 157);
-            this.lvProduct.TabIndex = 958812;
-            this.lvProduct.UseCompatibleStateImageBehavior = false;
-            this.lvProduct.View = System.Windows.Forms.View.Details;
-            this.lvProduct.Visible = false;
-            this.lvProduct.SelectedIndexChanged += new System.EventHandler(this.LvProduct_SelectedIndexChanged);
-            this.lvProduct.DoubleClick += new System.EventHandler(this.LvProduct_DoubleClick);
-            this.lvProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvProduct_KeyDown);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 150;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 150;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Width = 0;
-            // 
             // grbFilterBy
             // 
+            this.grbFilterBy.Controls.Add(this.lblStatus);
+            this.grbFilterBy.Controls.Add(this.cmbStatus);
             this.grbFilterBy.Controls.Add(this.txtStockLocation);
             this.grbFilterBy.Controls.Add(this.dtpOutwardDate2);
             this.grbFilterBy.Controls.Add(this.txtProductName);
@@ -343,16 +347,37 @@
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(1328, 67);
+            this.grbFilterBy.Size = new System.Drawing.Size(1328, 84);
             this.grbFilterBy.TabIndex = 958800;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(1025, 22);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.TabIndex = 111111135;
+            this.lblStatus.Text = "Status";
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(1029, 47);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(127, 27);
+            this.cmbStatus.TabIndex = 111111135;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            // 
             // txtStockLocation
             // 
-            this.txtStockLocation.Location = new System.Drawing.Point(530, 24);
+            this.txtStockLocation.Location = new System.Drawing.Point(356, 47);
             this.txtStockLocation.Name = "txtStockLocation";
-            this.txtStockLocation.Size = new System.Drawing.Size(122, 27);
+            this.txtStockLocation.Size = new System.Drawing.Size(239, 27);
             this.txtStockLocation.TabIndex = 3;
             this.txtStockLocation.TextChanged += new System.EventHandler(this.TxtStockLocation_TextChanged);
             this.txtStockLocation.Enter += new System.EventHandler(this.TxtStockLocation_Enter);
@@ -363,7 +388,7 @@
             // 
             this.dtpOutwardDate2.CustomFormat = "dd/MM/yyyy";
             this.dtpOutwardDate2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpOutwardDate2.Location = new System.Drawing.Point(369, 23);
+            this.dtpOutwardDate2.Location = new System.Drawing.Point(246, 47);
             this.dtpOutwardDate2.Name = "dtpOutwardDate2";
             this.dtpOutwardDate2.Size = new System.Drawing.Size(104, 27);
             this.dtpOutwardDate2.TabIndex = 2;
@@ -373,10 +398,10 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(798, 23);
+            this.txtProductName.Location = new System.Drawing.Point(601, 47);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(365, 27);
+            this.txtProductName.Size = new System.Drawing.Size(422, 27);
             this.txtProductName.TabIndex = 4;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -386,7 +411,7 @@
             // lblDProductNamePicode
             // 
             this.lblDProductNamePicode.AutoSize = true;
-            this.lblDProductNamePicode.Location = new System.Drawing.Point(656, 27);
+            this.lblDProductNamePicode.Location = new System.Drawing.Point(597, 24);
             this.lblDProductNamePicode.Name = "lblDProductNamePicode";
             this.lblDProductNamePicode.Size = new System.Drawing.Size(134, 20);
             this.lblDProductNamePicode.TabIndex = 958811;
@@ -396,7 +421,7 @@
             // 
             this.dtpOutwardDate.CustomFormat = "dd/MM/yyyy";
             this.dtpOutwardDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpOutwardDate.Location = new System.Drawing.Point(255, 23);
+            this.dtpOutwardDate.Location = new System.Drawing.Point(136, 47);
             this.dtpOutwardDate.Name = "dtpOutwardDate";
             this.dtpOutwardDate.Size = new System.Drawing.Size(104, 27);
             this.dtpOutwardDate.TabIndex = 1;
@@ -409,7 +434,7 @@
             // 
             this.lblDGodown.AutoSize = true;
             this.lblDGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblDGodown.Location = new System.Drawing.Point(478, 27);
+            this.lblDGodown.Location = new System.Drawing.Point(352, 22);
             this.lblDGodown.Name = "lblDGodown";
             this.lblDGodown.Size = new System.Drawing.Size(46, 20);
             this.lblDGodown.TabIndex = 38;
@@ -418,7 +443,7 @@
             // lbloutwarddate
             // 
             this.lbloutwarddate.AutoSize = true;
-            this.lbloutwarddate.Location = new System.Drawing.Point(168, 27);
+            this.lbloutwarddate.Location = new System.Drawing.Point(145, 22);
             this.lbloutwarddate.Name = "lbloutwarddate";
             this.lbloutwarddate.Size = new System.Drawing.Size(84, 20);
             this.lbloutwarddate.TabIndex = 92;
@@ -429,7 +454,7 @@
             // 
             this.lblDConcern.AutoSize = true;
             this.lblDConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblDConcern.Location = new System.Drawing.Point(27, 26);
+            this.lblDConcern.Location = new System.Drawing.Point(9, 22);
             this.lblDConcern.Name = "lblDConcern";
             this.lblDConcern.Size = new System.Drawing.Size(54, 20);
             this.lblDConcern.TabIndex = 36;
@@ -439,7 +464,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1245, 22);
+            this.btnExport.Location = new System.Drawing.Point(1243, 45);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 6;
@@ -453,7 +478,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1166, 22);
+            this.btnView.Location = new System.Drawing.Point(1162, 45);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 5;
@@ -467,9 +492,9 @@
             // cmbConcern
             // 
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(86, 23);
+            this.cmbConcern.Location = new System.Drawing.Point(9, 47);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(76, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(121, 27);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged_1);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
@@ -495,9 +520,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 74);
+            this.picLoader.Location = new System.Drawing.Point(3, 92);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1328, 564);
+            this.picLoader.Size = new System.Drawing.Size(1328, 550);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
@@ -568,5 +593,7 @@
         public System.Windows.Forms.DataGridView grdOutwardList;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

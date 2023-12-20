@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,10 +31,15 @@ namespace ROMS
             {
                 Application.DoEvents();
                 grdProductDetails.DataSource = null;
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 15;
+                objMR_Product.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objMR_Product.paraIPAddress = Convert.ToString(MainForm.pbIpAddress);
+                objMR_Product.paraRackId = varRackId;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(15,0,0,0,0,"",MainForm.pbUserID,MainForm.pbIpAddress,0,0,0,0,0,varRackId,0,0,0,0,0,0,0,"",0,"","", null,0,null,"","");
+                objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

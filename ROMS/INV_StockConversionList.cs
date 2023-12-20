@@ -420,11 +420,15 @@ namespace ROMS
             try
             {
                 lvproduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProduct.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnproductmasterlist(36, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProduct.Text, 0, "","", null, 0, null,"","");
+                    DataSet objDs = new DataSet();
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 36;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraProductName = txtProduct.Text;
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

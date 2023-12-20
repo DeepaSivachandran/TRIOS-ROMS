@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -153,6 +154,7 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         cmbStatus.Enabled = false;
                         grdStockRequest.ReadOnly = true;
+                        grdStockRequest.Columns["clmRemove"].Visible = false;
                         cmbStatus.SelectedValue = 29;
                     }
                     else
@@ -192,10 +194,7 @@ namespace ROMS
                                 {
                                     varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
                                 }
-                                if(varStatus==29)
-                                {
-                                    ((DataGridViewImageCell)grdStockRequest.Rows[j].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
-                                }
+                                
                             }
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
@@ -549,17 +548,23 @@ namespace ROMS
                 txtRequiredQty.Text = "";
                 grdGodownStock.Rows.Clear();
                 lvProduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
+                    DataSet objDs = new DataSet();
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 45;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.ParaProductsCode = varProducts;
+                    SPDataService objspdservice = new SPDataService();
                     if (VarSearchFlag == true)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, txtProductNamePICode.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"" , 0, varProducts, "", null, 0, null, "", "");
+                        objMR_Product.paraPicode = txtProductNamePICode.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(45, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductNamePICode.Text, 0, varProducts, "", null, 0, null, "", "");
+                        objMR_Product.paraProductName = txtProductNamePICode.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -676,9 +681,12 @@ namespace ROMS
         {
             try
             {
+                DataSet objDS = new DataSet() ;
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 43;
+                objMR_Product.ParaProductCode = Convert.ToInt32(lblProduct.Text);
                 SPDataService objspservice = new SPDataService();
-                DataSet objDS;
-                objDS = objspservice.udfnproductmasterlist(43,Convert.ToInt32(lblProduct.Text),0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"","",null,0,null,"","");
+                objDS = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {

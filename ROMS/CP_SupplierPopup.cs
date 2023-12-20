@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,10 +46,12 @@ namespace ROMS
             try
             { 
                 grdHeaderview.DataSource = null;
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 25;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService(); 
-                objDs = objdserv.udfnSupplierList(25, 0, 0, 0, 0, "", 0,0,0,"",0,0,0,0,0,0,"","","",0);
+                objDs = objdserv.udfnSupplierList(objMR_Supplier);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -356,13 +357,21 @@ namespace ROMS
                     dtMappedProduct.Columns.Add("PR_UPP", typeof(int));
                     dtMappedProduct.Columns.Add("B.UTID", typeof(int));
                     dtMappedProduct.Columns.Add("T.UTID", typeof(int));
-                     
+                    dtMappedProduct.Columns.Add("Othersupprevious", typeof(string));
+                    dtMappedProduct.Columns.Add("Othersuppartial", typeof(string));
+
 
                     if (Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text) != 0)
                     {
+                        MR_Product objMR_Product = new MR_Product();
+                        objMR_Product.paraViewType = 33;
+                        objMR_Product.ParaCompanycode = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
+                        objMR_Product.ParaScheduleid = Convert.ToString(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
+                        objMR_Product.ParaSupplierId = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
+                        objMR_Product.ParaProductsCode = MainForm.objPUR_PurchaseOrder.pbProductsCode;
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode,"",null,0,null,"","");
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -374,14 +383,13 @@ namespace ROMS
                                     { 
                                         dtMappedProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"]
                                         , objDs.Tables[0].Rows[i]["Unit"],
-                                        objDs.Tables[0].Rows[i]["Unit Per box"], objDs.Tables[0].Rows[i]["SalesRate"], objDs.Tables[0].Rows[i]["WholeSaleRate"] , objDs.Tables[0].Rows[i]["Min Qty"], objDs.Tables[0].Rows[i]["Max Qty"] , objDs.Tables[0].Rows[i]["Stock"],
+                                        objDs.Tables[0].Rows[i]["Unit Per box"], objDs.Tables[0].Rows[i]["SalesRate"], objDs.Tables[0].Rows[i]["WholeSaleRate"] , objDs.Tables[0].Rows[i]["Min Qty"], objDs.Tables[0].Rows[i]["Max Qty"] , objDs.Tables[0].Rows[i]["MXSTK"],
                                         objDs.Tables[0].Rows[i]["Reorder"], objDs.Tables[0].Rows[i]["Productid"], objDs.Tables[0].Rows[i]["GST_Text"],
                                         objDs.Tables[0].Rows[i]["PREVIOUS"], objDs.Tables[0].Rows[i]["PARTIAL"], objDs.Tables[0].Rows[i]["ordervalue"], 
                                         objDs.Tables[0].Rows[i]["PR_UTID"], objDs.Tables[0].Rows[i]["Unit Wt"], objDs.Tables[0].Rows[i]["B.Unit Weight"],
-                                        objDs.Tables[0].Rows[i]["bt_symbol"], objDs.Tables[0].Rows[i]["unit"],
-                                        objDs.Tables[0].Rows[i]["unit"], objDs.Tables[0].Rows[i]["tot_symbol"],
-                                        objDs.Tables[0].Rows[i]["PR_NettWeight"], objDs.Tables[0].Rows[i]["PR_UPP"],
-                                        objDs.Tables[0].Rows[i]["PR_Bulk_UTID"], objDs.Tables[0].Rows[i]["PR_QUTID"]);
+                                        objDs.Tables[0].Rows[i]["bt_symbol"], objDs.Tables[0].Rows[i]["unit"],objDs.Tables[0].Rows[i]["unit"], objDs.Tables[0].Rows[i]["tot_symbol"],
+                                        objDs.Tables[0].Rows[i]["PR_NettWeight"], objDs.Tables[0].Rows[i]["PR_UPP"],objDs.Tables[0].Rows[i]["PR_Bulk_UTID"],
+                                        objDs.Tables[0].Rows[i]["PR_QUTID"], objDs.Tables[0].Rows[i]["Other Supplier PRE.PEND"], objDs.Tables[0].Rows[i]["Other Supplier PARITAL"]);
                                     }
 
                                     grdPurchaseOrder.DataSource = dtMappedProduct; 
@@ -434,7 +442,9 @@ namespace ROMS
                                     grdPurchaseOrder.Columns["PR_NettWeight"].Visible = false;
                                     grdPurchaseOrder.Columns["PR_UPP"].Visible = false;
                                     grdPurchaseOrder.Columns["B.UTID"].Visible = false;
-                                    grdPurchaseOrder.Columns["T.UTID"].Visible = false; 
+                                    grdPurchaseOrder.Columns["T.UTID"].Visible = false;
+                                    grdPurchaseOrder.Columns["Othersupprevious"].Visible = false;
+                                    grdPurchaseOrder.Columns["Othersuppartial"].Visible = false;
                                 }
                                 else { lblNoRecordsFound.Visible = true; }
                             }
@@ -507,12 +517,16 @@ namespace ROMS
                         DefProductsCode = DefProductsCode + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Product ID"].Value);
                     }
                 }
-
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 28;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
+                objMR_Supplier.paraCompanycode = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
+                objMR_Supplier.paraProducts = DefProductsCode;
+                DataSet objDs = new DataSet();
                 SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet(); 
-                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode,"","",0);
+                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                 objspdservice.CloseConnection();
-
                 for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
@@ -536,7 +550,8 @@ namespace ROMS
                         grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value, grdPurchaseOrder.Rows[i].Cells["Product Name"].Value, grdPurchaseOrder.Rows[i].Cells["Unit"].Value,
                         grdPurchaseOrder.Rows[i].Cells["Unit Wt"].Value, grdPurchaseOrder.Rows[i].Cells["Unit Per case"].Value, grdPurchaseOrder.Rows[i].Cells["B.Unit Weight"].Value, 
                         grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value),
-                        (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), Convert.ToString(grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value), grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, 
+                        (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), Convert.ToString(grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value),
+                         grdPurchaseOrder.Rows[i].Cells["Othersupprevious"].Value, grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, grdPurchaseOrder.Rows[i].Cells["Othersuppartial"].Value, 
                         (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),"", grdPurchaseOrder.Rows[i].Cells["bunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["qtyunit"].Value,
                         "",grdPurchaseOrder.Rows[i].Cells["totunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["finalunit"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 
                         defflag, 1, "", 10, (grdPurchaseOrder.Rows[i].Cells["PR_UTID"].Value), (grdPurchaseOrder.Rows[i].Cells["PR_NettWeight"].Value),

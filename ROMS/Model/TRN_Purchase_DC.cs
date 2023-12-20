@@ -25,6 +25,7 @@ namespace ROMS.Model
         public int paraDC_PURID { get; set; } = 0;
         public int paraStatusID { get; set; } = 0;
         public int paraDCID { get; set; } = 0;
+        public int paraDeleteFlag { get; set; } = 0;
         public DataTable ParaTRN_Purchase_DC { get; set; } = null;
     }
     

@@ -72,9 +72,13 @@ namespace ROMS
                 else
                 {
                     string[] values = new string[0];
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 31;
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(31, 0, Convert.ToInt32(lblschedule.Text), 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "","","",0);
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -142,8 +146,8 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["Supplier"].Width = 300;
                                 grdPurchaseDCList.Columns["Total Products"].Width = 100;
                                 grdPurchaseDCList.Columns["GSTIN"].Width = 170;
-                                grdPurchaseDCList.Columns["Status"].Width = 80;
-                                grdPurchaseDCList.Columns["S.No."].Width = 50;
+                                grdPurchaseDCList.Columns["Status"].Width = 100;
+                                grdPurchaseDCList.Columns["S.No."].Width = 80;
                                 grdPurchaseDCList.Columns["ID"].Visible = false;
                                 grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
                                 grdPurchaseDCList.Columns["Status ID"].Visible = false;
@@ -194,14 +198,22 @@ namespace ROMS
             {
                 if (grdPurchaseDCList.SelectedRows.Count > 0)
                 {
-                    picLoader.Visible = true;
+                    picLoader.Visible = true; int statusid = 0;
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objPUR_PurchaseDC = new PUR_PurchaseDC();
                     MainForm.objPUR_PurchaseDC.varDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                    MainForm.objPUR_PurchaseDC.btnSave.Text = "Update";
+                    //MainForm.objPUR_PurchaseDC.btnSave.Text = "Update";
                     MainForm.objPUR_PurchaseDC.pbScheduleid = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPSCID"].Value.ToString());
                     MainForm.objPUR_PurchaseDC.pbSupplierId = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPID"].Value.ToString());
+                    if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value.ToString()) == 18)
+                    {
+                        MainForm.objPUR_PurchaseDC.editFlag = 1;
+                    }
+                    else if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value.ToString()) == 34)
+                    {
+                        MainForm.objPUR_PurchaseDC.editFlag = 2;
+                    }
                     //MainForm.objPUR_PurchaseDC.txtRemark.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
                     MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
                     MainForm.objPUR_PurchaseDC.Show();
@@ -569,7 +581,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void PUR_PurchaseDCList_Load(object sender, EventArgs e)
         {
             try
@@ -579,8 +590,11 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpDcFromDate.MinDate = MainForm.pbFYStartDate;
                 dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
-                dpdctodate.MinDate = dpDcFromDate.MaxDate;
-                this.ActiveControl = cmbConcern;
+                udfnDate();
+                dpdctodate.MaxDate = MainForm.pbCurrentDate;
+                 this.ActiveControl = cmbConcern;
+                //txtSupplier.Focus();
+                cmbStatus.SelectedValue = 18; //pending
                 udfnList();
             }
             catch (Exception ex)
@@ -589,7 +603,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnDate()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",1);
+                if (objd.Tables[0].Rows.Count != 0)
+                {
+                    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                  //  dpDcFromDate.MaxDate = varmaxdate;
+                    dpDcFromDate.Text = Convert.ToString(vardate);
+                    dpdctodate.MinDate= vardate;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtSupplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -653,11 +687,17 @@ namespace ROMS
             try
             {
                 LV_Supplier.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplier.Text, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,"",dpDcFromDate.Text,dpdctodate.Text,0);
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 26;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Supplier.ParaFromDate = dpDcFromDate.Text;
+                    objMR_Supplier.ParaToDate = dpdctodate.Text;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -816,25 +856,25 @@ namespace ROMS
         }
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (DGV_SearchGrid.IsCurrentCellDirty)
-            //    {
-            //        // Commit the changes immediately
-            //        DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            //    }
-            //    //udfnGridSearchFilter();
-            //    DataService objDser = new DataService();
-            //    grdPurchaseDCList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseDCList);
-            //    objDser.CloseConnection();
-            //    grdPurchaseDCList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-            //    //grdCompanyList(sender,e); 
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdPurchaseDCList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseDCList);
+                objDser.CloseConnection();
+                grdPurchaseDCList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -860,6 +900,11 @@ namespace ROMS
                     if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "18")
                     {
                         grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "34")
+                    {
+                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     else
@@ -933,22 +978,43 @@ namespace ROMS
                     {
                         string varorginator = "Purchase DC Deletion", result = "";
                         varviewtype = 2;
+                        int varUserID = 0;
                         TRN_Purchase_DC objTRNS_Purchase_DC = new TRN_Purchase_DC();
                         objTRNS_Purchase_DC.ViewType = varviewtype;
                         objTRNS_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                         objTRNS_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
                         objTRNS_Purchase_DC.paraOriginator = varorginator;
                         objTRNS_Purchase_DC.paraDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-
+                        objTRNS_Purchase_DC.paraDeleteFlag = 0;
                         SPDataService objspdservice = new SPDataService();
                         result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            varviewtype = 0;
-                            udfnList();
+                            if (result.Split('~')[1] == "1")
+                            {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                    objTRNS_Purchase_DC.ViewType = varviewtype;
+                                    objTRNS_Purchase_DC.paraUserID = varUserID;
+                                    objTRNS_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                                    objTRNS_Purchase_DC.paraOriginator = varorginator;
+                                    objTRNS_Purchase_DC.paraDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                    objTRNS_Purchase_DC.paraDeleteFlag = 1;
+                                    result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
+                                    if (result.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        varviewtype = 0;
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
                         }
                         else if (result.Split('~')[0] == "4")
                         {

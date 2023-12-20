@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
+using ROMS.Model;
 
 namespace ROMS
 {
@@ -14,6 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DateTime varmaxdate;
         Boolean BlnSearchImageYN = false;
         public PUR_GRNDetailsList()
         {
@@ -33,7 +36,37 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
-        } 
+        }
+        public void udfnDate()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",6);
+                objDServ.CloseConnection();
+                if (objd.Tables[0].Rows.Count != 0)
+                {
+                    DateTime varmindate = MainForm.pbFYStartDate;
+                    dpFromDate.MinDate = varmindate;
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
+                }
+                objd = null;
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
+                objDServ.CloseConnection();
+                if (objd.Tables[1].Rows.Count != 0)
+                {
+                    varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+
+                dpFromDate.MaxDate = varmaxdate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_GRNDetailsList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -79,6 +112,7 @@ namespace ROMS
         {
             try
             {
+                udfnDate();
                 udfnConcernLoad();
                 udfnListLoad();
                 udfnSearchGridHead();
@@ -103,7 +137,7 @@ namespace ROMS
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
-                this.ActiveControl = cmbConcern;
+                this.ActiveControl = dpFromDate;
                 //********** To display a data in a grid  ****************** 
                 grdGRNList.DataSource = null;
                 DataSet objDs = new DataSet();
@@ -208,7 +242,9 @@ namespace ROMS
                             cmbConcern.DataSource = objDT.Tables[0];
                         }
                     }
-                }  
+                }
+
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
@@ -263,11 +299,13 @@ namespace ROMS
         public void udfnEdit()
         {
             try
-            {
+            { 
+
                 MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
                 MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
-                MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
+                MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString()); 
                 MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
+                MainForm.objPUR_GRNDetails.pbPOIdS = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.Show();
             }
             catch (Exception ex)
@@ -496,11 +534,14 @@ namespace ROMS
             try
             {
                 LV_Supplier.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 15;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -940,6 +981,23 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
+                dpToDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
             {

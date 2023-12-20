@@ -632,6 +632,21 @@ namespace ROMS
                 {
                     //txtDLocation.Focus();
                 }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1025,9 +1040,12 @@ namespace ROMS
                 {
                     string[] values = new string[0];
                     string varSupplierId = "0";
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 23;
+                    objMR_Supplier.paraSupplierName = txtsuppliername.Text.Trim();
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtsuppliername.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0,0, "","","",0);
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -1194,10 +1212,6 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         txtRemark.Enabled = false;
                         this.ActiveControl = btnClose;
-                        for (int i = 0; i < grdDamageEntry.Rows.Count; i++)
-                        {
-                            ((DataGridViewImageCell)grdDamageEntry.Rows[i].Cells["clmremove"]).Value = new System.Drawing.Bitmap(1, 1); ;
-                        }
                     }
                 }
             }
@@ -1616,19 +1630,6 @@ namespace ROMS
                         BtnSave_Click(sender, e);
                     }
                 }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
-                    }
-                }
             }
             catch(Exception ex)
             {
@@ -1712,15 +1713,22 @@ namespace ROMS
                 lvProduct.Items.Clear();
                 if (txtProductName.Text.Length > 0)
                 {
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 38;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraId = varID;
+                    objMR_Product.paraDamageEntry = dtDamage;
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (VarSearchFlag == true)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, txtProductName.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", "", null, varID, dtDamage,"","");
+                        objMR_Product.paraProductName = txtProductName.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(38, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text.Trim(), 0, "", "", null, varID, dtDamage,"","");
+                        objMR_Product.paraPicode = txtProductName.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -1883,9 +1891,12 @@ namespace ROMS
         {
             try
             {
-                SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnSupplierList(32, 0, 0, 0, 0, "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, lblProduct.Text, "", "", 0);
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 32;
+                objMR_Supplier.paraProducts = lblProduct.Text;
+                SPDataService objdserv = new SPDataService();
+                objDT = objdserv.udfnSupplierList(objMR_Supplier);
                 objdserv.CloseConnection();
                 cmbSupplier.DataSource = null;
                 if (objDT != null)

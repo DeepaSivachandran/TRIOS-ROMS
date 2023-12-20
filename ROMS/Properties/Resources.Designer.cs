@@ -413,6 +413,16 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap newcancelBill1 {
+            get {
+                object obj = ResourceManager.GetObject("newcancelBill1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap passkey {
             get {
                 object obj = ResourceManager.GetObject("passkey", resourceCulture);

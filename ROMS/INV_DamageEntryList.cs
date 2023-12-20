@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -707,9 +708,12 @@ namespace ROMS
                 {
                     string[] values = new string[0];
                     string varSupplierId = "0";
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 23;
+                    objMR_Supplier.paraSupplierName = txtSupplierName.Text.Trim();
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplierName.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -975,9 +979,16 @@ namespace ROMS
                 lvSupplier.Items.Clear();
                 if (txtSupplierName.Text.Length > 0)
                 {
-                    SPDataService objspdservice = new SPDataService();
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 26;
+                    objMR_Supplier.paraSupplierName = txtSupplierName.Text;
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbconcern.SelectedValue);
+                    objMR_Supplier.ParaFromDate = dpFromDate.Text;
+                    objMR_Supplier.ParaToDate = dpToDate.Text;
+                    objMR_Supplier.paraFlag = 2;
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnSupplierList(26, 0, 0, 0, 0, txtSupplierName.Text, 0, 0,Convert.ToInt32(cmbconcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,"",dpFromDate.Text,dpToDate.Text,2);
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1237,9 +1248,12 @@ namespace ROMS
                 lvSupplierName.Items.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    SPDataService objspdservice = new SPDataService();
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 15;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

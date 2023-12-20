@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -206,9 +207,14 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 16;
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraGstId = Convert.ToInt32(cmbGST.SelectedValue);
+                objMR_Product.paraHSNCode = varHSNCode;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(16, 0, 0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0, 0, Convert.ToInt32(cmbGST.SelectedValue),0,0,0,0,0,"",0,"",varHSNCode,null,0,null,"","");
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
