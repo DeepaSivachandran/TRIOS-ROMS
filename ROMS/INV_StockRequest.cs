@@ -103,6 +103,7 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
+                this.ActiveControl = txtProductNamePICode;
             }
             catch (Exception ex)
             {
@@ -146,21 +147,6 @@ namespace ROMS
                 if (varStockRequestID != 0)
                 {
                     btnSave.Text = "Update";
-                    if (varStatus == 29)
-                    {
-                        txtRemarks.Focus();
-                        txtProductNamePICode.Enabled = false;
-                        txtRequiredQty.Enabled = false;
-                        btnAdd.Enabled = false;
-                        cmbStatus.Enabled = false;
-                        grdStockRequest.ReadOnly = true;
-                        grdStockRequest.Columns["clmRemove"].Visible = false;
-                        cmbStatus.SelectedValue = 29;
-                    }
-                    else
-                    {
-                        cmbStatus.SelectedValue = 28;
-                    }
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     Model.TRN_StockRequest objTRNG_StockRequest = new Model.TRN_StockRequest();
@@ -202,6 +188,24 @@ namespace ROMS
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                            if (varStatus != 28)
+                            {
+                                txtRemarks.Focus();
+                                txtProductNamePICode.Enabled = false;
+                                txtRequiredQty.Enabled = false;
+                                btnAdd.Enabled = false;
+                                cmbStatus.Enabled = false;
+                                grdStockRequest.ReadOnly = true;
+                                grdStockRequest.Columns["clmRemove"].Visible = false;
+                                cmbStatus.SelectedValue = 29;
+                                DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                                GrdStockRequest_DataBindingComplete(grdStockRequest, args);
+                            }
+                            else
+                            {
+                                cmbStatus.SelectedValue = 28;
+                            }
                         }
                     }
                     cmbConcern.Enabled = false;
@@ -231,19 +235,6 @@ namespace ROMS
                 {
                     btnSave.Focus();
                     BtnSave_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblDEProductName.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblDEProductName.Text = "Search by Product Name";
-                    }
                 }
             }
             catch (Exception ex)
@@ -418,6 +409,9 @@ namespace ROMS
             {
                 udfnTransferNo();
                 grdStockRequest.Rows.Clear();
+                dtStock.Rows.Clear();
+                varProducts = "";
+                txttotalitem.Text = "";
                 grdGodownStock.Rows.Clear();
                 if (btnSave.Text == "Save")
                 {
@@ -515,6 +509,21 @@ namespace ROMS
                 {
                     txtRequiredQty.Focus();
                 }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblDEProductName.Text = "Search by P.I Code";
+                        txtProductNamePICode.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblDEProductName.Text = "Search by Product Name";
+                        txtProductNamePICode.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -527,10 +536,18 @@ namespace ROMS
         {
             try
             {
-                txtProductNamePICode.BackColor = Color.White;
-                if (txtProductNamePICode.Text == "")
+                if (Convert.ToString(txtProductNamePICode.Text).Trim() == "")
                 {
+                    errStockRequest.SetError(txtProductNamePICode, "Please enter product name");
+                    txtProductNamePICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please enter product name", txtProductNamePICode, 5000);
                     lblProduct.Text = "0";
+                }
+                else
+                {
+                    errStockRequest.Clear();
+                    txtProductNamePICode.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -584,7 +601,7 @@ namespace ROMS
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 120;
-                                lvProduct.Columns[1].Width = 350;
+                                lvProduct.Columns[1].Width = 250;
                                 lvProduct.Columns[2].Width = 60;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;
@@ -749,6 +766,17 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                if(grdStockRequest.Rows.Count>0)
+                {
+                    cmbConcern.Enabled = false;
+                }
+                else
+                {
+                    cmbConcern.Enabled = true;
+                }
             }
         }
         private void TxtRequiredQty_Enter(object sender, EventArgs e)
@@ -1012,6 +1040,14 @@ namespace ROMS
             finally
             {
                 txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+                if (grdStockRequest.Rows.Count > 0)
+                {
+                    cmbConcern.Enabled = false;
+                }
+                else
+                {
+                    cmbConcern.Enabled = true;
+                }
             }
         }
 
@@ -1050,14 +1086,14 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
-                if (varErrQty == "1")
-                {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(89);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    blnErrorFlag = true;
-                }
+                //if (varErrQty == "1")
+                //{
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(89);
+                //    objDServ.CloseConnection();
+                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    blnErrorFlag = true;
+                //}
                 if (blnErrorFlag == false)
                 {
                     errStockRequest.Clear();
@@ -1135,28 +1171,28 @@ namespace ROMS
         {
             try
             {
-                int RequiredQty = Convert.ToInt32(grdStockRequest.CurrentRow.Cells["clmRequiredQty"].Value);
-                int StockQty = Convert.ToInt32(grdStockRequest.CurrentRow.Cells["clmStockQty"].Value);
+                //int RequiredQty = Convert.ToInt32(grdStockRequest.CurrentRow.Cells["clmRequiredQty"].Value);
+                //int StockQty = Convert.ToInt32(grdStockRequest.CurrentRow.Cells["clmStockQty"].Value);
 
-                if (Convert.ToInt32(RequiredQty) > Convert.ToInt32(StockQty))
-                {
-                    grdStockRequest.Rows[e.RowIndex].Cells["clmRequiredQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    varErrQty = "1";
-                }
-                else if (Convert.ToString(RequiredQty) == "0" || Convert.ToString(RequiredQty) == "")
-                {
-                    grdStockRequest.Rows[e.RowIndex].Cells["clmRequiredQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(89);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    varErrQty = "1";
-                }
-                else
-                {
-                    grdStockRequest.CurrentRow.Cells["clmRequiredQty"].Style.BackColor = Color.PaleGreen;
-                    varErrQty = "0";
-                }
+                //if (Convert.ToInt32(RequiredQty) > Convert.ToInt32(StockQty))
+                //{
+                //    grdStockRequest.Rows[e.RowIndex].Cells["clmRequiredQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    varErrQty = "1";
+                //}
+                //else if (Convert.ToString(RequiredQty) == "0" || Convert.ToString(RequiredQty) == "")
+                //{
+                //    grdStockRequest.Rows[e.RowIndex].Cells["clmRequiredQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(89);
+                //    objDServ.CloseConnection();
+                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    varErrQty = "1";
+                //}
+                //else
+                //{
+                //    grdStockRequest.CurrentRow.Cells["clmRequiredQty"].Style.BackColor = Color.PaleGreen;
+                //    varErrQty = "0";
+                //}
                 object varEditQty = grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["SRQ_RequestedQty"] = varEditQty;
@@ -1236,6 +1272,41 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockRequest_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdStockRequest.Rows.Count; i++)
+                {
+                    if (varStatus == 29)
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmRequiredQty"];
+                        cell.Style.BackColor = Color.LightGray;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = true;
+                    }
+                    else
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmRequiredQty"];
+                        cell.Style.BackColor = Color.PaleGreen;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
             }
         }
     }

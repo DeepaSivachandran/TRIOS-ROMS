@@ -434,6 +434,7 @@ namespace ROMS
                 udfnTransferNo();
                 grdDamageEntry.Rows.Clear();
                 dtDamage.Rows.Clear();
+                txttotalitem.Text = "";
             }
             catch (Exception ex)
 
@@ -630,7 +631,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //txtDLocation.Focus();
+                    txtQuantity.Focus();
                 }
                 if (e.KeyCode == Keys.F11)
                 {
@@ -1212,6 +1213,8 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         txtRemark.Enabled = false;
                         this.ActiveControl = btnClose;
+                        DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                        GrdDamageEntry_DataBindingComplete(grdDamageEntry,args);
                     }
                 }
             }
@@ -1722,12 +1725,12 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (VarSearchFlag == true)
                     {
-                        objMR_Product.paraProductName = txtProductName.Text;
+                        objMR_Product.paraPicode = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objMR_Product.paraPicode = txtProductName.Text;
+                        objMR_Product.paraProductName = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     objspdservice.CloseConnection();
@@ -2332,6 +2335,41 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntry_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdDamageEntry.Rows.Count; i++)
+                {
+                    if (varStatusID == 20)
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmQuantity"];
+                        cell.Style.BackColor = Color.LightGray;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = true;
+                    }
+                    else
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmQuantity"];
+                        cell.Style.BackColor = Color.PaleGreen;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                
             }
         }
     }

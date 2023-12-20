@@ -699,7 +699,7 @@ namespace ROMS
                             grdStockRequestList.Columns["SRQID"].Visible = false;
                             grdStockRequestList.Columns["S.No."].Width = 50;
                             grdStockRequestList.Columns["Status"].Width = 80;
-                            grdStockRequestList.Columns["Created By"].Width = 180;
+                            grdStockRequestList.Columns["Created By"].Width = 100;
                             grdStockRequestList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequestList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequestList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
