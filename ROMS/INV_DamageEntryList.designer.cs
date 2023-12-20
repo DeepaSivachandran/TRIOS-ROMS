@@ -98,6 +98,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdDamageEntryList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.grpprint.SuspendLayout();
@@ -617,6 +618,8 @@
             this.grdDamageEntryList.ColumnHeadersHeight = 30;
             this.grdDamageEntryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdDamageEntryList.ColumnHeadersVisible = false;
+            this.grdDamageEntryList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmPrint});
             this.grdDamageEntryList.EnableHeadersVisualStyles = false;
             this.grdDamageEntryList.GridColor = System.Drawing.Color.White;
             this.grdDamageEntryList.Location = new System.Drawing.Point(3, 156);
@@ -630,6 +633,7 @@
             this.grdDamageEntryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDamageEntryList.Size = new System.Drawing.Size(1348, 484);
             this.grdDamageEntryList.TabIndex = 958797;
+            this.grdDamageEntryList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDamageEntryList_CellContentClick);
             this.grdDamageEntryList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDamageEntryList_CellDoubleClick);
             this.grdDamageEntryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDamageEntryList_DataBindingComplete);
             this.grdDamageEntryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdDamageEntryList_Scroll);
@@ -649,6 +653,13 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
             // 
             // INV_DamageEntryList
             // 
@@ -749,5 +760,6 @@
         private System.Windows.Forms.Label lblToDate;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }

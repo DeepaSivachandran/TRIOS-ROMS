@@ -321,6 +321,8 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         txtRemarks.Enabled = false;
                         this.ActiveControl = btnClose;
+                        DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                        GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
                     }
                     lvSLocation.Visible = false;
                     lvDLocation.Visible = false;
@@ -1095,6 +1097,7 @@ namespace ROMS
                 udfnTransferNo();
                 grdStockTransfer.Rows.Clear();
                 dtStock.Rows.Clear();
+                txttotalitem.Text = "";
                 if (btnSave.Text == "Save")
                 {
                     txtSLocation.Text = "";
@@ -2057,6 +2060,41 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockTransfer_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
+                {
+                    if (varStatusID == 32)
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmquantity"];
+                        cell.Style.BackColor = Color.LightGray;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = true;
+                    }
+                    else
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmquantity"];
+                        cell.Style.BackColor = Color.PaleGreen;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
             }
         }
     }

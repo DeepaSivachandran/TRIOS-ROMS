@@ -18,6 +18,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public string varUserID = "";
+        Boolean BlnSearchImageYN = false;
 
         public INV_DamageEntryList()
         {
@@ -118,7 +119,9 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                DGV_SearchGrid.Columns[0].ReadOnly = true;
+                DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -167,11 +170,24 @@ namespace ROMS
                     }
                 }
                 int rowIndex = 0;
+                int ColIndex = 0;
                 dgv2.Rows.Clear();
                 dgv2.Rows.Add();
                 for (int i = 0; i < visibleColumns.Count; i++)
                 {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                    {
+                        //dgv2.Rows[rowIndex].Visible = false;
+                        BlnSearchImageYN = true;
+                        ColIndex = i;
+                        dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                        dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                        ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -735,7 +751,6 @@ namespace ROMS
                     lblSupplierCode.Text = "0";
                     lblScheduleCode.Text = "0";
                 }
-
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -753,6 +768,7 @@ namespace ROMS
                         lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                            grdDamageEntryList.Columns["clmPrint"].Visible = true;
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdDamageEntryList.DataSource = objDs.Tables[0];
@@ -763,6 +779,7 @@ namespace ROMS
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 120;
                             grdDamageEntryList.Columns["Employees"].Width = 300;
+                            grdDamageEntryList.Columns["clmPrint"].Width = 50;
                             //grdDamageEntryList.Columns["Supplier"].Width = 330;
                             //grdDamageEntryList.Columns["City"].Width = 120;
                             //grdDamageEntryList.Columns["GSTIN"].Width = 150;
@@ -773,6 +790,7 @@ namespace ROMS
                         }
                         else
                         {
+                            grdDamageEntryList.Columns["clmPrint"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
@@ -1430,6 +1448,63 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntryList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdDamageEntryList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                            try
+                            {
+                                string DMID = "0";
+                                DMID = Convert.ToString(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
+                                    varHeader = "Damage Entry";
+
+                                    objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }

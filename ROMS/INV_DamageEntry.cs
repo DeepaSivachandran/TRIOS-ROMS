@@ -434,6 +434,7 @@ namespace ROMS
                 udfnTransferNo();
                 grdDamageEntry.Rows.Clear();
                 dtDamage.Rows.Clear();
+                txttotalitem.Text = "";
             }
             catch (Exception ex)
 
@@ -630,7 +631,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //txtDLocation.Focus();
+                    txtQuantity.Focus();
                 }
                 if (e.KeyCode == Keys.F11)
                 {
@@ -1212,6 +1213,8 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         txtRemark.Enabled = false;
                         this.ActiveControl = btnClose;
+                        DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                        GrdDamageEntry_DataBindingComplete(grdDamageEntry,args);
                     }
                 }
             }
@@ -1480,9 +1483,54 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objINV_DamageEntryList.udfnList();
                     udfnClear();
                     varModifiedFlag = 0;
+                    try
+                    {
+                        if (chkStatus.Checked == true)
+                        {
+                            string DMID = "0";
+                            if (varID == 0)
+                            {
+                                DMID = varvalue[2];
+                            }
+                            else
+                            {
+                                DMID = Convert.ToString(varID);
+                            }
+                            DialogResult result1;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
+                                varHeader = "Damage Entry";
+
+                                objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
+
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
+                    MainForm.objINV_DamageEntryList.udfnList();
                     this.Close();
                 }
                 else
@@ -1677,12 +1725,12 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (VarSearchFlag == true)
                     {
-                        objMR_Product.paraProductName = txtProductName.Text;
+                        objMR_Product.paraPicode = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objMR_Product.paraPicode = txtProductName.Text;
+                        objMR_Product.paraProductName = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     objspdservice.CloseConnection();
@@ -2287,6 +2335,41 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntry_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdDamageEntry.Rows.Count; i++)
+                {
+                    if (varStatusID == 20)
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmQuantity"];
+                        cell.Style.BackColor = Color.LightGray;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = true;
+                    }
+                    else
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmQuantity"];
+                        cell.Style.BackColor = Color.PaleGreen;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                
             }
         }
     }
