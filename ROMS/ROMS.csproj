@@ -194,7 +194,7 @@
     <Compile Include="Model\TRNG_Stock.cs" />
     <Compile Include="Model\TRNS_GoodsOutward.cs" />
     <Compile Include="Model\TRN_BatchConversion.cs" />
-    <Compile Include="Model\TRN_Purchase_ReturnDC.cs" />
+    <Compile Include="Model\TRN_PurchaseReturnDC.cs" />
     <Compile Include="Model\TRN_StockRequest.cs" />
     <Compile Include="Model\TRN_Purchase_DC.cs" />
     <Compile Include="Model\TRNS_GRN.cs" />
