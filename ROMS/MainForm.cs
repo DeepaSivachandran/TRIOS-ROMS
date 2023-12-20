@@ -764,9 +764,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_RackSettinglist = new CP_RackSettinglist();
-                MainForm.objCP_RackSettinglist.MdiParent = this;
-                MainForm.objCP_RackSettinglist.Show();
+                MainForm.objCP_RackSettings = new CP_RackSettings();
+                MainForm.objCP_RackSettings.MdiParent = this;
+                MainForm.objCP_RackSettings.Show();
             }
             catch (Exception ex)
             {
