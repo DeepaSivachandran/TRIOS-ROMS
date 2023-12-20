@@ -632,6 +632,21 @@ namespace ROMS
                 {
                     //txtDLocation.Focus();
                 }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1568,19 +1583,6 @@ namespace ROMS
                     {
                         btnSave.Focus();
                         BtnSave_Click(sender, e);
-                    }
-                }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
                     }
                 }
             }

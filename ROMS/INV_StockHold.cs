@@ -1374,11 +1374,13 @@ namespace ROMS
                     {
                         VarSearchFlag = true;
                         lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
                     }
                     else
                     {
                         VarSearchFlag = false;
                         lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
             }

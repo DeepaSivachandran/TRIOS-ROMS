@@ -413,19 +413,6 @@ namespace ROMS
                 {
                     udfnclose();
                 }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblDProduct.Text = "Search by P.I Code"; 
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblDProduct.Text = "Search by Product Name"; 
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -1926,6 +1913,21 @@ namespace ROMS
                         lvproduct.Items[0].Selected = true;
                     }
                 }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblDProduct.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblDProduct.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -2591,15 +2593,7 @@ namespace ROMS
         {
             try
             {
-                if (VarSearchFlag == true)
-                {
-                    txtProductName.CharacterCasing = CharacterCasing.Upper;
-                }
-                else
-                {
-                    txtProductName.CharacterCasing = CharacterCasing.Normal;
-                }
-                    string varProductsCodes = "0";
+                string varProductsCodes = "0";
                 for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                 {
                     if (varProductsCodes == "")

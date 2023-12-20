@@ -853,6 +853,21 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtMrp.Focus();
@@ -2258,19 +2273,6 @@ namespace ROMS
                 {
                     btnClose.Focus();
                     BtnClose_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
-                    }
                 }
             }
             catch (Exception ex)
