@@ -386,7 +386,7 @@ namespace ROMS
                     //varResult = objspservice.udfnStockHold(ViewType,SHID,Convert.ToInt32(cmbConcern.SelectedValue), varPRID, varStockLocationId, varRKID,Convert.ToString(txtMrp.Text), Convert.ToString(txtExpiryDate.Text),Convert.ToString(txtBatchNo.Text),varUTID,Convert.ToInt32(txtQty.Text), varoriginator);
 
                     DataTable objGrnPO = new DataTable();
-                    TRNS_StockHold objTRNS_StockHold = new TRNS_StockHold();
+                    TRN_StockHold objTRNS_StockHold = new TRN_StockHold();
                     SPDataService objspservice = new SPDataService();
                     objTRNS_StockHold.ViewType = ViewType;
                     objTRNS_StockHold.paraSHID = SHID;
@@ -1428,7 +1428,7 @@ namespace ROMS
                 string varoriginator = "Stock Hold Delete";
                 SPDataService objspservice = new SPDataService();
                 DataTable objGrnPO = new DataTable();
-                TRNS_StockHold objTRNS_StockHold = new TRNS_StockHold();
+                TRN_StockHold objTRNS_StockHold = new TRN_StockHold();
                 MainForm.objCP_Verify = new CP_Verify();
                 MainForm.objCP_Verify.ShowDialog();
                 varUserID = MainForm.objCP_Verify.varUserId;

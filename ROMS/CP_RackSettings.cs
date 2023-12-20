@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -263,7 +264,7 @@ namespace ROMS
                     string varId_SourceLocation = "0";
                     DataSet objDsSourceLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsSourceLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSourceLocation.Text.Trim(), 0, 0, 0);
+                    objDsSourceLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSourceLocation.Text.Trim(), 0, 0, 0,"","");
                     objDServ3.CloseConnection();
                     if (objDsSourceLoc != null)
                     {
@@ -304,7 +305,7 @@ namespace ROMS
                     string varId_DestinationLocation = "0";
                     DataSet objDsDestinationLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsDestinationLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDestinationLocation.Text.Trim(), 0, 0, 0);
+                    objDsDestinationLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDestinationLocation.Text.Trim(), 0, 0, 0,"","");
                     objDServ3.CloseConnection();
                     if (objDsDestinationLoc != null)
                     {
@@ -625,11 +626,16 @@ namespace ROMS
                     grdMoveProduct.DataSource = null;
                     Application.DoEvents();
                     grdViewProduct.DataSource = null;
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = varViewType;
+                    objMR_Product.paraGroup = Convert.ToInt32(varGroupId);
+                    objMR_Product.paraSubgroup = Convert.ToInt32(varSubGroupId);
+                    objMR_Product.paraRackId = Convert.ToInt32(varSourceRackID);
+                    objMR_Product.paraLocationId = Convert.ToInt32(varSourceLocationID);
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0, 0,
-                        0, 0, 0, Convert.ToInt32(varSourceRackID), 0, 0, Convert.ToInt32(varSourceLocationID), 0, 0, 0, 0, "", 0, "", "", null, 0, null);
+                    objDs = objdserv.udfnproductmasterlist(objMR_Product);
                     objdserv.CloseConnection();
 
                     if (objDs.Tables[1].Rows.Count != 0)
@@ -2725,7 +2731,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtDestinationLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtDestinationLocation.Text, 0, 0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2858,7 +2864,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(10,Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSourceLocation.Text, 0, 0, 0);
+                    objDs = objspdservice.udfnStockLocationList(10,Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSourceLocation.Text, 0, 0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

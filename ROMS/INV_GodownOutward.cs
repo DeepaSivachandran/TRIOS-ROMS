@@ -1643,7 +1643,7 @@ namespace ROMS
                     epGoodsOutward.Clear();
                     SPDataService objspdservice = new SPDataService();
                     DataTable objGrnPO = new DataTable();
-                    TRNS_GoodsOutward objTRNS_GoodsOutward = new TRNS_GoodsOutward();
+                    TRN_GoodsOutward objTRNS_GoodsOutward = new TRN_GoodsOutward();
                     objTRNS_GoodsOutward.ViewType = ViewType;
                     objTRNS_GoodsOutward.ParaGOId = varGOId;
                     objTRNS_GoodsOutward.ParaCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);

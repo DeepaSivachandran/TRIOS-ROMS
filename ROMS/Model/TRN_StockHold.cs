@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ROMS.Model
 {
-    class TRNS_StockHold
+    class TRN_StockHold
     {
         public int ViewType { get; set; } = 0;
         public int paraSHID { get; set; } = 0;

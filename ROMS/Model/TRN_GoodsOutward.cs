@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ROMS.Model
 {
-    class TRNS_GoodsOutward
+    class TRN_GoodsOutward
     {
         public int ViewType { get; set; } = 0;
         public int paraUserID { get; set; } = 0;

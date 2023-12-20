@@ -145,7 +145,7 @@ namespace ROMS
                                 }
                                 varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]); 
 
-                                TRNS_GRN objTRNS_GRN = new TRNS_GRN();
+                                TRN_GRN objTRNS_GRN = new TRN_GRN();
                                 objTRNS_GRN.ViewType = 2;
                                 objTRNS_GRN.ParaGRNID = Convert.ToInt32(pbGRNId);
                                 objTRNS_GRN.ParaVerify = Convert.ToInt32(varUserId);

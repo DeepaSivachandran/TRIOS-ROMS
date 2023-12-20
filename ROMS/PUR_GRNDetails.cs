@@ -440,7 +440,7 @@ namespace ROMS
                     objGRNProd = udfnobjGRNProd();
                     SPDataService objspdservice = new SPDataService();
                     varGrnId = Convert.ToInt32(pbGRNId);
-                    TRNS_GRN objTRNS_GRN = new TRNS_GRN();
+                    TRN_GRN objTRNS_GRN = new TRN_GRN();
                     objTRNS_GRN.ViewType = 3;
                     objTRNS_GRN.ParaGRNID = varGrnId;
                     objTRNS_GRN.paraINVDate = dpinvoicedate.Text;

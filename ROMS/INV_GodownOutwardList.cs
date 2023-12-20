@@ -1311,7 +1311,7 @@ namespace ROMS
                     {
                         SPDataService objspdservice = new SPDataService();
                         DataTable objGrnPO = new DataTable();
-                        TRNS_GoodsOutward objTRNS_GoodsOutward = new TRNS_GoodsOutward();
+                        TRN_GoodsOutward objTRNS_GoodsOutward = new TRN_GoodsOutward();
                         MainForm.objCP_Verify = new CP_Verify();
                         MainForm.objCP_Verify.ShowDialog();
                         varUserID = MainForm.objCP_Verify.varUserId;

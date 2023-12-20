@@ -772,7 +772,7 @@ namespace ROMS
             return ds;
         }
         //Added By Sathish On:-28-11-2023
-        public DataSet udfnStock(TRNG_Stock objTRNG_Stock)
+        public DataSet udfnStock(TRN_Stock objTRNG_Stock)
         {
             DataSet ds = new DataSet();
             try
@@ -2286,7 +2286,7 @@ namespace ROMS
 
 
         // added by venkat on 03/11/2023 for GRN Entry Save
-        public string udfnGRNEntry(TRNS_GRN objTRNS_GRN)
+        public string udfnGRNEntry(TRN_GRN objTRNS_GRN)
         {
             string result = "";
             try
@@ -2373,7 +2373,7 @@ namespace ROMS
             return ds;
         }
         // added by kavitha on 08/11/2023 for Goods Outward Save
-        public string udfnGoodsOutward(TRNS_GoodsOutward objTRNS_GoodsOutward)
+        public string udfnGoodsOutward(TRN_GoodsOutward objTRNS_GoodsOutward)
         {
             string result = "";
             try
@@ -2443,7 +2443,7 @@ namespace ROMS
             return ds;
         }
 
-        public string udfnStockHold(TRNS_StockHold objTRNS_StockHold)
+        public string udfnStockHold(TRN_StockHold objTRNS_StockHold)
         {
             string varResult = "";
             try
@@ -2575,7 +2575,6 @@ namespace ROMS
             }
             return result;
         }
-
         public DataSet udfnBatchList(int paraviewType, int paraBTID, int paraCompanycode, string paraFromDate, string paraToDate, int paraPRID)
         {
             DataSet ds = new DataSet();
@@ -2607,7 +2606,6 @@ namespace ROMS
             }
             return ds;
         }
-
     }
 
 }
