@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_PO_Summary_Report : ReportClass {
+    public class RPT_PUR_PO_Detail_Sub_Report : ReportClass {
         
-        public RPT_PUR_PO_Summary_Report() {
+        public RPT_PUR_PO_Detail_Sub_Report() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_PO_Summary_Report.rpt";
+                return "RPT_PUR_PO_Detail_Sub-Report.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_PO_Summary_Report.rpt";
+                return "ROMS.Reports.RPT_PUR_PO_Detail_Sub-Report.rpt";
             }
             set {
                 // Do nothing
@@ -82,7 +82,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection4 {
             get {
                 return this.ReportDefinition.Sections[4];
             }
@@ -90,7 +90,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection3 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[5];
             }
@@ -98,25 +98,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection4 {
-            get {
-                return this.ReportDefinition.Sections[6];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
-            get {
-                return this.ReportDefinition.Sections[7];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
-                return this.ReportDefinition.Sections[8];
+                return this.ReportDefinition.Sections[6];
             }
         }
         
@@ -298,9 +282,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_PO_Summary_Report : Component, ICachedReport {
+    public class CachedRPT_PUR_PO_Detail_Sub_Report : Component, ICachedReport {
         
-        public CachedRPT_PUR_PO_Summary_Report() {
+        public CachedRPT_PUR_PO_Detail_Sub_Report() {
         }
         
         [Browsable(false)]
@@ -337,7 +321,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_PO_Summary_Report rpt = new RPT_PUR_PO_Summary_Report();
+            RPT_PUR_PO_Detail_Sub_Report rpt = new RPT_PUR_PO_Detail_Sub_Report();
             rpt.Site = this.Site;
             return rpt;
         }

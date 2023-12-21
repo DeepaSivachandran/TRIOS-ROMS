@@ -177,6 +177,7 @@ namespace ROMS
         public static REPORT_CP_Product objREPORT_CP_Product;
         public static REPORT_Stock objREPORT_Stock;
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
+        public static REPORT_PUR_Purchaseorder_Summary objREPORT_PUR_Purchaseorder_Summary;
          
         //public static CP_SL_Verify objCP_SL_Verify;
         public static DataTable objDtMenuDetails;
@@ -1505,6 +1506,23 @@ namespace ROMS
                 MainForm.objREPORT_PUR_PurchaseOrder = new REPORT_PUR_PurchaseOrder();
                 MainForm.objREPORT_PUR_PurchaseOrder.MdiParent = this;
                 MainForm.objREPORT_PUR_PurchaseOrder.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void SummaryDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_Purchaseorder_Summary = new REPORT_PUR_Purchaseorder_Summary();
+                MainForm.objREPORT_PUR_Purchaseorder_Summary.MdiParent = this;
+                MainForm.objREPORT_PUR_Purchaseorder_Summary.Show();
             }
             catch (Exception ex)
             {
