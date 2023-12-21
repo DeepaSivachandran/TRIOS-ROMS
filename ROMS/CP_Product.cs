@@ -53,7 +53,7 @@ namespace ROMS
         private ToolTip tpgst = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
-        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varSalesRack="",varBrandName="";
+        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varSalesRack="",varBrandName="", varRackDescription="";
         public CP_Product()
         {
             InitializeComponent();
@@ -229,21 +229,23 @@ namespace ROMS
                 if (txtPurLocation.Text == "")
                 {
                     txtPurLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtPurLocation, "Please enter purchase location");
+                    tppurchaselocation.ShowAlways = true;
+                    tppurchaselocation.Show("Please select valid purchase stock location", txtPurLocation, 5000);
                     txtPurRack.Text = "";
                     lblPurRackCode.Text = "0";
                     txtRackDescription.Text = "";
                     blnErrorFlag = true;
                 }
-                //if (txtSaleLocation.Text == "")
-                //{
-                //    txtSaleLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                //    errItems.SetError(txtSaleLocation, "Please enter sales location");
-                //    txtSaleRack.Text = "";
-                //    lblSaleRackCode.Text = "0";
-                //    txtRackDescriptionSales.Text = "";
-                //    blnErrorFlag = true;
-                //}
+                if (txtSaleLocation.Text == "")
+                {
+                    txtSaleLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    tpsaleslocation.ShowAlways = true;
+                    tpsaleslocation.Show("Please select valid sales rack", txtSaleLocation, 5000);
+                    txtSaleRack.Text = "";
+                    lblSaleRackCode.Text = "0";
+                    txtRackDescriptionSales.Text = "";
+                    blnErrorFlag = true;
+                }
                 //if (Convert.ToString(cmbBrand.SelectedValue) == "" || Convert.ToString(cmbBrand.SelectedValue) == "-1")
                 //{
                 //    errItems.SetError(cmbBrand, "Please select Brand");
@@ -488,57 +490,63 @@ namespace ROMS
                     tpprdSG.Show("Please select valid subgroup", txtSubGroup, 5000);
                     blnErrorFlag = true;
                 }
-                /* Check Location Based on Subgroup or not */
-                string varSubLocationId = "0";
-                DataSet objDsSubGroup = new DataSet();
-                SPDataService objDServ = new SPDataService();
-                objDsSubGroup = objDServ.udfnStockLocationList(19,0,0,0,txtPurLocation.Text.Trim(),Convert.ToInt32(lblSubGroupCode.Text),0,0,"","");
-                objDServ.CloseConnection();
-                if(objDsSubGroup != null)
+                if (btnSave.Text == "Save")
                 {
-                    if (objDsSubGroup.Tables.Count > 0)
+                    /* Check Location Based on Subgroup or not */
+                    if (Convert.ToString(txtPurLocation.Text) != "")
                     {
-                        if (objDsSubGroup.Tables[0].Rows.Count > 0)
+                        string varSubLocationId = "0";
+                        DataSet objDsSubGroup = new DataSet();
+                        SPDataService objDServ = new SPDataService();
+                        objDsSubGroup = objDServ.udfnStockLocationList(19, 0, 0, 0, txtPurLocation.Text.Trim(), Convert.ToInt32(lblSubGroupCode.Text), 0, 0, "", "");
+                        objDServ.CloseConnection();
+                        if (objDsSubGroup != null)
                         {
-                            varSubLocationId = Convert.ToString(objDsSubGroup.Tables[0].Rows[0][0]);
-                        }
-                    }
-                }
-                lblPurLocationCode.Text = Convert.ToString(varSubLocationId);
-                if (varSubLocationId == "0" || varSubLocationId == "-1")
-                {
-                    errItems.SetError(txtPurLocation, "Please select valid purchase stock location");
-                    txtPurLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tppurchaselocation.ShowAlways = true;
-                    tppurchaselocation.Show("Please select valid purchase stock location", txtPurLocation, 5000);
-                    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtPurRack.Text) != "")
-                {
-                    /* Check Rack Based on Subgroup or not */
-                    string varSubRackId = "0";
-                    DataSet objDsSubGroupRack = new DataSet();
-                    SPDataService objDSRack = new SPDataService();
-                    objDsSubGroupRack = objDSRack.udfnRackList(12, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), Convert.ToInt32(lblSubGroupCode.Text), 0);
-                    objDSRack.CloseConnection();
-                    if (objDsSubGroupRack != null)
-                    {
-                        if (objDsSubGroupRack.Tables.Count > 0)
-                        {
-                            if (objDsSubGroupRack.Tables[0].Rows.Count > 0)
+                            if (objDsSubGroup.Tables.Count > 0)
                             {
-                                varSubRackId = Convert.ToString(objDsSubGroupRack.Tables[0].Rows[0][0]);
+                                if (objDsSubGroup.Tables[0].Rows.Count > 0)
+                                {
+                                    varSubLocationId = Convert.ToString(objDsSubGroup.Tables[0].Rows[0][0]);
+                                }
                             }
                         }
+                        lblPurLocationCode.Text = Convert.ToString(varSubLocationId);
+                        if (varSubLocationId == "0" || varSubLocationId == "-1")
+                        {
+                            errItems.SetError(txtPurLocation, "Please select valid purchase stock location");
+                            txtPurLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tppurchaselocation.ShowAlways = true;
+                            tppurchaselocation.Show("Please select valid purchase stock location", txtPurLocation, 5000);
+                            blnErrorFlag = true;
+                        }
                     }
-                    lblPurRackCode.Text = Convert.ToString(varSubRackId);
-                    if (varSubRackId == "0" || varSubRackId == "-1")
+                    /* Check Rack Based on Subgroup or not */
+                    if (Convert.ToString(txtPurRack.Text) != "")
                     {
-                        errItems.SetError(txtPurRack, "Please select valid purchase rack");
-                        txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tppurchaserack.ShowAlways = true;
-                        tppurchaserack.Show("Please select valid purchase rack", txtPurRack, 5000);
-                        blnErrorFlag = true;
+                        string varSubRackId = "0";
+                        DataSet objDsSubGroupRack = new DataSet();
+                        SPDataService objDSRack = new SPDataService();
+                        objDsSubGroupRack = objDSRack.udfnRackList(12, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), Convert.ToInt32(lblSubGroupCode.Text), 0);
+                        objDSRack.CloseConnection();
+                        if (objDsSubGroupRack != null)
+                        {
+                            if (objDsSubGroupRack.Tables.Count > 0)
+                            {
+                                if (objDsSubGroupRack.Tables[0].Rows.Count > 0)
+                                {
+                                    varSubRackId = Convert.ToString(objDsSubGroupRack.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                        lblPurRackCode.Text = Convert.ToString(varSubRackId);
+                        if (varSubRackId == "0" || varSubRackId == "-1")
+                        {
+                            errItems.SetError(txtPurRack, "Please select valid purchase rack");
+                            txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tppurchaserack.ShowAlways = true;
+                            tppurchaserack.Show("Please select valid purchase rack", txtPurRack, 5000);
+                            blnErrorFlag = true;
+                        }
                     }
                 }
                 /* Check product group is valid or not*/
@@ -5440,6 +5448,7 @@ namespace ROMS
                 txtPurLocation.Text = varPurchaseLocation;
                // txtSaleRack.Text = varSalesRack;
                 txtPurRack.Text = varPurchaseRack;
+                txtRackDescription.Text = varRackDescription;
                 if (varBatchCode == 72)
                 {
                     cmbBatchNoEntry.SelectedValue = 72;
