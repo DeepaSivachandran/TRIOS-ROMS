@@ -1445,18 +1445,18 @@ namespace ROMS
         {
             try
             {
-                //if (chkStatus.Checked == true)
-                //{
-                //    MainForm.objCP_Verify = new CP_Verify();
-                //    MainForm.objCP_Verify.ShowDialog();
-                //    varUserID = MainForm.objCP_Verify.varUserId;
-                //}
-                //else
-                //{
-                //    MainForm.objCP_Verify.flag = 1;
-                //}
-                //if (MainForm.objCP_Verify.flag == 1)
-                //{
+                if (chkStatus.Checked == true)
+                {
+                    MainForm.objCP_Verify = new CP_Verify();
+                    MainForm.objCP_Verify.ShowDialog();
+                    varUserID = MainForm.objCP_Verify.varUserId;
+                }
+                else
+                {
+                    varUserID = "3";
+                }
+                if (varUserID != "")
+                {
                     SPDataService objspservice = new SPDataService();
                     string varResult = "",
                     varoriginator = ""; int varType = 0;
@@ -1500,42 +1500,39 @@ namespace ROMS
                         varModifiedFlag = 0;
                         try
                         {
-                            if (chkStatus.Checked == true)
+                            string DMID = "0";
+                            if (varID == 0)
                             {
-                                string DMID = "0";
-                                if (varID == 0)
-                                {
-                                    DMID = varvalue[2];
-                                }
-                                else
-                                {
-                                    DMID = Convert.ToString(varID);
-                                }
-                                DialogResult result1;
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(87);
-                                objDServ.CloseConnection();
-                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (result1 == DialogResult.Yes)
-                                {
-                                    string varHeader = "";
-                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
-                                    varHeader = "Damage Entry";
+                                DMID = varvalue[2];
+                            }
+                            else
+                            {
+                                DMID = Convert.ToString(varID);
+                            }
+                            DialogResult result1;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
+                                varHeader = "Damage Entry";
 
-                                    objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
-                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                    objValidation.CrySqlConnection(objBillreport);
+                                objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
 
-                                    MainForm.objReportLoad = new ReportLoad();
-                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                    MainForm.objReportLoad.Text = varHeader;
-                                    MainForm.objReportLoad.ShowDialog();
-                                }
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
                             }
                         }
                         catch (Exception ex)
@@ -1574,7 +1571,7 @@ namespace ROMS
                             }
                         }
                     }
-               // }
+                }
             }
             catch (Exception ex)
             {

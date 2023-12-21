@@ -218,6 +218,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_INV_Damage_Supplier.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_INV_Damage_SupplierWise.cs">
       <DependentUpon>RPT_INV_Damage_SupplierWise.rpt</DependentUpon>
@@ -1834,6 +1835,7 @@
     <EmbeddedResource Include="Reports\RPT_INV_Damage_Supplier.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_INV_Damage_Supplier.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Purchase_Order_List.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
