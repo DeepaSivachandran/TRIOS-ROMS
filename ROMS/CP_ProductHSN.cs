@@ -361,12 +361,22 @@ namespace ROMS
                 {
                     rbInActive.Checked = true;
                 }
+                if(varStatusid==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnDisable()
+        {
+            txtHSNName.Enabled = false;
+            txtHSNCode.Enabled = false;
+            cmbGST.Enabled = false;
         }
         public void udfnSave(object sender, EventArgs e)
         {

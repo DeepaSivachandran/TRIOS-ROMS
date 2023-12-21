@@ -224,6 +224,10 @@ namespace ROMS
                 {
                     rbInactive.Checked = true;
                 }
+                if(varStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
@@ -236,6 +240,19 @@ namespace ROMS
                 lvLocation.Visible = false;
                // lvRack.Visible = false;
             }
+        }
+        public void udfnDisable()
+        {
+            txtProductGroupName.Enabled = false;
+            btnAdd.Enabled = false;
+            txtESubGroupNameEnglish.Enabled = false;
+            txtESubGroupNameTamil.Enabled = false;
+            cmbBatchNo.Enabled = false;
+            txtLocation.Enabled = false;
+            btnewlocation.Enabled = false;
+            btnNewRack.Enabled = false;
+            txtRack.Enabled = false;
+            grdRackList.ReadOnly = true;
         }
         public void udfnClear()
         {

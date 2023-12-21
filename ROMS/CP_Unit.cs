@@ -88,11 +88,23 @@ namespace ROMS
                 if (varBulkUnitId == 1) { chkBulkUnit.Checked = true; } else { chkBulkUnit.Checked = false; }
                 MainForm.objCP_Unitlist.picLoader.Visible = false;
                 MainForm.objCP_Unitlist.picLoader.SendToBack();
+                if(PbStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex) {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnDisable()
+        {
+            txtEUnitName.Enabled = false;
+            txtSymbol.Enabled = false;
+            txtInvoiceUnit.Enabled = false;
+            cmbNoOfDecimals.Enabled = false;
+            chkBulkUnit.Enabled = false;
         }
         public void udfnSave(object sender, EventArgs e)
         {

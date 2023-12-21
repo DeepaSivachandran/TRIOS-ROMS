@@ -1164,9 +1164,11 @@
     </Compile>
     <Compile Include="CP_ProductHSN.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CP_ProductHSN.designer.cs">
       <DependentUpon>CP_ProductHSN.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CP_Companylist.cs">
       <SubType>Form</SubType>
@@ -1631,6 +1633,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductHSN.resx">
       <DependentUpon>CP_ProductHSN.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Companylist.resx">
       <DependentUpon>CP_Companylist.cs</DependentUpon>

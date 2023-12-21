@@ -244,12 +244,28 @@ namespace ROMS
                     chkRKCreation.Enabled = false;
                     chkRKGCreation.Enabled = false;
                 }
+                if(PbStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnDisable()
+        {
+            cmbConcern.Enabled = false;
+            cmbLocationType.Enabled = false;
+            cmbStockApplicable.Enabled = false;
+            txtLocationNameInEnglish.Enabled = false;
+            txtLocationNameInTamil.Enabled = false;
+            txtShortName.Enabled = false;
+            pnlGodownType.Enabled = false;
+            chkRKCreation.Enabled = false;
+            chkRKGCreation.Enabled = false;
         }
         public void udfnclose()
         {
