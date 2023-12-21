@@ -178,14 +178,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                if (btnSave.Text == "Save")
-                {
-                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=19 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
-                }
-                else
-                {
-                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=20 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
-                }
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=19 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -251,7 +244,7 @@ namespace ROMS
             try
             {
                 // Varflag = 0;
-                int varStatusid = 0; int varviewtype = 0;
+                int varStatusid = 0; int varviewtype = 2;
                 if (Convert.ToInt32(cmbReason.SelectedValue) == 60)
                 {
                     varStatusid = 20; //Damage entry status completed
@@ -264,15 +257,15 @@ namespace ROMS
                 string varSupplierId = "0";
                 //**** To call the function from SP ********* 
                 SPDataService objdserv = new SPDataService();
-                TRN_PurchaseReturnDC objTRN_PurchaseReturnDC = new TRN_PurchaseReturnDC();
-                objTRN_PurchaseReturnDC.ViewType = varviewtype;
+                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
+                objTRN_PurchaseReturnDC.paraViewType = varviewtype;
                 objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRN_PurchaseReturnDC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
-                objTRN_PurchaseReturnDC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text);
                 objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(varStatusid);
                 objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                objDs = objdserv.udfnReturnPurchaseDCList(objTRN_PurchaseReturnDC);
+                objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -291,6 +284,16 @@ namespace ROMS
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            txtSubTotal.Text= Convert.ToString(objDs.Tables[1].Rows[0]["SubTotal"]);
+                            txtTotalTax.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Total Tax"]);
+                            txtApproxTotal.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Approximate Total"]);
+                            grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                       
                     }
                     else
                     {
@@ -977,17 +980,18 @@ namespace ROMS
                             {
                                 string result = "", varorginator = "Purchase Return DC";
                                 int varviewtype = 0;
-                                TRN_PurchaseReturnDC objTRN_PurchaseReturnDC = new TRN_PurchaseReturnDC();
-                                objTRN_PurchaseReturnDC.ViewType = varviewtype;
+                                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
+                                objTRN_PurchaseReturnDC.paraViewType = varviewtype;
                                 objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                                 objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
                                 objTRN_PurchaseReturnDC.paraOriginator = varorginator;
                                 objTRN_PurchaseReturnDC.paraReturnDCID = varReturnDCID;
+                                objTRN_PurchaseReturnDC.@paraReasonId = Convert.ToInt32(cmbReason.SelectedValue);
                                 objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                                 objTRN_PurchaseReturnDC.paraReturnDC_Date = dpReturnDCDate.Text;
                                 objTRN_PurchaseReturnDC.paraReturnDC_NO = txtReturnDcNo.Text.Trim();
-                                objTRN_PurchaseReturnDC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text.Trim());
-                                objTRN_PurchaseReturnDC.paraScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
+                                objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text.Trim());
+                                objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
                                 objTRN_PurchaseReturnDC.paraReturnDC_Remarks = txtRemarks.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraStatusID = varStatusID;
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
@@ -1000,7 +1004,7 @@ namespace ROMS
                                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     this.ActiveControl = txtSupplier;
                                     udfnclose();
-                                    MainForm.objPUR_PurchaseDCList.udfnList();
+                                    //MainForm.objPUR_PurchaseDCList.udfnList();
                                 }
                                 else if (varvalue[0] == "4")
                                 {

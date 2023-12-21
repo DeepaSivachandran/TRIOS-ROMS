@@ -194,7 +194,7 @@
     <Compile Include="Model\TRNG_Stock.cs" />
     <Compile Include="Model\TRNS_GoodsOutward.cs" />
     <Compile Include="Model\TRN_BatchConversion.cs" />
-    <Compile Include="Model\TRN_PurchaseReturnDC.cs" />
+    <Compile Include="Model\TRN_ReturnDC.cs" />
     <Compile Include="Model\TRN_StockRequest.cs" />
     <Compile Include="Model\TRN_Purchase_DC.cs" />
     <Compile Include="Model\TRNS_GRN.cs" />
@@ -938,11 +938,11 @@
     <Compile Include="INV_SalesInvoice.designer.cs">
       <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="INV_SalesInvoiceList.cs">
+    <Compile Include="PUR_ReturnDCList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="INV_SalesInvoiceList.designer.cs">
-      <DependentUpon>INV_SalesInvoiceList.cs</DependentUpon>
+    <Compile Include="PUR_ReturnDCList.designer.cs">
+      <DependentUpon>PUR_ReturnDCList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_StockRequest.cs">
       <SubType>Form</SubType>
@@ -1507,8 +1507,8 @@
     <EmbeddedResource Include="INV_SalesInvoice.resx">
       <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="INV_SalesInvoiceList.resx">
-      <DependentUpon>INV_SalesInvoiceList.cs</DependentUpon>
+    <EmbeddedResource Include="PUR_ReturnDCList.resx">
+      <DependentUpon>PUR_ReturnDCList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockRequest.resx">
       <DependentUpon>INV_StockRequest.cs</DependentUpon>

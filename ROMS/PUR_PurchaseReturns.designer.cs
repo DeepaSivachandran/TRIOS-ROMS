@@ -105,13 +105,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtApproxTotal = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtTotalTax = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtSubTotal = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblschedule = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
@@ -598,13 +598,13 @@
             this.grpExcessProduct.Controls.Add(this.btnClose);
             this.grpExcessProduct.Controls.Add(this.lblTotal);
             this.grpExcessProduct.Controls.Add(this.btnSave);
-            this.grpExcessProduct.Controls.Add(this.textBox6);
+            this.grpExcessProduct.Controls.Add(this.txtApproxTotal);
             this.grpExcessProduct.Controls.Add(this.label10);
-            this.grpExcessProduct.Controls.Add(this.textBox5);
+            this.grpExcessProduct.Controls.Add(this.txtTotalTax);
             this.grpExcessProduct.Controls.Add(this.label5);
             this.grpExcessProduct.Controls.Add(this.txtRemarks);
             this.grpExcessProduct.Controls.Add(this.label6);
-            this.grpExcessProduct.Controls.Add(this.textBox3);
+            this.grpExcessProduct.Controls.Add(this.txtSubTotal);
             this.grpExcessProduct.Location = new System.Drawing.Point(9, 137);
             this.grpExcessProduct.Name = "grpExcessProduct";
             this.grpExcessProduct.Size = new System.Drawing.Size(1313, 490);
@@ -957,17 +957,17 @@
             this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
-            // textBox6
+            // txtApproxTotal
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(1156, 400);
-            this.textBox6.MaxLength = 50;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(142, 33);
-            this.textBox6.TabIndex = 1111178;
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtApproxTotal.Enabled = false;
+            this.txtApproxTotal.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApproxTotal.Location = new System.Drawing.Point(1156, 400);
+            this.txtApproxTotal.MaxLength = 50;
+            this.txtApproxTotal.Name = "txtApproxTotal";
+            this.txtApproxTotal.ReadOnly = true;
+            this.txtApproxTotal.Size = new System.Drawing.Size(142, 33);
+            this.txtApproxTotal.TabIndex = 1111178;
+            this.txtApproxTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label10
             // 
@@ -979,17 +979,17 @@
             this.label10.TabIndex = 1111175;
             this.label10.Text = "Total Tax";
             // 
-            // textBox5
+            // txtTotalTax
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(1156, 373);
-            this.textBox5.MaxLength = 50;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(142, 27);
-            this.textBox5.TabIndex = 1111176;
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTotalTax.Enabled = false;
+            this.txtTotalTax.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalTax.Location = new System.Drawing.Point(1156, 373);
+            this.txtTotalTax.MaxLength = 50;
+            this.txtTotalTax.Name = "txtTotalTax";
+            this.txtTotalTax.ReadOnly = true;
+            this.txtTotalTax.Size = new System.Drawing.Size(142, 27);
+            this.txtTotalTax.TabIndex = 1111176;
+            this.txtTotalTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
             // 
@@ -1025,17 +1025,17 @@
             this.label6.TabIndex = 1111171;
             this.label6.Text = "Sub Total";
             // 
-            // textBox3
+            // txtSubTotal
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(1156, 346);
-            this.textBox3.MaxLength = 50;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(142, 27);
-            this.textBox3.TabIndex = 1111172;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSubTotal.Enabled = false;
+            this.txtSubTotal.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubTotal.Location = new System.Drawing.Point(1156, 346);
+            this.txtSubTotal.MaxLength = 50;
+            this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.ReadOnly = true;
+            this.txtSubTotal.Size = new System.Drawing.Size(142, 27);
+            this.txtSubTotal.TabIndex = 1111172;
+            this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // groupBox3
             // 
@@ -1115,9 +1115,9 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(215, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 20);
+            this.label2.Size = new System.Drawing.Size(53, 20);
             this.label2.TabIndex = 1111169;
-            this.label2.Text = "Reason";
+            this.label2.Text = "DC Type";
             // 
             // txtReturnDcNo
             // 
@@ -1288,13 +1288,13 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTotal;
         public System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtApproxTotal;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtTotalTax;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtRemarks;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtSubTotal;
         public System.Windows.Forms.DataGridView grdReturnDC;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cmbConcern;
