@@ -253,6 +253,7 @@ namespace ROMS
             btnNewRack.Enabled = false;
             txtRack.Enabled = false;
             grdRackList.ReadOnly = true;
+            this.ActiveControl = rbInactive;
         }
         public void udfnClear()
         {

@@ -266,6 +266,7 @@ namespace ROMS
             pnlGodownType.Enabled = false;
             chkRKCreation.Enabled = false;
             chkRKGCreation.Enabled = false;
+            this.ActiveControl = rbInactive;
         }
         public void udfnclose()
         {

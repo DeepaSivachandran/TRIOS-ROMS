@@ -130,6 +130,7 @@ namespace ROMS
                 MainForm.objCP_Representative = new CP_Representative();
                 MainForm.objCP_Representative.btnSave.Text = "Update";
                 MainForm.objCP_Representative.varrepid = Convert.ToInt32(grdreplist.SelectedRows[0].Cells["ID"].Value.ToString());
+                MainForm.objCP_Representative.varStatus = Convert.ToInt32(grdreplist.SelectedRows[0].Cells["STSID"].Value.ToString());
                 MainForm.objCP_Representative.VARBRANDLOADID = Convert.ToString(grdreplist.SelectedRows[0].Cells["BRANDID"].Value.ToString());
                 MainForm.objCP_Representative.ShowDialog();
             }

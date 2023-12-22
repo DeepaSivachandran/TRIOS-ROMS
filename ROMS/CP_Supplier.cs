@@ -20,7 +20,7 @@ namespace ROMS
 
         public int SearchFlag = 0;
         public string varcompanycode;
-        public string pbFormStatus;
+        public int pbFormStatus=0;
         public string varstatecode = "", varupdate = "0", vardays = "";
         public int varOrderid = 0, scheduleselectedIndex = -1;
         public int varBrandId = 0;
@@ -1276,7 +1276,10 @@ namespace ROMS
                         }  
                     }
                 }
-
+                if(pbFormStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
@@ -1289,7 +1292,33 @@ namespace ROMS
                // udfnLoadOrderSchedule();
             }
         }
-
+        public void udfnDisable()
+        {
+            grbform.Enabled = false;
+            grbEnvelopeDetails.Enabled = false;
+            groupBox4.Enabled = false;
+            groupBox5.Enabled = false;
+            txtScheduleName.Enabled = false;
+            grpSalesmanDetails.Enabled = false;
+            grpOrderDetails.Enabled = false;
+            cmbTat.Enabled = false;
+            groupBox3.Enabled = false;
+            groupBox1.Enabled = false;
+            grdSupplierList.ReadOnly = true;
+            //grdSupplierList.Columns["clmedit"].Visible = false;
+            //grdSupplierList.Columns["clmDelete"].Visible = false;
+            grbSupplierMapping.Enabled = false;
+            cmbMappingorderschedule.Enabled = false;
+            btnSelectAll.Enabled = false;
+            btnUnselectAll.Enabled = false;
+            btnMappingSelectAll.Enabled = false;
+            btnMappingUnselectAll.Enabled = false;
+            btnMappingsave.Enabled = false;
+            cmbOrderschedule.Enabled = false;
+            txtSearchByProduct2.Enabled = false;
+            btnListPrint.Enabled = false;
+            grdViewSupplierMapping.Enabled = false;
+        }
         private void CP_Supplier_Leave(object sender, EventArgs e)
         {
             try
@@ -1310,9 +1339,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-
         private void CP_Supplier_KeyDown(object sender, KeyEventArgs e)
         {
             try

@@ -299,6 +299,7 @@ namespace ROMS
         {
             txtEGroupNameEnglish.Enabled = false;
             txtEGroupNameTamil.Enabled = false;
+            this.ActiveControl = rbInActive;
         }
         public void udfnSave(object sender, EventArgs e)
         {

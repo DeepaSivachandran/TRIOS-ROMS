@@ -194,6 +194,10 @@ namespace ROMS
                     grdSubGroup.DataSource = null;
                     udfnRemoveGroup();
                 }
+                if(varStatusid==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
@@ -205,6 +209,25 @@ namespace ROMS
               //  if (btnSave.Text == "Update") { this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending); }
                 //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
             }
+        }
+        public void udfnDisable()
+        {
+            txtEBrandNameInEnglish.Enabled = false;
+            txtEBrandNameInTamil.Enabled = false;
+            txtProductGroup.Enabled = false;
+            txtProductSubGroup.Enabled = false;
+            txtSelectedProductSubGroup.Enabled = false;
+            grdGroup.ReadOnly = true;
+            grdSubGroup.ReadOnly = true;
+            grdSubGroupAdd.ReadOnly = false;
+            grdSubGroupAdd.Columns["clmRemove"].Visible = false;
+            btnAdd.Enabled = false;
+            btnRemove.Enabled = false;
+            btnSelectAll.Enabled = false;
+            btnUnselectAll.Enabled = false;
+            BtnSubGrupSelectAll.Enabled = false;
+            btnSubGrupUnSelectAll.Enabled = false;
+            this.ActiveControl = rbInactive;
         }
         public void udfnList()
         {
@@ -320,6 +343,7 @@ namespace ROMS
                     grdSubGroupAdd.Columns["Selected Product Subgroup"].ReadOnly = true;
                     grdSubGroupAdd.Columns["Group Id"].ReadOnly = true;
                     grdSubGroupAdd.Columns["Sub Group Id"].ReadOnly = true;
+                    grdSubGroupAdd.Columns["T.Pro"].ReadOnly = true;
                     udfnRemoveGroup();
                 }
                 else

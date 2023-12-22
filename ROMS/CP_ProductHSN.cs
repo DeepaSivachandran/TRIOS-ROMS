@@ -377,6 +377,7 @@ namespace ROMS
             txtHSNName.Enabled = false;
             txtHSNCode.Enabled = false;
             cmbGST.Enabled = false;
+            this.ActiveControl = rbInActive;
         }
         public void udfnSave(object sender, EventArgs e)
         {

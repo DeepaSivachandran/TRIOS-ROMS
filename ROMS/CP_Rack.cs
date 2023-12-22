@@ -135,6 +135,7 @@ namespace ROMS
             txtRackName.Enabled = false;
             txtShortName.Enabled = false;
             txtDescription.Enabled = false;
+            this.ActiveControl = rbInactive;
         }
         public void udfnSave(object sender, EventArgs e)
         {

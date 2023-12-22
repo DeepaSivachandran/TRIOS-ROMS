@@ -19,7 +19,7 @@ namespace ROMS
 
         public int varproductcode=0;
         public string varcompanycode;
-        public string pbFormStatus;
+        public int pbFormStatus=0;
         public string varstatecode = "";
         public string varSubgroupId = "";
         public string vargroupId = "";
@@ -2549,9 +2549,22 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbProductCategory.Select(int.MaxValue, 0)));
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnMaster(16,Convert.ToInt32(cmbProductCategory.SelectedValue),0,"","",0,"",0);
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbBatchNoEntry.SelectedValue = objDT.Tables[0].Rows[0]["MSBT_BatchNo"].ToString();
+                            cmbBatchNoGeneration.SelectedValue = objDT.Tables[0].Rows[0]["MSBT_BatchNoGeneration"].ToString();
+                        }
+                    }
+                }
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -5410,6 +5423,10 @@ namespace ROMS
                         }
                     }
                 }
+                if(pbFormStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
@@ -5425,7 +5442,19 @@ namespace ROMS
                 lvPurRack.Visible = false;
             }
         }
-
+        public void udfnDisable()
+        {
+            grbform.Enabled = false;
+            grplocation.Enabled = false;
+            grbSalesStockLocation.Enabled = false;
+            grbBatchNoDetails.Enabled = false;
+            grpExpire.Enabled = false;
+            grpHsndetail.Enabled = false;
+            groupBox1.Enabled = false;
+            groupBox2.Enabled = false;
+            groupBox3.Enabled = false;
+            this.ActiveControl = rbInActive;
+        }
         private void BtnSubgroup_Click(object sender, EventArgs e)
         {
             try

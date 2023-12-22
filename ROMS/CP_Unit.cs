@@ -105,6 +105,7 @@ namespace ROMS
             txtInvoiceUnit.Enabled = false;
             cmbNoOfDecimals.Enabled = false;
             chkBulkUnit.Enabled = false;
+            this.ActiveControl = rbInActive;
         }
         public void udfnSave(object sender, EventArgs e)
         {
