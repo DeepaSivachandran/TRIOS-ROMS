@@ -16,6 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+        public string varRefNo = "0"; 
         public REPORT_PUR_Purchaseorder_Summary()
         {
             InitializeComponent();
@@ -155,7 +156,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varDtat = txtDelaydays.Text;
+                    varDtat = txtDelaydays.Text + "Days";
                 } 
 
 
@@ -165,7 +166,7 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0, varFilterTat = 0;
-                string varRefNo ="0";
+                varRefNo ="0";
                 if (txtDelaydays.Text != "")
                 {
                     varFilterTat = Convert.ToInt32(txtDelaydays.Text);
@@ -184,7 +185,7 @@ namespace ROMS
                     objDs = objdserv.udfnPOEntry(8, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, 0, Convert.ToInt32(cmbOrdertype.SelectedValue), Convert.ToInt32(lblcityid.Text), Convert.ToInt32(varFilterTat), Convert.ToInt32(cmbGrnstatus.SelectedValue));
                     objdserv.CloseConnection();
                 }
-                else
+                else if (Convert.ToInt32(cmbReporttype.SelectedValue) == 163)
                 {
                     objDs = objdserv.udfnPOEntry(9, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, 0, Convert.ToInt32(cmbOrdertype.SelectedValue), Convert.ToInt32(lblcityid.Text), Convert.ToInt32(varFilterTat), Convert.ToInt32(cmbGrnstatus.SelectedValue));
                     objdserv.CloseConnection();
@@ -231,12 +232,13 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraCityname", (varCity));
                         objBillreport.SetParameterValue("paraDTAT", Convert.ToInt32(varFilterTat));
                         objBillreport.SetParameterValue("paraDTATvalue", (varDtat));
-                        objBillreport.SetParameterValue("paraGRNstatus", Convert.ToInt32(cmbGrnstatus.SelectedValue));
+                        objBillreport.SetParameterValue("paraGRNstatus", Convert.ToInt32(cmbGrnstatus.SelectedValue)); 
                     }
                     else
                     { 
                         objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_Detail_Report.rpt"); 
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_Detail_Report.rpt");
+
                         objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                         objBillreport.SetParameterValue("paraSupplierName", varSuppliername);
                         objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -246,6 +248,9 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraOrdertypevalue", (cmbOrdertype.Text));
                         objBillreport.SetParameterValue("paraCityname", (varCity));
                         objBillreport.SetParameterValue("paraDTATvalue", (varDtat));
+                        objBillreport.SetParameterValue("ParaRefNo", Convert.ToInt32(varRefNo), objBillreport.Subreports[0].Name.ToString()); 
+                        //objBillreport.SetParameterValue("paraRefno", Convert.ToInt32(varRefNo), objBillreport.Subreports[1].Name.ToString()); 
+                        objBillreport.SetParameterValue("ParaRefNo", varRefNo);
                     }
                     //objBillreport.SetParameterValue("paraGRNstatusvalue", cmbGrnstatus.Text); 
                       
@@ -271,6 +276,11 @@ namespace ROMS
                 btnListPrint.Enabled = true;
                 btnListPrint.Focus();
                 GC.Collect();
+                string result="";
+                SPDataService objspdservice = new SPDataService();
+                result = objspdservice.udfnPurchaseEntry(4, 0, 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0,Convert.ToInt32(varRefNo));
+                objspdservice.CloseConnection();
+
             }
         } 
         private void REPORT_CP_Product_Load(object sender, EventArgs e)
@@ -493,7 +503,7 @@ namespace ROMS
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtCity.Text.Length > 2)
+                if (txtCity.Text.Length != 0)
                 {
                     objDs = objspdservice.udfnCitylist(1, txtCity.Text, 0, 0);
                     objspdservice.CloseConnection();
@@ -860,6 +870,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+
+        private void TxtDelaydays_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
