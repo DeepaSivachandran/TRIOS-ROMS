@@ -2552,6 +2552,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 objDT = objdserv.udfnMaster(16,Convert.ToInt32(cmbProductCategory.SelectedValue),0,"","",0,"",0);
+                objdserv.CloseConnection();
                 if (objDT != null)
                 {
                     if (objDT.Tables.Count > 0)
