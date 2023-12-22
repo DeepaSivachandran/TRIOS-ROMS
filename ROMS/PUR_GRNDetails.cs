@@ -1205,6 +1205,7 @@ namespace ROMS
                     }
                 }
                 MainForm.objINV_GRNPODamaged = new INV_GRNPODamaged();
+                MainForm.objINV_GRNPODamaged.varMasterType = "1";
                 MainForm.objINV_GRNPODamaged.ShowDialog();
             }
             catch (Exception ex)
