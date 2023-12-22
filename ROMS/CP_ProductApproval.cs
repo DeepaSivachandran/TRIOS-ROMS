@@ -21,6 +21,7 @@ namespace ROMS
         public string varSubgroupCode = "", varPurLocationCode = "", varPurRackCode = "", varBrand = "", varSalesRackCode = "", varSalesLocationCode = "", varHsnCode = "", varCategoryId = "";
         private ToolTip tpplno = new ToolTip();
         private ToolTip tpprd = new ToolTip();
+        private ToolTip tpgst = new ToolTip();
         private ToolTip tpcompanyname = new ToolTip();
         public CP_ProductApproval()
         {
@@ -122,6 +123,20 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbProductCategory.Select(int.MaxValue, 0)));
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnMaster(16, Convert.ToInt32(cmbProductCategory.SelectedValue), 0, "", "", 0, "", 0);
+                objdserv.CloseConnection();
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbBatchno.SelectedValue = objDT.Tables[0].Rows[0]["MSBT_BatchNo"].ToString();
+                        }
+                    }
+                }
             }
             catch (Exception ex)
 
@@ -163,6 +178,39 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        //public void udfnUnitLoad()
+        //{
+        //    try
+        //    {
+        //        //if (btnSave.Text == "Save")
+        //        //{
+        //        //    varViewType = 1;
+        //        //}
+        //        DataSet objDT = new DataSet();
+        //        //DataSet objDTBulkUnit = new DataSet();
+        //        SPDataService objdserv = new SPDataService();
+        //        objDT = objdserv.udfnMaster(1, varUnitid, 0);
+        //        objdserv.CloseConnection();
+        //        cmbUnit.DataSource = null;
+        //        if (objDT != null)
+        //        {
+        //            if (objDT.Tables.Count > 0)
+        //            {
+        //                if (objDT.Tables[0].Rows.Count > 0)
+        //                {
+        //                    cmbUnit.ValueMember = "UTID";
+        //                    cmbUnit.DisplayMember = "UT_Symbol";
+        //                    cmbUnit.DataSource = objDT.Tables[0];
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
 
         private void Txtpicode_Enter(object sender, EventArgs e)
         {
@@ -405,6 +453,7 @@ namespace ROMS
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
+                                lvSubGroup.BringToFront();
                             }
                         }
                     }
@@ -1429,6 +1478,433 @@ namespace ROMS
             }
         }
 
+        private void Txtpicode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductEname.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductEname_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductTname.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductTname_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtDProductCategory.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrand_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrand.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrand_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtBrand.Text == "")
+                {
+                    txtBrand.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    epProductApproval.SetError(txtBrand, "Please enter brand");
+                }
+                else
+                {
+                    txtBrand.BackColor = Color.White;
+                    epProductApproval.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvPurLocation_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtPurLocation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPurLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtPurLocation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtPurLocation.Text == "")
+                {
+                    txtPurLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    epProductApproval.SetError(txtPurLocation, "Please enter purchase location");
+                    txtPurRack.Text = "";
+                    varPurRackCode = "0";
+                    txtPurRack.Text = "";
+                }
+                else
+                {
+                    txtPurLocation.BackColor = Color.White;
+                    epProductApproval.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtPurRack_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPurRack.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void TxtPurRack_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtPurRack.Text == "")
+                {
+                    txtPurRack.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    epProductApproval.SetError(txtPurRack, "Please enter rack");
+                }
+                else
+                {
+                    txtPurRack.BackColor = Color.White;
+                    epProductApproval.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSalesLocation_Enter(object sender, EventArgs e)
+        {
+
+            try
+            {
+                txtSalesLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSalesRack_Enter(object sender, EventArgs e)
+        {
+
+            try
+            {
+                txtSalesRack.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBatchno_Enter(object sender, EventArgs e)
+        {
+
+            try
+            {
+                cmbBatchno.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBatchno_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbBatchno.SelectedValue) == "" || Convert.ToString(cmbBatchno.SelectedValue) == "-1")
+                {
+                    epProductApproval.SetError(cmbBatchno, "Please select Batch No.");
+                    cmbBatchno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcompanyname.ShowAlways = true;
+                    tpcompanyname.Show("Please select sales Batch No.", cmbBatchno, 5000);
+                }
+                else
+                {
+                    epProductApproval.Clear();
+                    cmbBatchno.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBatchno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbBatchno.Select(int.MaxValue, 0)));
+                //if (Convert.ToString(cmbBatchno.SelectedValue) == "72")
+                //{
+                //}
+                //else
+                //{
+  
+                //}
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGst_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGst.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGst_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbGst.SelectedValue) == "" || Convert.ToString(cmbGst.SelectedValue) == "-1")
+                {
+                    epProductApproval.SetError(cmbGst, "Please select GST%");
+                    cmbGst.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpgst.ShowAlways = true;
+                    tpgst.Show("Please select GST%", cmbProductCategory, 5000);
+                }
+                else
+                {
+                    epProductApproval.Clear();
+                    cmbGst.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtHsncode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtHsncode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtHsncode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtHsncode.BackColor = Color.White;
+                epProductApproval.Clear();
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactive.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUpdate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUpdate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUpdate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUpdate.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void Button2_Click(object sender, EventArgs e)
         {
             try
@@ -1483,6 +1959,7 @@ namespace ROMS
                                     lvHsnCode.Columns[2].Width = 0;
                                 }
                                 lvHsnCode.Visible = true;
+                                lvHsnCode.BringToFront();
                             }
                         }
                     }
@@ -1989,6 +2466,13 @@ namespace ROMS
                         {
                             grdBrand.DataSource = objDS.Tables[0];
                             grdBrand.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdBrand.Columns["Product Name in Tamil"].Width = 300;
+                            grdBrand.Columns["Product Name in English"].Width = 300;
+                            grdBrand.Columns["Unit"].Width = 60;
+                            grdBrand.Columns["Purchase Stock Location"].Width = 150;
+                            grdBrand.Columns["Sales Stock Location"].Width = 150;
+                            grdBrand.Columns["Category"].Width = 80;
+                            grdBrand.Columns["HSN_Name"].Width = 150;
                         }
                     }
                     if (varFlag == 0 || varFlag == 2)
@@ -1997,6 +2481,13 @@ namespace ROMS
                         {
                             grdSubgroup.DataSource = objDS.Tables[1];
                             grdSubgroup.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdSubgroup.Columns["Product Name in Tamil"].Width = 300;
+                            grdSubgroup.Columns["Product Name in English"].Width = 300;
+                            grdSubgroup.Columns["Unit"].Width = 60;
+                            grdSubgroup.Columns["Purchase Stock Location"].Width = 150;
+                            grdSubgroup.Columns["Sales Stock Location"].Width = 150;
+                            grdSubgroup.Columns["Category"].Width = 80;
+                            grdSubgroup.Columns["HSN_Name"].Width = 150;
                         }
                     }
                     if (varFlag == 0 || varFlag == 3)
@@ -2005,11 +2496,16 @@ namespace ROMS
                         {
                             grdCategory.DataSource = objDS.Tables[2];
                             grdCategory.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdCategory.Columns["Product Name in Tamil"].Width = 300;
+                            grdCategory.Columns["Product Name in English"].Width = 300;
+                            grdCategory.Columns["Unit"].Width = 60;
+                            grdCategory.Columns["Purchase Stock Location"].Width = 150;
+                            grdCategory.Columns["Sales Stock Location"].Width = 150;
+                            grdCategory.Columns["Category"].Width = 80;
+                            grdCategory.Columns["HSN_Name"].Width = 150;
                         }
                     }
                 }
-                grdBrand.Columns["Product Name in Tamil"].Width = 300;
-                grdBrand.Columns["Product Name in English"].Width = 300;
 
             }
             catch (Exception ex)

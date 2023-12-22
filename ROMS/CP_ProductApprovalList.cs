@@ -47,7 +47,6 @@ namespace ROMS
         {
             try
             {
-                udfnlistcmbdata();
                 udfnEdit();
             }
             catch (Exception ex)
