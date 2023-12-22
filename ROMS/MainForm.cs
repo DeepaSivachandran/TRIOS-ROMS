@@ -99,6 +99,8 @@ namespace ROMS
         public static CP_SupplierPopup objCP_SupplierPopup;
         public static CP_Verify objCP_Verify;
         public static ReportLoad objReportLoad;
+        public static CP_ProductApprovalList objCP_ProductApprovalList;
+        public static CP_ProductApproval objCP_ProductApproval;
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -764,9 +766,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_RackSettings = new CP_RackSettings();
-                MainForm.objCP_RackSettings.MdiParent = this;
-                MainForm.objCP_RackSettings.Show();
+                MainForm.objCP_RackSettinglist = new CP_RackSettinglist();
+                MainForm.objCP_RackSettinglist.MdiParent = this;
+                MainForm.objCP_RackSettinglist.Show();
             }
             catch (Exception ex)
             {
@@ -1505,6 +1507,23 @@ namespace ROMS
                 //MainForm.objREPORT_CP_Product = new REPORT_PUR_PurchaseOrder();
                 //MainForm.objREPORT_CP_Product.MdiParent = this;
                 //MainForm.objREPORT_CP_Product.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProductApprovalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_ProductApprovalList = new CP_ProductApprovalList();
+                MainForm.objCP_ProductApprovalList.MdiParent = this;
+                MainForm.objCP_ProductApprovalList.Show();
             }
             catch (Exception ex)
             {

@@ -208,22 +208,19 @@ namespace ROMS
                         }
                     }
                 }
-                udfnList();
                 cmbConcern.SelectedValue = 1;
                 DataSet objDS = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 7);
                 DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 //dpFromDate.MinDate = varDate;
-                if (objDS.Tables[0].Rows.Count > 0)
-                {
-                    dpFromDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
-                    dpToDate.MinDate = varDate;
-                }
+                 dpFromDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
+                dpToDate.MinDate = varDate;               
                 objspservice.CloseConnection();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -560,6 +557,7 @@ namespace ROMS
                             grdConversionList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdConversionList.Columns["Converted Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdConversionList.Columns["Conversion Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdConversionList.Columns["Product Name"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
 
                         }
                         else
@@ -1029,8 +1027,8 @@ namespace ROMS
         {
             try
             {
-                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dpToDate.MinDate = varmindate;
+                //DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //dpToDate.MinDate = varmindate;
             }
             catch (Exception ex)
             {
