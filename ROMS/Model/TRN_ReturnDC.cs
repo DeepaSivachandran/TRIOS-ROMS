@@ -35,6 +35,7 @@ namespace ROMS.Model
         public string paraCreditNoteNo { get; set; } = "";
         public string paraCreditNoteDate { get; set; } = "";
         public string paraRemarks { get; set; } = "";
+        public float paraDeleteFlag { get; set; } = 0;
         public float ParaSubtotal { get; set; } = 0;
         public float paraTax { get; set; } = 0;
         public DataTable paraTRN_Purchase_ReturnDC { get; set; } = null;

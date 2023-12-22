@@ -2225,15 +2225,16 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_PurchaseReturnDC.paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_PurchaseReturnDC.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDC_Date", objTRN_PurchaseReturnDC.paraReturnDC_Date);
-                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_PurchaseReturnDC.paraFromDate);
-                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_PurchaseReturnDC.paraToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_PurchaseReturnDC.paraReasonId);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDC_NO", objTRN_PurchaseReturnDC.paraReturnDC_NO);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_PurchaseReturnDC.ParaSupplierId);
                 varSqlCommand.Parameters.AddWithValue("@ParaScheduleID", objTRN_PurchaseReturnDC.ParaScheduleID);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDC_Remarks", objTRN_PurchaseReturnDC.paraReturnDC_Remarks);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_PurchaseReturnDC.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@ParaSubtotal", objTRN_PurchaseReturnDC.ParaSubtotal);
+                varSqlCommand.Parameters.AddWithValue("@paraTax", objTRN_PurchaseReturnDC.paraTax);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDCID", objTRN_PurchaseReturnDC.paraReturnDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_PurchaseReturnDC.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraTRN_Purchase_ReturnDC", objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
@@ -2269,6 +2270,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_PurchaseReturnDC.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_PurchaseReturnDC.paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraDcID", objTRN_PurchaseReturnDC.paraDcID);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnDCID", objTRN_PurchaseReturnDC.paraReturnDCID);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplier", objTRN_PurchaseReturnDC.ParaSupplier);
                 varSqlCommand.Parameters.AddWithValue("@ParaPO", objTRN_PurchaseReturnDC.ParaPO);
                 varSqlCommand.Parameters.AddWithValue("@ParaGroupID", objTRN_PurchaseReturnDC.ParaGroupID);

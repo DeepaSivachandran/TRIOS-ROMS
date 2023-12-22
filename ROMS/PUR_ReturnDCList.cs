@@ -18,7 +18,7 @@ namespace ROMS
 
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int Varflag = 0;
+        public int Varflag = 0, varviewtype=0;
         private ToolTip tpSuppliername = new ToolTip();
         public PUR_ReturnDCList()
         {
@@ -129,18 +129,44 @@ namespace ROMS
         }
         private void udfnEdit()
         {
+            //try
+            //{
+            //    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+            //    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+            //    MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
+            //    MainForm.objPUR_PurchaseReturns.Show();
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+
+            //}
             try
             {
-                MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
-                MainForm.objPUR_PurchaseReturns.Show();
+                if (grdReturnDCList.SelectedRows.Count > 0)
+                {
+                    picLoader.Visible = true; 
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                    MainForm.objPUR_PurchaseReturns.varReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
+                    MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Schedule ID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                    MainForm.objPUR_PurchaseReturns.Show();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
+            }
+            finally
+            {
+                picLoader.SendToBack();
+                picLoader.Visible = false;
             }
         } 
         private void udfnSearchGridHead()
@@ -390,7 +416,7 @@ namespace ROMS
             try
             {
                 DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dpFromDate.MinDate = varmindate;
+                dpToDate.MinDate = varmindate;
             }
             catch (Exception ex)
             {
@@ -1206,5 +1232,134 @@ namespace ROMS
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
+        private void TsbDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnDelete();
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void GrdReturnDCList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    TsbDelete_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdReturnDCList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                tsbEdit_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdReturnDCList_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdReturnDCList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdReturnDCList.Width > grdReturnDCList.HorizontalScrollingOffset && grdReturnDCList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdReturnDCList);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDelete()
+        {
+            try
+            {
+                if (grdReturnDCList.SelectedRows.Count > 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        string varorginator = "Return DC Deletion", result = "";
+                        varviewtype = 2;
+                        int varUserID = 0;
+                        TRN_ReturnDC objTRN_ReturnDC = new TRN_ReturnDC();
+                        objTRN_ReturnDC.@paraViewType = varviewtype;
+                        objTRN_ReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                        objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                        objTRN_ReturnDC.paraOriginator = varorginator;
+                        objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                        objTRN_ReturnDC.paraDeleteFlag = 0;
+                        SPDataService objspdservice = new SPDataService();
+                        result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
+                        objspdservice.CloseConnection();
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            if (result.Split('~')[1] == "1")
+                            {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                    objTRN_ReturnDC.@paraViewType = varviewtype;
+                                    objTRN_ReturnDC.paraUserID = varUserID;
+                                    objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                                    objTRN_ReturnDC.paraOriginator = varorginator;
+                                    objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                    objTRN_ReturnDC.paraDeleteFlag = 1;
+                                    result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
+                                    objspdservice.CloseConnection();
+                                    if (result.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        varviewtype = 3;
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
+                        }
+                        else if (result.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
+    
 }

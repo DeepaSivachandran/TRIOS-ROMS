@@ -996,6 +996,7 @@ namespace ROMS
                                     objTRNS_Purchase_DC.paraDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
                                     objTRNS_Purchase_DC.paraDeleteFlag = 1;
                                     result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
+                                    objspdservice.CloseConnection();
                                     if (result.Split('~')[0] == "3")
                                     {
                                         MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);

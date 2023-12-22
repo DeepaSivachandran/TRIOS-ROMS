@@ -23,6 +23,7 @@ namespace ROMS
         private ToolTip tpDcNo = new ToolTip();
 
         public int varReturnDCID = 0;
+        public int pbScheduleid = 0, pbSupplierId=0;
         public string varSuppliervalue = "";
         DataTable dtPurchaseReturnDC = new DataTable();
         public PUR_PurchaseReturns()
@@ -53,6 +54,47 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnReasonforClosing()
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue)==61) //received credit note
+                {
+                    txtDAmount.Visible = true;
+                    txtAmount.Visible = true;
+                    txtDCrNo.Visible = true;
+                    txtCrNo.Visible = true;
+                    dpCreditNoteDate.Visible = true;
+                    dpDCreditNoteDate.Visible = true;
+                    btnView.Visible = false;
+                }
+                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 63) //Received Equivalent Product
+                {
+                    txtDAmount.Visible = true;
+                    txtAmount.Visible = true;
+                    txtDCrNo.Visible = false;
+                    txtCrNo.Visible = false;
+                    dpCreditNoteDate.Visible = false;
+                    dpDCreditNoteDate.Visible = false;
+                    btnView.Visible = true;
+                }
+                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64) //Debit Note Created
+                {
+                    txtDAmount.Visible = true;
+                    txtAmount.Visible = true;
+                    txtDCrNo.Visible = false;
+                    txtCrNo.Visible = false;
+                    dpCreditNoteDate.Visible = false;
+                    dpDCreditNoteDate.Visible = false;
+                    btnView.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnclose()
         {
             try
@@ -71,7 +113,7 @@ namespace ROMS
         }
         private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbReason.SelectedItem == "Damage")
+            if (Convert.ToInt32(cmbReason.SelectedValue)==60) //damage
             {
                 txtProductName.Enabled = false;
                 txtpurchaseRate.Enabled = false;
@@ -79,7 +121,7 @@ namespace ROMS
                 btnAdd.Enabled = false;
                 lblTotal.Text = "Approximate Total";
             }
-            else
+            else if (Convert.ToInt32(cmbReason.SelectedValue) == 61) //excess
             {
                 txtProductName.Enabled = true;
                 txtpurchaseRate.Enabled = true;
@@ -180,6 +222,13 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=19 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                txtDAmount.Visible = false;
+                txtAmount.Visible = false;
+                txtDCrNo.Visible = false;
+                txtCrNo.Visible = false;
+                dpCreditNoteDate.Visible = false;
+                dpDCreditNoteDate.Visible = false;
+                btnView.Visible = false;
             }
             catch (Exception ex)
             {
@@ -203,6 +252,7 @@ namespace ROMS
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTPer", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTAmnt", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_NettAmnt", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("DMID", typeof(string));
             }
             catch (Exception ex)
             {
@@ -223,14 +273,43 @@ namespace ROMS
                 dpReturnDCDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();
-                cmbReturnType.Items.Clear();
-                cmbReturnType.Items.Add("Credit Note Received");
-                cmbReturnType.Items.Add("Same/Alt. Products Received");
-                cmbReturnType.Items.Add("Debit Note Created");
-                cmbReturnType.SelectedIndex = 0;
+                //cmbReasonForClosing.Items.Clear();
+                //cmbReasonForClosing.Items.Add("Credit Note Received");
+                //cmbReasonForClosing.Items.Add("Same/Alt. Products Received");
+                //cmbReasonForClosing.Items.Add("Debit Note Created");
+                //cmbReasonForClosing.SelectedIndex = 0;
                 if (btnSave.Text == "Save")
                 {
                     grpReason.Enabled = false;
+                }
+                else
+                {
+                    EditLoad();
+                    grpReturnDCSupplier.Enabled = false;
+                    udfnClosingDropdown();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnClosingDropdown()
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbReason.SelectedValue)==60) //damage
+                {
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=20 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReasonForClosing, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                else if (Convert.ToInt32(cmbReason.SelectedValue) == 61) //excess
+                {
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=21 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReasonForClosing, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
                 }
             }
             catch (Exception ex)
@@ -313,22 +392,97 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void EditLoad()
+        {
+            try
+            {
+                if (varReturnDCID != 0)
+                {
+                    int varviewtype = 4;
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    TRN_ReturnDC objTRN_ReturnDC = new TRN_ReturnDC();
+                    objTRN_ReturnDC.paraViewType = varviewtype;
+                    objTRN_ReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                    objTRN_ReturnDC.paraReturnDCID = varReturnDCID;
+                    objTRN_ReturnDC.ParaSupplierId = pbSupplierId;
+                    objTRN_ReturnDC.ParaScheduleID = pbScheduleid;
+                    objDs = objdserv.udfnReturnDC(objTRN_ReturnDC);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                grdReturnDC.Rows.Clear();
+                                cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["PURREDC_COMID"].ToString();
+                                dpReturnDCDate.Text = objDs.Tables[0].Rows[0]["PURREDC_DCDate"].ToString();
+                                txtReturnDcNo.Text = objDs.Tables[0].Rows[0]["PURREDC_DCNO"].ToString();
+                                txtSupplier.Text = objDs.Tables[0].Rows[0]["Supplier"].ToString();
+                                lblSupplierCode.Text = objDs.Tables[0].Rows[0]["SPID"].ToString();
+                                lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
+                                txtRemarks.Text = objDs.Tables[0].Rows[0]["PURREDC_Remarks"].ToString();
+                                cmbReason.SelectedValue= objDs.Tables[0].Rows[0]["PURREDC_ReasonId"].ToString();
+                                txtSubTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SubTotal"]);
+                                txtTotalTax.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Total Tax"]);
+                                txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
+                                //btnSave.Text = "Update";
+                                udfnsupplierLoad();
+                            }
+                            if (objDs.Tables.Count != 0)
+                            {
+                                lblNoRecordsFound.Visible = false;
+                                if (objDs.Tables[1].Rows.Count != 0)
+                                {
+                                    lblNoRecordsFound.Visible = false;
+                                    lblNoRecordsFound.SendToBack();
+                                    grdReturnDC.DataSource = objDs.Tables[1];
+                                    grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                }
+                                else
+                                {
+                                    lblNoRecordsFound.Visible = true;
+                                    lblNoRecordsFound.BringToFront();
+                                }
+                            }
+                            else
+                            {
+                                lblNoRecordsFound.Visible = true;
+                                lblNoRecordsFound.BringToFront();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                LV_Supplier.Visible = false;
+                grdReturnDC.ClearSelection();
+            }
+        }
         private void CmbReturnType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                txtLCrDate.Visible = false;
-                txtLCrNo.Visible = false;
-                txtCrDate.Visible = false;
+                dpDCreditNoteDate.Visible = false;
+                txtDCrNo.Visible = false;
+                dpCreditNoteDate.Visible = false;
                 txtCrNo.Visible = false;
-                if (cmbReturnType.SelectedIndex == 1) {
+                if (cmbReasonForClosing.SelectedIndex == 1) {
                     MainForm.objPUR_DCGoodsInward = new PUR_DCGoodsInward();
                     MainForm.objPUR_DCGoodsInward.ShowDialog();
                 }
-                if (cmbReturnType.SelectedIndex == 0) {
-                    txtLCrDate.Visible = true;
-                    txtLCrNo.Visible = true;
-                    txtCrDate.Visible = true;
+                if (cmbReasonForClosing.SelectedIndex == 0) {
+                    dpDCreditNoteDate.Visible = true;
+                    txtDCrNo.Visible = true;
+                    dpCreditNoteDate.Visible = true;
                     txtCrNo.Visible = true;
                 }
             }
@@ -973,7 +1127,7 @@ namespace ROMS
                             {
                                 dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(grdReturnDC.Rows[i].Cells["PRID"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["MRP"].Value), grdReturnDC.Rows[i].Cells["Expiry Date"].Value, grdReturnDC.Rows[i].Cells["Batch No."].Value,
                                    Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Approximate Rate"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Qty"].Value), Convert.ToInt32(grdReturnDC.Rows[i].Cells["UTID"].Value),
-                                     Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Taxable Amt"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["GSTID"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["GST Amt"].Value),
+                                     Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Taxable Amt"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["GST%"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["GST Amt"].Value),
                                     Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Net Amt"].Value));
                             }
                             if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
@@ -986,9 +1140,11 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
                                 objTRN_PurchaseReturnDC.paraOriginator = varorginator;
                                 objTRN_PurchaseReturnDC.paraReturnDCID = varReturnDCID;
-                                objTRN_PurchaseReturnDC.@paraReasonId = Convert.ToInt32(cmbReason.SelectedValue);
+                                objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbReason.SelectedValue);
                                 objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                                 objTRN_PurchaseReturnDC.paraReturnDC_Date = dpReturnDCDate.Text;
+                                objTRN_PurchaseReturnDC.ParaSubtotal = Convert.ToInt32(txtSubTotal.Text.Trim());
+                                objTRN_PurchaseReturnDC.paraTax = Convert.ToInt32(txtTotalTax.Text.Trim());
                                 objTRN_PurchaseReturnDC.paraReturnDC_NO = txtReturnDcNo.Text.Trim();
                                 objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text.Trim());
                                 objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
@@ -1058,6 +1214,163 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void CmbReasonForClosing_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReasonForClosing.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbReasonForClosing_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReasonForClosing.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbReasonForClosing_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbReasonForClosing.Select(int.MaxValue, 0)));
+                udfnReasonforClosing();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbReasonForClosing_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSupplier.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReasonForClosing_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtAmount_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtAmount.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtAmount_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtAmount.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtAmount_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCrNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtCrNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCrNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtCrNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCrNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtCrNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpCreditNoteDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_DCGoodsInward = new PUR_DCGoodsInward();
+                MainForm.objPUR_DCGoodsInward.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void BtnClose_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1074,5 +1387,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 }
