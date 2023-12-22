@@ -196,7 +196,10 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             varPrint = 1;
-                            varRefNo = objDs.Tables[0].Rows[0]["PORPT_RefNo"].ToString();
+                            if (Convert.ToInt32(cmbReporttype.SelectedValue) == 163)
+                            {
+                                varRefNo = objDs.Tables[0].Rows[0]["PORPT_RefNo"].ToString();
+                            }
                         }
                     }
                 }
