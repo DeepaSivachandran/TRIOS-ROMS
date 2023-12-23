@@ -103,11 +103,11 @@
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.grdReurnDC = new System.Windows.Forms.DataGridView();
-            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errGRN)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grpSalesmanDetails.SuspendLayout();
@@ -930,25 +930,12 @@
             this.grdReurnDC.Size = new System.Drawing.Size(363, 80);
             this.grdReurnDC.TabIndex = 1111214;
             // 
-            // DCDate
+            // clmDCID
             // 
-            this.DCDate.HeaderText = "DC Date";
-            this.DCDate.Name = "DCDate";
-            this.DCDate.ReadOnly = true;
-            // 
-            // InvoiceNo
-            // 
-            this.InvoiceNo.HeaderText = "DC No.";
-            this.InvoiceNo.Name = "InvoiceNo";
-            this.InvoiceNo.ReadOnly = true;
-            this.InvoiceNo.Width = 80;
-            // 
-            // TotalProducts
-            // 
-            this.TotalProducts.HeaderText = "T.Pro";
-            this.TotalProducts.Name = "TotalProducts";
-            this.TotalProducts.ReadOnly = true;
-            this.TotalProducts.Width = 60;
+            this.clmDCID.HeaderText = "ID";
+            this.clmDCID.Name = "clmDCID";
+            this.clmDCID.ReadOnly = true;
+            this.clmDCID.Visible = false;
             // 
             // Value
             // 
@@ -957,12 +944,25 @@
             this.Value.ReadOnly = true;
             this.Value.Width = 80;
             // 
-            // clmDCID
+            // TotalProducts
             // 
-            this.clmDCID.HeaderText = "ID";
-            this.clmDCID.Name = "clmDCID";
-            this.clmDCID.ReadOnly = true;
-            this.clmDCID.Visible = false;
+            this.TotalProducts.HeaderText = "T.Pro";
+            this.TotalProducts.Name = "TotalProducts";
+            this.TotalProducts.ReadOnly = true;
+            this.TotalProducts.Width = 80;
+            // 
+            // InvoiceNo
+            // 
+            this.InvoiceNo.HeaderText = "DC No.";
+            this.InvoiceNo.Name = "InvoiceNo";
+            this.InvoiceNo.ReadOnly = true;
+            this.InvoiceNo.Width = 80;
+            // 
+            // DCDate
+            // 
+            this.DCDate.HeaderText = "DC Date";
+            this.DCDate.Name = "DCDate";
+            this.DCDate.ReadOnly = true;
             // 
             // PUR_GRNEntry
             // 

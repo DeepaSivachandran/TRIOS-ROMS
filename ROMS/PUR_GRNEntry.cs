@@ -65,6 +65,7 @@ namespace ROMS
         {
             try
             {
+                btnDC.Enabled = false;
                 this.ActiveControl = txtSupplier;
                 udfnDropdownLoad();
                 udfnUnitListGrid();
