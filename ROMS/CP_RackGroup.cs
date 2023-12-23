@@ -564,6 +564,7 @@ namespace ROMS
                     //}
 
                     udfnGridRemove();
+                    udfnsearchGridHead();
                     udfnEmpGridRemove();
                 }
 
