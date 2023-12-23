@@ -1117,6 +1117,7 @@ namespace ROMS
                 for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                 {
                     grdRepBrand.Rows[i].Cells[0].Value = true;
+                    dtBrand.Rows[i][0] = true;
                 }
             }
             catch (Exception ex)
@@ -1133,6 +1134,7 @@ namespace ROMS
                 for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                 {
                     grdRepBrand.Rows[i].Cells[0].Value = false;
+                    dtBrand.Rows[i][0] = false  ;
                 }
             }
             catch (Exception ex)
