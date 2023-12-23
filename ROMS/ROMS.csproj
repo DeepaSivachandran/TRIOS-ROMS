@@ -305,6 +305,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_PO_Detail_Report.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_Detail_Sub-Report.cs">
       <DependentUpon>RPT_PUR_PO_Detail_Sub-Report.rpt</DependentUpon>
@@ -1847,6 +1848,7 @@
     <EmbeddedResource Include="Reports\RPT_PUR_PO_Detail_Report.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_PO_Detail_Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_PO_Detail_Sub-Report.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
