@@ -364,7 +364,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDSubGroup.Focus();
+                    txtSubgroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -1516,7 +1516,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDProductCategory.Focus();
+                    cmbProductCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -1897,6 +1897,32 @@ namespace ROMS
             try
             {
                 btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUnit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbUnit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUnit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbUnit.BackColor = Color.White;
             }
             catch (Exception ex)
             {

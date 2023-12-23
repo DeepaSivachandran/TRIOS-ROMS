@@ -210,6 +210,7 @@ namespace ROMS
                     ListViewItem selectedItem = lvStockLocation.SelectedItems[0];
                     txtStockLocation.Text = selectedItem.SubItems[0].Text;
                     varStockLocationId = selectedItem.SubItems[2].Text;
+                    udfnRackcheck();
                 }
             }
             catch (Exception ex)
@@ -285,6 +286,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+
             }
         }
 
@@ -894,8 +899,11 @@ namespace ROMS
         {
             try
             {
-                udfnRackAutocomplete();
-                txtProductName.Focus();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnRackAutocomplete();
+                    txtProductName.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -926,11 +934,15 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductName.Focus();
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     if (lvRack.Items.Count == 0 || txtRack.Text == "")
                     {
-                        txtProductName.Focus();
+                        txtRack.Focus();
                         lvRack.Visible = false;
                     }
                     else
@@ -941,10 +953,6 @@ namespace ROMS
                     {
                         lvRack.Items[0].Selected = true;
                     }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtProductName.Focus();
                 }
             }
             catch (Exception ex)
@@ -1236,15 +1244,15 @@ namespace ROMS
                         decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                         string mrp = string.Format("{0:0.00}", varMRP);
                         string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
-                        //grdInward.Rows.Add(grdInward.Rows.Count + 1, varPICode.Trim(), varTamilname.Trim(), Convert.ToDecimal(mrp), varExpiryDate, txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid);
+                        grdInward.Rows.Add(grdInward.Rows.Count + 1, varPICode.Trim(), varTamilname.Trim(), Convert.ToDecimal(mrp), varExpiryDate, varShelflife,0,0,txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), 0,0,txtunit.Text);
                         ////dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text));
                         //((DataGridViewTextBoxColumn)grdInward.Columns["clmQuantity"]).MaxInputLength = 8;
                         //grdInward.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         ////grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
-                        //grdInward.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        //grdInward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        //grdInward.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        //grdInward.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                        grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdInward.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdInward.Columns["clmactualqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         //udfnAddClear();
                         txtProductName.Text = "";
                         varPRID = "0";
@@ -1472,6 +1480,34 @@ namespace ROMS
                         txtYear.BackColor = Color.White;
                         epGoodsInward.Clear();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbTransactionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbTransactionType.SelectedValue) != 70) // Regular
+                {
+                    grdInward.Columns["clmreceivedqty"].Width = 0;
+                    grdInward.Columns["clmtransferqty"].Width = 0;
+                    grdInward.Columns["clmreceivedqty"].Visible = false;
+                    grdInward.Columns["clmtransferqty"].Visible = false;
+                }
+                else // Stock Transfer
+                {
+                    grdInward.Columns["clmreceivedqty"].Width = 100;
+                    grdInward.Columns["clmtransferqty"].Width = 100;
+                    grdInward.Columns["clmqty"].Width = 0;
+                    grdInward.Columns["clmreceivedqty"].Visible = true;
+                    grdInward.Columns["clmtransferqty"].Visible = true;
+                    grdInward.Columns["clmqty"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1831,7 +1867,6 @@ namespace ROMS
                 if (varShelflife == 1)
                 { expirydateFlag = 1; }
                 //udfnProductAdd(); 
-                udfnDefalutLocation();
                 if (Convert.ToInt32(varBatchNo) == 73)  //disabled
                 {
                     txtBatchNo.Text = "";
@@ -1877,12 +1912,13 @@ namespace ROMS
         {
             try
             {
-                //txtRack.Text = "";
-                //txtMrp.Text = "";
-                //txtExpiryDate.Text = "";
-                //txtBatchNo.Text = "";
-                //txtStockQuantity.Text = "";
-                //txtOutwardQuantity.Text = "";
+                txtRack.Text = "";
+                txtMrp.Text = "";
+                txtDay.Text = "";
+                txtMonth.Text = "";
+                txtDay.Text = "";
+                txtBatchNo.Text = "";
+
                 //lblQuantity.Text = "";
                 //SLID = varStockLocationId;
                 lvproduct.Items.Clear();
@@ -1959,58 +1995,82 @@ namespace ROMS
                 epGoodsInward.Clear();
             }
         }
-        public void udfnDefalutLocation()
+        public void udfnRackcheck()
         {
             try
             {
-                if (txtProductName.Text != "")
+                /*check location have a rack or not*/
+                string varId_PurchaseRack = "0";
+                string varId_PurchaseRackCount = "0";
+                DataSet objDsPurchaseRack = new DataSet();
+                SPDataService objDServ6 = new SPDataService();
+                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(varStockLocationId), 0, txtRack.Text.Trim(), 0, 0);
+                objDServ6.CloseConnection();
+                if (txtRack.Text.Trim() != "")
                 {
-                    if (varPRID != "0" && varPRID != "-1")
+                    if (varStockLocationId != "0")
                     {
-                        DataSet ObjsLocation = new DataSet();
-                        SPDataService objDserv = new SPDataService();
-                        ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0, Convert.ToInt32(varPRID.Trim()), "", 0, 0, 0, "", "");
-                        objDserv.CloseConnection();
-                        if (ObjsLocation != null)
+                        if (objDsPurchaseRack != null)
                         {
-                            if (ObjsLocation.Tables.Count > 0)
+                            if (objDsPurchaseRack.Tables.Count > 0)
                             {
-                                if (ObjsLocation.Tables[0].Rows.Count > 0)
+                                if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
                                 {
-                                    varStockLocationId = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SLID"]);
-                                    //txtStockLocation.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SL_EName"]);
-                                    varRKID = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RKID"]);
-                                    //if (lblRackCode.Text == "0")
-                                    //{
-                                    //    txtRack.Text = "None";
-                                    //    txtRack.Enabled = false;
-                                    //}
-                                    //else
-                                    //{
-                                    //    txtRack.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RK_ShortName"]);
-                                    //}
-                                    if (Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RK_ShortName"]) != "")
-                                    {
-                                        //txtRack.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RK_ShortName"]);
-                                    }
-                                    else
-                                    {
-                                        if (Convert.ToInt32(ObjsLocation.Tables[0].Rows[0]["RackCount"]) == 0)
-                                        {
-                                            //txtRack.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RKNAME"]);
-                                            txtRack.Enabled = false;
-                                            varRKID = "0";
-                                        }
-                                    }
-                                    lvStockLocation.Visible = false;
-                                    lvRack.Visible = false;
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                }
+                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRackCount = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                }
+                                if (varId_PurchaseRackCount == "0")
+                                { varId_PurchaseRack = "0"; }
+                            }
+                        }
+                        varRKID = Convert.ToString(varId_PurchaseRack);
+                        if (Convert.ToInt32(varId_PurchaseRackCount) > 0)
+                        {
+                            if (Convert.ToInt32(varId_PurchaseRack) < 0 || varId_PurchaseRack == "-1")
+                            {
+                                epGoodsInward.SetError(txtRack, "Please enter valid rack.");
+                                txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
+                                tprack.ShowAlways = true;
+                                tprack.Show("Please enter valid rack.", txtRack, 5000);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (varStockLocationId != "0")
+                    {
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
                                 }
                             }
-                            else
-                            {
-                                varStockLocationId = "0";
-                                txtStockLocation.Text = "";
-                            }
+                        }
+                        varRKID = Convert.ToString(varId_PurchaseRack);
+                        if (Convert.ToInt32(varId_PurchaseRack) > 0)
+                        {
+                            epGoodsInward.SetError(txtRack, "Please enter rack.");
+                            txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tprack.ShowAlways = true;
+                            tprack.Show("Please enter rack.", txtRack, 5000);
+                        }
+                        if (varId_PurchaseRack == "0")
+                        {
+                            txtRack.Text = "None";
+                            txtRack.Enabled = false;
+                            varRKID = "0";
+                        }
+                        else
+                        {
+                            txtRack.Enabled = true;
                         }
                     }
                 }
