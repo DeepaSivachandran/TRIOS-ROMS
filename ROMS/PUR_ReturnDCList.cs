@@ -841,6 +841,7 @@ namespace ROMS
                     objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text);
                     objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                    objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbDCType.SelectedValue);
                     objTRN_PurchaseReturnDC.paraFromDate = dpFromDate.Text;
                     objTRN_PurchaseReturnDC.paraToDate = dpToDate.Text;
                     objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;

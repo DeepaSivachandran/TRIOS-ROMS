@@ -937,7 +937,7 @@ namespace ROMS
             {
                 if (txtProductName.Text.Trim() == "")
                 {
-                    epPurchaseDC.SetError(txtProductName, "Please enter product");
+                    epPurchaseDC.SetError(txtProductName, "Please enter product.");
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProduct.ShowAlways = true;
                     tpProduct.Show("Please enter product.", txtProductName, 5000);

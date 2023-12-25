@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace ROMS
 {
@@ -58,7 +59,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue)==61) //received credit note
+                if(Convert.ToInt32(cmbReasonForClosing.SelectedValue)==61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62) //received credit note
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
@@ -1013,7 +1014,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -1143,13 +1144,17 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbReason.SelectedValue);
                                 objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                                 objTRN_PurchaseReturnDC.paraReturnDC_Date = dpReturnDCDate.Text;
-                                objTRN_PurchaseReturnDC.ParaSubtotal = Convert.ToInt32(txtSubTotal.Text.Trim());
-                                objTRN_PurchaseReturnDC.paraTax = Convert.ToInt32(txtTotalTax.Text.Trim());
+                                objTRN_PurchaseReturnDC.ParaSubtotal = Convert.ToDouble(txtSubTotal.Text.Trim());
+                                objTRN_PurchaseReturnDC.paraTax = Convert.ToDouble(txtTotalTax.Text.Trim());
                                 objTRN_PurchaseReturnDC.paraReturnDC_NO = txtReturnDcNo.Text.Trim();
                                 objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text.Trim());
                                 objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
                                 objTRN_PurchaseReturnDC.paraReturnDC_Remarks = txtRemarks.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraStatusID = varStatusID;
+                                objTRN_PurchaseReturnDC.paraClosingReasonId = Convert.ToInt32(cmbReasonForClosing.SelectedValue);
+                                objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDouble(txtAmount.Text.Trim());
+                                objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
+                                objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
                                 SPDataService objspdservice = new SPDataService();
                                 result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
@@ -1201,12 +1206,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnClose_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -1372,6 +1376,57 @@ namespace ROMS
             }
         }
 
+        private void DpCreditNoteDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                dpCreditNoteDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpCreditNoteDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpCreditNoteDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpCreditNoteDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtRemarks.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpCreditNoteDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpCreditNoteDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnClose_KeyDown(object sender, KeyEventArgs e)
         {
             try

@@ -91,6 +91,7 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpReason = new System.Windows.Forms.GroupBox();
+            this.btnView = new System.Windows.Forms.Button();
             this.dpCreditNoteDate = new System.Windows.Forms.DateTimePicker();
             this.dpDCreditNoteDate = new System.Windows.Forms.TextBox();
             this.txtCrNo = new System.Windows.Forms.TextBox();
@@ -128,7 +129,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -798,6 +798,18 @@
             this.grpReason.TabIndex = 1111207;
             this.grpReason.TabStop = false;
             // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(302, 20);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(31, 29);
+            this.btnView.TabIndex = 1111239;
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            // 
             // dpCreditNoteDate
             // 
             this.dpCreditNoteDate.CustomFormat = "dd/MM/yyyy";
@@ -807,6 +819,10 @@
             this.dpCreditNoteDate.Name = "dpCreditNoteDate";
             this.dpCreditNoteDate.Size = new System.Drawing.Size(183, 28);
             this.dpCreditNoteDate.TabIndex = 1111238;
+            this.dpCreditNoteDate.ValueChanged += new System.EventHandler(this.DpCreditNoteDate_ValueChanged);
+            this.dpCreditNoteDate.Enter += new System.EventHandler(this.DpCreditNoteDate_Enter);
+            this.dpCreditNoteDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpCreditNoteDate_KeyDown);
+            this.dpCreditNoteDate.Leave += new System.EventHandler(this.DpCreditNoteDate_Leave);
             // 
             // dpDCreditNoteDate
             // 
@@ -1240,18 +1256,6 @@
             this.label18.Size = new System.Drawing.Size(98, 20);
             this.label18.TabIndex = 38;
             this.label18.Text = "Linked with GRN";
-            // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(302, 20);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(31, 29);
-            this.btnView.TabIndex = 1111239;
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             // 
             // PUR_PurchaseReturns
             // 

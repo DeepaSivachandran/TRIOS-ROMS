@@ -219,7 +219,6 @@
             // grpDC
             // 
             this.grpDC.Controls.Add(this.lblRackCode);
-            this.grpDC.Controls.Add(this.LV_Supplier);
             this.grpDC.Controls.Add(this.lblStockLocationCode);
             this.grpDC.Controls.Add(this.lblProductcode);
             this.grpDC.Controls.Add(this.btnAdd);
@@ -275,7 +274,7 @@
             this.columnHeader1});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(117, 126);
+            this.LV_Supplier.Location = new System.Drawing.Point(143, 37);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(366, 93);
             this.LV_Supplier.TabIndex = 1111208;
@@ -758,6 +757,7 @@
             // grpExcessProduct
             // 
             this.grpExcessProduct.Controls.Add(this.lvStockLocation);
+            this.grpExcessProduct.Controls.Add(this.LV_Supplier);
             this.grpExcessProduct.Controls.Add(this.lvRack);
             this.grpExcessProduct.Controls.Add(this.lvproduct);
             this.grpExcessProduct.Controls.Add(this.chkCompleted);
