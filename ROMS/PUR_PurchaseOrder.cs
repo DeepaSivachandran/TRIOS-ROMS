@@ -146,7 +146,7 @@ namespace ROMS
                                 grdsupplieradd.Rows.Clear();
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string bulk = "0", unit = "0";
+                                    string bulk = "0", unit = "0", MXSQ = "0", MXSTK = "0";
                                     if (Convert.ToString(objDs.Tables[0].Rows[i]["ORDERQTY"]) == "0")
                                     {
                                         bulk = "-";
@@ -163,13 +163,29 @@ namespace ROMS
                                     {
                                         unit = Convert.ToString(objDs.Tables[0].Rows[i]["unitqty"]);
                                     }
+                                    if (Convert.ToString(objDs.Tables[0].Rows[i]["MXSQ"]) == "0")
+                                    {
+                                        MXSQ = "-";
+                                    }
+                                    else
+                                    {
+                                        MXSQ = Convert.ToString(objDs.Tables[0].Rows[i]["MXSQ"]);
+                                    }
+                                    if (Convert.ToString(objDs.Tables[0].Rows[i]["MXSTK"]) == "0")
+                                    {
+                                        MXSTK = "-";
+                                    }
+                                    else
+                                    {
+                                        MXSTK = Convert.ToString(objDs.Tables[0].Rows[i]["MXSTK"]);
+                                    }
                                     lblNoRecordsFound.Visible = false;
                                     grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString(),
                                     objDs.Tables[0].Rows[i]["Product Name"].ToString(), objDs.Tables[0].Rows[i]["Unit"].ToString(),
                                     objDs.Tables[0].Rows[i]["Unit Wt"].ToString(), objDs.Tables[0].Rows[i]["Unit Per box"].ToString(),
                                     objDs.Tables[0].Rows[i]["B.Unit Weight"].ToString(),
-                                    objDs.Tables[0].Rows[i]["GST_Text"].ToString(), objDs.Tables[0].Rows[i]["MSQ"].ToString(), objDs.Tables[0].Rows[i]["MXSQ"].ToString(),
-                                    objDs.Tables[0].Rows[i]["MXSTK"].ToString(), objDs.Tables[0].Rows[i]["PREVIOUS"].ToString(), objDs.Tables[0].Rows[i]["Other Supplier PRE.PEND"].ToString(),
+                                    objDs.Tables[0].Rows[i]["GST_Text"].ToString(), objDs.Tables[0].Rows[i]["MSQ"].ToString(), MXSQ,
+                                    MXSTK, objDs.Tables[0].Rows[i]["PREVIOUS"].ToString(), objDs.Tables[0].Rows[i]["Other Supplier PRE.PEND"].ToString(),
                                     objDs.Tables[0].Rows[i]["PARTIAL"].ToString(), objDs.Tables[0].Rows[i]["Other Supplier PARITAL"].ToString(), objDs.Tables[0].Rows[i]["Reorder"].ToString()
                                     , bulk, objDs.Tables[0].Rows[i]["bunit"].ToString(), unit, objDs.Tables[0].Rows[i]["Unit"].ToString()
                                     , objDs.Tables[0].Rows[i]["totalqty"].ToString(), objDs.Tables[0].Rows[i]["totunit"].ToString()
@@ -802,7 +818,7 @@ namespace ROMS
                                                 }
 
                                             }
-                                            this.ActiveControl = txtSupplier;
+                                            this.ActiveControl = txtProductName;
                                         }
                                     }
                                     else
@@ -1009,7 +1025,7 @@ namespace ROMS
                             //function for order qty weight
                             udfnweightcalc(varUPP, varNetweight, varBulkunitqty, varUnitqty, varTotalunitqty, varBulkunitvalue);
 
-                            string bulk = "0", unit = "0";
+                            string bulk = "0", unit = "0", MXSQ = "0", MXSTK = "0";
                             if (varFinalBulkUnit == 0)
                             {
                                 bulk = "-";
@@ -1026,11 +1042,27 @@ namespace ROMS
                             {
                                 unit = Convert.ToString(varFinalUnit);
                             }
+                            if (Convert.ToString(var_MXSQ) == "0")
+                            {
+                                MXSQ = "-";
+                            }
+                            else
+                            {
+                                MXSQ = Convert.ToString(var_MXSQ);
+                            }
+                            if (Convert.ToString(varSTOCK) == "0")
+                            {
+                                MXSTK = "-";
+                            }
+                            else
+                            {
+                                MXSTK = Convert.ToString(varSTOCK);
+                            }
                             udfnProductAdd();
                             //string[] unitparts = unitperbox.Split('/'); 
                             //string bunits = unitparts[0].Trim() +'/' + Convert.ToString(cmbUnit.Text);
                             grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, (varPICode).Trim(), (varEName).Trim(), (var_Symbol).Trim(),
-                            (unitweight), unitperbox, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (var_MXSQ).Trim(), (varSTOCK).Trim(), (varPrevious).Trim(), (varOtherSupPrevious).Trim(),
+                            (unitweight), unitperbox, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (MXSQ).Trim(), (MXSTK).Trim(), (varPrevious).Trim(), (varOtherSupPrevious).Trim(),
                             (varPARITAL).Trim(), (varOtherSupPartial).Trim(), (varReOrderQty).Trim(), bulk, var_BulkSymbol, unit, var_Symbol, varFinalTotalQty, var_Symbol, varFinalTotalKg, var_TotSymbol,
                             (addproductid).Trim(), defflag, 1, "", 10, (Convert.ToInt32(varUnitvalue)), varNetweight, varUPP, 0, varBulkunitvalue, varTotalunitvalue);
 
@@ -1138,7 +1170,7 @@ namespace ROMS
                         grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
                         grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.ForeColor = Color.Black;
                     }
-                    else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) == "-")
+                    else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "-")
                     {
                         if (Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmstock"].Value) < Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value))
                         {
@@ -1148,7 +1180,7 @@ namespace ROMS
                             grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.ForeColor = Color.Black;
                         }
                     }
-                    
+
                     else
                     {
                         grdsupplieradd.Rows[i].Cells["clmOrderqty"].Style.BackColor = Color.PaleGreen;
@@ -3413,7 +3445,6 @@ namespace ROMS
 
         private void CmbUnit_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
                 if (e.KeyCode == Keys.Enter)
@@ -3427,7 +3458,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUnit_Enter(object sender, EventArgs e)
         {
             try
@@ -3444,6 +3474,7 @@ namespace ROMS
 
         private void Grdsupplieradd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            int varValue = 0;
             try
             {
                 //if (VarStatusId == 12 || VarStatusId == 0)
@@ -3467,7 +3498,7 @@ namespace ROMS
                         {
                             qtyFlag = 3;
                         }
-                        break; 
+                        break;
 
                 }
                 //}
@@ -3477,7 +3508,29 @@ namespace ROMS
                 double varUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "-") { varUnitQty = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value); }
                 double varTotalQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "-") { varTotalQty = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value); }
                 int varBulkUTID = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value) != "-") { varBulkUTID = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value); }
-                if (varTotalQty != 0 || varUnitQty != 0 || varTotalQty != 0)
+
+                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty")
+                {
+                    if (varBulkUnitQty == 0)
+                    {
+                        varValue = 1;
+                    }
+                }
+                else if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty")
+                {
+                    if (varUnitQty == 0)
+                    {
+                        varValue = 1;
+                    }
+                }
+                else if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty")
+                {
+                    if (varTotalQty == 0)
+                    {
+                        varValue = 1;
+                    }
+                }
+                if (varValue == 0)
                 {
                     udfnweightcalc(varUPP, varNettWeight, varBulkUnitQty, varUnitQty, varTotalQty, varBulkUTID);
                 }
@@ -3492,28 +3545,31 @@ namespace ROMS
             {
                 //if (VarStatusId == 12 || VarStatusId == 0)
                 //{
-                if (grdsupplieradd.Columns[e.ColumnIndex].Name != "clmremarks")
+                if (varValue == 0)
                 {
-                    if (varFinalBulkUnit == 0)
+                    if (grdsupplieradd.Columns[e.ColumnIndex].Name != "clmremarks")
                     {
-                        grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value = "-";
+                        if (varFinalBulkUnit == 0)
+                        {
+                            grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value = "-";
+                        }
+                        else
+                        {
+                            grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value = varFinalBulkUnit;
+                        }
+                        if (varFinalUnit == 0)
+                        {
+                            grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value = "-";
+                        }
+                        else
+                        {
+                            grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value = varFinalUnit;
+                        }
+                        grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value = varFinalTotalQty;
+                        grdsupplieradd.Rows[e.RowIndex].Cells["clmtotalkg"].Value = varFinalTotalKg;
+                        varFinalBulkUnit = 0; varFinalUnit = 0; varFinalTotalQty = 0; varFinalTotalKg = 0;
+                        udfnTotalKG();
                     }
-                    else
-                    {
-                        grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value = varFinalBulkUnit;
-                    }
-                    if (varFinalUnit == 0)
-                    {
-                        grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value = "-";
-                    }
-                    else
-                    {
-                        grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value = varFinalUnit;
-                    }
-                    grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value = varFinalTotalQty;
-                    grdsupplieradd.Rows[e.RowIndex].Cells["clmtotalkg"].Value = varFinalTotalKg;
-                    varFinalBulkUnit = 0; varFinalUnit = 0; varFinalTotalQty = 0; varFinalTotalKg = 0;
-                    udfnTotalKG();
                 }
             }
             //}
@@ -4050,12 +4106,29 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[3].Rows.Count; i++)
                                 {
                                     lblNoRecordsFound.Visible = false;
+                                    string MXSQ = "0", MXSTK = "0";
+                                    if (Convert.ToString(objDs.Tables[3].Rows[i]["PR_MaxStock"]) == "0")
+                                    {
+                                        MXSQ = "-";
+                                    }
+                                    else
+                                    {
+                                        MXSQ = Convert.ToString(objDs.Tables[3].Rows[i]["PR_MaxStock"]);
+                                    }
+                                    if (Convert.ToString(objDs.Tables[3].Rows[i]["MXSTK"]) == "0")
+                                    {
+                                        MXSTK = "-";
+                                    }
+                                    else
+                                    {
+                                        MXSTK = Convert.ToString(objDs.Tables[3].Rows[i]["MXSTK"]);
+                                    }
                                     grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, objDs.Tables[3].Rows[i]["PR_PICode"].ToString(),
                                     objDs.Tables[3].Rows[i]["PR_TName"].ToString(), objDs.Tables[3].Rows[i]["UT_Symbol"].ToString(),
                                     Convert.ToString(objDs.Tables[3].Rows[i]["Unit Wt"]), Convert.ToString(objDs.Tables[3].Rows[i]["Unit Per box"]),
                                     Convert.ToString(objDs.Tables[3].Rows[i]["B.Unit Weight"]),
-                                    objDs.Tables[3].Rows[i]["GST_Text"].ToString(), objDs.Tables[3].Rows[i]["PR_MinStock"].ToString(), objDs.Tables[3].Rows[i]["PR_MaxStock"].ToString(),
-                                    objDs.Tables[3].Rows[i]["MXSTK"].ToString(), objDs.Tables[3].Rows[i]["PRE.PEND"].ToString(), objDs.Tables[3].Rows[i]["Other Supplier PRE.PEND"].ToString()
+                                    objDs.Tables[3].Rows[i]["GST_Text"].ToString(), objDs.Tables[3].Rows[i]["PR_MinStock"].ToString(), MXSQ,
+                                    MXSTK, objDs.Tables[3].Rows[i]["PRE.PEND"].ToString(), objDs.Tables[3].Rows[i]["Other Supplier PRE.PEND"].ToString()
                                     , objDs.Tables[3].Rows[i]["PARITAL"].ToString(), objDs.Tables[3].Rows[i]["Other Supplier PARITAL"].ToString()
                                     , objDs.Tables[3].Rows[i]["PR_ReOrderQty"].ToString(),
                                     objDs.Tables[3].Rows[i]["ORDERBQTY"].ToString().Trim(), objDs.Tables[3].Rows[i]["bunit"].ToString().Trim()
@@ -4391,51 +4464,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void ChkStatus_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                chkStatus.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void ChkStatus_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                chkStatus.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-
-
         private void Lvproduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
