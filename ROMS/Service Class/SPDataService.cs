@@ -2113,7 +2113,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaUnitId", ParaUnitId);
                 varSqlCommand.Parameters.AddWithValue("@paraTotalKg", paraTotalKg);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                //varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
