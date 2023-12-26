@@ -293,6 +293,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Supplier_List.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_INV_StockHold.cs">
       <AutoGen>True</AutoGen>
@@ -576,6 +577,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_SupplierScheduleList.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_Stock.cs">
       <AutoGen>True</AutoGen>
@@ -774,9 +776,11 @@
     </Compile>
     <Compile Include="CP_Supplier.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CP_Supplier.designer.cs">
       <DependentUpon>CP_Supplier.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CP_SupplierOrderDetailsList.cs">
       <SubType>Form</SubType>
@@ -1438,6 +1442,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Supplier.resx">
       <DependentUpon>CP_Supplier.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_SupplierOrderDetailsList.resx">
       <DependentUpon>CP_SupplierOrderDetailsList.cs</DependentUpon>
@@ -1828,6 +1833,7 @@
     <EmbeddedResource Include="Reports\RPT_CP_Supplier_List.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Supplier_List.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_INV_StockHold.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1975,6 +1981,7 @@
     <EmbeddedResource Include="Reports\RPT_PUR_SupplierScheduleList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_SupplierScheduleList.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Stock.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
