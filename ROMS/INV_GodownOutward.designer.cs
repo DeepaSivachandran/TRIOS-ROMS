@@ -846,10 +846,10 @@
             // 
             // txtProduct
             // 
-            this.txtProduct.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+            this.txtProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProduct.Location = new System.Drawing.Point(13, 40);
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(370, 26);
+            this.txtProduct.Size = new System.Drawing.Size(370, 27);
             this.txtProduct.TabIndex = 0;
             this.txtProduct.TextChanged += new System.EventHandler(this.TxtProduct_TextChanged);
             this.txtProduct.Enter += new System.EventHandler(this.TxtProduct_Enter);

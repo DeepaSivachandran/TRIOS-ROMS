@@ -251,17 +251,17 @@
             // 
             // grplocation
             // 
+            this.grplocation.Controls.Add(this.lvPurLocation);
+            this.grplocation.Controls.Add(this.lvBrand);
+            this.grplocation.Controls.Add(this.lvSaleLocation);
+            this.grplocation.Controls.Add(this.lvPurRack);
+            this.grplocation.Controls.Add(this.lvSalesRack);
             this.grplocation.Controls.Add(this.lvHsnCode);
             this.grplocation.Controls.Add(this.txtSubgroup);
             this.grplocation.Controls.Add(this.btnClose);
             this.grplocation.Controls.Add(this.btnUpdate);
             this.grplocation.Controls.Add(this.pnlStatus);
             this.grplocation.Controls.Add(this.txtDStatus);
-            this.grplocation.Controls.Add(this.lvSalesRack);
-            this.grplocation.Controls.Add(this.lvPurRack);
-            this.grplocation.Controls.Add(this.lvSaleLocation);
-            this.grplocation.Controls.Add(this.lvPurLocation);
-            this.grplocation.Controls.Add(this.lvBrand);
             this.grplocation.Controls.Add(this.cmbUnit);
             this.grplocation.Controls.Add(this.txtSalesLocation);
             this.grplocation.Controls.Add(this.textBox13);
@@ -352,7 +352,7 @@
             this.btnClose.Location = new System.Drawing.Point(1234, 102);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
-            this.btnClose.TabIndex = 22;
+            this.btnClose.TabIndex = 20;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -368,7 +368,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(1149, 102);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(82, 29);
-            this.btnUpdate.TabIndex = 21;
+            this.btnUpdate.TabIndex = 19;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -384,8 +384,9 @@
             this.pnlStatus.Location = new System.Drawing.Point(1002, 103);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(141, 27);
-            this.pnlStatus.TabIndex = 169;
+            this.pnlStatus.TabIndex = 18;
             this.pnlStatus.TabStop = true;
+            this.pnlStatus.Enter += new System.EventHandler(this.PnlStatus_Enter);
             // 
             // rbActive
             // 
@@ -400,6 +401,7 @@
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // rbInactive
@@ -414,6 +416,7 @@
             this.rbInactive.Text = "InActive";
             this.rbInactive.UseVisualStyleBackColor = true;
             this.rbInactive.Enter += new System.EventHandler(this.RbInactive_Enter);
+            this.rbInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
             this.rbInactive.Leave += new System.EventHandler(this.RbInactive_Leave);
             // 
             // txtDStatus
@@ -622,10 +625,10 @@
             this.txtSalesLocation.Name = "txtSalesLocation";
             this.txtSalesLocation.Size = new System.Drawing.Size(147, 27);
             this.txtSalesLocation.TabIndex = 9;
-            this.txtSalesLocation.TabStop = false;
             this.txtSalesLocation.TextChanged += new System.EventHandler(this.TxtSalesLocation_TextChanged);
             this.txtSalesLocation.Enter += new System.EventHandler(this.TxtSalesLocation_Enter);
             this.txtSalesLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesLocation_KeyDown);
+            this.txtSalesLocation.Leave += new System.EventHandler(this.TxtSalesLocation_Leave);
             // 
             // textBox13
             // 
@@ -648,10 +651,10 @@
             this.txtSalesRack.Name = "txtSalesRack";
             this.txtSalesRack.Size = new System.Drawing.Size(99, 27);
             this.txtSalesRack.TabIndex = 10;
-            this.txtSalesRack.TabStop = false;
             this.txtSalesRack.TextChanged += new System.EventHandler(this.TxtSalesRack_TextChanged);
             this.txtSalesRack.Enter += new System.EventHandler(this.TxtSalesRack_Enter);
             this.txtSalesRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesRack_KeyDown);
+            this.txtSalesRack.Leave += new System.EventHandler(this.TxtSalesRack_Leave);
             // 
             // textBox4
             // 
@@ -729,6 +732,8 @@
             this.cmbGst.Size = new System.Drawing.Size(80, 27);
             this.cmbGst.TabIndex = 15;
             this.cmbGst.Enter += new System.EventHandler(this.CmbGst_Enter);
+            this.cmbGst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGst_KeyDown);
+            this.cmbGst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGst_KeyPress);
             this.cmbGst.Leave += new System.EventHandler(this.CmbGst_Leave);
             // 
             // txtHsnname
@@ -740,7 +745,7 @@
             this.txtHsnname.Name = "txtHsnname";
             this.txtHsnname.ReadOnly = true;
             this.txtHsnname.Size = new System.Drawing.Size(306, 27);
-            this.txtHsnname.TabIndex = 18;
+            this.txtHsnname.TabIndex = 17;
             this.txtHsnname.TextChanged += new System.EventHandler(this.TxtHsnname_TextChanged);
             // 
             // textBox12
@@ -804,6 +809,8 @@
             this.cmbBatchno.TabIndex = 11;
             this.cmbBatchno.SelectedIndexChanged += new System.EventHandler(this.CmbBatchno_SelectedIndexChanged);
             this.cmbBatchno.Enter += new System.EventHandler(this.CmbBatchno_Enter);
+            this.cmbBatchno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchno_KeyDown);
+            this.cmbBatchno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBatchno_KeyPress);
             this.cmbBatchno.Leave += new System.EventHandler(this.CmbBatchno_Leave);
             // 
             // txtHsncode
@@ -827,7 +834,6 @@
             this.txtPurRack.Name = "txtPurRack";
             this.txtPurRack.Size = new System.Drawing.Size(99, 27);
             this.txtPurRack.TabIndex = 8;
-            this.txtPurRack.TabStop = false;
             this.txtPurRack.TextChanged += new System.EventHandler(this.TxtPurRack_TextChanged);
             this.txtPurRack.Enter += new System.EventHandler(this.TxtPurRack_Enter);
             this.txtPurRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurRack_KeyDown);
@@ -841,7 +847,6 @@
             this.txtPurLocation.Name = "txtPurLocation";
             this.txtPurLocation.Size = new System.Drawing.Size(147, 27);
             this.txtPurLocation.TabIndex = 7;
-            this.txtPurLocation.TabStop = false;
             this.txtPurLocation.TextChanged += new System.EventHandler(this.TxtPurLocation_TextChanged);
             this.txtPurLocation.Enter += new System.EventHandler(this.TxtPurLocation_Enter);
             this.txtPurLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurLocation_KeyDown);
@@ -972,7 +977,6 @@
             this.txtProductTname.Name = "txtProductTname";
             this.txtProductTname.Size = new System.Drawing.Size(307, 26);
             this.txtProductTname.TabIndex = 2;
-            this.txtProductTname.TabStop = false;
             this.txtProductTname.Enter += new System.EventHandler(this.TxtProductTname_Enter);
             this.txtProductTname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductTname_KeyDown);
             this.txtProductTname.Leave += new System.EventHandler(this.TxtProductTname_Leave);
@@ -1076,6 +1080,7 @@
             this.grdCategory.ShowRowErrors = false;
             this.grdCategory.Size = new System.Drawing.Size(1281, 132);
             this.grdCategory.TabIndex = 5;
+            this.grdCategory.Enter += new System.EventHandler(this.GrdCategory_Enter);
             // 
             // groupBox2
             // 
@@ -1127,6 +1132,7 @@
             this.grdSubgroup.ShowRowErrors = false;
             this.grdSubgroup.Size = new System.Drawing.Size(1281, 132);
             this.grdSubgroup.TabIndex = 6;
+            this.grdSubgroup.Enter += new System.EventHandler(this.GrdSubgroup_Enter);
             // 
             // btnSubgroup
             // 
@@ -1188,6 +1194,7 @@
             this.grdBrand.ShowRowErrors = false;
             this.grdBrand.Size = new System.Drawing.Size(1281, 132);
             this.grdBrand.TabIndex = 6;
+            this.grdBrand.Enter += new System.EventHandler(this.GrdBrand_Enter);
             // 
             // btnBrand
             // 
