@@ -21,7 +21,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus, varMasterType="0";
-        public int varDcCode = 0;
+        public string varDcCode = "0";
         public PUR_PurchaseOrderDamage()
         {
             InitializeComponent();
@@ -95,7 +95,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnReturnDC(1, varSupplierid, varScheduleid, varcompanyid, varDcCode,0,0,0,0);
+                objDs = objdserv.udfnReturnDC(1, varSupplierid, varScheduleid, varcompanyid,0,0,0,0,0, varDcCode);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

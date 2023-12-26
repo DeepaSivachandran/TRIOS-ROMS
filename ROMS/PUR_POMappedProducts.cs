@@ -527,6 +527,7 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                 objspdservice.CloseConnection();
+                string MXSQ = "0", MXSTK="0";
                 for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
@@ -545,12 +546,28 @@ namespace ROMS
                                     defflag = "4";
                                 }
                             }
-                        } 
+                        }
+                        if (Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value) == "0")
+                        {
+                            MXSQ = "-";
+                        }
+                        else
+                        {
+                            MXSQ = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value);
+                        }
+                        if (Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Stock"].Value) == "0")
+                        {
+                            MXSTK = "-";
+                        }
+                        else
+                        {
+                            MXSTK = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Stock"].Value);
+                        }
                         MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Add(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Count + 1,
                         grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value, grdPurchaseOrder.Rows[i].Cells["Product Name"].Value, grdPurchaseOrder.Rows[i].Cells["Unit"].Value,
                         grdPurchaseOrder.Rows[i].Cells["Unit Wt"].Value, grdPurchaseOrder.Rows[i].Cells["Unit Per case"].Value, grdPurchaseOrder.Rows[i].Cells["B.Unit Weight"].Value, 
-                        grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value),
-                        (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), Convert.ToString(grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value),
+                        grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (MXSQ),
+                        (MXSTK), Convert.ToString(grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value),
                          grdPurchaseOrder.Rows[i].Cells["Othersupprevious"].Value, grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, grdPurchaseOrder.Rows[i].Cells["Othersuppartial"].Value, 
                         (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),"", grdPurchaseOrder.Rows[i].Cells["bunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["qtyunit"].Value,
                         "",grdPurchaseOrder.Rows[i].Cells["totunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["finalunit"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 

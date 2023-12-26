@@ -112,6 +112,7 @@ namespace ROMS
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.productApprovalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.summaryDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -760,15 +761,16 @@ namespace ROMS
             // purchaseOrderToolStripMenuItem
             // 
             this.purchaseOrderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.productWiseToolStripMenuItem});
+            this.productWiseToolStripMenuItem,
+            this.summaryDetailToolStripMenuItem});
             this.purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
-            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.purchaseOrderToolStripMenuItem.Text = "Purchase Order";
             // 
             // productWiseToolStripMenuItem
             // 
             this.productWiseToolStripMenuItem.Name = "productWiseToolStripMenuItem";
-            this.productWiseToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.productWiseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.productWiseToolStripMenuItem.Text = "Product Wise";
             this.productWiseToolStripMenuItem.Click += new System.EventHandler(this.ProductWiseToolStripMenuItem_Click);
             // 
@@ -801,6 +803,12 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
+            // summaryDetailToolStripMenuItem
+            // 
+            this.summaryDetailToolStripMenuItem.Name = "summaryDetailToolStripMenuItem";
+            this.summaryDetailToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.summaryDetailToolStripMenuItem.Text = "Summary && Detail";
+            this.summaryDetailToolStripMenuItem.Click += new System.EventHandler(this.SummaryDetailToolStripMenuItem_Click);
             // productApprovalToolStripMenuItem
             // 
             this.productApprovalToolStripMenuItem.Name = "productApprovalToolStripMenuItem";
@@ -918,6 +926,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productWiseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem summaryDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productApprovalToolStripMenuItem;
     }
 }
