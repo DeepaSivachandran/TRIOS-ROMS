@@ -411,6 +411,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdGoodsOutward.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdGoodsOutward.Enabled = false;
             this.grdGoodsOutward.EnableHeadersVisualStyles = false;
             this.grdGoodsOutward.GridColor = System.Drawing.Color.White;
             this.grdGoodsOutward.Location = new System.Drawing.Point(0, 160);
