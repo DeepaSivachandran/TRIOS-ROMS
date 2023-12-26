@@ -766,7 +766,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "", 1);
+                //    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "", 1);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -876,7 +876,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProduct.Text.Length > 0)
                 { 
-                    objDs = objspdservice.udfnproductmasterlist(49, 0, 0,Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProduct.Text,0, "", "", null, 0, null, "", ""); 
+                 //   objDs = objspdservice.udfnproductmasterlist(49, 0, 0,Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProduct.Text,0, "", "", null, 0, null, "", ""); 
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
