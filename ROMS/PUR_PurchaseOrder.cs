@@ -950,6 +950,7 @@ namespace ROMS
                     objMR_Product.paraProductName = txtProductName.Text;
                     DataSet objDsproductId = new DataSet();
                     SPDataService objDserv = new SPDataService();
+                    objDsproductId = objDserv.udfnproductmasterlist(objMR_Product);
                     //objDsproductId = objDserv.udfnproductmasterlist(39, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), "", "", null, 0, null, "", "");
 
                     objDserv.CloseConnection();
@@ -2665,7 +2666,7 @@ namespace ROMS
                 if (txtProductName.Text.Length > 0)
                 {
                     MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 34;
+                    objMR_Product.paraViewType = 29;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.ParaScheduleid = Convert.ToString(lblschedule.Text);
                     objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
