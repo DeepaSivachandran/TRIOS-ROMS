@@ -950,7 +950,8 @@ namespace ROMS
                     objMR_Product.paraProductName = txtProductName.Text;
                     DataSet objDsproductId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsproductId = objDserv.udfnproductmasterlist(39, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), "", "", null, 0, null, "", "");
+                    //objDsproductId = objDserv.udfnproductmasterlist(39, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProductName.Text, Convert.ToInt32(lblSupplierCode.Text), "", "", null, 0, null, "", "");
+
                     objDserv.CloseConnection();
                     if (objDsproductId != null)
                     {

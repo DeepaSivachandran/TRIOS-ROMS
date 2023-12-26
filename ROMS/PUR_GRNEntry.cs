@@ -535,11 +535,11 @@ namespace ROMS
                 {
                     string[] values = new string[0];
                     string varSupplierId = "0";
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 23;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
-                    DataSet objDsSupplierId = new DataSet();
-                    SPDataService objDserv = new SPDataService();
                     objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
