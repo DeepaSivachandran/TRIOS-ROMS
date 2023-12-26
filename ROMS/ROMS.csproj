@@ -309,6 +309,31 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_PO_Detail_Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_PUR_PO_Detail_Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_PO_Detail_Sub-Report.cs">
+      <DependentUpon>RPT_PUR_PO_Detail_Sub-Report.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_PO_Summary_Report.cs">
+      <DependentUpon>RPT_PUR_PO_Summary_Report.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_PO_Report_Product.cs">
+      <DependentUpon>RPT_PUR_PO_Report_Product.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_PO_ProductList_Supplier_wise.cs">
       <DependentUpon>RPT_PUR_PO_ProductList_Supplier_wise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -564,6 +589,18 @@
       <DependentUpon>RPT_Stock.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="REPORT_PUR_Purchaseorder_Summary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_Purchaseorder_Summary.designer.cs">
+      <DependentUpon>REPORT_PUR_Purchaseorder_Summary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_PurchaseOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_PurchaseOrder.designer.cs">
+      <DependentUpon>REPORT_PUR_PurchaseOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_CP_Product.cs">
       <SubType>Form</SubType>
@@ -1822,6 +1859,26 @@
       <LastGenOutput>RPT_PUR_PO.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_PO_Detail_Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_PO_Detail_Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_PO_Detail_Sub-Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_PO_Detail_Sub-Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_PO_Summary_Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_PO_Summary_Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_PO_Report_Product.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_PO_Report_Product.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_PO_ProductList_Supplier_wise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_PO_ProductList_Supplier_wise.cs</LastGenOutput>
@@ -1944,6 +2001,12 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_Purchaseorder_Summary.resx">
+      <DependentUpon>REPORT_PUR_Purchaseorder_Summary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_PurchaseOrder.resx">
+      <DependentUpon>REPORT_PUR_PurchaseOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Product.resx">
       <DependentUpon>REPORT_CP_Product.cs</DependentUpon>

@@ -74,7 +74,7 @@ namespace ROMS
                     varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNEntry.cmbConcern.SelectedValue);
                 }
 
-                objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, 0,0,0,0,0);
+                objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, 0,0,0,0,0,"");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -154,7 +154,7 @@ namespace ROMS
                             {
                                 MainForm.objPUR_PurchaseOrderDamage.varMasterType = "2";
                             }
-                            MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToInt32(grdGRNPODamaged.SelectedRows[0].Cells["ID"].Value.ToString());
+                            MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(grdGRNPODamaged.SelectedRows[0].Cells["ID"].Value);
                             MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
                         }
                         break;

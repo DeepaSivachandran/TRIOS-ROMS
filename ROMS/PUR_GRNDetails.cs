@@ -57,7 +57,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDT = null;
-                objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0", 0);
+                objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0", 0,0,0,0,0,0);
                 objdserv.CloseConnection();
                 cmbPONo.DataSource = null;
                 if (objDT != null)
@@ -1208,6 +1208,7 @@ namespace ROMS
                     }
                 }
                 MainForm.objINV_GRNPODamaged = new INV_GRNPODamaged();
+                MainForm.objINV_GRNPODamaged.varMasterType = "1";
                 MainForm.objINV_GRNPODamaged.ShowDialog();
             }
             catch (Exception ex)
