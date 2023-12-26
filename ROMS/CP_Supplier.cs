@@ -3483,7 +3483,6 @@ namespace ROMS
                     { 
                         this.ActiveControl = cmbOrderschedule;
                         udfnLoadOrderSchedule();
-
                     }
                     catch (Exception ex)
                     {
@@ -3495,6 +3494,7 @@ namespace ROMS
                 {
                     try
                     {
+                        BindDataGrid();
                         picLoader.Visible = true;
                         picLoader.BringToFront();
                         Application.DoEvents();
@@ -5986,8 +5986,8 @@ namespace ROMS
                 }
                 if (rbScheduleActive.Checked == true)
                 {
-                    //if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
-                    //{
+                    if (Convert.ToInt32(cmbOrderType.SelectedValue) != 144)//|| Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
+                    {
                         for (int i = 0; i < grddays.Rows.Count; i++)
                         {
                             if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
@@ -6003,7 +6003,7 @@ namespace ROMS
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             errorflag = 1;
                         }
-                    //}
+                    }
                 }
                 if (errorflag == 0)
                 {
@@ -6100,7 +6100,7 @@ namespace ROMS
                                 }
                             }
                         }
-                        if (VarTotalDays != "")
+                        if (VarTotalDays != "" || Convert.ToInt32(cmbOrderType.SelectedValue) == 144)
                         {
                             SupplierUpdate = 0;
                             if (Convert.ToInt32(varsupplierID) != 0)
