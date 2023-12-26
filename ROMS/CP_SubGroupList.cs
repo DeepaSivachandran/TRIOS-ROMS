@@ -798,7 +798,7 @@ namespace ROMS
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
                 udfnList();
-                //DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
+               // DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {
