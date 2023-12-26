@@ -981,10 +981,10 @@
             // 
             // txtProductNamePICode
             // 
-            this.txtProductNamePICode.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+            this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProductNamePICode.Location = new System.Drawing.Point(5, 40);
             this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(287, 26);
+            this.txtProductNamePICode.Size = new System.Drawing.Size(287, 27);
             this.txtProductNamePICode.TabIndex = 4;
             this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
             this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
