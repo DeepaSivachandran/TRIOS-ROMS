@@ -67,6 +67,7 @@ namespace ROMS
                     txtCrNo.Visible = true;
                     dpCreditNoteDate.Visible = true;
                     dpDCreditNoteDate.Visible = true;
+                    dpCreditNoteDate.Enabled = true;
                     btnView.Visible = false;
                 }
                 else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 63) //Received Equivalent Product
@@ -640,7 +641,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
+                                   string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -1126,15 +1127,24 @@ namespace ROMS
                             dtPurchaseReturnDC.AcceptChanges();
                             for (int i = 0; i < grdReturnDC.Rows.Count; i++)
                             {
-                                dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(grdReturnDC.Rows[i].Cells["PRID"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["MRP"].Value), grdReturnDC.Rows[i].Cells["Expiry Date"].Value, grdReturnDC.Rows[i].Cells["Batch No."].Value,
+                                dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(grdReturnDC.Rows[i].Cells["PRID"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["MRP"].Value),Convert.ToString(grdReturnDC.Rows[i].Cells["Expiry Date"].Value), grdReturnDC.Rows[i].Cells["Batch No."].Value,
                                    Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Approximate Rate"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Qty"].Value), Convert.ToInt32(grdReturnDC.Rows[i].Cells["UTID"].Value),
                                      Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Taxable Amt"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["GST%"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["GST Amt"].Value),
-                                    Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Net Amt"].Value));
+                                    Convert.ToDecimal(grdReturnDC.Rows[i].Cells["Net Amt"].Value), grdReturnDC.Rows[i].Cells["DMID"].Value);
                             }
                             if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
                             {
-                                string result = "", varorginator = "Purchase Return DC";
-                                int varviewtype = 0;
+                                string result = "", varorginator = ""; int varviewtype = 0;
+                                if (varReturnDCID == 0)
+                                {
+                                    varviewtype = 0;
+                                    varorginator = "Purchase Return DC insertion";
+                                }
+                                else
+                                {
+                                    varviewtype = 3;
+                                    varorginator = "Purchase Return DC updation";
+                                }
                                 TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
                                 objTRN_PurchaseReturnDC.paraViewType = varviewtype;
                                 objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
@@ -1361,12 +1371,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_Click(object sender, EventArgs e)
         {
             try
             {
                 MainForm.objPUR_DCGoodsInward = new PUR_DCGoodsInward();
+                MainForm.objPUR_DCGoodsInward.varConcernId = Convert.ToInt32(cmbConcern.SelectedValue);
+                MainForm.objPUR_DCGoodsInward.varReturnDCDate = dpReturnDCDate.Text;
+                MainForm.objPUR_DCGoodsInward.varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                MainForm.objPUR_DCGoodsInward.varScheduleId = Convert.ToInt32(lblschedule.Text);
+                MainForm.objPUR_DCGoodsInward.varReturnDCID = varReturnDCID;
                 MainForm.objPUR_DCGoodsInward.ShowDialog();
             }
             catch (Exception ex)

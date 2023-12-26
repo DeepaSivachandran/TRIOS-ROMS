@@ -33,11 +33,13 @@ namespace ROMS.Model
         public int paraClosingReasonId { get; set; } = 0;
         public double paraReturnDCAmount { get; set; } = 0;
         public string paraCreditNoteNo { get; set; } = "";
+        public string paraExchangeRemarks { get; set; } = "";
         public string paraCreditNoteDate { get; set; } = "";
         public string paraRemarks { get; set; } = "";
         public double paraDeleteFlag { get; set; } = 0;
         public  double ParaSubtotal { get; set; } = 0;
         public double paraTax { get; set; } = 0;
         public DataTable paraTRN_Purchase_ReturnDC { get; set; } = null;
+        public DataTable @ParaTRN_Purchase_DC { get; set; } = null;
     }
 }
