@@ -103,7 +103,10 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
-                this.ActiveControl = txtProductNamePICode;
+                if (varStatus != 29)
+                {
+                    this.ActiveControl = txtProductNamePICode;
+                }
             }
             catch (Exception ex)
             {
@@ -182,6 +185,7 @@ namespace ROMS
                                 }
                                 
                             }
+                            ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
                             grdStockRequest.Columns["clmStockQty"].Width = 100;
@@ -191,8 +195,8 @@ namespace ROMS
 
                             if (varStatus != 28)
                             {
-                                txtRemarks.Focus();
                                 txtProductNamePICode.Enabled = false;
+                                this.ActiveControl = txtRemarks;
                                 txtRequiredQty.Enabled = false;
                                 btnAdd.Enabled = false;
                                 cmbStatus.Enabled = false;
@@ -201,6 +205,8 @@ namespace ROMS
                                 cmbStatus.SelectedValue = 29;
                                 DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                 GrdStockRequest_DataBindingComplete(grdStockRequest, args);
+                                tpProduct.Active = false;
+                                errStockRequest.Clear();
                             }
                             else
                             {
@@ -220,6 +226,29 @@ namespace ROMS
             finally
             {
                 txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+            }
+        }
+        public void allowonlynumber(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (grdStockRequest.CurrentCell.OwningColumn.Name == "clmRequiredQty")
+                {
+                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                    {
+                        e.Handled = true;
+                    }
+                    //only allow one decimal point
+                    if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void INV_StockRequest_KeyDown(object sender, KeyEventArgs e)
@@ -743,6 +772,7 @@ namespace ROMS
                                     varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
                                 }
                             }
+                            ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
                             grdStockRequest.Columns["clmStockQty"].Width = 100;
@@ -1307,6 +1337,23 @@ namespace ROMS
             finally
             {
 
+            }
+        }
+
+        private void GrdStockRequest_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdStockRequest.CurrentCell.OwningColumn.Name == "clmRequiredQty")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

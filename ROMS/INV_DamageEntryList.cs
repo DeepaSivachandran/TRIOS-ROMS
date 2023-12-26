@@ -605,7 +605,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplierName.Focus();
+                    cmbDMShow.Focus();
                 }
             }
             catch (Exception ex)
@@ -1505,6 +1505,61 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+
+        private void CmbDMShow_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDMShow.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDMShow_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSupplierName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDMShow_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDMShow_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDMShow.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
