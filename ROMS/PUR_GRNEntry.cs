@@ -595,6 +595,7 @@ namespace ROMS
                 txtSalesManName.Text = "";
                 txtSalesManwhatsapp.Text = ""; 
                 grdPODetails.Rows.Clear();
+                grdReurnDC.Rows.Clear();
                 grdRepDetails.DataSource=null;
             }
             catch (Exception ex)
@@ -758,6 +759,7 @@ namespace ROMS
             try
             {
                 grdPODetails.Rows.Clear();
+                grdReurnDC.Rows.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
@@ -1334,6 +1336,17 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
+            finally
+            {
+                if (grdReurnDC.Rows.Count > 0)
+                {
+                    lblDCFinishedNoRecord.Visible = false;
+                }
+                else
+                {
+                    lblDCFinishedNoRecord.Visible = true;
+                }
+            }
         }
 
         private void GrdUnitList_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -1496,6 +1509,42 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdReurnDC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        { 
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmRemoveDC":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdReurnDC.Rows.RemoveAt(this.grdReurnDC.SelectedCells[0].RowIndex);
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (grdReurnDC.Rows.Count > 0)
+                {
+                    lblDCFinishedNoRecord.Visible = false;
+                }
+                else
+                {
+                    lblDCFinishedNoRecord.Visible = true;
+                }
             }
         }
 
@@ -1754,12 +1803,18 @@ namespace ROMS
                             }
                             if (objDs.Tables[7].Rows.Count != 0)
                             {
+                                lblDCFinishedNoRecord.Visible = false;
                                 grdReurnDC.Rows.Clear();
+                                grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                                 for (int i = 0; i < objDs.Tables[7].Rows.Count; i++)
                                 {
                                     grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[7].Rows[i]["DCNO"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCDATE"]),
                                     Convert.ToString(objDs.Tables[7].Rows[i]["PRCOUNT"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCVALUE"]), Convert.ToString(objDs.Tables[7].Rows[i]["ID"]));
                                 }
+                            }
+                            else
+                            {
+                                lblDCFinishedNoRecord.Visible = true;
                             }
                         }
                     }

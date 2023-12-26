@@ -70,21 +70,22 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0,varDcid=0;
+                int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0;
+                    string varDcid="0";
 
                 if (varMasterType == "1")
                 {
                     varSupplierid = Convert.ToInt32(MainForm.objPUR_GRNDetails.lblSupplierCode.Text);
                     varScheduleid = Convert.ToInt32(MainForm.objPUR_GRNDetails.lblschedule.Text);
                     varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNDetails.cmbConcern.SelectedValue);
-                    varDcid = Convert.ToInt32(MainForm.objPUR_GRNDetails.dcid);
+                    varDcid = Convert.ToString(MainForm.objPUR_GRNDetails.dcid);
                 }
                 else if (varMasterType == "2")
                 {
                     varSupplierid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text);
                     varScheduleid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text);
                     varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNEntry.cmbConcern.SelectedValue);
-                    varDcid = Convert.ToInt32(MainForm.objPUR_GRNEntry.dcid); 
+                    varDcid = Convert.ToString(MainForm.objPUR_GRNEntry.dcid); 
                 }
                  
                 dtPendingPO = new DataTable();
@@ -96,7 +97,7 @@ namespace ROMS
                 dtPendingPO.Columns.Add("Total Products", typeof(string));
                 dtPendingPO.Columns.Add("Total value", typeof(string));
                 dtPendingPO.Columns.Add("ID", typeof(string)); 
-                objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, varDcid, 0, 0, 0, 0);
+                objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, 0, 0, 0, 0, 0,Convert.ToString(varDcid));
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -234,7 +235,7 @@ namespace ROMS
                 }
                 if (varMasterType == "2")
                 {
-                    MainForm.objPUR_GRNEntry.grdReurnDC.Rows.Clear();
+                    //MainForm.objPUR_GRNEntry.grdReurnDC.Rows.Clear();
                     for (int i = 0; i < grdGRNPODamaged.Rows.Count; i++)
                     {
                         if (Convert.ToBoolean(grdGRNPODamaged.Rows[i].Cells[0].Value) == true)
@@ -321,7 +322,7 @@ namespace ROMS
                                 string cellPOValue = Convert.ToString(grdGRNPODamaged.Rows[e.RowIndex].Cells["ID"].Value);
                                 MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
                                 MainForm.objPUR_PurchaseOrderDamage.varMasterType = "2";
-                                MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToInt32(cellPOValue);
+                                MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(cellPOValue);
                                 MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
                             }
                             break;

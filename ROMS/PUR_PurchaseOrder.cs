@@ -1172,7 +1172,16 @@ namespace ROMS
                     }
                     else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "-")
                     {
-                        if (Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmstock"].Value) < Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value))
+                        int stockval = 0;
+                        if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmstock"].Value) == "-" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmstock"].Value) == "")
+                        {
+                            stockval = 0;
+                        }
+                        else
+                        {
+                            stockval = Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmstock"].Value);
+                        }
+                        if (stockval < Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value))
                         {
                             orderqty = 0;
                             varRecqty = -1;
@@ -3049,7 +3058,7 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
-                    if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) == "-")
+                    if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "-")
                     {
                         if (VarStatusId != 14 || VarStatusId != 33)
                         {
@@ -3067,7 +3076,16 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        if (Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) < Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
+                                        int stockval = 0;
+                                        if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) == "-" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) == "")
+                                        {
+                                            stockval = 0;
+                                        }
+                                        else
+                                        {
+                                            stockval = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value);
+                                        }
+                                        if (stockval < Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
                                         {
                                             DataGridView dataGridView = (DataGridView)sender;
                                             DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmordertotalqty"];
@@ -3090,6 +3108,8 @@ namespace ROMS
                                             cell3.Style.BackColor = Color.PaleGreen;
                                             cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color}
                                         }
+
+
                                     }
                                     // }
                                     break;
@@ -3106,8 +3126,17 @@ namespace ROMS
                                             cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                         }
                                         else
-                                        {
-                                            if (Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) < Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
+                                        { 
+                                            int stockval = 0;
+                                            if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) == "-" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) == "")
+                                            {
+                                                stockval = 0;
+                                            }
+                                            else
+                                            {
+                                                stockval = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value);
+                                            }
+                                            if (stockval < Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
                                             {
                                                 DataGridView dataGridView = (DataGridView)sender;
                                                 DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmordertotalqty"];
@@ -3130,6 +3159,7 @@ namespace ROMS
                                                 cell3.Style.BackColor = Color.PaleGreen;
                                                 cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color}
                                             }
+
                                         }
                                     }
                                     //}
@@ -3146,7 +3176,13 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        if (Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) < Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
+                                        int stockval = 0;
+                                        if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) == "-" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) == "")
+                                        {
+                                            stockval = 0;
+                                        }
+                                        else { stockval = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value); }
+                                        if (stockval < Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
                                         {
                                             DataGridView dataGridView = (DataGridView)sender;
                                             DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmordertotalqty"];
@@ -3169,6 +3205,7 @@ namespace ROMS
                                             cell3.Style.BackColor = Color.PaleGreen;
                                             cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color}
                                         }
+
                                     }
                                     // }
                                     break;

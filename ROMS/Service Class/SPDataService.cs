@@ -2211,7 +2211,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 17/10/2023 for purchase damage list
-        public DataSet udfnReturnDC(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID)
+        public DataSet udfnReturnDC(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string paraDCIDs)
         {
             DataSet ds = new DataSet();
             try
@@ -2230,6 +2230,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaPO", ParaPO);
                 varSqlCommand.Parameters.AddWithValue("@ParaGroupID", ParaGroupID);
                 varSqlCommand.Parameters.AddWithValue("@ParaSubGroupID", ParaSubGroupID);
+                varSqlCommand.Parameters.AddWithValue("@paraDCIDs", paraDCIDs);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,12 +40,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNEntry));
             this.errGRN = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grdReurnDC = new System.Windows.Forms.DataGridView();
             this.btnViewPO = new System.Windows.Forms.Button();
             this.lblFinishedNoRecord = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
@@ -102,21 +103,22 @@
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.grdReurnDC = new System.Windows.Forms.DataGridView();
-            this.clmDCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemoveDC = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lblDCFinishedNoRecord = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errGRN)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
             this.grpSalesmanDetails.SuspendLayout();
             this.grpRepresentativeDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRepDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
             this.SuspendLayout();
             // 
             // errGRN
@@ -125,6 +127,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblDCFinishedNoRecord);
             this.groupBox1.Controls.Add(this.grdReurnDC);
             this.groupBox1.Controls.Add(this.btnViewPO);
             this.groupBox1.Controls.Add(this.lblFinishedNoRecord);
@@ -159,6 +162,54 @@
             this.groupBox1.Size = new System.Drawing.Size(1164, 341);
             this.groupBox1.TabIndex = 1111181;
             this.groupBox1.TabStop = false;
+            // 
+            // grdReurnDC
+            // 
+            this.grdReurnDC.AllowUserToAddRows = false;
+            this.grdReurnDC.AllowUserToDeleteRows = false;
+            this.grdReurnDC.AllowUserToResizeColumns = false;
+            this.grdReurnDC.AllowUserToResizeRows = false;
+            this.grdReurnDC.BackgroundColor = System.Drawing.Color.White;
+            this.grdReurnDC.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdReurnDC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdReurnDC.ColumnHeadersHeight = 30;
+            this.grdReurnDC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdReurnDC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DCDate,
+            this.InvoiceNo,
+            this.TotalProducts,
+            this.Value,
+            this.clmDCID,
+            this.clmRemoveDC});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdReurnDC.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdReurnDC.EnableHeadersVisualStyles = false;
+            this.grdReurnDC.GridColor = System.Drawing.Color.White;
+            this.grdReurnDC.Location = new System.Drawing.Point(8, 249);
+            this.grdReurnDC.Name = "grdReurnDC";
+            this.grdReurnDC.ReadOnly = true;
+            this.grdReurnDC.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdReurnDC.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdReurnDC.RowTemplate.Height = 25;
+            this.grdReurnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdReurnDC.Size = new System.Drawing.Size(363, 80);
+            this.grdReurnDC.TabIndex = 1111214;
+            this.grdReurnDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentClick);
             // 
             // btnViewPO
             // 
@@ -884,72 +935,11 @@
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
             // 
-            // grdReurnDC
+            // DCDate
             // 
-            this.grdReurnDC.AllowUserToAddRows = false;
-            this.grdReurnDC.AllowUserToDeleteRows = false;
-            this.grdReurnDC.AllowUserToResizeColumns = false;
-            this.grdReurnDC.AllowUserToResizeRows = false;
-            this.grdReurnDC.BackgroundColor = System.Drawing.Color.White;
-            this.grdReurnDC.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdReurnDC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdReurnDC.ColumnHeadersHeight = 30;
-            this.grdReurnDC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdReurnDC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DCDate,
-            this.InvoiceNo,
-            this.TotalProducts,
-            this.Value,
-            this.clmDCID});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdReurnDC.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdReurnDC.EnableHeadersVisualStyles = false;
-            this.grdReurnDC.GridColor = System.Drawing.Color.White;
-            this.grdReurnDC.Location = new System.Drawing.Point(8, 249);
-            this.grdReurnDC.Name = "grdReurnDC";
-            this.grdReurnDC.ReadOnly = true;
-            this.grdReurnDC.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdReurnDC.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdReurnDC.RowTemplate.Height = 25;
-            this.grdReurnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdReurnDC.Size = new System.Drawing.Size(363, 80);
-            this.grdReurnDC.TabIndex = 1111214;
-            // 
-            // clmDCID
-            // 
-            this.clmDCID.HeaderText = "ID";
-            this.clmDCID.Name = "clmDCID";
-            this.clmDCID.ReadOnly = true;
-            this.clmDCID.Visible = false;
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            this.Value.ReadOnly = true;
-            this.Value.Width = 80;
-            // 
-            // TotalProducts
-            // 
-            this.TotalProducts.HeaderText = "T.Pro";
-            this.TotalProducts.Name = "TotalProducts";
-            this.TotalProducts.ReadOnly = true;
-            this.TotalProducts.Width = 80;
+            this.DCDate.HeaderText = "DC Date";
+            this.DCDate.Name = "DCDate";
+            this.DCDate.ReadOnly = true;
             // 
             // InvoiceNo
             // 
@@ -958,11 +948,46 @@
             this.InvoiceNo.ReadOnly = true;
             this.InvoiceNo.Width = 80;
             // 
-            // DCDate
+            // TotalProducts
             // 
-            this.DCDate.HeaderText = "DC Date";
-            this.DCDate.Name = "DCDate";
-            this.DCDate.ReadOnly = true;
+            this.TotalProducts.HeaderText = "T.Pro";
+            this.TotalProducts.Name = "TotalProducts";
+            this.TotalProducts.ReadOnly = true;
+            this.TotalProducts.Width = 50;
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            this.Value.ReadOnly = true;
+            this.Value.Width = 70;
+            // 
+            // clmDCID
+            // 
+            this.clmDCID.HeaderText = "ID";
+            this.clmDCID.Name = "clmDCID";
+            this.clmDCID.ReadOnly = true;
+            this.clmDCID.Visible = false;
+            // 
+            // clmRemoveDC
+            // 
+            this.clmRemoveDC.HeaderText = "";
+            this.clmRemoveDC.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveDC.Name = "clmRemoveDC";
+            this.clmRemoveDC.ReadOnly = true;
+            this.clmRemoveDC.Width = 40;
+            // 
+            // lblDCFinishedNoRecord
+            // 
+            this.lblDCFinishedNoRecord.AutoSize = true;
+            this.lblDCFinishedNoRecord.BackColor = System.Drawing.Color.White;
+            this.lblDCFinishedNoRecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDCFinishedNoRecord.Location = new System.Drawing.Point(147, 293);
+            this.lblDCFinishedNoRecord.Name = "lblDCFinishedNoRecord";
+            this.lblDCFinishedNoRecord.Size = new System.Drawing.Size(84, 16);
+            this.lblDCFinishedNoRecord.TabIndex = 1111215;
+            this.lblDCFinishedNoRecord.Text = "No Records Found";
+            this.lblDCFinishedNoRecord.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PUR_GRNEntry
             // 
@@ -994,6 +1019,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errGRN)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).EndInit();
             this.grpSalesmanDetails.ResumeLayout(false);
             this.grpSalesmanDetails.PerformLayout();
             this.grpRepresentativeDetails.ResumeLayout(false);
@@ -1002,7 +1028,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1076,5 +1101,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDCID;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemoveDC;
+        public System.Windows.Forms.Label lblDCFinishedNoRecord;
     }
 }
