@@ -19,15 +19,12 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbrandcode,varMasterType="0";
+        public string varbrandcode,varMasterType="0",varCloseFlag="0";
         public string pbFormStatus;
         public PUR_Product()
         {
             InitializeComponent();
-        }
-
-         
-         
+        } 
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
@@ -99,8 +96,10 @@ namespace ROMS
         public void udfnSave()
         {
             try
-            { 
-
+            {
+                MainForm.objPUR_GRNDetails.txtProductName.Text = txtDProductName.Text;
+                varCloseFlag = "1";
+                this.Close();
             }
             catch (Exception ex)
             {

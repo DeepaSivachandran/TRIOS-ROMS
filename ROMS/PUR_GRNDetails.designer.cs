@@ -936,6 +936,7 @@
             this.cmbPONo.Name = "cmbPONo";
             this.cmbPONo.Size = new System.Drawing.Size(166, 27);
             this.cmbPONo.TabIndex = 7;
+            this.cmbPONo.SelectedIndexChanged += new System.EventHandler(this.CmbPONo_SelectedIndexChanged);
             this.cmbPONo.Enter += new System.EventHandler(this.CmbPONo_Enter);
             this.cmbPONo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPONo_KeyDown);
             this.cmbPONo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPONo_KeyPress);
@@ -1000,6 +1001,7 @@
             // 
             // BtnNew
             // 
+            this.BtnNew.Enabled = false;
             this.BtnNew.Image = global::ROMS.Properties.Resources.New;
             this.BtnNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnNew.Location = new System.Drawing.Point(457, 37);
@@ -1487,7 +1489,6 @@
             this.clmmrp.DefaultCellStyle = dataGridViewCellStyle8;
             this.clmmrp.HeaderText = "MRP";
             this.clmmrp.Name = "clmmrp";
-            this.clmmrp.ReadOnly = true;
             this.clmmrp.Width = 50;
             // 
             // clmexpirydate
