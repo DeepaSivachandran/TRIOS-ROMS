@@ -438,7 +438,7 @@ namespace ROMS
             {
                 picLoader.Visible = true;
                 Application.DoEvents();
-                grdGroup.SelectedRows[0].Cells[0].ReadOnly = true;
+                //grdGroup.SelectedRows[0].Cells[0].ReadOnly = true;
                 int varviewtype = 6;
                 if (btnSave.Text == "Update")
                 {
@@ -1936,6 +1936,7 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
                 varGroup = "";
                 for (int i = 0; i < grdGroup.Rows.Count; i++)
                 {
@@ -1957,13 +1958,14 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { udfnProductCount(); }
+            finally { udfnProductCount(); picLoader.Visible = false; }
         }
 
         private void BtnUnselectAll_Click(object sender, EventArgs e)
         {
             try
             {
+                picLoader.Visible = true;
                 for (int i = 0; i < dtGroup.Rows.Count; i++)
                 {
                     dtGroup.Rows[i][0] = false;
@@ -1988,7 +1990,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { udfnProductCount(); }
+            finally { udfnProductCount(); picLoader.Visible = false; }
         }
 
         private void BtnUnselectAll_Enter(object sender, EventArgs e)
