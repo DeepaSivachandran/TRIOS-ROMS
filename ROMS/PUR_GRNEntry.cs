@@ -1791,7 +1791,8 @@ namespace ROMS
                                 cmbConcern.Enabled = false;
                                 dpGRNDate.Enabled = false;
                                 txtSupplier.Enabled = false;
-                                cmbOrderType.Enabled = false;
+                                cmbOrderType.Enabled = false; 
+                                this.ActiveControl = dpinvoicedate;
                             }
                             if (objDs.Tables[1].Rows.Count != 0)
                             {
@@ -1820,9 +1821,9 @@ namespace ROMS
                             {
                                 lblDCFinishedNoRecord.Visible = false;
                                 grdReurnDC.Rows.Clear();
-                                grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                                 for (int i = 0; i < objDs.Tables[7].Rows.Count; i++)
                                 {
+                                   // grdReurnDC.Rows[i].Cells["clmRemoveDC"].Value = ""; 
                                     grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[7].Rows[i]["DCNO"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCDATE"]),
                                     Convert.ToString(objDs.Tables[7].Rows[i]["PRCOUNT"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCVALUE"]), Convert.ToString(objDs.Tables[7].Rows[i]["ID"]));
                                 }
