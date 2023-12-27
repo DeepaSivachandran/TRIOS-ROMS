@@ -1088,81 +1088,96 @@ namespace ROMS
                 if (VarErrorFlag == false)
                 {
                     udfntooltiphide();
-
-                    if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
+                    DialogResult result1;
+                    if (varReturnDC != "0")
                     {
-                        for (int i = 0; i < grdReurnDC.Rows.Count; i++)
-                        {
-                            if (varPurchaseDC == "0")
-                            {
-                                varPurchaseDC = Convert.ToString(grdReurnDC.Rows[i].Cells["clmDCID"].Value);
-                            }
-                            else
-                            {
-                                varPurchaseDC = varPurchaseDC + ',' + Convert.ToString(grdReurnDC.Rows[i].Cells["clmDCID"].Value);
-                            }
-                        }
-                        string result = "", varpakage = "0", varorginator = "GRN Create";
-                        int varviewtype = 0;
-                        if (btnSave.Text == "Update && Print")
-                        {
-                            varviewtype = 1;
-                            varorginator = "GRN Update";
-                        }
-                        SPDataService objspdservice = new SPDataService();
-                        DataTable objGrnPO = new DataTable();
-                        objGrnPO.TableName = "TRN_GRN_PO";
-                        objGrnPO.Columns.Add("GRNPO_POID", typeof(int));
-                        objGrnPO.Columns.Add("GRNPO_PODate", typeof(string));
-                        objGrnPO.Columns.Add("GRNPO_PONo", typeof(string));
-                        objGrnPO.Columns.Add("GRNPO_TotalPros", typeof(int));
-                        objGrnPO = udfnGrnPO();
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(72);
+                        objDServ.CloseConnection();
+                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    else
+                    {
+                        result1 = DialogResult.Yes;
+                    }
 
-                        for (int i = 0; i < grdUnitList.Rows.Count; i++)
+                    if (result1 == DialogResult.Yes)
+                    {
+                        if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
                         {
-                            if (varpakage == "0")
+                            for (int i = 0; i < grdReurnDC.Rows.Count; i++)
                             {
-                                varpakage = Convert.ToString(grdUnitList.Rows[i].Cells["clmQty"].Value) + '-' + Convert.ToString(grdUnitList.Rows[i].Cells["id"].Value);
+                                if (varPurchaseDC == "0")
+                                {
+                                    varPurchaseDC = Convert.ToString(grdReurnDC.Rows[i].Cells["clmDCID"].Value);
+                                }
+                                else
+                                {
+                                    varPurchaseDC = varPurchaseDC + ',' + Convert.ToString(grdReurnDC.Rows[i].Cells["clmDCID"].Value);
+                                }
+                            }
+                            string result = "", varpakage = "0", varorginator = "GRN Create";
+                            int varviewtype = 0;
+                            if (btnSave.Text == "Update && Print")
+                            {
+                                varviewtype = 1;
+                                varorginator = "GRN Update";
+                            }
+                            SPDataService objspdservice = new SPDataService();
+                            DataTable objGrnPO = new DataTable();
+                            objGrnPO.TableName = "TRN_GRN_PO";
+                            objGrnPO.Columns.Add("GRNPO_POID", typeof(int));
+                            objGrnPO.Columns.Add("GRNPO_PODate", typeof(string));
+                            objGrnPO.Columns.Add("GRNPO_PONo", typeof(string));
+                            objGrnPO.Columns.Add("GRNPO_TotalPros", typeof(int));
+                            objGrnPO = udfnGrnPO();
+
+                            for (int i = 0; i < grdUnitList.Rows.Count; i++)
+                            {
+                                if (varpakage == "0")
+                                {
+                                    varpakage = Convert.ToString(grdUnitList.Rows[i].Cells["clmQty"].Value) + '-' + Convert.ToString(grdUnitList.Rows[i].Cells["id"].Value);
+                                }
+                                else
+                                {
+                                    varpakage = varpakage + '|' + Convert.ToString(grdUnitList.Rows[i].Cells["clmQty"].Value) + '-' + Convert.ToString(grdUnitList.Rows[i].Cells["id"].Value);
+                                }
+                            } //objGrnP
+                            varGrnId = Convert.ToInt32(pbGRNId);
+                            TRNS_GRN objTRNS_GRN = new TRNS_GRN();
+                            objTRNS_GRN.ViewType = varviewtype;
+                            objTRNS_GRN.ParaGRNID = varGrnId;
+                            objTRNS_GRN.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                            objTRNS_GRN.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                            objTRNS_GRN.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                            objTRNS_GRN.paraOriginator = varorginator;
+                            objTRNS_GRN.paraGRNDate = dpGRNDate.Text;
+                            objTRNS_GRN.paraINVDate = dpinvoicedate.Text;
+                            objTRNS_GRN.paraINVNo = txtInvoiceno.Text;
+                            objTRNS_GRN.ParaInvAmt = Convert.ToDouble(txtInvoiceamt.Text);
+                            objTRNS_GRN.ParaLoadingCharge = txtLoadingCharge.Text;
+                            objTRNS_GRN.ParaFrightCharge = txtFrieghtamount.Text;
+                            objTRNS_GRN.paraOrderType = Convert.ToInt32(cmbOrderType.SelectedValue);
+                            objTRNS_GRN.ParaTRN_GRN_PO = objGrnPO;
+                            objTRNS_GRN.ParaPurchaseDC = varPurchaseDC;
+                            objTRNS_GRN.paraPAckage = varpakage;
+                            result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
+                            {
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.ActiveControl = txtSupplier;
+                                MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                                varCloseFlag = 1;
+                                udfnclose();
                             }
                             else
                             {
-                                varpakage = varpakage + '|' + Convert.ToString(grdUnitList.Rows[i].Cells["clmQty"].Value) + '-' + Convert.ToString(grdUnitList.Rows[i].Cells["id"].Value);
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-                        } //objGrnP
-                        varGrnId = Convert.ToInt32(pbGRNId);
-                        TRNS_GRN objTRNS_GRN = new TRNS_GRN();
-                        objTRNS_GRN.ViewType = varviewtype;
-                        objTRNS_GRN.ParaGRNID = varGrnId;
-                        objTRNS_GRN.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                        objTRNS_GRN.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
-                        objTRNS_GRN.paraScheduleID = Convert.ToInt32(lblschedule.Text);
-                        objTRNS_GRN.paraOriginator = varorginator;
-                        objTRNS_GRN.paraGRNDate = dpGRNDate.Text;
-                        objTRNS_GRN.paraINVDate = dpinvoicedate.Text;
-                        objTRNS_GRN.paraINVNo = txtInvoiceno.Text;
-                        objTRNS_GRN.ParaInvAmt = Convert.ToDouble(txtInvoiceamt.Text);
-                        objTRNS_GRN.ParaLoadingCharge = txtLoadingCharge.Text;
-                        objTRNS_GRN.ParaFrightCharge = txtFrieghtamount.Text;
-                        objTRNS_GRN.paraOrderType = Convert.ToInt32(cmbOrderType.SelectedValue);
-                        objTRNS_GRN.ParaTRN_GRN_PO = objGrnPO;
-                        objTRNS_GRN.ParaPurchaseDC = varPurchaseDC;
-                        objTRNS_GRN.paraPAckage = varpakage;
-                        result = objspdservice.udfnGRNEntry(objTRNS_GRN);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.ActiveControl = txtSupplier;
-                            MainForm.objPUR_GRNDetailsList.udfnListLoad();
-                            varCloseFlag = 1;
-                            udfnclose();
                         }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                        this.ActiveControl = txtSupplier;
                     }
                 }
             }
