@@ -841,7 +841,7 @@ namespace ROMS
                 {
                     var ViewType = 42;
                     MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 42;
+                    objMR_Product.paraViewType = 52;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     if (VarSearchFlag == false)
                     {

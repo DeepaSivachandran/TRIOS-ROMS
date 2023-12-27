@@ -137,6 +137,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.picLoader);
             this.grbform.Controls.Add(this.btnRefresh);
             this.grbform.Controls.Add(this.label5);
             this.grbform.Controls.Add(this.lblSubgroupCount);
@@ -168,7 +169,6 @@
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
             this.grbform.Controls.Add(this.txtEBrandNameInEnglish);
-            this.grbform.Controls.Add(this.picLoader);
             this.grbform.Location = new System.Drawing.Point(8, 1);
             this.grbform.Name = "grbform";
             this.grbform.Size = new System.Drawing.Size(1339, 633);

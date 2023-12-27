@@ -411,7 +411,6 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdGoodsOutward.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdGoodsOutward.Enabled = false;
             this.grdGoodsOutward.EnableHeadersVisualStyles = false;
             this.grdGoodsOutward.GridColor = System.Drawing.Color.White;
             this.grdGoodsOutward.Location = new System.Drawing.Point(0, 160);
@@ -739,7 +738,7 @@
             // 
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(1236, 39);
+            this.btnAdd.Location = new System.Drawing.Point(1232, 41);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(25, 24);
             this.btnAdd.TabIndex = 6;
@@ -767,7 +766,7 @@
             // 
             // txtOutwardQuantity
             // 
-            this.txtOutwardQuantity.Location = new System.Drawing.Point(1065, 39);
+            this.txtOutwardQuantity.Location = new System.Drawing.Point(1064, 40);
             this.txtOutwardQuantity.Name = "txtOutwardQuantity";
             this.txtOutwardQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtOutwardQuantity.Size = new System.Drawing.Size(104, 27);
@@ -846,10 +845,10 @@
             // 
             // txtProduct
             // 
-            this.txtProduct.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+            this.txtProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProduct.Location = new System.Drawing.Point(13, 40);
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(370, 26);
+            this.txtProduct.Size = new System.Drawing.Size(370, 27);
             this.txtProduct.TabIndex = 0;
             this.txtProduct.TextChanged += new System.EventHandler(this.TxtProduct_TextChanged);
             this.txtProduct.Enter += new System.EventHandler(this.TxtProduct_Enter);
