@@ -194,6 +194,10 @@ namespace ROMS
                     grdSubGroup.DataSource = null;
                     udfnRemoveGroup();
                 }
+                if(varStatusid==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
@@ -205,6 +209,25 @@ namespace ROMS
               //  if (btnSave.Text == "Update") { this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending); }
                 //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
             }
+        }
+        public void udfnDisable()
+        {
+            txtEBrandNameInEnglish.Enabled = false;
+            txtEBrandNameInTamil.Enabled = false;
+            txtProductGroup.Enabled = false;
+            txtProductSubGroup.Enabled = false;
+            txtSelectedProductSubGroup.Enabled = false;
+            grdGroup.ReadOnly = true;
+            grdSubGroup.ReadOnly = true;
+            grdSubGroupAdd.ReadOnly = false;
+            grdSubGroupAdd.Columns["clmRemove"].Visible = false;
+            btnAdd.Enabled = false;
+            btnRemove.Enabled = false;
+            btnSelectAll.Enabled = false;
+            btnUnselectAll.Enabled = false;
+            BtnSubGrupSelectAll.Enabled = false;
+            btnSubGrupUnSelectAll.Enabled = false;
+            this.ActiveControl = rbInactive;
         }
         public void udfnList()
         {
@@ -320,6 +343,7 @@ namespace ROMS
                     grdSubGroupAdd.Columns["Selected Product Subgroup"].ReadOnly = true;
                     grdSubGroupAdd.Columns["Group Id"].ReadOnly = true;
                     grdSubGroupAdd.Columns["Sub Group Id"].ReadOnly = true;
+                    grdSubGroupAdd.Columns["T.Pro"].ReadOnly = true;
                     udfnRemoveGroup();
                 }
                 else
@@ -414,7 +438,7 @@ namespace ROMS
             {
                 picLoader.Visible = true;
                 Application.DoEvents();
-                grdGroup.SelectedRows[0].Cells[0].ReadOnly = true;
+                //grdGroup.SelectedRows[0].Cells[0].ReadOnly = true;
                 int varviewtype = 6;
                 if (btnSave.Text == "Update")
                 {
@@ -1912,6 +1936,7 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
                 varGroup = "";
                 for (int i = 0; i < grdGroup.Rows.Count; i++)
                 {
@@ -1933,13 +1958,14 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { udfnProductCount(); }
+            finally { udfnProductCount(); picLoader.Visible = false; }
         }
 
         private void BtnUnselectAll_Click(object sender, EventArgs e)
         {
             try
             {
+                picLoader.Visible = true;
                 for (int i = 0; i < dtGroup.Rows.Count; i++)
                 {
                     dtGroup.Rows[i][0] = false;
@@ -1964,7 +1990,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { udfnProductCount(); }
+            finally { udfnProductCount(); picLoader.Visible = false; }
         }
 
         private void BtnUnselectAll_Enter(object sender, EventArgs e)

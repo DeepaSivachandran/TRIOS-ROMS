@@ -10,13 +10,14 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
-    public partial class CP_ProductList : Form
+    public partial class CP_ProductApprovalList : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varconcern = 0, vargroup = 0, varsubgroup = 0, varcategory = 0;
         public string varUserID = "";
-        public CP_ProductList()
+
+        public CP_ProductApprovalList()
         {
             InitializeComponent();
         }
@@ -29,8 +30,9 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 udfnlistcmbdata();
-                MainForm.objCP_Items = new CP_Product();
-                MainForm.objCP_Items.ShowDialog();
+                MainForm.objCP_ProductApproval = new CP_ProductApproval();
+                MainForm.objCP_ProductApproval.MdiParent = this.ParentForm;
+                MainForm.objCP_ProductApproval.Show();
             }
             catch (Exception ex)
             {
@@ -45,7 +47,6 @@ namespace ROMS
         {
             try
             {
-                udfnlistcmbdata();
                 udfnEdit();
             }
             catch (Exception ex)
@@ -143,21 +144,22 @@ namespace ROMS
                 Application.DoEvents();
                 if (grdItemList.SelectedRows.Count > 0)
                 {
-                    MainForm.objCP_Items = new CP_Product();
-                    MainForm.objCP_Items.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
-                    MainForm.objCP_Items.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
-                    MainForm.objCP_Items.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
-                    MainForm.objCP_Items.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
-                    MainForm.objCP_Items.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
-                    MainForm.objCP_Items.varcompanyid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_COMID"].Value.ToString());
-                    MainForm.objCP_Items.varBrandId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_BDID"].Value.ToString());
-                    MainForm.objCP_Items.varPURSLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_SLID"].Value.ToString());
-                    MainForm.objCP_Items.varPURRKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_RKID"].Value.ToString());
-                    MainForm.objCP_Items.varSALESLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_SLID"].Value.ToString());
-                    MainForm.objCP_Items.varSALERKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_RKID"].Value.ToString());
-                    MainForm.objCP_Items.pbFormStatus = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["STSID"].Value.ToString());
-                    MainForm.objCP_Items.btnSave.Text = "Update";
-                    MainForm.objCP_Items.ShowDialog();
+                    MainForm.objCP_ProductApproval = new CP_ProductApproval();
+                    MainForm.objCP_ProductApproval.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
+                    //MainForm.objCP_ProductApproval.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varComId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_COMID"].Value.ToString());
+                    //MainForm.objCP_ProductApproval.varCategoryId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRCTID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varBrand = Convert.ToString(grdItemList.SelectedRows[0].Cells["PR_BDID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varPURSLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_SLID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varPURRKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_RKID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varSALESLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_SLID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varSALERKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_RKID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.btnUpdate.Text = "Update"; 
+                    MainForm.objCP_ProductApproval.MdiParent = this.ParentForm;
+                    MainForm.objCP_ProductApproval.Show();
                 }
 
             }
@@ -187,7 +189,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
 
-                int varGroupId = 0;
+                int varGroupId = 0,varStatusId=2;
                 if (txtProductGroup.Text == "")
                 {
                     varGroupId = 0;
@@ -238,7 +240,7 @@ namespace ROMS
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraStatusId = varStatusId;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -265,7 +267,8 @@ namespace ROMS
                             grdItemList.Columns["Product Name in Tamil"].Width = 300;
                             grdItemList.Columns["Product Subgroup"].Width = 150;
                             grdItemList.Columns["Product Group"].Width = 150;
-                            grdItemList.Columns["Status"].Width = 80;
+                            grdItemList.Columns["BatchNo"].Width = 80;
+                            grdItemList.Columns["Shelf life"].Width = 80;
                             grdItemList.Columns["HSN Name"].Width = 230;
                             grdItemList.Columns["ID"].Visible = false;
                             grdItemList.Columns["STSID"].Visible = false;
@@ -794,7 +797,7 @@ namespace ROMS
             try
             {
                 btnExport.Enabled = false;
-                lblStatus.Focus();
+                //lblStatus.Focus();
                 if ((grdItemList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -955,9 +958,9 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                //objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,2", null, "", "STS_Name", "STSID");
                 objDataBind = null;
-                cmbStatus.SelectedValue = 0;
+                //cmbStatus.SelectedValue = 0;
                 cmbConcern.SelectedValue = varconcern;
                 cmbCategory.SelectedValue = varcategory;
             }
@@ -1034,7 +1037,7 @@ namespace ROMS
             try
             {
                 udfnSubGroupevent();
-                cmbStatus.Focus();
+                //cmbStatus.Focus();
             }
             catch (Exception ex)
             {
@@ -1050,7 +1053,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSubGroupevent();
-                    cmbStatus.Focus();
+                    //cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1117,7 +1120,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    //cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1357,7 +1360,7 @@ namespace ROMS
         {
             try
             {
-                cmbStatus.BackColor = Color.LemonChiffon;
+                //cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1386,7 +1389,7 @@ namespace ROMS
         {
             try
             {
-                cmbStatus.BackColor = Color.White;
+                //cmbStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1426,6 +1429,23 @@ namespace ROMS
             }
             catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvSubGroup_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnSubGroupevent();
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

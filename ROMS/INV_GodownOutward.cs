@@ -120,19 +120,6 @@ namespace ROMS
                 {
                     BtnSave_Click(sender, e);
                 }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -385,6 +372,21 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtOutwardQuantity.Focus();
+                }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                        txtProduct.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                        txtProduct.CharacterCasing = CharacterCasing.Normal;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1643,7 +1645,7 @@ namespace ROMS
                     epGoodsOutward.Clear();
                     SPDataService objspdservice = new SPDataService();
                     DataTable objGrnPO = new DataTable();
-                    TRNS_GoodsOutward objTRNS_GoodsOutward = new TRNS_GoodsOutward();
+                    TRN_GoodsOutward objTRNS_GoodsOutward = new TRN_GoodsOutward();
                     objTRNS_GoodsOutward.ViewType = ViewType;
                     objTRNS_GoodsOutward.ParaGOId = varGOId;
                     objTRNS_GoodsOutward.ParaCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);

@@ -20,7 +20,7 @@ namespace ROMS
 
         public int SearchFlag = 0;
         public string varcompanycode;
-        public string pbFormStatus;
+        public int pbFormStatus=0;
         public string varstatecode = "", varupdate = "0", vardays = "";
         public int varOrderid = 0, scheduleselectedIndex = -1;
         public int varBrandId = 0;
@@ -1276,7 +1276,10 @@ namespace ROMS
                         }  
                     }
                 }
-
+                if(pbFormStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
@@ -1289,7 +1292,33 @@ namespace ROMS
                // udfnLoadOrderSchedule();
             }
         }
-
+        public void udfnDisable()
+        {
+            grbform.Enabled = false;
+            grbEnvelopeDetails.Enabled = false;
+            groupBox4.Enabled = false;
+            groupBox5.Enabled = false;
+            txtScheduleName.Enabled = false;
+            grpSalesmanDetails.Enabled = false;
+            grpOrderDetails.Enabled = false;
+            cmbTat.Enabled = false;
+            groupBox3.Enabled = false;
+            groupBox1.Enabled = false;
+            grdSupplierList.ReadOnly = true;
+            //grdSupplierList.Columns["clmedit"].Visible = false;
+            //grdSupplierList.Columns["clmDelete"].Visible = false;
+            grbSupplierMapping.Enabled = false;
+            cmbMappingorderschedule.Enabled = false;
+            btnSelectAll.Enabled = false;
+            btnUnselectAll.Enabled = false;
+            btnMappingSelectAll.Enabled = false;
+            btnMappingUnselectAll.Enabled = false;
+            btnMappingsave.Enabled = false;
+            cmbOrderschedule.Enabled = false;
+            txtSearchByProduct2.Enabled = false;
+            btnListPrint.Enabled = false;
+            grdViewSupplierMapping.Enabled = false;
+        }
         private void CP_Supplier_Leave(object sender, EventArgs e)
         {
             try
@@ -1310,9 +1339,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-
         private void CP_Supplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -3457,7 +3483,6 @@ namespace ROMS
                     { 
                         this.ActiveControl = cmbOrderschedule;
                         udfnLoadOrderSchedule();
-
                     }
                     catch (Exception ex)
                     {
@@ -3469,6 +3494,7 @@ namespace ROMS
                 {
                     try
                     {
+                        BindDataGrid();
                         picLoader.Visible = true;
                         picLoader.BringToFront();
                         Application.DoEvents();
@@ -4722,8 +4748,8 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
-                udfnMappingGridsLoad();
-               // DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
+                //udfnMappingGridsLoad();
+               DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -5012,16 +5038,16 @@ namespace ROMS
                                 {
                                     txtScheduleName.Enabled = false;
                                     grpSalesmanDetails.Enabled = false;
-                                    if (Convert.ToInt32(cmbOrderType.SelectedValue) == 36 || Convert.ToInt32(cmbOrderType.SelectedValue) == 144)
-                                    {
-                                        grpOrderDetails.Enabled = true;
-                                        grddays.Enabled = true;
-                                    }
-                                    else if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
-                                    {
-                                        grpOrderDetails.Enabled = true;
-                                        grddays.Enabled = true;
-                                    }
+                                    //if (Convert.ToInt32(cmbOrderType.SelectedValue) == 36 || Convert.ToInt32(cmbOrderType.SelectedValue) == 144)
+                                    //{
+                                    //    grpOrderDetails.Enabled = false;
+                                    //    grddays.Enabled = false;
+                                    //}
+                                    //else if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
+                                    //{
+                                    //    grpOrderDetails.Enabled = true;
+                                    //    grddays.Enabled = true;
+                                    //}
                                 }
                             }
                             break;
@@ -5178,31 +5204,39 @@ namespace ROMS
         {
             try
             {
-                //(grdFinalSupplierMapping.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
-                DataTable objdtnew = new DataTable();
-                objdtnew = dtSubGroupMapping.Copy();
-                objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
-                grdFinalSupplierMapping.DataSource = objdtnew;
-                //  grdFinalSupplierMapping.Columns[0].Frozen = true;
-                grdFinalSupplierMapping.Columns[0].HeaderText = "";
-                grdFinalSupplierMapping.Columns[0].Width = 30;
-                grdFinalSupplierMapping.Columns["S.No."].Width = 50;
-                grdFinalSupplierMapping.Columns["P.I Code"].Width = 100;
-                grdFinalSupplierMapping.Columns["Product Name in Tamil"].Width = 220;
-                grdFinalSupplierMapping.Columns["Unit"].Width = 60;
-                grdFinalSupplierMapping.Columns["Product SubGroup"].Width = 120;
-                grdFinalSupplierMapping.Columns["GROUPID"].Visible = false;
-                grdFinalSupplierMapping.Columns["SUBGROUPID"].Visible = false;
-                grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
-                grdFinalSupplierMapping.Columns["MappedCount"].Visible = false;
-                grdFinalSupplierMapping.Columns["Product Name in English"].Visible = false;
-                grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                grdFinalSupplierMapping.Columns["S.No."].ReadOnly = true;
-                grdFinalSupplierMapping.Columns["P.I Code"].ReadOnly = true;
-                grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
-                grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
-                grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
+                (grdFinalSupplierMapping.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //DataTable objdtnew = new DataTable();
+                //objdtnew = dtSubGroupMapping.Copy();
+                //objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //grdFinalSupplierMapping.DataSource = objdtnew;
+                ////  grdFinalSupplierMapping.Columns[0].Frozen = true;
+                //grdFinalSupplierMapping.Columns[0].HeaderText = "";
+                //grdFinalSupplierMapping.Columns[0].Width = 30;
+                //grdFinalSupplierMapping.Columns["S.No."].Width = 50;
+                //grdFinalSupplierMapping.Columns["P.I Code"].Width = 100;
+                //grdFinalSupplierMapping.Columns["Product Name in Tamil"].Width = 220;
+                //grdFinalSupplierMapping.Columns["Unit"].Width = 60;
+                //grdFinalSupplierMapping.Columns["Product SubGroup"].Width = 120;
+                //grdFinalSupplierMapping.Columns["GROUPID"].Visible = false;
+                //grdFinalSupplierMapping.Columns["SUBGROUPID"].Visible = false;
+                //grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
+                //grdFinalSupplierMapping.Columns["MappedCount"].Visible = false;
+                //grdFinalSupplierMapping.Columns["Product Name in English"].Visible = false;
+                //grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                //grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                //grdFinalSupplierMapping.Columns["S.No."].ReadOnly = true;
+                //grdFinalSupplierMapping.Columns["P.I Code"].ReadOnly = true;
+                //grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
+                //grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
+                //grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
+                //if (SearchFlag == 0)
+                //{
+                //    (grdFinalSupplierMapping.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //}
+                //else
+                //{
+                //    (grdFinalSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                //}
             }
             catch (Exception ex)
             {
@@ -5281,6 +5315,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns[0].ReadOnly = false;
                     grdSupplierMappingLoad.Columns[0].ReadOnly = false;
                 }
+                SearchFlag = 0;
             }
         }
         public void udfnSubGroupAdd()
@@ -5943,15 +5978,15 @@ namespace ROMS
                 }
                 if (txtScheduleName.Text.Trim() == "")
                 {
-                    errCompany.SetError(txtScheduleName, "Please enter the schedule");
+                    errCompany.SetError(txtScheduleName, "Please enter the schedule.");
                     txtScheduleName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpschedule.ShowAlways = true;
-                    tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
+                    tpschedule.Show("Please enter the schedule.", txtScheduleName, 5000);
                     errorflag = 1;
                 }
                 if (rbScheduleActive.Checked == true)
                 {
-                    if (Convert.ToInt32(cmbOrderType.SelectedValue) == 35 || Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
+                    if (Convert.ToInt32(cmbOrderType.SelectedValue) != 144)//|| Convert.ToInt32(cmbOrderType.SelectedValue) == 37)
                     {
                         for (int i = 0; i < grddays.Rows.Count; i++)
                         {
@@ -6065,106 +6100,106 @@ namespace ROMS
                                 }
                             }
                         }
-                        //if (VarTotalDays != "")
-                        //{
-                        SupplierUpdate = 0;
-                        if (Convert.ToInt32(varsupplierID) != 0)
+                        if (VarTotalDays != "" || Convert.ToInt32(cmbOrderType.SelectedValue) == 144)
                         {
-                            SupplierUpdate = Convert.ToInt32(varsupplierID);
-                        }
-                        else
-                        {
-                            SupplierUpdate = Convert.ToInt32(pbSupplierid);
-                        }
-
-                        SPDataService objspdservice = new SPDataService();
-                        string result = "", varoriginator = "";
-                        int Vartype = 0, count = 0, varScheduleStatusid = 0;
-                        if (rbScheduleActive.Checked == true)
-                        { varScheduleStatusid = 1; }
-                        else if (rbScheduleInactive.Checked == true)
-                        { varScheduleStatusid = 2; }
-
-                        if (btnAdd.Text == "Save")
-                        {
-                            count = grdSupplierList.Rows.Count + 1;
-                        }
-                        else
-                        {
-                            count = Convert.ToInt32(varSLNO);
-                        }
-                        int sceduleidupdate = 0;
-                        if (btnAdd.Text == "Save")
-                        {
-                            varoriginator = "Supplier Order Create";
-                            Vartype = 3;
-                            sceduleidupdate = varOrderid;
-                        }
-                        else
-                        {
-                            if (varOrderid == 0)
+                            SupplierUpdate = 0;
+                            if (Convert.ToInt32(varsupplierID) != 0)
                             {
-                                sceduleidupdate = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                SupplierUpdate = Convert.ToInt32(varsupplierID);
                             }
                             else
                             {
+                                SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                            }
+
+                            SPDataService objspdservice = new SPDataService();
+                            string result = "", varoriginator = "";
+                            int Vartype = 0, count = 0, varScheduleStatusid = 0;
+                            if (rbScheduleActive.Checked == true)
+                            { varScheduleStatusid = 1; }
+                            else if (rbScheduleInactive.Checked == true)
+                            { varScheduleStatusid = 2; }
+
+                            if (btnAdd.Text == "Save")
+                            {
+                                count = grdSupplierList.Rows.Count + 1;
+                            }
+                            else
+                            {
+                                count = Convert.ToInt32(varSLNO);
+                            }
+                            int sceduleidupdate = 0;
+                            if (btnAdd.Text == "Save")
+                            {
+                                varoriginator = "Supplier Order Create";
+                                Vartype = 3;
                                 sceduleidupdate = varOrderid;
                             }
-                            varoriginator = "Supplier Order Update";
-                            Vartype = 4;
-                        }
-                        result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
-                            Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, Convert.ToString(varScheduleStatusid), MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
-                            0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text.Trim(), txtsalesmanmobile.Text,
-                            txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",Convert.ToInt32(cmbTat.SelectedValue));
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            grddays.ClearSelection();
-                            MainForm.objCP_Supplierlist.udfnList();
-                            this.ActiveControl = txtScheduleName;
-                            if (btnAdd.Text == "Update")
+                            else
                             {
-                                varupdate = "1";
-                                //grdSupplierList.Rows.Clear ();
-                                //udfnEdit();
-                                if (scheduleselectedIndex >= 0 && scheduleselectedIndex < grdSupplierList.Rows.Count)
+                                if (varOrderid == 0)
                                 {
-                                    grdSupplierList.Rows.RemoveAt(scheduleselectedIndex);
-                                    scheduleselectedIndex = -1;  // Reset the index after deletion.
+                                    sceduleidupdate = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
                                 }
+                                else
+                                {
+                                    sceduleidupdate = varOrderid;
+                                }
+                                varoriginator = "Supplier Order Update";
+                                Vartype = 4;
+                            }
+                            result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
+                                Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, Convert.ToString(varScheduleStatusid), MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
+                                0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text.Trim(), txtsalesmanmobile.Text,
+                                txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",Convert.ToInt32(cmbTat.SelectedValue));
+
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
+                            {
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                grddays.ClearSelection();
+                                MainForm.objCP_Supplierlist.udfnList();
+                                this.ActiveControl = txtScheduleName;
+                                if (btnAdd.Text == "Update")
+                                {
+                                    varupdate = "1";
+                                    //grdSupplierList.Rows.Clear ();
+                                    //udfnEdit();
+                                    if (scheduleselectedIndex >= 0 && scheduleselectedIndex < grdSupplierList.Rows.Count)
+                                    {
+                                        grdSupplierList.Rows.RemoveAt(scheduleselectedIndex);
+                                        scheduleselectedIndex = -1;  // Reset the index after deletion.
+                                    }
+                                }
+                                else
+                                {
+                                    varOrderid = Convert.ToInt32(varvalue[2]);
+                                }
+                                //grdSupplierList.Rows.Add(count, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname, VarTotalDays, varOrderid);
+                                udfnSaveGrdAdd();
+                                udfnScheduleClear();
+                                btnAdd.Text = "Save";
+                                txtScheduleName.Enabled = true;
+                                grpSalesmanDetails.Enabled = true;
+                                grpOrderDetails.Enabled = true;
+                                grddays.Enabled = true;
+                                rbScheduleActive.Checked = true;
+                                pnlScheduleStatus.Enabled = false;
+                                cmbOrderType.SelectedValue = 144;
+                                udfnSetRegularText();
                             }
                             else
                             {
-                                varOrderid = Convert.ToInt32(varvalue[2]);
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-                            //grdSupplierList.Rows.Add(count, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname, VarTotalDays, varOrderid);
-                            udfnSaveGrdAdd();
-                            udfnScheduleClear();
-                            btnAdd.Text = "Save";
-                            txtScheduleName.Enabled = true;
-                            grpSalesmanDetails.Enabled = true;
-                            grpOrderDetails.Enabled = true;
-                            grddays.Enabled = true;
-                            rbScheduleActive.Checked = true;
-                            pnlScheduleStatus.Enabled = false;
-                            cmbOrderType.SelectedValue = 144;
-                            udfnSetRegularText();
                         }
                         else
                         {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(56);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        //}
-                        //else
-                        //{
-                        //    SPDataService objDServ = new SPDataService();
-                        //    string varMessage = objDServ.udfnGetMessages(56);
-                        //    objDServ.CloseConnection();
-                        //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        //}
                     }
                     else
                     {
@@ -7302,6 +7337,7 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            
         }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -7596,6 +7632,7 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally { SearchFlag = 1; }
         }
 
         private void DGV_SearchGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -8050,7 +8087,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbScheduleInactive_Enter(object sender, EventArgs e)
         {
             try
@@ -8063,7 +8099,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbScheduleInactive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -8079,7 +8114,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbScheduleInactive_Leave(object sender, EventArgs e)
         {
             try
@@ -8092,7 +8126,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Enter(object sender, EventArgs e)
         {
             try
@@ -8105,7 +8138,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -8121,7 +8153,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Leave(object sender, EventArgs e)
         {
             try
@@ -8134,7 +8165,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGridPro_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
@@ -8157,7 +8187,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGridPro_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -8171,7 +8200,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGridPro_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -8193,7 +8221,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdViewSupplierMapping_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -8263,7 +8290,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void TxtSPShortName_Enter(object sender, EventArgs e)
         {
             try
@@ -8276,7 +8302,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtSPShortName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -8292,7 +8317,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtSPShortName_Leave(object sender, EventArgs e)
         {
             try
@@ -8317,7 +8341,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnSelectAll_Click(object sender, EventArgs e)
         {
             try
@@ -8335,7 +8358,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnUnselectAll_Click(object sender, EventArgs e)
         {
             try
@@ -8355,7 +8377,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnMappingSelectAll_Click(object sender, EventArgs e)
         {
             try
@@ -8373,7 +8394,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnMappingUnselectAll_Click(object sender, EventArgs e)
         {
             try
@@ -8392,7 +8412,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
             if (!RPTViewer.Visible)
@@ -8479,7 +8498,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -8492,7 +8510,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnRemove_Enter(object sender, EventArgs e)
         {
             try
@@ -8548,7 +8565,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbTat_Enter(object sender, EventArgs e)
         {
             try
@@ -8588,7 +8604,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAccno_Enter(object sender, EventArgs e)
         {
             try
@@ -8601,7 +8616,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAccno_Leave(object sender, EventArgs e)
         {
             try
@@ -8626,7 +8640,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAccno_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -8642,7 +8655,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtIFScode_Enter(object sender, EventArgs e)
         {
             try
@@ -8655,7 +8667,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtIFScode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -8729,7 +8740,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAccName_Enter(object sender, EventArgs e)
         {
 
@@ -8743,7 +8753,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAccName_Leave(object sender, EventArgs e)
         {
             try
@@ -8768,7 +8777,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAccName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -8784,7 +8792,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGetProductCount(int varProId) {
+        public void udfnGetProductCount(int varProId)
+        {
             try
             {
                 int varProductCount = 0; string varRemoveProduct = "";
@@ -8906,5 +8915,3 @@ namespace ROMS
         }
     }
 }
-
-

@@ -45,6 +45,7 @@ namespace ROMS
         public string varTempMonth = "";
         public string varTempYear = "";
         public string varEmployeeId = "";
+        public string varUserID = "";
         //public int varUpdate = 0;
         public int varModifiedFlag = 0;
         Boolean BlnSearchImageYN = false;
@@ -76,6 +77,7 @@ namespace ROMS
                     varTempYear = "0";
                 }
                 grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, txtProductName.Text.Trim(), txtLocation.Text.Trim(), txtRack.Text.Trim(), Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(), (txtStockQty.Text).Trim(), txtQuantity.Text.Trim(), varUnitSymbol,cmbSupplier.Text.Trim(),varTempDay,varTempMonth,varTempYear,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
+                ((DataGridViewTextBoxColumn)grdDamageEntry.Columns["clmQuantity"]).MaxInputLength = 8;
                 grdDamageEntry.Columns["clmDay"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmMonth"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmYear"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -434,6 +436,7 @@ namespace ROMS
                 udfnTransferNo();
                 grdDamageEntry.Rows.Clear();
                 dtDamage.Rows.Clear();
+                txttotalitem.Text = "";
             }
             catch (Exception ex)
 
@@ -630,7 +633,22 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //txtDLocation.Focus();
+                    txtQuantity.Focus();
+                }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1183,6 +1201,7 @@ namespace ROMS
                                 }
                             }
                         }
+                        ((DataGridViewTextBoxColumn)grdDamageEntry.Columns["clmQuantity"]).MaxInputLength = 8;
                     }
                     if (varStatusID != 6)
                     {
@@ -1197,10 +1216,8 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         txtRemark.Enabled = false;
                         this.ActiveControl = btnClose;
-                        for (int i = 0; i < grdDamageEntry.Rows.Count; i++)
-                        {
-                            ((DataGridViewImageCell)grdDamageEntry.Rows[i].Cells["clmremove"]).Value = new System.Drawing.Bitmap(1, 1); ;
-                        }
+                        DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                        GrdDamageEntry_DataBindingComplete(grdDamageEntry,args);
                     }
                 }
             }
@@ -1409,6 +1426,14 @@ namespace ROMS
                         }
                     }
                 }
+                if(varEmployeeId=="")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(101);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     epDamageEntry.Clear();
@@ -1430,79 +1455,133 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspservice = new SPDataService();
-                string varResult = "",
-                varoriginator = ""; int varType = 0;
-                if (btnSave.Text == "Save as Draft")
-                {
-                    varoriginator = "Damage Entry Creation";
-                    varType = 0;
-                }
-                else
-                {
-                    varoriginator = "Damage Entry Updation";
-                    varType = 0;
-                }
-                int varStatus = 0;
                 if (chkStatus.Checked == true)
                 {
-                    varStatus = 20;
+                    MainForm.objCP_Verify = new CP_Verify();
+                    MainForm.objCP_Verify.ShowDialog();
+                    varUserID = MainForm.objCP_Verify.varUserId;
                 }
                 else
                 {
-                    varStatus = 6;
+                    varUserID = "3";
                 }
-                TRN_Damage objTRN_Damage = new TRN_Damage();
-                objTRN_Damage.ViewType = varType;
-                objTRN_Damage.paraDamageEntryID = varID;
-                objTRN_Damage.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRN_Damage.paraTransferDate = dpEntryDate.Text;
-                objTRN_Damage.paraLocationID = Convert.ToInt32(varSLID);
-                objTRN_Damage.paraRemarks = txtRemark.Text.Trim();
-                objTRN_Damage.paraStatusId = varStatus;
-                objTRN_Damage.paraOriginator = varoriginator;
-                objTRN_Damage.paraDamageEntry = dtDamage;
-                objTRN_Damage.paraEmployeeId = varEmployeeId;
-                varResult = objspservice.udfnDamageEntry(objTRN_Damage);
-                objspservice.CloseConnection();
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "3")
+                if (varUserID != "")
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objINV_DamageEntryList.udfnList();
-                    udfnClear();
-                    varModifiedFlag = 0;
-                    this.Close();
-                }
-                else
-                {
-                    epDamageEntry.Clear();
-                    txtProductName.BackColor = Color.White;
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnSave.Enabled = true;
-                    btnSave.Focus();
-                    if (varvalue[0] == "5")
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = "",
+                    varoriginator = ""; int varType = 0;
+                    if (btnSave.Text == "Save as Draft")
                     {
-                        string[] varFirstList = varvalue[2].Split('|');
-                        for (int i = 0; i < varFirstList.Length; i++)
+                        varoriginator = "Damage Entry Creation";
+                        varType = 0;
+                    }
+                    else
+                    {
+                        varoriginator = "Damage Entry Updation";
+                        varType = 0;
+                    }
+                    int varStatus = 0;
+                    if (chkStatus.Checked == true)
+                    {
+                        varStatus = 20;
+                    }
+                    else
+                    {
+                        varStatus = 6;
+                    }
+                    TRN_Damage objTRN_Damage = new TRN_Damage();
+                    objTRN_Damage.ViewType = varType;
+                    objTRN_Damage.paraDamageEntryID = varID;
+                    objTRN_Damage.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objTRN_Damage.paraTransferDate = dpEntryDate.Text;
+                    objTRN_Damage.paraLocationID = Convert.ToInt32(varSLID);
+                    objTRN_Damage.paraRemarks = txtRemark.Text.Trim();
+                    objTRN_Damage.paraStatusId = varStatus;
+                    objTRN_Damage.paraOriginator = varoriginator;
+                    objTRN_Damage.paraDamageEntry = dtDamage;
+                    objTRN_Damage.paraEmployeeId = varEmployeeId;
+                    varResult = objspservice.udfnDamageEntry(objTRN_Damage);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnClear();
+                        varModifiedFlag = 0;
+                        try
                         {
-                            string[] varSecondList = varFirstList[i].Split(',');
-                            string varPRID = varSecondList[0];
-                            string varMRP = varSecondList[1];
-                            string varExpiryDate = varSecondList[2];
-                            string varBatchNo = varSecondList[3];
-                            string varRack = varSecondList[4];
-                            for (int j = 0; j < grdDamageEntry.RowCount; j++)
+                            string DMID = "0";
+                            if (varID == 0)
                             {
-                                if (Convert.ToString(grdDamageEntry.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmbatchno"].Value) == varBatchNo && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmRKID"].Value) == varRack)
+                                DMID = varvalue[2];
+                            }
+                            else
+                            {
+                                DMID = Convert.ToString(varID);
+                            }
+                            DialogResult result1;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
+                                varHeader = "Damage Entry";
+
+                                objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
+
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            objError = new DataError();
+                            objError.WriteFile(ex);
+                        }
+                        MainForm.objINV_DamageEntryList.udfnList();
+                        this.Close();
+                    }
+                    else
+                    {
+                        epDamageEntry.Clear();
+                        txtProductName.BackColor = Color.White;
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
+                        if (varvalue[0] == "5")
+                        {
+                            string[] varFirstList = varvalue[2].Split('|');
+                            for (int i = 0; i < varFirstList.Length; i++)
+                            {
+                                string[] varSecondList = varFirstList[i].Split(',');
+                                string varPRID = varSecondList[0];
+                                string varMRP = varSecondList[1];
+                                string varExpiryDate = varSecondList[2];
+                                string varBatchNo = varSecondList[3];
+                                string varRack = varSecondList[4];
+                                for (int j = 0; j < grdDamageEntry.RowCount; j++)
                                 {
-                                    grdDamageEntry.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                    if (Convert.ToString(grdDamageEntry.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmbatchno"].Value) == varBatchNo && Convert.ToString(grdDamageEntry.Rows[j].Cells["clmRKID"].Value) == varRack)
+                                    {
+                                        grdDamageEntry.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1572,19 +1651,6 @@ namespace ROMS
                     {
                         btnSave.Focus();
                         BtnSave_Click(sender, e);
-                    }
-                }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
                     }
                 }
             }
@@ -1679,12 +1745,12 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (VarSearchFlag == true)
                     {
-                        objMR_Product.paraProductName = txtProductName.Text;
+                        objMR_Product.paraPicode = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objMR_Product.paraPicode = txtProductName.Text;
+                        objMR_Product.paraProductName = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     objspdservice.CloseConnection();
@@ -1806,7 +1872,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     varPICode = selectedItem.SubItems[0].Text;
-                    txtProductName.Text = selectedItem.SubItems[3].Text;
+                    txtProductName.Text = selectedItem.SubItems[2].Text;
                     txtLocation.Text = selectedItem.SubItems[4].Text;
                     txtRack.Text = selectedItem.SubItems[5].Text;
                     txtMrp.Text = selectedItem.SubItems[6].Text;
@@ -2282,6 +2348,81 @@ namespace ROMS
                         {
                             DGV_SearchGridLeft.Rows[rowIndex].Cells[i].Value = "";
                         }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntry_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdDamageEntry.Rows.Count; i++)
+                {
+                    if (varStatusID == 20)
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmQuantity"];
+                        cell.Style.BackColor = Color.LightGray;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = true;
+                    }
+                    else
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmQuantity"];
+                        cell.Style.BackColor = Color.PaleGreen;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                
+            }
+        }
+
+        private void GrdDamageEntry_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdDamageEntry.CurrentCell.OwningColumn.Name == "clmQuantity")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void allowonlynumber(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (grdDamageEntry.CurrentCell.OwningColumn.Name == "clmQuantity")
+                {
+                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                    {
+                        e.Handled = true;
+                    }
+                    //only allow one decimal point
+                    if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                    {
+                        e.Handled = true;
                     }
                 }
             }

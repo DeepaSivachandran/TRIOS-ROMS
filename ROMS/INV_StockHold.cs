@@ -386,7 +386,7 @@ namespace ROMS
                     //varResult = objspservice.udfnStockHold(ViewType,SHID,Convert.ToInt32(cmbConcern.SelectedValue), varPRID, varStockLocationId, varRKID,Convert.ToString(txtMrp.Text), Convert.ToString(txtExpiryDate.Text),Convert.ToString(txtBatchNo.Text),varUTID,Convert.ToInt32(txtQty.Text), varoriginator);
 
                     DataTable objGrnPO = new DataTable();
-                    TRNS_StockHold objTRNS_StockHold = new TRNS_StockHold();
+                    TRN_StockHold objTRNS_StockHold = new TRN_StockHold();
                     SPDataService objspservice = new SPDataService();
                     objTRNS_StockHold.ViewType = ViewType;
                     objTRNS_StockHold.paraSHID = SHID;
@@ -398,10 +398,9 @@ namespace ROMS
                     objTRNS_StockHold.paraExpiryDate = Convert.ToString(txtExpiryDate.Text);
                     objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
                     objTRNS_StockHold.paraUTID = varUTID;
-                    objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
                     objTRNS_StockHold.paraQty = Convert.ToInt32(txtQty.Text);
                     objTRNS_StockHold.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
-                    objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);                   
                     objTRNS_StockHold.paraFlag = 0;
                     objTRNS_StockHold.paraOriginator = varoriginator;
                     varResult = objspservice.udfnStockHold(objTRNS_StockHold);
@@ -1374,11 +1373,13 @@ namespace ROMS
                     {
                         VarSearchFlag = true;
                         lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
                     }
                     else
                     {
                         VarSearchFlag = false;
                         lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
             }
@@ -1428,7 +1429,7 @@ namespace ROMS
                 string varoriginator = "Stock Hold Delete";
                 SPDataService objspservice = new SPDataService();
                 DataTable objGrnPO = new DataTable();
-                TRNS_StockHold objTRNS_StockHold = new TRNS_StockHold();
+                TRN_StockHold objTRNS_StockHold = new TRN_StockHold();
                 MainForm.objCP_Verify = new CP_Verify();
                 MainForm.objCP_Verify.ShowDialog();
                 varUserID = MainForm.objCP_Verify.varUserId;

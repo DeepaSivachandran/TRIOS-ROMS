@@ -770,11 +770,10 @@ namespace ROMS
 
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 15;
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                     objMR_Supplier.paraFlag = 1;
-                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     //objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "", 1); 
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -63,7 +63,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                Model.TRNG_Stock objTRNG_Stock = new Model.TRNG_Stock();
+                Model.TRN_Stock objTRNG_Stock = new Model.TRN_Stock();
                 objTRNG_Stock.ViewType = 0;
                 objTRNG_Stock.paraPRID = Convert.ToInt32(lblProduct.Text.Trim());
                 objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
