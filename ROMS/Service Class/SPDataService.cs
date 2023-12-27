@@ -2441,6 +2441,39 @@ namespace ROMS
             }
             return result;
         }
+        public string udfnGoodsOutward(TRN_GoodsInward objTRNS_GoodsInward)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_GoodsInward]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNS_GoodsInward.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraGIID", objTRNS_GoodsInward.paraGIID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNS_GoodsInward.paraCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraInwardDate", objTRNS_GoodsInward.paraInwardDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNS_GoodsInward.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferType", objTRNS_GoodsInward.paraTransferType);
+                varSqlCommand.Parameters.AddWithValue("@paraGoodsInward", objTRNS_GoodsInward.paraGoodsInward);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_GoodsInward.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
 
         //Created By :-Kavitha ; Created On :-09/11/2023
         public DataSet udfnGOList(int paraviewType, int paraGOID, int paraConcern, string paraFromDate, string paraToDate, int paraSLID, int paraPRID, int paraStatusId)
@@ -2476,7 +2509,39 @@ namespace ROMS
             }
             return ds;
         }
-
+        
+        public DataSet udfnInwardList(TRN_GoodsInward objTRNG_GoodsInward)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_GoodsInward]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_GoodsInward.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraGIID", objTRNG_GoodsInward.paraGIID);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_GoodsInward.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_GoodsInward.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNG_GoodsInward.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_GoodsInward.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNG_GoodsInward.paraCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_GoodsInward.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_GoodsInward.paraIPAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
         public string udfnStockHold(TRN_StockHold objTRNS_StockHold)
         {
             string varResult = "";

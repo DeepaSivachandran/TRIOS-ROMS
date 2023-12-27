@@ -205,6 +205,7 @@
     <Compile Include="MaskedTextColumn.cs" />
     <Compile Include="Model\MR_Product.cs" />
     <Compile Include="Model\MR_Supplier.cs" />
+    <Compile Include="Model\TRN_GoodsInward.cs" />
     <Compile Include="Model\TRN_Stock.cs" />
     <Compile Include="Model\TRN_GoodsOutward.cs" />
     <Compile Include="Model\TRN_BatchConversion.cs" />

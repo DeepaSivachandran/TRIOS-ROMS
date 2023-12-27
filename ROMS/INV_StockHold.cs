@@ -398,10 +398,9 @@ namespace ROMS
                     objTRNS_StockHold.paraExpiryDate = Convert.ToString(txtExpiryDate.Text);
                     objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
                     objTRNS_StockHold.paraUTID = varUTID;
-                    objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
                     objTRNS_StockHold.paraQty = Convert.ToInt32(txtQty.Text);
                     objTRNS_StockHold.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
-                    objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);                   
                     objTRNS_StockHold.paraFlag = 0;
                     objTRNS_StockHold.paraOriginator = varoriginator;
                     varResult = objspservice.udfnStockHold(objTRNS_StockHold);
