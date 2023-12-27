@@ -738,7 +738,7 @@
             // 
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(1236, 39);
+            this.btnAdd.Location = new System.Drawing.Point(1232, 41);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(25, 24);
             this.btnAdd.TabIndex = 6;
@@ -766,7 +766,7 @@
             // 
             // txtOutwardQuantity
             // 
-            this.txtOutwardQuantity.Location = new System.Drawing.Point(1065, 39);
+            this.txtOutwardQuantity.Location = new System.Drawing.Point(1064, 40);
             this.txtOutwardQuantity.Name = "txtOutwardQuantity";
             this.txtOutwardQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtOutwardQuantity.Size = new System.Drawing.Size(104, 27);
