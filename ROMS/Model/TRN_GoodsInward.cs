@@ -21,6 +21,8 @@ namespace ROMS.Model
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
         public int paraPRID { get; set; } = 0;
+        public string paraRemarks { get; set; } = "";
+        public int paraDeleteFlag { get; set; } = 0;
         public DataTable paraGoodsInward { get; set; } = null;
     }
 }
