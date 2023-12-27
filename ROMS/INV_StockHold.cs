@@ -475,7 +475,13 @@ namespace ROMS
                 grdStockHold.DataSource = null;
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDS = objdserv.udfnStockHoldList(0,0);
+                //objDS = objdserv.udfnStockHoldList(0,0);
+                TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
+                objTRNG_StockHold.ViewType = 0;
+                objTRNG_StockHold.paraSHID = Convert.ToInt32(SHID);
+                objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                objDS = objdserv.udfnStockHoldList(objTRNG_StockHold);
                 objdserv.CloseConnection();
                 if (objDS != null)
                 {
@@ -846,7 +852,14 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     int ViewType =1;
-                    objDs = objdserv.udfnStockHoldList(ViewType, SHID);
+                    //objDs = objdserv.udfnStockHoldList(ViewType, SHID);
+                    TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
+                    objTRNG_StockHold.ViewType = ViewType;
+                    objTRNG_StockHold.paraSHID = Convert.ToInt32(SHID);
+                    objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                    objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
+                    objdserv.CloseConnection();
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -1574,7 +1587,13 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnStockHoldList(0, 0);
+                //objDs = objdserv.udfnStockHoldList(0, 0);
+                TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
+                objTRNG_StockHold.ViewType = 0;
+                objTRNG_StockHold.paraSHID = Convert.ToInt32(SHID);
+                objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
