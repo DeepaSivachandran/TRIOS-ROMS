@@ -396,17 +396,14 @@ namespace ROMS
             try
             {
                 LV_Supplier.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 15;
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text; 
-
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                    //    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -540,13 +537,10 @@ namespace ROMS
                     string varSupplierId = "0";
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 23;
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                     objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
-                    // objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
-
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -776,17 +770,13 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (lblSupplierCode.Text.Length > 0)
                 {
-
-
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 16;
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-
+                    
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                    //objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "", 1); 
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1041,14 +1031,12 @@ namespace ROMS
                     if (Convert.ToString(txtSupplier.Text) != "")
                     {
                         string[] values = new string[0];
-                        DataSet objDsSupplierId = new DataSet();
-                        SPDataService objDserv = new SPDataService();
-
                         MR_Supplier objMR_Supplier = new MR_Supplier();
                         objMR_Supplier.ViewType = 23;
-                        objMR_Supplier.paraSupplierName = txtSupplier.Text; 
+                        objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+                        DataSet objDsSupplierId = new DataSet();
+                        SPDataService objDserv = new SPDataService();
                         objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
-                        //    objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0,"","","",0);
                         objDserv.CloseConnection();
                         if (objDsSupplierId != null)
                         {
@@ -1142,7 +1130,7 @@ namespace ROMS
                             }
                         } //objGrnP
                         varGrnId = Convert.ToInt32(pbGRNId);
-                        TRN_GRN objTRNS_GRN = new TRN_GRN();
+                        TRNS_GRN objTRNS_GRN = new TRNS_GRN();
                         objTRNS_GRN.ViewType = varviewtype;
                         objTRNS_GRN.ParaGRNID = varGrnId;
                         objTRNS_GRN.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
@@ -1803,7 +1791,8 @@ namespace ROMS
                                 cmbConcern.Enabled = false;
                                 dpGRNDate.Enabled = false;
                                 txtSupplier.Enabled = false;
-                                cmbOrderType.Enabled = false;
+                                cmbOrderType.Enabled = false; 
+                                this.ActiveControl = dpinvoicedate;
                             }
                             if (objDs.Tables[1].Rows.Count != 0)
                             {
@@ -1832,9 +1821,9 @@ namespace ROMS
                             {
                                 lblDCFinishedNoRecord.Visible = false;
                                 grdReurnDC.Rows.Clear();
-                                grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                                 for (int i = 0; i < objDs.Tables[7].Rows.Count; i++)
                                 {
+                                   // grdReurnDC.Rows[i].Cells["clmRemoveDC"].Value = ""; 
                                     grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[7].Rows[i]["DCNO"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCDATE"]),
                                     Convert.ToString(objDs.Tables[7].Rows[i]["PRCOUNT"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCVALUE"]), Convert.ToString(objDs.Tables[7].Rows[i]["ID"]));
                                 }

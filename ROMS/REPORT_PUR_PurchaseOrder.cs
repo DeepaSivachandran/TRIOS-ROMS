@@ -770,6 +770,7 @@ namespace ROMS
 
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 15;
+                    objMR_Supplier.paraFlag = 1;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     //objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "", 1); 
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -881,8 +882,17 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtProduct.Text.Length > 0)
-                { 
-                 //   objDs = objspdservice.udfnproductmasterlist(49, 0, 0,Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProduct.Text,0, "", "", null, 0, null, "", ""); 
+                {
+
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 49; 
+                    objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
+                    objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
+                    objMR_Product.paraProductName = txtProduct.Text;
+                    
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+
+                    //objDs = objspdservice.udfnproductmasterlist(49, 0, 0,Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, txtProduct.Text,0, "", "", null, 0, null, "", ""); 
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)

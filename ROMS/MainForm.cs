@@ -1503,11 +1503,11 @@ namespace ROMS
         {
             try
             {
-                //udfnCloseChildForms();
-                //if (isClose == false) { return; }
-                //MainForm.objREPORT_CP_Product = new REPORT_PUR_PurchaseOrder();
-                //MainForm.objREPORT_CP_Product.MdiParent = this;
-                //MainForm.objREPORT_CP_Product.Show();
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_PurchaseOrder = new REPORT_PUR_PurchaseOrder();
+                MainForm.objREPORT_PUR_PurchaseOrder.MdiParent = this;
+                MainForm.objREPORT_PUR_PurchaseOrder.Show();
             }
             catch (Exception ex)
             {

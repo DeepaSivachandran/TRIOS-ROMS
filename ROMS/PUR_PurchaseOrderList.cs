@@ -999,6 +999,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Mode of details"].Visible = false;
                             grdPurchaseorderlist.Columns["Issued DATES"].Visible = false;
                             grdPurchaseorderlist.Columns["DTURN"].Visible = false;
+                            grdPurchaseorderlist.Columns["Currentsts"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1587,7 +1588,7 @@ namespace ROMS
                     return;
                 //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
                 //    return;
-                if ((e.ColumnIndex == 0 || e.ColumnIndex == 1 || e.ColumnIndex == 2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                if ((e.ColumnIndex == 0 || e.ColumnIndex == 1 ))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     return;
 
                 if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
