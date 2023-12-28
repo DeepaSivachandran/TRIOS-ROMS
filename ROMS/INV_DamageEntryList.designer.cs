@@ -67,6 +67,7 @@
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.lblShow = new System.Windows.Forms.Label();
             this.cmbDMShow = new System.Windows.Forms.ComboBox();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblToDate = new System.Windows.Forms.Label();
@@ -84,7 +85,6 @@
             this.grpprint = new System.Windows.Forms.GroupBox();
             this.lblSPSCID = new System.Windows.Forms.Label();
             this.lblSPID = new System.Windows.Forms.Label();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
@@ -442,6 +442,7 @@
             // 
             this.grbFilterBy.Controls.Add(this.lblShow);
             this.grbFilterBy.Controls.Add(this.cmbDMShow);
+            this.grbFilterBy.Controls.Add(this.btnPrint);
             this.grbFilterBy.Controls.Add(this.cmbStatus);
             this.grbFilterBy.Controls.Add(this.lblStatus);
             this.grbFilterBy.Controls.Add(this.lblToDate);
@@ -481,10 +482,28 @@
             this.cmbDMShow.Name = "cmbDMShow";
             this.cmbDMShow.Size = new System.Drawing.Size(316, 27);
             this.cmbDMShow.TabIndex = 3;
+            this.cmbDMShow.SelectedIndexChanged += new System.EventHandler(this.CmbDMShow_SelectedIndexChanged);
             this.cmbDMShow.Enter += new System.EventHandler(this.CmbDMShow_Enter);
             this.cmbDMShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDMShow_KeyDown);
             this.cmbDMShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbDMShow_KeyPress);
             this.cmbDMShow.Leave += new System.EventHandler(this.CmbDMShow_Leave);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(1267, 46);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(33, 32);
+            this.btnPrint.TabIndex = 8;
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Visible = false;
+            this.btnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
+            this.btnPrint.Enter += new System.EventHandler(this.BtnPrint_Enter);
+            this.btnPrint.Leave += new System.EventHandler(this.BtnPrint_Leave);
             // 
             // cmbStatus
             // 
@@ -604,11 +623,10 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1264, 48);
+            this.btnExport.Location = new System.Drawing.Point(1228, 46);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(73, 29);
+            this.btnExport.Size = new System.Drawing.Size(33, 32);
             this.btnExport.TabIndex = 7;
-            this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
@@ -619,11 +637,10 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1189, 48);
+            this.btnView.Location = new System.Drawing.Point(1189, 46);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(69, 29);
+            this.btnView.Size = new System.Drawing.Size(33, 32);
             this.btnView.TabIndex = 6;
-            this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
@@ -646,7 +663,6 @@
             // 
             this.grpprint.Controls.Add(this.lblSPSCID);
             this.grpprint.Controls.Add(this.lblSPID);
-            this.grpprint.Controls.Add(this.btnPrint);
             this.grpprint.Controls.Add(this.txtSupplier);
             this.grpprint.Controls.Add(this.label3);
             this.grpprint.Location = new System.Drawing.Point(994, 2);
@@ -674,23 +690,6 @@
             this.lblSPID.Size = new System.Drawing.Size(0, 20);
             this.lblSPID.TabIndex = 1111174;
             this.lblSPID.Visible = false;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(278, 46);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(68, 33);
-            this.btnPrint.TabIndex = 8;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
-            this.btnPrint.Enter += new System.EventHandler(this.BtnPrint_Enter);
-            this.btnPrint.Leave += new System.EventHandler(this.BtnPrint_Leave);
             // 
             // txtSupplier
             // 
