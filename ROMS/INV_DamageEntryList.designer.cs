@@ -235,6 +235,7 @@
             this.grdSupDEList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupDEList.Size = new System.Drawing.Size(1348, 484);
             this.grdSupDEList.TabIndex = 111111149;
+            this.grdSupDEList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupDEList_CellContentClick);
             this.grdSupDEList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupDEList_DataBindingComplete);
             this.grdSupDEList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupDEList_Scroll);
             // 

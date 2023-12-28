@@ -1181,7 +1181,7 @@ namespace ROMS
                             grdSupDEList.DataSource = objDs.Tables[0];
                             //grdSupDEList.Columns["ConcernID"].Visible = false;
                             grdSupDEList.Columns["StatusID"].Visible = false;
-                            //grdSupDEList.Columns["DMID"].Visible = false;
+                            grdSupDEList.Columns["DMID"].Visible = false;
                             grdSupDEList.Columns["SPID"].Visible = false;
                             grdSupDEList.Columns["SPSCID"].Visible = false;
                             grdSupDEList.Columns["S.No."].Width = 50;
@@ -2326,11 +2326,11 @@ namespace ROMS
                         grdSupDEList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdSupDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    //else
-                    //{
-                    //    grdSupDEList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                    //    grdSupDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    //}
+                    else
+                    {
+                        grdSupDEList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdSupDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
@@ -2341,6 +2341,63 @@ namespace ROMS
             finally
             {
                 grdSupDEList.ClearSelection();
+            }
+        }
+
+        private void GrdSupDEList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdSupDEList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmSupPrint":
+                            try
+                            {
+                                string DMID = "0";
+                                DMID = Convert.ToString(grdSupDEList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_SupplierWise.rpt");
+                                    varHeader = "Damage Entry";
+
+                                    objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }
