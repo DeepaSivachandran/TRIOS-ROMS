@@ -805,7 +805,7 @@
             this.btnView.Location = new System.Drawing.Point(302, 20);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(31, 29);
-            this.btnView.TabIndex = 1111239;
+            this.btnView.TabIndex = 1;
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
@@ -818,7 +818,7 @@
             this.dpCreditNoteDate.Location = new System.Drawing.Point(116, 104);
             this.dpCreditNoteDate.Name = "dpCreditNoteDate";
             this.dpCreditNoteDate.Size = new System.Drawing.Size(183, 28);
-            this.dpCreditNoteDate.TabIndex = 1111238;
+            this.dpCreditNoteDate.TabIndex = 4;
             this.dpCreditNoteDate.ValueChanged += new System.EventHandler(this.DpCreditNoteDate_ValueChanged);
             this.dpCreditNoteDate.Enter += new System.EventHandler(this.DpCreditNoteDate_Enter);
             this.dpCreditNoteDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpCreditNoteDate_KeyDown);
@@ -841,7 +841,7 @@
             this.txtCrNo.MaxLength = 50;
             this.txtCrNo.Name = "txtCrNo";
             this.txtCrNo.Size = new System.Drawing.Size(183, 28);
-            this.txtCrNo.TabIndex = 1111236;
+            this.txtCrNo.TabIndex = 3;
             this.txtCrNo.Visible = false;
             this.txtCrNo.Enter += new System.EventHandler(this.TxtCrNo_Enter);
             this.txtCrNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCrNo_KeyDown);
@@ -861,12 +861,14 @@
             // txtAmount
             // 
             this.txtAmount.Location = new System.Drawing.Point(116, 48);
-            this.txtAmount.MaxLength = 50;
+            this.txtAmount.MaxLength = 8;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(183, 28);
-            this.txtAmount.TabIndex = 1111234;
+            this.txtAmount.TabIndex = 2;
+            this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
             this.txtAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAmount_KeyDown);
+            this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAmount_KeyPress);
             this.txtAmount.Leave += new System.EventHandler(this.TxtAmount_Leave);
             // 
             // txtDAmount
@@ -895,7 +897,7 @@
             this.cmbReasonForClosing.Location = new System.Drawing.Point(116, 20);
             this.cmbReasonForClosing.Name = "cmbReasonForClosing";
             this.cmbReasonForClosing.Size = new System.Drawing.Size(183, 28);
-            this.cmbReasonForClosing.TabIndex = 958809;
+            this.cmbReasonForClosing.TabIndex = 0;
             this.cmbReasonForClosing.SelectedIndexChanged += new System.EventHandler(this.CmbReasonForClosing_SelectedIndexChanged);
             this.cmbReasonForClosing.Enter += new System.EventHandler(this.CmbReasonForClosing_Enter);
             this.cmbReasonForClosing.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReasonForClosing_KeyDown);
@@ -949,7 +951,7 @@
             this.btnClose.Location = new System.Drawing.Point(1223, 443);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 1111202;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -977,7 +979,7 @@
             this.btnSave.Location = new System.Drawing.Point(1134, 443);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 1111201;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -1038,8 +1040,7 @@
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(580, 87);
-            this.txtRemarks.TabIndex = 1111174;
-            this.txtRemarks.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRemarks.TabIndex = 5;
             this.txtRemarks.Enter += new System.EventHandler(this.TxtRemarks_Enter);
             this.txtRemarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemarks_KeyDown);
             this.txtRemarks.Leave += new System.EventHandler(this.TxtRemarks_Leave);

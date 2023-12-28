@@ -131,6 +131,7 @@ namespace ROMS
                 btnAdd.Enabled = true;
                 lblTotal.Text = "Actual Total";
             }
+            udfnList();
         }
         public void udfnVocherno()
         {
@@ -273,6 +274,7 @@ namespace ROMS
                 udfnUddtTable();
                 udfnClosingDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dpReturnDCDate.MinDate = MainForm.pbFYStartDate;
                 dpReturnDCDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();
@@ -673,7 +675,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-                    txtProductName.Focus();
+                    
                 }
             }
             catch (Exception ex)
@@ -777,7 +779,7 @@ namespace ROMS
                 }
                 else
                 {
-                    txtProductName.Focus();
+                    cmbReason.Focus();
                 }
             }
             catch (Exception ex)
@@ -903,7 +905,6 @@ namespace ROMS
         {
             try
             {
-                udfnList();
                 cmbReason.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1135,7 +1136,7 @@ namespace ROMS
                         if (txtAmount.Text == "") { varReturnDcAmount = "0"; }
                         else
                         {
-                            varReturnDcAmount = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                            varReturnDcAmount = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
                         }
 
                         if (grdReturnDC.Rows.Count > 0)
@@ -1494,6 +1495,28 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TxtAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void PUR_PurchaseReturns_FormClosing(object sender, FormClosingEventArgs e)
         {
             try

@@ -879,10 +879,10 @@ namespace ROMS
                                 grdReturnDCList.Columns["Status"].Width = 100;
                                 grdReturnDCList.Columns["S.No."].Width = 80;
                                 grdReturnDCList.Columns["ID"].Visible = false;
-                                //grdReturnDCList.Columns["DC_SPID"].Visible = false;
-                                //grdReturnDCList.Columns["Status ID"].Visible = false;
-                                //grdReturnDCList.Columns["COMID"].Visible = false;
-                                //grdReturnDCList.Columns["DC_SPSCID"].Visible = false;
+                                grdReturnDCList.Columns["Concern ID"].Visible = false;
+                                grdReturnDCList.Columns["Supplier ID"].Visible = false;
+                                grdReturnDCList.Columns["Schedule ID"].Visible = false;
+                                grdReturnDCList.Columns["Status ID"].Visible = false;
                             }
                             else
                             {

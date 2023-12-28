@@ -316,6 +316,7 @@ namespace ROMS
                 //objDservice.CloseConnection();
                 //dpDCDate.Text = vardate;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dpDCDate.MinDate = MainForm.pbFYStartDate;
                 dpDCDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();

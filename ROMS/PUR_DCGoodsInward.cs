@@ -37,73 +37,11 @@ namespace ROMS
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
         public int varConcernId = 0, varScheduleId = 0, varSupplierId = 0;
         public string varReturnDCDate = "", varErrQty="0";
-      
+        public string varTodayDate = "";
         public PUR_DCGoodsInward()
         {
             InitializeComponent();
         }
-        //private void btnSave_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-
-        //        errLocation.Clear();
-
-        //        if (txtLocationName.Text.Trim() == "")
-        //        {
-        //            errLocation.SetError(txtLocationName, "Please enter location name ");
-        //            txtLocationName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-        //            tplocationname.ShowAlways = true;
-        //            tplocationname.Show("Please enter location name", txtLocationName, 5000);
-        //            txtLocationName.Text = "";
-        //        }
-        //        if (txtLocationName.Text.Trim() == "")
-        //        {
-        //            txtLocationName.Focus();
-        //            return;
-        //        }
-        //        SPDataService objspdservice = new SPDataService();
-
-        //        string result = "";
-        //        if (btnSave.Text == "Save")
-        //        {
-        //          //  result = objspdservice.udfnSPLocationMaster("Create", "0",txtLocationName.Text,cmbSlNo.SelectedValue.ToString() , MainForm.pbUserID, MainForm.pbIpAddress, "Location Create");
-
-        //        }
-        //        else
-        //        {
-        //          //  result = objspdservice.udfnSPLocationMaster("Update", varlocationcode, txtLocationName.Text, cmbSlNo.SelectedValue.ToString(), MainForm.pbUserID, MainForm.pbIpAddress, "Location Update");
-        //        }
-        //        string[] varvalue = result.Split('~');
-        //        if (varvalue[0] == "3")
-        //        {
-        //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //            if (btnSave.Text == "Update")
-        //            {
-        //                this.Close();
-        //            }
-        //            else
-        //            {
-        //                udfnclear();
-        //            }
-
-        //            MainForm.objPUR_DCGoodsInwardList.udfnList();
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            if (varvalue[1].Contains("Order number")) {// udfnSINO();
-        //            }
-        //        }
-        //        objspdservice.CloseConnection();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -116,7 +54,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
@@ -174,6 +111,7 @@ namespace ROMS
         {
             try
             {
+                varTodayDate = Convert.ToString(MainForm.pbCurrentDate);
                 udfnUddtTable();
                 EditLoad();
             }
@@ -1066,6 +1004,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnClose_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdProductExchage_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1492,7 +1444,7 @@ namespace ROMS
                     {
                         varExpiryDate = varDay + "/" + varMonth + "/" + varYear;
                     }
-                    objDS = objDServ.udfnMaster(10, 0, 0,varReturnDCDate, varExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
+                    objDS = objDServ.udfnMaster(10, 0, 0, varTodayDate, varExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
@@ -1998,7 +1950,7 @@ namespace ROMS
                         {
                             SPDataService objspdservice = new SPDataService();
                             DataSet objDs = new DataSet();
-                            objDs = objspdservice.udfnMaster(15, 0, 0,varReturnDCDate, "", Convert.ToInt32(lblProductcode.Text), "", 0);
+                            objDs = objspdservice.udfnMaster(15, 0, 0, varTodayDate, "", Convert.ToInt32(lblProductcode.Text), "", 0);
                             objspdservice.CloseConnection();
                             if (objDs.Tables[0] != null)
                             {
