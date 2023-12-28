@@ -338,13 +338,14 @@
             this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
             this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDamage.Location = new System.Drawing.Point(441, 513);
+            this.btnDamage.Location = new System.Drawing.Point(404, 513);
             this.btnDamage.Name = "btnDamage";
             this.btnDamage.Size = new System.Drawing.Size(90, 29);
             this.btnDamage.TabIndex = 1111204;
             this.btnDamage.Text = "Damages";
             this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDamage.UseVisualStyleBackColor = true;
+            this.btnDamage.Visible = false;
             this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
             // 
             // chkCompleted
@@ -497,9 +498,9 @@
             this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDC.Location = new System.Drawing.Point(300, 513);
             this.btnDC.Name = "btnDC";
-            this.btnDC.Size = new System.Drawing.Size(134, 29);
+            this.btnDC.Size = new System.Drawing.Size(101, 29);
             this.btnDC.TabIndex = 1111181;
-            this.btnDC.Text = "Purchase Return";
+            this.btnDC.Text = "Return DC";
             this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDC.UseVisualStyleBackColor = true;
             this.btnDC.Click += new System.EventHandler(this.BtnDC_Click);

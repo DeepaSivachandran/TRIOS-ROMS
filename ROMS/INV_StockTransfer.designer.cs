@@ -305,7 +305,7 @@
             this.lvSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvSLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSLocation.HideSelection = false;
-            this.lvSLocation.Location = new System.Drawing.Point(450, 80);
+            this.lvSLocation.Location = new System.Drawing.Point(450, 81);
             this.lvSLocation.Name = "lvSLocation";
             this.lvSLocation.Size = new System.Drawing.Size(327, 115);
             this.lvSLocation.TabIndex = 111111131;
@@ -336,7 +336,7 @@
             this.lvDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvDLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvDLocation.HideSelection = false;
-            this.lvDLocation.Location = new System.Drawing.Point(891, 147);
+            this.lvDLocation.Location = new System.Drawing.Point(789, 147);
             this.lvDLocation.Name = "lvDLocation";
             this.lvDLocation.Size = new System.Drawing.Size(305, 220);
             this.lvDLocation.TabIndex = 111111140;
@@ -419,6 +419,7 @@
             this.grdStockTransfer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellContentClick);
             this.grdStockTransfer.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellEndEdit);
             this.grdStockTransfer.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockTransfer_DataBindingComplete);
+            this.grdStockTransfer.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdStockTransfer_EditingControlShowing);
             // 
             // clmdsno
             // 
@@ -778,7 +779,7 @@
             // lblDestRack
             // 
             this.lblDestRack.AutoSize = true;
-            this.lblDestRack.Location = new System.Drawing.Point(1069, 15);
+            this.lblDestRack.Location = new System.Drawing.Point(920, 15);
             this.lblDestRack.Name = "lblDestRack";
             this.lblDestRack.Size = new System.Drawing.Size(100, 20);
             this.lblDestRack.TabIndex = 1111241;
@@ -802,16 +803,16 @@
             this.txtSRack.MaxLength = 100;
             this.txtSRack.Name = "txtSRack";
             this.txtSRack.ReadOnly = true;
-            this.txtSRack.Size = new System.Drawing.Size(150, 27);
+            this.txtSRack.Size = new System.Drawing.Size(108, 27);
             this.txtSRack.TabIndex = 5;
             // 
             // cmbDRack
             // 
             this.cmbDRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDRack.FormattingEnabled = true;
-            this.cmbDRack.Location = new System.Drawing.Point(1069, 40);
+            this.cmbDRack.Location = new System.Drawing.Point(920, 40);
             this.cmbDRack.Name = "cmbDRack";
-            this.cmbDRack.Size = new System.Drawing.Size(121, 27);
+            this.cmbDRack.Size = new System.Drawing.Size(270, 27);
             this.cmbDRack.TabIndex = 11;
             this.cmbDRack.Enter += new System.EventHandler(this.CmbDRack_Enter);
             this.cmbDRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDRack_KeyDown);
@@ -821,7 +822,7 @@
             // lblDestinationGodown
             // 
             this.lblDestinationGodown.AutoSize = true;
-            this.lblDestinationGodown.Location = new System.Drawing.Point(885, 15);
+            this.lblDestinationGodown.Location = new System.Drawing.Point(783, 15);
             this.lblDestinationGodown.Name = "lblDestinationGodown";
             this.lblDestinationGodown.Size = new System.Drawing.Size(71, 20);
             this.lblDestinationGodown.TabIndex = 90;
@@ -854,10 +855,10 @@
             // txtDLocation
             // 
             this.txtDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDLocation.Location = new System.Drawing.Point(885, 40);
+            this.txtDLocation.Location = new System.Drawing.Point(783, 40);
             this.txtDLocation.MaxLength = 100;
             this.txtDLocation.Name = "txtDLocation";
-            this.txtDLocation.Size = new System.Drawing.Size(178, 27);
+            this.txtDLocation.Size = new System.Drawing.Size(131, 27);
             this.txtDLocation.TabIndex = 10;
             this.txtDLocation.TextChanged += new System.EventHandler(this.TxtDLocation_TextChanged);
             this.txtDLocation.Enter += new System.EventHandler(this.TxtDLocation_Enter);
@@ -867,7 +868,7 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
-            this.textBox5.Location = new System.Drawing.Point(454, 40);
+            this.textBox5.Location = new System.Drawing.Point(412, 40);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(17, 27);
@@ -886,26 +887,26 @@
             // 
             this.txtStockQty.BackColor = System.Drawing.SystemColors.Control;
             this.txtStockQty.Enabled = false;
-            this.txtStockQty.Location = new System.Drawing.Point(809, 40);
+            this.txtStockQty.Location = new System.Drawing.Point(711, 40);
             this.txtStockQty.Name = "txtStockQty";
             this.txtStockQty.ReadOnly = true;
-            this.txtStockQty.Size = new System.Drawing.Size(70, 27);
+            this.txtStockQty.Size = new System.Drawing.Size(66, 27);
             this.txtStockQty.TabIndex = 9;
             this.txtStockQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtBatchNo
             // 
             this.txtBatchNo.Enabled = false;
-            this.txtBatchNo.Location = new System.Drawing.Point(649, 40);
+            this.txtBatchNo.Location = new System.Drawing.Point(598, 40);
             this.txtBatchNo.Name = "txtBatchNo";
             this.txtBatchNo.ReadOnly = true;
-            this.txtBatchNo.Size = new System.Drawing.Size(154, 27);
+            this.txtBatchNo.Size = new System.Drawing.Size(107, 27);
             this.txtBatchNo.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(809, 15);
+            this.label1.Location = new System.Drawing.Point(711, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 20);
             this.label1.TabIndex = 958817;
@@ -914,26 +915,26 @@
             // txtMRP
             // 
             this.txtMRP.Enabled = false;
-            this.txtMRP.Location = new System.Drawing.Point(471, 40);
+            this.txtMRP.Location = new System.Drawing.Point(429, 40);
             this.txtMRP.Name = "txtMRP";
             this.txtMRP.ReadOnly = true;
-            this.txtMRP.Size = new System.Drawing.Size(91, 27);
+            this.txtMRP.Size = new System.Drawing.Size(78, 27);
             this.txtMRP.TabIndex = 6;
             this.txtMRP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtExpiryDate
             // 
             this.txtExpiryDate.Enabled = false;
-            this.txtExpiryDate.Location = new System.Drawing.Point(568, 40);
+            this.txtExpiryDate.Location = new System.Drawing.Point(513, 40);
             this.txtExpiryDate.Name = "txtExpiryDate";
             this.txtExpiryDate.ReadOnly = true;
-            this.txtExpiryDate.Size = new System.Drawing.Size(75, 27);
+            this.txtExpiryDate.Size = new System.Drawing.Size(79, 27);
             this.txtExpiryDate.TabIndex = 7;
             // 
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(568, 15);
+            this.lblStock.Location = new System.Drawing.Point(513, 15);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(70, 20);
             this.lblStock.TabIndex = 958822;
@@ -963,7 +964,7 @@
             // lblBatchNo
             // 
             this.lblBatchNo.AutoSize = true;
-            this.lblBatchNo.Location = new System.Drawing.Point(649, 15);
+            this.lblBatchNo.Location = new System.Drawing.Point(598, 15);
             this.lblBatchNo.Name = "lblBatchNo";
             this.lblBatchNo.Size = new System.Drawing.Size(61, 20);
             this.lblBatchNo.TabIndex = 958815;
@@ -972,7 +973,7 @@
             // lblMRP
             // 
             this.lblMRP.AutoSize = true;
-            this.lblMRP.Location = new System.Drawing.Point(454, 15);
+            this.lblMRP.Location = new System.Drawing.Point(412, 15);
             this.lblMRP.Name = "lblMRP";
             this.lblMRP.Size = new System.Drawing.Size(34, 20);
             this.lblMRP.TabIndex = 958813;
@@ -980,10 +981,10 @@
             // 
             // txtProductNamePICode
             // 
-            this.txtProductNamePICode.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+            this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProductNamePICode.Location = new System.Drawing.Point(5, 40);
             this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(287, 26);
+            this.txtProductNamePICode.Size = new System.Drawing.Size(287, 27);
             this.txtProductNamePICode.TabIndex = 4;
             this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
             this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);

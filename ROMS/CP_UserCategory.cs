@@ -403,12 +403,22 @@ namespace ROMS
                 txtCategoryName.Text = PbUserCategoryName;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 cmbCTSINO.SelectedValue = PbOrderNo;
+                if(PbStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnDisable()
+        {
+            txtCategoryName.Enabled = false;
+            cmbCTSINO.Enabled = false;
+            this.ActiveControl = rbInactive;
         }
         private void TxtCategoryName_Enter(object sender, EventArgs e)
         {

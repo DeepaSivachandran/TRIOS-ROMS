@@ -106,7 +106,7 @@
             this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.grdPurchaseOrder.RowTemplate.Height = 25;
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseOrder.Size = new System.Drawing.Size(1116, 435);
+            this.grdPurchaseOrder.Size = new System.Drawing.Size(1051, 435);
             this.grdPurchaseOrder.TabIndex = 1111144;
             this.grdPurchaseOrder.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseOrder_DataBindingComplete);
             // 
@@ -228,6 +228,7 @@
             this.clmQtyUnit.HeaderText = "Unit";
             this.clmQtyUnit.Name = "clmQtyUnit";
             this.clmQtyUnit.ReadOnly = true;
+            this.clmQtyUnit.Visible = false;
             this.clmQtyUnit.Width = 70;
             // 
             // clmRcvdQty
@@ -264,7 +265,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1138, 488);
+            this.ClientSize = new System.Drawing.Size(1073, 488);
             this.Controls.Add(this.txtUserData);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblNoRecordsFound);

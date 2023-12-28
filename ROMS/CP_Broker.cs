@@ -86,6 +86,10 @@ namespace ROMS
                         }
                     }
                 }
+                if(varstatus == 2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
@@ -96,6 +100,22 @@ namespace ROMS
             {
                 grdBankDetails.ClearSelection();
             }
+        }
+        public void udfnDisable()
+        {
+            txtBrokerConcern.Enabled = false;
+            txtGstinNo.Enabled = false;
+            txtBrokerName.Enabled = false;
+            txtMobileNo.Enabled = false;
+            txtWhatsAppNo.Enabled = false;
+            txtAddressLine1.Enabled = false;
+            txtAddressLine2.Enabled = false;
+            cmbState.Enabled = false;
+            txtCity.Enabled = false;
+            btnAdd.Enabled = false;
+            txtPincode.Enabled = false;
+            groupBox2.Enabled = false;
+            this.ActiveControl = rbInactive;
         }
         public void udfnSave(object sender, EventArgs e)
         {

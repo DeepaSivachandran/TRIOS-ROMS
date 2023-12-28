@@ -117,12 +117,25 @@ namespace ROMS
                 cmbConcern.Enabled = false;
                 //cmbStockLocation.SelectedValue = PbStockLocationID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                if(PbStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnDisable()
+        {
+            cmbConcern.Enabled = false;
+            txtLocation.Enabled = false;
+            txtRackName.Enabled = false;
+            txtShortName.Enabled = false;
+            txtDescription.Enabled = false;
+            this.ActiveControl = rbInactive;
         }
         public void udfnSave(object sender, EventArgs e)
         {

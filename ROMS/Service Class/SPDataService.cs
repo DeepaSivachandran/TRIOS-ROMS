@@ -728,6 +728,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRequestDate", objTRNS_StockRequest.paraRequestDate);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRNS_StockRequest.paraRemarks);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRNS_StockRequest.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRNS_StockRequest.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_StockRequest.paraOriginator);
@@ -2112,7 +2113,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaUnitId", ParaUnitId);
                 varSqlCommand.Parameters.AddWithValue("@paraTotalKg", paraTotalKg);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                //varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -2232,7 +2233,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 17/10/2023 for purchase damage list
-        public DataSet udfnReturnDC(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID)
+        public DataSet udfnReturnDC(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string paraDCIDs)
         {
             DataSet ds = new DataSet();
             try
@@ -2251,6 +2252,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaPO", ParaPO);
                 varSqlCommand.Parameters.AddWithValue("@ParaGroupID", ParaGroupID);
                 varSqlCommand.Parameters.AddWithValue("@ParaSubGroupID", ParaSubGroupID);
+                varSqlCommand.Parameters.AddWithValue("@paraDCIDs", paraDCIDs);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2267,7 +2269,8 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 17/10/2023 for PO list
-        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID, string ParaPOFromDate, string ParaPOToDate, int paraPOID, int paraStatus, string paraPendingPOIDs, int parafilter,int paraProductCode)
+        public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID, string ParaPOFromDate,
+            string ParaPOToDate, int paraPOID, int paraStatus, string paraPendingPOIDs, int parafilter,int paraProductCode,int paraOrdertype,int paraCityid,int paraDTAT,int paraGRNstatus)
         {
             DataSet ds = new DataSet();
             try
@@ -2293,6 +2296,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPendingPOIDs", paraPendingPOIDs);
                 varSqlCommand.Parameters.AddWithValue("@parafilter", parafilter);
                 varSqlCommand.Parameters.AddWithValue("@paraProductCode", paraProductCode);
+                varSqlCommand.Parameters.AddWithValue("@paraOrdertype", paraOrdertype);
+                varSqlCommand.Parameters.AddWithValue("@paraCityid", paraCityid);
+                varSqlCommand.Parameters.AddWithValue("@paraDTAT", paraDTAT);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNstatus", paraGRNstatus);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
