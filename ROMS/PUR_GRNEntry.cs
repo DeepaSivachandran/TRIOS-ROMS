@@ -1130,7 +1130,7 @@ namespace ROMS
                             }
                         } //objGrnP
                         varGrnId = Convert.ToInt32(pbGRNId);
-                        TRNS_GRN objTRNS_GRN = new TRNS_GRN();
+                        TRN_GRN objTRNS_GRN = new TRN_GRN();
                         objTRNS_GRN.ViewType = varviewtype;
                         objTRNS_GRN.ParaGRNID = varGrnId;
                         objTRNS_GRN.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
