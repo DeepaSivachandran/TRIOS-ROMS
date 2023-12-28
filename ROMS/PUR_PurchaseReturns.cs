@@ -23,7 +23,7 @@ namespace ROMS
         private ToolTip tpReason = new ToolTip();
         private ToolTip tpDcNo = new ToolTip();
 
-        public int varReturnDCID = 0;
+        public int varReturnDCID = 0, varCloseFlag=0;
         public int pbScheduleid = 0, pbSupplierId=0;
         public string varSuppliervalue = "";
         DataTable dtPurchaseReturnDC = new DataTable();
@@ -35,7 +35,11 @@ namespace ROMS
         {
             try
             {
-
+                tpcompanyname.Active = false;
+                tpSupplier.Active = false;
+                tpSuppliername.Active = false;
+                tpReason.Active = false;
+                tpDcNo.Active = false;
             }
             catch (Exception ex)
             {
@@ -101,11 +105,7 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -1127,10 +1127,17 @@ namespace ROMS
                     if (varErrorFlag == true)
                     {
                         udfnTooltipHide(); int varDC_PURID = 0; int varReasonforClosingId = 0;
-                        if(varReturnDCID!=0)
+                        string varReturnDcAmount = ""; int varStatusID = 15;
+                        if (varReturnDCID!=0)
                         {  varReasonforClosingId =Convert.ToInt32(cmbReasonForClosing.SelectedValue); }
                         else { varReasonforClosingId = 0; }
-                        int varStatusID = 15;
+
+                        if (txtAmount.Text == "") { varReturnDcAmount = "0"; }
+                        else
+                        {
+                            varReturnDcAmount = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                        }
+
                         if (grdReturnDC.Rows.Count > 0)
                         {
                             dtPurchaseReturnDC.Rows.Clear();
@@ -1152,7 +1159,7 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    varviewtype = 3;
+                                    varviewtype = 1;
                                     varorginator = "Purchase Return DC updation";
                                 }
                                 TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
@@ -1172,7 +1179,7 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.paraReturnDC_Remarks = txtRemarks.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraStatusID = varStatusID;
                                 objTRN_PurchaseReturnDC.paraClosingReasonId = varReasonforClosingId;
-                                objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDecimal(txtAmount.Text.Trim());
+                                objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDecimal(varReturnDcAmount);
                                 objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
@@ -1184,8 +1191,12 @@ namespace ROMS
                                 {
                                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     this.ActiveControl = txtSupplier;
+                                    if (varReturnDCID != 0)
+                                    {
+                                        varCloseFlag = 1;
+                                    }
                                     udfnclose();
-                                    //MainForm.objPUR_PurchaseDCList.udfnList();
+                                    MainForm.objPUR_PurchaseDCList.udfnList();
                                 }
                                 else if (varvalue[0] == "4")
                                 {
@@ -1451,6 +1462,63 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void PUR_PurchaseReturns_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave.Focus();
+                    BtnSave_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void PUR_PurchaseReturns_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnTooltipHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void PUR_PurchaseReturns_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (varCloseFlag == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void BtnClose_KeyDown(object sender, KeyEventArgs e)
         {
             try

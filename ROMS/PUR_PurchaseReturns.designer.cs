@@ -1275,7 +1275,10 @@
             this.Name = "PUR_PurchaseReturns";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Returns";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PUR_PurchaseReturns_FormClosing);
             this.Load += new System.EventHandler(this.PUR_PurchaseReturns_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseReturns_KeyDown);
+            this.Leave += new System.EventHandler(this.PUR_PurchaseReturns_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).EndInit();
             this.tsPurchaseInvoiceList.ResumeLayout(false);
             this.tsPurchaseInvoiceList.PerformLayout();
