@@ -1948,6 +1948,7 @@ namespace ROMS
         {
             try
             {
+                txtSearchProductName1.Text = "";
                 if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
@@ -2209,6 +2210,7 @@ namespace ROMS
         {
             try
             {
+                txtSearchProductName2.Text = "";
                 if (DGV_SearchGridMove.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
@@ -2669,11 +2671,11 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbSourceRack.Select(int.MaxValue, 0)));
-                if (cmbSourceRack.SelectedValue == null)
+                if (cmbSourceRack.Text == "None")
                 { varSourceRackID = 0; }
                 else
                 { varSourceRackID = Convert.ToInt32(cmbSourceRack.SelectedValue); }
-                if (varSourceLocationID != 0 && varSourceRackID!=-1)
+                if (varSourceLocationID != 0 && varSourceRackID!=-1 && cmbSourceRack.Text!="")
                 {
                     productid = 0;
                     udfnProductLoad();
