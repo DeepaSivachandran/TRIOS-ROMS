@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -49,10 +49,10 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnRemarks = new System.Windows.Forms.Button();
             this.gbshelfLife = new System.Windows.Forms.GroupBox();
-            this.lblDPercentage = new System.Windows.Forms.Label();
-            this.lblPercentage = new System.Windows.Forms.Label();
+            this.lbltwentyfiveper = new System.Windows.Forms.Label();
+            this.lblFivetyPercentage = new System.Windows.Forms.Label();
             this.txtRDPercentageCheck = new System.Windows.Forms.TextBox();
-            this.txtDGPercentageCheck = new System.Windows.Forms.TextBox();
+            this.txtORPercentageCheck = new System.Windows.Forms.TextBox();
             this.grbgodown = new System.Windows.Forms.GroupBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
@@ -277,10 +277,10 @@
             // 
             // gbshelfLife
             // 
-            this.gbshelfLife.Controls.Add(this.lblDPercentage);
-            this.gbshelfLife.Controls.Add(this.lblPercentage);
+            this.gbshelfLife.Controls.Add(this.lbltwentyfiveper);
+            this.gbshelfLife.Controls.Add(this.lblFivetyPercentage);
             this.gbshelfLife.Controls.Add(this.txtRDPercentageCheck);
-            this.gbshelfLife.Controls.Add(this.txtDGPercentageCheck);
+            this.gbshelfLife.Controls.Add(this.txtORPercentageCheck);
             this.gbshelfLife.Location = new System.Drawing.Point(604, 568);
             this.gbshelfLife.Name = "gbshelfLife";
             this.gbshelfLife.Size = new System.Drawing.Size(187, 42);
@@ -289,29 +289,32 @@
             this.gbshelfLife.Text = "Shelf Life";
             this.gbshelfLife.TextChanged += new System.EventHandler(this.GbshelfLife_TextChanged);
             // 
-            // lblDPercentage
+            // lbltwentyfiveper
             // 
-            this.lblDPercentage.AutoSize = true;
-            this.lblDPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDPercentage.Location = new System.Drawing.Point(131, 18);
-            this.lblDPercentage.Name = "lblDPercentage";
-            this.lblDPercentage.Size = new System.Drawing.Size(45, 20);
-            this.lblDPercentage.TabIndex = 1111159;
-            this.lblDPercentage.Text = "< 25%";
+            this.lbltwentyfiveper.AutoSize = true;
+            this.lbltwentyfiveper.Enabled = false;
+            this.lbltwentyfiveper.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltwentyfiveper.Location = new System.Drawing.Point(131, 18);
+            this.lbltwentyfiveper.Name = "lbltwentyfiveper";
+            this.lbltwentyfiveper.Size = new System.Drawing.Size(45, 20);
+            this.lbltwentyfiveper.TabIndex = 1111159;
+            this.lbltwentyfiveper.Text = "< 25%";
             // 
-            // lblPercentage
+            // lblFivetyPercentage
             // 
-            this.lblPercentage.AutoSize = true;
-            this.lblPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentage.Location = new System.Drawing.Point(43, 18);
-            this.lblPercentage.Name = "lblPercentage";
-            this.lblPercentage.Size = new System.Drawing.Size(45, 20);
-            this.lblPercentage.TabIndex = 1111158;
-            this.lblPercentage.Text = "< 50%";
+            this.lblFivetyPercentage.AutoSize = true;
+            this.lblFivetyPercentage.Enabled = false;
+            this.lblFivetyPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFivetyPercentage.Location = new System.Drawing.Point(43, 18);
+            this.lblFivetyPercentage.Name = "lblFivetyPercentage";
+            this.lblFivetyPercentage.Size = new System.Drawing.Size(45, 20);
+            this.lblFivetyPercentage.TabIndex = 1111158;
+            this.lblFivetyPercentage.Text = "< 50%";
             // 
             // txtRDPercentageCheck
             // 
             this.txtRDPercentageCheck.BackColor = System.Drawing.Color.Red;
+            this.txtRDPercentageCheck.Enabled = false;
             this.txtRDPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRDPercentageCheck.Location = new System.Drawing.Point(104, 20);
             this.txtRDPercentageCheck.MaxLength = 50;
@@ -320,16 +323,17 @@
             this.txtRDPercentageCheck.Size = new System.Drawing.Size(27, 16);
             this.txtRDPercentageCheck.TabIndex = 1111157;
             // 
-            // txtDGPercentageCheck
+            // txtORPercentageCheck
             // 
-            this.txtDGPercentageCheck.BackColor = System.Drawing.Color.Orange;
-            this.txtDGPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDGPercentageCheck.Location = new System.Drawing.Point(16, 20);
-            this.txtDGPercentageCheck.MaxLength = 50;
-            this.txtDGPercentageCheck.Multiline = true;
-            this.txtDGPercentageCheck.Name = "txtDGPercentageCheck";
-            this.txtDGPercentageCheck.Size = new System.Drawing.Size(27, 16);
-            this.txtDGPercentageCheck.TabIndex = 1111156;
+            this.txtORPercentageCheck.BackColor = System.Drawing.Color.Orange;
+            this.txtORPercentageCheck.Enabled = false;
+            this.txtORPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtORPercentageCheck.Location = new System.Drawing.Point(16, 20);
+            this.txtORPercentageCheck.MaxLength = 50;
+            this.txtORPercentageCheck.Multiline = true;
+            this.txtORPercentageCheck.Name = "txtORPercentageCheck";
+            this.txtORPercentageCheck.Size = new System.Drawing.Size(27, 16);
+            this.txtORPercentageCheck.TabIndex = 1111156;
             // 
             // grbgodown
             // 
@@ -533,14 +537,14 @@
             this.grdInward.AllowUserToResizeRows = false;
             this.grdInward.BackgroundColor = System.Drawing.Color.White;
             this.grdInward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdInward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdInward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.grdInward.ColumnHeadersHeight = 30;
             this.grdInward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdInward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -563,23 +567,23 @@
             this.clmSLID,
             this.clmUTID,
             this.clmremove});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdInward.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdInward.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdInward.EnableHeadersVisualStyles = false;
             this.grdInward.GridColor = System.Drawing.Color.White;
             this.grdInward.Location = new System.Drawing.Point(3, 146);
             this.grdInward.Name = "grdInward";
             this.grdInward.ReadOnly = true;
             this.grdInward.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdInward.RowTemplate.Height = 25;
             this.grdInward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInward.ShowRowErrors = false;
@@ -883,6 +887,7 @@
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(75, 27);
             this.txtMrp.TabIndex = 7;
+            this.txtMrp.TextChanged += new System.EventHandler(this.TxtMrp_TextChanged);
             this.txtMrp.Enter += new System.EventHandler(this.TxtMrp_Enter);
             this.txtMrp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMrp_KeyDown);
             this.txtMrp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMrp_KeyPress);
@@ -1059,10 +1064,10 @@
         private System.Windows.Forms.Label lblDd;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox gbshelfLife;
-        private System.Windows.Forms.Label lblDPercentage;
-        private System.Windows.Forms.Label lblPercentage;
+        private System.Windows.Forms.Label lbltwentyfiveper;
+        private System.Windows.Forms.Label lblFivetyPercentage;
         private System.Windows.Forms.TextBox txtRDPercentageCheck;
-        private System.Windows.Forms.TextBox txtDGPercentageCheck;
+        private System.Windows.Forms.TextBox txtORPercentageCheck;
         private System.Windows.Forms.TextBox textBox4;
         public System.Windows.Forms.Button btnRemarks;
         private System.Windows.Forms.TextBox txtunit;

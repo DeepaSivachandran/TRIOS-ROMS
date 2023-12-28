@@ -1444,7 +1444,7 @@ namespace ROMS
                         txtProductName.Text = "";
                         varPRID = "0";
                         //udfnProductCount();
-                        //udfnShelflifeCheck();
+                        udfnShelflifeCheck();
                     }
                 }
             }
@@ -1458,34 +1458,47 @@ namespace ROMS
                 grdInward.ClearSelection();
             }
         }
-        //public void udfnShelflifeCheck()
-        //{
-        //    try
-        //    {
-        //        for(int i =0;i < grdInward.Rows.Count;i++)
-        //        {
-        //            if (Convert.ToInt32(varShelflifevalue) >= 0 && Convert.ToInt32(varShelflifevalue) <= 25)
-        //            {
-        //                txtRDPercentageCheck.Enabled = true;
-        //                lblDPercentage.Enabled = true;
-        //                txtDGPercentageCheck.Enabled = false;
-        //                lblPercentage.Enabled = false;
-        //            }
-        //            else if (Convert.ToInt32(varShelflifevalue) >= 26 && Convert.ToInt32(varShelflifevalue) <= 50)
-        //            {
-        //                txtDGPercentageCheck.Enabled = true;
-        //                lblPercentage.Enabled = true;
-        //                txtRDPercentageCheck.Enabled = false;
-        //                lblDPercentage.Enabled = false;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
+        public void udfnShelflifeCheck()
+        {
+            try
+            {
+                string[] varShelflifeper = Convert.ToString(varShelflifevalue).Split(' ');
+                if (varShelflifeper[0] != "")
+                {
+                    if (Convert.ToDecimal(varShelflifeper[0]) > 26 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                    {
+                        DataGridView dataGridView = grdInward;
+                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                        cell.Style.BackColor = Color.Orange;
+                        cell.Style.ForeColor = Color.Black;
+                        txtORPercentageCheck.Enabled = true;
+                        lblFivetyPercentage.Enabled = true;
+                    }
+                    else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                    {
+                        DataGridView dataGridView = grdInward;
+                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                        cell.Style.BackColor = Color.Red;
+                        cell.Style.ForeColor = Color.Black;
+                        txtRDPercentageCheck.Enabled = true;
+                        lbltwentyfiveper.Enabled = true;
+                    }
+                    else
+                    {
+                        DataGridView dataGridView = grdInward;
+                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                        cell.Style.BackColor = Color.White;
+                        cell.Style.ForeColor = Color.Black;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtDay_Enter(object sender, EventArgs e)
         {
             try
@@ -1833,6 +1846,19 @@ namespace ROMS
             }
         }
 
+        private void TxtMrp_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMrp.TextAlign = HorizontalAlignment.Right;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdInward_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1904,7 +1930,7 @@ namespace ROMS
                 if(Convert.ToInt32(varShelflifevalue)<25)
                 {
                     txtRDPercentageCheck.Enabled = true;
-                    lblDPercentage.Enabled = true;
+                    lbltwentyfiveper.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -1913,7 +1939,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfntooltiphide()
+        {
+            try
+            {
+                tpCompany.Active = false;
+                tpDay.Active = false;
+                tpMonth.Active = false;
+                tpYear.Active = false;
+                tpBatchNo.Active = false;
+                tpQuantity.Active = false;
+                tpStockLocation.Active = false;
+                tpProduct.Active = false;
+                tpTransactionType.Active = false;
+                tpmrp.Active = false;
+                tpbatch.Active = false;
+                tprack.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void INV_Inward_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1922,6 +1970,7 @@ namespace ROMS
                 {
                     lvproduct.Visible = false;
                     lvStockLocation.Visible = false;
+                    udfntooltiphide();
                     udfnclose();
                 }
                 if (e.KeyCode == Keys.F5)
