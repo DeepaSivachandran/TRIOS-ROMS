@@ -76,6 +76,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGridColumn()
+        {
+            try
+            {
+                DGV_SearchGrid.Columns.Add("clmPIcode", "P.I Code");
+                DGV_SearchGrid.Columns.Add("clmProductName", "Product Name in Tamil");
+                DGV_SearchGrid.Columns.Add("clmUnit", "Unit");
+                DGV_SearchGridMove.Columns.Add("clmRemove", "Remove");
+                DGV_SearchGridMove.Columns.Add("clmPIcode", "P.I Code");
+                DGV_SearchGridMove.Columns.Add("clmProductName", "Product Name in Tamil");
+                DGV_SearchGridMove.Columns.Add("clmUnit", "Unit");
+                DGV_SearchGrid.Columns["clmProductName"].Width = 250;
+                DGV_SearchGridMove.Columns["clmProductName"].Width = 250;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
             try
@@ -693,11 +713,12 @@ namespace ROMS
                         //grdViewProduct.Columns["PRODUCTID"].Visible = false;
                         grdViewProduct.Columns["P.I Code"].Width = 100;
                         grdViewProduct.Columns["Product Name in English"].Width = 250;
-                        grdViewProduct.Columns["Product Name in Tamil"].Width = 250;
+                        grdViewProduct.Columns["Product Name in Tamil"].Width = 300;
                         grdViewProduct.Columns["S.No."].ReadOnly = true;
                         grdViewProduct.Columns["P.I Code"].ReadOnly = true;
                         grdViewProduct.Columns["Product Name in English"].ReadOnly = true;
                         grdViewProduct.Columns["Product Name in Tamil"].ReadOnly = true;
+                        grdViewProduct.Columns["Product Name in English"].Visible = false;
                         grdViewProduct.Columns["Unit"].ReadOnly = true;
                         grdViewProduct.Columns["PRODUCTID"].Visible = false;
                         grdViewProduct.Columns["S.No."].Visible = false;
@@ -1334,6 +1355,7 @@ namespace ROMS
                     //grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                     //grdMoveProduct.Columns["Unit"].ReadOnly = true;
                     grdMoveProduct.Columns[0].ReadOnly = false;
+                    grdMoveProduct.Columns["Product Name in English"].Visible = false;
                     RemoveProduct();
                     grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     udfnSearchGridHeadMove();
@@ -2306,6 +2328,7 @@ namespace ROMS
                 udfnCmbConcern();
                 udfnCmbSourceRack();
                 udfnCmbDestinationRack();
+                udfnGridColumn();
                 txtSourceLocation.Focus();
                 this.ActiveControl = txtSourceLocation;
             }
