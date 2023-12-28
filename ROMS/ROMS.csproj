@@ -226,12 +226,6 @@
     <Compile Include="PUR_POScheduleSummary.designer.cs">
       <DependentUpon>PUR_POScheduleSummary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RPT_CP_HSN_Subgroup1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_CP_HSN_Subgroup.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Product.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
