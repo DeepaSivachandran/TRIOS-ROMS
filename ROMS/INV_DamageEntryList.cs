@@ -1056,7 +1056,7 @@ namespace ROMS
                             //grdProDEList.Columns["DMID"].Visible = false;
                             //grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdProDEList.Columns["S.No."].Width = 50;
-                            grdProDEList.Columns["Entry Status"].Width = 150;
+                            grdProDEList.Columns["Status"].Width = 150;
                             grdProDEList.Columns["Product Status"].Width = 150;
                             grdProDEList.Columns["PICode"].Width = 150;
                             grdProDEList.Columns["Product"].Width = 280;
@@ -1183,7 +1183,7 @@ namespace ROMS
                             grdSupDEList.Columns["SPID"].Visible = false;
                             grdSupDEList.Columns["SPSCID"].Visible = false;
                             grdSupDEList.Columns["S.No."].Width = 50;
-                            grdSupDEList.Columns["Entry Status"].Width = 120;
+                            grdSupDEList.Columns["Status"].Width = 120;
                             grdSupDEList.Columns["Quantity"].Width = 80;
                             grdSupDEList.Columns["clmSupPrint"].Width = 50;
                             grdSupDEList.Columns["Supplier"].Width = 250;
@@ -1191,7 +1191,7 @@ namespace ROMS
                             //grdDamageEntryList.Columns["GSTIN"].Width = 150;
                             grdSupDEList.Columns["Created By"].Width = 100;
                             grdSupDEList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdSupDEList.Columns["Entry Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSupDEList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupDEList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdSupDEList.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdSupDEList.BringToFront();
