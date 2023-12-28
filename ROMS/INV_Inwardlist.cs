@@ -79,35 +79,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void udfnGridSearchFilter()
-        {
-            try
-            {
-                for (int i = 0; i < DGV_SearchGrid.Rows.Count; ++i)
-                {
-                    if (DGV_SearchGrid.ColumnCount > 0)
-                    {
-                        BindingSource bs = new BindingSource();
-                        bs.DataSource = grdInwardList.DataSource;
-                        string filter = "";
-                        for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
-                        {
-                            if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "")
-                            {
-                                if (filter != "") filter += "And ";
-                                if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
-                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + "=" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value);
-                                else
-                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
-                            }
-                        }
-                        bs.Filter = filter;
-                        grdInwardList.DataSource = bs;
-                    }
-                }
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
+
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
         {
             try
@@ -133,6 +105,36 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
+        //private void udfnGridSearchFilter()
+        //{
+        //    try
+        //    {
+        //        for (int i = 0; i < DGV_SearchGrid.Rows.Count; ++i)
+        //        {
+        //            if (DGV_SearchGrid.ColumnCount > 0)
+        //            {
+        //                BindingSource bs = new BindingSource();
+        //                bs.DataSource = grdInwardList.DataSource;
+        //                string filter = "";
+        //                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
+        //                {
+        //                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "")
+        //                    {
+        //                        if (filter != "") filter += "And ";
+        //                        if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
+        //                            filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + "=" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value);
+        //                        else
+        //                            filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+        //                    }
+        //                }
+        //                bs.Filter = filter;
+        //                grdInwardList.DataSource = bs;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        //}
+        
         
         private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
         {
@@ -154,11 +156,11 @@ namespace ROMS
         {
 
         }
-        public void udfnscrollVisible(DataGridView DGV,DataGridView grdGroupList)
+        private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
         {
             try
             {
-                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -166,7 +168,6 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
-
                     int I = DGV_SearchGrid.Rows.Count - 1;
                     if (I == 0)
                     {
@@ -184,7 +185,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         private void TsbNew_Click_1(object sender, EventArgs e)
         { 
             try

@@ -111,6 +111,7 @@ namespace ROMS
                 dpConversionDate.MaxDate = MainForm.pbCurrentDate; 
                 VarSearchFlag = true;
                 lblProductName.Text = "Search by P.I Code";
+                grdBatchConversion.ClearSelection();
                 if (btnSave.Text == "Save")
                 {
 
@@ -1044,6 +1045,7 @@ namespace ROMS
                     {
                         grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim(), (txtQty2.Text).Trim(),varPRID,varRKID,varStockLocationId);
                         dtStock.Rows.Add((txtQty2.Text).Trim(), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim());
+                        grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1436,7 +1438,32 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfntooltiphide()
+        {
+            try
+            {
+                tpConcern.Active = false;
+                tpProductName.Active = false;
+                tpStock.Active = false;
+                tpStockLocation.Active = false;
+                tpRack.Active = false;
+                tpMrp2.Active = false;
+                tpQty.Active = false;
+                tpQty2.Active = false;
+                tpBatchNo.Active = false;
+                tpBatchNo2.Active = false;
+                tpQty.Active = false;
+                tpQty2.Active = false;
+                tpMonth.Active = false;
+                tpYear.Active = false;
+               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void INV_StockConversion_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1444,25 +1471,14 @@ namespace ROMS
                 if (e.KeyCode == Keys.Escape)
                 {
                     lvproduct.Visible = false;
+                    udfntooltiphide();
                     udfnclose();
                 }
                 if (e.KeyCode == Keys.F5)
                 {
                     BtnSave_Click(sender, e);
                 }
-                //if (e.KeyCode == Keys.F11)
-                //{
-                //    if (VarSearchFlag == false)
-                //    {
-                //        VarSearchFlag = true;
-                //        lblProductName.Text = "Search by P.I Code";
-                //    }
-                //    else
-                //    {
-                //        VarSearchFlag = false;
-                //        lblProductName.Text = "Search by Product Name";
-                //    }
-                //}
+                
             }
             
             catch (Exception ex)

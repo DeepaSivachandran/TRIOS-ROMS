@@ -72,7 +72,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        
         public void udfnclose()
         {
             try
@@ -829,7 +829,11 @@ namespace ROMS
             {
                 epStockHold.Clear();
                 tpConcern.Active = false;
+                tpProductName.Active = false;
                 tpProductNamePICode.Active = false;
+                tpStock.Active = false;
+                tpRack.Active = false;
+                tpStockLocation.Active = false;
                 tpQty.Active = false;
             }
             catch (Exception ex)
@@ -1371,15 +1375,23 @@ namespace ROMS
             try
             {
 
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    //tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    //tsbEdit_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    lvproduct.Visible = false;
-                    udfnclose();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    udfntooltiphide();
+                    this.Close();
                 }
-                if (e.KeyCode == Keys.F5)
-                {
-                    BtnSave_Click(sender, e);
-                }
+
                 if (e.KeyCode == Keys.F11)
                 {
                     if (VarSearchFlag == false)
