@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -97,7 +98,16 @@ namespace ROMS
                 dtPendingPO.Columns.Add("Total Products", typeof(string));
                 dtPendingPO.Columns.Add("Total value", typeof(string));
                 dtPendingPO.Columns.Add("ID", typeof(string)); 
-                objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, 0, 0, 0, 0, 0,Convert.ToString(varDcid));
+              //  objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, varDcid, 0, 0, 0, 0);
+                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
+                objTRN_PurchaseReturnDC.paraViewType = 0;
+                objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(varSupplierid);
+                objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(varScheduleid);
+                objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(varcompanyid);
+                objTRN_PurchaseReturnDC.paraDcID = Convert.ToInt32(varDcid);
+                objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
