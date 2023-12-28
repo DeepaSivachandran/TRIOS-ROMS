@@ -76,6 +76,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGridColumn()
+        {
+            try
+            {
+                DGV_SearchGrid.Columns.Add("clmPIcode", "P.I Code");
+                DGV_SearchGrid.Columns.Add("clmProductName", "Product Name in Tamil");
+                DGV_SearchGrid.Columns.Add("clmUnit", "Unit");
+                DGV_SearchGridMove.Columns.Add("clmRemove", "Remove");
+                DGV_SearchGridMove.Columns.Add("clmPIcode", "P.I Code");
+                DGV_SearchGridMove.Columns.Add("clmProductName", "Product Name in Tamil");
+                DGV_SearchGridMove.Columns.Add("clmUnit", "Unit");
+                DGV_SearchGrid.Columns["clmProductName"].Width = 250;
+                DGV_SearchGridMove.Columns["clmProductName"].Width = 250;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
             try
@@ -693,11 +713,12 @@ namespace ROMS
                         //grdViewProduct.Columns["PRODUCTID"].Visible = false;
                         grdViewProduct.Columns["P.I Code"].Width = 100;
                         grdViewProduct.Columns["Product Name in English"].Width = 250;
-                        grdViewProduct.Columns["Product Name in Tamil"].Width = 250;
+                        grdViewProduct.Columns["Product Name in Tamil"].Width = 300;
                         grdViewProduct.Columns["S.No."].ReadOnly = true;
                         grdViewProduct.Columns["P.I Code"].ReadOnly = true;
                         grdViewProduct.Columns["Product Name in English"].ReadOnly = true;
                         grdViewProduct.Columns["Product Name in Tamil"].ReadOnly = true;
+                        grdViewProduct.Columns["Product Name in English"].Visible = false;
                         grdViewProduct.Columns["Unit"].ReadOnly = true;
                         grdViewProduct.Columns["PRODUCTID"].Visible = false;
                         grdViewProduct.Columns["S.No."].Visible = false;
@@ -705,7 +726,7 @@ namespace ROMS
                         udfnSearchGridHead();
                     }
                 }
-                SearchFlag = 0;
+                SearchFlag = 1;
             }
             catch (Exception ex)
             {
@@ -715,6 +736,7 @@ namespace ROMS
             finally
             {
                 lblViewProductCount.Text = Convert.ToString(grdViewProduct.Rows.Count);
+                lblMoveProCount.Text = Convert.ToString(grdMoveProduct.Rows.Count);
             }
         }
         
@@ -1092,6 +1114,12 @@ namespace ROMS
             try
             {
                 txtSearchProductName1.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
+                //SearchFlag = 0;
             }
             catch (Exception ex)
             {
@@ -1139,6 +1167,12 @@ namespace ROMS
             try
             {
                 txtSearchProductName2.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGridMove.ColumnCount; i++)
+                {
+                    DGV_SearchGridMove.Rows[0].Cells[i].Value = "";
+                }
+                DGV_SearchGridMove_CurrentCellDirtyStateChanged(sender, e);
+              //  SearchFlag1 = 0;
             }
             catch (Exception ex)
             {
@@ -1321,10 +1355,11 @@ namespace ROMS
                     //grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                     //grdMoveProduct.Columns["Unit"].ReadOnly = true;
                     grdMoveProduct.Columns[0].ReadOnly = false;
+                    grdMoveProduct.Columns["Product Name in English"].Visible = false;
                     RemoveProduct();
                     grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     udfnSearchGridHeadMove();
-                    SearchFlag1 = 0;
+                    SearchFlag1 = 1;
                 }
                 else
                 {
@@ -1450,6 +1485,7 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         udfnclear();
+                        txtSourceLocation.Focus();
                     }
                     else
                     {
@@ -2292,6 +2328,7 @@ namespace ROMS
                 udfnCmbConcern();
                 udfnCmbSourceRack();
                 udfnCmbDestinationRack();
+                udfnGridColumn();
                 txtSourceLocation.Focus();
                 this.ActiveControl = txtSourceLocation;
             }
@@ -2586,12 +2623,12 @@ namespace ROMS
                     epRackSettings.Clear();
                     cmbSourceRack.BackColor = Color.White;
                 }
-                if (varSourceLocationID != 0)
-                {
-                    productid = 0;
-                    udfnProductLoad();
-                }
-                udfnCmbDestinationRack();
+                //if (varSourceLocationID != 0)
+                //{
+                //    productid = 0;
+                //    udfnProductLoad();
+                //}
+                //udfnCmbDestinationRack();
             }
             catch (Exception ex)
             {
@@ -2632,7 +2669,16 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbSourceRack.Select(int.MaxValue, 0)));
-                varSourceRackID = Convert.ToInt32(cmbSourceRack.SelectedValue);
+                if (cmbSourceRack.SelectedValue == null)
+                { varSourceRackID = 0; }
+                else
+                { varSourceRackID = Convert.ToInt32(cmbSourceRack.SelectedValue); }
+                if (varSourceLocationID != 0 && varSourceRackID!=-1)
+                {
+                    productid = 0;
+                    udfnProductLoad();
+                }
+                udfnCmbDestinationRack();
             }
             catch (Exception ex)
             {
@@ -2893,12 +2939,11 @@ namespace ROMS
         {
             try
             {
-                dtViewProduct.Rows.Clear();
-                dtViewProduct.AcceptChanges();
-                dtMoveProduct.Rows.Clear();
-                dtMoveProduct.AcceptChanges();
-                grdMoveProduct.DataSource = null;
-                grdViewProduct.DataSource = null;
+                if (varSourceLocationID != 0 && varSourceRackID!=-1)
+                {
+                    productid = 0;
+                    udfnProductLoad();
+                }
             }
             catch (Exception ex)
             {
@@ -2911,12 +2956,11 @@ namespace ROMS
         {
             try
             {
-                dtViewProduct.Rows.Clear();
-                dtViewProduct.AcceptChanges();
-                dtMoveProduct.Rows.Clear();
-                dtMoveProduct.AcceptChanges();
-                grdMoveProduct.DataSource = null;
-                grdViewProduct.DataSource = null;
+                if (varSourceLocationID != 0 && varSourceRackID != -1)
+                {
+                    productid = 0;
+                    udfnProductLoad();
+                }
             }
             catch (Exception ex)
             {
@@ -2961,8 +3005,8 @@ namespace ROMS
             try
             {
                 udfnSLocationEvent();
-                cmbSourceRack.Focus();
                 udfnCmbSourceRack();
+                cmbSourceRack.Focus();
             }
             catch (Exception ex)
             {
