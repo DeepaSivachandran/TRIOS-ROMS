@@ -300,6 +300,7 @@ namespace ROMS
             dtPurchaseDC.Columns.Add("DCPR_SLID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_RKID", typeof(int));
         }
+
         private void PUR_PurchaseDC_Load(object sender, EventArgs e)
         {
             try
@@ -963,7 +964,7 @@ namespace ROMS
             {
                 if (txtProductName.Text.Trim() == "")
                 {
-                    epPurchaseDC.SetError(txtProductName, "Please enter product");
+                    epPurchaseDC.SetError(txtProductName, "Please enter product.");
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProduct.ShowAlways = true;
                     tpProduct.Show("Please enter product.", txtProductName, 5000);
@@ -2088,17 +2089,6 @@ namespace ROMS
         }
         private void GrdPurchaseDC_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            //try
-            //{
-            //    object varEditQty = grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-            //    //Update the same column value in the DataTable
-            //    dtPurchaseDC.Rows[e.RowIndex]["DCPR_Qty"] = varEditQty;
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
             try
             {
                 int Quantity = Convert.ToInt32(grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Value);
@@ -2909,6 +2899,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         public void udfnExpiryDate()
         {
             try

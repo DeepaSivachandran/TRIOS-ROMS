@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +22,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus, varMasterType="0";
-        public int varDcCode = 0;
+        public string varDcCode = "0";
         public PUR_PurchaseOrderDamage()
         {
             InitializeComponent();
@@ -95,7 +96,16 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnReturnDC(1, varSupplierid, varScheduleid, varcompanyid, varDcCode,0,0,0,0);
+               // objDs = objdserv.udfnReturnDC(1, varSupplierid, varScheduleid, varcompanyid, varDcCode,0,0,0,0);
+                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
+                objTRN_PurchaseReturnDC.paraViewType = 1;
+                objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_PurchaseReturnDC.paraCompanyId = varcompanyid;
+                objTRN_PurchaseReturnDC.ParaSupplierId = varSupplierid;
+                objTRN_PurchaseReturnDC.ParaScheduleID = varScheduleid;
+                objTRN_PurchaseReturnDC.paraDcID =Convert.ToInt32(varDcCode);
+                objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

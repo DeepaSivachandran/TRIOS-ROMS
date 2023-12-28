@@ -37,7 +37,7 @@ namespace ROMS
         public int varPRID = 0,varUTID=0,varRKID=0,varStockLocationId=0;
         DataTable dtStock = new DataTable();
         private bool varErrorFlag;
-        public string varPICode = "";
+        public string varPICode = "", varTamilname ="";
         public string varbrandcode;
         public string pbFormStatus;
         public int varQuantity = 0;
@@ -111,6 +111,7 @@ namespace ROMS
                 dpConversionDate.MaxDate = MainForm.pbCurrentDate; 
                 VarSearchFlag = true;
                 lblProductName.Text = "Search by P.I Code";
+                grdBatchConversion.ClearSelection();
                 if (btnSave.Text == "Save")
                 {
 
@@ -504,7 +505,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDay.Focus();
+                    txtBatchNo2.Focus();
                 }
             }
             catch (Exception ex)
@@ -678,7 +679,8 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
                     varPRID = Convert.ToInt32(selectedItem.SubItems[0].Text);
-                    txtProductName.Text = selectedItem.SubItems[3].Text;
+                    txtProductName.Text = selectedItem.SubItems[4].Text;
+                    varTamilname = selectedItem.SubItems[3].Text;
                     varPICode = selectedItem.SubItems[1].Text;
                     txtMrp.Text = selectedItem.SubItems[7].Text;
                     txtExpiryDate.Text = selectedItem.SubItems[8].Text;
@@ -692,7 +694,7 @@ namespace ROMS
                     varStockLocationId = Convert.ToInt32(selectedItem.SubItems[13].Text);
                     varRKID = Convert.ToInt32(selectedItem.SubItems[14].Text);
                     txtRack.Text = selectedItem.SubItems[6].Text;
-                    txtStockLocation.Text = selectedItem.SubItems[13].Text;
+                    txtStockLocation.Text = selectedItem.SubItems[5].Text;
                     udfnExpiryDate();
                 }
             }
@@ -840,7 +842,7 @@ namespace ROMS
                 {
                     var ViewType = 42;
                     MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = ViewType;
+                    objMR_Product.paraViewType = 52;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     if (VarSearchFlag == false)
                     {
@@ -945,14 +947,14 @@ namespace ROMS
                     varErrorFlag = false;
                 }
 
-                if (txtExpiryDate.Text == "")
-                {
-                    epBatchConversion.SetError(txtExpiryDate, "Please enter expiry date");
-                    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpExpiryDate.ShowAlways = true;
-                    tpExpiryDate.Show("Please enter expiry date", txtExpiryDate, 5000);
-                    varErrorFlag = false;
-                }
+                //if (txtExpiryDate.Text == "")
+                //{
+                //    epBatchConversion.SetError(txtExpiryDate, "Please enter expiry date");
+                //    txtExpiryDate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpExpiryDate.ShowAlways = true;
+                //    tpExpiryDate.Show("Please enter expiry date", txtExpiryDate, 5000);
+                //    varErrorFlag = false;
+                //}
                 if (txtStock.Text == "")
                 {
                     epBatchConversion.SetError(txtStock, "Please enter stock quantity");
@@ -1041,8 +1043,9 @@ namespace ROMS
                     changedQuantity = changedQuantity + Convert.ToInt32(txtQty2.Text);
                     if (changedQuantity > 0 && changedQuantity <= varActualQuantity)
                     {
-                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (txtProductName.Text), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim(), (txtQty2.Text).Trim(),varPRID,varRKID,varStockLocationId);
+                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim(), (txtQty2.Text).Trim(),varPRID,varRKID,varStockLocationId);
                         dtStock.Rows.Add((txtQty2.Text).Trim(), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim());
+                        grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1435,7 +1438,32 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfntooltiphide()
+        {
+            try
+            {
+                tpConcern.Active = false;
+                tpProductName.Active = false;
+                tpStock.Active = false;
+                tpStockLocation.Active = false;
+                tpRack.Active = false;
+                tpMrp2.Active = false;
+                tpQty.Active = false;
+                tpQty2.Active = false;
+                tpBatchNo.Active = false;
+                tpBatchNo2.Active = false;
+                tpQty.Active = false;
+                tpQty2.Active = false;
+                tpMonth.Active = false;
+                tpYear.Active = false;
+               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void INV_StockConversion_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1443,25 +1471,14 @@ namespace ROMS
                 if (e.KeyCode == Keys.Escape)
                 {
                     lvproduct.Visible = false;
+                    udfntooltiphide();
                     udfnclose();
                 }
                 if (e.KeyCode == Keys.F5)
                 {
                     BtnSave_Click(sender, e);
                 }
-                //if (e.KeyCode == Keys.F11)
-                //{
-                //    if (VarSearchFlag == false)
-                //    {
-                //        VarSearchFlag = true;
-                //        lblProductName.Text = "Search by P.I Code";
-                //    }
-                //    else
-                //    {
-                //        VarSearchFlag = false;
-                //        lblProductName.Text = "Search by Product Name";
-                //    }
-                //}
+                
             }
             
             catch (Exception ex)

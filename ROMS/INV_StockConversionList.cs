@@ -171,10 +171,21 @@ namespace ROMS
         {
             try
             {
-
-                //MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns(); 
-                //MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                //MainForm.objPUR_PurchaseReturns.Show();
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -182,7 +193,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        //public void udfntooltiphide()
+        //{
+        //    try
+        //    {
+        //        tpConcern.Active = false;
+        //        tpProductName.Active = false;
+        //        tpProductNamePICode.Active = false;
+        //        tpStock.Active = false;
+        //        tpRack.Active = false;
+        //        tpStockLocation.Active = false;
+        //        tpQty.Active = false;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
         private void INV_StockConversionList_Load(object sender, EventArgs e)
         {
             try
@@ -208,22 +236,20 @@ namespace ROMS
                         }
                     }
                 }
-                udfnList();
                 cmbConcern.SelectedValue = 1;
-                DataSet objDS = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 7);
-                DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //DataSet objDS = new DataSet();
+                //SPDataService objspservice = new SPDataService();
+                //objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 7);
+                //DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 //dpFromDate.MinDate = varDate;
-                if (objDS.Tables[0].Rows.Count > 0)
-                {
-                    dpFromDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
-                    dpToDate.MinDate = varDate;
-                }
-                objspservice.CloseConnection();
+                // dpFromDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
+                //dpToDate.MinDate = varDate;
+                //objspservice.CloseConnection();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
+                udfnList();
+                grdConversionList.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -560,6 +586,7 @@ namespace ROMS
                             grdConversionList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdConversionList.Columns["Converted Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdConversionList.Columns["Conversion Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdConversionList.Columns["Product Name"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
 
                         }
                         else
@@ -672,7 +699,6 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
 
-
                     foreach (DataGridViewColumn col in grdConversionList.Columns)
                     {
                         if (col.Visible)
@@ -692,6 +718,7 @@ namespace ROMS
                             else if(col.Name == "Product Name")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                                //ExcelSheet.Columns["Product Name"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             }
                             else
                             {
@@ -706,9 +733,14 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
+
                             foreach (DataGridViewRow rowa in grdConversionList.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 6)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex].Font.Name = "Uni Ila.Sundaram-03";
+                                }
                             }
                         }
                     }
@@ -1083,6 +1115,19 @@ namespace ROMS
             try
             {
                 btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdConversionList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdConversionList.ClearSelection();
             }
             catch (Exception ex)
             {

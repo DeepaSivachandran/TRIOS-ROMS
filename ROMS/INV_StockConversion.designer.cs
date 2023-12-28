@@ -43,6 +43,7 @@
             this.lvproduct = new System.Windows.Forms.ListView();
             this.PRID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PRODUCTLST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_TName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PR_EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StockLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -110,7 +111,6 @@
             this.txtQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.PRODUCTLST = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.epBatchConversion)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -247,6 +247,11 @@
             // PICode
             // 
             this.PICode.Text = "P.I Code";
+            // 
+            // PRODUCTLST
+            // 
+            this.PRODUCTLST.Text = "PRODUCTLIST";
+            this.PRODUCTLST.Width = 0;
             // 
             // PR_TName
             // 
@@ -847,11 +852,11 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+            this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.txtProductName.Location = new System.Drawing.Point(322, 39);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(303, 26);
+            this.txtProductName.Size = new System.Drawing.Size(303, 28);
             this.txtProductName.TabIndex = 3;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -921,11 +926,6 @@
             this.label12.Size = new System.Drawing.Size(54, 20);
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
-            // 
-            // PRODUCTLST
-            // 
-            this.PRODUCTLST.Text = "PRODUCTLIST";
-            this.PRODUCTLST.Width = 0;
             // 
             // INV_StockConversion
             // 

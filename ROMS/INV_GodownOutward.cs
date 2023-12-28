@@ -2051,7 +2051,10 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     int ViewType = 1;
-                    objDs = objdserv.udfnGOList(ViewType, varGOId,0, "", "", 0, 0,0);
+                    TRN_GoodsOutward objTRNG_GoodsOutward = new TRN_GoodsOutward();
+                    objTRNG_GoodsOutward.ViewType = ViewType;
+                    objTRNG_GoodsOutward.ParaGOId = Convert.ToInt32(varGOId);
+                    objDs = objdserv.udfnGOList(objTRNG_GoodsOutward);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
