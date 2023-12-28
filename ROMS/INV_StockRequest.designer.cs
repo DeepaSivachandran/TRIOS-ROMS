@@ -227,7 +227,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Product Name";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Width = 300;
             // 
             // columnHeader3
             // 
