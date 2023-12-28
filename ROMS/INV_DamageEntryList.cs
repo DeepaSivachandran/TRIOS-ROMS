@@ -1054,7 +1054,8 @@ namespace ROMS
                             //grdProDEList.Columns["ConcernID"].Visible = false;
                             //grdProDEList.Columns["StatusID"].Visible = false;
                             //grdProDEList.Columns["DMID"].Visible = false;
-                            //grdDamageEntryList.Columns["EMPID"].Visible = false;
+                            grdProDEList.Columns["StatusID"].Visible = false;
+                            grdProDEList.Columns["PRStatusID"].Visible = false;
                             grdProDEList.Columns["S.No."].Width = 50;
                             grdProDEList.Columns["Status"].Width = 150;
                             grdProDEList.Columns["Product Status"].Width = 150;
@@ -1063,7 +1064,8 @@ namespace ROMS
                             grdProDEList.Columns["Reason"].Width = 130;
                             grdProDEList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDEList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            //grdProDEList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProDEList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProDEList.Columns["Product Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             //grdProDEList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdProDEList.Columns["QTY"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdProDEList.BringToFront();
@@ -1178,7 +1180,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdSupDEList.DataSource = objDs.Tables[0];
                             //grdSupDEList.Columns["ConcernID"].Visible = false;
-                            //grdSupDEList.Columns["StatusID"].Visible = false;
+                            grdSupDEList.Columns["StatusID"].Visible = false;
                             //grdSupDEList.Columns["DMID"].Visible = false;
                             grdSupDEList.Columns["SPID"].Visible = false;
                             grdSupDEList.Columns["SPSCID"].Visible = false;
@@ -2281,6 +2283,64 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdProDEList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdProDEList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdProDEList.Rows[i].Cells["StatusID"].Value) == "6")
+                    {
+                        grdProDEList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        grdProDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    //else
+                    //{
+                    //    grdProDEList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                    //    grdProDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdProDEList.ClearSelection();
+            }
+        }
+
+        private void GrdSupDEList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdSupDEList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdSupDEList.Rows[i].Cells["StatusID"].Value) == "6")
+                    {
+                        grdSupDEList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        grdSupDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    //else
+                    //{
+                    //    grdSupDEList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                    //    grdSupDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdSupDEList.ClearSelection();
             }
         }
     }
