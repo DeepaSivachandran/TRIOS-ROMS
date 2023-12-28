@@ -97,9 +97,17 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_GRNDetails.txtProductName.Text = txtDProductName.Text;
-                varCloseFlag = "1";
-                this.Close();
+                if (txtDProductName.Text != "")
+                {
+                    MainForm.objPUR_GRNDetails.txtProductName.Text = txtDProductName.Text;
+                    MainForm.objPUR_GRNDetails.varNewFlag = "1"; 
+                    MainForm.objPUR_GRNDetails.varBatchNo = "0"; 
+                    MainForm.objPUR_GRNDetails.varBatchNoGeneration = "0"; 
+                    MainForm.objPUR_GRNDetails.varShelflife = 0; 
+                    MainForm.objPUR_GRNDetails.expirydateFlag = 0;  
+                    varCloseFlag = "1";
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {

@@ -166,6 +166,7 @@
             this.clmBatchenable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBatchgeneration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmShelflifeenable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmprflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
@@ -398,7 +399,7 @@
             this.grdPODetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdPODetails.Size = new System.Drawing.Size(272, 106);
             this.grdPODetails.TabIndex = 1111196;
-            this.grdPODetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPODetails_CellClick);
+            this.grdPODetails.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPODetails_CellContentDoubleClick);
             this.grdPODetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPODetails_DataBindingComplete);
             // 
             // clmpono
@@ -1260,6 +1261,7 @@
             this.clmBatchenable,
             this.clmBatchgeneration,
             this.clmShelflifeenable,
+            this.clmprflag,
             this.clmRemove});
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
@@ -1287,6 +1289,7 @@
             this.grdGrnlist.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GrdGrnlist_CellValidating);
             this.grdGrnlist.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGrnlist_CurrentCellDirtyStateChanged);
             this.grdGrnlist.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGrnlist_DataBindingComplete);
+            this.grdGrnlist.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnlist_EditingControlShowing);
             // 
             // LV_Supplier
             // 
@@ -1444,6 +1447,7 @@
             this.clmsno.HeaderText = "S.No.";
             this.clmsno.Name = "clmsno";
             this.clmsno.ReadOnly = true;
+            this.clmsno.Visible = false;
             this.clmsno.Width = 50;
             // 
             // clmpo
@@ -1485,11 +1489,12 @@
             // 
             // clmmrp
             // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.PaleGreen;
             this.clmmrp.DefaultCellStyle = dataGridViewCellStyle8;
             this.clmmrp.HeaderText = "MRP";
             this.clmmrp.Name = "clmmrp";
-            this.clmmrp.Width = 50;
+            this.clmmrp.Width = 75;
             // 
             // clmexpirydate
             // 
@@ -1561,6 +1566,12 @@
             this.clmShelflifeenable.HeaderText = "Shelf Life Enable";
             this.clmShelflifeenable.Name = "clmShelflifeenable";
             this.clmShelflifeenable.Visible = false;
+            // 
+            // clmprflag
+            // 
+            this.clmprflag.HeaderText = "newproflag";
+            this.clmprflag.Name = "clmprflag";
+            this.clmprflag.Visible = false;
             // 
             // clmRemove
             // 
@@ -1740,6 +1751,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchenable;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchgeneration;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflifeenable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmprflag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
