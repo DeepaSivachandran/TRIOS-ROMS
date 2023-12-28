@@ -15,6 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
         public CP_Unitlist()
         {
@@ -141,6 +142,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -188,6 +191,11 @@ namespace ROMS
                     objspservice.CloseConnection();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -198,6 +206,25 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["DecimalID"].Visible = false;
+                DGV_SearchGrid.Columns["StatusID"].Visible = false;
+                DGV_SearchGrid.Columns["BulkUnitId"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+                DGV_SearchGrid.Columns["Bulk Unit"].Width = 100;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

@@ -16,7 +16,7 @@ namespace ROMS
         ToolTip tpSupplier = new ToolTip();
         public string varUserID = "";
         public int varActiveCount = 0, varInactiveCount = 0, varTotalCount = 0, Varflag = 0, varNotDefinedCount = 0;
-
+        DataTable dtDefaultGrid = new DataTable();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public CP_Supplierlist()
@@ -203,6 +203,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 Varflag = 0;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
@@ -337,8 +339,12 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-
                     udfnSearchGridHead();
+                    if (lblNoRecordsFound.Visible == true)
+                    {
+                        dtDefaultGrid = objDs.Tables[0];
+                        udfnDefaultSearchGrid();
+                    }
                 }
                 else
                 {
@@ -357,6 +363,31 @@ namespace ROMS
                 //  grdreplist.ClearSelection();
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Supplier"].Width = 350;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 130;
+                DGV_SearchGrid.Columns["Schedule Status"].Width = 110;
+                DGV_SearchGrid.Columns["Days"].Width = 90;
+                DGV_SearchGrid.Columns["Scheduleid"].Visible = false;
+                DGV_SearchGrid.Columns["SupplierID"].Visible = false;
+                DGV_SearchGrid.Columns["STS"].Visible = false;
+                DGV_SearchGrid.Columns["DYID"].Visible = false;
+                DGV_SearchGrid.Columns["ORDERTYPE"].Visible = false;
+                DGV_SearchGrid.Columns["rownum"].Visible = false;
+                DGV_SearchGrid.Columns["SP_ReturnApplicable"].Visible = false;
+                DGV_SearchGrid.Columns["SPSC_OrderType"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)

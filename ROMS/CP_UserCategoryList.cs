@@ -16,7 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
         public CP_UserCategoryList()
         {
@@ -175,6 +175,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -227,6 +229,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -240,7 +247,26 @@ namespace ROMS
                 picLoader.SendToBack();
             }
         }
-
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["StatusID"].Visible = false;
+                DGV_SearchGrid.Columns["DefaultID"].Visible = false;
+                DGV_SearchGrid.Columns["CT_SINO"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Order No."].Width = 80;
+                DGV_SearchGrid.Columns["Employee Category"].Width = 200;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_UserList_KeyDown(object sender, KeyEventArgs e)
         {
             try

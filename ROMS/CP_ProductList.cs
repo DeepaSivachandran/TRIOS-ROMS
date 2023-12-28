@@ -14,6 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public int varconcern = 0, vargroup = 0, varsubgroup = 0, varcategory = 0;
         public string varUserID = "";
         public CP_ProductList()
@@ -177,6 +178,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -299,6 +302,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -312,7 +320,38 @@ namespace ROMS
                 lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
             }
         }
-
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Product Name in English"].Width = 300;
+                DGV_SearchGrid.Columns["P.I Code"].Width = 100;
+                DGV_SearchGrid.Columns["Product Name in Tamil"].Width = 300;
+                DGV_SearchGrid.Columns["Product Subgroup"].Width = 150;
+                DGV_SearchGrid.Columns["Product Group"].Width = 150;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+                DGV_SearchGrid.Columns["HSN Name"].Width = 230;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PRGID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_PRSGID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_HSNID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_UTID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_COMID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_BDID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_SALE_RKID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_SALE_SLID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_PUR_RKID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_PUR_SLID"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {

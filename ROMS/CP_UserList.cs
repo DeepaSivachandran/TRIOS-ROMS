@@ -16,6 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public string varUserID="";
         public CP_UserList()
         {
@@ -79,6 +80,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -148,9 +151,12 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
-                
                 udfnSearchGridHead();
-               
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -164,6 +170,25 @@ namespace ROMS
 
                 btnView.Enabled = true;
                 btnView.Focus();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["UserRoleID"].Visible = false;
+                DGV_SearchGrid.Columns["PassKeyID"].Visible = false;
+                DGV_SearchGrid.Columns["StatusID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Name of the System User"].Width = 200;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfndelete()

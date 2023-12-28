@@ -367,7 +367,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["HSN Name"].Width = 250;
-                grdHSNList.Columns["HSN Code"].Width = 200;
+                DGV_SearchGrid.Columns["HSN Code"].Width = 200;
                 DGV_SearchGrid.Columns["GST%"].Width = 80;
                 DGV_SearchGrid.Columns["Total Products"].Width = 100;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
