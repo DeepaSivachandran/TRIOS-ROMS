@@ -564,6 +564,7 @@ namespace ROMS
                     //}
 
                     udfnGridRemove();
+                    udfnsearchGridHead();
                     udfnEmpGridRemove();
                 }
 
@@ -1563,7 +1564,6 @@ namespace ROMS
             try
             {
                 string varRemoveRack = "", varAddRack = "";
-
                 if (grdRack.Rows.Count > 0)
                 {
                     for (int i = 0; i < grdRack.Rows.Count; i++)
@@ -1592,6 +1592,7 @@ namespace ROMS
                     }
                     udfnGridRemove();
                     udfnsearchGridHead();
+                    ((DataGridViewImageCell)DGV_SearchGridRight.Rows[0].Cells[6]).Value = new System.Drawing.Bitmap(1, 1); ;
                 }
                 else
                 {
@@ -1711,10 +1712,10 @@ namespace ROMS
             try
             {
                 udfnSelectedRack();
-                //if (chkRack.Checked == false)
-                //{
-                //    grdSelectedRack.Rows.Clear();
-                //}
+                if (grdRack.Rows.Count<1)
+                {
+                    chkRack.Checked = false;
+                }
                 udfnTotalProducts();
             }
             catch (Exception ex)

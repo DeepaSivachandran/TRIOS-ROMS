@@ -943,7 +943,7 @@ namespace ROMS
                    varstatus= Convert.ToInt32(cmbstatus.SelectedValue);
                 }
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0",0,0);
+                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0",0,0, 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -999,6 +999,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Mode of details"].Visible = false;
                             grdPurchaseorderlist.Columns["Issued DATES"].Visible = false;
                             grdPurchaseorderlist.Columns["DTURN"].Visible = false;
+                            grdPurchaseorderlist.Columns["Currentsts"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1506,7 +1507,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, productstatus, "0", varFilter,0);
+                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, productstatus, "0", varFilter,0, 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1587,7 +1588,7 @@ namespace ROMS
                     return;
                 //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
                 //    return;
-                if ((e.ColumnIndex == 0 || e.ColumnIndex == 1 || e.ColumnIndex == 2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                if ((e.ColumnIndex == 0 || e.ColumnIndex == 1 ))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     return;
 
                 if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
@@ -2716,7 +2717,7 @@ namespace ROMS
                 int varstatus = 0;
                
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0", varFilter,0);
+                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0", varFilter,0, 0, 0, 0, 0);
                 objdserv.CloseConnection();
                
                 if (objDs != null)

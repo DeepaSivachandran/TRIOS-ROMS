@@ -57,7 +57,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDT = null;
-                objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0", 0,0);
+                objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0", 0,0,0,0,0,0);
                 objdserv.CloseConnection();
                 cmbPONo.DataSource = null;
                 if (objDT != null)
@@ -1208,6 +1208,7 @@ namespace ROMS
                     }
                 }
                 MainForm.objINV_GRNPODamaged = new INV_GRNPODamaged();
+                MainForm.objINV_GRNPODamaged.varMasterType = "1";
                 MainForm.objINV_GRNPODamaged.ShowDialog();
             }
             catch (Exception ex)
@@ -1703,7 +1704,7 @@ namespace ROMS
             {
                 if (varErrorFormat == 0)
                 {
-                    udfnGridaddvalue(e);
+                    udfnGridaddvalue(sender, e);
                 }
             }
             catch (Exception ex)
@@ -1712,16 +1713,23 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGridaddvalue(DataGridViewCellEventArgs value)
+        public void udfnGridaddvalue(object sender, DataGridViewCellEventArgs value)
         {
             try
             {
+                DataGridView dataGridView = (DataGridView)sender;
+                varExpiryDate = "";
                 int varExpiryDays = 0; int error = 0;
                 pbDateflag = 0;
                 int rowIndex = value.RowIndex;
                 int columnIndex = value.ColumnIndex;
                 SPDataService objDServ = new SPDataService();
                 DataSet objDS = new DataSet();
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmexpirydate")
+                {
+                    varExpiryDate = Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Value);
+                }
+                
                 objDS = objDServ.udfnMaster(10, 0, 0, dpGrnDate.Text.Trim(), varExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
                 objDServ.CloseConnection();
                 for (int i = 0; i < grdGrnlist.Rows.Count; i++)
@@ -1758,14 +1766,17 @@ namespace ROMS
                                                 if (Convert.ToInt32(objDS.Tables[2].Rows[0]["DATEVALIDATE"]) == 0)
                                                 {
                                                     pbDateflag = 1;
-                                                    grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
-                                                    string varMessage = objDServ.udfnGetMessages(98);
-                                                    objDServ.CloseConnection();
-                                                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                    if (Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Value) == Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmsno"].Value))
+                                                    {
+                                                        grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
+                                                        string varMessage = objDServ.udfnGetMessages(98);
+                                                        objDServ.CloseConnection();
+                                                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                    }
                                                 }
                                                 else
                                                 {
-                                                    grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                                    grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.PaleGreen;
                                                 }
                                             }
                                             else
@@ -1784,9 +1795,25 @@ namespace ROMS
                             objDServ.CloseConnection();
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
+                        else
+                        {
+                            if (pbDateflag == 0)
+                            {
+                                grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                DataGridViewCell cell = dataGridView.Rows[value.RowIndex].Cells["clmmrp"];
+                                DataGridViewCell cell1 = dataGridView.Rows[value.RowIndex].Cells["clmexpirydate"];
+                                DataGridViewCell cell2 = dataGridView.Rows[value.RowIndex].Cells["clmBatchno"];
+                                cell.Style.BackColor = Color.PaleGreen;
+                                cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                cell1.Style.BackColor = Color.PaleGreen;
+                                cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                cell2.Style.BackColor = Color.PaleGreen;
+                                cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                            }
+                        }
                         if (pbDateflag == 0)
                         { 
-                            grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                            //grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.PaleGreen;
                             if (Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmsno"].Value) != Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmsno"].Value))
                             {
                                 if (Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmProid"].Value) == Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmProid"].Value))
@@ -1804,7 +1831,19 @@ namespace ROMS
                                         }
                                         else
                                         {
-                                            grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                            if (pbDateflag == 0)
+                                            {
+                                                grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                                DataGridViewCell cell = dataGridView.Rows[value.RowIndex].Cells["clmmrp"];
+                                                DataGridViewCell cell1 = dataGridView.Rows[value.RowIndex].Cells["clmexpirydate"];
+                                                DataGridViewCell cell2 = dataGridView.Rows[value.RowIndex].Cells["clmBatchno"];
+                                                cell.Style.BackColor = Color.PaleGreen;
+                                                cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                                cell1.Style.BackColor = Color.PaleGreen;
+                                                cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                                cell2.Style.BackColor = Color.PaleGreen;
+                                                cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                            }
                                         }
                                     }
                                 }

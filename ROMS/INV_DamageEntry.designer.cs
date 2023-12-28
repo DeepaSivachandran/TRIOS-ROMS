@@ -827,7 +827,7 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+            this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProductName.Location = new System.Drawing.Point(6, 37);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(259, 26);

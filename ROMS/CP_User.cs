@@ -634,12 +634,26 @@ namespace ROMS
                 cmbUserRole.SelectedValue = PbUserRoleID;
                 cmbPasskey.SelectedValue = PbPasskeyID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                if(PbStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnDisable()
+        {
+            txtUserName.Enabled = false;
+            txtLoginID.Enabled = false;
+            txtPassword.Enabled = false;
+            txtCPassword.Enabled = false;
+            cmbUserRole.Enabled = false;
+            cmbPasskey.Enabled = false;
+            this.ActiveControl= rbInactive;
         }
         private void CP_User_KeyDown(object sender, KeyEventArgs e)
         {

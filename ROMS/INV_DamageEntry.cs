@@ -1888,7 +1888,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     varPICode = selectedItem.SubItems[0].Text;
-                    txtProductName.Text = selectedItem.SubItems[3].Text;
+                    txtProductName.Text = selectedItem.SubItems[2].Text;
                     txtLocation.Text = selectedItem.SubItems[4].Text;
                     txtRack.Text = selectedItem.SubItems[5].Text;
                     txtMrp.Text = selectedItem.SubItems[6].Text;

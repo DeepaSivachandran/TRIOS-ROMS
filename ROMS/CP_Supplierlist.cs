@@ -184,6 +184,7 @@ namespace ROMS
                     MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                     MainForm.objCP_Supplier.btnSave.Text = "Update";
                     MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
+                    MainForm.objCP_Supplier.pbFormStatus = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["STS"].Value.ToString());
                     MainForm.objCP_Supplier.Show();
                 }
             }
