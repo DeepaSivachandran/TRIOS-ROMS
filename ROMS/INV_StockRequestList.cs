@@ -830,6 +830,8 @@ namespace ROMS
                     objMR_Product.paraViewType = 36;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.paraProductName = txtProductNamePICode.Text;
+                    objMR_Product.ParaFromDate = Convert.ToString(dpFromDate.Text);
+                    objMR_Product.ParaToDate = Convert.ToString(dpEntryToDate.Text);
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnproductmasterlist(objMR_Product);
