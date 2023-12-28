@@ -705,7 +705,7 @@ namespace ROMS
                         udfnSearchGridHead();
                     }
                 }
-                SearchFlag = 0;
+                SearchFlag = 1;
             }
             catch (Exception ex)
             {
@@ -715,6 +715,7 @@ namespace ROMS
             finally
             {
                 lblViewProductCount.Text = Convert.ToString(grdViewProduct.Rows.Count);
+                lblMoveProCount.Text = Convert.ToString(grdMoveProduct.Rows.Count);
             }
         }
         
@@ -1092,6 +1093,12 @@ namespace ROMS
             try
             {
                 txtSearchProductName1.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                DGV_SearchGrid_CurrentCellDirtyStateChanged(sender, e);
+                //SearchFlag = 0;
             }
             catch (Exception ex)
             {
@@ -1139,6 +1146,12 @@ namespace ROMS
             try
             {
                 txtSearchProductName2.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_SearchGridMove.ColumnCount; i++)
+                {
+                    DGV_SearchGridMove.Rows[0].Cells[i].Value = "";
+                }
+                DGV_SearchGridMove_CurrentCellDirtyStateChanged(sender, e);
+              //  SearchFlag1 = 0;
             }
             catch (Exception ex)
             {
@@ -1324,7 +1337,7 @@ namespace ROMS
                     RemoveProduct();
                     grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     udfnSearchGridHeadMove();
-                    SearchFlag1 = 0;
+                    SearchFlag1 = 1;
                 }
                 else
                 {
@@ -1450,6 +1463,7 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         udfnclear();
+                        txtSourceLocation.Focus();
                     }
                     else
                     {
@@ -2586,12 +2600,12 @@ namespace ROMS
                     epRackSettings.Clear();
                     cmbSourceRack.BackColor = Color.White;
                 }
-                if (varSourceLocationID != 0)
-                {
-                    productid = 0;
-                    udfnProductLoad();
-                }
-                udfnCmbDestinationRack();
+                //if (varSourceLocationID != 0)
+                //{
+                //    productid = 0;
+                //    udfnProductLoad();
+                //}
+                //udfnCmbDestinationRack();
             }
             catch (Exception ex)
             {
@@ -2632,7 +2646,16 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbSourceRack.Select(int.MaxValue, 0)));
-                varSourceRackID = Convert.ToInt32(cmbSourceRack.SelectedValue);
+                if (cmbSourceRack.SelectedValue == null)
+                { varSourceRackID = 0; }
+                else
+                { varSourceRackID = Convert.ToInt32(cmbSourceRack.SelectedValue); }
+                if (varSourceLocationID != 0 && varSourceRackID!=-1)
+                {
+                    productid = 0;
+                    udfnProductLoad();
+                }
+                udfnCmbDestinationRack();
             }
             catch (Exception ex)
             {
@@ -2893,12 +2916,11 @@ namespace ROMS
         {
             try
             {
-                dtViewProduct.Rows.Clear();
-                dtViewProduct.AcceptChanges();
-                dtMoveProduct.Rows.Clear();
-                dtMoveProduct.AcceptChanges();
-                grdMoveProduct.DataSource = null;
-                grdViewProduct.DataSource = null;
+                if (varSourceLocationID != 0 && varSourceRackID!=-1)
+                {
+                    productid = 0;
+                    udfnProductLoad();
+                }
             }
             catch (Exception ex)
             {
@@ -2911,12 +2933,11 @@ namespace ROMS
         {
             try
             {
-                dtViewProduct.Rows.Clear();
-                dtViewProduct.AcceptChanges();
-                dtMoveProduct.Rows.Clear();
-                dtMoveProduct.AcceptChanges();
-                grdMoveProduct.DataSource = null;
-                grdViewProduct.DataSource = null;
+                if (varSourceLocationID != 0 && varSourceRackID != -1)
+                {
+                    productid = 0;
+                    udfnProductLoad();
+                }
             }
             catch (Exception ex)
             {
@@ -2961,8 +2982,8 @@ namespace ROMS
             try
             {
                 udfnSLocationEvent();
-                cmbSourceRack.Focus();
                 udfnCmbSourceRack();
+                cmbSourceRack.Focus();
             }
             catch (Exception ex)
             {
