@@ -89,7 +89,6 @@
             this.lblnarration = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdProductExchage = new System.Windows.Forms.DataGridView();
-            this.epProductExchange = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,6 +107,7 @@
             this.clmRemoveFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.epProductExchange = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.grpproductname.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -588,7 +588,7 @@
             // 
             // txtTotalProducts
             // 
-            this.txtTotalProducts.Location = new System.Drawing.Point(939, 530);
+            this.txtTotalProducts.Location = new System.Drawing.Point(945, 530);
             this.txtTotalProducts.Name = "txtTotalProducts";
             this.txtTotalProducts.ReadOnly = true;
             this.txtTotalProducts.Size = new System.Drawing.Size(62, 27);
@@ -598,7 +598,7 @@
             // lbltotalproducts
             // 
             this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(849, 530);
+            this.lbltotalproducts.Location = new System.Drawing.Point(855, 533);
             this.lbltotalproducts.Name = "lbltotalproducts";
             this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 958821;
@@ -696,10 +696,6 @@
             this.grdProductExchage.TabIndex = 1111214;
             this.grdProductExchage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellContentClick);
             this.grdProductExchage.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellEndEdit);
-            // 
-            // epProductExchange
-            // 
-            this.epProductExchange.ContainerControl = this;
             // 
             // clmSno
             // 
@@ -819,6 +815,10 @@
             this.clmError.HeaderText = "Error";
             this.clmError.Name = "clmError";
             this.clmError.Visible = false;
+            // 
+            // epProductExchange
+            // 
+            this.epProductExchange.ContainerControl = this;
             // 
             // PUR_DCGoodsInward
             // 

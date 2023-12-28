@@ -2009,7 +2009,6 @@ namespace ROMS
                         }
                     }
                 }
-
                 txtMrp.Focus();
             }
             catch (Exception ex)
