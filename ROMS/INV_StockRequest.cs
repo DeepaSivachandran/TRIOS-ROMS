@@ -629,8 +629,8 @@ namespace ROMS
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
-                                lvProduct.Columns[0].Width = 120;
-                                lvProduct.Columns[1].Width = 300;
+                                lvProduct.Columns[0].Width = 150;
+                                lvProduct.Columns[1].Width = 400;
                                 lvProduct.Columns[2].Width = 60;
                                 lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 0;

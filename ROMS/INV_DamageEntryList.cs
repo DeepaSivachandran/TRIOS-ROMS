@@ -1054,7 +1054,8 @@ namespace ROMS
                             //grdProDEList.Columns["ConcernID"].Visible = false;
                             //grdProDEList.Columns["StatusID"].Visible = false;
                             //grdProDEList.Columns["DMID"].Visible = false;
-                            //grdDamageEntryList.Columns["EMPID"].Visible = false;
+                            grdProDEList.Columns["StatusID"].Visible = false;
+                            grdProDEList.Columns["PRStatusID"].Visible = false;
                             grdProDEList.Columns["S.No."].Width = 50;
                             grdProDEList.Columns["Status"].Width = 150;
                             grdProDEList.Columns["Product Status"].Width = 150;
@@ -1063,7 +1064,8 @@ namespace ROMS
                             grdProDEList.Columns["Reason"].Width = 130;
                             grdProDEList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDEList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            //grdProDEList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProDEList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProDEList.Columns["Product Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             //grdProDEList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdProDEList.Columns["QTY"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdProDEList.BringToFront();
@@ -1178,8 +1180,8 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdSupDEList.DataSource = objDs.Tables[0];
                             //grdSupDEList.Columns["ConcernID"].Visible = false;
-                            //grdSupDEList.Columns["StatusID"].Visible = false;
-                            //grdSupDEList.Columns["DMID"].Visible = false;
+                            grdSupDEList.Columns["StatusID"].Visible = false;
+                            grdSupDEList.Columns["DMID"].Visible = false;
                             grdSupDEList.Columns["SPID"].Visible = false;
                             grdSupDEList.Columns["SPSCID"].Visible = false;
                             grdSupDEList.Columns["S.No."].Width = 50;
@@ -2281,6 +2283,121 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdProDEList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdProDEList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdProDEList.Rows[i].Cells["StatusID"].Value) == "6")
+                    {
+                        grdProDEList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        grdProDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    //else
+                    //{
+                    //    grdProDEList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                    //    grdProDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdProDEList.ClearSelection();
+            }
+        }
+
+        private void GrdSupDEList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdSupDEList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdSupDEList.Rows[i].Cells["StatusID"].Value) == "6")
+                    {
+                        grdSupDEList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                        grdSupDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdSupDEList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdSupDEList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdSupDEList.ClearSelection();
+            }
+        }
+
+        private void GrdSupDEList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdSupDEList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmSupPrint":
+                            try
+                            {
+                                string DMID = "0";
+                                DMID = Convert.ToString(grdSupDEList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_SupplierWise.rpt");
+                                    varHeader = "Damage Entry";
+
+                                    objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }
