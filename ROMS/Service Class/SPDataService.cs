@@ -2232,8 +2232,52 @@ namespace ROMS
             }
             return ds;
         }
+        // Sivabharathi on 20/12/2023 -- Purchase return DC 
+        public string udfnPurchaseReturnDc(TRN_ReturnDC objTRN_PurchaseReturnDC)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Purchase_ReturnDC]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_PurchaseReturnDC.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_PurchaseReturnDC.@paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_PurchaseReturnDC.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_PurchaseReturnDC.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_PurchaseReturnDC.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnDC_Date", objTRN_PurchaseReturnDC.paraReturnDC_Date);
+                varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_PurchaseReturnDC.paraReasonId);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnDC_NO", objTRN_PurchaseReturnDC.paraReturnDC_NO);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_PurchaseReturnDC.ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleID", objTRN_PurchaseReturnDC.ParaScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnDC_Remarks", objTRN_PurchaseReturnDC.paraReturnDC_Remarks);
+                varSqlCommand.Parameters.AddWithValue("@paraExchangeRemarks", objTRN_PurchaseReturnDC.paraExchangeRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_PurchaseReturnDC.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@ParaSubtotal", objTRN_PurchaseReturnDC.ParaSubtotal);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnDCAmount", objTRN_PurchaseReturnDC.paraReturnDCAmount);
+                varSqlCommand.Parameters.AddWithValue("@paraTax", objTRN_PurchaseReturnDC.paraTax);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnDCID", objTRN_PurchaseReturnDC.paraReturnDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_PurchaseReturnDC.paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraTRN_Purchase_ReturnDC", objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC);
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_DC", objTRN_PurchaseReturnDC.@ParaTRN_Purchase_DC);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
         // added by venkat on 17/10/2023 for purchase damage list
-        public DataSet udfnReturnDC(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID,string paraDCIDs)
+        // Sivabharathi    Modified date: 20/12/2023    Description: Purchase Return DC
+        public DataSet udfnReturnDC(TRN_ReturnDC objTRN_PurchaseReturnDC)
         {
             DataSet ds = new DataSet();
             try
@@ -2241,18 +2285,22 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[TRNG_PurchaseReturn_DC]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", ParaSupplierId);
-                varSqlCommand.Parameters.AddWithValue("@ParaScheduleId", ParaScheduleId);
-                varSqlCommand.Parameters.AddWithValue("@paraCompanyID", paraCompanyID);
-                varSqlCommand.Parameters.AddWithValue("@paraDcID", paraDcID);
-                varSqlCommand.Parameters.AddWithValue("@ParaSupplier", ParaSupplier);
-                varSqlCommand.Parameters.AddWithValue("@ParaPO", ParaPO);
-                varSqlCommand.Parameters.AddWithValue("@ParaGroupID", ParaGroupID);
-                varSqlCommand.Parameters.AddWithValue("@ParaSubGroupID", ParaSubGroupID);
-                varSqlCommand.Parameters.AddWithValue("@paraDCIDs", paraDCIDs);
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_PurchaseReturnDC.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_PurchaseReturnDC.ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_PurchaseReturnDC.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleID", objTRN_PurchaseReturnDC.ParaScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_PurchaseReturnDC.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_PurchaseReturnDC.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_PurchaseReturnDC.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_PurchaseReturnDC.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_PurchaseReturnDC.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraDcID", objTRN_PurchaseReturnDC.paraDcID);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnDCID", objTRN_PurchaseReturnDC.paraReturnDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_PurchaseReturnDC.paraReasonId);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplier", objTRN_PurchaseReturnDC.ParaSupplier);
+                varSqlCommand.Parameters.AddWithValue("@ParaPO", objTRN_PurchaseReturnDC.ParaPO);
+                varSqlCommand.Parameters.AddWithValue("@ParaGroupID", objTRN_PurchaseReturnDC.ParaGroupID);
+                varSqlCommand.Parameters.AddWithValue("@ParaSubGroupID", objTRN_PurchaseReturnDC.ParaSubGroupID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2268,6 +2316,41 @@ namespace ROMS
             }
             return ds;
         }
+        // added by venkat on 17/10/2023 for purchase damage list
+        //public DataSet udfnReturnDC(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID)
+        //{
+        //    DataSet ds = new DataSet();
+        //    try
+        //    {
+        //        tmpspcall = new SPCall();
+        //        SqlCommand varSqlCommand = new SqlCommand("[TRNG_PurchaseReturn_DC]", tmpspcall.objConn);
+        //        varSqlCommand.CommandType = CommandType.StoredProcedure;
+        //        varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
+        //        varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+        //        varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+        //        varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", ParaSupplierId);
+        //        varSqlCommand.Parameters.AddWithValue("@ParaScheduleId", ParaScheduleId);
+        //        varSqlCommand.Parameters.AddWithValue("@paraCompanyID", paraCompanyID);
+        //        varSqlCommand.Parameters.AddWithValue("@paraDcID", paraDcID);
+        //        varSqlCommand.Parameters.AddWithValue("@ParaSupplier", ParaSupplier);
+        //        varSqlCommand.Parameters.AddWithValue("@ParaPO", ParaPO);
+        //        varSqlCommand.Parameters.AddWithValue("@ParaGroupID", ParaGroupID);
+        //        varSqlCommand.Parameters.AddWithValue("@ParaSubGroupID", ParaSubGroupID);
+        //        varSqlCommand.CommandTimeout = 0;
+        //        SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+        //        sa.Fill(ds);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //    finally
+        //    {
+        //        tmpspcall.CloseConnection();
+        //    }
+        //    return ds;
+        //}
         // added by venkat on 17/10/2023 for PO list
         public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID, string ParaPOFromDate,
             string ParaPOToDate, int paraPOID, int paraStatus, string paraPendingPOIDs, int parafilter,int paraProductCode,int paraOrdertype,int paraCityid,int paraDTAT,int paraGRNstatus)

@@ -102,7 +102,7 @@ namespace ROMS
         public static CP_ProductApprovalList objCP_ProductApprovalList;
         public static CP_ProductApproval objCP_ProductApproval;
 
-        public static INV_SalesInvoiceList objINV_SalesInvoiceList;
+        public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
         public static INV_GRNPODamaged objINV_GRNPODamaged;
         public static INV_StockRequestList objINV_StockRequestList;
@@ -1011,7 +1011,7 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objINV_SalesInvoiceList = new INV_SalesInvoiceList();
+                MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
                 MainForm.objINV_SalesInvoiceList.MdiParent = this;
                 MainForm.objINV_SalesInvoiceList.Show();
             }
