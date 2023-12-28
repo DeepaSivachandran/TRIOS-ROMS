@@ -1384,6 +1384,7 @@
     <Compile Include="SSS Acccounts activation.designer.cs">
       <DependentUpon>SSS Acccounts activation.cs</DependentUpon>
     </Compile>
+    <Compile Include="TRNS_GRN.cs" />
     <Compile Include="Web References\ActivationService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

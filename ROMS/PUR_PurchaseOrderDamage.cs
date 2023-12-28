@@ -103,7 +103,7 @@ namespace ROMS
                 objTRN_PurchaseReturnDC.paraCompanyId = varcompanyid;
                 objTRN_PurchaseReturnDC.ParaSupplierId = varSupplierid;
                 objTRN_PurchaseReturnDC.ParaScheduleID = varScheduleid;
-                objTRN_PurchaseReturnDC.paraDcID = varDcCode;
+                objTRN_PurchaseReturnDC.paraDcID =Convert.ToInt32(varDcCode);
                 objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objdserv.CloseConnection();

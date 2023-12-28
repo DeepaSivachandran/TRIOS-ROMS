@@ -271,15 +271,11 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnReason();
                 udfnUddtTable();
+                udfnClosingDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpReturnDCDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();
-                //cmbReasonForClosing.Items.Clear();
-                //cmbReasonForClosing.Items.Add("Credit Note Received");
-                //cmbReasonForClosing.Items.Add("Same/Alt. Products Received");
-                //cmbReasonForClosing.Items.Add("Debit Note Created");
-                //cmbReasonForClosing.SelectedIndex = 0;
                 if (btnSave.Text == "Save")
                 {
                     grpReason.Enabled = false;
@@ -627,11 +623,14 @@ namespace ROMS
             try
             {
                 LV_Supplier.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(30, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "", 0);
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 30;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -702,7 +701,12 @@ namespace ROMS
                 if (lblSupplierCode.Text.Length > 0)
                 {
                     int varReturnApplicable = 0, varReturnType = 0;
-                    objDs = objspdservice.udfnSupplierList(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0, "", "", "", 0);
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 16;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1077,9 +1081,12 @@ namespace ROMS
                     {
                         string varSupplierId = "0";
                         string[] values = new string[0];
+                        MR_Supplier objMR_Supplier = new MR_Supplier();
+                        objMR_Supplier.ViewType = 23;
+                        objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                         DataSet objDsSupplierId = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        objDsSupplierId = objDserv.udfnSupplierList(23, 0, 0, 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "", "", "", 0);
+                        objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
                         objDserv.CloseConnection();
                         if (objDsSupplierId != null)
                         {
@@ -1119,7 +1126,10 @@ namespace ROMS
                     }
                     if (varErrorFlag == true)
                     {
-                        udfnTooltipHide(); int varDC_PURID = 0;
+                        udfnTooltipHide(); int varDC_PURID = 0; int varReasonforClosingId = 0;
+                        if(varReturnDCID!=0)
+                        {  varReasonforClosingId =Convert.ToInt32(cmbReasonForClosing.SelectedValue); }
+                        else { varReasonforClosingId = 0; }
                         int varStatusID = 15;
                         if (grdReturnDC.Rows.Count > 0)
                         {
@@ -1154,15 +1164,15 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbReason.SelectedValue);
                                 objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                                 objTRN_PurchaseReturnDC.paraReturnDC_Date = dpReturnDCDate.Text;
-                                objTRN_PurchaseReturnDC.ParaSubtotal = Convert.ToDouble(txtSubTotal.Text.Trim());
-                                objTRN_PurchaseReturnDC.paraTax = Convert.ToDouble(txtTotalTax.Text.Trim());
+                                objTRN_PurchaseReturnDC.ParaSubtotal = Convert.ToDecimal(txtSubTotal.Text.Trim());
+                                objTRN_PurchaseReturnDC.paraTax = Convert.ToDecimal(txtTotalTax.Text.Trim());
                                 objTRN_PurchaseReturnDC.paraReturnDC_NO = txtReturnDcNo.Text.Trim();
                                 objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text.Trim());
                                 objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
                                 objTRN_PurchaseReturnDC.paraReturnDC_Remarks = txtRemarks.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraStatusID = varStatusID;
-                                objTRN_PurchaseReturnDC.paraClosingReasonId = Convert.ToInt32(cmbReasonForClosing.SelectedValue);
-                                objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDouble(txtAmount.Text.Trim());
+                                objTRN_PurchaseReturnDC.paraClosingReasonId = varReasonforClosingId;
+                                objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDecimal(txtAmount.Text.Trim());
                                 objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
