@@ -163,6 +163,7 @@ namespace ROMS
             dtViewProduct.AcceptChanges();
             lblViewProductCount.Text = "0";
             lblMoveProCount.Text = "0";
+            rbSales.Checked = true;
         } 
         public void udfnProductLoad()
         {
@@ -646,6 +647,7 @@ namespace ROMS
                     else
                     {
                         dtViewProduct.Rows.Clear();
+                        dtViewProduct.AcceptChanges();
                         dtMoveProduct.Rows.Clear();
                         dtMoveProduct.AcceptChanges();
                         grdMoveProduct.DataSource = null;
@@ -1415,6 +1417,7 @@ namespace ROMS
                 }
                 else
                 {
+                    txtSearchProductName2.Text = "";
                     string varResult = "",
                     varoriginator = ""; int varType = 13, varFlag = 0;
                     varProductID = "";
@@ -2373,7 +2376,14 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnRackList(16, 0, 0, varDestinationLocationID,varSourceRackID, "", 0, 0);
+                if (varDestinationLocationID == varSourceLocationID)
+                {
+                    objDs = objdserv.udfnRackList(16, 0, 0, varDestinationLocationID, varSourceRackID, "", 0, 0);
+                }
+                else
+                {
+                    objDs = objdserv.udfnRackList(16, 0, 0, varDestinationLocationID, 0, "", 0, 0);
+                }
                 objdserv.CloseConnection();
                 cmbDestinationRack.DataSource = null;
                 if (objDs != null)
@@ -2382,11 +2392,24 @@ namespace ROMS
                     {
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            if (Convert.ToInt32(objDs.Tables[1].Rows[0][0])<=1)
+                            if (varDestinationLocationID == varSourceLocationID)
                             {
-                                cmbDestinationRack.Text = "None";
-                                varDestinationRackID = 0;
-                                cmbDestinationRack.Enabled = false;
+                                if (Convert.ToInt32(objDs.Tables[1].Rows[0][0]) <= 1)
+                                {
+                                    cmbDestinationRack.Text = "None";
+                                    varDestinationRackID = 0;
+                                    cmbDestinationRack.Enabled = false;
+                                }
+                                else
+                                {
+                                    if (objDs.Tables[0].Rows.Count > 0)
+                                    {
+                                        cmbDestinationRack.ValueMember = "RKID";
+                                        cmbDestinationRack.DisplayMember = "RK_Name";
+                                        cmbDestinationRack.DataSource = objDs.Tables[0];
+                                        cmbDestinationRack.Enabled = true;
+                                    }
+                                }
                             }
                             else
                             {
@@ -2858,6 +2881,42 @@ namespace ROMS
                         lvSourceLocation.Items[0].Selected = true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbSales_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dtViewProduct.Rows.Clear();
+                dtViewProduct.AcceptChanges();
+                dtMoveProduct.Rows.Clear();
+                dtMoveProduct.AcceptChanges();
+                grdMoveProduct.DataSource = null;
+                grdViewProduct.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbPurchase_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dtViewProduct.Rows.Clear();
+                dtViewProduct.AcceptChanges();
+                dtMoveProduct.Rows.Clear();
+                dtMoveProduct.AcceptChanges();
+                grdMoveProduct.DataSource = null;
+                grdViewProduct.DataSource = null;
             }
             catch (Exception ex)
             {
