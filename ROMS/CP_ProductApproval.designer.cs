@@ -1229,6 +1229,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Goods Outward";
             this.Load += new System.EventHandler(this.CP_ProductApproval_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ProductApproval_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).EndInit();
             this.tsStockTransferList.ResumeLayout(false);
             this.tsStockTransferList.PerformLayout();
