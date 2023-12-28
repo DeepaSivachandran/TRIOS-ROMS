@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -183,6 +184,7 @@ namespace ROMS
                     MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                     MainForm.objCP_Supplier.btnSave.Text = "Update";
                     MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
+                    MainForm.objCP_Supplier.pbFormStatus = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["STS"].Value.ToString());
                     MainForm.objCP_Supplier.Show();
                 }
             }
@@ -219,9 +221,13 @@ namespace ROMS
                 else
                 {
                     string[] values = new string[0];
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 31;
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(31, 0, Convert.ToInt32(lblschedule.Text), 0, 0, txtSupplier.Text.Trim(), 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "","","",0);
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -257,8 +263,14 @@ namespace ROMS
 
                 if (Varflag == 0)
                 {
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 1;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objMR_Supplier.pardayid = Convert.ToInt32(cmbDay.SelectedValue);
+                    objMR_Supplier.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnSupplierList(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbDay.SelectedValue), 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "","","",0);
+                    objDs = objdserv.udfnSupplierList(objMR_Supplier);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -617,11 +629,14 @@ namespace ROMS
             try
             {
                 LV_Supplier.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(15, 0, 0, 0, 0, txtSupplier.Text, 0, 0, 0,"",0,0,0,0,0,0,"","","",0);
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 15;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1342,7 +1357,10 @@ namespace ROMS
                             varScheduleName = txtSupplier.Text.Split('-')[1].Trim();
                         }
                     }
-                    objDsSupplierId = objDserv.udfnSupplierList(11, 0, 0, 0, 0, varSuppName, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, "","","",0);
+                    MR_Supplier objMR_Supplier1 = new MR_Supplier();
+                    objMR_Supplier1.ViewType = 11;
+                    objMR_Supplier1.paraSupplierName = varSuppName;
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier1);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -1364,10 +1382,16 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 1;
+                objMR_Supplier.paraSupplierid = varSupplierId;
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                objMR_Supplier.pardayid = Convert.ToInt32(cmbDay.SelectedValue);
+                objMR_Supplier.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 // objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbDay.SelectedValue), 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "");
-                objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbDay.SelectedValue), 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", 0, 0, 0, 0, 0, 0, "","","",0);
+                objDs = objdserv.udfnSupplierList(objMR_Supplier);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

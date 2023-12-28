@@ -22,7 +22,7 @@ namespace ROMS
         private ToolTip tpphone = new ToolTip();
         private ToolTip tpwhatsapp = new ToolTip();
         public string varupdate = "0", brandid=""; 
-        public int varrepid = 0,varbrandselectflag=0,varbrandidflag=0;
+        public int varrepid = 0,varbrandselectflag=0,varbrandidflag=0,varStatus=0;
         public string vargroupcode,VARBRANDLOADID = "";
         public String pbFormStatus;
         public int varCheckAllFlag = 0;
@@ -565,6 +565,10 @@ namespace ROMS
                         }
                     } 
                 }
+                if(varStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
@@ -576,8 +580,18 @@ namespace ROMS
 
             }
         }
-            public void udfnlist()
-            {
+        public void udfnDisable()
+        {
+            txtCompanyName.Enabled = false;
+            txtRepName.Enabled = false;
+            txtPhonenumber.Enabled = false;
+            txtWhatsappno.Enabled = false;
+            grdRepBrand.ReadOnly = true;
+            btnUnselectAll.Enabled = false;btnSelectAll.Enabled = false;
+            this.ActiveControl = rbInActive;
+        }
+        public void udfnlist()
+        {
             try
             {
                 int varviewtype = 0, varloadrepid = 0; string varbrandid = "";
@@ -1103,6 +1117,7 @@ namespace ROMS
                 for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                 {
                     grdRepBrand.Rows[i].Cells[0].Value = true;
+                    dtBrand.Rows[i][0] = true;
                 }
             }
             catch (Exception ex)
@@ -1119,6 +1134,7 @@ namespace ROMS
                 for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                 {
                     grdRepBrand.Rows[i].Cells[0].Value = false;
+                    dtBrand.Rows[i][0] = false  ;
                 }
             }
             catch (Exception ex)

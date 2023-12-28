@@ -480,7 +480,6 @@
             this.txtBankShortName.Name = "txtBankShortName";
             this.txtBankShortName.Size = new System.Drawing.Size(165, 27);
             this.txtBankShortName.TabIndex = 18;
-            this.txtBankShortName.TextChanged += new System.EventHandler(this.TxtBankShortName_TextChanged);
             this.txtBankShortName.Enter += new System.EventHandler(this.TxtBankShortName_Enter);
             this.txtBankShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankShortName_KeyDown);
             this.txtBankShortName.Leave += new System.EventHandler(this.TxtBankShortName_Leave);
@@ -3229,10 +3228,10 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(37, 72);
+            this.RPTViewer.Location = new System.Drawing.Point(15, 72);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1248, 504);
+            this.RPTViewer.Size = new System.Drawing.Size(1277, 504);
             this.RPTViewer.TabIndex = 1111228;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;

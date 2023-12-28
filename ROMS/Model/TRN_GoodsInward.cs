@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 
 namespace ROMS.Model
 {
-    class TRNS_GoodsOutward
+    class TRN_GoodsInward
     {
         public int ViewType { get; set; } = 0;
         public int paraUserID { get; set; } = 0;
         public string paraIPAddress { get; set; } = "";
         public string paraOriginator { get; set; } = "";
-        public int ParaGOId { get; set; } = 0;
-        public int ParaCompanyCode { get; set; } = 0;
-        public string paraOutwardDate { get; set; } = "";
+        public int paraGIID { get; set; } = 0;
+        public int paraCompanyCode { get; set; } = 0;
+        public string paraInwardDate { get; set; } = "";
         public int paraSLID { get; set; } = 0;
         public int paraTransferType { get; set; } = 0;
-        public string paraRemarks { get; set; } = "";
-        public int paraStatusId { get; set; } = 0;
-        public DataTable paraStockTransfer { get; set; } = null;
+        public string paraFromDate { get; set; } = "";
+        public string paraToDate { get; set; } = "";
+        public int paraPRID { get; set; } = 0;
+        public DataTable paraGoodsInward { get; set; } = null;
     }
 }

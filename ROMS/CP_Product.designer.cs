@@ -1008,12 +1008,10 @@
             // 
             // txtRackMOQQty
             // 
-            this.txtRackMOQQty.Enabled = false;
             this.txtRackMOQQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtRackMOQQty.Location = new System.Drawing.Point(135, 113);
             this.txtRackMOQQty.MaxLength = 8;
             this.txtRackMOQQty.Name = "txtRackMOQQty";
-            this.txtRackMOQQty.ReadOnly = true;
             this.txtRackMOQQty.Size = new System.Drawing.Size(388, 27);
             this.txtRackMOQQty.TabIndex = 27;
             this.txtRackMOQQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1439,12 +1437,10 @@
             // 
             // txtSaleRack
             // 
-            this.txtSaleRack.Enabled = false;
             this.txtSaleRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSaleRack.Location = new System.Drawing.Point(135, 59);
             this.txtSaleRack.MaxLength = 100;
             this.txtSaleRack.Name = "txtSaleRack";
-            this.txtSaleRack.ReadOnly = true;
             this.txtSaleRack.Size = new System.Drawing.Size(388, 27);
             this.txtSaleRack.TabIndex = 16;
             this.txtSaleRack.TextChanged += new System.EventHandler(this.TxtSaleRack_TextChanged);
@@ -1454,12 +1450,10 @@
             // 
             // txtSaleLocation
             // 
-            this.txtSaleLocation.Enabled = false;
             this.txtSaleLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSaleLocation.Location = new System.Drawing.Point(135, 32);
             this.txtSaleLocation.MaxLength = 100;
             this.txtSaleLocation.Name = "txtSaleLocation";
-            this.txtSaleLocation.ReadOnly = true;
             this.txtSaleLocation.Size = new System.Drawing.Size(388, 27);
             this.txtSaleLocation.TabIndex = 15;
             this.txtSaleLocation.TextChanged += new System.EventHandler(this.TxtSaleLocation_TextChanged);

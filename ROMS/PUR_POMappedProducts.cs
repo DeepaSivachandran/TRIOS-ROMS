@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -362,9 +363,15 @@ namespace ROMS
 
                     if (Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text) != 0)
                     {
+                        MR_Product objMR_Product = new MR_Product();
+                        objMR_Product.paraViewType = 33;
+                        objMR_Product.ParaCompanycode = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
+                        objMR_Product.ParaScheduleid = Convert.ToString(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
+                        objMR_Product.ParaSupplierId = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
+                        objMR_Product.ParaProductsCode = MainForm.objPUR_PurchaseOrder.pbProductsCode;
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnproductmasterlist(33, 0, 0, 0, 0, "", "", "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), MainForm.objPUR_PurchaseOrder.pbProductsCode,"",null,0,null,"","");
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -510,12 +517,17 @@ namespace ROMS
                         DefProductsCode = DefProductsCode + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Product ID"].Value);
                     }
                 }
-
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 28;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
+                objMR_Supplier.paraCompanycode = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
+                objMR_Supplier.paraProducts = DefProductsCode;
+                DataSet objDs = new DataSet();
                 SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet(); 
-                objDs = objspdservice.udfnSupplierList(28, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text), 0, 0, "", 0, 0, Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue), "", 0, 0, 0, 0, 0, 0,DefProductsCode,"","",0);
+                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                 objspdservice.CloseConnection();
-
+                string MXSQ = "0", MXSTK="0";
                 for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
@@ -534,12 +546,28 @@ namespace ROMS
                                     defflag = "4";
                                 }
                             }
-                        } 
+                        }
+                        if (Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value) == "0")
+                        {
+                            MXSQ = "-";
+                        }
+                        else
+                        {
+                            MXSQ = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value);
+                        }
+                        if (Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Stock"].Value) == "0")
+                        {
+                            MXSTK = "-";
+                        }
+                        else
+                        {
+                            MXSTK = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["Stock"].Value);
+                        }
                         MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Add(MainForm.objPUR_PurchaseOrder.grdsupplieradd.Rows.Count + 1,
                         grdPurchaseOrder.Rows[i].Cells["P.I Code"].Value, grdPurchaseOrder.Rows[i].Cells["Product Name"].Value, grdPurchaseOrder.Rows[i].Cells["Unit"].Value,
                         grdPurchaseOrder.Rows[i].Cells["Unit Wt"].Value, grdPurchaseOrder.Rows[i].Cells["Unit Per case"].Value, grdPurchaseOrder.Rows[i].Cells["B.Unit Weight"].Value, 
-                        grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (grdPurchaseOrder.Rows[i].Cells["Max Qty"].Value),
-                        (grdPurchaseOrder.Rows[i].Cells["Stock"].Value), Convert.ToString(grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value),
+                        grdPurchaseOrder.Rows[i].Cells["GST_Text"].Value, (grdPurchaseOrder.Rows[i].Cells["Min Qty"].Value), (MXSQ),
+                        (MXSTK), Convert.ToString(grdPurchaseOrder.Rows[i].Cells["PREVIOUS"].Value),
                          grdPurchaseOrder.Rows[i].Cells["Othersupprevious"].Value, grdPurchaseOrder.Rows[i].Cells["PARTIAL"].Value, grdPurchaseOrder.Rows[i].Cells["Othersuppartial"].Value, 
                         (grdPurchaseOrder.Rows[i].Cells["Reorder Qty"].Value),"", grdPurchaseOrder.Rows[i].Cells["bunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["qtyunit"].Value,
                         "",grdPurchaseOrder.Rows[i].Cells["totunit"].Value,"", grdPurchaseOrder.Rows[i].Cells["finalunit"].Value, (grdPurchaseOrder.Rows[i].Cells["Product ID"].Value), 

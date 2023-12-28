@@ -84,7 +84,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=25 OR MSTID=-1", "MST_DisplayText,MSTID", cmbBatchNo, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=25 ", "MST_DisplayText,MSTID", cmbBatchNo, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -224,6 +224,10 @@ namespace ROMS
                 {
                     rbInactive.Checked = true;
                 }
+                if(varStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
@@ -236,6 +240,20 @@ namespace ROMS
                 lvLocation.Visible = false;
                // lvRack.Visible = false;
             }
+        }
+        public void udfnDisable()
+        {
+            txtProductGroupName.Enabled = false;
+            btnAdd.Enabled = false;
+            txtESubGroupNameEnglish.Enabled = false;
+            txtESubGroupNameTamil.Enabled = false;
+            cmbBatchNo.Enabled = false;
+            txtLocation.Enabled = false;
+            btnewlocation.Enabled = false;
+            btnNewRack.Enabled = false;
+            txtRack.Enabled = false;
+            grdRackList.ReadOnly = true;
+            this.ActiveControl = rbInactive;
         }
         public void udfnClear()
         {
@@ -280,7 +298,7 @@ namespace ROMS
                    varOriginator = "Product Sub Group Updation";
                    varViewType=1; 
                 }
-                string varRackId = "", varRackName = ""; ;
+                string varRackId = "", varRackName = "",varRackDescription=""; 
                 int varcheckedcount = 0;
                 for (int i = 0; i < grdRackList.Rows.Count; i++)
                 {
@@ -291,6 +309,8 @@ namespace ROMS
                         else  {  varRackId = varRackId + ',' + Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
                         if (varRackName == "") { varRackName = Convert.ToString(grdRackList.Rows[i].Cells["Rack Name"].Value); }
                         else { varRackName = varRackName + ',' + Convert.ToString(grdRackList.Rows[i].Cells["Rack Name"].Value); }
+                        if (varRackDescription == "") { varRackDescription = Convert.ToString(grdRackList.Rows[i].Cells["Rack Description"].Value); }
+                        else { varRackDescription = varRackDescription + ',' + Convert.ToString(grdRackList.Rows[i].Cells["Rack Description"].Value); }
                     }
                 }
                 if (grdRackList.Rows.Count>0 && varRackId == "")
@@ -327,13 +347,17 @@ namespace ROMS
                                 //MainForm.objCP_Items.varSALERKID = Convert.ToInt32(lblRack.Text);
                                 MainForm.objCP_Items.varPurchaseLocation = txtLocation.Text.Trim();
                                 MainForm.objCP_Items.varSalesLocation = txtLocation.Text.Trim();
-                                if (varcheckedcount > 1) {
+                                if (varcheckedcount == 1)
+                                {
                                     MainForm.objCP_Items.varPURRKID = Convert.ToInt32(varRackId);
-                                    MainForm.objCP_Items.varPurchaseRack = varRackName; }
+                                    MainForm.objCP_Items.varPurchaseRack = varRackName;
+                                    MainForm.objCP_Items.varRackDescription = varRackDescription;
+                                }
                                 else
                                 {
                                     MainForm.objCP_Items.varPURRKID = 0;
                                     MainForm.objCP_Items.varPurchaseRack = "";
+                                    MainForm.objCP_Items.varRackDescription = "";
                                 }
                                 //MainForm.objCP_Items.varPurchaseRack = txtRack.Text.Trim();
                                 //MainForm.objCP_Items.varSalesRack = txtRack.Text.Trim();
@@ -430,14 +454,14 @@ namespace ROMS
                     blnErrorFlag = true;
 
                 }
-                if (Convert.ToString(cmbBatchNo.SelectedValue) == "0" || Convert.ToString(cmbBatchNo.SelectedValue) == "-1")
-                {
-                    epSubGroup.SetError(cmbBatchNo, "Please select batch No. status");
-                    cmbBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBatchNo.ShowAlways = true;
-                    tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(cmbBatchNo.SelectedValue) == "0" || Convert.ToString(cmbBatchNo.SelectedValue) == "-1")
+                //{
+                //    epSubGroup.SetError(cmbBatchNo, "Please select batch No. status");
+                //    cmbBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpBatchNo.ShowAlways = true;
+                //    tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (txtLocation.Text.Trim() != "")
                 {
                     string varLocation = "0";
@@ -707,7 +731,8 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBatchNo.Focus();
+                    //cmbBatchNo.Focus();
+                    txtLocation.Focus();
                 }
             }
             catch (Exception ex)

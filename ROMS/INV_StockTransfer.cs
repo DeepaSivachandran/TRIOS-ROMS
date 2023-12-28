@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -125,19 +126,6 @@ namespace ROMS
                 {
                     btnSave.Focus();
                     BtnSave_Click(sender,e);
-                }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductNamePICode.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductNamePICode.Text = "Search by Product Name";
-                    }
                 }
             }
             catch (Exception ex)
@@ -304,6 +292,7 @@ namespace ROMS
                                 }
                             }
                             //btnSave.Text = "Update";
+                            ((DataGridViewTextBoxColumn)grdStockTransfer.Columns["clmquantity"]).MaxInputLength = 8;
                             grdStockTransfer.Columns["clmdsno"].Width = 50;
                             grdStockTransfer.Columns["clmmrp"].Width = 50;
                             grdStockTransfer.Columns["clmquantity"].Width = 100;
@@ -333,10 +322,8 @@ namespace ROMS
                         btnAdd.Enabled = false;
                         txtRemarks.Enabled = false;
                         this.ActiveControl = btnClose;
-                        for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
-                        {
-                            ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
-                        }
+                        DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                        GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
                     }
                     lvSLocation.Visible = false;
                     lvDLocation.Visible = false;
@@ -897,6 +884,21 @@ namespace ROMS
                 {
                     txtDLocation.Focus();
                 }
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductNamePICode.Text = "Search by P.I Code";
+                        txtProductNamePICode.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductNamePICode.Text = "Search by Product Name";
+                        txtProductNamePICode.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -943,15 +945,23 @@ namespace ROMS
                 lvProduct.Items.Clear();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
-                    SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 35;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraId = varStockTransferID;
+                    objMR_Product.paraLocationId = Convert.ToInt32(lblSLocation.Text);
+                    objMR_Product.paraStockTransfer = dtStock;
                     if (VarSearchFlag == true)
                     {
-                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0,txtProductNamePICode.Text, "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, "", 0, "", "", dtStock, varStockTransferID, null,"","");
+                        objMR_Product.paraPicode = txtProductNamePICode.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     else
                     {
-                        objDs = objspdservice.udfnproductmasterlist(35, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, 0, 0, 0, txtProductNamePICode.Text.Trim(), 0, "", "", dtStock, varStockTransferID, null,"","");
+                        objMR_Product.paraProductName = txtProductNamePICode.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     }
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -1088,6 +1098,7 @@ namespace ROMS
                 udfnTransferNo();
                 grdStockTransfer.Rows.Clear();
                 dtStock.Rows.Clear();
+                txttotalitem.Text = "";
                 if (btnSave.Text == "Save")
                 {
                     txtSLocation.Text = "";
@@ -1252,6 +1263,7 @@ namespace ROMS
                     grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, (txtProductNamePICode.Text).Trim(), (txtSRack.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtDLocation.Text).Trim(), (cmbDRack.Text).Trim(), (txtStockQty.Text).Trim(), (txtQuantity.Text).Trim(), varUnitSymbol, (lblProduct.Text).Trim(), varSRKID,varUTID, (txtQuantity.Text).Trim(),0);
                     dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtQuantity.Text).Trim(), varSRKID,(lblDLocation.Text).Trim(),DRKID);
                     txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
+                    ((DataGridViewTextBoxColumn)grdStockTransfer.Columns["clmquantity"]).MaxInputLength = 8;
                     grdStockTransfer.Columns["clmdsno"].Width = 50;
                     grdStockTransfer.Columns["clmmrp"].Width = 50;
                     grdStockTransfer.Columns["clmquantity"].Width = 100;
@@ -1375,7 +1387,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
                     varPICode = selectedItem.SubItems[0].Text;
-                    txtProductNamePICode.Text = selectedItem.SubItems[3].Text;
+                    txtProductNamePICode.Text = selectedItem.SubItems[2].Text;
                     txtMRP.Text = selectedItem.SubItems[5].Text;
                     txtExpiryDate.Text = selectedItem.SubItems[6].Text;
                     txtBatchNo.Text = selectedItem.SubItems[7].Text;
@@ -2044,6 +2056,81 @@ namespace ROMS
                 if(e.KeyCode==Keys.Enter)
                 {
                     btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockTransfer_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
+                {
+                    if (varStatusID == 32)
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmquantity"];
+                        cell.Style.BackColor = Color.LightGray;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = true;
+                    }
+                    else
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmquantity"];
+                        cell.Style.BackColor = Color.PaleGreen;
+                        cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void GrdStockTransfer_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdStockTransfer.CurrentCell.OwningColumn.Name == "clmquantity")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void allowonlynumber(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (grdStockTransfer.CurrentCell.OwningColumn.Name == "clmquantity")
+                {
+                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                    {
+                        e.Handled = true;
+                    }
+                    //only allow one decimal point
+                    if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                    {
+                        e.Handled = true;
+                    }
                 }
             }
             catch (Exception ex)

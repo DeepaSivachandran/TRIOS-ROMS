@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -1069,11 +1070,18 @@ namespace ROMS
             try
             {
                 lvProduct.Items.Clear();
+                DataSet objDs = new DataSet();
                 if (txtProductNamePICode.Text.Length > 0)
                 {
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 46;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraLocationId = Convert.ToInt32(lblSLocation.Text);
+                    objMR_Product.paraProductName = txtProductNamePICode.Text;
+                    objMR_Product.ParaFromDate = dpTrannsferFromDate.Text;
+                    objMR_Product.ParaToDate =dpTransferToDate.Text;
                     SPDataService objspdservice = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnproductmasterlist(46,0,0,0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue), 0,0,0,0,0,0,0,Convert.ToInt32(lblSLocation.Text),0,0,0,0,txtProductNamePICode.Text,0,"","",null,0,null,dpTrannsferFromDate.Text,dpTransferToDate.Text);
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

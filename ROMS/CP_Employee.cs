@@ -448,12 +448,24 @@ namespace ROMS
                 txtEmpName.Text = PbNameoftheUser;
                 cmbUserCategory.SelectedValue = PbUserCategoryID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                if(PbStatus==2)
+                {
+                    udfnDisable();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnDisable()
+        {
+            txtEmpCode.Enabled = false;
+            txtEmpName.Enabled = false;
+            cmbUserCategory.Enabled = false;
+            btnNew.Enabled = false;
+            this.ActiveControl = rbInactive;
         }
         private void CP_Employee_KeyDown(object sender, KeyEventArgs e)
         {

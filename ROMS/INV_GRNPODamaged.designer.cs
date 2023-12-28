@@ -87,6 +87,7 @@
             this.grdGRNPODamaged.Size = new System.Drawing.Size(736, 348);
             this.grdGRNPODamaged.TabIndex = 1;
             this.grdGRNPODamaged.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellClick);
+            this.grdGRNPODamaged.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellContentDoubleClick);
             // 
             // btnClose
             // 

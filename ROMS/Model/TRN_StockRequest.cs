@@ -18,6 +18,7 @@ namespace ROMS.Model
         public string ParaSTToDate { get; set; } = "";
         public int paraPRID { get; set; } = 0;
         public int paraStatusId { get; set; } = 0;
+        public int paraDeleteFlag { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
         public DataTable paraStockRequest { get; set; } = null;
     }

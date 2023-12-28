@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -170,9 +171,15 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 13;
+                objMR_Supplier.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Supplier.paraStateId = Convert.ToInt32(cmbState.SelectedValue);
+                objMR_Supplier.paraPaymentTerm = Convert.ToInt32(cmbPaymentTerm.SelectedValue);
+                objMR_Supplier.paraGstType = Convert.ToInt32(cmbSupplierType.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(13,0,0,0,0,"",0,Convert.ToInt32(cmbStatus.SelectedValue),0,"",CityId,Convert.ToInt32(cmbState.SelectedValue), Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbPaymentTerm.SelectedValue),0,0,"","","",0);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -261,9 +268,14 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 14;
+                objMR_Supplier.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Supplier.paraCityId = CityId;
+                objMR_Supplier.paraStateId = Convert.ToInt32(cmbState.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(14, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue), 0, 0, 0,0,"","","",0);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -348,9 +360,14 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 20;
+                objMR_Supplier.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Supplier.paraCityId = CityId;
+                objMR_Supplier.paraStateId = Convert.ToInt32(cmbState.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(20, 0, 0, 0, 0, "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0, 0,0,"","","",0);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -435,9 +452,15 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 19;
+                objMR_Supplier.paraordertype = Convert.ToInt32(cmbOrderType.SelectedValue);
+                objMR_Supplier.paraCityId = CityId;
+                objMR_Supplier.paraStateId = Convert.ToInt32(cmbState.SelectedValue);
+                objMR_Supplier.paraReturnPolicy = Convert.ToInt32(cmbReturnPolicy.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnSupplierList(19, 0, 0, 0, 0, "",Convert.ToInt32(cmbOrderType.SelectedValue), 0, 0, "", CityId, Convert.ToInt32(cmbState.SelectedValue),0, 0,Convert.ToInt32(cmbReturnPolicy.SelectedValue),0,"","","",0);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

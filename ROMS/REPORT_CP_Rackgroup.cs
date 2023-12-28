@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -248,9 +249,15 @@ namespace ROMS
                     RKCode = Convert.ToInt32(lblRackCode.Text);
                     RKName = Convert.ToString(txtRack.Text);
                 }
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 20;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraRackId = RKCode;
+                objMR_Product.paraRKGId = RKGCode;
+                objMR_Product.paraEMPId = EMPCode;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(20,0,0,0,0,"","","",Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0,RKCode,0,0,0,0,0,RKGCode,EMPCode,"",0,"","", null,0,null,"","");
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -345,9 +352,15 @@ namespace ROMS
                     RKCode = Convert.ToInt32(lblRackCode.Text);
                     RKName = Convert.ToString(txtRack.Text);
                 }
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 21;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraRackId = RKCode;
+                objMR_Product.paraRKGId = RKGCode;
+                objMR_Product.paraEMPId = EMPCode;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(21, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"","", null,0,null,"","");
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -442,9 +455,15 @@ namespace ROMS
                     RKCode = Convert.ToInt32(lblRackCode.Text);
                     RKName = Convert.ToString(txtRack.Text);
                 }
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 22;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraRackId = RKCode;
+                objMR_Product.paraRKGId = RKGCode;
+                objMR_Product.paraEMPId = EMPCode;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(22, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"","", null,0,null,"","");
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -539,9 +558,15 @@ namespace ROMS
                     RKCode = Convert.ToInt32(lblRackCode.Text);
                     RKName = Convert.ToString(txtRack.Text);
                 }
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 23;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraRackId = RKCode;
+                objMR_Product.paraRKGId = RKGCode;
+                objMR_Product.paraEMPId = EMPCode;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(23, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"","", null,0,null,"","");
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -636,9 +661,15 @@ namespace ROMS
                     RKCode = Convert.ToInt32(lblRackCode.Text);
                     RKName = Convert.ToString(txtRack.Text);
                 }
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 24;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraRackId = RKCode;
+                objMR_Product.paraRKGId = RKGCode;
+                objMR_Product.paraEMPId = EMPCode;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(24, 0, 0, 0, 0, "", "", "", Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode,"",0,"", "",null,0,null,"","");
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

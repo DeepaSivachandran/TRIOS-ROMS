@@ -98,7 +98,7 @@
             this.grbform.Controls.Add(this.grpPurchaseStockLocation);
             this.grbform.Location = new System.Drawing.Point(10, 1);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(453, 447);
+            this.grbform.Size = new System.Drawing.Size(453, 421);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -120,9 +120,9 @@
             this.lvLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvLocation.HideSelection = false;
-            this.lvLocation.Location = new System.Drawing.Point(224, 189);
+            this.lvLocation.Location = new System.Drawing.Point(224, 164);
             this.lvLocation.Name = "lvLocation";
-            this.lvLocation.Size = new System.Drawing.Size(223, 72);
+            this.lvLocation.Size = new System.Drawing.Size(223, 84);
             this.lvLocation.TabIndex = 1111145;
             this.lvLocation.UseCompatibleStateImageBehavior = false;
             this.lvLocation.View = System.Windows.Forms.View.Details;
@@ -194,6 +194,7 @@
             this.cmbBatchNo.Name = "cmbBatchNo";
             this.cmbBatchNo.Size = new System.Drawing.Size(200, 27);
             this.cmbBatchNo.TabIndex = 3;
+            this.cmbBatchNo.Visible = false;
             this.cmbBatchNo.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNo_SelectedIndexChanged);
             this.cmbBatchNo.Enter += new System.EventHandler(this.CmbBatchNo_Enter);
             this.cmbBatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchNo_KeyDown);
@@ -211,13 +212,14 @@
             this.textBox1.Size = new System.Drawing.Size(200, 27);
             this.textBox1.TabIndex = 1111142;
             this.textBox1.Text = "Batch No.";
+            this.textBox1.Visible = false;
             // 
             // txtSDtockLocation
             // 
             this.txtSDtockLocation.BackColor = System.Drawing.SystemColors.Control;
             this.txtSDtockLocation.Enabled = false;
             this.txtSDtockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDtockLocation.Location = new System.Drawing.Point(24, 162);
+            this.txtSDtockLocation.Location = new System.Drawing.Point(24, 137);
             this.txtSDtockLocation.Name = "txtSDtockLocation";
             this.txtSDtockLocation.ReadOnly = true;
             this.txtSDtockLocation.Size = new System.Drawing.Size(200, 27);
@@ -277,7 +279,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(24, 374);
+            this.txtDStatus.Location = new System.Drawing.Point(24, 348);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(200, 27);
@@ -290,7 +292,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(224, 374);
+            this.pnlStatus.Location = new System.Drawing.Point(224, 348);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(200, 27);
             this.pnlStatus.TabIndex = 7;
@@ -342,7 +344,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(345, 408);
+            this.btnClose.Location = new System.Drawing.Point(345, 381);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(79, 29);
             this.btnClose.TabIndex = 9;
@@ -359,7 +361,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(263, 408);
+            this.btnSave.Location = new System.Drawing.Point(263, 381);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(79, 29);
             this.btnSave.TabIndex = 8;
@@ -393,7 +395,7 @@
             this.grpPurchaseStockLocation.Controls.Add(this.txtLocation);
             this.grpPurchaseStockLocation.Controls.Add(this.txtDRack);
             this.grpPurchaseStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.grpPurchaseStockLocation.Location = new System.Drawing.Point(7, 132);
+            this.grpPurchaseStockLocation.Location = new System.Drawing.Point(7, 107);
             this.grpPurchaseStockLocation.Name = "grpPurchaseStockLocation";
             this.grpPurchaseStockLocation.Size = new System.Drawing.Size(440, 235);
             this.grpPurchaseStockLocation.TabIndex = 4;
@@ -532,7 +534,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(476, 455);
+            this.ClientSize = new System.Drawing.Size(476, 432);
             this.Controls.Add(this.lblLocation);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
