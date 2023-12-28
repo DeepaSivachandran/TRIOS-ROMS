@@ -2676,7 +2676,7 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 string result = "", varStatus = "";
                 int varshelflife = 0, shelflife = 0;
-                string varorignator = "Product Update";
+                string varorignator = "Product approval update";
                 if (cbShelflife.Checked == true)
                 {
                     varshelflife = 1;
