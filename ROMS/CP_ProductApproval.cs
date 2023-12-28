@@ -17,7 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
-        public int varUnitid = 0, varComId = 0, varproductcode = 0, varPURSLID = 0, varPURRKID = 0, varHsnId = 0, varSubGroupId = 0, varSALESLID = 0, varSALERKID = 0, varflag = 0;
+        public int varUnitid = 0, varComId = 0, varproductcode = 0, varPURSLID = 0, varPURRKID = 0, varHsnId = 0, varSubGroupId = 0, varSALESLID = 0, varSALERKID = 0, varflag = 0, varGroupId = 0;
         public string varSubgroupCode = "", varPurLocationCode = "", varPurRackCode = "", varBrand = "", varSalesRackCode = "", varSalesLocationCode = "", varHsnCode = "", varCategoryId = "";
         private ToolTip tpplno = new ToolTip();
         private ToolTip tpprd = new ToolTip();
@@ -103,13 +103,14 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  not in (0)", "GST_Text,GSTID", cmbGst, "", "GST_Text", "GSTID");
                 objDataBind = null;
                 //cmbConcern.SelectedValue = -1;
-                varComId = MainForm.pbDefaultComId;
+                //varComId = MainForm.pbDefaultComId;
                 //cmbHSNName.SelectedValue = -1;
                 //cmbUnit.SelectedValue = -1;
                 //cmbBulkUnit.SelectedValue = -1;
                 cmbProductCategory.SelectedValue = -1;
                 cmbPeriod.SelectedValue = -1;
                 cmbBatchno.SelectedValue = 72;
+                
                 //cmbBatchNoGeneration.SelectedValue = -1;
                 udfnUnitLoad();
                 udfnEdit();
@@ -440,7 +441,8 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubgroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubgroup.Text.Trim(), 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(8, 0, "", Convert.ToInt32(varGroupId), 0, txtSubgroup.Text.Trim(), 0, 0, 0, 0);
+
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -450,7 +452,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString(), objDs.Tables[0].Rows[i]["Description"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(),"", "","", "", "", "", "", "" };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -566,8 +568,9 @@ namespace ROMS
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvPurLocation.Items.Add(objList);
                                 }
-                                lvPurLocation.Visible = true;
+
                                 lvPurLocation.BringToFront();
+                                lvPurLocation.Visible = true;
                             }
                         }
                     }
@@ -731,7 +734,7 @@ namespace ROMS
                     txtSubgroup.Text = selectedItem.SubItems[0].Text;
                     varSubgroupCode = selectedItem.SubItems[2].Text;
                     //txtGroup.Text = selectedItem.SubItems[4].Text;
-                    //lblGroupCode.Text = selectedItem.SubItems[5].Text;
+                    //varGroupCode = Convert.ToInt32(selectedItem.SubItems[5].Text);
                     txtPurLocation.Text = selectedItem.SubItems[7].Text;
                     varPurLocationCode = selectedItem.SubItems[6].Text;
                     varPurRackCode = selectedItem.SubItems[8].Text;
@@ -2197,6 +2200,95 @@ namespace ROMS
                 lvBrand.Visible = false;
                 lvSubGroup.Visible = false;
                 lvHsnCode.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdBrand_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdBrand.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSubgroup_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdSubgroup.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbGst.Select(int.MaxValue, 0)));
+                if (txtHsnname.Text != "")
+                {
+                    string varId_HSN = "0"; string varId_HSNGST = "0";
+                    DataSet objDsHSN = new DataSet();
+                    DataSet objDsHSNGst = new DataSet();
+                    SPDataService objDs = new SPDataService();
+                    objDsHSN = objDs.udfnHsnList(7, 0, 0, 0, txtHsnname.Text.Trim(), "");
+                    objDsHSNGst = objDs.udfnHsnList(8, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, "", "");
+                    objDs.CloseConnection();
+                    if (objDsHSN != null)
+                    {
+                        if (objDsHSN.Tables.Count > 0)
+                        {
+                            if (objDsHSN.Tables[0].Rows.Count > 0)
+                            {
+                                varId_HSN = Convert.ToString(objDsHSN.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    if (objDsHSNGst != null)
+                    {
+                        if (objDsHSNGst.Tables.Count > 0)
+                        {
+                            if (objDsHSNGst.Tables[0].Rows.Count > 0)
+                            {
+                                varId_HSNGST = Convert.ToString(objDsHSNGst.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    if (varId_HSN != varId_HSNGST)
+                    {
+                        txtHsnname.Text = "";
+                        txtHsncode.Text = "";
+                    }
+
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdCategory_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdCategory.ClearSelection();
             }
             catch (Exception ex)
             {
