@@ -240,7 +240,7 @@ namespace ROMS
                 {
                     txtSaleLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
                     tpsaleslocation.ShowAlways = true;
-                    tpsaleslocation.Show("Please select valid sales rack", txtSaleLocation, 5000);
+                    tpsaleslocation.Show("Please select valid sales location", txtSaleLocation, 5000);
                     txtSaleRack.Text = "";
                     lblSaleRackCode.Text = "0";
                     txtRackDescriptionSales.Text = "";
@@ -254,7 +254,6 @@ namespace ROMS
                 //    tpbrand.Show("Please select Brand", cmbBrand, 5000);
                 //    blnErrorFlag = true;
                 //}
-
                 if (Convert.ToString(cmbUnit.SelectedValue) == "" || Convert.ToString(cmbUnit.SelectedValue) == "-1")
                 {
                     errItems.SetError(cmbUnit, "Please select unit");
@@ -521,7 +520,7 @@ namespace ROMS
                         }
                     }
                     /* Check Rack Based on Subgroup or not */
-                    if (Convert.ToString(txtPurRack.Text) != "")
+                    if (Convert.ToString(txtPurRack.Text) != "" && Convert.ToString(txtPurRack.Text)!="None")
                     {
                         string varSubRackId = "0";
                         DataSet objDsSubGroupRack = new DataSet();
@@ -700,7 +699,6 @@ namespace ROMS
                     objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSaleLocation.Text.Trim(), 0, 0, 0,"","");
                     objDServ5.CloseConnection();
                     if (objDsSalesLoc != null)
-
                     {
                         if (objDsSalesLoc.Tables.Count > 0)
                         {
@@ -3706,14 +3704,12 @@ namespace ROMS
                     lvSubGroup.Visible = false;
                     lvPurLocation.Visible = false;
                     lvPurRack.Visible = false;
-                    //if (varbatchenable == "72")
-                    //{
-                    //    cmbBatchNoEntry.SelectedValue = 72;
-                    //}
-                    //else
-                    //{
-                    //    cmbBatchNoEntry.SelectedValue = 73;
-                    //}
+                    if (Convert.ToString(lblPurRackCode.Text)=="0")
+                    {
+                        txtPurRack.Text = "None";
+                        txtPurRack.BackColor = Color.White;
+                        txtPurRack.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -4518,7 +4514,7 @@ namespace ROMS
                 {
                     txtRackDescription.Text = "";
                     txtPurRack.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtPurRack, "Please enter rack");
+                    errItems.SetError(txtPurRack, "Please enter purchase rack");
                 }
                 else
                 {
@@ -4584,7 +4580,7 @@ namespace ROMS
                 if (txtSaleLocation.Text == "")
                 {
                     txtSaleLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtPurLocation, "Please enter sales location");
+                    errItems.SetError(txtSaleLocation, "Please enter sales location");
                     txtSaleRack.Text = "";
                     txtRackDescriptionSales.Text = "";
                     lblSaleRackCode.Text = "0";
@@ -5289,7 +5285,7 @@ namespace ROMS
                     txtRackDescriptionSales.Text = "";
                     txtRackMOQQty.Text = "";
                     txtSaleRack.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtSaleRack, "Please enter rack");
+                    errItems.SetError(txtSaleRack, "Please enter sales rack");
                     txtRackMOQQty.Enabled = false;
                 }
                 else
@@ -5479,14 +5475,19 @@ namespace ROMS
                // txtSaleRack.Text = varSalesRack;
                 txtPurRack.Text = varPurchaseRack;
                 txtRackDescription.Text = varRackDescription;
-                if (varBatchCode == 72)
+                //if (varBatchCode == 72)
+                //{
+                //    cmbBatchNoEntry.SelectedValue = 72;
+                //}
+                //else
+                //{
+                //    cmbBatchNoEntry.SelectedValue = 73;
+                //}
+                if(Convert.ToString(lblPurRackCode.Text)=="0")
                 {
-                    cmbBatchNoEntry.SelectedValue = 72;
-                }
-                else
-                {
-
-                    cmbBatchNoEntry.SelectedValue = 73;
+                    txtPurRack.Text = "None";
+                    txtPurRack.BackColor = Color.White;
+                    txtPurRack.Enabled = false;
                 }
                 txtSubGroup.Focus();
                 lvSubGroup.Visible = false;
