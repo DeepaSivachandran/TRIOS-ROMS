@@ -24,9 +24,11 @@ namespace ROMS
         private ToolTip tpDcNo = new ToolTip();
 
         public int varReturnDCID = 0, varCloseFlag=0;
-        public int pbScheduleid = 0, pbSupplierId=0;
+        public int pbScheduleid = 0, pbSupplierId=0,varStatusId=0;
         public string varSuppliervalue = "";
         DataTable dtPurchaseReturnDC = new DataTable();
+        public DataTable dtExchangeProducts = new DataTable();
+        public string txtExchangeRemarks = "";
         public PUR_PurchaseReturns()
         {
             InitializeComponent();
@@ -40,6 +42,29 @@ namespace ROMS
                 tpSuppliername.Active = false;
                 tpReason.Active = false;
                 tpDcNo.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void ClearSupplier()
+        {
+            try
+            {
+                lblSuppliername.Text = "";
+                lblSupplierCity.Text = "";
+                lblsupplierGST.Text = "";
+                lblsupplierScheduletype.Text = "";
+                lblsupplierpayment.Text = "";
+                lblSupplierOrderpolicy.Text = "";
+                lblReturn.Text = "";
+                //lblReturnType.Text = "";
+                lblSalesmanName.Text = "";
+                lblMobileNo.Text = "";
+                lblWhatsAppNo.Text = "";
+                grdRepDetails.DataSource = null;
             }
             catch (Exception ex)
             {
@@ -218,6 +243,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnClear()
+        {
+            try
+            {
+                txtSupplier.Text = "";
+                cmbReason.SelectedValue = -1;
+                txtSubTotal.Text = "";
+                txtApproxTotal.Text = "";
+                txtTotalTax.Text = "";
+                txtRemarks.Text = "";
+                ClearSupplier();
+                udfnTooltipHide();
+                grdReturnDC.DataSource = null;
+                txtAmount.Text = "";
+                cmbReasonForClosing.SelectedValue = -1;
+                txtCrNo.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnReason()
         {
             try
@@ -271,11 +319,14 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnReason();
+                ClearSupplier();
                 udfnUddtTable();
                 udfnClosingDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpReturnDCDate.MinDate = MainForm.pbFYStartDate;
                 dpReturnDCDate.MaxDate = MainForm.pbCurrentDate;
+                dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
+                dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();
                 if (btnSave.Text == "Save")
@@ -285,6 +336,23 @@ namespace ROMS
                 else
                 {
                     EditLoad();
+                    if (varStatusId == 39)
+                    {
+                        txtAmount.ReadOnly = true;
+                        txtCrNo.ReadOnly = true;
+                        dpCreditNoteDate.Enabled = false;
+                        cmbReasonForClosing.Enabled = false;
+                        txtRemarks.ReadOnly = true;
+                        btnSave.Enabled = false;
+                    }
+                    else
+                    {
+                        grpReason.Enabled = false;
+                        if (varStatusId == 16)
+                        {
+                            grpReason.Enabled = true;
+                        }
+                    }
                     grpReturnDCSupplier.Enabled = false;
                     udfnClosingDropdown();
                 }
@@ -357,6 +425,10 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdReturnDC.DataSource = objDs.Tables[0];
                             grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdReturnDC.Columns["Product Name"].Width = 250;
+                            grdReturnDC.Columns["DMID"].Visible = false;
+                            grdReturnDC.Columns["PRID"].Visible = false;
+                            grdReturnDC.Columns["UTID"].Visible = false;
                         }
                         else
                         {
@@ -371,6 +443,10 @@ namespace ROMS
                             txtTotalTax.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Total Tax"]);
                             txtApproxTotal.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Approximate Total"]);
                             grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdReturnDC.Columns["Product Name"].Width = 250;
+                            grdReturnDC.Columns["DMID"].Visible = false;
+                            grdReturnDC.Columns["PRID"].Visible = false;
+                            grdReturnDC.Columns["UTID"].Visible = false;
                         }
                        
                     }
@@ -428,6 +504,7 @@ namespace ROMS
                                 txtSubTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SubTotal"]);
                                 txtTotalTax.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Total Tax"]);
                                 txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
+                                varStatusId = Convert.ToInt16(objDs.Tables[0].Rows[0]["Status ID"]);
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
                             }
@@ -451,6 +528,16 @@ namespace ROMS
                             {
                                 lblNoRecordsFound.Visible = true;
                                 lblNoRecordsFound.BringToFront();
+                            }
+                            if(objDs.Tables[2].Rows.Count!=0)
+                            {
+                                if (varStatusId == 16 && Convert.ToInt32(cmbReason.SelectedValue) == 60)
+                                {
+                                    cmbReasonForClosing.SelectedValue = objDs.Tables[0].Rows[2]["PURREDC_ClosingReasonId"].ToString();
+                                    txtDCrNo.Text = objDs.Tables[0].Rows[2]["PURREDC_DCNO"].ToString();
+                                    txtAmount.Text = objDs.Tables[0].Rows[2]["PURREDC_Amnt"].ToString();
+                                    dpCreditNoteDate.Text= objDs.Tables[0].Rows[0]["PURREDC_CNDate"].ToString();
+                                }
                             }
                         }
                     }
@@ -1128,7 +1215,7 @@ namespace ROMS
                     if (varErrorFlag == true)
                     {
                         udfnTooltipHide(); int varDC_PURID = 0; int varReasonforClosingId = 0;
-                        string varReturnDcAmount = ""; int varStatusID = 15;
+                        string varReturnDcAmount = ""; 
                         if (varReturnDCID!=0)
                         {  varReasonforClosingId =Convert.ToInt32(cmbReasonForClosing.SelectedValue); }
                         else { varReasonforClosingId = 0; }
@@ -1138,7 +1225,7 @@ namespace ROMS
                         {
                             varReturnDcAmount = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
                         }
-
+                       
                         if (grdReturnDC.Rows.Count > 0)
                         {
                             dtPurchaseReturnDC.Rows.Clear();
@@ -1156,12 +1243,17 @@ namespace ROMS
                                 if (varReturnDCID == 0)
                                 {
                                     varviewtype = 0;
+                                    varStatusId = 15;
                                     varorginator = "Purchase Return DC insertion";
                                 }
                                 else
                                 {
-                                    varviewtype = 1;
-                                    varorginator = "Purchase Return DC updation";
+                                    if (varStatusId == 16)
+                                    {
+                                        varviewtype = 1;
+                                        varorginator = "Purchase Return DC updation";
+                                    }
+                                    
                                 }
                                 TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
                                 objTRN_PurchaseReturnDC.paraViewType = varviewtype;
@@ -1178,15 +1270,31 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text.Trim());
                                 objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
                                 objTRN_PurchaseReturnDC.paraReturnDC_Remarks = txtRemarks.Text.Trim();
-                                objTRN_PurchaseReturnDC.paraStatusID = varStatusID;
+                                objTRN_PurchaseReturnDC.paraStatusID = varStatusId;
                                 objTRN_PurchaseReturnDC.paraClosingReasonId = varReasonforClosingId;
                                 objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDecimal(varReturnDcAmount);
-                                objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
+                                objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
+                                if (dtExchangeProducts != null)
+                                {
+                                    if (dtExchangeProducts.Rows.Count != 0)
+                                    {
+                                        objTRN_PurchaseReturnDC.paraDeleteFlag = 1;
+                                        objTRN_PurchaseReturnDC.ParaTRN_Purchase_DC = dtExchangeProducts;
+                                    }
+                                }
+                                else
+                                {
+                                    if(varReasonforClosingId==63)
+                                    {
+                                        MessageBox.Show("Please add atleast one product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                }
                                 SPDataService objspdservice = new SPDataService();
                                 result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
                                 objspdservice.CloseConnection();
+                                
                                 string[] varvalue = result.Split('~');
                                 if (varvalue[0] == "3")
                                 {
@@ -1195,8 +1303,9 @@ namespace ROMS
                                     if (varReturnDCID != 0)
                                     {
                                         varCloseFlag = 1;
+                                        udfnclose();
                                     }
-                                    udfnclose();
+                                    udfnClear();
                                     MainForm.objPUR_PurchaseDCList.udfnList();
                                 }
                                 else if (varvalue[0] == "4")

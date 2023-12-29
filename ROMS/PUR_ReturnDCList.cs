@@ -837,7 +837,6 @@ namespace ROMS
                         lblSupplierCode.Text = values[0];
                         lblschedule.Text = values[1];
                         txtSupplier.BackColor = Color.White;
-
                     }
                     //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                 }
@@ -871,6 +870,7 @@ namespace ROMS
                                 grdReturnDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdReturnDCList.Columns["Total Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdReturnDCList.Columns["Concern"].Width = 150;
                                 grdReturnDCList.Columns["DC Date"].Width = 100;
                                 grdReturnDCList.Columns["DC No."].Width = 100;

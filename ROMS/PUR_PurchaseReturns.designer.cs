@@ -168,8 +168,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(135, 22);
-            this.tspHeader.Text = "Purchase Return DC";
+            this.tspHeader.Size = new System.Drawing.Size(82, 22);
+            this.tspHeader.Text = "Return DC";
             // 
             // pnldl
             // 
@@ -221,7 +221,7 @@
             this.columnHeader1});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(122, 77);
+            this.LV_Supplier.Location = new System.Drawing.Point(121, 77);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(366, 93);
             this.LV_Supplier.TabIndex = 1111209;
@@ -838,7 +838,7 @@
             // txtCrNo
             // 
             this.txtCrNo.Location = new System.Drawing.Point(116, 76);
-            this.txtCrNo.MaxLength = 50;
+            this.txtCrNo.MaxLength = 30;
             this.txtCrNo.Name = "txtCrNo";
             this.txtCrNo.Size = new System.Drawing.Size(183, 28);
             this.txtCrNo.TabIndex = 3;

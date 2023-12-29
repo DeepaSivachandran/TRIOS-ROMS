@@ -2248,9 +2248,11 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_PurchaseReturnDC.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDC_Date", objTRN_PurchaseReturnDC.paraReturnDC_Date);
                 varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_PurchaseReturnDC.paraReasonId);
+                varSqlCommand.Parameters.AddWithValue("@paraClosingReasonId", objTRN_PurchaseReturnDC.paraClosingReasonId);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDC_NO", objTRN_PurchaseReturnDC.paraReturnDC_NO);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_PurchaseReturnDC.ParaSupplierId);
                 varSqlCommand.Parameters.AddWithValue("@ParaScheduleID", objTRN_PurchaseReturnDC.ParaScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraCreditNoteNo", objTRN_PurchaseReturnDC.paraCreditNoteNo);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDC_Remarks", objTRN_PurchaseReturnDC.paraReturnDC_Remarks);
                 varSqlCommand.Parameters.AddWithValue("@paraExchangeRemarks", objTRN_PurchaseReturnDC.paraExchangeRemarks);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_PurchaseReturnDC.paraStatusID);
