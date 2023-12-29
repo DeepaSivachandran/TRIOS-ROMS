@@ -51,6 +51,7 @@ namespace ROMS
         private ToolTip tpshelflifevalue = new ToolTip();
         private ToolTip tpHsnCode = new ToolTip();
         private ToolTip tpgst = new ToolTip();
+        private ToolTip tpMxstock = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varSalesRack="",varBrandName="", varRackDescription="";
@@ -142,65 +143,70 @@ namespace ROMS
                 //        tpplno.Show("Please enter gross weight", txtGrossWeight, 5000);
                 //        //  blnErrorFlag = true;
                 //    }
-                //    if (Convert.ToString(txtMaxStock.Text).Trim() == "")
-                //    {
-                //        errItems.SetError(txtMaxStock, "Please enter max stock");
-                //        txtMaxStock.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpplno.ShowAlways = true;
-                //        tpplno.Show("Please enter max stock", txtMaxStock, 5000);
-                //        // blnErrorFlag = true;
-                //    }
-                //    if (Convert.ToString(txtReOrderQty.Text).Trim() == "")
-                //    {
-                //        errItems.SetError(txtReOrderQty, "Please enter Reorder qty");
-                //        txtReOrderQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpplno.ShowAlways = true;
-                //        tpplno.Show("Please enter Reorder qty", txtReOrderQty, 5000);
-                //        // blnErrorFlag = true;
-                //    }
-                //    if (Convert.ToString(txtRMinSaleQty.Text).Trim() == "")
-                //    {
-                //        errItems.SetError(txtRMinSaleQty, "Please enter retail min sales stock");
-                //        txtRMinSaleQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpplno.ShowAlways = true;
-                //        tpplno.Show("Please enter retail min sales stock", txtRMinSaleQty, 5000);
-                //        //   blnErrorFlag = true;
-                //    }
-                //    if (Convert.ToString(txtRetailRate.Text).Trim() == "")
-                //    {
-                //        errItems.SetError(txtRetailRate, "Please enter retail rate");
-                //        txtRetailRate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpplno.ShowAlways = true;
-                //        tpplno.Show("Please enter retail rate", txtRetailRate, 5000);
-                //        // blnErrorFlag = true;
-                //    }
+                if (Convert.ToString(txtMaxStock.Text).Trim() != "")
+                {
+                    int varMinStock = 0; int varMaxStock = 0;
+                    if (Convert.ToString(txtMinStock.Text) != "") { varMinStock = Convert.ToInt32(txtMinStock.Text); }
+                    if (Convert.ToString(txtMaxStock.Text) != "") { varMaxStock = Convert.ToInt32(txtMaxStock.Text); }
+                    if (varMaxStock < varMinStock)
+                    {
+                        errItems.SetError(txtMaxStock, "Max stock should be greater that min stock!");
+                        txtMaxStock.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpMxstock.ShowAlways = true;
+                        tpMxstock.Show("Max stock should be greater that min stock!", txtMaxStock, 5000);
+                        blnErrorFlag = true; }
+                    }
+                    //    if (Convert.ToString(txtReOrderQty.Text).Trim() == "")
+                    //    {
+                    //        errItems.SetError(txtReOrderQty, "Please enter Reorder qty");
+                    //        txtReOrderQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tpplno.ShowAlways = true;
+                    //        tpplno.Show("Please enter Reorder qty", txtReOrderQty, 5000);
+                    //        // blnErrorFlag = true;
+                    //    }
+                    //    if (Convert.ToString(txtRMinSaleQty.Text).Trim() == "")
+                    //    {
+                    //        errItems.SetError(txtRMinSaleQty, "Please enter retail min sales stock");
+                    //        txtRMinSaleQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tpplno.ShowAlways = true;
+                    //        tpplno.Show("Please enter retail min sales stock", txtRMinSaleQty, 5000);
+                    //        //   blnErrorFlag = true;
+                    //    }
+                    //    if (Convert.ToString(txtRetailRate.Text).Trim() == "")
+                    //    {
+                    //        errItems.SetError(txtRetailRate, "Please enter retail rate");
+                    //        txtRetailRate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tpplno.ShowAlways = true;
+                    //        tpplno.Show("Please enter retail rate", txtRetailRate, 5000);
+                    //        // blnErrorFlag = true;
+                    //    }
 
-                //    if (Convert.ToString(txtWMinSaleQty.Text).Trim() == "")
-                //    {
-                //        errItems.SetError(txtWMinSaleQty, "Please enter wholesales min qty");
-                //        txtWMinSaleQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpplno.ShowAlways = true;
-                //        tpplno.Show("Please enter wholesales min qty", txtWMinSaleQty, 5000);
-                //        //   blnErrorFlag = true;
-                //    }
-                //    if (Convert.ToString(txtWSaleRate.Text).Trim() == "")
-                //    {
-                //        errItems.SetError(txtWSaleRate, "Please enter wholesales rate");
-                //        txtWSaleRate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpplno.ShowAlways = true;
-                //        tpplno.Show("Please enter wholesales rate", txtWSaleRate, 5000);
-                //        //  blnErrorFlag = true;
-                //    }
-                //    if (Convert.ToString(txtBarcode.Text).Trim() == "")
-                //    {
-                //        errItems.SetError(txtBarcode, "Please enter barcode");
-                //        txtBarcode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpplno.ShowAlways = true;
-                //        tpplno.Show("Please enter barcode", txtBarcode, 5000);
-                //        //  blnErrorFlag = true;
-                //    }
+                    //    if (Convert.ToString(txtWMinSaleQty.Text).Trim() == "")
+                    //    {
+                    //        errItems.SetError(txtWMinSaleQty, "Please enter wholesales min qty");
+                    //        txtWMinSaleQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tpplno.ShowAlways = true;
+                    //        tpplno.Show("Please enter wholesales min qty", txtWMinSaleQty, 5000);
+                    //        //   blnErrorFlag = true;
+                    //    }
+                    //    if (Convert.ToString(txtWSaleRate.Text).Trim() == "")
+                    //    {
+                    //        errItems.SetError(txtWSaleRate, "Please enter wholesales rate");
+                    //        txtWSaleRate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tpplno.ShowAlways = true;
+                    //        tpplno.Show("Please enter wholesales rate", txtWSaleRate, 5000);
+                    //        //  blnErrorFlag = true;
+                    //    }
+                    //    if (Convert.ToString(txtBarcode.Text).Trim() == "")
+                    //    {
+                    //        errItems.SetError(txtBarcode, "Please enter barcode");
+                    //        txtBarcode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tpplno.ShowAlways = true;
+                    //        tpplno.Show("Please enter barcode", txtBarcode, 5000);
+                    //        //  blnErrorFlag = true;
+                    //    }
 
-                if (Convert.ToString(cmbProductCategory.SelectedValue) == "" || Convert.ToString(cmbProductCategory.SelectedValue) == "-1")
+                    if (Convert.ToString(cmbProductCategory.SelectedValue) == "" || Convert.ToString(cmbProductCategory.SelectedValue) == "-1")
                 {
                     errItems.SetError(cmbProductCategory, "Please select product category");
                     cmbProductCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
