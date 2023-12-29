@@ -1271,6 +1271,8 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                Application.DoEvents();
                 udfnList();
                 //udfnSubGroupAdd();
                 if (btnSave.Text == "Save")
@@ -1291,7 +1293,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { udfnLoadRefresh(); }
+            finally { udfnLoadRefresh(); picLoader.Visible = false; }
         }
         public void udfnLoadRefresh() {
             try { if (varmastertype == 1 && btnSave.Text == "Update") { btnRefresh.Visible = true; } else { btnRefresh.Visible = false; } }
