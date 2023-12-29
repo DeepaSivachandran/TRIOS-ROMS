@@ -511,7 +511,7 @@ namespace ROMS
                             }
                         }
                         lblPurLocationCode.Text = Convert.ToString(varSubLocationId);
-                        if (varSubLocationId == "0" || varSubLocationId == "-1")
+                        if ((varSubLocationId == "0" || varSubLocationId == "-1" ) )
                         {
                             errItems.SetError(txtPurLocation, "Please select valid purchase stock location");
                             txtPurLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -539,7 +539,7 @@ namespace ROMS
                             }
                         }
                         lblPurRackCode.Text = Convert.ToString(varSubRackId);
-                        if (varSubRackId == "0" || varSubRackId == "-1")
+                        if ((varSubRackId == "0" || varSubRackId == "-1") && txtPurRack.Enabled)
                         {
                             errItems.SetError(txtPurRack, "Please select valid purchase rack");
                             txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -743,7 +743,7 @@ namespace ROMS
                                 }
                             }
                             lblSaleRackCode.Text = Convert.ToString(varId_SalesRack);
-                            if (varId_SalesRack == "0" || varId_SalesRack == "-1")
+                            if ((varId_SalesRack == "0" || varId_SalesRack == "-1")  && txtSaleRack.Enabled)
                             {
                                 errItems.SetError(txtSaleRack, "Please select valid sales rack");
                                 txtSaleRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
