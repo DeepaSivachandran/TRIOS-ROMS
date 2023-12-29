@@ -277,10 +277,6 @@ namespace ROMS
                 btnListPrint.Enabled = true;
                 btnListPrint.Focus();
                 GC.Collect();
-                string result="";
-                SPDataService objspdservice = new SPDataService();
-                result = objspdservice.udfnPurchaseEntry(4, 0, 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0,Convert.ToInt32(varRefNo));
-                objspdservice.CloseConnection();
 
             }
         } 
@@ -887,6 +883,22 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void REPORT_PUR_Purchaseorder_Summary_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string result = "";
+                SPDataService objspdservice = new SPDataService();
+                result = objspdservice.udfnPurchaseEntry(4, 0, 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0, Convert.ToInt32(varRefNo));
+                objspdservice.CloseConnection();
             }
             catch (Exception ex)
             {

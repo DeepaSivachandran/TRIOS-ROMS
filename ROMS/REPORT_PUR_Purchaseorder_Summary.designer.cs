@@ -36,13 +36,13 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.txtCity = new System.Windows.Forms.TextBox();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.lblcityid = new System.Windows.Forms.Label();
+            this.txtCity = new System.Windows.Forms.TextBox();
             this.txtDelaydays = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbOrdertype = new System.Windows.Forms.ComboBox();
@@ -142,19 +142,6 @@
             // 
             this.columnHeader4.Width = 0;
             // 
-            // txtCity
-            // 
-            this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCity.Location = new System.Drawing.Point(599, 41);
-            this.txtCity.MaxLength = 50;
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(186, 27);
-            this.txtCity.TabIndex = 4;
-            this.txtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
-            this.txtCity.Enter += new System.EventHandler(this.TxtCity_Enter);
-            this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCity_KeyDown);
-            this.txtCity.Leave += new System.EventHandler(this.TxtCity_Leave);
-            // 
             // LV_Supplier
             // 
             this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -225,6 +212,19 @@
             this.lblcityid.TabIndex = 1111249;
             this.lblcityid.Text = "0";
             this.lblcityid.Visible = false;
+            // 
+            // txtCity
+            // 
+            this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtCity.Location = new System.Drawing.Point(599, 41);
+            this.txtCity.MaxLength = 50;
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(186, 27);
+            this.txtCity.TabIndex = 4;
+            this.txtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
+            this.txtCity.Enter += new System.EventHandler(this.TxtCity_Enter);
+            this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCity_KeyDown);
+            this.txtCity.Leave += new System.EventHandler(this.TxtCity_Leave);
             // 
             // txtDelaydays
             // 
@@ -508,6 +508,7 @@
             this.Text = "HSN Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Product_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Product_KeyDown);
+            this.Leave += new System.EventHandler(this.REPORT_PUR_Purchaseorder_Summary_Leave);
             this.ReportProduct.ResumeLayout(false);
             this.ReportProduct.PerformLayout();
             this.pnlReportProduct.ResumeLayout(false);
