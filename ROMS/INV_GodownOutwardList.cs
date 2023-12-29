@@ -444,6 +444,7 @@ namespace ROMS
                 objTRNG_GoodsOutward.paraSLID = Convert.ToInt32(varStockLocationId);
                 objTRNG_GoodsOutward.ParaGOId = Convert.ToInt32(varGOID);
                 objTRNG_GoodsOutward.paraPRID = Convert.ToInt32(varPRID);
+                objTRNG_GoodsOutward.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNG_GoodsOutward.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnGOList(objTRNG_GoodsOutward);
                 objdserv.CloseConnection();                 

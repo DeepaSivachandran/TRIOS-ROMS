@@ -477,7 +477,16 @@ namespace ROMS
 
         private void TxtStockLocation_Leave(object sender, EventArgs e)
         {
+            try
+            {
+                txtStockLocation.BackColor = Color.White;
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnLvStockLocation()
         {
@@ -620,7 +629,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //cmbStatus.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
