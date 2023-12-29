@@ -24,6 +24,7 @@ namespace ROMS
 
         public string VarAdd = "0";
         public string varProducts = "";
+        public string varProductName = "";
         public int varModifiedFlag = 0;
         public int varStockRequestID = 0;
         public int varID = 0;
@@ -704,7 +705,8 @@ namespace ROMS
                 if (txtProductNamePICode.Text != "")
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
-                    txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
+                    varProductName = selectedItem.SubItems[1].Text;
+                    txtProductNamePICode.Text = selectedItem.SubItems[3].Text;
                     lblUnit.Text = selectedItem.SubItems[2].Text;
                     lblProduct.Text = selectedItem.SubItems[4].Text;
                     VarAdd = "1";
