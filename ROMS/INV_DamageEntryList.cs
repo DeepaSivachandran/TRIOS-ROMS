@@ -1139,7 +1139,7 @@ namespace ROMS
                             grdProDEList.Columns["PRStatusID"].Visible = false;
                             grdProDEList.Columns["S.No."].Width = 50;
                             grdProDEList.Columns["Status"].Width = 150;
-                            grdProDEList.Columns["Product Status"].Width = 150;
+                            grdProDEList.Columns["Product Status"].Width = 200;
                             grdProDEList.Columns["PICode"].Width = 150;
                             grdProDEList.Columns["Product"].Width = 280;
                             grdProDEList.Columns["Reason"].Width = 130;
@@ -2699,8 +2699,8 @@ namespace ROMS
                         case "clmSupPrint":
                             try
                             {
-                                string DMID = "0";
-                                DMID = Convert.ToString(grdSupDEList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                                string SPID = "0";
+                                SPID = Convert.ToString(grdSupDEList.SelectedRows[0].Cells["SPID"].Value.ToString());
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
@@ -2711,10 +2711,10 @@ namespace ROMS
                                     string varHeader = "";
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_SupplierWise.rpt");
                                     varHeader = "Damage Supplier";
 
-                                    objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(SPID));
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
