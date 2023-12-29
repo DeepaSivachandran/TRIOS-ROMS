@@ -2700,6 +2700,8 @@ namespace ROMS
                             try
                             {
                                 string SPID = "0";
+                                string DMID = "0";
+                                DMID = Convert.ToString(grdSupDEList.SelectedRows[0].Cells["DMID"].Value.ToString());
                                 SPID = Convert.ToString(grdSupDEList.SelectedRows[0].Cells["SPID"].Value.ToString());
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
@@ -2715,6 +2717,7 @@ namespace ROMS
                                     varHeader = "Damage Supplier";
 
                                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(SPID));
+                                    objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
