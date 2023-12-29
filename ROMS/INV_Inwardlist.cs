@@ -17,6 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public int varPRID = 0, varStockLocationId=0;
         public int varGIID = 0;
         public int varUserID = 0, ViewType = 0;
@@ -811,6 +812,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 /* Check stock location is valid or not*/
                 if (txtStockLocation.Text != "")
                 {
@@ -902,6 +905,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -916,7 +924,27 @@ namespace ROMS
                 btnView.Focus();
             }
         }
-
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Concern"].Width = 120;
+                DGV_SearchGrid.Columns["Inward Date"].Width = 120;
+                DGV_SearchGrid.Columns["Inward No."].Width = 120;
+                DGV_SearchGrid.Columns["Stock Location"].Width = 150;
+                DGV_SearchGrid.Columns["Transaction Type"].Width = 120;
+                DGV_SearchGrid.Columns["GIID"].Visible = false;
+                DGV_SearchGrid.Columns["Total Products"].Width = 120;
+                DGV_SearchGrid.Columns["Created By"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void INV_Inwardlist_DoubleClick(object sender, EventArgs e)
         {
             try
