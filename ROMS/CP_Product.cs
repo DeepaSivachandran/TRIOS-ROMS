@@ -539,7 +539,7 @@ namespace ROMS
                             }
                         }
                         lblPurRackCode.Text = Convert.ToString(varSubRackId);
-                        if )(varSubRackId == "0" || varSubRackId == "-1") && txtPurRack.Enabled)
+                        if ((varSubRackId == "0" || varSubRackId == "-1") && txtPurRack.Enabled)
                         {
                             errItems.SetError(txtPurRack, "Please select valid purchase rack");
                             txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
