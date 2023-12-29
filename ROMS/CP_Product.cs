@@ -511,7 +511,7 @@ namespace ROMS
                             }
                         }
                         lblPurLocationCode.Text = Convert.ToString(varSubLocationId);
-                        if (varSubLocationId == "0" || varSubLocationId == "-1")
+                        if ((varSubLocationId == "0" || varSubLocationId == "-1" ) && txtPurLocation.Enabled)
                         {
                             errItems.SetError(txtPurLocation, "Please select valid purchase stock location");
                             txtPurLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
