@@ -16,7 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        DataTable dtDefaultGrid = new DataTable();
         private ToolTip tpProductNamePICode = new ToolTip();
         private ToolTip tpQty = new ToolTip();
         private ToolTip tpProductName = new ToolTip();
@@ -471,7 +471,8 @@ namespace ROMS
         {
             try
             {
-                //
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 grdStockHold.DataSource = null;
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
@@ -544,6 +545,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDS.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -552,6 +558,39 @@ namespace ROMS
             }
             finally
             { grdStockHold.ClearSelection(); }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 40;
+                DGV_SearchGrid.Columns["Created On"].Width = 140;
+                DGV_SearchGrid.Columns["Concern"].Width = 70;
+                DGV_SearchGrid.Columns["P.I Code"].Width = 100;
+                DGV_SearchGrid.Columns["Product Name"].Width = 300;
+                DGV_SearchGrid.Columns["Unit"].Width = 50;
+                DGV_SearchGrid.Columns["Stock Location"].Width = 100;
+                DGV_SearchGrid.Columns["Rack"].Width = 60;
+                DGV_SearchGrid.Columns["MRP"].Width = 60;
+                DGV_SearchGrid.Columns["Expiry Date"].Width = 90;
+                DGV_SearchGrid.Columns["Batch No."].Width = 70;
+                DGV_SearchGrid.Columns["Hold Qty"].Width = 70;
+                DGV_SearchGrid.Columns["Created By"].Width = 80;
+                DGV_SearchGrid.Columns["clmDelete"].Width = 40;
+                DGV_SearchGrid.Columns["clmEdit"].Width = 30;
+                DGV_SearchGrid.Columns["PRID"].Visible = false;
+                DGV_SearchGrid.Columns["SLID"].Visible = false;
+                DGV_SearchGrid.Columns["UTID"].Visible = false;
+                DGV_SearchGrid.Columns["RKID"].Visible = false;
+                DGV_SearchGrid.Columns["SHID"].Visible = false;
+                DGV_SearchGrid.Columns["COMID"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnClear()
         {

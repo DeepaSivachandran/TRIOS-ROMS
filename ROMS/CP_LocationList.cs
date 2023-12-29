@@ -15,6 +15,7 @@ namespace ROMS
     public partial class CP_LocationList : Form
     {
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public int varStockApplicable = 0;
         public string varUserID = "";
         public int SearchFlag = 0;
@@ -119,6 +120,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -181,6 +184,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -194,6 +202,35 @@ namespace ROMS
                 btnView.Enabled = true;
                 txtSearchbyLocationName.Text = "";
                 SearchFlag = 0;
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["ConcernID"].Visible = false;
+                DGV_SearchGrid.Columns["LocationTypeID"].Visible = false;
+                DGV_SearchGrid.Columns["StockApplicableID"].Visible = false;
+                DGV_SearchGrid.Columns["GodownTypeID"].Visible = false;
+                DGV_SearchGrid.Columns["StatusID"].Visible = false;
+                DGV_SearchGrid.Columns["DefaultID"].Visible = false;
+                DGV_SearchGrid.Columns["RKCreationID"].Visible = false;
+                DGV_SearchGrid.Columns["RKGCreationID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Location Name in English"].Width = 200;
+                DGV_SearchGrid.Columns["Location Name in Tamil"].Width = 200;
+                DGV_SearchGrid.Columns["Rack Group Creation"].Width = 130;
+                DGV_SearchGrid.Columns["Short Name"].Width = 100;
+                DGV_SearchGrid.Columns["Stock Applicable"].Width = 110;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+                DGV_SearchGrid.Columns["Godown Type"].Width = 150;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void udfnSearchGridHead()

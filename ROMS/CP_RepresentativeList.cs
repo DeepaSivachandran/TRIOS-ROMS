@@ -15,6 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         DataSet objDs = new DataSet();
         DataTable objDtExcel = new DataTable();
         public string varUserID = "";
@@ -197,6 +198,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -250,8 +253,12 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
-
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -263,6 +270,28 @@ namespace ROMS
                 grdreplist.ClearSelection();
                 picLoader.Visible = false;
                 picLoader.SendToBack();  
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Company Name"].Width = 200;
+                DGV_SearchGrid.Columns["Representative name"].Width = 200;
+                DGV_SearchGrid.Columns["Phone No."].Width = 100;
+                DGV_SearchGrid.Columns["WhatsApp No."].Width = 100;
+                DGV_SearchGrid.Columns["Total Brands"].Width = 150;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["BRANDID"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)

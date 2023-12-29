@@ -14,6 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public CP_Companylist()
         {
             InitializeComponent();
@@ -154,6 +155,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -205,6 +208,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -218,7 +226,28 @@ namespace ROMS
                 picLoader.SendToBack();
             }
         }
-         
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Company Name"].Width = 200;
+                DGV_SearchGrid.Columns["City - Pincode"].Width = 150;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 150;
+                DGV_SearchGrid.Columns["FSSAI"].Width = 130;
+                DGV_SearchGrid.Columns["ESI"].Width = 130;
+                DGV_SearchGrid.Columns["EPF"].Width = 100;
+                DGV_SearchGrid.Columns["Status"].Visible = false;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
