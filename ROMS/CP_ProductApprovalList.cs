@@ -146,7 +146,7 @@ namespace ROMS
                 {
                     MainForm.objCP_ProductApproval = new CP_ProductApproval();
                     MainForm.objCP_ProductApproval.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
-                    //MainForm.objCP_ProductApproval.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
                     MainForm.objCP_ProductApproval.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
                     MainForm.objCP_ProductApproval.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
                     MainForm.objCP_ProductApproval.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
@@ -267,8 +267,8 @@ namespace ROMS
                             grdItemList.Columns["Product Name in Tamil"].Width = 300;
                             grdItemList.Columns["Product Subgroup"].Width = 150;
                             grdItemList.Columns["Product Group"].Width = 150;
-                            grdItemList.Columns["BatchNo"].Width = 80;
-                            grdItemList.Columns["Shelf life"].Width = 80;
+                            grdItemList.Columns["Batch No."].Width = 80;
+                            grdItemList.Columns["Shelf Life"].Width = 80;
                             grdItemList.Columns["HSN Name"].Width = 230;
                             grdItemList.Columns["ID"].Visible = false;
                             grdItemList.Columns["STSID"].Visible = false;
@@ -545,7 +545,7 @@ namespace ROMS
             {
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
                 {
-                    tsbNew_Click(sender, e);
+                    //tsbNew_Click(sender, e);
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
@@ -921,6 +921,7 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                
                 udfnList();
 
             }
