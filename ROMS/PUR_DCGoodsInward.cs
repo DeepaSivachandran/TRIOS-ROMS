@@ -113,7 +113,31 @@ namespace ROMS
             {
                 varTodayDate = Convert.ToString(MainForm.pbCurrentDate);
                 udfnUddtTable();
-                EditLoad();
+                if(MainForm.objPUR_PurchaseReturns.varStatusId==16)
+                {
+                    if (MainForm.objPUR_PurchaseReturns.dtExchangeProducts.Rows.Count != 0)
+                    {
+                        // dtPurchaseDC.DataSet = MainForm.objPUR_PurchaseReturns.dtExchangeProducts;
+                        dtPurchaseDC = (MainForm.objPUR_PurchaseReturns.dtExchangeProducts).Copy();
+                        // grdProductExchage.DataSource = (MainForm.objPUR_PurchaseReturns.dtExchangeProducts).Copy();
+                        for (int i = 0; i < dtPurchaseDC.Rows.Count; i++)
+                        {
+                            grdProductExchage.Rows.Add(dtPurchaseDC.Rows[i]["S.No."], dtPurchaseDC.Rows[i]["P.I Code"].ToString(),
+                            dtPurchaseDC.Rows[i]["Product Name"].ToString(),
+                            dtPurchaseDC.Rows[i]["MRP"].ToString(),
+                            dtPurchaseDC.Rows[i]["Expiry Date"].ToString(), dtPurchaseDC.Rows[i]["Batch No."].ToString(),
+                            dtPurchaseDC.Rows[i]["Qty"].ToString(), dtPurchaseDC.Rows[i]["Unit"].ToString(),
+                            dtPurchaseDC.Rows[i]["Location"].ToString(), dtPurchaseDC.Rows[i]["Rack"].ToString()
+                            , dtPurchaseDC.Rows[i]["PRID"].ToString(), dtPurchaseDC.Rows[i]["SLID"].ToString(),
+                            dtPurchaseDC.Rows[i]["RKID"].ToString(), Convert.ToString(dtPurchaseDC.Rows[i]["UTID"])
+                            );
+                        }
+                    }
+                }
+                else
+                {
+                    EditLoad();
+                }
             }
             catch (Exception ex)
             {
@@ -234,7 +258,6 @@ namespace ROMS
                             objTRN_PurchaseReturnDC.ParaTRN_Purchase_DC = dtPurchaseDC;
                             SPDataService objspdservice = new SPDataService();
                             result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
-                            objspdservice.CloseConnection();
                             objspdservice.CloseConnection();
                             string[] varvalue = result.Split('~');
                             if (varvalue[0] == "3")

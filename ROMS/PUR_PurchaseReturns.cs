@@ -22,6 +22,8 @@ namespace ROMS
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpReason = new ToolTip();
         private ToolTip tpDcNo = new ToolTip();
+        private ToolTip tpCrNo = new ToolTip();
+        private ToolTip tpAmount = new ToolTip();
 
         public int varReturnDCID = 0, varCloseFlag=0;
         public int pbScheduleid = 0, pbSupplierId=0,varStatusId=0;
@@ -354,7 +356,6 @@ namespace ROMS
                         }
                     }
                     grpReturnDCSupplier.Enabled = false;
-                    udfnClosingDropdown();
                 }
             }
             catch (Exception ex)
@@ -505,6 +506,7 @@ namespace ROMS
                                 txtTotalTax.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Total Tax"]);
                                 txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
                                 varStatusId = Convert.ToInt16(objDs.Tables[0].Rows[0]["Status ID"]);
+                                udfnClosingDropdown();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
                             }
@@ -517,6 +519,9 @@ namespace ROMS
                                     lblNoRecordsFound.SendToBack();
                                     grdReturnDC.DataSource = objDs.Tables[1];
                                     grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    grdReturnDC.Columns["DMID"].Visible = false;
+                                    grdReturnDC.Columns["PRID"].Visible = false;
+                                    grdReturnDC.Columns["UTID"].Visible = false;
                                 }
                                 else
                                 {
@@ -531,12 +536,12 @@ namespace ROMS
                             }
                             if(objDs.Tables[2].Rows.Count!=0)
                             {
-                                if (varStatusId == 16 && Convert.ToInt32(cmbReason.SelectedValue) == 60)
+                                if (varStatusId == 39 && Convert.ToInt32(cmbReason.SelectedValue) == 60)
                                 {
-                                    cmbReasonForClosing.SelectedValue = objDs.Tables[0].Rows[2]["PURREDC_ClosingReasonId"].ToString();
-                                    txtDCrNo.Text = objDs.Tables[0].Rows[2]["PURREDC_DCNO"].ToString();
-                                    txtAmount.Text = objDs.Tables[0].Rows[2]["PURREDC_Amnt"].ToString();
-                                    dpCreditNoteDate.Text= objDs.Tables[0].Rows[0]["PURREDC_CNDate"].ToString();
+                                    cmbReasonForClosing.SelectedValue = objDs.Tables[2].Rows[0]["PURREDC_ClosingReasonId"].ToString();
+                                    txtCrNo.Text = objDs.Tables[2].Rows[0]["PURREDC_CNNo"].ToString();
+                                    txtAmount.Text = objDs.Tables[2].Rows[0]["PURREDC_Amnt"].ToString();
+                                    dpCreditNoteDate.Text= objDs.Tables[2].Rows[0]["PURREDC_CNDate"].ToString();
                                 }
                             }
                         }
@@ -1440,7 +1445,19 @@ namespace ROMS
         {
             try
             {
-                txtAmount.BackColor = Color.White;
+                if (txtAmount.Text == "")
+                {
+                    epReturnDc.SetError(txtAmount, "Please enter amount.");
+                    txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAmount.ShowAlways = true;
+                    tpAmount.Show("Please enter amount.", txtAmount, 5000);
+                }
+                else
+                {
+                    epReturnDc.Clear();
+                    txtAmount.BackColor = Color.White;
+                    tpAmount.Active = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1479,7 +1496,19 @@ namespace ROMS
         {
             try
             {
-                txtCrNo.BackColor = Color.White;
+                if (txtCrNo.Text == "")
+                {
+                    epReturnDc.SetError(txtCrNo, "Please enter credit number.");
+                    txtCrNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCrNo.ShowAlways = true;
+                    tpCrNo.Show("Please enter amount.", txtCrNo, 5000);
+                }
+                else
+                {
+                    epReturnDc.Clear();
+                    txtCrNo.BackColor = Color.White;
+                    tpCrNo.Active = false;
+                }
             }
             catch (Exception ex)
             {

@@ -197,8 +197,8 @@
             this.grdReturnDCList.ReadOnly = true;
             this.grdReturnDCList.RowHeadersVisible = false;
             this.grdReturnDCList.RowHeadersWidth = 100;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdReturnDCList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdReturnDCList.RowTemplate.Height = 25;
             this.grdReturnDCList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -231,7 +231,7 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Honeydew;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
@@ -241,7 +241,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
