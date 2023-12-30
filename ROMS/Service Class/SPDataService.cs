@@ -2350,6 +2350,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRNS_GRN.paraStatus);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNProd", objTRNS_GRN.paraGRNProd);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraSkipped", objTRNS_GRN.paraSkipped);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRNS_GRN.paraDeleteFlag);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

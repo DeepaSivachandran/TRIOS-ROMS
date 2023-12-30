@@ -17,7 +17,9 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DateTime varmaxdate;
+        public DataTable Deftable = new DataTable();
         Boolean BlnSearchImageYN = false;
+        public string varUserID = "0";
         public PUR_GRNDetailsList()
         {
             InitializeComponent();
@@ -78,6 +80,10 @@ namespace ROMS
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
                     TsbEdit_Click(sender, e);
+                } 
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D) || (e.KeyCode == Keys.Delete))
+                {
+                    TsbDelete_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -140,6 +146,7 @@ namespace ROMS
                 this.ActiveControl = dpFromDate;
                 //********** To display a data in a grid  ****************** 
                 grdGRNList.DataSource = null;
+                DGV_SearchGrid.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -179,6 +186,7 @@ namespace ROMS
                             grdGRNList.Columns["GRNID"].Visible = false;
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false; 
                             grdGRNList.Columns["GRN_SPID"].Visible = false;  
+                            grdGRNList.Columns["GRN_STSID"].Visible = false;  
                             grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;  
                             grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;  
                         }
@@ -188,6 +196,7 @@ namespace ROMS
                             lblNoRecordsFound.BringToFront();
                             grdGRNList.Columns["clmPrint"].Visible = false;
                             grdGRNList.Columns["ClmEdit"].Visible = false;
+                            Deftable = objDs.Tables[0];
                         }  
                     }
                     else
@@ -196,6 +205,7 @@ namespace ROMS
                         lblNoRecordsFound.BringToFront();
                         grdGRNList.Columns["clmPrint"].Visible = false;
                         grdGRNList.Columns["ClmEdit"].Visible = false;
+                        Deftable = objDs.Tables[0];
                     }
                 }
                 else
@@ -204,10 +214,14 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                     grdGRNList.Columns["clmPrint"].Visible = false;
                     grdGRNList.Columns["ClmEdit"].Visible = false;
+                    Deftable = objDs.Tables[0];
                 }
 
                 udfnSearchGridHead();
-
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    udfnDefcolumns();
+                }
             }
             catch (Exception ex)
             {
@@ -217,6 +231,36 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+            }
+        }
+        public void udfnDefcolumns()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = Deftable;
+                DGV_SearchGrid.Columns["GRNID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_SPID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Company"].Width = 80;
+                DGV_SearchGrid.Columns["GRN No."].Width = 100;
+                DGV_SearchGrid.Columns["GRN Date"].Width = 100;
+                DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
+                DGV_SearchGrid.Columns["City"].Width = 100;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 120;
+                DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
+                DGV_SearchGrid.Columns["Invoice No."].Width = 100;
+                DGV_SearchGrid.Columns["Invoice Amount"].Width = 120;
+                DGV_SearchGrid.Columns["Created By"].Width = 100;
+                DGV_SearchGrid.Columns["Created On"].Width = 150;
+                DGV_SearchGrid.Columns["Order Type"].Width = 100;
+                DGV_SearchGrid.Columns["Any Purchase Returns"].Width = 150;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnConcernLoad()
@@ -269,6 +313,7 @@ namespace ROMS
                             MainForm.objPUR_GRNEntry.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
                             MainForm.objPUR_GRNEntry.pbScheduleid = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPSCID"].Value.ToString());
                             MainForm.objPUR_GRNEntry.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
+                            MainForm.objPUR_GRNEntry.pbGRNSTS = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value.ToString());
                             MainForm.objPUR_GRNEntry.btnSave.Text = "Update && Print";
                             MainForm.objPUR_GRNEntry.ShowDialog();
                             break;
@@ -306,7 +351,7 @@ namespace ROMS
                 MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
                 MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString()); 
                 MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
-                MainForm.objPUR_GRNDetails.pbPOIdS = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
+                //MainForm.objPUR_GRNDetails.pbPOIdS = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.Show();
             }
             catch (Exception ex)
@@ -1038,6 +1083,81 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TsbDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfndelete();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfndelete()
+        {
+            try
+            {
+                if (grdGRNList.SelectedRows.Count > 0)
+                {
+                    string result = "";
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        SPDataService objspdservice = new SPDataService();
+                        result = "";
+                        int pbGRNId = 0;
+                        pbGRNId = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRNID"].Value);
+                        TRN_GRN objTRNS_GRN = new TRN_GRN();
+                        objTRNS_GRN.ViewType = 4;
+                        objTRNS_GRN.ParaGRNID = pbGRNId;
+                        objTRNS_GRN.paraOriginator = "GRN Delete";
+                        objTRNS_GRN.paraDeleteFlag = 0;
+                        result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                        objspdservice.CloseConnection(); string[] varvalue = result.Split('~');
+                        if (result.Split('~')[1] == "1")
+                        {
+                            MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
+                            if (MainForm.objCP_Verify.flag == 1)
+                            {
+                                result = "";  
+                                objTRNS_GRN.ViewType = 4;
+                                objTRNS_GRN.ParaGRNID = pbGRNId; 
+                                objTRNS_GRN.paraOriginator = "GRN Delete";
+                                objTRNS_GRN.paraDeleteFlag = 1; 
+                                result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                                objspdservice.CloseConnection(); 
+                                string[] varvalue1 = result.Split('~');
+                                if (varvalue1[0] == "3")
+                                {
+                                    MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    udfnListLoad();
+                                }
+                                else
+                                {
+                                    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
     }
 

@@ -127,6 +127,7 @@
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
             this.tsbDelete.Text = "Delete";
+            this.tsbDelete.Click += new System.EventHandler(this.TsbDelete_Click);
             // 
             // tssEdit
             // 

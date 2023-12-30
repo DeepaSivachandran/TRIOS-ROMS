@@ -22,7 +22,7 @@ namespace ROMS
         private ToolTip tpinvamt = new ToolTip();
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
-        public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0";
+        public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS="0";
         public string pbFormStatus, dcid = "0", varflag="0",varUserID="0";
         public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid= 0;
         public PUR_GRNEntry()
@@ -1087,13 +1087,34 @@ namespace ROMS
                 }
                 if (VarErrorFlag == false)
                 {
-                    udfntooltiphide();
-                    DialogResult result1;
-                    if (varReturnDC != "0")
+                    dcid = "0";
+                    for (int i = 0; i < grdReurnDC.Rows.Count; i++)
                     {
-                        SPDataService objDServ = new SPDataService();
+                        if (dcid == "0")
+                        {
+                            dcid = Convert.ToString(grdReurnDC.Rows[i].Cells["clmDCID"].Value);
+                        }
+                        else
+                        {
+                            dcid = dcid + ',' + Convert.ToString(grdReurnDC.Rows[i].Cells["clmDCID"].Value);
+                        }
+                    }
+                    string  varSkip = "0", varDC = "0";
+                    udfntooltiphide();
+                    DialogResult result1; 
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objDServ.udfnReturnDC(6, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, Convert.ToString(dcid));
+                    objDServ.CloseConnection();
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+                        varDC = "1";
+                    }
+                    if (varReturnDC != "0" && varDC == "1")
+                    { 
                         string varMessage = objDServ.udfnGetMessages(72);
                         objDServ.CloseConnection();
+                        varSkip = "1";
                         result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     else
@@ -1125,9 +1146,13 @@ namespace ROMS
                                 int varviewtype = 0;
                                 if (btnSave.Text == "Update && Print")
                                 {
-                                    varviewtype = 1;
+                                    varviewtype = 1; 
                                     varorginator = "GRN Update";
-                                }
+                                } 
+                                if (varSkip == "1")
+                                {  
+                                    varorginator = "GRN DC Skipped";
+                                } 
                                 SPDataService objspdservice = new SPDataService();
                                 DataTable objGrnPO = new DataTable();
                                 objGrnPO.TableName = "TRN_GRN_PO";
@@ -1167,6 +1192,7 @@ namespace ROMS
                                 objTRNS_GRN.ParaPurchaseDC = varPurchaseDC;
                                 objTRNS_GRN.paraPAckage = varpakage;
                                 objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
+                                objTRNS_GRN.paraSkipped = varSkip;
                                 result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                 objspdservice.CloseConnection();
                                 string[] varvalue = result.Split('~');
@@ -1516,6 +1542,35 @@ namespace ROMS
             }
         }
 
+        private void GrdReurnDC_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                    {
+                        case "InvoiceNo":
+                            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                            {
+                                string cellPOValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["clmDCID"].Value);
+                                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                                MainForm.objPUR_PurchaseOrderDamage.varMasterType = "2";
+                                MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(cellPOValue);
+                                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
         private void TxtFrieghtamount_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1815,6 +1870,30 @@ namespace ROMS
                                 txtSupplier.Enabled = false;
                                 cmbOrderType.Enabled = false; 
                                 this.ActiveControl = dpinvoicedate;
+                                if (pbGRNSTS == "24" || pbGRNSTS == "23")
+                                {
+                                    gpGRNEntry.Enabled = false;
+                                    btnDC.Enabled = false;
+                                    btnSave.Enabled = false;
+                                    grdPODetails.Enabled = false;
+                                    grdReurnDC.Enabled = false;
+                                    grdRepDetails.Enabled = false;
+                                    grdUnitList.Enabled = false; 
+                                    grdPODetails.ClearSelection();
+                                    grdReurnDC.ClearSelection();
+                                    grdRepDetails.ClearSelection();
+                                    grdUnitList.ClearSelection();
+                                }
+                                else
+                                {
+                                    gpGRNEntry.Enabled = true;
+                                    btnDC.Enabled = true;
+                                    btnSave.Enabled = true;
+                                    grdPODetails.Enabled = true;
+                                    grdReurnDC.Enabled = true;
+                                    grdRepDetails.Enabled = true;
+                                    grdUnitList.Enabled = true;
+                                }
                             }
                             if (objDs.Tables[1].Rows.Count != 0)
                             {
@@ -1846,9 +1925,10 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[7].Rows.Count; i++)
                                 {
                                    // grdReurnDC.Rows[i].Cells["clmRemoveDC"].Value = ""; 
-                                    grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[7].Rows[i]["DCNO"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCDATE"]),
+                                    grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[7].Rows[i]["DCDATE"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCNO"]),
                                     Convert.ToString(objDs.Tables[7].Rows[i]["PRCOUNT"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCVALUE"]), Convert.ToString(objDs.Tables[7].Rows[i]["ID"]));
                                 }
+                                grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                             }
                             else
                             {
