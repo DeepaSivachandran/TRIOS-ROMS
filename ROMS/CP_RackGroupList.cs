@@ -14,7 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        DataTable dtDefaultGrid = new DataTable();
         public int varStockLocationId = 0;
         public int varCompanyId = 0;
         public int varId = 0;
@@ -151,6 +151,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 //lvStockLocation.Visible = false;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
@@ -232,6 +234,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -244,7 +251,33 @@ namespace ROMS
                 picLoader.SendToBack();
             }
         }
-
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Concern"].Width = 150;
+                DGV_SearchGrid.Columns["Rack Group"].Width = 150;
+                DGV_SearchGrid.Columns["Stock Location"].Width = 150;
+                DGV_SearchGrid.Columns["Rack"].Width = 150;
+                DGV_SearchGrid.Columns["Short Name"].Width = 150;
+                DGV_SearchGrid.Columns["Description"].Width = 150;
+                DGV_SearchGrid.Columns["Employee Name"].Width = 150;
+                DGV_SearchGrid.Columns["TotalProducts"].Width = 150;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["COMID"].Visible = false;
+                DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["SL_ShortName"].Visible = false;
+                DGV_SearchGrid.Columns["StockLocation ID"].Visible = false;
+                DGV_SearchGrid.Columns["Status"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_RackGroupList_KeyDown(object sender, KeyEventArgs e)
         {
             try

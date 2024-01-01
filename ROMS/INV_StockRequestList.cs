@@ -17,6 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
         public INV_StockRequestList()
         {
@@ -680,6 +681,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV__SearchGrid.DataSource = null;
                 if (txtProductNamePICode.Text == "")
                 {
                     lblProduct.Text = "0";
@@ -742,6 +745,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -756,7 +764,24 @@ namespace ROMS
                 btnView.Focus();
             }
         }
-
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV__SearchGrid.DataSource = dtDefaultGrid;
+                DGV__SearchGrid.Columns["ConcernID"].Visible = false;
+                DGV__SearchGrid.Columns["StatusID"].Visible = false;
+                DGV__SearchGrid.Columns["SRQID"].Visible = false;
+                DGV__SearchGrid.Columns["S.No."].Width = 50;
+                DGV__SearchGrid.Columns["Status"].Width = 80;
+                DGV__SearchGrid.Columns["Created By"].Width = 100;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtProductNamePICode_Enter(object sender, EventArgs e)
         {
             try
@@ -830,6 +855,8 @@ namespace ROMS
                     objMR_Product.paraViewType = 36;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.paraProductName = txtProductNamePICode.Text;
+                    objMR_Product.ParaFromDate = Convert.ToString(dpFromDate.Text);
+                    objMR_Product.ParaToDate = Convert.ToString(dpEntryToDate.Text);
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnproductmasterlist(objMR_Product);

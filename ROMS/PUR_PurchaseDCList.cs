@@ -18,6 +18,7 @@ namespace ROMS
         public int Varflag = 0; 
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         ToolTip tpSupplier = new ToolTip();
         public PUR_PurchaseDCList()
         {
@@ -54,6 +55,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 Varflag = 0;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
@@ -172,6 +175,11 @@ namespace ROMS
                         lblNoRecordsFound.BringToFront();
                     }
                     udfnSearchGridHead();
+                    if (lblNoRecordsFound.Visible == true)
+                    {
+                        dtDefaultGrid = objDs.Tables[0];
+                        udfnDefaultSearchGrid();
+                    }
                 }
                 else
                 {
@@ -190,6 +198,31 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["Concern"].Width = 150;
+                DGV_SearchGrid.Columns["DC Date"].Width = 100;
+                DGV_SearchGrid.Columns["DC No."].Width = 100;
+                DGV_SearchGrid.Columns["Supplier"].Width = 300;
+                DGV_SearchGrid.Columns["Total Products"].Width = 100;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 170;
+                DGV_SearchGrid.Columns["Status"].Width = 100;
+                DGV_SearchGrid.Columns["S.No."].Width = 80;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["DC_SPID"].Visible = false;
+                DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["COMID"].Visible = false;
+                DGV_SearchGrid.Columns["DC_SPSCID"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void udfnEdit()
@@ -1006,6 +1039,7 @@ namespace ROMS
                                     objTRNS_Purchase_DC.paraDCID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
                                     objTRNS_Purchase_DC.paraDeleteFlag = 1;
                                     result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
+                                    objspdservice.CloseConnection();
                                     if (result.Split('~')[0] == "3")
                                     {
                                         MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1178,6 +1212,5 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
     }
 }

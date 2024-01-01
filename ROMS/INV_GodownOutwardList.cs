@@ -17,6 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public string  varStockLocation="", varStockLocationId = "";
         public int varGOID = 0;
         public int varPRID = 0;
@@ -396,13 +397,15 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 /* Check stock location is valid or not*/
                 if (txtStockLocation.Text != "")
                 {
                     string varId_PurLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(27, 0, 0, 1, txtStockLocation.Text.Trim(), 0, 0,0,"","");
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 1, txtStockLocation.Text.Trim(), 0, 0,0,"","");
                     objDServ5.CloseConnection();
                     if (objDsSalesLoc != null)
                     {
@@ -431,9 +434,21 @@ namespace ROMS
                 grdOutwardList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnGOList(0, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToString(dtpOutwardDate.Text), Convert.ToString(dtpOutwardDate2.Text), Convert.ToInt32(varStockLocationId), varPRID, Convert.ToInt32(cmbStatus.SelectedValue));
-                objspservice.CloseConnection();
+                SPDataService objdserv = new SPDataService();
+                TRN_GoodsOutward objTRNG_GoodsOutward = new TRN_GoodsOutward();
+                objTRNG_GoodsOutward.ViewType = 0;
+                objTRNG_GoodsOutward.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_GoodsOutward.ParaCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_GoodsOutward.paraFromDate = dtpOutwardDate.Text;
+                objTRNG_GoodsOutward.paraToDate = dtpOutwardDate2.Text;
+                objTRNG_GoodsOutward.paraSLID = Convert.ToInt32(varStockLocationId);
+                objTRNG_GoodsOutward.ParaGOId = Convert.ToInt32(varGOID);
+                objTRNG_GoodsOutward.paraPRID = Convert.ToInt32(varPRID);
+                objTRNG_GoodsOutward.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRNG_GoodsOutward.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnGOList(objTRNG_GoodsOutward);
+                objdserv.CloseConnection();                 
+                //objDs = objspservice.udfnGOList(0, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToString(dtpOutwardDate.Text), Convert.ToString(dtpOutwardDate2.Text), Convert.ToInt32(varStockLocationId), varPRID, Convert.ToInt32(cmbStatus.SelectedValue));
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -479,6 +494,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -491,6 +511,29 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnView.Enabled = true;
                 btnView.Focus();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Concern"].Width = 120;
+                DGV_SearchGrid.Columns["Outward Date"].Width = 120;
+                DGV_SearchGrid.Columns["Outward No."].Width = 120;
+                DGV_SearchGrid.Columns["Stock Location"].Width = 150;
+                DGV_SearchGrid.Columns["Transaction Type"].Width = 120;
+                DGV_SearchGrid.Columns["GOID"].Visible = false;
+                DGV_SearchGrid.Columns["Total Products"].Width = 120;
+                DGV_SearchGrid.Columns["Created By"].Width = 120;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["Status"].Width = 120;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void INV_GodownOutwardList_Load(object sender, EventArgs e)

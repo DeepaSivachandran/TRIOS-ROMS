@@ -14,6 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public int varconcern = 0, vargroup = 0, varsubgroup = 0, varcategory = 0;
         public string varUserID = "";
 
@@ -146,7 +147,7 @@ namespace ROMS
                 {
                     MainForm.objCP_ProductApproval = new CP_ProductApproval();
                     MainForm.objCP_ProductApproval.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
-                    //MainForm.objCP_ProductApproval.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
+                    MainForm.objCP_ProductApproval.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
                     MainForm.objCP_ProductApproval.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
                     MainForm.objCP_ProductApproval.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
                     MainForm.objCP_ProductApproval.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
@@ -179,6 +180,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -267,8 +270,8 @@ namespace ROMS
                             grdItemList.Columns["Product Name in Tamil"].Width = 300;
                             grdItemList.Columns["Product Subgroup"].Width = 150;
                             grdItemList.Columns["Product Group"].Width = 150;
-                            grdItemList.Columns["BatchNo"].Width = 80;
-                            grdItemList.Columns["Shelf life"].Width = 80;
+                            grdItemList.Columns["Batch No."].Width = 80;
+                            grdItemList.Columns["Shelf Life"].Width = 80;
                             grdItemList.Columns["HSN Name"].Width = 230;
                             grdItemList.Columns["ID"].Visible = false;
                             grdItemList.Columns["STSID"].Visible = false;
@@ -302,6 +305,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -315,8 +323,39 @@ namespace ROMS
                 lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
             }
         }
-
-
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Product Name in English"].Width = 300;
+                DGV_SearchGrid.Columns["P.I Code"].Width = 100;
+                DGV_SearchGrid.Columns["Product Name in Tamil"].Width = 300;
+                DGV_SearchGrid.Columns["Product Subgroup"].Width = 150;
+                DGV_SearchGrid.Columns["Product Group"].Width = 150;
+                DGV_SearchGrid.Columns["Batch No."].Width = 80;
+                DGV_SearchGrid.Columns["Shelf Life"].Width = 80;
+                DGV_SearchGrid.Columns["HSN Name"].Width = 230;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PRGID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_PRSGID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_HSNID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_UTID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_COMID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_BDID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_SALE_RKID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_SALE_SLID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_PUR_RKID"].Visible = false;
+                DGV_SearchGrid.Columns["PR_PUR_SLID"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -545,7 +584,7 @@ namespace ROMS
             {
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
                 {
-                    tsbNew_Click(sender, e);
+                    //tsbNew_Click(sender, e);
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
@@ -921,6 +960,7 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                
                 udfnList();
 
             }

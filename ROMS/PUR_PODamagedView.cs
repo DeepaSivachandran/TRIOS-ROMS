@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -74,7 +75,15 @@ namespace ROMS
                     varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNEntry.cmbConcern.SelectedValue);
                 }
 
-                objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, 0,0,0,0,0,"");
+               // objDs = objdserv.udfnReturnDC(0, varSupplierid, varScheduleid, varcompanyid, 0,0,0,0,0);
+                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
+                objTRN_PurchaseReturnDC.paraViewType = 0;
+                objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                objTRN_PurchaseReturnDC.paraCompanyId = varcompanyid;
+                objTRN_PurchaseReturnDC.ParaSupplierId = varSupplierid;
+                objTRN_PurchaseReturnDC.ParaScheduleID = varScheduleid;
+                 objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

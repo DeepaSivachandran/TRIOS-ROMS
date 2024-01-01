@@ -211,7 +211,7 @@
             this.lvProduct.HideSelection = false;
             this.lvProduct.Location = new System.Drawing.Point(163, 73);
             this.lvProduct.Name = "lvProduct";
-            this.lvProduct.Size = new System.Drawing.Size(490, 265);
+            this.lvProduct.Size = new System.Drawing.Size(653, 265);
             this.lvProduct.TabIndex = 111111142;
             this.lvProduct.UseCompatibleStateImageBehavior = false;
             this.lvProduct.View = System.Windows.Forms.View.Details;
@@ -222,12 +222,12 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "PI Code";
-            this.columnHeader1.Width = 100;
+            this.columnHeader1.Width = 150;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Product Name";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Width = 380;
             // 
             // columnHeader3
             // 

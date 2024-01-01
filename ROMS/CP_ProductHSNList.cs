@@ -18,6 +18,7 @@ namespace ROMS
 
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public CP_ProductHSNList()
         {
             InitializeComponent();
@@ -285,6 +286,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -337,6 +340,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if(lblNoRecordsFound.Visible==true)
+                {
+                    dtDefaultGrid= objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -347,6 +355,27 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["GST ID"].Visible = false;
+                DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["HSN Name"].Width = 250;
+                DGV_SearchGrid.Columns["HSN Code"].Width = 200;
+                DGV_SearchGrid.Columns["GST%"].Width = 80;
+                DGV_SearchGrid.Columns["Total Products"].Width = 100;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void CP_ProductHSNList_Load(object sender, EventArgs e)

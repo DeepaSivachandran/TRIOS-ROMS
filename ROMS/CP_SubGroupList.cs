@@ -21,6 +21,7 @@ namespace ROMS
 
         public int varSubGroupCode = 0;
         public int SearchFlag = 0;
+        DataTable dtDefaultGrid = new DataTable();
         public CP_SubGroupList()
         {
             InitializeComponent();
@@ -94,6 +95,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -251,6 +254,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -265,6 +273,33 @@ namespace ROMS
                 txtSearchProduct.Text = "";
                 SearchFlag = 0;
                 //varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["Batch No Id"].Visible = false;
+                DGV_SearchGrid.Columns["StockLocation ID"].Visible = false;
+                DGV_SearchGrid.Columns["Rack ID"].Visible = false;
+                DGV_SearchGrid.Columns["Product Group Id"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Product Group Name"].Width = 200;
+                DGV_SearchGrid.Columns["Product Sub Group Name in English"].Width = 250;
+                DGV_SearchGrid.Columns["Product Sub Group Name in Tamil"].Width = 250;
+                DGV_SearchGrid.Columns["Stock Location"].Width = 150;
+                DGV_SearchGrid.Columns["Rack"].Width = 100;
+                DGV_SearchGrid.Columns["Batch No."].Width = 100;
+                DGV_SearchGrid.Columns["Total Products"].Width = 100;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void udfnSearchGridHead()

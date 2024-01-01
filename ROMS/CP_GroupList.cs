@@ -21,6 +21,7 @@ namespace ROMS
         public int varGroupCode = 0;
         public int varGroupId = 0;
         public int SearchFlag = 0;
+        DataTable dtDefaultGrid = new DataTable();
         public CP_GroupList()
         {
             InitializeComponent();
@@ -66,6 +67,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -144,6 +147,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -158,6 +166,26 @@ namespace ROMS
                 varGroupCode = Convert.ToInt32(varGroupId);
                 txtSearchProduct.Text = "";
                 SearchFlag = 0;
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Product Group Name in English"].Width = 200;
+                DGV_SearchGrid.Columns["Product Group Name in Tamil"].Width = 200;
+                DGV_SearchGrid.Columns["Total Sub Groups"].Width = 200;
+                DGV_SearchGrid.Columns["Total Products"].Width = 100;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void udfnSearchGridHead()

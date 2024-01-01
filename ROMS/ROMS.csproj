@@ -209,6 +209,7 @@
     <Compile Include="Model\TRN_Stock.cs" />
     <Compile Include="Model\TRN_GoodsOutward.cs" />
     <Compile Include="Model\TRN_BatchConversion.cs" />
+    <Compile Include="Model\TRN_ReturnDC.cs" />
     <Compile Include="Model\TRN_StockRequest.cs" />
     <Compile Include="Model\TRN_Purchase_DC.cs" />
     <Compile Include="Model\TRN_GRN.cs" />
@@ -225,6 +226,13 @@
     </Compile>
     <Compile Include="PUR_POScheduleSummary.designer.cs">
       <DependentUpon>PUR_POScheduleSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RPT_INV_Damage_Product.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_INV_Damage_Product.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Supplier.cs">
       <AutoGen>True</AutoGen>
@@ -620,6 +628,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_TP_INV_Shop_Stock_Request.cs">
+      <DependentUpon>RPT_TP_INV_Shop_Stock_Request.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="REPORT_PUR_Purchaseorder_Summary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1006,11 +1020,11 @@
     <Compile Include="INV_SalesInvoice.designer.cs">
       <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="INV_SalesInvoiceList.cs">
+    <Compile Include="PUR_ReturnDCList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="INV_SalesInvoiceList.designer.cs">
-      <DependentUpon>INV_SalesInvoiceList.cs</DependentUpon>
+    <Compile Include="PUR_ReturnDCList.designer.cs">
+      <DependentUpon>PUR_ReturnDCList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_StockRequest.cs">
       <SubType>Form</SubType>
@@ -1383,6 +1397,7 @@
     <Compile Include="SSS Acccounts activation.designer.cs">
       <DependentUpon>SSS Acccounts activation.cs</DependentUpon>
     </Compile>
+    <Compile Include="TRNS_GRN.cs" />
     <Compile Include="Web References\ActivationService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1583,8 +1598,8 @@
     <EmbeddedResource Include="INV_SalesInvoice.resx">
       <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="INV_SalesInvoiceList.resx">
-      <DependentUpon>INV_SalesInvoiceList.cs</DependentUpon>
+    <EmbeddedResource Include="PUR_ReturnDCList.resx">
+      <DependentUpon>PUR_ReturnDCList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockRequest.resx">
       <DependentUpon>INV_StockRequest.cs</DependentUpon>
@@ -1885,6 +1900,11 @@
       <LastGenOutput>RPT_CP_Supplier_List.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_INV_Damage_Product.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_INV_Damage_Product.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_INV_StockHold.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_INV_StockHold.cs</LastGenOutput>
@@ -2054,6 +2074,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Request.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_Purchaseorder_Summary.resx">
       <DependentUpon>REPORT_PUR_Purchaseorder_Summary.cs</DependentUpon>

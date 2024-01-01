@@ -16,7 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        DataTable dtDefaultGrid = new DataTable();
         private ToolTip tpProductNamePICode = new ToolTip();
         private ToolTip tpQty = new ToolTip();
         private ToolTip tpProductName = new ToolTip();
@@ -72,7 +72,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        
         public void udfnclose()
         {
             try
@@ -471,11 +471,18 @@ namespace ROMS
         {
             try
             {
-                //
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 grdStockHold.DataSource = null;
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDS = objdserv.udfnStockHoldList(0,0);
+                //objDS = objdserv.udfnStockHoldList(0,0);
+                TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
+                objTRNG_StockHold.ViewType = 0;
+                objTRNG_StockHold.paraSHID = Convert.ToInt32(SHID);
+                objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                objDS = objdserv.udfnStockHoldList(objTRNG_StockHold);
                 objdserv.CloseConnection();
                 if (objDS != null)
                 {
@@ -538,6 +545,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDS.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -546,6 +558,39 @@ namespace ROMS
             }
             finally
             { grdStockHold.ClearSelection(); }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 40;
+                DGV_SearchGrid.Columns["Created On"].Width = 140;
+                DGV_SearchGrid.Columns["Concern"].Width = 70;
+                DGV_SearchGrid.Columns["P.I Code"].Width = 100;
+                DGV_SearchGrid.Columns["Product Name"].Width = 300;
+                DGV_SearchGrid.Columns["Unit"].Width = 50;
+                DGV_SearchGrid.Columns["Stock Location"].Width = 100;
+                DGV_SearchGrid.Columns["Rack"].Width = 60;
+                DGV_SearchGrid.Columns["MRP"].Width = 60;
+                DGV_SearchGrid.Columns["Expiry Date"].Width = 90;
+                DGV_SearchGrid.Columns["Batch No."].Width = 70;
+                DGV_SearchGrid.Columns["Hold Qty"].Width = 70;
+                DGV_SearchGrid.Columns["Created By"].Width = 80;
+                DGV_SearchGrid.Columns["clmDelete"].Width = 40;
+                DGV_SearchGrid.Columns["clmEdit"].Width = 30;
+                DGV_SearchGrid.Columns["PRID"].Visible = false;
+                DGV_SearchGrid.Columns["SLID"].Visible = false;
+                DGV_SearchGrid.Columns["UTID"].Visible = false;
+                DGV_SearchGrid.Columns["RKID"].Visible = false;
+                DGV_SearchGrid.Columns["SHID"].Visible = false;
+                DGV_SearchGrid.Columns["COMID"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnClear()
         {
@@ -823,7 +868,11 @@ namespace ROMS
             {
                 epStockHold.Clear();
                 tpConcern.Active = false;
+                tpProductName.Active = false;
                 tpProductNamePICode.Active = false;
+                tpStock.Active = false;
+                tpRack.Active = false;
+                tpStockLocation.Active = false;
                 tpQty.Active = false;
             }
             catch (Exception ex)
@@ -846,7 +895,14 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     int ViewType =1;
-                    objDs = objdserv.udfnStockHoldList(ViewType, SHID);
+                    //objDs = objdserv.udfnStockHoldList(ViewType, SHID);
+                    TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
+                    objTRNG_StockHold.ViewType = ViewType;
+                    objTRNG_StockHold.paraSHID = Convert.ToInt32(SHID);
+                    objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                    objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
+                    objdserv.CloseConnection();
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -1358,15 +1414,23 @@ namespace ROMS
             try
             {
 
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    //tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    //tsbEdit_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    lvproduct.Visible = false;
-                    udfnclose();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    udfntooltiphide();
+                    this.Close();
                 }
-                if (e.KeyCode == Keys.F5)
-                {
-                    BtnSave_Click(sender, e);
-                }
+
                 if (e.KeyCode == Keys.F11)
                 {
                     if (VarSearchFlag == false)
@@ -1574,7 +1638,13 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnStockHoldList(0, 0);
+                //objDs = objdserv.udfnStockHoldList(0, 0);
+                TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
+                objTRNG_StockHold.ViewType = 0;
+                objTRNG_StockHold.paraSHID = Convert.ToInt32(SHID);
+                objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
