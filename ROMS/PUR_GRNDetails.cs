@@ -353,7 +353,7 @@ namespace ROMS
             try
             {
                 txtInvoiceamt.BackColor = Color.White;
-                if (Convert.ToInt32(txtInvoiceamt.Text) >= 25000)
+                if (Convert.ToDecimal(txtInvoiceamt.Text) >= 25000)
                 {
                     if (chkCompleted.Enabled == false)
                     {
@@ -451,20 +451,34 @@ namespace ROMS
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     varDC = "1";
-                }
-                  
+                } 
+                //if (varReturnDC != "0" && (chkCompleted.Enabled == true && chkCompleted.Checked == true) && varDC == "1")
+                //{
+                //    string varMessage = objDServ.udfnGetMessages(102);
+                //    objDServ.CloseConnection();
+                //    varSkip = "1";
+                //    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    
+                //}
+                //else
+                //{
+                //    result1 = DialogResult.Yes;
+                //}
                 if (varReturnDC != "0" && (chkCompleted.Enabled == true && chkCompleted.Checked == true) && varDC == "1")
                 {
-                    string varMessage = objDServ.udfnGetMessages(72);
-                    objDServ.CloseConnection();
-                    varSkip = "1";
-                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    
+                    if (Convert.ToString(grdReurnDC.Rows.Count) != varReturnDC)
+                    {
+                        string varMessage = objDServ.udfnGetMessages(102);
+                        objDServ.CloseConnection();
+                        varSkip = "1";
+                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
                 }
                 else
                 {
                     result1 = DialogResult.Yes;
                 }
+
                 if (result1 == DialogResult.Yes)
                 {
                     MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
@@ -519,12 +533,13 @@ namespace ROMS
                             objTRNS_GRN.ParaGRNID = varGrnId;
                             objTRNS_GRN.paraINVDate = dpinvoicedate.Text;
                             objTRNS_GRN.paraINVNo = txtInvoiceno.Text;
-                            objTRNS_GRN.ParaInvAmt = Convert.ToDouble(txtInvoiceamt.Text);
+                            objTRNS_GRN.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
                             objTRNS_GRN.ParaPurchaseDC = varPurchaseDC;
                             objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                             objTRNS_GRN.paraRemarks = txtRemark.Text;
                             objTRNS_GRN.paraSkipped = varSkip;
                             objTRNS_GRN.paraGRNProd = objGRNProd;
+                            objTRNS_GRN.paraGRNDate = dpGrnDate.Text;
                             if (chkCompleted.Enabled == true)
                             {
                                 objTRNS_GRN.paraflag = 1;
@@ -590,6 +605,10 @@ namespace ROMS
                             }
                         }
                     }
+                } 
+                else
+                {
+                    udfnDcAdd();
                 }
             }
             catch (Exception ex)
@@ -1399,6 +1418,19 @@ namespace ROMS
         {
             try
             {
+                udfnDcAdd();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+        public void udfnDcAdd()
+        {
+            try
+            {
                 dcid = "0";
                 for (int i = 0; i < grdReurnDC.Rows.Count; i++)
                 {
@@ -1427,7 +1459,13 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
                 }
@@ -1735,7 +1773,31 @@ namespace ROMS
 
         private void GrdReurnDC_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                    {
+                        case "InvoiceNo":
+                            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                            {
+                                string cellPOValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["ID"].Value);
+                                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                                MainForm.objPUR_PurchaseOrderDamage.varMasterType = "3";
+                                MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(cellPOValue);
+                                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
 
+            }
         }
 
         private void GrdGrnlist_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -1761,16 +1823,22 @@ namespace ROMS
             {
                 if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmmrp")
                 {
-                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                     {
-                        e.Handled = true;  // Disallow the character
+                        e.Handled = true;
+                    }
+
+                    // Allow only one decimal point
+                    if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                    {
+                        e.Handled = true;
                     }
                     TextBox vartb = sender as TextBox;
                     //if (e.KeyChar == '.' && vartb.Text.Contains('.'))
                     //{
                     //    e.Handled = true;
                     //}
-                    if (vartb.Text.Length >= 5 && !char.IsControl(e.KeyChar))
+                    if (vartb.Text.Length >= 7 && !char.IsControl(e.KeyChar))
                     {
                         e.Handled = true;
                     }
@@ -2550,8 +2618,8 @@ namespace ROMS
                                         varPICode = "";
                                         var_Symbol = "";
                                         varexp = "";
-                                        txtmrprate.Text = "";
-                                        varExpiryDate = "";
+                                        //txtmrprate.Text = "";
+                                        //varExpiryDate = "";
                                         txtBatchno.Text = "";
                                         varunitid = "0"; 
                                         expirydateFlag = 0; 
@@ -2630,7 +2698,7 @@ namespace ROMS
             }
             finally
             {
-                grdGrnlist.Sort(grdGrnlist.Columns[1], ListSortDirection.Ascending);
+                grdGrnlist.Sort(grdGrnlist.Columns[2], ListSortDirection.Ascending);
             }
         }
 
@@ -3235,12 +3303,13 @@ namespace ROMS
                                     gpAddrow.Enabled = false;
                                     grpGrnDetails.Enabled = false;
                                     grdGrnlist.Columns["clmRemove"].Visible = false;
+                                    grdGrnlist.Enabled = false;
                                 }
                                 else
                                 {
                                     chkCompleted.Enabled = true;
                                 }
-                                if (Convert.ToInt32(txtInvoiceamt.Text) >= 25000)
+                                if (Convert.ToDecimal(txtInvoiceamt.Text) >= 25000)
                                 {
                                     if (chkCompleted.Enabled == false)
                                     {
@@ -3299,7 +3368,8 @@ namespace ROMS
                                     gpAddrow.Enabled = false;
                                     grpGrnDetails.Enabled = false;
                                     grdGrnlist.Columns["clmRemove"].Visible = false;
-
+                                    grdGrnlist.Enabled = false;
+                                    grdGrnlist.ClearSelection();
                                 } 
                             }
                             else

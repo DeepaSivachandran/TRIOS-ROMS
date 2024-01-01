@@ -158,8 +158,7 @@ namespace ROMS
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Product.rpt");
                 varHeader = "Damage Product";
-                //objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
-
+                objBillreport.SetParameterValue("paraDamageEntryID",0); 
                 objBillreport.SetParameterValue("ParaDMFromDate", "");
                 objBillreport.SetParameterValue("ParaDMToDate", "");
                 objBillreport.SetParameterValue("ParaSupplierId", varSupplierid);
@@ -169,6 +168,7 @@ namespace ROMS
                 objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraStatus", 0);
                 objValidation.CrySqlConnection(objBillreport);
 
                 MainForm.objReportLoad = new ReportLoad();

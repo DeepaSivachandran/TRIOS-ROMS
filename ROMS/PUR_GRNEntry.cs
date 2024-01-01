@@ -22,9 +22,9 @@ namespace ROMS
         private ToolTip tpinvamt = new ToolTip();
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
-        public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS="0";
-        public string pbFormStatus, dcid = "0", varflag="0",varUserID="0";
-        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid= 0;
+        public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
+        public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0";
+        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0;
         public PUR_GRNEntry()
         {
             InitializeComponent();
@@ -82,15 +82,19 @@ namespace ROMS
         {
             try
             {
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(4, 6, 0,"","",0, "",0);
-                if (objd.Tables[1].Rows.Count != 0)
-                {
-                    DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpGRNDate.MinDate = varmindate;
-                    dpinvoicedate.MinDate = varmindate;
-                }
+                dpGRNDate.MinDate = MainForm.pbFYStartDate;
+                dpGRNDate.MaxDate = MainForm.pbCurrentDate;
+                dpinvoicedate.MinDate = MainForm.pbFYStartDate;
+                dpinvoicedate.MaxDate = MainForm.pbCurrentDate;
+                //SPDataService objDServ = new SPDataService();
+                //DataSet objd = new DataSet();
+                //objd = objDServ.udfnMaster(4, 6, 0,"","",0, "",0);
+                //if (objd.Tables[1].Rows.Count != 0)
+                //{
+                //    DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    dpGRNDate.MinDate = varmindate;
+                //    dpinvoicedate.MinDate = varmindate;
+                //}
             }
             catch (Exception ex)
             {
@@ -104,7 +108,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnGrnListLoad(0, 0, 0, 0, 0, "", "", 0, 0, 0,"","",0);
+                objDs = objspdservice.udfnGrnListLoad(0, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0);
                 objspdservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -560,7 +564,7 @@ namespace ROMS
                         tpSuppliername.ShowAlways = true;
                         tpSuppliername.Show("Invalid supplier.", txtSupplier, 5000);
                         lblSupplierCode.Text = "0";
-                        lblschedule.Text = "0"; 
+                        lblschedule.Text = "0";
                         ClearSupplier();
 
                     }
@@ -599,10 +603,10 @@ namespace ROMS
 
                 txtSalesManMobile.Text = "";
                 txtSalesManName.Text = "";
-                txtSalesManwhatsapp.Text = ""; 
+                txtSalesManwhatsapp.Text = "";
                 grdPODetails.Rows.Clear();
                 grdReurnDC.Rows.Clear();
-                grdRepDetails.DataSource=null;
+                grdRepDetails.DataSource = null;
             }
             catch (Exception ex)
             {
@@ -775,7 +779,7 @@ namespace ROMS
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                    
+
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -1027,7 +1031,7 @@ namespace ROMS
                     VarErrorFlag = true;
                 }
                 if (btnSave.Text != "Update && Print")
-                { 
+                {
                     if (Convert.ToString(txtSupplier.Text) != "")
                     {
                         string[] values = new string[0];
@@ -1099,9 +1103,9 @@ namespace ROMS
                             dcid = dcid + ',' + Convert.ToString(grdReurnDC.Rows[i].Cells["clmDCID"].Value);
                         }
                     }
-                    string  varSkip = "0", varDC = "0";
+                    string varSkip = "0", varDC = "0";
                     udfntooltiphide();
-                    DialogResult result1; 
+                    DialogResult result1=DialogResult.Yes;
                     SPDataService objDServ = new SPDataService();
                     DataSet objDs = new DataSet();
 
@@ -1112,7 +1116,7 @@ namespace ROMS
                     objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text);
                     objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                    objTRN_PurchaseReturnDC.paraDcID = Convert.ToInt32(dcid);
+                    objTRN_PurchaseReturnDC.paraDCIDs = Convert.ToString(dcid);
                     objDs = objDServ.udfnReturnDC(objTRN_PurchaseReturnDC);
                     objDServ.CloseConnection();
                     //objDs = objDServ.udfnReturnDC(6, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 
@@ -1123,11 +1127,14 @@ namespace ROMS
                         varDC = "1";
                     }
                     if (varReturnDC != "0" && varDC == "1")
-                    { 
-                        string varMessage = objDServ.udfnGetMessages(72);
-                        objDServ.CloseConnection();
-                        varSkip = "1";
-                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    {
+                        if (Convert.ToString(grdReurnDC.Rows.Count) != varReturnDC)
+                        { 
+                            string varMessage = objDServ.udfnGetMessages(102);
+                            objDServ.CloseConnection();
+                            varSkip = "1";
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        }
                     }
                     else
                     {
@@ -1158,13 +1165,13 @@ namespace ROMS
                                 int varviewtype = 0;
                                 if (btnSave.Text == "Update && Print")
                                 {
-                                    varviewtype = 1; 
+                                    varviewtype = 1;
                                     varorginator = "GRN Update";
-                                } 
+                                }
                                 if (varSkip == "1")
-                                {  
+                                {
                                     varorginator = "GRN DC Skipped";
-                                } 
+                                }
                                 SPDataService objspdservice = new SPDataService();
                                 DataTable objGrnPO = new DataTable();
                                 objGrnPO.TableName = "TRN_GRN_PO";
@@ -1196,7 +1203,7 @@ namespace ROMS
                                 objTRNS_GRN.paraGRNDate = dpGRNDate.Text;
                                 objTRNS_GRN.paraINVDate = dpinvoicedate.Text;
                                 objTRNS_GRN.paraINVNo = txtInvoiceno.Text;
-                                objTRNS_GRN.ParaInvAmt = Convert.ToDouble(txtInvoiceamt.Text);
+                                objTRNS_GRN.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
                                 objTRNS_GRN.ParaLoadingCharge = txtLoadingCharge.Text;
                                 objTRNS_GRN.ParaFrightCharge = txtFrieghtamount.Text;
                                 objTRNS_GRN.paraOrderType = Convert.ToInt32(cmbOrderType.SelectedValue);
@@ -1223,6 +1230,10 @@ namespace ROMS
                                 this.ActiveControl = txtSupplier;
                             }
                         }
+                    }
+                    else
+                    {
+                        udfnDcADD();
                     }
                 }
             }
@@ -1385,10 +1396,22 @@ namespace ROMS
         {
             try
             {
+                udfnDcADD();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnDcADD()
+        {
+            try
+            {
                 //MainForm.objPUR_PODamagedView = new PUR_PODamagedView();
                 //MainForm.objPUR_PODamagedView.varMasterType = "2";
                 //MainForm.objPUR_PODamagedView.ShowDialog();
-
                 dcid = "0";
                 for (int i = 0; i < grdReurnDC.Rows.Count; i++)
                 {
@@ -1423,7 +1446,6 @@ namespace ROMS
                 }
             }
         }
-
         private void GrdUnitList_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             //try
@@ -1542,7 +1564,13 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
                 }
@@ -1587,7 +1615,13 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
                 }
@@ -1722,7 +1756,17 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                //{
+                //    e.Handled = true;
+                //}
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
                 }

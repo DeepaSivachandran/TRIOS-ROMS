@@ -288,6 +288,7 @@ namespace ROMS
                 MainForm.objPUR_PurchaseOrder.pbScheduleid = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_SPSCID"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.pbSupplierId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_SPID"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.txtRemark.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.Currentsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_CurrentSTSID"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.pbSupplierpend = Supplierpend;
                 MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
                 MainForm.objPUR_PurchaseOrder.Show();
@@ -1003,6 +1004,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Issued DATES"].Visible = false;
                             grdPurchaseorderlist.Columns["DTURN"].Visible = false;
                             grdPurchaseorderlist.Columns["Currentsts"].Visible = false;
+                            grdPurchaseorderlist.Columns["PO_CurrentSTSID"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

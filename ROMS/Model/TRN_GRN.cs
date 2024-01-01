@@ -21,7 +21,7 @@ namespace ROMS.Model
         public string paraGRNDate { get; set; } = "";
         public string paraINVDate { get; set; } = "";
         public string paraINVNo { get; set; } = "";
-        public double ParaInvAmt { get; set; } = 0;
+        public decimal ParaInvAmt { get; set; } = 0;
         public string ParaLoadingCharge { get; set; } = "";
         public string ParaFrightCharge { get; set; } = "";
         public int paraOrderType { get; set; } = 0;

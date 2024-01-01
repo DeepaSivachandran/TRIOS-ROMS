@@ -106,7 +106,7 @@ namespace ROMS
                 objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(varSupplierid);
                 objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(varScheduleid);
                 objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(varcompanyid);
-                objTRN_PurchaseReturnDC.paraDcID = Convert.ToInt32(varDcid);
+                objTRN_PurchaseReturnDC.paraDCIDs = Convert.ToString(varDcid);
                 objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objdserv.CloseConnection();
                 if (objDs != null)
