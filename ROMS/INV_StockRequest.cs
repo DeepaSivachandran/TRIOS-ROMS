@@ -1182,13 +1182,13 @@ namespace ROMS
                         if (Convert.ToInt32(cmbStatus.SelectedValue)==29)
                         {
                             string SSR = "0";
-                            if (varID == 0)
+                            if (varStockRequestID == 0)
                             {
                                 SSR = varvalue[2];
                             }
                             else
                             {
-                                SSR = Convert.ToString(varID);
+                                SSR = Convert.ToString(varStockRequestID);
                             }
                             DialogResult result1;
                             SPDataService objDServ = new SPDataService();
