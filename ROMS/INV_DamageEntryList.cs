@@ -1993,7 +1993,7 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Product.rpt");
-                    varHeader = "Damage Products List";
+                    varHeader = "Damaged Products List";
 
                     objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
                     objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbconcern.SelectedValue));
