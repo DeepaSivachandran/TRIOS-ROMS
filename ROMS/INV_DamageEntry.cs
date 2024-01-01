@@ -1546,7 +1546,7 @@ namespace ROMS
                                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
-                                varHeader = "Damage Entry";
+                                varHeader = "Transaction Wise Damage Products List";
 
                                 objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
                                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
