@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpAmount = new ToolTip();
 
         public int varReturnDCID = 0, varCloseFlag=0;
-        public int pbScheduleid = 0, pbSupplierId=0,varStatusId=0;
+        public int pbScheduleid = 0, pbSupplierId=0,varStatusId=0, varModifiedFlag=0;
         public string varSuppliervalue = "";
         DataTable dtPurchaseReturnDC = new DataTable();
         public DataTable dtExchangeProducts = new DataTable();
@@ -132,7 +132,41 @@ namespace ROMS
         {
             try
             {
-                this.Close();
+                if (varStatusId == 39)
+                {
+                    this.Close();
+                }
+                else
+                {
+
+
+                    if (varModifiedFlag == 1)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                            MainForm.objINV_SalesInvoiceList.Show();
+                            MainForm.objINV_SalesInvoiceList.udfnList();
+                        }
+                        else
+                        { btnSave.Focus(); }
+                    }
+                    else
+                    {
+                        if (varCloseFlag == 0)
+                        {
+                            DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                this.Close();
+                                MainForm.objINV_SalesInvoiceList.Show();
+                                MainForm.objINV_SalesInvoiceList.udfnList();
+                            }
+                        }
+                        else { this.Close(); }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -149,7 +183,7 @@ namespace ROMS
                 txtActualQty.Enabled = false;
                 btnAdd.Enabled = false;
                 lblTotal.Text = "Approximate Total";
-                
+                udfnList();
             }
             else if (Convert.ToInt32(cmbReason.SelectedValue) == 61) //excess
             {
@@ -159,7 +193,7 @@ namespace ROMS
                 btnAdd.Enabled = true;
                 lblTotal.Text = "Actual Total";
             }
-            udfnList();
+            
         }
         public void udfnVocherno()
         {
@@ -357,6 +391,7 @@ namespace ROMS
                         }
                     }
                     grpReturnDCSupplier.Enabled = false;
+                    varModifiedFlag = 1;
                 }
             }
             catch (Exception ex)
@@ -652,7 +687,7 @@ namespace ROMS
                     epReturnDc.SetError(cmbConcern, "Please select concern.");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select convern.", cmbConcern, 5000);
+                    tpcompanyname.Show("Please select concern.", cmbConcern, 5000);
                 }
                 else
                 {
@@ -1239,6 +1274,14 @@ namespace ROMS
                     }
                     if (varStatusId == 16)
                     {
+                        if (Convert.ToString(cmbReasonForClosing.SelectedValue) == "" || Convert.ToString(cmbReasonForClosing.SelectedValue) == "-1")
+                        {
+                            epReturnDc.SetError(cmbReasonForClosing, "Please select reason for closing.");
+                            cmbReasonForClosing.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpReason.ShowAlways = true;
+                            tpReason.Show("Please select reason for closing.", cmbReasonForClosing, 5000);
+                            varErrorFlag = false;
+                        }
                         if (txtAmount.Text == "")
                         {
                             epReturnDc.SetError(txtAmount, "Please enter amount.");
@@ -1258,7 +1301,16 @@ namespace ROMS
                                 varErrorFlag = false;
                             }
                         }
+                        if (dtExchangeProducts.Rows.Count == 0)
+                        {
+                            if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 63)
+                            {
+                                MessageBox.Show("Please add atleast one exchange product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                varErrorFlag = false;
+                            }
+                        }
                     }
+
                     if (varErrorFlag == true)
                     {
                         udfnTooltipHide(); int varDC_PURID = 0; int varReasonforClosingId = 0;
@@ -1295,12 +1347,12 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    if (varStatusId == 16)
-                                    {
-                                        varviewtype = 1;
-                                        varorginator = "Purchase Return DC updation";
-                                    }
-                                    
+                                    //if (varStatusId == 16)
+                                    //{
+                                    varviewtype = 1;
+                                    varorginator = "Purchase Return DC updation";
+                                    //}
+
                                 }
                                 TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
                                 objTRN_PurchaseReturnDC.paraViewType = varviewtype;
@@ -1323,19 +1375,17 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
-                                if (dtExchangeProducts != null)
+                                if (dtExchangeProducts.Rows.Count != 0)
                                 {
-                                    if (dtExchangeProducts.Rows.Count != 0)
-                                    {
-                                        objTRN_PurchaseReturnDC.paraDeleteFlag = 1;
-                                        objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtExchangeProducts;
-                                    }
+                                    objTRN_PurchaseReturnDC.paraDeleteFlag = 1;
+                                    objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtExchangeProducts;
                                 }
                                 else
                                 {
-                                    if(varReasonforClosingId==63)
+                                    if (varReasonforClosingId == 63)
                                     {
-                                        MessageBox.Show("Please add atleast one product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        MessageBox.Show("Please add atleast one exchange product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        varErrorFlag = false;
                                     }
                                 }
                                 SPDataService objspdservice = new SPDataService();
@@ -1350,6 +1400,7 @@ namespace ROMS
                                     if (varReturnDCID != 0)
                                     {
                                         varCloseFlag = 1;
+                                        varModifiedFlag = 0;
                                         udfnclose();
                                     }
                                     udfnClear();
@@ -1422,7 +1473,19 @@ namespace ROMS
         {
             try
             {
-                cmbReasonForClosing.BackColor = Color.White;
+                if (Convert.ToString(cmbReasonForClosing.SelectedValue) == "" || Convert.ToString(cmbReasonForClosing.SelectedValue) == "-1")
+                {
+                    epReturnDc.SetError(cmbReasonForClosing, "Please select reason for closing.");
+                    cmbReasonForClosing.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReason.ShowAlways = true;
+                    tpReason.Show("Please select reason for closing.", cmbReasonForClosing, 5000);
+                  
+                }
+                {
+                    epReturnDc.Clear();
+                    cmbReasonForClosing.BackColor = Color.White;
+                    tpReason.Active = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1591,7 +1654,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpCreditNoteDate_Enter(object sender, EventArgs e)
         {
             try
@@ -1701,18 +1763,18 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-                }
+                //if (varCloseFlag == 0)
+                //{
+                //    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
+                //        e.Cancel = false;
+                //    }
+                //    else
+                //    {
+                //        e.Cancel = true;
+                //    }
+                //}
 
             }
             catch (Exception ex)

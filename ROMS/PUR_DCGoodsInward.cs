@@ -136,6 +136,7 @@ namespace ROMS
                         grdProductExchage.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         txtRemark.Text = MainForm.objPUR_PurchaseReturns.varExchangeRemarks;
                         grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                        udfnProductCount();
                     }
                 }
                 else
@@ -144,6 +145,9 @@ namespace ROMS
                     varcloseflag = 1;
                     grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     grpproductname.Enabled = false;
+                    btnSave.Enabled = false;
+                    txtRemark.ReadOnly = true;
+                    grdProductExchage.Columns["clmRemove"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1076,6 +1080,10 @@ namespace ROMS
 
         }
 
+        private void Pnlinward_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
 
         public void allowonlynumber(object sender, KeyPressEventArgs e)
         {
