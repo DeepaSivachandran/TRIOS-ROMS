@@ -131,8 +131,7 @@ namespace ROMS
             }
         }
         public void udfnListLoad()
-        {
-
+        { 
             try
             {
                 if (txtSupplier.Text == "")
