@@ -56,6 +56,7 @@ namespace ROMS
         {
             try
             {
+                btnPrint.Focus();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdPurchaseOrder.DataSource = null;
@@ -181,6 +182,50 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             } 
+        }
+
+        private void BrnPrint_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void BrnPrint_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                btnPrint.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BrnPrint_KeyDown(object sender, KeyEventArgs e)
+        { 
+            try
+            {
+                if (e.KeyCode==Keys.Enter)
+                {
+                    btnClose.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void BtnClose_Click(object sender, EventArgs e)

@@ -50,7 +50,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.brnPrint = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -200,20 +200,23 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // brnPrint
+            // btnPrint
             // 
-            this.brnPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brnPrint.Image = global::ROMS.Properties.Resources.print;
-            this.brnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.brnPrint.Location = new System.Drawing.Point(874, 358);
-            this.brnPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.brnPrint.Name = "brnPrint";
-            this.brnPrint.Size = new System.Drawing.Size(69, 33);
-            this.brnPrint.TabIndex = 1111148;
-            this.brnPrint.Text = "Print";
-            this.brnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.brnPrint.UseVisualStyleBackColor = true;
-            this.brnPrint.Click += new System.EventHandler(this.BrnPrint_Click);
+            this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(874, 358);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(69, 33);
+            this.btnPrint.TabIndex = 1111148;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.BrnPrint_Click);
+            this.btnPrint.Enter += new System.EventHandler(this.BrnPrint_Enter);
+            this.btnPrint.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BrnPrint_KeyDown);
+            this.btnPrint.Leave += new System.EventHandler(this.BrnPrint_Leave);
             // 
             // PUR_PODamaged
             // 
@@ -221,7 +224,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1030, 396);
-            this.Controls.Add(this.brnPrint);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.grdPurchaseOrder);
@@ -258,6 +261,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.Button brnPrint;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

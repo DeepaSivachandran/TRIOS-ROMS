@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_LP_GRN_QRCode : ReportClass {
+    public class RPT_LP_QRGRN_QRCode : ReportClass {
         
-        public RPT_LP_GRN_QRCode() {
+        public RPT_LP_QRGRN_QRCode() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_LP_GRN_QRCode.rpt";
+                return "RPT_LP_QRGRN_QRCode.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_LP_GRN_QRCode.rpt";
+                return "ROMS.Reports.RPT_LP_QRGRN_QRCode.rpt";
             }
             set {
                 // Do nothing
@@ -103,68 +103,12 @@ namespace ROMS.Reports {
                 return this.ReportDefinition.Sections[6];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraFGCode {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraIPAddress {
-            get {
-                return this.DataDefinition.ParameterFields[1];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraLabelCode {
-            get {
-                return this.DataDefinition.ParameterFields[2];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraNoofCopies {
-            get {
-                return this.DataDefinition.ParameterFields[3];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraPlanTransactionNo {
-            get {
-                return this.DataDefinition.ParameterFields[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraUserID {
-            get {
-                return this.DataDefinition.ParameterFields[5];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraTemplateCode {
-            get {
-                return this.DataDefinition.ParameterFields[6];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_LP_GRN_QRCode : Component, ICachedReport {
+    public class CachedRPT_LP_QRGRN_QRCode : Component, ICachedReport {
         
-        public CachedRPT_LP_GRN_QRCode() {
+        public CachedRPT_LP_QRGRN_QRCode() {
         }
         
         [Browsable(false)]
@@ -201,7 +145,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_LP_GRN_QRCode rpt = new RPT_LP_GRN_QRCode();
+            RPT_LP_QRGRN_QRCode rpt = new RPT_LP_QRGRN_QRCode();
             rpt.Site = this.Site;
             return rpt;
         }
