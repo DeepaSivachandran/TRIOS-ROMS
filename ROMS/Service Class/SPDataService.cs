@@ -2260,9 +2260,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDCAmount", objTRN_PurchaseReturnDC.paraReturnDCAmount);
                 varSqlCommand.Parameters.AddWithValue("@paraTax", objTRN_PurchaseReturnDC.paraTax);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDCID", objTRN_PurchaseReturnDC.paraReturnDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraCreditNoteDate", objTRN_PurchaseReturnDC.paraCreditNoteDate);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_PurchaseReturnDC.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraTRN_Purchase_ReturnDC", objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC);
-                varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_DC", objTRN_PurchaseReturnDC.ParaTRN_Purchase_DC);
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_ReturnDCProducts", objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

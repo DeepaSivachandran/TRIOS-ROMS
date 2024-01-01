@@ -119,24 +119,31 @@ namespace ROMS
                     {
                         // dtPurchaseDC.DataSet = MainForm.objPUR_PurchaseReturns.dtExchangeProducts;
                         dtPurchaseDC = (MainForm.objPUR_PurchaseReturns.dtExchangeProducts).Copy();
-                        // grdProductExchage.DataSource = (MainForm.objPUR_PurchaseReturns.dtExchangeProducts).Copy();
                         for (int i = 0; i < dtPurchaseDC.Rows.Count; i++)
                         {
-                            grdProductExchage.Rows.Add(dtPurchaseDC.Rows[i]["S.No."], dtPurchaseDC.Rows[i]["P.I Code"].ToString(),
-                            dtPurchaseDC.Rows[i]["Product Name"].ToString(),
-                            dtPurchaseDC.Rows[i]["MRP"].ToString(),
-                            dtPurchaseDC.Rows[i]["Expiry Date"].ToString(), dtPurchaseDC.Rows[i]["Batch No."].ToString(),
-                            dtPurchaseDC.Rows[i]["Qty"].ToString(), dtPurchaseDC.Rows[i]["Unit"].ToString(),
-                            dtPurchaseDC.Rows[i]["Location"].ToString(), dtPurchaseDC.Rows[i]["Rack"].ToString()
-                            , dtPurchaseDC.Rows[i]["PRID"].ToString(), dtPurchaseDC.Rows[i]["SLID"].ToString(),
-                            dtPurchaseDC.Rows[i]["RKID"].ToString(), Convert.ToString(dtPurchaseDC.Rows[i]["UTID"])
+                            grdProductExchage.Rows.Add(i+1, dtPurchaseDC.Rows[i]["P.I Code"].ToString(),
+                            dtPurchaseDC.Rows[i]["ProductName"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_MRP"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_ExpiryDate"].ToString(), dtPurchaseDC.Rows[i]["DCPR_BatchNo"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_Qty"].ToString(), dtPurchaseDC.Rows[i]["Unit"].ToString(), dtPurchaseDC.Rows[i]["Rack"].ToString(), dtPurchaseDC.Rows[i]["Location"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_PRID"].ToString(), dtPurchaseDC.Rows[i]["DCPR_SLID"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_RKID"].ToString(), Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_UTID"])
                             );
                         }
+                        grdProductExchage.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdProductExchage.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdProductExchage.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdProductExchage.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        txtRemark.Text = MainForm.objPUR_PurchaseReturns.varExchangeRemarks;
+                        grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     }
                 }
                 else
                 {
                     EditLoad();
+                    varcloseflag = 1;
+                    grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                    grpproductname.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -193,7 +200,8 @@ namespace ROMS
                                 string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]))), objDs.Tables[0].Rows[i]["Expiry Date"].ToString(),
                                 objDs.Tables[0].Rows[i]["Batch No."].ToString(), objDs.Tables[0].Rows[i]["Qty"].ToString(),
                                 objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(),
-                                objDs.Tables[0].Rows[i]["RKID"].ToString());
+                                objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["Unit"].ToString(),
+                                objDs.Tables[0].Rows[i]["Location"].ToString(), objDs.Tables[0].Rows[i]["Rack"].ToString());
                               
                             }
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Remarks"]);
@@ -255,7 +263,7 @@ namespace ROMS
                             objTRN_PurchaseReturnDC.paraReturnDC_Date = varTodayDate;
                             objTRN_PurchaseReturnDC.paraExchangeRemarks = txtRemark.Text.Trim();
                             objTRN_PurchaseReturnDC.paraDeleteFlag = 0;
-                            objTRN_PurchaseReturnDC.ParaTRN_Purchase_DC = dtPurchaseDC;
+                            objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtPurchaseDC;
                             SPDataService objspdservice = new SPDataService();
                             result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
                             objspdservice.CloseConnection();
@@ -263,7 +271,7 @@ namespace ROMS
                             if (varvalue[0] == "3")
                             {
                                 MainForm.objPUR_PurchaseReturns.dtExchangeProducts = dtPurchaseDC;
-                                MainForm.objPUR_PurchaseReturns.txtExchangeRemarks = txtRemark.Text.Trim();
+                                MainForm.objPUR_PurchaseReturns.varExchangeRemarks = txtRemark.Text.Trim();
                                 MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 varcloseflag = 1;
                                 udfnclose();
@@ -1068,6 +1076,7 @@ namespace ROMS
 
         }
 
+
         public void allowonlynumber(object sender, KeyPressEventArgs e)
         {
             try
@@ -1582,7 +1591,7 @@ namespace ROMS
         }
         public void udfnUddtTable()
         {
-            dtPurchaseDC.TableName = "TRN_Purchase_DC";
+            dtPurchaseDC.TableName = "TRN_ReturnDCProducts";
             dtPurchaseDC.Columns.Add("DCPR_PRID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_MRP", typeof(decimal));
             dtPurchaseDC.Columns.Add("DCPR_ExpiryDate", typeof(string));
@@ -1591,6 +1600,11 @@ namespace ROMS
             dtPurchaseDC.Columns.Add("DCPR_UTID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_SLID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_RKID", typeof(int));
+            dtPurchaseDC.Columns.Add("ProductName", typeof(string));
+            dtPurchaseDC.Columns.Add("P.I code", typeof(string));
+            dtPurchaseDC.Columns.Add("Unit", typeof(string));
+            dtPurchaseDC.Columns.Add("Location", typeof(string));
+            dtPurchaseDC.Columns.Add("Rack", typeof(string));
         }
         private void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -2223,7 +2237,7 @@ namespace ROMS
                         string mrp = string.Format("{0:0.00}", varMRP);
                         string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                         grdProductExchage.Rows.Add(grdProductExchage.Rows.Count + 1, varPICode.Trim(), varTName.Trim(), Convert.ToDecimal(mrp), varExpiryDate, txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid);
-                        dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text));
+                        dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text), varTName, varPICode, lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim());
                         ((DataGridViewTextBoxColumn)grdProductExchage.Columns["clmQuantity"]).MaxInputLength = 8;
                         grdProductExchage.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;

@@ -20,6 +20,7 @@ namespace ROMS
         DataError objError;
         public int Varflag = 0, varviewtype=0;
         private ToolTip tpSuppliername = new ToolTip();
+        private DataTable dtDefaultGrid = new DataTable();
         public PUR_ReturnDCList()
         {
             InitializeComponent();
@@ -780,10 +781,33 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                // DGV_SearchGrid.Columns["S.No."].Visible = false;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["Concern ID"].Visible = false;
+                DGV_SearchGrid.Columns["Supplier ID"].Visible = false;
+                DGV_SearchGrid.Columns["Schedule ID"].Visible = false;
+                DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["Status"].Width = 120;
+                //DGV_SearchGrid.Columns["Employees"].Width = 300;
+                //DGV_SearchGrid.Columns["Created By"].Width = 100;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnList()
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 Varflag = 0;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
@@ -902,6 +926,11 @@ namespace ROMS
                         lblNoRecordsFound.BringToFront();
                     }
                     udfnSearchGridHead();
+                    if (lblNoRecordsFound.Visible == true)
+                    {
+                        dtDefaultGrid = objDs.Tables[0];
+                        udfnDefaultSearchGrid();
+                    }
                 }
                 else
                 {
@@ -1304,6 +1333,41 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdReturnDCList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdReturnDCList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "15")
+                    {
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "16")
+                    {
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "39")
+                    {
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdReturnDCList.ClearSelection();
+            }
+        }
+
         public void udfnDelete()
         {
             try

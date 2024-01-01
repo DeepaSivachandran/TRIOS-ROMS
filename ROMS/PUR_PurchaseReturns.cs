@@ -30,7 +30,7 @@ namespace ROMS
         public string varSuppliervalue = "";
         DataTable dtPurchaseReturnDC = new DataTable();
         public DataTable dtExchangeProducts = new DataTable();
-        public string txtExchangeRemarks = "";
+        public string varExchangeRemarks = "";
         public PUR_PurchaseReturns()
         {
             InitializeComponent();
@@ -149,6 +149,7 @@ namespace ROMS
                 txtActualQty.Enabled = false;
                 btnAdd.Enabled = false;
                 lblTotal.Text = "Approximate Total";
+                
             }
             else if (Convert.ToInt32(cmbReason.SelectedValue) == 61) //excess
             {
@@ -327,7 +328,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpReturnDCDate.MinDate = MainForm.pbFYStartDate;
                 dpReturnDCDate.MaxDate = MainForm.pbCurrentDate;
-                dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
+                dpCreditNoteDate.MinDate = MainForm.pbFYStartDate;
                 dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();
@@ -392,9 +393,10 @@ namespace ROMS
             try
             {
                 // Varflag = 0;
-                int varStatusid = 0; int varviewtype = 2;
+                int varStatusid = 0; int varviewtype = 0;
                 if (Convert.ToInt32(cmbReason.SelectedValue) == 60)
                 {
+                    varviewtype = 2;
                     varStatusid = 20; //Damage entry status completed
                 }
                 Application.DoEvents();
@@ -426,10 +428,16 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdReturnDC.DataSource = objDs.Tables[0];
                             grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdReturnDC.Columns["Approximate Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Taxable Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["Product Name"].Width = 250;
                             grdReturnDC.Columns["DMID"].Visible = false;
                             grdReturnDC.Columns["PRID"].Visible = false;
                             grdReturnDC.Columns["UTID"].Visible = false;
+                            grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -444,12 +452,17 @@ namespace ROMS
                             txtTotalTax.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Total Tax"]);
                             txtApproxTotal.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Approximate Total"]);
                             grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdReturnDC.Columns["Approximate Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Taxable Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["Product Name"].Width = 250;
                             grdReturnDC.Columns["DMID"].Visible = false;
                             grdReturnDC.Columns["PRID"].Visible = false;
                             grdReturnDC.Columns["UTID"].Visible = false;
                         }
-                       
                     }
                     else
                     {
@@ -519,9 +532,16 @@ namespace ROMS
                                     lblNoRecordsFound.SendToBack();
                                     grdReturnDC.DataSource = objDs.Tables[1];
                                     grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    grdReturnDC.Columns["Approximate Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Taxable Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Product Name"].Width = 250;
                                     grdReturnDC.Columns["DMID"].Visible = false;
                                     grdReturnDC.Columns["PRID"].Visible = false;
                                     grdReturnDC.Columns["UTID"].Visible = false;
+                                    grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 }
                                 else
                                 {
@@ -1217,6 +1237,28 @@ namespace ROMS
                         tpDcNo.Show("DC No. is empty.", txtReturnDcNo, 5000);
                         varErrorFlag = false;
                     }
+                    if (varStatusId == 16)
+                    {
+                        if (txtAmount.Text == "")
+                        {
+                            epReturnDc.SetError(txtAmount, "Please enter amount.");
+                            txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpAmount.ShowAlways = true;
+                            tpAmount.Show("Please enter amount.", txtAmount, 5000);
+                            varErrorFlag = false;
+                        }
+                        if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62)
+                        {
+                            if (txtCrNo.Text == "")
+                            {
+                                epReturnDc.SetError(txtCrNo, "Please enter credit number.");
+                                txtCrNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpCrNo.ShowAlways = true;
+                                tpCrNo.Show("Please enter credit number.", txtCrNo, 5000);
+                                varErrorFlag = false;
+                            }
+                        }
+                    }
                     if (varErrorFlag == true)
                     {
                         udfnTooltipHide(); int varDC_PURID = 0; int varReasonforClosingId = 0;
@@ -1286,7 +1328,7 @@ namespace ROMS
                                     if (dtExchangeProducts.Rows.Count != 0)
                                     {
                                         objTRN_PurchaseReturnDC.paraDeleteFlag = 1;
-                                        objTRN_PurchaseReturnDC.ParaTRN_Purchase_DC = dtExchangeProducts;
+                                        objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtExchangeProducts;
                                     }
                                 }
                                 else
@@ -1311,7 +1353,7 @@ namespace ROMS
                                         udfnclose();
                                     }
                                     udfnClear();
-                                    MainForm.objPUR_PurchaseDCList.udfnList();
+                                    MainForm.objINV_SalesInvoiceList.udfnList();
                                 }
                                 else if (varvalue[0] == "4")
                                 {
@@ -1501,7 +1543,7 @@ namespace ROMS
                     epReturnDc.SetError(txtCrNo, "Please enter credit number.");
                     txtCrNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCrNo.ShowAlways = true;
-                    tpCrNo.Show("Please enter amount.", txtCrNo, 5000);
+                    tpCrNo.Show("Please enter credit number.", txtCrNo, 5000);
                 }
                 else
                 {
