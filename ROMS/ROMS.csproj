@@ -2077,7 +2077,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Request.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
+      <LastGenOutput>RPT_TP_INV_Shop_Stock_Request1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_Purchaseorder_Summary.resx">
       <DependentUpon>REPORT_PUR_Purchaseorder_Summary.cs</DependentUpon>
