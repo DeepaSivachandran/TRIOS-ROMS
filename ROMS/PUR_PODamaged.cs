@@ -140,6 +140,49 @@ namespace ROMS
             }
         }
 
+        private void BrnPrint_Click(object sender, EventArgs e)
+    { 
+            try
+            {
+
+                int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0;
+                if (varMasterType == "1")
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
+                } 
+                string varHeader = "";
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Product.rpt");
+                varHeader = "Damage Product";
+                //objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+
+                objBillreport.SetParameterValue("ParaDMFromDate", "");
+                objBillreport.SetParameterValue("ParaDMToDate", "");
+                objBillreport.SetParameterValue("ParaSupplierId", varSupplierid);
+                objBillreport.SetParameterValue("paraCompanyID", varcompanyid);
+                objBillreport.SetParameterValue("ParaScheduleId", varScheduleid); 
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objValidation.CrySqlConnection(objBillreport);
+
+                MainForm.objReportLoad = new ReportLoad();
+                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                MainForm.objReportLoad.Text = varHeader;
+                MainForm.objReportLoad.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
         private void BtnClose_Click(object sender, EventArgs e)
         {
             try

@@ -15,6 +15,9 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+
+        public DataTable Deftable = new DataTable();
+        public DataTable Deftablepro = new DataTable();
         Boolean BlnSearchImageYN = false;
         public int Supplierpend = 0, Statuschange=0, SearchFlag=0;
         public string varUserID = "0";
@@ -1016,6 +1019,7 @@ namespace ROMS
                         grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
                             grdPurchaseorderlist.Columns["clmView"].Visible = false;
                             lblTotal.Text = "0";
+                            Deftable= objDs.Tables[0];
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
@@ -1046,6 +1050,7 @@ namespace ROMS
                         lblNoRecordsFound.BringToFront();
                         grdPurchaseorderlist.Columns["clmView"].Visible = false;
                         grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
+                        Deftable = objDs.Tables[0];
                         lblTotal.Text = "0";
                     }
                 }
@@ -1055,11 +1060,16 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                     grdPurchaseorderlist.Columns["clmView"].Visible = false;
                     grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
+                    Deftable = objDs.Tables[0];
                     lblTotal.Text = "0";
 
                 }
 
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    udfnDefcolumns();
+                }
 
             }
             catch (Exception ex)
@@ -1070,6 +1080,56 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+            }
+        }
+
+        public void udfnDefcolumns()
+        {
+            try
+            {
+
+                if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
+                {
+                    DGV_SearchGrid.DataSource = Deftable;
+                    DGV_SearchGrid.Columns["STS"].Visible = false;
+                    DGV_SearchGrid.Columns["Status1"].Visible = false;
+                    DGV_SearchGrid.Columns["STS1"].Visible = false;
+                    DGV_SearchGrid.Columns["PO_ID"].Visible = false;
+                    DGV_SearchGrid.Columns["PO_SPSCID"].Visible = false;
+                    DGV_SearchGrid.Columns["PO_SPID"].Visible = false;
+                    DGV_SearchGrid.Columns["po_stsid"].Visible = false;
+                    DGV_SearchGrid.Columns["PO_Remarks"].Visible = false;
+                    DGV_SearchGrid.Columns["SPSC_OrderType"].Visible = false;
+                    DGV_SearchGrid.Columns["PO_Created"].Visible = false;
+                    DGV_SearchGrid.Columns["Total Products"].Visible = false;
+                    DGV_SearchGrid.Columns["Total Qty"].Visible = false;
+                    DGV_SearchGrid.Columns["Turn Around Time"].Visible = false;
+                    DGV_SearchGrid.Columns["GSTIN"].Visible = false;
+                    DGV_SearchGrid.Columns["SPSC_TAT"].Visible = false;
+                    DGV_SearchGrid.Columns["POVALUE"].Visible = false;
+                    DGV_SearchGrid.Columns["turn"].Visible = false;
+                    DGV_SearchGrid.Columns["DELAYVALUE"].Visible = false;
+                    DGV_SearchGrid.Columns["Mode of details"].Visible = false;
+                    DGV_SearchGrid.Columns["Issued DATES"].Visible = false;
+                    DGV_SearchGrid.Columns["DTURN"].Visible = false;
+                    DGV_SearchGrid.Columns["Currentsts"].Visible = false;
+                }
+                else
+                {
+                    DGV_SearchGridPro.DataSource = Deftablepro;
+                    DGV_SearchGridPro.Columns["STSID"].Visible = false;
+                    DGV_SearchGridPro.Columns["STS1"].Visible = false;
+                    DGV_SearchGridPro.Columns["SPSC_SMName"].Visible = false;
+                    DGV_SearchGridPro.Columns["SPSC_SMMobileNo"].Visible = false;
+                    DGV_SearchGridPro.Columns["status1"].Visible = false;
+                    DGV_SearchGridPro.Columns["SP_PhoneNo"].Visible = false;
+                    DGV_SearchGridPro.Columns["PO_LastTransNo"].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void TxtProductGroup_Enter(object sender, EventArgs e)
@@ -1551,21 +1611,25 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
+                            Deftablepro = objDs.Tables[0];
                         }
                     }
                     else
                     {
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
+                        Deftablepro = objDs.Tables[0];
                     }
                 }
                 else
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
+                    Deftablepro = objDs.Tables[0];
                 }
 
                 udfnSearchGridHeadpro();
+                udfnDefcolumns();
             }
             catch (Exception ex)
             {
