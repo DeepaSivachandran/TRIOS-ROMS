@@ -25,6 +25,7 @@ namespace ROMS.Model
         public int ParaPO { get; set; } = 0;
         public int ParaSupplier { get; set; } = 0;
         public string paraReturnDC_Remarks { get; set; } = "";
+        public string paraDCIDs { get; set; } = "";
         public int paraStatusID { get; set; } = 0;
         public int paraReturnDCID { get; set; } = 0;
         public int ParaGroupID { get; set; } = 0;
