@@ -505,7 +505,7 @@ namespace ROMS
                             varGrnId = Convert.ToInt32(pbGRNId);
                             TRN_GRN objTRNS_GRN = new TRN_GRN();
                             objTRNS_GRN.ViewType = 3;
-                            objTRNS_GRN.ParaGRNID = varGrnId; 
+                            objTRNS_GRN.ParaGRNID = varGrnId;
                             objTRNS_GRN.paraINVDate = dpinvoicedate.Text;
                             objTRNS_GRN.paraINVNo = txtInvoiceno.Text;
                             objTRNS_GRN.ParaInvAmt = Convert.ToDouble(txtInvoiceamt.Text);
@@ -525,7 +525,7 @@ namespace ROMS
                             if (chkCompleted.Enabled == true)
                             {
                                 if (chkCompleted.Checked == true)
-                                { 
+                                {
                                     objTRNS_GRN.paraStatus = 23;
                                     if (varSkip == "1")
                                     {
@@ -567,6 +567,15 @@ namespace ROMS
                             else
                             {
                                 MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        else
+                        {
+                            if (varErroronGrid == 1)
+                            { 
+                                string varMessage = objDServ.udfnGetMessages(94);
+                                objDServ.CloseConnection();
+                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                     }
@@ -611,7 +620,7 @@ namespace ROMS
                     {
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmShelflifeenable"].Value) == "1")
                         {
-                            if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == "")
+                            if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == "" || varErroronGrid == 1)
                             {
                                 varcount++;
                                 grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
@@ -636,7 +645,7 @@ namespace ROMS
                         }
                         else
                         {
-                            if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
+                            if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "-1")
                             {
                                 grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
                             }
