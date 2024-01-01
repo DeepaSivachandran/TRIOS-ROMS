@@ -165,8 +165,7 @@ namespace ROMS
                             grdGRNList.Columns["ClmEdit"].Width = 50;
                             grdGRNList.Columns["clmPrint"].Visible = true;
                             //grdGRNList.Columns["clmPrint"].DisplayIndex = objDs.Tables[0].Columns.Count+1;
-                            grdGRNList.Columns["clmPrint"].Width = 50;
-
+                            grdGRNList.Columns["clmPrint"].Width = 50; 
                             grdGRNList.DataSource = objDs.Tables[0];
                             grdGRNList.Columns["S.No."].Width = 50;
                             grdGRNList.Columns["Company"].Width = 80;
