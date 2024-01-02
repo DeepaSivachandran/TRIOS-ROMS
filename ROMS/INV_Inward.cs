@@ -91,6 +91,7 @@ namespace ROMS
                 dtInward.Columns.Add("GIPR_ShelfLife", typeof(int));
                 dtInward.Columns.Add("GIPR_ShelfLifeValue", typeof(int));
                 dtInward.Columns.Add("GIPR_ShelfLifeType", typeof(int));
+                dtInward.Columns.Add("GIPR_ShelfLifePer", typeof(float));
                 cmbConcern.SelectedValue = 1;
                 udfnCmbConcern();
                 udfnTransactionData();              
@@ -106,6 +107,7 @@ namespace ROMS
                     cbCompleted.Visible = false;
                     udfnTransferEdit();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -258,7 +260,7 @@ namespace ROMS
                         btnSave.Focus();
                     }
                 }
-                else
+                else if(blnErrorFlag == true && varUpdateflag == 1)
                 {
                     udfntooltiphide();
                     epGoodsInward.Clear();
@@ -284,7 +286,7 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.ActiveControl = txtProductName;
-                        MainForm.objINV_Inwardlist.udfnList();
+                        MainForm.objINV_InwardlistQueue.udfnList();
                         //udfnClear();
                         this.Close();
                     }
@@ -853,19 +855,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtMrp.Text) == "")
-                {
-                    epGoodsInward.SetError(txtMrp, "Please enter the mrp");
-                    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpmrp.ShowAlways = true;
-                    tpmrp.Show("Please enter the mrp", txtMrp, 5000);
-                }
-                else
-                {
-                    epGoodsInward.Clear();
-                    txtMrp.BackColor = Color.White;
-                    tpmrp.Active = false;
-                }
+                txtMrp.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -909,19 +899,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtBatchNo.Text) == "")
-                {
-                    epGoodsInward.SetError(txtProductName, "Please enter the batch number");
-                    txtBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpbatch.ShowAlways = true;
-                    tpbatch.Show("Please enter the batch number", txtBatchNo, 5000);
-                }
-                else
-                {
-                    epGoodsInward.Clear();
-                    txtBatchNo.BackColor = Color.White;
-                    tpbatch.Active = false;
-                }
+                txtBatchNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1458,7 +1436,6 @@ namespace ROMS
             }
             finally
             {
-                udfnClear();
                 grdInward.Rows.Count.ToString();
                 grdInward.ClearSelection();
                 if (grdInward.Rows.Count > 0)
@@ -1480,20 +1457,7 @@ namespace ROMS
         {
             try
             {
-                //dtInward.TableName = "TRN_GoodsInward_Product";
-                //dtInward.Columns.Add("GIPR_PRID", typeof(int));
-                //dtInward.Columns.Add("GIPR_MRP", typeof(decimal));
-                //dtInward.Columns.Add("GIPR_ExpiryDate", typeof(string));
-                //dtInward.Columns.Add("GIPR_BatchNo", typeof(string));
-                //dtInward.Columns.Add("GIPR_UTID", typeof(string));
-                //dtInward.Columns.Add("GIPR_QTY", typeof(string));
-                //dtInward.Columns.Add("GIPR_RKID", typeof(int));
-                //dtInward.Columns.Add("GIPR_SLID", typeof(int));
-                //dtInward.Columns.Add("GIPR_ReqQty", typeof(int));
-                //dtInward.Columns.Add("GIPR_TransferQty", typeof(int));
-                //dtInward.Columns.Add("GIPR_ShelfLife", typeof(int));
-                //dtInward.Columns.Add("GIPR_ShelfLifeValue", typeof(int));
-                //dtInward.Columns.Add("GIPR_ShelfLifeType", typeof(int));
+                
 
                 if (txtActualQty.Text.Trim() == "0")
                 {
@@ -1514,7 +1478,7 @@ namespace ROMS
                         string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                         grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                         grdInward.Rows.Add(grdInward.Rows.Count + 1,txtRack.Text,varPICode.Trim(), varTamilname.Trim(), Convert.ToDecimal(mrp), varExpiryDate, Shelflife, varAcutalshelflife,varShelflifevalue,txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), 0,0,txtunit.Text,varPRID,varRKID,varStockLocationId,varUTID);
-                        dtInward.Rows.Add(varPRID, Convert.ToDecimal(txtMrp.Text), varExpiryDate, txtBatchNo.Text.Trim(), varUTID,txtActualQty.Text.Trim(),varRKID,varStockLocationId,0,0,varShelflife,ProductShelflifeValue,ProductShelflifeType);
+                        dtInward.Rows.Add(varPRID, Convert.ToDecimal(txtMrp.Text), varExpiryDate, txtBatchNo.Text.Trim(), varUTID,txtActualQty.Text.Trim(),varRKID,varStockLocationId,0,0,varShelflife,ProductShelflifeValue,ProductShelflifeType, Convert.ToDecimal(varShelflifevalue));
                         txttotalitem.Text = Convert.ToString(grdInward.Rows.Count);
                         //((DataGridViewTextBoxColumn)grdInward.Columns["clmQuantity"]).MaxInputLength = 8;
                         //grdInward.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
@@ -1523,10 +1487,9 @@ namespace ROMS
                         grdInward.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         grdInward.Columns["clmactualqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                        //udfnAddClear();
+                        udfnProductClear();
                         txtProductName.Text = "";
                         varPRID = "0";
-                        //udfnProductCount();
                         udfnShelflifeCheck();
                     }
                 }
@@ -1539,6 +1502,30 @@ namespace ROMS
             finally
             {
                 grdInward.ClearSelection();
+            }
+        }
+        public void udfnProductClear()
+        {
+            try
+            {
+                txtProductName.Text = "";
+                txtRack.Text = "";
+                txtMrp.Text = "";
+                txtDay.Text = "";
+                txtBatchNo.Text = "";
+                txtActualQty.Text = "";
+                txtMonth.Text = "";
+                txtYear.Text = "";
+                varPRID = "";
+                varPICode = "";
+                varRKID = "";
+                varUTID = "";
+                txtunit.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnShelflifeCheck()
@@ -2141,6 +2128,71 @@ namespace ROMS
             }
         }
 
+        private void BtnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRack_Leave_1(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRack.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CbCompleted_TextChanged(object sender, EventArgs e)
         {
             try
@@ -2287,27 +2339,7 @@ namespace ROMS
 
         private void TxtRack_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                if (Convert.ToString(txtRack.Text) == "")
-                {
-                    epGoodsInward.SetError(txtRack, "Please enter the Rack");
-                    txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tprack.ShowAlways = true;
-                    tprack.Show("Please enter the Rack", txtRack, 5000);
-                }
-                else
-                {
-                    epGoodsInward.Clear();
-                    txtRack.BackColor = Color.White;
-                    tprack.Active = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -2900,13 +2932,14 @@ namespace ROMS
                             for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                             {
                                 grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdInward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ShelfLifeFlag"]), varAcutalshelflife, varShelflifevalue, Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]),
+                                grdInward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ShelfLifeFlag"]), Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]),
                                 Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_UTID"]));
-                                dtInward.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeValue"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeType"]));
+                                dtInward.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeValue"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeType"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]));
                                 grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmtransferqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmreceivedqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                udfnShelflifeCheck();
                                 //DGV_inward.Rows.Add(DGV_inward.Rows.Count + 1, varPRID, varPICode, (txtProduct.Text).Trim(), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text).Trim(), varUnit, varUTID);
                                 //DGV_inward.Columns[10].ReadOnly = false;
                             }
@@ -2996,7 +3029,7 @@ namespace ROMS
                                     grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     grdInward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ShelfLife"]), varAcutalshelflife, varShelflifevalue, Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_BatchNo"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Qty"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Dest_RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Dest_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_UTID"]));
-                                    dtInward.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_UTID"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Dest_RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Dest_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeValue"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeType"]));
+                                    dtInward.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_UTID"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Dest_RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Dest_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeValue"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeType"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeType"]));
                                     grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdInward.Columns["clmreceivedqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdInward.Columns["clmtransferqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

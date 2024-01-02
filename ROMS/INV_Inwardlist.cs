@@ -695,6 +695,20 @@ namespace ROMS
                 cmbConcern.SelectedValue = 1;
                 objDataBind = null;
                 cmbStatus.SelectedValue = 41;
+                //DataSet objDS = new DataSet();
+                //SPDataService objspservice = new SPDataService();
+                //objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 4);
+                //if (objDS.Tables[0].Rows.Count > 0)
+                //{
+                //    DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    dpToDate.MinDate = varDate;
+                //    dpFromDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
+                //}
+                //objspservice.CloseConnection();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                this.ActiveControl = cmbConcern;
                 udfnList();
             }
             catch (Exception ex)
@@ -920,7 +934,7 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
-                udfnSearchGridHead();
+                   udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -1391,6 +1405,72 @@ namespace ROMS
 
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

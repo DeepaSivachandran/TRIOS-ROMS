@@ -1538,6 +1538,20 @@ namespace ROMS
             }
         }
 
+        private void CmbStatus_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void LvProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
 
