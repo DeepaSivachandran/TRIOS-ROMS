@@ -106,7 +106,7 @@ namespace ROMS
                 objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(varSupplierid);
                 objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(varScheduleid);
                 objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(varcompanyid);
-                objTRN_PurchaseReturnDC.paraDcID = Convert.ToInt32(varDcid);
+                objTRN_PurchaseReturnDC.paraDCIDs = Convert.ToString(varDcid);
                 objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -250,7 +250,7 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdGRNPODamaged.Rows[i].Cells[0].Value) == true)
                         {
-                            MainForm.objPUR_GRNEntry.grdReurnDC.Rows.Add(grdGRNPODamaged.Rows[i].Cells["DC No."].Value, grdGRNPODamaged.Rows[i].Cells["DC Date"].Value, grdGRNPODamaged.Rows[i].Cells["Total Products"].Value, grdGRNPODamaged.Rows[i].Cells["Total value"].Value, grdGRNPODamaged.Rows[i].Cells["id"].Value);
+                            MainForm.objPUR_GRNEntry.grdReurnDC.Rows.Add(grdGRNPODamaged.Rows[i].Cells["DC No."].Value, grdGRNPODamaged.Rows[i].Cells["DC No."].Value, grdGRNPODamaged.Rows[i].Cells["Total Products"].Value, grdGRNPODamaged.Rows[i].Cells["Total value"].Value, grdGRNPODamaged.Rows[i].Cells["id"].Value);
                             VARFLAG = 1;
                         }
                     }

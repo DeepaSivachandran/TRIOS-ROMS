@@ -23,7 +23,7 @@ namespace ROMS
         public string varbrandcode;
         public string varUserId = "";
         public string varPasskey = "";
-        public int flag = 0, varVerifyType = 0;
+        public int flag = 0, varVerifyType = 0,varTrnType=0;
         private SecurityController _security;
         public string pbFormStatus;
         public PUR_GRNApprovalVerify()
@@ -134,8 +134,16 @@ namespace ROMS
                             {
                                 flag = 1;
                                 varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]);
-                                MainForm.objPUR_GRNDetails.varUserID = varUserId;
-                                MainForm.objPUR_GRNDetails.varflag = Convert.ToString(flag);
+                                if (varTrnType == 1)
+                                {
+                                    MainForm.objPUR_GRNDetails.varUserID = varUserId;
+                                    MainForm.objPUR_GRNDetails.varflag = Convert.ToString(flag);
+                                } 
+                                if (varTrnType == 2)
+                                {
+                                    MainForm.objPUR_GRNEntry.varUserID = varUserId;
+                                    MainForm.objPUR_GRNEntry.varflag = Convert.ToString(flag);
+                                }
                                 this.Close();
                             }
                         }

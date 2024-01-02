@@ -15,7 +15,7 @@ namespace ROMS
         DataError objError;
         public bool VarSearchFlag = true;
         public int varRecqty = 0, varcount = 0, SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0,
-            varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0
+            varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0, Currentsts=0
             , totalBulkqty = 0, totalUnitqty = 0, totalOrderQty = 0, varUPP = 0, qtyFlag = 0, varModifiedFlag = 0,
         varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag = 0, productcode = 0;
         public double totalKgQty = 0;
@@ -88,6 +88,16 @@ namespace ROMS
                 else
                 {
                     btnSave.Enabled = true;
+                }
+                if (Currentsts == 38)
+                { 
+                    gpissued.Enabled = false;
+                    btnAdd.Enabled = false;
+                    txtProductName.Enabled = false;
+                    txtProductQty.Enabled = false;
+                    cmbUnit.Enabled = false;
+                    btnViewedProduct.Enabled = false;
+                    grdsupplieradd.Columns["clmRemove"].Visible = false;
                 }
                 // }
                 if (btnSave.Text == "Save")
@@ -256,18 +266,21 @@ namespace ROMS
                 {
                     dpissuedateandtime.Enabled = false;
                     txtTurnAroundTime.Enabled = false;
-                    //grdsupplieradd.Columns["clmRemove"].Visible = false;
-                    //grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
-                    //grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;
-                    //grdsupplieradd.Columns["clmordertotalqty"].ReadOnly = true;
-                    //grdsupplieradd.Columns["Column2"].DefaultCellStyle.BackColor = Color.LightGray;
-                    //grdsupplieradd.Columns["clmOrderqty"].DefaultCellStyle.BackColor = Color.LightGray;
-                    //grdsupplieradd.Columns["clmordertotalqty"].DefaultCellStyle.BackColor = Color.LightGray;
-                    //grdsupplieradd.Columns["clmunitorderqty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    if (Currentsts == 38)
+                    {
+                        grdsupplieradd.Columns["clmRemove"].Visible = false;
+                        grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
+                        grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;
+                        grdsupplieradd.Columns["clmordertotalqty"].ReadOnly = true;
+                        grdsupplieradd.Columns["Column2"].DefaultCellStyle.BackColor = Color.LightGray;
+                        grdsupplieradd.Columns["clmOrderqty"].DefaultCellStyle.BackColor = Color.LightGray;
+                        grdsupplieradd.Columns["clmordertotalqty"].DefaultCellStyle.BackColor = Color.LightGray;
+                        grdsupplieradd.Columns["clmunitorderqty"].DefaultCellStyle.BackColor = Color.LightGray;
 
 
-                    // btnViewedProduct.Enabled = false;
-                    //btnAdd.Enabled = false;
+                        btnViewedProduct.Enabled = false;
+                        btnAdd.Enabled = false;
+                    }
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
@@ -3098,7 +3111,7 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "-")
                     {
-                        if (VarStatusId != 14 || VarStatusId != 33)
+                        if (VarStatusId != 14 || VarStatusId != 33 || Currentsts != 38)
                         {
                             switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                             {
@@ -3828,7 +3841,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (VarStatusId == 14 || VarStatusId == 33)
+                        if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38)
                         {
 
                             DataGridView dataGridView = (DataGridView)sender;
@@ -3888,7 +3901,7 @@ namespace ROMS
             }
             finally
             {
-                if (VarStatusId == 14 || VarStatusId == 33)
+                if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38)
                 {
                     grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
                     grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;

@@ -56,7 +56,7 @@
             this.grbgodown = new System.Windows.Forms.GroupBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
-            this.txtOutwardNo = new System.Windows.Forms.TextBox();
+            this.txtInwardNo = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblInwardNo = new System.Windows.Forms.Label();
@@ -71,25 +71,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdInward = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmactualshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshelflifeper = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmactualqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtransferqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpproductname = new System.Windows.Forms.GroupBox();
             this.lblRack = new System.Windows.Forms.Label();
             this.txtRack = new System.Windows.Forms.TextBox();
@@ -113,6 +94,25 @@
             this.lblDd = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epGoodsInward = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmactualshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshelflifeper = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmactualqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtransferqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.gbshelfLife.SuspendLayout();
@@ -339,7 +339,7 @@
             // 
             this.grbgodown.Controls.Add(this.cmbTransactionType);
             this.grbgodown.Controls.Add(this.txtStockLocation);
-            this.grbgodown.Controls.Add(this.txtOutwardNo);
+            this.grbgodown.Controls.Add(this.txtInwardNo);
             this.grbgodown.Controls.Add(this.cmbConcern);
             this.grbgodown.Controls.Add(this.label2);
             this.grbgodown.Controls.Add(this.lblInwardNo);
@@ -383,14 +383,14 @@
             this.txtStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStockLocation_KeyDown_1);
             this.txtStockLocation.Leave += new System.EventHandler(this.TxtStockLocation_Leave_1);
             // 
-            // txtOutwardNo
+            // txtInwardNo
             // 
-            this.txtOutwardNo.Enabled = false;
-            this.txtOutwardNo.Location = new System.Drawing.Point(441, 23);
-            this.txtOutwardNo.Name = "txtOutwardNo";
-            this.txtOutwardNo.ReadOnly = true;
-            this.txtOutwardNo.Size = new System.Drawing.Size(150, 27);
-            this.txtOutwardNo.TabIndex = 2;
+            this.txtInwardNo.Enabled = false;
+            this.txtInwardNo.Location = new System.Drawing.Point(441, 23);
+            this.txtInwardNo.Name = "txtInwardNo";
+            this.txtInwardNo.ReadOnly = true;
+            this.txtInwardNo.Size = new System.Drawing.Size(150, 27);
+            this.txtInwardNo.TabIndex = 2;
             // 
             // cmbConcern
             // 
@@ -445,6 +445,7 @@
             this.dpInwardDate.Name = "dpInwardDate";
             this.dpInwardDate.Size = new System.Drawing.Size(104, 27);
             this.dpInwardDate.TabIndex = 1;
+            this.dpInwardDate.ValueChanged += new System.EventHandler(this.DpInwardDate_ValueChanged);
             this.dpInwardDate.Enter += new System.EventHandler(this.DpInwardDate_Enter);
             this.dpInwardDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpInwardDate_KeyDown);
             // 
@@ -579,167 +580,18 @@
             this.grdInward.GridColor = System.Drawing.Color.White;
             this.grdInward.Location = new System.Drawing.Point(3, 146);
             this.grdInward.Name = "grdInward";
-            this.grdInward.ReadOnly = true;
             this.grdInward.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdInward.RowTemplate.Height = 25;
+            this.grdInward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdInward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInward.ShowRowErrors = false;
             this.grdInward.Size = new System.Drawing.Size(1340, 422);
             this.grdInward.TabIndex = 2;
             this.grdInward.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInward_CellContentClick);
-            // 
-            // clmsno
-            // 
-            this.clmsno.Frozen = true;
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // Column1
-            // 
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "Rack";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 80;
-            // 
-            // clmpicode
-            // 
-            this.clmpicode.Frozen = true;
-            this.clmpicode.HeaderText = "P.I Code";
-            this.clmpicode.Name = "clmpicode";
-            this.clmpicode.ReadOnly = true;
-            // 
-            // clmproductname
-            // 
-            this.clmproductname.Frozen = true;
-            this.clmproductname.HeaderText = "Product Name";
-            this.clmproductname.Name = "clmproductname";
-            this.clmproductname.ReadOnly = true;
-            this.clmproductname.Width = 300;
-            // 
-            // clmmrp
-            // 
-            this.clmmrp.Frozen = true;
-            this.clmmrp.HeaderText = "MRP";
-            this.clmmrp.Name = "clmmrp";
-            this.clmmrp.ReadOnly = true;
-            this.clmmrp.Width = 80;
-            // 
-            // clmexpirydate
-            // 
-            this.clmexpirydate.Frozen = true;
-            this.clmexpirydate.HeaderText = "Expiry Date";
-            this.clmexpirydate.Name = "clmexpirydate";
-            this.clmexpirydate.ReadOnly = true;
-            // 
-            // clmshelflife
-            // 
-            this.clmshelflife.FillWeight = 130F;
-            this.clmshelflife.Frozen = true;
-            this.clmshelflife.HeaderText = "Product Shelf Life";
-            this.clmshelflife.Name = "clmshelflife";
-            this.clmshelflife.ReadOnly = true;
-            this.clmshelflife.Width = 120;
-            // 
-            // clmactualshelflife
-            // 
-            this.clmactualshelflife.FillWeight = 130F;
-            this.clmactualshelflife.Frozen = true;
-            this.clmactualshelflife.HeaderText = "Actual Shelf Life";
-            this.clmactualshelflife.Name = "clmactualshelflife";
-            this.clmactualshelflife.ReadOnly = true;
-            this.clmactualshelflife.Width = 120;
-            // 
-            // clmshelflifeper
-            // 
-            this.clmshelflifeper.Frozen = true;
-            this.clmshelflifeper.HeaderText = "Shelf Life (%)";
-            this.clmshelflifeper.Name = "clmshelflifeper";
-            this.clmshelflifeper.ReadOnly = true;
-            // 
-            // clmbatchno
-            // 
-            this.clmbatchno.Frozen = true;
-            this.clmbatchno.HeaderText = "Batch No.";
-            this.clmbatchno.Name = "clmbatchno";
-            this.clmbatchno.ReadOnly = true;
-            this.clmbatchno.Width = 80;
-            // 
-            // clmactualqty
-            // 
-            this.clmactualqty.Frozen = true;
-            this.clmactualqty.HeaderText = "Qty";
-            this.clmactualqty.Name = "clmactualqty";
-            this.clmactualqty.ReadOnly = true;
-            this.clmactualqty.Width = 70;
-            // 
-            // clmtransferqty
-            // 
-            this.clmtransferqty.Frozen = true;
-            this.clmtransferqty.HeaderText = "Transfered Qty";
-            this.clmtransferqty.Name = "clmtransferqty";
-            this.clmtransferqty.ReadOnly = true;
-            // 
-            // clmreceivedqty
-            // 
-            this.clmreceivedqty.Frozen = true;
-            this.clmreceivedqty.HeaderText = "Received Qty";
-            this.clmreceivedqty.Name = "clmreceivedqty";
-            this.clmreceivedqty.ReadOnly = true;
-            // 
-            // clmunit
-            // 
-            this.clmunit.Frozen = true;
-            this.clmunit.HeaderText = "Unit";
-            this.clmunit.Name = "clmunit";
-            this.clmunit.ReadOnly = true;
-            this.clmunit.Width = 50;
-            // 
-            // clmPRID
-            // 
-            this.clmPRID.Frozen = true;
-            this.clmPRID.HeaderText = "PRID";
-            this.clmPRID.Name = "clmPRID";
-            this.clmPRID.ReadOnly = true;
-            this.clmPRID.Visible = false;
-            // 
-            // clmRKID
-            // 
-            this.clmRKID.Frozen = true;
-            this.clmRKID.HeaderText = "RKID";
-            this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
-            this.clmRKID.Visible = false;
-            // 
-            // clmSLID
-            // 
-            this.clmSLID.Frozen = true;
-            this.clmSLID.HeaderText = "SLID";
-            this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
-            this.clmSLID.Visible = false;
-            // 
-            // clmUTID
-            // 
-            this.clmUTID.HeaderText = "UTID";
-            this.clmUTID.Name = "clmUTID";
-            this.clmUTID.ReadOnly = true;
-            this.clmUTID.Visible = false;
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmremove.Name = "clmremove";
-            this.clmremove.ReadOnly = true;
-            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmremove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmremove.Width = 70;
+            this.grdInward.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdInward_EditingControlShowing);
             // 
             // grpproductname
             // 
@@ -993,6 +845,153 @@
             // 
             this.epGoodsInward.ContainerControl = this;
             // 
+            // clmsno
+            // 
+            this.clmsno.Frozen = true;
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // Column1
+            // 
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "Rack";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 60;
+            // 
+            // clmpicode
+            // 
+            this.clmpicode.Frozen = true;
+            this.clmpicode.HeaderText = "P.I Code";
+            this.clmpicode.Name = "clmpicode";
+            this.clmpicode.ReadOnly = true;
+            // 
+            // clmproductname
+            // 
+            this.clmproductname.Frozen = true;
+            this.clmproductname.HeaderText = "Product Name";
+            this.clmproductname.Name = "clmproductname";
+            this.clmproductname.ReadOnly = true;
+            this.clmproductname.Width = 300;
+            // 
+            // clmmrp
+            // 
+            this.clmmrp.Frozen = true;
+            this.clmmrp.HeaderText = "MRP";
+            this.clmmrp.Name = "clmmrp";
+            this.clmmrp.ReadOnly = true;
+            this.clmmrp.Width = 80;
+            // 
+            // clmexpirydate
+            // 
+            this.clmexpirydate.Frozen = true;
+            this.clmexpirydate.HeaderText = "Expiry Date";
+            this.clmexpirydate.Name = "clmexpirydate";
+            this.clmexpirydate.ReadOnly = true;
+            // 
+            // clmshelflife
+            // 
+            this.clmshelflife.FillWeight = 130F;
+            this.clmshelflife.Frozen = true;
+            this.clmshelflife.HeaderText = "Product Shelf Life";
+            this.clmshelflife.Name = "clmshelflife";
+            this.clmshelflife.ReadOnly = true;
+            this.clmshelflife.Width = 120;
+            // 
+            // clmactualshelflife
+            // 
+            this.clmactualshelflife.FillWeight = 130F;
+            this.clmactualshelflife.Frozen = true;
+            this.clmactualshelflife.HeaderText = "Actual Shelf Life";
+            this.clmactualshelflife.Name = "clmactualshelflife";
+            this.clmactualshelflife.ReadOnly = true;
+            this.clmactualshelflife.Width = 110;
+            // 
+            // clmshelflifeper
+            // 
+            this.clmshelflifeper.Frozen = true;
+            this.clmshelflifeper.HeaderText = "Shelf Life (%)";
+            this.clmshelflifeper.Name = "clmshelflifeper";
+            this.clmshelflifeper.ReadOnly = true;
+            this.clmshelflifeper.Width = 90;
+            // 
+            // clmbatchno
+            // 
+            this.clmbatchno.Frozen = true;
+            this.clmbatchno.HeaderText = "Batch No.";
+            this.clmbatchno.Name = "clmbatchno";
+            this.clmbatchno.ReadOnly = true;
+            this.clmbatchno.Width = 80;
+            // 
+            // clmactualqty
+            // 
+            this.clmactualqty.Frozen = true;
+            this.clmactualqty.HeaderText = "Qty";
+            this.clmactualqty.Name = "clmactualqty";
+            this.clmactualqty.ReadOnly = true;
+            this.clmactualqty.Width = 70;
+            // 
+            // clmtransferqty
+            // 
+            this.clmtransferqty.Frozen = true;
+            this.clmtransferqty.HeaderText = "Transfered Qty";
+            this.clmtransferqty.Name = "clmtransferqty";
+            this.clmtransferqty.ReadOnly = true;
+            this.clmtransferqty.Width = 140;
+            // 
+            // clmreceivedqty
+            // 
+            this.clmreceivedqty.Frozen = true;
+            this.clmreceivedqty.HeaderText = "Received Qty";
+            this.clmreceivedqty.Name = "clmreceivedqty";
+            this.clmreceivedqty.Width = 140;
+            // 
+            // clmunit
+            // 
+            this.clmunit.Frozen = true;
+            this.clmunit.HeaderText = "Unit";
+            this.clmunit.Name = "clmunit";
+            this.clmunit.ReadOnly = true;
+            this.clmunit.Width = 50;
+            // 
+            // clmPRID
+            // 
+            this.clmPRID.Frozen = true;
+            this.clmPRID.HeaderText = "PRID";
+            this.clmPRID.Name = "clmPRID";
+            this.clmPRID.Visible = false;
+            // 
+            // clmRKID
+            // 
+            this.clmRKID.Frozen = true;
+            this.clmRKID.HeaderText = "RKID";
+            this.clmRKID.Name = "clmRKID";
+            this.clmRKID.Visible = false;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.Frozen = true;
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.Visible = false;
+            // 
+            // clmUTID
+            // 
+            this.clmUTID.HeaderText = "UTID";
+            this.clmUTID.Name = "clmUTID";
+            this.clmUTID.Visible = false;
+            // 
+            // clmremove
+            // 
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremove.Name = "clmremove";
+            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmremove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmremove.Width = 70;
+            // 
             // INV_Inward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1072,7 +1071,7 @@
         public System.Windows.Forms.Button btnRemarks;
         private System.Windows.Forms.TextBox txtunit;
         private System.Windows.Forms.ComboBox cmbConcern;
-        private System.Windows.Forms.TextBox txtOutwardNo;
+        private System.Windows.Forms.TextBox txtInwardNo;
         private System.Windows.Forms.TextBox txtStockLocation;
         private System.Windows.Forms.ComboBox cmbTransactionType;
         private System.Windows.Forms.ListView lvproduct;

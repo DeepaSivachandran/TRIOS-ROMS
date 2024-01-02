@@ -124,7 +124,7 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    string result = "";
+                    string result = "", Originator="";
                     varPasskey = _security.Encrypt("passkey", (txtPassKey.Text).Trim());
                     objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0, 0, varPasskey);
                     objDser.CloseConnection();
@@ -138,10 +138,12 @@ namespace ROMS
                                 if (varVerifyType == 1)
                                 {
                                     flag = 1;
+                                    Originator = "GRN Verifed1";
                                 }
                                 else
                                 {
                                     flag = 2;
+                                    Originator = "GRN Verifed2";
                                 }
                                 varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]); 
 
@@ -150,6 +152,7 @@ namespace ROMS
                                 objTRNS_GRN.ParaGRNID = Convert.ToInt32(pbGRNId);
                                 objTRNS_GRN.ParaVerify = Convert.ToInt32(varUserId);
                                 objTRNS_GRN.paraflag = Convert.ToInt32(flag);
+                                objTRNS_GRN.paraOriginator = Originator;
                                 result = objDser.udfnGRNEntry(objTRNS_GRN);
                                 objDser.CloseConnection();
                                 string[] varvalue = result.Split('~');

@@ -15,13 +15,13 @@ namespace ROMS.Model
         public string paraOriginator { get; set; } = "";
         public int ParaGRNID { get; set; } = 0;
         public int paraCompanyId { get; set; } = 0;
-        public string paraPONumber { get; set; } = "";
+        public string paraSkipped { get; set; } = "";
         public int paraSupplierID { get; set; } = 0;
         public int paraScheduleID { get; set; } = 0;
         public string paraGRNDate { get; set; } = "";
         public string paraINVDate { get; set; } = "";
         public string paraINVNo { get; set; } = "";
-        public double ParaInvAmt { get; set; } = 0;
+        public decimal ParaInvAmt { get; set; } = 0;
         public string ParaLoadingCharge { get; set; } = "";
         public string ParaFrightCharge { get; set; } = "";
         public int paraOrderType { get; set; } = 0;
@@ -32,6 +32,7 @@ namespace ROMS.Model
         public int paraflag { get; set; } = 0;
         public string ParaPurchaseDC { get; set; } = "0"; 
         public int paraStatus { get; set; } =0;
+        public int paraDeleteFlag { get; set; } =0;
         public DataTable paraGRNProd { get; set; } =null;
 
     }
