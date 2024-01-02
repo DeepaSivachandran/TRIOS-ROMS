@@ -4933,6 +4933,7 @@ namespace ROMS
                                     //{
                                         SPDataService objspdservice1 = new SPDataService();
                                         result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",0);
+                                        objspdservice1.CloseConnection();
                                         string[] varvalue1 = result.Split('~');
                                         if (varvalue1[0] == "3")
                                         {
@@ -4949,7 +4950,7 @@ namespace ROMS
                                         {
                                             MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                         }
-                                        objspdservice1.CloseConnection();
+                                       
 
                                         udfnScheduleClear();
                                         btnAdd.Text = "Save";

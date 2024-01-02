@@ -2243,7 +2243,8 @@ namespace ROMS
                 {
                     cmbPeriod.Visible = false;
                     txtSelfLife.Visible = false;
-
+                    txtSelfLife.Text = "";
+                    cmbPeriod.SelectedValue = -1;
                 }
                 
             }
@@ -2252,9 +2253,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-          
         } 
-       
         private void CmbBatchNoGeneration_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -4302,7 +4301,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtPurRack.Focus();
+                    if (txtPurRack.Enabled == true)
+                    {
+                        txtPurRack.Focus();
+                    }
+                    else
+                    {
+                        txtSaleLocation.Focus();
+                    }
                 }
             }
             catch (Exception ex)

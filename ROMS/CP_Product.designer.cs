@@ -1233,6 +1233,7 @@
             // rbInActive
             // 
             this.rbInActive.AutoSize = true;
+            this.rbInActive.Checked = true;
             this.rbInActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbInActive.Location = new System.Drawing.Point(75, 1);
             this.rbInActive.Name = "rbInActive";
@@ -1248,13 +1249,11 @@
             // rbActive
             // 
             this.rbActive.AutoSize = true;
-            this.rbActive.Checked = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbActive.Location = new System.Drawing.Point(3, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
             this.rbActive.TabIndex = 35;
-            this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);

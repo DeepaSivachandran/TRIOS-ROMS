@@ -1455,6 +1455,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
+            }
         }
 
         private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
