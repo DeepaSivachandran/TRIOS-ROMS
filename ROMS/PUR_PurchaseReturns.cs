@@ -473,6 +473,7 @@ namespace ROMS
                             grdReturnDC.Columns["PRID"].Visible = false;
                             grdReturnDC.Columns["UTID"].Visible = false;
                             grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
                         {
@@ -493,6 +494,7 @@ namespace ROMS
                             grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdReturnDC.Columns["Product Name"].Width = 250;
                             grdReturnDC.Columns["DMID"].Visible = false;
                             grdReturnDC.Columns["PRID"].Visible = false;
@@ -577,6 +579,7 @@ namespace ROMS
                                     grdReturnDC.Columns["PRID"].Visible = false;
                                     grdReturnDC.Columns["UTID"].Visible = false;
                                     grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 }
                                 else
                                 {
@@ -1379,6 +1382,7 @@ namespace ROMS
                                 {
                                     objTRN_PurchaseReturnDC.paraDeleteFlag = 1;
                                     objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtExchangeProducts;
+                                    objTRN_PurchaseReturnDC.paraExchangeRemarks = varExchangeRemarks;
                                 }
                                 else
                                 {
