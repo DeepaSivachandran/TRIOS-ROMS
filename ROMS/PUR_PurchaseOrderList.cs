@@ -128,8 +128,9 @@ namespace ROMS
                             try
                             {
 
-                                string POUpdatevalue = "0"; 
+                                string POUpdatevalue = "0",POCOMID="0"; 
                                     POUpdatevalue = Convert.ToString((grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString())); 
+                                    POCOMID = Convert.ToString((grdPurchaseorderlist.SelectedRows[0].Cells["COMID"].Value.ToString())); 
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
@@ -145,6 +146,8 @@ namespace ROMS
 
                                     objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[0].Name.ToString());
                                     objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(POCOMID), objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(POCOMID), objBillreport.Subreports[1].Name.ToString());
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
@@ -983,6 +986,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["clmView"].Width = 50;
                             grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
+                            grdPurchaseorderlist.Columns["COMID"].Visible = false;
                             grdPurchaseorderlist.Columns["Status1"].Visible = false;
                             grdPurchaseorderlist.Columns["STS1"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_ID"].Visible = false;
