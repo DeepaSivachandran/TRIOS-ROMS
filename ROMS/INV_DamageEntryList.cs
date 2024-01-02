@@ -17,6 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
         Boolean BlnSearchImageYN = false;
 
@@ -119,7 +120,10 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                }
                 DGV_SearchGrid.Columns[0].ReadOnly = true;
                 DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
             }
@@ -144,7 +148,10 @@ namespace ROMS
                 {
                     DGV_SupSearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SupSearchGrid.Columns["S.No."].ReadOnly = true;
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    DGV_SupSearchGrid.Columns["S.No."].ReadOnly = true;
+                }
                 DGV_SupSearchGrid.Columns[0].ReadOnly = true;
                 DGV_SupSearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
             }
@@ -863,6 +870,7 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                lvSupplier.Visible = false;
                 lblDSupplier.Focus();
                 udfngridchanges();
             }
@@ -899,6 +907,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 if (Convert.ToString(txtSupplierName.Text) != "")
                 {
                     string[] values = new string[0];
@@ -1009,6 +1019,11 @@ namespace ROMS
                 DGV_ProSearchGrid.SendToBack();
                 DGV_SupSearchGrid.SendToBack();
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -1023,10 +1038,76 @@ namespace ROMS
                 btnView.Focus();
             }
         }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ConcernID"].Visible = false;
+                DGV_SearchGrid.Columns["StatusID"].Visible = false;
+                DGV_SearchGrid.Columns["DMID"].Visible = false;
+                DGV_SearchGrid.Columns["clmPrint"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Status"].Width = 120;
+                DGV_SearchGrid.Columns["Employees"].Width = 300;
+                DGV_SearchGrid.Columns["Created By"].Width = 100;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDefaultProSearchGrid()
+        {
+            try
+            {
+                DGV_ProSearchGrid.DataSource = dtDefaultGrid;
+                DGV_ProSearchGrid.Columns["DMID"].Visible = false;
+                DGV_ProSearchGrid.Columns["StatusID"].Visible = false;
+                DGV_ProSearchGrid.Columns["PRStatusID"].Visible = false;
+                DGV_ProSearchGrid.Columns["S.No."].Width = 50;
+                DGV_ProSearchGrid.Columns["Status"].Width = 150;
+                DGV_ProSearchGrid.Columns["Product Status"].Width = 150;
+                DGV_ProSearchGrid.Columns["PICode"].Width = 150;
+                DGV_ProSearchGrid.Columns["Product"].Width = 200;
+                DGV_ProSearchGrid.Columns["Reason"].Width = 130;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDefaultSupSearchGrid()
+        {
+            try
+            {
+                DGV_SupSearchGrid.DataSource = dtDefaultGrid;
+                DGV_SupSearchGrid.Columns["StatusID"].Visible = false;
+                DGV_SupSearchGrid.Columns["DMID"].Visible = false;
+                DGV_SupSearchGrid.Columns["clmSupPrint"].Visible = false;
+                DGV_SupSearchGrid.Columns["SPID"].Visible = false;
+                DGV_SupSearchGrid.Columns["SPSCID"].Visible = false;
+                DGV_SupSearchGrid.Columns["S.No."].Width = 50;
+                DGV_SupSearchGrid.Columns["Status"].Width = 120;
+                DGV_SupSearchGrid.Columns["Quantity"].Width = 80;
+                DGV_SupSearchGrid.Columns["clmSupPrint"].Width = 50;
+                DGV_SupSearchGrid.Columns["Supplier"].Width = 250;
+                DGV_SupSearchGrid.Columns["Created By"].Width = 100;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnProductList()
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_ProSearchGrid.DataSource = null;
                 if (txtSupplierName.Text == "")
                 {
                     lblSupplierCode.Text = "0";
@@ -1058,7 +1139,7 @@ namespace ROMS
                             grdProDEList.Columns["PRStatusID"].Visible = false;
                             grdProDEList.Columns["S.No."].Width = 50;
                             grdProDEList.Columns["Status"].Width = 150;
-                            grdProDEList.Columns["Product Status"].Width = 150;
+                            grdProDEList.Columns["Product Status"].Width = 200;
                             grdProDEList.Columns["PICode"].Width = 150;
                             grdProDEList.Columns["Product"].Width = 280;
                             grdProDEList.Columns["Reason"].Width = 130;
@@ -1093,6 +1174,11 @@ namespace ROMS
                 DGV_SearchGrid.SendToBack();
                 DGV_SupSearchGrid.SendToBack();
                 udfnProSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultProSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -1111,6 +1197,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SupSearchGrid.DataSource = null;
                 if (Convert.ToString(txtSupplierName.Text) != "")
                 {
                     string[] values = new string[0];
@@ -1222,6 +1310,11 @@ namespace ROMS
                 DGV_ProSearchGrid.SendToBack();
                 DGV_SearchGrid.SendToBack();
                 udfnSupSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSupSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -1841,15 +1934,74 @@ namespace ROMS
         {
             try
             {
-                string DMID = "0";
-                DMID = Convert.ToString(grdProDEList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                if (Convert.ToString(txtSupplierName.Text) != "")
+                {
+                    string[] values = new string[0];
+                    string varSupplierId = "0";
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 23;
+                    objMR_Supplier.paraSupplierName = txtSupplierName.Text.Trim();
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
+                    {
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                            else
+                            {
+                                lblSupplierCode.Text = "0";
+                                lblScheduleCode.Text = "0";
+                            }
+                        }
+                    }
+                    if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                    {
+                        if (values[0] == "-1")
+                        {
+                            lblSupplierCode.Text = "0";
+                            lblScheduleCode.Text = "0";
+                        }
+                        else
+                        {
+                            lblSupplierCode.Text = values[0];
+                            lblScheduleCode.Text = values[1];
+                            txtSupplierName.BackColor = Color.White;
+                        }
+                    }
+                }
+                else
+                {
+                    lblSupplierCode.Text = "0";
+                    lblScheduleCode.Text = "0";
+                }
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductDamage(5, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "");
+                objspservice.CloseConnection();
+                if (objDs != null)
+                {
+                    string DMID = "0";
                     string varHeader = "";
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Product.rpt");
-                    varHeader = "Damage Product";
+                    varHeader = "Damaged Products List";
 
                     objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbconcern.SelectedValue));
+                    objBillreport.SetParameterValue("ParaDMFromDate", Convert.ToString(dpFromDate.Text));
+                    objBillreport.SetParameterValue("ParaDMToDate", Convert.ToString(dpToDate.Text));
+                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
+                    objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblScheduleCode.Text));
+                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -1860,7 +2012,12 @@ namespace ROMS
                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                     MainForm.objReportLoad.Text = varHeader;
                     MainForm.objReportLoad.ShowDialog();
-                    
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
             }
             catch (Exception ex)
             {
@@ -2127,42 +2284,42 @@ namespace ROMS
                     switch (grdDamageEntryList.Columns[e.ColumnIndex].Name)
                     {
                         case "clmPrint":
-                            try
+                        try
+                        {
+                            string DMID = "0";
+                            DMID = Convert.ToString(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                            DialogResult result1;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
                             {
-                                string DMID = "0";
-                                DMID = Convert.ToString(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
-                                DialogResult result1;
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(87);
-                                objDServ.CloseConnection();
-                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (result1 == DialogResult.Yes)
-                                {
-                                    string varHeader = "";
-                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
-                                    varHeader = "Damage Entry";
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
+                                varHeader = "Transaction Wise Damage Products List";
 
-                                    objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
-                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                    objValidation.CrySqlConnection(objBillreport);
+                                objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
 
-                                    MainForm.objReportLoad = new ReportLoad();
-                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                    MainForm.objReportLoad.Text = varHeader;
-                                    MainForm.objReportLoad.ShowDialog();
-                                }
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
                             }
-                            catch (Exception ex)
-                            {
-                                objError = new DataError();
-                                objError.WriteFile(ex);
-                            }
-                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            objError = new DataError();
+                            objError.WriteFile(ex);
+                        }
+                        break;
                     }
                 }
 
@@ -2607,8 +2764,10 @@ namespace ROMS
                         case "clmSupPrint":
                             try
                             {
+                                string SPID = "0";
                                 string DMID = "0";
                                 DMID = Convert.ToString(grdSupDEList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                                SPID = Convert.ToString(grdSupDEList.SelectedRows[0].Cells["SPID"].Value.ToString());
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
@@ -2619,9 +2778,10 @@ namespace ROMS
                                     string varHeader = "";
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Supplier.rpt");
-                                    varHeader = "Damage Supplier";
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_SupplierWise.rpt");
+                                    varHeader = "Supplier Wise Damage Products List";
 
+                                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(SPID));
                                     objBillreport.SetParameterValue("paraDamageEntryID", Convert.ToInt32(DMID));
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);

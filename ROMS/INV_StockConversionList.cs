@@ -18,7 +18,7 @@ namespace ROMS
 
         DataValidation objValidation = new DataValidation();
         public int varPRID = 0;
-        
+        DataTable dtDefaultGrid = new DataTable();
         DataError objError;
         public INV_StockConversionList()
         {
@@ -549,6 +549,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 if (txtProduct.Text == "")
                 {
                     varPRID = 0;
@@ -607,6 +609,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -614,7 +621,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Concern"].Width = 120;
+                DGV_SearchGrid.Columns["Conversion Date"].Width = 120;
+                DGV_SearchGrid.Columns["Conversion No."].Width = 120;
+                DGV_SearchGrid.Columns["P.I Code"].Width = 100;
+                DGV_SearchGrid.Columns["Product Name"].Width = 300;
+                DGV_SearchGrid.Columns["BTID"].Visible = false;
+                DGV_SearchGrid.Columns["RKID"].Visible = false;
+                DGV_SearchGrid.Columns["SLID"].Visible = false;
+                DGV_SearchGrid.Columns["PRID"].Visible = false;
+                DGV_SearchGrid.Columns["Converted Qty"].Width = 100;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void Lvproduct_DoubleClick(object sender, EventArgs e)
         {
             try

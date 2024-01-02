@@ -17,6 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public string  varStockLocation="", varStockLocationId = "";
         public int varGOID = 0;
         public int varPRID = 0;
@@ -396,6 +397,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 /* Check stock location is valid or not*/
                 if (txtStockLocation.Text != "")
                 {
@@ -491,6 +494,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -503,6 +511,29 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnView.Enabled = true;
                 btnView.Focus();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Concern"].Width = 120;
+                DGV_SearchGrid.Columns["Outward Date"].Width = 120;
+                DGV_SearchGrid.Columns["Outward No."].Width = 120;
+                DGV_SearchGrid.Columns["Stock Location"].Width = 150;
+                DGV_SearchGrid.Columns["Transaction Type"].Width = 120;
+                DGV_SearchGrid.Columns["GOID"].Visible = false;
+                DGV_SearchGrid.Columns["Total Products"].Width = 120;
+                DGV_SearchGrid.Columns["Created By"].Width = 120;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["Status"].Width = 120;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void INV_GodownOutwardList_Load(object sender, EventArgs e)

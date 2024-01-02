@@ -16,7 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
         public CP_EmployeeList()
         {
@@ -80,6 +80,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -152,6 +154,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -163,6 +170,26 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack(); btnView.Enabled = true;
                 btnView.Focus();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["CT_SINO"].Visible = false;
+                DGV_SearchGrid.Columns["EMPID"].Visible = false;
+                DGV_SearchGrid.Columns["CategoryID"].Visible = false;
+                DGV_SearchGrid.Columns["StatusID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Name of the Employee"].Width = 150;
+                DGV_SearchGrid.Columns["Employee Category"].Width = 150;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfndelete()

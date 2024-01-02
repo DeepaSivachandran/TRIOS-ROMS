@@ -19,6 +19,7 @@ namespace ROMS
 
         DataSet objDs = new DataSet();
         DataTable objDtExcel = new DataTable();
+        DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
         public CP_RackList()
         {
@@ -85,7 +86,8 @@ namespace ROMS
         {
             try
             {
-
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 btnView.Enabled = false;
                 lblStatus.Focus();
                 picLoader.Visible = true;
@@ -144,6 +146,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -174,7 +181,31 @@ namespace ROMS
                 btnView.Focus();
             }
         }
-
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["ConcernID"].Visible = false;
+                DGV_SearchGrid.Columns["StockLocationID"].Visible = false;
+                DGV_SearchGrid.Columns["StatusID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Concern"].Width = 100;
+                DGV_SearchGrid.Columns["Stock Location"].Width = 200;
+                DGV_SearchGrid.Columns["Rack Group"].Width = 250;
+                DGV_SearchGrid.Columns["Rack Name"].Width = 200;
+                DGV_SearchGrid.Columns["Short Name"].Width = 100;
+                DGV_SearchGrid.Columns["Description"].Width = 200;
+                DGV_SearchGrid.Columns["Total Products"].Width = 100;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void udfnSearchGridHead()
         {
             try

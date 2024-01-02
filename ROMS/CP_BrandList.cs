@@ -14,7 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        DataTable dtDefaultGrid = new DataTable();
         public int varGroupId = 0;
         public int varSubGroupId = 0;
         public string varUserID = "";
@@ -231,6 +231,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -335,6 +337,11 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 // udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
@@ -347,8 +354,27 @@ namespace ROMS
                 picLoader.SendToBack();
             }
         }
-
-
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Brand Name in English"].Width = 250;
+                DGV_SearchGrid.Columns["Brand Name in Tamil"].Width = 250;
+                DGV_SearchGrid.Columns["Total Products"].Width = 100;
+                DGV_SearchGrid.Columns["Total Groups"].Width = 100;
+                DGV_SearchGrid.Columns["Total Subgroups"].Width = 150;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void grdBrandList_DoubleClick(object sender, EventArgs e)
         {
             try

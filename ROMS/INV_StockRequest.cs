@@ -24,6 +24,7 @@ namespace ROMS
 
         public string VarAdd = "0";
         public string varProducts = "";
+        public string varProductName = "";
         public int varModifiedFlag = 0;
         public int varStockRequestID = 0;
         public int varID = 0;
@@ -704,7 +705,8 @@ namespace ROMS
                 if (txtProductNamePICode.Text != "")
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
-                    txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
+                    varProductName = selectedItem.SubItems[1].Text;
+                    txtProductNamePICode.Text = selectedItem.SubItems[3].Text;
                     lblUnit.Text = selectedItem.SubItems[2].Text;
                     lblProduct.Text = selectedItem.SubItems[4].Text;
                     VarAdd = "1";
@@ -1174,8 +1176,53 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objINV_StockRequestList.udfnList();
                     varModifiedFlag = 0;
+                    try
+                    {
+                        if (Convert.ToInt32(cmbStatus.SelectedValue)==29)
+                        {
+                            string SSR = "0";
+                            if (varStockRequestID == 0)
+                            {
+                                SSR = varvalue[2];
+                            }
+                            else
+                            {
+                                SSR = Convert.ToString(varStockRequestID);
+                            }
+                            DialogResult result1;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request.rpt");
+                                varHeader = "Shop Stock Request";
+
+                                objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SSR));
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
+
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
+                    MainForm.objINV_StockRequestList.udfnList();
                     this.Close();
                 }
                 else

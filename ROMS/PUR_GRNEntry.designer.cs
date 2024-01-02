@@ -42,7 +42,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNEntry));
             this.errGRN = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gpGRNEntry = new System.Windows.Forms.GroupBox();
+            this.lblDCFinishedNoRecord = new System.Windows.Forms.Label();
             this.grdReurnDC = new System.Windows.Forms.DataGridView();
             this.btnViewPO = new System.Windows.Forms.Button();
             this.lblFinishedNoRecord = new System.Windows.Forms.Label();
@@ -103,15 +104,14 @@
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemoveDC = new System.Windows.Forms.DataGridViewImageColumn();
-            this.lblDCFinishedNoRecord = new System.Windows.Forms.Label();
+            this.clmDCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errGRN)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gpGRNEntry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
             this.grpSalesmanDetails.SuspendLayout();
             this.grpRepresentativeDetails.SuspendLayout();
@@ -125,43 +125,55 @@
             // 
             this.errGRN.ContainerControl = this;
             // 
-            // groupBox1
+            // gpGRNEntry
             // 
-            this.groupBox1.Controls.Add(this.lblDCFinishedNoRecord);
-            this.groupBox1.Controls.Add(this.grdReurnDC);
-            this.groupBox1.Controls.Add(this.btnViewPO);
-            this.groupBox1.Controls.Add(this.lblFinishedNoRecord);
-            this.groupBox1.Controls.Add(this.LV_Supplier);
-            this.groupBox1.Controls.Add(this.txtFrieghtamount);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtLoadingCharge);
-            this.groupBox1.Controls.Add(this.grpSalesmanDetails);
-            this.groupBox1.Controls.Add(this.grpRepresentativeDetails);
-            this.groupBox1.Controls.Add(this.grdPODetails);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.grdUnitList);
-            this.groupBox1.Controls.Add(this.cmbOrderType);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.lblDESupplier);
-            this.groupBox1.Controls.Add(this.txtSupplier);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtInvoiceamt);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtInvoiceno);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.dpinvoicedate);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtgrnno);
-            this.groupBox1.Controls.Add(this.lblDEVisitDay);
-            this.groupBox1.Controls.Add(this.dpGRNDate);
-            this.groupBox1.Controls.Add(this.cmbConcern);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Location = new System.Drawing.Point(10, -1);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1164, 341);
-            this.groupBox1.TabIndex = 1111181;
-            this.groupBox1.TabStop = false;
+            this.gpGRNEntry.Controls.Add(this.lblDCFinishedNoRecord);
+            this.gpGRNEntry.Controls.Add(this.grdReurnDC);
+            this.gpGRNEntry.Controls.Add(this.btnViewPO);
+            this.gpGRNEntry.Controls.Add(this.lblFinishedNoRecord);
+            this.gpGRNEntry.Controls.Add(this.LV_Supplier);
+            this.gpGRNEntry.Controls.Add(this.txtFrieghtamount);
+            this.gpGRNEntry.Controls.Add(this.label9);
+            this.gpGRNEntry.Controls.Add(this.label8);
+            this.gpGRNEntry.Controls.Add(this.txtLoadingCharge);
+            this.gpGRNEntry.Controls.Add(this.grpSalesmanDetails);
+            this.gpGRNEntry.Controls.Add(this.grpRepresentativeDetails);
+            this.gpGRNEntry.Controls.Add(this.grdPODetails);
+            this.gpGRNEntry.Controls.Add(this.groupBox2);
+            this.gpGRNEntry.Controls.Add(this.grdUnitList);
+            this.gpGRNEntry.Controls.Add(this.cmbOrderType);
+            this.gpGRNEntry.Controls.Add(this.label6);
+            this.gpGRNEntry.Controls.Add(this.lblDESupplier);
+            this.gpGRNEntry.Controls.Add(this.txtSupplier);
+            this.gpGRNEntry.Controls.Add(this.label5);
+            this.gpGRNEntry.Controls.Add(this.txtInvoiceamt);
+            this.gpGRNEntry.Controls.Add(this.label3);
+            this.gpGRNEntry.Controls.Add(this.txtInvoiceno);
+            this.gpGRNEntry.Controls.Add(this.label4);
+            this.gpGRNEntry.Controls.Add(this.dpinvoicedate);
+            this.gpGRNEntry.Controls.Add(this.label1);
+            this.gpGRNEntry.Controls.Add(this.txtgrnno);
+            this.gpGRNEntry.Controls.Add(this.lblDEVisitDay);
+            this.gpGRNEntry.Controls.Add(this.dpGRNDate);
+            this.gpGRNEntry.Controls.Add(this.cmbConcern);
+            this.gpGRNEntry.Controls.Add(this.label10);
+            this.gpGRNEntry.Location = new System.Drawing.Point(10, -1);
+            this.gpGRNEntry.Name = "gpGRNEntry";
+            this.gpGRNEntry.Size = new System.Drawing.Size(1164, 341);
+            this.gpGRNEntry.TabIndex = 1111181;
+            this.gpGRNEntry.TabStop = false;
+            // 
+            // lblDCFinishedNoRecord
+            // 
+            this.lblDCFinishedNoRecord.AutoSize = true;
+            this.lblDCFinishedNoRecord.BackColor = System.Drawing.Color.White;
+            this.lblDCFinishedNoRecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDCFinishedNoRecord.Location = new System.Drawing.Point(147, 293);
+            this.lblDCFinishedNoRecord.Name = "lblDCFinishedNoRecord";
+            this.lblDCFinishedNoRecord.Size = new System.Drawing.Size(84, 16);
+            this.lblDCFinishedNoRecord.TabIndex = 1111215;
+            this.lblDCFinishedNoRecord.Text = "No Records Found";
+            this.lblDCFinishedNoRecord.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // grdReurnDC
             // 
@@ -210,6 +222,7 @@
             this.grdReurnDC.Size = new System.Drawing.Size(363, 80);
             this.grdReurnDC.TabIndex = 1111214;
             this.grdReurnDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentClick);
+            this.grdReurnDC.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentDoubleClick);
             // 
             // btnViewPO
             // 
@@ -853,7 +866,7 @@
             this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
             this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDamage.Location = new System.Drawing.Point(141, 344);
+            this.btnDamage.Location = new System.Drawing.Point(134, 341);
             this.btnDamage.Name = "btnDamage";
             this.btnDamage.Size = new System.Drawing.Size(85, 29);
             this.btnDamage.TabIndex = 1111203;
@@ -935,40 +948,6 @@
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
             // 
-            // DCDate
-            // 
-            this.DCDate.HeaderText = "DC Date";
-            this.DCDate.Name = "DCDate";
-            this.DCDate.ReadOnly = true;
-            // 
-            // InvoiceNo
-            // 
-            this.InvoiceNo.HeaderText = "DC No.";
-            this.InvoiceNo.Name = "InvoiceNo";
-            this.InvoiceNo.ReadOnly = true;
-            this.InvoiceNo.Width = 80;
-            // 
-            // TotalProducts
-            // 
-            this.TotalProducts.HeaderText = "T.Pro";
-            this.TotalProducts.Name = "TotalProducts";
-            this.TotalProducts.ReadOnly = true;
-            this.TotalProducts.Width = 50;
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            this.Value.ReadOnly = true;
-            this.Value.Width = 70;
-            // 
-            // clmDCID
-            // 
-            this.clmDCID.HeaderText = "ID";
-            this.clmDCID.Name = "clmDCID";
-            this.clmDCID.ReadOnly = true;
-            this.clmDCID.Visible = false;
-            // 
             // clmRemoveDC
             // 
             this.clmRemoveDC.HeaderText = "";
@@ -977,17 +956,39 @@
             this.clmRemoveDC.ReadOnly = true;
             this.clmRemoveDC.Width = 40;
             // 
-            // lblDCFinishedNoRecord
+            // clmDCID
             // 
-            this.lblDCFinishedNoRecord.AutoSize = true;
-            this.lblDCFinishedNoRecord.BackColor = System.Drawing.Color.White;
-            this.lblDCFinishedNoRecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDCFinishedNoRecord.Location = new System.Drawing.Point(147, 293);
-            this.lblDCFinishedNoRecord.Name = "lblDCFinishedNoRecord";
-            this.lblDCFinishedNoRecord.Size = new System.Drawing.Size(84, 16);
-            this.lblDCFinishedNoRecord.TabIndex = 1111215;
-            this.lblDCFinishedNoRecord.Text = "No Records Found";
-            this.lblDCFinishedNoRecord.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.clmDCID.HeaderText = "ID";
+            this.clmDCID.Name = "clmDCID";
+            this.clmDCID.ReadOnly = true;
+            this.clmDCID.Visible = false;
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            this.Value.ReadOnly = true;
+            this.Value.Width = 70;
+            // 
+            // TotalProducts
+            // 
+            this.TotalProducts.HeaderText = "T.Pro";
+            this.TotalProducts.Name = "TotalProducts";
+            this.TotalProducts.ReadOnly = true;
+            this.TotalProducts.Width = 50;
+            // 
+            // InvoiceNo
+            // 
+            this.InvoiceNo.HeaderText = "DC No.";
+            this.InvoiceNo.Name = "InvoiceNo";
+            this.InvoiceNo.ReadOnly = true;
+            this.InvoiceNo.Width = 80;
+            // 
+            // DCDate
+            // 
+            this.DCDate.HeaderText = "DC Date";
+            this.DCDate.Name = "DCDate";
+            this.DCDate.ReadOnly = true;
             // 
             // PUR_GRNEntry
             // 
@@ -1002,7 +1003,7 @@
             this.Controls.Add(this.btnDamage);
             this.Controls.Add(this.btnDC);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gpGRNEntry);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1017,8 +1018,8 @@
             this.Load += new System.EventHandler(this.PUR_GRNEntry_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_GRNEntry_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errGRN)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gpGRNEntry.ResumeLayout(false);
+            this.gpGRNEntry.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).EndInit();
             this.grpSalesmanDetails.ResumeLayout(false);
             this.grpSalesmanDetails.PerformLayout();
@@ -1035,7 +1036,7 @@
 
         #endregion
         private System.Windows.Forms.ErrorProvider errGRN;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gpGRNEntry;
         private System.Windows.Forms.ComboBox cmbOrderType;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblDESupplier;
@@ -1096,12 +1097,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         public System.Windows.Forms.DataGridView grdReurnDC;
+        public System.Windows.Forms.Label lblDCFinishedNoRecord;
         private System.Windows.Forms.DataGridViewTextBoxColumn DCDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDCID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemoveDC;
-        public System.Windows.Forms.Label lblDCFinishedNoRecord;
     }
 }
