@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
+        byte[] varobjBarCodeByte;
         private ToolTip tpInvNo = new ToolTip();
         private ToolTip tpordertype = new ToolTip();
         private ToolTip tpinvamt = new ToolTip();
@@ -1193,6 +1195,11 @@ namespace ROMS
                                     }
                                 } //objGrnP
                                 varGrnId = Convert.ToInt32(pbGRNId);
+
+                                var varImgMemoryStream = new MemoryStream(); 
+                                QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                                varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+
                                 TRN_GRN objTRNS_GRN = new TRN_GRN();
                                 objTRNS_GRN.ViewType = varviewtype;
                                 objTRNS_GRN.ParaGRNID = varGrnId;
@@ -1212,6 +1219,7 @@ namespace ROMS
                                 objTRNS_GRN.paraPAckage = varpakage;
                                 objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                 objTRNS_GRN.paraSkipped = varSkip;
+                                objTRNS_GRN.paraQrimg = (varobjBarCodeByte);
                                 result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                 objspdservice.CloseConnection();
                                 string[] varvalue = result.Split('~');
