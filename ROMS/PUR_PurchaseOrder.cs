@@ -1373,6 +1373,7 @@ namespace ROMS
             finally
             {
                 lblPC.Text = grdsupplieradd.Rows.Count.ToString();
+                if (grdsupplieradd.Rows.Count != 0) { lblNoRecordsFound.Visible = false; }
             }
         }
 
