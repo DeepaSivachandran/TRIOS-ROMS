@@ -1326,7 +1326,7 @@ namespace ROMS
                 }
                 else
                 {
-                    btnSave.Text = "Save As Draft";
+                    btnSave.Text = "Save as Draft";
                 }
             }
             catch (Exception ex)
@@ -1400,7 +1400,7 @@ namespace ROMS
                 }
                 else
                 {
-                    btnSave.Text = "Save As Draft";
+                    btnSave.Text = "Save as Draft";
                 }
             }
             catch (Exception ex)
@@ -2116,7 +2116,7 @@ namespace ROMS
                         txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
                         for (int i = 0; i < grdGoodsOutward.Rows.Count; i++)
                         {
-                            ((DataGridViewImageCell)grdGoodsOutward.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
+                            ((DataGridViewImageCell)grdGoodsOutward.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
                         }
 
                     }
