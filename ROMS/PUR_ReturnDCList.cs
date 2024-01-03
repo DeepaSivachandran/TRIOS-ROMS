@@ -262,16 +262,19 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdReturnDCList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdReturnDCList.Width > grdReturnDCList.HorizontalScrollingOffset && grdReturnDCList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdReturnDCList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdReturnDCList.Width > grdReturnDCList.HorizontalScrollingOffset && grdReturnDCList.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
             }
             catch (Exception ex)
             {
@@ -793,7 +796,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Supplier ID"].Visible = false;
                 DGV_SearchGrid.Columns["Schedule ID"].Visible = false;
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
-                DGV_SearchGrid.Columns["Status"].Width = 120;
+                DGV_SearchGrid.Columns["Status"].Width = 120; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
                 //DGV_SearchGrid.Columns["Employees"].Width = 300;
                 //DGV_SearchGrid.Columns["Created By"].Width = 100;
             }
@@ -932,6 +935,7 @@ namespace ROMS
                         dtDefaultGrid = objDs.Tables[0];
                         udfnDefaultSearchGrid();
                     }
+                    else { DGV_SearchGrid.ScrollBars = ScrollBars.None; }
                 }
                 else
                 {
@@ -1183,40 +1187,43 @@ namespace ROMS
         {
             try
             {
-                DataGridViewColumn newColumn = grdReturnDCList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdReturnDCList.SortedColumn;
-                ListSortDirection direction;
-
-                // If oldColumn is null, then the DataGridView is not sorted.
-                if (oldColumn != null)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    // Sort the same column again, reversing the SortOrder.
-                    if (oldColumn == newColumn &&
-                        grdReturnDCList.SortOrder == SortOrder.Ascending)
+                    DataGridViewColumn newColumn = grdReturnDCList.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdReturnDCList.SortedColumn;
+                    ListSortDirection direction;
+
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
                     {
-                        direction = ListSortDirection.Descending;
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdReturnDCList.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
                     }
                     else
                     {
-                        // Sort a new column and remove the old SortGlyph.
                         direction = ListSortDirection.Ascending;
-                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                     }
-                }
-                else
-                {
-                    direction = ListSortDirection.Ascending;
-                }
-                grdReturnDCList.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection =
-                    direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
+                    grdReturnDCList.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
 
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-                DGV_SearchGrid.HorizontalScrollingOffset = grdReturnDCList.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdReturnDCList.HorizontalScrollingOffset;
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1316,17 +1323,20 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdReturnDCList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdReturnDCList.Width > grdReturnDCList.HorizontalScrollingOffset && grdReturnDCList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdReturnDCList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdReturnDCList.Width > grdReturnDCList.HorizontalScrollingOffset && grdReturnDCList.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdReturnDCList);
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdReturnDCList);
             }
             catch (Exception ex)
             {

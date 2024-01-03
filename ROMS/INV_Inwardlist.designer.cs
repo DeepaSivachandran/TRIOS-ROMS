@@ -449,6 +449,7 @@
             this.grdInwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInwardList.Size = new System.Drawing.Size(1348, 570);
             this.grdInwardList.TabIndex = 958797;
+            this.grdInwardList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdInwardList_Scroll);
             this.grdInwardList.DoubleClick += new System.EventHandler(this.GrdInwardList_DoubleClick);
             this.grdInwardList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdInwardList_KeyDown);
             // 
