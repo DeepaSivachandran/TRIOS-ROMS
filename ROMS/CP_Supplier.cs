@@ -745,8 +745,9 @@ namespace ROMS
                             txtsuppliername.Text = txtName.Text;
                             txtSupplier.Text = txtName.Text;
                             txtMappedSupplierName.Text = txtName.Text;
-                            MainForm.objCP_Supplierlist.udfnList();
-                            this.Close();
+                            //MainForm.objCP_Supplierlist.udfnList();
+                            //this.Close();
+                            udfnclose();
                         }
                         else
                         {
@@ -942,6 +943,8 @@ namespace ROMS
                     this.Close();
                     MainForm.objPUR_SupplierScheduleList.udfnList();
                     PoScheduleFlag = 0;
+                    varModifiedFlag = 2;
+
                 }
                 if (varModifiedFlag == 1)
                 {
@@ -955,7 +958,7 @@ namespace ROMS
                     else
                     { btnMappingsave.Focus(); }
                 }
-                else
+                else if(varModifiedFlag==0)
                 {
                     if (varupdate == "1")
                     {
@@ -1193,6 +1196,7 @@ namespace ROMS
                             cmbSupplierType.SelectedValue = objDS.Tables[0].Rows[0]["SUPPLIERTYPE"].ToString();
                             cmbPaymentTerm.SelectedValue = objDS.Tables[0].Rows[0]["PAYMENT"].ToString();
                             cmbfinance.SelectedValue = objDS.Tables[0].Rows[0]["OPTYPE"].ToString();
+                            varSupplierStatusID = Convert.ToInt32(objDS.Tables[0].Rows[0]["STS"]);
 
                             //RETURN
                             //    DAYID
@@ -1276,10 +1280,11 @@ namespace ROMS
                         }  
                     }
                 }
-                if(pbFormStatus==2)
+                if(pbFormStatus==2 || varSupplierStatusID==2)
                 {
                     udfnDisable();
                 }
+
             }
             catch (Exception ex)
             {

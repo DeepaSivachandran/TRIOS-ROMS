@@ -273,6 +273,7 @@ namespace ROMS
             finally
             {
                 grdGroup.ClearSelection();
+                udfnProductCount();
             }
         }
 
@@ -629,7 +630,35 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDefalutColumn()
+        {
+            try
+            {
+                grdSubGroup.Columns.Add("clmChk","");
+                grdSubGroup.Columns.Add("clmProductGroup","Product Group");
+                grdSubGroup.Columns.Add("clmSubGroup","Product Subgroup");
+                grdSubGroup.Columns.Add("clmTotProducts","T.Pro");
+                grdSubGroup.Columns["clmProductGroup"].Width = 150;
+                grdSubGroup.Columns["clmSubGroup"].Width = 200;
+                grdSubGroup.Columns["clmChk"].Width = 50;
 
+                grdSubGroupAdd.Columns.Add("clmSelGroup","Selected Product Group");
+                grdSubGroupAdd.Columns.Add("clmSelSubGroup","Selected Product Subgroup");
+                grdSubGroupAdd.Columns.Add("clmTotProductss","T.Pro");
+                // grdSubGroupAdd.Columns[0].HeaderText = "";
+                // grdSubGroupAdd.Columns[0].Width = 80;
+                grdSubGroupAdd.Columns["clmRemove"].Width = 50;
+                grdSubGroupAdd.Columns["clmTotProductss"].Width = 40;
+                grdSubGroupAdd.Columns["clmSelGroup"].Width = 150;
+                grdSubGroupAdd.Columns["clmSelSubGroup"].Width = 200;
+                grdSubGroupAdd.Columns["clmRemove"].DisplayIndex = 3;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_Brand_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -894,6 +923,8 @@ namespace ROMS
                 chkSubGroup.Checked = false;
                 chkSubGroupAdd.Checked = false;
                 txtEBrandNameInEnglish.Focus();
+                lblGroupCount.Text = "0";
+                lblSubgroupCount.Text = "0";
             }
             catch (Exception ex)
             {
@@ -960,6 +991,8 @@ namespace ROMS
                             // udfnclose(); 
                             MainForm.objCP_BrandList.udfnList();
                             udfnClear();
+                            udfnProductCount();
+                            udfnDefalutColumn();
                         }
                     }
                     else
@@ -1221,6 +1254,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { udfnProductCount(); }
         }
         public void udfnTotalProducts()
         {
@@ -1341,6 +1376,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { udfnProductCount(); }
         }
 
         private void Chkgroup_CheckedChanged(object sender, EventArgs e)

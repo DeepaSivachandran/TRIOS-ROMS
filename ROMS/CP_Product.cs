@@ -1003,7 +1003,8 @@ namespace ROMS
                 lblSaleLocationCode.Text = "0";
                 txtSaleLocation.Text = "";  
                 cmbBatchNoEntry.SelectedValue = -1;
-                cmbBatchNoGeneration.SelectedValue = -1; 
+                cmbBatchNoGeneration.SelectedValue = -1;
+                cmbNetQty.SelectedValue = 6; 
                 cmbPeriod.SelectedValue = -1;
                 cbExpiry.Checked = false;
                 cbRMFromProduction.Checked = false; 
@@ -1031,6 +1032,7 @@ namespace ROMS
                 txtRPICode.Text = "";
                 cmbGst.SelectedValue=-1;
                 txtPICode.Focus();
+                cbExpiry.Checked = true;
             }
             catch (Exception ex)
             {
