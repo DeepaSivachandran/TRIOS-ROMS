@@ -1213,7 +1213,8 @@ namespace ROMS
         {
             try
             {
-                (grdGroup.DataSource as BindingSource).Filter = "([Product Group Name in English]) LIKE '%" + txtProductGroup.Text + "%'";
+                //(grdGroup.DataSource as BindingSource).Filter = "([Product Group Name in English]) LIKE '%" + txtProductGroup.Text + "%'";
+                (grdGroup.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in English]) LIKE '%" + txtProductGroup.Text + "%'";
             }
             catch (Exception ex)
             {
