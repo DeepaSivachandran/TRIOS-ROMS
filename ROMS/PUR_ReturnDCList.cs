@@ -87,7 +87,7 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 //txtSupplier.Focus();
-                cmbStatus.SelectedValue = 15; //pending
+              //  cmbStatus.SelectedValue = 15; //pending
                 udfnList();
             }
             catch (Exception ex)
@@ -1091,19 +1091,23 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Total Products")
+                            if (col.Name == "S.No." || col.Name == "Total Units" || col.Name == "Reason")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            else if(col.Name == "Supplier")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
-                            if (col.Name == "S.No.")
+                            if (col.Name == "S.No." || col.Name == "DC Date")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products")
+                            if (col.Name == "Total Products" || col.Name == "Total Units")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
