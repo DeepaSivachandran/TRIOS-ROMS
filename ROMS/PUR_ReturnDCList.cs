@@ -21,6 +21,7 @@ namespace ROMS
         public int Varflag = 0, varviewtype=0;
         private ToolTip tpSuppliername = new ToolTip();
         private DataTable dtDefaultGrid = new DataTable();
+        public int varDeleteFlag = 0;
         public PUR_ReturnDCList()
         {
             InitializeComponent();
@@ -52,6 +53,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDeleteHide()
+        {
+            try
+            {
+                if(Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) ==16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39)
+                {
+                    tsbDelete.Visible = false;
+                    varDeleteFlag = 0;
+                }
+                else
+                {
+                    tsbDelete.Visible = true;
+                    varDeleteFlag = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_ReturnDCList_Load(object sender, EventArgs e)
         {
             try
@@ -65,7 +87,7 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 //txtSupplier.Focus();
-                cmbStatus.SelectedValue = 15; //pending
+              //  cmbStatus.SelectedValue = 15; //pending
                 udfnList();
             }
             catch (Exception ex)
@@ -896,13 +918,13 @@ namespace ROMS
                                 grdReturnDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdReturnDCList.Columns["Total Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdReturnDCList.Columns["Concern"].Width = 150;
+                                grdReturnDCList.Columns["Concern"].Width = 100;
                                 grdReturnDCList.Columns["DC Date"].Width = 100;
                                 grdReturnDCList.Columns["DC No."].Width = 100;
                                 grdReturnDCList.Columns["Supplier"].Width = 300;
                                 grdReturnDCList.Columns["Total Products"].Width = 100;
                                 grdReturnDCList.Columns["Status"].Width = 100;
-                                grdReturnDCList.Columns["S.No."].Width = 80;
+                                grdReturnDCList.Columns["S.No."].Width = 60;
                                 grdReturnDCList.Columns["ID"].Visible = false;
                                 grdReturnDCList.Columns["Concern ID"].Visible = false;
                                 grdReturnDCList.Columns["Supplier ID"].Visible = false;
@@ -950,6 +972,7 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                udfnDeleteHide();
             }
         }
         private void BtnExport_Enter(object sender, EventArgs e)
@@ -1068,19 +1091,23 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Total Products")
+                            if (col.Name == "S.No." || col.Name == "Total Units" || col.Name == "Reason")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            else if(col.Name == "Supplier")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
-                            if (col.Name == "S.No.")
+                            if (col.Name == "S.No." || col.Name == "DC Date")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products")
+                            if (col.Name == "Total Products" || col.Name == "Total Units")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
@@ -1365,7 +1392,20 @@ namespace ROMS
             }
             finally
             {
-                grdReturnDCList.ClearSelection();
+               grdReturnDCList.ClearSelection();
+            }
+        }
+
+        private void GrdReturnDCList_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -1373,55 +1413,58 @@ namespace ROMS
         {
             try
             {
-                if (grdReturnDCList.SelectedRows.Count > 0)
+                if (varDeleteFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdReturnDCList.SelectedRows.Count > 0)
                     {
-                        string varorginator = "Return DC Deletion", result = "";
-                        varviewtype = 2;
-                        int varUserID = 0;
-                        TRN_ReturnDC objTRN_ReturnDC = new TRN_ReturnDC();
-                        objTRN_ReturnDC.@paraViewType = varviewtype;
-                        objTRN_ReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                        objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                        objTRN_ReturnDC.paraOriginator = varorginator;
-                        objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                        objTRN_ReturnDC.paraDeleteFlag = 0;
-                        SPDataService objspdservice = new SPDataService();
-                        result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (result.Split('~')[1] == "1")
+                            string varorginator = "Return DC Deletion", result = "";
+                            varviewtype = 2;
+                            int varUserID = 0;
+                            TRN_ReturnDC objTRN_ReturnDC = new TRN_ReturnDC();
+                            objTRN_ReturnDC.paraViewType = varviewtype;
+                            objTRN_ReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                            objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                            objTRN_ReturnDC.paraOriginator = varorginator;
+                            objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                            objTRN_ReturnDC.paraDeleteFlag = 0;
+                            SPDataService objspdservice = new SPDataService();
+                            result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (result.Split('~')[1] == "1")
                                 {
-                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
-                                    objTRN_ReturnDC.@paraViewType = varviewtype;
-                                    objTRN_ReturnDC.paraUserID = varUserID;
-                                    objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                                    objTRN_ReturnDC.paraOriginator = varorginator;
-                                    objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                                    objTRN_ReturnDC.paraDeleteFlag = 1;
-                                    result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
-                                    objspdservice.CloseConnection();
-                                    if (result.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        varviewtype = 3;
-                                        udfnList();
+                                        varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                        objTRN_ReturnDC.@paraViewType = varviewtype;
+                                        objTRN_ReturnDC.paraUserID = varUserID;
+                                        objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                                        objTRN_ReturnDC.paraOriginator = varorginator;
+                                        objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                        objTRN_ReturnDC.paraDeleteFlag = 1;
+                                        result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
+                                        objspdservice.CloseConnection();
+                                        if (result.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            varviewtype = 3;
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else if (result.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else if (result.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }

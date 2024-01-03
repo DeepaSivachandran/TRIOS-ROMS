@@ -140,7 +140,7 @@
             // txtBatchNo
             // 
             this.txtBatchNo.Location = new System.Drawing.Point(634, 34);
-            this.txtBatchNo.MaxLength = 15;
+            this.txtBatchNo.MaxLength = 20;
             this.txtBatchNo.Name = "txtBatchNo";
             this.txtBatchNo.Size = new System.Drawing.Size(115, 27);
             this.txtBatchNo.TabIndex = 5;
@@ -308,10 +308,10 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1072, 530);
+            this.btnSave.Location = new System.Drawing.Point(1155, 530);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 958810;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -348,14 +348,14 @@
             this.grpproductname.Controls.Add(this.lblDd);
             this.grpproductname.Location = new System.Drawing.Point(18, 12);
             this.grpproductname.Name = "grpproductname";
-            this.grpproductname.Size = new System.Drawing.Size(1216, 69);
+            this.grpproductname.Size = new System.Drawing.Size(1296, 69);
             this.grpproductname.TabIndex = 958806;
             this.grpproductname.TabStop = false;
             // 
             // lblRackCode
             // 
             this.lblRackCode.AutoSize = true;
-            this.lblRackCode.Location = new System.Drawing.Point(1061, 40);
+            this.lblRackCode.Location = new System.Drawing.Point(1082, 40);
             this.lblRackCode.Name = "lblRackCode";
             this.lblRackCode.Size = new System.Drawing.Size(16, 20);
             this.lblRackCode.TabIndex = 1111253;
@@ -387,7 +387,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1102, 34);
+            this.btnAdd.Location = new System.Drawing.Point(1127, 34);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
@@ -400,7 +400,7 @@
             // 
             // txtRack
             // 
-            this.txtRack.Location = new System.Drawing.Point(979, 34);
+            this.txtRack.Location = new System.Drawing.Point(1002, 34);
             this.txtRack.MaxLength = 30;
             this.txtRack.Name = "txtRack";
             this.txtRack.Size = new System.Drawing.Size(119, 27);
@@ -415,7 +415,7 @@
             this.txtStockLocation.Location = new System.Drawing.Point(838, 34);
             this.txtStockLocation.MaxLength = 30;
             this.txtStockLocation.Name = "txtStockLocation";
-            this.txtStockLocation.Size = new System.Drawing.Size(137, 27);
+            this.txtStockLocation.Size = new System.Drawing.Size(159, 27);
             this.txtStockLocation.TabIndex = 7;
             this.txtStockLocation.TextChanged += new System.EventHandler(this.TxtStockLocation_TextChanged);
             this.txtStockLocation.Enter += new System.EventHandler(this.TxtStockLocation_Enter);
@@ -425,7 +425,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(979, 11);
+            this.label6.Location = new System.Drawing.Point(1002, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 20);
             this.label6.TabIndex = 1111251;
@@ -457,7 +457,7 @@
             this.pnlinward.Controls.Add(this.grdProductExchage);
             this.pnlinward.Location = new System.Drawing.Point(7, 12);
             this.pnlinward.Name = "pnlinward";
-            this.pnlinward.Size = new System.Drawing.Size(1247, 608);
+            this.pnlinward.Size = new System.Drawing.Size(1324, 608);
             this.pnlinward.TabIndex = 39;
             this.pnlinward.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnlinward_Paint);
             // 
@@ -470,9 +470,9 @@
             this.columnHeader12});
             this.lvRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvRack.HideSelection = false;
-            this.lvRack.Location = new System.Drawing.Point(997, 73);
+            this.lvRack.Location = new System.Drawing.Point(1020, 73);
             this.lvRack.Name = "lvRack";
-            this.lvRack.Size = new System.Drawing.Size(241, 93);
+            this.lvRack.Size = new System.Drawing.Size(294, 93);
             this.lvRack.TabIndex = 1111212;
             this.lvRack.UseCompatibleStateImageBehavior = false;
             this.lvRack.View = System.Windows.Forms.View.Details;
@@ -482,11 +482,11 @@
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Width = 180;
+            this.columnHeader7.Width = 150;
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Width = 120;
+            this.columnHeader10.Width = 80;
             // 
             // columnHeader11
             // 
@@ -503,7 +503,7 @@
             this.lvStockLocation.HideSelection = false;
             this.lvStockLocation.Location = new System.Drawing.Point(856, 73);
             this.lvStockLocation.Name = "lvStockLocation";
-            this.lvStockLocation.Size = new System.Drawing.Size(287, 93);
+            this.lvStockLocation.Size = new System.Drawing.Size(294, 93);
             this.lvStockLocation.TabIndex = 1111211;
             this.lvStockLocation.UseCompatibleStateImageBehavior = false;
             this.lvStockLocation.View = System.Windows.Forms.View.Details;
@@ -513,11 +513,11 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Width = 180;
+            this.columnHeader2.Width = 150;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Width = 120;
+            this.columnHeader3.Width = 80;
             // 
             // columnHeader4
             // 
@@ -541,7 +541,7 @@
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(27, 73);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(449, 140);
+            this.lvproduct.Size = new System.Drawing.Size(621, 140);
             this.lvproduct.TabIndex = 1111185;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -594,7 +594,7 @@
             // 
             // txtTotalProducts
             // 
-            this.txtTotalProducts.Location = new System.Drawing.Point(1006, 530);
+            this.txtTotalProducts.Location = new System.Drawing.Point(1089, 530);
             this.txtTotalProducts.Name = "txtTotalProducts";
             this.txtTotalProducts.ReadOnly = true;
             this.txtTotalProducts.Size = new System.Drawing.Size(62, 27);
@@ -604,7 +604,7 @@
             // lbltotalproducts
             // 
             this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(916, 533);
+            this.lbltotalproducts.Location = new System.Drawing.Point(999, 533);
             this.lbltotalproducts.Name = "lbltotalproducts";
             this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 958821;
@@ -617,7 +617,7 @@
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(511, 56);
-            this.txtRemark.TabIndex = 958807;
+            this.txtRemark.TabIndex = 10;
             this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
             this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
             // 
@@ -635,10 +635,10 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1159, 530);
+            this.btnClose.Location = new System.Drawing.Point(1242, 530);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 958811;
+            this.btnClose.TabIndex = 12;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -702,7 +702,7 @@
             this.grdProductExchage.RowTemplate.Height = 25;
             this.grdProductExchage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdProductExchage.ShowRowErrors = false;
-            this.grdProductExchage.Size = new System.Drawing.Size(1216, 422);
+            this.grdProductExchage.Size = new System.Drawing.Size(1298, 422);
             this.grdProductExchage.TabIndex = 1111214;
             this.grdProductExchage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellContentClick);
             this.grdProductExchage.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellEndEdit);
@@ -835,7 +835,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1262, 636);
+            this.ClientSize = new System.Drawing.Size(1340, 636);
             this.Controls.Add(this.pnlinward);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

@@ -59,7 +59,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -99,7 +99,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -773,7 +773,6 @@ namespace ROMS
                                     lvStockLocation.Items.Add(objList);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-
                                 }
                                 lvStockLocation.Visible = true;
                             }
@@ -1929,7 +1928,15 @@ namespace ROMS
         {
             try
             {
-               if (txtProductName.Text != "" || txtProductName.Text == "")
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
+                if (txtProductName.Text != "" || txtProductName.Text == "")
                 {
                     udfnAddClear();
                     udfnTooltipHide();
@@ -1979,7 +1986,7 @@ namespace ROMS
                                 }
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 130;
-                                lvproduct.Columns[1].Width = 500;
+                                lvproduct.Columns[1].Width = 300;
                                 lvproduct.Columns[2].Width = 50;
                             }
                         }
