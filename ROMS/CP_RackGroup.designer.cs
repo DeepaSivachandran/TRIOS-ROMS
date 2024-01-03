@@ -109,6 +109,8 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnUnselectAll = new System.Windows.Forms.Button();
+            this.btnSelectAll = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridLeft)).BeginInit();
@@ -125,6 +127,8 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.btnSelectAll);
+            this.grbform.Controls.Add(this.btnUnselectAll);
             this.grbform.Controls.Add(this.chkRack);
             this.grbform.Controls.Add(this.DGV_SearchGridRight);
             this.grbform.Controls.Add(this.DGV_SearchGridLeft);
@@ -157,6 +161,7 @@
             this.chkRack.TabIndex = 1111138;
             this.chkRack.TabStop = false;
             this.chkRack.UseVisualStyleBackColor = true;
+            this.chkRack.Visible = false;
             this.chkRack.CheckedChanged += new System.EventHandler(this.ChkRack_CheckedChanged);
             // 
             // DGV_SearchGridRight
@@ -457,7 +462,7 @@
             this.grdRack.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.grdRack.RowTemplate.Height = 25;
             this.grdRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRack.Size = new System.Drawing.Size(628, 241);
+            this.grdRack.Size = new System.Drawing.Size(628, 206);
             this.grdRack.TabIndex = 512;
             this.grdRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellContentClick);
             this.grdRack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellDoubleClick);
@@ -1007,6 +1012,36 @@
             // 
             this.columnHeader6.Width = 0;
             // 
+            // btnUnselectAll
+            // 
+            this.btnUnselectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUnselectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUnselectAll.Location = new System.Drawing.Point(474, 355);
+            this.btnUnselectAll.Name = "btnUnselectAll";
+            this.btnUnselectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnUnselectAll.TabIndex = 1111142;
+            this.btnUnselectAll.Text = "Unselect All";
+            this.btnUnselectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnUnselectAll.UseVisualStyleBackColor = true;
+            this.btnUnselectAll.Click += new System.EventHandler(this.BtnUnselectAll_Click);
+            this.btnUnselectAll.Enter += new System.EventHandler(this.BtnUnselectAll_Enter);
+            this.btnUnselectAll.Leave += new System.EventHandler(this.BtnUnselectAll_Leave);
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSelectAll.Location = new System.Drawing.Point(563, 355);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnSelectAll.TabIndex = 1111143;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.BtnSelectAll_Click);
+            this.btnSelectAll.Enter += new System.EventHandler(this.BtnSelectAll_Enter);
+            this.btnSelectAll.Leave += new System.EventHandler(this.BtnSelectAll_Leave);
+            // 
             // CP_RackGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1110,5 +1145,7 @@
         private System.Windows.Forms.DataGridViewImageColumn clmRemoveRack;
         public System.Windows.Forms.DataGridView DGV_SearchGridLeft;
         public System.Windows.Forms.DataGridView DGV_SearchGridRight;
+        public System.Windows.Forms.Button btnUnselectAll;
+        public System.Windows.Forms.Button btnSelectAll;
     }
 }
