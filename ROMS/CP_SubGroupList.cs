@@ -234,6 +234,7 @@ namespace ROMS
                             grdSubGroupList.Columns["Batch No Id"].Visible = false;
                             grdSubGroupList.Columns["StockLocation ID"].Visible = false;
                             grdSubGroupList.Columns["Rack ID"].Visible = false;
+                            grdSubGroupList.Columns["Batch No."].Visible = false;
                             grdSubGroupList.Columns["Product Group Id"].Visible = false;
                         }
                         else
@@ -1301,7 +1302,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBatchNoEntry.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1602,7 +1603,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnBindRack();
-                    cmbBatchNoEntry.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1617,7 +1618,7 @@ namespace ROMS
             try
             {
                 udfnBindRack();
-                cmbBatchNoEntry.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
