@@ -45,7 +45,7 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",6);
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 6);
                 objDServ.CloseConnection();
                 if (objd.Tables[0].Rows.Count != 0)
                 {
@@ -54,7 +54,7 @@ namespace ROMS
                     dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
                 objd = null;
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "",0);
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
                 objDServ.CloseConnection();
                 if (objd.Tables[1].Rows.Count != 0)
                 {
@@ -80,7 +80,7 @@ namespace ROMS
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
                     TsbEdit_Click(sender, e);
-                } 
+                }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D) || (e.KeyCode == Keys.Delete))
                 {
                     TsbDelete_Click(sender, e);
@@ -110,7 +110,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex); 
+                objError.WriteFile(ex);
             }
         }
 
@@ -131,7 +131,7 @@ namespace ROMS
             }
         }
         public void udfnListLoad()
-        { 
+        {
             try
             {
                 if (txtSupplier.Text == "")
@@ -149,7 +149,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0,Convert.ToInt32(cmbstatus.SelectedValue),Convert.ToInt32(cmbOrdertype.SelectedValue),"","",0);
+                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -165,7 +165,7 @@ namespace ROMS
                             grdGRNList.Columns["ClmEdit"].Width = 50;
                             grdGRNList.Columns["clmPrint"].Visible = true;
                             //grdGRNList.Columns["clmPrint"].DisplayIndex = objDs.Tables[0].Columns.Count+1;
-                            grdGRNList.Columns["clmPrint"].Width = 50; 
+                            grdGRNList.Columns["clmPrint"].Width = 50;
                             grdGRNList.DataSource = objDs.Tables[0];
                             grdGRNList.Columns["S.No."].Width = 50;
                             grdGRNList.Columns["Company"].Width = 80;
@@ -180,13 +180,13 @@ namespace ROMS
                             grdGRNList.Columns["Created By"].Width = 100;
                             grdGRNList.Columns["Created On"].Width = 150;
                             grdGRNList.Columns["Order Type"].Width = 100;
-                            grdGRNList.Columns["Any Purchase Returns"].Width = 150;  
+                            grdGRNList.Columns["Any Purchase Returns"].Width = 150;
                             grdGRNList.Columns["GRNID"].Visible = false;
-                            grdGRNList.Columns["GRN_SPSCID"].Visible = false; 
-                            grdGRNList.Columns["GRN_SPID"].Visible = false;  
-                            grdGRNList.Columns["GRN_STSID"].Visible = false;  
-                            grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;  
-                            grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;  
+                            grdGRNList.Columns["GRN_SPSCID"].Visible = false;
+                            grdGRNList.Columns["GRN_SPID"].Visible = false;
+                            grdGRNList.Columns["GRN_STSID"].Visible = false;
+                            grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -195,7 +195,7 @@ namespace ROMS
                             grdGRNList.Columns["clmPrint"].Visible = false;
                             grdGRNList.Columns["ClmEdit"].Visible = false;
                             Deftable = objDs.Tables[0];
-                        }  
+                        }
                     }
                     else
                     {
@@ -316,6 +316,35 @@ namespace ROMS
                             MainForm.objPUR_GRNEntry.btnSave.Text = "Update && Print";
                             MainForm.objPUR_GRNEntry.ShowDialog();
                             break;
+                        case "clmPrint":
+                            DialogResult result1 = DialogResult.Yes;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_LP_GRN_QRCode.rpt");
+                                    objBillreport.SetParameterValue("paraGRNID", Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString()));
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                                catch (Exception ex)
+                                {
+                                    objError = new DataError();
+                                    objError.WriteFile(ex);
+                                }
+                            }
+                            break;
                     }
                 }
 
@@ -344,11 +373,11 @@ namespace ROMS
         public void udfnEdit()
         {
             try
-            { 
+            {
 
                 MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
                 MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
-                MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString()); 
+                MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                 //MainForm.objPUR_GRNDetails.pbPOIdS = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.Show();
@@ -443,7 +472,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
         }
 
         private void DpFromDate_Leave(object sender, EventArgs e)
@@ -655,7 +684,7 @@ namespace ROMS
                     varsuppliername = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedleCode.Text = selectedItem.SubItems[2].Text;
-                    txtSupplier.Text = selectedItem.SubItems[3].Text; 
+                    txtSupplier.Text = selectedItem.SubItems[3].Text;
                 }
                 cmbOrdertype.Focus();
             }
@@ -675,7 +704,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    udfnListViewData(); 
+                    udfnListViewData();
                 }
             }
             catch (Exception ex)
@@ -784,7 +813,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         private void udfnSearchGridHead()
         {
             try
@@ -1055,7 +1084,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     udfnEdit();
                 }
@@ -1125,13 +1154,13 @@ namespace ROMS
                             varUserID = MainForm.objCP_Verify.varUserId;
                             if (MainForm.objCP_Verify.flag == 1)
                             {
-                                result = "";  
+                                result = "";
                                 objTRNS_GRN.ViewType = 4;
-                                objTRNS_GRN.ParaGRNID = pbGRNId; 
+                                objTRNS_GRN.ParaGRNID = pbGRNId;
                                 objTRNS_GRN.paraOriginator = "GRN Delete";
-                                objTRNS_GRN.paraDeleteFlag = 1; 
+                                objTRNS_GRN.paraDeleteFlag = 1;
                                 result = objspdservice.udfnGRNEntry(objTRNS_GRN);
-                                objspdservice.CloseConnection(); 
+                                objspdservice.CloseConnection();
                                 string[] varvalue1 = result.Split('~');
                                 if (varvalue1[0] == "3")
                                 {

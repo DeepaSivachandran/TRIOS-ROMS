@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
-        public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0";
+        public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", GrnUpdatevalue="0";
         public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0;
         public PUR_GRNEntry()
         {
@@ -1226,10 +1226,51 @@ namespace ROMS
                                 if (varvalue[0] == "3")
                                 {
                                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    if (pbGRNId =="0")
+                                    {
+                                        GrnUpdatevalue = varvalue[2];
+                                    }
+                                    else
+                                    {
+                                        GrnUpdatevalue = Convert.ToString(pbGRNId);
+                                    }
                                     this.ActiveControl = txtSupplier;
                                     MainForm.objPUR_GRNDetailsList.udfnListLoad();
-                                    varCloseFlag = 1;
-                                    udfnclose();
+                                    varCloseFlag = 1; 
+                                    string varMessage = objDServ.udfnGetMessages(87);
+                                    objDServ.CloseConnection();
+                                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (result1 == DialogResult.Yes)
+                                    {
+                                        try
+                                        {
+                                            string varHeader = "";
+                                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_LP_GRN_QRCode.rpt"); 
+                                            objBillreport.SetParameterValue("paraGRNID", GrnUpdatevalue); 
+                                            objValidation.CrySqlConnection(objBillreport);
+
+                                            MainForm.objReportLoad = new ReportLoad();
+                                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                            MainForm.objReportLoad.Text = varHeader;
+                                            MainForm.objReportLoad.ShowDialog();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            objError = new DataError();
+                                            objError.WriteFile(ex);
+                                        }
+                                        finally
+                                        {
+                                        }
+                                        udfnclose();
+                                    }
+                                    else
+                                    {
+                                        udfnclose();
+                                    }
                                 }
                                 else
                                 {
