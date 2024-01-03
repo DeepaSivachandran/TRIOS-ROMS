@@ -544,7 +544,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (35,26,0) ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
-                cmbStatus.SelectedValue = 35;
+                cmbStatus.SelectedValue = 0;
                 DataSet objDS = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 4);
