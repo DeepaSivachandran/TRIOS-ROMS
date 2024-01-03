@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNEntry));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -40,9 +41,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNEntry));
             this.errGRN = new System.Windows.Forms.ErrorProvider(this.components);
             this.gpGRNEntry = new System.Windows.Forms.GroupBox();
+            this.QrcodeImg = new Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl();
             this.lblDCFinishedNoRecord = new System.Windows.Forms.Label();
             this.grdReurnDC = new System.Windows.Forms.DataGridView();
             this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,9 +111,9 @@
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.QrcodeImg = new Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl();
             ((System.ComponentModel.ISupportInitialize)(this.errGRN)).BeginInit();
             this.gpGRNEntry.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.QrcodeImg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
             this.grpSalesmanDetails.SuspendLayout();
             this.grpRepresentativeDetails.SuspendLayout();
@@ -120,7 +121,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.QrcodeImg)).BeginInit();
             this.SuspendLayout();
             // 
             // errGRN
@@ -165,6 +165,21 @@
             this.gpGRNEntry.Size = new System.Drawing.Size(1164, 341);
             this.gpGRNEntry.TabIndex = 1111181;
             this.gpGRNEntry.TabStop = false;
+            // 
+            // QrcodeImg
+            // 
+            this.QrcodeImg.ErrorCorrectLevel = Gma.QrCodeNet.Encoding.ErrorCorrectionLevel.M;
+            this.QrcodeImg.Image = ((System.Drawing.Image)(resources.GetObject("QrcodeImg.Image")));
+            this.QrcodeImg.Location = new System.Drawing.Point(1089, 283);
+            this.QrcodeImg.Margin = new System.Windows.Forms.Padding(1);
+            this.QrcodeImg.Name = "QrcodeImg";
+            this.QrcodeImg.QuietZoneModule = Gma.QrCodeNet.Encoding.Windows.Render.QuietZoneModules.Two;
+            this.QrcodeImg.Size = new System.Drawing.Size(58, 58);
+            this.QrcodeImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.QrcodeImg.TabIndex = 9587915;
+            this.QrcodeImg.TabStop = false;
+            this.QrcodeImg.Text = "QrCodeImgControl1";
+            this.QrcodeImg.Visible = false;
             // 
             // lblDCFinishedNoRecord
             // 
@@ -993,21 +1008,6 @@
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
             // 
-            // QrcodeImg
-            // 
-            this.QrcodeImg.ErrorCorrectLevel = Gma.QrCodeNet.Encoding.ErrorCorrectionLevel.M;
-            this.QrcodeImg.Image = ((System.Drawing.Image)(resources.GetObject("QrcodeImg.Image")));
-            this.QrcodeImg.Location = new System.Drawing.Point(1102, 279);
-            this.QrcodeImg.Margin = new System.Windows.Forms.Padding(1);
-            this.QrcodeImg.Name = "QrcodeImg";
-            this.QrcodeImg.QuietZoneModule = Gma.QrCodeNet.Encoding.Windows.Render.QuietZoneModules.Two;
-            this.QrcodeImg.Size = new System.Drawing.Size(58, 58);
-            this.QrcodeImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.QrcodeImg.TabIndex = 9587915;
-            this.QrcodeImg.TabStop = false;
-            this.QrcodeImg.Text = "QrCodeImgControl1";
-            this.QrcodeImg.Visible = false;
-            // 
             // PUR_GRNEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1038,6 +1038,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errGRN)).EndInit();
             this.gpGRNEntry.ResumeLayout(false);
             this.gpGRNEntry.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.QrcodeImg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).EndInit();
             this.grpSalesmanDetails.ResumeLayout(false);
             this.grpSalesmanDetails.PerformLayout();
@@ -1047,7 +1048,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.QrcodeImg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

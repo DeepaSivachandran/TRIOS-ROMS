@@ -104,7 +104,7 @@
             this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.btnDamage = new System.Windows.Forms.Button();
             this.tbSupplierDetails = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tp1 = new System.Windows.Forms.TabPage();
             this.btnSalesmanUndo = new System.Windows.Forms.Button();
             this.txtSalesManMobile = new System.Windows.Forms.TextBox();
             this.btnSalesmanSave = new System.Windows.Forms.Button();
@@ -113,9 +113,9 @@
             this.txtSalesManName = new System.Windows.Forms.TextBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tp2 = new System.Windows.Forms.TabPage();
             this.grdRepDetails = new System.Windows.Forms.DataGridView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tp3 = new System.Windows.Forms.TabPage();
             this.btnReturnUndo = new System.Windows.Forms.Button();
             this.btnReturnSave = new System.Windows.Forms.Button();
             this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
@@ -237,10 +237,10 @@
             this.grppurchaseorder.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tbSupplierDetails.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tp1.SuspendLayout();
+            this.tp2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRepDetails)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tp3.SuspendLayout();
             this.gpissued.SuspendLayout();
             this.grpSupplierpossible.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdpossiblesupplier)).BeginInit();
@@ -666,9 +666,9 @@
             // 
             // tbSupplierDetails
             // 
-            this.tbSupplierDetails.Controls.Add(this.tabPage1);
-            this.tbSupplierDetails.Controls.Add(this.tabPage2);
-            this.tbSupplierDetails.Controls.Add(this.tabPage3);
+            this.tbSupplierDetails.Controls.Add(this.tp1);
+            this.tbSupplierDetails.Controls.Add(this.tp2);
+            this.tbSupplierDetails.Controls.Add(this.tp3);
             this.tbSupplierDetails.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSupplierDetails.Location = new System.Drawing.Point(758, 12);
             this.tbSupplierDetails.Name = "tbSupplierDetails";
@@ -676,23 +676,23 @@
             this.tbSupplierDetails.Size = new System.Drawing.Size(577, 103);
             this.tbSupplierDetails.TabIndex = 1111198;
             // 
-            // tabPage1
+            // tp1
             // 
-            this.tabPage1.Controls.Add(this.btnSalesmanUndo);
-            this.tabPage1.Controls.Add(this.txtSalesManMobile);
-            this.tabPage1.Controls.Add(this.btnSalesmanSave);
-            this.tabPage1.Controls.Add(this.textBox18);
-            this.tabPage1.Controls.Add(this.txtSalesManwhatsapp);
-            this.tabPage1.Controls.Add(this.txtSalesManName);
-            this.tabPage1.Controls.Add(this.textBox14);
-            this.tabPage1.Controls.Add(this.textBox16);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(569, 75);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Salesman Details";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tp1.Controls.Add(this.btnSalesmanUndo);
+            this.tp1.Controls.Add(this.txtSalesManMobile);
+            this.tp1.Controls.Add(this.btnSalesmanSave);
+            this.tp1.Controls.Add(this.textBox18);
+            this.tp1.Controls.Add(this.txtSalesManwhatsapp);
+            this.tp1.Controls.Add(this.txtSalesManName);
+            this.tp1.Controls.Add(this.textBox14);
+            this.tp1.Controls.Add(this.textBox16);
+            this.tp1.Location = new System.Drawing.Point(4, 24);
+            this.tp1.Name = "tp1";
+            this.tp1.Padding = new System.Windows.Forms.Padding(3);
+            this.tp1.Size = new System.Drawing.Size(569, 75);
+            this.tp1.TabIndex = 2;
+            this.tp1.Text = "Salesman Details";
+            this.tp1.UseVisualStyleBackColor = true;
             // 
             // btnSalesmanUndo
             // 
@@ -799,16 +799,16 @@
             this.textBox16.TabStop = false;
             this.textBox16.Text = "Phone No.";
             // 
-            // tabPage2
+            // tp2
             // 
-            this.tabPage2.Controls.Add(this.grdRepDetails);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(569, 75);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Representative Details";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tp2.Controls.Add(this.grdRepDetails);
+            this.tp2.Location = new System.Drawing.Point(4, 24);
+            this.tp2.Name = "tp2";
+            this.tp2.Padding = new System.Windows.Forms.Padding(3);
+            this.tp2.Size = new System.Drawing.Size(569, 75);
+            this.tp2.TabIndex = 1;
+            this.tp2.Text = "Representative Details";
+            this.tp2.UseVisualStyleBackColor = true;
             // 
             // grdRepDetails
             // 
@@ -842,25 +842,25 @@
             this.grdRepDetails.Size = new System.Drawing.Size(557, 69);
             this.grdRepDetails.TabIndex = 1111161;
             // 
-            // tabPage3
+            // tp3
             // 
-            this.tabPage3.Controls.Add(this.btnReturnUndo);
-            this.tabPage3.Controls.Add(this.btnReturnSave);
-            this.tabPage3.Controls.Add(this.cmbSecondLevel);
-            this.tabPage3.Controls.Add(this.txtNextLevel);
-            this.tabPage3.Controls.Add(this.cmbPolicyContent);
-            this.tabPage3.Controls.Add(this.txtReturnText);
-            this.tabPage3.Controls.Add(this.cmbReturnType);
-            this.tabPage3.Controls.Add(this.txtDReturnCycle);
-            this.tabPage3.Controls.Add(this.cmbReturnPolicy);
-            this.tabPage3.Controls.Add(this.textBox20);
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(569, 75);
-            this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "Return Cycle";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tp3.Controls.Add(this.btnReturnUndo);
+            this.tp3.Controls.Add(this.btnReturnSave);
+            this.tp3.Controls.Add(this.cmbSecondLevel);
+            this.tp3.Controls.Add(this.txtNextLevel);
+            this.tp3.Controls.Add(this.cmbPolicyContent);
+            this.tp3.Controls.Add(this.txtReturnText);
+            this.tp3.Controls.Add(this.cmbReturnType);
+            this.tp3.Controls.Add(this.txtDReturnCycle);
+            this.tp3.Controls.Add(this.cmbReturnPolicy);
+            this.tp3.Controls.Add(this.textBox20);
+            this.tp3.Location = new System.Drawing.Point(4, 24);
+            this.tp3.Name = "tp3";
+            this.tp3.Padding = new System.Windows.Forms.Padding(3);
+            this.tp3.Size = new System.Drawing.Size(569, 75);
+            this.tp3.TabIndex = 3;
+            this.tp3.Text = "Return Cycle";
+            this.tp3.UseVisualStyleBackColor = true;
             // 
             // btnReturnUndo
             // 
@@ -2236,12 +2236,12 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tbSupplierDetails.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.tp1.ResumeLayout(false);
+            this.tp1.PerformLayout();
+            this.tp2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdRepDetails)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tp3.ResumeLayout(false);
+            this.tp3.PerformLayout();
             this.gpissued.ResumeLayout(false);
             this.gpissued.PerformLayout();
             this.grpSupplierpossible.ResumeLayout(false);
@@ -2313,9 +2313,9 @@
         private System.Windows.Forms.Button btnSalesmanSave;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TabControl tbSupplierDetails;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tp2;
+        private System.Windows.Forms.TabPage tp1;
+        private System.Windows.Forms.TabPage tp3;
         private System.Windows.Forms.Button btnReturnUndo;
         private System.Windows.Forms.Button btnReturnSave;
         private System.Windows.Forms.ComboBox cmbSecondLevel;

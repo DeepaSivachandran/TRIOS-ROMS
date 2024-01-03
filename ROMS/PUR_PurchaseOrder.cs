@@ -82,12 +82,21 @@ namespace ROMS
                     chkStatus.Enabled = false;
                     gpissued.Enabled = false;
                     btnAdd.Enabled = false;
+                    foreach (TabPage tabPage in tbSupplierDetails.TabPages)
+                    {
+                        grdRepDetails.ClearSelection();
+                        tabPage.Enabled = false;
+                    }
                     btnViewedProduct.Enabled = false;
                     grdsupplieradd.Columns["clmRemove"].Visible = false;
                 }
                 else
                 {
                     btnSave.Enabled = true;
+                    foreach (TabPage tabPage in tbSupplierDetails.TabPages)
+                    {
+                        tabPage.Enabled = true;
+                    }
                 }
                 if (Currentsts == 38)
                 { 
@@ -2718,7 +2727,7 @@ namespace ROMS
                                 lvproduct.Columns[5].Width = 60;
                                 if (VarSearchFlag == false)
                                 {
-                                    lvproduct.Columns[1].Width = 250;
+                                    lvproduct.Columns[1].Width = 320;
                                     lvproduct.Columns[2].Width = 0;
                                 }
                                 else
