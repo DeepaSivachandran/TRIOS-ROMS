@@ -824,7 +824,7 @@ namespace ROMS
                             grdInwardQueueList.Columns["Destination Location"].Width = 150;
                             grdInwardQueueList.Columns["Total Products"].Width = 100;
                             grdInwardQueueList.Columns["Total Qty"].Width = 100;
-                            grdInwardQueueList.Columns["STRPRID"].Visible = false;
+                            //grdInwardQueueList.Columns["STRPRID"].Visible = false;
                             grdInwardQueueList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdInwardQueueList.Columns["Transfer Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdInwardQueueList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

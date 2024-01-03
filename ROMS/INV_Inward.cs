@@ -349,8 +349,68 @@ namespace ROMS
             try
             {
 
-                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
-                MainForm.objPUR_RemarksHistory.ShowDialog();
+                //MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                //MainForm.objPUR_RemarksHistory.ShowDialog();
+                udfnRemarksCheck();
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnRemarksCheck()
+        {
+            try
+            {
+                grdInward.DataSource = null;
+                DataSet objDs = new DataSet();
+                SPDataService objspdservice = new SPDataService();
+                DataTable objGrnPO = new DataTable();
+                TRN_GoodsInward objTRNG_GoodsInward = new TRN_GoodsInward();
+                if (varEditflag == 0)
+                {
+
+                    objTRNG_GoodsInward.ViewType = 2;
+                    objTRNG_GoodsInward.paraGIID = varGIId;
+                    objTRNG_GoodsInward.paraRemarks = txtRemark.Text;
+                    objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
+                    objDs = objspdservice.udfnInwardList(objTRNG_GoodsInward);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                                MainForm.objPUR_RemarksHistory.ShowDialog();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    objTRNG_GoodsInward.ViewType = 2;
+                    objTRNG_GoodsInward.paraSTRID = varSTRID;
+                    objTRNG_GoodsInward.paraRemarks = txtRemark.Text;
+                    objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
+                    objDs = objspdservice.udfnInwardList(objTRNG_GoodsInward);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                                MainForm.objPUR_RemarksHistory.ShowDialog();
+                            }
+                        }
+                    }
+                }
+                
             }
             catch (Exception ex)
             {
@@ -419,12 +479,14 @@ namespace ROMS
         {
             try
             {
-                //txtProduct.Text = "";
-                //txtRack.Text = "";
-                //txtMrp.Text = "";
-                //txtExpiryDate.Text = "";
-                //txtBatchNo.Text = "";
-                //txtStockQuantity.Text = "";
+                txtProductName.Text = "";
+                txtRack.Text = "";
+                txtMrp.Text = "";
+                txtDay.Text = "";
+                txtMonth.Text = "";
+                txtYear.Text = "";
+                txtBatchNo.Text = "";
+                txtActualQty.Text = "";
                 //txtOutwardQuantity.Text = "";
                 //lblQuantity.Text = "";
                 //udfnSLocationValid();
@@ -2199,6 +2261,49 @@ namespace ROMS
             }
         }
 
+        private void TxtRemark_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemark.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemark_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    //btnRemarks.Focus();
+                    cbCompleted.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemark_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemark.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CbCompleted_TextChanged(object sender, EventArgs e)
         {
             try
@@ -2621,6 +2726,7 @@ namespace ROMS
         {
             try
             {
+                //txtBatchNo.Enabled = true;
                 lvRack.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -2739,8 +2845,13 @@ namespace ROMS
         {
             try
             {
-                
-                //lblQuantity.Text = "";
+
+                txtBatchNo.Text = "";
+                txtMrp.Text = "";
+                txtActualQty.Text = "";
+                txtDay.Text = "";
+                txtMonth.Text = "";
+                txtYear.Text = "";
                 //SLID = varStockLocationId;
                 lvproduct.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
@@ -2930,7 +3041,7 @@ namespace ROMS
                             varStockLocationId = objDs.Tables[0].Rows[0]["GI_SLID"].ToString();
                             txtStockLocation.Text = objDs.Tables[0].Rows[0]["Stock Location"].ToString();
                             cmbTransactionType.Text = objDs.Tables[0].Rows[0]["Transaction Type"].ToString();
-                            //txtRemark.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
+                            txtRemark.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
                         }
 
                         if (objDs.Tables[1].Rows.Count > 0)
@@ -3046,10 +3157,10 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                //cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["GI_COMID"].ToString();
-                                //dpInwardDate.Text = objDs.Tables[0].Rows[0]["GI_Date"].ToString();
-                                //txtInwardNo.Text = objDs.Tables[0].Rows[0]["GI_No"].ToString();
-                                varStockLocationId = objDs.Tables[0].Rows[0]["STRPR_Dest_SLID"].ToString();
+                            //cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["GI_COMID"].ToString();
+                            //dpInwardDate.Text = objDs.Tables[0].Rows[0]["GI_Date"].ToString();
+                            //txtInwardNo.Text = objDs.Tables[0].Rows[0]["GI_No"].ToString();
+                                varSLID = Convert.ToInt32(objDs.Tables[0].Rows[0]["STRPR_Dest_SLID"].ToString());
                                 txtStockLocation.Text = objDs.Tables[0].Rows[0]["SL_EName"].ToString();
                                 cmbTransactionType.SelectedValue = 69;
                             }
@@ -3066,7 +3177,35 @@ namespace ROMS
                                     grdInward.Columns["clmreceivedqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdInward.Columns["clmtransferqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdInward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                    udfnShelflifeCheck();
+                                   string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["shelflifeper"]).Split(' ');
+                                    if (varShelflifeper[0] != "")
+                                    {
+                                        if (Convert.ToDecimal(varShelflifeper[0]) > 26 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                                        {
+                                            DataGridView dataGridView = grdInward;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                            cell.Style.BackColor = Color.Orange;
+                                            cell.Style.ForeColor = Color.Black;
+                                            txtORPercentageCheck.Enabled = true;
+                                            lblFivetyPercentage.Enabled = true;
+                                        }
+                                        else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                        {
+                                            DataGridView dataGridView = grdInward;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                            cell.Style.BackColor = Color.Red;
+                                            cell.Style.ForeColor = Color.White;
+                                            txtRDPercentageCheck.Enabled = true;
+                                            lbltwentyfiveper.Enabled = true;
+                                        }
+                                        else
+                                        {
+                                            DataGridView dataGridView = grdInward;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                            cell.Style.BackColor = Color.White;
+                                            cell.Style.ForeColor = Color.Black;
+                                        }
+                                    }
                                 }
                             }
                         }
