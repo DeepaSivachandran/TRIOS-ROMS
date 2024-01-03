@@ -128,7 +128,7 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtMrp = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -1246,16 +1246,16 @@
             this.txtMrp.TabIndex = 1111222;
             this.txtMrp.Visible = false;
             // 
-            // label18
+            // lblStatus
             // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(194)))), ((int)(((byte)(116)))));
-            this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(1223, 3);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(98, 20);
-            this.label18.TabIndex = 38;
-            this.label18.Text = "Linked with GRN";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(194)))), ((int)(((byte)(116)))));
+            this.lblStatus.ForeColor = System.Drawing.Color.Black;
+            this.lblStatus.Location = new System.Drawing.Point(1223, 3);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(98, 20);
+            this.lblStatus.TabIndex = 38;
+            this.lblStatus.Text = "Linked with GRN";
             // 
             // PUR_PurchaseReturns
             // 
@@ -1263,7 +1263,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.label18);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.pnldl);
             this.Controls.Add(this.tsPurchaseInvoiceList);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1355,7 +1355,7 @@
         private System.Windows.Forms.TextBox txtDAmount;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.ComboBox cmbReasonForClosing;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox13;

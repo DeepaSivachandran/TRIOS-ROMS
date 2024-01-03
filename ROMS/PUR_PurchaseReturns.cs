@@ -366,6 +366,10 @@ namespace ROMS
                 dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();
+                if(varReturnDCID==0)
+                {
+                    lblStatus.Text = "Pending";
+                }
                 if (btnSave.Text == "Save")
                 {
                     grpReason.Enabled = false;
@@ -381,6 +385,7 @@ namespace ROMS
                         cmbReasonForClosing.Enabled = false;
                         txtRemarks.ReadOnly = true;
                         btnSave.Enabled = false;
+                        lblStatus.Text = "Closed";
                     }
                     else
                     {
@@ -388,6 +393,7 @@ namespace ROMS
                         if (varStatusId == 16)
                         {
                             grpReason.Enabled = true;
+                            lblStatus.Text = "Linked with GRN";
                         }
                     }
                     grpReturnDCSupplier.Enabled = false;
@@ -468,7 +474,16 @@ namespace ROMS
                             grdReturnDC.Columns["Taxable Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdReturnDC.Columns["Product Name"].Width = 250;
+                            grdReturnDC.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdReturnDC.Columns["Product Name"].Width = 300;
+                            grdReturnDC.Columns["S.No."].Width = 50;
+                            grdReturnDC.Columns["MRP"].Width = 80;
+                            grdReturnDC.Columns["Qty"].Width = 70;
+                            grdReturnDC.Columns["Unit"].Width = 70;
+                            grdReturnDC.Columns["GST%"].Width = 70;
+                            grdReturnDC.Columns["GST Amt"].Width = 70;
+                            grdReturnDC.Columns["Approximate Rate"].Width = 120;
                             grdReturnDC.Columns["DMID"].Visible = false;
                             grdReturnDC.Columns["PRID"].Visible = false;
                             grdReturnDC.Columns["UTID"].Visible = false;
@@ -487,18 +502,6 @@ namespace ROMS
                             txtSubTotal.Text= Convert.ToString(objDs.Tables[1].Rows[0]["SubTotal"]);
                             txtTotalTax.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Total Tax"]);
                             txtApproxTotal.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Approximate Total"]);
-                            grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdReturnDC.Columns["Approximate Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdReturnDC.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdReturnDC.Columns["Taxable Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdReturnDC.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdReturnDC.Columns["Product Name"].Width = 250;
-                            grdReturnDC.Columns["DMID"].Visible = false;
-                            grdReturnDC.Columns["PRID"].Visible = false;
-                            grdReturnDC.Columns["UTID"].Visible = false;
                         }
                     }
                     else
@@ -574,7 +577,16 @@ namespace ROMS
                                     grdReturnDC.Columns["Taxable Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdReturnDC.Columns["Product Name"].Width = 250;
+                                    grdReturnDC.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    grdReturnDC.Columns["Product Name"].Width = 300;
+                                    grdReturnDC.Columns["S.No."].Width = 50;
+                                    grdReturnDC.Columns["MRP"].Width = 80;
+                                    grdReturnDC.Columns["Qty"].Width = 70;
+                                    grdReturnDC.Columns["Unit"].Width = 70;
+                                    grdReturnDC.Columns["GST%"].Width = 70;
+                                    grdReturnDC.Columns["GST Amt"].Width = 70;
+                                    grdReturnDC.Columns["Approximate Rate"].Width = 120;
                                     grdReturnDC.Columns["DMID"].Visible = false;
                                     grdReturnDC.Columns["PRID"].Visible = false;
                                     grdReturnDC.Columns["UTID"].Visible = false;

@@ -1363,7 +1363,15 @@ namespace ROMS
         {
             try
             {
-                if(txtProductName.Text!="" || txtProductName.Text=="")
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
+                if (txtProductName.Text!="" || txtProductName.Text=="")
                 {
                     udfnAddClear();
                     udfnTooltipHide();
