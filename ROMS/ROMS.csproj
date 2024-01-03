@@ -333,7 +333,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_LP_GRN_QRCode.rpt</DependentUpon>
       <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_Purchase_Order_List.cs">
       <AutoGen>True</AutoGen>
@@ -636,6 +635,7 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="REPORT_PUR_Purchaseorder_Summary.cs">
       <SubType>Form</SubType>
@@ -2081,6 +2081,7 @@
     <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Request.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_Purchaseorder_Summary.resx">
       <DependentUpon>REPORT_PUR_Purchaseorder_Summary.cs</DependentUpon>
