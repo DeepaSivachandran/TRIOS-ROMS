@@ -220,6 +220,7 @@ namespace ROMS
                 {
                     udfnDefcolumns();
                 }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.None; }
             }
             catch (Exception ex)
             {
@@ -254,6 +255,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Created On"].Width = 150;
                 DGV_SearchGrid.Columns["Order Type"].Width = 100;
                 DGV_SearchGrid.Columns["Any Purchase Returns"].Width = 150;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -946,21 +948,24 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int cl = grdGRNList.ColumnCount;
-                int cls = DGV_SearchGrid.ColumnCount;
-                int offSetValue = grdGRNList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-
-                if (totalWidth - grdGRNList.Width > grdGRNList.HorizontalScrollingOffset && grdGRNList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    //offSetValue = offSetValue ;
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int cl = grdGRNList.ColumnCount;
+                    int cls = DGV_SearchGrid.ColumnCount;
+                    int offSetValue = grdGRNList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+
+                    if (totalWidth - grdGRNList.Width > grdGRNList.HorizontalScrollingOffset && grdGRNList.HorizontalScrollingOffset > 0)
+                    {
+                        //offSetValue = offSetValue ;
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdGRNList);
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdGRNList);
             }
             catch (Exception ex)
             {
