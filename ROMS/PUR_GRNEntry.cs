@@ -1194,11 +1194,7 @@ namespace ROMS
                                         varpakage = varpakage + '|' + Convert.ToString(grdUnitList.Rows[i].Cells["clmQty"].Value) + '-' + Convert.ToString(grdUnitList.Rows[i].Cells["id"].Value);
                                     }
                                 } //objGrnP
-                                varGrnId = Convert.ToInt32(pbGRNId);
-
-                                var varImgMemoryStream = new MemoryStream(); 
-                                QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
-                                varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+                                varGrnId = Convert.ToInt32(pbGRNId); 
 
                                 TRN_GRN objTRNS_GRN = new TRN_GRN();
                                 objTRNS_GRN.ViewType = varviewtype;
@@ -1218,8 +1214,7 @@ namespace ROMS
                                 objTRNS_GRN.ParaPurchaseDC = varPurchaseDC;
                                 objTRNS_GRN.paraPAckage = varpakage;
                                 objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
-                                objTRNS_GRN.paraSkipped = varSkip;
-                                objTRNS_GRN.paraQrimg = (varobjBarCodeByte);
+                                objTRNS_GRN.paraSkipped = varSkip; 
                                 result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                 objspdservice.CloseConnection();
                                 string[] varvalue = result.Split('~');
@@ -1230,6 +1225,16 @@ namespace ROMS
                                     if (pbGRNId =="0")
                                     {
                                         GrnUpdatevalue = varvalue[2];
+                                        string varQrcode= varvalue[3];
+                                        var varImgMemoryStream = new MemoryStream();
+                                        QrcodeImg.Text = varQrcode;
+                                        QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                                        varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+                                        objTRNS_GRN.ViewType = 5;
+                                        objTRNS_GRN.ParaGRNID = Convert.ToInt32(GrnUpdatevalue);
+                                        objTRNS_GRN.paraQrimg = (varobjBarCodeByte);
+                                        result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                                        objspdservice.CloseConnection();
                                     }
                                     else
                                     {
