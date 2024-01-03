@@ -1067,14 +1067,21 @@ namespace ROMS
         {
             try
             {
-                if (cmbStockApplicable.SelectedIndex == 1)
+                if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
-                    rbActive.Checked = true;
                 }
                 else
                 {
-                    pnlStatus.Enabled = true;
+                    if (Convert.ToInt32(cmbStockApplicable.SelectedValue)== 11)
+                    {
+                        pnlStatus.Enabled = false;
+                        rbActive.Checked = true;
+                    }
+                    else
+                    {
+                        pnlStatus.Enabled = true;
+                    }
                 }
             }
             catch (Exception ex)
