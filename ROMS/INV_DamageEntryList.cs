@@ -989,6 +989,7 @@ namespace ROMS
                             //grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 120;
+                            grdDamageEntryList.Columns["Created On"].Width = 150;
                             grdDamageEntryList.Columns["Employees"].Width = 300;
                             grdDamageEntryList.Columns["clmPrint"].Width = 50;
                             //grdDamageEntryList.Columns["Supplier"].Width = 330;
