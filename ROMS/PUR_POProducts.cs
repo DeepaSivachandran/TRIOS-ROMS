@@ -130,6 +130,7 @@ namespace ROMS
                     txtPONo.Text = objDs.Tables[6].Rows[0]["PO_No"].ToString();
                     txtPODate.Text = objDs.Tables[6].Rows[0]["PO_Date"].ToString();
                     txtUserData.Text = objDs.Tables[6].Rows[0]["MakerDetails"].ToString();
+                    txtPOSts.Text = objDs.Tables[6].Rows[0]["PO Status"].ToString();
                 }
                 else
                 {

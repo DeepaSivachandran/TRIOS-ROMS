@@ -750,6 +750,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
+                else { DGV__SearchGrid.ScrollBars = ScrollBars.None; }
             }
             catch (Exception ex)
             {
@@ -774,7 +775,7 @@ namespace ROMS
                 DGV__SearchGrid.Columns["SRQID"].Visible = false;
                 DGV__SearchGrid.Columns["S.No."].Width = 50;
                 DGV__SearchGrid.Columns["Status"].Width = 80;
-                DGV__SearchGrid.Columns["Created By"].Width = 100;
+                DGV__SearchGrid.Columns["Created By"].Width = 100; DGV__SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -1051,39 +1052,42 @@ namespace ROMS
 
         private void DGV__SearchGrid_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdStockRequestList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdStockRequestList.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
+            if (lblNoRecordsFound.Visible == false)
             {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn && grdStockRequestList.SortOrder == SortOrder.Ascending)
+                DataGridViewColumn newColumn = grdStockRequestList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdStockRequestList.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
                 {
-                    direction = ListSortDirection.Descending;
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn && grdStockRequestList.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
                 }
                 else
                 {
-                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            grdStockRequestList.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
+                grdStockRequestList.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
 
-            DataGridViewColumn DGV = DGV__SearchGrid.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                DataGridViewColumn DGV = DGV__SearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-            DGV__SearchGrid.HorizontalScrollingOffset = grdStockRequestList.HorizontalScrollingOffset;
-            DGV__SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                DGV__SearchGrid.HorizontalScrollingOffset = grdStockRequestList.HorizontalScrollingOffset;
+                DGV__SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
         }
 
         private void DGV__SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -1121,16 +1125,19 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdStockRequestList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV__SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdStockRequestList.Width > grdStockRequestList.HorizontalScrollingOffset && grdStockRequestList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdStockRequestList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV__SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdStockRequestList.Width > grdStockRequestList.HorizontalScrollingOffset && grdStockRequestList.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV__SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV__SearchGrid.Invalidate();
                 }
-                DGV__SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV__SearchGrid.Invalidate();
             }
             catch (Exception ex)
             {
@@ -1209,17 +1216,20 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdStockRequestList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV__SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdStockRequestList.Width > grdStockRequestList.HorizontalScrollingOffset && grdStockRequestList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdStockRequestList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV__SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdStockRequestList.Width > grdStockRequestList.HorizontalScrollingOffset && grdStockRequestList.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV__SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV__SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV__SearchGrid, grdStockRequestList);
                 }
-                DGV__SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV__SearchGrid.Invalidate();
-                udfnscrollVisible(DGV__SearchGrid, grdStockRequestList);
             }
             catch (Exception ex)
             {
