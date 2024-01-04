@@ -183,6 +183,8 @@
             // pnlSubgroup
             // 
             this.pnlSubgroup.BackColor = System.Drawing.Color.White;
+            this.pnlSubgroup.Controls.Add(this.label2);
+            this.pnlSubgroup.Controls.Add(this.cmbBatchNoEntry);
             this.pnlSubgroup.Controls.Add(this.lvSaleRack);
             this.pnlSubgroup.Controls.Add(this.lvStockLocation);
             this.pnlSubgroup.Controls.Add(this.lvGroup);
@@ -396,7 +398,7 @@
             this.lblNoOfPrSubGroup.AutoSize = true;
             this.lblNoOfPrSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblNoOfPrSubGroup.ForeColor = System.Drawing.Color.Crimson;
-            this.lblNoOfPrSubGroup.Location = new System.Drawing.Point(1084, 46);
+            this.lblNoOfPrSubGroup.Location = new System.Drawing.Point(978, 46);
             this.lblNoOfPrSubGroup.Name = "lblNoOfPrSubGroup";
             this.lblNoOfPrSubGroup.Size = new System.Drawing.Size(17, 20);
             this.lblNoOfPrSubGroup.TabIndex = 958797;
@@ -407,7 +409,7 @@
             this.lblNoPrSubGroup.AutoSize = true;
             this.lblNoPrSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lblNoPrSubGroup.ForeColor = System.Drawing.Color.Black;
-            this.lblNoPrSubGroup.Location = new System.Drawing.Point(935, 46);
+            this.lblNoPrSubGroup.Location = new System.Drawing.Point(829, 46);
             this.lblNoPrSubGroup.Name = "lblNoPrSubGroup";
             this.lblNoPrSubGroup.Size = new System.Drawing.Size(150, 20);
             this.lblNoPrSubGroup.TabIndex = 958796;
@@ -420,8 +422,6 @@
             this.grbFilterBy.Controls.Add(this.lblGroupCode);
             this.grbFilterBy.Controls.Add(this.label3);
             this.grbFilterBy.Controls.Add(this.cmbStatus);
-            this.grbFilterBy.Controls.Add(this.label2);
-            this.grbFilterBy.Controls.Add(this.cmbBatchNoEntry);
             this.grbFilterBy.Controls.Add(this.label1);
             this.grbFilterBy.Controls.Add(this.txtSaleRack);
             this.grbFilterBy.Controls.Add(this.txtStockLocation);
@@ -476,7 +476,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(752, 18);
+            this.label3.Location = new System.Drawing.Point(646, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 20);
             this.label3.TabIndex = 958819;
@@ -486,7 +486,7 @@
             // 
             this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(752, 41);
+            this.cmbStatus.Location = new System.Drawing.Point(646, 41);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(106, 27);
             this.cmbStatus.TabIndex = 5;
@@ -500,20 +500,22 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(644, 18);
+            this.label2.Location = new System.Drawing.Point(1141, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 20);
             this.label2.TabIndex = 958817;
             this.label2.Text = "Batch No.";
+            this.label2.Visible = false;
             // 
             // cmbBatchNoEntry
             // 
             this.cmbBatchNoEntry.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchNoEntry.FormattingEnabled = true;
-            this.cmbBatchNoEntry.Location = new System.Drawing.Point(644, 41);
+            this.cmbBatchNoEntry.Location = new System.Drawing.Point(1141, 109);
             this.cmbBatchNoEntry.Name = "cmbBatchNoEntry";
             this.cmbBatchNoEntry.Size = new System.Drawing.Size(106, 27);
             this.cmbBatchNoEntry.TabIndex = 4;
+            this.cmbBatchNoEntry.Visible = false;
             this.cmbBatchNoEntry.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoEntry_SelectedIndexChanged);
             this.cmbBatchNoEntry.Enter += new System.EventHandler(this.CmbBatchNoEntry_Enter);
             this.cmbBatchNoEntry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchNoEntry_KeyDown);
@@ -623,7 +625,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(900, 40);
+            this.btnExport.Location = new System.Drawing.Point(794, 40);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(31, 29);
             this.btnExport.TabIndex = 7;
@@ -638,7 +640,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(863, 40);
+            this.btnView.Location = new System.Drawing.Point(757, 40);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(32, 29);
             this.btnView.TabIndex = 6;

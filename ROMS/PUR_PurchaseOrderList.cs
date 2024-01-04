@@ -938,6 +938,8 @@ namespace ROMS
                 Application.DoEvents();
                 //********** To display a data in a grid  ****************** 
                 grdPurchaseorderlist.DataSource = null;
+                DGV_SearchGrid.DataSource = null;
+                DGV_SearchGridPro.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from ;SP ***************
                 int varstatus = 0;
@@ -1009,6 +1011,14 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["DTURN"].Visible = false;
                             grdPurchaseorderlist.Columns["Currentsts"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_CurrentSTSID"].Visible = false;
+                            grdPurchaseorderlist.Columns["COMID"].Visible = false;
+                            grdPurchaseorderlist.Columns["COM_Name"].Visible = false;
+                            grdPurchaseorderlist.Columns["AddressValue"].Visible = false;
+                            grdPurchaseorderlist.Columns["CurrentDate"].Visible = false;
+                            grdPurchaseorderlist.Columns["CurrentTime"].Visible = false;
+                            grdPurchaseorderlist.Columns["FinanciyalYear"].Visible = false;
+                            grdPurchaseorderlist.Columns["LogoPath"].Visible = false;
+                            grdPurchaseorderlist.Columns["COMGSTIN"].Visible = false;
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1076,6 +1086,10 @@ namespace ROMS
                 {
                     udfnDefcolumns();
                 }
+                else
+                {
+                    DGV_SearchGrid.ScrollBars = ScrollBars.None;
+                }
 
             }
             catch (Exception ex)
@@ -1119,6 +1133,34 @@ namespace ROMS
                     DGV_SearchGrid.Columns["Issued DATES"].Visible = false;
                     DGV_SearchGrid.Columns["DTURN"].Visible = false;
                     DGV_SearchGrid.Columns["Currentsts"].Visible = false;
+                    DGV_SearchGrid.Columns["PO_CurrentSTSID"].Visible = false;
+                    DGV_SearchGrid.Columns["COMID"].Visible = false;
+                    DGV_SearchGrid.Columns["COM_Name"].Visible = false;
+                    DGV_SearchGrid.Columns["COMGSTIN"].Visible = false;
+                    DGV_SearchGrid.Columns["AddressValue"].Visible = false;
+                    DGV_SearchGrid.Columns["CurrentDate"].Visible = false;
+                    DGV_SearchGrid.Columns["CurrentTime"].Visible = false;
+                    DGV_SearchGrid.Columns["FinanciyalYear"].Visible = false;
+                    DGV_SearchGrid.Columns["LogoPath"].Visible = false;
+                    DGV_SearchGrid.Columns["S.No."].Width = 50;
+                    DGV_SearchGrid.Columns["Concern"].Width = 50;
+                    DGV_SearchGrid.Columns["PO.No"].Width = 100;
+                    DGV_SearchGrid.Columns["PO Date"].Width = 100;
+                    DGV_SearchGrid.Columns["Supplier"].Width = 300;
+                    DGV_SearchGrid.Columns["City"].Width = 100;
+                    DGV_SearchGrid.Columns["T.Pro"].Width = 50;
+                    DGV_SearchGrid.Columns["T.Units"].Width = 50;
+                    DGV_SearchGrid.Columns["TAT"].Width = 70;
+                    DGV_SearchGrid.Columns["DTAT"].Width = 70;
+                    DGV_SearchGrid.Columns["Created By"].Width = 100;
+                    DGV_SearchGrid.Columns["Created On"].Width = 150;
+                    DGV_SearchGrid.Columns["Mode of Issue"].Width = 100;
+                    DGV_SearchGrid.Columns["Issue Date"].Width = 100;
+                    DGV_SearchGrid.Columns["Issued By"].Width = 100;
+                    DGV_SearchGrid.Columns["Status"].Width = 100;
+                    DGV_SearchGrid.Columns["clmView"].Width = 50;
+                    DGV_SearchGrid.Columns["clmPrint"].Width = 50;
+                    DGV_SearchGrid.ScrollBars = ScrollBars.Both;
                 }
                 else
                 {
@@ -1130,6 +1172,25 @@ namespace ROMS
                     DGV_SearchGridPro.Columns["status1"].Visible = false;
                     DGV_SearchGridPro.Columns["SP_PhoneNo"].Visible = false;
                     DGV_SearchGridPro.Columns["PO_LastTransNo"].Visible = false;
+                    DGV_SearchGridPro.Columns["COMID"].Visible = false;
+                    DGV_SearchGridPro.Columns["COM_Name"].Visible = false;
+                    DGV_SearchGridPro.Columns["AddressValue"].Visible = false;
+                    DGV_SearchGridPro.Columns["CurrentDate"].Visible = false;
+                    DGV_SearchGridPro.Columns["CurrentTime"].Visible = false;
+                    DGV_SearchGridPro.Columns["FinanciyalYear"].Visible = false;
+                    DGV_SearchGridPro.Columns["LogoPath"].Visible = false;
+                    DGV_SearchGridPro.Columns["COMGSTIN"].Visible = false;
+                    DGV_SearchGridPro.Columns["DAyname"].Visible = false;
+                    DGV_SearchGridPro.Columns["GSTIN"].Visible = false;
+
+                    DGV_SearchGridPro.Columns["S.No."].Width = 50;
+                    DGV_SearchGridPro.Columns["P.I Code"].Width = 100;
+                    DGV_SearchGridPro.Columns["Product Name"].Width = 250;
+                    DGV_SearchGridPro.Columns["Supplier"].Width = 250; 
+                    DGV_SearchGridPro.Columns["Unit"].Width = 80;
+                    DGV_SearchGridPro.Columns["PO no."].Width = 80;
+                    DGV_SearchGridPro.Columns["Quantity"].Width = 80;
+                    DGV_SearchGridPro.ScrollBars = ScrollBars.Both;
                 }
             }
             catch (Exception ex)
@@ -1530,6 +1591,7 @@ namespace ROMS
                 Application.DoEvents();
                 //********** To display a data in a grid  ****************** 
                 grdProDetails.DataSource = null;
+                DGV_SearchGridPro.DataSource = null;
                 //lblGroupId.Text = "0"; lblSubGroupId.Text = "0";
                 //txtProductGroup.Text = "";txtProductSubGroup.Text = "";
                 int varsupplier = 0, varpono = 0,varFilter=0;
@@ -1600,6 +1662,15 @@ namespace ROMS
                             grdProDetails.Columns["status1"].Visible = false;
                             grdProDetails.Columns["SP_PhoneNo"].Visible = false; 
                             grdProDetails.Columns["PO_LastTransNo"].Visible = false; 
+                            grdProDetails.Columns["COMID"].Visible = false; 
+                            grdProDetails.Columns["COM_Name"].Visible = false; 
+                            grdProDetails.Columns["AddressValue"].Visible = false; 
+                            grdProDetails.Columns["CurrentDate"].Visible = false; 
+                            grdProDetails.Columns["CurrentTime"].Visible = false; 
+                            grdProDetails.Columns["FinanciyalYear"].Visible = false; 
+                            grdProDetails.Columns["LogoPath"].Visible = false;  
+                            grdProDetails.Columns["COMGSTIN"].Visible = false;  
+                            grdProDetails.Columns["DAyname"].Visible = false;  
                             grdProDetails.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
                             {
@@ -1634,8 +1705,15 @@ namespace ROMS
                     Deftablepro = objDs.Tables[0];
                 }
 
-                udfnSearchGridHeadpro();
-                udfnDefcolumns();
+                udfnSearchGridHeadpro(); 
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    udfnDefcolumns();
+                }
+                else
+                {
+                    DGV_SearchGridPro.ScrollBars = ScrollBars.None;
+                }
             }
             catch (Exception ex)
             {
@@ -3132,6 +3210,7 @@ namespace ROMS
                 }
                 DGV_SearchGridPro.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGridPro.Invalidate();
+                udfnscrollVisiblepro(DGV_SearchGridPro, grdProDetails);
             }
             catch (Exception ex)
             {
@@ -3140,6 +3219,37 @@ namespace ROMS
             }
         }
 
+        public void udfnscrollVisiblepro(DataGridView DGV, DataGridView grdGroupList)
+        {
+            try
+            {
+                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+
+                    int I = DGV_SearchGridPro.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGridPro.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGridPro.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbProductStatus_KeyDown(object sender, KeyEventArgs e)
         {
             try

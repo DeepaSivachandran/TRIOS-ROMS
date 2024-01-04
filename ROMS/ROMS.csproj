@@ -328,10 +328,10 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\RPT_LP_QRGRN_QRCode.cs">
+    <Compile Include="Reports\RPT_LP_GRN_QRCode.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_LP_QRGRN_QRCode.rpt</DependentUpon>
+      <DependentUpon>RPT_LP_GRN_QRCode.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Purchase_Order_List.cs">
@@ -352,8 +352,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_PO.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_Detail_Report.cs">
       <AutoGen>True</AutoGen>
@@ -1381,6 +1381,12 @@
     <Compile Include="PUR_SupplierScheduleList.designer.cs">
       <DependentUpon>PUR_SupplierScheduleList.cs</DependentUpon>
     </Compile>
+    <Compile Include="RPT_PUR_PO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_PUR_PO.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ServerSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1918,9 +1924,10 @@
       <LastGenOutput>RPT_INV_Damage_Supplier.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_LP_QRGRN_QRCode.rpt">
+    <EmbeddedResource Include="Reports\RPT_LP_GRN_QRCode.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_LP_QRGRN_QRCode.cs</LastGenOutput>
+      <LastGenOutput>RPT_LP_GRN_QRCode.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Purchase_Order_List.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2144,6 +2151,10 @@
     </Content>
     <EmbeddedResource Include="REPORT_Stock.resx">
       <DependentUpon>REPORT_Stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RPT_PUR_PO.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_PO.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerSettings.resx">
       <DependentUpon>ServerSettings.cs</DependentUpon>

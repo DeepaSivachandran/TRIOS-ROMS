@@ -392,7 +392,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBankname.Focus();
+                    if (txtBankname.Enabled == true)
+                    {
+                        txtBankname.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)

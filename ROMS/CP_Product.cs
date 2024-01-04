@@ -206,7 +206,7 @@ namespace ROMS
                     //        //  blnErrorFlag = true;
                     //    }
 
-                    if (Convert.ToString(cmbProductCategory.SelectedValue) == "" || Convert.ToString(cmbProductCategory.SelectedValue) == "-1")
+                if (Convert.ToString(cmbProductCategory.SelectedValue) == "" || Convert.ToString(cmbProductCategory.SelectedValue) == "-1")
                 {
                     errItems.SetError(cmbProductCategory, "Please select product category");
                     cmbProductCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1003,7 +1003,8 @@ namespace ROMS
                 lblSaleLocationCode.Text = "0";
                 txtSaleLocation.Text = "";  
                 cmbBatchNoEntry.SelectedValue = -1;
-                cmbBatchNoGeneration.SelectedValue = -1; 
+                cmbBatchNoGeneration.SelectedValue = -1;
+                cmbNetQty.SelectedValue = 6; 
                 cmbPeriod.SelectedValue = -1;
                 cbExpiry.Checked = false;
                 cbRMFromProduction.Checked = false; 
@@ -1031,6 +1032,7 @@ namespace ROMS
                 txtRPICode.Text = "";
                 cmbGst.SelectedValue=-1;
                 txtPICode.Focus();
+                cbExpiry.Checked = true;
             }
             catch (Exception ex)
             {
@@ -2243,7 +2245,8 @@ namespace ROMS
                 {
                     cmbPeriod.Visible = false;
                     txtSelfLife.Visible = false;
-
+                    txtSelfLife.Text = "";
+                    cmbPeriod.SelectedValue = -1;
                 }
                 
             }
@@ -2252,9 +2255,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-          
         } 
-       
         private void CmbBatchNoGeneration_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -4302,7 +4303,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtPurRack.Focus();
+                    if (txtPurRack.Enabled == true)
+                    {
+                        txtPurRack.Focus();
+                    }
+                    else
+                    {
+                        txtSaleLocation.Focus();
+                    }
                 }
             }
             catch (Exception ex)

@@ -18,6 +18,7 @@ namespace ROMS
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public PUR_SupplierScheduleList()
         {
@@ -184,6 +185,8 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 Varflag = 0;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
@@ -306,6 +309,15 @@ namespace ROMS
                         lblNoRecordsFound.BringToFront();
                     }
                     udfnSearchGridHead();
+                    if (lblNoRecordsFound.Visible == true)
+                    {
+                        dtDefaultGrid = objDs.Tables[0];
+                        udfnDefaultSearchGrid();
+                    }
+                    else
+                    {
+                        DGV_SearchGrid.ScrollBars = ScrollBars.None;
+                    }
                 }
                 else
                 {
@@ -328,6 +340,36 @@ namespace ROMS
                 picLoader.SendToBack(); 
                 btnView.Enabled = true;
                 btnView.Focus();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 40;
+                DGV_SearchGrid.Columns["Supplier"].Width = 300;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 120;
+                DGV_SearchGrid.Columns["City"].Width = 130;
+                DGV_SearchGrid.Columns["Schedule Status"].Width = 120;
+                DGV_SearchGrid.Columns["Order Type"].Width = 90;
+                DGV_SearchGrid.Columns["Ret. Policy"].Width = 90;
+                DGV_SearchGrid.Columns["Days"].Width = 90;
+                DGV_SearchGrid.Columns["Pro. Mapping"].Width = 90;
+                DGV_SearchGrid.Columns["Ret. Policy"].Width = 80;
+                DGV_SearchGrid.Columns["Scheduleid"].Visible = false;
+                DGV_SearchGrid.Columns["SupplierID"].Visible = false;
+                DGV_SearchGrid.Columns["ORDERTYPE"].Visible = false;
+                DGV_SearchGrid.Columns["MappedStatus"].Visible = false;
+                DGV_SearchGrid.Columns["STATUS CODE"].Visible = false;
+                DGV_SearchGrid.Columns["SP_ReturnApplicable"].Visible = false;
+                DGV_SearchGrid.Columns["SPSC_OrderType"].Visible = false;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void TxtSupplier_Leave(object sender, EventArgs e)
@@ -964,40 +1006,43 @@ namespace ROMS
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = dgvSupplierScheduleList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = dgvSupplierScheduleList.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
+            if (lblNoRecordsFound.Visible == false)
             {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    dgvSupplierScheduleList.SortOrder == SortOrder.Ascending)
+                DataGridViewColumn newColumn = dgvSupplierScheduleList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = dgvSupplierScheduleList.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
                 {
-                    direction = ListSortDirection.Descending;
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn &&
+                        dgvSupplierScheduleList.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
                 }
                 else
                 {
-                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            dgvSupplierScheduleList.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
+                dgvSupplierScheduleList.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
 
-            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-            DGV_SearchGrid.HorizontalScrollingOffset = dgvSupplierScheduleList.HorizontalScrollingOffset;
-            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                DGV_SearchGrid.HorizontalScrollingOffset = dgvSupplierScheduleList.HorizontalScrollingOffset;
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
         }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -1388,12 +1433,11 @@ namespace ROMS
                 Application.DoEvents();
                 if (dgvSupplierScheduleList.SelectedRows.Count > 0)
                 {
-
                     MainForm.objCP_Supplier = new CP_Supplier();
                     MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                     MainForm.objCP_Supplier.btnSave.Text = "Update";
                     MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(dgvSupplierScheduleList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
-                    MainForm.objCP_Supplier.varMasterid = 1; 
+                    MainForm.objCP_Supplier.PoScheduleFlag = 1; 
                     MainForm.objCP_Supplier.Show();
                 }
             }
@@ -1739,16 +1783,21 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = dgvSupplierScheduleList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - dgvSupplierScheduleList.Width > dgvSupplierScheduleList.HorizontalScrollingOffset && dgvSupplierScheduleList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+
+                    int totalWidth = 0;
+                    int offSetValue = dgvSupplierScheduleList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - dgvSupplierScheduleList.Width > dgvSupplierScheduleList.HorizontalScrollingOffset && dgvSupplierScheduleList.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
             }
             catch (Exception ex)
             {
@@ -1791,17 +1840,20 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = dgvSupplierScheduleList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - dgvSupplierScheduleList.Width > dgvSupplierScheduleList.HorizontalScrollingOffset && dgvSupplierScheduleList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible = false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = dgvSupplierScheduleList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - dgvSupplierScheduleList.Width > dgvSupplierScheduleList.HorizontalScrollingOffset && dgvSupplierScheduleList.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, dgvSupplierScheduleList);
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, dgvSupplierScheduleList);
             }
             catch (Exception ex)
             {

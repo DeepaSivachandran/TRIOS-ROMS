@@ -1424,7 +1424,8 @@ namespace ROMS
             try
             {
                 for (int i = 0; i < grdRackList.RowCount; i++) {
-                    if (Convert.ToBoolean(grdRackList.Rows[i].Cells[0].EditedFormattedValue) == true) { dtRackList.Rows[i][0] = true; }
+                    if (Convert.ToBoolean(grdRackList.SelectedRows[i].Cells[0].Value) == true)
+                    { dtRackList.Rows[i][0] = true; }
                     else { dtRackList.Rows[i][0] = false; }
                 }
                 //grdRackList.DataSource = null;
@@ -1478,19 +1479,31 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Rack = new CP_Rack();
-                MainForm.objCP_Rack.varFormFlag = 1;
-                MainForm.objCP_Rack.cmbConcern.Enabled = false;
-                MainForm.objCP_Rack.txtLocation.Text = txtLocation.Text;
-                MainForm.objCP_Rack.txtLocation.Enabled = false;
-                MainForm.objCP_Rack.ShowDialog();
-                txtLocation.Text = varStockLocationName;
-                lblLocation.Text = Convert.ToString(varLocationCode);
-                txtRack.Text = varRackName;
-                lblRack.Text = Convert.ToString(varRackCode);
-                //  lvRack.Visible = false;
-                udfnLoadRackList();
-                btnSave.Focus();
+                if (Convert.ToString(txtLocation.Text.Trim()) == "")
+                {
+                    lblLocation.Text = "0";
+                    epSubGroup.SetError(txtLocation, "Please select stock location");
+                    txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                }
+                else
+                {
+                    epSubGroup.Clear();
+                    txtLocation.BackColor = Color.White;
+
+                    MainForm.objCP_Rack = new CP_Rack();
+                    MainForm.objCP_Rack.varFormFlag = 1;
+                    MainForm.objCP_Rack.cmbConcern.Enabled = false;
+                    MainForm.objCP_Rack.txtLocation.Text = txtLocation.Text;
+                    MainForm.objCP_Rack.txtLocation.Enabled = false;
+                    MainForm.objCP_Rack.ShowDialog();
+                    txtLocation.Text = varStockLocationName;
+                    lblLocation.Text = Convert.ToString(varLocationCode);
+                    txtRack.Text = varRackName;
+                    lblRack.Text = Convert.ToString(varRackCode);
+                    //  lvRack.Visible = false;
+                    udfnLoadRackList();
+                    btnSave.Focus();
+                }
             }
             catch (Exception ex)
             {

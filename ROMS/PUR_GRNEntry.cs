@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +18,14 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
+        byte[] varobjBarCodeByte;
         private ToolTip tpInvNo = new ToolTip();
         private ToolTip tpordertype = new ToolTip();
         private ToolTip tpinvamt = new ToolTip();
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
-        public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0";
+        public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", GrnUpdatevalue="0";
         public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0;
         public PUR_GRNEntry()
         {
@@ -1192,7 +1194,8 @@ namespace ROMS
                                         varpakage = varpakage + '|' + Convert.ToString(grdUnitList.Rows[i].Cells["clmQty"].Value) + '-' + Convert.ToString(grdUnitList.Rows[i].Cells["id"].Value);
                                     }
                                 } //objGrnP
-                                varGrnId = Convert.ToInt32(pbGRNId);
+                                varGrnId = Convert.ToInt32(pbGRNId); 
+
                                 TRN_GRN objTRNS_GRN = new TRN_GRN();
                                 objTRNS_GRN.ViewType = varviewtype;
                                 objTRNS_GRN.ParaGRNID = varGrnId;
@@ -1211,17 +1214,68 @@ namespace ROMS
                                 objTRNS_GRN.ParaPurchaseDC = varPurchaseDC;
                                 objTRNS_GRN.paraPAckage = varpakage;
                                 objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
-                                objTRNS_GRN.paraSkipped = varSkip;
+                                objTRNS_GRN.paraSkipped = varSkip; 
                                 result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                 objspdservice.CloseConnection();
                                 string[] varvalue = result.Split('~');
                                 if (varvalue[0] == "3")
                                 {
                                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    if (pbGRNId =="0")
+                                    {
+                                        GrnUpdatevalue = varvalue[2];
+                                        string varQrcode= varvalue[3];
+                                        var varImgMemoryStream = new MemoryStream();
+                                        QrcodeImg.Text = varQrcode;
+                                        QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                                        varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+                                        objTRNS_GRN.ViewType = 5;
+                                        objTRNS_GRN.ParaGRNID = Convert.ToInt32(GrnUpdatevalue);
+                                        objTRNS_GRN.paraQrimg = (varobjBarCodeByte);
+                                        result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                                        objspdservice.CloseConnection();
+                                    }
+                                    else
+                                    {
+                                        GrnUpdatevalue = Convert.ToString(pbGRNId);
+                                    }
                                     this.ActiveControl = txtSupplier;
                                     MainForm.objPUR_GRNDetailsList.udfnListLoad();
-                                    varCloseFlag = 1;
-                                    udfnclose();
+                                    varCloseFlag = 1; 
+                                    string varMessage = objDServ.udfnGetMessages(87);
+                                    objDServ.CloseConnection();
+                                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (result1 == DialogResult.Yes)
+                                    {
+                                        try
+                                        {
+                                            string varHeader = "";
+                                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_LP_GRN_QRCode.rpt"); 
+                                            objBillreport.SetParameterValue("paraGRNID", GrnUpdatevalue); 
+                                            objValidation.CrySqlConnection(objBillreport);
+
+                                            MainForm.objReportLoad = new ReportLoad();
+                                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                            MainForm.objReportLoad.Text = varHeader;
+                                            MainForm.objReportLoad.ShowDialog();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            objError = new DataError();
+                                            objError.WriteFile(ex);
+                                        }
+                                        finally
+                                        {
+                                        }
+                                        udfnclose();
+                                    }
+                                    else
+                                    {
+                                        udfnclose();
+                                    }
                                 }
                                 else
                                 {

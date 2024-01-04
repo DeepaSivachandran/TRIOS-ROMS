@@ -35,7 +35,7 @@ namespace ROMS
             try
             {
 
-                udfnEdit();
+                udfnEdit(0);
             }
             catch (Exception ex)
             {
@@ -629,7 +629,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -690,7 +690,25 @@ namespace ROMS
             try
             {
                 udfnConcern();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (12) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 cmbConcern.SelectedValue = 1;
+                objDataBind = null;
+                cmbStatus.SelectedValue = 0;
+                //DataSet objDS = new DataSet();
+                //SPDataService objspservice = new SPDataService();
+                //objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 4);
+                //if (objDS.Tables[0].Rows.Count > 0)
+                //{
+                //    DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    dpToDate.MinDate = varDate;
+                //    dpFromDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
+                //}
+                //objspservice.CloseConnection();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                this.ActiveControl = cmbConcern;
                 udfnList();
             }
             catch (Exception ex)
@@ -867,6 +885,7 @@ namespace ROMS
                 objTRNG_GoodsInward.paraToDate = dpToDate.Text;
                 objTRNG_GoodsInward.paraSLID = Convert.ToInt32(varStockLocationId);
                 objTRNG_GoodsInward.paraGIID = Convert.ToInt32(varGIID);
+                objTRNG_GoodsInward.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNG_GoodsInward.paraPRID = Convert.ToInt32(varPRID);
                 objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnInwardList(objTRNG_GoodsInward);
@@ -889,6 +908,8 @@ namespace ROMS
                             grdInwardList.Columns["Transaction Type"].Width = 120;
                             grdInwardList.Columns["GIID"].Visible = false;
                             grdInwardList.Columns["Total Products"].Width = 120;
+                            grdInwardList.Columns["STSID"].Visible = false;
+                            grdInwardList.Columns["Status"].Width = 120;
                             grdInwardList.Columns["Created By"].Visible = false;
                             grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdInwardList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -913,7 +934,7 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
-                udfnSearchGridHead();
+                   udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -1320,13 +1341,149 @@ namespace ROMS
             }
         }
 
+        private void GrdInwardList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdInwardList.ClearSelection();
+                for (int i = 0; i < grdInwardList.Rows.Count; i++)
+                {
+                    if (Convert.ToInt32(grdInwardList.Rows[i].Cells["STSID"].Value) == 41)
+                    {
+                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToInt32(grdInwardList.Rows[i].Cells["STSID"].Value) == 42)
+                    {
+                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdInwardList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    udfnEdit();
+                    udfnEdit(0);
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
@@ -1340,20 +1497,26 @@ namespace ROMS
             }
         }
 
-        private void udfnEdit()
+        private void udfnEdit(int varEditflag)
         {
             try
             {
-                if (grdInwardList.SelectedRows.Count > 0)
+                if (varEditflag == 0)
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_Inward = new INV_Inward();
-                    MainForm.objINV_Inward.MdiParent = this.ParentForm;
-                    MainForm.objINV_Inward.btnSave.Text = "Update";
-                    MainForm.objINV_Inward.varGIId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value);
-                    MainForm.objINV_Inward.Show();
+                    if (grdInwardList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_Inward = new INV_Inward();
+                        MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                        MainForm.objINV_Inward.btnSave.Text = "Save as Draft";
+                        MainForm.objINV_Inward.varEditflag = 0;
+                        MainForm.objINV_Inward.varUpdateflag = 0;
+                        MainForm.objINV_Inward.varGIId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value);
+                        MainForm.objINV_Inward.varSTSID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STSID"].Value);
+                        MainForm.objINV_Inward.Show();
+                    }
                 }
             }
             catch (Exception ex)
