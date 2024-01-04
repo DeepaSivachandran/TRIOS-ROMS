@@ -1654,7 +1654,8 @@ namespace ROMS
             try
             {
                 pbDateflag = 0;
-                udfnAddProductsgrid();
+                udfnAddProductsgrid(); 
+                txtTotalpro.Text = Convert.ToString(grdGrnlist.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -2171,7 +2172,8 @@ namespace ROMS
                                 for (int i = 0; i < grdGrnlist.RowCount; i++)
                                 {
                                     grdGrnlist.Rows[i].Cells["clmsno"].Value = i + 1;
-                                }
+                                } 
+                                txtTotalpro.Text = Convert.ToString(grdGrnlist.Rows.Count);
                             }
                             break;
                     }
@@ -3383,14 +3385,15 @@ namespace ROMS
                                     , Convert.ToString(objDs.Tables[3].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[3].Rows[i]["newproflag"])
                                     );
                                 }
+                                txtTotalpro.Text = Convert.ToString(grdGrnlist.Rows.Count);
                                 DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                 GrdGrnlist_DataBindingComplete(grdGrnlist, args2);
                             }
 
-                            if (objDs.Tables[4].Rows.Count != 0)
-                            {
-                                txtTotalpro.Text = Convert.ToString(objDs.Tables[4].Rows[0]["Productcount"]);
-                            }
+                            //if (objDs.Tables[4].Rows.Count != 0)
+                            //{
+                                
+                            //}
                             if (objDs.Tables[5].Rows.Count != 0)
                             {
                                 if (Convert.ToString(objDs.Tables[5].Rows[0]["VERIFIED1"]) != "")
