@@ -941,15 +941,24 @@ namespace ROMS
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (DGV_SearchGrid.IsCurrentCellDirty)
+            try
             {
-                // Commit the changes immediately
-                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                txtSearchbyLocationName.Text = "";
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdGodownList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGodownList);
+                objDser.CloseConnection();
+                grdGodownList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
             }
-            DataService objDser = new DataService();
-            grdGodownList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGodownList);
-            objDser.CloseConnection();
-            grdGodownList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
@@ -1089,6 +1098,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void DGV_SearchGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

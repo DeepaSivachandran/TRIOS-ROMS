@@ -7625,6 +7625,7 @@ namespace ROMS
         {
             try
             {
+                txtSearchByProduct1.Text = "";
                 if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
@@ -7764,6 +7765,7 @@ namespace ROMS
         {
             try
             {
+                txtmappingproductsearch2.Text = "";
                 if (DGV_SearchGrid1.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
