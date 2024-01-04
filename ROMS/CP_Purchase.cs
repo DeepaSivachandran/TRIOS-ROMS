@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace ROMS
 {
     public partial class CP_Purchase : Form
     {
+        DateTime varmaxdate;
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
@@ -162,6 +164,7 @@ namespace ROMS
         {
             try
             {
+                udfnDateset();
                 cmbType.Items.Insert(0, "Against GRN");
                 cmbType.Items.Insert(1, "Against PO");
                 cmbType.Items.Insert(2, "Direct");
@@ -171,6 +174,30 @@ namespace ROMS
                 dpInvoiceDate.Enabled = true;
                 // this.tbDetails.DrawMode = TabDrawMode.OwnerDrawFixed;
                 //  this.tbDetails.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TbDetails_DrawItem);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDateset()
+        { 
+            try
+            {
+                DataSet objd = new DataSet();
+                SPDataService objDServ = new SPDataService();
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+                objDServ.CloseConnection();
+                if (objd.Tables[1].Rows.Count != 0)
+                {
+                    varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                } 
+                DateTime varmindate = MainForm.pbFYStartDate;
+                dpInvoiceDate.MinDate = varmindate;
+                dpVoucherDate.MinDate = varmindate;
+                dpInvoiceDate.MaxDate = varmaxdate;
+                dpVoucherDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
             {

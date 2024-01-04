@@ -1030,7 +1030,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
-                else { DGV_SearchGrid.ScrollBars = ScrollBars.None; }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -1187,7 +1187,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultProSearchGrid();
                 }
-                else { DGV_ProSearchGrid.ScrollBars = ScrollBars.None; }
+                else { DGV_ProSearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -1324,7 +1324,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSupSearchGrid();
                 }
-                else { DGV_SupSearchGrid.ScrollBars = ScrollBars.None; }
+                else { DGV_SupSearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {

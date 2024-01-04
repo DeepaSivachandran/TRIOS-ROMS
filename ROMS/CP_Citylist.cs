@@ -198,7 +198,7 @@ namespace ROMS
                 }
                 else
                 {
-                    DGV_SearchGrid.ScrollBars = ScrollBars.None;
+                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
                 }
             }
             catch (Exception ex)

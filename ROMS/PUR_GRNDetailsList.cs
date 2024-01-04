@@ -220,7 +220,7 @@ namespace ROMS
                 {
                     udfnDefcolumns();
                 }
-                else { DGV_SearchGrid.ScrollBars = ScrollBars.None; }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -255,7 +255,28 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Created On"].Width = 150;
                 DGV_SearchGrid.Columns["Order Type"].Width = 100;
                 DGV_SearchGrid.Columns["Any Purchase Returns"].Width = 150;
-                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both; 
+                DGV_SearchGrid.Columns["ClmEdit"].Width = 50;
+                DGV_SearchGrid.Columns["clmPrint"].Visible = false;
+                DGV_SearchGrid.Columns["clmPrint"].Width = 50; 
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Company"].Width = 80;
+                DGV_SearchGrid.Columns["GRN No."].Width = 100;
+                DGV_SearchGrid.Columns["GRN Date"].Width = 100;
+                DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
+                DGV_SearchGrid.Columns["City"].Width = 100;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 120;
+                DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
+                DGV_SearchGrid.Columns["Invoice No."].Width = 100;
+                DGV_SearchGrid.Columns["Invoice Amount"].Width = 120;
+                DGV_SearchGrid.Columns["Created By"].Width = 100;
+                DGV_SearchGrid.Columns["Created On"].Width = 150;
+                DGV_SearchGrid.Columns["Order Type"].Width = 100;
+                DGV_SearchGrid.Columns["Any Purchase Returns"].Width = 150;
+                DGV_SearchGrid.Columns["GRNID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_SPID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -907,41 +928,43 @@ namespace ROMS
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int i = e.ColumnIndex + 2;
-            if (e.ColumnIndex == 0)
-            {
-                i = e.ColumnIndex;
-            }
-            DataGridViewColumn newColumn = grdGRNList.Columns[i];
-            DataGridViewColumn oldColumn = grdGRNList.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
-            {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    grdGRNList.SortOrder == SortOrder.Ascending)
+            if (lblNoRecordsFound.Visible ==false ) {
+                int i = e.ColumnIndex + 2;
+                if (e.ColumnIndex == 0)
                 {
-                    direction = ListSortDirection.Descending;
+                    i = e.ColumnIndex;
+                }
+                DataGridViewColumn newColumn = grdGRNList.Columns[i];
+                DataGridViewColumn oldColumn = grdGRNList.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
+                {
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn &&
+                        grdGRNList.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
                 }
                 else
                 {
-                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
+                grdGRNList.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdGRNList.HorizontalScrollingOffset;
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            grdGRNList.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
-            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-            DGV_SearchGrid.HorizontalScrollingOffset = grdGRNList.HorizontalScrollingOffset;
-            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
