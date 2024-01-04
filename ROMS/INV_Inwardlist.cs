@@ -1158,6 +1158,10 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
+                            else if(col.Name == "Created On")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
                             else
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
