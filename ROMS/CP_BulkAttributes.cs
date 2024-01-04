@@ -222,6 +222,7 @@ namespace ROMS
                 int varUpp = 0, varShelfLifeValue = 0,varShelfLifeTypeID=0;
                 decimal varNetQuantity = 0, varGrossWeight = 0; int varUnitQtyId = 0;
                 int varPR_PRCTID = 0, PR_RMForProductionID = 0, PR_BatchNoID = 0, PR_BatchNoGenerationID = 0;
+                decimal varCheckMinStock = 0, varCheckMaxStock = 0;
                 SPDataService objspdservice = new SPDataService();
                 DataTable objBulkUpdate = new DataTable();
                 objBulkUpdate.TableName = "[MR_Product_BulkUpdate]";
@@ -533,7 +534,8 @@ namespace ROMS
                     varUpdateViewType = 8; varViewType = 6; varOriginator = "Product Bulk Update-Stock";
                     for (int i = 0; i < grdStock.Rows.Count; i++)
                     {
-                        varMinStock = 0; varMaxStock = 0; varReOrderQty = 0;
+                        varMinStock = 0; varMaxStock = 0; varReOrderQty = 0; varErrorflag = 0;
+                        varCheckMaxStock = 0; varCheckMinStock = 0;
                         if (Convert.ToString(grdStock.Rows[i].Cells["Min Stock-Current"].Value) == "")
                         { varMinStock = 0; }
                         else { varMinStock = Convert.ToDecimal(grdStock.Rows[i].Cells["Min Stock-Current"].Value); }
@@ -543,6 +545,19 @@ namespace ROMS
                         if (Convert.ToString(grdStock.Rows[i].Cells["Reorder Qty-Current"].Value) == "")
                         { varReOrderQty = 0; }
                         else { varReOrderQty = Convert.ToDecimal(grdStock.Rows[i].Cells["Reorder Qty-Current"].Value); }
+
+                        if (Convert.ToString(grdStock.Rows[i].Cells["Min Stock-New"].Value) != "")
+                        { varCheckMinStock = Convert.ToDecimal(grdStock.Rows[i].Cells["Min Stock-New"].Value); }
+
+                        if(Convert.ToString(grdStock.Rows[i].Cells["Max Stock-New"].Value) != "")
+                        { varCheckMaxStock = Convert.ToDecimal(grdStock.Rows[i].Cells["Max Stock-New"].Value); }
+
+                        if (varCheckMinStock < varCheckMaxStock)
+                        {
+                            varErrorflag = 1;
+                        }
+
+                        
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdStock.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
@@ -745,6 +760,11 @@ namespace ROMS
                             grdLoction.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                             Varupdateflag = 1;
                         }
+                        else if (grdStock.Visible == true)
+                        {
+                            grdStock.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                            Varupdateflag = 1;
+                        }
                     }
                     else
                     {
@@ -827,6 +847,17 @@ namespace ROMS
                             grdLoction.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
                             grdLoction.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
                             grdLoction.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
+                        }
+                        else if(grdStock.Visible==true)
+                        {
+                            grdStock.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                            grdStock.Columns["Min Stock-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            grdStock.Columns["Max Stock-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            grdStock.Columns["Reorder Qty-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            grdStock.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
+                            grdStock.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
+                            grdStock.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
+                            grdStock.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
                         }
                     }
                 }
@@ -2896,7 +2927,7 @@ namespace ROMS
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
 
-            objds = objdservice.GetDataset("SELECT  UTID,UT_Symbol,* from MR_Unit WHERE UTID NOT IN (-1,0)");
+            objds = objdservice.GetDataset("SELECT  UTID,UT_Symbol,* from MR_Unit WHERE UTID NOT IN (-1,0) AND UT_BulkUnit=0");
             objdservice.CloseConnection();
             if (objds != null)
             {
