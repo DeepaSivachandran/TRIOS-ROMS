@@ -1088,15 +1088,7 @@ namespace ROMS
 
         private void DGV_SearchGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                txtSearchbyLocationName.Text = "";
-            }
-            catch(Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
     }
 }
