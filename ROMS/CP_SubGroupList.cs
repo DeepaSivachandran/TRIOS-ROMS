@@ -1174,6 +1174,8 @@ namespace ROMS
             try
             {
                 txtStockLocation.BackColor = Color.White;
+                if(txtStockLocation.Text.Trim()=="")
+                { lblSLCode.Text = "0"; }
             }
             catch (Exception ex)
             {

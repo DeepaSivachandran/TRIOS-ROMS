@@ -1424,7 +1424,8 @@ namespace ROMS
             try
             {
                 for (int i = 0; i < grdRackList.RowCount; i++) {
-                    if (Convert.ToBoolean(grdRackList.Rows[i].Cells[0].EditedFormattedValue) == true) { dtRackList.Rows[i][0] = true; }
+                    if (Convert.ToBoolean(grdRackList.SelectedRows[i].Cells[0].Value) == true)
+                    { dtRackList.Rows[i][0] = true; }
                     else { dtRackList.Rows[i][0] = false; }
                 }
                 //grdRackList.DataSource = null;

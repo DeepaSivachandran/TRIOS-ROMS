@@ -42,6 +42,7 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.lblSubgroupCount = new System.Windows.Forms.Label();
@@ -89,17 +90,16 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEBrandNameInEnglish = new System.Windows.Forms.TextBox();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.epBrand = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.grbform.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).BeginInit();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubGroupAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epBrand)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,7 +137,6 @@
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.picLoader);
             this.grbform.Controls.Add(this.btnRefresh);
             this.grbform.Controls.Add(this.label5);
             this.grbform.Controls.Add(this.lblSubgroupCount);
@@ -169,11 +168,26 @@
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
             this.grbform.Controls.Add(this.txtEBrandNameInEnglish);
+            this.grbform.Controls.Add(this.picLoader);
             this.grbform.Location = new System.Drawing.Point(8, 1);
             this.grbform.Name = "grbform";
             this.grbform.Size = new System.Drawing.Size(1339, 633);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(8, 129);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(834, 418);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 1111172;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // btnRefresh
             // 
@@ -814,20 +828,6 @@
             this.txtEBrandNameInEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEBrandNameInEnglish_KeyDown);
             this.txtEBrandNameInEnglish.Leave += new System.EventHandler(this.TxtEBrandNameInEnglish_Leave);
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(8, 129);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(834, 418);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 1111172;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
             // epBrand
             // 
             this.epBrand.ContainerControl = this;
@@ -856,6 +856,7 @@
             this.pnlCompany.ResumeLayout(false);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).EndInit();
@@ -863,7 +864,6 @@
             this.pnlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubGroupAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epBrand)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
