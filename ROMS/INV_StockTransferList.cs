@@ -206,7 +206,7 @@ namespace ROMS
             DataBind objDataBind = new DataBind();
             objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (6) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
             objDataBind = null;
-            cmbStatus.SelectedValue = 21;
+            cmbStatus.SelectedValue = 0;
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);

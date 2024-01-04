@@ -2526,6 +2526,93 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnUnselectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdRack.Rows.Count; i++)
+                {
+                    grdRack.Rows[i].Cells[0].Value = false;
+                    dtRack.Rows[i][0] = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnselectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnselectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdRack.Rows.Count; i++)
+                {
+                    grdRack.Rows[i].Cells[0].Value = true;
+                    dtRack.Rows[i][0] = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSelectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSelectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_SearchGridRight_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try

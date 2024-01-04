@@ -524,7 +524,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    chkRKCreation.Focus();
+                    if (chkRKCreation.Enabled == true)
+                    {
+                        chkRKCreation.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)

@@ -206,7 +206,7 @@ namespace ROMS
                     //        //  blnErrorFlag = true;
                     //    }
 
-                    if (Convert.ToString(cmbProductCategory.SelectedValue) == "" || Convert.ToString(cmbProductCategory.SelectedValue) == "-1")
+                if (Convert.ToString(cmbProductCategory.SelectedValue) == "" || Convert.ToString(cmbProductCategory.SelectedValue) == "-1")
                 {
                     errItems.SetError(cmbProductCategory, "Please select product category");
                     cmbProductCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");

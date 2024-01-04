@@ -3322,7 +3322,7 @@ namespace ROMS
             }
             finally
             {
-                SearchFlag = 0;
+              //  SearchFlag = 0;
             }
         }
 
@@ -4120,7 +4120,7 @@ namespace ROMS
             }
             finally
             {
-
+                SearchFlag = 0;
             }
         }
         private void udfnSearchGridHead()
@@ -4893,14 +4893,15 @@ namespace ROMS
             {
                 string result = "";
                 int sceduleidupdate = 0;
-                if (varOrderid == 0)
-                {
-                    sceduleidupdate = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
-                }
-                else
-                {
-                    sceduleidupdate = varOrderid;
-                }
+                //if (varOrderid == 0)
+                //{
+                //    sceduleidupdate = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
+                //}
+                //else
+                //{
+                //    sceduleidupdate = varOrderid;
+                //}
+                sceduleidupdate = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
                 if (e.RowIndex != -1)
                 {
                     switch (grdSupplierList.Columns[e.ColumnIndex].Name)
@@ -5163,33 +5164,41 @@ namespace ROMS
         {
             try
             {
+                (grdSupplierMappingLoad.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
                 // (grdSupplierMappingLoad.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
-                DataTable objdtnew = new DataTable();
-                objdtnew = dtSubGroup.Copy();
-                objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
-                grdSupplierMappingLoad.DataSource = objdtnew;
-                //  grdSupplierMappingLoad.Columns[0].Frozen = true;
-                grdSupplierMappingLoad.Columns[0].HeaderText = "";
-                grdSupplierMappingLoad.Columns[0].Width = 30;
-                grdSupplierMappingLoad.Columns["S.No."].Width = 50;
-                grdSupplierMappingLoad.Columns["P.I Code"].Width = 100;
-                grdSupplierMappingLoad.Columns["Product Name in Tamil"].Width = 220;
-                grdSupplierMappingLoad.Columns["Unit"].Width = 60;
-                grdSupplierMappingLoad.Columns["Product SubGroup"].Width = 170;
-                grdSupplierMappingLoad.Columns["GROUPID"].Visible = false;
-                grdSupplierMappingLoad.Columns["SUBGROUPID"].Visible = false;
-                grdSupplierMappingLoad.Columns["PRODUCTID"].Visible = false;
-                grdSupplierMappingLoad.Columns["MappedCount"].Visible = false;
-                grdSupplierMappingLoad.Columns["Product Name in English"].Visible = false;
-                grdSupplierMappingLoad.Columns["S.No."].Visible = false;
+                //DataTable objdtnew = new DataTable();
+                //objdtnew = dtSubGroup.Copy();
+                //objdtnew.DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
+                //grdSupplierMappingLoad.DataSource = objdtnew;
+                ////  grdSupplierMappingLoad.Columns[0].Frozen = true;
+                //grdSupplierMappingLoad.Columns[0].HeaderText = "";
+                //grdSupplierMappingLoad.Columns[0].Width = 30;
+                //grdSupplierMappingLoad.Columns["S.No."].Width = 50;
+                //grdSupplierMappingLoad.Columns["P.I Code"].Width = 100;
+                //grdSupplierMappingLoad.Columns["Product Name in Tamil"].Width = 220;
+                //grdSupplierMappingLoad.Columns["Unit"].Width = 60;
+                //grdSupplierMappingLoad.Columns["Product SubGroup"].Width = 170;
+                //grdSupplierMappingLoad.Columns["GROUPID"].Visible = false;
+                //grdSupplierMappingLoad.Columns["SUBGROUPID"].Visible = false;
+                //grdSupplierMappingLoad.Columns["PRODUCTID"].Visible = false;
+                //grdSupplierMappingLoad.Columns["MappedCount"].Visible = false;
+                //grdSupplierMappingLoad.Columns["Product Name in English"].Visible = false;
+                //grdSupplierMappingLoad.Columns["S.No."].Visible = false;
 
-                grdSupplierMappingLoad.Columns["S.No."].ReadOnly = true;
-                grdSupplierMappingLoad.Columns["P.I Code"].ReadOnly = true;
-                grdSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
-                grdSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
-                grdSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
-                grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-
+                //grdSupplierMappingLoad.Columns["S.No."].ReadOnly = true;
+                //grdSupplierMappingLoad.Columns["P.I Code"].ReadOnly = true;
+                //grdSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
+                //grdSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
+                //grdSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
+                //grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                //if (SearchFlag == 1)
+                //{
+                //    (grdSupplierMappingLoad.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
+                //}
+                //else
+                //{
+                //    (grdSupplierMappingLoad.DataSource as DataTable).DefaultView.RowFilter = "([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
+                //}
             }
             catch (Exception ex)
             {
@@ -5316,7 +5325,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns[0].ReadOnly = false;
                     grdSupplierMappingLoad.Columns[0].ReadOnly = false;
                 }
-                SearchFlag = 0;
+                //SearchFlag = 0;
             }
         }
         public void udfnSubGroupAdd()
@@ -6153,7 +6162,7 @@ namespace ROMS
                                 Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, Convert.ToString(varScheduleStatusid), MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
                                 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text.Trim(), txtsalesmanmobile.Text,
                                 txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",Convert.ToInt32(cmbTat.SelectedValue));
-
+                            objspdservice.CloseConnection();
                             string[] varvalue = result.Split('~');
                             if (varvalue[0] == "3")
                             {
@@ -7338,6 +7347,10 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            finally
+            {
+                SearchFlag = 1;
+            }
             
         }
 
@@ -7633,7 +7646,10 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-            finally { SearchFlag = 1; }
+            finally
+            {
+                //SearchFlag = 1; 
+            }
         }
 
         private void DGV_SearchGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -7920,7 +7936,7 @@ namespace ROMS
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
             finally
             {
-                SearchFlag = 1;
+               // SearchFlag = 1;
             }
         }
 
