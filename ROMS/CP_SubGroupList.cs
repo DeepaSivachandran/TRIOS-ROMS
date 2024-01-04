@@ -1767,6 +1767,7 @@ namespace ROMS
         { 
             try
             {
+                txtSearchProduct.Text = "";
                 if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately

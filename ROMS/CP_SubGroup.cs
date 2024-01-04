@@ -1423,10 +1423,28 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdRackList.RowCount; i++) {
+                for (int i = 0; i < grdRackList.RowCount; i++)
+                {
                     if (Convert.ToBoolean(grdRackList.SelectedRows[i].Cells[0].Value) == true)
-                    { dtRackList.Rows[i][0] = true; }
-                    else { dtRackList.Rows[i][0] = false; }
+                    {
+                        for (int j = 0; j < dtRackList.Rows.Count; j++)
+                        {
+                            if (grdRackList.Rows[i].Cells["RKID"].Value == dtRackList.Rows[j]["RKID"])
+                            {
+                                { dtRackList.Rows[i][0] = true; }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 0; j < dtRackList.Rows.Count; j++)
+                        {
+                            if (grdRackList.Rows[i].Cells["RKID"].Value == dtRackList.Rows[j]["RKID"])
+                            {
+                                { dtRackList.Rows[i][0] = false; }
+                            }
+                        }
+                    }
                 }
                 //grdRackList.DataSource = null;
                 //grdRackList.DataSource = dtRackList;
