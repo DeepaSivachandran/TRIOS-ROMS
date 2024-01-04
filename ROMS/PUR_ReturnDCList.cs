@@ -923,6 +923,8 @@ namespace ROMS
                                 grdReturnDCList.Columns["DC No."].Width = 100;
                                 grdReturnDCList.Columns["Supplier"].Width = 300;
                                 grdReturnDCList.Columns["Total Products"].Width = 100;
+                                grdReturnDCList.Columns["Created On"].Width = 140;
+                                grdReturnDCList.Columns["Created By"].Width = 100;
                                 grdReturnDCList.Columns["Status"].Width = 100;
                                 grdReturnDCList.Columns["S.No."].Width = 60;
                                 grdReturnDCList.Columns["ID"].Visible = false;
