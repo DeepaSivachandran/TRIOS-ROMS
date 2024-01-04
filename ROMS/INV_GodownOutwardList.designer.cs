@@ -319,7 +319,7 @@
             this.grdOutwardList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdOutwardList.RowTemplate.Height = 25;
             this.grdOutwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdOutwardList.Size = new System.Drawing.Size(1328, 510);
+            this.grdOutwardList.Size = new System.Drawing.Size(1328, 495);
             this.grdOutwardList.TabIndex = 111111133;
             this.grdOutwardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdOutwardList_CellContentClick);
             this.grdOutwardList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdUserList_CellDoubleClick);

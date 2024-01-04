@@ -16,7 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         string varStockLocationId = "",varPRID="",varPICode="",varUTID="", varExpiryDate = "", varBatchNo="", varRKID="", varTamilname="", varBatchNoGeneration="";
-        public int varGIId = 0, pbDateflag = 0, varShelflife=0, varSTRID = 0, varSLID = 0,varUpdateflag=0, varStatusId = 0,varSTRPRID=0;
+        public int varGIId = 0, pbDateflag = 0, varShelflife=0, varSTRID = 0, varSLID = 0,varUpdateflag=0, varStatusId = 0,varSTRPRID=0, varGISTRID=0;
         string varShelflifevalue = "", varAcutalshelflife = "", result="", Shelflife="", ProductShelflifeValue="", ProductShelflifeType="";
         public bool VarSearchFlag = true;
         public bool varDiscardFlag = true;
@@ -230,6 +230,7 @@ namespace ROMS
                     TRN_GoodsInward objTRNS_GoodsInward = new TRN_GoodsInward();
                     objTRNS_GoodsInward.ViewType = ViewType;
                     objTRNS_GoodsInward.paraGIID = varGIId;
+                    objTRNS_GoodsInward.paraSTRID = varSTRID;
                     objTRNS_GoodsInward.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objTRNS_GoodsInward.paraInwardDate = dpInwardDate.Text;
                     objTRNS_GoodsInward.paraTransferType = Convert.ToInt32(cmbTransactionType.SelectedValue);
@@ -348,11 +349,21 @@ namespace ROMS
         {
             try
             {
-
-                //MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
-                //MainForm.objPUR_RemarksHistory.ShowDialog();
-                udfnRemarksCheck();
-
+                if (varEditflag==1 && Convert.ToInt32(cmbTransactionType.SelectedValue)==69)
+                {
+                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                    MainForm.objPUR_RemarksHistory.varSTRID = varSTRID;
+                    MainForm.objPUR_RemarksHistory.varEditflag = 1;
+                    MainForm.objPUR_RemarksHistory.ShowDialog();
+                }
+                else if (varEditflag == 0 && Convert.ToInt32(cmbTransactionType.SelectedValue) == 69)
+                {
+                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                    MainForm.objPUR_RemarksHistory.varSTRID = varGISTRID;
+                    MainForm.objPUR_RemarksHistory.varGIID = varGIId;
+                    MainForm.objPUR_RemarksHistory.varEditflag = 0;
+                    MainForm.objPUR_RemarksHistory.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -384,6 +395,7 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
+                                
                                 MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
                                 MainForm.objPUR_RemarksHistory.ShowDialog();
                             }
@@ -1544,6 +1556,10 @@ namespace ROMS
 
                             varShelflifeper[0] = "0";
                         }
+                        if(Convert.ToInt32(varAcutalshelflife)==0)
+                        {
+                            varAcutalshelflife = "0";
+                        }
                         grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                         grdInward.Rows.Add(grdInward.Rows.Count + 1,txtRack.Text,varPICode.Trim(), varTamilname.Trim(), Convert.ToDecimal(mrp), varExpiryDate, Shelflife, varAcutalshelflife,varShelflifevalue,txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), 0,0,txtunit.Text,varPRID,varRKID,varStockLocationId,varUTID);
                         dtInward.Rows.Add(varPRID, Convert.ToDecimal(txtMrp.Text), varExpiryDate, txtBatchNo.Text.Trim(), varUTID,txtActualQty.Text.Trim(),varRKID,varStockLocationId,0,0,varShelflife,ProductShelflifeValue,ProductShelflifeType,varShelflifeper[0]);
@@ -1556,6 +1572,7 @@ namespace ROMS
                         grdInward.Columns["clmactualqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         udfnProductClear();
+                        txtRack.Focus();
                         txtProductName.Text = "";
                         varPRID = "0";
                         udfnShelflifeCheck();
@@ -1611,8 +1628,10 @@ namespace ROMS
                         cell.Style.ForeColor = Color.Black;
                         txtORPercentageCheck.Enabled = true;
                         lblFivetyPercentage.Enabled = true;
+                        txtRDPercentageCheck.Enabled = false;
+                        lbltwentyfiveper.Enabled = false;
                     }
-                    else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                    else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
                     {
                         DataGridView dataGridView = grdInward;
                         DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -1620,6 +1639,8 @@ namespace ROMS
                         cell.Style.ForeColor = Color.White;
                         txtRDPercentageCheck.Enabled = true;
                         lbltwentyfiveper.Enabled = true;
+                        txtORPercentageCheck.Enabled = false;
+                        lblFivetyPercentage.Enabled = false;
                     }
                     else
                     {
@@ -1934,6 +1955,7 @@ namespace ROMS
                     grdInward.Columns["clmtransferqty"].Width = 0;
                     grdInward.Columns["clmreceivedqty"].Visible = false;
                     grdInward.Columns["clmtransferqty"].Visible = false;
+                    btnRemarks.Enabled = false;
                 }
                 else // Stock Transfer
                 {
@@ -1944,7 +1966,7 @@ namespace ROMS
                     grdInward.Columns["clmtransferqty"].Visible = true;
                     grdInward.Columns["clmactualqty"].Visible = false;
                     grdInward.Columns["clmremove"].Visible = false;
-
+                    btnRemarks.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -3029,6 +3051,7 @@ namespace ROMS
                     TRN_GoodsInward objTRNG_GoodsInward = new TRN_GoodsInward();
                     objTRNG_GoodsInward.ViewType = 1;
                     objTRNG_GoodsInward.paraGIID = varGIId;
+                    objTRNG_GoodsInward.paraSTRID = varGISTRID;
                     objDs = objdserv.udfnInwardList(objTRNG_GoodsInward);
                     objdserv.CloseConnection();
                     if (objDs != null)
@@ -3048,6 +3071,11 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                             {
+                                object shelflife=objDs.Tables[1].Rows[i]["Shelflifeper"];
+                                if (Convert.ToDouble(shelflife) < 0)
+                                {
+                                    objDs.Tables[1].Rows[i]["Shelflifeper"] = "0";
+                                }
                                 grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdInward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ShelfLifeFlag"]), Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]),
                                 Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_UTID"]));
@@ -3068,7 +3096,7 @@ namespace ROMS
                                         txtORPercentageCheck.Enabled = true;
                                         lblFivetyPercentage.Enabled = true;
                                     }
-                                    else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                    else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
                                     {
                                         DataGridView dataGridView = grdInward;
                                         DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -3113,6 +3141,7 @@ namespace ROMS
                         btnSave.Enabled = false;
                         cbCompleted.Enabled = false;
                         btnAdd.Enabled = false;
+                        grdInward.Columns["clmremove"].Visible = false;
                         txtProductName.BackColor = Color.White;
                         this.ActiveControl = btnClose;
                         epGoodsInward.Clear();
@@ -3157,18 +3186,25 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
+
                             //cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["GI_COMID"].ToString();
                             //dpInwardDate.Text = objDs.Tables[0].Rows[0]["GI_Date"].ToString();
                             //txtInwardNo.Text = objDs.Tables[0].Rows[0]["GI_No"].ToString();
-                                varSLID = Convert.ToInt32(objDs.Tables[0].Rows[0]["STRPR_Dest_SLID"].ToString());
+                            varStockLocationId = Convert.ToString(varSLID);
                                 txtStockLocation.Text = objDs.Tables[0].Rows[0]["SL_EName"].ToString();
                                 cmbTransactionType.SelectedValue = 69;
+
                             }
 
                             if (objDs.Tables[1].Rows.Count > 0)
                             {
                                 for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                                 {
+                                    object shelflife = objDs.Tables[1].Rows[i]["Shelflifeper"];
+                                    if (Convert.ToDouble(shelflife) < 0)
+                                    {
+                                        objDs.Tables[1].Rows[i]["Shelflifeper"] = "0";
+                                    }
                                     grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     grdInward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ShelfLife"]), Convert.ToString(objDs.Tables[1].Rows[i]["actualshelflife"]), Convert.ToString(objDs.Tables[1].Rows[i]["shelflifeper"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_BatchNo"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Qty"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Dest_RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_Dest_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STRPR_UTID"]));
@@ -3189,7 +3225,7 @@ namespace ROMS
                                             txtORPercentageCheck.Enabled = true;
                                             lblFivetyPercentage.Enabled = true;
                                         }
-                                        else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                        else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
                                         {
                                             DataGridView dataGridView = grdInward;
                                             DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
