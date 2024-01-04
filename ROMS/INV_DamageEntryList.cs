@@ -1030,7 +1030,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
-                else { DGV_SearchGrid.ScrollBars = ScrollBars.None; }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -1074,6 +1074,8 @@ namespace ROMS
                 DGV_ProSearchGrid.Columns["DMID"].Visible = false;
                 DGV_ProSearchGrid.Columns["StatusID"].Visible = false;
                 DGV_ProSearchGrid.Columns["PRStatusID"].Visible = false;
+                DGV_ProSearchGrid.Columns["DMPR_SPID"].Visible = false;
+                DGV_ProSearchGrid.Columns["DMPR_SPSCID"].Visible = false;
                 DGV_ProSearchGrid.Columns["S.No."].Width = 50;
                 DGV_ProSearchGrid.Columns["Status"].Width = 150;
                 DGV_ProSearchGrid.Columns["Product Status"].Width = 150;
@@ -1145,6 +1147,8 @@ namespace ROMS
                             grdProDEList.Columns["DMID"].Visible = false;
                             grdProDEList.Columns["StatusID"].Visible = false;
                             grdProDEList.Columns["PRStatusID"].Visible = false;
+                            grdProDEList.Columns["DMPR_SPID"].Visible = false;
+                            grdProDEList.Columns["DMPR_SPSCID"].Visible = false;
                             grdProDEList.Columns["S.No."].Width = 50;
                             grdProDEList.Columns["Status"].Width = 150;
                             grdProDEList.Columns["Product Status"].Width = 200;
@@ -1187,7 +1191,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultProSearchGrid();
                 }
-                else { DGV_ProSearchGrid.ScrollBars = ScrollBars.None; }
+                else { DGV_ProSearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -1324,7 +1328,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSupSearchGrid();
                 }
-                else { DGV_SupSearchGrid.ScrollBars = ScrollBars.None; }
+                else { DGV_SupSearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {

@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(INV_DamageEntry));
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -69,6 +70,29 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdDamageEntry = new System.Windows.Forms.DataGridView();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStockQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSPID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSPSCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbgodown = new System.Windows.Forms.GroupBox();
             this.lblScheduleCode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
@@ -79,6 +103,8 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblConcern = new System.Windows.Forms.Label();
             this.grpproductname = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbReason = new System.Windows.Forms.ComboBox();
             this.cmbSupplier = new System.Windows.Forms.ComboBox();
             this.lblProduct = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -103,31 +129,7 @@
             this.lblMrp = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epDamageEntry = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbReason = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStockQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSPID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSPSCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.QrcodeImg = new Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridLeft)).BeginInit();
@@ -136,6 +138,7 @@
             this.grbgodown.SuspendLayout();
             this.grpproductname.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epDamageEntry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QrcodeImg)).BeginInit();
             this.SuspendLayout();
             // 
             // tspHeader
@@ -531,400 +534,6 @@
             this.grdDamageEntry.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDamageEntry_DataBindingComplete);
             this.grdDamageEntry.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdDamageEntry_EditingControlShowing);
             // 
-            // grbgodown
-            // 
-            this.grbgodown.Controls.Add(this.lblScheduleCode);
-            this.grbgodown.Controls.Add(this.lblSupplierCode);
-            this.grbgodown.Controls.Add(this.txtEntryNo);
-            this.grbgodown.Controls.Add(this.lbEntryNo);
-            this.grbgodown.Controls.Add(this.lblEntryDate);
-            this.grbgodown.Controls.Add(this.dpEntryDate);
-            this.grbgodown.Controls.Add(this.cmbConcern);
-            this.grbgodown.Controls.Add(this.lblConcern);
-            this.grbgodown.Location = new System.Drawing.Point(3, 2);
-            this.grbgodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbgodown.Name = "grbgodown";
-            this.grbgodown.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbgodown.Size = new System.Drawing.Size(1338, 77);
-            this.grbgodown.TabIndex = 0;
-            this.grbgodown.TabStop = false;
-            // 
-            // lblScheduleCode
-            // 
-            this.lblScheduleCode.AutoSize = true;
-            this.lblScheduleCode.Location = new System.Drawing.Point(1130, 36);
-            this.lblScheduleCode.Name = "lblScheduleCode";
-            this.lblScheduleCode.Size = new System.Drawing.Size(0, 20);
-            this.lblScheduleCode.TabIndex = 958820;
-            this.lblScheduleCode.Visible = false;
-            // 
-            // lblSupplierCode
-            // 
-            this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(1069, 36);
-            this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(0, 20);
-            this.lblSupplierCode.TabIndex = 958819;
-            this.lblSupplierCode.Visible = false;
-            // 
-            // txtEntryNo
-            // 
-            this.txtEntryNo.Enabled = false;
-            this.txtEntryNo.Location = new System.Drawing.Point(259, 36);
-            this.txtEntryNo.Name = "txtEntryNo";
-            this.txtEntryNo.ReadOnly = true;
-            this.txtEntryNo.Size = new System.Drawing.Size(171, 27);
-            this.txtEntryNo.TabIndex = 2;
-            // 
-            // lbEntryNo
-            // 
-            this.lbEntryNo.AutoSize = true;
-            this.lbEntryNo.Location = new System.Drawing.Point(259, 14);
-            this.lbEntryNo.Name = "lbEntryNo";
-            this.lbEntryNo.Size = new System.Drawing.Size(58, 20);
-            this.lbEntryNo.TabIndex = 958818;
-            this.lbEntryNo.Text = "Entry No.";
-            // 
-            // lblEntryDate
-            // 
-            this.lblEntryDate.AutoSize = true;
-            this.lblEntryDate.Location = new System.Drawing.Point(146, 14);
-            this.lblEntryDate.Name = "lblEntryDate";
-            this.lblEntryDate.Size = new System.Drawing.Size(66, 20);
-            this.lblEntryDate.TabIndex = 958817;
-            this.lblEntryDate.Text = "Entry Date";
-            // 
-            // dpEntryDate
-            // 
-            this.dpEntryDate.CustomFormat = "dd/MM/yyyy";
-            this.dpEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpEntryDate.Location = new System.Drawing.Point(146, 36);
-            this.dpEntryDate.Name = "dpEntryDate";
-            this.dpEntryDate.Size = new System.Drawing.Size(107, 27);
-            this.dpEntryDate.TabIndex = 1;
-            this.dpEntryDate.ValueChanged += new System.EventHandler(this.DpEntryDate_ValueChanged);
-            this.dpEntryDate.Enter += new System.EventHandler(this.DpEntryDate_Enter);
-            this.dpEntryDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpEntryDate_KeyDown);
-            this.dpEntryDate.Leave += new System.EventHandler(this.DpEntryDate_Leave);
-            // 
-            // cmbConcern
-            // 
-            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(13, 36);
-            this.cmbConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(127, 27);
-            this.cmbConcern.TabIndex = 0;
-            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
-            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
-            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
-            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
-            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
-            // 
-            // lblConcern
-            // 
-            this.lblConcern.AutoSize = true;
-            this.lblConcern.Location = new System.Drawing.Point(13, 14);
-            this.lblConcern.Name = "lblConcern";
-            this.lblConcern.Size = new System.Drawing.Size(54, 20);
-            this.lblConcern.TabIndex = 86;
-            this.lblConcern.Text = "Concern";
-            // 
-            // grpproductname
-            // 
-            this.grpproductname.Controls.Add(this.label3);
-            this.grpproductname.Controls.Add(this.cmbReason);
-            this.grpproductname.Controls.Add(this.cmbSupplier);
-            this.grpproductname.Controls.Add(this.lblProduct);
-            this.grpproductname.Controls.Add(this.label4);
-            this.grpproductname.Controls.Add(this.label2);
-            this.grpproductname.Controls.Add(this.txtRack);
-            this.grpproductname.Controls.Add(this.label1);
-            this.grpproductname.Controls.Add(this.txtLocation);
-            this.grpproductname.Controls.Add(this.txtExpiryDate);
-            this.grpproductname.Controls.Add(this.btnAdd);
-            this.grpproductname.Controls.Add(this.txtStockQty);
-            this.grpproductname.Controls.Add(this.textBox5);
-            this.grpproductname.Controls.Add(this.lblUnit);
-            this.grpproductname.Controls.Add(this.txtBatchNo);
-            this.grpproductname.Controls.Add(this.lblbatchno);
-            this.grpproductname.Controls.Add(this.lblExpiryDate);
-            this.grpproductname.Controls.Add(this.lblSupplierName);
-            this.grpproductname.Controls.Add(this.txtProductName);
-            this.grpproductname.Controls.Add(this.txtQuantity);
-            this.grpproductname.Controls.Add(this.lblQty);
-            this.grpproductname.Controls.Add(this.lblProductName);
-            this.grpproductname.Controls.Add(this.txtMrp);
-            this.grpproductname.Controls.Add(this.lblMrp);
-            this.grpproductname.Location = new System.Drawing.Point(3, 72);
-            this.grpproductname.Name = "grpproductname";
-            this.grpproductname.Size = new System.Drawing.Size(1339, 77);
-            this.grpproductname.TabIndex = 3;
-            this.grpproductname.TabStop = false;
-            // 
-            // cmbSupplier
-            // 
-            this.cmbSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSupplier.FormattingEnabled = true;
-            this.cmbSupplier.Location = new System.Drawing.Point(1090, 37);
-            this.cmbSupplier.Name = "cmbSupplier";
-            this.cmbSupplier.Size = new System.Drawing.Size(220, 27);
-            this.cmbSupplier.TabIndex = 12;
-            this.cmbSupplier.Enter += new System.EventHandler(this.CmbSupplier_Enter);
-            this.cmbSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSupplier_KeyDown);
-            this.cmbSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSupplier_KeyPress);
-            this.cmbSupplier.Leave += new System.EventHandler(this.CmbSupplier_Leave);
-            // 
-            // lblProduct
-            // 
-            this.lblProduct.AutoSize = true;
-            this.lblProduct.Location = new System.Drawing.Point(212, 14);
-            this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(0, 20);
-            this.lblProduct.TabIndex = 1111243;
-            this.lblProduct.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(413, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 20);
-            this.label4.TabIndex = 1111242;
-            this.label4.Text = "Rack";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(271, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 20);
-            this.label2.TabIndex = 1111241;
-            this.label2.Text = "Location";
-            // 
-            // txtRack
-            // 
-            this.txtRack.Enabled = false;
-            this.txtRack.Location = new System.Drawing.Point(413, 36);
-            this.txtRack.Name = "txtRack";
-            this.txtRack.ReadOnly = true;
-            this.txtRack.Size = new System.Drawing.Size(107, 27);
-            this.txtRack.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(773, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 20);
-            this.label1.TabIndex = 1111239;
-            this.label1.Text = "Stock Qty";
-            // 
-            // txtLocation
-            // 
-            this.txtLocation.Enabled = false;
-            this.txtLocation.Location = new System.Drawing.Point(271, 37);
-            this.txtLocation.Name = "txtLocation";
-            this.txtLocation.ReadOnly = true;
-            this.txtLocation.Size = new System.Drawing.Size(136, 27);
-            this.txtLocation.TabIndex = 4;
-            // 
-            // txtExpiryDate
-            // 
-            this.txtExpiryDate.Enabled = false;
-            this.txtExpiryDate.Location = new System.Drawing.Point(601, 37);
-            this.txtExpiryDate.Name = "txtExpiryDate";
-            this.txtExpiryDate.ReadOnly = true;
-            this.txtExpiryDate.Size = new System.Drawing.Size(75, 27);
-            this.txtExpiryDate.TabIndex = 7;
-            this.txtExpiryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1313, 37);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 13;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
-            // 
-            // txtStockQty
-            // 
-            this.txtStockQty.Enabled = false;
-            this.txtStockQty.Location = new System.Drawing.Point(773, 37);
-            this.txtStockQty.Name = "txtStockQty";
-            this.txtStockQty.ReadOnly = true;
-            this.txtStockQty.Size = new System.Drawing.Size(64, 27);
-            this.txtStockQty.TabIndex = 9;
-            this.txtStockQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
-            this.textBox5.Location = new System.Drawing.Point(526, 36);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(17, 27);
-            this.textBox5.TabIndex = 1111237;
-            this.textBox5.TabStop = false;
-            this.textBox5.Text = "₹";
-            // 
-            // lblUnit
-            // 
-            this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(902, 40);
-            this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(0, 20);
-            this.lblUnit.TabIndex = 1111186;
-            // 
-            // txtBatchNo
-            // 
-            this.txtBatchNo.Enabled = false;
-            this.txtBatchNo.Location = new System.Drawing.Point(682, 37);
-            this.txtBatchNo.Name = "txtBatchNo";
-            this.txtBatchNo.ReadOnly = true;
-            this.txtBatchNo.Size = new System.Drawing.Size(85, 27);
-            this.txtBatchNo.TabIndex = 8;
-            this.txtBatchNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtBatchNo.Enter += new System.EventHandler(this.TxtBatchNo_Enter);
-            this.txtBatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo_KeyDown);
-            this.txtBatchNo.Leave += new System.EventHandler(this.TxtBatchNo_Leave);
-            // 
-            // lblbatchno
-            // 
-            this.lblbatchno.AutoSize = true;
-            this.lblbatchno.Location = new System.Drawing.Point(682, 14);
-            this.lblbatchno.Name = "lblbatchno";
-            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
-            this.lblbatchno.TabIndex = 958816;
-            this.lblbatchno.Text = "Batch No.";
-            // 
-            // lblExpiryDate
-            // 
-            this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(601, 14);
-            this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
-            this.lblExpiryDate.TabIndex = 958821;
-            this.lblExpiryDate.Text = "Expiry Date";
-            // 
-            // lblSupplierName
-            // 
-            this.lblSupplierName.AutoSize = true;
-            this.lblSupplierName.Location = new System.Drawing.Point(1090, 14);
-            this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(87, 20);
-            this.lblSupplierName.TabIndex = 27;
-            this.lblSupplierName.Text = "Supplier Name";
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductName.Location = new System.Drawing.Point(6, 37);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(259, 26);
-            this.txtProductName.TabIndex = 3;
-            this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
-            this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
-            this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
-            this.txtProductName.Leave += new System.EventHandler(this.TxtProductName_Leave);
-            // 
-            // txtQuantity
-            // 
-            this.txtQuantity.Location = new System.Drawing.Point(843, 37);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(56, 27);
-            this.txtQuantity.TabIndex = 10;
-            this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtQuantity.Enter += new System.EventHandler(this.TxtQuantity_Enter);
-            this.txtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyDown);
-            this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQuantity_KeyPress);
-            this.txtQuantity.Leave += new System.EventHandler(this.TxtQuantity_Leave);
-            // 
-            // lblQty
-            // 
-            this.lblQty.AutoSize = true;
-            this.lblQty.Location = new System.Drawing.Point(843, 14);
-            this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(42, 20);
-            this.lblQty.TabIndex = 80;
-            this.lblQty.Text = "Tr.Qty";
-            // 
-            // lblProductName
-            // 
-            this.lblProductName.AutoSize = true;
-            this.lblProductName.Location = new System.Drawing.Point(6, 14);
-            this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(108, 20);
-            this.lblProductName.TabIndex = 28;
-            this.lblProductName.Text = "Search by P.I Code";
-            // 
-            // txtMrp
-            // 
-            this.txtMrp.Enabled = false;
-            this.txtMrp.Location = new System.Drawing.Point(543, 36);
-            this.txtMrp.Name = "txtMrp";
-            this.txtMrp.ReadOnly = true;
-            this.txtMrp.Size = new System.Drawing.Size(52, 27);
-            this.txtMrp.TabIndex = 6;
-            this.txtMrp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMrp.Enter += new System.EventHandler(this.TxtMrp_Enter);
-            this.txtMrp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMrp_KeyDown);
-            this.txtMrp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMrp_KeyPress);
-            this.txtMrp.Leave += new System.EventHandler(this.TxtMrp_Leave);
-            // 
-            // lblMrp
-            // 
-            this.lblMrp.AutoSize = true;
-            this.lblMrp.Location = new System.Drawing.Point(526, 14);
-            this.lblMrp.Name = "lblMrp";
-            this.lblMrp.Size = new System.Drawing.Size(34, 20);
-            this.lblMrp.TabIndex = 77;
-            this.lblMrp.Text = "MRP";
-            // 
-            // lblEdit
-            // 
-            this.lblEdit.AutoSize = true;
-            this.lblEdit.Location = new System.Drawing.Point(711, 19);
-            this.lblEdit.Name = "lblEdit";
-            this.lblEdit.Size = new System.Drawing.Size(0, 20);
-            this.lblEdit.TabIndex = 37;
-            this.lblEdit.Visible = false;
-            // 
-            // epDamageEntry
-            // 
-            this.epDamageEntry.ContainerControl = this;
-            // 
-            // cmbReason
-            // 
-            this.cmbReason.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbReason.FormattingEnabled = true;
-            this.cmbReason.Location = new System.Drawing.Point(936, 37);
-            this.cmbReason.Name = "cmbReason";
-            this.cmbReason.Size = new System.Drawing.Size(148, 27);
-            this.cmbReason.TabIndex = 11;
-            this.cmbReason.Enter += new System.EventHandler(this.CmbReason_Enter);
-            this.cmbReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReason_KeyDown);
-            this.cmbReason.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReason_KeyPress);
-            this.cmbReason.Leave += new System.EventHandler(this.CmbReason_Leave);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(936, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 20);
-            this.label3.TabIndex = 1111245;
-            this.label3.Text = "Reason";
-            // 
             // clmdsno
             // 
             this.clmdsno.HeaderText = "S.No.";
@@ -1099,6 +708,416 @@
             this.clmremove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmremove.Width = 80;
             // 
+            // grbgodown
+            // 
+            this.grbgodown.Controls.Add(this.QrcodeImg);
+            this.grbgodown.Controls.Add(this.lblScheduleCode);
+            this.grbgodown.Controls.Add(this.lblSupplierCode);
+            this.grbgodown.Controls.Add(this.txtEntryNo);
+            this.grbgodown.Controls.Add(this.lbEntryNo);
+            this.grbgodown.Controls.Add(this.lblEntryDate);
+            this.grbgodown.Controls.Add(this.dpEntryDate);
+            this.grbgodown.Controls.Add(this.cmbConcern);
+            this.grbgodown.Controls.Add(this.lblConcern);
+            this.grbgodown.Location = new System.Drawing.Point(3, 2);
+            this.grbgodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbgodown.Name = "grbgodown";
+            this.grbgodown.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbgodown.Size = new System.Drawing.Size(1338, 77);
+            this.grbgodown.TabIndex = 0;
+            this.grbgodown.TabStop = false;
+            // 
+            // lblScheduleCode
+            // 
+            this.lblScheduleCode.AutoSize = true;
+            this.lblScheduleCode.Location = new System.Drawing.Point(1130, 36);
+            this.lblScheduleCode.Name = "lblScheduleCode";
+            this.lblScheduleCode.Size = new System.Drawing.Size(0, 20);
+            this.lblScheduleCode.TabIndex = 958820;
+            this.lblScheduleCode.Visible = false;
+            // 
+            // lblSupplierCode
+            // 
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.Location = new System.Drawing.Point(1069, 36);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(0, 20);
+            this.lblSupplierCode.TabIndex = 958819;
+            this.lblSupplierCode.Visible = false;
+            // 
+            // txtEntryNo
+            // 
+            this.txtEntryNo.Enabled = false;
+            this.txtEntryNo.Location = new System.Drawing.Point(259, 36);
+            this.txtEntryNo.Name = "txtEntryNo";
+            this.txtEntryNo.ReadOnly = true;
+            this.txtEntryNo.Size = new System.Drawing.Size(171, 27);
+            this.txtEntryNo.TabIndex = 2;
+            // 
+            // lbEntryNo
+            // 
+            this.lbEntryNo.AutoSize = true;
+            this.lbEntryNo.Location = new System.Drawing.Point(259, 14);
+            this.lbEntryNo.Name = "lbEntryNo";
+            this.lbEntryNo.Size = new System.Drawing.Size(58, 20);
+            this.lbEntryNo.TabIndex = 958818;
+            this.lbEntryNo.Text = "Entry No.";
+            // 
+            // lblEntryDate
+            // 
+            this.lblEntryDate.AutoSize = true;
+            this.lblEntryDate.Location = new System.Drawing.Point(146, 14);
+            this.lblEntryDate.Name = "lblEntryDate";
+            this.lblEntryDate.Size = new System.Drawing.Size(66, 20);
+            this.lblEntryDate.TabIndex = 958817;
+            this.lblEntryDate.Text = "Entry Date";
+            // 
+            // dpEntryDate
+            // 
+            this.dpEntryDate.CustomFormat = "dd/MM/yyyy";
+            this.dpEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpEntryDate.Location = new System.Drawing.Point(146, 36);
+            this.dpEntryDate.Name = "dpEntryDate";
+            this.dpEntryDate.Size = new System.Drawing.Size(107, 27);
+            this.dpEntryDate.TabIndex = 1;
+            this.dpEntryDate.ValueChanged += new System.EventHandler(this.DpEntryDate_ValueChanged);
+            this.dpEntryDate.Enter += new System.EventHandler(this.DpEntryDate_Enter);
+            this.dpEntryDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpEntryDate_KeyDown);
+            this.dpEntryDate.Leave += new System.EventHandler(this.DpEntryDate_Leave);
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(13, 36);
+            this.cmbConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(127, 27);
+            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
+            // 
+            // lblConcern
+            // 
+            this.lblConcern.AutoSize = true;
+            this.lblConcern.Location = new System.Drawing.Point(13, 14);
+            this.lblConcern.Name = "lblConcern";
+            this.lblConcern.Size = new System.Drawing.Size(54, 20);
+            this.lblConcern.TabIndex = 86;
+            this.lblConcern.Text = "Concern";
+            // 
+            // grpproductname
+            // 
+            this.grpproductname.Controls.Add(this.label3);
+            this.grpproductname.Controls.Add(this.cmbReason);
+            this.grpproductname.Controls.Add(this.cmbSupplier);
+            this.grpproductname.Controls.Add(this.lblProduct);
+            this.grpproductname.Controls.Add(this.label4);
+            this.grpproductname.Controls.Add(this.label2);
+            this.grpproductname.Controls.Add(this.txtRack);
+            this.grpproductname.Controls.Add(this.label1);
+            this.grpproductname.Controls.Add(this.txtLocation);
+            this.grpproductname.Controls.Add(this.txtExpiryDate);
+            this.grpproductname.Controls.Add(this.btnAdd);
+            this.grpproductname.Controls.Add(this.txtStockQty);
+            this.grpproductname.Controls.Add(this.textBox5);
+            this.grpproductname.Controls.Add(this.lblUnit);
+            this.grpproductname.Controls.Add(this.txtBatchNo);
+            this.grpproductname.Controls.Add(this.lblbatchno);
+            this.grpproductname.Controls.Add(this.lblExpiryDate);
+            this.grpproductname.Controls.Add(this.lblSupplierName);
+            this.grpproductname.Controls.Add(this.txtProductName);
+            this.grpproductname.Controls.Add(this.txtQuantity);
+            this.grpproductname.Controls.Add(this.lblQty);
+            this.grpproductname.Controls.Add(this.lblProductName);
+            this.grpproductname.Controls.Add(this.txtMrp);
+            this.grpproductname.Controls.Add(this.lblMrp);
+            this.grpproductname.Location = new System.Drawing.Point(3, 72);
+            this.grpproductname.Name = "grpproductname";
+            this.grpproductname.Size = new System.Drawing.Size(1339, 77);
+            this.grpproductname.TabIndex = 3;
+            this.grpproductname.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(936, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 20);
+            this.label3.TabIndex = 1111245;
+            this.label3.Text = "Reason";
+            // 
+            // cmbReason
+            // 
+            this.cmbReason.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReason.FormattingEnabled = true;
+            this.cmbReason.Location = new System.Drawing.Point(936, 37);
+            this.cmbReason.Name = "cmbReason";
+            this.cmbReason.Size = new System.Drawing.Size(148, 27);
+            this.cmbReason.TabIndex = 11;
+            this.cmbReason.Enter += new System.EventHandler(this.CmbReason_Enter);
+            this.cmbReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReason_KeyDown);
+            this.cmbReason.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReason_KeyPress);
+            this.cmbReason.Leave += new System.EventHandler(this.CmbReason_Leave);
+            // 
+            // cmbSupplier
+            // 
+            this.cmbSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSupplier.FormattingEnabled = true;
+            this.cmbSupplier.Location = new System.Drawing.Point(1090, 37);
+            this.cmbSupplier.Name = "cmbSupplier";
+            this.cmbSupplier.Size = new System.Drawing.Size(220, 27);
+            this.cmbSupplier.TabIndex = 12;
+            this.cmbSupplier.Enter += new System.EventHandler(this.CmbSupplier_Enter);
+            this.cmbSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSupplier_KeyDown);
+            this.cmbSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSupplier_KeyPress);
+            this.cmbSupplier.Leave += new System.EventHandler(this.CmbSupplier_Leave);
+            // 
+            // lblProduct
+            // 
+            this.lblProduct.AutoSize = true;
+            this.lblProduct.Location = new System.Drawing.Point(212, 14);
+            this.lblProduct.Name = "lblProduct";
+            this.lblProduct.Size = new System.Drawing.Size(0, 20);
+            this.lblProduct.TabIndex = 1111243;
+            this.lblProduct.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(413, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 20);
+            this.label4.TabIndex = 1111242;
+            this.label4.Text = "Rack";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(271, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 20);
+            this.label2.TabIndex = 1111241;
+            this.label2.Text = "Location";
+            // 
+            // txtRack
+            // 
+            this.txtRack.Enabled = false;
+            this.txtRack.Location = new System.Drawing.Point(413, 36);
+            this.txtRack.Name = "txtRack";
+            this.txtRack.ReadOnly = true;
+            this.txtRack.Size = new System.Drawing.Size(107, 27);
+            this.txtRack.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(773, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.TabIndex = 1111239;
+            this.label1.Text = "Stock Qty";
+            // 
+            // txtLocation
+            // 
+            this.txtLocation.Enabled = false;
+            this.txtLocation.Location = new System.Drawing.Point(271, 37);
+            this.txtLocation.Name = "txtLocation";
+            this.txtLocation.ReadOnly = true;
+            this.txtLocation.Size = new System.Drawing.Size(136, 27);
+            this.txtLocation.TabIndex = 4;
+            // 
+            // txtExpiryDate
+            // 
+            this.txtExpiryDate.Enabled = false;
+            this.txtExpiryDate.Location = new System.Drawing.Point(601, 37);
+            this.txtExpiryDate.Name = "txtExpiryDate";
+            this.txtExpiryDate.ReadOnly = true;
+            this.txtExpiryDate.Size = new System.Drawing.Size(75, 27);
+            this.txtExpiryDate.TabIndex = 7;
+            this.txtExpiryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(1313, 37);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 27);
+            this.btnAdd.TabIndex = 13;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
+            // txtStockQty
+            // 
+            this.txtStockQty.Enabled = false;
+            this.txtStockQty.Location = new System.Drawing.Point(773, 37);
+            this.txtStockQty.Name = "txtStockQty";
+            this.txtStockQty.ReadOnly = true;
+            this.txtStockQty.Size = new System.Drawing.Size(64, 27);
+            this.txtStockQty.TabIndex = 9;
+            this.txtStockQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox5.Location = new System.Drawing.Point(526, 36);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(17, 27);
+            this.textBox5.TabIndex = 1111237;
+            this.textBox5.TabStop = false;
+            this.textBox5.Text = "₹";
+            // 
+            // lblUnit
+            // 
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.Location = new System.Drawing.Point(902, 40);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(0, 20);
+            this.lblUnit.TabIndex = 1111186;
+            // 
+            // txtBatchNo
+            // 
+            this.txtBatchNo.Enabled = false;
+            this.txtBatchNo.Location = new System.Drawing.Point(682, 37);
+            this.txtBatchNo.Name = "txtBatchNo";
+            this.txtBatchNo.ReadOnly = true;
+            this.txtBatchNo.Size = new System.Drawing.Size(85, 27);
+            this.txtBatchNo.TabIndex = 8;
+            this.txtBatchNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBatchNo.Enter += new System.EventHandler(this.TxtBatchNo_Enter);
+            this.txtBatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo_KeyDown);
+            this.txtBatchNo.Leave += new System.EventHandler(this.TxtBatchNo_Leave);
+            // 
+            // lblbatchno
+            // 
+            this.lblbatchno.AutoSize = true;
+            this.lblbatchno.Location = new System.Drawing.Point(682, 14);
+            this.lblbatchno.Name = "lblbatchno";
+            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
+            this.lblbatchno.TabIndex = 958816;
+            this.lblbatchno.Text = "Batch No.";
+            // 
+            // lblExpiryDate
+            // 
+            this.lblExpiryDate.AutoSize = true;
+            this.lblExpiryDate.Location = new System.Drawing.Point(601, 14);
+            this.lblExpiryDate.Name = "lblExpiryDate";
+            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
+            this.lblExpiryDate.TabIndex = 958821;
+            this.lblExpiryDate.Text = "Expiry Date";
+            // 
+            // lblSupplierName
+            // 
+            this.lblSupplierName.AutoSize = true;
+            this.lblSupplierName.Location = new System.Drawing.Point(1090, 14);
+            this.lblSupplierName.Name = "lblSupplierName";
+            this.lblSupplierName.Size = new System.Drawing.Size(87, 20);
+            this.lblSupplierName.TabIndex = 27;
+            this.lblSupplierName.Text = "Supplier Name";
+            // 
+            // txtProductName
+            // 
+            this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtProductName.Location = new System.Drawing.Point(6, 37);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(259, 27);
+            this.txtProductName.TabIndex = 3;
+            this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
+            this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
+            this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
+            this.txtProductName.Leave += new System.EventHandler(this.TxtProductName_Leave);
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Location = new System.Drawing.Point(843, 37);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(56, 27);
+            this.txtQuantity.TabIndex = 10;
+            this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtQuantity.Enter += new System.EventHandler(this.TxtQuantity_Enter);
+            this.txtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyDown);
+            this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQuantity_KeyPress);
+            this.txtQuantity.Leave += new System.EventHandler(this.TxtQuantity_Leave);
+            // 
+            // lblQty
+            // 
+            this.lblQty.AutoSize = true;
+            this.lblQty.Location = new System.Drawing.Point(843, 14);
+            this.lblQty.Name = "lblQty";
+            this.lblQty.Size = new System.Drawing.Size(42, 20);
+            this.lblQty.TabIndex = 80;
+            this.lblQty.Text = "Tr.Qty";
+            // 
+            // lblProductName
+            // 
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Location = new System.Drawing.Point(6, 14);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(108, 20);
+            this.lblProductName.TabIndex = 28;
+            this.lblProductName.Text = "Search by P.I Code";
+            // 
+            // txtMrp
+            // 
+            this.txtMrp.Enabled = false;
+            this.txtMrp.Location = new System.Drawing.Point(543, 36);
+            this.txtMrp.Name = "txtMrp";
+            this.txtMrp.ReadOnly = true;
+            this.txtMrp.Size = new System.Drawing.Size(52, 27);
+            this.txtMrp.TabIndex = 6;
+            this.txtMrp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMrp.Enter += new System.EventHandler(this.TxtMrp_Enter);
+            this.txtMrp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMrp_KeyDown);
+            this.txtMrp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMrp_KeyPress);
+            this.txtMrp.Leave += new System.EventHandler(this.TxtMrp_Leave);
+            // 
+            // lblMrp
+            // 
+            this.lblMrp.AutoSize = true;
+            this.lblMrp.Location = new System.Drawing.Point(526, 14);
+            this.lblMrp.Name = "lblMrp";
+            this.lblMrp.Size = new System.Drawing.Size(34, 20);
+            this.lblMrp.TabIndex = 77;
+            this.lblMrp.Text = "MRP";
+            // 
+            // lblEdit
+            // 
+            this.lblEdit.AutoSize = true;
+            this.lblEdit.Location = new System.Drawing.Point(711, 19);
+            this.lblEdit.Name = "lblEdit";
+            this.lblEdit.Size = new System.Drawing.Size(0, 20);
+            this.lblEdit.TabIndex = 37;
+            this.lblEdit.Visible = false;
+            // 
+            // epDamageEntry
+            // 
+            this.epDamageEntry.ContainerControl = this;
+            // 
+            // QrcodeImg
+            // 
+            this.QrcodeImg.ErrorCorrectLevel = Gma.QrCodeNet.Encoding.ErrorCorrectionLevel.M;
+            this.QrcodeImg.Image = ((System.Drawing.Image)(resources.GetObject("QrcodeImg.Image")));
+            this.QrcodeImg.Location = new System.Drawing.Point(1276, 14);
+            this.QrcodeImg.Margin = new System.Windows.Forms.Padding(1);
+            this.QrcodeImg.Name = "QrcodeImg";
+            this.QrcodeImg.QuietZoneModule = Gma.QrCodeNet.Encoding.Windows.Render.QuietZoneModules.Two;
+            this.QrcodeImg.Size = new System.Drawing.Size(58, 58);
+            this.QrcodeImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.QrcodeImg.TabIndex = 9587916;
+            this.QrcodeImg.TabStop = false;
+            this.QrcodeImg.Text = "QrCodeImgControl1";
+            this.QrcodeImg.Visible = false;
+            // 
             // INV_DamageEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1129,6 +1148,7 @@
             this.grpproductname.ResumeLayout(false);
             this.grpproductname.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epDamageEntry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QrcodeImg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1223,5 +1243,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSPID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSPSCID;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
+        internal Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl QrcodeImg;
     }
 }

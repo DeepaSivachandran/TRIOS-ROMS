@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,10 +49,11 @@ namespace ROMS
         public string varTempYear = "";
         public string varEmployeeId = "";
         public string varUserID = "";
+        public string DmUpdatevalue = "";
         //public int varUpdate = 0;
         public int varModifiedFlag = 0;
         Boolean BlnSearchImageYN = false;
-
+        byte[] varobjBarCodeByte;
         DataTable dtDamage = new DataTable();
         DataTable dtEmployee = new DataTable();
 
@@ -1530,6 +1532,17 @@ namespace ROMS
                             if (varID == 0)
                             {
                                 DMID = varvalue[2];
+                                DmUpdatevalue = varvalue[2];
+                                string varQrcode = varvalue[3];
+                                var varImgMemoryStream = new MemoryStream();
+                                QrcodeImg.Text = varQrcode;
+                                QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                                varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+                                objTRN_Damage.ViewType = 3;
+                                objTRN_Damage.paraDamageEntryID = Convert.ToInt32(DmUpdatevalue);
+                                objTRN_Damage.paraQrimg = (varobjBarCodeByte);
+                                varResult = objspservice.udfnDamageEntry(objTRN_Damage);
+                                objspservice.CloseConnection();
                             }
                             else
                             {

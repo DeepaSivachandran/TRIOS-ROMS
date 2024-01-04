@@ -316,7 +316,7 @@ namespace ROMS
                     }
                     else
                     {
-                        DGV_SearchGrid.ScrollBars = ScrollBars.None;
+                        DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
                     }
                 }
                 else
@@ -1840,7 +1840,7 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible = false)
+                if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
                     int offSetValue = dgvSupplierScheduleList.HorizontalScrollingOffset;
