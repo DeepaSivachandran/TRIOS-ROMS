@@ -2549,7 +2549,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRNS_GoodsInward.paraRemarks);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRNS_GoodsInward.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraGoodsInward", objTRNS_GoodsInward.paraGoodsInward);
+                varSqlCommand.Parameters.AddWithValue("@paraSTRID", objTRNS_GoodsInward.paraSTRID);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_GoodsInward.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRNS_GoodsInward.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRNS_GoodsInward.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
@@ -2651,6 +2654,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNG_GoodsInward.paraSLID);
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_GoodsInward.paraPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNG_GoodsInward.paraCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRNG_GoodsInward.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_GoodsInward.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_GoodsInward.paraIPAddress);
                 varSqlCommand.CommandTimeout = 0;

@@ -35,7 +35,7 @@ namespace ROMS
             try
             {
 
-                udfnEdit();
+                udfnEdit(0);
             }
             catch (Exception ex)
             {
@@ -44,7 +44,19 @@ namespace ROMS
             }
         } 
         
-         
+
+        private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+
+        }
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+
+        }
+        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
         private void udfnSearchGridHead()
         {
             try
@@ -93,7 +105,88 @@ namespace ROMS
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }  
+        }
+        //private void udfnGridSearchFilter()
+        //{
+        //    try
+        //    {
+        //        for (int i = 0; i < DGV_SearchGrid.Rows.Count; ++i)
+        //        {
+        //            if (DGV_SearchGrid.ColumnCount > 0)
+        //            {
+        //                BindingSource bs = new BindingSource();
+        //                bs.DataSource = grdInwardList.DataSource;
+        //                string filter = "";
+        //                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
+        //                {
+        //                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "")
+        //                    {
+        //                        if (filter != "") filter += "And ";
+        //                        if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
+        //                            filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + "=" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value);
+        //                        else
+        //                            filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+        //                    }
+        //                }
+        //                bs.Filter = filter;
+        //                grdInwardList.DataSource = bs;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        //}
+        
+        
+        private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DGV_SearchGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
+     
+        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
+        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+
+        }
+        private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
+        {
+            try
+            {
+                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TsbNew_Click_1(object sender, EventArgs e)
         { 
             try
@@ -176,7 +269,11 @@ namespace ROMS
             {
                 lvProduct.Visible = false;
             }
-        } 
+        }
+        private void TxtDay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
@@ -532,7 +629,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -593,7 +690,25 @@ namespace ROMS
             try
             {
                 udfnConcern();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (12) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 cmbConcern.SelectedValue = 1;
+                objDataBind = null;
+                cmbStatus.SelectedValue = 0;
+                //DataSet objDS = new DataSet();
+                //SPDataService objspservice = new SPDataService();
+                //objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 4);
+                //if (objDS.Tables[0].Rows.Count > 0)
+                //{
+                //    DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    dpToDate.MinDate = varDate;
+                //    dpFromDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
+                //}
+                //objspservice.CloseConnection();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                this.ActiveControl = cmbConcern;
                 udfnList();
             }
             catch (Exception ex)
@@ -770,6 +885,7 @@ namespace ROMS
                 objTRNG_GoodsInward.paraToDate = dpToDate.Text;
                 objTRNG_GoodsInward.paraSLID = Convert.ToInt32(varStockLocationId);
                 objTRNG_GoodsInward.paraGIID = Convert.ToInt32(varGIID);
+                objTRNG_GoodsInward.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNG_GoodsInward.paraPRID = Convert.ToInt32(varPRID);
                 objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnInwardList(objTRNG_GoodsInward);
@@ -792,6 +908,8 @@ namespace ROMS
                             grdInwardList.Columns["Transaction Type"].Width = 120;
                             grdInwardList.Columns["GIID"].Visible = false;
                             grdInwardList.Columns["Total Products"].Width = 120;
+                            grdInwardList.Columns["STSID"].Visible = false;
+                            grdInwardList.Columns["Status"].Width = 120;
                             grdInwardList.Columns["Created By"].Visible = false;
                             grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdInwardList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -816,13 +934,12 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
-                udfnSearchGridHead();
+                   udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
-                else { DGV_SearchGrid.ScrollBars = ScrollBars.None; }
             }
             catch (Exception ex)
             {
@@ -850,7 +967,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Transaction Type"].Width = 120;
                 DGV_SearchGrid.Columns["GIID"].Visible = false;
                 DGV_SearchGrid.Columns["Total Products"].Width = 120;
-                DGV_SearchGrid.Columns["Created By"].Visible = false; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                DGV_SearchGrid.Columns["Created By"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -1109,43 +1226,40 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible == false)
-                {
-                    DataGridViewColumn newColumn = grdInwardList.Columns[e.ColumnIndex];
-                    DataGridViewColumn oldColumn = grdInwardList.SortedColumn;
-                    ListSortDirection direction;
+                DataGridViewColumn newColumn = grdInwardList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdInwardList.SortedColumn;
+                ListSortDirection direction;
 
-                    // If oldColumn is null, then the DataGridView is not sorted.
-                    if (oldColumn != null)
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
+                {
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn &&
+                        grdInwardList.SortOrder == SortOrder.Ascending)
                     {
-                        // Sort the same column again, reversing the SortOrder.
-                        if (oldColumn == newColumn &&
-                            grdInwardList.SortOrder == SortOrder.Ascending)
-                        {
-                            direction = ListSortDirection.Descending;
-                        }
-                        else
-                        {
-                            // Sort a new column and remove the old SortGlyph.
-                            direction = ListSortDirection.Ascending;
-                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                        }
+                        direction = ListSortDirection.Descending;
                     }
                     else
                     {
+                        // Sort a new column and remove the old SortGlyph.
                         direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                     }
-                    grdInwardList.Sort(newColumn, direction);
-                    newColumn.HeaderCell.SortGlyphDirection =
-                        direction == ListSortDirection.Ascending ?
-                        SortOrder.Ascending : SortOrder.Descending;
-
-                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdInwardList.HorizontalScrollingOffset;
-                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
                 }
+                else
+                {
+                    direction = ListSortDirection.Ascending;
+                }
+                grdInwardList.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
+
+                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                DGV_SearchGrid.HorizontalScrollingOffset = grdInwardList.HorizontalScrollingOffset;
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1209,19 +1323,16 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible == false)
+                int totalWidth = 0;
+                int offSetValue = grdInwardList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdInwardList.Width > grdInwardList.HorizontalScrollingOffset && grdInwardList.HorizontalScrollingOffset > 0)
                 {
-                    int totalWidth = 0;
-                    int offSetValue = grdInwardList.HorizontalScrollingOffset;
-                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                        totalWidth += col.Width;
-                    if (totalWidth - grdInwardList.Width > grdInwardList.HorizontalScrollingOffset && grdInwardList.HorizontalScrollingOffset > 0)
-                    {
-                        offSetValue = offSetValue;
-                    }
-                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                    DGV_SearchGrid.Invalidate();
+                    offSetValue = offSetValue;
                 }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
             }
             catch (Exception ex)
             {
@@ -1230,23 +1341,24 @@ namespace ROMS
             }
         }
 
-        private void GrdInwardList_Scroll(object sender, ScrollEventArgs e)
+        private void GrdInwardList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
             {
-                if (lblNoRecordsFound.Visible == false)
+                grdInwardList.ClearSelection();
+                for (int i = 0; i < grdInwardList.Rows.Count; i++)
                 {
-                    int totalWidth = 0;
-                    int offSetValue = grdInwardList.HorizontalScrollingOffset;
-                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                        totalWidth += col.Width;
-                    if (totalWidth - grdInwardList.Width > grdInwardList.HorizontalScrollingOffset && grdInwardList.HorizontalScrollingOffset > 0)
+                    if (Convert.ToInt32(grdInwardList.Rows[i].Cells["STSID"].Value) == 41)
                     {
-                        offSetValue = offSetValue;
+                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                    DGV_SearchGrid.Invalidate();
-                    udfnSupscrollVisible(DGV_SearchGrid, grdInwardList);
+                    else if (Convert.ToInt32(grdInwardList.Rows[i].Cells["STSID"].Value) == 42)
+                    {
+                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    
                 }
             }
             catch (Exception ex)
@@ -1256,29 +1368,26 @@ namespace ROMS
             }
         }
 
-        public void udfnSupscrollVisible(DataGridView DGV, DataGridView grdSupDEList)
+        private void CmbStatus_Enter(object sender, EventArgs e)
         {
             try
             {
-                var vScrollbar = grdSupDEList.Controls.OfType<VScrollBar>().First();
-                if (vScrollbar.Visible == true)
-                {
-                    List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in DGV.Columns)
-                    {
-                        visibleColumns.Add(col.Index);
-                    }
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
-                    int I = DGV_SearchGrid.Rows.Count - 1;
-                    if (I == 0)
-                    {
-                        int rowIndex = 1;
-                        DGV_SearchGrid.Rows.Add();
-                        for (int i = 0; i < visibleColumns.Count; i++)
-                        {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                        }
-                    }
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -1287,13 +1396,94 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdInwardList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    udfnEdit();
+                    udfnEdit(0);
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
@@ -1307,20 +1497,26 @@ namespace ROMS
             }
         }
 
-        private void udfnEdit()
+        private void udfnEdit(int varEditflag)
         {
             try
             {
-                if (grdInwardList.SelectedRows.Count > 0)
+                if (varEditflag == 0)
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_Inward = new INV_Inward();
-                    MainForm.objINV_Inward.MdiParent = this.ParentForm;
-                    MainForm.objINV_Inward.btnSave.Text = "Update";
-                    MainForm.objINV_Inward.varGIId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value);
-                    MainForm.objINV_Inward.Show();
+                    if (grdInwardList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_Inward = new INV_Inward();
+                        MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                        MainForm.objINV_Inward.btnSave.Text = "Save as Draft";
+                        MainForm.objINV_Inward.varEditflag = 0;
+                        MainForm.objINV_Inward.varUpdateflag = 0;
+                        MainForm.objINV_Inward.varGIId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value);
+                        MainForm.objINV_Inward.varSTSID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STSID"].Value);
+                        MainForm.objINV_Inward.Show();
+                    }
                 }
             }
             catch (Exception ex)
