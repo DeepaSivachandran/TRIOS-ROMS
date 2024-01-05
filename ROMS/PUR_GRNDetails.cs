@@ -445,7 +445,7 @@ namespace ROMS
                 objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text);
                 objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRN_PurchaseReturnDC.paraDcID = Convert.ToInt32(dcid);
+                objTRN_PurchaseReturnDC.paraDCIDs = Convert.ToString(dcid);
                 objDs = objDServ.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objDServ.CloseConnection();
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -1571,7 +1571,10 @@ namespace ROMS
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.ParaScheduleid = Convert.ToString(lblschedule.Text);
                     objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Product.paraId = Convert.ToInt32(cmbPONo.SelectedValue);
                     objMR_Product.ParaProductsCode = varProductsCodes;
+                    
+                     
                     if (VarSearchFlag == true)
                     {
                         objMR_Product.paraPicode = txtProductName.Text;
