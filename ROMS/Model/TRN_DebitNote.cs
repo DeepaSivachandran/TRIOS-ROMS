@@ -15,5 +15,6 @@ namespace ROMS.Model
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
         public string paraSupplierID { get; set; } = "";
+       public int paraDCID { get; set; } = 0;
     }
 }

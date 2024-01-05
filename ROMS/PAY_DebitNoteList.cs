@@ -290,7 +290,7 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
-                    //tsbEdit_Click(sender, e);
+                    TsbEdit_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -1085,6 +1085,57 @@ namespace ROMS
             {
                 btnExport.Enabled = true;
                 btnExport.Focus();
+            }
+        }
+
+        private void TsbEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                //if (grdDebitNoteList.SelectedRows.Count > 0)
+                //{
+                //    picLoader.Visible = true;
+                //    picLoader.BringToFront();
+                //    Application.DoEvents();
+                //    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                //    MainForm.objPUR_PurchaseReturns.varDebitDCID = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
+                //    MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
+                //    MainForm.objPUR_PurchaseReturns.varDebitSupplier = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                //    MainForm.objPUR_PurchaseReturns.varDebitSchedule = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                //    MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
+                //    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                //    MainForm.objPUR_PurchaseReturns.Show();
+                //}
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDebitNoteList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                TsbEdit_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

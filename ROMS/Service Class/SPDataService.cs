@@ -2844,7 +2844,7 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[TRNG_DebitNote]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_DebitNote.ViewType);
-                //varSqlCommand.Parameters.AddWithValue("@paraDNID", objTRNG_DebitNote.paraDNID);
+                varSqlCommand.Parameters.AddWithValue("@paraDCID", objTRNG_DebitNote.paraDCID);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNG_DebitNote.paraSupplierID);
                 varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_DebitNote.paraFromDate);
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_DebitNote.paraToDate);

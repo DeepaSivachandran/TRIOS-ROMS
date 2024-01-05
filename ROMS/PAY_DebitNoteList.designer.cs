@@ -36,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierPaymentList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.pnlbrand = new System.Windows.Forms.Panel();
@@ -57,7 +58,6 @@
             this.lblTransactiondate = new System.Windows.Forms.Label();
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsSupplierPaymentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlbrand.SuspendLayout();
@@ -89,6 +89,19 @@
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(82, 24);
             this.tspHeader.Text = "Debit Note";
+            // 
+            // tsbEdit
+            // 
+            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
+            this.tsbEdit.Text = "&Edit";
+            this.tsbEdit.Click += new System.EventHandler(this.TsbEdit_Click);
             // 
             // lblNoRecordsFound
             // 
@@ -203,6 +216,7 @@
             this.grdDebitNoteList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDebitNoteList.Size = new System.Drawing.Size(1348, 508);
             this.grdDebitNoteList.TabIndex = 1110000989;
+            this.grdDebitNoteList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDebitNoteList_CellDoubleClick);
             this.grdDebitNoteList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDebitNoteList_DataBindingComplete);
             // 
             // clmPrint
@@ -388,18 +402,6 @@
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnView_KeyDown);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
-            // 
-            // tsbEdit
-            // 
-            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
-            this.tsbEdit.Text = "&Edit";
             // 
             // PAY_DebitNoteList
             // 

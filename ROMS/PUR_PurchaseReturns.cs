@@ -23,9 +23,10 @@ namespace ROMS
         private ToolTip tpReason = new ToolTip();
         private ToolTip tpDcNo = new ToolTip();
 
-        public int varReturnDCID = 0, varCloseFlag=0;
+        public int varReturnDCID = 0, varCloseFlag=0, varDebitSupplier=0, varDebitSchedule=0,varEditFlag=1;
         public int pbScheduleid = 0, pbSupplierId=0;
         public string varSuppliervalue = "";
+        public int varDebitDCID = 0;
         DataTable dtPurchaseReturnDC = new DataTable();
         public PUR_PurchaseReturns()
         {
@@ -286,6 +287,7 @@ namespace ROMS
                     grpReturnDCSupplier.Enabled = false;
                     udfnClosingDropdown();
                 }
+
             }
             catch (Exception ex)
             {
@@ -1534,6 +1536,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+       
     }
 }
