@@ -67,14 +67,17 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objINV_Inward = new INV_Inward();
+                    //MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
                     MainForm.objINV_Inward.btnSave.Text = "Update";
                     MainForm.objINV_Inward.grdInward.Columns["clmremove"].Visible = false;
                     MainForm.objINV_Inward.varEditflag = 1;
+                    //MainForm.objPUR_RemarksHistory.varEditflag = 1;
                     MainForm.objINV_Inward.varUpdateflag = 1;
                     MainForm.objINV_Inward.varSTRID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["STRID"].Value);
                     MainForm.objINV_Inward.varSLID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value);
                     MainForm.objINV_Inward.MdiParent = this.ParentForm;
                     MainForm.objINV_Inward.Show();
+                    //MainForm.objPUR_RemarksHistory.Show();
                 }
             }
             catch (Exception ex)
@@ -908,6 +911,7 @@ namespace ROMS
                     objMR_Product.paraProductName = txtProductName.Text;
                     objMR_Product.ParaFromDate = dpFromDate.Text;
                     objMR_Product.ParaToDate = dpToDate.Text;
+                    objMR_Product.paraId = 0;
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
@@ -1367,21 +1371,21 @@ namespace ROMS
         {
             try
             {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    //tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
+                //if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                //{
+                //    tsbNew_Click(sender, e);
+                //}
+                //if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                //{
+                //    tsbEdit_Click(sender, e);
+                //}
+                //if (e.KeyCode == Keys.Escape)
+                //{
+                //    MainForm.objStart = new DEF_Start();
+                //    MainForm.objStart.MdiParent = this.ParentForm;
+                //    MainForm.objStart.Show();
+                //    this.Close();
+                //}
             }
             catch (Exception ex)
             {

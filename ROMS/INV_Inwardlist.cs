@@ -28,7 +28,19 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-           
+            try
+            {
+
+                MainForm.objINV_Inward = new INV_Inward();
+                MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                MainForm.objINV_Inward.Show();
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
@@ -157,11 +169,11 @@ namespace ROMS
         {
 
         }
-        private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
+        private void udfnscrollVisible(DataGridView DGV, DataGridView grdInwardList)
         {
             try
             {
-                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdInwardList.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -907,10 +919,12 @@ namespace ROMS
                             grdInwardList.Columns["Stock Location"].Width = 150;
                             grdInwardList.Columns["Transaction Type"].Width = 120;
                             grdInwardList.Columns["GIID"].Visible = false;
+                            grdInwardList.Columns["STRID"].Visible = false;
                             grdInwardList.Columns["Total Products"].Width = 120;
                             grdInwardList.Columns["STSID"].Visible = false;
                             grdInwardList.Columns["Status"].Width = 120;
-                            grdInwardList.Columns["Created By"].Visible = false;
+                            grdInwardList.Columns["Created By"].Width = 100;
+                            grdInwardList.Columns["Created On"].Width = 150;
                             grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdInwardList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdInwardList.Columns["Inward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1144,6 +1158,10 @@ namespace ROMS
                             if (col.Name == "Concern" || col.Name == "Inward Date" || col.Name == "Inward No." || col.Name == "Stock Location" || col.Name == "Transaction Type" || col.Name == "Total Products")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            else if(col.Name == "Created On")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
                             else
                             {
@@ -1515,6 +1533,7 @@ namespace ROMS
                         MainForm.objINV_Inward.varEditflag = 0;
                         MainForm.objINV_Inward.varUpdateflag = 0;
                         MainForm.objINV_Inward.varGIId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value);
+                        MainForm.objINV_Inward.varGISTRID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STRID"].Value);
                         MainForm.objINV_Inward.varSTSID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STSID"].Value);
                         MainForm.objINV_Inward.Show();
                     }

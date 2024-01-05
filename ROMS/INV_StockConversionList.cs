@@ -585,6 +585,8 @@ namespace ROMS
                             grdConversionList.Columns["SLID"].Visible = false;
                             grdConversionList.Columns["PRID"].Visible = false;
                             grdConversionList.Columns["Converted Qty"].Width = 100;
+                            grdConversionList.Columns["Created On"].Width = 150;
+                            grdConversionList.Columns["Created By"].Width = 120;
                             grdConversionList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdConversionList.Columns["Converted Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdConversionList.Columns["Conversion Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

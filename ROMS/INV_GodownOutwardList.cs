@@ -468,6 +468,7 @@ namespace ROMS
                             grdOutwardList.Columns["GOID"].Visible = false;
                             grdOutwardList.Columns["Total Products"].Width = 120;
                             grdOutwardList.Columns["Created By"].Width = 120;
+                            grdOutwardList.Columns["Created On"].Width = 150;
                             grdOutwardList.Columns["STSID"].Visible = false;
                             grdOutwardList.Columns["Status"].Width = 120;
                             grdOutwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1304,11 +1305,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
+        private void udfnscrollVisible(DataGridView DGV, DataGridView grdOutwardList)
         {
             try
             {
-                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdOutwardList.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -1316,6 +1317,7 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
+
                     int I = DGV_SearchGrid.Rows.Count - 1;
                     if (I == 0)
                     {
