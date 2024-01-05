@@ -368,6 +368,7 @@
             this.grdSelectedRack.GridColor = System.Drawing.Color.White;
             this.grdSelectedRack.Location = new System.Drawing.Point(689, 143);
             this.grdSelectedRack.Name = "grdSelectedRack";
+            this.grdSelectedRack.ReadOnly = true;
             this.grdSelectedRack.RowHeadersVisible = false;
             this.grdSelectedRack.RowHeadersWidth = 70;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -389,23 +390,27 @@
             this.columnSNo.DefaultCellStyle = dataGridViewCellStyle8;
             this.columnSNo.HeaderText = "S.No.";
             this.columnSNo.Name = "columnSNo";
+            this.columnSNo.ReadOnly = true;
             this.columnSNo.Width = 40;
             // 
             // clmStockLocation
             // 
             this.clmStockLocation.HeaderText = "Stock Location";
             this.clmStockLocation.Name = "clmStockLocation";
+            this.clmStockLocation.ReadOnly = true;
             this.clmStockLocation.Width = 150;
             // 
             // clmRack
             // 
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
             // 
             // clmDescription
             // 
             this.clmDescription.HeaderText = "Description";
             this.clmDescription.Name = "clmDescription";
+            this.clmDescription.ReadOnly = true;
             this.clmDescription.Width = 140;
             // 
             // clmTotalProducts
@@ -414,12 +419,14 @@
             this.clmTotalProducts.DefaultCellStyle = dataGridViewCellStyle9;
             this.clmTotalProducts.HeaderText = "Total Products";
             this.clmTotalProducts.Name = "clmTotalProducts";
+            this.clmTotalProducts.ReadOnly = true;
             this.clmTotalProducts.Width = 110;
             // 
             // ID
             // 
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             this.ID.Visible = false;
             // 
             // clmRemoveRack
@@ -427,6 +434,7 @@
             this.clmRemoveRack.HeaderText = "Remove";
             this.clmRemoveRack.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemoveRack.Name = "clmRemoveRack";
+            this.clmRemoveRack.ReadOnly = true;
             this.clmRemoveRack.Width = 50;
             // 
             // btnView
