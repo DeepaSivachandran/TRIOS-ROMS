@@ -432,13 +432,12 @@ namespace ROMS
                     varUpdateViewType = 6; varViewType = 4; varOriginator = "Product Bulk Update-Location"; 
                     for (int i = 0; i < grdLoction.Rows.Count; i++)
                     {
-                        varPurSLID = 0; varSalesSLID = 0; varPurRKID = 0; varSalesRKID = 0; varErrorflag = 0;  string varPurStockLocationName = ""; string varPurSalesLocationName = "";
+                        varPurSLID = 0; varSalesSLID = 0; varPurRKID = 0; varSalesRKID = 0; varErrorflag = 0;
+                        string varPurStockLocationName = ""; string varPurSalesLocationName = "";
                         
-                        string varPurRackName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim();
-                        if (varPurRackName == "") { varPurRackName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-Current"].Value).Trim(); }
+                       
                         varPurStockLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim();
                         if (varPurStockLocationName == "") { varPurStockLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-Current"].Value).Trim(); }
-
                         //var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varPurStockLocationName.Trim().ToUpper()) && r.Field<int>("PRSGID").Equals(Convert.ToInt32(grdLoction.Rows[i].Cells["PRSGID"].Value))) group r by r.Field<int>("SLID") into g select g.Key;
                         var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varPurStockLocationName.Trim().ToUpper()) && r.Field<int>("SL_COMID").Equals(Convert.ToInt32(grdLoction.Rows[i].Cells["PR_COMID"].Value))) group r by r.Field<int>("SLID") into g select g.Key;
                         if (varPurStockLocation.Count() > 0)
@@ -449,19 +448,23 @@ namespace ROMS
                         var varSalesStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varPurSalesLocationName.Trim().ToUpper()) && r.Field<int>("SL_COMID").Equals(Convert.ToInt32(grdLoction.Rows[i].Cells["PR_COMID"].Value))) group r by r.Field<int>("SLID") into g select g.Key;
                         if (varSalesStockLocation.Count() > 0)
                         { varSalesSLID = Convert.ToInt32(varSalesStockLocation.ToList()[0]); }
-                        string varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim();
-                        if (varPurLocationName == "") { varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-Current"].Value).Trim(); }
-                        //var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("RK_Name").ToUpper().Equals(Convert.ToString(varPurRackName).Trim().ToUpper()) && r.Field<int>("RK_SLID").Equals(varPurSLID) && r.Field<int>("PRSGRK_PRSGID").Equals(Convert.ToInt32(grdLoction.Rows[i].Cells["PRSGID"].Value))) group r by r.Field<int>("RKID") into g select g.Key;
+
+                        string varPurRackName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim();
+                        if (varPurRackName == "") { varPurRackName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-Current"].Value).Trim(); }
                         var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("RK_Name").ToUpper().Equals(Convert.ToString(varPurRackName).Trim().ToUpper()) && r.Field<int>("RK_SLID").Equals(varPurSLID)) group r by r.Field<int>("RKID") into g select g.Key;
                         if (varPurRack.Count() > 0)
                         { varPurRKID = Convert.ToInt32(varPurRack.ToList()[0]); }
 
-                        string varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim();
-                        if (varSalesLocationName == "") { varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-Current"].Value).Trim(); }
+                        string varSalesRackName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim();
+                        if (varSalesRackName == "") { varSalesRackName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack -Current"].Value).Trim(); }
                         //var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper()) && r.Field<string>("Stock Location").ToUpper().Equals(varSalesLocationName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
-                        var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("RK_Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper())) group r by r.Field<int>("RKID") into g select g.Key;
+                        var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("RK_Name").ToUpper().Equals(Convert.ToString(varSalesRackName).Trim().ToUpper()) && r.Field<int>("RK_SLID").Equals(varSalesSLID)) group r by r.Field<int>("RKID") into g select g.Key;
                         if (varSalesRack.Count() > 0)
                         { varSalesRKID = Convert.ToInt32(varSalesRack.ToList()[0]); }
+
+                        //string varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim();
+                        //if (varPurLocationName == "") { varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-Current"].Value).Trim(); }
+                        //var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("RK_Name").ToUpper().Equals(Convert.ToString(varPurRackName).Trim().ToUpper()) && r.Field<int>("RK_SLID").Equals(varPurSLID) && r.Field<int>("PRSGRK_PRSGID").Equals(Convert.ToInt32(grdLoction.Rows[i].Cells["PRSGID"].Value))) group r by r.Field<int>("RKID") into g select g.Key;
 
                         if (Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim().ToUpper() != "")
                         {
@@ -491,8 +494,11 @@ namespace ROMS
                                 varErrorflag = 4;
                             }
                         }
-                        if (varPurRKID == 0 && Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim() != "")
+                        if (varPurRKID == 0 && Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim() != "" && Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-Current"].Value).Trim() != "")
                         { varErrorflag = 5; }
+                        if (varSalesRKID == 0 && Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim() != "" && Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack -Current"].Value).Trim() != "")
+                        { varErrorflag = 5; }
+
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdLoction.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
@@ -550,18 +556,19 @@ namespace ROMS
                         { varReOrderQty = 0; }
                         else { varReOrderQty = Convert.ToDecimal(grdStock.Rows[i].Cells["Reorder Qty-Current"].Value); }
 
-                        if (Convert.ToString(grdStock.Rows[i].Cells["Min Stock-New"].Value) != "")
-                        { varCheckMinStock = Convert.ToDecimal(grdStock.Rows[i].Cells["Min Stock-New"].Value); }
+                        if (Convert.ToString(grdStock.Rows[i].Cells["Min Stock-New"].Value) == "") { varCheckMinStock = 0; }
+                        else { varCheckMinStock = Convert.ToDecimal(grdStock.Rows[i].Cells["Min Stock-New"].Value); }
+                        if (varCheckMinStock == 0) { varCheckMinStock=Convert.ToDecimal(grdStock.Rows[i].Cells["Min Stock-Current"].Value); }
 
-                        if(Convert.ToString(grdStock.Rows[i].Cells["Max Stock-New"].Value) != "")
-                        { varCheckMaxStock = Convert.ToDecimal(grdStock.Rows[i].Cells["Max Stock-New"].Value); }
+                        if(Convert.ToString(grdStock.Rows[i].Cells["Max Stock-New"].Value) == "") { varCheckMaxStock = 0; }
+                        else { varCheckMaxStock = Convert.ToDecimal(grdStock.Rows[i].Cells["Max Stock-New"].Value); }
+                        if( varCheckMaxStock==0) { varCheckMaxStock=Convert.ToDecimal(grdStock.Rows[i].Cells["Max Stock-Current"].Value); }
 
-                        if (varCheckMinStock < varCheckMaxStock)
+                        if (varCheckMinStock > varCheckMaxStock)
                         {
                             varErrorflag = 1;
                         }
 
-                        
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdStock.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
@@ -855,9 +862,9 @@ namespace ROMS
                         else if(grdStock.Visible==true)
                         {
                             grdStock.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                            grdStock.Columns["Min Stock-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                            grdStock.Columns["Max Stock-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                            grdStock.Columns["Reorder Qty-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            grdStock.Rows[i].Cells["Min Stock-New"].Style.BackColor = Color.PaleGreen;
+                            grdStock.Rows[i].Cells["Max Stock-New"].Style.BackColor = Color.PaleGreen;
+                            grdStock.Rows[i].Cells["Reorder Qty-New"].Style.BackColor = Color.PaleGreen;
                             grdStock.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
                             grdStock.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
                             grdStock.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
