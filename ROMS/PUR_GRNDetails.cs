@@ -450,7 +450,7 @@ namespace ROMS
                 objDServ.CloseConnection();
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
-                    varDC = "1";
+                    varDC = Convert.ToString(objDs.Tables[0].Rows[0]["ID"]);
                 }
                 //if (varReturnDC != "0" && (chkCompleted.Enabled == true && chkCompleted.Checked == true) && varDC == "1")
                 //{
@@ -464,9 +464,9 @@ namespace ROMS
                 //{
                 //    result1 = DialogResult.Yes;
                 //}
-                if (varReturnDC != "0" && (chkCompleted.Enabled == true && chkCompleted.Checked == true) && varDC == "1")
+                if (varReturnDC != "0" && (chkCompleted.Enabled == true && chkCompleted.Checked == true) )
                 {
-                    if (Convert.ToString(grdReurnDC.Rows.Count) != varReturnDC)
+                    if (varDC != "0")
                     {
                         string varMessage = objDServ.udfnGetMessages(102);
                         objDServ.CloseConnection();

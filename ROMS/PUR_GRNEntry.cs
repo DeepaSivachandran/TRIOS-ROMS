@@ -1126,11 +1126,11 @@ namespace ROMS
                     //objDServ.CloseConnection();
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
-                        varDC = "1";
+                        varDC = Convert.ToString(objDs.Tables[0].Rows[0]["ID"]) ;
                     }
-                    if (varReturnDC != "0" && varDC == "1")
+                    if (varReturnDC != "0" )
                     {
-                        if (Convert.ToString(grdReurnDC.Rows.Count) != varReturnDC)
+                        if (varDC != "0")
                         { 
                             string varMessage = objDServ.udfnGetMessages(102);
                             objDServ.CloseConnection();
@@ -1996,8 +1996,16 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    gpGRNEntry.Enabled = true;
-                                    btnDC.Enabled = true;
+                                    gpGRNEntry.Enabled = true; 
+                                    if (varReturnDC == "0")
+                                    {
+                                        btnDC.Enabled = false;
+                                    }
+                                    else
+                                    {
+                                        btnDC.Enabled = true;
+                                    }
+                                    
                                     btnSave.Enabled = true;
                                     grdPODetails.Enabled = true;
                                     grdReurnDC.Enabled = true;
