@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPurchase = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -40,9 +40,19 @@
             this.label32 = new System.Windows.Forms.Label();
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.btnClear = new System.Windows.Forms.Button();
+            this.lblGodown = new System.Windows.Forms.Label();
             this.tbDetails = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblschedule = new System.Windows.Forms.Label();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.label33 = new System.Windows.Forms.Label();
             this.lblDateTime = new System.Windows.Forms.Label();
@@ -115,7 +125,7 @@
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtGstin = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.txtHSN = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -137,7 +147,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.cmbPurchaseType = new System.Windows.Forms.ComboBox();
+            this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtQRCode = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -149,17 +159,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dpInvoiceDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.rbPurchaseCredit = new System.Windows.Forms.RadioButton();
+            this.rbPurchaseCash = new System.Windows.Forms.RadioButton();
+            this.cmbEntryType = new System.Windows.Forms.ComboBox();
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPENO = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dpVoucherDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.textBox29 = new System.Windows.Forms.TextBox();
@@ -197,14 +206,14 @@
             this.textBox42 = new System.Windows.Forms.TextBox();
             this.textBox43 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.rbAfterBefore = new System.Windows.Forms.RadioButton();
+            this.rbRateBefore = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.ebCheque = new System.Windows.Forms.RadioButton();
-            this.rbCash = new System.Windows.Forms.RadioButton();
+            this.rbPaymentCheque = new System.Windows.Forms.RadioButton();
+            this.rbPaymentCash = new System.Windows.Forms.RadioButton();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.rbDiscountAfter = new System.Windows.Forms.RadioButton();
+            this.rbDiscountBefore = new System.Windows.Forms.RadioButton();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -223,14 +232,17 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
-            this.LV_Supplier = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblSupplierOrderpolicy = new System.Windows.Forms.Label();
+            this.asa = new System.Windows.Forms.Label();
+            this.lblsupplierScheduletype = new System.Windows.Forms.Label();
+            this.lblSupplierCity = new System.Windows.Forms.Label();
+            this.lblSuppliername = new System.Windows.Forms.Label();
+            this.lblsupplierGST = new System.Windows.Forms.Label();
+            this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tbDetails.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -326,7 +338,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.cmbConcern);
             this.groupBox1.Controls.Add(this.btnClear);
+            this.groupBox1.Controls.Add(this.lblGodown);
             this.groupBox1.Controls.Add(this.tbDetails);
             this.groupBox1.Controls.Add(this.grdDCDetails);
             this.groupBox1.Controls.Add(this.label12);
@@ -335,7 +350,7 @@
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.label27);
             this.groupBox1.Controls.Add(this.grdPODetails);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.txtGstin);
             this.groupBox1.Controls.Add(this.label28);
             this.groupBox1.Controls.Add(this.txtHSN);
             this.groupBox1.Controls.Add(this.label26);
@@ -357,7 +372,7 @@
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.textBox11);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.cmbPurchaseType);
+            this.groupBox1.Controls.Add(this.cmbTransactionType);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtQRCode);
             this.groupBox1.Controls.Add(this.label8);
@@ -366,15 +381,14 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.dpInvoiceDate);
             this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.cmbType);
+            this.groupBox1.Controls.Add(this.cmbEntryType);
             this.groupBox1.Controls.Add(this.txtInvoiceNo);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtPENO);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dpVoucherDate);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.groupBox9);
             this.groupBox1.Controls.Add(this.groupBox5);
@@ -393,18 +407,58 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblSupplierOrderpolicy);
+            this.groupBox2.Controls.Add(this.asa);
+            this.groupBox2.Controls.Add(this.lblsupplierpayment);
+            this.groupBox2.Controls.Add(this.lblsupplierScheduletype);
+            this.groupBox2.Controls.Add(this.lblsupplierGST);
+            this.groupBox2.Controls.Add(this.lblSupplierCity);
+            this.groupBox2.Controls.Add(this.lblSuppliername);
+            this.groupBox2.Location = new System.Drawing.Point(1103, 11);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(220, 115);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Supplier Details";
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(3, 29);
+            this.cmbConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(83, 25);
+            this.cmbConcern.TabIndex = 1111221;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
+            // 
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClear.Image = global::ROMS.Properties.Resources.reset;
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1249, 105);
+            this.btnClear.Location = new System.Drawing.Point(1021, 103);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(80, 28);
             this.btnClear.TabIndex = 1111218;
             this.btnClear.Text = "Refresh";
             this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClear.UseVisualStyleBackColor = true;
+            // 
+            // lblGodown
+            // 
+            this.lblGodown.AutoSize = true;
+            this.lblGodown.Location = new System.Drawing.Point(3, 13);
+            this.lblGodown.Name = "lblGodown";
+            this.lblGodown.Size = new System.Drawing.Size(47, 17);
+            this.lblGodown.TabIndex = 1111222;
+            this.lblGodown.Text = "Concern";
             // 
             // tbDetails
             // 
@@ -420,6 +474,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lblschedule);
+            this.tabPage1.Controls.Add(this.lblSupplierCode);
             this.tabPage1.Controls.Add(this.LV_Supplier);
             this.tabPage1.Controls.Add(this.groupBox11);
             this.tabPage1.Controls.Add(this.label29);
@@ -449,6 +505,59 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "GRN Details";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lblschedule
+            // 
+            this.lblschedule.AutoSize = true;
+            this.lblschedule.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblschedule.Location = new System.Drawing.Point(654, 135);
+            this.lblschedule.Name = "lblschedule";
+            this.lblschedule.Size = new System.Drawing.Size(14, 17);
+            this.lblschedule.TabIndex = 1111222;
+            this.lblschedule.Text = "0";
+            this.lblschedule.Visible = false;
+            // 
+            // lblSupplierCode
+            // 
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupplierCode.Location = new System.Drawing.Point(634, 135);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(14, 17);
+            this.lblSupplierCode.TabIndex = 1111221;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
+            // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader1});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(185, 118);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(468, 93);
+            this.LV_Supplier.TabIndex = 1111219;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 180;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
             // 
             // groupBox11
             // 
@@ -665,14 +774,14 @@
             this.grdSupplierList.AllowUserToResizeRows = false;
             this.grdSupplierList.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.grdSupplierList.ColumnHeadersHeight = 30;
             this.grdSupplierList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -830,14 +939,14 @@
             this.grdPurchaseList.AllowUserToResizeRows = false;
             this.grdPurchaseList.BackgroundColor = System.Drawing.Color.White;
             this.grdPurchaseList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.grdPurchaseList.ColumnHeadersHeight = 50;
             this.grdPurchaseList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -978,12 +1087,14 @@
             this.dataGridViewTextBoxColumn25.HeaderText = "GST Amnt";
             this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
             this.dataGridViewTextBoxColumn25.ReadOnly = true;
+            this.dataGridViewTextBoxColumn25.Width = 80;
             // 
             // dataGridViewTextBoxColumn26
             // 
             this.dataGridViewTextBoxColumn26.HeaderText = "Nett Amount";
             this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
             this.dataGridViewTextBoxColumn26.ReadOnly = true;
+            this.dataGridViewTextBoxColumn26.Width = 80;
             // 
             // grdDCDetails
             // 
@@ -993,14 +1104,14 @@
             this.grdDCDetails.AllowUserToResizeRows = false;
             this.grdDCDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdDCDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDCDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdDCDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.grdDCDetails.ColumnHeadersHeight = 30;
             this.grdDCDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdDCDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1091,14 +1202,14 @@
             this.grdPODetails.AllowUserToResizeRows = false;
             this.grdPODetails.BackgroundColor = System.Drawing.Color.White;
             this.grdPODetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPODetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPODetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.grdPODetails.ColumnHeadersHeight = 30;
             this.grdPODetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPODetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1132,17 +1243,21 @@
             this.Column17.Name = "Column17";
             this.Column17.ReadOnly = true;
             // 
-            // textBox4
+            // txtGstin
             // 
-            this.textBox4.Location = new System.Drawing.Point(455, 77);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(153, 25);
-            this.textBox4.TabIndex = 1111194;
+            this.txtGstin.Location = new System.Drawing.Point(435, 79);
+            this.txtGstin.MaxLength = 15;
+            this.txtGstin.Name = "txtGstin";
+            this.txtGstin.Size = new System.Drawing.Size(153, 25);
+            this.txtGstin.TabIndex = 1111194;
+            this.txtGstin.Enter += new System.EventHandler(this.TxtGstin_Enter);
+            this.txtGstin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGstin_KeyDown);
+            this.txtGstin.Leave += new System.EventHandler(this.TxtGstin_Leave);
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(455, 58);
+            this.label28.Location = new System.Drawing.Point(435, 58);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(36, 17);
             this.label28.TabIndex = 1111193;
@@ -1278,15 +1393,18 @@
             // 
             // txtBroker
             // 
-            this.txtBroker.Location = new System.Drawing.Point(310, 77);
+            this.txtBroker.Location = new System.Drawing.Point(292, 79);
             this.txtBroker.Name = "txtBroker";
             this.txtBroker.Size = new System.Drawing.Size(139, 25);
             this.txtBroker.TabIndex = 1111138;
+            this.txtBroker.Enter += new System.EventHandler(this.TxtBroker_Enter);
+            this.txtBroker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBroker_KeyDown);
+            this.txtBroker.Leave += new System.EventHandler(this.TxtBroker_Leave);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(310, 58);
+            this.label13.Location = new System.Drawing.Point(292, 58);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(40, 17);
             this.label13.TabIndex = 1111137;
@@ -1339,22 +1457,24 @@
             this.label10.TabIndex = 39;
             this.label10.Text = "Invoice Qty";
             // 
-            // cmbPurchaseType
+            // cmbTransactionType
             // 
-            this.cmbPurchaseType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPurchaseType.FormattingEnabled = true;
-            this.cmbPurchaseType.Items.AddRange(new object[] {
-            "Shop Sales",
-            "RM For Production"});
-            this.cmbPurchaseType.Location = new System.Drawing.Point(200, 77);
-            this.cmbPurchaseType.Name = "cmbPurchaseType";
-            this.cmbPurchaseType.Size = new System.Drawing.Size(104, 25);
-            this.cmbPurchaseType.TabIndex = 24;
+            this.cmbTransactionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTransactionType.FormattingEnabled = true;
+            this.cmbTransactionType.Location = new System.Drawing.Point(184, 79);
+            this.cmbTransactionType.Name = "cmbTransactionType";
+            this.cmbTransactionType.Size = new System.Drawing.Size(104, 25);
+            this.cmbTransactionType.TabIndex = 24;
+            this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
+            this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
+            this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
+            this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
+            this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(200, 58);
+            this.label9.Location = new System.Drawing.Point(184, 58);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(88, 17);
             this.label9.TabIndex = 23;
@@ -1362,7 +1482,7 @@
             // 
             // txtQRCode
             // 
-            this.txtQRCode.Location = new System.Drawing.Point(615, 29);
+            this.txtQRCode.Location = new System.Drawing.Point(677, 29);
             this.txtQRCode.Name = "txtQRCode";
             this.txtQRCode.Size = new System.Drawing.Size(90, 25);
             this.txtQRCode.TabIndex = 22;
@@ -1370,7 +1490,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(615, 12);
+            this.label8.Location = new System.Drawing.Point(677, 12);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 17);
             this.label8.TabIndex = 21;
@@ -1384,14 +1504,14 @@
             this.grdTaxDetails.AllowUserToResizeRows = false;
             this.grdTaxDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdTaxDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdTaxDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdTaxDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.grdTaxDetails.ColumnHeadersHeight = 30;
             this.grdTaxDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdTaxDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1429,7 +1549,7 @@
             // 
             // txtSupplier
             // 
-            this.txtSupplier.Location = new System.Drawing.Point(200, 30);
+            this.txtSupplier.Location = new System.Drawing.Point(272, 29);
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(248, 25);
             this.txtSupplier.TabIndex = 16;
@@ -1441,7 +1561,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(200, 13);
+            this.label6.Location = new System.Drawing.Point(272, 13);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 17);
             this.label6.TabIndex = 15;
@@ -1449,86 +1569,91 @@
             // 
             // dpInvoiceDate
             // 
+            this.dpInvoiceDate.Checked = false;
             this.dpInvoiceDate.CustomFormat = "dd/MM/yyyy";
             this.dpInvoiceDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpInvoiceDate.Location = new System.Drawing.Point(7, 77);
+            this.dpInvoiceDate.Location = new System.Drawing.Point(3, 79);
             this.dpInvoiceDate.Name = "dpInvoiceDate";
-            this.dpInvoiceDate.Size = new System.Drawing.Size(90, 25);
+            this.dpInvoiceDate.Size = new System.Drawing.Size(83, 25);
             this.dpInvoiceDate.TabIndex = 14;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.Controls.Add(this.rbPurchaseCredit);
+            this.groupBox3.Controls.Add(this.rbPurchaseCash);
             this.groupBox3.Font = new System.Drawing.Font("Oswald Regular", 10F);
-            this.groupBox3.Location = new System.Drawing.Point(719, 13);
+            this.groupBox3.Location = new System.Drawing.Point(769, 13);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(165, 45);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Purchase Type";
             // 
-            // radioButton2
+            // rbPurchaseCredit
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(91, 18);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(57, 23);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Credit";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbPurchaseCredit.AutoSize = true;
+            this.rbPurchaseCredit.Location = new System.Drawing.Point(91, 18);
+            this.rbPurchaseCredit.Name = "rbPurchaseCredit";
+            this.rbPurchaseCredit.Size = new System.Drawing.Size(57, 23);
+            this.rbPurchaseCredit.TabIndex = 1;
+            this.rbPurchaseCredit.TabStop = true;
+            this.rbPurchaseCredit.Text = "Credit";
+            this.rbPurchaseCredit.UseVisualStyleBackColor = true;
+            this.rbPurchaseCredit.Enter += new System.EventHandler(this.RbPurchaseCredit_Enter);
+            this.rbPurchaseCredit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbPurchaseCredit_KeyDown);
+            this.rbPurchaseCredit.Leave += new System.EventHandler(this.RbPurchaseCredit_Leave);
             // 
-            // radioButton1
+            // rbPurchaseCash
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(8, 18);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(51, 23);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Cash";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbPurchaseCash.AutoSize = true;
+            this.rbPurchaseCash.Location = new System.Drawing.Point(8, 18);
+            this.rbPurchaseCash.Name = "rbPurchaseCash";
+            this.rbPurchaseCash.Size = new System.Drawing.Size(51, 23);
+            this.rbPurchaseCash.TabIndex = 0;
+            this.rbPurchaseCash.TabStop = true;
+            this.rbPurchaseCash.Text = "Cash";
+            this.rbPurchaseCash.UseVisualStyleBackColor = true;
+            this.rbPurchaseCash.Enter += new System.EventHandler(this.RbPurchaseCash_Enter);
+            this.rbPurchaseCash.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbPurchaseCash_KeyDown);
+            this.rbPurchaseCash.Leave += new System.EventHandler(this.RbPurchaseCash_Leave);
             // 
-            // groupBox2
+            // cmbEntryType
             // 
-            this.groupBox2.Location = new System.Drawing.Point(1067, 11);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(260, 94);
-            this.groupBox2.TabIndex = 11;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Supplier Details";
-            // 
-            // cmbType
-            // 
-            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(455, 29);
-            this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(153, 25);
-            this.cmbType.TabIndex = 10;
-            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.CmbType_SelectedIndexChanged);
+            this.cmbEntryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEntryType.FormattingEnabled = true;
+            this.cmbEntryType.Location = new System.Drawing.Point(522, 29);
+            this.cmbEntryType.Name = "cmbEntryType";
+            this.cmbEntryType.Size = new System.Drawing.Size(153, 25);
+            this.cmbEntryType.TabIndex = 10;
+            this.cmbEntryType.SelectedIndexChanged += new System.EventHandler(this.CmbType_SelectedIndexChanged);
+            this.cmbEntryType.Enter += new System.EventHandler(this.CmbEntryType_Enter);
+            this.cmbEntryType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbEntryType_KeyDown);
+            this.cmbEntryType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbEntryType_KeyPress);
+            this.cmbEntryType.Leave += new System.EventHandler(this.CmbEntryType_Leave);
             // 
             // txtInvoiceNo
             // 
-            this.txtInvoiceNo.Location = new System.Drawing.Point(104, 77);
+            this.txtInvoiceNo.Location = new System.Drawing.Point(90, 79);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
             this.txtInvoiceNo.Size = new System.Drawing.Size(90, 25);
             this.txtInvoiceNo.TabIndex = 8;
+            this.txtInvoiceNo.Enter += new System.EventHandler(this.TxtInvoiceNo_Enter);
+            this.txtInvoiceNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceNo_KeyDown);
+            this.txtInvoiceNo.Leave += new System.EventHandler(this.TxtInvoiceNo_Leave);
             // 
-            // textBox1
+            // txtPENO
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(104, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(90, 25);
-            this.textBox1.TabIndex = 7;
+            this.txtPENO.Enabled = false;
+            this.txtPENO.Location = new System.Drawing.Point(180, 29);
+            this.txtPENO.Name = "txtPENO";
+            this.txtPENO.ReadOnly = true;
+            this.txtPENO.Size = new System.Drawing.Size(90, 25);
+            this.txtPENO.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(455, 12);
+            this.label5.Location = new System.Drawing.Point(522, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 17);
             this.label5.TabIndex = 5;
@@ -1537,7 +1662,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 58);
+            this.label4.Location = new System.Drawing.Point(3, 58);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 17);
             this.label4.TabIndex = 4;
@@ -1546,7 +1671,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(104, 58);
+            this.label3.Location = new System.Drawing.Point(90, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 17);
             this.label3.TabIndex = 3;
@@ -1555,25 +1680,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(104, 13);
+            this.label2.Location = new System.Drawing.Point(180, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Voucher No.";
             // 
-            // dateTimePicker1
+            // dpVoucherDate
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(7, 30);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(90, 25);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dpVoucherDate.CustomFormat = "dd/MM/yyyy";
+            this.dpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpVoucherDate.Location = new System.Drawing.Point(88, 29);
+            this.dpVoucherDate.Name = "dpVoucherDate";
+            this.dpVoucherDate.Size = new System.Drawing.Size(90, 25);
+            this.dpVoucherDate.TabIndex = 1;
+            this.dpVoucherDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpVoucherDate_KeyDown);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 13);
+            this.label1.Location = new System.Drawing.Point(88, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 17);
             this.label1.TabIndex = 0;
@@ -1946,105 +2072,123 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.radioButton3);
-            this.groupBox4.Controls.Add(this.radioButton4);
+            this.groupBox4.Controls.Add(this.rbAfterBefore);
+            this.groupBox4.Controls.Add(this.rbRateBefore);
             this.groupBox4.Font = new System.Drawing.Font("Oswald Regular", 10F);
-            this.groupBox4.Location = new System.Drawing.Point(896, 13);
+            this.groupBox4.Location = new System.Drawing.Point(936, 13);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(165, 45);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Rate Calculation";
             // 
-            // radioButton3
+            // rbAfterBefore
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(91, 17);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(72, 23);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "After Tax";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbAfterBefore.AutoSize = true;
+            this.rbAfterBefore.Location = new System.Drawing.Point(91, 17);
+            this.rbAfterBefore.Name = "rbAfterBefore";
+            this.rbAfterBefore.Size = new System.Drawing.Size(72, 23);
+            this.rbAfterBefore.TabIndex = 3;
+            this.rbAfterBefore.TabStop = true;
+            this.rbAfterBefore.Text = "After Tax";
+            this.rbAfterBefore.UseVisualStyleBackColor = true;
+            this.rbAfterBefore.Enter += new System.EventHandler(this.RbAfterBefore_Enter);
+            this.rbAfterBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbAfterBefore_KeyDown);
+            this.rbAfterBefore.Leave += new System.EventHandler(this.RbAfterBefore_Leave);
             // 
-            // radioButton4
+            // rbRateBefore
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(8, 17);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(80, 23);
-            this.radioButton4.TabIndex = 2;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Before Tax";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rbRateBefore.AutoSize = true;
+            this.rbRateBefore.Location = new System.Drawing.Point(8, 17);
+            this.rbRateBefore.Name = "rbRateBefore";
+            this.rbRateBefore.Size = new System.Drawing.Size(80, 23);
+            this.rbRateBefore.TabIndex = 2;
+            this.rbRateBefore.TabStop = true;
+            this.rbRateBefore.Text = "Before Tax";
+            this.rbRateBefore.UseVisualStyleBackColor = true;
+            this.rbRateBefore.Enter += new System.EventHandler(this.RbRateBefore_Enter);
+            this.rbRateBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbRateBefore_KeyDown);
+            this.rbRateBefore.Leave += new System.EventHandler(this.RbRateBefore_Leave);
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.ebCheque);
-            this.groupBox7.Controls.Add(this.rbCash);
+            this.groupBox7.Controls.Add(this.rbPaymentCheque);
+            this.groupBox7.Controls.Add(this.rbPaymentCash);
             this.groupBox7.Font = new System.Drawing.Font("Oswald Regular", 10F);
-            this.groupBox7.Location = new System.Drawing.Point(719, 57);
+            this.groupBox7.Location = new System.Drawing.Point(769, 57);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(165, 47);
             this.groupBox7.TabIndex = 25;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Payment Type";
             // 
-            // ebCheque
+            // rbPaymentCheque
             // 
-            this.ebCheque.AutoSize = true;
-            this.ebCheque.Location = new System.Drawing.Point(91, 17);
-            this.ebCheque.Name = "ebCheque";
-            this.ebCheque.Size = new System.Drawing.Size(64, 23);
-            this.ebCheque.TabIndex = 3;
-            this.ebCheque.TabStop = true;
-            this.ebCheque.Text = "Cheque";
-            this.ebCheque.UseVisualStyleBackColor = true;
+            this.rbPaymentCheque.AutoSize = true;
+            this.rbPaymentCheque.Location = new System.Drawing.Point(91, 17);
+            this.rbPaymentCheque.Name = "rbPaymentCheque";
+            this.rbPaymentCheque.Size = new System.Drawing.Size(64, 23);
+            this.rbPaymentCheque.TabIndex = 3;
+            this.rbPaymentCheque.TabStop = true;
+            this.rbPaymentCheque.Text = "Cheque";
+            this.rbPaymentCheque.UseVisualStyleBackColor = true;
+            this.rbPaymentCheque.Enter += new System.EventHandler(this.RbPurchaseCheque_Enter);
+            this.rbPaymentCheque.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbPurchaseCheque_KeyDown);
+            this.rbPaymentCheque.Leave += new System.EventHandler(this.RbPurchaseCheque_Leave);
             // 
-            // rbCash
+            // rbPaymentCash
             // 
-            this.rbCash.AutoSize = true;
-            this.rbCash.Location = new System.Drawing.Point(8, 17);
-            this.rbCash.Name = "rbCash";
-            this.rbCash.Size = new System.Drawing.Size(51, 23);
-            this.rbCash.TabIndex = 2;
-            this.rbCash.TabStop = true;
-            this.rbCash.Text = "Cash";
-            this.rbCash.UseVisualStyleBackColor = true;
+            this.rbPaymentCash.AutoSize = true;
+            this.rbPaymentCash.Location = new System.Drawing.Point(8, 17);
+            this.rbPaymentCash.Name = "rbPaymentCash";
+            this.rbPaymentCash.Size = new System.Drawing.Size(51, 23);
+            this.rbPaymentCash.TabIndex = 2;
+            this.rbPaymentCash.TabStop = true;
+            this.rbPaymentCash.Text = "Cash";
+            this.rbPaymentCash.UseVisualStyleBackColor = true;
+            this.rbPaymentCash.Enter += new System.EventHandler(this.RbPaymentCash_Enter);
+            this.rbPaymentCash.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbPaymentCash_KeyDown);
+            this.rbPaymentCash.Leave += new System.EventHandler(this.RbPaymentCash_Leave);
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.radioButton5);
-            this.groupBox6.Controls.Add(this.radioButton6);
+            this.groupBox6.Controls.Add(this.rbDiscountAfter);
+            this.groupBox6.Controls.Add(this.rbDiscountBefore);
             this.groupBox6.Font = new System.Drawing.Font("Oswald Regular", 10F);
-            this.groupBox6.Location = new System.Drawing.Point(896, 57);
+            this.groupBox6.Location = new System.Drawing.Point(936, 57);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(165, 47);
             this.groupBox6.TabIndex = 1111141;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Discount Calculation";
             // 
-            // radioButton5
+            // rbDiscountAfter
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(91, 17);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(72, 23);
-            this.radioButton5.TabIndex = 3;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "After Tax";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.rbDiscountAfter.AutoSize = true;
+            this.rbDiscountAfter.Location = new System.Drawing.Point(91, 17);
+            this.rbDiscountAfter.Name = "rbDiscountAfter";
+            this.rbDiscountAfter.Size = new System.Drawing.Size(72, 23);
+            this.rbDiscountAfter.TabIndex = 3;
+            this.rbDiscountAfter.TabStop = true;
+            this.rbDiscountAfter.Text = "After Tax";
+            this.rbDiscountAfter.UseVisualStyleBackColor = true;
+            this.rbDiscountAfter.Enter += new System.EventHandler(this.RbDiscountAfter_Enter);
+            this.rbDiscountAfter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbDiscountAfter_KeyDown);
+            this.rbDiscountAfter.Leave += new System.EventHandler(this.RbDiscountAfter_Leave);
             // 
-            // radioButton6
+            // rbDiscountBefore
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(8, 17);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(80, 23);
-            this.radioButton6.TabIndex = 2;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Before Tax";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.rbDiscountBefore.AutoSize = true;
+            this.rbDiscountBefore.Location = new System.Drawing.Point(8, 17);
+            this.rbDiscountBefore.Name = "rbDiscountBefore";
+            this.rbDiscountBefore.Size = new System.Drawing.Size(80, 23);
+            this.rbDiscountBefore.TabIndex = 2;
+            this.rbDiscountBefore.TabStop = true;
+            this.rbDiscountBefore.Text = "Before Tax";
+            this.rbDiscountBefore.UseVisualStyleBackColor = true;
+            this.rbDiscountBefore.Enter += new System.EventHandler(this.RbDiscountBefore_Enter);
+            this.rbDiscountBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbDiscountBefore_KeyDown);
+            this.rbDiscountBefore.Leave += new System.EventHandler(this.RbDiscountBefore_Leave);
             // 
             // label22
             // 
@@ -2077,12 +2221,15 @@
             // chkInvoice
             // 
             this.chkInvoice.AutoSize = true;
-            this.chkInvoice.Location = new System.Drawing.Point(632, 79);
+            this.chkInvoice.Location = new System.Drawing.Point(592, 81);
             this.chkInvoice.Name = "chkInvoice";
             this.chkInvoice.Size = new System.Drawing.Size(88, 21);
             this.chkInvoice.TabIndex = 1111168;
             this.chkInvoice.Text = "E-Invoice Bill";
             this.chkInvoice.UseVisualStyleBackColor = true;
+            this.chkInvoice.Enter += new System.EventHandler(this.ChkInvoice_Enter);
+            this.chkInvoice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChkInvoice_KeyDown);
+            this.chkInvoice.Leave += new System.EventHandler(this.ChkInvoice_Leave);
             // 
             // groupBox10
             // 
@@ -2235,34 +2382,82 @@
             this.label18.TabIndex = 37;
             this.label18.Text = "Waiting for Approval";
             // 
-            // LV_Supplier
+            // lblSupplierOrderpolicy
             // 
-            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader1});
-            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(185, 118);
-            this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(468, 93);
-            this.LV_Supplier.TabIndex = 1111219;
-            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
-            this.LV_Supplier.View = System.Windows.Forms.View.Details;
-            this.LV_Supplier.Visible = false;
+            this.lblSupplierOrderpolicy.AutoSize = true;
+            this.lblSupplierOrderpolicy.BackColor = System.Drawing.Color.White;
+            this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(7, 93);
+            this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
+            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(0, 15);
+            this.lblSupplierOrderpolicy.TabIndex = 1111212;
+            this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // columnHeader5
+            // asa
             // 
-            this.columnHeader5.Width = 180;
+            this.asa.AutoSize = true;
+            this.asa.BackColor = System.Drawing.Color.White;
+            this.asa.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.asa.Location = new System.Drawing.Point(7, 93);
+            this.asa.Name = "asa";
+            this.asa.Size = new System.Drawing.Size(0, 15);
+            this.asa.TabIndex = 1111213;
+            this.asa.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // columnHeader8
+            // lblsupplierScheduletype
             // 
-            this.columnHeader8.Width = 120;
+            this.lblsupplierScheduletype.AutoSize = true;
+            this.lblsupplierScheduletype.BackColor = System.Drawing.Color.White;
+            this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.lblsupplierScheduletype.Location = new System.Drawing.Point(7, 68);
+            this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
+            this.lblsupplierScheduletype.Size = new System.Drawing.Size(0, 15);
+            this.lblsupplierScheduletype.TabIndex = 1111210;
+            this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // columnHeader9
+            // lblSupplierCity
             // 
-            this.columnHeader9.Width = 0;
+            this.lblSupplierCity.AutoSize = true;
+            this.lblSupplierCity.BackColor = System.Drawing.Color.White;
+            this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.lblSupplierCity.Location = new System.Drawing.Point(7, 40);
+            this.lblSupplierCity.Name = "lblSupplierCity";
+            this.lblSupplierCity.Size = new System.Drawing.Size(0, 15);
+            this.lblSupplierCity.TabIndex = 1111211;
+            this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblSuppliername
+            // 
+            this.lblSuppliername.AutoSize = true;
+            this.lblSuppliername.BackColor = System.Drawing.Color.White;
+            this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.lblSuppliername.Location = new System.Drawing.Point(7, 23);
+            this.lblSuppliername.Name = "lblSuppliername";
+            this.lblSuppliername.Size = new System.Drawing.Size(0, 17);
+            this.lblSuppliername.TabIndex = 1111207;
+            this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierGST
+            // 
+            this.lblsupplierGST.AutoSize = true;
+            this.lblsupplierGST.BackColor = System.Drawing.Color.White;
+            this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.lblsupplierGST.Location = new System.Drawing.Point(7, 55);
+            this.lblsupplierGST.Name = "lblsupplierGST";
+            this.lblsupplierGST.Size = new System.Drawing.Size(0, 15);
+            this.lblsupplierGST.TabIndex = 1111208;
+            this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierpayment
+            // 
+            this.lblsupplierpayment.AutoSize = true;
+            this.lblsupplierpayment.BackColor = System.Drawing.Color.White;
+            this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.lblsupplierpayment.Location = new System.Drawing.Point(7, 80);
+            this.lblsupplierpayment.Name = "lblsupplierpayment";
+            this.lblsupplierpayment.Size = new System.Drawing.Size(0, 15);
+            this.lblsupplierpayment.TabIndex = 1111209;
+            this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // CP_Purchase
             // 
@@ -2288,6 +2483,8 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tbDetails.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -2328,20 +2525,20 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dpVoucherDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.TextBox txtPENO;
+        private System.Windows.Forms.ComboBox cmbEntryType;
         private System.Windows.Forms.TextBox txtInvoiceNo;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbPurchaseCredit;
+        private System.Windows.Forms.RadioButton rbPurchaseCash;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton rbAfterBefore;
+        private System.Windows.Forms.RadioButton rbRateBefore;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dpInvoiceDate;
@@ -2361,11 +2558,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtQRCode;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cmbPurchaseType;
+        private System.Windows.Forms.ComboBox cmbTransactionType;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.RadioButton ebCheque;
-        private System.Windows.Forms.RadioButton rbCash;
+        private System.Windows.Forms.RadioButton rbPaymentCheque;
+        private System.Windows.Forms.RadioButton rbPaymentCash;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox10;
@@ -2395,8 +2592,8 @@
         private System.Windows.Forms.TextBox txtBroker;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.RadioButton rbDiscountAfter;
+        private System.Windows.Forms.RadioButton rbDiscountBefore;
         private System.Windows.Forms.TextBox textBox24;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtQtyUnit;
@@ -2418,7 +2615,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txtGST;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
@@ -2478,24 +2674,6 @@
         private System.Windows.Forms.TextBox textBox30;
         private System.Windows.Forms.TextBox textBox25;
         private System.Windows.Forms.TextBox textBox28;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurchaseRate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
@@ -2517,5 +2695,35 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurchaseRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        public System.Windows.Forms.ComboBox cmbConcern;
+        private System.Windows.Forms.Label lblGodown;
+        private System.Windows.Forms.Label lblSupplierCode;
+        private System.Windows.Forms.Label lblschedule;
+        public System.Windows.Forms.TextBox txtGstin;
+        private System.Windows.Forms.Label lblSupplierOrderpolicy;
+        private System.Windows.Forms.Label asa;
+        private System.Windows.Forms.Label lblsupplierpayment;
+        private System.Windows.Forms.Label lblsupplierScheduletype;
+        private System.Windows.Forms.Label lblsupplierGST;
+        private System.Windows.Forms.Label lblSupplierCity;
+        private System.Windows.Forms.Label lblSuppliername;
     }
 }

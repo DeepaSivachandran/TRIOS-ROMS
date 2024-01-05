@@ -940,6 +940,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -967,7 +968,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Transaction Type"].Width = 120;
                 DGV_SearchGrid.Columns["GIID"].Visible = false;
                 DGV_SearchGrid.Columns["Total Products"].Width = 120;
-                DGV_SearchGrid.Columns["Created By"].Visible = false;
+                DGV_SearchGrid.Columns["Created By"].Visible = false; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
