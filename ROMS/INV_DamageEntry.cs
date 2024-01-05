@@ -196,7 +196,7 @@ namespace ROMS
 
                 dtEmployee.Columns.Add("", typeof(Boolean));
                 dtEmployee.Columns.Add("S.No.", typeof(string));
-                dtEmployee.Columns.Add("Employee Code", typeof(string));
+                dtEmployee.Columns.Add("Emp. Code", typeof(string));
                 dtEmployee.Columns.Add("Employee Name", typeof(string));
                 dtEmployee.Columns.Add("Employee Category", typeof(string));
                 dtEmployee.Columns.Add("EMPID", typeof(int));
@@ -204,7 +204,7 @@ namespace ROMS
 
                 dtChecker.Columns.Add("", typeof(Boolean));
                 dtChecker.Columns.Add("S.No.", typeof(string));
-                dtChecker.Columns.Add("Employee Code", typeof(string));
+                dtChecker.Columns.Add("Emp. Code", typeof(string));
                 dtChecker.Columns.Add("Employee Name", typeof(string));
                 dtChecker.Columns.Add("Employee Category", typeof(string));
                 dtChecker.Columns.Add("EMPID", typeof(int));
@@ -266,15 +266,15 @@ namespace ROMS
                 grdEmployee.Columns[0].Width = 30;
                 grdEmployee.Columns["S.No."].Width = 40;
                 grdEmployee.Columns["S.No."].Visible = false;
-                grdEmployee.Columns["Employee Code"].Width = 100;
-                grdEmployee.Columns["Employee Name"].Width = 180;
-                grdEmployee.Columns["Employee Category"].Width = 150;
+                grdEmployee.Columns["Emp. Code"].Width = 75;
+                grdEmployee.Columns["Employee Name"].Width = 150;
+                grdEmployee.Columns["Employee Category"].Width = 130;
                 grdEmployee.Columns["EMPID"].Visible = false;
                 grdEmployee.Columns["CT_SINO"].Visible = false;
                 grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 grdEmployee.Columns["S.No."].ReadOnly = true;
-                grdEmployee.Columns["Employee Code"].ReadOnly = true;
+                grdEmployee.Columns["Emp. Code"].ReadOnly = true;
                 grdEmployee.Columns["Employee Name"].ReadOnly = true;
                 grdEmployee.Columns["Employee Category"].ReadOnly = true;
 
@@ -329,15 +329,15 @@ namespace ROMS
                 grdChecker.Columns[0].Width = 30;
                 grdChecker.Columns["S.No."].Width = 40;
                 grdChecker.Columns["S.No."].Visible = false;
-                grdChecker.Columns["Employee Code"].Width = 100;
-                grdChecker.Columns["Employee Name"].Width = 180;
-                grdChecker.Columns["Employee Category"].Width = 150;
+                grdChecker.Columns["Emp. Code"].Width = 75;
+                grdChecker.Columns["Employee Name"].Width = 150;
+                grdChecker.Columns["Employee Category"].Width = 130;
                 grdChecker.Columns["EMPID"].Visible = false;
                 grdChecker.Columns["CT_SINO"].Visible = false;
                 grdChecker.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 grdChecker.Columns["S.No."].ReadOnly = true;
-                grdChecker.Columns["Employee Code"].ReadOnly = true;
+                grdChecker.Columns["Emp. Code"].ReadOnly = true;
                 grdChecker.Columns["Employee Name"].ReadOnly = true;
                 grdChecker.Columns["Employee Category"].ReadOnly = true;
 
@@ -1591,6 +1591,7 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
+                string varTeller = "0", varChecker = "0";
                 if (grdEmployee.Rows.Count > 0)
                 {
                     grdEmployee.DataSource = dtEmployee;
@@ -1598,6 +1599,7 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdEmployee.Rows[i].Cells[0].Value) == true)
                         {
+                            varTeller = "1";
                             if(varEmployeeId == "")
                             {
                                 varEmployeeId = Convert.ToString(grdEmployee.Rows[i].Cells["EMPID"].Value) + '~' +"1";
@@ -1616,11 +1618,12 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdChecker.Rows[i].Cells[0].Value) == true)
                         {
+                            varChecker = "2";
                             varEmployeeId = varEmployeeId + ',' + Convert.ToString(grdChecker.Rows[i].Cells["EMPID"].Value) + '~' + "2";
                         }
                     }
                 }
-                if (varEmployeeId=="")
+                if (varTeller == "0" || varChecker == "0")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(101);
@@ -1628,6 +1631,14 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
+                //if (varEmployeeId=="")
+                //{
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(101);
+                //    objDServ.CloseConnection();
+                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    blnErrorFlag = true;
+                //}
                 if (blnErrorFlag == false)
                 {
                     epDamageEntry.Clear();
