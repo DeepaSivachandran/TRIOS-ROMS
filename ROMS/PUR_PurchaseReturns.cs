@@ -385,7 +385,7 @@ namespace ROMS
                         cmbReasonForClosing.Enabled = false;
                         txtRemarks.ReadOnly = true;
                         btnSave.Enabled = false;
-                        lblStatus.Text = "Closed";
+                        //lblStatus.Text = "Closed";
                     }
                     else
                     {
@@ -393,7 +393,7 @@ namespace ROMS
                         if (varStatusId == 16)
                         {
                             grpReason.Enabled = true;
-                            lblStatus.Text = "Linked with GRN";
+                            //lblStatus.Text = "Linked with GRN";
                         }
                     }
                     grpReturnDCSupplier.Enabled = false;
@@ -405,6 +405,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { grdReturnDC.ClearSelection(); }
         }
         public void udfnClosingDropdown()
         {
@@ -521,6 +523,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { grdReturnDC.ClearSelection(); }
         }
         public void EditLoad()
         {
@@ -558,7 +562,8 @@ namespace ROMS
                                 txtSubTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SubTotal"]);
                                 txtTotalTax.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Total Tax"]);
                                 txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
-                                varStatusId = Convert.ToInt16(objDs.Tables[0].Rows[0]["Status ID"]);
+                                varStatusId = Convert.ToInt32(objDs.Tables[0].Rows[0]["Status ID"]);
+                                lblStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
                                 udfnClosingDropdown();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
@@ -1741,6 +1746,59 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdReturnDC_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdReturnDC.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRepDetails_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdRepDetails.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void PUR_PurchaseReturns_Leave(object sender, EventArgs e)
         {
             try
