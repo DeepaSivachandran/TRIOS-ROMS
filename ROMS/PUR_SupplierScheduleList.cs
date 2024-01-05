@@ -1840,7 +1840,7 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible = false)
+                if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
                     int offSetValue = dgvSupplierScheduleList.HorizontalScrollingOffset;

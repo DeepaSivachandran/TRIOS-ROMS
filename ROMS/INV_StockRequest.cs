@@ -1204,6 +1204,7 @@ namespace ROMS
                                 varHeader = "Shop Stock Request";
 
                                 objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SSR));
+                                objBillreport.SetParameterValue("paraConcern", Convert.ToInt32(cmbConcern.SelectedValue));
                                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                 objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);

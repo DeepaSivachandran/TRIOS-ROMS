@@ -989,6 +989,7 @@ namespace ROMS
                             //grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 120;
+                            grdDamageEntryList.Columns["Created On"].Width = 150;
                             grdDamageEntryList.Columns["Employees"].Width = 300;
                             grdDamageEntryList.Columns["clmPrint"].Width = 50;
                             //grdDamageEntryList.Columns["Supplier"].Width = 330;
@@ -1074,6 +1075,8 @@ namespace ROMS
                 DGV_ProSearchGrid.Columns["DMID"].Visible = false;
                 DGV_ProSearchGrid.Columns["StatusID"].Visible = false;
                 DGV_ProSearchGrid.Columns["PRStatusID"].Visible = false;
+                DGV_ProSearchGrid.Columns["DMPR_SPID"].Visible = false;
+                DGV_ProSearchGrid.Columns["DMPR_SPSCID"].Visible = false;
                 DGV_ProSearchGrid.Columns["S.No."].Width = 50;
                 DGV_ProSearchGrid.Columns["Status"].Width = 150;
                 DGV_ProSearchGrid.Columns["Product Status"].Width = 150;
@@ -1145,6 +1148,8 @@ namespace ROMS
                             grdProDEList.Columns["DMID"].Visible = false;
                             grdProDEList.Columns["StatusID"].Visible = false;
                             grdProDEList.Columns["PRStatusID"].Visible = false;
+                            grdProDEList.Columns["DMPR_SPID"].Visible = false;
+                            grdProDEList.Columns["DMPR_SPSCID"].Visible = false;
                             grdProDEList.Columns["S.No."].Width = 50;
                             grdProDEList.Columns["Status"].Width = 150;
                             grdProDEList.Columns["Product Status"].Width = 200;
