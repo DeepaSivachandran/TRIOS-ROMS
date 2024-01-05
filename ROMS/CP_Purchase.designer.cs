@@ -41,6 +41,13 @@
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblSupplierOrderpolicy = new System.Windows.Forms.Label();
+            this.asa = new System.Windows.Forms.Label();
+            this.lblsupplierpayment = new System.Windows.Forms.Label();
+            this.lblsupplierScheduletype = new System.Windows.Forms.Label();
+            this.lblsupplierGST = new System.Windows.Forms.Label();
+            this.lblSupplierCity = new System.Windows.Forms.Label();
+            this.lblSuppliername = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.lblGodown = new System.Windows.Forms.Label();
@@ -232,13 +239,6 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
-            this.lblSupplierOrderpolicy = new System.Windows.Forms.Label();
-            this.asa = new System.Windows.Forms.Label();
-            this.lblsupplierScheduletype = new System.Windows.Forms.Label();
-            this.lblSupplierCity = new System.Windows.Forms.Label();
-            this.lblSuppliername = new System.Windows.Forms.Label();
-            this.lblsupplierGST = new System.Windows.Forms.Label();
-            this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -409,9 +409,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblsupplierpayment);
             this.groupBox2.Controls.Add(this.lblSupplierOrderpolicy);
             this.groupBox2.Controls.Add(this.asa);
-            this.groupBox2.Controls.Add(this.lblsupplierpayment);
             this.groupBox2.Controls.Add(this.lblsupplierScheduletype);
             this.groupBox2.Controls.Add(this.lblsupplierGST);
             this.groupBox2.Controls.Add(this.lblSupplierCity);
@@ -422,6 +422,90 @@
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Supplier Details";
+            // 
+            // lblSupplierOrderpolicy
+            // 
+            this.lblSupplierOrderpolicy.AutoSize = true;
+            this.lblSupplierOrderpolicy.BackColor = System.Drawing.Color.White;
+            this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 9F);
+            this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(7, 96);
+            this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
+            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(63, 16);
+            this.lblSupplierOrderpolicy.TabIndex = 1111212;
+            this.lblSupplierOrderpolicy.Text = "JJJJJJJjjjjjjjjj";
+            this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // asa
+            // 
+            this.asa.AutoSize = true;
+            this.asa.BackColor = System.Drawing.Color.White;
+            this.asa.Font = new System.Drawing.Font("Oswald Regular", 9F);
+            this.asa.Location = new System.Drawing.Point(7, 93);
+            this.asa.Name = "asa";
+            this.asa.Size = new System.Drawing.Size(63, 16);
+            this.asa.TabIndex = 1111213;
+            this.asa.Text = "JJJJJJJjjjjjjjjj";
+            this.asa.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierpayment
+            // 
+            this.lblsupplierpayment.AutoSize = true;
+            this.lblsupplierpayment.BackColor = System.Drawing.Color.White;
+            this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 9F);
+            this.lblsupplierpayment.Location = new System.Drawing.Point(7, 80);
+            this.lblsupplierpayment.Name = "lblsupplierpayment";
+            this.lblsupplierpayment.Size = new System.Drawing.Size(63, 16);
+            this.lblsupplierpayment.TabIndex = 1111209;
+            this.lblsupplierpayment.Text = "JJJJJJJjjjjjjjjj";
+            this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierScheduletype
+            // 
+            this.lblsupplierScheduletype.AutoSize = true;
+            this.lblsupplierScheduletype.BackColor = System.Drawing.Color.White;
+            this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 9F);
+            this.lblsupplierScheduletype.Location = new System.Drawing.Point(7, 63);
+            this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
+            this.lblsupplierScheduletype.Size = new System.Drawing.Size(63, 16);
+            this.lblsupplierScheduletype.TabIndex = 1111210;
+            this.lblsupplierScheduletype.Text = "JJJJJJJjjjjjjjjj";
+            this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierGST
+            // 
+            this.lblsupplierGST.AutoSize = true;
+            this.lblsupplierGST.BackColor = System.Drawing.Color.White;
+            this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 9F);
+            this.lblsupplierGST.Location = new System.Drawing.Point(7, 48);
+            this.lblsupplierGST.Name = "lblsupplierGST";
+            this.lblsupplierGST.Size = new System.Drawing.Size(63, 16);
+            this.lblsupplierGST.TabIndex = 1111208;
+            this.lblsupplierGST.Text = "JJJJJJJjjjjjjjjj";
+            this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblSupplierCity
+            // 
+            this.lblSupplierCity.AutoSize = true;
+            this.lblSupplierCity.BackColor = System.Drawing.Color.White;
+            this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 9F);
+            this.lblSupplierCity.Location = new System.Drawing.Point(7, 32);
+            this.lblSupplierCity.Name = "lblSupplierCity";
+            this.lblSupplierCity.Size = new System.Drawing.Size(63, 16);
+            this.lblSupplierCity.TabIndex = 1111211;
+            this.lblSupplierCity.Text = "JJJJJJJjjjjjjjjj";
+            this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblSuppliername
+            // 
+            this.lblSuppliername.AutoSize = true;
+            this.lblSuppliername.BackColor = System.Drawing.Color.White;
+            this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.lblSuppliername.Location = new System.Drawing.Point(7, 16);
+            this.lblSuppliername.Name = "lblSuppliername";
+            this.lblSuppliername.Size = new System.Drawing.Size(63, 17);
+            this.lblSuppliername.TabIndex = 1111207;
+            this.lblSuppliername.Text = "JJJJJJJjjjjjjjjj";
+            this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // cmbConcern
             // 
@@ -2381,83 +2465,6 @@
             this.label18.Size = new System.Drawing.Size(107, 17);
             this.label18.TabIndex = 37;
             this.label18.Text = "Waiting for Approval";
-            // 
-            // lblSupplierOrderpolicy
-            // 
-            this.lblSupplierOrderpolicy.AutoSize = true;
-            this.lblSupplierOrderpolicy.BackColor = System.Drawing.Color.White;
-            this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 8F);
-            this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(7, 93);
-            this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
-            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(0, 15);
-            this.lblSupplierOrderpolicy.TabIndex = 1111212;
-            this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // asa
-            // 
-            this.asa.AutoSize = true;
-            this.asa.BackColor = System.Drawing.Color.White;
-            this.asa.Font = new System.Drawing.Font("Oswald Regular", 8F);
-            this.asa.Location = new System.Drawing.Point(7, 93);
-            this.asa.Name = "asa";
-            this.asa.Size = new System.Drawing.Size(0, 15);
-            this.asa.TabIndex = 1111213;
-            this.asa.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblsupplierScheduletype
-            // 
-            this.lblsupplierScheduletype.AutoSize = true;
-            this.lblsupplierScheduletype.BackColor = System.Drawing.Color.White;
-            this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 8F);
-            this.lblsupplierScheduletype.Location = new System.Drawing.Point(7, 68);
-            this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
-            this.lblsupplierScheduletype.Size = new System.Drawing.Size(0, 15);
-            this.lblsupplierScheduletype.TabIndex = 1111210;
-            this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblSupplierCity
-            // 
-            this.lblSupplierCity.AutoSize = true;
-            this.lblSupplierCity.BackColor = System.Drawing.Color.White;
-            this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 8F);
-            this.lblSupplierCity.Location = new System.Drawing.Point(7, 40);
-            this.lblSupplierCity.Name = "lblSupplierCity";
-            this.lblSupplierCity.Size = new System.Drawing.Size(0, 15);
-            this.lblSupplierCity.TabIndex = 1111211;
-            this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblSuppliername
-            // 
-            this.lblSuppliername.AutoSize = true;
-            this.lblSuppliername.BackColor = System.Drawing.Color.White;
-            this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.lblSuppliername.Location = new System.Drawing.Point(7, 23);
-            this.lblSuppliername.Name = "lblSuppliername";
-            this.lblSuppliername.Size = new System.Drawing.Size(0, 17);
-            this.lblSuppliername.TabIndex = 1111207;
-            this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblsupplierGST
-            // 
-            this.lblsupplierGST.AutoSize = true;
-            this.lblsupplierGST.BackColor = System.Drawing.Color.White;
-            this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 8F);
-            this.lblsupplierGST.Location = new System.Drawing.Point(7, 55);
-            this.lblsupplierGST.Name = "lblsupplierGST";
-            this.lblsupplierGST.Size = new System.Drawing.Size(0, 15);
-            this.lblsupplierGST.TabIndex = 1111208;
-            this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblsupplierpayment
-            // 
-            this.lblsupplierpayment.AutoSize = true;
-            this.lblsupplierpayment.BackColor = System.Drawing.Color.White;
-            this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 8F);
-            this.lblsupplierpayment.Location = new System.Drawing.Point(7, 80);
-            this.lblsupplierpayment.Name = "lblsupplierpayment";
-            this.lblsupplierpayment.Size = new System.Drawing.Size(0, 15);
-            this.lblsupplierpayment.TabIndex = 1111209;
-            this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // CP_Purchase
             // 
