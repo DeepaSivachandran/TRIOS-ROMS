@@ -52,6 +52,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_RackGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnUnselectAll = new System.Windows.Forms.Button();
             this.chkRack = new System.Windows.Forms.CheckBox();
             this.DGV_SearchGridRight = new System.Windows.Forms.DataGridView();
             this.DGV_SearchGridLeft = new System.Windows.Forms.DataGridView();
@@ -109,8 +111,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnUnselectAll = new System.Windows.Forms.Button();
-            this.btnSelectAll = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridLeft)).BeginInit();
@@ -152,10 +152,40 @@
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSelectAll.Location = new System.Drawing.Point(563, 355);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnSelectAll.TabIndex = 1111143;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.BtnSelectAll_Click);
+            this.btnSelectAll.Enter += new System.EventHandler(this.BtnSelectAll_Enter);
+            this.btnSelectAll.Leave += new System.EventHandler(this.BtnSelectAll_Leave);
+            // 
+            // btnUnselectAll
+            // 
+            this.btnUnselectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUnselectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUnselectAll.Location = new System.Drawing.Point(474, 355);
+            this.btnUnselectAll.Name = "btnUnselectAll";
+            this.btnUnselectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnUnselectAll.TabIndex = 1111142;
+            this.btnUnselectAll.Text = "Unselect All";
+            this.btnUnselectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnUnselectAll.UseVisualStyleBackColor = true;
+            this.btnUnselectAll.Click += new System.EventHandler(this.BtnUnselectAll_Click);
+            this.btnUnselectAll.Enter += new System.EventHandler(this.BtnUnselectAll_Enter);
+            this.btnUnselectAll.Leave += new System.EventHandler(this.BtnUnselectAll_Leave);
+            // 
             // chkRack
             // 
             this.chkRack.AutoSize = true;
-            this.chkRack.Location = new System.Drawing.Point(27, 124);
+            this.chkRack.Location = new System.Drawing.Point(0, 129);
             this.chkRack.Name = "chkRack";
             this.chkRack.Size = new System.Drawing.Size(15, 14);
             this.chkRack.TabIndex = 1111138;
@@ -1011,36 +1041,6 @@
             // columnHeader6
             // 
             this.columnHeader6.Width = 0;
-            // 
-            // btnUnselectAll
-            // 
-            this.btnUnselectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnUnselectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUnselectAll.Location = new System.Drawing.Point(474, 355);
-            this.btnUnselectAll.Name = "btnUnselectAll";
-            this.btnUnselectAll.Size = new System.Drawing.Size(83, 29);
-            this.btnUnselectAll.TabIndex = 1111142;
-            this.btnUnselectAll.Text = "Unselect All";
-            this.btnUnselectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnUnselectAll.UseVisualStyleBackColor = true;
-            this.btnUnselectAll.Click += new System.EventHandler(this.BtnUnselectAll_Click);
-            this.btnUnselectAll.Enter += new System.EventHandler(this.BtnUnselectAll_Enter);
-            this.btnUnselectAll.Leave += new System.EventHandler(this.BtnUnselectAll_Leave);
-            // 
-            // btnSelectAll
-            // 
-            this.btnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelectAll.Location = new System.Drawing.Point(563, 355);
-            this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new System.Drawing.Size(83, 29);
-            this.btnSelectAll.TabIndex = 1111143;
-            this.btnSelectAll.Text = "Select All";
-            this.btnSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnSelectAll.UseVisualStyleBackColor = true;
-            this.btnSelectAll.Click += new System.EventHandler(this.BtnSelectAll_Click);
-            this.btnSelectAll.Enter += new System.EventHandler(this.BtnSelectAll_Enter);
-            this.btnSelectAll.Leave += new System.EventHandler(this.BtnSelectAll_Leave);
             // 
             // CP_RackGroup
             // 
