@@ -148,6 +148,8 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["DC No."].Width = 100;
                                 grdPurchaseDCList.Columns["Supplier"].Width = 300;
                                 grdPurchaseDCList.Columns["Total Products"].Width = 100;
+                                grdPurchaseDCList.Columns["Created By"].Width = 110;
+                                grdPurchaseDCList.Columns["Created On"].Width = 140;
                                 grdPurchaseDCList.Columns["GSTIN"].Width = 170;
                                 grdPurchaseDCList.Columns["Status"].Width = 100;
                                 grdPurchaseDCList.Columns["S.No."].Width = 80;
@@ -634,7 +636,7 @@ namespace ROMS
                 dpdctodate.MaxDate = MainForm.pbCurrentDate;
                  this.ActiveControl = cmbConcern;
                 //txtSupplier.Focus();
-                cmbStatus.SelectedValue = 18; //pending
+               // cmbStatus.SelectedValue = 18; //pending
                 udfnList();
             }
             catch (Exception ex)
