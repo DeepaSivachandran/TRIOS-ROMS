@@ -687,7 +687,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnProductEvent();
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
