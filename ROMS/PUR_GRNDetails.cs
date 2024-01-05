@@ -774,7 +774,7 @@ namespace ROMS
         {
             try
             {
-                if (chkCompleted.Checked) { btnSave.Text = "Update"; } else { btnSave.Text = "Draft"; }
+                if (chkCompleted.Checked) { btnSave.Text = "Update"; } else { btnSave.Text = "Update as Draft"; }
             }
             catch (Exception ex)
             {

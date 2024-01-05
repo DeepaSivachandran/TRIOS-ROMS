@@ -82,21 +82,13 @@ namespace ROMS
                     chkStatus.Enabled = false;
                     gpissued.Enabled = false;
                     btnAdd.Enabled = false;
-                    foreach (TabPage tabPage in tbSupplierDetails.TabPages)
-                    {
-                        grdRepDetails.ClearSelection();
-                        tabPage.Enabled = false;
-                    }
+                    
                     btnViewedProduct.Enabled = false;
                     grdsupplieradd.Columns["clmRemove"].Visible = false;
                 }
                 else
                 {
                     btnSave.Enabled = true;
-                    foreach (TabPage tabPage in tbSupplierDetails.TabPages)
-                    {
-                        tabPage.Enabled = true;
-                    }
                 }
                 if (Currentsts == 38)
                 { 
@@ -114,6 +106,11 @@ namespace ROMS
                     btnClear.Enabled = true;
                     cmbConcern.Enabled = true;
                     txtSupplier.Enabled = true;
+                    foreach (TabPage tabPage in tbSupplierDetails.TabPages)
+                    {
+                        grdRepDetails.ClearSelection();
+                        tabPage.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -122,6 +119,11 @@ namespace ROMS
                     txtSupplier.Enabled = false;
                     LV_Supplier.Visible = false;
                     dpPlanDate.Enabled = false;
+
+                    foreach (TabPage tabPage in tbSupplierDetails.TabPages)
+                    {
+                        tabPage.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)

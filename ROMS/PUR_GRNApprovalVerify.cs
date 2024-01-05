@@ -36,7 +36,6 @@ namespace ROMS
             try
             {
                 udfnSave();
-                this.Close();
             }
             catch (Exception ex)
             {
@@ -153,7 +152,7 @@ namespace ROMS
                             string varMessage = objDServ.udfnGetMessages(66);
                             objDServ.CloseConnection();
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            txtPassKey.Text = "";
+                            //txtPassKey.Text = "";
                             txtPassKey.Focus();
                         }
                     }

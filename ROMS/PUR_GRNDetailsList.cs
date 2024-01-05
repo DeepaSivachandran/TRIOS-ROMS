@@ -181,10 +181,12 @@ namespace ROMS
                             grdGRNList.Columns["Created On"].Width = 150;
                             grdGRNList.Columns["Order Type"].Width = 100;
                             grdGRNList.Columns["Any Purchase Returns"].Width = 150;
+                            grdGRNList.Columns["Status"].Width = 130;
                             grdGRNList.Columns["GRNID"].Visible = false;
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
+                            grdGRNList.Columns["STSID"].Visible = false;
                             grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
@@ -277,6 +279,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRN_SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_SPID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -1272,6 +1275,46 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+
+        private void GrdGRNList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    for (int i = 0; i < grdGRNList.Rows.Count; i++)
+                    {
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"]; 
+                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "17")
+                        {
+                            cell.Style.BackColor = Color.Red;
+                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                        }
+                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "24")
+                        {
+                            cell.Style.BackColor = Color.Green;
+                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                        }
+                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "23")
+                        {
+                            cell.Style.BackColor = Color.LimeGreen;
+                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 
