@@ -19,8 +19,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
-        
         public void udfnclose()
         {
             try

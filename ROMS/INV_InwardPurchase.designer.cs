@@ -48,6 +48,8 @@
             this.clmShopQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtInchargeName = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -58,7 +60,7 @@
             this.textBox26 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtConcern = new System.Windows.Forms.TextBox();
             this.cmbGodown = new System.Windows.Forms.ComboBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -77,8 +79,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.txtInchargeName = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
@@ -279,7 +279,7 @@
             this.groupBox1.Controls.Add(this.textBox26);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.txtConcern);
             this.groupBox1.Controls.Add(this.cmbGodown);
             this.groupBox1.Controls.Add(this.textBox7);
             this.groupBox1.Controls.Add(this.textBox8);
@@ -295,6 +295,28 @@
             this.groupBox1.Size = new System.Drawing.Size(1039, 109);
             this.groupBox1.TabIndex = 958826;
             this.groupBox1.TabStop = false;
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox10.Location = new System.Drawing.Point(3, 71);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(77, 25);
+            this.textBox10.TabIndex = 1111218;
+            this.textBox10.Text = "Incharge Name";
+            // 
+            // txtInchargeName
+            // 
+            this.txtInchargeName.Enabled = false;
+            this.txtInchargeName.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtInchargeName.Location = new System.Drawing.Point(80, 71);
+            this.txtInchargeName.Name = "txtInchargeName";
+            this.txtInchargeName.ReadOnly = true;
+            this.txtInchargeName.Size = new System.Drawing.Size(123, 25);
+            this.txtInchargeName.TabIndex = 1111217;
             // 
             // textBox9
             // 
@@ -407,15 +429,15 @@
             this.textBox3.TabIndex = 1111153;
             this.textBox3.Text = "Concern";
             // 
-            // textBox4
+            // txtConcern
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox4.Location = new System.Drawing.Point(80, 21);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(123, 25);
-            this.textBox4.TabIndex = 1111152;
+            this.txtConcern.Enabled = false;
+            this.txtConcern.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtConcern.Location = new System.Drawing.Point(80, 21);
+            this.txtConcern.Name = "txtConcern";
+            this.txtConcern.ReadOnly = true;
+            this.txtConcern.Size = new System.Drawing.Size(123, 25);
+            this.txtConcern.TabIndex = 1111152;
             // 
             // cmbGodown
             // 
@@ -611,28 +633,6 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
-            // textBox10
-            // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox10.Location = new System.Drawing.Point(3, 71);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(77, 25);
-            this.textBox10.TabIndex = 1111218;
-            this.textBox10.Text = "Incharge Name";
-            // 
-            // txtInchargeName
-            // 
-            this.txtInchargeName.Enabled = false;
-            this.txtInchargeName.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtInchargeName.Location = new System.Drawing.Point(80, 71);
-            this.txtInchargeName.Name = "txtInchargeName";
-            this.txtInchargeName.ReadOnly = true;
-            this.txtInchargeName.Size = new System.Drawing.Size(123, 25);
-            this.txtInchargeName.TabIndex = 1111217;
-            // 
             // INV_InwardPurchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -677,7 +677,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtConcern;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox txtDCourier;
