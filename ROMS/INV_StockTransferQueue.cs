@@ -13,13 +13,13 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
-    public partial class INV_StockTransferList : Form
+    public partial class INV_StockTransferQueue : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
-        public INV_StockTransferList()
+        public INV_StockTransferQueue()
         {
             InitializeComponent();
         }
@@ -38,8 +38,7 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
-        } 
-
+        }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -1427,9 +1426,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
-                MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
-                MainForm.objINV_StockTransferQueue.Show();
+                MainForm.objINV_StockTransferList = new INV_StockTransferList();
+                MainForm.objINV_StockTransferList.MdiParent = this.ParentForm;
+                MainForm.objINV_StockTransferList.Show();
             }
             catch (Exception ex)
             {

@@ -176,7 +176,7 @@ namespace ROMS
                 {
                     DGV_ProSearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_ProSearchGrid.Columns["SI.No."].ReadOnly = true;
+                DGV_ProSearchGrid.Columns["S.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1031,7 +1031,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
-                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.None; }
             }
             catch (Exception ex)
             {
@@ -1291,7 +1291,7 @@ namespace ROMS
                             grdSupDEList.Columns["Status"].Width = 120;
                             grdSupDEList.Columns["Quantity"].Width = 80;
                             grdSupDEList.Columns["clmSupPrint"].Width = 50;
-                            grdSupDEList.Columns["Supplier"].Width = 250;
+                            grdSupDEList.Columns["Supplier"].Width = 300;
                             //grdDamageEntryList.Columns["City"].Width = 120;
                             //grdDamageEntryList.Columns["GSTIN"].Width = 150;
                             grdSupDEList.Columns["Created By"].Width = 100;
@@ -1331,7 +1331,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSupSearchGrid();
                 }
-                else { DGV_SupSearchGrid.ScrollBars = ScrollBars.Vertical; }
+                else { DGV_SupSearchGrid.ScrollBars = ScrollBars.None; }
             }
             catch (Exception ex)
             {

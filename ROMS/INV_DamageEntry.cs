@@ -1556,6 +1556,7 @@ namespace ROMS
         {
             try
             {
+                varEmployeeId = "";
                 epDamageEntry.Clear();
                 bool blnErrorFlag = false;
 
