@@ -1151,8 +1151,9 @@ namespace ROMS
                             grdProDEList.Columns["DMPR_SPID"].Visible = false;
                             grdProDEList.Columns["DMPR_SPSCID"].Visible = false;
                             grdProDEList.Columns["S.No."].Width = 50;
-                            grdProDEList.Columns["Status"].Width = 150;
-                            grdProDEList.Columns["Product Status"].Width = 200;
+                            grdProDEList.Columns["Status"].Width = 120;
+                            grdProDEList.Columns["Created On"].Width = 150;
+                            grdProDEList.Columns["Product Status"].Width = 120;
                             grdProDEList.Columns["PICode"].Width = 150;
                             grdProDEList.Columns["Product"].Width = 280;
                             grdProDEList.Columns["Reason"].Width = 130;
@@ -1294,6 +1295,7 @@ namespace ROMS
                             //grdDamageEntryList.Columns["City"].Width = 120;
                             //grdDamageEntryList.Columns["GSTIN"].Width = 150;
                             grdSupDEList.Columns["Created By"].Width = 100;
+                            grdSupDEList.Columns["Created On"].Width = 150;
                             grdSupDEList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupDEList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupDEList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

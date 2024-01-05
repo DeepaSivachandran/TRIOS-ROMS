@@ -240,7 +240,6 @@ namespace ROMS
                 dtEmployee.Rows.Clear();
                 Application.DoEvents();
                 grdEmployee.DataSource = null;
-                grdChecker.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnEmployeeList(6, "", 0, "", 1,0,0);
@@ -1412,6 +1411,7 @@ namespace ROMS
             {
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
                 grdEmployee.ClearSelection();
+                grdChecker.ClearSelection();
                 this.grdEmployee.Sort(this.grdEmployee.Columns[0], ListSortDirection.Descending);
                 this.grdChecker.Sort(this.grdChecker.Columns[0], ListSortDirection.Descending);
             }
@@ -2912,6 +2912,32 @@ namespace ROMS
                 {
                     grdChecker.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdEmployee_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdEmployee.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdChecker_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdChecker.ClearSelection();
             }
             catch (Exception ex)
             {
