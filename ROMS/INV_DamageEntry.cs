@@ -1371,6 +1371,16 @@ namespace ROMS
                                     }
                                 }
                             }
+                            for (int i = 0; i < grdChecker.Rows.Count; i++)
+                            {
+                                for (int j = 0; j < objDS.Tables[2].Rows.Count; j++)
+                                {
+                                    if (Convert.ToString(grdChecker.Rows[i].Cells["EMPID"].Value) == Convert.ToString(objDS.Tables[2].Rows[j]["EMPID"]))
+                                    {
+                                        grdChecker.Rows[i].Cells[0].Value = true;
+                                    }
+                                }
+                            }
                         }
                         ((DataGridViewTextBoxColumn)grdDamageEntry.Columns["clmQuantity"]).MaxInputLength = 8;
                     }
@@ -1379,6 +1389,7 @@ namespace ROMS
                         grdDamageEntry.ReadOnly = true;
                         grdDamageEntry.Columns["clmremove"].Visible = false;
                         grdEmployee.ReadOnly = true;
+                        grdChecker.ReadOnly = true;
                         btnSave.Enabled = false;
                         chkStatus.Checked = true; chkStatus.Enabled = false;
                         txtProductName.Enabled = false;
@@ -1402,6 +1413,7 @@ namespace ROMS
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
                 grdEmployee.ClearSelection();
                 this.grdEmployee.Sort(this.grdEmployee.Columns[0], ListSortDirection.Descending);
+                this.grdChecker.Sort(this.grdChecker.Columns[0], ListSortDirection.Descending);
             }
         }
         private void GrdDamageEntry_CellContentClick(object sender, DataGridViewCellEventArgs e)
