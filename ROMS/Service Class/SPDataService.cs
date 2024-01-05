@@ -2835,6 +2835,37 @@ namespace ROMS
             }
             return ds;
         }
+        public DataSet udfnDebitNoteList(TRN_DebitNote objTRNG_DebitNote)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_DebitNote]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_DebitNote.ViewType);
+                //varSqlCommand.Parameters.AddWithValue("@paraDNID", objTRNG_DebitNote.paraDNID);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNG_DebitNote.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_DebitNote.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_DebitNote.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNG_DebitNote.paraCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_DebitNote.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_DebitNote.paraIPAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }
