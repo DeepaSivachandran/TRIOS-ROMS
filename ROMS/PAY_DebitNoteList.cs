@@ -581,6 +581,8 @@ namespace ROMS
         {
             try
             {
+                lblNoRecordsFound.Visible = false;
+                lblNoRecordsFound.SendToBack();
                 udfnConcern();
                 cmbConcern.SelectedValue = 1;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
@@ -644,7 +646,6 @@ namespace ROMS
                 objTRNG_DebitNote.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRNG_DebitNote.paraFromDate = dpFromDate.Text;
                 objTRNG_DebitNote.paraToDate = dpToDate.Text;
-                //objTRNG_DebitNote.paraDNID = varDNID;
                 objTRNG_DebitNote.paraSupplierID = varSupplierCode;
                 objTRNG_DebitNote.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnDebitNoteList(objTRNG_DebitNote);
@@ -669,6 +670,7 @@ namespace ROMS
                             grdDebitNoteList.Columns["SPSCID"].Visible = false;
                             grdDebitNoteList.Columns["SPID"].Visible = false;
                             grdDebitNoteList.Columns["DCID"].Visible = false;
+                            grdDebitNoteList.Columns["DC_STSID"].Visible = false;
                             grdDebitNoteList.Columns["GSTIN"].Width = 120;
                             grdDebitNoteList.Columns["Amount"].Width = 100;
                             //grdDebitNoteList.Columns["Created By"].Width = 100;
@@ -733,6 +735,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
                 DGV_SearchGrid.Columns["DCID"].Visible = false;
+                DGV_SearchGrid.Columns["DC_STSID"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -1112,9 +1115,10 @@ namespace ROMS
                     MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
                     MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
                     MainForm.objPUR_PurchaseReturns.varDebitDCID = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.varStatusId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DC_STSID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
-                    MainForm.objPUR_PurchaseReturns.varDebitSupplier = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.varDebitSchedule = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
                     MainForm.objPUR_PurchaseReturns.Show();
                 }
@@ -1123,6 +1127,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
 
