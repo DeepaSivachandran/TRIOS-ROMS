@@ -780,8 +780,7 @@ namespace ROMS
                     objMR_Supplier.ViewType = 16;
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
-                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue); 
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -867,9 +866,7 @@ namespace ROMS
                     btnDamage.Enabled = true;
                 }
             }
-        }
-
-
+        } 
         private void CmbOrderType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

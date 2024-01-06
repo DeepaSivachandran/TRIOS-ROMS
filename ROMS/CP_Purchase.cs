@@ -837,19 +837,35 @@ namespace ROMS
         }
 
         private void TxtBroker_KeyDown(object sender, KeyEventArgs e)
-        {
+        { 
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtGstin.Focus();
                 }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lv_Broker.Items.Count == 0 || txtBroker.Text == "")
+                    {
+                        txtBroker.Focus();
+                        lv_Broker.Visible = false;
+                    }
+                    else
+                    {
+                        lv_Broker.Focus();
+                    }
+                    if (lv_Broker.Items.Count > 0)
+                    {
+                        lv_Broker.Items[0].Selected = true;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
+            }  
         }
 
         private void TxtBroker_Enter(object sender, EventArgs e)
@@ -1359,6 +1375,104 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBroker_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lv_Broker.Items.Clear();
+                if (txtBroker.Text.Length > 0)
+                {
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+                    objDs = objspservice.udfnBrokerList(4, 0, 0, 0,txtBroker.Text);
+                    objspservice.CloseConnection();
+                    // objMR_Supplier.ParaPOID = varPOID;
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["BR_Name"].ToString(), objDs.Tables[0].Rows[i]["BRID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lv_Broker.Items.Add(objList);
+                                }
+                                lv_Broker.Visible = true;
+                                lv_Broker.Columns[1].Width = 0; 
+                            }
+                        }
+                    } 
+                }
+                else
+                {
+                    lv_Broker.Visible = false;
+                    lv_Broker.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+            }
+        }
+
+        private void Lv_Broker_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnBrokerData();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Lv_Broker_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            { 
+                 udfnBrokerData(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnBrokerData()
+        {
+            try
+            {
+                if (txtBroker.Text != "")
+                {
+                    ListViewItem selectedItem = lv_Broker.SelectedItems[0];
+                    txtBroker.Text = selectedItem.SubItems[0].Text;
+                    lblBrokerId.Text = selectedItem.SubItems[1].Text;
+                    //varSuppliervalue = selectedItem.SubItems[3].Text; 
+                }
+                txtGstin.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lv_Broker.Visible = false;
             }
         }
 
