@@ -1104,20 +1104,20 @@ namespace ROMS
         {
             try
             {
-                //if (grdDebitNoteList.SelectedRows.Count > 0)
-                //{
-                //    picLoader.Visible = true;
-                //    picLoader.BringToFront();
-                //    Application.DoEvents();
-                //    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                //    MainForm.objPUR_PurchaseReturns.varDebitDCID = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
-                //    MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
-                //    MainForm.objPUR_PurchaseReturns.varDebitSupplier = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
-                //    MainForm.objPUR_PurchaseReturns.varDebitSchedule = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
-                //    MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
-                //    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                //    MainForm.objPUR_PurchaseReturns.Show();
-                //}
+                if (grdDebitNoteList.SelectedRows.Count > 0)
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                    MainForm.objPUR_PurchaseReturns.varDebitDCID = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
+                    MainForm.objPUR_PurchaseReturns.varDebitSupplier = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.varDebitSchedule = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
+                    MainForm.objPUR_PurchaseReturns.Show();
+                }
             }
             catch(Exception ex)
             {
