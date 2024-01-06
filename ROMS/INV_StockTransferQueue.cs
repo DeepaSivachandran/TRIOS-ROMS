@@ -311,31 +311,7 @@ namespace ROMS
             {
                 dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
-                /* Check source stock location is valid or not*/
-                if (txtSLocation.Text != "")
-                {
-                    string varId_PurLocation = "0";
-                    DataSet objDsSalesLoc = new DataSet();
-                    SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","");
-                    objDServ5.CloseConnection();
-                    if (objDsSalesLoc != null)
-                    {
-                        if (objDsSalesLoc.Tables.Count > 0)
-                        {
-                            if (objDsSalesLoc.Tables[0].Rows.Count > 0)
-                            {
-                                varId_PurLocation = Convert.ToString(objDsSalesLoc.Tables[0].Rows[0][0]);
-                            }
-                        }
-                    }
-                    lblSLocation.Text = Convert.ToString(varId_PurLocation);
-                }
-                else
-                {
-                    lblSLocation.Text = "0";
-                }
-                if(txtProductNamePICode.Text=="")
+                if (txtProductNamePICode.Text == "")
                 {
                     lblProduct.Text = "0";
                 }
@@ -347,7 +323,15 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockTransferList(0,0,Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text),0,Convert.ToInt32(lblProduct.Text),Convert.ToInt32(cmbStatus.SelectedValue),dpTrannsferFromDate.Text,dpTransferToDate.Text);
+                Model.TRN_StockRequest objTRNG_StockRequest = new Model.TRN_StockRequest();
+                objTRNG_StockRequest.ViewType = 3;
+                //objTRNG_StockRequest.paraStockRequestID = 0;
+                objTRNG_StockRequest.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_StockRequest.paraPRID = Convert.ToInt32(lblProduct.Text);
+                objTRNG_StockRequest.ParaSTFromDate = Convert.ToString(dpTrannsferFromDate.Text);
+                objTRNG_StockRequest.ParaSTToDate = Convert.ToString(dpTransferToDate.Text);
+                objTRNG_StockRequest.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objDs = objspservice.udfnStockRequestList(objTRNG_StockRequest);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -359,17 +343,12 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdStockTransfer.DataSource = objDs.Tables[0];
-                            grdStockTransfer.Columns["SLID"].Visible = false;
-                            grdStockTransfer.Columns["ConcernID"].Visible = false;
-                            grdStockTransfer.Columns["StatusID"].Visible = false;
-                            grdStockTransfer.Columns["STRID"].Visible = false;
+                            grdStockTransfer.Columns["COMID"].Visible = false;
+                            grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["S.No."].Width = 50;
-                            grdStockTransfer.Columns["Status"].Width = 120;
-                            grdStockTransfer.Columns["Source"].Width = 120;
                             grdStockTransfer.Columns["Created By"].Width = 100;
                             grdStockTransfer.Columns["Created On"].Width = 150;
                             grdStockTransfer.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdStockTransfer.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
@@ -383,7 +362,6 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-
                 }
                 else
                 {
@@ -416,14 +394,11 @@ namespace ROMS
             try
             {
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
-                DGV_SearchGrid.Columns["SLID"].Visible = false;
-                DGV_SearchGrid.Columns["ConcernID"].Visible = false;
-                DGV_SearchGrid.Columns["StatusID"].Visible = false;
-                DGV_SearchGrid.Columns["STRID"].Visible = false;
+                DGV_SearchGrid.Columns["COMID"].Visible = false;
+                DGV_SearchGrid.Columns["SRQID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Status"].Width = 120;
-                DGV_SearchGrid.Columns["Source"].Width = 120;
-                DGV_SearchGrid.Columns["Created By"].Width = 100; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                DGV_SearchGrid.Columns["Created By"].Width = 100;
+                DGV_SearchGrid.Columns["Created On"].Width = 150; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -450,7 +425,7 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
