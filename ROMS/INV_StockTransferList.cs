@@ -369,6 +369,7 @@ namespace ROMS
                             grdStockTransfer.Columns["Source"].Width = 120;
                             grdStockTransfer.Columns["Created By"].Width = 100;
                             grdStockTransfer.Columns["Created On"].Width = 150;
+                            grdStockTransfer.Columns["Transaction Type"].Width = 150;
                             grdStockTransfer.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -919,7 +920,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete",dtStock,0);
+                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete",dtStock,0,0);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -931,7 +932,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objDser = new SPDataService();
-                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock,1);
+                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock,1,0);
                                     objDser.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {

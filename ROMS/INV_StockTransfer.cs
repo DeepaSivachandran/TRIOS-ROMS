@@ -48,6 +48,7 @@ namespace ROMS
         public string varSNo = "0";
         public int varUpdate = 0;
         public int varStockTransferID = 0;
+        public int varStockRequestID = 0;
         public int varStatusID = 0;
         public int varSLID = 0;
         public int varDLID = 0;
@@ -228,14 +229,22 @@ namespace ROMS
                 udfnCmbConcern();
                 dpTrannsferDate.MaxDate = MainForm.pbCurrentDate;
                 cmbConcern.SelectedValue = 1;
-                if(varStockTransferID!=0)
+                if (varStockTransferID != 0)
                 {
                     udfnEdit();
+                }
+                else if (varStockRequestID != 0)
+                {
+                    udfnSREdit();
                 }
                 else
                 {
                     this.ActiveControl = txtSLocation;
                 }
+                //if (varStockRequestID != 0)
+                //{
+                //    udfnSREdit();
+                //}
             }
             catch (Exception ex)
             {
@@ -334,6 +343,97 @@ namespace ROMS
                 }
             }
             catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
+            }
+        }
+        public void udfnSREdit()
+        {
+            try
+            {
+                if (varStockRequestID != 0)
+                {
+                    this.ActiveControl = txtRemarks;
+                    errStockTransfer.Clear();
+                    grbStockTransfer.Enabled = false;
+                    grbDStockTransfer.Enabled = false;
+                    txtTransactionType.Text = "Shop Request";
+                    btnSave.Text = "Update";
+                    SPDataService objspservice = new SPDataService();
+                    DataSet objDS;
+                    Model.TRN_StockRequest objTRNG_StockRequest = new Model.TRN_StockRequest();
+                    objTRNG_StockRequest.ViewType = 4;
+                    objTRNG_StockRequest.paraStockRequestID = varStockRequestID;
+                    objDS = objspservice.udfnStockRequestList(objTRNG_StockRequest);
+                    objspservice.CloseConnection();
+                    if (objDS != null)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
+                            {
+                                grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]),
+                                Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["SL_EName"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]),
+                                Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Current Stock"]));
+
+                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]));
+
+                                //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
+                                //int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
+
+                                //if (Convert.ToInt32(CurrentStockQty) < Convert.ToInt32(TransferQty))
+                                //{
+                                //    ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
+                                //    //grdStockTransfer.Rows[i].Cells["clmRemove"].ReadOnly = true;
+                                //}
+                            }
+                            //btnSave.Text = "Update";
+                            ((DataGridViewTextBoxColumn)grdStockTransfer.Columns["clmquantity"]).MaxInputLength = 8;
+                            grdStockTransfer.Columns["clmdsno"].Width = 50;
+                            grdStockTransfer.Columns["clmmrp"].Width = 50;
+                            grdStockTransfer.Columns["clmquantity"].Width = 100;
+                            grdStockTransfer.Columns["clmExpirydate"].Width = 90;
+                            grdStockTransfer.Columns["clmbatchno"].Width = 70;
+                            grdStockTransfer.Columns["clmDestLocation"].Width = 140;
+                            grdStockTransfer.Columns["clmDestRack"].Width = 140;
+                            grdStockTransfer.Columns["clmUnit"].Width = 60;
+                            grdStockTransfer.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdStockTransfer.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdStockTransfer.Columns["clmbatchno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                            grdStockTransfer.Columns["clmquantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdStockTransfer.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdStockTransfer.Columns["clmExpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                    }
+                    //if (varStatusID != 21)
+                    //{
+                    //    grdStockTransfer.ReadOnly = true;
+                    //    grdStockTransfer.Columns["clmRemove"].Visible = false;
+                    //    btnSave.Enabled = false;
+                    //    chkStatus.Checked = true; chkStatus.Enabled = false;
+                    //    txtProductNamePICode.Enabled = false;
+                    //    txtDLocation.Enabled = false;
+                    //    txtQuantity.Enabled = false;
+                    //    cmbDRack.Enabled = false;
+                    //    btnAdd.Enabled = false;
+                    //    txtRemarks.Enabled = false;
+                    //    this.ActiveControl = btnClose;
+                    //    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                    //    GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
+                    //}
+                    lvSLocation.Visible = false;
+                    lvDLocation.Visible = false;
+                    cmbConcern.Enabled = false;
+                    dpTrannsferDate.Enabled = false;
+                    txtSLocation.Enabled = false;
+                }
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1653,8 +1753,10 @@ namespace ROMS
                 //{
                 //    lblDLocation.Text = "0";
                 //}
+                
                 int varStatus = 0;
-                if(chkStatus.Checked==true)
+                int varTransactionType = 0;
+                if (chkStatus.Checked==true)
                 {
                     varStatus = 32;
                 }
@@ -1662,7 +1764,15 @@ namespace ROMS
                 {
                     varStatus = 21;
                 }
-                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(), varStatus, varoriginator,dtStock,0);
+                if(txtTransactionType.Text=="Regular")
+                {
+                    varTransactionType = 172;
+                }
+                else
+                {
+                    varTransactionType = 173;
+                }
+                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(), varStatus, varoriginator,dtStock,0,varTransactionType);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -1767,6 +1877,7 @@ namespace ROMS
 
         private void INV_StockTransfer_FormClosing(object sender, FormClosingEventArgs e)
         {
+
         }
         private void DpTrannsferDate_Enter(object sender, EventArgs e)
         {

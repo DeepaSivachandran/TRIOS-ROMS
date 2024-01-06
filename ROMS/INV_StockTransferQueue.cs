@@ -856,8 +856,7 @@ namespace ROMS
                     MainForm.objINV_StockTransfer = new INV_StockTransfer();
                     MainForm.objINV_StockTransfer.MdiParent = ParentForm;
                     //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
-                    MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
-                    MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
+                    MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
                     MainForm.objINV_StockTransfer.Show();
                 }
             }
@@ -893,7 +892,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete",dtStock,0);
+                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete",dtStock,0,0);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -905,7 +904,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objDser = new SPDataService();
-                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock,1);
+                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock,1,0);
                                     objDser.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
