@@ -1602,8 +1602,7 @@ namespace ROMS
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvproduct.Items.Add(objList);
-                                }
-
+                                } 
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 100;
                                 lvproduct.Columns[1].Width = 250;
