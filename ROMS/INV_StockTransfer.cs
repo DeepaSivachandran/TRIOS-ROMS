@@ -1767,7 +1767,6 @@ namespace ROMS
 
         private void INV_StockTransfer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
         }
         private void DpTrannsferDate_Enter(object sender, EventArgs e)
         {
