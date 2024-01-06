@@ -138,6 +138,7 @@ namespace ROMS
                             grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                     }
                     udfnProductCount();
@@ -316,6 +317,7 @@ namespace ROMS
                 //objDservice.CloseConnection();
                 //dpDCDate.Text = vardate;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dpDCDate.MinDate = MainForm.pbFYStartDate;
                 dpDCDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();
@@ -1361,7 +1363,15 @@ namespace ROMS
         {
             try
             {
-                if(txtProductName.Text!="" || txtProductName.Text=="")
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
+                if (txtProductName.Text!="" || txtProductName.Text=="")
                 {
                     udfnAddClear();
                     udfnTooltipHide();

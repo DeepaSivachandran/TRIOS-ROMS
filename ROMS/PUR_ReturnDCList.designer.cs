@@ -204,6 +204,8 @@
             this.grdReturnDCList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdReturnDCList.Size = new System.Drawing.Size(1348, 510);
             this.grdReturnDCList.TabIndex = 1;
+            this.grdReturnDCList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReturnDCList_DataBindingComplete);
+            this.grdReturnDCList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReturnDCList_RowEnter);
             this.grdReturnDCList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdReturnDCList_Scroll);
             this.grdReturnDCList.DoubleClick += new System.EventHandler(this.GrdReturnDCList_DoubleClick);
             this.grdReturnDCList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdReturnDCList_KeyDown);
@@ -231,7 +233,7 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Honeydew;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
@@ -241,7 +243,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
@@ -251,8 +253,8 @@
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -377,7 +379,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1163, 26);
+            this.btnExport.Location = new System.Drawing.Point(1207, 26);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 7;
@@ -399,7 +401,7 @@
             "Excess"});
             this.cmbDCType.Location = new System.Drawing.Point(835, 26);
             this.cmbDCType.Name = "cmbDCType";
-            this.cmbDCType.Size = new System.Drawing.Size(98, 27);
+            this.cmbDCType.Size = new System.Drawing.Size(123, 27);
             this.cmbDCType.TabIndex = 4;
             this.cmbDCType.SelectedIndexChanged += new System.EventHandler(this.CmbDCType_SelectedIndexChanged);
             this.cmbDCType.Enter += new System.EventHandler(this.CmbDCType_Enter);
@@ -424,9 +426,9 @@
             "--Select--",
             "Damage",
             "Excess"});
-            this.cmbStatus.Location = new System.Drawing.Point(981, 26);
+            this.cmbStatus.Location = new System.Drawing.Point(1006, 26);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(98, 27);
+            this.cmbStatus.Size = new System.Drawing.Size(117, 27);
             this.cmbStatus.TabIndex = 5;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
@@ -461,7 +463,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(935, 29);
+            this.lblStatus.Location = new System.Drawing.Point(960, 29);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 958816;
@@ -483,7 +485,7 @@
             // txtSupplier
             // 
             this.txtSupplier.Location = new System.Drawing.Point(517, 26);
-            this.txtSupplier.MaxLength = 2;
+            this.txtSupplier.MaxLength = 150;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(264, 27);
             this.txtSupplier.TabIndex = 3;
@@ -527,7 +529,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1083, 26);
+            this.btnView.Location = new System.Drawing.Point(1127, 26);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 6;

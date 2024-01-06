@@ -32,78 +32,17 @@ namespace ROMS
         public bool VarSearchFlag = true;
         public int expirydateFlag = 0, pbDateflag=0, varShelflife=0, varReturnDCID=0;
         public string varBatchNo = "0";
+       public  int varcloseflag=0;
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varExpiryDate = "";
         public string varPICode = "", varTName = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "",
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
         public int varConcernId = 0, varScheduleId = 0, varSupplierId = 0;
         public string varReturnDCDate = "", varErrQty="0";
-      
+        public string varTodayDate = "",varExchangeReturns="";
         public PUR_DCGoodsInward()
         {
             InitializeComponent();
         }
-        //private void btnSave_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-
-        //        errLocation.Clear();
-
-        //        if (txtLocationName.Text.Trim() == "")
-        //        {
-        //            errLocation.SetError(txtLocationName, "Please enter location name ");
-        //            txtLocationName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-        //            tplocationname.ShowAlways = true;
-        //            tplocationname.Show("Please enter location name", txtLocationName, 5000);
-        //            txtLocationName.Text = "";
-        //        }
-        //        if (txtLocationName.Text.Trim() == "")
-        //        {
-        //            txtLocationName.Focus();
-        //            return;
-        //        }
-        //        SPDataService objspdservice = new SPDataService();
-
-        //        string result = "";
-        //        if (btnSave.Text == "Save")
-        //        {
-        //          //  result = objspdservice.udfnSPLocationMaster("Create", "0",txtLocationName.Text,cmbSlNo.SelectedValue.ToString() , MainForm.pbUserID, MainForm.pbIpAddress, "Location Create");
-
-        //        }
-        //        else
-        //        {
-        //          //  result = objspdservice.udfnSPLocationMaster("Update", varlocationcode, txtLocationName.Text, cmbSlNo.SelectedValue.ToString(), MainForm.pbUserID, MainForm.pbIpAddress, "Location Update");
-        //        }
-        //        string[] varvalue = result.Split('~');
-        //        if (varvalue[0] == "3")
-        //        {
-        //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //            if (btnSave.Text == "Update")
-        //            {
-        //                this.Close();
-        //            }
-        //            else
-        //            {
-        //                udfnclear();
-        //            }
-
-        //            MainForm.objPUR_DCGoodsInwardList.udfnList();
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            if (varvalue[1].Contains("Order number")) {// udfnSINO();
-        //            }
-        //        }
-        //        objspdservice.CloseConnection();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -116,12 +55,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -135,7 +73,6 @@ namespace ROMS
             try
             {
                 udfnclose();
-              //  MainForm.objPUR_DCGoodsInwardList.udfnList();
             }
             catch (Exception ex)
             {
@@ -162,7 +99,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -174,8 +111,44 @@ namespace ROMS
         {
             try
             {
+                varTodayDate = Convert.ToString(MainForm.pbCurrentDate);
                 udfnUddtTable();
-                EditLoad();
+                if(MainForm.objPUR_PurchaseReturns.varStatusId==16)
+                {
+                    if (MainForm.objPUR_PurchaseReturns.dtExchangeProducts.Rows.Count != 0)
+                    {
+                        // dtPurchaseDC.DataSet = MainForm.objPUR_PurchaseReturns.dtExchangeProducts;
+                        dtPurchaseDC = (MainForm.objPUR_PurchaseReturns.dtExchangeProducts).Copy();
+                        for (int i = 0; i < dtPurchaseDC.Rows.Count; i++)
+                        {
+                            grdProductExchage.Rows.Add(i+1, dtPurchaseDC.Rows[i]["P.I Code"].ToString(),
+                            dtPurchaseDC.Rows[i]["ProductName"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_MRP"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_ExpiryDate"].ToString(), dtPurchaseDC.Rows[i]["DCPR_BatchNo"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_Qty"].ToString(), dtPurchaseDC.Rows[i]["Unit"].ToString(), dtPurchaseDC.Rows[i]["Rack"].ToString(), dtPurchaseDC.Rows[i]["Location"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_PRID"].ToString(), dtPurchaseDC.Rows[i]["DCPR_SLID"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_RKID"].ToString(), Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_UTID"])
+                            );
+                        }
+                        grdProductExchage.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdProductExchage.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdProductExchage.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdProductExchage.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        txtRemark.Text = MainForm.objPUR_PurchaseReturns.varExchangeRemarks;
+                        grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                        udfnProductCount();
+                    }
+                }
+                else
+                {
+                    EditLoad();
+                    varcloseflag = 1;
+                    grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                    grpproductname.Enabled = false;
+                    btnSave.Enabled = false;
+                    txtRemark.ReadOnly = true;
+                    grdProductExchage.Columns["clmRemove"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -231,8 +204,11 @@ namespace ROMS
                                 string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]))), objDs.Tables[0].Rows[i]["Expiry Date"].ToString(),
                                 objDs.Tables[0].Rows[i]["Batch No."].ToString(), objDs.Tables[0].Rows[i]["Qty"].ToString(),
                                 objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(),
-                                objDs.Tables[0].Rows[i]["RKID"].ToString());
+                                objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["Unit"].ToString(),
+                                objDs.Tables[0].Rows[i]["Location"].ToString(), objDs.Tables[0].Rows[i]["Rack"].ToString());
+                              
                             }
+                            txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Remarks"]);
                         }
                         grdProductExchage.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdProductExchage.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -280,55 +256,54 @@ namespace ROMS
                         int varStatusID = 4;
                         if (grdProductExchage.Rows.Count > 0)
                         {
-                            
-                                string result = "", varorginator = "Return DC exchange products";
-                                int varviewtype = 4;
-
-                                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
-                                objTRN_PurchaseReturnDC.paraViewType = varviewtype;
-                                objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                                objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                                objTRN_PurchaseReturnDC.paraOriginator = varorginator;
-                                objTRN_PurchaseReturnDC.paraReturnDCID = varReturnDCID;
-                                objTRN_PurchaseReturnDC.paraExchangeRemarks = txtRemark.Text.Trim();
-                                objTRN_PurchaseReturnDC.ParaTRN_Purchase_DC = dtPurchaseDC;
-                                SPDataService objspdservice = new SPDataService();
-                                result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
-                                objspdservice.CloseConnection();
-                                objspdservice.CloseConnection();
-                                string[] varvalue = result.Split('~');
-                                if (varvalue[0] == "3")
+                            string result = "", varorginator = "Return DC exchange products";
+                            int varviewtype = 1;
+                            TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
+                            objTRN_PurchaseReturnDC.paraViewType = varviewtype;
+                            objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                            objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                            objTRN_PurchaseReturnDC.paraOriginator = varorginator;
+                            objTRN_PurchaseReturnDC.paraReturnDCID = varReturnDCID;
+                            objTRN_PurchaseReturnDC.paraReturnDC_Date = varTodayDate;
+                            objTRN_PurchaseReturnDC.paraExchangeRemarks = txtRemark.Text.Trim();
+                            objTRN_PurchaseReturnDC.paraDeleteFlag = 0;
+                            objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtPurchaseDC;
+                            SPDataService objspdservice = new SPDataService();
+                            result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
+                            {
+                                MainForm.objPUR_PurchaseReturns.dtExchangeProducts = dtPurchaseDC;
+                                MainForm.objPUR_PurchaseReturns.varExchangeRemarks = txtRemark.Text.Trim();
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                varcloseflag = 1;
+                                udfnclose();
+                            }
+                            else if (varvalue[0] == "4")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            if (varvalue[0] == "5")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                string varProductID = "", Expirydate = "";
+                                for (int j = 0; j < grdProductExchage.RowCount; j++)
                                 {
-                                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    udfnclose();
-                                    MainForm.objPUR_PurchaseDCList.udfnList();
-                                }
-                                else if (varvalue[0] == "4")
-                                {
-                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                }
-                                if (varvalue[0] == "5")
-                                {
-                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    string varProductID = "", Expirydate = "";
-                                    for (int j = 0; j < grdProductExchage.RowCount; j++)
+                                    grdProductExchage.Rows[j].DefaultCellStyle.BackColor = Color.White;
+                                    string[] varFirstList = varvalue[2].Split('|');
+                                    for (int i = 0; i < varFirstList.Length; i++)
                                     {
-                                        grdProductExchage.Rows[j].DefaultCellStyle.BackColor = Color.White;
-
-                                        string[] varFirstList = varvalue[2].Split('|');
-                                        for (int i = 0; i < varFirstList.Length; i++)
+                                        string[] varSecondList = varFirstList[i].Split(',');
+                                        varProductID = varSecondList[0];
+                                        Expirydate = varSecondList[1];
+                                        if (Convert.ToString(grdProductExchage.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdProductExchage.Rows[j].Cells["clmExpiryDate"].Value) == Expirydate)
                                         {
-                                            string[] varSecondList = varFirstList[i].Split(',');
-                                            varProductID = varSecondList[0];
-                                            Expirydate = varSecondList[1];
-                                            if (Convert.ToString(grdProductExchage.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdProductExchage.Rows[j].Cells["clmExpiryDate"].Value) == Expirydate)
-                                            {
-                                                grdProductExchage.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
-                                                //  grdPurchaseDC.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
-                                            }
+                                            grdProductExchage.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
                                         }
                                     }
                                 }
+                            }
                         }
                     }
                 }
@@ -375,19 +350,19 @@ namespace ROMS
                     btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
-                    }
-                }
+                //if (e.KeyCode == Keys.F11)
+                //{
+                //    if (VarSearchFlag == false)
+                //    {
+                //        VarSearchFlag = true;
+                //        lblProductName.Text = "Search by P.I Code";
+                //    }
+                //    else
+                //    {
+                //        VarSearchFlag = false;
+                //        lblProductName.Text = "Search by Product Name";
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -442,14 +417,17 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varcloseflag == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -501,6 +479,21 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtMrp.Focus();
@@ -795,7 +788,6 @@ namespace ROMS
                                     lvStockLocation.Items.Add(objList);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-
                                 }
                                 lvStockLocation.Visible = true;
                             }
@@ -1059,6 +1051,70 @@ namespace ROMS
             try
             {
                 txtRemark.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdProductExchage_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmQuantity")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtActualQty_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Pnlinward_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public void allowonlynumber(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmQuantity")
+                {
+                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                    {
+                        e.Handled = true;
+                    }
+                    //only allow one decimal point
+                    if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                    {
+                        e.Handled = true;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1352,7 +1408,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAdd.Focus();
+                    txtStockLocation.Focus();
                 }
             }
             catch (Exception ex)
@@ -1492,7 +1548,7 @@ namespace ROMS
                     {
                         varExpiryDate = varDay + "/" + varMonth + "/" + varYear;
                     }
-                    objDS = objDServ.udfnMaster(10, 0, 0,varReturnDCDate, varExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
+                    objDS = objDServ.udfnMaster(10, 0, 0, varTodayDate, varExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
@@ -1557,7 +1613,7 @@ namespace ROMS
         }
         public void udfnUddtTable()
         {
-            dtPurchaseDC.TableName = "TRN_Purchase_DC";
+            dtPurchaseDC.TableName = "TRN_ReturnDCProducts";
             dtPurchaseDC.Columns.Add("DCPR_PRID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_MRP", typeof(decimal));
             dtPurchaseDC.Columns.Add("DCPR_ExpiryDate", typeof(string));
@@ -1566,6 +1622,11 @@ namespace ROMS
             dtPurchaseDC.Columns.Add("DCPR_UTID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_SLID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_RKID", typeof(int));
+            dtPurchaseDC.Columns.Add("ProductName", typeof(string));
+            dtPurchaseDC.Columns.Add("P.I code", typeof(string));
+            dtPurchaseDC.Columns.Add("Unit", typeof(string));
+            dtPurchaseDC.Columns.Add("Location", typeof(string));
+            dtPurchaseDC.Columns.Add("Rack", typeof(string));
         }
         private void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -1882,7 +1943,15 @@ namespace ROMS
         {
             try
             {
-               if (txtProductName.Text != "" || txtProductName.Text == "")
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
+                if (txtProductName.Text != "" || txtProductName.Text == "")
                 {
                     udfnAddClear();
                     udfnTooltipHide();
@@ -1905,6 +1974,15 @@ namespace ROMS
                     objMR_Product.ParaScheduleid = Convert.ToString(varScheduleId);
                     objMR_Product.ParaSupplierId = varSupplierId;
                     objMR_Product.ParaProductsCode = varProductsCodes;
+                    if (VarSearchFlag == true)
+                    {
+                        objMR_Product.paraPicode = txtProductName.Text;
+                    }
+                    else
+                    {
+                        objMR_Product.paraProductName = txtProductName.Text;
+                    }
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     // lvproduct.BeginUpdate();
                     if (objDs != null)
                     {
@@ -1923,7 +2001,7 @@ namespace ROMS
                                 }
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 130;
-                                lvproduct.Columns[1].Width = 500;
+                                lvproduct.Columns[1].Width = 300;
                                 lvproduct.Columns[2].Width = 50;
                             }
                         }
@@ -1998,7 +2076,7 @@ namespace ROMS
                         {
                             SPDataService objspdservice = new SPDataService();
                             DataSet objDs = new DataSet();
-                            objDs = objspdservice.udfnMaster(15, 0, 0,varReturnDCDate, "", Convert.ToInt32(lblProductcode.Text), "", 0);
+                            objDs = objspdservice.udfnMaster(15, 0, 0, varTodayDate, "", Convert.ToInt32(lblProductcode.Text), "", 0);
                             objspdservice.CloseConnection();
                             if (objDs.Tables[0] != null)
                             {
@@ -2189,7 +2267,7 @@ namespace ROMS
                         string mrp = string.Format("{0:0.00}", varMRP);
                         string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                         grdProductExchage.Rows.Add(grdProductExchage.Rows.Count + 1, varPICode.Trim(), varTName.Trim(), Convert.ToDecimal(mrp), varExpiryDate, txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid);
-                        dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text));
+                        dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text), varTName, varPICode, lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim());
                         ((DataGridViewTextBoxColumn)grdProductExchage.Columns["clmQuantity"]).MaxInputLength = 8;
                         grdProductExchage.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;

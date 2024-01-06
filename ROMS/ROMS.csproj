@@ -63,6 +63,9 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gma.QrCodeNet.0.4.1.2\lib\net40\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -326,10 +329,10 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\RPT_LP_QRGRN_QRCode.cs">
+    <Compile Include="Reports\RPT_LP_GRN_QRCode.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_LP_QRGRN_QRCode.rpt</DependentUpon>
+      <DependentUpon>RPT_LP_GRN_QRCode.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Purchase_Order_List.cs">
@@ -350,8 +353,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_PO.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_Detail_Report.cs">
       <AutoGen>True</AutoGen>
@@ -1379,6 +1382,12 @@
     <Compile Include="PUR_SupplierScheduleList.designer.cs">
       <DependentUpon>PUR_SupplierScheduleList.cs</DependentUpon>
     </Compile>
+    <Compile Include="RPT_PUR_PO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_PUR_PO.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ServerSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1916,9 +1925,10 @@
       <LastGenOutput>RPT_INV_Damage_Supplier.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_LP_QRGRN_QRCode.rpt">
+    <EmbeddedResource Include="Reports\RPT_LP_GRN_QRCode.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_LP_QRGRN_QRCode.cs</LastGenOutput>
+      <LastGenOutput>RPT_LP_GRN_QRCode.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Purchase_Order_List.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2142,6 +2152,10 @@
     </Content>
     <EmbeddedResource Include="REPORT_Stock.resx">
       <DependentUpon>REPORT_Stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RPT_PUR_PO.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_PO.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerSettings.resx">
       <DependentUpon>ServerSettings.cs</DependentUpon>

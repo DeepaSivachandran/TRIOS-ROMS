@@ -25,7 +25,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
         public void udfnclose()
         {
             try
@@ -51,7 +50,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnList()
         {
             try

@@ -20,6 +20,8 @@ namespace ROMS
         DataError objError;
         public int Varflag = 0, varviewtype=0;
         private ToolTip tpSuppliername = new ToolTip();
+        private DataTable dtDefaultGrid = new DataTable();
+        public int varDeleteFlag = 0;
         public PUR_ReturnDCList()
         {
             InitializeComponent();
@@ -51,6 +53,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDeleteHide()
+        {
+            try
+            {
+                if(Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) ==16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39)
+                {
+                    tsbDelete.Visible = false;
+                    varDeleteFlag = 0;
+                }
+                else
+                {
+                    tsbDelete.Visible = true;
+                    varDeleteFlag = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_ReturnDCList_Load(object sender, EventArgs e)
         {
             try
@@ -64,7 +87,7 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 //txtSupplier.Focus();
-                cmbStatus.SelectedValue = 15; //pending
+              //  cmbStatus.SelectedValue = 15; //pending
                 udfnList();
             }
             catch (Exception ex)
@@ -261,16 +284,19 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdReturnDCList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdReturnDCList.Width > grdReturnDCList.HorizontalScrollingOffset && grdReturnDCList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdReturnDCList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdReturnDCList.Width > grdReturnDCList.HorizontalScrollingOffset && grdReturnDCList.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
             }
             catch (Exception ex)
             {
@@ -544,6 +570,7 @@ namespace ROMS
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.ParaFromDate = dpFromDate.Text;
                     objMR_Supplier.ParaToDate = dpToDate.Text;
+                    objMR_Supplier.paraFlag = 3;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -780,10 +807,33 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                // DGV_SearchGrid.Columns["S.No."].Visible = false;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["Concern ID"].Visible = false;
+                DGV_SearchGrid.Columns["Supplier ID"].Visible = false;
+                DGV_SearchGrid.Columns["Schedule ID"].Visible = false;
+                DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["Status"].Width = 120; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                //DGV_SearchGrid.Columns["Employees"].Width = 300;
+                //DGV_SearchGrid.Columns["Created By"].Width = 100;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnList()
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 Varflag = 0;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
@@ -837,7 +887,6 @@ namespace ROMS
                         lblSupplierCode.Text = values[0];
                         lblschedule.Text = values[1];
                         txtSupplier.BackColor = Color.White;
-
                     }
                     //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                 }
@@ -871,18 +920,21 @@ namespace ROMS
                                 grdReturnDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdReturnDCList.Columns["Concern"].Width = 150;
+                                grdReturnDCList.Columns["Total Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdReturnDCList.Columns["Concern"].Width = 100;
                                 grdReturnDCList.Columns["DC Date"].Width = 100;
                                 grdReturnDCList.Columns["DC No."].Width = 100;
                                 grdReturnDCList.Columns["Supplier"].Width = 300;
                                 grdReturnDCList.Columns["Total Products"].Width = 100;
+                                grdReturnDCList.Columns["Created On"].Width = 140;
+                                grdReturnDCList.Columns["Created By"].Width = 100;
                                 grdReturnDCList.Columns["Status"].Width = 100;
-                                grdReturnDCList.Columns["S.No."].Width = 80;
+                                grdReturnDCList.Columns["S.No."].Width = 60;
                                 grdReturnDCList.Columns["ID"].Visible = false;
-                                //grdReturnDCList.Columns["DC_SPID"].Visible = false;
-                                //grdReturnDCList.Columns["Status ID"].Visible = false;
-                                //grdReturnDCList.Columns["COMID"].Visible = false;
-                                //grdReturnDCList.Columns["DC_SPSCID"].Visible = false;
+                                grdReturnDCList.Columns["Concern ID"].Visible = false;
+                                grdReturnDCList.Columns["Supplier ID"].Visible = false;
+                                grdReturnDCList.Columns["Schedule ID"].Visible = false;
+                                grdReturnDCList.Columns["Status ID"].Visible = false;
                             }
                             else
                             {
@@ -902,6 +954,12 @@ namespace ROMS
                         lblNoRecordsFound.BringToFront();
                     }
                     udfnSearchGridHead();
+                    if (lblNoRecordsFound.Visible == true)
+                    {
+                        dtDefaultGrid = objDs.Tables[0];
+                        udfnDefaultSearchGrid();
+                    }
+                    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
                 }
                 else
                 {
@@ -920,6 +978,7 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                udfnDeleteHide();
             }
         }
         private void BtnExport_Enter(object sender, EventArgs e)
@@ -1038,19 +1097,23 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Total Products")
+                            if (col.Name == "S.No." || col.Name == "Total Units" || col.Name == "Reason")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            else if(col.Name == "Supplier")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
-                            if (col.Name == "S.No.")
+                            if (col.Name == "S.No." || col.Name == "DC Date")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products")
+                            if (col.Name == "Total Products" || col.Name == "Total Units")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
@@ -1153,40 +1216,43 @@ namespace ROMS
         {
             try
             {
-                DataGridViewColumn newColumn = grdReturnDCList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdReturnDCList.SortedColumn;
-                ListSortDirection direction;
-
-                // If oldColumn is null, then the DataGridView is not sorted.
-                if (oldColumn != null)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    // Sort the same column again, reversing the SortOrder.
-                    if (oldColumn == newColumn &&
-                        grdReturnDCList.SortOrder == SortOrder.Ascending)
+                    DataGridViewColumn newColumn = grdReturnDCList.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdReturnDCList.SortedColumn;
+                    ListSortDirection direction;
+
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
                     {
-                        direction = ListSortDirection.Descending;
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdReturnDCList.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
                     }
                     else
                     {
-                        // Sort a new column and remove the old SortGlyph.
                         direction = ListSortDirection.Ascending;
-                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                     }
-                }
-                else
-                {
-                    direction = ListSortDirection.Ascending;
-                }
-                grdReturnDCList.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection =
-                    direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
+                    grdReturnDCList.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
 
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-                DGV_SearchGrid.HorizontalScrollingOffset = grdReturnDCList.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdReturnDCList.HorizontalScrollingOffset;
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1286,17 +1352,20 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdReturnDCList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdReturnDCList.Width > grdReturnDCList.HorizontalScrollingOffset && grdReturnDCList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdReturnDCList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdReturnDCList.Width > grdReturnDCList.HorizontalScrollingOffset && grdReturnDCList.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdReturnDCList);
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdReturnDCList);
             }
             catch (Exception ex)
             {
@@ -1304,59 +1373,110 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdReturnDCList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdReturnDCList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "15")
+                    {
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "16")
+                    {
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "39")
+                    {
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+               grdReturnDCList.ClearSelection();
+            }
+        }
+
+        private void GrdReturnDCList_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnDelete()
         {
             try
             {
-                if (grdReturnDCList.SelectedRows.Count > 0)
+                if (varDeleteFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdReturnDCList.SelectedRows.Count > 0)
                     {
-                        string varorginator = "Return DC Deletion", result = "";
-                        varviewtype = 2;
-                        int varUserID = 0;
-                        TRN_ReturnDC objTRN_ReturnDC = new TRN_ReturnDC();
-                        objTRN_ReturnDC.@paraViewType = varviewtype;
-                        objTRN_ReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                        objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                        objTRN_ReturnDC.paraOriginator = varorginator;
-                        objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                        objTRN_ReturnDC.paraDeleteFlag = 0;
-                        SPDataService objspdservice = new SPDataService();
-                        result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (result.Split('~')[1] == "1")
+                            string varorginator = "Return DC Deletion", result = "";
+                            varviewtype = 2;
+                            int varUserID = 0;
+                            TRN_ReturnDC objTRN_ReturnDC = new TRN_ReturnDC();
+                            objTRN_ReturnDC.paraViewType = varviewtype;
+                            objTRN_ReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                            objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                            objTRN_ReturnDC.paraOriginator = varorginator;
+                            objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                            objTRN_ReturnDC.paraDeleteFlag = 0;
+                            SPDataService objspdservice = new SPDataService();
+                            result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (result.Split('~')[1] == "1")
                                 {
-                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
-                                    objTRN_ReturnDC.@paraViewType = varviewtype;
-                                    objTRN_ReturnDC.paraUserID = varUserID;
-                                    objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                                    objTRN_ReturnDC.paraOriginator = varorginator;
-                                    objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                                    objTRN_ReturnDC.paraDeleteFlag = 1;
-                                    result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
-                                    objspdservice.CloseConnection();
-                                    if (result.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        varviewtype = 3;
-                                        udfnList();
+                                        varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                        objTRN_ReturnDC.@paraViewType = varviewtype;
+                                        objTRN_ReturnDC.paraUserID = varUserID;
+                                        objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                                        objTRN_ReturnDC.paraOriginator = varorginator;
+                                        objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                        objTRN_ReturnDC.paraDeleteFlag = 1;
+                                        result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
+                                        objspdservice.CloseConnection();
+                                        if (result.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            varviewtype = 3;
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else if (result.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else if (result.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }

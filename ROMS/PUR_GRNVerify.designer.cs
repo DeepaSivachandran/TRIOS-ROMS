@@ -59,8 +59,9 @@
             this.txtPassKey.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassKey.Location = new System.Drawing.Point(74, 14);
             this.txtPassKey.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtPassKey.MaxLength = 50;
+            this.txtPassKey.MaxLength = 6;
             this.txtPassKey.Name = "txtPassKey";
+            this.txtPassKey.PasswordChar = '*';
             this.txtPassKey.Size = new System.Drawing.Size(174, 28);
             this.txtPassKey.TabIndex = 1;
             this.txtPassKey.Enter += new System.EventHandler(this.TxtEUnitName_Enter);

@@ -95,8 +95,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(108, 22);
-            this.tspHeader.Text = "Product Report";
+            this.tspHeader.Size = new System.Drawing.Size(205, 22);
+            this.tspHeader.Text = "Purchase Order-Summary&&Detail";
             // 
             // pnlReportProduct
             // 

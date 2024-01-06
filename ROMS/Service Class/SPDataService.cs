@@ -698,6 +698,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDamageEntry", objTRN_Damage.paraDamageEntry);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_Damage.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraEmployeeId", objTRN_Damage.paraEmployeeId);
+                varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRN_Damage.paraQrimg);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -2242,15 +2243,17 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[TRNS_Purchase_ReturnDC]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_PurchaseReturnDC.paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_PurchaseReturnDC.@paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_PurchaseReturnDC.paraCompanyId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_PurchaseReturnDC.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_PurchaseReturnDC.paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_PurchaseReturnDC.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDC_Date", objTRN_PurchaseReturnDC.paraReturnDC_Date);
                 varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_PurchaseReturnDC.paraReasonId);
+                varSqlCommand.Parameters.AddWithValue("@paraClosingReasonId", objTRN_PurchaseReturnDC.paraClosingReasonId);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDC_NO", objTRN_PurchaseReturnDC.paraReturnDC_NO);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_PurchaseReturnDC.ParaSupplierId);
                 varSqlCommand.Parameters.AddWithValue("@ParaScheduleID", objTRN_PurchaseReturnDC.ParaScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraCreditNoteNo", objTRN_PurchaseReturnDC.paraCreditNoteNo);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDC_Remarks", objTRN_PurchaseReturnDC.paraReturnDC_Remarks);
                 varSqlCommand.Parameters.AddWithValue("@paraExchangeRemarks", objTRN_PurchaseReturnDC.paraExchangeRemarks);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_PurchaseReturnDC.paraStatusID);
@@ -2258,9 +2261,11 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDCAmount", objTRN_PurchaseReturnDC.paraReturnDCAmount);
                 varSqlCommand.Parameters.AddWithValue("@paraTax", objTRN_PurchaseReturnDC.paraTax);
                 varSqlCommand.Parameters.AddWithValue("@paraReturnDCID", objTRN_PurchaseReturnDC.paraReturnDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraCreditNoteDate", objTRN_PurchaseReturnDC.paraCreditNoteDate);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_PurchaseReturnDC.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraTRN_Purchase_ReturnDC", objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC);
-                varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_DC", objTRN_PurchaseReturnDC.@ParaTRN_Purchase_DC);
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_ReturnDCProducts", objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -2436,6 +2441,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraSkipped", objTRNS_GRN.paraSkipped);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRNS_GRN.paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@ParaEditFlag", objTRNS_GRN.ParaEditFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRNS_GRN.paraQrimg);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -2475,7 +2482,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOrdertype", paraOrdertype);
                 varSqlCommand.Parameters.AddWithValue("@ParaGRNDate", ParaGRNDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaExpiryDate", ParaExpiryDate);
-                varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId); 
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

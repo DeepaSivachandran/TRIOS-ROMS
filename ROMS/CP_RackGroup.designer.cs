@@ -52,6 +52,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_RackGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnUnselectAll = new System.Windows.Forms.Button();
             this.chkRack = new System.Windows.Forms.CheckBox();
             this.DGV_SearchGridRight = new System.Windows.Forms.DataGridView();
             this.DGV_SearchGridLeft = new System.Windows.Forms.DataGridView();
@@ -125,6 +127,8 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.btnSelectAll);
+            this.grbform.Controls.Add(this.btnUnselectAll);
             this.grbform.Controls.Add(this.chkRack);
             this.grbform.Controls.Add(this.DGV_SearchGridRight);
             this.grbform.Controls.Add(this.DGV_SearchGridLeft);
@@ -148,15 +152,46 @@
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSelectAll.Location = new System.Drawing.Point(563, 355);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnSelectAll.TabIndex = 1111143;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.BtnSelectAll_Click);
+            this.btnSelectAll.Enter += new System.EventHandler(this.BtnSelectAll_Enter);
+            this.btnSelectAll.Leave += new System.EventHandler(this.BtnSelectAll_Leave);
+            // 
+            // btnUnselectAll
+            // 
+            this.btnUnselectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUnselectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUnselectAll.Location = new System.Drawing.Point(474, 355);
+            this.btnUnselectAll.Name = "btnUnselectAll";
+            this.btnUnselectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnUnselectAll.TabIndex = 1111142;
+            this.btnUnselectAll.Text = "Unselect All";
+            this.btnUnselectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnUnselectAll.UseVisualStyleBackColor = true;
+            this.btnUnselectAll.Click += new System.EventHandler(this.BtnUnselectAll_Click);
+            this.btnUnselectAll.Enter += new System.EventHandler(this.BtnUnselectAll_Enter);
+            this.btnUnselectAll.Leave += new System.EventHandler(this.BtnUnselectAll_Leave);
+            // 
             // chkRack
             // 
             this.chkRack.AutoSize = true;
-            this.chkRack.Location = new System.Drawing.Point(27, 124);
+            this.chkRack.Location = new System.Drawing.Point(0, 129);
             this.chkRack.Name = "chkRack";
             this.chkRack.Size = new System.Drawing.Size(15, 14);
             this.chkRack.TabIndex = 1111138;
             this.chkRack.TabStop = false;
             this.chkRack.UseVisualStyleBackColor = true;
+            this.chkRack.Visible = false;
             this.chkRack.CheckedChanged += new System.EventHandler(this.ChkRack_CheckedChanged);
             // 
             // DGV_SearchGridRight
@@ -333,6 +368,7 @@
             this.grdSelectedRack.GridColor = System.Drawing.Color.White;
             this.grdSelectedRack.Location = new System.Drawing.Point(689, 143);
             this.grdSelectedRack.Name = "grdSelectedRack";
+            this.grdSelectedRack.ReadOnly = true;
             this.grdSelectedRack.RowHeadersVisible = false;
             this.grdSelectedRack.RowHeadersWidth = 70;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -354,23 +390,27 @@
             this.columnSNo.DefaultCellStyle = dataGridViewCellStyle8;
             this.columnSNo.HeaderText = "S.No.";
             this.columnSNo.Name = "columnSNo";
+            this.columnSNo.ReadOnly = true;
             this.columnSNo.Width = 40;
             // 
             // clmStockLocation
             // 
             this.clmStockLocation.HeaderText = "Stock Location";
             this.clmStockLocation.Name = "clmStockLocation";
+            this.clmStockLocation.ReadOnly = true;
             this.clmStockLocation.Width = 150;
             // 
             // clmRack
             // 
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
             // 
             // clmDescription
             // 
             this.clmDescription.HeaderText = "Description";
             this.clmDescription.Name = "clmDescription";
+            this.clmDescription.ReadOnly = true;
             this.clmDescription.Width = 140;
             // 
             // clmTotalProducts
@@ -379,12 +419,14 @@
             this.clmTotalProducts.DefaultCellStyle = dataGridViewCellStyle9;
             this.clmTotalProducts.HeaderText = "Total Products";
             this.clmTotalProducts.Name = "clmTotalProducts";
+            this.clmTotalProducts.ReadOnly = true;
             this.clmTotalProducts.Width = 110;
             // 
             // ID
             // 
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             this.ID.Visible = false;
             // 
             // clmRemoveRack
@@ -392,6 +434,7 @@
             this.clmRemoveRack.HeaderText = "Remove";
             this.clmRemoveRack.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemoveRack.Name = "clmRemoveRack";
+            this.clmRemoveRack.ReadOnly = true;
             this.clmRemoveRack.Width = 50;
             // 
             // btnView
@@ -457,7 +500,7 @@
             this.grdRack.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.grdRack.RowTemplate.Height = 25;
             this.grdRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRack.Size = new System.Drawing.Size(628, 241);
+            this.grdRack.Size = new System.Drawing.Size(628, 206);
             this.grdRack.TabIndex = 512;
             this.grdRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellContentClick);
             this.grdRack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellDoubleClick);
@@ -1110,5 +1153,7 @@
         private System.Windows.Forms.DataGridViewImageColumn clmRemoveRack;
         public System.Windows.Forms.DataGridView DGV_SearchGridLeft;
         public System.Windows.Forms.DataGridView DGV_SearchGridRight;
+        public System.Windows.Forms.Button btnUnselectAll;
+        public System.Windows.Forms.Button btnSelectAll;
     }
 }

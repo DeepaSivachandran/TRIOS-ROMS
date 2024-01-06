@@ -22,12 +22,16 @@ namespace ROMS
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpReason = new ToolTip();
         private ToolTip tpDcNo = new ToolTip();
+        private ToolTip tpCrNo = new ToolTip();
+        private ToolTip tpAmount = new ToolTip();
 
         public int varReturnDCID = 0, varCloseFlag=0, varDebitSupplier=0, varDebitSchedule=0,varEditFlag=1;
         public int pbScheduleid = 0, pbSupplierId=0;
         public string varSuppliervalue = "";
         public int varDebitDCID = 0;
         DataTable dtPurchaseReturnDC = new DataTable();
+        public DataTable dtExchangeProducts = new DataTable();
+        public string varExchangeRemarks = "";
         public PUR_PurchaseReturns()
         {
             InitializeComponent();
@@ -41,6 +45,29 @@ namespace ROMS
                 tpSuppliername.Active = false;
                 tpReason.Active = false;
                 tpDcNo.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void ClearSupplier()
+        {
+            try
+            {
+                lblSuppliername.Text = "";
+                lblSupplierCity.Text = "";
+                lblsupplierGST.Text = "";
+                lblsupplierScheduletype.Text = "";
+                lblsupplierpayment.Text = "";
+                lblSupplierOrderpolicy.Text = "";
+                lblReturn.Text = "";
+                //lblReturnType.Text = "";
+                lblSalesmanName.Text = "";
+                lblMobileNo.Text = "";
+                lblWhatsAppNo.Text = "";
+                grdRepDetails.DataSource = null;
             }
             catch (Exception ex)
             {
@@ -106,7 +133,41 @@ namespace ROMS
         {
             try
             {
-                this.Close();
+                if (varStatusId == 39)
+                {
+                    this.Close();
+                }
+                else
+                {
+
+
+                    if (varModifiedFlag == 1)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                            MainForm.objINV_SalesInvoiceList.Show();
+                            MainForm.objINV_SalesInvoiceList.udfnList();
+                        }
+                        else
+                        { btnSave.Focus(); }
+                    }
+                    else
+                    {
+                        if (varCloseFlag == 0)
+                        {
+                            DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                this.Close();
+                                MainForm.objINV_SalesInvoiceList.Show();
+                                MainForm.objINV_SalesInvoiceList.udfnList();
+                            }
+                        }
+                        else { this.Close(); }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -123,6 +184,7 @@ namespace ROMS
                 txtActualQty.Enabled = false;
                 btnAdd.Enabled = false;
                 lblTotal.Text = "Approximate Total";
+                udfnList();
             }
             else if (Convert.ToInt32(cmbReason.SelectedValue) == 61) //excess
             {
@@ -132,6 +194,7 @@ namespace ROMS
                 btnAdd.Enabled = true;
                 lblTotal.Text = "Actual Total";
             }
+            
         }
         public void udfnVocherno()
         {
@@ -218,6 +281,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnClear()
+        {
+            try
+            {
+                txtSupplier.Text = "";
+                cmbReason.SelectedValue = -1;
+                txtSubTotal.Text = "";
+                txtApproxTotal.Text = "";
+                txtTotalTax.Text = "";
+                txtRemarks.Text = "";
+                ClearSupplier();
+                udfnTooltipHide();
+                grdReturnDC.DataSource = null;
+                txtAmount.Text = "";
+                cmbReasonForClosing.SelectedValue = -1;
+                txtCrNo.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnReason()
         {
             try
@@ -271,12 +357,20 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnReason();
+                ClearSupplier();
                 udfnUddtTable();
                 udfnClosingDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dpReturnDCDate.MinDate = MainForm.pbFYStartDate;
                 dpReturnDCDate.MaxDate = MainForm.pbCurrentDate;
+                dpCreditNoteDate.MinDate = MainForm.pbFYStartDate;
+                dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtSupplier;
                 txtSupplier.Focus();
+                if(varReturnDCID==0)
+                {
+                    lblStatus.Text = "Pending";
+                }
                 if (btnSave.Text == "Save")
                 {
                     grpReason.Enabled = false;
@@ -284,8 +378,27 @@ namespace ROMS
                 else
                 {
                     EditLoad();
+                    if (varStatusId == 39)
+                    {
+                        txtAmount.ReadOnly = true;
+                        txtCrNo.ReadOnly = true;
+                        dpCreditNoteDate.Enabled = false;
+                        cmbReasonForClosing.Enabled = false;
+                        txtRemarks.ReadOnly = true;
+                        btnSave.Enabled = false;
+                        lblStatus.Text = "Closed";
+                    }
+                    else
+                    {
+                        grpReason.Enabled = false;
+                        if (varStatusId == 16)
+                        {
+                            grpReason.Enabled = true;
+                            lblStatus.Text = "Linked with GRN";
+                        }
+                    }
                     grpReturnDCSupplier.Enabled = false;
-                    udfnClosingDropdown();
+                    varModifiedFlag = 1;
                 }
 
             }
@@ -323,9 +436,10 @@ namespace ROMS
             try
             {
                 // Varflag = 0;
-                int varStatusid = 0; int varviewtype = 2;
+                int varStatusid = 0; int varviewtype = 0;
                 if (Convert.ToInt32(cmbReason.SelectedValue) == 60)
                 {
+                    varviewtype = 2;
                     varStatusid = 20; //Damage entry status completed
                 }
                 Application.DoEvents();
@@ -357,6 +471,26 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdReturnDC.DataSource = objDs.Tables[0];
                             grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdReturnDC.Columns["Approximate Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Taxable Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdReturnDC.Columns["Product Name"].Width = 300;
+                            grdReturnDC.Columns["S.No."].Width = 50;
+                            grdReturnDC.Columns["MRP"].Width = 80;
+                            grdReturnDC.Columns["Qty"].Width = 70;
+                            grdReturnDC.Columns["Unit"].Width = 70;
+                            grdReturnDC.Columns["GST%"].Width = 70;
+                            grdReturnDC.Columns["GST Amt"].Width = 70;
+                            grdReturnDC.Columns["Approximate Rate"].Width = 120;
+                            grdReturnDC.Columns["DMID"].Visible = false;
+                            grdReturnDC.Columns["PRID"].Visible = false;
+                            grdReturnDC.Columns["UTID"].Visible = false;
+                            grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReturnDC.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
                         {
@@ -370,9 +504,7 @@ namespace ROMS
                             txtSubTotal.Text= Convert.ToString(objDs.Tables[1].Rows[0]["SubTotal"]);
                             txtTotalTax.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Total Tax"]);
                             txtApproxTotal.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Approximate Total"]);
-                            grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
-                       
                     }
                     else
                     {
@@ -428,6 +560,8 @@ namespace ROMS
                                 txtSubTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SubTotal"]);
                                 txtTotalTax.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Total Tax"]);
                                 txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
+                                varStatusId = Convert.ToInt16(objDs.Tables[0].Rows[0]["Status ID"]);
+                                udfnClosingDropdown();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
                             }
@@ -440,6 +574,26 @@ namespace ROMS
                                     lblNoRecordsFound.SendToBack();
                                     grdReturnDC.DataSource = objDs.Tables[1];
                                     grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    grdReturnDC.Columns["Approximate Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Taxable Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    grdReturnDC.Columns["Product Name"].Width = 300;
+                                    grdReturnDC.Columns["S.No."].Width = 50;
+                                    grdReturnDC.Columns["MRP"].Width = 80;
+                                    grdReturnDC.Columns["Qty"].Width = 70;
+                                    grdReturnDC.Columns["Unit"].Width = 70;
+                                    grdReturnDC.Columns["GST%"].Width = 70;
+                                    grdReturnDC.Columns["GST Amt"].Width = 70;
+                                    grdReturnDC.Columns["Approximate Rate"].Width = 120;
+                                    grdReturnDC.Columns["DMID"].Visible = false;
+                                    grdReturnDC.Columns["PRID"].Visible = false;
+                                    grdReturnDC.Columns["UTID"].Visible = false;
+                                    grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 }
                                 else
                                 {
@@ -451,6 +605,16 @@ namespace ROMS
                             {
                                 lblNoRecordsFound.Visible = true;
                                 lblNoRecordsFound.BringToFront();
+                            }
+                            if(objDs.Tables[2].Rows.Count!=0)
+                            {
+                                if (varStatusId == 39 && Convert.ToInt32(cmbReason.SelectedValue) == 60)
+                                {
+                                    cmbReasonForClosing.SelectedValue = objDs.Tables[2].Rows[0]["PURREDC_ClosingReasonId"].ToString();
+                                    txtCrNo.Text = objDs.Tables[2].Rows[0]["PURREDC_CNNo"].ToString();
+                                    txtAmount.Text = objDs.Tables[2].Rows[0]["PURREDC_Amnt"].ToString();
+                                    dpCreditNoteDate.Text= objDs.Tables[2].Rows[0]["PURREDC_CNDate"].ToString();
+                                }
                             }
                         }
                     }
@@ -540,7 +704,7 @@ namespace ROMS
                     epReturnDc.SetError(cmbConcern, "Please select concern.");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select convern.", cmbConcern, 5000);
+                    tpcompanyname.Show("Please select concern.", cmbConcern, 5000);
                 }
                 else
                 {
@@ -675,7 +839,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-                    txtProductName.Focus();
+                    
                 }
             }
             catch (Exception ex)
@@ -779,7 +943,7 @@ namespace ROMS
                 }
                 else
                 {
-                    txtProductName.Focus();
+                    cmbReason.Focus();
                 }
             }
             catch (Exception ex)
@@ -905,7 +1069,6 @@ namespace ROMS
         {
             try
             {
-                udfnList();
                 cmbReason.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1126,10 +1289,49 @@ namespace ROMS
                         tpDcNo.Show("DC No. is empty.", txtReturnDcNo, 5000);
                         varErrorFlag = false;
                     }
+                    if (varStatusId == 16)
+                    {
+                        if (Convert.ToString(cmbReasonForClosing.SelectedValue) == "" || Convert.ToString(cmbReasonForClosing.SelectedValue) == "-1")
+                        {
+                            epReturnDc.SetError(cmbReasonForClosing, "Please select reason for closing.");
+                            cmbReasonForClosing.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpReason.ShowAlways = true;
+                            tpReason.Show("Please select reason for closing.", cmbReasonForClosing, 5000);
+                            varErrorFlag = false;
+                        }
+                        if (txtAmount.Text == "")
+                        {
+                            epReturnDc.SetError(txtAmount, "Please enter amount.");
+                            txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpAmount.ShowAlways = true;
+                            tpAmount.Show("Please enter amount.", txtAmount, 5000);
+                            varErrorFlag = false;
+                        }
+                        if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62)
+                        {
+                            if (txtCrNo.Text == "")
+                            {
+                                epReturnDc.SetError(txtCrNo, "Please enter credit number.");
+                                txtCrNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpCrNo.ShowAlways = true;
+                                tpCrNo.Show("Please enter credit number.", txtCrNo, 5000);
+                                varErrorFlag = false;
+                            }
+                        }
+                        if (dtExchangeProducts.Rows.Count == 0)
+                        {
+                            if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 63)
+                            {
+                                MessageBox.Show("Please add atleast one exchange product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                varErrorFlag = false;
+                            }
+                        }
+                    }
+
                     if (varErrorFlag == true)
                     {
                         udfnTooltipHide(); int varDC_PURID = 0; int varReasonforClosingId = 0;
-                        string varReturnDcAmount = ""; int varStatusID = 15;
+                        string varReturnDcAmount = ""; 
                         if (varReturnDCID!=0)
                         {  varReasonforClosingId =Convert.ToInt32(cmbReasonForClosing.SelectedValue); }
                         else { varReasonforClosingId = 0; }
@@ -1137,9 +1339,9 @@ namespace ROMS
                         if (txtAmount.Text == "") { varReturnDcAmount = "0"; }
                         else
                         {
-                            varReturnDcAmount = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                            varReturnDcAmount = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
                         }
-
+                       
                         if (grdReturnDC.Rows.Count > 0)
                         {
                             dtPurchaseReturnDC.Rows.Clear();
@@ -1157,12 +1359,17 @@ namespace ROMS
                                 if (varReturnDCID == 0)
                                 {
                                     varviewtype = 0;
+                                    varStatusId = 15;
                                     varorginator = "Purchase Return DC insertion";
                                 }
                                 else
                                 {
+                                    //if (varStatusId == 16)
+                                    //{
                                     varviewtype = 1;
                                     varorginator = "Purchase Return DC updation";
+                                    //}
+
                                 }
                                 TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
                                 objTRN_PurchaseReturnDC.paraViewType = varviewtype;
@@ -1179,15 +1386,30 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text.Trim());
                                 objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
                                 objTRN_PurchaseReturnDC.paraReturnDC_Remarks = txtRemarks.Text.Trim();
-                                objTRN_PurchaseReturnDC.paraStatusID = varStatusID;
+                                objTRN_PurchaseReturnDC.paraStatusID = varStatusId;
                                 objTRN_PurchaseReturnDC.paraClosingReasonId = varReasonforClosingId;
                                 objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDecimal(varReturnDcAmount);
-                                objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
+                                objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
+                                if (dtExchangeProducts.Rows.Count != 0)
+                                {
+                                    objTRN_PurchaseReturnDC.paraDeleteFlag = 1;
+                                    objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtExchangeProducts;
+                                    objTRN_PurchaseReturnDC.paraExchangeRemarks = varExchangeRemarks;
+                                }
+                                else
+                                {
+                                    if (varReasonforClosingId == 63)
+                                    {
+                                        MessageBox.Show("Please add atleast one exchange product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        varErrorFlag = false;
+                                    }
+                                }
                                 SPDataService objspdservice = new SPDataService();
                                 result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
                                 objspdservice.CloseConnection();
+                                
                                 string[] varvalue = result.Split('~');
                                 if (varvalue[0] == "3")
                                 {
@@ -1196,9 +1418,11 @@ namespace ROMS
                                     if (varReturnDCID != 0)
                                     {
                                         varCloseFlag = 1;
+                                        varModifiedFlag = 0;
+                                        udfnclose();
                                     }
-                                    udfnclose();
-                                    MainForm.objPUR_PurchaseDCList.udfnList();
+                                    udfnClear();
+                                    MainForm.objINV_SalesInvoiceList.udfnList();
                                 }
                                 else if (varvalue[0] == "4")
                                 {
@@ -1267,7 +1491,19 @@ namespace ROMS
         {
             try
             {
-                cmbReasonForClosing.BackColor = Color.White;
+                if (Convert.ToString(cmbReasonForClosing.SelectedValue) == "" || Convert.ToString(cmbReasonForClosing.SelectedValue) == "-1")
+                {
+                    epReturnDc.SetError(cmbReasonForClosing, "Please select reason for closing.");
+                    cmbReasonForClosing.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReason.ShowAlways = true;
+                    tpReason.Show("Please select reason for closing.", cmbReasonForClosing, 5000);
+                  
+                }
+                {
+                    epReturnDc.Clear();
+                    cmbReasonForClosing.BackColor = Color.White;
+                    tpReason.Active = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1332,7 +1568,19 @@ namespace ROMS
         {
             try
             {
-                txtAmount.BackColor = Color.White;
+                if (txtAmount.Text == "")
+                {
+                    epReturnDc.SetError(txtAmount, "Please enter amount.");
+                    txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAmount.ShowAlways = true;
+                    tpAmount.Show("Please enter amount.", txtAmount, 5000);
+                }
+                else
+                {
+                    epReturnDc.Clear();
+                    txtAmount.BackColor = Color.White;
+                    tpAmount.Active = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1371,7 +1619,19 @@ namespace ROMS
         {
             try
             {
-                txtCrNo.BackColor = Color.White;
+                if (txtCrNo.Text == "")
+                {
+                    epReturnDc.SetError(txtCrNo, "Please enter credit number.");
+                    txtCrNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCrNo.ShowAlways = true;
+                    tpCrNo.Show("Please enter credit number.", txtCrNo, 5000);
+                }
+                else
+                {
+                    epReturnDc.Clear();
+                    txtCrNo.BackColor = Color.White;
+                    tpCrNo.Active = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1412,7 +1672,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpCreditNoteDate_Enter(object sender, EventArgs e)
         {
             try
@@ -1496,22 +1755,44 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TxtAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void PUR_PurchaseReturns_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-                if (varCloseFlag == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-                }
+                //if (varCloseFlag == 0)
+                //{
+                //    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
+                //        e.Cancel = false;
+                //    }
+                //    else
+                //    {
+                //        e.Cancel = true;
+                //    }
+                //}
 
             }
             catch (Exception ex)

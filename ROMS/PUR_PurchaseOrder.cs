@@ -82,6 +82,7 @@ namespace ROMS
                     chkStatus.Enabled = false;
                     gpissued.Enabled = false;
                     btnAdd.Enabled = false;
+                    
                     btnViewedProduct.Enabled = false;
                     grdsupplieradd.Columns["clmRemove"].Visible = false;
                 }
@@ -105,6 +106,11 @@ namespace ROMS
                     btnClear.Enabled = true;
                     cmbConcern.Enabled = true;
                     txtSupplier.Enabled = true;
+                    foreach (TabPage tabPage in tbSupplierDetails.TabPages)
+                    {
+                        grdRepDetails.ClearSelection();
+                        tabPage.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -113,6 +119,11 @@ namespace ROMS
                     txtSupplier.Enabled = false;
                     LV_Supplier.Visible = false;
                     dpPlanDate.Enabled = false;
+
+                    foreach (TabPage tabPage in tbSupplierDetails.TabPages)
+                    {
+                        tabPage.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1373,6 +1384,7 @@ namespace ROMS
             finally
             {
                 lblPC.Text = grdsupplieradd.Rows.Count.ToString();
+                if (grdsupplieradd.Rows.Count != 0) { lblNoRecordsFound.Visible = false; }
             }
         }
 
@@ -2717,7 +2729,7 @@ namespace ROMS
                                 lvproduct.Columns[5].Width = 60;
                                 if (VarSearchFlag == false)
                                 {
-                                    lvproduct.Columns[1].Width = 250;
+                                    lvproduct.Columns[1].Width = 320;
                                     lvproduct.Columns[2].Width = 0;
                                 }
                                 else

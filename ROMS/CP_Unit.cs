@@ -363,7 +363,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    chkBulkUnit.Focus();
+                    if (chkBulkUnit.Enabled == true)
+                    {
+                        chkBulkUnit.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)

@@ -491,6 +491,8 @@ namespace ROMS
                 grdRack.Columns["Total Products"].ReadOnly = true;
 
                 udfnGridRemove();
+                udfnsearchGridHead();
+                //((DataGridViewImageCell)DGV_SearchGridRight.Rows[0].Cells[0]).Value = new System.Drawing.Bitmap(1, 1); ;
             }
             catch (Exception ex)
             {
@@ -566,6 +568,7 @@ namespace ROMS
                     udfnGridRemove();
                     udfnsearchGridHead();
                     udfnEmpGridRemove();
+                    ((DataGridViewImageCell)DGV_SearchGridRight.Rows[0].Cells[6]).Value = new System.Drawing.Bitmap(1, 1); ;
                 }
 
             }
@@ -664,7 +667,7 @@ namespace ROMS
             {
                 txtRackGroupName.Text = "";
                 //cmbConcern.SelectedValue = -1;
-                grdRack.DataSource = null;
+                //grdRack.DataSource = null;
                 grdSelectedRack.Rows.Clear();
                 grdStaffDetails.Rows.Clear();
                 chkRack.Checked = false;
@@ -677,7 +680,7 @@ namespace ROMS
                     row.Cells[0].Value = false;
                 }
                 udfnemployeeload();
-
+                grdRack.DataSource = null;
             }
             catch (Exception ex)
             {
@@ -2183,43 +2186,63 @@ namespace ROMS
                     }
 
                 DGV_SearchGridLeft.FirstDisplayedScrollingRowIndex = 0;
+                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_SearchGridLeft.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    if (e.Value == null || !(bool)e.Value)
+                    {
+                        e.PaintBackground(e.CellBounds, false);
+                        e.Handled = true;
+                    }
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void DGV_SearchGridLeft_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdRack.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdRack.SortedColumn;
-            ListSortDirection direction;
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
+            try
             {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    grdRack.SortOrder == SortOrder.Ascending)
+                if (e.ColumnIndex != 0)
                 {
-                    direction = ListSortDirection.Descending;
+                    DataGridViewColumn newColumn = grdRack.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdRack.SortedColumn;
+                    ListSortDirection direction;
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
+                    {
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdRack.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
+                    }
+                    else
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    grdRack.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+                    DataGridViewColumn DGV = DGV_SearchGridLeft.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DGV_SearchGridLeft.HorizontalScrollingOffset = grdRack.HorizontalScrollingOffset;
+                    DGV_SearchGridLeft.FirstDisplayedScrollingRowIndex = 0;
                 }
-                else
-                {
-                    // Sort a new column and remove the old SortGlyph.
-                    direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                }
+
             }
-            else
+            catch (Exception ex)
             {
-                direction = ListSortDirection.Ascending;
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
-            grdRack.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
-            DataGridViewColumn DGV = DGV_SearchGridLeft.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-            DGV_SearchGridLeft.HorizontalScrollingOffset = grdRack.HorizontalScrollingOffset;
-            DGV_SearchGridLeft.FirstDisplayedScrollingRowIndex = 0;
         }
 
         private void DGV_SearchGridLeft_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -2241,15 +2264,20 @@ namespace ROMS
 
         private void DGV_SearchGridLeft_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (DGV_SearchGridLeft.IsCurrentCellDirty)
+            try
             {
-                // Commit the changes immediately
-                DGV_SearchGridLeft.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                if (DGV_SearchGridLeft.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGridLeft.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdRack.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGridLeft, grdRack);
+                objDser.CloseConnection();
+                grdRack.HorizontalScrollingOffset = DGV_SearchGridLeft.HorizontalScrollingOffset;
+                //lblTotalProducts.Text = grdRack.Rows.Count.ToString();
             }
-            DataService objDser = new DataService();
-            grdRack.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGridLeft, grdRack);
-            objDser.CloseConnection();
-            grdRack.HorizontalScrollingOffset = DGV_SearchGridLeft.HorizontalScrollingOffset;
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void DGV_SearchGridLeft_Scroll(object sender, ScrollEventArgs e)
@@ -2391,6 +2419,10 @@ namespace ROMS
 
         private void DGV_SearchGridLeft_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            //if (e.RowIndex >= 0 && DGV_SearchGridLeft.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            //{
+            //    e.Value = null;
+            //}
             if (e.RowIndex >= 0 && DGV_SearchGridLeft.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
             {
                 e.Value = null;
@@ -2526,6 +2558,93 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnUnselectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdRack.Rows.Count; i++)
+                {
+                    grdRack.Rows[i].Cells[0].Value = false;
+                    dtRack.Rows[i][0] = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnselectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnselectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdRack.Rows.Count; i++)
+                {
+                    grdRack.Rows[i].Cells[0].Value = true;
+                    dtRack.Rows[i][0] = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSelectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSelectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_SearchGridRight_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try

@@ -54,7 +54,7 @@ namespace ROMS
                             grdProductDetails.Columns["Product Name in English"].Visible = false;
                             grdProductDetails.Columns["PR_PUR_RKID"].Visible = false;
                            // grdProductDetails.Columns["Product Name in English"].Width = 250;
-                            grdProductDetails.Columns["Product Name in Tamil"].Width = 250;
+                            grdProductDetails.Columns["Product Name in Tamil"].Width = 300;
                             grdProductDetails.Columns["S.No."].Width = 50;
                             grdProductDetails.Columns["R.Sales Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdProductDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
