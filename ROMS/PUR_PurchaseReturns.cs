@@ -136,6 +136,7 @@ namespace ROMS
                 {
                     this.Close();
                 }
+                
                 else
                 {
 
@@ -164,16 +165,7 @@ namespace ROMS
                                 MainForm.objINV_SalesInvoiceList.udfnList();
                             }
                         }
-                        else if (varEditFlag == 0)
-                        {
-                            DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
-                            {
-                                this.Close();
-                                MainForm.objPAY_DebitNoteList.Show();
-                                MainForm.objPAY_DebitNoteList.udfnList();
-                            }
-                        }
+                        
                         else { this.Close(); }
                     }
                 }
