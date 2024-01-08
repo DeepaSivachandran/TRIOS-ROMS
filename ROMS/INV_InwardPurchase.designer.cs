@@ -51,24 +51,20 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.txtInchargeName = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dpInwardDate = new System.Windows.Forms.DateTimePicker();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtGRNNo = new System.Windows.Forms.TextBox();
             this.txtInwardNo = new System.Windows.Forms.TextBox();
             this.txtDUnloading = new System.Windows.Forms.TextBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
-            this.cmbGodown = new System.Windows.Forms.ComboBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtDCourier = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
             this.textBox35 = new System.Windows.Forms.TextBox();
             this.textBox37 = new System.Windows.Forms.TextBox();
-            this.textBox38 = new System.Windows.Forms.TextBox();
             this.textBox43 = new System.Windows.Forms.TextBox();
             this.btnsaveasdraft = new System.Windows.Forms.Button();
             this.txttotalitem = new System.Windows.Forms.TextBox();
@@ -79,6 +75,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
+            this.txtStockLocation = new System.Windows.Forms.TextBox();
+            this.dpGRNDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
@@ -267,27 +267,27 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dateTimePicker2);
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dpGRNDate);
+            this.groupBox1.Controls.Add(this.txtStockLocation);
             this.groupBox1.Controls.Add(this.textBox10);
             this.groupBox1.Controls.Add(this.txtInchargeName);
             this.groupBox1.Controls.Add(this.textBox9);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dpInwardDate);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.txtGRNNo);
             this.groupBox1.Controls.Add(this.txtInwardNo);
             this.groupBox1.Controls.Add(this.txtDUnloading);
-            this.groupBox1.Controls.Add(this.textBox26);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.txtConcern);
-            this.groupBox1.Controls.Add(this.cmbGodown);
             this.groupBox1.Controls.Add(this.textBox7);
             this.groupBox1.Controls.Add(this.textBox8);
             this.groupBox1.Controls.Add(this.txtDCourier);
-            this.groupBox1.Controls.Add(this.textBox19);
             this.groupBox1.Controls.Add(this.textBox35);
             this.groupBox1.Controls.Add(this.textBox37);
-            this.groupBox1.Controls.Add(this.textBox38);
             this.groupBox1.Controls.Add(this.textBox43);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
@@ -330,15 +330,15 @@
             this.textBox9.TabIndex = 1111216;
             this.textBox9.Text = "Inward Date";
             // 
-            // dateTimePicker1
+            // dpInwardDate
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(284, 21);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(141, 25);
-            this.dateTimePicker1.TabIndex = 958822;
+            this.dpInwardDate.CustomFormat = "dd/MM/yyyy";
+            this.dpInwardDate.Enabled = false;
+            this.dpInwardDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpInwardDate.Location = new System.Drawing.Point(284, 21);
+            this.dpInwardDate.Name = "dpInwardDate";
+            this.dpInwardDate.Size = new System.Drawing.Size(141, 25);
+            this.dpInwardDate.TabIndex = 958822;
             // 
             // textBox2
             // 
@@ -364,15 +364,15 @@
             this.textBox5.TabIndex = 1111214;
             this.textBox5.Text = "GRN No.";
             // 
-            // textBox6
+            // txtGRNNo
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox6.Location = new System.Drawing.Point(506, 46);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(123, 25);
-            this.textBox6.TabIndex = 1111213;
+            this.txtGRNNo.Enabled = false;
+            this.txtGRNNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtGRNNo.Location = new System.Drawing.Point(506, 46);
+            this.txtGRNNo.Name = "txtGRNNo";
+            this.txtGRNNo.ReadOnly = true;
+            this.txtGRNNo.Size = new System.Drawing.Size(123, 25);
+            this.txtGRNNo.TabIndex = 1111213;
             // 
             // txtInwardNo
             // 
@@ -394,16 +394,6 @@
             this.txtDUnloading.Size = new System.Drawing.Size(77, 25);
             this.txtDUnloading.TabIndex = 1111212;
             this.txtDUnloading.Text = "GRN Date";
-            // 
-            // textBox26
-            // 
-            this.textBox26.Enabled = false;
-            this.textBox26.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox26.Location = new System.Drawing.Point(506, 21);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.ReadOnly = true;
-            this.textBox26.Size = new System.Drawing.Size(123, 25);
-            this.textBox26.TabIndex = 1111211;
             // 
             // textBox1
             // 
@@ -439,18 +429,6 @@
             this.txtConcern.Size = new System.Drawing.Size(123, 25);
             this.txtConcern.TabIndex = 1111152;
             // 
-            // cmbGodown
-            // 
-            this.cmbGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGodown.Enabled = false;
-            this.cmbGodown.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.cmbGodown.FormattingEnabled = true;
-            this.cmbGodown.Location = new System.Drawing.Point(80, 46);
-            this.cmbGodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbGodown.Name = "cmbGodown";
-            this.cmbGodown.Size = new System.Drawing.Size(123, 25);
-            this.cmbGodown.TabIndex = 958821;
-            // 
             // textBox7
             // 
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
@@ -485,16 +463,6 @@
             this.txtDCourier.TabIndex = 106;
             this.txtDCourier.Text = "Voucher Date";
             // 
-            // textBox19
-            // 
-            this.textBox19.Enabled = false;
-            this.textBox19.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox19.Location = new System.Drawing.Point(709, 21);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(123, 25);
-            this.textBox19.TabIndex = 105;
-            // 
             // textBox35
             // 
             this.textBox35.BackColor = System.Drawing.SystemColors.Control;
@@ -518,16 +486,6 @@
             this.textBox37.Size = new System.Drawing.Size(77, 25);
             this.textBox37.TabIndex = 98;
             this.textBox37.Text = "Voucher No.";
-            // 
-            // textBox38
-            // 
-            this.textBox38.Enabled = false;
-            this.textBox38.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox38.Location = new System.Drawing.Point(912, 21);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.ReadOnly = true;
-            this.textBox38.Size = new System.Drawing.Size(123, 25);
-            this.textBox38.TabIndex = 97;
             // 
             // textBox43
             // 
@@ -633,6 +591,46 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
+            // txtStockLocation
+            // 
+            this.txtStockLocation.Enabled = false;
+            this.txtStockLocation.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtStockLocation.Location = new System.Drawing.Point(80, 46);
+            this.txtStockLocation.Name = "txtStockLocation";
+            this.txtStockLocation.ReadOnly = true;
+            this.txtStockLocation.Size = new System.Drawing.Size(123, 25);
+            this.txtStockLocation.TabIndex = 1111219;
+            // 
+            // dpGRNDate
+            // 
+            this.dpGRNDate.CustomFormat = "dd/MM/yyyy";
+            this.dpGRNDate.Enabled = false;
+            this.dpGRNDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpGRNDate.Location = new System.Drawing.Point(506, 21);
+            this.dpGRNDate.Name = "dpGRNDate";
+            this.dpGRNDate.Size = new System.Drawing.Size(123, 25);
+            this.dpGRNDate.TabIndex = 1111220;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Enabled = false;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(912, 21);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(123, 25);
+            this.dateTimePicker1.TabIndex = 1111221;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker2.Enabled = false;
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(709, 21);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(123, 25);
+            this.dateTimePicker2.TabIndex = 1111222;
+            // 
             // INV_InwardPurchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -681,22 +679,18 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox txtDCourier;
-        private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.TextBox textBox35;
         private System.Windows.Forms.TextBox textBox37;
-        private System.Windows.Forms.TextBox textBox38;
         private System.Windows.Forms.TextBox textBox43;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dpInwardDate;
         private System.Windows.Forms.TextBox txtInwardNo;
-        private System.Windows.Forms.ComboBox cmbGodown;
         public System.Windows.Forms.DataGridView grdGrnlist;
         public System.Windows.Forms.Button btnRemarks;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtGRNNo;
         private System.Windows.Forms.TextBox txtDUnloading;
-        private System.Windows.Forms.TextBox textBox26;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -711,5 +705,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox txtInchargeName;
+        private System.Windows.Forms.TextBox txtStockLocation;
+        private System.Windows.Forms.DateTimePicker dpGRNDate;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
