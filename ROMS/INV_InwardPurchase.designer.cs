@@ -28,61 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.btnRemarks = new System.Windows.Forms.Button();
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmShopQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dpVoucherDate = new System.Windows.Forms.DateTimePicker();
+            this.dpInvoiceDate = new System.Windows.Forms.DateTimePicker();
+            this.dpGRNDate = new System.Windows.Forms.DateTimePicker();
+            this.txtStockLocation = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.txtInchargeName = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtDInwardDate = new System.Windows.Forms.TextBox();
             this.dpInwardDate = new System.Windows.Forms.DateTimePicker();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtDInwardNo = new System.Windows.Forms.TextBox();
+            this.txtDGRNNo = new System.Windows.Forms.TextBox();
             this.txtGRNNo = new System.Windows.Forms.TextBox();
             this.txtInwardNo = new System.Windows.Forms.TextBox();
-            this.txtDUnloading = new System.Windows.Forms.TextBox();
+            this.txtDGRNDate = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.txtDCourier = new System.Windows.Forms.TextBox();
-            this.textBox35 = new System.Windows.Forms.TextBox();
-            this.textBox37 = new System.Windows.Forms.TextBox();
-            this.textBox43 = new System.Windows.Forms.TextBox();
-            this.btnsaveasdraft = new System.Windows.Forms.Button();
-            this.txttotalitem = new System.Windows.Forms.TextBox();
+            this.txtDInvoiceNo = new System.Windows.Forms.TextBox();
+            this.txtInvoiceNo = new System.Windows.Forms.TextBox();
+            this.txtDVoucherDate = new System.Windows.Forms.TextBox();
+            this.txtDInvoiceDate = new System.Windows.Forms.TextBox();
+            this.txtDVoucherNo = new System.Windows.Forms.TextBox();
+            this.txtVoucherNo = new System.Windows.Forms.TextBox();
+            this.txttotalProduct = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
+            this.lblReturn = new System.Windows.Forms.Label();
+            this.lblSuppliername = new System.Windows.Forms.Label();
+            this.lblSupplierOrderpolicy = new System.Windows.Forms.Label();
+            this.lblSupplierCity = new System.Windows.Forms.Label();
+            this.lblsupplierpayment = new System.Windows.Forms.Label();
+            this.lblsupplierGST = new System.Windows.Forms.Label();
+            this.lblsupplierScheduletype = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.lblnarration = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
-            this.txtStockLocation = new System.Windows.Forms.TextBox();
-            this.dpGRNDate = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.grbSupplierDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsInwardList
@@ -111,11 +109,12 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.chkCompleted);
+            this.pnlinward.Controls.Add(this.lblNoRecordsFound);
             this.pnlinward.Controls.Add(this.btnRemarks);
             this.pnlinward.Controls.Add(this.grdGrnlist);
             this.pnlinward.Controls.Add(this.groupBox1);
-            this.pnlinward.Controls.Add(this.btnsaveasdraft);
-            this.pnlinward.Controls.Add(this.txttotalitem);
+            this.pnlinward.Controls.Add(this.txttotalProduct);
             this.pnlinward.Controls.Add(this.lbltotalproducts);
             this.pnlinward.Controls.Add(this.grbSupplierDetails);
             this.pnlinward.Controls.Add(this.txtRemark);
@@ -126,6 +125,19 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 36;
+            // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 336);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 1111210;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblNoRecordsFound.Visible = false;
             // 
             // btnRemarks
             // 
@@ -149,152 +161,109 @@
             this.grdGrnlist.AllowUserToResizeRows = false;
             this.grdGrnlist.BackgroundColor = System.Drawing.Color.White;
             this.grdGrnlist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.grdGrnlist.ColumnHeadersHeight = 30;
             this.grdGrnlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdGrnlist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column4,
-            this.Column5,
-            this.Column3,
-            this.clmexpirydate,
-            this.clmBatchno,
-            this.Column8,
-            this.Column7,
-            this.clmShopQty,
-            this.Column6});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle20;
             this.grdGrnlist.EnableHeadersVisualStyles = false;
             this.grdGrnlist.GridColor = System.Drawing.Color.White;
             this.grdGrnlist.Location = new System.Drawing.Point(3, 122);
             this.grdGrnlist.Name = "grdGrnlist";
             this.grdGrnlist.ReadOnly = true;
             this.grdGrnlist.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle21;
             this.grdGrnlist.RowTemplate.Height = 25;
             this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGrnlist.Size = new System.Drawing.Size(1338, 449);
             this.grdGrnlist.TabIndex = 958827;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "P.I Code";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 120;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Product Name in English";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Product Name in Tamil";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "MRP";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // clmexpirydate
-            // 
-            this.clmexpirydate.HeaderText = "Expiry Date";
-            this.clmexpirydate.Name = "clmexpirydate";
-            this.clmexpirydate.ReadOnly = true;
-            // 
-            // clmBatchno
-            // 
-            this.clmBatchno.HeaderText = "Batch No.";
-            this.clmBatchno.Name = "clmBatchno";
-            this.clmBatchno.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Invoice Received Qty";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 150;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Received Qty";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // clmShopQty
-            // 
-            this.clmShopQty.HeaderText = "Shop Qty";
-            this.clmShopQty.Name = "clmShopQty";
-            this.clmShopQty.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Unit";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 80;
+            this.grdGrnlist.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGrnlist_DataBindingComplete);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dpVoucherDate);
+            this.groupBox1.Controls.Add(this.dpInvoiceDate);
             this.groupBox1.Controls.Add(this.dpGRNDate);
             this.groupBox1.Controls.Add(this.txtStockLocation);
             this.groupBox1.Controls.Add(this.textBox10);
             this.groupBox1.Controls.Add(this.txtInchargeName);
-            this.groupBox1.Controls.Add(this.textBox9);
+            this.groupBox1.Controls.Add(this.txtDInwardDate);
             this.groupBox1.Controls.Add(this.dpInwardDate);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.txtDInwardNo);
+            this.groupBox1.Controls.Add(this.txtDGRNNo);
             this.groupBox1.Controls.Add(this.txtGRNNo);
             this.groupBox1.Controls.Add(this.txtInwardNo);
-            this.groupBox1.Controls.Add(this.txtDUnloading);
+            this.groupBox1.Controls.Add(this.txtDGRNDate);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.txtConcern);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.textBox8);
-            this.groupBox1.Controls.Add(this.txtDCourier);
-            this.groupBox1.Controls.Add(this.textBox35);
-            this.groupBox1.Controls.Add(this.textBox37);
-            this.groupBox1.Controls.Add(this.textBox43);
+            this.groupBox1.Controls.Add(this.txtDInvoiceNo);
+            this.groupBox1.Controls.Add(this.txtInvoiceNo);
+            this.groupBox1.Controls.Add(this.txtDVoucherDate);
+            this.groupBox1.Controls.Add(this.txtDInvoiceDate);
+            this.groupBox1.Controls.Add(this.txtDVoucherNo);
+            this.groupBox1.Controls.Add(this.txtVoucherNo);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1039, 109);
             this.groupBox1.TabIndex = 958826;
             this.groupBox1.TabStop = false;
+            // 
+            // dpVoucherDate
+            // 
+            this.dpVoucherDate.CustomFormat = "dd/MM/yyyy";
+            this.dpVoucherDate.Enabled = false;
+            this.dpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpVoucherDate.Location = new System.Drawing.Point(709, 21);
+            this.dpVoucherDate.Name = "dpVoucherDate";
+            this.dpVoucherDate.Size = new System.Drawing.Size(123, 25);
+            this.dpVoucherDate.TabIndex = 1111222;
+            // 
+            // dpInvoiceDate
+            // 
+            this.dpInvoiceDate.CustomFormat = "dd/MM/yyyy";
+            this.dpInvoiceDate.Enabled = false;
+            this.dpInvoiceDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpInvoiceDate.Location = new System.Drawing.Point(912, 21);
+            this.dpInvoiceDate.Name = "dpInvoiceDate";
+            this.dpInvoiceDate.Size = new System.Drawing.Size(123, 25);
+            this.dpInvoiceDate.TabIndex = 1111221;
+            // 
+            // dpGRNDate
+            // 
+            this.dpGRNDate.CustomFormat = "dd/MM/yyyy";
+            this.dpGRNDate.Enabled = false;
+            this.dpGRNDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpGRNDate.Location = new System.Drawing.Point(506, 21);
+            this.dpGRNDate.Name = "dpGRNDate";
+            this.dpGRNDate.Size = new System.Drawing.Size(123, 25);
+            this.dpGRNDate.TabIndex = 1111220;
+            // 
+            // txtStockLocation
+            // 
+            this.txtStockLocation.Enabled = false;
+            this.txtStockLocation.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtStockLocation.Location = new System.Drawing.Point(80, 46);
+            this.txtStockLocation.Name = "txtStockLocation";
+            this.txtStockLocation.ReadOnly = true;
+            this.txtStockLocation.Size = new System.Drawing.Size(123, 25);
+            this.txtStockLocation.TabIndex = 1111219;
             // 
             // textBox10
             // 
@@ -307,6 +276,7 @@
             this.textBox10.Size = new System.Drawing.Size(77, 25);
             this.textBox10.TabIndex = 1111218;
             this.textBox10.Text = "Incharge Name";
+            this.textBox10.Visible = false;
             // 
             // txtInchargeName
             // 
@@ -317,18 +287,19 @@
             this.txtInchargeName.ReadOnly = true;
             this.txtInchargeName.Size = new System.Drawing.Size(123, 25);
             this.txtInchargeName.TabIndex = 1111217;
+            this.txtInchargeName.Visible = false;
             // 
-            // textBox9
+            // txtDInwardDate
             // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox9.Location = new System.Drawing.Point(207, 21);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(77, 25);
-            this.textBox9.TabIndex = 1111216;
-            this.textBox9.Text = "Inward Date";
+            this.txtDInwardDate.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDInwardDate.Enabled = false;
+            this.txtDInwardDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtDInwardDate.Location = new System.Drawing.Point(207, 21);
+            this.txtDInwardDate.Name = "txtDInwardDate";
+            this.txtDInwardDate.ReadOnly = true;
+            this.txtDInwardDate.Size = new System.Drawing.Size(77, 25);
+            this.txtDInwardDate.TabIndex = 1111216;
+            this.txtDInwardDate.Text = "Inward Date";
             // 
             // dpInwardDate
             // 
@@ -340,29 +311,29 @@
             this.dpInwardDate.Size = new System.Drawing.Size(141, 25);
             this.dpInwardDate.TabIndex = 958822;
             // 
-            // textBox2
+            // txtDInwardNo
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox2.Location = new System.Drawing.Point(207, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(77, 25);
-            this.textBox2.TabIndex = 1111215;
-            this.textBox2.Text = "Inward No.";
+            this.txtDInwardNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDInwardNo.Enabled = false;
+            this.txtDInwardNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtDInwardNo.Location = new System.Drawing.Point(207, 46);
+            this.txtDInwardNo.Name = "txtDInwardNo";
+            this.txtDInwardNo.ReadOnly = true;
+            this.txtDInwardNo.Size = new System.Drawing.Size(77, 25);
+            this.txtDInwardNo.TabIndex = 1111215;
+            this.txtDInwardNo.Text = "Inward No.";
             // 
-            // textBox5
+            // txtDGRNNo
             // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox5.Location = new System.Drawing.Point(429, 46);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(77, 25);
-            this.textBox5.TabIndex = 1111214;
-            this.textBox5.Text = "GRN No.";
+            this.txtDGRNNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDGRNNo.Enabled = false;
+            this.txtDGRNNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtDGRNNo.Location = new System.Drawing.Point(429, 46);
+            this.txtDGRNNo.Name = "txtDGRNNo";
+            this.txtDGRNNo.ReadOnly = true;
+            this.txtDGRNNo.Size = new System.Drawing.Size(77, 25);
+            this.txtDGRNNo.TabIndex = 1111214;
+            this.txtDGRNNo.Text = "GRN No.";
             // 
             // txtGRNNo
             // 
@@ -383,17 +354,17 @@
             this.txtInwardNo.Size = new System.Drawing.Size(141, 25);
             this.txtInwardNo.TabIndex = 958825;
             // 
-            // txtDUnloading
+            // txtDGRNDate
             // 
-            this.txtDUnloading.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDUnloading.Enabled = false;
-            this.txtDUnloading.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtDUnloading.Location = new System.Drawing.Point(429, 21);
-            this.txtDUnloading.Name = "txtDUnloading";
-            this.txtDUnloading.ReadOnly = true;
-            this.txtDUnloading.Size = new System.Drawing.Size(77, 25);
-            this.txtDUnloading.TabIndex = 1111212;
-            this.txtDUnloading.Text = "GRN Date";
+            this.txtDGRNDate.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDGRNDate.Enabled = false;
+            this.txtDGRNDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtDGRNDate.Location = new System.Drawing.Point(429, 21);
+            this.txtDGRNDate.Name = "txtDGRNDate";
+            this.txtDGRNDate.ReadOnly = true;
+            this.txtDGRNDate.Size = new System.Drawing.Size(77, 25);
+            this.txtDGRNDate.TabIndex = 1111212;
+            this.txtDGRNDate.Text = "GRN Date";
             // 
             // textBox1
             // 
@@ -429,94 +400,81 @@
             this.txtConcern.Size = new System.Drawing.Size(123, 25);
             this.txtConcern.TabIndex = 1111152;
             // 
-            // textBox7
+            // txtDInvoiceNo
             // 
-            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox7.Enabled = false;
-            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox7.Location = new System.Drawing.Point(835, 46);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(77, 25);
-            this.textBox7.TabIndex = 108;
-            this.textBox7.Text = "Invoice No.";
+            this.txtDInvoiceNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDInvoiceNo.Enabled = false;
+            this.txtDInvoiceNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtDInvoiceNo.Location = new System.Drawing.Point(835, 46);
+            this.txtDInvoiceNo.Name = "txtDInvoiceNo";
+            this.txtDInvoiceNo.ReadOnly = true;
+            this.txtDInvoiceNo.Size = new System.Drawing.Size(77, 25);
+            this.txtDInvoiceNo.TabIndex = 108;
+            this.txtDInvoiceNo.Text = "Invoice No.";
             // 
-            // textBox8
+            // txtInvoiceNo
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox8.Location = new System.Drawing.Point(912, 46);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(123, 25);
-            this.textBox8.TabIndex = 107;
+            this.txtInvoiceNo.Enabled = false;
+            this.txtInvoiceNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtInvoiceNo.Location = new System.Drawing.Point(912, 46);
+            this.txtInvoiceNo.Name = "txtInvoiceNo";
+            this.txtInvoiceNo.ReadOnly = true;
+            this.txtInvoiceNo.Size = new System.Drawing.Size(123, 25);
+            this.txtInvoiceNo.TabIndex = 107;
             // 
-            // txtDCourier
+            // txtDVoucherDate
             // 
-            this.txtDCourier.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDCourier.Enabled = false;
-            this.txtDCourier.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtDCourier.Location = new System.Drawing.Point(632, 21);
-            this.txtDCourier.Name = "txtDCourier";
-            this.txtDCourier.ReadOnly = true;
-            this.txtDCourier.Size = new System.Drawing.Size(77, 25);
-            this.txtDCourier.TabIndex = 106;
-            this.txtDCourier.Text = "Voucher Date";
+            this.txtDVoucherDate.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDVoucherDate.Enabled = false;
+            this.txtDVoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtDVoucherDate.Location = new System.Drawing.Point(632, 21);
+            this.txtDVoucherDate.Name = "txtDVoucherDate";
+            this.txtDVoucherDate.ReadOnly = true;
+            this.txtDVoucherDate.Size = new System.Drawing.Size(77, 25);
+            this.txtDVoucherDate.TabIndex = 106;
+            this.txtDVoucherDate.Text = "Voucher Date";
             // 
-            // textBox35
+            // txtDInvoiceDate
             // 
-            this.textBox35.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox35.Enabled = false;
-            this.textBox35.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox35.Location = new System.Drawing.Point(835, 21);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.ReadOnly = true;
-            this.textBox35.Size = new System.Drawing.Size(77, 25);
-            this.textBox35.TabIndex = 100;
-            this.textBox35.Text = "Invoice Date";
+            this.txtDInvoiceDate.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDInvoiceDate.Enabled = false;
+            this.txtDInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtDInvoiceDate.Location = new System.Drawing.Point(835, 21);
+            this.txtDInvoiceDate.Name = "txtDInvoiceDate";
+            this.txtDInvoiceDate.ReadOnly = true;
+            this.txtDInvoiceDate.Size = new System.Drawing.Size(77, 25);
+            this.txtDInvoiceDate.TabIndex = 100;
+            this.txtDInvoiceDate.Text = "Invoice Date";
             // 
-            // textBox37
+            // txtDVoucherNo
             // 
-            this.textBox37.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox37.Enabled = false;
-            this.textBox37.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox37.Location = new System.Drawing.Point(632, 46);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.ReadOnly = true;
-            this.textBox37.Size = new System.Drawing.Size(77, 25);
-            this.textBox37.TabIndex = 98;
-            this.textBox37.Text = "Voucher No.";
+            this.txtDVoucherNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDVoucherNo.Enabled = false;
+            this.txtDVoucherNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtDVoucherNo.Location = new System.Drawing.Point(632, 46);
+            this.txtDVoucherNo.Name = "txtDVoucherNo";
+            this.txtDVoucherNo.ReadOnly = true;
+            this.txtDVoucherNo.Size = new System.Drawing.Size(77, 25);
+            this.txtDVoucherNo.TabIndex = 98;
+            this.txtDVoucherNo.Text = "Voucher No.";
             // 
-            // textBox43
+            // txtVoucherNo
             // 
-            this.textBox43.Enabled = false;
-            this.textBox43.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox43.Location = new System.Drawing.Point(709, 46);
-            this.textBox43.Name = "textBox43";
-            this.textBox43.ReadOnly = true;
-            this.textBox43.Size = new System.Drawing.Size(123, 25);
-            this.textBox43.TabIndex = 95;
+            this.txtVoucherNo.Enabled = false;
+            this.txtVoucherNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtVoucherNo.Location = new System.Drawing.Point(709, 46);
+            this.txtVoucherNo.Name = "txtVoucherNo";
+            this.txtVoucherNo.ReadOnly = true;
+            this.txtVoucherNo.Size = new System.Drawing.Size(123, 25);
+            this.txtVoucherNo.TabIndex = 95;
             // 
-            // btnsaveasdraft
+            // txttotalProduct
             // 
-            this.btnsaveasdraft.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnsaveasdraft.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsaveasdraft.Location = new System.Drawing.Point(1068, 608);
-            this.btnsaveasdraft.Name = "btnsaveasdraft";
-            this.btnsaveasdraft.Size = new System.Drawing.Size(97, 29);
-            this.btnsaveasdraft.TabIndex = 958825;
-            this.btnsaveasdraft.Text = "Save as Draft";
-            this.btnsaveasdraft.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsaveasdraft.UseVisualStyleBackColor = true;
-            this.btnsaveasdraft.Click += new System.EventHandler(this.Btnsaveasdraft_Click);
-            // 
-            // txttotalitem
-            // 
-            this.txttotalitem.Location = new System.Drawing.Point(999, 609);
-            this.txttotalitem.Name = "txttotalitem";
-            this.txttotalitem.ReadOnly = true;
-            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
-            this.txttotalitem.TabIndex = 958822;
+            this.txttotalProduct.Location = new System.Drawing.Point(999, 609);
+            this.txttotalProduct.Name = "txttotalProduct";
+            this.txttotalProduct.ReadOnly = true;
+            this.txttotalProduct.Size = new System.Drawing.Size(62, 27);
+            this.txttotalProduct.TabIndex = 958822;
             // 
             // lbltotalproducts
             // 
@@ -529,6 +487,13 @@
             // 
             // grbSupplierDetails
             // 
+            this.grbSupplierDetails.Controls.Add(this.lblReturn);
+            this.grbSupplierDetails.Controls.Add(this.lblSuppliername);
+            this.grbSupplierDetails.Controls.Add(this.lblSupplierOrderpolicy);
+            this.grbSupplierDetails.Controls.Add(this.lblSupplierCity);
+            this.grbSupplierDetails.Controls.Add(this.lblsupplierpayment);
+            this.grbSupplierDetails.Controls.Add(this.lblsupplierGST);
+            this.grbSupplierDetails.Controls.Add(this.lblsupplierScheduletype);
             this.grbSupplierDetails.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.grbSupplierDetails.Location = new System.Drawing.Point(1047, 3);
             this.grbSupplierDetails.Name = "grbSupplierDetails";
@@ -537,6 +502,92 @@
             this.grbSupplierDetails.TabStop = false;
             this.grbSupplierDetails.Text = "Supplier Details";
             // 
+            // lblReturn
+            // 
+            this.lblReturn.AutoSize = true;
+            this.lblReturn.BackColor = System.Drawing.Color.White;
+            this.lblReturn.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturn.Location = new System.Drawing.Point(245, 45);
+            this.lblReturn.Name = "lblReturn";
+            this.lblReturn.Size = new System.Drawing.Size(37, 16);
+            this.lblReturn.TabIndex = 1111217;
+            this.lblReturn.Text = "Retrun";
+            this.lblReturn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblReturn.Visible = false;
+            // 
+            // lblSuppliername
+            // 
+            this.lblSuppliername.AutoSize = true;
+            this.lblSuppliername.BackColor = System.Drawing.Color.White;
+            this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSuppliername.Location = new System.Drawing.Point(9, 17);
+            this.lblSuppliername.Name = "lblSuppliername";
+            this.lblSuppliername.Size = new System.Drawing.Size(46, 17);
+            this.lblSuppliername.TabIndex = 1111211;
+            this.lblSuppliername.Text = "supplier";
+            this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblSupplierOrderpolicy
+            // 
+            this.lblSupplierOrderpolicy.AutoSize = true;
+            this.lblSupplierOrderpolicy.BackColor = System.Drawing.Color.White;
+            this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(85, 55);
+            this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
+            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(61, 16);
+            this.lblSupplierOrderpolicy.TabIndex = 1111216;
+            this.lblSupplierOrderpolicy.Text = "Order policy";
+            this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblSupplierOrderpolicy.Visible = false;
+            // 
+            // lblSupplierCity
+            // 
+            this.lblSupplierCity.AutoSize = true;
+            this.lblSupplierCity.BackColor = System.Drawing.Color.White;
+            this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupplierCity.Location = new System.Drawing.Point(9, 34);
+            this.lblSupplierCity.Name = "lblSupplierCity";
+            this.lblSupplierCity.Size = new System.Drawing.Size(25, 16);
+            this.lblSupplierCity.TabIndex = 1111212;
+            this.lblSupplierCity.Text = "city";
+            this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierpayment
+            // 
+            this.lblsupplierpayment.AutoSize = true;
+            this.lblsupplierpayment.BackColor = System.Drawing.Color.White;
+            this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupplierpayment.Location = new System.Drawing.Point(9, 85);
+            this.lblsupplierpayment.Name = "lblsupplierpayment";
+            this.lblsupplierpayment.Size = new System.Drawing.Size(46, 16);
+            this.lblsupplierpayment.TabIndex = 1111215;
+            this.lblsupplierpayment.Text = "Payment";
+            this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierGST
+            // 
+            this.lblsupplierGST.AutoSize = true;
+            this.lblsupplierGST.BackColor = System.Drawing.Color.White;
+            this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupplierGST.Location = new System.Drawing.Point(9, 50);
+            this.lblsupplierGST.Name = "lblsupplierGST";
+            this.lblsupplierGST.Size = new System.Drawing.Size(21, 16);
+            this.lblsupplierGST.TabIndex = 1111213;
+            this.lblsupplierGST.Text = "gst";
+            this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierScheduletype
+            // 
+            this.lblsupplierScheduletype.AutoSize = true;
+            this.lblsupplierScheduletype.BackColor = System.Drawing.Color.White;
+            this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupplierScheduletype.Location = new System.Drawing.Point(9, 69);
+            this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
+            this.lblsupplierScheduletype.Size = new System.Drawing.Size(70, 16);
+            this.lblsupplierScheduletype.TabIndex = 1111214;
+            this.lblsupplierScheduletype.Text = "Schedule Type";
+            this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // txtRemark
             // 
             this.txtRemark.Location = new System.Drawing.Point(83, 580);
@@ -544,6 +595,8 @@
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(411, 56);
             this.txtRemark.TabIndex = 958807;
+            this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
+            this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
             // 
             // lblnarration
             // 
@@ -567,6 +620,8 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // btnClose
             // 
@@ -581,6 +636,8 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // lblEdit
             // 
@@ -591,45 +648,15 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
-            // txtStockLocation
+            // chkCompleted
             // 
-            this.txtStockLocation.Enabled = false;
-            this.txtStockLocation.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtStockLocation.Location = new System.Drawing.Point(80, 46);
-            this.txtStockLocation.Name = "txtStockLocation";
-            this.txtStockLocation.ReadOnly = true;
-            this.txtStockLocation.Size = new System.Drawing.Size(123, 25);
-            this.txtStockLocation.TabIndex = 1111219;
-            // 
-            // dpGRNDate
-            // 
-            this.dpGRNDate.CustomFormat = "dd/MM/yyyy";
-            this.dpGRNDate.Enabled = false;
-            this.dpGRNDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpGRNDate.Location = new System.Drawing.Point(506, 21);
-            this.dpGRNDate.Name = "dpGRNDate";
-            this.dpGRNDate.Size = new System.Drawing.Size(123, 25);
-            this.dpGRNDate.TabIndex = 1111220;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(912, 21);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(123, 25);
-            this.dateTimePicker1.TabIndex = 1111221;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker2.Enabled = false;
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(709, 21);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(123, 25);
-            this.dateTimePicker2.TabIndex = 1111222;
+            this.chkCompleted.AutoSize = true;
+            this.chkCompleted.Location = new System.Drawing.Point(1080, 610);
+            this.chkCompleted.Name = "chkCompleted";
+            this.chkCompleted.Size = new System.Drawing.Size(86, 24);
+            this.chkCompleted.TabIndex = 1111215;
+            this.chkCompleted.Text = "Completed";
+            this.chkCompleted.UseVisualStyleBackColor = true;
             // 
             // INV_InwardPurchase
             // 
@@ -646,8 +673,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "INV_InwardPurchase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
-            this.Load += new System.EventHandler(this.INV_Inward_Load);
+            this.Text = "Inward Purchase";
+            this.Load += new System.EventHandler(this.INV_InwardPurchase_Load);
             this.tsInwardList.ResumeLayout(false);
             this.tsInwardList.PerformLayout();
             this.pnlinward.ResumeLayout(false);
@@ -655,6 +682,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.grbSupplierDetails.ResumeLayout(false);
+            this.grbSupplierDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -667,47 +696,44 @@
         private System.Windows.Forms.GroupBox grbSupplierDetails;
         private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.Label lblnarration;
-        private System.Windows.Forms.TextBox txttotalitem;
+        private System.Windows.Forms.TextBox txttotalProduct;
         private System.Windows.Forms.Label lbltotalproducts;
         private System.Windows.Forms.Label lblEdit;
         public System.Windows.Forms.Button btnSave;
-        public System.Windows.Forms.Button btnsaveasdraft;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox txtConcern;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox txtDCourier;
-        private System.Windows.Forms.TextBox textBox35;
-        private System.Windows.Forms.TextBox textBox37;
-        private System.Windows.Forms.TextBox textBox43;
-        private System.Windows.Forms.DateTimePicker dpInwardDate;
-        private System.Windows.Forms.TextBox txtInwardNo;
+        private System.Windows.Forms.TextBox txtDInvoiceNo;
+        private System.Windows.Forms.TextBox txtDVoucherDate;
+        private System.Windows.Forms.TextBox txtDInvoiceDate;
+        private System.Windows.Forms.TextBox txtDVoucherNo;
         public System.Windows.Forms.DataGridView grdGrnlist;
         public System.Windows.Forms.Button btnRemarks;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox txtGRNNo;
-        private System.Windows.Forms.TextBox txtDUnloading;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmShopQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.TextBox txtDInwardNo;
+        private System.Windows.Forms.TextBox txtDGRNNo;
+        private System.Windows.Forms.TextBox txtDGRNDate;
+        private System.Windows.Forms.TextBox txtDInwardDate;
         private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox txtInchargeName;
-        private System.Windows.Forms.TextBox txtStockLocation;
-        private System.Windows.Forms.DateTimePicker dpGRNDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lblNoRecordsFound;
+        private System.Windows.Forms.Label lblReturn;
+        private System.Windows.Forms.Label lblSuppliername;
+        private System.Windows.Forms.Label lblSupplierOrderpolicy;
+        private System.Windows.Forms.Label lblSupplierCity;
+        private System.Windows.Forms.Label lblsupplierpayment;
+        private System.Windows.Forms.Label lblsupplierGST;
+        private System.Windows.Forms.Label lblsupplierScheduletype;
+        public System.Windows.Forms.TextBox txtConcern;
+        public System.Windows.Forms.TextBox txtInvoiceNo;
+        public System.Windows.Forms.TextBox txtVoucherNo;
+        public System.Windows.Forms.DateTimePicker dpInwardDate;
+        public System.Windows.Forms.TextBox txtInwardNo;
+        public System.Windows.Forms.TextBox txtGRNNo;
+        public System.Windows.Forms.TextBox txtInchargeName;
+        public System.Windows.Forms.TextBox txtStockLocation;
+        public System.Windows.Forms.DateTimePicker dpGRNDate;
+        public System.Windows.Forms.DateTimePicker dpVoucherDate;
+        public System.Windows.Forms.DateTimePicker dpInvoiceDate;
+        private System.Windows.Forms.CheckBox chkCompleted;
     }
 }

@@ -2640,7 +2640,36 @@ namespace ROMS
             }
             return ds;
         }
-
+        //Added by Sivabharathi on 08/01/2024
+        public DataSet udfnInwardPurchaseList(TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_GoodsInward_Purchase]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_GoodsInward_Purchase.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_GoodsInward_Purchase.paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_GoodsInward_Purchase.ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_GoodsInward_Purchase.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GoodsInward_Purchase.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_GoodsInward_Purchase.paraIPAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
         public DataSet udfnInwardList(TRN_GoodsInward objTRNG_GoodsInward)
         {
             DataSet ds = new DataSet();
@@ -2676,6 +2705,7 @@ namespace ROMS
             }
             return ds;
         }
+
         public string udfnStockHold(TRN_StockHold objTRNS_StockHold)
         {
             string varResult = "";

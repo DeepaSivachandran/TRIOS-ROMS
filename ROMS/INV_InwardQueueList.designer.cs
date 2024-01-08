@@ -62,38 +62,8 @@
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdinvoiceno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdinvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdInwardQueueList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clminvoiceno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clminvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -410,22 +380,6 @@
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmdsno,
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.clmdpurchaseno,
-            this.Column4,
-            this.clmdinvoiceno,
-            this.clmdinvoicedate,
-            this.clmdsuppliername,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.clmdtotalitems,
-            this.Column12,
-            this.clmdtotalqty,
-            this.Column5});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -439,8 +393,8 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 81);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -448,97 +402,14 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
+            this.DGV_SearchGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellContentClick);
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Concern";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "GRN No.";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "GRN Date";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // clmdpurchaseno
-            // 
-            this.clmdpurchaseno.HeaderText = "Voucher No.";
-            this.clmdpurchaseno.Name = "clmdpurchaseno";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Voucher Date";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // clmdinvoiceno
-            // 
-            this.clmdinvoiceno.HeaderText = "Invoice No.";
-            this.clmdinvoiceno.Name = "clmdinvoiceno";
-            // 
-            // clmdinvoicedate
-            // 
-            this.clmdinvoicedate.HeaderText = "Invoice Date";
-            this.clmdinvoicedate.Name = "clmdinvoicedate";
-            // 
-            // clmdsuppliername
-            // 
-            this.clmdsuppliername.HeaderText = "Supplier ";
-            this.clmdsuppliername.Name = "clmdsuppliername";
-            this.clmdsuppliername.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "City";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "GSTIN";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // clmdtotalitems
-            // 
-            this.clmdtotalitems.HeaderText = "Total Products in Invoice";
-            this.clmdtotalitems.Name = "clmdtotalitems";
-            this.clmdtotalitems.Width = 150;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "My Products";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // clmdtotalqty
-            // 
-            this.clmdtotalqty.HeaderText = "Status";
-            this.clmdtotalqty.Name = "clmdtotalqty";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Created By";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
             // 
             // lblNoRecordsFound
             // 
@@ -570,22 +441,6 @@
             this.grdInwardQueueList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdInwardQueueList.ColumnHeadersHeight = 30;
             this.grdInwardQueueList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdInwardQueueList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.clmpurchaseno,
-            this.Column9,
-            this.clminvoiceno,
-            this.clminvoicedate,
-            this.clmsuppliername,
-            this.Column13,
-            this.Column14,
-            this.clmtotalitems,
-            this.Column11,
-            this.clmtotalqty,
-            this.Column10});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -607,101 +462,8 @@
             this.grdInwardQueueList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInwardQueueList.Size = new System.Drawing.Size(1348, 502);
             this.grdInwardQueueList.TabIndex = 958797;
-            this.grdInwardQueueList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
-            this.grdInwardQueueList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.GrdInwardQueueList_CellPainting);
-            this.grdInwardQueueList.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GrdInwardQueueList_ColumnHeaderMouseClick);
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Concern";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "GRN No.";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "GRN Date";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // clmpurchaseno
-            // 
-            this.clmpurchaseno.HeaderText = "Voucher No.";
-            this.clmpurchaseno.Name = "clmpurchaseno";
-            this.clmpurchaseno.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Voucher Date";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // clminvoiceno
-            // 
-            this.clminvoiceno.HeaderText = "Invoice No.";
-            this.clminvoiceno.Name = "clminvoiceno";
-            this.clminvoiceno.ReadOnly = true;
-            // 
-            // clminvoicedate
-            // 
-            this.clminvoicedate.HeaderText = "Invoice Date";
-            this.clminvoicedate.Name = "clminvoicedate";
-            this.clminvoicedate.ReadOnly = true;
-            // 
-            // clmsuppliername
-            // 
-            this.clmsuppliername.HeaderText = "Supplier";
-            this.clmsuppliername.Name = "clmsuppliername";
-            this.clmsuppliername.ReadOnly = true;
-            this.clmsuppliername.Width = 200;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "City";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "GSTIN";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            // 
-            // clmtotalitems
-            // 
-            this.clmtotalitems.HeaderText = "Total Products in Invoice";
-            this.clmtotalitems.Name = "clmtotalitems";
-            this.clmtotalitems.ReadOnly = true;
-            this.clmtotalitems.Width = 150;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "My Products";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // clmtotalqty
-            // 
-            this.clmtotalqty.HeaderText = "Status";
-            this.clmtotalqty.Name = "clmtotalqty";
-            this.clmtotalqty.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Created By";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
+            this.grdInwardQueueList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdInwardQueueList_Scroll);
+            this.grdInwardQueueList.DoubleClick += new System.EventHandler(this.GrdInwardQueueList_DoubleClick);
             // 
             // picLoader
             // 
@@ -769,36 +531,6 @@
         private System.Windows.Forms.Button btnView;
         public System.Windows.Forms.ToolStripButton tsbQue;
         public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpurchaseno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdinvoiceno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdinvoicedate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsuppliername;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalitems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalqty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpurchaseno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoiceno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoicedate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsuppliername;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalqty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtStockLocation;
         public System.Windows.Forms.ListView lvStockLocation;
