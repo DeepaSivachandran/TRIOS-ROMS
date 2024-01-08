@@ -1574,20 +1574,27 @@ namespace ROMS
             {
                 string varProductsCodes = "0";
                 lvproduct.Items.Clear();
-                varNewFlag = "0";
+                varNewFlag = "0"; 
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
+                int GRNID = 0;
                 if (txtProductName.Text.Length > 0)
                 {
+                    if (Convert.ToInt32(cmbPONo.SelectedValue) == 0)
+                    {
+                        GRNID = 0;
+                    }
+                    else { GRNID = Convert.ToInt32(pbGRNId); }
                     MR_Product objMR_Product = new MR_Product();
                     objMR_Product.paraViewType = 29;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.ParaScheduleid = Convert.ToString(lblschedule.Text);
                     objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Product.paraId = Convert.ToInt32(cmbPONo.SelectedValue);
+                    objMR_Product.ParaGRNID = GRNID;
                     objMR_Product.ParaProductsCode = varProductsCodes;
-                    
-                     
+                    //ParaGRNID
+
                     if (VarSearchFlag == true)
                     {
                         objMR_Product.paraPicode = txtProductName.Text;
