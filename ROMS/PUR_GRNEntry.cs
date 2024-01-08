@@ -908,6 +908,7 @@ namespace ROMS
                 }
             }
             MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
+            MainForm.objPUR_GRNOrderType.varMasterType = 1;
             MainForm.objPUR_GRNOrderType.ShowDialog();
         }
 
