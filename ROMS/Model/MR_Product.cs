@@ -38,6 +38,7 @@ namespace ROMS.Model
         public string paraHSNCode = "";
         public DataTable paraStockTransfer = null;
         public int paraId = 0;
+        public int ParaGRNID = 0;
         public DataTable paraDamageEntry = null;
     }
 }

@@ -780,8 +780,7 @@ namespace ROMS
                     objMR_Supplier.ViewType = 16;
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
-                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue); 
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -867,9 +866,7 @@ namespace ROMS
                     btnDamage.Enabled = true;
                 }
             }
-        }
-
-
+        } 
         private void CmbOrderType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1126,11 +1123,11 @@ namespace ROMS
                     //objDServ.CloseConnection();
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
-                        varDC = "1";
+                        varDC = Convert.ToString(objDs.Tables[0].Rows[0]["ID"]) ;
                     }
-                    if (varReturnDC != "0" && varDC == "1")
+                    if (varReturnDC != "0" )
                     {
-                        if (Convert.ToString(grdReurnDC.Rows.Count) != varReturnDC)
+                        if (varDC != "0")
                         { 
                             string varMessage = objDServ.udfnGetMessages(102);
                             objDServ.CloseConnection();
@@ -1996,8 +1993,16 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    gpGRNEntry.Enabled = true;
-                                    btnDC.Enabled = true;
+                                    gpGRNEntry.Enabled = true; 
+                                    if (varReturnDC == "0")
+                                    {
+                                        btnDC.Enabled = false;
+                                    }
+                                    else
+                                    {
+                                        btnDC.Enabled = true;
+                                    }
+                                    
                                     btnSave.Enabled = true;
                                     grdPODetails.Enabled = true;
                                     grdReurnDC.Enabled = true;
