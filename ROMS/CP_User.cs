@@ -23,7 +23,7 @@ namespace ROMS
         private ToolTip tpUserRole  = new ToolTip();
         private ToolTip tpUserCategory  = new ToolTip();
         private ToolTip tpPassKey  = new ToolTip();
-        public string oldpassword,varpassword;
+        public string oldpassword,varpassword,oldUsername, varUsername;
         public string PbDefault;
         public int varstatus;
         public string varUserID ="";
@@ -445,23 +445,37 @@ namespace ROMS
                     tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
                     blnErrorFlag = true;
                 }
+                if (oldUsername != null && oldUsername != "")
+                {
+                    if (oldUsername.Trim() == txtUserName.Text.Trim())
+                    {
+                        goto L;
+                    }
+                    else
+                    {
+                       
+                    }
+                }
+                else
+                {
 
-                if (oldpassword != null && oldpassword != "")
+                }
+               L: if (oldpassword != null && oldpassword != "")
                 {
                     if (oldpassword.Trim() == txtPassword.Text.Trim())
                     {
                         varpassword = txtPassword.Text;
                     }
+
                     else
                     {
-                        varpassword = _security.Encrypt(txtUserName.Text.Trim().ToLower() ,txtPassword.Text.Trim());
+                        varpassword = _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text.Trim());
                     }
                 }
                 else
                 {
                     varpassword = _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text.Trim());
                 }
-
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -903,6 +917,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             txtUserName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString().Replace("''", "'");
+                            oldUsername = objDs.Tables[0].Rows[0]["U_Name"].ToString().Replace("''", "'");
                             txtLoginID.Text = objDs.Tables[0].Rows[0]["U_LoginID"].ToString();
                             txtPassword.Text = objDs.Tables[0].Rows[0]["U_Password"].ToString();
                             oldpassword = objDs.Tables[0].Rows[0]["U_Password"].ToString();
