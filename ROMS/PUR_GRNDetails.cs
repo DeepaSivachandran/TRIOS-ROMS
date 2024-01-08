@@ -256,6 +256,7 @@ namespace ROMS
                 {
                     this.Close();
                 }
+                MainForm.objPUR_GRNDetailsList.udfnListLoad();
             }
             catch (Exception ex)
             {
@@ -306,17 +307,22 @@ namespace ROMS
                     MainForm.objPUR_GRNVerify.varVerifyType = 2;
                 }
                 MainForm.objPUR_GRNVerify.ShowDialog();
-                if (varenablefalg == "1")
-                {
-                    btnVerify1.Enabled = false;
-                    btnVerify2.Enabled = true;
-                    btnDC.Enabled = false;
-                    gpAddrow.Enabled = false;
-                }
-                else if (varenablefalg == "2")
-                {
-                    btnVerify1.Enabled = false;
-                    btnVerify2.Enabled = false;
+                if (Convert.ToString(MainForm.objPUR_GRNVerify.varUserId) != "")
+                { 
+                    if (varenablefalg == "1")
+                    {
+                        btnVerify1.Enabled = false;
+                        btnVerify2.Enabled = true;
+                        btnDC.Enabled = false;
+                        gpAddrow.Enabled = false;
+                    }
+                    else if (varenablefalg == "2")
+                    {
+                        btnVerify1.Enabled = false;
+                        btnVerify2.Enabled = false;
+                    } 
+                    varCloseflag = 1;
+                    udfnclose();
                 }
             }
             catch (Exception ex)
@@ -326,26 +332,26 @@ namespace ROMS
             }
             finally
             {
-                SPDataService objdserv = new SPDataService();
-                DataSet objDs = new DataSet();
-                objDs = objdserv.udfnGrnListLoad(4, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblVerified1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["VERIFIED1"]);
-                            lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[0].Rows[0]["VERIFIEDON1"]);
-                        }
-                        if (objDs.Tables[1].Rows.Count != 0)
-                        {
-                            lblVerified2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["VERIFIED2"]);
-                            lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["VERIFIEDON2"]);
-                        }
-                    }
-                }
+                //SPDataService objdserv = new SPDataService();
+                //DataSet objDs = new DataSet();
+                //objDs = objdserv.udfnGrnListLoad(4, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0);
+                //objdserv.CloseConnection();
+                //if (objDs != null)
+                //{
+                //    if (objDs.Tables.Count != 0)
+                //    {
+                //        if (objDs.Tables[0].Rows.Count != 0)
+                //        {
+                //            lblVerified1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["VERIFIED1"]);
+                //            lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[0].Rows[0]["VERIFIEDON1"]);
+                //        }
+                //        if (objDs.Tables[1].Rows.Count != 0)
+                //        {
+                //            lblVerified2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["VERIFIED2"]);
+                //            lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["VERIFIEDON2"]);
+                //        }
+                //    }
+                //} 
             }
         }
 
@@ -3423,7 +3429,7 @@ namespace ROMS
                                     lblVerified1.Text = Convert.ToString(objDs.Tables[5].Rows[0]["VERIFIED1"]);
                                     lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[5].Rows[0]["VERIFIEDON1"]);
                                     btnVerify1.Enabled = false;
-                                    btnVerify2.Enabled = true;
+                                    btnVerify2.Enabled = false;
                                     btnDC.Enabled = false;
                                     gpAddrow.Enabled = false;
                                     grpGrnDetails.Enabled = false;
@@ -3431,11 +3437,20 @@ namespace ROMS
                                     grdGrnlist.Enabled = false;
                                     grdGrnlist.ClearSelection();
                                 }
+                                else
+                                {
+                                    if (chkCompleted.Enabled == false && chkCompleted.Checked == true)
+                                    {
+                                        btnVerify1.Enabled = true;
+                                        btnVerify2.Enabled = false;
+                                    }
+                                    //gpAddrow.Enabled = true;
+                                }
                             }
                             else
                             {
-                                btnVerify1.Enabled = true;
-                                btnVerify2.Enabled = true;
+                                //btnVerify1.Enabled = true;
+                                //btnVerify2.Enabled = true;
                                 //gpAddrow.Enabled = true;
                             }
                             if (objDs.Tables[6].Rows.Count != 0)
@@ -3444,8 +3459,21 @@ namespace ROMS
                                 {
                                     lblVerified2.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED2"]);
                                     lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIEDON2"]);
-                                    btnVerify1.Enabled = false;
                                     btnVerify2.Enabled = false;
+                                }
+                                else
+                                {
+                                    if (lblVerified1.Text != "")
+                                    {
+                                        if (Convert.ToDecimal(txtInvoiceamt.Text) >= 25000)
+                                        {
+                                            btnVerify2.Enabled = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        btnVerify2.Enabled = false;
+                                    } 
                                 }
                             }
                             if (objDs.Tables[7].Rows.Count != 0)

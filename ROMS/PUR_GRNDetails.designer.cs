@@ -1564,15 +1564,15 @@
             this.InvoiceNo.HeaderText = "DC No.";
             this.InvoiceNo.Name = "InvoiceNo";
             this.InvoiceNo.ReadOnly = true;
-            this.InvoiceNo.Width = 80;
             // 
             // TotalProducts
             // 
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.TotalProducts.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TotalProducts.HeaderText = "Total Products";
+            this.TotalProducts.HeaderText = "T.Pro";
             this.TotalProducts.Name = "TotalProducts";
             this.TotalProducts.ReadOnly = true;
+            this.TotalProducts.Width = 60;
             // 
             // Value
             // 
