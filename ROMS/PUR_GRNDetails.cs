@@ -1635,8 +1635,8 @@ namespace ROMS
                                 } 
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 100;
-                                lvproduct.Columns[1].Width = 250;
-                                lvproduct.Columns[2].Width = 250;
+                                lvproduct.Columns[1].Width = 320;
+                                lvproduct.Columns[2].Width = 50;
                                 //lvproduct.Columns[3].Width = 0;
                                 //lvproduct.Columns[4].Width = 0;
                                 //lvproduct.Columns[5].Width = 0;
@@ -2243,18 +2243,7 @@ namespace ROMS
 
         private void GrdGrnlist_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (varErrorFormat == 0)
-                {
-                    udfnGridaddvalue(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
         public void udfnGridaddvalue(object sender, DataGridViewCellEventArgs value)
         {
