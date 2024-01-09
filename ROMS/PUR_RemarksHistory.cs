@@ -64,8 +64,15 @@ namespace ROMS
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
                                 panel4.Visible = false;
                             }
+                            else
+                            {
+                                MainForm.objINV_Inward.btnRemarks.Enabled = false;
+                                panel4.Visible = false;
+                                panel2.Visible = false;
+                            }
                         }
                     }
+                    
                 }
                 else
                 {
@@ -86,6 +93,7 @@ namespace ROMS
                                 txtRemarks.Text = objDs.Tables[0].Rows[0]["STR_Remarks"].ToString();
                                 txtCreatedby.Text = objDs.Tables[0].Rows[0]["STR Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["STR Created On"].ToString();
+                                
                                 if (objDs.Tables[0].Rows.Count > 1)
                                 {
                                     txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
@@ -93,9 +101,19 @@ namespace ROMS
                                     txtGICreatedby.Text = objDs.Tables[0].Rows[1]["STR Created By"].ToString();
                                     txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["STR Created On"].ToString();
                                 }
+                                else
+                                {
+                                    panel4.Visible = false;
+                                }
+                            }
+                            else
+                            {
+                                panel4.Visible = false;
+                                panel2.Visible = false;
                             }
                         }
                     }
+                   
                 }
             }
             catch (Exception ex)
