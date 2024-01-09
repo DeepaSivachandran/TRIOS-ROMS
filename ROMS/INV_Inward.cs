@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -72,7 +74,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        
         private void INV_Inward_Load(object sender, EventArgs e)
         {
             try
@@ -305,6 +307,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdInward.ClearSelection();
             }
         }
         private void Txtsuppliername_TextChanged(object sender, EventArgs e)
@@ -598,6 +604,8 @@ namespace ROMS
                         txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
+                
+
             }
             catch (Exception ex)
             {
@@ -1125,6 +1133,12 @@ namespace ROMS
                     udfnListviewProduct();
                     txtMrp.Focus();
                 }
+                //if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+                //{
+                //    ListViewItem selectedItem = lvproduct.SelectedItems[0];
+                //    //varPRID = selectedItem.SubItems[3].Text;
+                //    txtProductName.AppendText(lvproduct.SelectedItems[0].SubItems[5].Text);
+                //}
             }
             catch (Exception ex)
             {
@@ -2310,6 +2324,19 @@ namespace ROMS
             }
         }
 
+        private void Lvproduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtRemark_Leave(object sender, EventArgs e)
         {
             try
@@ -2904,7 +2931,7 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PR_ShelfLife"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNoGeneration"].ToString(), objDs.Tables[0].Rows[i]["ShelfLife"].ToString(), objDs.Tables[0].Rows[i]["PR_ShelfLifeValue"].ToString(), objDs.Tables[0].Rows[i]["PR_ShelfLifeType"].ToString() }; 
-                                     ListViewItem objList = new ListViewItem(row);
+                                    ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvproduct.Items.Add(objList);
@@ -2942,7 +2969,6 @@ namespace ROMS
             }
             finally
             {
-                //stxtProduct.BackColor = Color.White;
                 epGoodsInward.Clear();
             }
         }
