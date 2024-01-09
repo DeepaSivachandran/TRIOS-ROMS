@@ -447,35 +447,45 @@ namespace ROMS
                 }
                 if (oldUsername != null && oldUsername != "")
                 {
-                    if (oldUsername.Trim() == txtUserName.Text.Trim())
+                    if (oldUsername.Trim() == txtLoginID.Text.Trim())
                     {
-                        goto L;
+                        if (oldpassword != null && oldpassword != "")
+                        {
+                            if (oldpassword.Trim() == txtPassword.Text.Trim())
+                            {
+                                varpassword = txtPassword.Text;
+                            }
+                            else
+                            {
+                                goto L;
+                            }
+                        }
+                        else
+                        {
+                            goto L;
+                        }
                     }
                     else
                     {
-                       
+                        if (oldpassword != null && oldpassword != "")
+                        {
+                            if (oldpassword.Trim() == txtPassword.Text.Trim())
+                            {
+                                string varoldpwd = _security.Decrypt(oldUsername.Trim().ToLower(), txtPassword.Text.Trim());
+                                varpassword = _security.Encrypt(txtLoginID.Text.Trim().ToLower(), varoldpwd);
+                            }
+                            else
+                            {
+                                goto L;
+                            }
+                        }
+                        else
+                        {
+                            goto L;
+                        }
                     }
                 }
-                else
-                {
-
-                }
-               L: if (oldpassword != null && oldpassword != "")
-                {
-                    if (oldpassword.Trim() == txtPassword.Text.Trim())
-                    {
-                        varpassword = txtPassword.Text;
-                    }
-
-                    else
-                    {
-                        varpassword = _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text.Trim());
-                    }
-                }
-                else
-                {
-                    varpassword = _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text.Trim());
-                }
+                L: varpassword = _security.Encrypt(txtLoginID.Text.Trim().ToLower(), txtPassword.Text.Trim());
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -917,7 +927,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             txtUserName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString().Replace("''", "'");
-                            oldUsername = objDs.Tables[0].Rows[0]["U_Name"].ToString().Replace("''", "'");
+                            oldUsername = objDs.Tables[0].Rows[0]["U_LoginID"].ToString().Replace("''", "'");
                             txtLoginID.Text = objDs.Tables[0].Rows[0]["U_LoginID"].ToString();
                             txtPassword.Text = objDs.Tables[0].Rows[0]["U_Password"].ToString();
                             oldpassword = objDs.Tables[0].Rows[0]["U_Password"].ToString();
