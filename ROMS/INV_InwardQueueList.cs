@@ -1108,6 +1108,11 @@ namespace ROMS
             }
         }
 
+        private void DpToDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try

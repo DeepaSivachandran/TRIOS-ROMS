@@ -2651,6 +2651,7 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_GoodsInward_Purchase.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_GoodsInward_Purchase.paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_GoodsInward_Purchase.paraCompanyId);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_GoodsInward_Purchase.ParaSupplierId);
                 varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_GoodsInward_Purchase.paraSLID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GoodsInward_Purchase.paraUserID);
@@ -2669,6 +2670,42 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return ds;
+        }
+        // Sivabharathi on 09/01/2024 -- Goods inward purchase 
+        public string udfnGoodsInwardPurchase(TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_GoodsInward_Purchase]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_GoodsInward_Purchase.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_GoodsInward_Purchase.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GoodsInward_Purchase.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_GoodsInward_Purchase.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_GoodsInward_Purchase.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraGIP_Date", objTRN_GoodsInward_Purchase.paraGIP_Date);
+                varSqlCommand.Parameters.AddWithValue("@paraGIP_NO", objTRN_GoodsInward_Purchase.paraGIP_NO);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_GoodsInward_Purchase.paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_GoodsInward_Purchase.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_GoodsInward_Purchase.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationID", objTRN_GoodsInward_Purchase.paraLocationID);
+                varSqlCommand.Parameters.AddWithValue("@paraTRN_GoodsInward_Purchase_Products", objTRN_GoodsInward_Purchase.paraTRN_GoodsInward_Purchase_Products);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
         }
         public DataSet udfnInwardList(TRN_GoodsInward objTRNG_GoodsInward)
         {
