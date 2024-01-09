@@ -332,6 +332,7 @@
             this.grdReturnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdReturnDC.Size = new System.Drawing.Size(1289, 317);
             this.grdReturnDC.TabIndex = 1111170;
+            this.grdReturnDC.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReturnDC_DataBindingComplete);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -813,6 +814,7 @@
             this.grdRepDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRepDetails.Size = new System.Drawing.Size(417, 95);
             this.grdRepDetails.TabIndex = 1111249;
+            this.grdRepDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdRepDetails_DataBindingComplete);
             // 
             // grbSupplierDetails
             // 
