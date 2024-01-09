@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,9 @@ namespace ROMS
         public int varID = 0;
         public int varStatus = 0;
         public string varErrQty = "0";
+        public string SSRUpdatevalue = "";
         public bool VarSearchFlag = true;
+        byte[] varobjBarCodeByte;
         public INV_StockRequest()
         {
             InitializeComponent();
@@ -1216,6 +1219,20 @@ namespace ROMS
                                 MainForm.objReportLoad.Text = varHeader;
                                 MainForm.objReportLoad.ShowDialog();
                             }
+                        }
+                        if(varStockRequestID==0)
+                        {
+                            SSRUpdatevalue = varvalue[2];
+                            string varQrcode = varvalue[3];
+                            var varImgMemoryStream = new MemoryStream();
+                            QrcodeImg.Text = varQrcode;
+                            QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                            varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+                            objTRNS_StockRequest.ViewType = 3;
+                            objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(SSRUpdatevalue);
+                            objTRNS_StockRequest.paraQrimg = (varobjBarCodeByte);
+                            varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
+                            objspservice.CloseConnection();
                         }
                     }
                     catch (Exception ex)

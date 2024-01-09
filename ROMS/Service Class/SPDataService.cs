@@ -606,7 +606,7 @@ namespace ROMS
             }
             return ds;
         }
-        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,string paraTransferDate, int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer,int paraDeleteFlag)
+        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,string paraTransferDate, int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer,int paraDeleteFlag,int paraTransactionType)
         {
             string varResult = "";
             try
@@ -627,6 +627,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", paraStockTransfer);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraTransactionType", paraTransactionType);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -734,6 +735,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_StockRequest.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraStockRequest", objTRNS_StockRequest.paraStockRequest);
+                varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRNS_StockRequest.paraQrimg);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -946,7 +948,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-24/08/2023
-        public DataSet udfnBrokerList(int paraviewType, int paraBrokerId, int paraStatusId, int paraCityId)
+        public DataSet udfnBrokerList(int paraviewType, int paraBrokerId, int paraStatusId, int paraCityId,string paraBrokerName)
         {
             DataSet ds = new DataSet();
             try
@@ -960,6 +962,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraBrokerName", paraBrokerName);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1578,6 +1581,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraId", objMR_Product.paraId);
                 varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objMR_Product.ParaFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_Product.ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaGRNID", objMR_Product.ParaGRNID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
