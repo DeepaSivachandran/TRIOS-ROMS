@@ -2575,6 +2575,7 @@ namespace ROMS
                         objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Product.paraProductName = txtProductName.Text;
                         objMR_Product.paraId = Convert.ToInt32(cmbPONo.SelectedValue);
+                        objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                         objMR_Product.ParaGRNID = Convert.ToInt32(pbGRNId);
                         DataSet objDsproductId = new DataSet();
                         SPDataService objDserv = new SPDataService();
