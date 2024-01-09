@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.btnRemarks = new System.Windows.Forms.Button();
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
@@ -75,12 +77,13 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
-            this.chkCompleted = new System.Windows.Forms.CheckBox();
+            this.epInwardPurchase = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grbSupplierDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epInwardPurchase)).BeginInit();
             this.SuspendLayout();
             // 
             // tsInwardList
@@ -126,6 +129,17 @@
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 36;
             // 
+            // chkCompleted
+            // 
+            this.chkCompleted.AutoSize = true;
+            this.chkCompleted.Location = new System.Drawing.Point(1064, 610);
+            this.chkCompleted.Name = "chkCompleted";
+            this.chkCompleted.Size = new System.Drawing.Size(86, 24);
+            this.chkCompleted.TabIndex = 1111215;
+            this.chkCompleted.Text = "Completed";
+            this.chkCompleted.UseVisualStyleBackColor = true;
+            this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
+            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
@@ -161,35 +175,34 @@
             this.grdGrnlist.AllowUserToResizeRows = false;
             this.grdGrnlist.BackgroundColor = System.Drawing.Color.White;
             this.grdGrnlist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdGrnlist.ColumnHeadersHeight = 30;
             this.grdGrnlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdGrnlist.EnableHeadersVisualStyles = false;
             this.grdGrnlist.GridColor = System.Drawing.Color.White;
             this.grdGrnlist.Location = new System.Drawing.Point(3, 122);
             this.grdGrnlist.Name = "grdGrnlist";
-            this.grdGrnlist.ReadOnly = true;
             this.grdGrnlist.RowHeadersVisible = false;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdGrnlist.RowTemplate.Height = 25;
-            this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnlist.Size = new System.Drawing.Size(1338, 449);
             this.grdGrnlist.TabIndex = 958827;
             this.grdGrnlist.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGrnlist_DataBindingComplete);
@@ -470,16 +483,17 @@
             // 
             // txttotalProduct
             // 
-            this.txttotalProduct.Location = new System.Drawing.Point(999, 609);
+            this.txttotalProduct.Location = new System.Drawing.Point(995, 609);
             this.txttotalProduct.Name = "txttotalProduct";
             this.txttotalProduct.ReadOnly = true;
             this.txttotalProduct.Size = new System.Drawing.Size(62, 27);
             this.txttotalProduct.TabIndex = 958822;
+            this.txttotalProduct.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbltotalproducts
             // 
             this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(905, 612);
+            this.lbltotalproducts.Location = new System.Drawing.Point(901, 612);
             this.lbltotalproducts.Name = "lbltotalproducts";
             this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 958821;
@@ -612,11 +626,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1172, 608);
+            this.btnSave.Location = new System.Drawing.Point(1153, 608);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.Size = new System.Drawing.Size(110, 29);
             this.btnSave.TabIndex = 958810;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save as draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
@@ -648,15 +662,9 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
-            // chkCompleted
+            // epInwardPurchase
             // 
-            this.chkCompleted.AutoSize = true;
-            this.chkCompleted.Location = new System.Drawing.Point(1080, 610);
-            this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(86, 24);
-            this.chkCompleted.TabIndex = 1111215;
-            this.chkCompleted.Text = "Completed";
-            this.chkCompleted.UseVisualStyleBackColor = true;
+            this.epInwardPurchase.ContainerControl = this;
             // 
             // INV_InwardPurchase
             // 
@@ -684,6 +692,7 @@
             this.groupBox1.PerformLayout();
             this.grbSupplierDetails.ResumeLayout(false);
             this.grbSupplierDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epInwardPurchase)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -735,5 +744,6 @@
         public System.Windows.Forms.DateTimePicker dpVoucherDate;
         public System.Windows.Forms.DateTimePicker dpInvoiceDate;
         private System.Windows.Forms.CheckBox chkCompleted;
+        private System.Windows.Forms.ErrorProvider epInwardPurchase;
     }
 }
