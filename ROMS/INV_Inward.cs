@@ -17,6 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        public string varIDCOUNT = "";
         string varStockLocationId = "",varPRID="",varPICode="",varUTID="", varExpiryDate = "", varBatchNo="", varRKID="", varTamilname="", varBatchNoGeneration="";
         public int varGIId = 0, pbDateflag = 0, varShelflife=0, varSTRID = 0, varSLID = 0,varUpdateflag=0, varStatusId = 0,varSTRPRID=0, varGISTRID=0;
         string varShelflifevalue = "", varAcutalshelflife = "", result="", Shelflife="", ProductShelflifeValue="", ProductShelflifeType="";
@@ -109,7 +110,25 @@ namespace ROMS
                     cbCompleted.Visible = false;
                     udfnTransferEdit();
                 }
-                
+                if (varEditflag == 1 && Convert.ToInt32(cmbTransactionType.SelectedValue) == 69)
+                {
+                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                    MainForm.objPUR_RemarksHistory.varSTRID = varSTRID;
+                    MainForm.objPUR_RemarksHistory.varEditflag = 1;
+                    MainForm.objPUR_RemarksHistory.udfnShowDialog();
+                }
+                else if (varEditflag == 0 && Convert.ToInt32(cmbTransactionType.SelectedValue) == 69)
+                {
+                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                    MainForm.objPUR_RemarksHistory.varSTRID = varGISTRID;
+                    MainForm.objPUR_RemarksHistory.varGIID = varGIId;
+                    MainForm.objPUR_RemarksHistory.varEditflag = 0;
+                    MainForm.objPUR_RemarksHistory.udfnShowDialog();
+                }
+                if (varIDCOUNT == "")
+                {
+                    btnRemarks.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -355,21 +374,7 @@ namespace ROMS
         {
             try
             {
-                if (varEditflag==1 && Convert.ToInt32(cmbTransactionType.SelectedValue)==69)
-                {
-                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
-                    MainForm.objPUR_RemarksHistory.varSTRID = varSTRID;
-                    MainForm.objPUR_RemarksHistory.varEditflag = 1;
-                    MainForm.objPUR_RemarksHistory.ShowDialog();
-                }
-                else if (varEditflag == 0 && Convert.ToInt32(cmbTransactionType.SelectedValue) == 69)
-                {
-                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
-                    MainForm.objPUR_RemarksHistory.varSTRID = varGISTRID;
-                    MainForm.objPUR_RemarksHistory.varGIID = varGIId;
-                    MainForm.objPUR_RemarksHistory.varEditflag = 0;
-                    MainForm.objPUR_RemarksHistory.ShowDialog();
-                }
+                MainForm.objPUR_RemarksHistory.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -653,6 +658,9 @@ namespace ROMS
             try
             {
                 cmbConcern.BackColor = Color.LemonChiffon;
+                lvRack.Visible = false;
+                lvproduct.Visible = false;
+                lvStockLocation.Visible = false;
             }
             catch (Exception ex)
 
@@ -754,6 +762,7 @@ namespace ROMS
             {
                 txtStockLocation.BackColor = Color.LemonChiffon;
                 lvproduct.Visible = false;
+                lvRack.Visible = false;
                 //udfnLvStockLocation();
             }
             catch (Exception ex)
@@ -883,6 +892,7 @@ namespace ROMS
             try
             {
                 txtProductName.BackColor = Color.LemonChiffon;
+                lvRack.Visible = false;
                 lvStockLocation.Visible = false;
                 //udfnListviewProduct();
             }
@@ -924,6 +934,8 @@ namespace ROMS
             {
                 txtMrp.BackColor = Color.LemonChiffon;
                 lvStockLocation.Visible = false;
+                lvproduct.Visible = false;
+                lvRack.Visible = false;
                 //udfnListviewProduct();
             }
             catch (Exception ex)
@@ -968,7 +980,8 @@ namespace ROMS
             {
                 txtBatchNo.BackColor = Color.LemonChiffon;
                 lvStockLocation.Visible = false;
-                //udfnListviewProduct();
+                lvRack.Visible = false;
+                lvproduct.Visible = false;                
             }
             catch (Exception ex)
             {
@@ -996,6 +1009,8 @@ namespace ROMS
             {
                 txtActualQty.BackColor = Color.LemonChiffon;
                 lvStockLocation.Visible = false;
+                lvRack.Visible = false;
+                lvproduct.Visible = false;
                 //udfnListviewProduct();
             }
             catch (Exception ex)
@@ -1186,6 +1201,7 @@ namespace ROMS
                 {
                     txtRack.Enabled = true;
                 }
+                lvproduct.Visible = false;
                 lvStockLocation.Visible = false;
                 txtRack.BackColor = Color.LemonChiffon;
             }
@@ -1674,6 +1690,9 @@ namespace ROMS
             try
             {
                 txtDay.BackColor = Color.LemonChiffon;
+                lvStockLocation.Visible = false;
+                lvRack.Visible = false;
+                lvproduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1716,6 +1735,9 @@ namespace ROMS
             try
             {
                 txtMonth.BackColor = Color.LemonChiffon;
+                lvStockLocation.Visible = false;
+                lvRack.Visible = false;
+                lvproduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1801,6 +1823,9 @@ namespace ROMS
             try
             {
                 txtYear.BackColor = Color.LemonChiffon;
+                lvStockLocation.Visible = false;
+                lvRack.Visible = false;
+                lvproduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -2329,6 +2354,21 @@ namespace ROMS
             try
             {
                 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdInward_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvStockLocation.Visible = false;
+                lvRack.Visible = false;
+                lvproduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -3211,10 +3251,10 @@ namespace ROMS
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
 
-                            //cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["GI_COMID"].ToString();
-                            //dpInwardDate.Text = objDs.Tables[0].Rows[0]["GI_Date"].ToString();
-                            //txtInwardNo.Text = objDs.Tables[0].Rows[0]["GI_No"].ToString();
-                            varStockLocationId = Convert.ToString(varSLID);
+                                //cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["GI_COMID"].ToString();
+                                //dpInwardDate.Text = objDs.Tables[0].Rows[0]["GI_Date"].ToString();
+                                //txtInwardNo.Text = objDs.Tables[0].Rows[0]["GI_No"].ToString();
+                                varStockLocationId = Convert.ToString(varSLID);
                                 txtStockLocation.Text = objDs.Tables[0].Rows[0]["SL_EName"].ToString();
                                 cmbTransactionType.SelectedValue = 69;
 

@@ -615,6 +615,7 @@
             this.grdInward.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInward_CellEndEdit);
             this.grdInward.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInward_DataBindingComplete);
             this.grdInward.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdInward_EditingControlShowing);
+            this.grdInward.Enter += new System.EventHandler(this.GrdInward_Enter);
             // 
             // clmsno
             // 
