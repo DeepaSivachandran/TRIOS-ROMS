@@ -121,6 +121,8 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
+            this.txtTransactionType = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -625,6 +627,8 @@
             // 
             // grbStockTransfer
             // 
+            this.grbStockTransfer.Controls.Add(this.label2);
+            this.grbStockTransfer.Controls.Add(this.txtTransactionType);
             this.grbStockTransfer.Controls.Add(this.lblDLocation);
             this.grbStockTransfer.Controls.Add(this.lblSLocation);
             this.grbStockTransfer.Controls.Add(this.txtSLocation);
@@ -1000,6 +1004,25 @@
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Search by P.I Code";
             // 
+            // txtTransactionType
+            // 
+            this.txtTransactionType.Enabled = false;
+            this.txtTransactionType.Location = new System.Drawing.Point(657, 41);
+            this.txtTransactionType.Name = "txtTransactionType";
+            this.txtTransactionType.ReadOnly = true;
+            this.txtTransactionType.Size = new System.Drawing.Size(120, 28);
+            this.txtTransactionType.TabIndex = 1111191;
+            this.txtTransactionType.Text = "Regular";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(657, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 20);
+            this.label2.TabIndex = 1111192;
+            this.label2.Text = "Transaction Type";
+            // 
             // INV_StockTransfer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1124,5 +1147,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCurrentStockQty;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtTransactionType;
     }
 }

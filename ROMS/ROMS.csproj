@@ -205,6 +205,12 @@
     <Compile Include="CP_Employee.designer.cs">
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_StockTransferQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockTransferQueue.designer.cs">
+      <DependentUpon>INV_StockTransferQueue.cs</DependentUpon>
+    </Compile>
     <Compile Include="MaskedTextColumn.cs" />
     <Compile Include="Model\MR_Product.cs" />
     <Compile Include="Model\MR_Supplier.cs" />
@@ -870,9 +876,11 @@
     </Compile>
     <Compile Include="INV_DamageEntryList.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="INV_DamageEntryList.designer.cs">
       <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="INV_DamageEntry.cs">
       <SubType>Form</SubType>
@@ -1473,6 +1481,9 @@
     <EmbeddedResource Include="INV_InwardQueueList.resx">
       <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockTransferQueue.resx">
+      <DependentUpon>INV_StockTransferQueue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNApprovalVerify.resx">
       <DependentUpon>PUR_GRNApprovalVerify.cs</DependentUpon>
     </EmbeddedResource>
@@ -1532,6 +1543,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_DamageEntryList.resx">
       <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_DamageEntry.resx">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
