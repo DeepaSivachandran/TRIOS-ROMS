@@ -763,6 +763,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStockRequestID", objTRNG_StockRequest.paraStockRequestID);
                 varSqlCommand.Parameters.AddWithValue("@paraConcern", objTRNG_StockRequest.ParaCompanycode);
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_StockRequest.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNG_StockRequest.paraSLID);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRNG_StockRequest.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@ParaSTFromDate", objTRNG_StockRequest.ParaSTFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaSTToDate", objTRNG_StockRequest.ParaSTToDate);

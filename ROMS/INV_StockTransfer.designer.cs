@@ -88,6 +88,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbStockTransfer = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTransactionType = new System.Windows.Forms.TextBox();
             this.lblDLocation = new System.Windows.Forms.Label();
             this.lblSLocation = new System.Windows.Forms.Label();
             this.txtSLocation = new System.Windows.Forms.TextBox();
@@ -121,8 +123,6 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
-            this.txtTransactionType = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -193,7 +193,7 @@
             // chkStatus
             // 
             this.chkStatus.AutoSize = true;
-            this.chkStatus.Location = new System.Drawing.Point(891, 591);
+            this.chkStatus.Location = new System.Drawing.Point(891, 593);
             this.chkStatus.Name = "chkStatus";
             this.chkStatus.Size = new System.Drawing.Size(86, 24);
             this.chkStatus.TabIndex = 16;
@@ -646,6 +646,25 @@
             this.grbStockTransfer.TabIndex = 0;
             this.grbStockTransfer.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(657, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 20);
+            this.label2.TabIndex = 1111192;
+            this.label2.Text = "Transaction Type";
+            // 
+            // txtTransactionType
+            // 
+            this.txtTransactionType.Enabled = false;
+            this.txtTransactionType.Location = new System.Drawing.Point(657, 41);
+            this.txtTransactionType.Name = "txtTransactionType";
+            this.txtTransactionType.ReadOnly = true;
+            this.txtTransactionType.Size = new System.Drawing.Size(120, 28);
+            this.txtTransactionType.TabIndex = 1111191;
+            this.txtTransactionType.Text = "Regular";
+            // 
             // lblDLocation
             // 
             this.lblDLocation.AutoSize = true;
@@ -1003,25 +1022,6 @@
             this.lblProductNamePICode.Size = new System.Drawing.Size(108, 20);
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Search by P.I Code";
-            // 
-            // txtTransactionType
-            // 
-            this.txtTransactionType.Enabled = false;
-            this.txtTransactionType.Location = new System.Drawing.Point(657, 41);
-            this.txtTransactionType.Name = "txtTransactionType";
-            this.txtTransactionType.ReadOnly = true;
-            this.txtTransactionType.Size = new System.Drawing.Size(120, 28);
-            this.txtTransactionType.TabIndex = 1111191;
-            this.txtTransactionType.Text = "Regular";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(657, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 20);
-            this.label2.TabIndex = 1111192;
-            this.label2.Text = "Transaction Type";
             // 
             // INV_StockTransfer
             // 

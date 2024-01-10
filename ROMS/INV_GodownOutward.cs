@@ -2130,6 +2130,7 @@ namespace ROMS
             }
             finally
             {
+                grdGoodsOutward.ClearSelection();
                 txtTotalItem.Text = Convert.ToString(grdGoodsOutward.Rows.Count);
             }
         }
