@@ -606,7 +606,7 @@ namespace ROMS
             }
             return ds;
         }
-        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,string paraTransferDate, int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer,int paraDeleteFlag)
+        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,string paraTransferDate, int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer,int paraDeleteFlag,int paraTransactionType)
         {
             string varResult = "";
             try
@@ -627,6 +627,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", paraStockTransfer);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraTransactionType", paraTransactionType);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -734,6 +735,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_StockRequest.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraStockRequest", objTRNS_StockRequest.paraStockRequest);
+                varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRNS_StockRequest.paraQrimg);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -2829,6 +2831,37 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", paraPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public DataSet udfnDebitNoteList(TRN_DebitNote objTRNG_DebitNote)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_DebitNote]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_DebitNote.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDCID", objTRNG_DebitNote.paraDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNG_DebitNote.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_DebitNote.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_DebitNote.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNG_DebitNote.paraCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_DebitNote.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_DebitNote.paraIPAddress);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

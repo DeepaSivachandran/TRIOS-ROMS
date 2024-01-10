@@ -21,5 +21,6 @@ namespace ROMS.Model
         public int paraDeleteFlag { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
         public DataTable paraStockRequest { get; set; } = null;
+        public byte[] paraQrimg { get; set; } = null;
     }
 }
