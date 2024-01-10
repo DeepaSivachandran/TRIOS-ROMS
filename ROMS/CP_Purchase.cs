@@ -23,14 +23,14 @@ namespace ROMS
         ToolTip tpProduct = new ToolTip();
         ToolTip tpdate = new ToolTip();
         ToolTip tpStockLocation = new ToolTip();
-        public bool skipValidation = true;
+        public bool skipValidation = false;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
         public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0";
         public bool VarSearchFlag = true;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
             , varorderSaleQty = "", varorderqty = "", addproductid = "", varunitid = "0", varDamage = "0", varReturnDC = "0", pbGRNId = "0", pbSupplierId = "0", dcid = "0",
             varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0",
-            varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0";
+            varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0",VarGridError="0";
 
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0;
         public CP_Purchase()
@@ -1190,11 +1190,11 @@ namespace ROMS
             DataTable objDt = new DataTable();
             if (varCOMID == 0)
             {
-                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
+                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND SL_STSID=1");
             }
             else
             {
-                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SL_COMID=" + varCOMID);
+                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SL_STSID=1 AND SL_COMID=" + varCOMID);
             }
             objdservice.CloseConnection();
             if (objds != null)
@@ -1220,7 +1220,7 @@ namespace ROMS
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
-            DataTable objDt = new DataTable(); objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varSLID);
+            DataTable objDt = new DataTable(); objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RKID NOT IN (-1,0) AND  RK_STSID=1 AND RK_SLID = " + varSLID);
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -1270,7 +1270,7 @@ namespace ROMS
                         txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
-                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmBatchno" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmMrp" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmBatchno" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmMRP" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
                 {
                     e.Control.KeyPress -= udfnHandleKeyPress;
                     e.Control.KeyPress += udfnHandleKeyPress;
@@ -1287,7 +1287,7 @@ namespace ROMS
         {
             try
             {
-                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmMrp")
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmMRP")
                 {
                     if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                     {
@@ -1337,6 +1337,7 @@ namespace ROMS
         {
             try
             {
+                VarGridError = "0";
                 DataGridView dataGridView = (DataGridView)sender;
                 DataGridViewCell cellSlname = dataGridView.Rows[e.RowIndex].Cells["clmLocation"];
                 DataGridViewCell cellSlid = dataGridView.Rows[e.RowIndex].Cells["slid"];
@@ -1348,7 +1349,7 @@ namespace ROMS
                     if (!string.IsNullOrEmpty(SelectedLocationName))
                     {
                         /* Check purchase location is valid or not*/
-                        string varId_PurLocation = "0";
+                        string varId_PurLocation = "0",varRkCount="0";
                         DataSet objDsPurLoc = new DataSet();
                         SPDataService objDServ3 = new SPDataService();
                         objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, SelectedLocationName, 0, 0, 0, "", "");
@@ -1362,9 +1363,23 @@ namespace ROMS
                                     varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
                                 }
                             }
+                            if (objDsPurLoc.Tables[1].Rows.Count > 0)
+                            {
+                                varRkCount = Convert.ToString(objDsPurLoc.Tables[1].Rows[0][0]);
+                            }
                         }
-                        cellRkid.Value = "-1";
-                        cellRkname.Value = "";
+                        if (varRkCount == "0")
+                        {
+                            cellRkid.Value = varRkCount;
+                            cellRkname.Value = "None";
+                            cellRkname.ReadOnly = true; cellRkname.Style.BackColor = Color.LightGray;
+                        }
+                        else
+                        {
+                            cellRkid.Value = "-1";
+                            cellRkname.Value = "";
+                            cellRkname.ReadOnly = false; cellRkname.Style.BackColor = Color.PaleGreen;
+                        }
                         if (varId_PurLocation != "-1")
                         {
                             cellSlname.Style.BackColor = Color.PaleGreen;
@@ -1374,6 +1389,7 @@ namespace ROMS
                         {
                             cellSlname.Style.BackColor = Color.LightPink;
                             cellSlid.Value = Convert.ToString(varId_PurLocation);
+                            VarGridError = "1";
                         }
                     }
                 }
@@ -1402,13 +1418,22 @@ namespace ROMS
                             }
                             if (varId_PurchaseRack != "-1")
                             {
-                                cellRkname.Style.BackColor = Color.PaleGreen;
+                                //if (varId_PurchaseRack != "0")
+                                //{
+                                //    cellRkname.Style.BackColor = Color.LightGray;
+                                //    cellRkname.ReadOnly = true;
+                                //}
+                                //else
+                                //{
+                                    cellRkname.Style.BackColor = Color.PaleGreen;
+                                //}
                                 cellRkid.Value = Convert.ToString(varId_PurchaseRack);
                             }
                             else
                             {
                                 cellRkname.Style.BackColor = Color.LightPink;
                                 cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                VarGridError = "1";
                             }
                         }
 
@@ -2291,7 +2316,7 @@ namespace ROMS
                         {
                             if (Convert.ToInt32(lblProductcode.Text) == Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value))
                             {
-                                string varMRP = Convert.ToString(grdSupplierList.Rows[i].Cells["clmMrp"].Value).Trim();
+                                string varMRP = Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value).Trim();
                                 string varNewExpiryDate = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value).Trim();
                                 string varBatch = Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchno"].Value).Trim();
                                 string varPoid = Convert.ToString(grdSupplierList.Rows[i].Cells["clmPoid"].Value).Trim();
@@ -2747,16 +2772,25 @@ namespace ROMS
                         {
                             if (pbDateflag == 0)
                             {
-                                grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                                DataGridViewCell cell = dataGridView.Rows[i].Cells["clmMrp"];
+                                DataGridViewCell cell = dataGridView.Rows[i].Cells["clmMRP"];
                                 DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmexpirydate"];
                                 DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmBatchno"];
-                                cell.Style.BackColor = Color.PaleGreen;
-                                cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                cell1.Style.BackColor = Color.PaleGreen;
-                                cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                cell2.Style.BackColor = Color.PaleGreen;
-                                cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                DataGridViewCell cell3 = dataGridView.Rows[i].Cells["clmLocation"];
+                                DataGridViewCell cell4 = dataGridView.Rows[i].Cells["clmRack"];
+                                if (VarGridError == "0")
+                                {
+                                    grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                    cell.Style.BackColor = Color.PaleGreen;
+                                    cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                    cell1.Style.BackColor = Color.PaleGreen;
+                                    cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                    cell2.Style.BackColor = Color.PaleGreen;
+                                    cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                    cell3.Style.BackColor = Color.PaleGreen;
+                                    cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                    cell4.Style.BackColor = Color.PaleGreen;
+                                    cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                }
                                 if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
                                 {
                                     cell2.Style.BackColor = Color.LightGray;
@@ -2783,14 +2817,14 @@ namespace ROMS
                             {
                                 if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmProid"].Value) == Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value))
                                 {
-                                    string varMRP = Convert.ToString(grdSupplierList.Rows[i].Cells["clmMrp"].Value).Trim();
+                                    string varMRP = Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value).Trim();
                                     string varNewExpiryDate = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value).Trim();
                                     string varBatch = Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchno"].Value).Trim();
                                     string varPoid = Convert.ToString(grdSupplierList.Rows[i].Cells["clmPoid"].Value).Trim();
                                     string varSLID = Convert.ToString(grdSupplierList.Rows[i].Cells["slid"].Value).Trim();
                                     string varRKID = Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value).Trim(); 
                                             
-                                    if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmMrp"].Value) == varMRP && Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Value) == varNewExpiryDate && Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmBatchno"].Value) == varBatch)
+                                    if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmMRP"].Value) == varMRP && Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Value) == varNewExpiryDate && Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmBatchno"].Value) == varBatch)
                                     {
                                         if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmPoid"].Value) == Convert.ToInt32(varPoid))
                                         {
@@ -2804,7 +2838,7 @@ namespace ROMS
                                                 if (pbDateflag == 0)
                                                 {
                                                     grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                                                    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmMrp"];
+                                                    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmMRP"];
                                                     DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmexpirydate"];
                                                     DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmBatchno"];
                                                     cell.Style.BackColor = Color.PaleGreen;
@@ -2945,6 +2979,22 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             } 
+        }
+
+        private void DpInvoiceDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtInvoiceNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void RbRateBefore_KeyDown(object sender, KeyEventArgs e)
@@ -3419,6 +3469,19 @@ namespace ROMS
                             cell.Style.ForeColor = Color.Black;
                         }
                     }
+                    //if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "0")
+                    //{
+                    //    DataGridView dataGridView = grdSupplierList;
+                    //    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmrack"];
+                    //    cell.Style.BackColor = Color.LightGray;
+                    //    cell.ReadOnly = true;
+                    //}
+                    //else
+                    //{
+                    //    DataGridView dataGridView = grdSupplierList;
+                    //    DataGridViewCell cell = dataGridView.Rows[i].Cells["rkid"];
+                    //    cell.Style.BackColor = Color.PaleGreen; 
+                    //}
                 }
             }
             catch (Exception ex)
