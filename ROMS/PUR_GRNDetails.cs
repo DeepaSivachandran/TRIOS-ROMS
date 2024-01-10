@@ -2243,7 +2243,18 @@ namespace ROMS
 
         private void GrdGrnlist_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-
+            try
+            {
+                if (varErrorFormat == 0)
+                {
+                    udfnGridaddvalue(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnGridaddvalue(object sender, DataGridViewCellEventArgs value)
         {
@@ -2662,7 +2673,7 @@ namespace ROMS
                                         errGRNDetails.SetError(txtProductName, "Product already exist");
                                         txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                         tpdate.ShowAlways = true;
-                                        tpdate.Show("Product already Exist for this location", txtProductName, 5000);
+                                        tpdate.Show("Product already exist", txtProductName, 5000);
                                         varflag = 1;
                                     }
                                 }

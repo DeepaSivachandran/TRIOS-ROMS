@@ -202,13 +202,16 @@ namespace ROMS
                 MainForm.objCP_Purchase.pbPONO = "0";
                 for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
                 {
-                    if (pono == "0")
+                    if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
                     {
-                        pono = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
-                    }
-                    else
-                    {
-                        pono = pono + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                        if (pono == "0")
+                        {
+                            pono = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                        }
+                        else
+                        {
+                            pono = pono + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                        }
                     }
                 }
                  MainForm.objCP_Purchase.pbPONO= pono;
