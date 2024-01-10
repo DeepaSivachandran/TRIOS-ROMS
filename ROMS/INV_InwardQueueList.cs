@@ -103,7 +103,8 @@ namespace ROMS
             }
             finally
             {
-               
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         private void INV_InwardQueueList_KeyDown(object sender, KeyEventArgs e)
@@ -569,7 +570,7 @@ namespace ROMS
                     btnView.Enabled = false;
                     varviewtype = 6;
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnGrnListLoad(varviewtype, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, "", "", 0);
+                    objDs = objdserv.udfnGrnListLoad(varviewtype, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, "", "", 0,Convert.ToInt32(lblStockLocationCode.Text));
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -689,7 +690,7 @@ namespace ROMS
                 if (txtProductName.Text.Length > 0)
                 {
                     MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 55;
+                    objMR_Product.paraViewType = 54;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.paraLocationId = Convert.ToInt32(lblStockLocationCode.Text);
                     objMR_Product.paraProductName = txtProductName.Text;
@@ -914,34 +915,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void GrdInwardQueueList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
-                    return;
-                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
-                                                                   //return;
-
-                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                    {
-                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                            & ~(DataGridViewPaintParts.ContentForeground));
-
-                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
-
-                        e.Handled = true;
-                    }
-
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
-        private void GrdInwardQueueList_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            
-        }
         private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             try
@@ -1111,6 +1084,35 @@ namespace ROMS
         private void DpToDate_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void GrdInwardQueueList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                //for (int i = 0; i < grdInwardQueueList.Rows.Count; i++)
+                //{
+                //    if (Convert.ToString(grdInwardQueueList.Rows[i].Cells["Status ID"].Value) == "1")
+                //    {
+                //        grdInwardQueueList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                //        grdInwardQueueList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                //    }
+                //    else
+                //    {
+                //        grdInwardQueueList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                //        grdInwardQueueList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdInwardQueueList.ClearSelection();
+            }
         }
 
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

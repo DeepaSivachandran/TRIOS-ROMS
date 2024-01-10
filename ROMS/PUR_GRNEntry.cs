@@ -110,7 +110,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnGrnListLoad(0, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0);
+                objDs = objspdservice.udfnGrnListLoad(0, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0,0);
                 objspdservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -1952,7 +1952,7 @@ namespace ROMS
                 {
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(2, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0,"","",0);
+                    objDs = objdserv.udfnGrnListLoad(2, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0,"","",0,0);
                     objdserv.CloseConnection();
                     btnSave.Text = "Update && Print"; 
                     if (objDs != null)

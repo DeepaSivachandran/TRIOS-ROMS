@@ -12,6 +12,9 @@ namespace ROMS.Model
         public int ViewType { get; set; } = 0;
         public int paraGRNID { get; set; } = 0;
         public int paraCompanyId { get; set; } = 0;
+        public int paraProductId { get; set; } = 0;
+        public int paraDeleteFlag { get; set; } = 0;
+        public int paraInwardId { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
         public string paraGIP_Date { get; set; } = "";
         public string paraRemarks { get; set; } = "";

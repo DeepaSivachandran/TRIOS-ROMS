@@ -15,7 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0;
+        public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0;
         DataTable dtInwardPurchase = new DataTable();
         public INV_InwardPurchase()
         {
@@ -156,7 +156,10 @@ namespace ROMS
                 dtInwardPurchase.Columns.Add("GIPPR_ReceivedQty", typeof(decimal));
                 dtInwardPurchase.Columns.Add("GIPPR_ShopQty", typeof(decimal));
                 dtInwardPurchase.Columns.Add("GIPPR_RKID", typeof(int));
-                dtInwardPurchase.Columns.Add("IDS", typeof(string));
+                dtInwardPurchase.Columns.Add("GIPPR_ExpiryDate", typeof(string));
+                dtInwardPurchase.Columns.Add("GIPPR_BatchNo", typeof(string));
+                dtInwardPurchase.Columns.Add("GIPPR_MRP", typeof(decimal));
+                dtInwardPurchase.Columns.Add("IDS", typeof(string)); 
             }
             catch (Exception ex)
             {
@@ -201,9 +204,20 @@ namespace ROMS
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["Received Qty"].Value) == "")
                         { varReceivedty = 0; }
                         else { varReceivedty = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value); }
-                        dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["GRNPR_PRID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["GRNPR_UTID"].Value),
-                            Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value),varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["PR_PUR_RKID"].Value),Convert.ToString(grdGrnlist.Rows[i].Cells["GRNPRID"].Value));
-
+                        if (varEditFlag == 0)
+                        {
+                            dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["GRNPR_PRID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["GRNPR_UTID"].Value),
+                                Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["PR_PUR_RKID"].Value), 
+                                Convert.ToString(grdGrnlist.Rows[i].Cells["Expiry Date"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["Batch No."].Value), 
+                                Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["GRNPRID"].Value));
+                        }
+                        if(varEditFlag==1)
+                        {
+                            dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_PRID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_UTID"].Value),
+                                Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_RKID"].Value),
+                                Convert.ToString(grdGrnlist.Rows[i].Cells["Expiry Date"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["Batch No."].Value),
+                                Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["GIPPR_GIPID"].Value));
+                        }
                         if (Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value) <=0)
                         {
                             grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightPink;
@@ -453,9 +467,10 @@ namespace ROMS
         {
             try
             {
-                if (varGRNId != 0)
+                if (varGRNId != 0 || varInwardId !=0)
                 {
                     int varviewtype = 0;
+                    if (varEditFlag == 1) { varviewtype = 2; }
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
                     TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
@@ -463,6 +478,7 @@ namespace ROMS
                     objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
                     objTRN_GoodsInward_Purchase.paraGRNID = varGRNId;
+                    objTRN_GoodsInward_Purchase.paraInwardId = varInwardId;
                     objTRN_GoodsInward_Purchase.paraSLID = varLocationId;
                     objTRN_GoodsInward_Purchase.paraCompanyId= varConcernId;
                     objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
@@ -480,25 +496,16 @@ namespace ROMS
                                 grdGrnlist.Columns["Invoice Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnlist.Columns["Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
                                 grdGrnlist.Columns["Product Name in English"].Width = 300;
                                 grdGrnlist.Columns["Product Name in Tamil"].Width = 300;
                                 grdGrnlist.Columns["S.No."].Width = 50;
                                 grdGrnlist.Columns["MRP"].Width = 80;
                                 grdGrnlist.Columns["Unit"].Width = 70;
 
-                                //grdGrnlist.Columns["GRNPR_PRID"].Visible = false;
-                                //grdGrnlist.Columns["GRNPR_UTID"].Visible = false;
-                                //grdGrnlist.Columns["PR_PUR_SLID"].Visible = false;
-                                //grdGrnlist.Columns["PR_PUR_RKID"].Visible = false;
-                                //grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
-                                //grdGrnlist.Columns["GRNPRID"].Visible = false;
-
                                 grdGrnlist.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.PaleGreen;
-
                                 grdGrnlist.Columns["S.No."].ReadOnly = true;
                                 grdGrnlist.Columns["MRP"].ReadOnly = true;
                                 grdGrnlist.Columns["P.I Code"].ReadOnly = true;
@@ -511,6 +518,26 @@ namespace ROMS
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Invoice Received Qty"]).MaxInputLength = 8;
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
+
+                                if(varEditFlag==0)
+                                {
+                                    //grdGrnlist.Columns["GRNPR_PRID"].Visible = false;
+                                    //grdGrnlist.Columns["GRNPR_UTID"].Visible = false;
+                                    //grdGrnlist.Columns["PR_PUR_SLID"].Visible = false;
+                                    //grdGrnlist.Columns["PR_PUR_RKID"].Visible = false;
+                                    //grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
+                                    //grdGrnlist.Columns["GRNPRID"].Visible = false;
+                                }
+                                else if(varEditFlag==1)
+                                {
+                                    grdGrnlist.Columns["GIPPR_PRID"].Visible = false;
+                                    grdGrnlist.Columns["GIPPR_UTID"].Visible = false;
+                                    grdGrnlist.Columns["GIPPR_SLID"].Visible = false;
+                                    grdGrnlist.Columns["GIPPR_RKID"].Visible = false;
+                                    grdGrnlist.Columns["GIPPRID"].Visible = false;
+                                    grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
+                                    grdGrnlist.Columns["GIPPR_GIPID"].Visible = false;
+                                }
                             }
                             else
                             {
