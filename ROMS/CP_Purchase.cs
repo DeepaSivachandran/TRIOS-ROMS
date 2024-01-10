@@ -250,6 +250,7 @@ namespace ROMS
             {
                 udfnDateset();
                 udfnDropdownLoad();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
@@ -2918,6 +2919,34 @@ namespace ROMS
             }
         }
 
+        private void BtnAdd_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+        private void BtnAdd_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
         private void RbRateBefore_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -3095,7 +3124,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    // rbDiscountAfter.Focus();
+                    cmbPONo.Focus();
                 }
             }
             catch (Exception ex)
