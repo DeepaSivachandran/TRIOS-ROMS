@@ -489,7 +489,34 @@ namespace ROMS
         }
         private void TxtSupplier_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvSupplier.Items.Count == 0 || txtSupplier.Text == "")
+                    {
+                        txtSupplier.Focus();
+                        lvSupplier.Visible = false;
+                    }
+                    else
+                    {
+                        lvSupplier.Focus();
+                    }
+                    if (lvSupplier.Items.Count > 0)
+                    {
+                        lvSupplier.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void TxtSupplier_Leave(object sender, EventArgs e)
         {
@@ -573,6 +600,64 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSupplier_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvSupplier.Items.Clear();
+                if (txtSupplier.Text.Length > 0)
+                {
+                    Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
+                    objMR_Supplier.ViewType = 26;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Supplier.ParaFromDate = dpFromdate.Text;
+                    objMR_Supplier.ParaToDate = dpTodate.Text;
+                    objMR_Supplier.paraFlag = 2;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvSupplier.Items.Add(objList);
+                                }
+                                lvSupplier.Visible = true;
+                                lvSupplier.BringToFront();
+                                lvSupplier.Columns[1].Width = 0;
+                                lvSupplier.Columns[2].Width = 0;
+                                lvSupplier.Columns[0].Width = 250;
+                                lvSupplier.Columns[3].Width = 0;
+                            }
+                        }
+                    }
+                    objspdservice.CloseConnection();
+                }
+                else
+                {
+                    lvSupplier.Visible = false;
+                    lvSupplier.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
             }
         }
     }

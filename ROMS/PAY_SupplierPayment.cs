@@ -116,7 +116,6 @@ namespace ROMS
             try
             {
                 udfnShowHideTextBoxes();
-                //cmbPaymentType.Items.Clear();
                 if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 88) { }
                 if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89)
                 {
@@ -125,10 +124,6 @@ namespace ROMS
                     DataBind objDataBind = new DataBind();
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 OR MSTID=91", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
-                    //cmbPaymentType.Items.Add("Cheque");
-                    //cmbPaymentType.Items.Add("Demand Draft");
-                    //cmbPaymentType.Items.Add("RTGS");
-                    //cmbPaymentType.Items.Add("NEFT");
                 }
                 if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 90)
                 {
@@ -137,10 +132,6 @@ namespace ROMS
                     DataBind objDataBind = new DataBind();
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=33 OR MSTID=95", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
-                    //cmbPaymentType.Items.Add("RTGS");
-                    //cmbPaymentType.Items.Add("NEFT");
-                    //cmbPaymentType.Items.Add("IMPS");
-                    //cmbPaymentType.Items.Add("UPI");
                 }
             }
             catch (Exception ex)
@@ -150,12 +141,14 @@ namespace ROMS
             }
         }
         public void udfnShowHideTextBoxes() {
-            try {
+            try
+            {
                 txtDPaymentType.Visible = false;
                 cmbPaymentType.Visible = false;
                 udfnShowHideTextBoxes2ndlevel();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
@@ -253,13 +246,24 @@ namespace ROMS
         }
         private void PAY_SupplierPayment_Load(object sender, EventArgs e)
         {
-            udfnCmbConcern();
-            cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-            ClearSupplier();
-            dpDate.MinDate = MainForm.pbFYStartDate;
-            dpDate.MaxDate = MainForm.pbCurrentDate;
-            dtChequeDate.MinDate = MainForm.pbFYStartDate;
-            dtChequeDate.MaxDate = MainForm.pbCurrentDate;
+            try
+            {
+                udfnCmbConcern();
+                ClearSupplier();
+                dpDate.MinDate = MainForm.pbFYStartDate;
+                dpDate.MaxDate = MainForm.pbCurrentDate;
+                dtChequeDate.MinDate = MainForm.pbFYStartDate;
+                dtChequeDate.MaxDate = MainForm.pbCurrentDate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+            }
         }
         public void udfnCmbConcern()
         {
