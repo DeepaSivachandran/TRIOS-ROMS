@@ -2855,11 +2855,11 @@ namespace ROMS
             try
             {
                 ListViewItem selectedItem = lvproduct.SelectedItems[0];
-                varPRID = selectedItem.SubItems[3].Text;
-                txtProductName.Text = selectedItem.SubItems[5].Text;
+                varPRID = selectedItem.SubItems[4].Text;
+                txtProductName.Text = selectedItem.SubItems[2].Text;
                 varPICode = selectedItem.SubItems[0].Text;        
-                varUTID = selectedItem.SubItems[4].Text;
-                txtunit.Text = selectedItem.SubItems[2].Text;
+                varUTID = selectedItem.SubItems[5].Text;
+                txtunit.Text = selectedItem.SubItems[3].Text;
                 varTamilname = selectedItem.SubItems[1].Text;
                 varBatchNo = selectedItem.SubItems[6].Text;
                 varBatchNoGeneration = selectedItem.SubItems[8].Text;
@@ -2932,7 +2932,6 @@ namespace ROMS
         {
             try
             {
-
                 txtBatchNo.Text = "";
                 txtMrp.Text = "";
                 txtActualQty.Text = "";
@@ -2941,6 +2940,15 @@ namespace ROMS
                 txtYear.Text = "";
                 //SLID = varStockLocationId;
                 lvproduct.Items.Clear();
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
+                
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0 || txtProductName.Text == " ")
@@ -2971,7 +2979,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PR_ShelfLife"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNoGeneration"].ToString(), objDs.Tables[0].Rows[i]["ShelfLife"].ToString(), objDs.Tables[0].Rows[i]["PR_ShelfLifeValue"].ToString(), objDs.Tables[0].Rows[i]["PR_ShelfLifeType"].ToString() }; 
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PR_ShelfLife"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNoGeneration"].ToString(), objDs.Tables[0].Rows[i]["ShelfLife"].ToString(), objDs.Tables[0].Rows[i]["PR_ShelfLifeValue"].ToString(), objDs.Tables[0].Rows[i]["PR_ShelfLifeType"].ToString() }; 
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -2981,6 +2989,17 @@ namespace ROMS
                                 lvproduct.Columns[0].Width = 100;
                                 lvproduct.Columns[1].Width = 350;
                                 lvproduct.Columns[2].Width = 50;
+                                lvproduct.Columns[3].Width = 50;
+                                if (VarSearchFlag == false)
+                                {
+                                    lvproduct.Columns[2].Width = 320;
+                                    lvproduct.Columns[1].Width = 0;
+                                }
+                                else
+                                {
+                                    lvproduct.Columns[2].Width = 0;
+                                    lvproduct.Columns[1].Width = 320;
+                                }
                             }
                             else
                             {

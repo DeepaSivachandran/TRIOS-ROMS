@@ -380,6 +380,7 @@ namespace ROMS
                         VarSearchFlag = true;
                         lblProductName.Text = "Search by P.I Code";
                         txtProduct.CharacterCasing = CharacterCasing.Upper;
+
                     }
                     else
                     {
@@ -899,7 +900,14 @@ namespace ROMS
         {
             try
             {
-
+                if (VarSearchFlag == true)
+                {
+                    txtProduct.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProduct.CharacterCasing = CharacterCasing.Normal;
+                }
                 txtRack.Text = "";
                 txtMrp.Text = "";
                 txtExpiryDate.Text = "";
@@ -941,16 +949,16 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PRODUCTLIST"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["STK_Qty"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["UT_Name"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PRODUCTLIST"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["STK_Qty"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["UT_Name"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[3].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvproduct.Items.Add(objList);
                                 }
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 0;
                                 lvproduct.Columns[1].Width = 100;
-                                lvproduct.Columns[2].Width = 0;
+                                lvproduct.Columns[2].Width = 300;
                                 lvproduct.Columns[3].Width = 300;
                                 lvproduct.Columns[4].Width = 0;
                                 lvproduct.Columns[5].Width = 60;
@@ -959,9 +967,17 @@ namespace ROMS
                                 lvproduct.Columns[8].Width = 80;
                                 lvproduct.Columns[9].Width = 70;
                                 lvproduct.Columns[10].Width = 50;
-                                lvproduct.Columns[11].Width = 0;
-                                lvproduct.Columns[12].Width = 0;
-                                lvproduct.Columns[13].Width = 0;
+
+                                if (VarSearchFlag == false)
+                                {
+                                    lvproduct.Columns[3].Width = 320;
+                                    lvproduct.Columns[2].Width = 0;
+                                }
+                                else
+                                {
+                                    lvproduct.Columns[3].Width = 0;
+                                    lvproduct.Columns[2].Width = 320;
+                                }
 
                             }
                             else
@@ -1033,8 +1049,8 @@ namespace ROMS
             { 
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
                     varPRID = selectedItem.SubItems[0].Text;
-                    txtProduct.Text = selectedItem.SubItems[4].Text;
-                    varTamilname = selectedItem.SubItems[3].Text;
+                    txtProduct.Text = selectedItem.SubItems[3].Text;
+                    varTamilname = selectedItem.SubItems[2].Text;
                     varPICode = selectedItem.SubItems[1].Text;
                     txtRack.Text = selectedItem.SubItems[5].Text;
                     txtMrp.Text = selectedItem.SubItems[6].Text;

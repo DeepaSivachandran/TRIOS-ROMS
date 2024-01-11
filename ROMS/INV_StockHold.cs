@@ -1730,7 +1730,7 @@ namespace ROMS
                                 lvproduct.Columns[1].Width = 100;
                                 lvproduct.Columns[2].Width = 0;
                                 lvproduct.Columns[3].Width = 270;
-                                lvproduct.Columns[4].Width = 0;
+                                lvproduct.Columns[4].Width = 270;
                                 lvproduct.Columns[5].Width = 70;
                                 lvproduct.Columns[6].Width = 60;
                                 lvproduct.Columns[7].Width = 70;
@@ -1738,8 +1738,17 @@ namespace ROMS
                                 lvproduct.Columns[9].Width = 60;
                                 lvproduct.Columns[10].Width = 60;
                                 lvproduct.Columns[11].Width = 40;
-                                lvproduct.Columns[12].Width = 0;
-                                lvproduct.Columns[13].Width = 0;
+
+                                if (VarSearchFlag == false)
+                                {
+                                    lvproduct.Columns[4].Width = 320;
+                                    lvproduct.Columns[3].Width = 0;
+                                }
+                                else
+                                {
+                                    lvproduct.Columns[4].Width = 0;
+                                    lvproduct.Columns[3].Width = 320;
+                                }
 
                             }
                             else
