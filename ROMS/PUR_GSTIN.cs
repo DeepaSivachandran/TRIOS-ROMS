@@ -19,20 +19,13 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
+        private ToolTip tpgst = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
         public PUR_GSTIN()
         {
             InitializeComponent();
-        }
-
-         
-
-        private void TxtEUnitName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
+        }  
         private void TxtEUnitName_Leave(object sender, EventArgs e)
         {
             try
@@ -81,8 +74,19 @@ namespace ROMS
             {
                 if (txtGstin.Text != "")
                 {
-                    MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
-                    this.Close();
+                    if (txtGstin.Text.Length < 15)
+                    {
+                        errUnit.SetError(txtGstin, "Please enter valid supplier GSTIN");
+                        txtGstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpgst.ShowAlways = true;
+                        tpgst.Show("Please enter valid supplier GSTIN.", txtGstin, 5000); 
+                    }
+                    else
+                    {
+                        errUnit.Clear();
+                        MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
+                        this.Close();
+                    }
                 }
                 else
                 { 

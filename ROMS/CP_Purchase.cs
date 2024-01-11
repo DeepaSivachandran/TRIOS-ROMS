@@ -2387,6 +2387,12 @@ namespace ROMS
                     }
                     if (varflag == 0)
                     {
+                        string varRkId = "0";
+                        if (cmbrack.Enabled == true)
+                        {
+                            varRkId = Convert.ToString(cmbrack.SelectedValue);
+                        }
+                        else { varRkId = "0"; }
                         for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                         {
                             if (Convert.ToInt32(lblProductcode.Text) == Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value))
@@ -2399,7 +2405,7 @@ namespace ROMS
                                 string varRKID = Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value).Trim();
                                 if (txtMrp.Text.Trim() == varMRP && varExpiryDate == varNewExpiryDate && txtBatchno.Text.Trim() == varBatch)
                                 {
-                                    if (lblLocationcode.Text == varSLID && Convert.ToString(cmbrack.SelectedValue) == varRKID)
+                                    if (lblLocationcode.Text == varSLID && varRkId == varRKID)
                                     {
                                         if (Convert.ToString(cmbPONo.SelectedValue) == varPoid)
                                         {
@@ -2930,7 +2936,7 @@ namespace ROMS
                                     {
                                         if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmPoid"].Value) == Convert.ToInt32(varPoid))
                                         {
-                                            if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["slid"].Value) == Convert.ToInt32(varSLID) && Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmPoid"].Value) == Convert.ToInt32(rkid))
+                                            if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["slid"].Value) == Convert.ToInt32(varSLID) && Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["rkid"].Value) == Convert.ToInt32(varRKID))
                                             {
                                                 MessageBox.Show("Product already exists!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                                 grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
@@ -3803,6 +3809,7 @@ namespace ROMS
             finally
             {
                 lvproduct.Visible = false;
+                lvSourceLocation.Visible = false;
             }
         }
 

@@ -43,8 +43,7 @@ namespace ROMS
         private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
             try
-            {
-
+            { 
                 tbSupplierDetails.Enabled = false;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
@@ -52,7 +51,6 @@ namespace ROMS
                 objDataBind = null;
                 this.ActiveControl = txtSupplier;
                 udfnDropdownLoad();
-                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
                 if (btnSave.Text == "Save")
                 {
                     btnViewedProduct.Enabled = false;
@@ -133,7 +131,8 @@ namespace ROMS
             }
             finally
             {
-                lblPC.Text = grdsupplieradd.Rows.Count.ToString();
+                lblPC.Text = grdsupplieradd.Rows.Count.ToString(); 
+                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
             }
         }
         public void udfnEditLoad()
