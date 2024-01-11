@@ -1198,11 +1198,12 @@
             // 
             // RMEName
             // 
-            this.RMEName.Text = "Unit";
+            this.RMEName.Text = "Product Name";
             this.RMEName.Width = 200;
             // 
             // columnHeader1
             // 
+            this.columnHeader1.Text = "Unit";
             this.columnHeader1.Width = 0;
             // 
             // columnHeader2
