@@ -207,18 +207,18 @@ namespace ROMS
                         if (varEditFlag == 0)
                         {
                             dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["GRNPR_PRID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["GRNPR_UTID"].Value),
-                                Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["PR_PUR_RKID"].Value), 
+                                Convert.ToInt32(varReceivedty), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["PR_PUR_RKID"].Value), 
                                 Convert.ToString(grdGrnlist.Rows[i].Cells["Expiry Date"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["Batch No."].Value), 
                                 Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["GRNPRID"].Value));
                         }
                         if(varEditFlag==1)
                         {
                             dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_PRID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_UTID"].Value),
-                                Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_RKID"].Value),
+                                Convert.ToInt32(varReceivedty), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_RKID"].Value),
                                 Convert.ToString(grdGrnlist.Rows[i].Cells["Expiry Date"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["Batch No."].Value),
                                 Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["GIPPR_GIPID"].Value));
                         }
-                        if (Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value) <=0)
+                        if (Convert.ToInt32(varReceivedty) <=0)
                         {
                             grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightPink;
                             varErrorFlag = false;

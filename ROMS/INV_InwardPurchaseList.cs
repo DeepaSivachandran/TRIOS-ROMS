@@ -514,24 +514,25 @@ namespace ROMS
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
                                 grdInwardList.DataSource = objDs.Tables[0];
-                                //grdInwardQueueList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                //grdInwardQueueList.Columns["GRN No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                //grdInwardQueueList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                //grdInwardQueueList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                //grdInwardQueueList.Columns["Concern"].Width = 150;
-                                //grdInwardQueueList.Columns["GRN Date"].Width = 100;
-                                //grdInwardQueueList.Columns["GRN No."].Width = 100;
-                                //grdInwardQueueList.Columns["Supplier"].Width = 300;
-                                //grdInwardQueueList.Columns["Total Products in Invoice"].Width = 100;
+                                //grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                //grdInwardList.Columns["Inward No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                //grdInwardList.Columns["Inward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                //grdInwardList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                //grdInwardList.Columns["Concern"].Width = 150;
+                                //grdInwardList.Columns["Voucher Date"].Width = 100;
+                                //grdInwardList.Columns["Voucher No."].Width = 100;
+                                //grdInwardList.Columns["Supplier"].Width = 300;
+                                //grdInwardList.Columns["Total Products in Invoice"].Width = 100;
+                                //grdInwardList.Columns["Location"].Width = 130;
                                 /////   grdInwardQueueList.Columns["Created By"].Width = 110;
-                                //grdInwardQueueList.Columns["Created On"].Width = 140;
-                                //grdInwardQueueList.Columns["GSTIN"].Width = 170;
+                                //grdInwardList.Columns["Created On"].Width = 140;
+                                //grdInwardList.Columns["GSTIN"].Width = 190;
                                 //// grdInwardQueueList.Columns["Status"].Width = 100;
-                                //grdInwardQueueList.Columns["S.No."].Width = 80;
-                                //grdInwardQueueList.Columns["GRNID"].Visible = false;
-                                //grdInwardQueueList.Columns["SPID"].Visible = false;
+                                //grdInwardList.Columns["S.No."].Width = 80;
+                                //grdInwardList.Columns["GRNID"].Visible = false;
+                                //grdInwardList.Columns["SPID"].Visible = false;
                                 ////  grdInwardQueueList.Columns["Status ID"].Visible = false;
-                                //grdInwardQueueList.Columns["SPSCID"].Visible = false;
+                                //grdInwardList.Columns["SPSCID"].Visible = false;
                             }
                             else
                             {
@@ -1210,19 +1211,19 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdInwardList.Rows.Count; i++)
-                //{
-                //    if (Convert.ToString(grdInwardList.Rows[i].Cells["Status ID"].Value) == "1")
-                //    {
-                //        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                //        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //    else
-                //    {
-                //        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                //        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //}
+                for (int i = 0; i < grdInwardList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdInwardList.Rows[i].Cells["Status ID"].Value) == "46") //entry completed
+                    {
+                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdInwardList.Rows[i].Cells["Status ID"].Value) == "45") //Draft
+                    {
+                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
             }
             catch (Exception ex)
             {
