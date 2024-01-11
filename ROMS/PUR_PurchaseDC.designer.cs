@@ -101,8 +101,8 @@
             this.lvproduct = new System.Windows.Forms.ListView();
             this.RMcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RMTname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -275,7 +275,7 @@
             this.columnHeader1});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(113, 126);
+            this.LV_Supplier.Location = new System.Drawing.Point(115, 125);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(366, 93);
             this.LV_Supplier.TabIndex = 1111208;
@@ -842,8 +842,8 @@
             this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.RMcode,
             this.RMTname,
-            this.columnHeader13,
-            this.columnHeader14,
+            this.EName,
+            this.unit,
             this.columnHeader15,
             this.columnHeader16,
             this.columnHeader17,
@@ -873,14 +873,15 @@
             this.RMTname.Text = "Product Name";
             this.RMTname.Width = 250;
             // 
-            // columnHeader13
+            // EName
             // 
-            this.columnHeader13.Text = "Unit";
-            this.columnHeader13.Width = 0;
+            this.EName.Text = "Product Name";
+            this.EName.Width = 0;
             // 
-            // columnHeader14
+            // unit
             // 
-            this.columnHeader14.Width = 0;
+            this.unit.Text = "Unit";
+            this.unit.Width = 0;
             // 
             // columnHeader15
             // 
@@ -1455,7 +1456,7 @@
         public System.Windows.Forms.TextBox txtTotalProducts;
         public System.Windows.Forms.DataGridView grdPurchaseDC;
         public System.Windows.Forms.DataGridView grdRepDetails;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader EName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductName;
@@ -1474,7 +1475,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRemoveFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader unit;
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.CheckBox chkCompleted;
         private System.Windows.Forms.ColumnHeader columnHeader16;
