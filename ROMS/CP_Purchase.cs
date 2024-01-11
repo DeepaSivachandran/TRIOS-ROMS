@@ -42,8 +42,10 @@ namespace ROMS
         {
             try
             {
+                btnViewDataView.Visible = true;
                 if (cmbEntryType.SelectedValue.ToString() == "54")
                 { // GRN
+                    
                     txtQRCode.ReadOnly = false;
                     dpInvoiceDate.Enabled = false;
                     txtInvoiceNo.ReadOnly = true;
@@ -64,6 +66,7 @@ namespace ROMS
                 }
                 if (cmbEntryType.SelectedValue.ToString() == "56") // Direct
                 {
+                    btnViewDataView.Visible = false;
                     txtQRCode.ReadOnly = true;
                     txtQRCode.Enabled = false;
                     dpInvoiceDate.Enabled = true;
@@ -149,15 +152,15 @@ namespace ROMS
             try
             {
                 pbPONO = "0";
-                for (int i = 0; i < grdPODetails.Rows.Count; i++)
+                for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
                     if (pbPONO == "0")
                     {
-                        pbPONO = Convert.ToString(grdPODetails.Rows[i].Cells["poid"].Value);
+                        pbPONO = Convert.ToString(grdSupplierList.Rows[i].Cells["clmPoid"].Value);
                     }
                     else
                     {
-                        pbPONO = pbPONO + ',' + Convert.ToString(grdPODetails.Rows[i].Cells["poid"].Value);
+                        pbPONO = pbPONO + ',' + Convert.ToString(grdSupplierList.Rows[i].Cells["clmPoid"].Value);
                     }
                 }
                 MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
@@ -2788,8 +2791,16 @@ namespace ROMS
                                     cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                     cell3.Style.BackColor = Color.PaleGreen;
                                     cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                    cell4.Style.BackColor = Color.PaleGreen;
-                                    cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) != "0")
+                                    {
+                                        cell4.Style.BackColor = Color.PaleGreen;
+                                        cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                    }
+                                    else
+                                    {
+                                        cell4.Style.BackColor = Color.LightGray;
+                                        cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                    }
                                 }
                                 if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
                                 {
@@ -2979,6 +2990,48 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             } 
+        }
+
+        private void BtnViewDataView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CmbType_SelectedIndexChanged(sender,e);
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnViewDataView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnViewDataView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnViewDataView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnViewDataView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DpInvoiceDate_KeyDown(object sender, KeyEventArgs e)
@@ -3683,7 +3736,7 @@ namespace ROMS
                                     lblLocationcode.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SLID"]);
                                     txtSourceLocation.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SL_EName"]);
                                     udfnCmbSourceRack();
-                                    cmbrack.SelectedValue = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["RKID"]);
+                                    cmbrack.SelectedIndex = 0;
                                     lvSourceLocation.Visible = false;
                                 }
                             }
