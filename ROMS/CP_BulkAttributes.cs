@@ -2581,7 +2581,7 @@ namespace ROMS
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
 
-            objds = objdservice.GetDataset("select  HSNID, HSN_Name from MR_HSN where HSNID NOT IN(-1, 0) ");
+            objds = objdservice.GetDataset("select  HSNID, HSN_Name from MR_HSN where HSNID NOT IN(-1, 0) AND HSN_STSID=1 ");
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2611,12 +2611,12 @@ namespace ROMS
             DataTable objDt = new DataTable();
             if (varCOMID == 0)
             {
-                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
+                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND SL_STSID=1 ");
             }
             else
             {
                // objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND SLID IN ((SELECT DISTINCT PRSG_SLID FROM MR_ProductSubGroup WHERE PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID =" + varPRID+")))");
-                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SL_COMID=" + varCOMID  );
+                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SL_STSID=1 AND SL_COMID=" + varCOMID  );
             }
             objdservice.CloseConnection();
             if (objds != null)
@@ -2650,7 +2650,7 @@ namespace ROMS
             //else
             //{
          //   objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varSLID + "  AND RKID IN ((SELECT DISTINCT PRSGRK_RKID FROM MR_ProductSubGroup_Rack WHERE PRSGRK_PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID ="+varPRID+")))");
-           objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varSLID );
+           objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_STSID=1 AND RK_SLID= " + varSLID );
             
             objdservice.CloseConnection();
             if (objds != null)
@@ -2823,7 +2823,7 @@ namespace ROMS
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
 
-            objds = objdservice.GetDataset("SELECT PRGID,PRG_EName from  MR_ProductGroup  where PRGID NOT IN(-1,0)");
+            objds = objdservice.GetDataset("SELECT PRGID,PRG_EName from  MR_ProductGroup  where PRGID NOT IN(-1,0) AND PRG_STSID=1");
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2851,10 +2851,10 @@ namespace ROMS
             DataTable objDt = new DataTable();
             if (varSubGroupId == 0)
             {
-                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0)");
+                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0) AND PRSG_STSID=1");
             } else
             {
-                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0) AND PRSG_PRGID = "+varSubGroupId+" ");
+                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0) AND PRSG_STSID=1 AND PRSG_PRGID = " + varSubGroupId+" ");
             }
             objdservice.CloseConnection();
             if (objds != null)
@@ -2883,11 +2883,11 @@ namespace ROMS
             DataTable objDt = new DataTable();
             if (varBrandId == 0)
             {
-                objds = objdservice.GetDataset("SELECT BDID,BD_EName from  MR_Brand  where BDID NOT IN(-1,0)");
+                objds = objdservice.GetDataset("SELECT BDID,BD_EName from  MR_Brand  where BDID NOT IN(-1,0) AND BD_STSID=1");
             }
             else
             {
-                objds = objdservice.GetDataset("SELECT BDID,BD_EName  FROM MR_Brand INNER JOIN MR_Brand_SubGroup ON BDS_BDID=BDID WHERE BDID NOT IN(-1, 0) AND BDS_PRSGID= " + varBrandId + " ");
+                objds = objdservice.GetDataset("SELECT BDID,BD_EName  FROM MR_Brand INNER JOIN MR_Brand_SubGroup ON BDS_BDID=BDID WHERE BDID NOT IN(-1, 0) AND BD_STSID=1 AND BDS_PRSGID= " + varBrandId + " ");
             }
             objdservice.CloseConnection();
             if (objds != null)
@@ -2915,7 +2915,7 @@ namespace ROMS
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
 
-            objds = objdservice.GetDataset("SELECT QUTID, QUT_Symbol from MR_QtyUnit");
+            objds = objdservice.GetDataset("SELECT QUTID, QUT_Symbol from MR_QtyUnit  WHERE QUT_STSID=1");
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2942,7 +2942,7 @@ namespace ROMS
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
 
-            objds = objdservice.GetDataset("SELECT  UTID,UT_Symbol,* from MR_Unit WHERE UTID NOT IN (-1,0) AND UT_BulkUnit=0");
+            objds = objdservice.GetDataset("SELECT  UTID,UT_Symbol from MR_Unit WHERE UTID NOT IN (-1,0) AND UT_BulkUnit=0 AND UT_STSID=1");
             objdservice.CloseConnection();
             if (objds != null)
             {
