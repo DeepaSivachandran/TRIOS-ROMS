@@ -43,17 +43,6 @@
             this.grpStockTransfer = new System.Windows.Forms.GroupBox();
             this.chkStatus = new System.Windows.Forms.CheckBox();
             this.txttotalitem = new System.Windows.Forms.TextBox();
-            this.lvProduct = new System.Windows.Forms.ListView();
-            this.lvclmPICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvclmProductName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvclmProductEName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvSLocation = new System.Windows.Forms.ListView();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -123,6 +112,20 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
+            this.lvclmPICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvclmProductName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvClmTNmae = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvclmRack = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvProduct = new System.Windows.Forms.ListView();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -213,90 +216,6 @@
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
             this.txttotalitem.TabIndex = 17;
             this.txttotalitem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lvProduct
-            // 
-            this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.lvclmPICode,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.lvclmProductName,
-            this.lvclmProductEName,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvProduct.FullRowSelect = true;
-            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvProduct.HideSelection = false;
-            this.lvProduct.Location = new System.Drawing.Point(11, 147);
-            this.lvProduct.MultiSelect = false;
-            this.lvProduct.Name = "lvProduct";
-            this.lvProduct.Size = new System.Drawing.Size(874, 220);
-            this.lvProduct.TabIndex = 111111141;
-            this.lvProduct.UseCompatibleStateImageBehavior = false;
-            this.lvProduct.View = System.Windows.Forms.View.Details;
-            this.lvProduct.Visible = false;
-            this.lvProduct.DoubleClick += new System.EventHandler(this.LvProduct_DoubleClick);
-            this.lvProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvProduct_KeyDown);
-            // 
-            // lvclmPICode
-            // 
-            this.lvclmPICode.Text = "PI Code";
-            this.lvclmPICode.Width = 110;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.DisplayIndex = 8;
-            this.columnHeader6.Width = 0;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.DisplayIndex = 9;
-            this.columnHeader7.Width = 0;
-            // 
-            // lvclmProductName
-            // 
-            this.lvclmProductName.DisplayIndex = 1;
-            this.lvclmProductName.Text = "Product Name";
-            this.lvclmProductName.Width = 280;
-            // 
-            // lvclmProductEName
-            // 
-            this.lvclmProductEName.DisplayIndex = 2;
-            this.lvclmProductEName.Text = "Rack";
-            this.lvclmProductEName.Width = 80;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.DisplayIndex = 3;
-            this.columnHeader4.Text = "MRP";
-            this.columnHeader4.Width = 70;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.DisplayIndex = 4;
-            this.columnHeader5.Text = "Expiry Date";
-            this.columnHeader5.Width = 90;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.DisplayIndex = 5;
-            this.columnHeader1.Text = "Batch No.";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.DisplayIndex = 6;
-            this.columnHeader2.Text = "Quantity";
-            this.columnHeader2.Width = 80;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.DisplayIndex = 7;
-            this.columnHeader3.Text = "Unit";
-            this.columnHeader3.Width = 80;
             // 
             // lvSLocation
             // 
@@ -1023,6 +942,106 @@
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Search by P.I Code";
             // 
+            // lvclmPICode
+            // 
+            this.lvclmPICode.Text = "PI Code";
+            this.lvclmPICode.Width = 110;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.DisplayIndex = 9;
+            this.columnHeader6.Width = 0;
+            // 
+            // lvclmProductName
+            // 
+            this.lvclmProductName.DisplayIndex = 2;
+            this.lvclmProductName.Text = "Product Name";
+            this.lvclmProductName.Width = 280;
+            // 
+            // lvClmTNmae
+            // 
+            this.lvClmTNmae.DisplayIndex = 1;
+            this.lvClmTNmae.Text = "Product Name";
+            this.lvClmTNmae.Width = 280;
+            // 
+            // lvclmRack
+            // 
+            this.lvclmRack.DisplayIndex = 3;
+            this.lvclmRack.Text = "Rack";
+            this.lvclmRack.Width = 80;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.DisplayIndex = 4;
+            this.columnHeader4.Text = "MRP";
+            this.columnHeader4.Width = 70;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.DisplayIndex = 5;
+            this.columnHeader5.Text = "Expiry Date";
+            this.columnHeader5.Width = 90;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.DisplayIndex = 6;
+            this.columnHeader1.Text = "Batch No.";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.DisplayIndex = 7;
+            this.columnHeader2.Text = "Quantity";
+            this.columnHeader2.Width = 80;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.DisplayIndex = 8;
+            this.columnHeader3.Text = "Unit";
+            this.columnHeader3.Width = 80;
+            // 
+            // lvProduct
+            // 
+            this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvclmPICode,
+            this.columnHeader6,
+            this.lvClmTNmae,
+            this.lvclmProductName,
+            this.lvclmRack,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvProduct.FullRowSelect = true;
+            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvProduct.HideSelection = false;
+            this.lvProduct.Location = new System.Drawing.Point(11, 147);
+            this.lvProduct.MultiSelect = false;
+            this.lvProduct.Name = "lvProduct";
+            this.lvProduct.Size = new System.Drawing.Size(874, 220);
+            this.lvProduct.TabIndex = 111111141;
+            this.lvProduct.UseCompatibleStateImageBehavior = false;
+            this.lvProduct.View = System.Windows.Forms.View.Details;
+            this.lvProduct.Visible = false;
+            this.lvProduct.DoubleClick += new System.EventHandler(this.LvProduct_DoubleClick);
+            this.lvProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvProduct_KeyDown);
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 0;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Width = 0;
+            // 
             // INV_StockTransfer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1110,11 +1129,6 @@
         private System.Windows.Forms.Label lblSLocation;
         private System.Windows.Forms.Label lblDLocation;
         private System.Windows.Forms.Label lblProduct;
-        private System.Windows.Forms.ColumnHeader lvclmPICode;
-        private System.Windows.Forms.ColumnHeader lvclmProductName;
-        private System.Windows.Forms.ColumnHeader lvclmProductEName;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txttotalitem;
         public System.Windows.Forms.Button btnSave;
@@ -1122,12 +1136,6 @@
         private System.Windows.Forms.TextBox txtSRack;
         private System.Windows.Forms.Label lbltxtSourceRack;
         private System.Windows.Forms.Label lblDestRack;
-        private System.Windows.Forms.ListView lvProduct;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.CheckBox chkStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
@@ -1149,5 +1157,19 @@
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTransactionType;
+        private System.Windows.Forms.ListView lvProduct;
+        private System.Windows.Forms.ColumnHeader lvclmPICode;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader lvclmProductName;
+        private System.Windows.Forms.ColumnHeader lvClmTNmae;
+        private System.Windows.Forms.ColumnHeader lvclmRack;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }
