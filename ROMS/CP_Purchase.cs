@@ -23,6 +23,7 @@ namespace ROMS
         ToolTip tpProduct = new ToolTip();
         ToolTip tpdate = new ToolTip();
         ToolTip tpStockLocation = new ToolTip();
+        ToolTip tpSuppliername = new ToolTip();
         public bool skipValidation = false;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
         public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0";
@@ -30,9 +31,9 @@ namespace ROMS
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
             , varorderSaleQty = "", varorderqty = "", addproductid = "", varunitid = "0", varDamage = "0", varReturnDC = "0", pbGRNId = "0", pbSupplierId = "0", dcid = "0",
             varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0",
-            varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0",VarGridError="0";
+            varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0";
 
-        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0;
+        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0, VarPrevSupplierid=0;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace ROMS
                 btnViewDataView.Visible = true;
                 if (cmbEntryType.SelectedValue.ToString() == "54")
                 { // GRN
-                    
+
                     txtQRCode.ReadOnly = false;
                     dpInvoiceDate.Enabled = false;
                     txtInvoiceNo.ReadOnly = true;
@@ -838,6 +839,7 @@ namespace ROMS
                     lblschedule.Text = selectedItem.SubItems[2].Text;
                     //varSuppliervalue = selectedItem.SubItems[3].Text;
                     udfnSupplierDetails();
+                    grdSupplierList.Rows.Clear();
                 }
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
@@ -887,7 +889,65 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
+        }
+        public void udfnSupplierValidation()
+        {
+            try
+            {
+                LV_Supplier.Visible = false;
+                if (Convert.ToString(txtSupplier.Text) != "")
+                {  
+                    string[] values = new string[0];
+                    string varSupplierId = "0";
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 23;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
+                    {
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                        }
+                    }
+                    if (values[0] == "-1")
+                    {
+                        errPurchaseentry.SetError(txtSupplier, "Invalid supplier");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSuppliername.ShowAlways = true;
+                        tpSuppliername.Show("Invalid supplier.", txtSupplier, 5000);
+                        lblSupplierCode.Text = "0";
+                        lblschedule.Text = "0";
+                        grdSupplierList.Rows.Clear();
+                        ClearSupplier();  
+                    }
+                    else
+                    {
+                        errPurchaseentry.Clear();
+                        lblSupplierCode.Text = values[0];
+                        lblschedule.Text = values[1];
+                        txtSupplier.BackColor = Color.White;
+                        if (VarPrevSupplierid != Convert.ToInt32(lblSupplierCode.Text))
+                        {
+                            udfnSupplierDetails();
+                        }
+                    }
+                    VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                }
+                txtProductName.BackColor = Color.LemonChiffon; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void CmbEntryType_KeyDown(object sender, KeyEventArgs e)
@@ -1348,106 +1408,109 @@ namespace ROMS
         {
             try
             {
-                VarGridError = "0";
-                DataGridView dataGridView = (DataGridView)sender;
-                DataGridViewCell cellSlname = dataGridView.Rows[e.RowIndex].Cells["clmLocation"];
-                DataGridViewCell cellSlid = dataGridView.Rows[e.RowIndex].Cells["slid"];
-                DataGridViewCell cellRkname = dataGridView.Rows[e.RowIndex].Cells["clmrack"];
-                DataGridViewCell cellRkid = dataGridView.Rows[e.RowIndex].Cells["rkid"];
-                if (e.ColumnIndex == grdSupplierList.Columns["clmLocation"].Index && e.RowIndex >= 0)
+                if (Convert.ToString(lblSupplierCode.Text) != "0")
                 {
-                    string SelectedLocationName = grdSupplierList.Rows[e.RowIndex].Cells["clmLocation"].Value?.ToString();
-                    if (!string.IsNullOrEmpty(SelectedLocationName))
+                    VarGridError = "0";
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cellSlname = dataGridView.Rows[e.RowIndex].Cells["clmLocation"];
+                    DataGridViewCell cellSlid = dataGridView.Rows[e.RowIndex].Cells["slid"];
+                    DataGridViewCell cellRkname = dataGridView.Rows[e.RowIndex].Cells["clmrack"];
+                    DataGridViewCell cellRkid = dataGridView.Rows[e.RowIndex].Cells["rkid"];
+                    if (e.ColumnIndex == grdSupplierList.Columns["clmLocation"].Index && e.RowIndex >= 0)
                     {
-                        /* Check purchase location is valid or not*/
-                        string varId_PurLocation = "0",varRkCount="0";
-                        DataSet objDsPurLoc = new DataSet();
-                        SPDataService objDServ3 = new SPDataService();
-                        objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, SelectedLocationName, 0, 0, 0, "", "");
-                        objDServ3.CloseConnection();
-                        if (objDsPurLoc != null)
+                        string SelectedLocationName = grdSupplierList.Rows[e.RowIndex].Cells["clmLocation"].Value?.ToString();
+                        if (!string.IsNullOrEmpty(SelectedLocationName))
                         {
-                            if (objDsPurLoc.Tables.Count > 0)
+                            /* Check purchase location is valid or not*/
+                            string varId_PurLocation = "0", varRkCount = "0";
+                            DataSet objDsPurLoc = new DataSet();
+                            SPDataService objDServ3 = new SPDataService();
+                            objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, SelectedLocationName, 0, 0, 0, "", "");
+                            objDServ3.CloseConnection();
+                            if (objDsPurLoc != null)
                             {
-                                if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                                if (objDsPurLoc.Tables.Count > 0)
                                 {
-                                    varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
-                                }
-                            }
-                            if (objDsPurLoc.Tables[1].Rows.Count > 0)
-                            {
-                                varRkCount = Convert.ToString(objDsPurLoc.Tables[1].Rows[0][0]);
-                            }
-                        }
-                        if (varRkCount == "0")
-                        {
-                            cellRkid.Value = varRkCount;
-                            cellRkname.Value = "None";
-                            cellRkname.ReadOnly = true; cellRkname.Style.BackColor = Color.LightGray;
-                        }
-                        else
-                        {
-                            cellRkid.Value = "-1";
-                            cellRkname.Value = "";
-                            cellRkname.ReadOnly = false; cellRkname.Style.BackColor = Color.PaleGreen;
-                        }
-                        if (varId_PurLocation != "-1")
-                        {
-                            cellSlname.Style.BackColor = Color.PaleGreen;
-                            cellSlid.Value = Convert.ToString(varId_PurLocation);
-                        }
-                        else
-                        {
-                            cellSlname.Style.BackColor = Color.LightPink;
-                            cellSlid.Value = Convert.ToString(varId_PurLocation);
-                            VarGridError = "1";
-                        }
-                    }
-                }
-                else if (e.ColumnIndex == grdSupplierList.Columns["clmRack"].Index && e.RowIndex >= 0)
-                {
-                    if (Convert.ToString(cellSlid.Value) != "-1")
-                    {
-                        string SelectedRackName = grdSupplierList.Rows[e.RowIndex].Cells["clmRack"].Value?.ToString();
-                        if (!string.IsNullOrEmpty(SelectedRackName))
-                        {
-                            /*check location have a rack or not*/
-                            string varId_PurchaseRack = "0";
-                            DataSet objDsPurchaseRack = new DataSet();
-                            SPDataService objDServ6 = new SPDataService();
-                            objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(cellSlid.Value), 0, SelectedRackName, 0, 0);
-                            objDServ6.CloseConnection();
-                            if (objDsPurchaseRack != null)
-                            {
-                                if (objDsPurchaseRack.Tables.Count > 0)
-                                {
-                                    if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                    if (objDsPurLoc.Tables[0].Rows.Count > 0)
                                     {
-                                        varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                        varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
                                     }
                                 }
+                                if (objDsPurLoc.Tables[1].Rows.Count > 0)
+                                {
+                                    varRkCount = Convert.ToString(objDsPurLoc.Tables[1].Rows[0][0]);
+                                }
                             }
-                            if (varId_PurchaseRack != "-1")
+                            if (varRkCount == "0")
                             {
-                                //if (varId_PurchaseRack != "0")
-                                //{
-                                //    cellRkname.Style.BackColor = Color.LightGray;
-                                //    cellRkname.ReadOnly = true;
-                                //}
-                                //else
-                                //{
-                                    cellRkname.Style.BackColor = Color.PaleGreen;
-                                //}
-                                cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                cellRkid.Value = varRkCount;
+                                cellRkname.Value = "None";
+                                cellRkname.ReadOnly = true; cellRkname.Style.BackColor = Color.LightGray;
                             }
                             else
                             {
-                                cellRkname.Style.BackColor = Color.LightPink;
-                                cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                cellRkid.Value = "-1";
+                                cellRkname.Value = "";
+                                cellRkname.ReadOnly = false; cellRkname.Style.BackColor = Color.PaleGreen;
+                            }
+                            if (varId_PurLocation != "-1")
+                            {
+                                cellSlname.Style.BackColor = Color.PaleGreen;
+                                cellSlid.Value = Convert.ToString(varId_PurLocation);
+                            }
+                            else
+                            {
+                                cellSlname.Style.BackColor = Color.LightPink;
+                                cellSlid.Value = Convert.ToString(varId_PurLocation);
                                 VarGridError = "1";
                             }
                         }
+                    }
+                    else if (e.ColumnIndex == grdSupplierList.Columns["clmRack"].Index && e.RowIndex >= 0)
+                    {
+                        if (Convert.ToString(cellSlid.Value) != "-1")
+                        {
+                            string SelectedRackName = grdSupplierList.Rows[e.RowIndex].Cells["clmRack"].Value?.ToString();
+                            if (!string.IsNullOrEmpty(SelectedRackName))
+                            {
+                                /*check location have a rack or not*/
+                                string varId_PurchaseRack = "0";
+                                DataSet objDsPurchaseRack = new DataSet();
+                                SPDataService objDServ6 = new SPDataService();
+                                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(cellSlid.Value), 0, SelectedRackName, 0, 0);
+                                objDServ6.CloseConnection();
+                                if (objDsPurchaseRack != null)
+                                {
+                                    if (objDsPurchaseRack.Tables.Count > 0)
+                                    {
+                                        if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                        {
+                                            varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                        }
+                                    }
+                                }
+                                if (varId_PurchaseRack != "-1")
+                                {
+                                    //if (varId_PurchaseRack != "0")
+                                    //{
+                                    //    cellRkname.Style.BackColor = Color.LightGray;
+                                    //    cellRkname.ReadOnly = true;
+                                    //}
+                                    //else
+                                    //{
+                                    cellRkname.Style.BackColor = Color.PaleGreen;
+                                    //}
+                                    cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                }
+                                else
+                                {
+                                    cellRkname.Style.BackColor = Color.LightPink;
+                                    cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                    VarGridError = "1";
+                                }
+                            }
 
+                        }
                     }
                 }
             }
@@ -2393,7 +2456,9 @@ namespace ROMS
                                 ,(varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(),txtSourceLocation.Text,cmbrack.Text, (var_Symbol).Trim(),cmbPONo.SelectedValue,
                                 (productCode).Trim(), (varunitid).Trim(),  varBatchNo, varBatchNoGeneration, expirydateFlag,lblLocationcode.Text,varRackId,varRackCount);
                                 udfnrowclear();
-                                txtProductName.Focus();
+                                txtProductName.Focus(); 
+                                DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                                GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                                 string[] varShelflifeper = Convert.ToString(varShelflifevalue).Split(' ');
                                 if (varShelflifeper[0] != "")
                                 {
@@ -2817,14 +2882,14 @@ namespace ROMS
                                     cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                     cell3.Style.BackColor = Color.PaleGreen;
                                     cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) != "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmrkcount"].Value) != "0" )
+                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmrkcount"].Value) == "0" )
                                     {
-                                        cell4.Style.BackColor = Color.PaleGreen;
+                                        cell4.Style.BackColor = Color.LightGray;
                                         cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                     }
                                     else
                                     {
-                                        cell4.Style.BackColor = Color.LightGray;
+                                        cell4.Style.BackColor = Color.PaleGreen;
                                         cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                     }
                                 }
