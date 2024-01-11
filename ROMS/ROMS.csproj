@@ -214,8 +214,10 @@
     <Compile Include="MaskedTextColumn.cs" />
     <Compile Include="Model\MR_Product.cs" />
     <Compile Include="Model\MR_Supplier.cs" />
+    <Compile Include="Model\TRN_GoodsInward_Purchase.cs" />
     <Compile Include="Model\TRN_DebitNote.cs" />
     <Compile Include="Model\TRN_GoodsInward.cs" />
+    <Compile Include="Model\TRN_PurchaseEntry.cs" />
     <Compile Include="Model\TRN_Stock.cs" />
     <Compile Include="Model\TRN_GoodsOutward.cs" />
     <Compile Include="Model\TRN_BatchConversion.cs" />

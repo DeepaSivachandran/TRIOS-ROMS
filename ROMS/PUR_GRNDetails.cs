@@ -25,12 +25,14 @@ namespace ROMS
         ToolTip tpmonth = new ToolTip();
         ToolTip tpdate = new ToolTip();
         ToolTip tpyear = new ToolTip();
+
+        public bool skipValidation = false;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
             , varorderSaleQty = "", varorderqty = "", addproductid = "", varunitid = "0", varDamage = "0", varReturnDC = "0", pbGRNId = "0", pbSupplierId = "0", dcid = "0",
             varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0",
             varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0";
 
-        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0;
+        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0;
         public bool VarSearchFlag = true;
         public PUR_GRNDetails()
         {
@@ -232,6 +234,7 @@ namespace ROMS
         {
             try
             {
+                skipValidation = true;
                 udfnclose();
             }
             catch (Exception ex)
@@ -249,6 +252,7 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        skipValidation = true;
                         this.Close();
                     }
                 }
@@ -1631,8 +1635,8 @@ namespace ROMS
                                 } 
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 100;
-                                lvproduct.Columns[1].Width = 250;
-                                lvproduct.Columns[2].Width = 250;
+                                lvproduct.Columns[1].Width = 320;
+                                lvproduct.Columns[2].Width = 50;
                                 //lvproduct.Columns[3].Width = 0;
                                 //lvproduct.Columns[4].Width = 0;
                                 //lvproduct.Columns[5].Width = 0;
@@ -1691,48 +1695,49 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-
+         
         private void GrdGrnlist_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             try
             {
                 varErrorFormat = 0;
-                if (grdGrnlist.Columns[e.ColumnIndex].Name == "clmexpirydate")
+                if (skipValidation == false)
                 {
-                    string dateString = e.FormattedValue.ToString();
-                    if (dateString.Length != 10 && dateString != "")
+                    if (grdGrnlist.Columns[e.ColumnIndex].Name == "clmexpirydate")
                     {
-                        varErrorFormat = 1;
-                        MessageBox.Show("Invalid date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        e.Cancel = true;
-                    }
-                    else
-                    {
-                        if (Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmShelflifeenable"].Value) == "1" || dateString != "")
+                        string dateString = e.FormattedValue.ToString();
+                        if (dateString.Length != 10 && dateString != "")
                         {
-                            varExpiryDate = "";
-                            DataSet objDS = new DataSet();
-                            SPDataService objDServ = new SPDataService();
-                            objDS = objDServ.udfnMaster(8, 0, 0, dateString, "", 0, "", 0);
-                            objDServ.CloseConnection();
-                            if (objDS.Tables[0].Rows.Count > 0)
+                            varErrorFormat = 1;
+                            MessageBox.Show("Invalid date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            e.Cancel = true;
+                        }
+                        else
+                        {
+                            if (Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmShelflifeenable"].Value) == "1" || dateString != "")
                             {
-                                if (Convert.ToString(objDS.Tables[0].Rows[0]["DATE"]) == "0")
+                                varExpiryDate = "";
+                                DataSet objDS = new DataSet();
+                                SPDataService objDServ = new SPDataService();
+                                objDS = objDServ.udfnMaster(8, 0, 0, dateString, "", 0, "", 0);
+                                objDServ.CloseConnection();
+                                if (objDS.Tables[0].Rows.Count > 0)
                                 {
-                                    varErrorFormat = 1;
-                                    MessageBox.Show("Invalid date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    e.Cancel = true;
-                                }
-                                else
-                                {
-                                    varExpiryDate = e.FormattedValue.ToString();
+                                    if (Convert.ToString(objDS.Tables[0].Rows[0]["DATE"]) == "0")
+                                    {
+                                        varErrorFormat = 1;
+                                        MessageBox.Show("Invalid date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        e.Cancel = true;
+                                    }
+                                    else
+                                    {
+                                        varExpiryDate = e.FormattedValue.ToString();
+                                    }
                                 }
                             }
                         }
                     }
-                }
+                } 
             }
             catch (Exception ex)
             {
@@ -1798,6 +1803,25 @@ namespace ROMS
                 {
                     BtnNew.Enabled = false;
                 }
+                if (Convert.ToInt32(cmbPONo.SelectedValue) != varpono)
+                {
+                    errGRNDetails.Clear(); 
+                    cmbPONo.BackColor = Color.White;
+                    txtProductName.Text = "";
+                    txtmrprate.Text = "";
+                    txtDate.Text = "";
+                    txtMonth.Text = "";
+                    txtYear.Text = "";
+                    txtBatchno.Text = "";
+                    txtProductName.BackColor = Color.White;
+                    txtmrprate.BackColor = Color.White;
+                    txtDate.BackColor = Color.White;
+                    txtMonth.BackColor = Color.White;
+                    txtYear.BackColor = Color.White;
+                    txtBatchno.BackColor = Color.White;
+                } 
+                varpono = Convert.ToInt32(cmbPONo.SelectedValue);
+
             }
             catch (Exception ex)
             {
@@ -2550,7 +2574,9 @@ namespace ROMS
                         objMR_Product.paraViewType = 39;
                         objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Product.paraProductName = txtProductName.Text;
+                        objMR_Product.paraId = Convert.ToInt32(cmbPONo.SelectedValue);
                         objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                        objMR_Product.ParaGRNID = Convert.ToInt32(pbGRNId);
                         DataSet objDsproductId = new DataSet();
                         SPDataService objDserv = new SPDataService();
                         objDsproductId = objDserv.udfnproductmasterlist(objMR_Product);
@@ -2647,7 +2673,7 @@ namespace ROMS
                                         errGRNDetails.SetError(txtProductName, "Product already exist");
                                         txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                         tpdate.ShowAlways = true;
-                                        tpdate.Show("Product already Exist for this location", txtProductName, 5000);
+                                        tpdate.Show("Product already exist", txtProductName, 5000);
                                         varflag = 1;
                                     }
                                 }
@@ -3334,9 +3360,7 @@ namespace ROMS
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
                     objDs = objdserv.udfnGrnListLoad(2, Convert.ToInt32(pbSupplierId), 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0);
-                    objdserv.CloseConnection();
-
-
+                    objdserv.CloseConnection(); 
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
@@ -3416,12 +3440,7 @@ namespace ROMS
                                 txtTotalpro.Text = Convert.ToString(grdGrnlist.Rows.Count);
                                 DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                 GrdGrnlist_DataBindingComplete(grdGrnlist, args2);
-                            }
-
-                            //if (objDs.Tables[4].Rows.Count != 0)
-                            //{
-                                
-                            //}
+                            } 
                             if (objDs.Tables[5].Rows.Count != 0)
                             {
                                 if (Convert.ToString(objDs.Tables[5].Rows[0]["VERIFIED1"]) != "")
@@ -3446,13 +3465,7 @@ namespace ROMS
                                     }
                                     //gpAddrow.Enabled = true;
                                 }
-                            }
-                            else
-                            {
-                                //btnVerify1.Enabled = true;
-                                //btnVerify2.Enabled = true;
-                                //gpAddrow.Enabled = true;
-                            }
+                            } 
                             if (objDs.Tables[6].Rows.Count != 0)
                             {
                                 if (Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED2"]) != "")

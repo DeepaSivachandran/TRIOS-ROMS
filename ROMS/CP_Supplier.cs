@@ -6173,7 +6173,10 @@ namespace ROMS
                             {
                                 MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 grddays.ClearSelection();
-                                MainForm.objCP_Supplierlist.udfnList();
+                                if (PoScheduleFlag == 0)
+                                {
+                                    MainForm.objCP_Supplierlist.udfnList();
+                                }
                                 this.ActiveControl = txtScheduleName;
                                 if (btnAdd.Text == "Update")
                                 {
