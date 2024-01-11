@@ -88,7 +88,7 @@ namespace ROMS
                 dtStock.Columns.Add("SRQ_RequestedQty", typeof(float));
                 udfnCmbConcern();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=11", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=11 AND STSID IN(28,29)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 if (btnSave.Text == "Save && Print")
                 {
