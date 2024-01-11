@@ -332,6 +332,7 @@
             this.grdReturnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdReturnDC.Size = new System.Drawing.Size(1289, 317);
             this.grdReturnDC.TabIndex = 1111170;
+            this.grdReturnDC.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReturnDC_DataBindingComplete);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -464,6 +465,8 @@
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // dpCreditNoteDate
             // 
@@ -813,6 +816,7 @@
             this.grdRepDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRepDetails.Size = new System.Drawing.Size(417, 95);
             this.grdRepDetails.TabIndex = 1111249;
+            this.grdRepDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdRepDetails_DataBindingComplete);
             // 
             // grbSupplierDetails
             // 
@@ -1253,9 +1257,9 @@
             this.lblStatus.ForeColor = System.Drawing.Color.Black;
             this.lblStatus.Location = new System.Drawing.Point(1223, 3);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(98, 20);
+            this.lblStatus.Size = new System.Drawing.Size(53, 20);
             this.lblStatus.TabIndex = 38;
-            this.lblStatus.Text = "Linked with GRN";
+            this.lblStatus.Text = "Pending";
             // 
             // PUR_PurchaseReturns
             // 

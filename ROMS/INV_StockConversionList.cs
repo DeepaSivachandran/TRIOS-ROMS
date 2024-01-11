@@ -739,11 +739,11 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "Concern" || col.Name == "Conversion Date" || col.Name == "Conversion No." || col.Name == "Converted Qty")
+                            if (col.Name == "Concern" || col.Name == "Conversion Date" || col.Name == "Conversion No." || col.Name == "Converted Qty" || col.Name == "P.I Code")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
-                            else if (col.Name == "P.I Code")
+                            else if (col.Name == "Created On")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }

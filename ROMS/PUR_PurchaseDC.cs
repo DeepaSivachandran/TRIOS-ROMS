@@ -1411,7 +1411,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(),objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), 
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(),objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), 
                                         objDs.Tables[0].Rows[i]["PR_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNoGeneration"].ToString(),objDs.Tables[0].Rows[i]["PR_RMForProduction"].ToString(),objDs.Tables[0].Rows[i]["PR_PRCTID"].ToString(),objDs.Tables[0].Rows[i]["PR_ShelfLife"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
@@ -1421,8 +1421,8 @@ namespace ROMS
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 130;
                                 lvproduct.Columns[1].Width = 500;
-                                lvproduct.Columns[2].Width = 50;
-                                //lvproduct.Columns[3].Width = 0;
+                                lvproduct.Columns[2].Width = 0;
+                                lvproduct.Columns[3].Width = 50;
                                 //lvproduct.Columns[4].Width = 0;
                                 //lvproduct.Columns[5].Width = 0;
                                 //lvproduct.Columns[6].Width = 0;
@@ -1430,18 +1430,18 @@ namespace ROMS
                                 //lvproduct.Columns[8].Width = 0;
                                 //lvproduct.Columns[9].Width = 0;
 
-                                //if (VarSearchFlag == false)
-                                //{
-                                //    lvproduct.Columns[1].Width = 250;
-                                //    lvproduct.Columns[2].Width = 0;
-                                //}
-                                //else
-                                //{
-                                //    lvproduct.Columns[1].Width = 0;
-                                //    lvproduct.Columns[2].Width = 350;
-                                //}
+                                if (VarSearchFlag == false)
+                                {
+                                    lvproduct.Columns[2].Width = 500;
+                                    lvproduct.Columns[1].Width = 0;
+                                }
+                                else
+                                {
+                                    lvproduct.Columns[2].Width = 0;
+                                    lvproduct.Columns[1].Width = 500;
+                                }
 
-                               // lvproduct.EndUpdate();
+                                // lvproduct.EndUpdate();
                             }
                         }
                     }
@@ -2149,14 +2149,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 if(chkCompleted.Checked==true)
                 { btnSave.Text = "Save";  }
-                else { btnSave.Text = "Draft"; }
+                else { btnSave.Text = "Save as draft"; }
             }
             catch (Exception ex)
             {
@@ -2164,7 +2163,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdPurchaseDC_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -3256,7 +3254,7 @@ namespace ROMS
                 {
                     varBatchNo = "0"; varBatchNoGeneration = "0"; varShelflife = 0;expirydateFlag = 0;
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
-                    txtProductName.Text = selectedItem.SubItems[3].Text;
+                    txtProductName.Text = selectedItem.SubItems[2].Text;
                     lblProductcode.Text = selectedItem.SubItems[4].Text;
                     varBatchNo = selectedItem.SubItems[5].Text;
                     varBatchNoGeneration = selectedItem.SubItems[6].Text;

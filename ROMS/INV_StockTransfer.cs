@@ -49,6 +49,7 @@ namespace ROMS
         public int varUpdate = 0;
         public int varStockTransferID = 0;
         public int varStockRequestID = 0;
+        public int varStockRequestSLID = 0;
         public int varStatusID = 0;
         public int varSLID = 0;
         public int varDLID = 0;
@@ -236,6 +237,7 @@ namespace ROMS
                 else if (varStockRequestID != 0)
                 {
                     udfnSREdit();
+                    chkStatus.Visible = false;
                 }
                 else
                 {
@@ -369,6 +371,7 @@ namespace ROMS
                     Model.TRN_StockRequest objTRNG_StockRequest = new Model.TRN_StockRequest();
                     objTRNG_StockRequest.ViewType = 4;
                     objTRNG_StockRequest.paraStockRequestID = varStockRequestID;
+                    objTRNG_StockRequest.paraSLID = varStockRequestSLID;
                     objDS = objspservice.udfnStockRequestList(objTRNG_StockRequest);
                     objspservice.CloseConnection();
                     if (objDS != null)
@@ -377,21 +380,24 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
-                                grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]),
-                                Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["SL_EName"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]),
-                                Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Current Stock"]));
+                                grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Dest Rack"]), 0, Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]));
 
-                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]));
-
-                                //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
-                                //int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
-
-                                //if (Convert.ToInt32(CurrentStockQty) < Convert.ToInt32(TransferQty))
-                                //{
-                                //    ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
-                                //    //grdStockTransfer.Rows[i].Cells["clmRemove"].ReadOnly = true;
-                                //}
+                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0);
                             }
+                                
+                            if (objDS.Tables[1].Rows.Count != 0)
+                            {
+                                txtSLocation.Text = objDS.Tables[1].Rows[0]["SL_Ename"].ToString();
+                            }                              
+                            //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
+                            //int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
+
+                            //if (Convert.ToInt32(CurrentStockQty) < Convert.ToInt32(TransferQty))
+                            //{
+                            //    ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
+                            //    //grdStockTransfer.Rows[i].Cells["clmRemove"].ReadOnly = true;
+                            //}
+                                
                             //btnSave.Text = "Update";
                             ((DataGridViewTextBoxColumn)grdStockTransfer.Columns["clmquantity"]).MaxInputLength = 8;
                             grdStockTransfer.Columns["clmdsno"].Width = 50;
@@ -440,6 +446,7 @@ namespace ROMS
             }
             finally
             {
+                grdStockTransfer.ClearSelection();
                 txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
             }
         }
@@ -1083,8 +1090,9 @@ namespace ROMS
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 110;
                                 lvProduct.Columns[1].Width = 0;
+                                
                                 lvProduct.Columns[2].Width = 0;
-                                lvProduct.Columns[3].Width = 280;
+                                lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 80;
                                 lvProduct.Columns[5].Width = 70;
                                 lvProduct.Columns[6].Width = 90;
@@ -1094,6 +1102,16 @@ namespace ROMS
                                 lvProduct.Columns[10].Width = 0;
                                 lvProduct.Columns[11].Width = 80;
                                 lvProduct.Columns[12].Width = 0;
+                                if (VarSearchFlag == false)
+                                {
+                                    lvProduct.Columns[2].Width = 320;
+                                    lvProduct.Columns[3].Width = 0;
+                                }
+                                else
+                                {
+                                    lvProduct.Columns[2].Width = 0;
+                                    lvProduct.Columns[3].Width = 320;
+                                }
                             }
                             else
                             {

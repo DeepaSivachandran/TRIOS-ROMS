@@ -1428,6 +1428,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdOutwardList.ClearSelection();
+            }
         }
 
         private void Lbloutwarddate_Click(object sender, EventArgs e)

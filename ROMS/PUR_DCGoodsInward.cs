@@ -138,6 +138,8 @@ namespace ROMS
                         grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         udfnProductCount();
                     }
+                    this.ActiveControl = txtProductName;
+                    txtProductName.Focus();
                 }
                 else
                 {
@@ -146,7 +148,7 @@ namespace ROMS
                     grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     grpproductname.Enabled = false;
                     btnSave.Enabled = false;
-                    txtRemark.ReadOnly = true;
+                    txtRemark.Enabled = false;
                     grdProductExchage.Columns["clmRemove"].Visible = false;
                 }
             }

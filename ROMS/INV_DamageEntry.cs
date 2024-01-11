@@ -1991,7 +1991,7 @@ namespace ROMS
                                 lvProduct.Columns[0].Width = 150;
                                 lvProduct.Columns[1].Width = 0;
                                 lvProduct.Columns[2].Width = 0;
-                                lvProduct.Columns[3].Width = 280;
+                                lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 80;
                                 lvProduct.Columns[5].Width = 80;
                                 lvProduct.Columns[6].Width = 70;
@@ -2003,6 +2003,16 @@ namespace ROMS
                                 lvProduct.Columns[12].Width = 0;
                                 lvProduct.Columns[13].Width = 80;
                                 lvProduct.Columns[14].Width = 0;
+                                if (VarSearchFlag == false)
+                                {
+                                    lvProduct.Columns[2].Width = 320;
+                                    lvProduct.Columns[3].Width = 0;
+                                }
+                                else
+                                {
+                                    lvProduct.Columns[2].Width = 0;
+                                    lvProduct.Columns[3].Width = 320;
+                                }
                             }
                             else
                             {

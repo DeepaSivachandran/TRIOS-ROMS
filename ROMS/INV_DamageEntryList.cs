@@ -1445,36 +1445,36 @@ namespace ROMS
                             {
                                 continue;
                             }
-                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            ExcelSheet.Cells[2, cIndex-1] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex - 1].NumberFormat = "@";
 
                             if (col.Name == "S.No." || col.Name == "Total Units")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                             }
                             else if (col.Name == "Concern" || col.Name == "Entry Date" || col.Name == "Entry No." || col.Name == "Created By" || col.Name == "Total Products" || col.Name == "Status")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 18;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 18;
                             }
                             else if (col.Name == "Employees")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 30;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 30;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                             }
                             if (col.Name == "S.No.")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
                             if (col.Name == "Total Products" || col.Name == "Total Units")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
                             foreach (DataGridViewRow rowa in grdDamageEntryList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
                             }
                         }
                     }
@@ -1573,6 +1573,10 @@ namespace ROMS
                             foreach (DataGridViewRow rowa in grdProDEList.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 6)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex].Font.Name = "Uni Ila.Sundaram-03";
+                                }
                             }
                         }
                     }
@@ -1645,36 +1649,37 @@ namespace ROMS
                             {
                                 continue;
                             }
-                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            ExcelSheet.Cells[2, cIndex - 1] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex - 1].NumberFormat = "@";
 
                             if (col.Name == "S.No.")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                             }
                             else if (col.Name == "Concern" || col.Name == "Entry Date" || col.Name == "Entry No." || col.Name == "Quantity")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                             }
                             else if (col.Name == "Supplier")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 40;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                             }
                             if (col.Name == "S.No.")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
                             if (col.Name == "Quantity")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
                             foreach (DataGridViewRow rowa in grdSupDEList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
+                                
                             }
                         }
                     }

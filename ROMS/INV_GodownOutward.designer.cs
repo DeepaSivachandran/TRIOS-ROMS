@@ -55,7 +55,6 @@
             this.BatchNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Stock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtTotalItem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
@@ -230,14 +229,13 @@
             this.ExpiryDate,
             this.BatchNo,
             this.Stock,
-            this.Unit,
-            this.columnHeader1});
+            this.Unit});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(24, 146);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(780, 179);
+            this.lvproduct.Size = new System.Drawing.Size(843, 179);
             this.lvproduct.TabIndex = 1111157;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -246,56 +244,46 @@
             this.lvproduct.DoubleClick += new System.EventHandler(this.Lvproduct_DoubleClick);
             this.lvproduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lvproduct_KeyDown);
             // 
-            // PRID
-            // 
-            this.PRID.DisplayIndex = 9;
-            // 
             // PICode
             // 
-            this.PICode.DisplayIndex = 0;
             this.PICode.Text = "P.I Code";
             // 
             // Productlist
             // 
-            this.Productlist.DisplayIndex = 8;
+            this.Productlist.DisplayIndex = 4;
             // 
             // TamilName
             // 
-            this.TamilName.DisplayIndex = 1;
+            this.TamilName.DisplayIndex = 2;
             this.TamilName.Text = "Product Name";
             // 
             // PR_EName
             // 
-            this.PR_EName.DisplayIndex = 10;
+            this.PR_EName.DisplayIndex = 3;
+            this.PR_EName.Text = "Product Name";
             // 
             // Rack
             // 
-            this.Rack.DisplayIndex = 2;
             this.Rack.Text = "Rack";
             // 
             // MRP
             // 
-            this.MRP.DisplayIndex = 3;
             this.MRP.Text = "MRP";
             // 
             // ExpiryDate
             // 
-            this.ExpiryDate.DisplayIndex = 4;
             this.ExpiryDate.Text = "Expiry date";
             // 
             // BatchNo
             // 
-            this.BatchNo.DisplayIndex = 5;
             this.BatchNo.Text = "Batch No.";
             // 
             // Stock
             // 
-            this.Stock.DisplayIndex = 6;
             this.Stock.Text = "Stock Qty";
             // 
             // Unit
             // 
-            this.Unit.DisplayIndex = 7;
             this.Unit.Text = "Unit";
             // 
             // txtTotalItem
@@ -976,7 +964,6 @@
         private System.Windows.Forms.ColumnHeader PRID;
         private System.Windows.Forms.ColumnHeader Productlist;
         private System.Windows.Forms.ColumnHeader PR_EName;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.CheckBox cbCompleted;
     }
 }
