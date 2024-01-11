@@ -839,7 +839,7 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
+                //udfnCloseChildForms();
                 if (isClose == false) { return; }
                 MainForm.objPUR_GRNDetailsList = new PUR_GRNDetailsList();
                 MainForm.objPUR_GRNDetailsList.MdiParent = this;
