@@ -200,7 +200,7 @@
             this.columnHeader6});
             this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvProduct.HideSelection = false;
-            this.lvProduct.Location = new System.Drawing.Point(541, 77);
+            this.lvProduct.Location = new System.Drawing.Point(539, 76);
             this.lvProduct.Name = "lvProduct";
             this.lvProduct.Size = new System.Drawing.Size(481, 155);
             this.lvProduct.TabIndex = 111111134;
@@ -231,7 +231,7 @@
             this.lvSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvSLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSLocation.HideSelection = false;
-            this.lvSLocation.Location = new System.Drawing.Point(361, 77);
+            this.lvSLocation.Location = new System.Drawing.Point(361, 76);
             this.lvSLocation.Name = "lvSLocation";
             this.lvSLocation.Size = new System.Drawing.Size(305, 155);
             this.lvSLocation.TabIndex = 111111133;

@@ -2149,14 +2149,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 if(chkCompleted.Checked==true)
                 { btnSave.Text = "Save";  }
-                else { btnSave.Text = "Draft"; }
+                else { btnSave.Text = "Save as draft"; }
             }
             catch (Exception ex)
             {
@@ -2164,7 +2163,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdPurchaseDC_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
