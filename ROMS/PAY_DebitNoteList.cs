@@ -990,6 +990,7 @@ namespace ROMS
             {
                 btnExport.Enabled = false;
                 lblDSupplier.Focus();
+
                 if ((grdDebitNoteList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -1034,40 +1035,40 @@ namespace ROMS
                             {
                                 continue;
                             }
-                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Cells[2, cIndex-1] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
                             if (col.Name == "S.No." || col.Name=="Concern" || col.Name == "Amount")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                ExcelSheet.Columns[cIndex-1].ColumnWidth = 10;
                             }
                             else if (col.Name == "Transaction Date" || col.Name == "Transaction No." || col.Name == "DC Date" || col.Name == "DC No.")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex-1].ColumnWidth = 15;
                             }
                             else if (col.Name == "GSTIN")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 17;
+                                ExcelSheet.Columns[cIndex-1].ColumnWidth = 17;
                             }
                             else if (col.Name == "Supplier")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 35;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 35;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                             }
                             if (col.Name == "S.No." || col.Name=="Transaction Date" || col.Name=="DC Date")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
                             if (col.Name == "Amount")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
                             foreach (DataGridViewRow rowa in grdDebitNoteList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
                             }
                         }
                     }

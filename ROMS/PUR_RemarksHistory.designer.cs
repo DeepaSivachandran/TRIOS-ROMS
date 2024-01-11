@@ -37,6 +37,9 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtGICreatedby = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtGICreatedOn = new System.Windows.Forms.Label();
             this.txtGITable = new System.Windows.Forms.Label();
             this.txtGIRemarks = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -44,14 +47,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtCreatedby = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtCreatedOn = new System.Windows.Forms.Label();
             this.txtSTTable = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.Label();
-            this.txtCreatedOn = new System.Windows.Forms.Label();
-            this.txtCreatedby = new System.Windows.Forms.Label();
-            this.txtGICreatedby = new System.Windows.Forms.Label();
-            this.txtGICreatedOn = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -135,6 +135,37 @@
             this.panel4.TabIndex = 2;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
             // 
+            // txtGICreatedby
+            // 
+            this.txtGICreatedby.AutoSize = true;
+            this.txtGICreatedby.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGICreatedby.Location = new System.Drawing.Point(217, 5);
+            this.txtGICreatedby.Name = "txtGICreatedby";
+            this.txtGICreatedby.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtGICreatedby.Size = new System.Drawing.Size(31, 15);
+            this.txtGICreatedby.TabIndex = 10;
+            this.txtGICreatedby.Text = "User1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(282, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "@";
+            // 
+            // txtGICreatedOn
+            // 
+            this.txtGICreatedOn.AutoSize = true;
+            this.txtGICreatedOn.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGICreatedOn.Location = new System.Drawing.Point(297, 5);
+            this.txtGICreatedOn.Name = "txtGICreatedOn";
+            this.txtGICreatedOn.Size = new System.Drawing.Size(94, 15);
+            this.txtGICreatedOn.TabIndex = 9;
+            this.txtGICreatedOn.Text = "25/07/2023 01:02 PM";
+            // 
             // txtGITable
             // 
             this.txtGITable.AutoSize = true;
@@ -202,9 +233,9 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.txtCreatedby);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txtCreatedOn);
+            this.panel2.Controls.Add(this.txtCreatedby);
             this.panel2.Controls.Add(this.txtSTTable);
             this.panel2.Controls.Add(this.txtRemarks);
             this.panel2.Location = new System.Drawing.Point(9, 29);
@@ -212,6 +243,38 @@
             this.panel2.Size = new System.Drawing.Size(406, 58);
             this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
+            // 
+            // txtCreatedby
+            // 
+            this.txtCreatedby.AutoSize = true;
+            this.txtCreatedby.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCreatedby.Location = new System.Drawing.Point(217, 3);
+            this.txtCreatedby.Name = "txtCreatedby";
+            this.txtCreatedby.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtCreatedby.Size = new System.Drawing.Size(31, 15);
+            this.txtCreatedby.TabIndex = 8;
+            this.txtCreatedby.Text = "User1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(282, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 15);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "@";
+            // 
+            // txtCreatedOn
+            // 
+            this.txtCreatedOn.AutoSize = true;
+            this.txtCreatedOn.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCreatedOn.Location = new System.Drawing.Point(297, 4);
+            this.txtCreatedOn.Name = "txtCreatedOn";
+            this.txtCreatedOn.Size = new System.Drawing.Size(94, 15);
+            this.txtCreatedOn.TabIndex = 0;
+            this.txtCreatedOn.Text = "25/07/2023 01:02 PM";
+            this.txtCreatedOn.Click += new System.EventHandler(this.TxtCreated_Click);
             // 
             // txtSTTable
             // 
@@ -232,67 +295,6 @@
             this.txtRemarks.Size = new System.Drawing.Size(213, 20);
             this.txtRemarks.TabIndex = 2;
             this.txtRemarks.Text = "Purchase entry is waiting for approval";
-            // 
-            // txtCreatedOn
-            // 
-            this.txtCreatedOn.AutoSize = true;
-            this.txtCreatedOn.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCreatedOn.Location = new System.Drawing.Point(297, 4);
-            this.txtCreatedOn.Name = "txtCreatedOn";
-            this.txtCreatedOn.Size = new System.Drawing.Size(94, 15);
-            this.txtCreatedOn.TabIndex = 0;
-            this.txtCreatedOn.Text = "25/07/2023 01:02 PM";
-            this.txtCreatedOn.Click += new System.EventHandler(this.TxtCreated_Click);
-            // 
-            // txtCreatedby
-            // 
-            this.txtCreatedby.AutoSize = true;
-            this.txtCreatedby.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCreatedby.Location = new System.Drawing.Point(256, 3);
-            this.txtCreatedby.Name = "txtCreatedby";
-            this.txtCreatedby.Size = new System.Drawing.Size(31, 15);
-            this.txtCreatedby.TabIndex = 8;
-            this.txtCreatedby.Text = "User1";
-            // 
-            // txtGICreatedby
-            // 
-            this.txtGICreatedby.AutoSize = true;
-            this.txtGICreatedby.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGICreatedby.Location = new System.Drawing.Point(256, 5);
-            this.txtGICreatedby.Name = "txtGICreatedby";
-            this.txtGICreatedby.Size = new System.Drawing.Size(31, 15);
-            this.txtGICreatedby.TabIndex = 10;
-            this.txtGICreatedby.Text = "User1";
-            // 
-            // txtGICreatedOn
-            // 
-            this.txtGICreatedOn.AutoSize = true;
-            this.txtGICreatedOn.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGICreatedOn.Location = new System.Drawing.Point(297, 5);
-            this.txtGICreatedOn.Name = "txtGICreatedOn";
-            this.txtGICreatedOn.Size = new System.Drawing.Size(94, 15);
-            this.txtGICreatedOn.TabIndex = 9;
-            this.txtGICreatedOn.Text = "25/07/2023 01:02 PM";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(285, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 15);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "@";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(285, 3);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(17, 15);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "@";
             // 
             // PUR_RemarksHistory
             // 

@@ -345,6 +345,7 @@ namespace ROMS
                             grdStockTransfer.DataSource = objDs.Tables[0];
                             grdStockTransfer.Columns["COMID"].Visible = false;
                             grdStockTransfer.Columns["SRQID"].Visible = false;
+                            grdStockTransfer.Columns["SLID"].Visible = false;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["Created By"].Width = 100;
                             grdStockTransfer.Columns["Created On"].Width = 150;
@@ -396,6 +397,7 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["COMID"].Visible = false;
                 DGV_SearchGrid.Columns["SRQID"].Visible = false;
+                //DGV_SearchGrid.Columns["SLID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
                 DGV_SearchGrid.Columns["Created On"].Width = 150; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
@@ -857,6 +859,7 @@ namespace ROMS
                     MainForm.objINV_StockTransfer.MdiParent = ParentForm;
                     //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
                     MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
+                    MainForm.objINV_StockTransfer.varStockRequestSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
                     MainForm.objINV_StockTransfer.Show();
                 }
             }
