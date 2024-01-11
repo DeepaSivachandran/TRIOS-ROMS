@@ -44,7 +44,7 @@ namespace ROMS
         public string varExpiryDate = "";
         public string varMRP = "";
         public string varSRKID = "";
-        public int varFlag = 0;
+        public int varFlag = 0, varUpdateflag=0;
         public string varSNo = "0";
         public int varUpdate = 0;
         public int varStockTransferID = 0;
@@ -380,15 +380,10 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
+                                txtSLocation.Text = objDS.Tables[0].Rows[0]["Source Location"].ToString();
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Dest Rack"]), 0, Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]));
-
                                 dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0);
-                            }
-                                
-                            if (objDS.Tables[1].Rows.Count != 0)
-                            {
-                                txtSLocation.Text = objDS.Tables[1].Rows[0]["SL_Ename"].ToString();
-                            }                              
+                            }                             
                             //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
                             //int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
 
@@ -1690,11 +1685,19 @@ namespace ROMS
                 varoriginator = ""; int varType = 0;
                 if (btnSave.Text == "Save as Draft")
                 {
+                    varUpdateflag = 0;
                     varoriginator = "Stock Transfer Creation";
                     varType = 0;
                 }
-                else
+                else if (btnSave.Text == "Update" && varUpdateflag == 1)
                 {
+                    varUpdateflag = 1;
+                    varType = 0;
+                    varoriginator = "Stock Transfer Queue Updation";
+                }
+                else if(btnSave.Text == "Update" && varUpdateflag == 0)
+                {
+                    varUpdateflag = 0;
                     varoriginator = "Stock Transfer Updation";
                     varType = 0;
                 }
@@ -1763,7 +1766,7 @@ namespace ROMS
                 
                 int varStatus = 0;
                 int varTransactionType = 0;
-                if (chkStatus.Checked==true)
+                if (chkStatus.Checked==true || varUpdateflag==1)
                 {
                     varStatus = 32;
                 }
@@ -1779,7 +1782,7 @@ namespace ROMS
                 {
                     varTransactionType = 173;
                 }
-                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(), varStatus, varoriginator,dtStock,0,varTransactionType);
+                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(), varStatus, varoriginator,dtStock,0,varTransactionType,varUpdateflag);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
