@@ -22,7 +22,7 @@ namespace ROMS
             {
                 SecurityController _security = new SecurityController();
                 //  DataService objDser = new DataService();
-                string version = "v1.4.0";
+                string version = "v1.5.0";
               //  string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
                 //if (File.Exists(pa th))
                 //{
