@@ -37,9 +37,6 @@
             this.pnlinward = new System.Windows.Forms.Panel();
             this.cbCompleted = new System.Windows.Forms.CheckBox();
             this.lvproduct = new System.Windows.Forms.ListView();
-            this.PICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TamilName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvRack = new System.Windows.Forms.ListView();
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -114,6 +111,10 @@
             this.lblDd = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epGoodsInward = new System.Windows.Forms.ErrorProvider(this.components);
+            this.PICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TamilName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EnglishName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.gbshelfLife.SuspendLayout();
@@ -186,6 +187,7 @@
             this.lvproduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.PICode,
             this.TamilName,
+            this.EnglishName,
             this.Unit});
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -200,18 +202,6 @@
             this.lvproduct.SelectedIndexChanged += new System.EventHandler(this.Lvproduct_SelectedIndexChanged);
             this.lvproduct.DoubleClick += new System.EventHandler(this.Lvproduct_DoubleClick);
             this.lvproduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lvproduct_KeyDown);
-            // 
-            // PICode
-            // 
-            this.PICode.Text = "P.I Code";
-            // 
-            // TamilName
-            // 
-            this.TamilName.Text = "Product Name";
-            // 
-            // Unit
-            // 
-            this.Unit.Text = "Unit";
             // 
             // lvRack
             // 
@@ -1016,6 +1006,22 @@
             // 
             this.epGoodsInward.ContainerControl = this;
             // 
+            // PICode
+            // 
+            this.PICode.Text = "P.I.Code";
+            // 
+            // TamilName
+            // 
+            this.TamilName.Text = "Product Name";
+            // 
+            // EnglishName
+            // 
+            this.EnglishName.Text = "Product Name";
+            // 
+            // Unit
+            // 
+            this.Unit.Text = "Unit";
+            // 
             // INV_Inward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1099,9 +1105,6 @@
         private System.Windows.Forms.TextBox txtStockLocation;
         private System.Windows.Forms.ComboBox cmbTransactionType;
         private System.Windows.Forms.ListView lvproduct;
-        private System.Windows.Forms.ColumnHeader PICode;
-        private System.Windows.Forms.ColumnHeader TamilName;
-        private System.Windows.Forms.ColumnHeader Unit;
         public System.Windows.Forms.ListView lvStockLocation;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
@@ -1134,5 +1137,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
         private System.Windows.Forms.CheckBox cbCompleted;
+        private System.Windows.Forms.ColumnHeader PICode;
+        private System.Windows.Forms.ColumnHeader TamilName;
+        private System.Windows.Forms.ColumnHeader EnglishName;
+        private System.Windows.Forms.ColumnHeader Unit;
     }
 }
