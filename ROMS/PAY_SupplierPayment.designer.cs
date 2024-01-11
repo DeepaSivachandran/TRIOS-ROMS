@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsSupplierPayment = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -42,11 +42,11 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBIFSCode = new System.Windows.Forms.Label();
+            this.lblBAccNo = new System.Windows.Forms.Label();
+            this.lblBAccName = new System.Windows.Forms.Label();
+            this.lblBranchName = new System.Windows.Forms.Label();
+            this.lblBankName = new System.Windows.Forms.Label();
             this.cmbPaymentType = new System.Windows.Forms.ComboBox();
             this.txtDPaymentType = new System.Windows.Forms.TextBox();
             this.lblRupee = new System.Windows.Forms.Label();
@@ -57,7 +57,7 @@
             this.dtChequeDate = new System.Windows.Forms.DateTimePicker();
             this.txtChequeDate = new System.Windows.Forms.TextBox();
             this.txtDChequeNo = new System.Windows.Forms.TextBox();
-            this.DGV_inward = new System.Windows.Forms.DataGridView();
+            this.grdSupplierPayment = new System.Windows.Forms.DataGridView();
             this.clmch = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmVoucherDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +88,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbgodown = new System.Windows.Forms.GroupBox();
+            this.lblschedule = new System.Windows.Forms.Label();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtTransactionno = new System.Windows.Forms.TextBox();
             this.lblTransactionNo = new System.Windows.Forms.Label();
@@ -98,12 +100,10 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epSupplier = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblschedule = new System.Windows.Forms.Label();
-            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierPayment)).BeginInit();
             this.grbSalesManDetails.SuspendLayout();
             this.grbSupplierDetails.SuspendLayout();
             this.grbgodown.SuspendLayout();
@@ -149,7 +149,7 @@
             this.pnlinward.Controls.Add(this.dtChequeDate);
             this.pnlinward.Controls.Add(this.txtChequeDate);
             this.pnlinward.Controls.Add(this.txtDChequeNo);
-            this.pnlinward.Controls.Add(this.DGV_inward);
+            this.pnlinward.Controls.Add(this.grdSupplierPayment);
             this.pnlinward.Controls.Add(this.grbSalesManDetails);
             this.pnlinward.Controls.Add(this.grbSupplierDetails);
             this.pnlinward.Controls.Add(this.txtRemark);
@@ -159,7 +159,7 @@
             this.pnlinward.Controls.Add(this.grbgodown);
             this.pnlinward.Location = new System.Drawing.Point(0, 29);
             this.pnlinward.Name = "pnlinward";
-            this.pnlinward.Size = new System.Drawing.Size(1354, 637);
+            this.pnlinward.Size = new System.Drawing.Size(1354, 643);
             this.pnlinward.TabIndex = 36;
             // 
             // cbch
@@ -182,7 +182,7 @@
             this.LV_Supplier.HideSelection = false;
             this.LV_Supplier.Location = new System.Drawing.Point(351, 69);
             this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(366, 98);
+            this.LV_Supplier.Size = new System.Drawing.Size(366, 164);
             this.LV_Supplier.TabIndex = 1111210;
             this.LV_Supplier.UseCompatibleStateImageBehavior = false;
             this.LV_Supplier.View = System.Windows.Forms.View.Details;
@@ -204,11 +204,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblBIFSCode);
+            this.groupBox1.Controls.Add(this.lblBAccNo);
+            this.groupBox1.Controls.Add(this.lblBAccName);
+            this.groupBox1.Controls.Add(this.lblBranchName);
+            this.groupBox1.Controls.Add(this.lblBankName);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(348, 515);
             this.groupBox1.Name = "groupBox1";
@@ -217,63 +217,64 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bank Details";
             // 
-            // label5
+            // lblBIFSCode
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 81);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 16);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "IFS Code";
+            this.lblBIFSCode.AutoSize = true;
+            this.lblBIFSCode.Location = new System.Drawing.Point(13, 81);
+            this.lblBIFSCode.Name = "lblBIFSCode";
+            this.lblBIFSCode.Size = new System.Drawing.Size(46, 16);
+            this.lblBIFSCode.TabIndex = 4;
+            this.lblBIFSCode.Text = "IFS Code";
             // 
-            // label4
+            // lblBAccNo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 65);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Account No.";
+            this.lblBAccNo.AutoSize = true;
+            this.lblBAccNo.Location = new System.Drawing.Point(13, 65);
+            this.lblBAccNo.Name = "lblBAccNo";
+            this.lblBAccNo.Size = new System.Drawing.Size(59, 16);
+            this.lblBAccNo.TabIndex = 3;
+            this.lblBAccNo.Text = "Account No.";
             // 
-            // label3
+            // lblBAccName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 49);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Account Name";
+            this.lblBAccName.AutoSize = true;
+            this.lblBAccName.Location = new System.Drawing.Point(13, 49);
+            this.lblBAccName.Name = "lblBAccName";
+            this.lblBAccName.Size = new System.Drawing.Size(70, 16);
+            this.lblBAccName.TabIndex = 2;
+            this.lblBAccName.Text = "Account Name";
             // 
-            // label2
+            // lblBranchName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Virudhunagar";
+            this.lblBranchName.AutoSize = true;
+            this.lblBranchName.Location = new System.Drawing.Point(13, 33);
+            this.lblBranchName.Name = "lblBranchName";
+            this.lblBranchName.Size = new System.Drawing.Size(65, 16);
+            this.lblBranchName.TabIndex = 1;
+            this.lblBranchName.Text = "Virudhunagar";
             // 
-            // label1
+            // lblBankName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tamilnadu Merchantile Bank";
+            this.lblBankName.AutoSize = true;
+            this.lblBankName.Location = new System.Drawing.Point(13, 17);
+            this.lblBankName.Name = "lblBankName";
+            this.lblBankName.Size = new System.Drawing.Size(131, 16);
+            this.lblBankName.TabIndex = 0;
+            this.lblBankName.Text = "Tamilnadu Merchantile Bank";
             // 
             // cmbPaymentType
             // 
             this.cmbPaymentType.FormattingEnabled = true;
-            this.cmbPaymentType.Items.AddRange(new object[] {
-            "Cash",
-            "Bank",
-            "Online"});
             this.cmbPaymentType.Location = new System.Drawing.Point(719, 549);
             this.cmbPaymentType.Name = "cmbPaymentType";
             this.cmbPaymentType.Size = new System.Drawing.Size(150, 27);
-            this.cmbPaymentType.TabIndex = 1111176;
+            this.cmbPaymentType.TabIndex = 6;
+            this.cmbPaymentType.Visible = false;
             this.cmbPaymentType.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentType_SelectedIndexChanged);
+            this.cmbPaymentType.Enter += new System.EventHandler(this.CmbPaymentType_Enter);
+            this.cmbPaymentType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPaymentType_KeyDown);
+            this.cmbPaymentType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPaymentType_KeyPress);
+            this.cmbPaymentType.Leave += new System.EventHandler(this.CmbPaymentType_Leave);
             // 
             // txtDPaymentType
             // 
@@ -287,6 +288,7 @@
             this.txtDPaymentType.TabIndex = 1111175;
             this.txtDPaymentType.TabStop = false;
             this.txtDPaymentType.Text = "Payment Type";
+            this.txtDPaymentType.Visible = false;
             // 
             // lblRupee
             // 
@@ -312,15 +314,15 @@
             // cmbPaymentmode
             // 
             this.cmbPaymentmode.FormattingEnabled = true;
-            this.cmbPaymentmode.Items.AddRange(new object[] {
-            "Cash",
-            "Bank",
-            "Online"});
             this.cmbPaymentmode.Location = new System.Drawing.Point(719, 522);
             this.cmbPaymentmode.Name = "cmbPaymentmode";
             this.cmbPaymentmode.Size = new System.Drawing.Size(150, 27);
-            this.cmbPaymentmode.TabIndex = 1111172;
+            this.cmbPaymentmode.TabIndex = 5;
             this.cmbPaymentmode.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentmode_SelectedIndexChanged);
+            this.cmbPaymentmode.Enter += new System.EventHandler(this.CmbPaymentmode_Enter);
+            this.cmbPaymentmode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPaymentmode_KeyDown);
+            this.cmbPaymentmode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPaymentmode_KeyPress);
+            this.cmbPaymentmode.Leave += new System.EventHandler(this.CmbPaymentmode_Leave);
             // 
             // txtDPaymentMode
             // 
@@ -338,10 +340,14 @@
             // txtChequeNo
             // 
             this.txtChequeNo.Location = new System.Drawing.Point(1016, 549);
+            this.txtChequeNo.MaxLength = 50;
             this.txtChequeNo.Name = "txtChequeNo";
             this.txtChequeNo.Size = new System.Drawing.Size(150, 27);
-            this.txtChequeNo.TabIndex = 1111169;
+            this.txtChequeNo.TabIndex = 8;
             this.txtChequeNo.Visible = false;
+            this.txtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
+            this.txtChequeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeNo_KeyDown);
+            this.txtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
             // dtChequeDate
             // 
@@ -350,8 +356,11 @@
             this.dtChequeDate.Location = new System.Drawing.Point(1016, 522);
             this.dtChequeDate.Name = "dtChequeDate";
             this.dtChequeDate.Size = new System.Drawing.Size(150, 27);
-            this.dtChequeDate.TabIndex = 1111168;
+            this.dtChequeDate.TabIndex = 7;
             this.dtChequeDate.Visible = false;
+            this.dtChequeDate.Enter += new System.EventHandler(this.DtChequeDate_Enter);
+            this.dtChequeDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtChequeDate_KeyDown);
+            this.dtChequeDate.Leave += new System.EventHandler(this.DtChequeDate_Leave);
             // 
             // txtChequeDate
             // 
@@ -381,24 +390,24 @@
             this.txtDChequeNo.Text = "Cheque No";
             this.txtDChequeNo.Visible = false;
             // 
-            // DGV_inward
+            // grdSupplierPayment
             // 
-            this.DGV_inward.AllowUserToAddRows = false;
-            this.DGV_inward.AllowUserToDeleteRows = false;
-            this.DGV_inward.AllowUserToResizeRows = false;
-            this.DGV_inward.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_inward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
-            this.DGV_inward.ColumnHeadersHeight = 30;
-            this.DGV_inward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_inward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdSupplierPayment.AllowUserToAddRows = false;
+            this.grdSupplierPayment.AllowUserToDeleteRows = false;
+            this.grdSupplierPayment.AllowUserToResizeRows = false;
+            this.grdSupplierPayment.BackgroundColor = System.Drawing.Color.White;
+            this.grdSupplierPayment.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle49.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle49.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle49.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle49.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle49.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle49.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSupplierPayment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle49;
+            this.grdSupplierPayment.ColumnHeadersHeight = 30;
+            this.grdSupplierPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdSupplierPayment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmch,
             this.clmdsno,
             this.clmVoucherDate,
@@ -412,28 +421,28 @@
             this.Column1,
             this.Column3,
             this.Column2});
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle20;
-            this.DGV_inward.EnableHeadersVisualStyles = false;
-            this.DGV_inward.GridColor = System.Drawing.Color.White;
-            this.DGV_inward.Location = new System.Drawing.Point(10, 134);
-            this.DGV_inward.Name = "DGV_inward";
-            this.DGV_inward.RowHeadersVisible = false;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White;
-            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle21;
-            this.DGV_inward.RowTemplate.Height = 25;
-            this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGV_inward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_inward.ShowRowErrors = false;
-            this.DGV_inward.Size = new System.Drawing.Size(1335, 374);
-            this.DGV_inward.TabIndex = 958809;
+            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle50.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle50.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle50.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSupplierPayment.DefaultCellStyle = dataGridViewCellStyle50;
+            this.grdSupplierPayment.EnableHeadersVisualStyles = false;
+            this.grdSupplierPayment.GridColor = System.Drawing.Color.White;
+            this.grdSupplierPayment.Location = new System.Drawing.Point(10, 134);
+            this.grdSupplierPayment.Name = "grdSupplierPayment";
+            this.grdSupplierPayment.RowHeadersVisible = false;
+            dataGridViewCellStyle51.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle51.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSupplierPayment.RowsDefaultCellStyle = dataGridViewCellStyle51;
+            this.grdSupplierPayment.RowTemplate.Height = 25;
+            this.grdSupplierPayment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.grdSupplierPayment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdSupplierPayment.ShowRowErrors = false;
+            this.grdSupplierPayment.Size = new System.Drawing.Size(1335, 374);
+            this.grdSupplierPayment.TabIndex = 958809;
             // 
             // clmch
             // 
@@ -574,7 +583,7 @@
             this.lblReturn.AutoSize = true;
             this.lblReturn.BackColor = System.Drawing.Color.White;
             this.lblReturn.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReturn.Location = new System.Drawing.Point(257, 103);
+            this.lblReturn.Location = new System.Drawing.Point(243, 103);
             this.lblReturn.Name = "lblReturn";
             this.lblReturn.Size = new System.Drawing.Size(37, 16);
             this.lblReturn.TabIndex = 1111222;
@@ -660,7 +669,10 @@
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(272, 97);
-            this.txtRemark.TabIndex = 958807;
+            this.txtRemark.TabIndex = 4;
+            this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
+            this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
+            this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
             // 
             // lblnarration
             // 
@@ -676,28 +688,32 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1176, 592);
+            this.btnSave.Location = new System.Drawing.Point(1176, 590);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 958810;
+            this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1270, 592);
+            this.btnClose.Location = new System.Drawing.Point(1270, 590);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 958811;
+            this.btnClose.TabIndex = 10;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // grbgodown
             // 
@@ -719,6 +735,26 @@
             this.grbgodown.TabIndex = 0;
             this.grbgodown.TabStop = false;
             // 
+            // lblschedule
+            // 
+            this.lblschedule.AutoSize = true;
+            this.lblschedule.Location = new System.Drawing.Point(695, 14);
+            this.lblschedule.Name = "lblschedule";
+            this.lblschedule.Size = new System.Drawing.Size(16, 20);
+            this.lblschedule.TabIndex = 1111211;
+            this.lblschedule.Text = "0";
+            this.lblschedule.Visible = false;
+            // 
+            // lblSupplierCode
+            // 
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.Location = new System.Drawing.Point(671, 14);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.TabIndex = 1111210;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
+            // 
             // cmbConcern
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -727,6 +763,7 @@
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(117, 27);
             this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
@@ -767,6 +804,7 @@
             this.dpDate.Name = "dpDate";
             this.dpDate.Size = new System.Drawing.Size(108, 27);
             this.dpDate.TabIndex = 1;
+            this.dpDate.ValueChanged += new System.EventHandler(this.DpDate_ValueChanged);
             this.dpDate.Enter += new System.EventHandler(this.DpDate_Enter);
             this.dpDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpDate_KeyDown);
             this.dpDate.Leave += new System.EventHandler(this.DpDate_Leave);
@@ -813,26 +851,6 @@
             // 
             this.epSupplier.ContainerControl = this;
             // 
-            // lblschedule
-            // 
-            this.lblschedule.AutoSize = true;
-            this.lblschedule.Location = new System.Drawing.Point(695, 14);
-            this.lblschedule.Name = "lblschedule";
-            this.lblschedule.Size = new System.Drawing.Size(16, 20);
-            this.lblschedule.TabIndex = 1111211;
-            this.lblschedule.Text = "0";
-            this.lblschedule.Visible = false;
-            // 
-            // lblSupplierCode
-            // 
-            this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(671, 14);
-            this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
-            this.lblSupplierCode.TabIndex = 1111210;
-            this.lblSupplierCode.Text = "0";
-            this.lblSupplierCode.Visible = false;
-            // 
             // PAY_SupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -856,7 +874,7 @@
             this.pnlinward.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierPayment)).EndInit();
             this.grbSalesManDetails.ResumeLayout(false);
             this.grbSalesManDetails.PerformLayout();
             this.grbSupplierDetails.ResumeLayout(false);
@@ -877,7 +895,7 @@
         private System.Windows.Forms.GroupBox grbSupplierDetails;
         private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.Label lblnarration;
-        public System.Windows.Forms.DataGridView DGV_inward;
+        public System.Windows.Forms.DataGridView grdSupplierPayment;
         private System.Windows.Forms.GroupBox grbgodown;
         private System.Windows.Forms.Label lblSupplier;
         private System.Windows.Forms.Label lblEdit;
@@ -914,11 +932,11 @@
         private System.Windows.Forms.ComboBox cmbPaymentType;
         private System.Windows.Forms.TextBox txtDPaymentType;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblBIFSCode;
+        private System.Windows.Forms.Label lblBAccNo;
+        private System.Windows.Forms.Label lblBAccName;
+        private System.Windows.Forms.Label lblBranchName;
+        private System.Windows.Forms.Label lblBankName;
         private System.Windows.Forms.ComboBox cmbConcern;
         public System.Windows.Forms.ListView LV_Supplier;
         private System.Windows.Forms.ColumnHeader columnHeader5;
