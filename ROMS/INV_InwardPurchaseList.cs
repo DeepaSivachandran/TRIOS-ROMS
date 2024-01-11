@@ -49,6 +49,7 @@ namespace ROMS
                 MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_SLID"].Value);
                 MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPID"].Value);
                 MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPSCID"].Value);
+                MainForm.objINV_InwardPurchase.varStausId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value);
                 MainForm.objINV_InwardPurchase.varEditFlag = 1;
 
                 MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Concern"].Value);
@@ -96,7 +97,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnCmbConcern()
+        public void udfnCmbDropDown()
         {
             try
             {
@@ -122,6 +123,10 @@ namespace ROMS
                         }
                     }
                 }
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", " STS_ModuleID=13 OR STSID=0 ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=55 OR MSTID=0", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
             }
             catch (Exception ex)
             {
@@ -133,10 +138,36 @@ namespace ROMS
         {
             try
             {
-                udfnCmbConcern();
+                udfnCmbDropDown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                udfnDate();
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                this.ActiveControl = cmbConcern;
                 udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDate()
+        {
+            try
+            {
+                //SPDataService objDServ = new SPDataService();
+                //DataSet objd = new DataSet();
+                //objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 1);
+                //if (objd.Tables[0].Rows.Count != 0)
+                //{
+                //    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    //  dpDcFromDate.MaxDate = varmaxdate;
+                //    dpFromDate.Text = Convert.ToString(vardate);
+                //    dpToDate.MinDate = vardate;
+                //}
             }
             catch (Exception ex)
             {
@@ -382,7 +413,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbEntryType.Focus();
                 }
             }
             catch (Exception ex)
@@ -502,6 +533,7 @@ namespace ROMS
                     objTRN_GoodsInward_Purchase.paraSLID = Convert.ToInt32(lblStockLocationCode.Text);
                     objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                     objTRN_GoodsInward_Purchase.paraProductId = Convert.ToInt32(varPRID);
+                    objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                     objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objdserv.CloseConnection();
                     if (objDs != null)
@@ -514,25 +546,27 @@ namespace ROMS
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
                                 grdInwardList.DataSource = objDs.Tables[0];
-                                //grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                //grdInwardList.Columns["Inward No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                //grdInwardList.Columns["Inward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                //grdInwardList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                //grdInwardList.Columns["Concern"].Width = 150;
-                                //grdInwardList.Columns["Voucher Date"].Width = 100;
-                                //grdInwardList.Columns["Voucher No."].Width = 100;
-                                //grdInwardList.Columns["Supplier"].Width = 300;
-                                //grdInwardList.Columns["Total Products in Invoice"].Width = 100;
-                                //grdInwardList.Columns["Location"].Width = 130;
-                                /////   grdInwardQueueList.Columns["Created By"].Width = 110;
-                                //grdInwardList.Columns["Created On"].Width = 140;
-                                //grdInwardList.Columns["GSTIN"].Width = 190;
-                                //// grdInwardQueueList.Columns["Status"].Width = 100;
-                                //grdInwardList.Columns["S.No."].Width = 80;
-                                //grdInwardList.Columns["GRNID"].Visible = false;
-                                //grdInwardList.Columns["SPID"].Visible = false;
-                                ////  grdInwardQueueList.Columns["Status ID"].Visible = false;
-                                //grdInwardList.Columns["SPSCID"].Visible = false;
+                                grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdInwardList.Columns["Inward No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdInwardList.Columns["Inward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdInwardList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdInwardList.Columns["Concern"].Width = 100;
+                                grdInwardList.Columns["Voucher Date"].Width = 100;
+                                grdInwardList.Columns["Voucher No."].Width = 100;
+                                grdInwardList.Columns["Supplier"].Width = 300;
+                                grdInwardList.Columns["Total Products in Invoice"].Width = 100;
+                                grdInwardList.Columns["Location"].Width = 130;
+                                grdInwardList.Columns["Created By"].Width = 110;
+                                grdInwardList.Columns["Status"].Width = 110;
+                              //  grdInwardList.Columns["Created On"].Width = 140;
+                                grdInwardList.Columns["GSTIN"].Width = 190;
+                                // grdInwardQueueList.Columns["Status"].Width = 100;
+                                grdInwardList.Columns["S.No."].Width = 80;
+                                grdInwardList.Columns["GIP_GRNID"].Visible = false;
+                                grdInwardList.Columns["SPID"].Visible = false;
+                               
+                                grdInwardList.Columns["SPSCID"].Visible = false;
+                                grdInwardList.Columns["Status ID"].Visible = false;
                             }
                             else
                             {
@@ -683,6 +717,7 @@ namespace ROMS
                             objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
                             objTRN_GoodsInward_Purchase.paraOriginator = varorginator;
                             objTRN_GoodsInward_Purchase.paraHostName = MainForm.pbHostName;
+                            objTRN_GoodsInward_Purchase.paraGRNID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_GRNID"].Value.ToString());
                             objTRN_GoodsInward_Purchase.paraDeleteFlag = 0;
                             objTRN_GoodsInward_Purchase.paraInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value.ToString());
                             SPDataService objspdservice = new SPDataService();
@@ -980,7 +1015,7 @@ namespace ROMS
             {
                 lvProduct.BringToFront();
                 udfnProductEvent();
-                btnView.Focus();
+                cmbEntryType.Focus();
             }
             catch (Exception ex)
             {
@@ -1176,6 +1211,142 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbStatus.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEntryType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbEntryType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEntryType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbEntryType.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
         {
             try
@@ -1243,7 +1414,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnProductEvent();
-                    btnView.Focus();
+                    cmbEntryType.Focus();
                 }
             }
             catch (Exception ex)

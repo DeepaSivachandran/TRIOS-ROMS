@@ -15,7 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0;
+        public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0,varStausId=0;
         DataTable dtInwardPurchase = new DataTable();
         public INV_InwardPurchase()
         {
@@ -233,11 +233,12 @@ namespace ROMS
                         int varStatusID = 0;
                         if (grdGrnlist.Rows.Count > 0)
                         {
-                            if (varSupplierId != 0 && varLocationId != 0 && varGRNId != 0)
+                            if (varSupplierId != 0 && varLocationId != 0 )
                             {
                                 string result = "", varorginator = "Inward from GRN";
                                 int varviewtype = 0;
-
+                                if(varEditFlag==1)
+                                { varviewtype = 1; }
                                 if (chkCompleted.Checked == true)
                                 { varStatusID = 46; }
                                 else { varStatusID = 45; }
@@ -252,9 +253,12 @@ namespace ROMS
                                 objTRN_GoodsInward_Purchase.paraGIP_NO = Convert.ToString(txtInwardNo.Text);
                                 objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(varConcernId);
                                 objTRN_GoodsInward_Purchase.paraGRNID = Convert.ToInt32(varGRNId);
+                                objTRN_GoodsInward_Purchase.paraInwardId = varInwardId;
                                 objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(varStatusID);
                                 objTRN_GoodsInward_Purchase.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
                                 objTRN_GoodsInward_Purchase.paraLocationID = Convert.ToInt32(varLocationId);
+                                objTRN_GoodsInward_Purchase.ParaSupplierId = Convert.ToInt32(varSupplierId);
+                                objTRN_GoodsInward_Purchase.ParaScheduleId = Convert.ToInt32(varScheduleId);
 
                                 objTRN_GoodsInward_Purchase.paraTRN_GoodsInward_Purchase_Products= dtInwardPurchase;
                                 SPDataService objspdservice = new SPDataService();
@@ -471,6 +475,14 @@ namespace ROMS
                 {
                     int varviewtype = 0;
                     if (varEditFlag == 1) { varviewtype = 2; }
+                    if(varStausId==45)
+                    {
+                        chkCompleted.Checked = false;
+                    }
+                    else if (varStausId==46)
+                    {
+                        chkCompleted.Checked = true;
+                    }
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
                     TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
@@ -537,6 +549,11 @@ namespace ROMS
                                     grdGrnlist.Columns["GIPPRID"].Visible = false;
                                     grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
                                     grdGrnlist.Columns["GIPPR_GIPID"].Visible = false;
+                                    if(varStausId==46)
+                                    {
+                                        grdGrnlist.ReadOnly = true;
+                                        btnSave.Enabled = false;
+                                    }
                                 }
                             }
                             else
