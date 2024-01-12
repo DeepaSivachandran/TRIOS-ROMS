@@ -534,6 +534,7 @@ namespace ROMS
                     objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                     objTRN_GoodsInward_Purchase.paraProductId = Convert.ToInt32(varPRID);
                     objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                    objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbEntryType.SelectedValue);
                     objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objdserv.CloseConnection();
                     if (objDs != null)
@@ -550,20 +551,23 @@ namespace ROMS
                                 grdInwardList.Columns["Inward No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Inward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdInwardList.Columns["Concern"].Width = 100;
+                                grdInwardList.Columns["Concern"].Width = 80;
                                 grdInwardList.Columns["Voucher Date"].Width = 100;
                                 grdInwardList.Columns["Voucher No."].Width = 100;
-                                grdInwardList.Columns["Supplier"].Width = 300;
-                                grdInwardList.Columns["Total Products in Invoice"].Width = 100;
+                                grdInwardList.Columns["Supplier"].Width = 250;
+                                grdInwardList.Columns["Total Products in Invoice"].Width = 160;
                                 grdInwardList.Columns["Location"].Width = 130;
                                 grdInwardList.Columns["Created By"].Width = 110;
                                 grdInwardList.Columns["Status"].Width = 110;
                               //  grdInwardList.Columns["Created On"].Width = 140;
-                                grdInwardList.Columns["GSTIN"].Width = 190;
+                                grdInwardList.Columns["GSTIN"].Width = 120;
                                 // grdInwardQueueList.Columns["Status"].Width = 100;
-                                grdInwardList.Columns["S.No."].Width = 80;
+                                grdInwardList.Columns["S.No."].Width = 60;
                                 grdInwardList.Columns["GIP_GRNID"].Visible = false;
+                                grdInwardList.Columns["GIP_COMID"].Visible = false;
+                                grdInwardList.Columns["GIP_SLID"].Visible = false;
                                 grdInwardList.Columns["SPID"].Visible = false;
+                                grdInwardList.Columns["GIPID"].Visible = false;
                                
                                 grdInwardList.Columns["SPSCID"].Visible = false;
                                 grdInwardList.Columns["Status ID"].Visible = false;

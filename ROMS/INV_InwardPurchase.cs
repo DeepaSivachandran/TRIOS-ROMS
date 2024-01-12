@@ -235,9 +235,11 @@ namespace ROMS
                         {
                             if (varSupplierId != 0 && varLocationId != 0 )
                             {
-                                string result = "", varorginator = "Inward from GRN";
-                                int varviewtype = 0;
-                                if(varEditFlag==1)
+                                string result = "", varorginator = "Inward from GRN"; 
+                                int varviewtype = 0,varTypeID=0;
+                                if(varEditFlag==0)
+                                { varviewtype = 0;  varTypeID = 174; }
+                                else if(varEditFlag==1)
                                 { varviewtype = 1; }
                                 if (chkCompleted.Checked == true)
                                 { varStatusID = 46; }
@@ -259,7 +261,7 @@ namespace ROMS
                                 objTRN_GoodsInward_Purchase.paraLocationID = Convert.ToInt32(varLocationId);
                                 objTRN_GoodsInward_Purchase.ParaSupplierId = Convert.ToInt32(varSupplierId);
                                 objTRN_GoodsInward_Purchase.ParaScheduleId = Convert.ToInt32(varScheduleId);
-
+                                objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(varTypeID);
                                 objTRN_GoodsInward_Purchase.paraTRN_GoodsInward_Purchase_Products= dtInwardPurchase;
                                 SPDataService objspdservice = new SPDataService();
                                 result = objspdservice.udfnGoodsInwardPurchase(objTRN_GoodsInward_Purchase);
@@ -268,19 +270,14 @@ namespace ROMS
                                 if (varvalue[0] == "3")
                                 {
                                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    //this.ActiveControl = txtSupplier;
-                                    //if(btnSave.Text=="Save")
-                                    //{
-                                    //   udfnClear();
-                                    //}
-                                    //else
-                                    //{
-                                    //    varCloseFlag = 1;
-                                    //    udfnclose();
-                                    //}
                                   //  varCloseFlag = 1;
                                     udfnclose();
-                                    MainForm.objINV_InwardPurchaseList.udfnList();
+                                    if (varEditFlag == 0)
+                                    {
+                                        MainForm.objINV_InwardPurchaseList.udfnList();
+                                    }
+                                    else
+                                    { MainForm.objINV_InwardQueueList.udfnList(); }
                                 }
                                 else if (varvalue[0] == "4")
                                 {
@@ -553,6 +550,11 @@ namespace ROMS
                                     {
                                         grdGrnlist.ReadOnly = true;
                                         btnSave.Enabled = false;
+                                        chkCompleted.Enabled = false;
+                                    }
+                                    if (objDs.Tables[1].Rows.Count != 0)
+                                    {
+                                        txtRemark.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GIP_Remarks"]);
                                     }
                                 }
                             }

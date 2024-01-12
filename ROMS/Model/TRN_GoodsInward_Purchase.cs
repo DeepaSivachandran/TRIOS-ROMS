@@ -11,6 +11,7 @@ namespace ROMS.Model
     {
         public int ViewType { get; set; } = 0;
         public int paraGRNID { get; set; } = 0;
+        public int paraTypeID { get; set; } = 0;
         public int paraCompanyId { get; set; } = 0;
         public int paraProductId { get; set; } = 0;
         public int paraDeleteFlag { get; set; } = 0;
