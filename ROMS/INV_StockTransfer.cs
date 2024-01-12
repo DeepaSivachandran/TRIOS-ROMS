@@ -229,7 +229,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
                 udfnCmbConcern();
                 dpTrannsferDate.MaxDate = MainForm.pbCurrentDate;
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 if (varStockTransferID != 0)
                 {
                     udfnEdit();

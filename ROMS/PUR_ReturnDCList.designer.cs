@@ -561,6 +561,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Return DC";
             this.Load += new System.EventHandler(this.PUR_ReturnDCList_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_ReturnDCList_KeyDown);
             this.tsPurchaseInvoiceList.ResumeLayout(false);
             this.tsPurchaseInvoiceList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReturnDCList)).EndInit();

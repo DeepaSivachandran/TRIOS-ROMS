@@ -96,7 +96,7 @@ namespace ROMS
                     {
                         udfnTransferNo();
                         dpDate.Value = MainForm.pbCurrentDate;
-                        cmbConcern.SelectedValue = 1;
+                        cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                     }
                     else
                     {
