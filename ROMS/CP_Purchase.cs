@@ -285,11 +285,11 @@ namespace ROMS
                 {
                     if (objDT.Tables.Count > 0)
                     {
-                        if (objDT.Tables[0].Rows.Count > 0)
+                        if (objDT.Tables[1].Rows.Count > 0)
                         {
                             cmbPONo.ValueMember = "poid";
                             cmbPONo.DisplayMember = "PO_No";
-                            cmbPONo.DataSource = objDT.Tables[0];
+                            cmbPONo.DataSource = objDT.Tables[1];
                         }
                     }
                 }
@@ -1043,7 +1043,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbTransactionType.Focus();
+                    txtInvoiceamt.Focus();
                 }
             }
             catch (Exception ex)
@@ -2387,6 +2387,12 @@ namespace ROMS
                     }
                     if (varflag == 0)
                     {
+                        string varRkId = "0";
+                        if (cmbrack.Enabled == true)
+                        {
+                            varRkId = Convert.ToString(cmbrack.SelectedValue);
+                        }
+                        else { varRkId = "0"; }
                         for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                         {
                             if (Convert.ToInt32(lblProductcode.Text) == Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value))
@@ -2399,7 +2405,7 @@ namespace ROMS
                                 string varRKID = Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value).Trim();
                                 if (txtMrp.Text.Trim() == varMRP && varExpiryDate == varNewExpiryDate && txtBatchno.Text.Trim() == varBatch)
                                 {
-                                    if (lblLocationcode.Text == varSLID && Convert.ToString(cmbrack.SelectedValue) == varRKID)
+                                    if (lblLocationcode.Text == varSLID && varRkId == varRKID)
                                     {
                                         if (Convert.ToString(cmbPONo.SelectedValue) == varPoid)
                                         {
@@ -2930,7 +2936,7 @@ namespace ROMS
                                     {
                                         if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmPoid"].Value) == Convert.ToInt32(varPoid))
                                         {
-                                            if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["slid"].Value) == Convert.ToInt32(varSLID) && Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmPoid"].Value) == Convert.ToInt32(rkid))
+                                            if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["slid"].Value) == Convert.ToInt32(varSLID) && Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["rkid"].Value) == Convert.ToInt32(varRKID))
                                             {
                                                 MessageBox.Show("Product already exists!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                                 grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
@@ -3105,6 +3111,85 @@ namespace ROMS
             }
             catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceamt_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtInvoiceamt.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceamt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtInvoiceamt.BackColor = Color.White;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceamt_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbTransactionType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceamt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            { 
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                } 
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -3803,6 +3888,7 @@ namespace ROMS
             finally
             {
                 lvproduct.Visible = false;
+                lvSourceLocation.Visible = false;
             }
         }
 

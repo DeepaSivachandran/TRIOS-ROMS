@@ -43,8 +43,7 @@ namespace ROMS
         private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
             try
-            {
-
+            { 
                 tbSupplierDetails.Enabled = false;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
@@ -52,7 +51,6 @@ namespace ROMS
                 objDataBind = null;
                 this.ActiveControl = txtSupplier;
                 udfnDropdownLoad();
-                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
                 if (btnSave.Text == "Save")
                 {
                     btnViewedProduct.Enabled = false;
@@ -133,7 +131,8 @@ namespace ROMS
             }
             finally
             {
-                lblPC.Text = grdsupplieradd.Rows.Count.ToString();
+                lblPC.Text = grdsupplieradd.Rows.Count.ToString(); 
+                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
             }
         }
         public void udfnEditLoad()
@@ -864,7 +863,7 @@ namespace ROMS
                 else
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(41);
+                    string varMessage = objDServ.udfnGetMessages(38);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -1623,6 +1622,10 @@ namespace ROMS
                                     ClearSupplier();
                                     lblPC.Text = "0";
                                 }
+                                else
+                                {
+                                   cmbConcern.SelectedValue= varcomid;
+                                }
                             }
                         }
                     }
@@ -1653,6 +1656,7 @@ namespace ROMS
                 txtSalesManwhatsapp.Text = "";
                 tbSupplierDetails.Enabled = false;
                 grdPendingorder.Rows.Clear();
+                grdpossiblesupplier.Rows.Clear();
             }
             catch (Exception ex)
             {
@@ -1798,12 +1802,19 @@ namespace ROMS
                     txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSuppliername.ShowAlways = true;
                     tpSuppliername.Show("Please enter supplier.", txtSupplier, 5000);
+                    lblSupplierCode.Text = "0";
+                    lblschedule.Text = "0";
+                    grdsupplieradd.Rows.Clear();
+                    ClearSupplier();
+                    lblPC.Text = "0";
+                    lblNoRecordsFound.Visible = true;
                 }
                 else
                 {
                     errPO.Clear();
                     txtSupplier.BackColor = Color.White;
                     tpSuppliername.Active = false;
+                    lblNoRecordsFound.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1922,7 +1933,7 @@ namespace ROMS
                         tpSuppliername.Show("Invalid supplier.", txtSupplier, 5000);
                         lblSupplierCode.Text = "0";
                         lblschedule.Text = "0";
-                        grdsupplieradd.Rows.Clear();
+                        grdsupplieradd.DataSource = null;
                         ClearSupplier();
                         lblPC.Text = "0";
 
