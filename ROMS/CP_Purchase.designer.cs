@@ -277,7 +277,7 @@
             this.txtRDPercentageCheck = new System.Windows.Forms.TextBox();
             this.txtDGPercentageCheck = new System.Windows.Forms.TextBox();
             this.btnRemarks = new System.Windows.Forms.Button();
-            this.btnDamage = new System.Windows.Forms.Button();
+            this.btnDC = new System.Windows.Forms.Button();
             this.textBox23 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -286,6 +286,8 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
             this.errPurchaseentry = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtInvoiceamt = new System.Windows.Forms.TextBox();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -342,7 +344,7 @@
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.groupBox10);
             this.panel1.Controls.Add(this.btnRemarks);
-            this.panel1.Controls.Add(this.btnDamage);
+            this.panel1.Controls.Add(this.btnDC);
             this.panel1.Controls.Add(this.textBox23);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.btnClose);
@@ -386,11 +388,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnViewDataView);
             this.groupBox1.Controls.Add(this.lv_Broker);
-            this.groupBox1.Controls.Add(this.LV_Supplier);
+            this.groupBox1.Controls.Add(this.txtInvoiceamt);
+            this.groupBox1.Controls.Add(this.label35);
+            this.groupBox1.Controls.Add(this.btnViewDataView);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.cmbConcern);
+            this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.lblGodown);
             this.groupBox1.Controls.Add(this.tbDetails);
@@ -483,7 +487,7 @@
             this.columnHeader6});
             this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lv_Broker.HideSelection = false;
-            this.lv_Broker.Location = new System.Drawing.Point(290, 101);
+            this.lv_Broker.Location = new System.Drawing.Point(382, 105);
             this.lv_Broker.Name = "lv_Broker";
             this.lv_Broker.Size = new System.Drawing.Size(468, 43);
             this.lv_Broker.TabIndex = 1111223;
@@ -1725,7 +1729,7 @@
             // 
             // txtGstin
             // 
-            this.txtGstin.Location = new System.Drawing.Point(435, 79);
+            this.txtGstin.Location = new System.Drawing.Point(522, 79);
             this.txtGstin.MaxLength = 15;
             this.txtGstin.Name = "txtGstin";
             this.txtGstin.Size = new System.Drawing.Size(153, 25);
@@ -1737,7 +1741,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(435, 58);
+            this.label28.Location = new System.Drawing.Point(522, 58);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(36, 17);
             this.label28.TabIndex = 1111193;
@@ -1873,7 +1877,7 @@
             // 
             // txtBroker
             // 
-            this.txtBroker.Location = new System.Drawing.Point(292, 79);
+            this.txtBroker.Location = new System.Drawing.Point(381, 79);
             this.txtBroker.Name = "txtBroker";
             this.txtBroker.Size = new System.Drawing.Size(139, 25);
             this.txtBroker.TabIndex = 8;
@@ -1885,7 +1889,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(292, 58);
+            this.label13.Location = new System.Drawing.Point(379, 58);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(40, 17);
             this.label13.TabIndex = 1111137;
@@ -1941,7 +1945,7 @@
             // cmbTransactionType
             // 
             this.cmbTransactionType.FormattingEnabled = true;
-            this.cmbTransactionType.Location = new System.Drawing.Point(184, 79);
+            this.cmbTransactionType.Location = new System.Drawing.Point(272, 79);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(104, 25);
             this.cmbTransactionType.TabIndex = 7;
@@ -1954,7 +1958,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(184, 58);
+            this.label9.Location = new System.Drawing.Point(272, 58);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(88, 17);
             this.label9.TabIndex = 23;
@@ -2114,7 +2118,7 @@
             // 
             // txtInvoiceNo
             // 
-            this.txtInvoiceNo.Location = new System.Drawing.Point(90, 79);
+            this.txtInvoiceNo.Location = new System.Drawing.Point(88, 79);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
             this.txtInvoiceNo.Size = new System.Drawing.Size(90, 25);
             this.txtInvoiceNo.TabIndex = 6;
@@ -2152,6 +2156,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.label3.Location = new System.Drawing.Point(90, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 17);
@@ -2702,7 +2707,7 @@
             // chkInvoice
             // 
             this.chkInvoice.AutoSize = true;
-            this.chkInvoice.Location = new System.Drawing.Point(592, 81);
+            this.chkInvoice.Location = new System.Drawing.Point(677, 81);
             this.chkInvoice.Name = "chkInvoice";
             this.chkInvoice.Size = new System.Drawing.Size(88, 21);
             this.chkInvoice.TabIndex = 10;
@@ -2781,19 +2786,19 @@
             this.btnRemarks.UseVisualStyleBackColor = true;
             this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
             // 
-            // btnDamage
+            // btnDC
             // 
-            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDamage.Image = global::ROMS.Properties.Resources.deliverychallan24;
-            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDamage.Location = new System.Drawing.Point(571, 609);
-            this.btnDamage.Name = "btnDamage";
-            this.btnDamage.Size = new System.Drawing.Size(98, 29);
-            this.btnDamage.TabIndex = 1111181;
-            this.btnDamage.Text = "Return DC";
-            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDamage.UseVisualStyleBackColor = true;
-            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
+            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
+            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDC.Location = new System.Drawing.Point(571, 609);
+            this.btnDC.Name = "btnDC";
+            this.btnDC.Size = new System.Drawing.Size(98, 29);
+            this.btnDC.TabIndex = 1111181;
+            this.btnDC.Text = "Return DC";
+            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDC.UseVisualStyleBackColor = true;
+            this.btnDC.Click += new System.EventHandler(this.BtnDamage_Click);
             // 
             // textBox23
             // 
@@ -2838,6 +2843,7 @@
             this.btnSave.Text = "Draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -2866,6 +2872,30 @@
             // errPurchaseentry
             // 
             this.errPurchaseentry.ContainerControl = this;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.label35.Location = new System.Drawing.Point(180, 59);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(63, 17);
+            this.label35.TabIndex = 1111226;
+            this.label35.Text = "Invoice Amt";
+            // 
+            // txtInvoiceamt
+            // 
+            this.txtInvoiceamt.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtInvoiceamt.Location = new System.Drawing.Point(180, 79);
+            this.txtInvoiceamt.MaxLength = 7;
+            this.txtInvoiceamt.Name = "txtInvoiceamt";
+            this.txtInvoiceamt.Size = new System.Drawing.Size(90, 25);
+            this.txtInvoiceamt.TabIndex = 1111225;
+            this.txtInvoiceamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtInvoiceamt.Enter += new System.EventHandler(this.TxtInvoiceamt_Enter);
+            this.txtInvoiceamt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceamt_KeyDown);
+            this.txtInvoiceamt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtInvoiceamt_KeyPress);
+            this.txtInvoiceamt.Leave += new System.EventHandler(this.TxtInvoiceamt_Leave);
             // 
             // CP_Purchase
             // 
@@ -3016,7 +3046,7 @@
         private System.Windows.Forms.Label lblYYYY;
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDD;
-        private System.Windows.Forms.Button btnDamage;
+        private System.Windows.Forms.Button btnDC;
         public System.Windows.Forms.Button btnRemarks;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label23;
@@ -3173,5 +3203,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn slid;
         private System.Windows.Forms.DataGridViewTextBoxColumn rkid;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmrkcount;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox txtInvoiceamt;
     }
 }

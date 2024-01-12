@@ -285,11 +285,11 @@ namespace ROMS
                 {
                     if (objDT.Tables.Count > 0)
                     {
-                        if (objDT.Tables[0].Rows.Count > 0)
+                        if (objDT.Tables[1].Rows.Count > 0)
                         {
                             cmbPONo.ValueMember = "poid";
                             cmbPONo.DisplayMember = "PO_No";
-                            cmbPONo.DataSource = objDT.Tables[0];
+                            cmbPONo.DataSource = objDT.Tables[1];
                         }
                     }
                 }
@@ -1043,7 +1043,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbTransactionType.Focus();
+                    txtInvoiceamt.Focus();
                 }
             }
             catch (Exception ex)
@@ -3111,6 +3111,85 @@ namespace ROMS
             }
             catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceamt_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtInvoiceamt.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceamt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtInvoiceamt.BackColor = Color.White;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceamt_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbTransactionType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceamt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            { 
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                } 
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

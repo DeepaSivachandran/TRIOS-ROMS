@@ -863,7 +863,7 @@ namespace ROMS
                 else
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(41);
+                    string varMessage = objDServ.udfnGetMessages(38);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -1622,6 +1622,10 @@ namespace ROMS
                                     ClearSupplier();
                                     lblPC.Text = "0";
                                 }
+                                else
+                                {
+                                   cmbConcern.SelectedValue= varcomid;
+                                }
                             }
                         }
                     }
@@ -1652,6 +1656,7 @@ namespace ROMS
                 txtSalesManwhatsapp.Text = "";
                 tbSupplierDetails.Enabled = false;
                 grdPendingorder.Rows.Clear();
+                grdpossiblesupplier.Rows.Clear();
             }
             catch (Exception ex)
             {
@@ -1797,12 +1802,19 @@ namespace ROMS
                     txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSuppliername.ShowAlways = true;
                     tpSuppliername.Show("Please enter supplier.", txtSupplier, 5000);
+                    lblSupplierCode.Text = "0";
+                    lblschedule.Text = "0";
+                    grdsupplieradd.Rows.Clear();
+                    ClearSupplier();
+                    lblPC.Text = "0";
+                    lblNoRecordsFound.Visible = true;
                 }
                 else
                 {
                     errPO.Clear();
                     txtSupplier.BackColor = Color.White;
                     tpSuppliername.Active = false;
+                    lblNoRecordsFound.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1921,7 +1933,7 @@ namespace ROMS
                         tpSuppliername.Show("Invalid supplier.", txtSupplier, 5000);
                         lblSupplierCode.Text = "0";
                         lblschedule.Text = "0";
-                        grdsupplieradd.Rows.Clear();
+                        grdsupplieradd.DataSource = null;
                         ClearSupplier();
                         lblPC.Text = "0";
 
