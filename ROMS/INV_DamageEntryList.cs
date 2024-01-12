@@ -1006,6 +1006,7 @@ namespace ROMS
                             grdDamageEntryList.DataSource = objDs.Tables[0];
                             grdDamageEntryList.Columns["ConcernID"].Visible = false;
                             grdDamageEntryList.Columns["StatusID"].Visible = false;
+                            grdDamageEntryList.Columns["PRStatusID"].Visible = false;
                             grdDamageEntryList.Columns["DMID"].Visible = false;
                             //grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
@@ -1074,6 +1075,7 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
+                DGV_SearchGrid.Columns["PRStatusID"].Visible = false;
                 DGV_SearchGrid.Columns["DMID"].Visible = false;
                 DGV_SearchGrid.Columns["clmPrint"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
