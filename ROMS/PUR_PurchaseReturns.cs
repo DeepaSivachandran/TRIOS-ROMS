@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpAmount = new ToolTip();
 
         public int varReturnDCID = 0, varCloseFlag = 0;
-        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varModifiedFlag = 0, varDebitDCID=0, varEditFlag=0;
+        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varModifiedFlag = 0, varDebitDCID=0, varEditFlag=0,varGrnStatus=0;
         public string varSuppliervalue = "";
         DataTable dtPurchaseReturnDC = new DataTable();
         public DataTable dtExchangeProducts = new DataTable();
@@ -380,7 +380,6 @@ namespace ROMS
                     if(varEditFlag==1)
                     {
                         varReturnDCID = varDebitDCID;
-
                     }
                     EditLoad();
                     if (varStatusId == 39)
@@ -396,7 +395,7 @@ namespace ROMS
                     else
                     {
                         grpReason.Enabled = false;
-                        if (varStatusId == 16)
+                        if (varStatusId == 16 && varGrnStatus!=17 && varGrnStatus!=-1)
                         {
                             grpReason.Enabled = true;
                             //lblStatus.Text = "Linked with GRN";
@@ -570,6 +569,7 @@ namespace ROMS
                                 txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
                                 varStatusId = Convert.ToInt32(objDs.Tables[0].Rows[0]["Status ID"]);
                                 lblStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
+                                varGrnStatus = Convert.ToInt32(objDs.Tables[0].Rows[0]["GRN Status"]);
                                 udfnClosingDropdown();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
@@ -603,6 +603,7 @@ namespace ROMS
                                     grdReturnDC.Columns["UTID"].Visible = false;
                                     grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                 
                                 }
                                 else
                                 {
