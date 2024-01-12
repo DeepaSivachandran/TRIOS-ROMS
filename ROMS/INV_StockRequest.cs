@@ -86,6 +86,7 @@ namespace ROMS
                 dtStock.Columns.Add("SRQ_SLID", typeof(int));
                 dtStock.Columns.Add("SRQ_RKID", typeof(int));
                 dtStock.Columns.Add("SRQ_RequestedQty", typeof(float));
+                dtStock.Columns.Add("SRQ_ReceivedQty", typeof(float));
                 udfnCmbConcern();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=11 AND STSID IN(28,29)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -175,7 +176,7 @@ namespace ROMS
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
                                 grdStockRequest.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["STOCK"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
-                                dtStock.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), 0, 0, Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]));
+                                dtStock.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), 0, 0, Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]),0);
                             }
                             for (int j = 0; j < grdStockRequest.Rows.Count; j++)
                             {
@@ -775,7 +776,7 @@ namespace ROMS
                             {
                                 grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[2].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[2].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[2].Rows[i]["EMP_Name"]), Convert.ToString(txtStockQty.Text), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Symbol"]),Convert.ToString(lblProduct.Text));
                             }
-                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),0,0,Convert.ToString(txtRequiredQty.Text));
+                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),0,0,Convert.ToString(txtRequiredQty.Text),0);
                             for(int j=0;j<grdStockRequest.Rows.Count;j++)
                             {
                                 if (varProducts == "")

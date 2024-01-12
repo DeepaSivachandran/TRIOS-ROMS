@@ -397,7 +397,7 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["COMID"].Visible = false;
                 DGV_SearchGrid.Columns["SRQID"].Visible = false;
-                //DGV_SearchGrid.Columns["SLID"].Visible = false;
+                DGV_SearchGrid.Columns["SLID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
                 DGV_SearchGrid.Columns["Created On"].Width = 150; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
@@ -858,6 +858,7 @@ namespace ROMS
                     MainForm.objINV_StockTransfer = new INV_StockTransfer();
                     MainForm.objINV_StockTransfer.MdiParent = ParentForm;
                     //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
+                    MainForm.objINV_StockTransfer.varUpdateflag = 1;
                     MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
                     MainForm.objINV_StockTransfer.varStockRequestSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
                     MainForm.objINV_StockTransfer.Show();
@@ -895,7 +896,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete",dtStock,0,0);
+                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete",dtStock,0,0,0,0);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -907,7 +908,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objDser = new SPDataService();
-                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock,1,0);
+                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock,1,0,0,0);
                                     objDser.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -939,19 +940,19 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
-                {
-                    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "21")
-                    {
-                        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
-                        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    }
-                    else
-                    {
-                        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    }
-                }
+                //for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
+                //{
+                //    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "21")
+                //    {
+                //        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
+                //        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                //    }
+                //    else
+                //    {
+                //        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                //        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
