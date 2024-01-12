@@ -606,7 +606,7 @@ namespace ROMS
             }
             return ds;
         }
-        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,string paraTransferDate, int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer,int paraDeleteFlag,int paraTransactionType,int paraFlag)
+        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,string paraTransferDate, int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer,int paraDeleteFlag,int paraTransactionType,int paraFlag,int paraSRQID)
         {
             string varResult = "";
             try
@@ -629,6 +629,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraTransactionType", paraTransactionType);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraSRQID", paraSRQID);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();

@@ -283,6 +283,10 @@ namespace ROMS
                             lblSLocation.Text = objDS.Tables[0].Rows[0]["SLID"].ToString();
                             lblDLocation.Text = objDS.Tables[0].Rows[0]["DLID"].ToString();
                             //btnSave.Text = "Update";
+                            //if(grdStockTransfer.Columns["Transaction Type"]==43)
+                            //{
+                            //    txtTransactionType.Text = "Shop Request";
+                            //}
                         }
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -381,8 +385,8 @@ namespace ROMS
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
                                 txtSLocation.Text = objDS.Tables[0].Rows[0]["Source Location"].ToString();
-                                grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Dest Rack"]), 0, Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]));
-                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0);
+                                grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Dest Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]));
+                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
                             }                             
                             //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
                             //int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
@@ -1635,14 +1639,14 @@ namespace ROMS
                     tpSStockLocation.Show("Please enter source location", txtSLocation, 5000);
                     blnErrorFlag = true;
                 }
-                else
-                {
-                    udfnSLocationValid();
-                    if(lblSLocation.Text=="0" || lblSLocation.Text=="-1")
-                    {
-                        blnErrorFlag = true;
-                    }
-                }
+                //else
+                //{
+                //    udfnSLocationValid();
+                //    if(lblSLocation.Text=="0" || lblSLocation.Text=="-1")
+                //    {
+                //        blnErrorFlag = true;
+                //    }
+                //}
                 if(grdStockTransfer.Rows.Count<1)
                 {
                     SPDataService objDServ = new SPDataService();
@@ -1685,6 +1689,7 @@ namespace ROMS
                 varoriginator = ""; int varType = 0;
                 if (btnSave.Text == "Save as Draft")
                 {
+                    varStockRequestID = 0;
                     varUpdateflag = 0;
                     varoriginator = "Stock Transfer Creation";
                     varType = 0;
@@ -1697,6 +1702,7 @@ namespace ROMS
                 }
                 else if(btnSave.Text == "Update" && varUpdateflag == 0)
                 {
+                    varStockRequestID = 0;
                     varUpdateflag = 0;
                     varoriginator = "Stock Transfer Updation";
                     varType = 0;
@@ -1782,13 +1788,21 @@ namespace ROMS
                 {
                     varTransactionType = 173;
                 }
-                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(), varStatus, varoriginator,dtStock,0,varTransactionType,varUpdateflag);
+                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(), varStatus, varoriginator,dtStock,0,varTransactionType,varUpdateflag,varStockRequestID);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "3")
+                if (varvalue[0] == "3" && varUpdateflag==0)
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objINV_StockTransferList.udfnList();
+                    udfnClear();
+                    varModifiedFlag = 0;
+                    this.Close();
+                }
+                else if (varvalue[0] == "3" && varUpdateflag == 1)
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objINV_StockTransferQueue.udfnList();
                     udfnClear();
                     varModifiedFlag = 0;
                     this.Close();
