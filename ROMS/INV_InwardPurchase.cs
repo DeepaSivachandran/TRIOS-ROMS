@@ -530,12 +530,12 @@ namespace ROMS
 
                                 if(varEditFlag==0)
                                 {
-                                    //grdGrnlist.Columns["GRNPR_PRID"].Visible = false;
-                                    //grdGrnlist.Columns["GRNPR_UTID"].Visible = false;
-                                    //grdGrnlist.Columns["PR_PUR_SLID"].Visible = false;
-                                    //grdGrnlist.Columns["PR_PUR_RKID"].Visible = false;
-                                    //grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
-                                    //grdGrnlist.Columns["GRNPRID"].Visible = false;
+                                    grdGrnlist.Columns["GRNPR_PRID"].Visible = false;
+                                    grdGrnlist.Columns["GRNPR_UTID"].Visible = false;
+                                    grdGrnlist.Columns["PR_PUR_SLID"].Visible = false;
+                                    grdGrnlist.Columns["PR_PUR_RKID"].Visible = false;
+                                    grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
+                                    grdGrnlist.Columns["GRNPRID"].Visible = false;
                                 }
                                 else if(varEditFlag==1)
                                 {
