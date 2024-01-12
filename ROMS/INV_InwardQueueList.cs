@@ -72,29 +72,32 @@ namespace ROMS
         {
             try
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-                MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
-                //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
-                MainForm.objINV_InwardPurchase.varGRNId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["GRNID"].Value);
-                MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["GRN_COMID"].Value);
-                MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["PR_PUR_SLID"].Value);
-                MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPID"].Value);
-                MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPSCID"].Value);
+                if (grdInwardQueueList.Rows.Count != 0 && grdInwardQueueList.SelectedRows.Count==1)
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
+                    MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                    //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
+                    MainForm.objINV_InwardPurchase.varGRNId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["GRNID"].Value);
+                    MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["GRN_COMID"].Value);
+                    MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["PR_PUR_SLID"].Value);
+                    MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPID"].Value);
+                    MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPSCID"].Value);
 
-                MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern"].Value);
-                MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
-                MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
-                MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
-                MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice Date"].Value);
-                MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice No."].Value);
-                //MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher Date"].Value);
-                //MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher No."].Value);
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-                MainForm.objINV_InwardPurchase.Show();
+                    MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern"].Value);
+                    MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
+                    MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
+                    MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
+                    MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice Date"].Value);
+                    MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice No."].Value);
+                    //MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher Date"].Value);
+                    //MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher No."].Value);
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                    MainForm.objINV_InwardPurchase.Show();
+                }
             }
             catch (Exception ex)
             {
@@ -140,7 +143,33 @@ namespace ROMS
             {
                 udfnDropDown();
                 cmbConcern.SelectedValue = 1;
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                udfnDate();
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                this.ActiveControl = cmbConcern;
                 udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDate()
+        {
+            try
+            {
+                //SPDataService objDServ = new SPDataService();
+                //DataSet objd = new DataSet();
+                //objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 1);
+                //if (objd.Tables[0].Rows.Count != 0)
+                //{
+                //    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    //  dpDcFromDate.MaxDate = varmaxdate;
+                //    dpFromDate.Text = Convert.ToString(vardate);
+                //    dpToDate.MinDate = vardate;
+                //}
             }
             catch (Exception ex)
             {
@@ -170,6 +199,9 @@ namespace ROMS
                         }
                     }
                 }
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=55 OR MSTID=0", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
             }
             catch (Exception ex)
             {
@@ -204,7 +236,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -220,7 +251,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -228,13 +258,11 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
@@ -248,7 +276,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -264,7 +291,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpFromDate_Leave(object sender, EventArgs e)
         {
             try
@@ -277,7 +303,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpFromDate_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -291,7 +316,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpToDate_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -307,7 +331,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpToDate_Leave(object sender, EventArgs e)
         {
             try
@@ -570,7 +593,7 @@ namespace ROMS
                     btnView.Enabled = false;
                     varviewtype = 6;
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnGrnListLoad(varviewtype, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, "", "", 0,Convert.ToInt32(lblStockLocationCode.Text));
+                    objDs = objdserv.udfnGrnListLoad(varviewtype, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbEntryType.SelectedValue), 0, "", "", 0,Convert.ToInt32(lblStockLocationCode.Text));
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -586,20 +609,22 @@ namespace ROMS
                                 grdInwardQueueList.Columns["GRN No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardQueueList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardQueueList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdInwardQueueList.Columns["Concern"].Width = 150;
+                                grdInwardQueueList.Columns["Concern"].Width = 80;
                                 grdInwardQueueList.Columns["GRN Date"].Width = 100;
-                                grdInwardQueueList.Columns["GRN No."].Width = 100;
-                                grdInwardQueueList.Columns["Supplier"].Width = 300;
-                                grdInwardQueueList.Columns["Total Products in Invoice"].Width = 100;
+                                grdInwardQueueList.Columns["GRN No."].Width = 80;
+                                grdInwardQueueList.Columns["Supplier"].Width = 250;
+                                grdInwardQueueList.Columns["Total Products in Invoice"].Width = 150;
                              ///   grdInwardQueueList.Columns["Created By"].Width = 110;
                                 grdInwardQueueList.Columns["Created On"].Width = 140;
-                                grdInwardQueueList.Columns["GSTIN"].Width = 170;
-                               // grdInwardQueueList.Columns["Status"].Width = 100;
-                                grdInwardQueueList.Columns["S.No."].Width = 80;
+                                grdInwardQueueList.Columns["GSTIN"].Width = 150;
+                                grdInwardQueueList.Columns["S.No."].Width = 60;
                                 grdInwardQueueList.Columns["GRNID"].Visible = false;
                                 grdInwardQueueList.Columns["SPID"].Visible = false;
-                              //  grdInwardQueueList.Columns["Status ID"].Visible = false;
                                 grdInwardQueueList.Columns["SPSCID"].Visible = false;
+                                grdInwardQueueList.Columns["SPSCID"].Visible = false;
+                                grdInwardQueueList.Columns["PR_PUR_SLID"].Visible = false;
+                                grdInwardQueueList.Columns["GRN_COMID"].Visible = false;
+                                grdInwardQueueList.Columns["My Products"].Visible = false;
                             }
                             else
                             {
@@ -644,6 +669,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
+                this.ActiveControl = btnView;
             }
         }
         private void BtnView_Click(object sender, EventArgs e)
@@ -809,7 +835,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbEntryType.Focus();
                 }
             }
             catch (Exception ex)
@@ -846,7 +872,7 @@ namespace ROMS
             {
                 lvProduct.BringToFront();
                 udfnProductEvent();
-                btnView.Focus();
+                cmbEntryType.Focus();
             }
             catch (Exception ex)
             {
@@ -1080,12 +1106,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DpToDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void GrdInwardQueueList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -1112,6 +1132,91 @@ namespace ROMS
             finally
             {
                 grdInwardQueueList.ClearSelection();
+            }
+        }
+
+        private void CmbEntryType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEntryType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEntryType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbEntryType.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdInwardQueueList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    tsbEdit_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -1159,7 +1264,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnProductEvent();
-                    btnView.Focus();
+                    cmbEntryType.Focus();
                 }
             }
             catch (Exception ex)
