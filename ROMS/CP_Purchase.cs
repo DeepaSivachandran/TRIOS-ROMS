@@ -26,7 +26,7 @@ namespace ROMS
         ToolTip tpSuppliername = new ToolTip();
         public bool skipValidation = false;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
-        public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0";
+        public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0", pbPurchaseno = "0";
         public bool VarSearchFlag = true;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
             , varorderSaleQty = "", varorderqty = "", addproductid = "", varunitid = "0", varDamage = "0", varReturnDC = "0", pbGRNId = "0", pbSupplierId = "0", dcid = "0",
@@ -3121,16 +3121,127 @@ namespace ROMS
         {
             try
             {
+                udfnSave();
+            }
+            catch (Exception ex) 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
+        public void udfnSave()
+        {
+            try
+            {
+                bool varErrorFlag = true;
+                if (grdSupplierList.RowCount > 0)
+                {
+                    //if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+                    //{
+                    //    if (txtissuemodevalue.Text == "")
+                    //    {
+                    //        errPO.SetError(txtissuemodevalue, "Please enter number");
+                    //        txtissuemodevalue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tpIssuemodeValues.ShowAlways = true;
+                    //        tpIssuemodeValues.Show("Please enter number.", txtissuemodevalue, 5000);
+                    //        varErrorFlag = false;
+                    //    }
+                    //    else
+                    //    {
+                    //        if (txtissuemodevalue.Text.Length != 10)
+                    //        {
+                    //            errPO.SetError(txtissuemodevalue, "Please enter valid number");
+                    //            txtissuemodevalue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //            tpIssuemodeValues.ShowAlways = true;
+                    //            tpIssuemodeValues.Show("Please enter valid number.", txtissuemodevalue, 5000);
+                    //            varErrorFlag = false;
+                    //        }
+                    //    }
+                    //}
+                    //if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1)
+                    //{
+                    //    errPO.SetError(cmbIssueMode, "Please select mode of issue");
+                    //    cmbIssueMode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpIssuemode.ShowAlways = true;
+                    //    tpIssuemode.Show("Please select mode of issue.", cmbIssueMode, 5000);
+                    //    varErrorFlag = false;
+                    //}
+                    //if (txtIssuedBy.Text == "")
+                    //{
+                    //    errPO.SetError(txtIssuedBy, "Please enter issuedby");
+                    //    txtIssuedBy.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpIssueby.ShowAlways = true;
+                    //    tpIssueby.Show("Please enter issuedby.", txtIssuedBy, 5000);
+                    //    varErrorFlag = false;
+                    //}
+                    //if (txtTurnAroundTime.Text == "0")
+                    //{
+                    //    errPO.SetError(txtTurnAroundTime, "Invalid turn around time");
+                    //    txtTurnAroundTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpIssueby.ShowAlways = true;
+                    //    tpIssueby.Show("Invalid turn around time.", txtTurnAroundTime, 5000);
+                    //    varErrorFlag = false;
+                    //}
+
+                    if (varErrorFlag == true)
+                    {
+                        if (pbPurchaseno != "0")
+                        {
+                            //udfntooltiphide();
+                            string result = "", varorginator = "Issue Create"; 
+                            SPDataService objspdservice = new SPDataService(); 
+                            DataTable objPurchaseentry = new DataTable();
+                            objPurchaseentry.TableName = "TRN_Purchase_Products";
+                            objPurchaseentry.Columns.Add("PURPR_PURID", typeof(int));
+                            objPurchaseentry.Columns.Add("PURPR_PRID", typeof(int));
+                            objPurchaseentry.Columns.Add("PURPR_UTID", typeof(int));
+                            objPurchaseentry.Columns.Add("PURPR_GRNMRP", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_InvoiceMRP", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_ExpiryDate", typeof(string));
+                            objPurchaseentry.Columns.Add("PURPR_Batch", typeof(string));
+                            objPurchaseentry.Columns.Add("PURPR_SLID", typeof(int));
+                            objPurchaseentry.Columns.Add("PURPR_RKID", typeof(int));
+                            objPurchaseentry.Columns.Add("PURPR_HSNID", typeof(int));
+                            objPurchaseentry.Columns.Add("PURPR_PurchaseRate", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_POQty", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_InvoiceQty", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_ReceivedQty", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_DiffQty", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_FreeQty", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_DiscPer", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_DiscAmnt", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_TaxableValue", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_GSTPer", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_GSTAmnt", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_NettAmnt", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_ShelfLife", typeof(int));
+                            objPurchaseentry.Columns.Add("PURPR_ShelfLifeValue", typeof(int));
+                            objPurchaseentry.Columns.Add("PURPR_ShelfLifePer", typeof(float));
+                            objPurchaseentry.Columns.Add("PURPR_Error", typeof(int));
+                            objPurchaseentry.Columns.Add("PURPR_POID", typeof(int));
+                             
+                        }
+                    }
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(38);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtInvoiceamt_Enter(object sender, EventArgs e)
         {
             try
@@ -4095,9 +4206,10 @@ namespace ROMS
                 if (Convert.ToInt32(lblSupplierCode.Text) > 0)
                 {
                     MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 27;
+                    objMR_Supplier.ViewType = 16;
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue); 
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -4114,6 +4226,11 @@ namespace ROMS
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
                             txtGstin.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]);
                         }
+                        if (objDs.Tables[7].Rows.Count > 0)
+                        {
+                            varDamage = objDs.Tables[7].Rows[0]["DAMAGE"].ToString();
+                            varReturnDC = objDs.Tables[7].Rows[0]["RETURNDC"].ToString();
+                        }
                     }
                 }
             }
@@ -4122,6 +4239,14 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            if (varReturnDC == "0")
+            {
+                btnDC.Enabled = false;
+            }
+            else
+            {
+                btnDC.Enabled = true;
+            } 
         } 
     }
 }
