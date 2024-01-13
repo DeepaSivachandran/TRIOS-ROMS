@@ -551,6 +551,7 @@ namespace ROMS
                                         grdGrnlist.ReadOnly = true;
                                         btnSave.Enabled = false;
                                         chkCompleted.Enabled = false;
+                                        txtRemark.Enabled = false;
                                     }
                                     if (objDs.Tables[1].Rows.Count != 0)
                                     {
