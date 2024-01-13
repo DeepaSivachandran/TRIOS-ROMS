@@ -29,6 +29,7 @@ namespace ROMS
         public int varModifiedFlag = 0;
         public int varStockRequestID = 0;
         public int varID = 0;
+        public int varDecimal = 0;
         public int varStatus = 0;
         public string varErrQty = "0";
         public string SSRUpdatevalue = "";
@@ -723,7 +724,8 @@ namespace ROMS
                     varProductName = selectedItem.SubItems[2].Text;
                     txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
                     lblUnit.Text = selectedItem.SubItems[3].Text;
-                    lblProduct.Text = selectedItem.SubItems[4].Text;
+                    varDecimal = Convert.ToInt32(selectedItem.SubItems[4].Text);
+                    lblProduct.Text = selectedItem.SubItems[5].Text;
                     VarAdd = "1";
                     udfnStockLoad();
                 }
@@ -1370,10 +1372,19 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
+                //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                //{
+                //    e.Handled = true;
+                //}
+                //if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                //{
+                //    e.Handled = true;
+                //}
+                //// Allow only one decimal point
+                //if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                //{
+                //    e.Handled = true;
+                //}
             }
             catch (Exception ex)
             {
