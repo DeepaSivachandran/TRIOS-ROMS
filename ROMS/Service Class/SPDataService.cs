@@ -2666,6 +2666,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraInwardId", objTRN_GoodsInward_Purchase.paraInwardId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GoodsInward_Purchase.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_GoodsInward_Purchase.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_GoodsInward_Purchase.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraTypeID", objTRN_GoodsInward_Purchase.paraTypeID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2701,8 +2703,11 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraInwardId", objTRN_GoodsInward_Purchase.paraInwardId);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_GoodsInward_Purchase.paraStatusID);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_GoodsInward_Purchase.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleId", objTRN_GoodsInward_Purchase.ParaScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_GoodsInward_Purchase.ParaSupplierId);
                 varSqlCommand.Parameters.AddWithValue("@paraLocationID", objTRN_GoodsInward_Purchase.paraLocationID);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_GoodsInward_Purchase.paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraTypeID", objTRN_GoodsInward_Purchase.paraTypeID);
                 varSqlCommand.Parameters.AddWithValue("@paraTRN_GoodsInward_Purchase_Products", objTRN_GoodsInward_Purchase.paraTRN_GoodsInward_Purchase_Products);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
