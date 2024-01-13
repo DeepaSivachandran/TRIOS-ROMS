@@ -636,7 +636,7 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if (Convert.ToString(txtPurRack.Text) != "" && Convert.ToString(txtPurRack.Text) != "None")
+                if (Convert.ToString(txtPurRack.Text) != "None")
                 {
                     /*check location have a rack or not*/
                     string varId_PurchaseRack = "0";
@@ -724,7 +724,7 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if(Convert.ToString(txtSaleRack.Text)!="" && Convert.ToString(txtSaleRack.Text)!="None")
+                if(Convert.ToString(txtSaleRack.Text)!="None")
                 {
                     //check Sales location have a rack or not//
                     string varId_SalesRack = "0";

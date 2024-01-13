@@ -171,7 +171,7 @@ namespace ROMS
             try
             {
                 udfnCmbConcernLoad();
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpEntryDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,52) AND MSTID !=0", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
@@ -1624,10 +1624,18 @@ namespace ROMS
                         }
                     }
                 }
-                if (varTeller == "0" || varChecker == "0")
+                if (varTeller == "0")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(101);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
+                if (varChecker == "0")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(103);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
