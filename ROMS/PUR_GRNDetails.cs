@@ -32,7 +32,7 @@ namespace ROMS
             varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0",
             varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0";
 
-        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0;
+        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0, varModifiedFlag = 0;
         public bool VarSearchFlag = true;
         public PUR_GRNDetails()
         {
@@ -219,8 +219,7 @@ namespace ROMS
                     {
                         txtgrnno.Text = "";
                     }
-                }
-
+                } 
             }
             catch (Exception ex)
             {
@@ -247,20 +246,33 @@ namespace ROMS
         {
             try
             {
-                if (varCloseflag == 0)
+                if (varModifiedFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
-                    {
-                        skipValidation = true;
+                    { 
                         this.Close();
                     }
+                    else
+                    { btnSave.Focus(); }
                 }
                 else
-                {
-                    this.Close();
+                { 
+                    if (varCloseflag == 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            skipValidation = true;
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
+                    MainForm.objPUR_GRNDetailsList.udfnListLoad(); 
                 }
-                MainForm.objPUR_GRNDetailsList.udfnListLoad();
             }
             catch (Exception ex)
             {
@@ -605,6 +617,7 @@ namespace ROMS
                                     string[] varvalue = result.Split('~');
                                     if (varvalue[0] == "3")
                                     {
+                                        varModifiedFlag = 0;
                                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         this.ActiveControl = txtSupplier;
                                         MainForm.objPUR_GRNDetailsList.udfnListLoad();
@@ -652,7 +665,7 @@ namespace ROMS
                 else
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(41);
+                    string varMessage = objDServ.udfnGetMessages(38);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -1626,7 +1639,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(),objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(),
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(),objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(),
                                         objDs.Tables[0].Rows[i]["PR_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNoGeneration"].ToString(),objDs.Tables[0].Rows[i]["PR_RMForProduction"].ToString(),objDs.Tables[0].Rows[i]["PR_PRCTID"].ToString(),objDs.Tables[0].Rows[i]["PR_ShelfLife"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
@@ -1635,8 +1648,17 @@ namespace ROMS
                                 } 
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 100;
-                                lvproduct.Columns[1].Width = 320;
-                                lvproduct.Columns[2].Width = 50;
+                                lvproduct.Columns[3].Width = 50;
+                                if (VarSearchFlag == true)
+                                {
+                                    lvproduct.Columns[1].Width = 320;
+                                    lvproduct.Columns[2].Width = 0;
+                                }
+                                else
+                                {
+                                    lvproduct.Columns[1].Width = 0;
+                                    lvproduct.Columns[2].Width = 320;
+                                }
                                 //lvproduct.Columns[3].Width = 0;
                                 //lvproduct.Columns[4].Width = 0;
                                 //lvproduct.Columns[5].Width = 0;
@@ -2221,6 +2243,7 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
                                 grdGrnlist.Rows.RemoveAt(this.grdGrnlist.SelectedCells[0].RowIndex);
+                                varModifiedFlag = 1;
                                 for (int i = 0; i < grdGrnlist.RowCount; i++)
                                 {
                                     grdGrnlist.Rows[i].Cells["clmsno"].Value = i + 1;
@@ -2720,6 +2743,7 @@ namespace ROMS
                                 grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), (txtmrprate.Text).Trim(), (varExpiryDate).Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag);
                                 udfnrowclear();
+                                varModifiedFlag = 1;
                                 //grdsupplieradd.Sort(grdsupplieradd.Columns[1], ListSortDirection.Ascending);
                                 //for (int i = 0; i < grdsupplieradd.RowCount; i++)
                                 //{
@@ -3153,7 +3177,7 @@ namespace ROMS
                     txtBatchno.Text = "";
                     varBatchNo = "0"; varBatchNoGeneration = "0"; varShelflife = 0; expirydateFlag = 0;
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
-                    txtProductName.Text = selectedItem.SubItems[3].Text;
+                    txtProductName.Text = selectedItem.SubItems[2].Text;
                     lblProductcode.Text = selectedItem.SubItems[4].Text;
                     varBatchNo = selectedItem.SubItems[5].Text;
                     varBatchNoGeneration = selectedItem.SubItems[6].Text;

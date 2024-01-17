@@ -95,8 +95,8 @@ namespace ROMS
                 dtInward.Columns.Add("GIPR_ShelfLifeValue", typeof(int));
                 dtInward.Columns.Add("GIPR_ShelfLifeType", typeof(int));
                 dtInward.Columns.Add("GIPR_ShelfLifePer", typeof(float));
-                cmbConcern.SelectedValue = 1;
                 udfnCmbConcern();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnTransactionData();              
                 this.ActiveControl = txtStockLocation;
                 lblProductName.Text = "Search by P.I Code";
@@ -134,6 +134,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+               // cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
         }
         public void udfnTransactionData()

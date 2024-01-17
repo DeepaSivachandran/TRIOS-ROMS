@@ -11,6 +11,7 @@ namespace ROMS.Model
     {
         public int ViewType { get; set; } = 0;
         public int paraGRNID { get; set; } = 0;
+        public int paraTypeID { get; set; } = 0;
         public int paraCompanyId { get; set; } = 0;
         public int paraProductId { get; set; } = 0;
         public int paraDeleteFlag { get; set; } = 0;
@@ -27,6 +28,7 @@ namespace ROMS.Model
         public int paraStatusID { get; set; } = 0;
         public int paraUserID { get; set; } = 0;
         public int paraInwardPurchaseID { get; set; } = 0;
+        public int ParaScheduleId { get; set; } = 0;
         public string paraIPAddress { get; set; } = "";
         public DataTable paraTRN_GoodsInward_Purchase_Products { get; set; } = null;
     }

@@ -89,7 +89,7 @@ namespace ROMS
                 dtStock.Columns.Add("SRQ_ReceivedQty", typeof(float));
                 udfnCmbConcern();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=11", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=11 AND STSID IN(28,29)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 if (btnSave.Text == "Save && Print")
                 {
@@ -97,7 +97,7 @@ namespace ROMS
                     {
                         udfnTransferNo();
                         dpDate.Value = MainForm.pbCurrentDate;
-                        cmbConcern.SelectedValue = 1;
+                        cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                     }
                     else
                     {
@@ -626,19 +626,29 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(),objDs.Tables[0].Rows[i]["PRID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lvProduct.Items.Add(objList);
                                 }
                                 lvProduct.Visible = true;
                                 lvProduct.BringToFront();
                                 lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 400;
-                                lvProduct.Columns[2].Width = 60;
-                                lvProduct.Columns[3].Width = 0;
+                                lvProduct.Columns[1].Width = 0;
+                                lvProduct.Columns[2].Width = 0;
+                                lvProduct.Columns[3].Width = 60;
                                 lvProduct.Columns[4].Width = 0;
+                                if (VarSearchFlag == false)
+                                {
+                                    lvProduct.Columns[1].Width = 320;
+                                    lvProduct.Columns[2].Width = 0;
+                                }
+                                else
+                                {
+                                    lvProduct.Columns[1].Width = 0;
+                                    lvProduct.Columns[2].Width = 320;
+                                }
                             }
                             else
                             {
@@ -709,9 +719,9 @@ namespace ROMS
                 if (txtProductNamePICode.Text != "")
                 {
                     ListViewItem selectedItem = lvProduct.SelectedItems[0];
-                    varProductName = selectedItem.SubItems[1].Text;
-                    txtProductNamePICode.Text = selectedItem.SubItems[3].Text;
-                    lblUnit.Text = selectedItem.SubItems[2].Text;
+                    varProductName = selectedItem.SubItems[2].Text;
+                    txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
+                    lblUnit.Text = selectedItem.SubItems[3].Text;
                     lblProduct.Text = selectedItem.SubItems[4].Text;
                     VarAdd = "1";
                     udfnStockLoad();
