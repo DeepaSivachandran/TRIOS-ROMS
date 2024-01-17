@@ -51,7 +51,8 @@ namespace ROMS
         public int varStockRequestID = 0;
         public int varStockRequestSLID = 0;
         public int varStatusID = 0;
-        public int varSLID = 0;
+        public int varSLID = 0, varSTSRQID=0;
+        public int EditFlag = 0;
         public int varDLID = 0;
         public int VarConcernID = 0;
         public int varModifiedFlag = 0;
@@ -243,9 +244,24 @@ namespace ROMS
                 {
                     this.ActiveControl = txtSLocation;
                 }
-                //if (varStockRequestID != 0)
+                if (EditFlag == 1 && txtTransactionType.Text == "Shop Request")
+                {
+                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                    MainForm.objPUR_RemarksHistory.varSRQID = varStockRequestID;
+                    MainForm.objPUR_RemarksHistory.varEditflag = 1;
+                    MainForm.objPUR_RemarksHistory.udfnShowDialog();
+                }
+                else if (EditFlag == 0 && txtTransactionType.Text == "Shop Request")
+                {
+                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                    MainForm.objPUR_RemarksHistory.varSRQID = varSTSRQID;
+                    MainForm.objPUR_RemarksHistory.varSTRID = varStockTransferID;
+                    MainForm.objPUR_RemarksHistory.varEditflag = 0;
+                    MainForm.objPUR_RemarksHistory.udfnShowDialog();
+                }
+                //if (varIDCOUNT == "")
                 //{
-                //    udfnSREdit();
+                //    btnRemarks.Enabled = false;
                 //}
             }
             catch (Exception ex)
@@ -265,7 +281,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","");
+                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","",0,0);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -356,6 +372,7 @@ namespace ROMS
             finally
             {
                 txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
+                grdStockTransfer.ClearSelection();
             }
         }
         public void udfnSREdit()
@@ -1694,6 +1711,14 @@ namespace ROMS
                     varoriginator = "Stock Transfer Creation";
                     varType = 0;
                 }
+                else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == true)
+                {
+                    varStatusID = 32;
+                }
+                else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == false)
+                {
+                    varStatusID = 21;
+                }
                 else if (btnSave.Text == "Update" && varUpdateflag == 1)
                 {
                     varUpdateflag = 1;
@@ -1706,6 +1731,7 @@ namespace ROMS
                     varUpdateflag = 0;
                     varoriginator = "Stock Transfer Updation";
                     varType = 0;
+                    varStatusID = 48;
                 }
                 /* Check source stock location is valid or not*/
                 if (txtSLocation.Text != "")
@@ -1776,7 +1802,7 @@ namespace ROMS
                 {
                     varStatus = 32;
                 }
-                else
+                else if(chkStatus.Checked == false || varUpdateflag==0)
                 {
                     varStatus = 21;
                 }

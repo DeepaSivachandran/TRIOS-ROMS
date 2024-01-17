@@ -3263,7 +3263,7 @@ namespace ROMS
                     {
                         SPDataService objspservice = new SPDataService();
                         DataSet objDs;
-                        objDs = objspservice.udfnStockTransferList(3, varSTRID, 0, varSLID, 0, 0, 0, "", "");
+                        objDs = objspservice.udfnStockTransferList(3, varSTRID, 0, varSLID, 0, 0, 0, "", "",0,0);
                         objspservice.CloseConnection();
                         if (objDs != null)
                         {
