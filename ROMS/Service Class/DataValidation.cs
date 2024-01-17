@@ -929,6 +929,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public string udfnDecimal(string qty)
+        {
+            string decimalqty = "0";
+            try
+            {
+                decimal varQty = Math.Round(Convert.ToDecimal(qty), 1, MidpointRounding.AwayFromZero);
+                decimalqty= string.Format("{0:0.0}", varQty);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+            return decimalqty;
+        }
     }
 }

@@ -969,7 +969,7 @@ namespace ROMS
         }
 
         private void GrdPODetails_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
+        { 
             try
             {
                 if (e.RowIndex != -1)
@@ -990,8 +990,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
         }
 

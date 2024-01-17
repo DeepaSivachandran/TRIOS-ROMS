@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,10 @@ namespace ROMS.Model
         public decimal paraGSTAmnt { get; set; } = 0;
         public decimal paraRoundOff { get; set; } = 0;
         public decimal paraGrandTotal { get; set; } = 0;
+        public decimal paraFrightGRN { get; set; } = 0;
+        public decimal paraLoadingChargesGRN { get; set; } = 0;
         public byte[] paraQrimg { get; set; } = null;
+        public DataTable ParaPurchase_Products { get; set; } = null;
+        public string paraEinvoice { get; set; } = "";
     }
 }
