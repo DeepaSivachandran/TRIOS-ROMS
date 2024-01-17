@@ -16,6 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0,varStausId=0;
+        public int varPurchaseID = 0, varID=0;
         DataTable dtInwardPurchase = new DataTable();
         public INV_InwardPurchase()
         {
@@ -468,7 +469,7 @@ namespace ROMS
         {
             try
             {
-                if (varGRNId != 0 || varInwardId !=0)
+                if (varID!=0 || varInwardId !=0 )
                 {
                     int varviewtype = 0;
                     if (varEditFlag == 1) { varviewtype = 2; }
@@ -527,23 +528,28 @@ namespace ROMS
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Invoice Received Qty"]).MaxInputLength = 8;
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
-
-                                if(varEditFlag==0)
+                                grdGrnlist.Columns["Product ID"].Visible = false;
+                                grdGrnlist.Columns["Unit ID"].Visible = false;
+                                grdGrnlist.Columns["Location ID"].Visible = false;
+                                grdGrnlist.Columns["Rack ID"].Visible = false;
+                                grdGrnlist.Columns["ID"].Visible = false;
+                                //if (varEditFlag==0)
+                                //{
+                                //    grdGrnlist.Columns["GRNPR_PRID"].Visible = false;
+                                //    grdGrnlist.Columns["GRNPR_UTID"].Visible = false;
+                                //    grdGrnlist.Columns["PR_PUR_SLID"].Visible = false;
+                                //    grdGrnlist.Columns["PR_PUR_RKID"].Visible = false;
+                                //    grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
+                                //    grdGrnlist.Columns["GRNPRID"].Visible = false;
+                                //}
+                                //else
+                                if (varEditFlag==1)
                                 {
-                                    grdGrnlist.Columns["GRNPR_PRID"].Visible = false;
-                                    grdGrnlist.Columns["GRNPR_UTID"].Visible = false;
-                                    grdGrnlist.Columns["PR_PUR_SLID"].Visible = false;
-                                    grdGrnlist.Columns["PR_PUR_RKID"].Visible = false;
-                                    grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
-                                    grdGrnlist.Columns["GRNPRID"].Visible = false;
-                                }
-                                else if(varEditFlag==1)
-                                {
-                                    grdGrnlist.Columns["GIPPR_PRID"].Visible = false;
-                                    grdGrnlist.Columns["GIPPR_UTID"].Visible = false;
-                                    grdGrnlist.Columns["GIPPR_SLID"].Visible = false;
-                                    grdGrnlist.Columns["GIPPR_RKID"].Visible = false;
-                                    grdGrnlist.Columns["GIPPRID"].Visible = false;
+                                    grdGrnlist.Columns["Product ID"].Visible = false;
+                                    grdGrnlist.Columns["Unit ID"].Visible = false;
+                                    grdGrnlist.Columns["Location ID"].Visible = false;
+                                    grdGrnlist.Columns["Rack ID"].Visible = false;
+                                    grdGrnlist.Columns["ID"].Visible = false;
                                     grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
                                     grdGrnlist.Columns["GIPPR_GIPID"].Visible = false;
                                     if(varStausId==46)

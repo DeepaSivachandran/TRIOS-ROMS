@@ -80,7 +80,8 @@ namespace ROMS
                     MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
                     MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
                     //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
-                    MainForm.objINV_InwardPurchase.varGRNId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["GRNID"].Value);
+                    MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objINV_InwardPurchase.varPurchaseID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["PURPRID"].Value);
                     MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["GRN_COMID"].Value);
                     MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["PR_PUR_SLID"].Value);
                     MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPID"].Value);
@@ -92,8 +93,8 @@ namespace ROMS
                     MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
                     MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice Date"].Value);
                     MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice No."].Value);
-                    //MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher Date"].Value);
-                    //MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher No."].Value);
+                    MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher Date"].Value);
+                    MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher No."].Value);
                     picLoader.Visible = false;
                     picLoader.SendToBack();
                     MainForm.objINV_InwardPurchase.Show();
@@ -591,9 +592,22 @@ namespace ROMS
                 if (Varflag == 0)
                 {
                     btnView.Enabled = false;
-                    varviewtype = 6;
+                    varviewtype = 3;
+                    //SPDataService objdserv = new SPDataService();
+                    //objDs = objdserv.udfnGrnListLoad(varviewtype, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbEntryType.SelectedValue), 0, "", "", 0,Convert.ToInt32(lblStockLocationCode.Text));
+                    //objdserv.CloseConnection();
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnGrnListLoad(varviewtype, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbEntryType.SelectedValue), 0, "", "", 0,Convert.ToInt32(lblStockLocationCode.Text));
+                    TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
+                    objTRN_GoodsInward_Purchase.ViewType = varviewtype;
+                    objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
+                    objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objTRN_GoodsInward_Purchase.ParaFromDate = Convert.ToString(dpFromDate.Text);
+                    objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
+                    objTRN_GoodsInward_Purchase.paraSLID = Convert.ToInt32(lblStockLocationCode.Text);
+                    objTRN_GoodsInward_Purchase.paraProductId = Convert.ToInt32(varPRID);
+                    objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbEntryType.SelectedValue);
+                    objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {

@@ -10,6 +10,12 @@ namespace ROMS.Model
     class TRN_GoodsInward_Purchase
     {
         public int ViewType { get; set; } = 0;
+
+        //@ParaFromDate AS NVARCHAR(100)='',@ParaToDate AS NVARCHAR(100)='',@paraGRNCompanyID AS INT=0,@paraPURCompanyID AS INT=0,@ParaGRNSupplierId AS INT=0,
+        //    @ParaPURSupplierId AS INT=0,@paraGRNSLID AS INT=0,@paraPURSLID AS INT=0
+        public string ParaFromDate { get; set; } = "";
+        public string ParaToDate { get; set; } = "";
+        public int paraPurchaseID { get; set; } = 0;
         public int paraGRNID { get; set; } = 0;
         public int paraTypeID { get; set; } = 0;
         public int paraCompanyId { get; set; } = 0;
