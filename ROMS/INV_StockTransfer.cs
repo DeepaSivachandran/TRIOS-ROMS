@@ -59,7 +59,7 @@ namespace ROMS
         public string VarSource = "0";
         public string VarDestination = "0";
         public string varErrQty = "0";
-
+        public string varStockEdit = "Stock Transfer", varIDCOUNT = "";
         DataTable dtStock = new DataTable();
 
         public INV_StockTransfer()
@@ -142,8 +142,6 @@ namespace ROMS
         {
             try
             {
-
-                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
                 MainForm.objPUR_RemarksHistory.ShowDialog();
             }
             catch (Exception ex)
@@ -249,7 +247,7 @@ namespace ROMS
                     MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
                     MainForm.objPUR_RemarksHistory.varSRQID = varStockRequestID;
                     MainForm.objPUR_RemarksHistory.varEditflag = 1;
-                    MainForm.objPUR_RemarksHistory.udfnShowDialog();
+                    MainForm.objPUR_RemarksHistory.udfnRequestDialog();
                 }
                 else if (EditFlag == 0 && txtTransactionType.Text == "Shop Request")
                 {
@@ -257,12 +255,12 @@ namespace ROMS
                     MainForm.objPUR_RemarksHistory.varSRQID = varSTSRQID;
                     MainForm.objPUR_RemarksHistory.varSTRID = varStockTransferID;
                     MainForm.objPUR_RemarksHistory.varEditflag = 0;
-                    MainForm.objPUR_RemarksHistory.udfnShowDialog();
+                    MainForm.objPUR_RemarksHistory.udfnRequestDialog();
                 }
-                //if (varIDCOUNT == "")
-                //{
-                //    btnRemarks.Enabled = false;
-                //}
+                if (varIDCOUNT == "")
+                {
+                    btnRemarks.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -281,7 +279,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","",0,0);
+                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","",0,varStockRequestID);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -299,10 +297,10 @@ namespace ROMS
                             lblSLocation.Text = objDS.Tables[0].Rows[0]["SLID"].ToString();
                             lblDLocation.Text = objDS.Tables[0].Rows[0]["DLID"].ToString();
                             //btnSave.Text = "Update";
-                            //if(grdStockTransfer.Columns["Transaction Type"]==43)
-                            //{
-                            //    txtTransactionType.Text = "Shop Request";
-                            //}
+                            if (EditFlag==0)
+                            {
+                                txtTransactionType.Text = "Shop Request";
+                            }
                         }
                         if (objDS.Tables[0].Rows.Count > 0)
                         {

@@ -41,7 +41,15 @@ namespace ROMS
         {
             try
             {
-                udfnShowDialog();
+                //MainForm.objINV_StockTransfer = new INV_StockTransfer();
+                if (MainForm.objINV_StockTransfer.varStockEdit== "Stock Transfer")
+                {
+                    udfnRequestDialog();
+                }
+                else
+                {
+                    udfnShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -157,10 +165,11 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
+                                txtSTTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
                                 txtRemarks.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
                                 txtCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
-                                MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
+                                MainForm.objINV_StockTransfer.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
                                 panel4.Visible = false;
                             }
                             else
@@ -187,7 +196,7 @@ namespace ROMS
                                 txtRemarks.Text = objDs.Tables[0].Rows[0]["SRQ_Remarks"].ToString();
                                 txtCreatedby.Text = objDs.Tables[0].Rows[0]["SRQ Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["SRQ Created On"].ToString();
-                                MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
+                                MainForm.objINV_StockTransfer.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
 
                                 if (objDs.Tables[0].Rows.Count > 1)
                                 {
@@ -195,7 +204,7 @@ namespace ROMS
                                     txtGIRemarks.Text = objDs.Tables[0].Rows[1]["SRQ_Remarks"].ToString();
                                     txtGICreatedby.Text = objDs.Tables[0].Rows[1]["SRQ Created By"].ToString();
                                     txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["SRQ Created On"].ToString();
-                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
+                                    MainForm.objINV_StockTransfer.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
                                 }
                                 else
                                 {

@@ -32,6 +32,7 @@ namespace ROMS
         public int varStatus = 0;
         public string varErrQty = "0";
         public string SSRUpdatevalue = "";
+        public string varSLID = "", varRKID = "";
         public bool VarSearchFlag = true;
         byte[] varobjBarCodeByte;
         public INV_StockRequest()
@@ -626,7 +627,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(),objDs.Tables[0].Rows[i]["PRID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(),objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -723,6 +724,8 @@ namespace ROMS
                     txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
                     lblUnit.Text = selectedItem.SubItems[3].Text;
                     lblProduct.Text = selectedItem.SubItems[4].Text;
+                    varSLID = selectedItem.SubItems[5].Text;
+                    varRKID = selectedItem.SubItems[6].Text;
                     VarAdd = "1";
                     udfnStockLoad();
                 }
@@ -776,7 +779,7 @@ namespace ROMS
                             {
                                 grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[2].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[2].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[2].Rows[i]["EMP_Name"]), Convert.ToString(txtStockQty.Text), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Symbol"]),Convert.ToString(lblProduct.Text));
                             }
-                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),0,0,Convert.ToString(txtRequiredQty.Text),0);
+                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),varSLID,varRKID,Convert.ToString(txtRequiredQty.Text),0);
                             for(int j=0;j<grdStockRequest.Rows.Count;j++)
                             {
                                 if (varProducts == "")

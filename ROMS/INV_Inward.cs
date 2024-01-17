@@ -386,65 +386,65 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnRemarksCheck()
-        {
-            try
-            {
-                grdInward.DataSource = null;
-                DataSet objDs = new DataSet();
-                SPDataService objspdservice = new SPDataService();
-                DataTable objGrnPO = new DataTable();
-                TRN_GoodsInward objTRNG_GoodsInward = new TRN_GoodsInward();
-                if (varEditflag == 0)
-                {
+        //public void udfnRemarksCheck()
+        //{
+        //    try
+        //    {
+        //        grdInward.DataSource = null;
+        //        DataSet objDs = new DataSet();
+        //        SPDataService objspdservice = new SPDataService();
+        //        DataTable objGrnPO = new DataTable();
+        //        TRN_GoodsInward objTRNG_GoodsInward = new TRN_GoodsInward();
+        //        if (varEditflag == 0)
+        //        {
 
-                    objTRNG_GoodsInward.ViewType = 2;
-                    objTRNG_GoodsInward.paraGIID = varGIId;
-                    objTRNG_GoodsInward.paraRemarks = txtRemark.Text;
-                    objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
-                    objDs = objspdservice.udfnInwardList(objTRNG_GoodsInward);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
-                        {
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
+        //            objTRNG_GoodsInward.ViewType = 2;
+        //            objTRNG_GoodsInward.paraGIID = varGIId;
+        //            objTRNG_GoodsInward.paraRemarks = txtRemark.Text;
+        //            objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
+        //            objDs = objspdservice.udfnInwardList(objTRNG_GoodsInward);
+        //            objspdservice.CloseConnection();
+        //            if (objDs != null)
+        //            {
+        //                if (objDs.Tables.Count != 0)
+        //                {
+        //                    if (objDs.Tables[0].Rows.Count != 0)
+        //                    {
                                 
-                                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
-                                MainForm.objPUR_RemarksHistory.ShowDialog();
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    objTRNG_GoodsInward.ViewType = 2;
-                    objTRNG_GoodsInward.paraSTRID = varSTRID;
-                    objTRNG_GoodsInward.paraRemarks = txtRemark.Text;
-                    objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
-                    objDs = objspdservice.udfnInwardList(objTRNG_GoodsInward);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
-                        {
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
-                                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
-                                MainForm.objPUR_RemarksHistory.ShowDialog();
-                            }
-                        }
-                    }
-                }
+        //                        MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+        //                        MainForm.objPUR_RemarksHistory.ShowDialog();
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            objTRNG_GoodsInward.ViewType = 2;
+        //            objTRNG_GoodsInward.paraSTRID = varSTRID;
+        //            objTRNG_GoodsInward.paraRemarks = txtRemark.Text;
+        //            objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
+        //            objDs = objspdservice.udfnInwardList(objTRNG_GoodsInward);
+        //            objspdservice.CloseConnection();
+        //            if (objDs != null)
+        //            {
+        //                if (objDs.Tables.Count != 0)
+        //                {
+        //                    if (objDs.Tables[0].Rows.Count != 0)
+        //                    {
+        //                        MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+        //                        MainForm.objPUR_RemarksHistory.ShowDialog();
+        //                    }
+        //                }
+        //            }
+        //        }
                 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
 
         private void TxtStockLocation_TextChanged(object sender, EventArgs e)
         {
