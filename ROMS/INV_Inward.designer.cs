@@ -37,6 +37,10 @@
             this.pnlinward = new System.Windows.Forms.Panel();
             this.cbCompleted = new System.Windows.Forms.CheckBox();
             this.lvproduct = new System.Windows.Forms.ListView();
+            this.PICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TamilName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EnglishName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvRack = new System.Windows.Forms.ListView();
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -111,10 +115,6 @@
             this.lblDd = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epGoodsInward = new System.Windows.Forms.ErrorProvider(this.components);
-            this.PICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TamilName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.EnglishName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.gbshelfLife.SuspendLayout();
@@ -202,6 +202,22 @@
             this.lvproduct.SelectedIndexChanged += new System.EventHandler(this.Lvproduct_SelectedIndexChanged);
             this.lvproduct.DoubleClick += new System.EventHandler(this.Lvproduct_DoubleClick);
             this.lvproduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lvproduct_KeyDown);
+            // 
+            // PICode
+            // 
+            this.PICode.Text = "P.I.Code";
+            // 
+            // TamilName
+            // 
+            this.TamilName.Text = "Product Name";
+            // 
+            // EnglishName
+            // 
+            this.EnglishName.Text = "Product Name";
+            // 
+            // Unit
+            // 
+            this.Unit.Text = "Unit";
             // 
             // lvRack
             // 
@@ -591,6 +607,7 @@
             this.grdInward.GridColor = System.Drawing.Color.White;
             this.grdInward.Location = new System.Drawing.Point(3, 146);
             this.grdInward.Name = "grdInward";
+            this.grdInward.ReadOnly = true;
             this.grdInward.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -708,6 +725,7 @@
             this.clmreceivedqty.Frozen = true;
             this.clmreceivedqty.HeaderText = "Received Qty";
             this.clmreceivedqty.Name = "clmreceivedqty";
+            this.clmreceivedqty.ReadOnly = true;
             this.clmreceivedqty.Width = 140;
             // 
             // clmunit
@@ -723,6 +741,7 @@
             this.clmPRID.Frozen = true;
             this.clmPRID.HeaderText = "PRID";
             this.clmPRID.Name = "clmPRID";
+            this.clmPRID.ReadOnly = true;
             this.clmPRID.Visible = false;
             // 
             // clmRKID
@@ -730,6 +749,7 @@
             this.clmRKID.Frozen = true;
             this.clmRKID.HeaderText = "RKID";
             this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
             this.clmRKID.Visible = false;
             // 
             // clmSLID
@@ -737,12 +757,14 @@
             this.clmSLID.Frozen = true;
             this.clmSLID.HeaderText = "SLID";
             this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
             this.clmSLID.Visible = false;
             // 
             // clmUTID
             // 
             this.clmUTID.HeaderText = "UTID";
             this.clmUTID.Name = "clmUTID";
+            this.clmUTID.ReadOnly = true;
             this.clmUTID.Visible = false;
             // 
             // clmremove
@@ -750,6 +772,7 @@
             this.clmremove.HeaderText = "Remove";
             this.clmremove.Image = global::ROMS.Properties.Resources.remove;
             this.clmremove.Name = "clmremove";
+            this.clmremove.ReadOnly = true;
             this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmremove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmremove.Width = 70;
@@ -1005,22 +1028,6 @@
             // epGoodsInward
             // 
             this.epGoodsInward.ContainerControl = this;
-            // 
-            // PICode
-            // 
-            this.PICode.Text = "P.I.Code";
-            // 
-            // TamilName
-            // 
-            this.TamilName.Text = "Product Name";
-            // 
-            // EnglishName
-            // 
-            this.EnglishName.Text = "Product Name";
-            // 
-            // Unit
-            // 
-            this.Unit.Text = "Unit";
             // 
             // INV_Inward
             // 

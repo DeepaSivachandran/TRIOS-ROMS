@@ -100,7 +100,7 @@ namespace ROMS
                 udfnTransactionData();              
                 this.ActiveControl = txtStockLocation;
                 lblProductName.Text = "Search by P.I Code";
-                grdInward.Columns["clmreceivedqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                //grdInward.Columns["clmreceivedqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                 if (varEditflag == 0)
                 {
                     udfnEdit();
@@ -2157,12 +2157,12 @@ namespace ROMS
         {
             try
             {
-                if (grdInward.CurrentCell.OwningColumn.Name == "clmreceivedqty")
+                //if (grdInward.CurrentCell.OwningColumn.Name == "clmreceivedqty")
 
-                {
-                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
-                    return;
-                }
+                //{
+                //    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                //    return;
+                //}
                 
             }
             catch (Exception ex)
@@ -2200,38 +2200,38 @@ namespace ROMS
             try
             {
 
-                int TransferdCellValue = Convert.ToInt32(grdInward.CurrentRow.Cells["clmtransferqty"].Value);
-                int ReceivedQty = Convert.ToInt32(grdInward.CurrentRow.Cells["clmreceivedqty"].Value);
+                //int TransferdCellValue = Convert.ToInt32(grdInward.CurrentRow.Cells["clmtransferqty"].Value);
+                //int ReceivedQty = Convert.ToInt32(grdInward.CurrentRow.Cells["clmreceivedqty"].Value);
 
-                if (Convert.ToInt32(ReceivedQty) > Convert.ToInt32(TransferdCellValue))
-                {
-                    grdInward.CurrentRow.Cells["clmreceivedqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
-                    tpCompany.ShowAlways = true;
-                    tpCompany.Show("Please enter valid received quantity", grdInward, 5000);
-                    SPDataService objDServ = new SPDataService();
-                    objDServ.CloseConnection();
-                    varErrQty = 1;
-                    //MessageBox.Show("Please Enter Valid Outward Quantity", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else if (Convert.ToString(TransferdCellValue) == "" || Convert.ToString(ReceivedQty) == "0")
-                {
-                    grdInward.Rows[e.RowIndex].Cells["clmreceivedqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(89);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    varErrQty = 1;
-                }
-                else
-                {
-                    grdInward.CurrentRow.Cells["clmreceivedQty"].Style.BackColor = Color.PaleGreen;
-                    varErrQty = 0;
+                //if (Convert.ToInt32(ReceivedQty) > Convert.ToInt32(TransferdCellValue))
+                //{
+                //    grdInward.CurrentRow.Cells["clmreceivedqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
+                //    tpCompany.ShowAlways = true;
+                //    tpCompany.Show("Please enter valid received quantity", grdInward, 5000);
+                //    SPDataService objDServ = new SPDataService();
+                //    objDServ.CloseConnection();
+                //    varErrQty = 1;
+                //    //MessageBox.Show("Please Enter Valid Outward Quantity", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
+                //else if (Convert.ToString(TransferdCellValue) == "" || Convert.ToString(ReceivedQty) == "0")
+                //{
+                //    grdInward.Rows[e.RowIndex].Cells["clmreceivedqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(89);
+                //    objDServ.CloseConnection();
+                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    varErrQty = 1;
+                //}
+                //else
+                //{
+                //    grdInward.CurrentRow.Cells["clmreceivedQty"].Style.BackColor = Color.PaleGreen;
+                //    varErrQty = 0;
 
-                }
-                object varEditQty = grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                // Update the same column value in the DataTable
-                dtInward.Rows[e.RowIndex]["GIPR_ReqQty"] = varEditQty;
+                //}
+                //object varEditQty = grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                //// Update the same column value in the DataTable
+                //dtInward.Rows[e.RowIndex]["GIPR_ReqQty"] = varEditQty;
 
             }
             catch (Exception ex)
