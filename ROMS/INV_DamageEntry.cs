@@ -1276,21 +1276,21 @@ namespace ROMS
                     {
                         if (txtQuantity.Text != "")
                         {
-                            if (varDecimal == 6)
-                            {
-                                string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 1);
+                            //if (varDecimal == 6)
+                            //{
+                                string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), varDecimal);
                                 txtQuantity.Text = Qty;
-                            }
-                            if (varDecimal == 7)
-                            {
-                                string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 2);
-                                txtQuantity.Text = Qty;
-                            }
-                            if (varDecimal == 8)
-                            {
-                                string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 3);
-                                txtQuantity.Text = Qty;
-                            }
+                            //}
+                            //if (varDecimal == 7)
+                            //{
+                            //    string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 2);
+                            //    txtQuantity.Text = Qty;
+                            //}
+                            //if (varDecimal == 8)
+                            //{
+                            //    string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 3);
+                            //    txtQuantity.Text = Qty;
+                            //}
                         }
                         udfnAdd();
                     }
@@ -2316,21 +2316,21 @@ namespace ROMS
                     varErrQty = "0";
                 }
                 int varDecimal = Convert.ToInt32(grdDamageEntry.CurrentRow.Cells["clmUTDecimal"].Value);
-                if (varDecimal == 6)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 1);
+                //if (varDecimal == 6)
+                //{
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
                     grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
-                if (varDecimal == 7)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
-                    grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
-                if (varDecimal == 8)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
-                    grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
+                //}
+                //if (varDecimal == 7)
+                //{
+                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
+                //    grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                //}
+                //if (varDecimal == 8)
+                //{
+                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
+                //    grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                //}
 
                 object varEditQty = grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable

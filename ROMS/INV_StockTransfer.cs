@@ -1434,21 +1434,21 @@ namespace ROMS
                     }
                     if (txtQuantity.Text != "")
                     {
-                        if (varDecimal == 6)
-                        {
-                            string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 1);
+                        //if (varDecimal == 6)
+                        //{
+                            string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), varDecimal);
                             txtQuantity.Text = Qty;
-                        }
-                        if (varDecimal == 7)
-                        {
-                            string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 2);
-                            txtQuantity.Text = Qty;
-                        }
-                        if (varDecimal == 8)
-                        {
-                            string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 3);
-                            txtQuantity.Text = Qty;
-                        }
+                        //}
+                        //if (varDecimal == 7)
+                        //{
+                        //    string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 2);
+                        //    txtQuantity.Text = Qty;
+                        //}
+                        //if (varDecimal == 8)
+                        //{
+                        //    string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 3);
+                        //    txtQuantity.Text = Qty;
+                        //}
                     }
                     varLocation = txtSLocation.Text;
                     grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, varProductName, (txtSRack.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtDLocation.Text).Trim(), (cmbDRack.Text).Trim(), (txtStockQty.Text).Trim(), (txtQuantity.Text).Trim(), varUnitSymbol, (lblProduct.Text).Trim(), varSRKID,varUTID, (txtQuantity.Text).Trim(),0,varDecimal);
@@ -2213,21 +2213,21 @@ namespace ROMS
                     varErrQty = "0";
                 }
                 int varDecimal = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmUnitDecimal"].Value);
-                if (varDecimal == 6)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 1);
+                //if (varDecimal == 6)
+                //{
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
                     grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
-                if (varDecimal == 7)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
-                    grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
-                if (varDecimal == 8)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
-                    grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
+                //}
+                //if (varDecimal == 7)
+                //{
+                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
+                //    grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                //}
+                //if (varDecimal == 8)
+                //{
+                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
+                //    grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                //}
                 object varEditQty = grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;

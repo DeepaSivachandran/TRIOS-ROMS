@@ -775,21 +775,21 @@ namespace ROMS
                     {
                         if (txtRequiredQty.Text != "")
                         {
-                            if (varDecimal == 6)
-                            {
-                               string Qty= objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), 1);
+                            //if (varDecimal == 6)
+                            //{
+                               string Qty= objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), varDecimal);
                                 txtRequiredQty.Text = Qty;
-                            }
-                            if (varDecimal == 7)
-                            {
-                                string Qty = objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), 2);
-                                txtRequiredQty.Text = Qty;
-                            }
-                            if (varDecimal == 8)
-                            {
-                                string Qty = objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), 3);
-                                txtRequiredQty.Text = Qty;
-                            }
+                            //}
+                            //if (varDecimal == 7)
+                            //{
+                            //    string Qty = objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), 2);
+                            //    txtRequiredQty.Text = Qty;
+                            //}
+                            //if (varDecimal == 8)
+                            //{
+                            //    string Qty = objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), 3);
+                            //    txtRequiredQty.Text = Qty;
+                            //}
                         }
                         if (objDS.Tables[2].Rows.Count > 0)
                         {
@@ -1367,21 +1367,21 @@ namespace ROMS
             try
             {
                 int varDecimal = Convert.ToInt32(grdStockRequest.CurrentRow.Cells["clmUTDecimal"].Value);
-                if (varDecimal == 6)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 1);
+                //if (varDecimal == 6)
+                //{
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
                     grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
-                if (varDecimal == 7)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
-                    grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
-                if (varDecimal == 8)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
-                    grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
+                //}
+                //if (varDecimal == 7)
+                //{
+                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
+                //    grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                //}
+                //if (varDecimal == 8)
+                //{
+                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
+                //    grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                //}
                 object varEditQty = grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["SRQ_RequestedQty"] = varEditQty;

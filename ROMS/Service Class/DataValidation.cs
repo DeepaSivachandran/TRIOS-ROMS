@@ -934,17 +934,17 @@ namespace ROMS
             string decimalqty = "0";
             try
             {
-                if (decimalvalue == 1)
+                if (decimalvalue == 6)
                 {
                     decimal varQty = Math.Round(Convert.ToDecimal(qty), 1, MidpointRounding.AwayFromZero);
                     decimalqty = string.Format("{0:0.0}", varQty);
                 }
-                if (decimalvalue == 2)
+                if (decimalvalue == 7)
                 {
                     decimal varQty = Math.Round(Convert.ToDecimal(qty), 2, MidpointRounding.AwayFromZero);
                     decimalqty = string.Format("{0:0.00}", varQty);
                 }
-                if (decimalvalue == 3)
+                if (decimalvalue == 8)
                 {
                     decimal varQty = Math.Round(Convert.ToDecimal(qty), 3, MidpointRounding.AwayFromZero);
                     decimalqty = string.Format("{0:0.000}", varQty);
