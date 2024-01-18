@@ -31,7 +31,9 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
-                MainForm.objPUR_GRNEntry.ShowDialog();
+
+                MainForm.objPUR_GRNEntry.MdiParent = this.ParentForm;
+                MainForm.objPUR_GRNEntry.Show();
             }
             catch (Exception ex)
             {
