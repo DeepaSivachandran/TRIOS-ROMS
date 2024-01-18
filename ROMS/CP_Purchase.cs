@@ -28,7 +28,7 @@ namespace ROMS
         ToolTip tpInvNo = new ToolTip();
         public bool skipValidation = false;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
-        public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0", pbPurchaseno = "0";
+        public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0", pbPurchaseno = "0", pbDCNo="0";
         public bool VarSearchFlag = true;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
         , varorderSaleQty = "", varorderqty = "", addproductid = "", varunitid = "0", varDamage = "0", varReturnDC = "0", pbGRNId = "0", pbSupplierId = "0", dcid = "0",
@@ -85,8 +85,8 @@ namespace ROMS
                 }
                 if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                 {
-                    MainForm.objPUR_DCDeatils = new PUR_DCDeatils();
-                    MainForm.objPUR_DCDeatils.ShowDialog();
+                    udfnPurchaseDC();
+                    udfnDefReturnDc();
                     grdPODetails.Visible = false;
                     grdReurnDC.Visible = true;
                 }
@@ -98,6 +98,64 @@ namespace ROMS
             }
         }
 
+        public void udfnDefReturnDc()
+        {
+            try
+            {
+                if (pbDCNo != "0")
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                    objTRN_PurchaseEntry.ViewType = 0;
+                    objTRN_PurchaseEntry.ParaIds = pbDCNo;
+                    objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
+                    objspdservice.CloseConnection();
+                    grdSupplierList.Rows.Clear();
+
+                    if (objDs.Tables[1].Rows.Count != 0)
+                    {
+                        for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            string varMRP = "";
+                            if (Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"]) == "0")
+                            {
+                                varMRP = "";
+                            }
+                            else
+                            {
+                                varMRP = Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"]);
+                            }
+                            grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["DcNo"]),
+                            Convert.ToString(objDs.Tables[1].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[1].Rows[i]["PTNAME"]), "", varMRP,
+                            Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_Expirydate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRODUCTEXP"]),
+                            Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]),
+                            Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Location"]),
+                            Convert.ToString(objDs.Tables[1].Rows[i]["RKNAME"]), Convert.ToString(objDs.Tables[1].Rows[i]["UNIT"]),
+                            Convert.ToString(objDs.Tables[1].Rows[i]["DCID"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]),
+                            Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["BATCHNO"]),
+                            Convert.ToString(objDs.Tables[1].Rows[i]["Batchnogeneration"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]),
+                            Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"]));
+                            grdSupplierList.Columns["clmGrnMrp"].Visible = false;
+                            DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                            GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally { txtTpro.Text = Convert.ToString(grdSupplierList.Rows.Count); }
+        }
         public void udfnDefGrnGridLoad()
         {
             try
@@ -108,7 +166,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                     objTRN_PurchaseEntry.ViewType = 0;
-                    objTRN_PurchaseEntry.ParaPOIds = pbPONO;
+                    objTRN_PurchaseEntry.ParaIds = pbPONO;
                     objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                     objspdservice.CloseConnection();
                     grdSupplierList.Rows.Clear();
@@ -176,6 +234,31 @@ namespace ROMS
                 MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
                 MainForm.objPUR_GRNOrderType.varMasterType = 2;
                 MainForm.objPUR_GRNOrderType.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPurchaseDC()
+        {
+            try
+            {
+                pbDCNo = "0";
+                for (int i = 0; i < grdReurnDC.Rows.Count; i++)
+                {
+                    if (pbDCNo == "0")
+                    {
+                        pbDCNo = Convert.ToString(grdReurnDC.Rows[i].Cells["ID"].Value);
+                    }
+                    else
+                    {
+                        pbDCNo = pbDCNo + ',' + Convert.ToString(grdReurnDC.Rows[i].Cells["ID"].Value);
+                    }
+                }
+                MainForm.objPUR_DCDeatils = new PUR_DCDeatils();
+                MainForm.objPUR_DCDeatils.ShowDialog(); 
             }
             catch (Exception ex)
             {
