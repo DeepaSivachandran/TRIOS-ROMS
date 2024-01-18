@@ -2321,7 +2321,7 @@ namespace ROMS
         {
             try
             {
-                if (grdStockRequest.CurrentCell.OwningColumn.Name == "clmRequiredQty")
+                if (grdStockTransfer.CurrentCell.OwningColumn.Name == "clmRequiredQty")
                 {
                     e.Control.KeyPress -= udfnHandleKeyPress;
                     e.Control.KeyPress += udfnHandleKeyPress;
