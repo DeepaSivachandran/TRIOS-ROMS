@@ -928,12 +928,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public string udfnDecimal(string qty,int decimalvalue)
+        } 
+        public string udfnDecimal(string qty,int decimalvalue) 
         {
-            string decimalqty = "0";
             try
-            {
+            { 
                 if (decimalvalue == 1)
                 {
                     decimal varQty = Math.Round(Convert.ToDecimal(qty), 1, MidpointRounding.AwayFromZero);
@@ -948,15 +947,14 @@ namespace ROMS
                 {
                     decimal varQty = Math.Round(Convert.ToDecimal(qty), 3, MidpointRounding.AwayFromZero);
                     decimalqty = string.Format("{0:0.000}", varQty);
-                }
+                } 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
+                objError.WriteFile(ex); 
             }
             return decimalqty;
         }
-
-    }
-}
+ 
+    } 

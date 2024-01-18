@@ -177,15 +177,8 @@ namespace ROMS
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
-            {
-                if (varMasterType == 1)
-                {
-                    udfnAddPrevPending();
-                } 
-                if (varMasterType == 2)
-                {
-                    udfnAddPodetails();
-                }
+            { 
+                udfnAddPrevPending();  
             }
             catch (Exception ex)
             {
@@ -194,76 +187,103 @@ namespace ROMS
             }
         }
 
-        public void udfnAddPodetails() //---Purchase screen Po Details add---\\
-        {
-            try
-            {
-                string pono = "0";
-                MainForm.objCP_Purchase.pbPONO = "0";
-                for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
-                {
-                    if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
-                    {
-                        if (pono == "0")
-                        {
-                            pono = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
-                        }
-                        else
-                        {
-                            pono = pono + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
-                        }
-                    }
-                }
-                 MainForm.objCP_Purchase.pbPONO= pono;
-                udfnclose();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        
 
-        public void udfnAddPrevPending() //---Grn screen Po add---\\
+        public void udfnAddPrevPending() 
         {
             try
             {
                int VARFLAG = 0;
-                for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
+                if (varMasterType == 1) //---Grn screen Po add---\\
                 {
-                    if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
+                    for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
                     {
-                        MainForm.objPUR_GRNEntry.grdPODetails.Rows.Add(grdPurchaseOrder.Rows[i].Cells["PO.No"].Value, grdPurchaseOrder.Rows[i].Cells["PO Date"].Value, grdPurchaseOrder.Rows[i].Cells["Total Products"].Value, grdPurchaseOrder.Rows[i].Cells["poid"].Value);
-                       VARFLAG = 1;
+                        if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
+                        {
+                            MainForm.objPUR_GRNEntry.grdPODetails.Rows.Add(grdPurchaseOrder.Rows[i].Cells["PO.No"].Value, grdPurchaseOrder.Rows[i].Cells["PO Date"].Value, grdPurchaseOrder.Rows[i].Cells["Total Products"].Value, grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                            VARFLAG = 1;
+                        }
                     }
-                }
-                if (VARFLAG != 0)
-                {
-                    if (MainForm.objPUR_GRNEntry.grdPODetails.Rows.Count > 0)
+                    if (VARFLAG != 0)
                     {
-                        MainForm.objPUR_GRNEntry.lblFinishedNoRecord.Visible = false;
+                        if (MainForm.objPUR_GRNEntry.grdPODetails.Rows.Count > 0)
+                        {
+                            MainForm.objPUR_GRNEntry.lblFinishedNoRecord.Visible = false;
+                        }
+                        else
+                        {
+                            MainForm.objPUR_GRNEntry.lblFinishedNoRecord.Visible = false;
+                        }
+                        MainForm.objPUR_GRNEntry.grdPODetails.Sort(MainForm.objPUR_GRNEntry.grdPODetails.Columns["clmPODate"], ListSortDirection.Descending);
+                        this.Close();
                     }
                     else
                     {
-                        MainForm.objPUR_GRNEntry.lblFinishedNoRecord.Visible = false;
+                        SPDataService objDServ = new SPDataService();
+                        if (grdPurchaseOrder.Rows.Count > 0)
+                        {
+                            string varMessage = objDServ.udfnGetMessages(81);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            string varMessage = objDServ.udfnGetMessages(41);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
-                    MainForm.objPUR_GRNEntry.grdPODetails.Sort(MainForm.objPUR_GRNEntry.grdPODetails.Columns["clmPODate"], ListSortDirection.Descending);
-                    this.Close();
                 }
-                else
+                if (varMasterType == 2) //---purchase screen Po add---\\
                 {
-                    SPDataService objDServ = new SPDataService();
-                    if (grdPurchaseOrder.Rows.Count > 0)
-                    { 
-                        string varMessage = objDServ.udfnGetMessages(81);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string pono = "0";
+                    MainForm.objCP_Purchase.pbPONO = "0";
+                    for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
+                        {
+                            MainForm.objCP_Purchase.grdPODetails.Rows.Add(grdPurchaseOrder.Rows[i].Cells["PO.No"].Value, grdPurchaseOrder.Rows[i].Cells["PO Date"].Value, grdPurchaseOrder.Rows[i].Cells["Total Products"].Value, grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                            VARFLAG = 1;
+                            if (pono == "0")
+                            {
+                                pono = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                            }
+                            else
+                            {
+                                pono = pono + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                            } 
+                        }
+                    }
+                    if (VARFLAG != 0)
+                    {
+                        if (MainForm.objCP_Purchase.grdPODetails.Rows.Count > 0)
+                        {
+                            MainForm.objCP_Purchase.lblFinishedNoRecord.Visible = false;
+                        }
+                        else
+                        {
+                            MainForm.objCP_Purchase.lblFinishedNoRecord.Visible = false;
+                        }
+                        MainForm.objCP_Purchase.grdPODetails.Sort(MainForm.objCP_Purchase.grdPODetails.Columns["clmPODate"], ListSortDirection.Descending); 
+
+                        MainForm.objCP_Purchase.pbPONO = pono;
+                        udfnclose();
                     }
                     else
-                    {  
-                        string varMessage = objDServ.udfnGetMessages(41);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        if (grdPurchaseOrder.Rows.Count > 0)
+                        {
+                            string varMessage = objDServ.udfnGetMessages(81);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            string varMessage = objDServ.udfnGetMessages(41);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }

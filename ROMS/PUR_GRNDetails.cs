@@ -1128,6 +1128,15 @@ namespace ROMS
         {
             try
             {
+                if (txtProductName.Text == "")
+                {
+                    lblProductcode.Text = "0";
+                    txtmrprate.Text = "";
+                    txtDate.Text = "";
+                    txtMonth.Text = "";
+                    txtYear.Text = "";
+                    txtBatchno.Text = "";
+                } 
                 txtmrprate.BackColor = Color.LemonChiffon;
                 lvproduct.Visible = false;
             }
