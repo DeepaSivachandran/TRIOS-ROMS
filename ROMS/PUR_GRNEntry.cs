@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
-        public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", GrnUpdatevalue="0";
+        public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
         public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0;
         public PUR_GRNEntry()
         {
@@ -251,6 +251,35 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (pbGRNId == "0")
+                {
+                    if (grdRepDetails.Rows.Count != 0)
+                    {
+                        if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
+                        {
+                            if (Convert.ToString(cmbConcern.SelectedValue) != "-1")
+                            {
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(78);
+                                objDServ.CloseConnection();
+
+                                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    txtSupplier.Text = "";
+                                    lblSupplierCode.Text = "0";
+                                    ClearSupplier();
+                                }
+                                else
+                                {
+                                    cmbConcern.SelectedValue = varcomid;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                varcomid = Convert.ToString(cmbConcern.SelectedValue);
                 udfnvoucherload();
             }
             catch (Exception ex)
@@ -940,7 +969,7 @@ namespace ROMS
         }
 
         private void GrdPODetails_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
+        { 
             try
             {
                 if (e.RowIndex != -1)
@@ -961,8 +990,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
         }
 

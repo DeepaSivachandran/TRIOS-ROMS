@@ -930,7 +930,6 @@ namespace ROMS
             }
         }
         public string udfnDecimal(string qty,int decimalvalue)
-        {
             string decimalqty = "0";
             try
             {
@@ -959,4 +958,3 @@ namespace ROMS
         }
 
     }
-}
