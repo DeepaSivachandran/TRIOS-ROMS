@@ -903,7 +903,6 @@ namespace ROMS
                     objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
                     objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
                     objdserv.CloseConnection();
-                    objdserv.CloseConnection();
                     if (objDs != null)
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
