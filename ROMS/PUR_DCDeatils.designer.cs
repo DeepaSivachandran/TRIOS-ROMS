@@ -42,7 +42,6 @@
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +63,7 @@
             this.btnSave.Text = "Submit";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // btnClose
             // 
@@ -161,22 +161,12 @@
             this.clmTotalitem.ReadOnly = true;
             this.clmTotalitem.Width = 120;
             // 
-            // chkSelectAll
-            // 
-            this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(26, 17);
-            this.chkSelectAll.Name = "chkSelectAll";
-            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
-            this.chkSelectAll.TabIndex = 1111145;
-            this.chkSelectAll.UseVisualStyleBackColor = true;
-            // 
             // PUR_DCDeatils
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(480, 317);
-            this.Controls.Add(this.chkSelectAll);
             this.Controls.Add(this.grdPurchaseOrder);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -190,10 +180,10 @@
             this.Name = "PUR_DCDeatils";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase DC";
+            this.Load += new System.EventHandler(this.PUR_DCDeatils_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -202,7 +192,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.DataGridView grdPurchaseOrder;
-        private System.Windows.Forms.CheckBox chkSelectAll;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkdays;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;

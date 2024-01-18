@@ -46,5 +46,15 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PUR_DCDeatils_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
