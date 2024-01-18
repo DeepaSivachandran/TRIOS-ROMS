@@ -686,6 +686,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inward Purchase";
             this.Load += new System.EventHandler(this.INV_InwardPurchase_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_InwardPurchase_KeyDown);
             this.tsInwardList.ResumeLayout(false);
             this.tsInwardList.PerformLayout();
             this.pnlinward.ResumeLayout(false);

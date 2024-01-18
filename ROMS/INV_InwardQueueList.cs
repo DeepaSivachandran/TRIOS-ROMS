@@ -81,9 +81,8 @@ namespace ROMS
                     MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
                     //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
                     MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objINV_InwardPurchase.varPurchaseID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["PURPRID"].Value);
-                    MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["GRN_COMID"].Value);
-                    MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["PR_PUR_SLID"].Value);
+                    MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Concern ID"].Value);
+                    MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Location ID"].Value);
                     MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPID"].Value);
                     MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPSCID"].Value);
 
@@ -632,12 +631,12 @@ namespace ROMS
                                 grdInwardQueueList.Columns["Created On"].Width = 140;
                                 grdInwardQueueList.Columns["GSTIN"].Width = 150;
                                 grdInwardQueueList.Columns["S.No."].Width = 60;
-                                grdInwardQueueList.Columns["GRNID"].Visible = false;
+                                grdInwardQueueList.Columns["ID"].Visible = false;
                                 grdInwardQueueList.Columns["SPID"].Visible = false;
                                 grdInwardQueueList.Columns["SPSCID"].Visible = false;
                                 grdInwardQueueList.Columns["SPSCID"].Visible = false;
-                                grdInwardQueueList.Columns["PR_PUR_SLID"].Visible = false;
-                                grdInwardQueueList.Columns["GRN_COMID"].Visible = false;
+                                grdInwardQueueList.Columns["Location ID"].Visible = false;
+                                grdInwardQueueList.Columns["Concern ID"].Visible = false;
                                 grdInwardQueueList.Columns["My Products"].Visible = false;
                             }
                             else

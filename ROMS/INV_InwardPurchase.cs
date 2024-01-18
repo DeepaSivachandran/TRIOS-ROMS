@@ -16,7 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0,varStausId=0;
-        public int varPurchaseID = 0, varID=0;
+        public int varPurchaseID = 0, varID=0,varGRNPurchaseFlag=0, varCloseFlag=0;
         DataTable dtInwardPurchase = new DataTable();
         public INV_InwardPurchase()
         {
@@ -207,15 +207,15 @@ namespace ROMS
                         else { varReceivedty = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value); }
                         if (varEditFlag == 0)
                         {
-                            dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["GRNPR_PRID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["GRNPR_UTID"].Value),
-                                Convert.ToInt32(varReceivedty), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["PR_PUR_RKID"].Value), 
+                            dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["Product ID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["Unit ID"].Value),
+                                Convert.ToInt32(varReceivedty), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value), 
                                 Convert.ToString(grdGrnlist.Rows[i].Cells["Expiry Date"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["Batch No."].Value), 
-                                Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["GRNPRID"].Value));
+                                Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["ID"].Value));
                         }
                         if(varEditFlag==1)
                         {
-                            dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_PRID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_UTID"].Value),
-                                Convert.ToInt32(varReceivedty), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["GIPPR_RKID"].Value),
+                            dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["Product ID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["Unit ID"].Value),
+                                Convert.ToInt32(varReceivedty), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value),
                                 Convert.ToString(grdGrnlist.Rows[i].Cells["Expiry Date"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["Batch No."].Value),
                                 Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["GIPPR_GIPID"].Value));
                         }
@@ -239,7 +239,12 @@ namespace ROMS
                                 string result = "", varorginator = "Inward from GRN"; 
                                 int varviewtype = 0,varTypeID=0;
                                 if(varEditFlag==0)
-                                { varviewtype = 0;  varTypeID = 174; }
+                                { varviewtype = 0;
+                                    if (varGRNPurchaseFlag == 1)
+                                    { varTypeID = 174;}
+                                    else if (varGRNPurchaseFlag == 1)
+                                    { varTypeID = 175; }
+                                }
                                 else if(varEditFlag==1)
                                 { varviewtype = 1; }
                                 if (chkCompleted.Checked == true)
@@ -255,7 +260,15 @@ namespace ROMS
                                 objTRN_GoodsInward_Purchase.paraGIP_Date = Convert.ToString(dpInwardDate.Text);
                                 objTRN_GoodsInward_Purchase.paraGIP_NO = Convert.ToString(txtInwardNo.Text);
                                 objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(varConcernId);
-                                objTRN_GoodsInward_Purchase.paraGRNID = Convert.ToInt32(varGRNId);
+                                objTRN_GoodsInward_Purchase.paraFlag = varGRNPurchaseFlag;
+                                if (varGRNPurchaseFlag == 1)
+                                {
+                                    objTRN_GoodsInward_Purchase.paraGRNID = Convert.ToInt32(varID);
+                                }
+                                if (varGRNPurchaseFlag == 2)
+                                {
+                                    objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(varID);
+                                }
                                 objTRN_GoodsInward_Purchase.paraInwardId = varInwardId;
                                 objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(varStatusID);
                                 objTRN_GoodsInward_Purchase.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
@@ -271,7 +284,7 @@ namespace ROMS
                                 if (varvalue[0] == "3")
                                 {
                                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                  //  varCloseFlag = 1;
+                                    varCloseFlag=1;
                                     udfnclose();
                                     if (varEditFlag == 0)
                                     {
@@ -294,6 +307,22 @@ namespace ROMS
                     string varMessage = objDServ.udfnGetMessages(100);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void INV_InwardPurchase_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
                 }
             }
             catch (Exception ex)
@@ -441,8 +470,15 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varCloseFlag == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.Close();
                 }
@@ -472,6 +508,9 @@ namespace ROMS
                 if (varID!=0 || varInwardId !=0 )
                 {
                     int varviewtype = 0;
+                    if (txtGRNNo.Text.Trim() != "") { varGRNPurchaseFlag = 1; }
+                    if (txtVoucherNo.Text.Trim() !="") { varGRNPurchaseFlag = 2; }
+
                     if (varEditFlag == 1) { varviewtype = 2; }
                     if(varStausId==45)
                     {
@@ -487,10 +526,12 @@ namespace ROMS
                     objTRN_GoodsInward_Purchase.ViewType = varviewtype;
                     objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
-                    objTRN_GoodsInward_Purchase.paraGRNID = varGRNId;
+                    objTRN_GoodsInward_Purchase.paraID = varID;
+                    //objTRN_GoodsInward_Purchase.paraGRNID = varGRNId;
                     objTRN_GoodsInward_Purchase.paraInwardId = varInwardId;
                     objTRN_GoodsInward_Purchase.paraSLID = varLocationId;
                     objTRN_GoodsInward_Purchase.paraCompanyId= varConcernId;
+                    objTRN_GoodsInward_Purchase.paraFlag= varGRNPurchaseFlag;
                     objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objdserv.CloseConnection();
                     if (objDs != null)
@@ -503,7 +544,7 @@ namespace ROMS
                                 grdGrnlist.DataSource = objDs.Tables[0];
                                 grdGrnlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnlist.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdGrnlist.Columns["Invoice Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                               // grdGrnlist.Columns["Invoice Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnlist.Columns["Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnlist.Columns["Product Name in English"].Width = 300;
@@ -525,7 +566,7 @@ namespace ROMS
                                 grdGrnlist.Columns["Unit"].ReadOnly = true;
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Received Qty"]).MaxInputLength = 8;
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Shop Qty"]).MaxInputLength = 8;
-                                ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Invoice Received Qty"]).MaxInputLength = 8;
+                                //((DataGridViewTextBoxColumn)grdGrnlist.Columns["Invoice Received Qty"]).MaxInputLength = 8;
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
                                 grdGrnlist.Columns["Product ID"].Visible = false;
@@ -550,7 +591,7 @@ namespace ROMS
                                     grdGrnlist.Columns["Location ID"].Visible = false;
                                     grdGrnlist.Columns["Rack ID"].Visible = false;
                                     grdGrnlist.Columns["ID"].Visible = false;
-                                    grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
+                                    //grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
                                     grdGrnlist.Columns["GIPPR_GIPID"].Visible = false;
                                     if(varStausId==46)
                                     {

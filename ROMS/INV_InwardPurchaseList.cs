@@ -17,7 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         string varUserID = "0";
-        int varPRID = 0, Varflag=0, varviewtype=0, varDeleteFlag=0;
+        int varPRID = 0, varparaflag=0, varviewtype=0, varDeleteFlag=0, Varflag = 0;
         public INV_InwardPurchaseList()
         {
             InitializeComponent();
@@ -158,16 +158,16 @@ namespace ROMS
         {
             try
             {
-                //SPDataService objDServ = new SPDataService();
-                //DataSet objd = new DataSet();
-                //objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 1);
-                //if (objd.Tables[0].Rows.Count != 0)
-                //{
-                //    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                //    //  dpDcFromDate.MaxDate = varmaxdate;
-                //    dpFromDate.Text = Convert.ToString(vardate);
-                //    dpToDate.MinDate = vardate;
-                //}
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 10);
+                if (objd.Tables[0].Rows.Count != 0)
+                {
+                    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    //  dpDcFromDate.MaxDate = varmaxdate;
+                    dpFromDate.Text = Convert.ToString(vardate);
+                    dpToDate.MinDate = vardate;
+                }
             }
             catch (Exception ex)
             {
@@ -563,7 +563,8 @@ namespace ROMS
                                 grdInwardList.Columns["GSTIN"].Width = 120;
                                 // grdInwardQueueList.Columns["Status"].Width = 100;
                                 grdInwardList.Columns["S.No."].Width = 60;
-                                grdInwardList.Columns["GIP_GRNID"].Visible = false;
+                                grdInwardList.Columns["GRN ID"].Visible = false;
+                                grdInwardList.Columns["Purchase ID"].Visible = false;
                                 grdInwardList.Columns["GIP_COMID"].Visible = false;
                                 grdInwardList.Columns["GIP_SLID"].Visible = false;
                                 grdInwardList.Columns["SPID"].Visible = false;
@@ -714,6 +715,10 @@ namespace ROMS
                         {
                             string varorginator = "Goods Inward from GRN Deletion", result = "";
                             varviewtype = 2;
+                            if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GRN ID"].Value)!=0)
+                            { varparaflag = 1; }
+                            else if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0)
+                            { varparaflag = 2; }
                             int varUserID = 0;
                             TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
                             objTRN_GoodsInward_Purchase.ViewType = varviewtype;
@@ -721,8 +726,10 @@ namespace ROMS
                             objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
                             objTRN_GoodsInward_Purchase.paraOriginator = varorginator;
                             objTRN_GoodsInward_Purchase.paraHostName = MainForm.pbHostName;
-                            objTRN_GoodsInward_Purchase.paraGRNID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_GRNID"].Value.ToString());
+                            objTRN_GoodsInward_Purchase.paraGRNID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GRN ID"].Value.ToString());
+                            objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value.ToString());
                             objTRN_GoodsInward_Purchase.paraDeleteFlag = 0;
+                            objTRN_GoodsInward_Purchase.paraFlag = varparaflag;
                             objTRN_GoodsInward_Purchase.paraInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value.ToString());
                             SPDataService objspdservice = new SPDataService();
                             result = objspdservice.udfnGoodsInwardPurchase(objTRN_GoodsInward_Purchase);
