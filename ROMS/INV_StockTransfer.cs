@@ -401,7 +401,7 @@ namespace ROMS
                             {
                                 txtSLocation.Text = objDS.Tables[0].Rows[0]["Source Location"].ToString();
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Dest Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]));
-                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
+                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
                             }                             
                             //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
                             //int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
@@ -1807,15 +1807,19 @@ namespace ROMS
                 
                 int varStatus = 0;
                 int varTransactionType = 0;
-                if (chkStatus.Checked==true || varUpdateflag==1)
+                if (chkStatus.Checked == true || varUpdateflag == 1)
                 {
                     varStatus = 32;
                 }
-                else if(chkStatus.Checked == false || varUpdateflag==0)
+                else if (chkStatus.Checked == false || varUpdateflag == 0)
                 {
                     varStatus = 21;
                 }
-                if(txtTransactionType.Text=="Regular")
+                else if(varUpdateflag==1 && btnSave.Text=="Update")
+                {
+                    varStatus = 48;
+                }
+                if (txtTransactionType.Text=="Regular")
                 {
                     varTransactionType = 172;
                 }
@@ -1823,48 +1827,59 @@ namespace ROMS
                 {
                     varTransactionType = 173;
                 }
-                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(), varStatus, varoriginator,dtStock,0,varTransactionType,varUpdateflag,varStockRequestID);
-                objspservice.CloseConnection();
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "3" && varUpdateflag==0)
+
+                if (varUpdateflag == 1)
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objINV_StockTransferList.udfnList();
-                    udfnClear();
-                    varModifiedFlag = 0;
-                    this.Close();
-                }
-                else if (varvalue[0] == "3" && varUpdateflag == 1)
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objINV_StockTransferQueue.udfnList();
-                    udfnClear();
-                    varModifiedFlag = 0;
-                    this.Close();
+                    varResult = objspservice.udfnStockTransfer(varType, varStockTransferID, Convert.ToInt32(cmbConcern.SelectedValue), dpTrannsferDate.Text, Convert.ToInt32(lblSLocation.Text), 0, txtRemarks.Text.Trim(), varStatus, varoriginator, dtStock, 0, varTransactionType, varUpdateflag, varStockRequestID);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objINV_StockTransferQueue.udfnList();
+                        udfnClear();
+                        varModifiedFlag = 0;
+                        this.Close();
+                    }
                 }
                 else
                 {
-                    errStockTransfer.Clear();
-                    txtProductNamePICode.BackColor = Color.White;
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnSave.Enabled = true;
-                    btnSave.Focus();
-                    if (varvalue[0] == "5")
+                    varResult = objspservice.udfnStockTransfer(varType, varStockTransferID, Convert.ToInt32(cmbConcern.SelectedValue), dpTrannsferDate.Text, Convert.ToInt32(lblSLocation.Text), 0, txtRemarks.Text.Trim(), varStatus, varoriginator, dtStock, 0, varTransactionType, varUpdateflag, varStockRequestID);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
                     {
-                        string[] varFirstList = varvalue[2].Split('|');
-                        for (int i = 0; i < varFirstList.Length; i++)
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objINV_StockTransferList.udfnList();
+                        udfnClear();
+                        varModifiedFlag = 0;
+                        this.Close();
+                    }
+
+                    else
+                    {
+                        errStockTransfer.Clear();
+                        txtProductNamePICode.BackColor = Color.White;
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
+                        if (varvalue[0] == "5")
                         {
-                            string[] varSecondList = varFirstList[i].Split(',');
-                            string varPRID = varSecondList[0];
-                            string varMRP = varSecondList[1];
-                            string varExpiryDate = varSecondList[2];
-                            string varBatchNo = varSecondList[3];
-                            string varRack = varSecondList[4];
-                            for (int j = 0; j < grdStockTransfer.RowCount; j++)
+                            string[] varFirstList = varvalue[2].Split('|');
+                            for (int i = 0; i < varFirstList.Length; i++)
                             {
-                                if (Convert.ToString(grdStockTransfer.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmbatchno"].Value) == varBatchNo && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmSRID"].Value) == varRack)
+                                string[] varSecondList = varFirstList[i].Split(',');
+                                string varPRID = varSecondList[0];
+                                string varMRP = varSecondList[1];
+                                string varExpiryDate = varSecondList[2];
+                                string varBatchNo = varSecondList[3];
+                                string varRack = varSecondList[4];
+                                for (int j = 0; j < grdStockTransfer.RowCount; j++)
                                 {
-                                    grdStockTransfer.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                    if (Convert.ToString(grdStockTransfer.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmbatchno"].Value) == varBatchNo && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmSRID"].Value) == varRack)
+                                    {
+                                        grdStockTransfer.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                    }
                                 }
                             }
                         }
