@@ -2315,7 +2315,7 @@ namespace ROMS
             {
 
             }
-        }
+        } 
 
         private void GrdStockTransfer_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {

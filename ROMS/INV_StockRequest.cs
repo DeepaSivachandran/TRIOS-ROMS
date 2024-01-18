@@ -933,6 +933,10 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {
