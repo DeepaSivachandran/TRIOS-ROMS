@@ -71,6 +71,10 @@ namespace ROMS
                     if (grdSupplierList.Rows.Count !=0)
                     {
                         btnClear.Enabled = true;
+                    } 
+                    if (grdPODetails.Rows.Count != 0)
+                    {
+                        lblFinishedNoRecord.Visible=false;
                     }
                 }
                 if (cmbEntryType.SelectedValue.ToString() == "56") // Direct
@@ -89,6 +93,14 @@ namespace ROMS
                     udfnDefReturnDc();
                     grdPODetails.Visible = false;
                     grdReurnDC.Visible = true;
+                    if (grdSupplierList.Rows.Count != 0)
+                    {
+                        btnClear.Enabled = true;
+                    }
+                    if (grdReurnDC.Rows.Count != 0)
+                    {
+                        lblFinishedNoRecord.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -939,6 +951,7 @@ namespace ROMS
                     //varSuppliervalue = selectedItem.SubItems[3].Text;
                     udfnSupplierDetails();
                     grdSupplierList.Rows.Clear();
+                    grdReurnDC.Rows.Clear();
                     txtTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
                 }
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")

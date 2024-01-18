@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_DCDeatils));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnSave = new System.Windows.Forms.Button();
@@ -55,11 +54,13 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(81, 33);
-            this.btnSave.TabIndex = 9;
+            this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Submit";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // btnClose
             // 
@@ -70,11 +71,13 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 33);
-            this.btnClose.TabIndex = 10;
+            this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // grdDCDetails
             // 
@@ -94,23 +97,14 @@
             this.grdDCDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdDCDetails.ColumnHeadersHeight = 30;
             this.grdDCDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdDCDetails.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdDCDetails.EnableHeadersVisualStyles = false;
             this.grdDCDetails.GridColor = System.Drawing.Color.White;
             this.grdDCDetails.Location = new System.Drawing.Point(12, 7);
             this.grdDCDetails.Name = "grdDCDetails";
-            this.grdDCDetails.ReadOnly = true;
             this.grdDCDetails.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdDCDetails.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.grdDCDetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grdDCDetails.RowTemplate.Height = 25;
             this.grdDCDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDCDetails.Size = new System.Drawing.Size(456, 261);

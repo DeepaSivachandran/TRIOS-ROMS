@@ -394,8 +394,8 @@ namespace ROMS
                         cmbConcern.DataSource = objDT.Tables[0];
                     }
                 }
-            }
-
+            } 
+            cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             DataBind objDataBind = new DataBind();
             DataService objdservice = new DataService();
             objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=44 AND MSTID NOT IN (135,136) OR MSTID=-1", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
@@ -4429,7 +4429,7 @@ namespace ROMS
                 {
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 17;
-                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblschedule.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
