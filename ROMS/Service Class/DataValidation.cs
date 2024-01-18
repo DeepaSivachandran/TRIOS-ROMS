@@ -203,7 +203,7 @@ namespace ROMS
                     {
                         SSSExamCell.BackColor = System.Drawing.SystemColors.Window;
                     }
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -433,13 +433,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }    
+        }
         private List<Control> GetAllControls(Control container, List<Control> list)
         {
             foreach (Control c in container.Controls)
             {
-                if (c is TextBox) { list.Add(c);c.Font= new System.Drawing.Font("Segoe UI", 9.5F); }
-                if (c is Label) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI",9.5F); }
+                if (c is TextBox) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
+                if (c is Label) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
                 if (c is RadioButton) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
                 if (c is DataGrid) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
                 if (c is Button) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
@@ -455,7 +455,7 @@ namespace ROMS
         {
             try
             {
-                lblTotal.Font =new System.Drawing.Font("Segoe UI", 20F);
+                lblTotal.Font = new System.Drawing.Font("Segoe UI", 20F);
             }
             catch (Exception ex)
             {
@@ -511,7 +511,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); return false; }
         }
-       
+
         public bool FormatAlphbeticNumericAndSpecialchar(string inputText)
         {
             try
@@ -747,9 +747,9 @@ namespace ROMS
         public bool IsValidGSTIN(string gstin)
         {
             try
-            { 
+            {
                 if (string.IsNullOrWhiteSpace(gstin))
-                    return false; 
+                    return false;
                 return gstin.Length == 15 && Regex.IsMatch(gstin, @"^[a-zA-Z0-9]+$");
             }
             catch (Exception ex)
@@ -763,30 +763,30 @@ namespace ROMS
 
         //Created by Venkat
         //created on 08/08/2023; reason validate PAN
-                public bool IsValidPAN(string pan)
-               {
-                try
-                {
-                    // Check if PAN is null or empty
-                    if (string.IsNullOrWhiteSpace(pan))
-                        return false;
-
-                    // Check if PAN matches the format: 5 alphabets, 4 numbers, 1 alphabet
-                    return Regex.IsMatch(pan, @"^[A-Z]{5}\d{4}[A-Z]$");
-                }
-                 catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
+        public bool IsValidPAN(string pan)
+        {
+            try
+            {
+                // Check if PAN is null or empty
+                if (string.IsNullOrWhiteSpace(pan))
                     return false;
-                }
-              }
+
+                // Check if PAN matches the format: 5 alphabets, 4 numbers, 1 alphabet
+                return Regex.IsMatch(pan, @"^[A-Z]{5}\d{4}[A-Z]$");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
 
         //Created by Venkat
         //created on 08/08/2023; reason validate esiNumber
         public bool IsValidESINumber(string esiNumber)
         {
-           
+
             try
             {  // Check if ESI Number is null or empty
                 if (string.IsNullOrWhiteSpace(esiNumber))
@@ -807,7 +807,7 @@ namespace ROMS
         //created on 08/08/2023; reason validate fssai
 
         public bool IsValidFSSAI(string fssai)
-         {
+        {
             try
             {
                 // Check if FSSAI is null or empty
@@ -828,7 +828,7 @@ namespace ROMS
         //created on 08/08/2023; reason validate fssai
 
         public bool IsValidEPF(string epf)
-         {
+        {
             try
             {
                 // Check if EPF is null or empty
@@ -849,7 +849,7 @@ namespace ROMS
         //created on 08/08/2023; reason validate fssai
 
         public bool IsValidUrl(string url)
-         { 
+        {
             try
             {
                 Uri uriResult;
@@ -929,7 +929,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public string udfnDecimal(string qty,int decimalvalue)
+        public string udfnDecimal(string qty, int decimalvalue)
+        {
             string decimalqty = "0";
             try
             {
@@ -956,5 +957,5 @@ namespace ROMS
             }
             return decimalqty;
         }
-
     }
+}
