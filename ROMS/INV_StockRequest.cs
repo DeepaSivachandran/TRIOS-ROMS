@@ -890,30 +890,16 @@ namespace ROMS
                 }
 
                 TextBox textBox = (TextBox)sender;
-                if (varDecimal==5)
+                if (varDecimal == 0)
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     {
                         e.Handled = true;
                     }
                 }
-                else if(varDecimal==6)
-                {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 2)
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else if(varDecimal==7)
-                {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 3)
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else if (varDecimal == 8)
-                {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 4)
+                else
+                { 
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal+1)
                     {
                         e.Handled = true;
                     }
@@ -922,7 +908,7 @@ namespace ROMS
                 {
                     e.Handled = false;
                 }
-                if (varDecimal == 5)
+                if (varDecimal == 0)
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     {
@@ -1367,21 +1353,10 @@ namespace ROMS
             try
             {
                 int varDecimal = Convert.ToInt32(grdStockRequest.CurrentRow.Cells["clmUTDecimal"].Value);
-                //if (varDecimal == 6)
-                //{
+
                     string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
                     grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                //}
-                //if (varDecimal == 7)
-                //{
-                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
-                //    grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                //}
-                //if (varDecimal == 8)
-                //{
-                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
-                //    grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                //}
+
                 object varEditQty = grdStockRequest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["SRQ_RequestedQty"] = varEditQty;
@@ -1392,7 +1367,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStatus_Enter(object sender, EventArgs e)
         {
             try
@@ -1515,30 +1489,16 @@ namespace ROMS
                     //    e.Handled = true;  // Disallow the character
                     //}
                     TextBox textBox = (TextBox)sender;
-                    if (varDecimal == 5)
+                    if (varDecimal == 0)
                     {
                         if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                         {
                             e.Handled = true;
                         }
                     }
-                    else if (varDecimal == 6)
+                    else
                     {
-                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 2)
-                        {
-                            e.Handled = true;
-                        }
-                    }
-                    else if (varDecimal == 7)
-                    {
-                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 3)
-                        {
-                            e.Handled = true;
-                        }
-                    }
-                    else if (varDecimal == 8)
-                    {
-                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 4)
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
                         {
                             e.Handled = true;
                         }
@@ -1547,7 +1507,7 @@ namespace ROMS
                     {
                         e.Handled = false;
                     }
-                    if (varDecimal == 5)
+                    if (varDecimal == 0)
                     {
                         if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                         {
