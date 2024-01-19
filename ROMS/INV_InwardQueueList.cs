@@ -85,6 +85,7 @@ namespace ROMS
                     MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Location ID"].Value);
                     MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPID"].Value);
                     MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPSCID"].Value);
+                    MainForm.objINV_InwardPurchase.varGRNPurchaseFlag = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Type ID"].Value);
 
                     MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern"].Value);
                     MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
@@ -638,6 +639,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["Location ID"].Visible = false;
                                 grdInwardQueueList.Columns["Concern ID"].Visible = false;
                                 grdInwardQueueList.Columns["My Products"].Visible = false;
+                                grdInwardQueueList.Columns["Type ID"].Visible = false;
                             }
                             else
                             {

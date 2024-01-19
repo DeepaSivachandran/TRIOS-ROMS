@@ -17,6 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         string varUserID = "0";
+        DataTable dtDefaultGrid = new DataTable();
         int varPRID = 0, varparaflag=0, varviewtype=0, varDeleteFlag=0, Varflag = 0;
         public INV_InwardPurchaseList()
         {
@@ -458,11 +459,51 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                grdInwardList.Columns["GRN ID"].Visible = false;
+                grdInwardList.Columns["Purchase ID"].Visible = false;
+                grdInwardList.Columns["GIP_COMID"].Visible = false;
+                grdInwardList.Columns["GIP_SLID"].Visible = false;
+                grdInwardList.Columns["SPID"].Visible = false;
+                grdInwardList.Columns["GIPID"].Visible = false;
+
+                grdInwardList.Columns["SPSCID"].Visible = false;
+                grdInwardList.Columns["Status ID"].Visible = false;
+
+                //DGV_SearchGrid.Columns["ID"].Visible = false;
+                //DGV_SearchGrid.Columns["ConcernID"].Visible = false;
+                //DGV_SearchGrid.Columns["LocationTypeID"].Visible = false;
+                //DGV_SearchGrid.Columns["StockApplicableID"].Visible = false;
+                //DGV_SearchGrid.Columns["GodownTypeID"].Visible = false;
+                //DGV_SearchGrid.Columns["StatusID"].Visible = false;
+                //DGV_SearchGrid.Columns["DefaultID"].Visible = false;
+                //DGV_SearchGrid.Columns["RKCreationID"].Visible = false;
+                //DGV_SearchGrid.Columns["RKGCreationID"].Visible = false;
+                //DGV_SearchGrid.Columns["S.No."].Width = 50;
+                //DGV_SearchGrid.Columns["Location Name in English"].Width = 200;
+                //DGV_SearchGrid.Columns["Location Name in Tamil"].Width = 200;
+                //DGV_SearchGrid.Columns["Rack Group Creation"].Width = 130;
+                //DGV_SearchGrid.Columns["Short Name"].Width = 100;
+                //DGV_SearchGrid.Columns["Stock Applicable"].Width = 110;
+                //DGV_SearchGrid.Columns["Status"].Width = 80;
+                //DGV_SearchGrid.Columns["Godown Type"].Width = 150;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnList()
         {
             try
             {
-                //dtDefaultGrid = null;
+                dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 Varflag = 0;
                 picLoader.Visible = true;
@@ -534,6 +575,9 @@ namespace ROMS
                     objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                     objTRN_GoodsInward_Purchase.paraProductId = Convert.ToInt32(varPRID);
                     objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                    objTRN_GoodsInward_Purchase.ParaFromDate = Convert.ToString(dpFromDate.Text);
+                    objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
+                    objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                     objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbEntryType.SelectedValue);
                     objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objdserv.CloseConnection();
@@ -570,6 +614,7 @@ namespace ROMS
                                 grdInwardList.Columns["SPID"].Visible = false;
                                 grdInwardList.Columns["GIPID"].Visible = false;
                                
+                               
                                 grdInwardList.Columns["SPSCID"].Visible = false;
                                 grdInwardList.Columns["Status ID"].Visible = false;
                             }
@@ -591,12 +636,12 @@ namespace ROMS
                         lblNoRecordsFound.BringToFront();
                     }
                     udfnSearchGridHead();
-                    //if (lblNoRecordsFound.Visible == true)
-                    //{
-                    //    dtDefaultGrid = objDs.Tables[0];
-                    //    udfnDefaultSearchGrid();
-                    //}
-                    //  else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+                    if (lblNoRecordsFound.Visible == true)
+                    {
+                        dtDefaultGrid = objDs.Tables[0];
+                        udfnDefaultSearchGrid();
+                    }
+                    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
                 }
                 else
                 {
