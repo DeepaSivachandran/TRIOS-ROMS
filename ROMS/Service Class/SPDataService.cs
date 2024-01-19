@@ -107,7 +107,7 @@ namespace ROMS
             return udfn;
         }
         // added by venkat on 13/10/2023 for PO.No. Load
-        public string udfngetPONO(string paraTransactionType, string paraDate, int paraCompanyCode)
+        public string udfngetVoucherNo(string paraTransactionType, string paraDate, int paraCompanyCode)
         {
             string result = "";
             try
@@ -2964,6 +2964,8 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_PurchaseEntry.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@ParaIds", objTRN_PurchaseEntry.ParaIds);
+                varSqlCommand.Parameters.AddWithValue("@ParaPEFromDate", objTRN_PurchaseEntry.ParaPEFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaPEToDate", objTRN_PurchaseEntry.ParaPEToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

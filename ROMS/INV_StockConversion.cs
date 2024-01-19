@@ -633,7 +633,7 @@ namespace ROMS
                         DataService objDservice = new DataService();
                         vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpConversionDate.Text + "',103)");
                         objDservice.CloseConnection();
-                        varResult = objspdservice.udfngetPONO("152", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        varResult = objspdservice.udfngetVoucherNo("152", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                         objspdservice.CloseConnection();
                         string[] parts = varResult.Split('~');
                         string pono = parts[0];

@@ -664,16 +664,19 @@ namespace ROMS
         }
 
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
-        {
-
+        { 
             try
             {
                 LV_Supplier.Items.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {
                     MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 15;
+                    objMR_Supplier.ViewType = 26;
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    objMR_Supplier.ParaFromDate = dpFromDate.Text;
+                    objMR_Supplier.ParaToDate = dpToDate.Text;
+                    objMR_Supplier.paraFlag = 6;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -792,7 +795,7 @@ namespace ROMS
         {
             try
             {
-                btnView.BackColor = Color.White;
+                btnView.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {

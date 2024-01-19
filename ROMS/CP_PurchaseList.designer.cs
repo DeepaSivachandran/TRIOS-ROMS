@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,15 +44,19 @@
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.grdSupplierList = new System.Windows.Forms.DataGridView();
+            this.grdPurchaseEntryList = new System.Windows.Forms.DataGridView();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlpurchase = new System.Windows.Forms.Panel();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpFilterby = new System.Windows.Forms.GroupBox();
-            this.btnView = new System.Windows.Forms.Button();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbstatus = new System.Windows.Forms.ComboBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
@@ -64,19 +69,19 @@
             this.dpFromDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.LV_Supplier = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnView = new System.Windows.Forms.Button();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.lblschedleCode = new System.Windows.Forms.Label();
+            this.errPurchaseList = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsBrandList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.pnlpurchase.SuspendLayout();
             this.grpFilterby.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errPurchaseList)).BeginInit();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -182,14 +187,14 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
-            // grdSupplierList
+            // grdPurchaseEntryList
             // 
-            this.grdSupplierList.AllowUserToAddRows = false;
-            this.grdSupplierList.AllowUserToDeleteRows = false;
-            this.grdSupplierList.AllowUserToResizeColumns = false;
-            this.grdSupplierList.AllowUserToResizeRows = false;
-            this.grdSupplierList.BackgroundColor = System.Drawing.Color.White;
-            this.grdSupplierList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdPurchaseEntryList.AllowUserToAddRows = false;
+            this.grdPurchaseEntryList.AllowUserToDeleteRows = false;
+            this.grdPurchaseEntryList.AllowUserToResizeColumns = false;
+            this.grdPurchaseEntryList.AllowUserToResizeRows = false;
+            this.grdPurchaseEntryList.BackgroundColor = System.Drawing.Color.White;
+            this.grdPurchaseEntryList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -197,10 +202,10 @@
             dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.grdSupplierList.ColumnHeadersHeight = 30;
-            this.grdSupplierList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdPurchaseEntryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.grdPurchaseEntryList.ColumnHeadersHeight = 30;
+            this.grdPurchaseEntryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPurchaseEntryList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmEdit});
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
@@ -209,22 +214,31 @@
             dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSupplierList.DefaultCellStyle = dataGridViewCellStyle14;
-            this.grdSupplierList.EnableHeadersVisualStyles = false;
-            this.grdSupplierList.GridColor = System.Drawing.Color.White;
-            this.grdSupplierList.Location = new System.Drawing.Point(3, 130);
-            this.grdSupplierList.Name = "grdSupplierList";
-            this.grdSupplierList.ReadOnly = true;
-            this.grdSupplierList.RowHeadersVisible = false;
+            this.grdPurchaseEntryList.DefaultCellStyle = dataGridViewCellStyle14;
+            this.grdPurchaseEntryList.EnableHeadersVisualStyles = false;
+            this.grdPurchaseEntryList.GridColor = System.Drawing.Color.White;
+            this.grdPurchaseEntryList.Location = new System.Drawing.Point(3, 130);
+            this.grdPurchaseEntryList.Name = "grdPurchaseEntryList";
+            this.grdPurchaseEntryList.ReadOnly = true;
+            this.grdPurchaseEntryList.RowHeadersVisible = false;
             dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle15;
-            this.grdSupplierList.RowTemplate.Height = 25;
-            this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierList.Size = new System.Drawing.Size(1348, 510);
-            this.grdSupplierList.TabIndex = 958797;
-            this.grdSupplierList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellContentClick);
-            this.grdSupplierList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupplierList_Scroll);
+            this.grdPurchaseEntryList.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            this.grdPurchaseEntryList.RowTemplate.Height = 25;
+            this.grdPurchaseEntryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPurchaseEntryList.Size = new System.Drawing.Size(1348, 510);
+            this.grdPurchaseEntryList.TabIndex = 958797;
+            this.grdPurchaseEntryList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellContentClick);
+            this.grdPurchaseEntryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupplierList_Scroll);
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.HeaderText = "GSTR Status";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.pending;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.ReadOnly = true;
+            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // lblNoRecordsFound
             // 
@@ -277,10 +291,10 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
-            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit_1);
-            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting_1);
-            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick_1);
-            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged_1);
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
@@ -292,12 +306,45 @@
             this.pnlpurchase.Controls.Add(this.grpFilterby);
             this.pnlpurchase.Controls.Add(this.DGV_SearchGrid);
             this.pnlpurchase.Controls.Add(this.lblNoRecordsFound);
-            this.pnlpurchase.Controls.Add(this.grdSupplierList);
+            this.pnlpurchase.Controls.Add(this.grdPurchaseEntryList);
             this.pnlpurchase.Controls.Add(this.picLoader);
             this.pnlpurchase.Location = new System.Drawing.Point(0, 31);
             this.pnlpurchase.Name = "pnlpurchase";
             this.pnlpurchase.Size = new System.Drawing.Size(1354, 641);
             this.pnlpurchase.TabIndex = 36;
+            // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(580, 54);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(487, 93);
+            this.LV_Supplier.TabIndex = 1111195;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 180;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
             // 
             // grpFilterby
             // 
@@ -321,49 +368,6 @@
             this.grpFilterby.TabStop = false;
             this.grpFilterby.Text = "Filter By";
             // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1267, 22);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(64, 29);
-            this.btnView.TabIndex = 958797;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(1039, 385);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(302, 243);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "GSTR Status";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.pending;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // clmEdit
-            // 
-            this.clmEdit.HeaderText = "GSTR Status";
-            this.clmEdit.Image = global::ROMS.Properties.Resources.pending;
-            this.clmEdit.Name = "clmEdit";
-            this.clmEdit.ReadOnly = true;
-            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -380,7 +384,11 @@
             this.cmbstatus.Location = new System.Drawing.Point(1136, 23);
             this.cmbstatus.Name = "cmbstatus";
             this.cmbstatus.Size = new System.Drawing.Size(122, 27);
-            this.cmbstatus.TabIndex = 1111190;
+            this.cmbstatus.TabIndex = 6;
+            this.cmbstatus.Enter += new System.EventHandler(this.Cmbstatus_Enter);
+            this.cmbstatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbstatus_KeyDown);
+            this.cmbstatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmbstatus_KeyPress);
+            this.cmbstatus.Leave += new System.EventHandler(this.Cmbstatus_Leave);
             // 
             // cmbConcern
             // 
@@ -389,7 +397,11 @@
             this.cmbConcern.Location = new System.Drawing.Point(67, 23);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(117, 27);
-            this.cmbConcern.TabIndex = 1111185;
+            this.cmbConcern.TabIndex = 1;
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
             // txtSupplier
             // 
@@ -398,7 +410,11 @@
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(273, 27);
-            this.txtSupplier.TabIndex = 1111188;
+            this.txtSupplier.TabIndex = 4;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
+            this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
+            this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
+            this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
             // 
             // label10
             // 
@@ -436,7 +452,9 @@
             this.cmbOrdertype.Location = new System.Drawing.Point(929, 23);
             this.cmbOrdertype.Name = "cmbOrdertype";
             this.cmbOrdertype.Size = new System.Drawing.Size(150, 27);
-            this.cmbOrdertype.TabIndex = 1111189;
+            this.cmbOrdertype.TabIndex = 5;
+            this.cmbOrdertype.Enter += new System.EventHandler(this.CmbOrdertype_Enter);
+            this.cmbOrdertype.Leave += new System.EventHandler(this.CmbOrdertype_Leave);
             // 
             // dpToDate
             // 
@@ -445,7 +463,10 @@
             this.dpToDate.Location = new System.Drawing.Point(370, 23);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(107, 27);
-            this.dpToDate.TabIndex = 1111187;
+            this.dpToDate.TabIndex = 3;
+            this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
+            this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
+            this.dpToDate.Leave += new System.EventHandler(this.DpToDate_Leave);
             // 
             // dpFromDate
             // 
@@ -454,7 +475,11 @@
             this.dpFromDate.Location = new System.Drawing.Point(257, 23);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
-            this.dpFromDate.TabIndex = 1111186;
+            this.dpFromDate.TabIndex = 2;
+            this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
+            this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
+            this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
+            this.dpFromDate.Leave += new System.EventHandler(this.DpFromDate_Leave);
             // 
             // label1
             // 
@@ -476,36 +501,68 @@
             this.label3.Text = "0";
             this.label3.Visible = false;
             // 
-            // LV_Supplier
+            // btnView
             // 
-            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(579, 67);
-            this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(362, 93);
-            this.LV_Supplier.TabIndex = 1111195;
-            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
-            this.LV_Supplier.View = System.Windows.Forms.View.Details;
-            this.LV_Supplier.Visible = false;
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(1267, 22);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(64, 29);
+            this.btnView.TabIndex = 7;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
-            // columnHeader5
+            // picLoader
             // 
-            this.columnHeader5.Width = 180;
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(1039, 385);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(302, 243);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
-            // columnHeader8
+            // dataGridViewImageColumn1
             // 
-            this.columnHeader8.Width = 120;
+            this.dataGridViewImageColumn1.HeaderText = "GSTR Status";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.pending;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // columnHeader9
+            // lblSupplierCode
             // 
-            this.columnHeader9.Width = 0;
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.BackColor = System.Drawing.Color.Green;
+            this.lblSupplierCode.Location = new System.Drawing.Point(928, 7);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.TabIndex = 1111197;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
+            // 
+            // lblschedleCode
+            // 
+            this.lblschedleCode.AutoSize = true;
+            this.lblschedleCode.BackColor = System.Drawing.Color.LimeGreen;
+            this.lblschedleCode.Location = new System.Drawing.Point(874, 7);
+            this.lblschedleCode.Name = "lblschedleCode";
+            this.lblschedleCode.Size = new System.Drawing.Size(16, 20);
+            this.lblschedleCode.TabIndex = 1111196;
+            this.lblschedleCode.Text = "0";
+            this.lblschedleCode.Visible = false;
+            // 
+            // errPurchaseList
+            // 
+            this.errPurchaseList.ContainerControl = this;
             // 
             // CP_PurchaseList
             // 
@@ -513,6 +570,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.Controls.Add(this.lblSupplierCode);
+            this.Controls.Add(this.lblschedleCode);
             this.Controls.Add(this.pnlpurchase);
             this.Controls.Add(this.tsBrandList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -526,13 +585,14 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_PurchaseList_KeyDown);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.pnlpurchase.ResumeLayout(false);
             this.pnlpurchase.PerformLayout();
             this.grpFilterby.ResumeLayout(false);
             this.grpFilterby.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errPurchaseList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -550,7 +610,7 @@
         private System.Windows.Forms.Panel pnlpurchase;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdSupplierList;
+        public System.Windows.Forms.DataGridView grdPurchaseEntryList;
         private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.GroupBox grpFilterby;
         private System.Windows.Forms.Button btnView;
@@ -577,5 +637,8 @@
         private System.Windows.Forms.DateTimePicker dpFromDate;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label lblSupplierCode;
+        public System.Windows.Forms.Label lblschedleCode;
+        private System.Windows.Forms.ErrorProvider errPurchaseList;
     }
 }
