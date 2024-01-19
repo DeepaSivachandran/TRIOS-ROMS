@@ -934,10 +934,9 @@ namespace ROMS
             string decimalqty = "0";
             try
             {
-                int noofdecimal = decimalvalue;
                 decimal value =Convert.ToDecimal(qty);
-                value.ToString("#." + new string('0', noofdecimal));
-                decimalqty = Convert.ToString(value.ToString("#." + new string('0', noofdecimal)));
+                value.ToString("#." + new string('0', decimalvalue));
+                decimalqty = Convert.ToString(value.ToString("#." + new string('0', decimalvalue)));
             }
             catch (Exception ex)
             {

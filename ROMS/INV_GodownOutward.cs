@@ -1287,30 +1287,16 @@ namespace ROMS
                 }
 
                 TextBox textBox = (TextBox)sender;
-                if (varDecimal == 5)
+                if (varDecimal == 0)
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     {
                         e.Handled = true;
                     }
                 }
-                else if (varDecimal == 6)
+                else
                 {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 2)
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else if (varDecimal == 7)
-                {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 3)
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else if (varDecimal == 8)
-                {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 4)
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
                     {
                         e.Handled = true;
                     }
@@ -1319,7 +1305,7 @@ namespace ROMS
                 {
                     e.Handled = false;
                 }
-                if (varDecimal == 5)
+                if (varDecimal == 0)
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     {
@@ -1343,10 +1329,10 @@ namespace ROMS
             try
             {
 
-                int StockcellValue = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmQty"].Value);
-                int OutwardcellValue = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmOutward"].Value);
+                decimal StockcellValue = Convert.ToDecimal(grdGoodsOutward.CurrentRow.Cells["clmQty"].Value);
+                decimal OutwardcellValue = Convert.ToDecimal(grdGoodsOutward.CurrentRow.Cells["clmOutward"].Value);
 
-                if (Convert.ToInt32(OutwardcellValue) > Convert.ToInt32(StockcellValue))
+                if (Convert.ToDecimal(OutwardcellValue) > Convert.ToDecimal(StockcellValue))
                 {
                     grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
@@ -1373,21 +1359,10 @@ namespace ROMS
 
                 } 
                 int varDecimal = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmUTDecimal"].Value);
-                if (varDecimal == 6)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 1);
+
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
                     grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
-                if (varDecimal == 7)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
-                    grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
-                if (varDecimal == 8)
-                {
-                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
-                    grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                }
+                
                 object varEditQty = grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
@@ -1411,30 +1386,16 @@ namespace ROMS
                     //    e.Handled = true;  // Disallow the character
                     //}
                     TextBox textBox = (TextBox)sender;
-                    if (varDecimal == 5)
+                    if (varDecimal == 0)
                     {
                         if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                         {
                             e.Handled = true;
                         }
                     }
-                    else if (varDecimal == 6)
+                    else
                     {
-                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 2)
-                        {
-                            e.Handled = true;
-                        }
-                    }
-                    else if (varDecimal == 7)
-                    {
-                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 3)
-                        {
-                            e.Handled = true;
-                        }
-                    }
-                    else if (varDecimal == 8)
-                    {
-                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 4)
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
                         {
                             e.Handled = true;
                         }
@@ -1443,7 +1404,7 @@ namespace ROMS
                     {
                         e.Handled = false;
                     }
-                    if (varDecimal == 5)
+                    if (varDecimal == 0)
                     {
                         if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                         {
@@ -2084,7 +2045,7 @@ namespace ROMS
 
                     if (varflag == 0)
                     {
-                        if (Convert.ToInt32(txtOutwardQuantity.Text) > Convert.ToInt32(txtStockQuantity.Text) || Convert.ToInt32(txtOutwardQuantity.Text)==0)
+                        if (Convert.ToDecimal(txtOutwardQuantity.Text) > Convert.ToDecimal(txtStockQuantity.Text) || Convert.ToDecimal(txtOutwardQuantity.Text)==0)
                         {
                             txtOutwardQuantity.Focus();
                             epGoodsOutward.SetError(txtOutwardQuantity, "Please enter a valid outward quantity");
@@ -2096,21 +2057,21 @@ namespace ROMS
                         {
                             if (txtOutwardQuantity.Text != "")
                             {
-                                if (varDecimal == 6)
-                                {
-                                    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), 1);
+                                //if (varDecimal == 6)
+                                //{
+                                    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), varDecimal);
                                     txtOutwardQuantity.Text = Qty;
-                                }
-                                if (varDecimal == 7)
-                                {
-                                    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), 2);
-                                    txtOutwardQuantity.Text = Qty;
-                                }
-                                if (varDecimal == 8)
-                                {
-                                    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), 3);
-                                    txtOutwardQuantity.Text = Qty;
-                                }
+                                //}
+                                //if (varDecimal == 7)
+                                //{
+                                //    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), 2);
+                                //    txtOutwardQuantity.Text = Qty;
+                                //}
+                                //if (varDecimal == 8)
+                                //{
+                                //    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), 3);
+                                //    txtOutwardQuantity.Text = Qty;
+                                //}
                             }
                             grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGoodsOutward.Rows.Add(grdGoodsOutward.Rows.Count + 1, varPRID, varPICode, (varTamilname), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text), varUnit, varUTID,varDecimal);
