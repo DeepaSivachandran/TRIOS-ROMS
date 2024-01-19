@@ -24,7 +24,7 @@ namespace ROMS
         public string varbrandcode;
         public string pbFormStatus;
         public int varEditflag = 0, varSTRID = 0, varGIID = 0;
-        public int varSRQID = 0;
+        public int varSRQID = 0,varLoadFlag=0;
         public PUR_RemarksHistory()
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace ROMS
             try
             {
                 //MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                if (MainForm.objINV_StockTransfer.varStockEdit== "Stock Request")
+                if (varLoadFlag==0)
                 {
                     udfnRequestDialog();
                 }

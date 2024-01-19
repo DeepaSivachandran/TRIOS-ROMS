@@ -1117,7 +1117,7 @@ namespace ROMS
                                 lvProduct.Columns[10].Width = 0;
                                 lvProduct.Columns[11].Width = 80;
                                 lvProduct.Columns[12].Width = 0;
-                                lvProduct.Columns[13].Width = 0;
+                                //lvProduct.Columns[13].Width = 0;
                                 if (VarSearchFlag == false)
                                 {
                                     lvProduct.Columns[2].Width = 320;
