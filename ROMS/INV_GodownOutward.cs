@@ -651,7 +651,7 @@ namespace ROMS
         private void INV_GodownOutward_Load(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
                 dtStock.Columns.Add("STK_PRID", typeof(int));
                 dtStock.Columns.Add("STK_MRP", typeof(decimal));
