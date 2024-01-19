@@ -42,7 +42,7 @@ namespace ROMS
             try
             {
                 //MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                if (MainForm.objINV_StockTransfer.varStockEdit== "Stock Transfer")
+                if (MainForm.objINV_StockTransfer.varStockEdit== "Stock Request")
                 {
                     udfnRequestDialog();
                 }

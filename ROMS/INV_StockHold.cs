@@ -425,7 +425,7 @@ namespace ROMS
                                 objTRNS_StockHold.paraMrp = Convert.ToDecimal(string.Format("{0:G29}", decimal.Parse(txtMrp.Text.Trim())));
                                 objTRNS_StockHold.paraExpiryDate = Convert.ToString(txtExpiryDate.Text);
                                 objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
-                                objTRNS_StockHold.paraUTID = varUTID;
+                                //objTRNS_StockHold.paraUTID = varUTID;
                                 objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
                                 objTRNS_StockHold.paraQty = Convert.ToDecimal(txtQty.Text);
                                 objTRNS_StockHold.paraRemarks = Convert.ToString(txtRemark.Text.Trim());

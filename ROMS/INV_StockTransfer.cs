@@ -59,7 +59,7 @@ namespace ROMS
         public string VarSource = "0";
         public string VarDestination = "0";
         public string varErrQty = "0";
-        public string varStockEdit = "Stock Transfer", varIDCOUNT = "";
+        public string varStockEdit = "Stock Request", varIDCOUNT = "";
         DataTable dtStock = new DataTable();
 
         public INV_StockTransfer()
