@@ -220,7 +220,7 @@ namespace ROMS
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
-            cmbConcern.SelectedValue = 1;
+            cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             this.ActiveControl = txtSLocation;
             udfnList();
         }
