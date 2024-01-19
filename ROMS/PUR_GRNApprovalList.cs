@@ -261,37 +261,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
-        private void CmbDateType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbDateType.SelectedItem == "GRN Date")
-                {
-                    lblinwarddate.Text = "GRN Date";
-                }
-                if (cmbDateType.SelectedItem == "Purchase Date")
-                {
-                    lblinwarddate.Text = "Purchase Date";
-                }
-                if (cmbDateType.SelectedItem == "Inward Date")
-                {
-                    lblinwarddate.Text = "Inward Date";
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void PUR_GRNApprovalList_Load(object sender, EventArgs e)
         {
             try
             {
-                cmbDateType.SelectedIndex = 0;
+                cmbConcern.Focus();
+                udfnCmbConcern();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (57) AND MSTID !=0", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
 
+
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
             }
             catch (Exception ex)
             {
@@ -299,7 +283,35 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnCmbConcern()
+        {
+            try
+            {
+                cmbConcern.Focus();
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnCompanyList(2, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_GRNApprovalList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -321,6 +333,634 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbDateType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDateType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDateType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDateType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpFromDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDateType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDateType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDateType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                dpFromDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpToDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpFromDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpToDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                dpToDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpToDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpToDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpToDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSLocation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvSLocation.Items.Count == 0 || txtSLocation.Text == "")
+                    {
+                        txtProductNamePICode.Focus();
+                        lvSLocation.Visible = false;
+                    }
+                    else
+                    {
+                        lvSLocation.Focus();
+                    }
+                    if (lvSLocation.Items.Count > 0)
+                    {
+                        lvSLocation.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductNamePICode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSLocation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSLocation.BackColor = Color.White;
+                if (txtSLocation.Text == "")
+                {
+                    lblSLocation.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSLocation_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //int varViewType = 0;
+                //if (Convert.ToInt32(cmbConcern.SelectedValue) == 0)
+                //{
+                //    varViewType = 13;
+                //}
+                //else
+                //{
+                //    varViewType = 11;
+                //}
+                lvSLocation.Items.Clear();
+                if (txtSLocation.Text.Length > 0)
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0, dpFromDate.Text, dpToDate.Text);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvSLocation.Columns[1].Width = 0;
+                                    lvSLocation.Items.Add(objList);
+                                }
+                                lvSLocation.BringToFront();
+                                lvSLocation.Visible = true;
+                            }
+                            else
+                            {
+                                lvSLocation.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvSLocation.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvSLocation.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvSLocation.Visible = false;
+                    lvSLocation.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void TxtProductNamePICode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductNamePICode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductNamePICode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvProduct.Items.Count == 0 || txtProductNamePICode.Text == "")
+                    {
+                        btnView.Focus();
+                        lvProduct.Visible = false;
+                    }
+                    else
+                    {
+                        lvProduct.Focus();
+                    }
+                    if (lvProduct.Items.Count > 0)
+                    {
+                        lvProduct.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductNamePICode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductNamePICode.BackColor = Color.White;
+                if (txtProductNamePICode.Text == "")
+                {
+                    lblProduct.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductNamePICode_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(txtSLocation.Text=="")
+                {
+                    lblSLocation.Text = "0";
+                }
+                lvProduct.Items.Clear();
+                DataSet objDs = new DataSet();
+                if (txtProductNamePICode.Text.Length > 0)
+                {
+                    Model.MR_Product objMR_Product = new Model.MR_Product();
+                    objMR_Product.paraViewType = 48;
+                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Product.paraLocationId = Convert.ToInt32(lblSLocation.Text);
+                    objMR_Product.paraProductName = txtProductNamePICode.Text;
+                    objMR_Product.ParaFromDate = dpFromDate.Text;
+                    objMR_Product.ParaToDate = dpToDate.Text;
+                    SPDataService objspdservice = new SPDataService();
+                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    lvProduct.Items.Add(objList);
+                                }
+                                lvProduct.Visible = true;
+                                lvProduct.BringToFront();
+                                lvProduct.Columns[0].Width = 150;
+                                lvProduct.Columns[1].Width = 250;
+                                lvProduct.Columns[2].Width = 250;
+                                lvProduct.Columns[3].Width = 0;
+                            }
+                            else
+                            {
+                                lvProduct.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvProduct.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvProduct.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvProduct.Visible = false;
+                    lvProduct.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvSLocation_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnSLocationEvent();
+                txtProductNamePICode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvSLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnSLocationEvent();
+                    txtProductNamePICode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnSLocationEvent()
+        {
+            try
+            {
+                if (txtSLocation.Text != "")
+                {
+                    ListViewItem selectedItem = lvSLocation.SelectedItems[0];
+                    txtSLocation.Text = selectedItem.SubItems[0].Text;
+                    lblSLocation.Text = selectedItem.SubItems[1].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvSLocation.Visible = false;
+            }
+        }
+
+        private void LvProduct_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnProductEvent();
+                btnView.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnProductEvent();
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnProductEvent()
+        {
+            try
+            {
+                if (txtProductNamePICode.Text != "")
+                {
+                    ListViewItem selectedItem = lvProduct.SelectedItems[0];
+                    //varPICode = selectedItem.SubItems[0].Text;
+                    txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
+                    //txtMRP.Text = selectedItem.SubItems[4].Text;
+                    //txtExpiryDate.Text = selectedItem.SubItems[5].Text;
+                    //txtBatchNo.Text = selectedItem.SubItems[6].Text;
+                    //txtStockQty.Text = selectedItem.SubItems[7].Text;
+                    lblProduct.Text = selectedItem.SubItems[3].Text;
+                    //varUTID = selectedItem.SubItems[9].Text;
+                    //varUnitSymbol = selectedItem.SubItems[10].Text;
+                    //varMRP = selectedItem.SubItems[4].Text;
+                    //varExpiryDate = selectedItem.SubItems[5].Text;
+                    //varBatchNo = selectedItem.SubItems[6].Text;
+                    //varProductCode = selectedItem.SubItems[8].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvProduct.Visible = false;
             }
         }
     }

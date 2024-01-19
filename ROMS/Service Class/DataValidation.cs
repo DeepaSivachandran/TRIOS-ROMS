@@ -931,24 +931,13 @@ namespace ROMS
         }
         public string udfnDecimal(string qty, int decimalvalue)
         {
-            string decimalqty = "";
+            string decimalqty = "0";
             try
             {
-                if (decimalvalue == 1)
-                {
-                    decimal varQty = Math.Round(Convert.ToDecimal(qty), 1, MidpointRounding.AwayFromZero);
-                    decimalqty = string.Format("{0:0.0}", varQty);
-                }
-                if (decimalvalue == 2)
-                {
-                    decimal varQty = Math.Round(Convert.ToDecimal(qty), 2, MidpointRounding.AwayFromZero);
-                    decimalqty = string.Format("{0:0.00}", varQty);
-                }
-                if (decimalvalue == 3)
-                {
-                    decimal varQty = Math.Round(Convert.ToDecimal(qty), 3, MidpointRounding.AwayFromZero);
-                    decimalqty = string.Format("{0:0.000}", varQty);
-                }
+                int noofdecimal = decimalvalue;
+                decimal value =Convert.ToDecimal(qty);
+                value.ToString("#." + new string('0', noofdecimal));
+                decimalqty = Convert.ToString(value.ToString("#." + new string('0', noofdecimal)));
             }
             catch (Exception ex)
             {
@@ -958,4 +947,4 @@ namespace ROMS
             return decimalqty;
         }
     }
-    } 
+}
