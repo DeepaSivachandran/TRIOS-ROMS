@@ -972,9 +972,6 @@ namespace ROMS
             finally
             {
                 LV_Supplier.Visible = false;
-                MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                MainForm.objPUR_GSTIN.ShowDialog();
-                udfnPODropdownload();
             }
         }
 
@@ -4827,6 +4824,13 @@ namespace ROMS
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
                             txtGstin.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]);
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) !="")
+                            {
+                                txtGstin.Enabled = false;
+                                MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                                MainForm.objPUR_GSTIN.ShowDialog();
+                                udfnPODropdownload();
+                            }
                         }
                         if (objDs.Tables[7].Rows.Count > 0)
                         {
