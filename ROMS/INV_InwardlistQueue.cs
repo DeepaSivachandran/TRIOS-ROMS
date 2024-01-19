@@ -571,7 +571,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(29, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text, 0, 0, 0, dpFromDate.Text, dpToDate.Text);
+                    objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 4, txtStockLocation.Text, 0, 0, 0, dpFromDate.Text, dpToDate.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -905,13 +905,13 @@ namespace ROMS
                 if (txtProductName.Text.Length > 0)
                 {
                     MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 54;
+                    objMR_Product.paraViewType = 53;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.paraLocationId = Convert.ToInt32(varStockLocaionId);
                     objMR_Product.paraProductName = txtProductName.Text;
                     objMR_Product.ParaFromDate = dpFromDate.Text;
                     objMR_Product.ParaToDate = dpToDate.Text;
-                    objMR_Product.paraId = 0;
+                    objMR_Product.paraId = 2;
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();

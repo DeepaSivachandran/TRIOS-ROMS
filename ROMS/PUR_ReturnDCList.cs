@@ -57,15 +57,18 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) ==16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39)
+                if (lblNoRecordsFound.Visible == false && grdReturnDCList.SelectedRows.Count == 1)
                 {
-                    tsbDelete.Visible = false;
-                    varDeleteFlag = 0;
-                }
-                else
-                {
-                    tsbDelete.Visible = true;
-                    varDeleteFlag = 1;
+                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39)
+                    {
+                        tsbDelete.Visible = false;
+                        varDeleteFlag = 0;
+                    }
+                    else
+                    {
+                        tsbDelete.Visible = true;
+                        varDeleteFlag = 1;
+                    }
                 }
             }
             catch (Exception ex)
@@ -196,22 +199,25 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdReturnDCList, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdReturnDCList.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    udfnGridSearchHeading(grdReturnDCList, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdReturnDCList.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -220,23 +226,26 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    if (col.Visible)
+                    //dgv2.DataSource = null;
+                    dgv2.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgv1.Columns)
                     {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
+                        if (col.Visible)
+                        {
+                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                            visibleColumns.Add(col.Index);
+                        }
                     }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    int rowIndex = 0;
+                    dgv2.Rows.Clear();
+                    dgv2.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1413,6 +1422,37 @@ namespace ROMS
             try
             {
                 udfnDeleteHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_ReturnDCList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    TsbDelete_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {

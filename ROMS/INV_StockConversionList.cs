@@ -84,22 +84,25 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdConversionList, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdConversionList.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    udfnGridSearchHeading(grdConversionList, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdConversionList.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -108,23 +111,26 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    if (col.Visible)
+                    //dgv2.DataSource = null;
+                    dgv2.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgv1.Columns)
                     {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
+                        if (col.Visible)
+                        {
+                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                            visibleColumns.Add(col.Index);
+                        }
                     }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    int rowIndex = 0;
+                    dgv2.Rows.Clear();
+                    dgv2.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -739,11 +745,11 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "Concern" || col.Name == "Conversion Date" || col.Name == "Conversion No." || col.Name == "Converted Qty")
+                            if (col.Name == "Concern" || col.Name == "Conversion Date" || col.Name == "Conversion No." || col.Name == "Converted Qty" || col.Name == "P.I Code")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
-                            else if (col.Name == "P.I Code")
+                            else if (col.Name == "Created On")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }

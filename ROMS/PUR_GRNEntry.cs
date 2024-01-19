@@ -17,7 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        bool varVoucherSkip = false;
         byte[] varobjBarCodeByte;
         private ToolTip tpInvNo = new ToolTip();
         private ToolTip tpordertype = new ToolTip();
@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
-        public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", GrnUpdatevalue="0";
+        public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
         public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0;
         public PUR_GRNEntry()
         {
@@ -49,8 +49,18 @@ namespace ROMS
 
             try
             {
-
-                this.Close();
+                if (varCloseFlag == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    } 
+                }
+                else
+                {
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -70,14 +80,18 @@ namespace ROMS
                 btnDC.Enabled = false;
                 this.ActiveControl = txtSupplier;
                 udfnDropdownLoad();
+                udfnDateSet();
                 udfnUnitListGrid();
                 udfnEditLoad();
-                udfnDateSet();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+              
             }
         }
         public void udfnDateSet()
@@ -160,7 +174,9 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+
+                //cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                cmbConcern.SelectedValue = 4;
             }
             catch (Exception ex)
             {
@@ -245,6 +261,35 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (pbGRNId == "0")
+                {
+                    if (grdRepDetails.Rows.Count != 0)
+                    {
+                        if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
+                        {
+                            if (Convert.ToString(cmbConcern.SelectedValue) != "-1")
+                            {
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(78);
+                                objDServ.CloseConnection();
+
+                                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    txtSupplier.Text = "";
+                                    lblSupplierCode.Text = "0";
+                                    ClearSupplier();
+                                }
+                                else
+                                {
+                                    cmbConcern.SelectedValue = varcomid;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                varcomid = Convert.ToString(cmbConcern.SelectedValue);
                 udfnvoucherload();
             }
             catch (Exception ex)
@@ -278,12 +323,16 @@ namespace ROMS
                         else
                         {
                             udfnvoucheradd();
+                            //if (Convert.ToInt32(cmbConcern.SelectedValue) == MainForm.pbDefaultComId)
+                            //{
+                            //    varVoucherSkip = false;
+                            //}
                         }
                     }
                     else
                     {
                         txtgrnno.Text = "";
-                    }
+                    } 
                 }
             }
             catch (Exception ex)
@@ -302,21 +351,27 @@ namespace ROMS
                 string varMessage = objDServ.udfnGetMessages(75);
                 objDServ.CloseConnection();
                 txtgrnno.Text = "";
-                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varVoucherSkip == false)
                 {
-                    //MainForm.objCP_Settings = new CP_Settings();
-                    //MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                    //MainForm.objCP_Settings.Show();
-                    //this.Close();
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        varVoucherSkip = true;
+                        //MainForm.objCP_Settings = new CP_Settings();
+                        //MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                        //MainForm.objCP_Settings.Show();
+                        //this.Close();
 
-                    MainForm.objCP_Settings = new CP_Settings();
-                    MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
-                    MainForm.objCP_Settings.varValues = Convert.ToString(44);
-                    MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                    MainForm.objCP_Settings.Show();
-                    this.Close();
-                }
+                        MainForm.objCP_Settings = new CP_Settings();
+                        MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                        MainForm.objCP_Settings.varValues = Convert.ToString(44);
+                        MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                        MainForm.objCP_Settings.Show();
+                        varCloseFlag = 1;
+                        udfnclose();
+                    }
+                    else { varVoucherSkip = true; }
+                } 
             }
             catch (Exception ex)
             {
@@ -368,6 +423,8 @@ namespace ROMS
                     txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSuppliername.ShowAlways = true;
                     tpSuppliername.Show("Please enter supplier.", txtSupplier, 5000);
+                    ClearSupplier();
+                    
                 }
                 else
                 {
@@ -396,6 +453,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
 
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
         {
@@ -595,20 +653,29 @@ namespace ROMS
         {
             try
             {
-
+                txtInvoiceno.Text = "";
+                txtInvoiceamt.Text = "";
+                grdPODetails.Rows.Clear();
+                grdReurnDC.Rows.Clear();
+                grdRepDetails.DataSource=null;
+                lblSupplierCode.Text = "0";
+                txtSupplier.Text = "";
                 lblSuppliername.Text = "";
                 lblSupplierCity.Text = "";
                 lblsupplierGST.Text = "";
                 lblsupplierScheduletype.Text = "";
                 lblsupplierpayment.Text = "";
                 lblSupplierOrderpolicy.Text = "";
-
                 txtSalesManMobile.Text = "";
                 txtSalesManName.Text = "";
                 txtSalesManwhatsapp.Text = "";
-                grdPODetails.Rows.Clear();
-                grdReurnDC.Rows.Clear();
-                grdRepDetails.DataSource = null;
+                txtLoadingCharge.Text = "";
+                txtFrieghtamount.Text = "";
+                varDamage = "0";
+                varReturnDC = "0";
+                lblDCFinishedNoRecord.Visible = true;
+                lblFinishedNoRecord.Visible = true;
+                cmbOrderType.SelectedValue = -1;
             }
             catch (Exception ex)
             {
@@ -780,8 +847,7 @@ namespace ROMS
                     objMR_Supplier.ViewType = 16;
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
-                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue); 
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -867,9 +933,7 @@ namespace ROMS
                     btnDamage.Enabled = true;
                 }
             }
-        }
-
-
+        } 
         private void CmbOrderType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -884,6 +948,7 @@ namespace ROMS
                 }
                 else
                 {
+                    grdPODetails.Rows.Clear();
                     MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
                     MainForm.objPUR_GRNOrderType.Close();
                     btnViewPO.Visible = false;
@@ -911,11 +976,12 @@ namespace ROMS
                 }
             }
             MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
+            MainForm.objPUR_GRNOrderType.varMasterType = 1;
             MainForm.objPUR_GRNOrderType.ShowDialog();
         }
 
         private void GrdPODetails_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
+        { 
             try
             {
                 if (e.RowIndex != -1)
@@ -936,8 +1002,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
         }
 
@@ -1007,7 +1072,10 @@ namespace ROMS
                     tpSuppliername.Show("Please enter supplier.", txtSupplier, 5000);
                     VarErrorFlag = true;
                 }
-
+                if (txtgrnno.Text == "")
+                { 
+                    VarErrorFlag = true;
+                } 
                 if (txtInvoiceno.Text == "")
                 {
                     errGRN.SetError(txtInvoiceno, "Please enter invoice No.");
@@ -1054,8 +1122,7 @@ namespace ROMS
                                     values = Convert.ToString(varSupplierId).Split(',');
                                 }
                             }
-                        }
-
+                        } 
                         if (values[0] == "-1")
                         {
                             errGRN.SetError(txtSupplier, "Invalid supplier");
@@ -1064,6 +1131,7 @@ namespace ROMS
                             tpSuppliername.Show("Invalid supplier.", txtSupplier, 5000);
                             lblSupplierCode.Text = "0";
                             lblschedule.Text = "0";
+                            ClearSupplier();
                             VarErrorFlag = true;
                         }
                         else
@@ -1126,11 +1194,11 @@ namespace ROMS
                     //objDServ.CloseConnection();
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
-                        varDC = "1";
+                        varDC = Convert.ToString(objDs.Tables[0].Rows[0]["ID"]) ;
                     }
-                    if (varReturnDC != "0" && varDC == "1")
+                    if (varReturnDC != "0" )
                     {
-                        if (Convert.ToString(grdReurnDC.Rows.Count) != varReturnDC)
+                        if (varDC != "0")
                         { 
                             string varMessage = objDServ.udfnGetMessages(102);
                             objDServ.CloseConnection();
@@ -1765,18 +1833,22 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-                }
+                //if (varCloseFlag == 0)
+                //{
+                //    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
+                //        e.Cancel = false;
+                //    }
+                //    else
+                //    {
+                //        e.Cancel = true;
+                //    }
+                //}
+                //else
+                //{
+                //    this.Close();
+                //}
                 //else
                 //{
                 //    this.Close();
@@ -1803,6 +1875,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                varVoucherSkip = false;
             }
         }
 
@@ -1996,8 +2072,16 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    gpGRNEntry.Enabled = true;
-                                    btnDC.Enabled = true;
+                                    gpGRNEntry.Enabled = true; 
+                                    if (varReturnDC == "0")
+                                    {
+                                        btnDC.Enabled = false;
+                                    }
+                                    else
+                                    {
+                                        btnDC.Enabled = true;
+                                    }
+                                    
                                     btnSave.Enabled = true;
                                     grdPODetails.Enabled = true;
                                     grdReurnDC.Enabled = true;

@@ -611,7 +611,7 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
@@ -836,6 +836,14 @@ namespace ROMS
                 txtUnit3.Text = "";
                 txtTotalUnit.Text = "";
                 lvproduct.Items.Clear();
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtProductName.Text.Length > 0)
@@ -872,10 +880,10 @@ namespace ROMS
                                 lvproduct.Visible = true;
                                 lvproduct.BringToFront();
                                 lvproduct.Columns[0].Width = 0;
-                                lvproduct.Columns[1].Width = 100;
+                                lvproduct.Columns[1].Width = 120;
                                 lvproduct.Columns[2].Width = 0;
                                 lvproduct.Columns[3].Width = 250;
-                                lvproduct.Columns[4].Width = 0;
+                                lvproduct.Columns[4].Width = 250;
                                 lvproduct.Columns[5].Width = 70;
                                 lvproduct.Columns[6].Width = 70;
                                 lvproduct.Columns[7].Width = 60;
@@ -883,9 +891,17 @@ namespace ROMS
                                 lvproduct.Columns[9].Width = 70;
                                 lvproduct.Columns[10].Width = 70;
                                 lvproduct.Columns[11].Width = 50;
-                                lvproduct.Columns[12].Width = 0;
-                                lvproduct.Columns[13].Width = 0;
 
+                                if (VarSearchFlag == false)
+                                {
+                                    lvproduct.Columns[4].Width = 320;
+                                    lvproduct.Columns[3].Width = 0;
+                                }
+                                else
+                                {
+                                    lvproduct.Columns[4].Width = 0;
+                                    lvproduct.Columns[3].Width = 320;
+                                }
                             }
                             else
                             {

@@ -52,6 +52,7 @@ namespace ROMS
         public string DmUpdatevalue = "";
         //public int varUpdate = 0;
         public int varModifiedFlag = 0;
+        public int varDecimal = 0;
         Boolean BlnSearchImageYN = false;
         byte[] varobjBarCodeByte;
         DataTable dtDamage = new DataTable();
@@ -81,7 +82,7 @@ namespace ROMS
                     varTempMonth = "0";
                     varTempYear = "0";
                 }
-                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, varProductName, txtLocation.Text.Trim(), txtRack.Text.Trim(), Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(), (txtStockQty.Text).Trim(), txtQuantity.Text.Trim(), varUnitSymbol, cmbReason.Text.Trim(), cmbSupplier.Text.Trim(),varTempDay,varTempMonth,varTempYear,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
+                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, varProductName, txtLocation.Text.Trim(), txtRack.Text.Trim(), Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(), (txtStockQty.Text).Trim(), txtQuantity.Text.Trim(), varUnitSymbol, cmbReason.Text.Trim(), cmbSupplier.Text.Trim(),varTempDay,varTempMonth,varTempYear,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim(),varDecimal);
                 ((DataGridViewTextBoxColumn)grdDamageEntry.Columns["clmQuantity"]).MaxInputLength = 8;
                 grdDamageEntry.Columns["clmDay"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmMonth"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -171,7 +172,7 @@ namespace ROMS
             try
             {
                 udfnCmbConcernLoad();
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpEntryDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,52) AND MSTID !=0", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
@@ -187,7 +188,7 @@ namespace ROMS
                 dtDamage.Columns.Add("DM_YYYY", typeof(int));
                 dtDamage.Columns.Add("DM_ExpiryDate", typeof(string));
                 dtDamage.Columns.Add("DM_BatchNo", typeof(string));
-                dtDamage.Columns.Add("DM_Qty", typeof(string));
+                dtDamage.Columns.Add("DM_Qty", typeof(decimal));
                 dtDamage.Columns.Add("DM_UTID", typeof(string));
                 dtDamage.Columns.Add("DM_STSID", typeof(string));
                 dtDamage.Columns.Add("DM_SPID", typeof(string));
@@ -196,7 +197,7 @@ namespace ROMS
 
                 dtEmployee.Columns.Add("", typeof(Boolean));
                 dtEmployee.Columns.Add("S.No.", typeof(string));
-                dtEmployee.Columns.Add("Employee Code", typeof(string));
+                dtEmployee.Columns.Add("Emp. Code", typeof(string));
                 dtEmployee.Columns.Add("Employee Name", typeof(string));
                 dtEmployee.Columns.Add("Employee Category", typeof(string));
                 dtEmployee.Columns.Add("EMPID", typeof(int));
@@ -204,7 +205,7 @@ namespace ROMS
 
                 dtChecker.Columns.Add("", typeof(Boolean));
                 dtChecker.Columns.Add("S.No.", typeof(string));
-                dtChecker.Columns.Add("Employee Code", typeof(string));
+                dtChecker.Columns.Add("Emp. Code", typeof(string));
                 dtChecker.Columns.Add("Employee Name", typeof(string));
                 dtChecker.Columns.Add("Employee Category", typeof(string));
                 dtChecker.Columns.Add("EMPID", typeof(int));
@@ -240,7 +241,6 @@ namespace ROMS
                 dtEmployee.Rows.Clear();
                 Application.DoEvents();
                 grdEmployee.DataSource = null;
-                grdChecker.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnEmployeeList(6, "", 0, "", 1,0,0);
@@ -267,15 +267,15 @@ namespace ROMS
                 grdEmployee.Columns[0].Width = 30;
                 grdEmployee.Columns["S.No."].Width = 40;
                 grdEmployee.Columns["S.No."].Visible = false;
-                grdEmployee.Columns["Employee Code"].Width = 100;
-                grdEmployee.Columns["Employee Name"].Width = 180;
-                grdEmployee.Columns["Employee Category"].Width = 150;
+                grdEmployee.Columns["Emp. Code"].Width = 75;
+                grdEmployee.Columns["Employee Name"].Width = 150;
+                grdEmployee.Columns["Employee Category"].Width = 130;
                 grdEmployee.Columns["EMPID"].Visible = false;
                 grdEmployee.Columns["CT_SINO"].Visible = false;
                 grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 grdEmployee.Columns["S.No."].ReadOnly = true;
-                grdEmployee.Columns["Employee Code"].ReadOnly = true;
+                grdEmployee.Columns["Emp. Code"].ReadOnly = true;
                 grdEmployee.Columns["Employee Name"].ReadOnly = true;
                 grdEmployee.Columns["Employee Category"].ReadOnly = true;
 
@@ -330,15 +330,15 @@ namespace ROMS
                 grdChecker.Columns[0].Width = 30;
                 grdChecker.Columns["S.No."].Width = 40;
                 grdChecker.Columns["S.No."].Visible = false;
-                grdChecker.Columns["Employee Code"].Width = 100;
-                grdChecker.Columns["Employee Name"].Width = 180;
-                grdChecker.Columns["Employee Category"].Width = 150;
+                grdChecker.Columns["Emp. Code"].Width = 75;
+                grdChecker.Columns["Employee Name"].Width = 150;
+                grdChecker.Columns["Employee Category"].Width = 130;
                 grdChecker.Columns["EMPID"].Visible = false;
                 grdChecker.Columns["CT_SINO"].Visible = false;
                 grdChecker.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 grdChecker.Columns["S.No."].ReadOnly = true;
-                grdChecker.Columns["Employee Code"].ReadOnly = true;
+                grdChecker.Columns["Emp. Code"].ReadOnly = true;
                 grdChecker.Columns["Employee Name"].ReadOnly = true;
                 grdChecker.Columns["Employee Category"].ReadOnly = true;
 
@@ -1180,7 +1180,7 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtQuantity.Text).Trim() != "")
                 {
-                    if (Convert.ToInt32(txtStockQty.Text.Trim()) >= Convert.ToInt32(txtQuantity.Text.Trim()))
+                    if (Convert.ToDecimal(txtStockQty.Text.Trim()) >= Convert.ToDecimal(txtQuantity.Text.Trim()))
                     {
                         epDamageEntry.Clear();
                         txtQuantity.BackColor = Color.White;
@@ -1274,6 +1274,24 @@ namespace ROMS
                     }
                     if (varflag == 0)
                     {
+                        if (txtQuantity.Text != "")
+                        {
+                            //if (varDecimal == 6)
+                            //{
+                                string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), varDecimal);
+                                txtQuantity.Text = Qty;
+                            //}
+                            //if (varDecimal == 7)
+                            //{
+                            //    string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 2);
+                            //    txtQuantity.Text = Qty;
+                            //}
+                            //if (varDecimal == 8)
+                            //{
+                            //    string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), 3);
+                            //    txtQuantity.Text = Qty;
+                            //}
+                        }
                         udfnAdd();
                     }
                     else
@@ -1351,11 +1369,11 @@ namespace ROMS
                             {
                                 //grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1, varPICode, txtProductName.Text.Trim(), txtMrp.Text.Trim(), txtExpiryDate.Text.Trim(), txtBatchNo.Text.Trim(), txtQuantity.Text.Trim(), varUnitSymbol, txtsuppliername.Text.Trim(), Day, Month, Year, (lblProduct.Text).Trim(), varSLID, varRKID, varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim());
                                 grdDamageEntry.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Rack"]),
-                                 Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["REASON"]),
+                                 Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["REASON"]),
                                  Convert.ToString(objDS.Tables[0].Rows[i]["Supplier"]), Convert.ToString(objDS.Tables[0].Rows[i]["Day"]), Convert.ToString(objDS.Tables[0].Rows[i]["Month"]), Convert.ToString(objDS.Tables[0].Rows[i]["Year"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]),Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]),
-                                 Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]));
+                                 Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]));
 
-                                dtDamage.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Day"]), Convert.ToString(objDS.Tables[0].Rows[i]["Month"]), Convert.ToString(objDS.Tables[0].Rows[i]["Year"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), 20,Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["ReasonID"]));
+                                dtDamage.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Day"]), Convert.ToString(objDS.Tables[0].Rows[i]["Month"]), Convert.ToString(objDS.Tables[0].Rows[i]["Year"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), 20,Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["ReasonID"]));
 
                                 //dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()), Convert.ToInt32(varSLID), Convert.ToInt32(varRKID), Convert.ToDouble(txtMrp.Text.Trim()), Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(), txtBatchNo.Text.Trim(), txtQuantity.Text.Trim(), varUTID, 20, lblSupplierCode.Text.Trim(), lblScheduleCode.Text.Trim());
 
@@ -1412,6 +1430,7 @@ namespace ROMS
             {
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
                 grdEmployee.ClearSelection();
+                grdChecker.ClearSelection();
                 this.grdEmployee.Sort(this.grdEmployee.Columns[0], ListSortDirection.Descending);
                 this.grdChecker.Sort(this.grdChecker.Columns[0], ListSortDirection.Descending);
             }
@@ -1556,6 +1575,7 @@ namespace ROMS
         {
             try
             {
+                varEmployeeId = "";
                 epDamageEntry.Clear();
                 bool blnErrorFlag = false;
 
@@ -1591,6 +1611,7 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
+                string varTeller = "0", varChecker = "0";
                 if (grdEmployee.Rows.Count > 0)
                 {
                     grdEmployee.DataSource = dtEmployee;
@@ -1598,6 +1619,7 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdEmployee.Rows[i].Cells[0].Value) == true)
                         {
+                            varTeller = "1";
                             if(varEmployeeId == "")
                             {
                                 varEmployeeId = Convert.ToString(grdEmployee.Rows[i].Cells["EMPID"].Value) + '~' +"1";
@@ -1616,11 +1638,12 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdChecker.Rows[i].Cells[0].Value) == true)
                         {
+                            varChecker = "2";
                             varEmployeeId = varEmployeeId + ',' + Convert.ToString(grdChecker.Rows[i].Cells["EMPID"].Value) + '~' + "2";
                         }
                     }
                 }
-                if (varEmployeeId=="")
+                if (varTeller == "0")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(101);
@@ -1628,6 +1651,22 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
+                if (varChecker == "0")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(103);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
+                //if (varEmployeeId=="")
+                //{
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(101);
+                //    objDServ.CloseConnection();
+                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    blnErrorFlag = true;
+                //}
                 if (blnErrorFlag == false)
                 {
                     epDamageEntry.Clear();
@@ -1968,7 +2007,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["SL_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() , objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(),  objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString()};
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["SL_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString() , objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(),  objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["UT_Decimal"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[3].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1979,7 +2018,7 @@ namespace ROMS
                                 lvProduct.Columns[0].Width = 150;
                                 lvProduct.Columns[1].Width = 0;
                                 lvProduct.Columns[2].Width = 0;
-                                lvProduct.Columns[3].Width = 280;
+                                lvProduct.Columns[3].Width = 0;
                                 lvProduct.Columns[4].Width = 80;
                                 lvProduct.Columns[5].Width = 80;
                                 lvProduct.Columns[6].Width = 70;
@@ -1991,6 +2030,17 @@ namespace ROMS
                                 lvProduct.Columns[12].Width = 0;
                                 lvProduct.Columns[13].Width = 80;
                                 lvProduct.Columns[14].Width = 0;
+                                lvProduct.Columns[15].Width = 0;
+                                if (VarSearchFlag == false)
+                                {
+                                    lvProduct.Columns[2].Width = 320;
+                                    lvProduct.Columns[3].Width = 0;
+                                }
+                                else
+                                {
+                                    lvProduct.Columns[2].Width = 0;
+                                    lvProduct.Columns[3].Width = 320;
+                                }
                             }
                             else
                             {
@@ -2096,6 +2146,7 @@ namespace ROMS
                     varBatchNo = selectedItem.SubItems[8].Text;
                     varProductCode = selectedItem.SubItems[10].Text;
                     varRKID = selectedItem.SubItems[14].Text;
+                    varDecimal =Convert.ToInt32(selectedItem.SubItems[15].Text);
                     udfnSupplierLoad();
                 }
             }
@@ -2159,7 +2210,61 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+
+                TextBox textBox = (TextBox)sender;
+                if (varDecimal == 5)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else if (varDecimal == 6)
+                {
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 2)
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else if (varDecimal == 7)
+                {
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 3)
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else if (varDecimal == 8)
+                {
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 4)
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                {
+                    e.Handled = false;
+                }
+                if (varDecimal == 5)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -2188,10 +2293,10 @@ namespace ROMS
         {
             try
             {
-                int TransferQty = Convert.ToInt32(grdDamageEntry.CurrentRow.Cells["clmQuantity"].Value);
-                int StockQty = Convert.ToInt32(grdDamageEntry.CurrentRow.Cells["clmStockQty"].Value);
+                decimal TransferQty = Convert.ToDecimal(grdDamageEntry.CurrentRow.Cells["clmQuantity"].Value);
+                decimal StockQty = Convert.ToDecimal(grdDamageEntry.CurrentRow.Cells["clmStockQty"].Value);
 
-                if (Convert.ToInt32(TransferQty) > Convert.ToInt32(StockQty))
+                if (Convert.ToDecimal(TransferQty) > Convert.ToDecimal(StockQty))
                 {
                     grdDamageEntry.Rows[e.RowIndex].Cells["clmQuantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     varErrQty = "1";
@@ -2210,10 +2315,26 @@ namespace ROMS
                     grdDamageEntry.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
                     varErrQty = "0";
                 }
+                int varDecimal = Convert.ToInt32(grdDamageEntry.CurrentRow.Cells["clmUTDecimal"].Value);
+                //if (varDecimal == 6)
+                //{
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
+                    grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                //}
+                //if (varDecimal == 7)
+                //{
+                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
+                //    grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                //}
+                //if (varDecimal == 8)
+                //{
+                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
+                //    grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                //}
+
                 object varEditQty = grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtDamage.Rows[e.RowIndex]["DM_Qty"] = varEditQty;
-
             }
             catch (Exception ex)
             {
@@ -2635,8 +2756,72 @@ namespace ROMS
             {
                 if (grdDamageEntry.CurrentCell.OwningColumn.Name == "clmQuantity")
                 {
+                    e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress;
+                }
+                if (grdDamageEntry.CurrentCell.OwningColumn.Name == "clmQuantity")
+                {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                int varDecimal = Convert.ToInt32(grdDamageEntry.CurrentRow.Cells["clmUTDecimal"].Value);
+                if (grdDamageEntry.CurrentCell.OwningColumn.Name == "clmQuantity")
+                {
+                    //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    //{
+                    //    e.Handled = true;  // Disallow the character
+                    //}
+                    TextBox textBox = (TextBox)sender;
+                    if (varDecimal == 5)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else if (varDecimal == 6)
+                    {
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 2)
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else if (varDecimal == 7)
+                    {
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 3)
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else if (varDecimal == 8)
+                    {
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 4)
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                    {
+                        e.Handled = false;
+                    }
+                    if (varDecimal == 5)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -2912,6 +3097,32 @@ namespace ROMS
                 {
                     grdChecker.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdEmployee_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdEmployee.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdChecker_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdChecker.ClearSelection();
             }
             catch (Exception ex)
             {

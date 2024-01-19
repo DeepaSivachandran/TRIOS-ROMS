@@ -134,7 +134,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnBrokerList(0,0,Convert.ToInt32(cmbStatus.SelectedValue),0);
+                objDs = objspservice.udfnBrokerList(0,0,Convert.ToInt32(cmbStatus.SelectedValue),0,"");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -290,22 +290,25 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdBrokerList, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdBrokerList.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    udfnGridSearchHeading(grdBrokerList, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdBrokerList.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -342,22 +345,25 @@ namespace ROMS
         {
             try
             {
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    if (col.Visible)
+                    dgv2.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgv1.Columns)
                     {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
+                        if (col.Visible)
+                        {
+                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                            visibleColumns.Add(col.Index);
+                        }
                     }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    int rowIndex = 0;
+                    dgv2.Rows.Clear();
+                    dgv2.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }

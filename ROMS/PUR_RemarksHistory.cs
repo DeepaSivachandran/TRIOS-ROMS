@@ -40,6 +40,19 @@ namespace ROMS
         {
             try
             {
+                udfnShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+        public void udfnShowDialog()
+        {
+            try
+            {
                 DataSet objDs = new DataSet();
                 SPDataService objspdservice = new SPDataService();
                 DataTable objGrnPO = new DataTable();
@@ -59,13 +72,21 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtRemarks.Text= objDs.Tables[0].Rows[0]["Remarks"].ToString();
-                                txtCreatedby.Text= objDs.Tables[0].Rows[0]["Created By"].ToString();
+                                txtRemarks.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
+                                txtCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
+                                MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
                                 panel4.Visible = false;
+                            }
+                            else
+                            {
+                                MainForm.objINV_Inward.btnRemarks.Enabled = false;
+                                panel4.Visible = false;
+                                panel2.Visible = false;
                             }
                         }
                     }
+
                 }
                 else
                 {
@@ -86,16 +107,29 @@ namespace ROMS
                                 txtRemarks.Text = objDs.Tables[0].Rows[0]["STR_Remarks"].ToString();
                                 txtCreatedby.Text = objDs.Tables[0].Rows[0]["STR Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["STR Created On"].ToString();
+                                MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
+
                                 if (objDs.Tables[0].Rows.Count > 1)
                                 {
                                     txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
                                     txtGIRemarks.Text = objDs.Tables[0].Rows[1]["STR_Remarks"].ToString();
                                     txtGICreatedby.Text = objDs.Tables[0].Rows[1]["STR Created By"].ToString();
                                     txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["STR Created On"].ToString();
+                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
                                 }
+                                else
+                                {
+                                    panel4.Visible = false;
+                                }
+                            }
+                            else
+                            {
+                                panel4.Visible = false;
+                                panel2.Visible = false;
                             }
                         }
                     }
+
                 }
             }
             catch (Exception ex)
@@ -103,7 +137,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void Panel2_Paint(object sender, PaintEventArgs e)

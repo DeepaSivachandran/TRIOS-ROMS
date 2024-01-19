@@ -112,6 +112,7 @@ namespace ROMS
         public static INV_Inwardlist objINV_Inwardlist;
         public static INV_Inward objINV_Inward;
         public static INV_StockTransfer objINV_StockTransfer;
+        public static INV_StockTransferQueue objINV_StockTransferQueue;
         public static INV_StockTransferList objINV_StockTransferList;
         public static INV_DamageEntryList objINV_DamageEntryList;
         public static INV_DamageEntry objINV_DamageEntry;
@@ -221,8 +222,7 @@ namespace ROMS
                         return;
                     }
                     bool exists = false;
-                    exists = objDtMenuCloseDet.AsEnumerable().Where(c => c.Field<string>("MenuName").Equals(child.Text) && c.Field<int>("CloseFlag").Equals(0)).Count() > 0;
-
+                    exists = objDtMenuCloseDet.AsEnumerable().Where(c => c.Field<string>("MenuName").Equals(child.Text) && c.Field<int>("CloseFlag").Equals(0)).Count() > 0; 
                     if (isFound == true && exists == false)
                     {
                         DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

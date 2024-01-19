@@ -273,22 +273,25 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdStockRequestList, DGV__SearchGrid);
-                DGV__SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdStockRequestList.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV__SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    udfnGridSearchHeading(grdStockRequestList, DGV__SearchGrid);
+                    DGV__SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdStockRequestList.Columns)
+                    {
+                        DGV__SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV__SearchGrid.Rows.Clear();
+                    DGV__SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV__SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV__SearchGrid.Columns["S.No."].ReadOnly = true;
                 }
-                int rowIndex = 0;
-                DGV__SearchGrid.Rows.Clear();
-                DGV__SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV__SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV__SearchGrid.Columns["S.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -325,23 +328,26 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    if (col.Visible)
+                    //dgv2.DataSource = null;
+                    dgv2.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgv1.Columns)
                     {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
+                        if (col.Visible)
+                        {
+                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                            visibleColumns.Add(col.Index);
+                        }
                     }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    int rowIndex = 0;
+                    dgv2.Rows.Clear();
+                    dgv2.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -622,9 +628,9 @@ namespace ROMS
             {
                 cmbConcern.Focus();
                 udfnCmbConcern();
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (11) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,11) AND STSID IN(0,28,29)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
                 DataSet objDs = new DataSet();
@@ -720,7 +726,7 @@ namespace ROMS
                             grdStockRequestList.Columns["StatusID"].Visible = false;
                             grdStockRequestList.Columns["SRQID"].Visible = false;
                             grdStockRequestList.Columns["S.No."].Width = 50;
-                            grdStockRequestList.Columns["Status"].Width = 80;
+                            grdStockRequestList.Columns["Status"].Width = 120;
                             grdStockRequestList.Columns["Created By"].Width = 100;
                             grdStockRequestList.Columns["Created On"].Width = 150;
                             grdStockRequestList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
