@@ -33,7 +33,7 @@ namespace ROMS
 
         DataTable dtPurchaseDC = new DataTable();
         public bool varDiscardFlag = true;
-        public int pbScheduleid = 0, pbSupplierId = 0,pbDateflag=0, varShelflife=0;
+        public int pbScheduleid = 0, pbSupplierId = 0,pbDateflag=0, varShelflife=0,varDecimal=0;
         public string varSuppliervalue = "",  varExpiryDate = "";
         public string varPICode = "", varTName="", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "",
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
@@ -73,6 +73,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         public void EditLoad()
         {
             try
@@ -1412,7 +1413,8 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(),objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), 
-                                        objDs.Tables[0].Rows[i]["PR_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNoGeneration"].ToString(),objDs.Tables[0].Rows[i]["PR_RMForProduction"].ToString(),objDs.Tables[0].Rows[i]["PR_PRCTID"].ToString(),objDs.Tables[0].Rows[i]["PR_ShelfLife"].ToString() };
+                                        objDs.Tables[0].Rows[i]["PR_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNoGeneration"].ToString(),objDs.Tables[0].Rows[i]["PR_RMForProduction"].ToString(),objDs.Tables[0].Rows[i]["PR_PRCTID"].ToString(),objDs.Tables[0].Rows[i]["PR_ShelfLife"].ToString(),
+                                    objDs.Tables[0].Rows[i]["UT_Decimal"].ToString()};
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -3261,6 +3263,7 @@ namespace ROMS
                     varRMProduction = selectedItem.SubItems[7].Text;
                     varPrcategory = selectedItem.SubItems[8].Text;
                     varShelflife =Convert.ToInt32(selectedItem.SubItems[9].Text);
+                    varDecimal =Convert.ToInt32(selectedItem.SubItems[10].Text);
                     if(varShelflife==1)
                     { expirydateFlag = 1; }
                     udfnProductAdd();
