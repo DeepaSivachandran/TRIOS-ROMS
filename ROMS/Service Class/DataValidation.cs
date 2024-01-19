@@ -931,11 +931,9 @@ namespace ROMS
         }
         public string udfnDecimal(string qty, int decimalvalue)
         {
-            string decimalqty = "0";
-            try
+            string decimalqty = "0"; try
             {
-                decimal value =Convert.ToDecimal(qty);
-                value.ToString("#." + new string('0', decimalvalue));
+                decimal value = Convert.ToDecimal(qty);
                 decimalqty = Convert.ToString(value.ToString("#." + new string('0', decimalvalue)));
             }
             catch (Exception ex)
