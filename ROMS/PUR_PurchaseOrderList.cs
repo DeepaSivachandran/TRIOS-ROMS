@@ -1722,9 +1722,7 @@ namespace ROMS
             {
                 picLoader.Visible = false; Statuschange = 0;
             }
-        }
-
-
+        } 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try

@@ -209,7 +209,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     DataService objDservice = new DataService();
                     vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,GETDATE(),103)");
-                    varResult = objspdservice.udfngetPONO("39", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                    varResult = objspdservice.udfngetVoucherNo("39", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                     objspdservice.CloseConnection();
                     if (varResult != "")
                     {
@@ -1128,6 +1128,15 @@ namespace ROMS
         {
             try
             {
+                if (txtProductName.Text == "")
+                {
+                    lblProductcode.Text = "0";
+                    txtmrprate.Text = "";
+                    txtDate.Text = "";
+                    txtMonth.Text = "";
+                    txtYear.Text = "";
+                    txtBatchno.Text = "";
+                } 
                 txtmrprate.BackColor = Color.LemonChiffon;
                 lvproduct.Visible = false;
             }

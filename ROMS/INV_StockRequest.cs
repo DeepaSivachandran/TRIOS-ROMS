@@ -473,7 +473,7 @@ namespace ROMS
                         DataSet objDs = new DataSet();
                         DataService objDservice = new DataService();
                         vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpDate.Text + "',103)");
-                        varResult = objspdservice.udfngetPONO("43", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        varResult = objspdservice.udfngetVoucherNo("43", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                         objspdservice.CloseConnection();
                         string[] varvalue = varResult.Split('~');
                         if (varResult != "")

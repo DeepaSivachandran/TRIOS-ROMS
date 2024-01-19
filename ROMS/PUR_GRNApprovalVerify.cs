@@ -135,13 +135,18 @@ namespace ROMS
                                 varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]);
                                 if (varTrnType == 1)
                                 {
-                                    MainForm.objPUR_GRNDetails.varUserID = varUserId;
+                                    MainForm.objPUR_GRNDetails.varUserID = varUserId; //GRN DETAILS SAVE
                                     MainForm.objPUR_GRNDetails.varflag = Convert.ToString(flag);
                                 } 
                                 if (varTrnType == 2)
                                 {
-                                    MainForm.objPUR_GRNEntry.varUserID = varUserId;
+                                    MainForm.objPUR_GRNEntry.varUserID = varUserId; // GRN ENTRY SAVE
                                     MainForm.objPUR_GRNEntry.varflag = Convert.ToString(flag);
+                                }
+                                if (varTrnType == 3)
+                                {
+                                    MainForm.objCP_Purchase.varUserID = varUserId; // PURCHASE ENTRY SAVE
+                                    MainForm.objCP_Purchase.varflag = Convert.ToString(flag);
                                 }
                                 this.Close();
                             }
