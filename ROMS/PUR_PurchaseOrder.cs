@@ -16,9 +16,9 @@ namespace ROMS
         public bool VarSearchFlag = true;
         public int varRecqty = 0, varcount = 0, SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0,
             varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0, Currentsts=0
-            , totalBulkqty = 0, totalUnitqty = 0, totalOrderQty = 0, varUPP = 0, qtyFlag = 0, varModifiedFlag = 0,
+            ,   varUPP = 0, qtyFlag = 0, varModifiedFlag = 0,
         varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag = 0, productcode = 0;
-        public double totalKgQty = 0;
+        public decimal totalKgQty = 0;
         public string vardays = "", unitweight = "", unitperbox = "", bulkunitweight = "", varUPPValue = "", varOtherSupPrevious = "", varOtherSupPartial = "";
         private ToolTip tpsalesman = new ToolTip();
         private ToolTip tpsalemanph = new ToolTip();
@@ -33,13 +33,12 @@ namespace ROMS
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "", var_MXSQ = ""
             , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0",
             varcomid = "0", varSuppliervalue = "", var_BulkSymbol = "", var_TotSymbol = "";
-        public double varNetweight = 0, varBulkunitqty = 0, varUnitqty = 0, varTotalunitqty = 0;
-        public double varFinalBulkUnit = 0, varFinalUnit = 0, varFinalTotalQty = 0, varFinalTotalKg = 0;
+        public decimal varNetweight = 0;
+        public decimal totalBulkqty = 0,totalOrderQty = 0,varFinalBulkUnit = 0, totalUnitqty = 0, varFinalUnit = 0, varFinalTotalQty = 0, varFinalTotalKg = 0, varBulkunitqty = 0, varUnitqty = 0, varTotalunitqty = 0;
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
-        }
-
+        } 
         private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
             try
@@ -1007,7 +1006,8 @@ namespace ROMS
                 if (varErrorFlag == true)
                 {
                     int varflag = 0;
-                    lblNoRecordsFound.Visible = false;
+                    lblNoRecordsFound.Visible = false; 
+                    txtProductQty.BackColor = Color.White;
                     foreach (DataGridViewRow row in grdsupplieradd.Rows)
                     {
                         if (row.Cells[0].Value != null && row.Cells[1].Value != null)
@@ -1053,12 +1053,12 @@ namespace ROMS
                             varBulkunitqty = 0; varUnitqty = 0;
                             if (varBulkunitvalue == (Convert.ToInt32(cmbUnit.SelectedValue)))
                             {
-                                varBulkunitqty = 0; if (txtProductQty.Text != "") { varBulkunitqty = Convert.ToInt32(txtProductQty.Text); }
+                                varBulkunitqty = 0; if (txtProductQty.Text != "") { varBulkunitqty = Convert.ToDecimal(txtProductQty.Text); }
                                 qtyFlag = 1;
                             }
                             if (varUnitvalue == (Convert.ToInt32(cmbUnit.SelectedValue)))
                             {
-                                varUnitqty = 0; if (txtProductQty.Text != "") { varUnitqty = Convert.ToInt32(txtProductQty.Text); }
+                                varUnitqty = 0; if (txtProductQty.Text != "") { varUnitqty = Convert.ToDecimal(txtProductQty.Text); }
                                 qtyFlag = 2;
                             }
 
@@ -1105,7 +1105,7 @@ namespace ROMS
                             grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, (varPICode).Trim(), (varEName).Trim(), (var_Symbol).Trim(),
                             (unitweight), unitperbox, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (MXSQ).Trim(), (MXSTK).Trim(), (varPrevious).Trim(), (varOtherSupPrevious).Trim(),
                             (varPARITAL).Trim(), (varOtherSupPartial).Trim(), (varReOrderQty).Trim(), bulk, var_BulkSymbol, unit, var_Symbol, varFinalTotalQty, var_Symbol, varFinalTotalKg, var_TotSymbol,
-                            (addproductid).Trim(), defflag, 1, "", 10, (Convert.ToInt32(varUnitvalue)), varNetweight, varUPP, 0, varBulkunitvalue, varTotalunitvalue);
+                            (addproductid).Trim(), defflag, 1, "", 10, (Convert.ToInt32(varUnitvalue)), varNetweight, varUPP, 0, varBulkunitvalue, varTotalunitvalue,"",lblUnitDecimal.Text);
 
                             grdsupplieradd.Columns[10].ReadOnly = false;
                             udfnrowclear();
@@ -2023,19 +2023,20 @@ namespace ROMS
         {
             try
             {
-                //if (txtProductQty.Text == "")
-                //{
-                //    errPO.SetError(txtProductQty, "Please enter orderqty");
-                //    txtProductQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpQty.ShowAlways = true;
-                //    tpQty.Show("Please enter orderqty.", txtProductQty, 5000);
-                //}
-                //else
-                //{
+                if (txtProductQty.Text == "")
+                {
+                    errPO.SetError(txtProductQty, "Please enter orderqty");
+                    txtProductQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpQty.ShowAlways = true;
+                    tpQty.Show("Please enter orderqty.", txtProductQty, 5000);
+                }
+                else
+                {
+                    string Qty = objValidation.udfnDecimal((txtProductQty.Text).Trim(), Convert.ToInt32(lblUnitDecimal.Text)); txtProductQty.Text = Qty;
                 errPO.Clear();
                 txtProductQty.BackColor = Color.White;
                 tpQty.Active = false;
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -2725,7 +2726,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["pr_retailrate"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["pr_retailrate"].ToString(), objDs.Tables[0].Rows[i]["UT_Decimal"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -2739,6 +2740,7 @@ namespace ROMS
                                 lvproduct.Columns[3].Width = 0;
                                 lvproduct.Columns[4].Width = 50;
                                 lvproduct.Columns[5].Width = 60;
+                                lvproduct.Columns[6].Width = 0;
                                 if (VarSearchFlag == false)
                                 {
                                     lvproduct.Columns[1].Width = 320;
@@ -2970,7 +2972,47 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+
+                TextBox textBox = (TextBox)sender;
+                if (Convert.ToInt32(lblUnitDecimal.Text) == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else
+                {
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= Convert.ToInt32(lblUnitDecimal.Text) + 1)
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                {
+                    e.Handled = false;
+                }
+                if (Convert.ToInt32(lblUnitDecimal.Text) == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -2981,6 +3023,64 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        //private void TxtProductQty_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    try
+        //    {  
+        //        if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+        //        {
+        //            e.Handled = true;
+        //        }
+        //        // Allow only one decimal point                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+        //        {
+        //            e.Handled = true;
+        //        }
+        //        TextBox textBox = (TextBox)sender;
+        //        if (Convert.ToInt32(lblUnitDecimal.Text) == 0)
+        //        {
+        //            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+        //            {
+        //                e.Handled = true;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= Convert.ToInt32(lblUnitDecimal.Text) + 1)
+        //            {
+        //                e.Handled = true;
+        //            }
+        //        }
+        //        if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+        //        {
+        //            e.Handled = false;
+        //        }
+        //        if (Convert.ToInt32(lblUnitDecimal.Text) == 0)
+        //        {
+        //            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+        //            {
+        //                e.Handled = true;
+        //            }
+        //        }
+        //        if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+        //        {
+        //            e.Handled = true;
+        //        }
+        //        if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+        //        {
+        //            e.Handled = true;
+        //        } 
+                    
+        //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+        //{
+        //    e.Handled = true;
+        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
 
         private void CmbIssueMode_Leave(object sender, EventArgs e)
         {
@@ -3614,11 +3714,20 @@ namespace ROMS
 
                 }
                 //}
+
+                int varDecimal = Convert.ToInt32(grdsupplieradd.CurrentRow.Cells["clmUT_Decimal"].Value);
+                //decimal varDecimalOrderqty = ;
+                //decimal varDecimalUnitOrderqty = ;
+                //decimal varDecimalTotalOrderqty = ; 
+                //grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value = varDecimalOrderqty;
+                //grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value = varDecimalUnitOrderqty;
+                //grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value = varDecimalTotalOrderqty; 
+
                 int varUPP = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value) != "-") { varUPP = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value); }
-                double varNettWeight = 0; if (Convert.ToString(Convert.ToDouble(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value)) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value) != "-") { varNettWeight = Convert.ToDouble(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value); }
-                double varBulkUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "-") { varBulkUnitQty = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value); }
-                double varUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "-") { varUnitQty = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value); }
-                double varTotalQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "-") { varTotalQty = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value); }
+                decimal varNettWeight = 0; if (Convert.ToString(Convert.ToDouble(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value)) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value) != "-") { varNettWeight = Convert.ToDecimal(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value); }
+                decimal varBulkUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "-") { varBulkUnitQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value), varDecimal)); }
+                decimal varUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "-") { varUnitQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value), varDecimal)); }
+                decimal varTotalQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "-") { varTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value), varDecimal)); }
                 int varBulkUTID = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value) != "-") { varBulkUTID = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value); }
 
                 if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty")
@@ -3647,6 +3756,7 @@ namespace ROMS
                     udfnweightcalc(varUPP, varNettWeight, varBulkUnitQty, varUnitQty, varTotalQty, varBulkUTID);
                 }
                 varModifiedFlag = 1;
+
             }
             catch (Exception ex)
             {
@@ -3687,7 +3797,7 @@ namespace ROMS
             //}
         }
 
-        public void udfnweightcalc(int varUPP, double varNettWeight, double varBulkUnitQty, double varUnitQty, double varTotalQty, int varBulkUTID)
+        public void udfnweightcalc(int varUPP, decimal varNettWeight, decimal varBulkUnitQty, decimal varUnitQty, decimal varTotalQty, int varBulkUTID)
         {
             try
             {
@@ -3697,7 +3807,7 @@ namespace ROMS
                 {
                     totalBulkqty = Convert.ToInt32(varBulkUnitQty);
                     totalOrderQty = varUPP * totalBulkqty;
-                    totalKgQty = varNettWeight * Convert.ToDouble(totalOrderQty);
+                    totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                     // Update the column value
                     varFinalUnit = 0;
                     varFinalBulkUnit = varBulkUnitQty;
@@ -3708,9 +3818,9 @@ namespace ROMS
                 {
                     if (varBulkUTID == 0 || varBulkUTID == -1)
                     {
-                        totalUnitqty = Convert.ToInt32(varUnitQty);
+                        totalUnitqty = Convert.ToDecimal(varUnitQty);
                         totalOrderQty = totalUnitqty;
-                        totalKgQty = varNettWeight * Convert.ToDouble(totalOrderQty);
+                        totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                         // Update the column value
                         varFinalUnit = totalUnitqty;
                         varFinalBulkUnit = 0;
@@ -3721,9 +3831,9 @@ namespace ROMS
                     {
                         if (varUPP > varUnitQty)
                         {
-                            totalUnitqty = Convert.ToInt32(varUnitQty);
+                            totalUnitqty = Convert.ToDecimal(varUnitQty);
                             totalOrderQty = totalUnitqty;
-                            totalKgQty = varNettWeight * Convert.ToDouble(totalOrderQty);
+                            totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = 0;
@@ -3732,11 +3842,11 @@ namespace ROMS
                         }
                         else
                         {
-                            totalUnitqty = Convert.ToInt32(varUnitQty);
+                            totalUnitqty = Convert.ToDecimal(varUnitQty);
                             totalBulkqty = totalUnitqty / varUPP;
                             totalUnitqty = totalUnitqty % varUPP;
-                            totalOrderQty = Convert.ToInt32(varUnitQty);
-                            totalKgQty = varNettWeight * Convert.ToDouble(totalOrderQty);
+                            totalOrderQty = Convert.ToDecimal(varUnitQty);
+                            totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = totalBulkqty;
@@ -3749,9 +3859,9 @@ namespace ROMS
                 {
                     if (varBulkUTID == 0 || varBulkUTID == -1)
                     {
-                        totalUnitqty = Convert.ToInt32(varTotalQty);
+                        totalUnitqty = Convert.ToDecimal(varTotalQty);
                         totalOrderQty = totalUnitqty;
-                        totalKgQty = varNettWeight * Convert.ToDouble(totalOrderQty);
+                        totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                         // Update the column value
                         varFinalUnit = totalUnitqty;
                         varFinalBulkUnit = 0;
@@ -3762,9 +3872,9 @@ namespace ROMS
                     {
                         if (varUPP > varTotalQty && varUPP > 0)
                         {
-                            totalUnitqty = Convert.ToInt32(varTotalQty);
+                            totalUnitqty = Convert.ToDecimal(varTotalQty);
                             totalOrderQty = totalUnitqty;
-                            totalKgQty = varNettWeight * Convert.ToDouble(totalOrderQty);
+                            totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = 0;
@@ -3773,11 +3883,11 @@ namespace ROMS
                         }
                         else if (varUPP > 0)
                         {
-                            totalUnitqty = Convert.ToInt32(varTotalQty);
+                            totalUnitqty = Convert.ToDecimal(varTotalQty);
                             totalOrderQty = totalUnitqty;
                             totalBulkqty = totalUnitqty / varUPP;
                             totalUnitqty = totalUnitqty % varUPP;
-                            totalKgQty = varNettWeight * Convert.ToDouble(totalOrderQty);
+                            totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = totalBulkqty;
@@ -3786,10 +3896,10 @@ namespace ROMS
                         }
                         else
                         {
-                            totalUnitqty = Convert.ToInt32(varTotalQty);
+                            totalUnitqty = Convert.ToDecimal(varTotalQty);
                             totalBulkqty = 0;
                             totalOrderQty = totalUnitqty;
-                            totalKgQty = varNettWeight * Convert.ToDouble(totalOrderQty);
+                            totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = totalBulkqty;
@@ -4000,7 +4110,7 @@ namespace ROMS
                 if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmremarks")
                 {
                     e.Control.KeyPress -= udfnHandleKeyPress;
-                    e.Control.KeyPress += udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress; 
                 }
             }
             catch (Exception ex)
@@ -4014,28 +4124,51 @@ namespace ROMS
             try
             {
                 if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty")
-                {
-                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                    {
-                        e.Handled = true;  // Disallow the character
-                    }
-                    TextBox vartb = sender as TextBox;
-                    //if (e.KeyChar == '.' && vartb.Text.Contains('.'))
+                { 
+                    int varDecimal = Convert.ToInt32(grdsupplieradd.CurrentRow.Cells["clmUT_Decimal"].Value);
+                    //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     //{
-                    //    e.Handled = true;
+                    //    e.Handled = true;  // Disallow the character
                     //}
-                    if (vartb.Text.Length >= 5 && !char.IsControl(e.KeyChar))
+                    TextBox textBox = (TextBox)sender;
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                    {
+                        e.Handled = false;
+                    }
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    //allow only one decimal
+                    if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                     {
                         e.Handled = true;
                     }
-                }
-                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmremarks")
-                {
-                    TextBox vartb = sender as TextBox;
-                    if (vartb.Text.Length >= 6 && !char.IsControl(e.KeyChar))
+                    if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmremarks")
                     {
-                        e.Handled = true;
-                    }
+                        TextBox vartb = sender as TextBox;
+                        if (vartb.Text.Length >= 6 && !char.IsControl(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    } 
                 }
 
             }
@@ -4043,7 +4176,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
+            } 
         }
 
         private void TxtSalesManMobile_KeyPress(object sender, KeyPressEventArgs e)
@@ -4256,7 +4389,8 @@ namespace ROMS
                                     objDs.Tables[3].Rows[i]["PRID"].ToString(), objDs.Tables[3].Rows[i]["FLAG"].ToString(), 1, "", "",
                                      objDs.Tables[3].Rows[i]["UTID"].ToString(), Convert.ToString(objDs.Tables[3].Rows[i]["PR_NettWeight"]),
                                      Convert.ToString(objDs.Tables[3].Rows[i]["PR_UPP"]), Convert.ToString(objDs.Tables[3].Rows[i]["bulkwtval"]),
-                                     Convert.ToString(objDs.Tables[3].Rows[i]["B.UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["T.UTID"])
+                                     Convert.ToString(objDs.Tables[3].Rows[i]["B.UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["T.UTID"]),"", 
+                                     Convert.ToString(objDs.Tables[3].Rows[i]["UT_Decimal"])
                                      );
                                     grdsupplieradd.Columns[10].ReadOnly = false;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
@@ -4413,6 +4547,7 @@ namespace ROMS
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
                     txtProductName.Text = selectedItem.SubItems[1].Text;
                     lblProductcode.Text = selectedItem.SubItems[3].Text;
+                    lblUnitDecimal.Text = selectedItem.SubItems[6].Text;
                     udfnProductAdd();
                 }
                 txtProductQty.Focus();
@@ -4532,7 +4667,7 @@ namespace ROMS
                             var_BulkSymbol = objDs.Tables[0].Rows[0]["bt_symbol"].ToString();
                             var_TotSymbol = objDs.Tables[0].Rows[0]["tot_symbol"].ToString();
                             varUPP = Convert.ToInt32(objDs.Tables[0].Rows[0]["PR_UPP"]);
-                            varNetweight = Convert.ToDouble(objDs.Tables[0].Rows[0]["PR_NettWeight"]);
+                            varNetweight = Convert.ToDecimal(objDs.Tables[0].Rows[0]["PR_NettWeight"]);
                             varBulkunitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["B.UTID"]);
                             varUnitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
                             varTotalunitvalue = Convert.ToInt32(objDs.Tables[0].Rows[0]["T.UTID"]);

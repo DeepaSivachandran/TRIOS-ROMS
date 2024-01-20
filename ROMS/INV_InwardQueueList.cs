@@ -593,7 +593,7 @@ namespace ROMS
                     btnView.Enabled = false;
                     varviewtype = 6;
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnGrnListLoad(varviewtype, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbEntryType.SelectedValue), 0, "", "", 0,Convert.ToInt32(lblStockLocationCode.Text));
+                    objDs = objdserv.udfnGrnListLoad(varviewtype, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbEntryType.SelectedValue), 0, "", "", 0,Convert.ToInt32(lblStockLocationCode.Text),"0");
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {

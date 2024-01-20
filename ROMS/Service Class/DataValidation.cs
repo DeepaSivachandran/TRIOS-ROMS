@@ -928,20 +928,18 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public string udfnDecimal(string qty)
+        } 
+        public string udfnDecimal(string qty, int decimalvalue)
         {
-            string decimalqty = "0";
-            try
+            string decimalqty = "0"; try
             {
-                decimal varQty = Math.Round(Convert.ToDecimal(qty), 1, MidpointRounding.AwayFromZero);
-                decimalqty= string.Format("{0:0.0}", varQty);
+                decimal value = Convert.ToDecimal(qty);
+                decimalqty = Convert.ToString(value.ToString("#." + new string('0', decimalvalue)));
             }
             catch (Exception ex)
             {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            } 
+                objError = new DataError(); objError.WriteFile(ex);
+            }
             return decimalqty;
         }
     }
