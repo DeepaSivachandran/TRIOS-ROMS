@@ -176,7 +176,6 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-
                 }
                 else
                 {

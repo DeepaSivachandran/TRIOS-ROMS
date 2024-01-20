@@ -185,7 +185,7 @@ namespace ROMS
                 txtActualQty.Enabled = false;
                 btnAdd.Enabled = false;
                 lblTotal.Text = "Approximate Total";
-                udfnList();
+                
             }
             else if (Convert.ToInt32(cmbReason.SelectedValue) == 61) //excess
             {
@@ -195,7 +195,7 @@ namespace ROMS
                 btnAdd.Enabled = true;
                 lblTotal.Text = "Actual Total";
             }
-
+            udfnList();
         }
         public void udfnVocherno()
         {

@@ -239,6 +239,12 @@
     <Compile Include="PUR_POScheduleSummary.designer.cs">
       <DependentUpon>PUR_POScheduleSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_InwardQueueList_Remarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardQueueList_Remarks.designer.cs">
+      <DependentUpon>INV_InwardQueueList_Remarks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Product.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1621,6 +1627,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_SalesInvoice.resx">
       <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardQueueList_Remarks.resx">
+      <DependentUpon>INV_InwardQueueList_Remarks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_ReturnDCList.resx">
       <DependentUpon>PUR_ReturnDCList.cs</DependentUpon>
