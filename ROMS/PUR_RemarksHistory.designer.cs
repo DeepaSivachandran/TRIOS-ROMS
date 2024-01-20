@@ -53,7 +53,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtRequestCreated = new System.Windows.Forms.Label();
             this.lblStockRequest = new System.Windows.Forms.Label();
-            this.txtSRRemarks = new System.Windows.Forms.Label();
+            this.lblSRRemarks = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -124,14 +124,14 @@
             // 
             // pnlGoodsInward
             // 
-            this.pnlGoodsInward.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.pnlGoodsInward.BackColor = System.Drawing.Color.PowderBlue;
             this.pnlGoodsInward.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlGoodsInward.Controls.Add(this.txtGICreatedby);
             this.pnlGoodsInward.Controls.Add(this.label1);
             this.pnlGoodsInward.Controls.Add(this.txtGICreatedOn);
             this.pnlGoodsInward.Controls.Add(this.txtGITable);
             this.pnlGoodsInward.Controls.Add(this.txtGIRemarks);
-            this.pnlGoodsInward.Location = new System.Drawing.Point(9, 162);
+            this.pnlGoodsInward.Location = new System.Drawing.Point(9, 91);
             this.pnlGoodsInward.Name = "pnlGoodsInward";
             this.pnlGoodsInward.Size = new System.Drawing.Size(406, 58);
             this.pnlGoodsInward.TabIndex = 2;
@@ -190,14 +190,14 @@
             // 
             // pnlStockTransfer
             // 
-            this.pnlStockTransfer.BackColor = System.Drawing.Color.PowderBlue;
+            this.pnlStockTransfer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.pnlStockTransfer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStockTransfer.Controls.Add(this.label5);
             this.pnlStockTransfer.Controls.Add(this.txtCreatedOn);
             this.pnlStockTransfer.Controls.Add(this.txtCreatedby);
             this.pnlStockTransfer.Controls.Add(this.txtSTTable);
             this.pnlStockTransfer.Controls.Add(this.txtRemarks);
-            this.pnlStockTransfer.Location = new System.Drawing.Point(9, 89);
+            this.pnlStockTransfer.Location = new System.Drawing.Point(9, 18);
             this.pnlStockTransfer.Name = "pnlStockTransfer";
             this.pnlStockTransfer.Size = new System.Drawing.Size(406, 58);
             this.pnlStockTransfer.TabIndex = 0;
@@ -263,11 +263,11 @@
             this.pnlStockRequest.Controls.Add(this.label6);
             this.pnlStockRequest.Controls.Add(this.txtRequestCreated);
             this.pnlStockRequest.Controls.Add(this.lblStockRequest);
-            this.pnlStockRequest.Controls.Add(this.txtSRRemarks);
-            this.pnlStockRequest.Location = new System.Drawing.Point(9, 16);
+            this.pnlStockRequest.Controls.Add(this.lblSRRemarks);
+            this.pnlStockRequest.Location = new System.Drawing.Point(9, 164);
             this.pnlStockRequest.Name = "pnlStockRequest";
             this.pnlStockRequest.Size = new System.Drawing.Size(406, 58);
-            this.pnlStockRequest.TabIndex = 4;
+            this.pnlStockRequest.TabIndex = 5;
             // 
             // txtSRCreatedOn
             // 
@@ -310,15 +310,15 @@
             this.lblStockRequest.TabIndex = 7;
             this.lblStockRequest.Text = "Stock Request";
             // 
-            // txtSRRemarks
+            // lblSRRemarks
             // 
-            this.txtSRRemarks.AutoSize = true;
-            this.txtSRRemarks.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSRRemarks.Location = new System.Drawing.Point(4, 26);
-            this.txtSRRemarks.Name = "txtSRRemarks";
-            this.txtSRRemarks.Size = new System.Drawing.Size(190, 20);
-            this.txtSRRemarks.TabIndex = 5;
-            this.txtSRRemarks.Text = "MRP Corrected. Please check now";
+            this.lblSRRemarks.AutoSize = true;
+            this.lblSRRemarks.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSRRemarks.Location = new System.Drawing.Point(4, 26);
+            this.lblSRRemarks.Name = "lblSRRemarks";
+            this.lblSRRemarks.Size = new System.Drawing.Size(190, 20);
+            this.lblSRRemarks.TabIndex = 5;
+            this.lblSRRemarks.Text = "MRP Corrected. Please check now";
             // 
             // PUR_RemarksHistory
             // 
@@ -376,6 +376,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label txtRequestCreated;
         private System.Windows.Forms.Label lblStockRequest;
-        private System.Windows.Forms.Label txtSRRemarks;
+        private System.Windows.Forms.Label lblSRRemarks;
     }
 }

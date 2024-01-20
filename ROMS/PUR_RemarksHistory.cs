@@ -85,9 +85,20 @@ namespace ROMS
                                 txtCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
                                 MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
-                                pnlGoodsInward.Visible = false;
-                                pnlStockRequest.Visible = false;
 
+                                if(objDs.Tables[0].Rows.Count > 1)
+                                {
+                                    txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
+                                    txtGIRemarks.Text = objDs.Tables[0].Rows[1]["Remarks"].ToString();
+                                    txtGICreatedby.Text = objDs.Tables[0].Rows[1]["Created By"].ToString();
+                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["Created On"].ToString();
+                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[1]["STRID"].ToString();
+                                }
+                                else
+                                {
+                                    pnlGoodsInward.Visible = false;
+                                }
+                                pnlStockRequest.Visible = false;
                             }
                             else
                             {
@@ -114,35 +125,36 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                lblStockRequest.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
-                                txtSRRemarks.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
-                                txtRequestCreated.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
-                                txtSRCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
+
+                                txtSTTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
+                                txtRemarks.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
+                                txtCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
+                                txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
                                 MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["ID"].ToString();
-                            
-                                if (objDs.Tables[0].Rows.Count != 0)
+
+                                if (objDs.Tables[0].Rows.Count > 1)
                                 {
-                                    txtSTTable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
-                                    txtRemarks.Text = objDs.Tables[0].Rows[1]["Remarks"].ToString();
-                                    txtCreatedby.Text = objDs.Tables[0].Rows[1]["Created By"].ToString();
-                                    txtCreatedOn.Text = objDs.Tables[0].Rows[1]["Created On"].ToString();
+                                    txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
+                                    txtGIRemarks.Text = objDs.Tables[0].Rows[1]["Remarks"].ToString();
+                                    txtGICreatedby.Text = objDs.Tables[0].Rows[1]["Created By"].ToString();
+                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["Created On"].ToString();
                                     MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[1]["ID"].ToString();
                                 }
                                 else
                                 {
-                                    pnlStockTransfer.Visible = false;
+                                    pnlGoodsInward.Visible = false;
                                 }
-                                if (objDs.Tables[0].Rows.Count > 1)
+                                if (objDs.Tables[0].Rows.Count > 2)
                                 {
-                                    txtGITable.Text = objDs.Tables[0].Rows[2]["flag"].ToString();
-                                    txtGIRemarks.Text = objDs.Tables[0].Rows[2]["Remarks"].ToString();
-                                    txtGICreatedby.Text = objDs.Tables[0].Rows[2]["Created By"].ToString();
-                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[2]["Created On"].ToString();
-                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[2].Rows[0]["ID"].ToString();
+                                    lblStockRequest.Text = objDs.Tables[0].Rows[2]["flag"].ToString();
+                                    lblSRRemarks.Text = objDs.Tables[0].Rows[2]["Remarks"].ToString();
+                                    txtRequestCreated.Text = objDs.Tables[0].Rows[2]["Created By"].ToString();
+                                    txtSRCreatedOn.Text = objDs.Tables[0].Rows[2]["Created On"].ToString();
+                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[2]["ID"].ToString();
                                 }
                                 else
                                 {
-                                    pnlGoodsInward.Visible = false;
+                                    pnlStockRequest.Visible = false;
                                 }
                             }
                             else
@@ -153,7 +165,6 @@ namespace ROMS
                             }
                         }
                     }
-
                 }
             }
             catch (Exception ex)
@@ -166,6 +177,7 @@ namespace ROMS
         {
             try
             {
+                pnlStockRequest.Visible = false;
                 DataSet objDs = new DataSet();
                 SPDataService objspdservice = new SPDataService();
                 DataTable objGrnPO = new DataTable();
