@@ -37,6 +37,7 @@ namespace ROMS
         public string SSRUpdatevalue = "";
         public bool VarSearchFlag = true;
         byte[] varobjBarCodeByte;
+        string[] varProductsIDs;
         public INV_StockRequest()
         {
             InitializeComponent();
@@ -600,15 +601,22 @@ namespace ROMS
             {
                 txtStockQty.Text = "";
                 txtRequiredQty.Text = "";
+                string PRID = "0";
                 grdGodownStock.Rows.Clear();
                 lvProduct.Items.Clear();
+                if (varProducts != "")
+                {
+                    string[] strings = varProductsIDs;
+                    var strings1 = strings.Select(xx => xx);
+                    PRID = (string.Join(",", strings1));
+                }
                 if (txtProductNamePICode.Text.Length > 0)
                 {
                     DataSet objDs = new DataSet();
                     MR_Product objMR_Product = new MR_Product();
                     objMR_Product.paraViewType = 45;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                    objMR_Product.ParaProductsCode = varProducts;
+                    objMR_Product.ParaProductsCode = PRID;
                     SPDataService objspdservice = new SPDataService();
                     if (VarSearchFlag == true)
                     {
@@ -804,17 +812,18 @@ namespace ROMS
                                 grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[2].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[2].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[2].Rows[i]["EMP_Name"]), Convert.ToString(txtStockQty.Text), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Decimal"]), Convert.ToString(lblProduct.Text));
                             }
                             dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),varSLID,varRKID,Convert.ToString(txtRequiredQty.Text),0);
-                            for(int j=0;j<grdStockRequest.Rows.Count;j++)
-                            {
+                            //for(int j=0;j<grdStockRequest.Rows.Count;j++)
+                            //{
                                 if (varProducts == "")
                                 {
-                                    varProducts = Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
+                                    varProducts = Convert.ToString(lblProduct.Text);
                                 }
                                 else
                                 {
-                                    varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
+                                    varProducts = varProducts + ',' + Convert.ToString(lblProduct.Text);
                                 }
-                            }
+                                varProductsIDs = varProducts.Split(',');
+                            //}
                             ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
@@ -1147,6 +1156,17 @@ namespace ROMS
                             for (int i = 0; i < grdStockRequest.RowCount; i++)
                             {
                                 grdStockRequest.Rows[i].Cells["clmSno"].Value = i + 1;
+                            }
+                            //varProductsIDs = varProducts.Split(',');
+                            int varPRID = Convert.ToInt32(grdStockRequest.SelectedRows[0].Cells["clmPRID"].Value);
+
+                            for (int j = 0; j < varProductsIDs.Length; j++)
+                            {
+                                    // varProductsIDs=varProductsIDs.
+
+                                    //List<string[]> nums = new List<string[]>(varProductsIDs);
+                                    //                            nums.RemoveAt(nums.IndexOf(Convert.ToString( j));
+                                    varProductsIDs = varProductsIDs.Where((val, idx) => idx != j).ToArray();
                             }
                             varModifiedFlag = 1;
                             for (int i = 0; i < dtStock.Rows.Count; i++)
