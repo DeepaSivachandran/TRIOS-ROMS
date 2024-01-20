@@ -76,6 +76,7 @@
             this.clmOutward = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbgodownoutward = new System.Windows.Forms.GroupBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
@@ -391,6 +392,7 @@
             this.clmOutward,
             this.clmunit,
             this.clmUTID,
+            this.clmUTDecimal,
             this.clmRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -402,7 +404,7 @@
             this.grdGoodsOutward.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdGoodsOutward.EnableHeadersVisualStyles = false;
             this.grdGoodsOutward.GridColor = System.Drawing.Color.White;
-            this.grdGoodsOutward.Location = new System.Drawing.Point(-6, 150);
+            this.grdGoodsOutward.Location = new System.Drawing.Point(11, 160);
             this.grdGoodsOutward.Name = "grdGoodsOutward";
             this.grdGoodsOutward.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -412,7 +414,7 @@
             this.grdGoodsOutward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdGoodsOutward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGoodsOutward.ShowRowErrors = false;
-            this.grdGoodsOutward.Size = new System.Drawing.Size(1325, 404);
+            this.grdGoodsOutward.Size = new System.Drawing.Size(1314, 404);
             this.grdGoodsOutward.TabIndex = 2;
             this.grdGoodsOutward.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_inward_CellContentClick);
             this.grdGoodsOutward.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGoodsOutward_CellEndEdit);
@@ -507,6 +509,12 @@
             this.clmUTID.HeaderText = "UTID";
             this.clmUTID.Name = "clmUTID";
             this.clmUTID.Visible = false;
+            // 
+            // clmUTDecimal
+            // 
+            this.clmUTDecimal.HeaderText = "UTDecimal";
+            this.clmUTDecimal.Name = "clmUTDecimal";
+            this.clmUTDecimal.Visible = false;
             // 
             // clmRemove
             // 
@@ -939,6 +947,18 @@
         private System.Windows.Forms.TextBox txtStockQuantity;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ColumnHeader PICode;
+        private System.Windows.Forms.ColumnHeader TamilName;
+        private System.Windows.Forms.ColumnHeader Rack;
+        private System.Windows.Forms.ColumnHeader MRP;
+        private System.Windows.Forms.ColumnHeader ExpiryDate;
+        private System.Windows.Forms.ColumnHeader BatchNo;
+        private System.Windows.Forms.ColumnHeader Stock;
+        private System.Windows.Forms.ColumnHeader Unit;
+        private System.Windows.Forms.ColumnHeader PRID;
+        private System.Windows.Forms.ColumnHeader Productlist;
+        private System.Windows.Forms.ColumnHeader PR_EName;
+        private System.Windows.Forms.CheckBox cbCompleted;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmicode;
@@ -953,18 +973,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOutward;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUTDecimal;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
-        private System.Windows.Forms.ColumnHeader PICode;
-        private System.Windows.Forms.ColumnHeader TamilName;
-        private System.Windows.Forms.ColumnHeader Rack;
-        private System.Windows.Forms.ColumnHeader MRP;
-        private System.Windows.Forms.ColumnHeader ExpiryDate;
-        private System.Windows.Forms.ColumnHeader BatchNo;
-        private System.Windows.Forms.ColumnHeader Stock;
-        private System.Windows.Forms.ColumnHeader Unit;
-        private System.Windows.Forms.ColumnHeader PRID;
-        private System.Windows.Forms.ColumnHeader Productlist;
-        private System.Windows.Forms.ColumnHeader PR_EName;
-        private System.Windows.Forms.CheckBox cbCompleted;
     }
 }

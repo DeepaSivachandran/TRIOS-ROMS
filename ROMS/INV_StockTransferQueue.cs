@@ -838,7 +838,7 @@ namespace ROMS
                 {
                     return;
                 }
-                udfnEdit();
+                udfnEdit(1);
             }
             catch (Exception ex)
             {
@@ -846,22 +846,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void udfnEdit()
+        private void udfnEdit(int EditFlag)
         {
             try
             {
-                if (grdStockTransfer.SelectedRows.Count > 0)
+                if (EditFlag == 1)
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                    MainForm.objINV_StockTransfer.MdiParent = ParentForm;
-                    //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
-                    MainForm.objINV_StockTransfer.varUpdateflag = 1;
-                    MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
-                    MainForm.objINV_StockTransfer.varStockRequestSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
-                    MainForm.objINV_StockTransfer.Show();
+                    if (grdStockTransfer.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_StockTransfer = new INV_StockTransfer();
+                        MainForm.objINV_StockTransfer.MdiParent = ParentForm;
+                        //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
+                        MainForm.objINV_StockTransfer.varUpdateflag = 1;
+                        //MainForm.objINV_Inward.grdInward.Columns["clmremove"].Visible = false;
+                        MainForm.objINV_StockTransfer.EditFlag = 1;
+                        MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
+                        MainForm.objINV_StockTransfer.varStockRequestSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
+                        MainForm.objINV_StockTransfer.Show();
+                    }
                 }
             }
             catch (Exception ex)
@@ -971,7 +976,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    udfnEdit();
+                    udfnEdit(1);
                 }
                 //if (e.KeyCode == Keys.Delete)
                 //{
@@ -1217,7 +1222,7 @@ namespace ROMS
         {
             try
             {
-                udfnEdit();
+                udfnEdit(1);
             }
             catch (Exception ex)
             {

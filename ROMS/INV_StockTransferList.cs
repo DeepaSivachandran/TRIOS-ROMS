@@ -220,7 +220,7 @@ namespace ROMS
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
-            cmbConcern.SelectedValue = 1;
+            cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             this.ActiveControl = txtSLocation;
             udfnList();
         }
@@ -348,7 +348,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockTransferList(0,0,Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text),0,Convert.ToInt32(lblProduct.Text),Convert.ToInt32(cmbStatus.SelectedValue),dpTrannsferFromDate.Text,dpTransferToDate.Text);
+                objDs = objspservice.udfnStockTransferList(0,0,Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text),0,Convert.ToInt32(lblProduct.Text),Convert.ToInt32(cmbStatus.SelectedValue),dpTrannsferFromDate.Text,dpTransferToDate.Text,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -364,6 +364,7 @@ namespace ROMS
                             grdStockTransfer.Columns["ConcernID"].Visible = false;
                             grdStockTransfer.Columns["StatusID"].Visible = false;
                             grdStockTransfer.Columns["STRID"].Visible = false;
+                            grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["Status"].Width = 120;
                             grdStockTransfer.Columns["Source"].Width = 120;
@@ -869,7 +870,7 @@ namespace ROMS
                 {
                     return;
                 }
-                udfnEdit();
+                udfnEdit(0);
             }
             catch (Exception ex)
             {
@@ -877,21 +878,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void udfnEdit()
+        private void udfnEdit(int EditFlag)
         {
             try
             {
-                if (grdStockTransfer.SelectedRows.Count > 0)
+                if (EditFlag == 0)
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                    MainForm.objINV_StockTransfer.MdiParent = ParentForm;
-                    //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
-                    MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
-                    MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objINV_StockTransfer.Show();
+                    if (grdStockTransfer.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_StockTransfer = new INV_StockTransfer();
+                        MainForm.objINV_StockTransfer.MdiParent = ParentForm;
+                        //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
+                        MainForm.objINV_StockTransfer.EditFlag = 0;
+                        MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
+                        MainForm.objINV_StockTransfer.varSTSRQID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
+                        MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objINV_StockTransfer.Show();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1001,7 +1007,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    udfnEdit();
+                    udfnEdit(0);
                 }
                 //if (e.KeyCode == Keys.Delete)
                 //{
@@ -1247,7 +1253,7 @@ namespace ROMS
         {
             try
             {
-                udfnEdit();
+                udfnEdit(0);
             }
             catch (Exception ex)
             {

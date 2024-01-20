@@ -35,7 +35,7 @@ namespace ROMS
         public int varGOId = 0;
         public int varSTSID = 0;
         public int varUpdate = 0,VarUpdateFlag=0;
-        public int varCompanyId = 0, varDestSLID = 0, varDestRKID = 0,varStatusId=0;
+        public int varCompanyId = 0, varDestSLID = 0, varDestRKID = 0,varStatusId=0,varDecimal=0;
         string varProductID = "", varMRP = "", varExpiryDate = "", varBatchNo = "",varRackId="";
         DataTable dtStock = new DataTable();
         public string vargroupcode;
@@ -651,7 +651,7 @@ namespace ROMS
         private void INV_GodownOutward_Load(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
                 dtStock.Columns.Add("STK_PRID", typeof(int));
                 dtStock.Columns.Add("STK_MRP", typeof(decimal));
@@ -949,7 +949,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PRODUCTLIST"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["STK_Qty"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["UT_Name"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PRODUCTLIST"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["STK_Qty"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["UT_Name"].ToString(), objDs.Tables[0].Rows[i]["UT_Decimal"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1060,6 +1060,7 @@ namespace ROMS
                     lblQuantity.Text = selectedItem.SubItems[10].Text;
                     varUTID = selectedItem.SubItems[11].Text;
                     varRKID = selectedItem.SubItems[12].Text;
+                    varDecimal = Convert.ToInt32(selectedItem.SubItems[14].Text);
                     varUnit = selectedItem.SubItems[10].Text;
                     txtStockQuantity.TextAlign = HorizontalAlignment.Right;
                     txtMrp.TextAlign = HorizontalAlignment.Right;
@@ -1214,7 +1215,11 @@ namespace ROMS
             try
             {
                 if (grdGoodsOutward.CurrentCell.OwningColumn.Name == "clmOutward")
-
+                {
+                    e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress;
+                }
+                if (grdGoodsOutward.CurrentCell.OwningColumn.Name == "clmOutward")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
@@ -1267,15 +1272,57 @@ namespace ROMS
         {
             try
             {
-                bool udfnIsSpecialCharacter(char integers)
+                //if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+                //{
+                //    e.Handled = true;
+                //}     
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
-
-                    string allowedCharacters = "0123456789\b";
-                    return !allowedCharacters.Contains(integers);
+                    e.Handled = true;
                 }
-                if (udfnIsSpecialCharacter(e.KeyChar))
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
-                    // Cancel the keypress event if the character is a special character
+                    e.Handled = true;
+                }
+
+                TextBox textBox = (TextBox)sender;
+                if (varDecimal == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else
+                {
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                {
+                    e.Handled = false;
+                }
+                if (varDecimal == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+                if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                {
+                    e.Handled = true;
+                }
+                //only allow one decimal point
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
                     e.Handled = true;
                 }
             }
@@ -1291,10 +1338,10 @@ namespace ROMS
             try
             {
 
-                int StockcellValue = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmQty"].Value);
-                int OutwardcellValue = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmOutward"].Value);
+                decimal StockcellValue = Convert.ToDecimal(grdGoodsOutward.CurrentRow.Cells["clmQty"].Value);
+                decimal OutwardcellValue = Convert.ToDecimal(grdGoodsOutward.CurrentRow.Cells["clmOutward"].Value);
 
-                if (Convert.ToInt32(OutwardcellValue) > Convert.ToInt32(StockcellValue))
+                if (Convert.ToDecimal(OutwardcellValue) > Convert.ToDecimal(StockcellValue))
                 {
                     grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
@@ -1319,7 +1366,12 @@ namespace ROMS
                     grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = Color.PaleGreen;
                     varErrQty = 0;
 
-                }
+                } 
+                int varDecimal = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmUTDecimal"].Value);
+
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
+                    grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                
                 object varEditQty = grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
@@ -1331,7 +1383,51 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                int varDecimal = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmUTDecimal"].Value);
+                if (grdGoodsOutward.CurrentCell.OwningColumn.Name == "clmOutward")
+                {
+                    //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    //{
+                    //    e.Handled = true;  // Disallow the character
+                    //}
+                    TextBox textBox = (TextBox)sender;
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                    {
+                        e.Handled = false;
+                    }
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CbCompleted_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1958,7 +2054,7 @@ namespace ROMS
 
                     if (varflag == 0)
                     {
-                        if (Convert.ToInt32(txtOutwardQuantity.Text) > Convert.ToInt32(txtStockQuantity.Text) || Convert.ToInt32(txtOutwardQuantity.Text)==0)
+                        if (Convert.ToDecimal(txtOutwardQuantity.Text) > Convert.ToDecimal(txtStockQuantity.Text) || Convert.ToDecimal(txtOutwardQuantity.Text)==0)
                         {
                             txtOutwardQuantity.Focus();
                             epGoodsOutward.SetError(txtOutwardQuantity, "Please enter a valid outward quantity");
@@ -1968,9 +2064,27 @@ namespace ROMS
                         }
                         else
                         {
+                            if (txtOutwardQuantity.Text != "")
+                            {
+                                //if (varDecimal == 6)
+                                //{
+                                    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), varDecimal);
+                                    txtOutwardQuantity.Text = Qty;
+                                //}
+                                //if (varDecimal == 7)
+                                //{
+                                //    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), 2);
+                                //    txtOutwardQuantity.Text = Qty;
+                                //}
+                                //if (varDecimal == 8)
+                                //{
+                                //    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), 3);
+                                //    txtOutwardQuantity.Text = Qty;
+                                //}
+                            }
                             grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdGoodsOutward.Rows.Add(grdGoodsOutward.Rows.Count + 1, varPRID, varPICode, (varTamilname), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text).Trim(), varUnit, varUTID);
-                            dtStock.Rows.Add(varPRID, string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtOutwardQuantity.Text).Trim(), varRKID, varDestSLID, varDestRKID);
+                            grdGoodsOutward.Rows.Add(grdGoodsOutward.Rows.Count + 1, varPRID, varPICode, (varTamilname), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text), varUnit, varUTID,varDecimal);
+                            dtStock.Rows.Add(varPRID, string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtOutwardQuantity.Text), varRKID, varDestSLID, varDestRKID);
                             txtTotalItem.Text = Convert.ToString(grdGoodsOutward.Rows.Count);
                             //varTotalItem = Convert.ToString(DGV_inward.Rows.Count);
                             grdGoodsOutward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2093,8 +2207,8 @@ namespace ROMS
                             {
                                 grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdGoodsOutward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]),Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]),Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]),
-                                Convert.ToString(objDs.Tables[1].Rows[i]["STKQTY"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["GOPR_ReqQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["GOPR_OutwardQty"]),Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]));
-                                dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]),Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GOPR_OutwardQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]),0,0);
+                                Convert.ToString(objDs.Tables[1].Rows[i]["STKQTY"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["GOPR_ReqQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GOPR_OutwardQty"]),Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]));
+                                dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]),Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GOPR_OutwardQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]),0,0);
                                 grdGoodsOutward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGoodsOutward.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

@@ -49,8 +49,18 @@ namespace ROMS
 
             try
             {
-
-                this.Close();
+                if (varCloseFlag == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    } 
+                }
+                else
+                {
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -70,9 +80,9 @@ namespace ROMS
                 btnDC.Enabled = false;
                 this.ActiveControl = txtSupplier;
                 udfnDropdownLoad();
+                udfnDateSet();
                 udfnUnitListGrid();
                 udfnEditLoad();
-                udfnDateSet();
             }
             catch (Exception ex)
             {
@@ -165,8 +175,8 @@ namespace ROMS
                     }
                 }
 
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                //cmbConcern.SelectedValue = 4;
+                //cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                cmbConcern.SelectedValue = 4;
             }
             catch (Exception ex)
             {
@@ -346,6 +356,7 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        varVoucherSkip = true;
                         //MainForm.objCP_Settings = new CP_Settings();
                         //MainForm.objCP_Settings.MdiParent = this.ParentForm;
                         //MainForm.objCP_Settings.Show();
@@ -356,7 +367,8 @@ namespace ROMS
                         MainForm.objCP_Settings.varValues = Convert.ToString(44);
                         MainForm.objCP_Settings.MdiParent = this.ParentForm;
                         MainForm.objCP_Settings.Show();
-                        this.Close();
+                        varCloseFlag = 1;
+                        udfnclose();
                     }
                     else { varVoucherSkip = true; }
                 } 
@@ -1821,18 +1833,22 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-                }
+                //if (varCloseFlag == 0)
+                //{
+                //    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
+                //        e.Cancel = false;
+                //    }
+                //    else
+                //    {
+                //        e.Cancel = true;
+                //    }
+                //}
+                //else
+                //{
+                //    this.Close();
+                //}
                 //else
                 //{
                 //    this.Close();
@@ -1859,6 +1875,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                varVoucherSkip = false;
             }
         }
 

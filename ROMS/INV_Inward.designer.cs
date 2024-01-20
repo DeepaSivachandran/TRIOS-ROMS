@@ -29,14 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.cbCompleted = new System.Windows.Forms.CheckBox();
             this.lvproduct = new System.Windows.Forms.ListView();
+            this.PICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TamilName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EnglishName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvRack = new System.Windows.Forms.ListView();
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -87,6 +91,7 @@
             this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpproductname = new System.Windows.Forms.GroupBox();
             this.lblRack = new System.Windows.Forms.Label();
@@ -111,10 +116,6 @@
             this.lblDd = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epGoodsInward = new System.Windows.Forms.ErrorProvider(this.components);
-            this.PICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TamilName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.EnglishName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Unit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.gbshelfLife.SuspendLayout();
@@ -203,6 +204,22 @@
             this.lvproduct.DoubleClick += new System.EventHandler(this.Lvproduct_DoubleClick);
             this.lvproduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lvproduct_KeyDown);
             // 
+            // PICode
+            // 
+            this.PICode.Text = "P.I.Code";
+            // 
+            // TamilName
+            // 
+            this.TamilName.Text = "Product Name";
+            // 
+            // EnglishName
+            // 
+            this.EnglishName.Text = "Product Name";
+            // 
+            // Unit
+            // 
+            this.Unit.Text = "Unit";
+            // 
             // lvRack
             // 
             this.lvRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -243,7 +260,7 @@
             this.columnHeader6});
             this.lvStockLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvStockLocation.HideSelection = false;
-            this.lvStockLocation.Location = new System.Drawing.Point(690, 57);
+            this.lvStockLocation.Location = new System.Drawing.Point(689, 57);
             this.lvStockLocation.Name = "lvStockLocation";
             this.lvStockLocation.Size = new System.Drawing.Size(322, 157);
             this.lvStockLocation.TabIndex = 1111213;
@@ -549,14 +566,14 @@
             this.grdInward.AllowUserToResizeRows = false;
             this.grdInward.BackgroundColor = System.Drawing.Color.White;
             this.grdInward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdInward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdInward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdInward.ColumnHeadersHeight = 30;
             this.grdInward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdInward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -578,23 +595,25 @@
             this.clmRKID,
             this.clmSLID,
             this.clmUTID,
+            this.clmUnitDecimal,
             this.clmremove});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdInward.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdInward.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdInward.EnableHeadersVisualStyles = false;
             this.grdInward.GridColor = System.Drawing.Color.White;
             this.grdInward.Location = new System.Drawing.Point(3, 146);
             this.grdInward.Name = "grdInward";
+            this.grdInward.ReadOnly = true;
             this.grdInward.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdInward.RowTemplate.Height = 25;
             this.grdInward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdInward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -708,6 +727,7 @@
             this.clmreceivedqty.Frozen = true;
             this.clmreceivedqty.HeaderText = "Received Qty";
             this.clmreceivedqty.Name = "clmreceivedqty";
+            this.clmreceivedqty.ReadOnly = true;
             this.clmreceivedqty.Width = 140;
             // 
             // clmunit
@@ -723,6 +743,7 @@
             this.clmPRID.Frozen = true;
             this.clmPRID.HeaderText = "PRID";
             this.clmPRID.Name = "clmPRID";
+            this.clmPRID.ReadOnly = true;
             this.clmPRID.Visible = false;
             // 
             // clmRKID
@@ -730,6 +751,7 @@
             this.clmRKID.Frozen = true;
             this.clmRKID.HeaderText = "RKID";
             this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
             this.clmRKID.Visible = false;
             // 
             // clmSLID
@@ -737,19 +759,32 @@
             this.clmSLID.Frozen = true;
             this.clmSLID.HeaderText = "SLID";
             this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
             this.clmSLID.Visible = false;
             // 
             // clmUTID
             // 
+            this.clmUTID.Frozen = true;
             this.clmUTID.HeaderText = "UTID";
             this.clmUTID.Name = "clmUTID";
+            this.clmUTID.ReadOnly = true;
             this.clmUTID.Visible = false;
+            // 
+            // clmUnitDecimal
+            // 
+            this.clmUnitDecimal.Frozen = true;
+            this.clmUnitDecimal.HeaderText = "Unit Decimal";
+            this.clmUnitDecimal.Name = "clmUnitDecimal";
+            this.clmUnitDecimal.ReadOnly = true;
+            this.clmUnitDecimal.Visible = false;
             // 
             // clmremove
             // 
+            this.clmremove.Frozen = true;
             this.clmremove.HeaderText = "Remove";
             this.clmremove.Image = global::ROMS.Properties.Resources.remove;
             this.clmremove.Name = "clmremove";
+            this.clmremove.ReadOnly = true;
             this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmremove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmremove.Width = 70;
@@ -1006,22 +1041,6 @@
             // 
             this.epGoodsInward.ContainerControl = this;
             // 
-            // PICode
-            // 
-            this.PICode.Text = "P.I.Code";
-            // 
-            // TamilName
-            // 
-            this.TamilName.Text = "Product Name";
-            // 
-            // EnglishName
-            // 
-            this.EnglishName.Text = "Product Name";
-            // 
-            // Unit
-            // 
-            this.Unit.Text = "Unit";
-            // 
             // INV_Inward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1117,6 +1136,11 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblRack;
         private System.Windows.Forms.TextBox txtRack;
+        private System.Windows.Forms.CheckBox cbCompleted;
+        private System.Windows.Forms.ColumnHeader PICode;
+        private System.Windows.Forms.ColumnHeader TamilName;
+        private System.Windows.Forms.ColumnHeader EnglishName;
+        private System.Windows.Forms.ColumnHeader Unit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
@@ -1135,11 +1159,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
-        private System.Windows.Forms.CheckBox cbCompleted;
-        private System.Windows.Forms.ColumnHeader PICode;
-        private System.Windows.Forms.ColumnHeader TamilName;
-        private System.Windows.Forms.ColumnHeader EnglishName;
-        private System.Windows.Forms.ColumnHeader Unit;
     }
 }

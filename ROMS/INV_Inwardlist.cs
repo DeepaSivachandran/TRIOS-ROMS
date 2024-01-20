@@ -1036,6 +1036,7 @@ namespace ROMS
                         TRN_GoodsInward objTRNS_GoodsInward = new TRN_GoodsInward();                       
                         objTRNS_GoodsInward.ViewType = ViewType;
                         objTRNS_GoodsInward.paraGIID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value.ToString());
+                        objTRNS_GoodsInward.paraSTRID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STRID"].Value.ToString());
                         objTRNS_GoodsInward.paraUserID = varUserID;
                         objTRNS_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
                         objTRNS_GoodsInward.paraOriginator = varoriginator;

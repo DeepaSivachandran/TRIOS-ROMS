@@ -572,7 +572,7 @@ namespace ROMS
         {
             cmbconcern.Focus();
             udfnCmbConcern();
-            cmbconcern.SelectedValue = 1;
+            cmbconcern.SelectedValue = MainForm.pbDefaultComId;
             DataBind objDataBind = new DataBind();
             objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (3) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
             objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (53) AND MSTID !=0", "MST_DisplayText,MSTID", cmbDMShow, "", "MST_DisplayText", "MSTID");

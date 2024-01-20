@@ -44,6 +44,7 @@ namespace ROMS
         public string varExpiryDate = "";
         public string varMRP = "";
         public string varSRKID = "";
+        public int varDecimal = 0;
         public int varFlag = 0, varUpdateflag=0;
         public string varSNo = "0";
         public int varUpdate = 0;
@@ -51,14 +52,15 @@ namespace ROMS
         public int varStockRequestID = 0;
         public int varStockRequestSLID = 0;
         public int varStatusID = 0;
-        public int varSLID = 0;
+        public int varSLID = 0, varSTSRQID=0;
+        public int EditFlag = 0;
         public int varDLID = 0;
         public int VarConcernID = 0;
         public int varModifiedFlag = 0;
         public string VarSource = "0";
         public string VarDestination = "0";
         public string varErrQty = "0";
-
+        public string varStockEdit = "Stock Request", varIDCOUNT = "";
         DataTable dtStock = new DataTable();
 
         public INV_StockTransfer()
@@ -141,8 +143,6 @@ namespace ROMS
         {
             try
             {
-
-                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
                 MainForm.objPUR_RemarksHistory.ShowDialog();
             }
             catch (Exception ex)
@@ -223,7 +223,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                 dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 dtStock.Columns.Add("STK_UTID", typeof(string));
-                dtStock.Columns.Add("STK_QTY", typeof(string));
+                dtStock.Columns.Add("STK_QTY", typeof(decimal));
                 dtStock.Columns.Add("STK_Source_RKID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
@@ -243,10 +243,25 @@ namespace ROMS
                 {
                     this.ActiveControl = txtSLocation;
                 }
-                //if (varStockRequestID != 0)
-                //{
-                //    udfnSREdit();
-                //}
+                if (EditFlag == 1 && txtTransactionType.Text == "Shop Request")
+                {
+                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                    MainForm.objPUR_RemarksHistory.varSRQID = varStockRequestID;
+                    MainForm.objPUR_RemarksHistory.varEditflag = 1;
+                    MainForm.objPUR_RemarksHistory.udfnRequestDialog();
+                }
+                else if (EditFlag == 0 && txtTransactionType.Text == "Shop Request")
+                {
+                    MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                    MainForm.objPUR_RemarksHistory.varSRQID = varSTSRQID;
+                    MainForm.objPUR_RemarksHistory.varSTRID = varStockTransferID;
+                    MainForm.objPUR_RemarksHistory.varEditflag = 0;
+                    MainForm.objPUR_RemarksHistory.udfnRequestDialog();
+                }
+                if (varIDCOUNT == "")
+                {
+                    btnRemarks.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -265,7 +280,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","");
+                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","",0,varStockRequestID);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -283,10 +298,10 @@ namespace ROMS
                             lblSLocation.Text = objDS.Tables[0].Rows[0]["SLID"].ToString();
                             lblDLocation.Text = objDS.Tables[0].Rows[0]["DLID"].ToString();
                             //btnSave.Text = "Update";
-                            //if(grdStockTransfer.Columns["Transaction Type"]==43)
-                            //{
-                            //    txtTransactionType.Text = "Shop Request";
-                            //}
+                            if (EditFlag==0)
+                            {
+                                txtTransactionType.Text = "Shop Request";
+                            }
                         }
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -294,14 +309,14 @@ namespace ROMS
                             {
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]),
                                 Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Destination"]), Convert.ToString(objDS.Tables[0].Rows[i]["Destination Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]),
-                                Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Current StockQty"]));
+                                Convert.ToDecimal(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Current StockQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]));
 
-                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
+                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
                                 
-                                int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
-                                int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
+                                decimal CurrentStockQty = Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
+                                decimal TransferQty = Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
 
-                                if (Convert.ToInt32(CurrentStockQty) < Convert.ToInt32(TransferQty))
+                                if (Convert.ToDecimal(CurrentStockQty) < Convert.ToDecimal(TransferQty))
                                 {
                                     ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
                                     //grdStockTransfer.Rows[i].Cells["clmRemove"].ReadOnly = true;
@@ -356,6 +371,7 @@ namespace ROMS
             finally
             {
                 txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
+                grdStockTransfer.ClearSelection();
             }
         }
         public void udfnSREdit()
@@ -386,7 +402,7 @@ namespace ROMS
                             {
                                 txtSLocation.Text = objDS.Tables[0].Rows[0]["Source Location"].ToString();
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Dest Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]));
-                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
+                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
                             }                             
                             //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
                             //int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
@@ -542,7 +558,7 @@ namespace ROMS
                 {
                     txtProductNamePICode.Focus();
                     lvSLocation.Visible = false;
-                }
+                }/*
                 else
                 {
                     lvSLocation.Focus();
@@ -577,7 +593,7 @@ namespace ROMS
                             }
                         }
                     }
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -1079,7 +1095,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["Product"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["QTY"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_UTID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(), objDs.Tables[0].Rows[i]["UT_Decimal"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[3].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1101,6 +1117,7 @@ namespace ROMS
                                 lvProduct.Columns[10].Width = 0;
                                 lvProduct.Columns[11].Width = 80;
                                 lvProduct.Columns[12].Width = 0;
+                                //lvProduct.Columns[13].Width = 0;
                                 if (VarSearchFlag == false)
                                 {
                                     lvProduct.Columns[2].Width = 320;
@@ -1175,7 +1192,47 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+
+                TextBox textBox = (TextBox)sender;
+                if (varDecimal == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else
+                {
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                {
+                    e.Handled = false;
+                }
+                if (varDecimal == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -1343,7 +1400,7 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtQuantity.Text).Trim() != "")
                 {
-                    if (Convert.ToInt32(txtStockQty.Text.Trim()) >= Convert.ToInt32(txtQuantity.Text.Trim()))
+                    if (Convert.ToDecimal(txtStockQty.Text.Trim()) >= Convert.ToDecimal(txtQuantity.Text.Trim()))
                     {
                         errStockTransfer.Clear();
                         txtQuantity.BackColor = Color.White;
@@ -1376,9 +1433,13 @@ namespace ROMS
                     {
                         DRKID =Convert.ToString(cmbDRack.SelectedValue);
                     }
-                   
+                    if (txtQuantity.Text != "")
+                    {
+                        string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), varDecimal);
+                        txtQuantity.Text = Qty;
+                    }
                     varLocation = txtSLocation.Text;
-                    grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, varProductName, (txtSRack.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtDLocation.Text).Trim(), (cmbDRack.Text).Trim(), (txtStockQty.Text).Trim(), (txtQuantity.Text).Trim(), varUnitSymbol, (lblProduct.Text).Trim(), varSRKID,varUTID, (txtQuantity.Text).Trim(),0);
+                    grdStockTransfer.Rows.Add(grdStockTransfer.Rows.Count + 1, varPICode, varProductName, (txtSRack.Text).Trim(), (txtMRP.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtDLocation.Text).Trim(), (cmbDRack.Text).Trim(), (txtStockQty.Text).Trim(), (txtQuantity.Text).Trim(), varUnitSymbol, (lblProduct.Text).Trim(), varSRKID,varUTID, (txtQuantity.Text).Trim(),0,varDecimal);
                     dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtQuantity.Text).Trim(), varSRKID,(lblDLocation.Text).Trim(),DRKID);
                     txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
                     ((DataGridViewTextBoxColumn)grdStockTransfer.Columns["clmquantity"]).MaxInputLength = 8;
@@ -1520,6 +1581,7 @@ namespace ROMS
                     varBatchNo = selectedItem.SubItems[7].Text;
                     varProductCode = selectedItem.SubItems[9].Text;
                     varSRKID = selectedItem.SubItems[12].Text;
+                    varDecimal =Convert.ToInt32( selectedItem.SubItems[13].Text);
                     txtSRack.Text = selectedItem.SubItems[4].Text;
                 }
             }
@@ -1705,6 +1767,14 @@ namespace ROMS
                     varoriginator = "Stock Transfer Creation";
                     varType = 0;
                 }
+                else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == true)
+                {
+                    varStatusID = 32;
+                }
+                else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == false)
+                {
+                    varStatusID = 21;
+                }
                 else if (btnSave.Text == "Update" && varUpdateflag == 1)
                 {
                     varUpdateflag = 1;
@@ -1717,6 +1787,7 @@ namespace ROMS
                     varUpdateflag = 0;
                     varoriginator = "Stock Transfer Updation";
                     varType = 0;
+                    varStatusID = 48;
                 }
                 /* Check source stock location is valid or not*/
                 if (txtSLocation.Text != "")
@@ -1780,18 +1851,21 @@ namespace ROMS
                 //{
                 //    lblDLocation.Text = "0";
                 //}
-                
                 int varStatus = 0;
                 int varTransactionType = 0;
-                if (chkStatus.Checked==true || varUpdateflag==1)
+                if (chkStatus.Checked == true || varUpdateflag == 1)
                 {
                     varStatus = 32;
                 }
-                else
+                else if (chkStatus.Checked == false || varUpdateflag == 0)
                 {
                     varStatus = 21;
                 }
-                if(txtTransactionType.Text=="Regular")
+                else if(varUpdateflag==1 && btnSave.Text=="Update")
+                {
+                    varStatus = 48;
+                }
+                if (txtTransactionType.Text=="Regular")
                 {
                     varTransactionType = 172;
                 }
@@ -1799,48 +1873,59 @@ namespace ROMS
                 {
                     varTransactionType = 173;
                 }
-                varResult = objspservice.udfnStockTransfer(varType,varStockTransferID,Convert.ToInt32(cmbConcern.SelectedValue),dpTrannsferDate.Text,Convert.ToInt32(lblSLocation.Text),0,txtRemarks.Text.Trim(), varStatus, varoriginator,dtStock,0,varTransactionType,varUpdateflag,varStockRequestID);
-                objspservice.CloseConnection();
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "3" && varUpdateflag==0)
+
+                if (varUpdateflag == 1)
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objINV_StockTransferList.udfnList();
-                    udfnClear();
-                    varModifiedFlag = 0;
-                    this.Close();
-                }
-                else if (varvalue[0] == "3" && varUpdateflag == 1)
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objINV_StockTransferQueue.udfnList();
-                    udfnClear();
-                    varModifiedFlag = 0;
-                    this.Close();
+                    varResult = objspservice.udfnStockTransfer(varType, varStockTransferID, Convert.ToInt32(cmbConcern.SelectedValue), dpTrannsferDate.Text, Convert.ToInt32(lblSLocation.Text), 0, txtRemarks.Text.Trim(), varStatus, varoriginator, dtStock, 0, varTransactionType, varUpdateflag, varStockRequestID);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objINV_StockTransferQueue.udfnList();
+                        udfnClear();
+                        varModifiedFlag = 0;
+                        this.Close();
+                    }
                 }
                 else
                 {
-                    errStockTransfer.Clear();
-                    txtProductNamePICode.BackColor = Color.White;
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnSave.Enabled = true;
-                    btnSave.Focus();
-                    if (varvalue[0] == "5")
+                    varResult = objspservice.udfnStockTransfer(varType, varStockTransferID, Convert.ToInt32(cmbConcern.SelectedValue), dpTrannsferDate.Text, Convert.ToInt32(lblSLocation.Text), 0, txtRemarks.Text.Trim(), varStatus, varoriginator, dtStock, 0, varTransactionType, varUpdateflag, varStockRequestID);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
                     {
-                        string[] varFirstList = varvalue[2].Split('|');
-                        for (int i = 0; i < varFirstList.Length; i++)
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objINV_StockTransferList.udfnList();
+                        udfnClear();
+                        varModifiedFlag = 0;
+                        this.Close();
+                    }
+
+                    else
+                    {
+                        errStockTransfer.Clear();
+                        txtProductNamePICode.BackColor = Color.White;
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
+                        if (varvalue[0] == "5")
                         {
-                            string[] varSecondList = varFirstList[i].Split(',');
-                            string varPRID = varSecondList[0];
-                            string varMRP = varSecondList[1];
-                            string varExpiryDate = varSecondList[2];
-                            string varBatchNo = varSecondList[3];
-                            string varRack = varSecondList[4];
-                            for (int j = 0; j < grdStockTransfer.RowCount; j++)
+                            string[] varFirstList = varvalue[2].Split('|');
+                            for (int i = 0; i < varFirstList.Length; i++)
                             {
-                                if (Convert.ToString(grdStockTransfer.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmbatchno"].Value) == varBatchNo && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmSRID"].Value) == varRack)
+                                string[] varSecondList = varFirstList[i].Split(',');
+                                string varPRID = varSecondList[0];
+                                string varMRP = varSecondList[1];
+                                string varExpiryDate = varSecondList[2];
+                                string varBatchNo = varSecondList[3];
+                                string varRack = varSecondList[4];
+                                for (int j = 0; j < grdStockTransfer.RowCount; j++)
                                 {
-                                    grdStockTransfer.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                    if (Convert.ToString(grdStockTransfer.Rows[j].Cells["clmPRID"].Value) == varPRID && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmbatchno"].Value) == varBatchNo && Convert.ToString(grdStockTransfer.Rows[j].Cells["clmSRID"].Value) == varRack)
+                                    {
+                                        grdStockTransfer.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                    }
                                 }
                             }
                         }
@@ -2114,10 +2199,10 @@ namespace ROMS
         {
             try
             {
-                int TransferQty = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmquantity"].Value);
-                int StockQty = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmStockQty"].Value);
+                decimal TransferQty = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmquantity"].Value);
+                decimal StockQty = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmStockQty"].Value);
 
-                if (Convert.ToInt32(TransferQty) > Convert.ToInt32(StockQty))
+                if (Convert.ToDecimal(TransferQty) > Convert.ToDecimal(StockQty))
                 {
                     //grdStockTransfer.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
                     grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -2138,6 +2223,11 @@ namespace ROMS
                     grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
                     varErrQty = "0";
                 }
+                int varDecimal = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmUnitDecimal"].Value);
+
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
+                    grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+
                 object varEditQty = grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
@@ -2245,7 +2335,7 @@ namespace ROMS
             {
 
             }
-        }
+        } 
 
         private void GrdStockTransfer_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -2253,8 +2343,58 @@ namespace ROMS
             {
                 if (grdStockTransfer.CurrentCell.OwningColumn.Name == "clmquantity")
                 {
+                    e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress;
+                }
+                if (grdStockTransfer.CurrentCell.OwningColumn.Name == "clmquantity")
+                {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                int varDecimal = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmUnitDecimal"].Value);
+                if (grdStockTransfer.CurrentCell.OwningColumn.Name == "clmquantity")
+                {
+                    //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    //{
+                    //    e.Handled = true;  // Disallow the character
+                    //}
+                    TextBox textBox = (TextBox)sender;
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                    {
+                        e.Handled = false;
+                    }
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
