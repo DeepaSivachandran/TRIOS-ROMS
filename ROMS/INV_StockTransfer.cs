@@ -1851,7 +1851,6 @@ namespace ROMS
                 //{
                 //    lblDLocation.Text = "0";
                 //}
-                
                 int varStatus = 0;
                 int varTransactionType = 0;
                 if (chkStatus.Checked == true || varUpdateflag == 1)
