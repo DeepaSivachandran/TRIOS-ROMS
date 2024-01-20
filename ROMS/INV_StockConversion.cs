@@ -41,11 +41,11 @@ namespace ROMS
         public string varbrandcode;
         public string pbFormStatus;
         public int varQuantity = 0;
-        public int varActualQuantity = 0;
+        public decimal varActualQuantity = 0;
         public bool varChangeFlag = true;
         public int varBTID = 0;
         public int sum = 0;
-        int changedQuantity = 0;
+        decimal changedQuantity = 0;
         public bool VarSearchFlag = true;
 
         public INV_StockConversion()
@@ -360,7 +360,7 @@ namespace ROMS
                     txtQty.BackColor = Color.White;
                     tpQty.Active = false;
                 }
-                if (grdBatchConversion.Rows.Count > 0 && Convert.ToInt32(txtQty.Text) < changedQuantity)
+                if (grdBatchConversion.Rows.Count > 0 && Convert.ToDecimal(txtQty.Text) < changedQuantity)
                 {
                     epBatchConversion.SetError(txtQty, "Please enter valid quantity");
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1028,7 +1028,7 @@ namespace ROMS
                     tpQty2.Show("Please enter quantity", txtQty2, 5000);
                     varErrorFlag = false;
                 }
-                if (Convert.ToInt32(txtQty.Text) > Convert.ToInt32(txtStock.Text) || Convert.ToInt32(txtQty.Text)==0)
+                if (Convert.ToDecimal(txtQty.Text) > Convert.ToDecimal(txtStock.Text) || Convert.ToDecimal(txtQty.Text)==0)
                 {
                     epBatchConversion.SetError(txtQty, "Please enter a valid quantity");
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1056,30 +1056,18 @@ namespace ROMS
                 if (varErrorFlag == true)
                 {
                     grdBatchConversion.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                    varActualQuantity = Convert.ToInt32(txtQty.Text);
-                    changedQuantity = changedQuantity + Convert.ToInt32(txtQty2.Text);
+                    varActualQuantity = Convert.ToDecimal(txtQty.Text);
+                    changedQuantity = changedQuantity + Convert.ToDecimal(txtQty2.Text);
                     if (changedQuantity > 0 && changedQuantity <= varActualQuantity)
                     {
                         if (txtQty2.Text != "")
                         {
-                            if (varDecimal == 6)
-                            {
-                                string Qty = objValidation.udfnDecimal((txtQty2.Text).Trim(), 1);
-                                txtQty2.Text = Qty;
-                            }
-                            if (varDecimal == 7)
-                            {
-                                string Qty = objValidation.udfnDecimal((txtQty2.Text).Trim(), 2);
-                                txtQty2.Text = Qty;
-                            }
-                            if (varDecimal == 8)
-                            {
-                                string Qty = objValidation.udfnDecimal((txtQty2.Text).Trim(), 3);
-                                txtQty2.Text = Qty;
-                            }
+
+                            string Qty = objValidation.udfnDecimal((txtQty2.Text).Trim(), varDecimal);
+                            txtQty2.Text = Qty;
                         }
                         grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim(), (txtQty2.Text).Trim(),varPRID,varRKID,varStockLocationId);
-                        dtStock.Rows.Add((txtQty2.Text).Trim(), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim());
+                        dtStock.Rows.Add((txtQty2.Text), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim());
                         grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1094,7 +1082,7 @@ namespace ROMS
                     }
                     else
                     {
-                        changedQuantity = changedQuantity - Convert.ToInt32(txtQty2.Text);
+                        changedQuantity = changedQuantity - Convert.ToDecimal(txtQty2.Text);
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(89);
                         objDServ.CloseConnection();
@@ -1269,7 +1257,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(txtQty.Text)==Convert.ToInt32(totalQty.Text))
+                if (Convert.ToDecimal(txtQty.Text)==Convert.ToDecimal(totalQty.Text))
                 {
                     udfnSave();
                 }
@@ -1527,6 +1515,10 @@ namespace ROMS
         {
             try
             {
+                //if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+                //{
+                //    e.Handled = true;
+                //}     
                 if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
@@ -1538,30 +1530,16 @@ namespace ROMS
                 }
 
                 TextBox textBox = (TextBox)sender;
-                if (varDecimal == 5)
+                if (varDecimal == 0)
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     {
                         e.Handled = true;
                     }
                 }
-                else if (varDecimal == 6)
+                else
                 {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 2)
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else if (varDecimal == 7)
-                {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 3)
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else if (varDecimal == 8)
-                {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 4)
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
                     {
                         e.Handled = true;
                     }
@@ -1570,13 +1548,22 @@ namespace ROMS
                 {
                     e.Handled = false;
                 }
-                if (varDecimal == 5)
+                if (varDecimal == 0)
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     {
                         e.Handled = true;
                     }
                 }
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+                if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                {
+                    e.Handled = true;
+                }
+                //only allow one decimal point
                 if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
                 {
                     e.Handled = true;
@@ -1643,6 +1630,15 @@ namespace ROMS
                         e.Handled = true;
                     }
                 }
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+                if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                {
+                    e.Handled = true;
+                }
+                //only allow one decimal point
                 if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
                 {
                     e.Handled = true;
