@@ -85,13 +85,15 @@ namespace ROMS
                                 txtCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
                                 MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
-                                panel4.Visible = false;
+                                pnlGoodsInward.Visible = false;
+                                pnlStockRequest.Visible = false;
+
                             }
                             else
                             {
                                 MainForm.objINV_Inward.btnRemarks.Enabled = false;
-                                panel4.Visible = false;
-                                panel2.Visible = false;
+                                pnlGoodsInward.Visible = false;
+                                pnlStockTransfer.Visible = false;
                             }
                         }
                     }
@@ -112,29 +114,42 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtSTTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
-                                txtRemarks.Text = objDs.Tables[0].Rows[0]["STR_Remarks"].ToString();
-                                txtCreatedby.Text = objDs.Tables[0].Rows[0]["STR Created By"].ToString();
-                                txtCreatedOn.Text = objDs.Tables[0].Rows[0]["STR Created On"].ToString();
-                                MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
-
-                                if (objDs.Tables[0].Rows.Count > 1)
+                                lblStockRequest.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
+                                txtSRRemarks.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
+                                txtRequestCreated.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
+                                txtSRCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
+                                MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["ID"].ToString();
+                            
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
-                                    txtGIRemarks.Text = objDs.Tables[0].Rows[1]["STR_Remarks"].ToString();
-                                    txtGICreatedby.Text = objDs.Tables[0].Rows[1]["STR Created By"].ToString();
-                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["STR Created On"].ToString();
-                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
+                                    txtSTTable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
+                                    txtRemarks.Text = objDs.Tables[0].Rows[1]["Remarks"].ToString();
+                                    txtCreatedby.Text = objDs.Tables[0].Rows[1]["Created By"].ToString();
+                                    txtCreatedOn.Text = objDs.Tables[0].Rows[1]["Created On"].ToString();
+                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[1]["ID"].ToString();
                                 }
                                 else
                                 {
-                                    panel4.Visible = false;
+                                    pnlStockTransfer.Visible = false;
+                                }
+                                if (objDs.Tables[0].Rows.Count > 1)
+                                {
+                                    txtGITable.Text = objDs.Tables[0].Rows[2]["flag"].ToString();
+                                    txtGIRemarks.Text = objDs.Tables[0].Rows[2]["Remarks"].ToString();
+                                    txtGICreatedby.Text = objDs.Tables[0].Rows[2]["Created By"].ToString();
+                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[2]["Created On"].ToString();
+                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[2].Rows[0]["ID"].ToString();
+                                }
+                                else
+                                {
+                                    pnlGoodsInward.Visible = false;
                                 }
                             }
                             else
                             {
-                                panel4.Visible = false;
-                                panel2.Visible = false;
+                                pnlGoodsInward.Visible = false;
+                                pnlStockTransfer.Visible = false;
+                                pnlStockRequest.Visible = false;
                             }
                         }
                     }
@@ -170,13 +185,13 @@ namespace ROMS
                                 txtCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
                                 MainForm.objINV_StockTransfer.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
-                                panel4.Visible = false;
+                                pnlGoodsInward.Visible = false;
                             }
                             else
                             {
                                 MainForm.objINV_Inward.btnRemarks.Enabled = false;
-                                panel4.Visible = false;
-                                panel2.Visible = false;
+                                pnlGoodsInward.Visible = false;
+                                pnlStockTransfer.Visible = false;
                             }
                         }
                     }
@@ -208,13 +223,13 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    panel4.Visible = false;
+                                    pnlGoodsInward.Visible = false;
                                 }
                             }
                             else
                             {
-                                panel4.Visible = false;
-                                panel2.Visible = false;
+                                pnlGoodsInward.Visible = false;
+                                pnlStockTransfer.Visible = false;
                             }
                         }
                     }
