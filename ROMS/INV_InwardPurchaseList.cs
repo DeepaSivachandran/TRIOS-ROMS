@@ -52,15 +52,15 @@ namespace ROMS
                 MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPSCID"].Value);
                 MainForm.objINV_InwardPurchase.varStausId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value);
                 MainForm.objINV_InwardPurchase.varEditFlag = 1;
-
+                MainForm.objINV_InwardPurchase.varRemarkFlag = 1;
                 MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Concern"].Value);
                 MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Location"].Value);
                 MainForm.objINV_InwardPurchase.dpInwardDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inward Date"].Value);
                 MainForm.objINV_InwardPurchase.txtInwardNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inward No."].Value);
-               // MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice Date"].Value);
-               // MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice No."].Value);
-                //MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher Date"].Value);
-                //MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher No."].Value);
+                //MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice Date"].Value);
+                //MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice No."].Value);
+                //MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher Date"].Value);
+                //MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher No."].Value);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 MainForm.objINV_InwardPurchase.Show();

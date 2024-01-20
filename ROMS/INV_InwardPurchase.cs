@@ -16,7 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0,varStausId=0;
-        public int varPurchaseID = 0, varID=0,varGRNPurchaseFlag=0, varCloseFlag=0,varTypeID=0;
+        public int varPurchaseID = 0, varID=0,varGRNPurchaseFlag=0, varCloseFlag=0,varTypeID=0,varRemarkFlag=0;
         DataTable dtInwardPurchase = new DataTable();
         public INV_InwardPurchase()
         {
@@ -542,12 +542,12 @@ namespace ROMS
                                 grdGrnlist.DataSource = objDs.Tables[0];
                                 grdGrnlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnlist.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdGrnlist.Columns["Invoice Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                
                                 grdGrnlist.Columns["Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnlist.Columns["Product Name in English"].Width = 300;
                                 grdGrnlist.Columns["Product Name in Tamil"].Width = 300;
-                                grdGrnlist.Columns["Invoice Received Qty"].Width = 150;
+                                
                                 grdGrnlist.Columns["S.No."].Width = 50;
                                 grdGrnlist.Columns["MRP"].Width = 80;
                                 grdGrnlist.Columns["Unit"].Width = 70;
@@ -559,7 +559,6 @@ namespace ROMS
                                 grdGrnlist.Columns["S.No."].ReadOnly = true;
                                 grdGrnlist.Columns["MRP"].ReadOnly = true;
                                 grdGrnlist.Columns["P.I Code"].ReadOnly = true;
-                                grdGrnlist.Columns["Invoice Received Qty"].ReadOnly = true;
                                 grdGrnlist.Columns["Product Name in English"].ReadOnly = true;
                                 grdGrnlist.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdGrnlist.Columns["Batch No."].ReadOnly = true;
@@ -573,6 +572,12 @@ namespace ROMS
                                 grdGrnlist.Columns["Location ID"].Visible = false;
                                 grdGrnlist.Columns["Rack ID"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
+                                if (varEditFlag == 0)
+                                {
+                                    grdGrnlist.Columns["Invoice Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdGrnlist.Columns["Invoice Received Qty"].Width = 150;
+                                    grdGrnlist.Columns["Invoice Received Qty"].ReadOnly = true;
+                                }
                                 //if (varEditFlag==0)
                                 //{
                                 //    grdGrnlist.Columns["GRNPR_PRID"].Visible = false;
@@ -705,6 +710,7 @@ namespace ROMS
             try
             {
                 MainForm.objINV_InwardQueueList_Remarks = new INV_InwardQueueList_Remarks();
+                MainForm.objINV_InwardQueueList_Remarks.varID = varInwardId;
                 MainForm.objINV_InwardQueueList_Remarks.ShowDialog();
             }
             catch (Exception ex)

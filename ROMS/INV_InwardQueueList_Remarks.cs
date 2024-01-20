@@ -23,7 +23,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
-        public int varEditflag = 0, varSTRID = 0, varGIID = 0;
+        public int varEditflag = 0, varSTRID = 0, varID = 0;
         public INV_InwardQueueList_Remarks()
         {
             InitializeComponent();
@@ -34,18 +34,30 @@ namespace ROMS
         {
             try
             {
+                udfnRemarkList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnRemarkList()
+        {
+            try
+            {
                 DataSet objDs = new DataSet();
                 SPDataService objspdservice = new SPDataService();
-                DataTable objGrnPO = new DataTable();
-                TRN_GoodsInward objTRNG_GoodsInward = new TRN_GoodsInward();
-                if (varEditflag == 1)
-                {
-
-                    objTRNG_GoodsInward.ViewType = 2;
-                    objTRNG_GoodsInward.paraSTRID = varSTRID;
-                    objTRNG_GoodsInward.paraFlag = varEditflag;
-                    objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
-                    objDs = objspdservice.udfnInwardList(objTRNG_GoodsInward);
+                DataTable objDT = new DataTable();
+                TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
+                //if (varEditflag == 1)
+                //{
+                    objTRN_GoodsInward_Purchase.ViewType = 5;
+                    objTRN_GoodsInward_Purchase.paraFlag = 1;
+                    objTRN_GoodsInward_Purchase.paraRemarkFlag = 1;
+                    objTRN_GoodsInward_Purchase.paraInwardId = varID;
+                    objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
+                    objDs = objspdservice.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -53,45 +65,46 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtRemarks.Text= objDs.Tables[0].Rows[0]["Remarks"].ToString();
-                                txtCreatedby.Text= objDs.Tables[0].Rows[0]["Created By"].ToString();
-                                txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
+                                txtGIPRemarks.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
+                                txtGIPCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
+                                txtGIPCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
+                                txtGIPTable.Text = objDs.Tables[0].Rows[0]["Transaction"].ToString();
                                 panel4.Visible = false;
                             }
                         }
                     }
                 }
-                else
-                {
-                    objTRNG_GoodsInward.ViewType = 2;
-                    objTRNG_GoodsInward.paraSTRID = varSTRID;
-                    objTRNG_GoodsInward.paraGIID = varGIID;
-                    objTRNG_GoodsInward.paraFlag = varEditflag;
-                    objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
-                    objDs = objspdservice.udfnInwardList(objTRNG_GoodsInward);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
-                        {
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
-                                txtSTTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
-                                txtRemarks.Text = objDs.Tables[0].Rows[0]["STR_Remarks"].ToString();
-                                txtCreatedby.Text = objDs.Tables[0].Rows[0]["STR Created By"].ToString();
-                                txtCreatedOn.Text = objDs.Tables[0].Rows[0]["STR Created On"].ToString();
-                                if (objDs.Tables[0].Rows.Count > 1)
-                                {
-                                    txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
-                                    txtGIRemarks.Text = objDs.Tables[0].Rows[1]["STR_Remarks"].ToString();
-                                    txtGICreatedby.Text = objDs.Tables[0].Rows[1]["STR Created By"].ToString();
-                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["STR Created On"].ToString();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+                //else
+                //{
+                //    objTRNG_GoodsInward.ViewType = 2;
+                //    objTRNG_GoodsInward.paraSTRID = varSTRID;
+                //    objTRNG_GoodsInward.paraGIID = varGIID;
+                //    objTRNG_GoodsInward.paraFlag = varEditflag;
+                //    objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
+                //    objDs = objspdservice.udfnInwardList(objTRNG_GoodsInward);
+                //    objspdservice.CloseConnection();
+                //    if (objDs != null)
+                //    {
+                //        if (objDs.Tables.Count != 0)
+                //        {
+                //            if (objDs.Tables[0].Rows.Count != 0)
+                //            {
+                //                txtGIPTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
+                //                txtGIPRemarks.Text = objDs.Tables[0].Rows[0]["STR_Remarks"].ToString();
+                //                txtGIPCreatedby.Text = objDs.Tables[0].Rows[0]["STR Created By"].ToString();
+                //                txtGIPCreatedOn.Text = objDs.Tables[0].Rows[0]["STR Created On"].ToString();
+                //                if (objDs.Tables[0].Rows.Count > 1)
+                //                {
+                //                    txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
+                //                    txtGIRemarks.Text = objDs.Tables[0].Rows[1]["STR_Remarks"].ToString();
+                //                    txtGICreatedby.Text = objDs.Tables[0].Rows[1]["STR Created By"].ToString();
+                //                    txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["STR Created On"].ToString();
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+            //}
             catch (Exception ex)
             {
                 objError = new DataError();
