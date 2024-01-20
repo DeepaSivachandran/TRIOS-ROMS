@@ -1,0 +1,227 @@
+﻿using ROMS.Model;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ROMS
+{
+    public partial class PUR_Purchase_GRNDetails : Form
+    {
+        DataValidation objValidation = new DataValidation();
+        DataError objError;
+
+        private ToolTip tpbrandname = new ToolTip();
+        private ToolTip tpbrandtamilname = new ToolTip();
+        private ToolTip tpbltname = new ToolTip();
+        private ToolTip tpblename = new ToolTip();
+        public string varbranGRNode;
+       DataTable dtPurchaseGRN = new DataTable();
+        public string pbFormStatus;
+        public PUR_Purchase_GRNDetails()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            udfnclose();
+        }
+        public void udfnclose()
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnAddGRN();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void PUR_GRNDeatils_Load(object sender, EventArgs e)
+        {
+
+            try
+            {
+                dtPurchaseGRN = new DataTable();
+                dtPurchaseGRN.Columns.Add("", typeof(Boolean));
+                dtPurchaseGRN.Columns.Add("S.No.", typeof(string));
+                dtPurchaseGRN.Columns.Add("GRN No.", typeof(string));
+                dtPurchaseGRN.Columns.Add("GRN Date", typeof(string));
+                dtPurchaseGRN.Columns.Add("Total Products", typeof(string));
+                dtPurchaseGRN.Columns.Add("GRNID", typeof(string));
+                int supplierid = 0, scheduleid = 0;
+                string GRNNo= "0"; 
+                supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
+                scheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
+                GRNNo = MainForm.objCP_Purchase.pbGRNNo;
+                if (supplierid != 0 && scheduleid != 0)
+                {  
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objdserv.udfnGrnListLoad(6, supplierid, 0, 0, 0, "", "", scheduleid, 0, 0, "", "", 0, 0,GRNNo);
+                    objdserv.CloseConnection(); 
+                    if (objDs.Tables[0].Rows.Count > 0)
+                    {
+                        grdGRNDetails.Rows.Clear();
+                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            dtPurchaseGRN.Rows.Add(false, dtPurchaseGRN.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["GRNNo"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["GRNDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"])
+                            );
+                        }
+                        grdGRNDetails.DataSource = dtPurchaseGRN;
+                        grdGRNDetails.Columns[0].HeaderText = "";
+                        grdGRNDetails.Columns[0].Width = 30;
+                        grdGRNDetails.Columns[0].ReadOnly = false;
+                        grdGRNDetails.Columns["S.No."].ReadOnly = true;
+                        grdGRNDetails.Columns["GRN No."].ReadOnly = true;
+                        grdGRNDetails.Columns["GRN Date"].ReadOnly = true;
+                        grdGRNDetails.Columns["Total Products"].ReadOnly = true;
+                        grdGRNDetails.Columns["S.No."].Width = 50;
+                        grdGRNDetails.Columns["GRN No."].Width = 100;
+                        grdGRNDetails.Columns["GRN Date"].Width = 100;
+                        grdGRNDetails.Columns["Total Products"].Width = 100;
+                        grdGRNDetails.Columns["GRNID"].Visible = false;
+                        grdGRNDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdGRNDetails.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        grdGRNDetails.DataSource = null;
+                    }
+                } 
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    grdGRNDetails.DataSource = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+
+        public void udfnAddGRN()
+        {
+            try { 
+            //{
+            //    int VARFLAG = 0;
+            //    string GRNno = "0";
+            //    MainForm.objCP_Purchase.pbGRNNo = "0";
+            //    //MainForm.objPUR_GRNEntry.grdReurnGRN.Rows.Clear();
+            //    for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
+            //    {
+            //        if (Convert.ToBoolean(grdGRNDetails.Rows[i].Cells[0].Value) == true)
+            //        {
+            //            MainForm.objCP_Purchase.grdReurnGRN.Rows.Add(grdGRNDetails.Rows[i].Cells["GRN Date"].Value, grdGRNDetails.Rows[i].Cells["GRN No."].Value, grdGRNDetails.Rows[i].Cells["Total Products"].Value, grdGRNDetails.Rows[i].Cells["GRNID"].Value);
+            //            VARFLAG = 1;
+            //            if (GRNno == "0")
+            //            {
+            //                GRNno = Convert.ToString(grdGRNDetails.Rows[i].Cells["GRNID"].Value);
+            //            }
+            //            else
+            //            {
+            //                GRNno = GRNno + ',' + Convert.ToString(grdGRNDetails.Rows[i].Cells["GRNID"].Value);
+            //            }
+            //        }
+            //    }
+            //    if (VARFLAG != 0)
+            //    {
+            //        MainForm.objCP_Purchase.grdReurnGRN.Sort(MainForm.objCP_Purchase.grdReurnGRN.Columns["GRNDate"], ListSortDirection.Descending);
+            //        MainForm.objCP_Purchase.pbGRNNo = GRNno;
+            //        this.Close();
+            //    }
+            //    else
+            //    {
+            //        SPDataService objDServ = new SPDataService();
+            //        if (grdGRNDetails.Rows.Count > 0)
+            //        {
+            //            string varMessage = objDServ.udfnGetMessages(84);
+            //            objDServ.CloseConnection();
+            //            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        }
+            //        else
+            //        {
+            //            string varMessage = objDServ.udfnGetMessages(41);
+            //            objDServ.CloseConnection();
+            //            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        }
+            //    }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnSave_Enter(object sender, EventArgs e)
+        {
+            try { btnSave.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Leave(object sender, EventArgs e)
+        {
+            try { btnSave.BackColor = Color.Transparent; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Enter(object sender, EventArgs e)
+        {
+            try { btnClose.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Leave(object sender, EventArgs e)
+        {
+            try { btnClose.BackColor = Color.Transparent; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
+    }
+}

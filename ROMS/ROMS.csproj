@@ -233,6 +233,12 @@
     </Compile>
     <Compile Include="Model\TRN_StockHold.cs" />
     <Compile Include="Model\TRN_Damage.cs" />
+    <Compile Include="PUR_Purchase_GRNDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_Purchase_GRNDetails.designer.cs">
+      <DependentUpon>PUR_Purchase_GRNDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_POScheduleSummary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1485,6 +1491,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockTransferQueue.resx">
       <DependentUpon>INV_StockTransferQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_Purchase_GRNDetails.resx">
+      <DependentUpon>PUR_Purchase_GRNDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNApprovalVerify.resx">
       <DependentUpon>PUR_GRNApprovalVerify.cs</DependentUpon>
