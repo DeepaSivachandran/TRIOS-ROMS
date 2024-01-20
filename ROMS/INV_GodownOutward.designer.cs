@@ -251,6 +251,7 @@
             // Productlist
             // 
             this.Productlist.DisplayIndex = 4;
+            this.Productlist.Text = "Product Name";
             // 
             // TamilName
             // 
@@ -401,7 +402,7 @@
             this.grdGoodsOutward.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdGoodsOutward.EnableHeadersVisualStyles = false;
             this.grdGoodsOutward.GridColor = System.Drawing.Color.White;
-            this.grdGoodsOutward.Location = new System.Drawing.Point(0, 160);
+            this.grdGoodsOutward.Location = new System.Drawing.Point(-6, 150);
             this.grdGoodsOutward.Name = "grdGoodsOutward";
             this.grdGoodsOutward.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -626,7 +627,7 @@
             // lbloutwarddate
             // 
             this.lbloutwarddate.AutoSize = true;
-            this.lbloutwarddate.Location = new System.Drawing.Point(119, 14);
+            this.lbloutwarddate.Location = new System.Drawing.Point(114, 14);
             this.lbloutwarddate.Name = "lbloutwarddate";
             this.lbloutwarddate.Size = new System.Drawing.Size(84, 20);
             this.lbloutwarddate.TabIndex = 84;

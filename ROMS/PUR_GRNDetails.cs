@@ -88,13 +88,18 @@ namespace ROMS
         {
             try
             {
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
-                if (objd.Tables[1].Rows.Count != 0)
-                {
-                    DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpinvoicedate.MinDate = varmindate;
+                if (pbGRNId != "0")
+                { 
+                    dpinvoicedate.MinDate = MainForm.pbFYStartDate;
+                    dpinvoicedate.MaxDate = MainForm.pbCurrentDate; 
+                    //SPDataService objDServ = new SPDataService();
+                    //DataSet objd = new DataSet();
+                    //objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+                    //if (objd.Tables[1].Rows.Count != 0)
+                    //{
+                    //    DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    //    dpinvoicedate.MaxDate = varmindate;
+                    //}
                 }
             }
             catch (Exception ex)
