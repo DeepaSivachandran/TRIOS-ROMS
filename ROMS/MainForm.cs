@@ -134,12 +134,14 @@ namespace ROMS
         public static PUR_GRNVerify objPUR_GRNVerify;
         public static PUR_GRNEntryVerify objPUR_GRNEntryVerify;
         public static PUR_GRNOrderType objPUR_GRNOrderType;
+        public static PUR_Purchase_GRNDetails objPUR_Purchase_GRNDetails;
         public static PUR_Product objPUR_Product;
         public static PUR_PurchaseOrderDamage objPUR_PurchaseOrderDamage;
         public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
         public static PUR_PurchaseReturns objPUR_PurchaseReturns;
         public static PUR_RemarksHistory objPUR_RemarksHistory;
+        public static INV_InwardQueueList_Remarks objINV_InwardQueueList_Remarks;
         public static PUR_POReturns objPUR_POReturns;
         public static PUR_BulkUnit objPUR_BulkUnit;
         public static PUR_DCGoodsInward objPUR_DCGoodsInward;

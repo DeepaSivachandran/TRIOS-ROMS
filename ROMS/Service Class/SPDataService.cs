@@ -107,7 +107,7 @@ namespace ROMS
             return udfn;
         }
         // added by venkat on 13/10/2023 for PO.No. Load
-        public string udfngetPONO(string paraTransactionType, string paraDate, int paraCompanyCode)
+        public string udfngetVoucherNo(string paraTransactionType, string paraDate, int paraCompanyCode)
         {
             string result = "";
             try
@@ -2470,7 +2470,7 @@ namespace ROMS
 
         // added by venkat on 03/11/2023 for GRN list
         public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, string ParaGRNFromDate, string ParaGRNToDate,
-            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId,int paraLocationID)
+            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId,int paraLocationID,String paraGRNIds)
         {
             DataSet ds = new DataSet();
             try
@@ -2494,6 +2494,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaExpiryDate", ParaExpiryDate);
                 varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId); 
                 varSqlCommand.Parameters.AddWithValue("@paraLocationID", paraLocationID); 
+                varSqlCommand.Parameters.AddWithValue("@paraGRNIds", paraGRNIds); 
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2671,6 +2672,12 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_GoodsInward_Purchase.paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_GoodsInward_Purchase.paraStatusID);
                 varSqlCommand.Parameters.AddWithValue("@paraTypeID", objTRN_GoodsInward_Purchase.paraTypeID);
+                varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objTRN_GoodsInward_Purchase.ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaToDate", objTRN_GoodsInward_Purchase.ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarkFlag", objTRN_GoodsInward_Purchase.paraRemarkFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseID", objTRN_GoodsInward_Purchase.paraPurchaseID);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_GoodsInward_Purchase.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_GoodsInward_Purchase.paraID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2703,6 +2710,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraGIP_Date", objTRN_GoodsInward_Purchase.paraGIP_Date);
                 varSqlCommand.Parameters.AddWithValue("@paraGIP_NO", objTRN_GoodsInward_Purchase.paraGIP_NO);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_GoodsInward_Purchase.paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseID", objTRN_GoodsInward_Purchase.paraPurchaseID);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_GoodsInward_Purchase.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraInwardId", objTRN_GoodsInward_Purchase.paraInwardId);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_GoodsInward_Purchase.paraStatusID);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_GoodsInward_Purchase.paraRemarks);
@@ -2973,6 +2982,8 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_PurchaseEntry.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@ParaIds", objTRN_PurchaseEntry.ParaIds);
+                varSqlCommand.Parameters.AddWithValue("@ParaPEFromDate", objTRN_PurchaseEntry.ParaPEFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaPEToDate", objTRN_PurchaseEntry.ParaPEToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

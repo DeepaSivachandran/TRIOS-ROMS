@@ -233,11 +233,23 @@
     </Compile>
     <Compile Include="Model\TRN_StockHold.cs" />
     <Compile Include="Model\TRN_Damage.cs" />
+    <Compile Include="PUR_Purchase_GRNDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_Purchase_GRNDetails.designer.cs">
+      <DependentUpon>PUR_Purchase_GRNDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_POScheduleSummary.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PUR_POScheduleSummary.designer.cs">
       <DependentUpon>PUR_POScheduleSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_InwardQueueList_Remarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardQueueList_Remarks.designer.cs">
+      <DependentUpon>INV_InwardQueueList_Remarks.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Product.cs">
       <AutoGen>True</AutoGen>
@@ -1486,6 +1498,9 @@
     <EmbeddedResource Include="INV_StockTransferQueue.resx">
       <DependentUpon>INV_StockTransferQueue.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PUR_Purchase_GRNDetails.resx">
+      <DependentUpon>PUR_Purchase_GRNDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNApprovalVerify.resx">
       <DependentUpon>PUR_GRNApprovalVerify.cs</DependentUpon>
     </EmbeddedResource>
@@ -1621,6 +1636,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_SalesInvoice.resx">
       <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardQueueList_Remarks.resx">
+      <DependentUpon>INV_InwardQueueList_Remarks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_ReturnDCList.resx">
       <DependentUpon>PUR_ReturnDCList.cs</DependentUpon>

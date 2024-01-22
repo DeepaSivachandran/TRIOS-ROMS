@@ -89,6 +89,7 @@
             this.lblnarration = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdProductExchage = new System.Windows.Forms.DataGridView();
+            this.epProductExchange = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,11 +104,11 @@
             this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStockQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemoveFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.epProductExchange = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.grpproductname.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -131,7 +132,7 @@
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(801, 37);
+            this.lblUnit.Location = new System.Drawing.Point(805, 37);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(33, 20);
             this.lblUnit.TabIndex = 958825;
@@ -142,7 +143,7 @@
             this.txtBatchNo.Location = new System.Drawing.Point(634, 34);
             this.txtBatchNo.MaxLength = 20;
             this.txtBatchNo.Name = "txtBatchNo";
-            this.txtBatchNo.Size = new System.Drawing.Size(115, 27);
+            this.txtBatchNo.Size = new System.Drawing.Size(97, 27);
             this.txtBatchNo.TabIndex = 5;
             this.txtBatchNo.Enter += new System.EventHandler(this.TxtBatchNo_Enter);
             this.txtBatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo_KeyDown);
@@ -171,10 +172,10 @@
             // 
             // txtActualQty
             // 
-            this.txtActualQty.Location = new System.Drawing.Point(753, 34);
+            this.txtActualQty.Location = new System.Drawing.Point(734, 34);
             this.txtActualQty.MaxLength = 4;
             this.txtActualQty.Name = "txtActualQty";
-            this.txtActualQty.Size = new System.Drawing.Size(46, 27);
+            this.txtActualQty.Size = new System.Drawing.Size(71, 27);
             this.txtActualQty.TabIndex = 6;
             this.txtActualQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtActualQty.TextChanged += new System.EventHandler(this.TxtActualQty_TextChanged);
@@ -186,7 +187,7 @@
             // lblActualQty
             // 
             this.lblActualQty.AutoSize = true;
-            this.lblActualQty.Location = new System.Drawing.Point(753, 11);
+            this.lblActualQty.Location = new System.Drawing.Point(734, 11);
             this.lblActualQty.Name = "lblActualQty";
             this.lblActualQty.Size = new System.Drawing.Size(28, 20);
             this.lblActualQty.TabIndex = 80;
@@ -679,6 +680,7 @@
             this.clmSLID,
             this.clmRKID,
             this.clmUnitID,
+            this.clmUTDecimal,
             this.clmStockQuantity,
             this.clmRemoveFlag,
             this.clmRemove,
@@ -707,6 +709,10 @@
             this.grdProductExchage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellContentClick);
             this.grdProductExchage.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellEndEdit);
             this.grdProductExchage.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdProductExchage_EditingControlShowing);
+            // 
+            // epProductExchange
+            // 
+            this.epProductExchange.ContainerControl = this;
             // 
             // clmSno
             // 
@@ -802,6 +808,13 @@
             this.clmUnitID.ReadOnly = true;
             this.clmUnitID.Visible = false;
             // 
+            // clmUTDecimal
+            // 
+            this.clmUTDecimal.HeaderText = "Decimal";
+            this.clmUTDecimal.Name = "clmUTDecimal";
+            this.clmUTDecimal.ReadOnly = true;
+            this.clmUTDecimal.Visible = false;
+            // 
             // clmStockQuantity
             // 
             this.clmStockQuantity.HeaderText = "Stock Quantity";
@@ -825,10 +838,6 @@
             this.clmError.HeaderText = "Error";
             this.clmError.Name = "clmError";
             this.clmError.Visible = false;
-            // 
-            // epProductExchange
-            // 
-            this.epProductExchange.ContainerControl = this;
             // 
             // PUR_DCGoodsInward
             // 
@@ -934,6 +943,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUTDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStockQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRemoveFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;

@@ -124,7 +124,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnGrnListLoad(0, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0,0);
+                objDs = objspdservice.udfnGrnListLoad(0, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0,0, "0");
                 objspdservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -312,7 +312,7 @@ namespace ROMS
                         DataSet objDs = new DataSet();
                         DataService objDservice = new DataService();
                         vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpGRNDate.Text + "',103)");
-                        varResult = objspdservice.udfngetPONO("39", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        varResult = objspdservice.udfngetVoucherNo("39", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                         objspdservice.CloseConnection();
                         string[] parts = varResult.Split('~');
                         string grnno = parts[0];
@@ -2028,7 +2028,7 @@ namespace ROMS
                 {
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(2, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0,"","",0,0);
+                    objDs = objdserv.udfnGrnListLoad(2, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0,"","",0,0, "0");
                     objdserv.CloseConnection();
                     btnSave.Text = "Update && Print"; 
                     if (objDs != null)

@@ -86,12 +86,11 @@ namespace ROMS
                 dtInward.Columns.Add("GIPR_MRP", typeof(decimal));
                 dtInward.Columns.Add("GIPR_ExpiryDate", typeof(string));
                 dtInward.Columns.Add("GIPR_BatchNo", typeof(string));
-                dtInward.Columns.Add("GIPR_UTID", typeof(string));
-                dtInward.Columns.Add("GIPR_QTY", typeof(string));
+                dtInward.Columns.Add("GIPR_QTY", typeof(float));
                 dtInward.Columns.Add("GIPR_RKID", typeof(int));
                 dtInward.Columns.Add("GIPR_SLID", typeof(int));
-                dtInward.Columns.Add("GIPR_ReqQty", typeof(int));
-                dtInward.Columns.Add("GIPR_TransferQty", typeof(int));
+                dtInward.Columns.Add("GIPR_ReqQty", typeof(float));
+                dtInward.Columns.Add("GIPR_TransferQty", typeof(float));
                 dtInward.Columns.Add("GIPR_ShelfLife", typeof(int));
                 dtInward.Columns.Add("GIPR_ShelfLifeValue", typeof(int));
                 dtInward.Columns.Add("GIPR_ShelfLifeType", typeof(int));
@@ -1650,7 +1649,7 @@ namespace ROMS
                         }
                         grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                         grdInward.Rows.Add(grdInward.Rows.Count + 1,txtRack.Text,varPICode.Trim(), varTamilname.Trim(), Convert.ToDecimal(mrp), varExpiryDate, Shelflife, varAcutalshelflife,varShelflifevalue,txtBatchNo.Text.Trim(), txtActualQty.Text, 0,0,txtunit.Text,varPRID,varRKID,varStockLocationId,varUTID, varDecimal);
-                        dtInward.Rows.Add(varPRID, Convert.ToDecimal(txtMrp.Text), varExpiryDate, txtBatchNo.Text.Trim(), varUTID,txtActualQty.Text.Trim(),varRKID,varStockLocationId,0,0,varShelflife,ProductShelflifeValue,ProductShelflifeType,varShelflifeper[0]);
+                        dtInward.Rows.Add(varPRID, Convert.ToDecimal(txtMrp.Text), varExpiryDate, txtBatchNo.Text.Trim(),txtActualQty.Text.Trim(),varRKID,varStockLocationId,0,0,varShelflife,ProductShelflifeValue,ProductShelflifeType,varShelflifeper[0]);
                         txttotalitem.Text = Convert.ToString(grdInward.Rows.Count);
                         //((DataGridViewTextBoxColumn)grdInward.Columns["clmQuantity"]).MaxInputLength = 8;
                         //grdInward.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
@@ -2007,7 +2006,7 @@ namespace ROMS
                         DataSet objDs = new DataSet();
                         DataService objDservice = new DataService();
                         vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpInwardDate.Text + "',103)");
-                        varResult = objspdservice.udfngetPONO("41", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        varResult = objspdservice.udfngetVoucherNo("41", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                         objspdservice.CloseConnection();
                         string[] varvalue = varResult.Split('~');
                         if (varResult != "")
@@ -3312,7 +3311,7 @@ namespace ROMS
                                 grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdInward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ShelfLifeFlag"]), Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]),
                                 Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]));
-                                dtInward.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeValue"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeType"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]));
+                                dtInward.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeValue"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeType"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]));
                                 grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmtransferqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmreceivedqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

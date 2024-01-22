@@ -102,7 +102,7 @@ namespace ROMS
             try
             {
                 dtStock.TableName = "TRN_BatchConversion_Product";
-                dtStock.Columns.Add("STK_QTY", typeof(string));
+                dtStock.Columns.Add("STK_QTY", typeof(float));
                 dtStock.Columns.Add("STK_MRP", typeof(string));
                 dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                 dtStock.Columns.Add("STK_BatchNo", typeof(string));
@@ -633,7 +633,7 @@ namespace ROMS
                         DataService objDservice = new DataService();
                         vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpConversionDate.Text + "',103)");
                         objDservice.CloseConnection();
-                        varResult = objspdservice.udfngetPONO("152", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        varResult = objspdservice.udfngetVoucherNo("152", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                         objspdservice.CloseConnection();
                         string[] parts = varResult.Split('~');
                         string pono = parts[0];
