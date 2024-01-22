@@ -37,7 +37,7 @@ namespace ROMS
         public string SSRUpdatevalue = "";
         public bool VarSearchFlag = true;
         byte[] varobjBarCodeByte;
-        string[] varProductsIDs;
+        List<int> varProductsIDs = new List<int>(); 
         public INV_StockRequest()
         {
             InitializeComponent();
@@ -606,8 +606,7 @@ namespace ROMS
                 lvProduct.Items.Clear();
                 if (varProducts != "")
                 {
-                    string[] strings = varProductsIDs;
-                    var strings1 = strings.Select(xx => xx);
+                    var strings1 = varProductsIDs.Select(xx => xx);
                     PRID = (string.Join(",", strings1));
                 }
                 if (txtProductNamePICode.Text.Length > 0)
@@ -822,9 +821,9 @@ namespace ROMS
                                 {
                                     varProducts = varProducts + ',' + Convert.ToString(lblProduct.Text);
                                 }
-                                varProductsIDs = varProducts.Split(',');
-                            //}
-                            ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
+                            varProductsIDs.Add(Convert.ToInt32(lblProduct.Text));
+                        //}
+                        ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
                             grdStockRequest.Columns["clmStockQty"].Width = 100;
@@ -1151,29 +1150,23 @@ namespace ROMS
                         case "clmRemove":
                         DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
-                        {
-                            grdStockRequest.Rows.RemoveAt(this.grdStockRequest.SelectedRows[0].Index);
-                            for (int i = 0; i < grdStockRequest.RowCount; i++)
                             {
-                                grdStockRequest.Rows[i].Cells["clmSno"].Value = i + 1;
-                            }
-                            //varProductsIDs = varProducts.Split(',');
-                            int varPRID = Convert.ToInt32(grdStockRequest.SelectedRows[0].Cells["clmPRID"].Value);
-
-                            for (int j = 0; j < varProductsIDs.Length; j++)
-                            {
-                                    // varProductsIDs=varProductsIDs.
-
-                                    //List<string[]> nums = new List<string[]>(varProductsIDs);
-                                    //                            nums.RemoveAt(nums.IndexOf(Convert.ToString( j));
-                                    varProductsIDs = varProductsIDs.Where((val, idx) => idx != j).ToArray();
-                            }
-                            varModifiedFlag = 1;
-                            for (int i = 0; i < dtStock.Rows.Count; i++)
-                            {
-                                dtStock.Rows[i].Delete();
-                                dtStock.AcceptChanges();
-                            }
+                                int varPRID = Convert.ToInt32(grdStockRequest.SelectedRows[0].Cells["clmPRID"].Value);
+                                for (int i = 0; i < varProductsIDs.Count; i++)
+                                {
+                                    if (varProductsIDs[i].Equals(varPRID)) { varProductsIDs.RemoveAt(i); goto L; }
+                                }
+                                L: grdStockRequest.Rows.RemoveAt(this.grdStockRequest.SelectedRows[0].Index);
+                                for (int i = 0; i < grdStockRequest.RowCount; i++)
+                                {
+                                    grdStockRequest.Rows[i].Cells["clmSno"].Value = i + 1;
+                                }
+                               varModifiedFlag = 1;
+                                for (int i = 0; i < dtStock.Rows.Count; i++)
+                                {
+                                    dtStock.Rows[i].Delete();
+                                    dtStock.AcceptChanges();
+                                }
                         }
                         break;
                     }
