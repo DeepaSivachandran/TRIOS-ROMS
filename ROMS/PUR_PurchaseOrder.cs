@@ -66,7 +66,7 @@ namespace ROMS
                 DataService objDservice = new DataService();
                 string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
                 objDservice.CloseConnection();
-                dpPlanDate.Text = vardate;
+               // dpPlanDate.Text = vardate;
                 //if (VarStatusId == 12)
                 //{
                 //    btnSave.Enabled = true;
