@@ -55,5 +55,8 @@ namespace ROMS.Model
         public byte[] paraQrimg { get; set; } = null;
         public DataTable ParaPurchase_Products { get; set; } = null;
         public string paraEinvoice { get; set; } = "";
+        public string ParaPEToDate { get; set; } = "";
+        public string ParaPEFromDate { get; set; } = "";
+         
     }
 }

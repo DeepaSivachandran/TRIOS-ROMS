@@ -88,13 +88,18 @@ namespace ROMS
         {
             try
             {
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
-                if (objd.Tables[1].Rows.Count != 0)
-                {
-                    DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpinvoicedate.MinDate = varmindate;
+                if (pbGRNId != "0")
+                { 
+                    dpinvoicedate.MinDate = MainForm.pbFYStartDate;
+                    dpinvoicedate.MaxDate = MainForm.pbCurrentDate; 
+                    //SPDataService objDServ = new SPDataService();
+                    //DataSet objd = new DataSet();
+                    //objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+                    //if (objd.Tables[1].Rows.Count != 0)
+                    //{
+                    //    DateTime varmindate = DateTime.ParseExact(Convert.ToString(objd.Tables[1].Rows[0]["MinToday"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    //    dpinvoicedate.MaxDate = varmindate;
+                    //}
                 }
             }
             catch (Exception ex)
@@ -209,7 +214,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     DataService objDservice = new DataService();
                     vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,GETDATE(),103)");
-                    varResult = objspdservice.udfngetPONO("39", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                    varResult = objspdservice.udfngetVoucherNo("39", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                     objspdservice.CloseConnection();
                     if (varResult != "")
                     {
@@ -2126,7 +2131,7 @@ namespace ROMS
                         {
                             varshelflife = cellValue.ToString();
                             if (varshelflife != "" || varshelflife != null)
-                                objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpGrnDate.Text, varCellprodid,0);
+                                objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpGrnDate.Text, varCellprodid,0, "0");
                             objdserv.CloseConnection();
                             if (objDs != null)
                             {
@@ -3392,7 +3397,7 @@ namespace ROMS
                 {
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(2, Convert.ToInt32(pbSupplierId), 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0,0);
+                    objDs = objdserv.udfnGrnListLoad(2, Convert.ToInt32(pbSupplierId), 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0,0, "0");
                     objdserv.CloseConnection(); 
                     if (objDs != null)
                     {

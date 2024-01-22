@@ -134,6 +134,7 @@ namespace ROMS
         public static PUR_GRNVerify objPUR_GRNVerify;
         public static PUR_GRNEntryVerify objPUR_GRNEntryVerify;
         public static PUR_GRNOrderType objPUR_GRNOrderType;
+        public static PUR_Purchase_GRNDetails objPUR_Purchase_GRNDetails;
         public static PUR_Product objPUR_Product;
         public static PUR_PurchaseOrderDamage objPUR_PurchaseOrderDamage;
         public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
