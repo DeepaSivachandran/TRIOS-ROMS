@@ -102,7 +102,7 @@ namespace ROMS
             try
             {
                 dtStock.TableName = "TRN_BatchConversion_Product";
-                dtStock.Columns.Add("STK_QTY", typeof(string));
+                dtStock.Columns.Add("STK_QTY", typeof(float));
                 dtStock.Columns.Add("STK_MRP", typeof(string));
                 dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                 dtStock.Columns.Add("STK_BatchNo", typeof(string));
