@@ -1147,8 +1147,11 @@ namespace ROMS
                                varModifiedFlag = 1;
                                 for (int i = 0; i < dtStock.Rows.Count; i++)
                                 {
-                                    dtStock.Rows[i].Delete();
-                                    dtStock.AcceptChanges();
+                                    if (Convert.ToInt32(dtStock.Rows[i]["SRQ_PRID"]) == Convert.ToInt32(varPRID))
+                                    {
+                                        dtStock.Rows[i].Delete();
+                                        dtStock.AcceptChanges();
+                                    }
                                 }
                         }
                         break;
