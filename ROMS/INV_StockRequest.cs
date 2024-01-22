@@ -793,7 +793,7 @@ namespace ROMS
                         {
                             grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[0]["RKG_Name"]), Convert.ToString(objDs.Tables[0].Rows[0]["RK_ShortName"]), Convert.ToString(objDs.Tables[0].Rows[0]["EMP_Name"]), Convert.ToString(txtStockQty.Text), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDs.Tables[0].Rows[0]["UT_Symbol"]), Convert.ToString(objDs.Tables[0].Rows[0]["UT_Decimal"]), Convert.ToString(lblProduct.Text));
                             
-                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text), varSLID, varRKID, Convert.ToString(txtRequiredQty.Text), 0);
+                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text), 0, 0, Convert.ToString(txtRequiredQty.Text), 0);
                             //for(int j=0;j<grdStockRequest.Rows.Count;j++)
                             //{
                             if (varProducts == "")

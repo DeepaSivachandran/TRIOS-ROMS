@@ -1059,7 +1059,7 @@ namespace ROMS
                             objTRN_BatchConversion.paraMrp = "";
                             objTRN_BatchConversion.paraExpiryDate = "";
                             objTRN_BatchConversion.paraBatchNo = "";
-                            objTRN_BatchConversion.paraQuantity = "";
+                            objTRN_BatchConversion.paraQuantity = 0;
                             objTRN_BatchConversion.paraOriginator = "Batch Conversion Delete";
                             objTRN_BatchConversion.paraBatchConversion = dtStock;
                             result = objspdservice.udfnBatchConversion(objTRN_BatchConversion);

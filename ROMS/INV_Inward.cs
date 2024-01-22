@@ -68,7 +68,8 @@ namespace ROMS
         {
             try
             {
-                udfnclose();  
+                udfnclose();
+                MainForm.objINV_Inwardlist.udfnList();
             }
             catch (Exception ex)
             {
@@ -1657,6 +1658,7 @@ namespace ROMS
                         grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         grdInward.Columns["clmactualqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdInward.Columns["clmshelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         udfnProductClear();
                         txtProductName.Focus();
@@ -3315,6 +3317,7 @@ namespace ROMS
                                 grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmtransferqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmreceivedqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdInward.Columns["clmshelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
                                 if (varShelflifeper[0] != "")
@@ -3444,6 +3447,7 @@ namespace ROMS
                                     grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdInward.Columns["clmreceivedqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdInward.Columns["clmtransferqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdInward.Columns["clmshelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdInward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                    string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["shelflifeper"]).Split(' ');
                                     if (varShelflifeper[0] != "")

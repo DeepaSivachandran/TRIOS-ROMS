@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsStockTransferList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.tsbQue = new System.Windows.Forms.ToolStripButton();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
@@ -54,6 +53,7 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdStockTransfer = new System.Windows.Forms.DataGridView();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -74,14 +74,15 @@
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.grdStockTransfer = new System.Windows.Forms.DataGridView();
             this.activationService1 = new ROMS.ActivationService.ActivationService();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbQue = new System.Windows.Forms.ToolStripButton();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStockTransfer)).BeginInit();
             this.grbFilterBy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdStockTransfer)).BeginInit();
             this.SuspendLayout();
             // 
             // tsStockTransferList
@@ -92,6 +93,7 @@
             this.tsStockTransferList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbQue,
+            this.toolStripSeparator2,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
@@ -112,19 +114,6 @@
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(103, 24);
             this.tspHeader.Text = "Stock Transfer";
-            // 
-            // tsbQue
-            // 
-            this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbQue.Image = global::ROMS.Properties.Resources.queue;
-            this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbQue.Name = "tsbQue";
-            this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbQue.Size = new System.Drawing.Size(63, 24);
-            this.tsbQue.Text = "Queue";
-            this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
             // 
             // tsbDelete
             // 
@@ -269,6 +258,53 @@
             this.lblNoRecordsFound.TabIndex = 958798;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // grdStockTransfer
+            // 
+            this.grdStockTransfer.AllowUserToAddRows = false;
+            this.grdStockTransfer.AllowUserToDeleteRows = false;
+            this.grdStockTransfer.AllowUserToResizeColumns = false;
+            this.grdStockTransfer.AllowUserToResizeRows = false;
+            this.grdStockTransfer.BackgroundColor = System.Drawing.Color.White;
+            this.grdStockTransfer.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdStockTransfer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.grdStockTransfer.ColumnHeadersHeight = 30;
+            this.grdStockTransfer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdStockTransfer.ColumnHeadersVisible = false;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdStockTransfer.DefaultCellStyle = dataGridViewCellStyle14;
+            this.grdStockTransfer.EnableHeadersVisualStyles = false;
+            this.grdStockTransfer.GridColor = System.Drawing.Color.White;
+            this.grdStockTransfer.Location = new System.Drawing.Point(3, 146);
+            this.grdStockTransfer.Name = "grdStockTransfer";
+            this.grdStockTransfer.ReadOnly = true;
+            this.grdStockTransfer.RowHeadersVisible = false;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdStockTransfer.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            this.grdStockTransfer.RowTemplate.Height = 25;
+            this.grdStockTransfer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdStockTransfer.ShowRowErrors = false;
+            this.grdStockTransfer.Size = new System.Drawing.Size(1348, 497);
+            this.grdStockTransfer.TabIndex = 958802;
+            this.grdStockTransfer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellDoubleClick);
+            this.grdStockTransfer.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockTransfer_DataBindingComplete);
+            this.grdStockTransfer.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockTransfer_Scroll);
+            this.grdStockTransfer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdStockTransfer_KeyDown);
+            this.grdStockTransfer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GrdStockTransfer_MouseDoubleClick);
             // 
             // grbFilterBy
             // 
@@ -495,32 +531,32 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle17;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 91);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -548,58 +584,31 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // grdStockTransfer
-            // 
-            this.grdStockTransfer.AllowUserToAddRows = false;
-            this.grdStockTransfer.AllowUserToDeleteRows = false;
-            this.grdStockTransfer.AllowUserToResizeColumns = false;
-            this.grdStockTransfer.AllowUserToResizeRows = false;
-            this.grdStockTransfer.BackgroundColor = System.Drawing.Color.White;
-            this.grdStockTransfer.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdStockTransfer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.grdStockTransfer.ColumnHeadersHeight = 30;
-            this.grdStockTransfer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdStockTransfer.ColumnHeadersVisible = false;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdStockTransfer.DefaultCellStyle = dataGridViewCellStyle11;
-            this.grdStockTransfer.EnableHeadersVisualStyles = false;
-            this.grdStockTransfer.GridColor = System.Drawing.Color.White;
-            this.grdStockTransfer.Location = new System.Drawing.Point(3, 146);
-            this.grdStockTransfer.Name = "grdStockTransfer";
-            this.grdStockTransfer.ReadOnly = true;
-            this.grdStockTransfer.RowHeadersVisible = false;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdStockTransfer.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.grdStockTransfer.RowTemplate.Height = 25;
-            this.grdStockTransfer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdStockTransfer.ShowRowErrors = false;
-            this.grdStockTransfer.Size = new System.Drawing.Size(1348, 497);
-            this.grdStockTransfer.TabIndex = 958802;
-            this.grdStockTransfer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellDoubleClick);
-            this.grdStockTransfer.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockTransfer_DataBindingComplete);
-            this.grdStockTransfer.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockTransfer_Scroll);
-            this.grdStockTransfer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdStockTransfer_KeyDown);
-            this.grdStockTransfer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GrdStockTransfer_MouseDoubleClick);
-            // 
             // activationService1
             // 
             this.activationService1.Credentials = null;
             this.activationService1.Url = "http://cloud.shivasoftwares.com/activation/ActivationService.svc";
             this.activationService1.UseDefaultCredentials = false;
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsbQue
+            // 
+            this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbQue.Image = global::ROMS.Properties.Resources.queue;
+            this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbQue.Name = "tsbQue";
+            this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbQue.Size = new System.Drawing.Size(63, 24);
+            this.tsbQue.Text = "Queue";
+            this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
             // 
             // INV_StockTransferList
             // 
@@ -622,11 +631,11 @@
             this.tsStockTransferList.PerformLayout();
             this.pnlStockTransferList.ResumeLayout(false);
             this.pnlStockTransferList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStockTransfer)).EndInit();
             this.grbFilterBy.ResumeLayout(false);
             this.grbFilterBy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdStockTransfer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -673,8 +682,9 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblTransferToDate;
-        public System.Windows.Forms.ToolStripButton tsbQue;
         public System.Windows.Forms.DataGridView grdStockTransfer;
         private ActivationService.ActivationService activationService1;
+        public System.Windows.Forms.ToolStripButton tsbQue;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

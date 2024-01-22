@@ -1067,7 +1067,7 @@ namespace ROMS
                             txtQty2.Text = Qty;
                         }
                         grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim(), (txtQty2.Text).Trim(),varPRID,varRKID,varStockLocationId);
-                        dtStock.Rows.Add((txtQty2.Text), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim());
+                        dtStock.Rows.Add(Convert.ToDecimal(txtQty2.Text), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim());
                         grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1376,7 +1376,7 @@ namespace ROMS
                     objTRN_BatchConversion.paraMrp = txtMrp.Text;
                     objTRN_BatchConversion.paraExpiryDate = txtExpiryDate.Text;
                     objTRN_BatchConversion.paraBatchNo = txtBatchNo.Text;
-                    objTRN_BatchConversion.paraQuantity = txtQty.Text;
+                    objTRN_BatchConversion.paraQuantity = Convert.ToDecimal(txtQty.Text);
                     objTRN_BatchConversion.paraOriginator = varoriginator;
                     objTRN_BatchConversion.paraBatchConversion = dtStock;
                     result = objspdservice.udfnBatchConversion(objTRN_BatchConversion);
@@ -1800,7 +1800,7 @@ namespace ROMS
             try
             {
                 string varMRP = "", varExpiryDate = "", varBatchNo = "",varQty = "";
-                int Sum = 0;
+                decimal Sum = 0;
                 if (e.RowIndex != -1)
                 {
                     switch (grdBatchConversion.Columns[e.ColumnIndex].Name)
@@ -1817,7 +1817,7 @@ namespace ROMS
                                 for (int i = 0; i < grdBatchConversion.RowCount; i++)
                                 {
                                     grdBatchConversion.Rows[i].Cells["clmSno"].Value = i + 1;
-                                    Sum += Convert.ToInt32(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
+                                    Sum += Convert.ToDecimal(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
                                     totalQty.Text = Convert.ToString(Sum);
                                 }
                                 changedQuantity = Sum;
