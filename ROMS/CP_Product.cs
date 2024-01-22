@@ -1150,6 +1150,7 @@ namespace ROMS
                 tppurchaserack.ShowAlways = false;
                 tpsalesrack.ShowAlways = false;
                 this.Close();
+                MainForm.objCP_Itemlist.udfnList();
                 MainForm.objCP_Itemlist.grdItemList.ClearSelection();
             }
             catch (Exception ex)

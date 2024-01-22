@@ -343,6 +343,7 @@ namespace ROMS
             try
             {
                 this.Close();
+                MainForm.objCP_CP_BrokerList.udfnList();
             }
             catch (Exception ex)
             {

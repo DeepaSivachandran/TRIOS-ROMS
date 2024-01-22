@@ -344,6 +344,7 @@ namespace ROMS
             try
             {
                 this.Close();
+                MainForm.objCP_EmployeeList.udfnList();
             }
             catch (Exception ex)
             {

@@ -556,6 +556,7 @@ namespace ROMS
             try
             {
                 this.Close();
+                MainForm.objCP_Userlist.udfnList();
             }
             catch (Exception ex)
             {
