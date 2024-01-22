@@ -82,7 +82,7 @@ namespace ROMS
                 {  
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(6, supplierid, 0, 0, 0, "", "", scheduleid, 0, 0, "", "", 0, 0,GRNNo);
+                    objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0,GRNNo);
                     objdserv.CloseConnection(); 
                     if (objDs.Tables[0].Rows.Count > 0)
                     {
@@ -90,8 +90,8 @@ namespace ROMS
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
                             lblNoRecordsFound.Visible = false;
-                            dtPurchaseGRN.Rows.Add(false, dtPurchaseGRN.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["GRNNo"]),
-                                Convert.ToString(objDs.Tables[0].Rows[i]["GRNDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"])
+                            dtPurchaseGRN.Rows.Add(false, dtPurchaseGRN.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["GRNNo"]),Convert.ToString(objDs.Tables[0].Rows[i]["GRNDate"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"])
                             );
                         }
                         grdGRNDetails.DataSource = dtPurchaseGRN;
@@ -132,50 +132,48 @@ namespace ROMS
 
         public void udfnAddGRN()
         {
-            try { 
-            //{
-            //    int VARFLAG = 0;
-            //    string GRNno = "0";
-            //    MainForm.objCP_Purchase.pbGRNNo = "0";
-            //    //MainForm.objPUR_GRNEntry.grdReurnGRN.Rows.Clear();
-            //    for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
-            //    {
-            //        if (Convert.ToBoolean(grdGRNDetails.Rows[i].Cells[0].Value) == true)
-            //        {
-            //            MainForm.objCP_Purchase.grdReurnGRN.Rows.Add(grdGRNDetails.Rows[i].Cells["GRN Date"].Value, grdGRNDetails.Rows[i].Cells["GRN No."].Value, grdGRNDetails.Rows[i].Cells["Total Products"].Value, grdGRNDetails.Rows[i].Cells["GRNID"].Value);
-            //            VARFLAG = 1;
-            //            if (GRNno == "0")
-            //            {
-            //                GRNno = Convert.ToString(grdGRNDetails.Rows[i].Cells["GRNID"].Value);
-            //            }
-            //            else
-            //            {
-            //                GRNno = GRNno + ',' + Convert.ToString(grdGRNDetails.Rows[i].Cells["GRNID"].Value);
-            //            }
-            //        }
-            //    }
-            //    if (VARFLAG != 0)
-            //    {
-            //        MainForm.objCP_Purchase.grdReurnGRN.Sort(MainForm.objCP_Purchase.grdReurnGRN.Columns["GRNDate"], ListSortDirection.Descending);
-            //        MainForm.objCP_Purchase.pbGRNNo = GRNno;
-            //        this.Close();
-            //    }
-            //    else
-            //    {
-            //        SPDataService objDServ = new SPDataService();
-            //        if (grdGRNDetails.Rows.Count > 0)
-            //        {
-            //            string varMessage = objDServ.udfnGetMessages(84);
-            //            objDServ.CloseConnection();
-            //            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        }
-            //        else
-            //        {
-            //            string varMessage = objDServ.udfnGetMessages(41);
-            //            objDServ.CloseConnection();
-            //            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        }
-            //    }
+            try {
+                //{
+                int VARFLAG = 0;
+                string GRNno = "0";
+                MainForm.objCP_Purchase.pbGRNNo = "0";
+                //MainForm.objPUR_GRNEntry.grdReurnGRN.Rows.Clear();
+                for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdGRNDetails.Rows[i].Cells[0].Value) == true)
+                    {
+                        VARFLAG = 1;
+                        if (GRNno == "0")
+                        {
+                            GRNno = Convert.ToString(grdGRNDetails.Rows[i].Cells["GRNID"].Value);
+                        }
+                        else
+                        {
+                            GRNno = GRNno + ',' + Convert.ToString(grdGRNDetails.Rows[i].Cells["GRNID"].Value);
+                        }
+                    }
+                }
+                if (VARFLAG != 0)
+                { 
+                    MainForm.objCP_Purchase.pbGRNNo = GRNno;
+                    this.Close();
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    if (grdGRNDetails.Rows.Count > 0)
+                    {
+                        string varMessage = objDServ.udfnGetMessages(84);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        string varMessage = objDServ.udfnGetMessages(41);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -222,6 +220,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void GrdGRNDetails_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {   //for check box as radio button function
+                if (grdGRNDetails.CurrentCell.ColumnIndex == 0)
+                {
+                    for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
+                    {
+                        //if (i != dataGridView1.CurrentCell.RowIndex)
+                        grdGRNDetails.Rows[i].Cells[0].Value = false;
+
+                    }
+                    grdGRNDetails.Rows[grdGRNDetails.CurrentCell.RowIndex].Cells[0].Value = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
