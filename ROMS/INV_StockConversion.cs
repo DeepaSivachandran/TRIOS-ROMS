@@ -44,7 +44,7 @@ namespace ROMS
         public decimal varActualQuantity = 0;
         public bool varChangeFlag = true;
         public int varBTID = 0;
-        public int sum = 0;
+        public decimal sum = 0;
         decimal changedQuantity = 0;
         public bool VarSearchFlag = true;
 
@@ -883,8 +883,8 @@ namespace ROMS
                                 lvproduct.Columns[0].Width = 0;
                                 lvproduct.Columns[1].Width = 120;
                                 lvproduct.Columns[2].Width = 0;
-                                lvproduct.Columns[3].Width = 250;
-                                lvproduct.Columns[4].Width = 250;
+                                lvproduct.Columns[3].Width = 0;
+                                lvproduct.Columns[4].Width = 0;
                                 lvproduct.Columns[5].Width = 70;
                                 lvproduct.Columns[6].Width = 70;
                                 lvproduct.Columns[7].Width = 60;
@@ -1062,12 +1062,11 @@ namespace ROMS
                     {
                         if (txtQty2.Text != "")
                         {
-
-                            string Qty = objValidation.udfnDecimal((txtQty2.Text).Trim(), varDecimal);
+                            string Qty = objValidation.udfnDecimal((txtQty2.Text), varDecimal);
                             txtQty2.Text = Qty;
                         }
-                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim(), (txtQty2.Text).Trim(),varPRID,varRKID,varStockLocationId);
-                        dtStock.Rows.Add(Convert.ToDecimal(txtQty2.Text), (txtMrp2.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim());
+                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtMrp2.Text), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim(), (txtQty2.Text),varPRID,varRKID,varStockLocationId);
+                        dtStock.Rows.Add(Convert.ToDecimal(txtQty2.Text),Convert.ToDecimal (txtMrp2.Text), (txtExpiryDate.Text).Trim(),Convert.ToInt32 ((txtBatchNo2.Text).Trim()));
                         grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1580,6 +1579,10 @@ namespace ROMS
         {
             try
             {
+                //if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+                //{
+                //    e.Handled = true;
+                //}     
                 if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
@@ -1591,30 +1594,16 @@ namespace ROMS
                 }
 
                 TextBox textBox = (TextBox)sender;
-                if (varDecimal == 5)
+                if (varDecimal == 0)
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     {
                         e.Handled = true;
                     }
                 }
-                else if (varDecimal == 6)
+                else
                 {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 2)
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else if (varDecimal == 7)
-                {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 3)
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else if (varDecimal == 8)
-                {
-                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 4)
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
                     {
                         e.Handled = true;
                     }
@@ -1623,7 +1612,7 @@ namespace ROMS
                 {
                     e.Handled = false;
                 }
-                if (varDecimal == 5)
+                if (varDecimal == 0)
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     {
@@ -1770,7 +1759,7 @@ namespace ROMS
                                 grdBatchConversion.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo"]),
                                 Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]));
                                 dtStock.Rows.Add(Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo"]));
-                                sum += Convert.ToInt32(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
+                                sum += Convert.ToDecimal(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
                                 grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdBatchConversion.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1799,7 +1788,7 @@ namespace ROMS
         {
             try
             {
-                string varMRP = "", varExpiryDate = "", varBatchNo = "",varQty = "";
+                string varMRP = "", varExpiryDate = "", varBatchNo = "",varQty = "",varPRID="";
                 decimal Sum = 0;
                 if (e.RowIndex != -1)
                 {
@@ -1823,7 +1812,7 @@ namespace ROMS
                                 changedQuantity = Sum;
                                 for (int i = 0; i < dtStock.Rows.Count; i++)
                                 {
-                                    if (Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo && Convert.ToString(dtStock.Rows[i]["STK_QTY"]) == varQty)
+                                    if (Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo )
                                     {
                                         dtStock.Rows[i].Delete();
                                         dtStock.AcceptChanges();                                      
