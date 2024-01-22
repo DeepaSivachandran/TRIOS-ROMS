@@ -141,6 +141,7 @@ namespace ROMS
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
         public static PUR_PurchaseReturns objPUR_PurchaseReturns;
         public static PUR_RemarksHistory objPUR_RemarksHistory;
+        public static INV_InwardQueueList_Remarks objINV_InwardQueueList_Remarks;
         public static PUR_POReturns objPUR_POReturns;
         public static PUR_BulkUnit objPUR_BulkUnit;
         public static PUR_DCGoodsInward objPUR_DCGoodsInward;
