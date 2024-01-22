@@ -181,6 +181,8 @@ namespace ROMS
                             {
                                 grdStockRequest.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["STOCK"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
                                 dtStock.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), 0, 0, Convert.ToDecimal(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]),0);
+
+                                varProductsIDs.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
                             }
                             for (int j = 0; j < grdStockRequest.Rows.Count; j++)
                             {
@@ -192,7 +194,6 @@ namespace ROMS
                                 {
                                     varProducts = varProducts + ',' + Convert.ToString(grdStockRequest.Rows[j].Cells["clmPRID"].Value);
                                 }
-                                
                             }
                             ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
@@ -362,19 +363,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    if (chkCompleted.Checked) { btnSave.Text = "Save && Print"; } else { btnSave.Text = "Save as Draft"; }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -759,16 +747,16 @@ namespace ROMS
         {
             try
             {
-                DataSet objDS = new DataSet() ;
-                MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 43;
-                objMR_Product.ParaProductCode = Convert.ToInt32(lblProduct.Text);
-                SPDataService objspservice = new SPDataService();
-                objDS = objspservice.udfnproductmasterlist(objMR_Product);
-                objspservice.CloseConnection();
-                if (objDS != null)
+                if(VarAdd=="1")
                 {
-                    if (VarAdd == "1")
+                    DataSet objDS = new DataSet();
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 43;
+                    objMR_Product.ParaProductCode = Convert.ToInt32(lblProduct.Text);
+                    SPDataService objspservice = new SPDataService();
+                    objDS = objspservice.udfnproductmasterlist(objMR_Product);
+                    objspservice.CloseConnection();
+                    if (objDS != null)
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -784,64 +772,59 @@ namespace ROMS
                             }
                         }
                     }
-                    if(VarAdd=="2")
+                }
+                if (VarAdd == "2")
+                {
+                    DataSet objDs = new DataSet();
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 55;
+                    objMR_Product.ParaProductCode = Convert.ToInt32(lblProduct.Text);
+                    SPDataService objdspservice = new SPDataService();
+                    objDs = objdspservice.udfnproductmasterlist(objMR_Product);
+                    objdspservice.CloseConnection();
+                    if (objDs != null)
                     {
                         if (txtRequiredQty.Text != "")
                         {
-                            //if (varDecimal == 6)
-                            //{
-                               string Qty= objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), varDecimal);
-                                txtRequiredQty.Text = Qty;
-                            //}
-                            //if (varDecimal == 7)
-                            //{
-                            //    string Qty = objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), 2);
-                            //    txtRequiredQty.Text = Qty;
-                            //}
-                            //if (varDecimal == 8)
-                            //{
-                            //    string Qty = objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), 3);
-                            //    txtRequiredQty.Text = Qty;
-                            //}
+                            string Qty = objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), varDecimal);
+                            txtRequiredQty.Text = Qty;
                         }
-                        if (objDS.Tables[2].Rows.Count > 0)
+                        if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
-                            {
-                                grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDS.Tables[2].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[2].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[2].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[2].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[2].Rows[i]["EMP_Name"]), Convert.ToString(txtStockQty.Text), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[2].Rows[i]["UT_Decimal"]), Convert.ToString(lblProduct.Text));
-                            }
-                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text),varSLID,varRKID,Convert.ToString(txtRequiredQty.Text),0);
+                            grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[0]["RKG_Name"]), Convert.ToString(objDs.Tables[0].Rows[0]["RK_ShortName"]), Convert.ToString(objDs.Tables[0].Rows[0]["EMP_Name"]), Convert.ToString(txtStockQty.Text), Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDs.Tables[0].Rows[0]["UT_Symbol"]), Convert.ToString(objDs.Tables[0].Rows[0]["UT_Decimal"]), Convert.ToString(lblProduct.Text));
+                            
+                            dtStock.Rows.Add(Convert.ToInt32(lblProduct.Text), varSLID, varRKID, Convert.ToString(txtRequiredQty.Text), 0);
                             //for(int j=0;j<grdStockRequest.Rows.Count;j++)
                             //{
-                                if (varProducts == "")
-                                {
-                                    varProducts = Convert.ToString(lblProduct.Text);
-                                }
-                                else
-                                {
-                                    varProducts = varProducts + ',' + Convert.ToString(lblProduct.Text);
-                                }
+                            if (varProducts == "")
+                            {
+                                varProducts = Convert.ToString(lblProduct.Text);
+                            }
+                            else
+                            {
+                                varProducts = varProducts + ',' + Convert.ToString(lblProduct.Text);
+                            }
                             varProductsIDs.Add(Convert.ToInt32(lblProduct.Text));
-                        //}
-                        ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
+                            //}
+                            ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             grdStockRequest.Columns["clmRequiredQty"].Width = 100;
                             grdStockRequest.Columns["clmStockQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            VarAdd = "0";
-                            txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
-                            errStockRequest.Clear();
-                            txtProductNamePICode.Text = "";
-                            txtStockQty.Text = "";
-                            txtRequiredQty.Text = "";
-                            lblUnit.Text = "";
-                            grdGodownStock.Rows.Clear();
-                            grdStockRequest.ClearSelection();
-                            txtProductNamePICode.Focus();
                         }
                     }
+                    VarAdd = "0";
+                    txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+                    errStockRequest.Clear();
+                    txtProductNamePICode.Text = "";
+                    txtStockQty.Text = "";
+                    txtRequiredQty.Text = "";
+                    lblUnit.Text = "";
+                    grdGodownStock.Rows.Clear();
+                    grdStockRequest.ClearSelection();
+                    txtProductNamePICode.Focus();
                 }
             }
             catch (Exception ex)
