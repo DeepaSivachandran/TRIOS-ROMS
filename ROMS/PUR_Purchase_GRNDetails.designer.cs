@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class PUR_GRNOrderType
+    partial class PUR_Purchase_GRNDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -31,15 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNOrderType));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_Purchase_GRNDetails));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
-            this.lblFinishedNoRecord = new System.Windows.Forms.Label();
+            this.grdGRNDetails = new System.Windows.Forms.DataGridView();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGRNDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // errUnit
@@ -55,7 +54,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(81, 33);
-            this.btnSave.TabIndex = 2;
+            this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Submit";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -72,7 +71,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 33);
-            this.btnClose.TabIndex = 3;
+            this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -80,65 +79,57 @@
             this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
             this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
-            // grdPurchaseOrder
+            // grdGRNDetails
             // 
-            this.grdPurchaseOrder.AllowUserToAddRows = false;
-            this.grdPurchaseOrder.AllowUserToDeleteRows = false;
-            this.grdPurchaseOrder.AllowUserToResizeColumns = false;
-            this.grdPurchaseOrder.AllowUserToResizeRows = false;
-            this.grdPurchaseOrder.BackgroundColor = System.Drawing.Color.White;
-            this.grdPurchaseOrder.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdGRNDetails.AllowUserToAddRows = false;
+            this.grdGRNDetails.AllowUserToDeleteRows = false;
+            this.grdGRNDetails.AllowUserToResizeColumns = false;
+            this.grdGRNDetails.AllowUserToResizeRows = false;
+            this.grdGRNDetails.BackgroundColor = System.Drawing.Color.White;
+            this.grdGRNDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdPurchaseOrder.ColumnHeadersHeight = 30;
-            this.grdPurchaseOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPurchaseOrder.EnableHeadersVisualStyles = false;
-            this.grdPurchaseOrder.GridColor = System.Drawing.Color.White;
-            this.grdPurchaseOrder.Location = new System.Drawing.Point(12, 7);
-            this.grdPurchaseOrder.Name = "grdPurchaseOrder";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseOrder.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.grdPurchaseOrder.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdPurchaseOrder.RowTemplate.Height = 25;
-            this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseOrder.Size = new System.Drawing.Size(456, 261);
-            this.grdPurchaseOrder.TabIndex = 1;
+            this.grdGRNDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdGRNDetails.ColumnHeadersHeight = 30;
+            this.grdGRNDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdGRNDetails.EnableHeadersVisualStyles = false;
+            this.grdGRNDetails.GridColor = System.Drawing.Color.White;
+            this.grdGRNDetails.Location = new System.Drawing.Point(12, 7);
+            this.grdGRNDetails.Name = "grdGRNDetails";
+            this.grdGRNDetails.RowHeadersVisible = false;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGRNDetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.grdGRNDetails.RowTemplate.Height = 25;
+            this.grdGRNDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGRNDetails.Size = new System.Drawing.Size(456, 261);
+            this.grdGRNDetails.TabIndex = 1111144;
             // 
-            // lblFinishedNoRecord
+            // lblNoRecordsFound
             // 
-            this.lblFinishedNoRecord.AutoSize = true;
-            this.lblFinishedNoRecord.BackColor = System.Drawing.Color.White;
-            this.lblFinishedNoRecord.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.lblFinishedNoRecord.Location = new System.Drawing.Point(198, 129);
-            this.lblFinishedNoRecord.Name = "lblFinishedNoRecord";
-            this.lblFinishedNoRecord.Size = new System.Drawing.Size(106, 20);
-            this.lblFinishedNoRecord.TabIndex = 1111210;
-            this.lblFinishedNoRecord.Text = "No Records Found";
-            this.lblFinishedNoRecord.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(187, 127);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 1111211;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // PUR_GRNOrderType
+            // PUR_Purchase_GRNDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(480, 317);
-            this.Controls.Add(this.lblFinishedNoRecord);
-            this.Controls.Add(this.grdPurchaseOrder);
+            this.Controls.Add(this.lblNoRecordsFound);
+            this.Controls.Add(this.grdGRNDetails);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -148,13 +139,12 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PUR_GRNOrderType";
+            this.Name = "PUR_Purchase_GRNDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Purchase Order";
-            this.Load += new System.EventHandler(this.PUR_GRNOrderType_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_GRNOrderType_KeyDown);
+            this.Text = "Purchase GRN";
+            this.Load += new System.EventHandler(this.PUR_GRNDeatils_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGRNDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,7 +154,7 @@
         private System.Windows.Forms.ErrorProvider errUnit;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
-        public System.Windows.Forms.DataGridView grdPurchaseOrder;
-        private System.Windows.Forms.Label lblFinishedNoRecord;
+        public System.Windows.Forms.DataGridView grdGRNDetails;
+        public System.Windows.Forms.Label lblNoRecordsFound;
     }
 }

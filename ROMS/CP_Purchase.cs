@@ -28,12 +28,12 @@ namespace ROMS
         ToolTip tpInvNo = new ToolTip();
         public bool skipValidation = false;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
-        public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0", pbPurchaseno = "0", pbDCNo="0";
+        public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0", pbPurchaseno = "0", pbDCNo="0", pbGRNNo="0";
         public bool VarSearchFlag = true;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
         , varorderSaleQty = "", varorderqty = "", addproductid = "", varunitid = "0", varDamage = "0", varReturnDC = "0", pbGRNId = "0", pbSupplierId = "0", dcid = "0",
         varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0",
-        varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0";
+        varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds="0";
 
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0, VarPrevSupplierid=0, varModifiedFlag=0;
         public CP_Purchase()
@@ -49,7 +49,7 @@ namespace ROMS
                 btnClear.Enabled = false;
                 if (cmbEntryType.SelectedValue.ToString() == "54")
                 { // GRN
-
+                    udfnPurchaseGrnLoad();
                     txtQRCode.ReadOnly = false;
                     dpInvoiceDate.Enabled = false;
                     txtInvoiceNo.ReadOnly = true;
@@ -139,7 +139,7 @@ namespace ROMS
                             {
                                 varMRP = Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"]);
                             }
-                            grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["DcNo"]),
+                            grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["None"]),
                             Convert.ToString(objDs.Tables[1].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[1].Rows[i]["PTNAME"]), "", varMRP,
                             Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_Expirydate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRODUCTEXP"]),
                             Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]),
@@ -236,11 +236,11 @@ namespace ROMS
                 {
                     if (pbPONO == "0")
                     {
-                        pbPONO = Convert.ToString(grdSupplierList.Rows[i].Cells["clmPoid"].Value);
+                        pbPONO = Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value);
                     }
                     else
                     {
-                        pbPONO = pbPONO + ',' + Convert.ToString(grdSupplierList.Rows[i].Cells["clmPoid"].Value);
+                        pbPONO = pbPONO + ',' + Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value);
                     }
                 }
                 MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
@@ -271,6 +271,31 @@ namespace ROMS
                 }
                 MainForm.objPUR_DCDeatils = new PUR_DCDeatils();
                 MainForm.objPUR_DCDeatils.ShowDialog(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPurchaseGrnLoad()
+        {
+            try
+            {
+                pbGRNNo = "0";
+                for (int i = 0; i < grdSupplierList.Rows.Count; i++)
+                {
+                    if (pbGRNNo == "0")
+                    {
+                        pbGRNNo = Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value);
+                    }
+                    else
+                    {
+                        pbGRNNo = pbGRNNo + ',' + Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value);
+                    }
+                }
+                MainForm.objPUR_Purchase_GRNDetails = new PUR_Purchase_GRNDetails(); 
+                MainForm.objPUR_Purchase_GRNDetails.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -972,9 +997,6 @@ namespace ROMS
             finally
             {
                 LV_Supplier.Visible = false;
-                MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                MainForm.objPUR_GSTIN.ShowDialog();
-                udfnPODropdownload();
             }
         }
 
@@ -2514,7 +2536,7 @@ namespace ROMS
                                 string varMRP = Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value).Trim();
                                 string varNewExpiryDate = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value).Trim();
                                 string varBatch = Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchno"].Value).Trim();
-                                string varPoid = Convert.ToString(grdSupplierList.Rows[i].Cells["clmPoid"].Value).Trim();
+                                string varPoid = Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value).Trim();
                                 string varSLID = Convert.ToString(grdSupplierList.Rows[i].Cells["slid"].Value).Trim();
                                 string varRKID = Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value).Trim();
                                 if (txtMrp.Text.Trim() == varMRP && varExpiryDate == varNewExpiryDate && txtBatchno.Text.Trim() == varBatch)
@@ -3042,13 +3064,13 @@ namespace ROMS
                                     string varMRP = Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value).Trim();
                                     string varNewExpiryDate = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value).Trim();
                                     string varBatch = Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchno"].Value).Trim();
-                                    string varPoid = Convert.ToString(grdSupplierList.Rows[i].Cells["clmPoid"].Value).Trim();
+                                    string varPoid = Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value).Trim();
                                     string varSLID = Convert.ToString(grdSupplierList.Rows[i].Cells["slid"].Value).Trim();
                                     string varRKID = Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value).Trim(); 
                                             
                                     if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmMRP"].Value) == varMRP && Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Value) == varNewExpiryDate && Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmBatchno"].Value) == varBatch)
                                     {
-                                        if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmPoid"].Value) == Convert.ToInt32(varPoid))
+                                        if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmid"].Value) == Convert.ToInt32(varPoid))
                                         {
                                             if (Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["slid"].Value) == Convert.ToInt32(varSLID) && Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["rkid"].Value) == Convert.ToInt32(varRKID))
                                             {
@@ -3106,7 +3128,7 @@ namespace ROMS
                         {
                             varshelflife = cellValue.ToString();
                             if (varshelflife != "" || varshelflife != null)
-                                objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid,0);
+                                objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid,0, "0");
                             objdserv.CloseConnection();
                             if (objDs != null)
                             {
@@ -3492,7 +3514,7 @@ namespace ROMS
                                     {
                                         grandtotal = Convert.ToDecimal(txtGrandtot.Text);
                                     }
-                                    
+                                     
                                     objTRN_PurchaseEntry.paraLoadingCharges = loadcharge;
                                     objTRN_PurchaseEntry.paraUnloadingCharges = unloadcharge;
                                     objTRN_PurchaseEntry.paraCourierCharges = couriercharge;
@@ -3509,6 +3531,7 @@ namespace ROMS
                                     objTRN_PurchaseEntry.paraRoundOff = roundoff;
                                     objTRN_PurchaseEntry.paraGrandTotal = grandtotal;
                                     objTRN_PurchaseEntry.ParaEditFlag = 1;
+                                    objTRN_PurchaseEntry.ParaPurchaseDC = PurchaseDcIds;
                                     result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                                     objspdservice.CloseConnection();
                                     string[] varvalue = result.Split('~');
@@ -3590,6 +3613,7 @@ namespace ROMS
         public DataTable udfnobjPurchaseprod()
         {
             varcount = 0;
+            PurchaseDcIds = "0";
             DataTable objPurchaseentry = new DataTable();
             try
             {
@@ -3630,6 +3654,11 @@ namespace ROMS
                 {
                     for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                     { 
+
+                        if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
+                        {
+                            PurchaseDcIds= Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value);
+                        }
                         if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "-1")
                         {
                             varcount++;
@@ -3687,11 +3716,11 @@ namespace ROMS
                         string[] varShelflifeper = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                         string[] varProShelfLife = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelflife"].Value).Split(' ');
 
-                        if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmPoid"].Value) == "")
+                        if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) == "")
                         {
                             POno = 0;
                         }
-                        else { POno = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmPoid"].Value); }
+                        else { POno = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmid"].Value); }
 
                         if (Convert.ToString(varProShelfLife[0]) != "")
                         {
@@ -4827,6 +4856,19 @@ namespace ROMS
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
                             txtGstin.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]);
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) != "")
+                            {
+                                LV_Supplier.Visible = false;
+                                txtGstin.Enabled = true;
+                                MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                                MainForm.objPUR_GSTIN.ShowDialog();
+                            }
+                            else
+                            {
+                                LV_Supplier.Visible = false;
+                                txtGstin.Enabled = false;
+                            } 
+                            udfnPODropdownload();
                         }
                         if (objDs.Tables[7].Rows.Count > 0)
                         {
