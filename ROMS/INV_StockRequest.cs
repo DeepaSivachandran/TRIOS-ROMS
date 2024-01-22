@@ -940,6 +940,8 @@ namespace ROMS
                 }
                 else
                 {
+                    string Qty = objValidation.udfnDecimal((txtRequiredQty.Text).Trim(), varDecimal);
+                    txtRequiredQty.Text = Qty;
                     errStockRequest.Clear();
                     txtRequiredQty.BackColor = Color.White;
                 }

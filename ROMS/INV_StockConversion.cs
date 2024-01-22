@@ -52,16 +52,17 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
         private void BtnClose_Click(object sender, EventArgs e)
         {
             if (varChangeFlag == false)
             {
                 udfnDiscard();
+                MainForm.objINV_StockConversionList.udfnList();
             }
             else
             {
                 udfnclose();
+                MainForm.objINV_StockConversionList.udfnList();
             }
         }
         public void udfnDiscard()
@@ -96,14 +97,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void INV_StockConversion_Load(object sender, EventArgs e)
         {
             try
             {
                 dtStock.TableName = "TRN_BatchConversion_Product";
-                dtStock.Columns.Add("STK_QTY", typeof(float));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
+                dtStock.Columns.Add("STK_QTY", typeof(decimal));
+                dtStock.Columns.Add("STK_MRP", typeof(decimal));
                 dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                 dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 udfnCmbConcern();
@@ -114,7 +114,6 @@ namespace ROMS
                 grdBatchConversion.ClearSelection();
                 if (btnSave.Text == "Save")
                 {
-
                 }
                 else
                 {
@@ -127,22 +126,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void LblQty_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void TxtMrp_TextChanged(object sender, EventArgs e)
         {
             try
@@ -154,9 +137,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -169,7 +150,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -185,7 +165,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
@@ -209,7 +188,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpConversionDate_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -225,7 +203,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductName_Enter(object sender, EventArgs e)
         {
             try
@@ -238,7 +215,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -285,7 +261,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductName_Leave(object sender, EventArgs e)
         {
             try
@@ -296,8 +271,6 @@ namespace ROMS
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProductName.ShowAlways = true;
                     tpProductName.Show("Please enter the product", txtProductName, 5000);
-
-
                 }
                 else
                 {
@@ -312,7 +285,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQty_Enter(object sender, EventArgs e)
         {
             try
@@ -325,14 +297,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtMrp2.Focus();
+                    txtConvertMrp.Focus();
                 }
             }
             catch (Exception ex)
@@ -341,7 +312,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQty_Leave(object sender, EventArgs e)
         {
             try
@@ -378,12 +348,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBatchNo2_Enter(object sender, EventArgs e)
         {
             try
             {
-                txtBatchNo2.BackColor = Color.LemonChiffon;
+                txtConvertBatch.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -391,14 +360,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBatchNo2_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtQty2.Focus();
+                    txtConvertQty.Focus();
                 }
             }
             catch (Exception ex)
@@ -407,141 +375,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtBatchNo2_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (Convert.ToString(txtBatchNo2.Text) == "")
-                //{
-                //    epBatchConversion.SetError(txtBatchNo2, "Please enter batch number");
-                //    txtBatchNo2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpBatchNo2.ShowAlways = true;
-                //    tpBatchNo2.Show("Please enter batch number", txtBatchNo2, 5000);
-                //}
-                //else
-                //{
-                epBatchConversion.Clear();
-                txtBatchNo2.BackColor = Color.White;
-                tpBatchNo2.Active = false;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtQty2_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtQty2.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtQty2_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnAdd.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtQty2_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToString(txtQty2.Text) == "")
-                {
-                    epBatchConversion.SetError(txtQty2, "Please enter quantity");
-                    txtQty2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpQty2.ShowAlways = true;
-                    tpQty2.Show("Please enter quantity", txtQty2, 5000);
-                }
-                else
-                {
-                    epBatchConversion.Clear();
-                    txtQty2.BackColor = Color.White;
-                    tpQty2.Active = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMrp2_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtMrp2.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMrp2_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtBatchNo2.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMrp2_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToString(txtMrp2.Text) == "")
-                {
-                    epBatchConversion.SetError(txtMrp2, "Please enter MRP");
-                    txtMrp2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMrp2.ShowAlways = true;
-                    tpMrp2.Show("Please enter MRP", txtMrp2, 5000);
-
-
-                }
-                else
-                {
-                    epBatchConversion.Clear();
-                    txtMrp2.BackColor = Color.White;
-                    tpMrp2.Active = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TxtDay_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -557,14 +390,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtYear_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBatchNo2.Focus();
+                    txtConvertBatch.Focus();
                 }
             }
             catch (Exception ex)
@@ -573,7 +405,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtMonth_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -709,7 +540,6 @@ namespace ROMS
                 lvproduct.Visible = false;
             }
         }
-
         private void Lvproduct_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -723,7 +553,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Lvproduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -740,7 +569,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtMonth_Leave(object sender, EventArgs e)
         {
             try
@@ -765,7 +593,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtYear_Leave(object sender, EventArgs e)
         {
             try
@@ -814,7 +641,6 @@ namespace ROMS
             }
             return dtStock;
         }
-
         private void TxtProductName_TextChanged(object sender, EventArgs e)
        {
             try
@@ -829,9 +655,9 @@ namespace ROMS
                 txtDay.Text = "";
                 txtMonth.Text = "";
                 txtYear.Text = "";
-                txtMrp2.Text = "";
-                txtBatchNo2.Text = "";
-                txtQty2.Text = "";
+                txtConvertMrp.Text = "";
+                txtConvertBatch.Text = "";
+                txtConvertQty.Text = "";
                 txtUnit.Text = "";
                 txtUnit2.Text = "";
                 txtUnit3.Text = "";
@@ -932,7 +758,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -963,7 +788,6 @@ namespace ROMS
                     tpRack.Show("Please enter rack name", txtRack, 5000);
                     varErrorFlag = false;
                 }
-
                 //if (txtExpiryDate.Text == "")
                 //{
                 //    epBatchConversion.SetError(txtExpiryDate, "Please enter expiry date");
@@ -988,12 +812,12 @@ namespace ROMS
                     tpQty.Show("Please enter quantity", txtQty, 5000);
                     varErrorFlag = false;
                 }
-                if (txtMrp2.Text == "")
+                if (txtConvertMrp.Text == "")
                 {
-                    epBatchConversion.SetError(txtMrp2, "Please enter mrp");
-                    txtMrp2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epBatchConversion.SetError(txtConvertMrp, "Please enter mrp");
+                    txtConvertMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMrp2.ShowAlways = true;
-                    tpMrp2.Show("Please enter MRP", txtMrp2, 5000);
+                    tpMrp2.Show("Please enter MRP", txtConvertMrp, 5000);
                     varErrorFlag = false;
                 }
                 if (txtMonth.Text == "")
@@ -1020,12 +844,12 @@ namespace ROMS
                 //    tpBatchNo2.Show("Please enter batch number", txtBatchNo2, 5000);
                 //    varErrorFlag = false;
                 //}
-                if (txtQty2.Text == "")
+                if (txtConvertQty.Text == "")
                 {
-                    epBatchConversion.SetError(txtQty2, "Please enter quantity");
-                    txtQty2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epBatchConversion.SetError(txtConvertQty, "Please enter quantity");
+                    txtConvertQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpQty2.ShowAlways = true;
-                    tpQty2.Show("Please enter quantity", txtQty2, 5000);
+                    tpQty2.Show("Please enter quantity", txtConvertQty, 5000);
                     varErrorFlag = false;
                 }
                 if (Convert.ToDecimal(txtQty.Text) > Convert.ToDecimal(txtStock.Text) || Convert.ToDecimal(txtQty.Text)==0)
@@ -1037,15 +861,14 @@ namespace ROMS
                     txtQty.Focus();
                     varErrorFlag = false;
                 }
-
                 for (int i = 0; i < dtStock.Rows.Count; i++)
                 {
-                    if (Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == txtMrp2.Text && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == txtExpiryDate.Text && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == txtBatchNo2.Text)
+                    if (Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == txtConvertMrp.Text && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == txtExpiryDate.Text && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == txtConvertBatch.Text)
                     {
-                        epBatchConversion.SetError(txtQty2, "Please enter valid quantity");
-                        txtQty2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        epBatchConversion.SetError(txtConvertQty, "Please enter valid quantity");
+                        txtConvertQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpQty2.ShowAlways = true;
-                        tpQty2.Show("Please enter valid quantity", txtQty2, 5000);
+                        tpQty2.Show("Please enter valid quantity", txtConvertQty, 5000);
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(97);
                         objDServ.CloseConnection();
@@ -1057,23 +880,23 @@ namespace ROMS
                 {
                     grdBatchConversion.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                     varActualQuantity = Convert.ToDecimal(txtQty.Text);
-                    changedQuantity = changedQuantity + Convert.ToDecimal(txtQty2.Text);
+                    changedQuantity = changedQuantity + Convert.ToDecimal(txtConvertQty.Text);
                     if (changedQuantity > 0 && changedQuantity <= varActualQuantity)
                     {
-                        if (txtQty2.Text != "")
+                        if (txtConvertQty.Text != "")
                         {
-                            string Qty = objValidation.udfnDecimal((txtQty2.Text), varDecimal);
-                            txtQty2.Text = Qty;
+                            string Qty = objValidation.udfnDecimal((txtConvertQty.Text), varDecimal);
+                            txtConvertQty.Text = Qty;
                         }
-                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtMrp2.Text), (txtExpiryDate.Text).Trim(), (txtBatchNo2.Text).Trim(), (txtQty2.Text),varPRID,varRKID,varStockLocationId);
-                        dtStock.Rows.Add(Convert.ToDecimal(txtQty2.Text),Convert.ToDecimal (txtMrp2.Text), (txtExpiryDate.Text).Trim(),Convert.ToInt32 ((txtBatchNo2.Text).Trim()));
+                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtConvertMrp.Text), (txtExpiryDate.Text).Trim(), (txtConvertBatch.Text).Trim(), (txtConvertQty.Text),varPRID,varRKID,varStockLocationId);
+                        dtStock.Rows.Add(Convert.ToDecimal((txtConvertQty.Text).Trim()),Convert.ToDecimal (txtConvertMrp.Text), (txtExpiryDate.Text).Trim(),Convert.ToInt32 ((txtConvertBatch.Text).Trim()));
                         grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         totalQty.Text = Convert.ToString(changedQuantity);
-                        txtQty2.Text = "";
-                        txtMrp2.Focus();
+                        txtConvertQty.Text = "";
+                        txtConvertMrp.Focus();
                         udfnClear();
                         txtYear.Enabled = false;
                         txtMonth.Enabled = false;
@@ -1081,13 +904,13 @@ namespace ROMS
                     }
                     else
                     {
-                        changedQuantity = changedQuantity - Convert.ToDecimal(txtQty2.Text);
+                        changedQuantity = changedQuantity - Convert.ToDecimal(txtConvertQty.Text);
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(89);
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtQty2.Focus();
-                        txtQty2.Text = "";
+                        txtConvertQty.Focus();
+                        txtConvertQty.Text = "";
                     }
                     varChangeFlag = false;
                 }
@@ -1120,9 +943,9 @@ namespace ROMS
         {
             try
             {
-                txtMrp2.Text = "";
-                txtBatchNo2.Text = "";
-                txtQty2.Text = "";
+                txtConvertMrp.Text = "";
+                txtConvertBatch.Text = "";
+                txtConvertQty.Text = "";
             }
             catch (Exception ex)
             {
@@ -1142,9 +965,9 @@ namespace ROMS
                 txtBatchNo.Text = "";
                 txtStock.Text = "";
                 txtQty.Text = "";
-                txtMrp2.Text = "";
-                txtBatchNo2.Text = "";
-                txtQty2.Text = "";
+                txtConvertMrp.Text = "";
+                txtConvertBatch.Text = "";
+                txtConvertQty.Text = "";
                 txtDay.Text = "";
                 txtMonth.Text = "";
                 txtYear.Text = "";
@@ -1160,7 +983,6 @@ namespace ROMS
             try
             {
                 txtMonth.TextAlign = HorizontalAlignment.Right;
-
             }
             catch (Exception ex)
             {
@@ -1168,13 +990,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtExpiryDate_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 txtExpiryDate.TextAlign = HorizontalAlignment.Center;
-
             }
             catch (Exception ex)
             {
@@ -1182,13 +1002,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtStock_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 txtStock.TextAlign = HorizontalAlignment.Right;
-
             }
             catch (Exception ex)
             {
@@ -1196,13 +1014,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQty_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 txtQty.TextAlign = HorizontalAlignment.Right;
-
             }
             catch (Exception ex)
             {
@@ -1210,26 +1026,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtMrp2_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                txtMrp2.TextAlign = HorizontalAlignment.Right;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TxtDay_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 txtDay.TextAlign = HorizontalAlignment.Right;
-
             }
             catch (Exception ex)
             {
@@ -1237,21 +1038,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtQty2_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                txtQty2.TextAlign = HorizontalAlignment.Right;
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
@@ -1288,10 +1074,8 @@ namespace ROMS
                     varoriginator = "Stock Conversion Updation";
                     ViewType = 1;
                 }
-
                 epBatchConversion.Clear();
                 bool blnErrorFlag = true;
-
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
                     epBatchConversion.SetError(cmbConcern, "Please select concern");
@@ -1417,7 +1201,6 @@ namespace ROMS
                 grdBatchConversion.ClearSelection();
             }
         }
-
         private void DpConversionDate_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -1430,7 +1213,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1443,7 +1225,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnExpiryDate()
         {
             try
@@ -1477,8 +1258,7 @@ namespace ROMS
                 tpQty.Active = false;
                 tpQty2.Active = false;
                 tpMonth.Active = false;
-                tpYear.Active = false;
-               
+                tpYear.Active = false;      
             }
             catch (Exception ex)
             {
@@ -1500,16 +1280,13 @@ namespace ROMS
                 {
                     BtnSave_Click(sender, e);
                 }
-                
-            }
-            
+            }          
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1574,8 +1351,58 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtQty2_KeyPress(object sender, KeyPressEventArgs e)
+        private void BtnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtConvertQty_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtConvertQty.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtConvertQty_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtConvertQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -1639,25 +1466,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtMrp2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
-            {
-                e.Handled = true;
-            }
-            //only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void BtnSave_Enter(object sender, EventArgs e)
+        private void TxtConvertQty_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnSave.BackColor = Color.LemonChiffon;
+                if (Convert.ToString(txtConvertQty.Text) == "")
+                {
+                    epBatchConversion.SetError(txtConvertQty, "Please enter quantity");
+                    txtConvertQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpQty2.ShowAlways = true;
+                    tpQty2.Show("Please enter quantity", txtConvertQty, 5000);
+                }
+                else
+                {
+                    string Qty = objValidation.udfnDecimal((txtConvertQty.Text).Trim(), varDecimal);
+                    txtConvertQty.Text = Qty;
+                    epBatchConversion.Clear();
+                    txtConvertQty.BackColor = Color.White;
+                    tpQty2.Active = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1665,12 +1492,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void BtnSave_Leave(object sender, EventArgs e)
+        private void TxtConvertQty_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                btnSave.BackColor = Color.Transparent;
+                txtConvertQty.TextAlign = HorizontalAlignment.Right;
             }
             catch (Exception ex)
             {
@@ -1678,7 +1504,89 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void TxtConvertMrp_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtConvertMrp.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtConvertMrp_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtConvertBatch.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtConvertMrp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                {
+                    e.Handled = true;
+                }
+                //only allow one decimal point
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtConvertMrp_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtConvertMrp.Text) == "")
+                {
+                    epBatchConversion.SetError(txtConvertMrp, "Please enter MRP");
+                    txtConvertMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMrp2.ShowAlways = true;
+                    tpMrp2.Show("Please enter MRP", txtConvertMrp, 5000);
+                }
+                else
+                {
+                    epBatchConversion.Clear();
+                    txtConvertMrp.BackColor = Color.White;
+                    tpMrp2.Active = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtConvertMrp_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtConvertMrp.TextAlign = HorizontalAlignment.Right;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -1691,7 +1599,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -1704,12 +1611,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void Lvproduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         public void udfnEdit()
         {
             try
@@ -1763,8 +1664,6 @@ namespace ROMS
                                 grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdBatchConversion.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                //DGV_inward.Rows.Add(DGV_inward.Rows.Count + 1, varPRID, varPICode, (txtProduct.Text).Trim(), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text).Trim(), varUnit, varUTID);
-                                //DGV_inward.Columns[10].ReadOnly = false;
                             }
                             changedQuantity = sum;
                             btnSave.Text = "Update";
@@ -1775,13 +1674,16 @@ namespace ROMS
                     dpConversionDate.Enabled = false;
                     txtProductName.Enabled = false;
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
-                    //txtQty.Enabled = false;
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdBatchConversion.ClearSelection();
             }
         }
         private void GrdBatchConversion_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1824,7 +1726,6 @@ namespace ROMS
                 }
                 varChangeFlag = false;
             }
-
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1838,7 +1739,6 @@ namespace ROMS
                     //txtStockLocation.Enabled = false;
                     txtProductName.Enabled = false;
                     cmbConcern.Enabled = false;
-
                 }
                 else
                 {

@@ -51,7 +51,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void udfnEdit()
         {
             try
@@ -78,7 +77,6 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
-
         }
         private void udfnSearchGridHead()
         {
@@ -106,7 +104,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
         {
             try
@@ -166,13 +163,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-        private void GrdCityList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void INV_StockConversionList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -222,11 +212,9 @@ namespace ROMS
             try
             {
                 this.ActiveControl = cmbConcern;
-
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 2;
-
                 objDs = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
@@ -263,7 +251,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -276,7 +263,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -292,27 +278,18 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
             {
                 cmbConcern.BackColor = Color.White;
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
-        private void CmbConcern_LocationChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void DpFromDate_Enter(object sender, EventArgs e)
         {
             try
@@ -325,7 +302,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -341,13 +317,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpFromDate_Leave(object sender, EventArgs e)
         {
             try
             {
                 dpFromDate.BackColor = Color.White;
-
             }
             catch (Exception ex)
             {
@@ -355,13 +329,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpToDate_Enter(object sender, EventArgs e)
         {
             try
             {
                 dpToDate.BackColor = Color.LemonChiffon;
-
             }
             catch (Exception ex)
             {
@@ -369,7 +341,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpToDate_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -385,13 +356,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpToDate_Leave(object sender, EventArgs e)
         {
             try
             {
                 dpToDate.BackColor = Color.White;
-
             }
             catch (Exception ex)
             {
@@ -399,7 +368,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProduct_Enter(object sender, EventArgs e)
         {
             try
@@ -413,7 +381,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -445,13 +412,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProduct_Leave(object sender, EventArgs e)
         {
             try
             {
                 txtProduct.BackColor = Color.White;
-
             }
             catch (Exception ex)
             {
@@ -459,7 +424,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProduct_TextChanged(object sender, EventArgs e)
         {
             try
@@ -597,7 +561,6 @@ namespace ROMS
                             grdConversionList.Columns["Converted Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdConversionList.Columns["Conversion Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdConversionList.Columns["Product Name"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-
                         }
                         else
                         {
@@ -666,7 +629,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Lvproduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -683,7 +645,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_Click(object sender, EventArgs e)
         {
             try
@@ -697,7 +658,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnExport_Click(object sender, EventArgs e)
         {
             try
@@ -727,7 +687,6 @@ namespace ROMS
                     }
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
-
                     ExcelSheet.Cells[1, 1].Value = "Batch conversion List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
@@ -736,7 +695,6 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
-
                     foreach (DataGridViewColumn col in grdConversionList.Columns)
                     {
                         if (col.Visible)
@@ -744,7 +702,6 @@ namespace ROMS
                             cIndex += 1;
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
-
                             if (col.Name == "Concern" || col.Name == "Conversion Date" || col.Name == "Conversion No." || col.Name == "Converted Qty" || col.Name == "P.I Code")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
@@ -801,7 +758,6 @@ namespace ROMS
                 btnExport.Focus();
             }
         }
-
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -815,7 +771,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -840,7 +795,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
@@ -885,8 +839,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
-
         private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             try
@@ -927,7 +879,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -941,7 +892,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -966,13 +916,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DpFromDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void GrdConversionList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -999,7 +942,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void INV_StockConversionList_DoubleClick(object sender, EventArgs e)
         {
             //try
@@ -1087,7 +1029,6 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void TsbDelete_Click(object sender, EventArgs e)
         {
             try
@@ -1100,7 +1041,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpFromDate_ValueChanged_1(object sender, EventArgs e)
         {
             try
@@ -1114,7 +1054,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try
@@ -1127,7 +1066,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_Leave(object sender, EventArgs e)
         {
             try
@@ -1140,7 +1078,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnExport_Enter(object sender, EventArgs e)
         {
             try
@@ -1153,7 +1090,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnExport_Leave(object sender, EventArgs e)
         {
             try
@@ -1166,7 +1102,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdConversionList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try

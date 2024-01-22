@@ -197,7 +197,6 @@
             this.grdConversionList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdConversionList.Size = new System.Drawing.Size(1348, 510);
             this.grdConversionList.TabIndex = 1;
-            this.grdConversionList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdCityList_CellContentClick);
             this.grdConversionList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdConversionList_DataBindingComplete);
             this.grdConversionList.DoubleClick += new System.EventHandler(this.GrdConversionList_DoubleClick);
             this.grdConversionList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdConversionList_KeyDown);
@@ -222,7 +221,7 @@
             this.picLoader.InitialImage = null;
             this.picLoader.Location = new System.Drawing.Point(3, 74);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1328, 564);
+            this.picLoader.Size = new System.Drawing.Size(1351, 564);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958787;
             this.picLoader.TabStop = false;
@@ -366,7 +365,6 @@
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(98, 27);
             this.cmbConcern.TabIndex = 0;
-            this.cmbConcern.LocationChanged += new System.EventHandler(this.CmbConcern_LocationChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
@@ -422,7 +420,6 @@
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(104, 27);
             this.dpFromDate.TabIndex = 1;
-            this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged_1);
             this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
             this.dpFromDate.Leave += new System.EventHandler(this.DpFromDate_Leave);

@@ -1261,6 +1261,8 @@ namespace ROMS
                 }
                 else
                 {
+                    string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), varDecimal);
+                    txtQuantity.Text = Qty;
                     errStockTransfer.Clear();
                     txtQuantity.BackColor = Color.White;
                 }
