@@ -17,6 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         string varUserID = "0";
+        ToolTip tpSupplier = new ToolTip();
         DataTable dtDefaultGrid = new DataTable();
         int varPRID = 0, varparaflag=0, varviewtype=0, varDeleteFlag=0, Varflag = 0;
         public INV_InwardPurchaseList()
@@ -464,15 +465,15 @@ namespace ROMS
             try
             {
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
-                grdInwardList.Columns["GRN ID"].Visible = false;
-                grdInwardList.Columns["Purchase ID"].Visible = false;
-                grdInwardList.Columns["GIP_COMID"].Visible = false;
-                grdInwardList.Columns["GIP_SLID"].Visible = false;
-                grdInwardList.Columns["SPID"].Visible = false;
-                grdInwardList.Columns["GIPID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN ID"].Visible = false;
+                DGV_SearchGrid.Columns["Purchase ID"].Visible = false;
+                DGV_SearchGrid.Columns["GIP_COMID"].Visible = false;
+                DGV_SearchGrid.Columns["GIP_SLID"].Visible = false;
+                DGV_SearchGrid.Columns["SPID"].Visible = false;
+                DGV_SearchGrid.Columns["GIPID"].Visible = false;
 
-                grdInwardList.Columns["SPSCID"].Visible = false;
-                grdInwardList.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["Status ID"].Visible = false;
 
                 //DGV_SearchGrid.Columns["ID"].Visible = false;
                 //DGV_SearchGrid.Columns["ConcernID"].Visible = false;
@@ -515,53 +516,53 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 string varSupplierId = "0";
                 //**** To call the function from SP ********* 
-                //if (txtSupplier.Text == "")
-                //{
-                //    varSupplierId = "0";
-                //    lblschedule.Text = "0";
-                //}
-                //else
-                //{
-                //    string[] values = new string[0];
-                //    MR_Supplier objMR_Supplier = new MR_Supplier();
-                //    objMR_Supplier.ViewType = 31;
-                //    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
-                //    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
-                //    DataSet objDsSupplierId = new DataSet();
-                //    SPDataService objDserv = new SPDataService();
-                //    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
-                //    objDserv.CloseConnection();
-                //    if (objDsSupplierId != null)
-                //    {
-                //        if (objDsSupplierId.Tables.Count > 0)
-                //        {
-                //            if (objDsSupplierId.Tables[0].Rows.Count > 0)
-                //            {
-                //                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
-                //                values = Convert.ToString(varSupplierId).Split(',');
-                //            }
-                //        }
-                //    }
-                //    if (values[0] == "-1")
-                //    {
-                //        ep_PurchaseDC.SetError(txtSupplier, "Invalid supplier.");
-                //        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpSupplier.ShowAlways = true;
-                //        tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
-                //        lblSupplierCode.Text = "0";
-                //        lblschedule.Text = "0";
-                //        Varflag = 1;
-                //    }
-                //    else
-                //    {
-                //        ep_PurchaseDC.Clear();
-                //        lblSupplierCode.Text = values[0];
-                //        lblschedule.Text = values[1];
-                //        txtSupplier.BackColor = Color.White;
+                if (txtSupplier.Text == "")
+                {
+                    varSupplierId = "0";
+                    lblschedule.Text = "0";
+                }
+                else
+                {
+                    string[] values = new string[0];
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 31;
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
+                    {
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                        }
+                    }
+                    if (values[0] == "-1")
+                    {
+                        epGoodsInwardList.SetError(txtSupplier, "Invalid supplier.");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSupplier.ShowAlways = true;
+                        tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
+                        lblSupplierCode.Text = "0";
+                        lblschedule.Text = "0";
+                        Varflag = 1;
+                    }
+                    else
+                    {
+                        epGoodsInwardList.Clear();
+                        lblSupplierCode.Text = values[0];
+                        lblschedule.Text = values[1];
+                        txtSupplier.BackColor = Color.White;
 
-                //    }
-                //    //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
-                //}
+                    }
+                    //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                }
                 if (Varflag == 0)
                 {
                     btnView.Enabled = false;
@@ -595,6 +596,7 @@ namespace ROMS
                                 grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Inward No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Inward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdInwardList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInwardList.Columns["Concern"].Width = 80;
                                 grdInwardList.Columns["Voucher Date"].Width = 100;

@@ -16,6 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        ToolTip tpSupplier = new ToolTip();
         public int varPRID = 0, varStockLocationId = 0, Varflag=0, varviewtype=0;
         DataTable dtDefaultGrid = new DataTable();
         public INV_InwardQueueList()
@@ -86,7 +87,7 @@ namespace ROMS
                     MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPID"].Value);
                     MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPSCID"].Value);
                     MainForm.objINV_InwardPurchase.varGRNPurchaseFlag = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Type ID"].Value);
-
+                    MainForm.objINV_InwardPurchase.varRemarkFlag = 2;
                     MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern"].Value);
                     MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
                     MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
@@ -161,16 +162,16 @@ namespace ROMS
         {
             try
             {
-                //SPDataService objDServ = new SPDataService();
-                //DataSet objd = new DataSet();
-                //objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 1);
-                //if (objd.Tables[0].Rows.Count != 0)
-                //{
-                //    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                //    //  dpDcFromDate.MaxDate = varmaxdate;
-                //    dpFromDate.Text = Convert.ToString(vardate);
-                //    dpToDate.MinDate = vardate;
-                //}
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 12);
+                if (objd.Tables[0].Rows.Count != 0)
+                {
+                    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    //  dpDcFromDate.MaxDate = varmaxdate;
+                    dpFromDate.Text = Convert.ToString(vardate);
+                    dpToDate.MinDate = vardate;
+                }
             }
             catch (Exception ex)
             {
@@ -381,6 +382,8 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
+                lvProduct.Visible = false;
                 txtStockLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -557,65 +560,65 @@ namespace ROMS
         {
             try
             {
-                //dtDefaultGrid = null;
+                dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 Varflag = 0;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-               // ep_PurchaseDC.Clear();
+                epQueueList.Clear();
                 grdInwardQueueList.DataSource = null;
                 DataSet objDs = new DataSet();
                 string varSupplierId = "0";
                 //**** To call the function from SP ********* 
-                //if (txtSupplier.Text == "")
-                //{
-                //    varSupplierId = "0";
-                //    lblschedule.Text = "0";
-                //}
-                //else
-                //{
-                //    string[] values = new string[0];
-                //    MR_Supplier objMR_Supplier = new MR_Supplier();
-                //    objMR_Supplier.ViewType = 31;
-                //    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
-                //    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
-                //    DataSet objDsSupplierId = new DataSet();
-                //    SPDataService objDserv = new SPDataService();
-                //    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
-                //    objDserv.CloseConnection();
-                //    if (objDsSupplierId != null)
-                //    {
-                //        if (objDsSupplierId.Tables.Count > 0)
-                //        {
-                //            if (objDsSupplierId.Tables[0].Rows.Count > 0)
-                //            {
-                //                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
-                //                values = Convert.ToString(varSupplierId).Split(',');
-                //            }
-                //        }
-                //    }
-                //    if (values[0] == "-1")
-                //    {
-                //        ep_PurchaseDC.SetError(txtSupplier, "Invalid supplier.");
-                //        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpSupplier.ShowAlways = true;
-                //        tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
-                //        lblSupplierCode.Text = "0";
-                //        lblschedule.Text = "0";
-                //        Varflag = 1;
-                //    }
-                //    else
-                //    {
-                //        ep_PurchaseDC.Clear();
-                //        lblSupplierCode.Text = values[0];
-                //        lblschedule.Text = values[1];
-                //        txtSupplier.BackColor = Color.White;
+                if (txtSupplier.Text == "")
+                {
+                    varSupplierId = "0";
+                    lblschedule.Text = "0";
+                }
+                else
+                {
+                    string[] values = new string[0];
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 31;
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
+                    {
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                        }
+                    }
+                    if (values[0] == "-1")
+                    {
+                        epQueueList.SetError(txtSupplier, "Invalid supplier.");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSupplier.ShowAlways = true;
+                        tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
+                        lblSupplierCode.Text = "0";
+                        lblschedule.Text = "0";
+                        Varflag = 1;
+                    }
+                    else
+                    {
+                        epQueueList.Clear();
+                        lblSupplierCode.Text = values[0];
+                        lblschedule.Text = values[1];
+                        txtSupplier.BackColor = Color.White;
 
-                //    }
-                //    //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
-                //}
+                    }
+                    //VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                }
                 if (Varflag == 0)
                 {
                     btnView.Enabled = false;
@@ -926,6 +929,8 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
+                lvStockLocation.Visible = false;
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1275,6 +1280,7 @@ namespace ROMS
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.ParaFromDate = dpFromDate.Text;
                     objMR_Supplier.ParaToDate = dpToDate.Text;
+                    objMR_Supplier.paraFlag = 8;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -1318,6 +1324,8 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
+                lvProduct.Visible = false;
                 txtSupplier.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
