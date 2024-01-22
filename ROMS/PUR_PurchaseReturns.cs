@@ -185,7 +185,7 @@ namespace ROMS
                 txtActualQty.Enabled = false;
                 btnAdd.Enabled = false;
                 lblTotal.Text = "Approximate Total";
-                udfnList();
+                
             }
             else if (Convert.ToInt32(cmbReason.SelectedValue) == 61) //excess
             {
@@ -195,7 +195,7 @@ namespace ROMS
                 btnAdd.Enabled = true;
                 lblTotal.Text = "Actual Total";
             }
-
+            udfnList();
         }
         public void udfnVocherno()
         {
@@ -211,7 +211,7 @@ namespace ROMS
                         DataService objDservice = new DataService();
                         vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpReturnDCDate.Text + "',103)");
                         objDservice.CloseConnection();
-                        varResult = objspdservice.udfngetPONO("150", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        varResult = objspdservice.udfngetVoucherNo("150", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                         objspdservice.CloseConnection();
                         string[] parts = varResult.Split('~');
                         string pono = parts[0];

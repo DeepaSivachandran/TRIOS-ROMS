@@ -636,8 +636,8 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if (Convert.ToString(txtPurRack.Text) != "None")
-                {
+                //if (Convert.ToString(txtPurRack.Text) != "")
+                //{
                     /*check location have a rack or not*/
                     string varId_PurchaseRack = "0";
                     DataSet objDsPurchaseRack = new DataSet();
@@ -695,7 +695,7 @@ namespace ROMS
                             }
                         }
                     }
-                }
+                //}
                 /* Check sales stock location is valid or not*/
                 if (txtSaleLocation.Text != "")
                 {
@@ -724,8 +724,8 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if(Convert.ToString(txtSaleRack.Text)!="None")
-                {
+                //if(Convert.ToString(txtSaleRack.Text)!="")
+                //{
                     //check Sales location have a rack or not//
                     string varId_SalesRack = "0";
                     DataSet objDsSalesRack = new DataSet();
@@ -783,7 +783,7 @@ namespace ROMS
                             }
                         }
                     }
-                }
+                //}
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();

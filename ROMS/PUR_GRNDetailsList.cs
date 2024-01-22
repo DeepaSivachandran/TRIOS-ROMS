@@ -200,7 +200,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0,0);
+                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0,0, "0");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -666,16 +666,19 @@ namespace ROMS
         }
 
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
-        {
-
+        { 
             try
             {
                 LV_Supplier.Items.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {
                     MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 15;
+                    objMR_Supplier.ViewType = 26;
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    objMR_Supplier.ParaFromDate = dpFromDate.Text;
+                    objMR_Supplier.ParaToDate = dpToDate.Text;
+                    objMR_Supplier.paraFlag = 6;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -794,7 +797,7 @@ namespace ROMS
         {
             try
             {
-                btnView.BackColor = Color.White;
+                btnView.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {

@@ -402,7 +402,9 @@ namespace ROMS
                             {
                                 txtSLocation.Text = objDS.Tables[0].Rows[0]["Source Location"].ToString();
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Dest Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]));
-                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
+                                string varMRP = "0";
+                                if (Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]) != "") { varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))); }
+                                dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), varMRP, Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]));
                             }                             
                             //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
                             //int TransferQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmquantity"].Value);
@@ -1299,7 +1301,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     DataService objDservice = new DataService();
                     vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'"+dpTrannsferDate.Text+"',103)");
-                    varResult = objspdservice.udfngetPONO("44", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                    varResult = objspdservice.udfngetVoucherNo("44", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                     objspdservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varResult != "")
