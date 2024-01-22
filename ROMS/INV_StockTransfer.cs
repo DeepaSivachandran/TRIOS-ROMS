@@ -1791,32 +1791,32 @@ namespace ROMS
                     varStatusID = 48;
                 }
                 /* Check source stock location is valid or not*/
-                if (txtSLocation.Text != "")
-                {
-                    string varId_PurLocation = "0";
-                    DataSet objDsSalesLoc = new DataSet();
-                    SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","");
-                    objDServ5.CloseConnection();
-                    if (objDsSalesLoc != null)
-                    {
-                        if (objDsSalesLoc.Tables.Count > 0)
-                        {
-                            if (objDsSalesLoc.Tables[0].Rows.Count > 0)
-                            {
-                                varId_PurLocation = Convert.ToString(objDsSalesLoc.Tables[0].Rows[0][0]);
-                            }
-                        }
-                    }
-                    lblSLocation.Text = Convert.ToString(varId_PurLocation);
-                    if (varId_PurLocation == "0" || varId_PurLocation == "-1")
-                    {
-                        errStockTransfer.SetError(txtSLocation, "Please select valid source location");
-                        txtSLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpSStockLocation.ShowAlways = true;
-                        tpSStockLocation.Show("Please select valid source location", txtSLocation, 5000);
-                    }
-                }
+                //if (txtSLocation.Text != "")
+                //{
+                //    string varId_PurLocation = "0";
+                //    DataSet objDsSalesLoc = new DataSet();
+                //    SPDataService objDServ5 = new SPDataService();
+                //    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","");
+                //    objDServ5.CloseConnection();
+                //    if (objDsSalesLoc != null)
+                //    {
+                //        if (objDsSalesLoc.Tables.Count > 0)
+                //        {
+                //            if (objDsSalesLoc.Tables[0].Rows.Count > 0)
+                //            {
+                //                varId_PurLocation = Convert.ToString(objDsSalesLoc.Tables[0].Rows[0][0]);
+                //            }
+                //        }
+                //    }
+                    //lblSLocation.Text = Convert.ToString(varId_PurLocation);
+                    //if (varId_PurLocation == "0" || varId_PurLocation == "-1")
+                    //{
+                    //    errStockTransfer.SetError(txtSLocation, "Please select valid source location");
+                    //    txtSLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpSStockLocation.ShowAlways = true;
+                    //    tpSStockLocation.Show("Please select valid source location", txtSLocation, 5000);
+                    //}
+                //}
                 else
                 {
                     lblSLocation.Text = "0";
@@ -1862,7 +1862,7 @@ namespace ROMS
                 {
                     varStatus = 21;
                 }
-                else if(varUpdateflag==1 && btnSave.Text=="Update")
+                 if(varUpdateflag==1 && btnSave.Text=="Update")
                 {
                     varStatus = 48;
                 }
@@ -1877,7 +1877,7 @@ namespace ROMS
 
                 if (varUpdateflag == 1)
                 {
-                    varResult = objspservice.udfnStockTransfer(varType, varStockTransferID, Convert.ToInt32(cmbConcern.SelectedValue), dpTrannsferDate.Text, Convert.ToInt32(lblSLocation.Text), 0, txtRemarks.Text.Trim(), varStatus, varoriginator, dtStock, 0, varTransactionType, varUpdateflag, varStockRequestID);
+                    varResult = objspservice.udfnStockTransfer(varType, varStockTransferID, Convert.ToInt32(cmbConcern.SelectedValue), dpTrannsferDate.Text, Convert.ToInt32(varStockRequestSLID), 0, txtRemarks.Text.Trim(), varStatus, varoriginator, dtStock, 0, varTransactionType, varUpdateflag, varStockRequestID);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
