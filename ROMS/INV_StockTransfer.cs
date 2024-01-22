@@ -463,6 +463,7 @@ namespace ROMS
             }
             finally
             {
+                lvSLocation.Visible = false;
                 grdStockTransfer.ClearSelection();
                 txttotalitem.Text = Convert.ToString(grdStockTransfer.Rows.Count);
             }
