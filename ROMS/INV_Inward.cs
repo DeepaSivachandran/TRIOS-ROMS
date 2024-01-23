@@ -2067,7 +2067,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductName.Focus();
+                    txtRack.Focus();
                 }
             }
             catch (Exception ex)
@@ -2317,20 +2317,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtRack_Leave_1(object sender, EventArgs e)
-        {
-            try
-            {
-                txtRack.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TxtRemark_Enter(object sender, EventArgs e)
         {
             try
@@ -2366,6 +2352,19 @@ namespace ROMS
             try
             {
                 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRack_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRack.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -2995,8 +2994,8 @@ namespace ROMS
                                 }
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 100;
-                                lvproduct.Columns[1].Width = 350;
-                                lvproduct.Columns[2].Width = 50;
+                                lvproduct.Columns[1].Width = 0;
+                                lvproduct.Columns[2].Width = 0;
                                 lvproduct.Columns[3].Width = 50;
                                 if (VarSearchFlag == false)
                                 {
