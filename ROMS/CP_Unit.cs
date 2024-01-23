@@ -297,7 +297,6 @@ namespace ROMS
             try
             {
                 this.Close();
-                MainForm.objCP_Unitlist.udfnList();
             }
             catch (Exception ex)
             {
@@ -311,6 +310,10 @@ namespace ROMS
             try
             {
                 udfnclose();
+                if (varmastertype == 0)
+                {
+                    MainForm.objCP_Unitlist.udfnList();
+                }
             }
             catch (Exception ex)
             {
