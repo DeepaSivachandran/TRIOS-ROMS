@@ -348,6 +348,7 @@ namespace ROMS
                             grdStockTransfer.Columns["SLID"].Visible = false;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["Created By"].Width = 100;
+                            grdStockTransfer.Columns["Stock Location"].Width = 150;
                             grdStockTransfer.Columns["Created On"].Width = 150;
                             grdStockTransfer.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -398,6 +399,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["COMID"].Visible = false;
                 DGV_SearchGrid.Columns["SRQID"].Visible = false;
                 DGV_SearchGrid.Columns["SLID"].Visible = false;
+                grdStockTransfer.Columns["Stock Location"].Width = 150;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
                 DGV_SearchGrid.Columns["Created On"].Width = 150; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
@@ -861,7 +863,7 @@ namespace ROMS
                         MainForm.objINV_StockTransfer.MdiParent = ParentForm;
                         //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
                         MainForm.objINV_StockTransfer.varUpdateflag = 1;
-                        //MainForm.objINV_Inward.grdInward.Columns["clmremove"].Visible = false;
+                        MainForm.objINV_StockTransfer.grdStockTransfer.Columns["clmRemove"].Visible = false;
                         MainForm.objINV_StockTransfer.EditFlag = 1;
                         MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
                         MainForm.objINV_StockTransfer.varStockRequestSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);

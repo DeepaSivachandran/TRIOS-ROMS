@@ -93,10 +93,12 @@ namespace ROMS
                 if (varChangeFlag == false)
                 {
                     udfnDiscard();
+                    MainForm.objINV_GodownOutwardList.udfnList();
                 }
                 else 
                 {
                     udfnclose();
+                    MainForm.objINV_GodownOutwardList.udfnList();
                 }
             }
             catch (Exception ex)
