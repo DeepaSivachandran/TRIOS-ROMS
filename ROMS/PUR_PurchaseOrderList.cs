@@ -157,7 +157,7 @@ namespace ROMS
                                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                                     objValidation.CrySqlConnection(objBillreport);
-                                    objValidation.CrySqlConnection(objBillreport);
+                                    //objValidation.CrySqlConnection(objBillreport);
 
                                     MainForm.objReportLoad = new ReportLoad();
                                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
