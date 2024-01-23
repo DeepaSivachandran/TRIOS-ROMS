@@ -324,7 +324,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtStockLocation.Focus();
+                    txtSupplier.Focus();
                 }
             }
             catch (Exception ex)
