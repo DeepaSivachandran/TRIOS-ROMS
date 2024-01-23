@@ -116,7 +116,7 @@ namespace ROMS
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-            objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varSLID);
+            objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RK_STSID=1 AND RKID NOT IN (-1,0) AND RK_SLID = " + varSLID);
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -168,6 +168,48 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnRemarks_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRemarks.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnRemarks_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRemarks.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnRemarks_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    BtnRemarks_Click(sender,e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
@@ -198,13 +240,14 @@ namespace ROMS
                     dtInwardPurchase.Rows.Clear();
                     for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                     {
-                        int varShopQty = 0,varReceivedty=0;
+                        int varShopQty = 0,varReceivedty=0,varRackID=0;
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["Shop Qty"].Value)=="")
                         { varShopQty = 0; }
                         else { varShopQty = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Shop Qty"].Value); }
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["Received Qty"].Value) == "")
                         { varReceivedty = 0; }
                         else { varReceivedty = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value); }
+                        
                         if (varEditFlag == 0)
                         {
                             dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["Product ID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["Unit ID"].Value),
@@ -228,6 +271,16 @@ namespace ROMS
                         {
                             grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         }
+                        varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
+                        if (varRackID==-1)
+                        {
+                            grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
+                            varErrorFlag = false;
+                        }
+                        else
+                        {
+                            grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                        }
                     }
                     if (varErrorFlag == true )
                     {
@@ -239,10 +292,11 @@ namespace ROMS
                                 string result = "", varorginator = "Inward from GRN"; 
                                 int varviewtype = 0,varTypeID=0;
                                 if(varEditFlag==0)
-                                { varviewtype = 0;
+                                {
+                                    varviewtype = 0;
                                     if (varGRNPurchaseFlag == 1)
                                     { varTypeID = 174;}
-                                    else if (varGRNPurchaseFlag == 1)
+                                    else if (varGRNPurchaseFlag == 2)
                                     { varTypeID = 175; }
                                 }
                                 else if(varEditFlag==1)
@@ -288,10 +342,12 @@ namespace ROMS
                                     udfnclose();
                                     if (varEditFlag == 0)
                                     {
-                                        MainForm.objINV_InwardPurchaseList.udfnList();
+                                        MainForm.objINV_InwardQueueList.udfnList();
                                     }
                                     else
-                                    { MainForm.objINV_InwardQueueList.udfnList(); }
+                                    { 
+                                        MainForm.objINV_InwardPurchaseList.udfnList();
+                                    }
                                 }
                                 else if (varvalue[0] == "4")
                                 {
@@ -323,6 +379,11 @@ namespace ROMS
                 if (e.KeyCode == Keys.Escape)
                 {
                     udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave.Focus();
+                    udfnSave();
                 }
             }
             catch (Exception ex)
@@ -419,11 +480,11 @@ namespace ROMS
         {
             try
             {
-                DataGridView dataGridView = (DataGridView)sender;
-                DataGridViewCell cellRkname = dataGridView.Rows[e.RowIndex].Cells["Rack"];
-                DataGridViewCell cellRkid = dataGridView.Rows[e.RowIndex].Cells["PR_PUR_RKID"];
                 if (e.ColumnIndex == grdGrnlist.Columns["Rack"].Index && e.RowIndex >= 0)
                 {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cellRkname = dataGridView.Rows[e.RowIndex].Cells["Rack"];
+                    DataGridViewCell cellRkid = dataGridView.Rows[e.RowIndex].Cells["Rack ID"];
                     if (Convert.ToString(varLocationId) != "-1")
                     {
                         string SelectedRackName = grdGrnlist.Rows[e.RowIndex].Cells["Rack"].Value?.ToString();
@@ -572,11 +633,15 @@ namespace ROMS
                                 grdGrnlist.Columns["Location ID"].Visible = false;
                                 grdGrnlist.Columns["Rack ID"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
-                                if (varEditFlag == 0)
+                                if (varGRNPurchaseFlag == 2)  //from  purchase
                                 {
                                     grdGrnlist.Columns["Invoice Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["Invoice Received Qty"].Width = 150;
                                     grdGrnlist.Columns["Invoice Received Qty"].ReadOnly = true;
+                                }
+                                if (varGRNPurchaseFlag == 1) 
+                                {
+                                    grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
                                 }
                                 //if (varEditFlag==0)
                                 //{
@@ -711,6 +776,8 @@ namespace ROMS
             {
                 MainForm.objINV_InwardQueueList_Remarks = new INV_InwardQueueList_Remarks();
                 MainForm.objINV_InwardQueueList_Remarks.varID = varInwardId;
+                MainForm.objINV_InwardQueueList_Remarks.varRemarkFlag = varRemarkFlag;
+                MainForm.objINV_InwardQueueList_Remarks.varFlag = varGRNPurchaseFlag;
                 MainForm.objINV_InwardQueueList_Remarks.ShowDialog();
             }
             catch (Exception ex)
