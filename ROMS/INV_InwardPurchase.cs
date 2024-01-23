@@ -16,7 +16,8 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0,varStausId=0;
-        public int varPurchaseID = 0, varID=0,varGRNPurchaseFlag=0, varCloseFlag=0,varTypeID=0,varRemarkFlag=0;
+        public int varPurchaseID = 0, varID = 0, varGRNPurchaseFlag = 0, varCloseFlag = 0, varTypeID = 0, varRemarkFlag = 0;
+        public string varRemarkCount="";
         DataTable dtInwardPurchase = new DataTable();
         public INV_InwardPurchase()
         {
@@ -30,6 +31,15 @@ namespace ROMS
                 ClearSupplier();
                 EditLoad();
                 udfnUddtTable();
+                MainForm.objINV_InwardQueueList_Remarks = new INV_InwardQueueList_Remarks();
+                MainForm.objINV_InwardQueueList_Remarks.varID = varID;
+                MainForm.objINV_InwardQueueList_Remarks.varRemarkFlag = varRemarkFlag;
+                MainForm.objINV_InwardQueueList_Remarks.varFlag = varGRNPurchaseFlag;
+                MainForm.objINV_InwardQueueList_Remarks.udfnRemarkList();
+                if (varRemarkCount == "")
+                {
+                    btnRemarks.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -210,6 +220,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TspHeader_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
@@ -240,13 +256,13 @@ namespace ROMS
                     dtInwardPurchase.Rows.Clear();
                     for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                     {
-                        int varShopQty = 0,varReceivedty=0,varRackID=0;
+                        decimal varShopQty = 0,varReceivedty=0,varRackID=0;
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["Shop Qty"].Value)=="")
                         { varShopQty = 0; }
-                        else { varShopQty = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Shop Qty"].Value); }
+                        else { varShopQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Shop Qty"].Value); }
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["Received Qty"].Value) == "")
                         { varReceivedty = 0; }
-                        else { varReceivedty = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Received Qty"].Value); }
+                        else { varReceivedty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Received Qty"].Value); }
                         
                         if (varEditFlag == 0)
                         {
@@ -315,6 +331,7 @@ namespace ROMS
                                 objTRN_GoodsInward_Purchase.paraGIP_NO = Convert.ToString(txtInwardNo.Text);
                                 objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(varConcernId);
                                 objTRN_GoodsInward_Purchase.paraFlag = varGRNPurchaseFlag;
+                                objTRN_GoodsInward_Purchase.paraStatusID = varStatusID;
                                 if (varGRNPurchaseFlag == 1)
                                 {
                                     objTRN_GoodsInward_Purchase.paraGRNID = Convert.ToInt32(varID);
@@ -399,7 +416,7 @@ namespace ROMS
             {
                 if (chkCompleted.Checked == true)
                 { btnSave.Text = "Save"; }
-                else { btnSave.Text = "Draft"; }
+                else { btnSave.Text = "Save as Draft"; }
             }
             catch (Exception ex)
             {
@@ -458,22 +475,29 @@ namespace ROMS
         }
         private void GrdGrnlist_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            //try
-            //{
-            //    int ReceivedQty = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["Received Qty"].Value);
-            //    int ShopQty = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["Shop Qty"].Value);
-               
-            //    ////Update the same column value in the DataTable
-            //    //object varReceivedQty = grdGrnlist.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-            //    //dtInwardPurchase.Rows[e.RowIndex]["GIPPR_ReceivedQty"] = varReceivedQty;
-            //    //object varShopQty = grdGrnlist.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-            //    //dtInwardPurchase.Rows[e.RowIndex]["GIPPR_ShopQty"] = varShopQty;
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                if (grdGrnlist.Rows.Count > 0)
+                {
+                    if (e.ColumnIndex == grdGrnlist.Columns["Received Qty"].Index && e.RowIndex >= 0)
+                    {
+                        int varDecimal = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["UT_Decimal"].Value);
+                        string Qty = objValidation.udfnDecimal(Convert.ToString(grdGrnlist.CurrentRow.Cells["Received Qty"].Value), varDecimal);
+                        grdGrnlist.Rows[e.RowIndex].Cells["Received Qty"].Value = Qty;
+                    }
+                    if (e.ColumnIndex == grdGrnlist.Columns["Shop Qty"].Index && e.RowIndex >= 0)
+                    {
+                        int varDecimal = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["UT_Decimal"].Value);
+                        string Qty = objValidation.udfnDecimal(Convert.ToString(grdGrnlist.CurrentRow.Cells["Shop Qty"].Value), varDecimal);
+                        grdGrnlist.Rows[e.RowIndex].Cells["Shop Qty"].Value = Qty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdGrnlist_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -633,6 +657,7 @@ namespace ROMS
                                 grdGrnlist.Columns["Location ID"].Visible = false;
                                 grdGrnlist.Columns["Rack ID"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
+                                grdGrnlist.Columns["UT_Decimal"].Visible = false;
                                 if (varGRNPurchaseFlag == 2)  //from  purchase
                                 {
                                     grdGrnlist.Columns["Invoice Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -775,7 +800,7 @@ namespace ROMS
             try
             {
                 MainForm.objINV_InwardQueueList_Remarks = new INV_InwardQueueList_Remarks();
-                MainForm.objINV_InwardQueueList_Remarks.varID = varInwardId;
+                MainForm.objINV_InwardQueueList_Remarks.varID = varID;
                 MainForm.objINV_InwardQueueList_Remarks.varRemarkFlag = varRemarkFlag;
                 MainForm.objINV_InwardQueueList_Remarks.varFlag = varGRNPurchaseFlag;
                 MainForm.objINV_InwardQueueList_Remarks.ShowDialog();

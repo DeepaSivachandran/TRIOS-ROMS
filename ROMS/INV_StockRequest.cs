@@ -235,6 +235,7 @@ namespace ROMS
             }
             finally
             {
+                grdStockRequest.ClearSelection();
                 txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
             }
         }

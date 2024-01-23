@@ -14,6 +14,7 @@ namespace ROMS.Model
         public int paraUserID { get; set; } = 0;
         public string paraIPAddress { get; set; } = "";
         public int paraPurchaseId { get; set; } = 0;
+        public int paraGRNID { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
         public string paraSkipped { get; set; } = "";
         public int paraCompanyId { get; set; } = 0;
@@ -56,7 +57,7 @@ namespace ROMS.Model
         public DataTable ParaPurchase_Products { get; set; } = null;
         public string paraEinvoice { get; set; } = "";
         public string ParaPEToDate { get; set; } = "";
-        public string ParaPEFromDate { get; set; } = "";
-         
+        public string ParaPEFromDate { get; set; } = ""; 
+
     }
 }

@@ -239,7 +239,8 @@ namespace ROMS
             try
             {
                 skipValidation = true;
-                udfnclose();
+                udfnclose(); 
+                MainForm.objPUR_GRNDetailsList.udfnListLoad();
             }
             catch (Exception ex)
             {
@@ -1661,6 +1662,7 @@ namespace ROMS
                                     lvproduct.Items.Add(objList);
                                 } 
                                 lvproduct.Visible = true;
+                                lvproduct.BringToFront();
                                 lvproduct.Columns[0].Width = 100;
                                 lvproduct.Columns[3].Width = 50;
                                 if (VarSearchFlag == true)

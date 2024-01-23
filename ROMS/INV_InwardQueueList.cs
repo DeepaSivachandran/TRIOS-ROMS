@@ -90,7 +90,7 @@ namespace ROMS
                     MainForm.objINV_InwardPurchase.varRemarkFlag = 2;
                     MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern"].Value);
                     MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
-                    MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
+                   MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
                     MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
                     MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice Date"].Value);
                     MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice No."].Value);
@@ -324,7 +324,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtStockLocation.Focus();
+                    txtSupplier.Focus();
                 }
             }
             catch (Exception ex)
@@ -398,7 +398,10 @@ namespace ROMS
             try
             {
                 txtStockLocation.BackColor = Color.White;
-
+                if (txtStockLocation.Text.Trim() == "")
+                {
+                    lblStockLocationCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -548,6 +551,15 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Concern ID"].Visible = false;
                 DGV_SearchGrid.Columns["My Products"].Visible = false;
                 DGV_SearchGrid.Columns["Type ID"].Visible = false;
+                DGV_SearchGrid.Columns["Concern"].Width = 80;
+                DGV_SearchGrid.Columns["GRN Date"].Width = 100;
+                DGV_SearchGrid.Columns["GRN No."].Width = 80;
+                DGV_SearchGrid.Columns["Supplier"].Width = 250;
+                DGV_SearchGrid.Columns["Total Products in Invoice"].Width = 150;
+                ///   grdInwardQueueList.Columns["Created By"].Width = 110;
+                DGV_SearchGrid.Columns["Created On"].Width = 140;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 150;
+                DGV_SearchGrid.Columns["S.No."].Width = 60;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -652,6 +664,8 @@ namespace ROMS
                                 grdInwardQueueList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardQueueList.Columns["GRN No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardQueueList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdInwardQueueList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdInwardQueueList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardQueueList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInwardQueueList.Columns["Concern"].Width = 80;
                                 grdInwardQueueList.Columns["GRN Date"].Width = 100;
@@ -670,6 +684,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["Concern ID"].Visible = false;
                                 grdInwardQueueList.Columns["My Products"].Visible = false;
                                 grdInwardQueueList.Columns["Type ID"].Visible = false;
+                                grdInwardQueueList.Columns["Entry Date"].Visible = false;
                             }
                             else
                             {
@@ -944,6 +959,10 @@ namespace ROMS
             try
             {
                 txtProductName.BackColor = Color.White;
+                if (txtProductName.Text.Trim() == "")
+                {
+                    varPRID = 0;
+                }
             }
             catch (Exception ex)
             {
@@ -1372,6 +1391,11 @@ namespace ROMS
             try
             {
                 txtSupplier.BackColor = Color.White;
+                if (txtSupplier.Text.Trim() == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedule.Text = "0";
+                }
             }
             catch (Exception ex)
             {

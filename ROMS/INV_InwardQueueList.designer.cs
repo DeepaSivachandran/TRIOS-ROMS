@@ -149,10 +149,10 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.lblStockLocationCode);
             this.pnlinward.Controls.Add(this.lvProduct);
             this.pnlinward.Controls.Add(this.lvStockLocation);
             this.pnlinward.Controls.Add(this.LV_Supplier);
-            this.pnlinward.Controls.Add(this.lblStockLocationCode);
             this.pnlinward.Controls.Add(this.txtStockLocation);
             this.pnlinward.Controls.Add(this.grbFilterBy);
             this.pnlinward.Controls.Add(this.DGV_SearchGrid);
@@ -258,7 +258,7 @@
             // lblStockLocationCode
             // 
             this.lblStockLocationCode.AutoSize = true;
-            this.lblStockLocationCode.Location = new System.Drawing.Point(669, 310);
+            this.lblStockLocationCode.Location = new System.Drawing.Point(732, 79);
             this.lblStockLocationCode.Name = "lblStockLocationCode";
             this.lblStockLocationCode.Size = new System.Drawing.Size(16, 20);
             this.lblStockLocationCode.TabIndex = 111111138;

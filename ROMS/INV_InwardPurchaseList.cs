@@ -47,6 +47,7 @@ namespace ROMS
                 MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
                 //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
                 MainForm.objINV_InwardPurchase.varInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value);
+                MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value); //for remarks popup
                 MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_COMID"].Value);
                 MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_SLID"].Value);
                 MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPID"].Value);
@@ -56,12 +57,12 @@ namespace ROMS
                 MainForm.objINV_InwardPurchase.varRemarkFlag = 1;
                 MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Concern"].Value);
                 MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Location"].Value);
-                MainForm.objINV_InwardPurchase.dpInwardDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inward Date"].Value);
+                MainForm.objINV_InwardPurchase.dpInwardDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GIP_Date"].Value);
                 MainForm.objINV_InwardPurchase.txtInwardNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inward No."].Value);
-                //MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice Date"].Value);
-                //MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice No."].Value);
-                //MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher Date"].Value);
-                //MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher No."].Value);
+                MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice Date"].Value);
+                MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice No."].Value);
+                MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher Date"].Value);
+                MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher No."].Value);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 MainForm.objINV_InwardPurchase.Show();
@@ -302,7 +303,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtStockLocation.Focus();
+                    txtSupplier.Focus();
                 }
             }
             catch (Exception ex)
@@ -372,7 +373,10 @@ namespace ROMS
             try
             {
                 txtStockLocation.BackColor = Color.White;
-
+                if(txtStockLocation.Text.Trim()=="")
+                {
+                    lblStockLocationCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -429,6 +433,10 @@ namespace ROMS
             try
             {
                 txtProductName.BackColor = Color.White;
+                if(txtProductName.Text.Trim()=="")
+                {
+                    varPRID = 0;
+                }
             }
             catch (Exception ex)
             {
@@ -474,25 +482,6 @@ namespace ROMS
 
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
-
-                //DGV_SearchGrid.Columns["ID"].Visible = false;
-                //DGV_SearchGrid.Columns["ConcernID"].Visible = false;
-                //DGV_SearchGrid.Columns["LocationTypeID"].Visible = false;
-                //DGV_SearchGrid.Columns["StockApplicableID"].Visible = false;
-                //DGV_SearchGrid.Columns["GodownTypeID"].Visible = false;
-                //DGV_SearchGrid.Columns["StatusID"].Visible = false;
-                //DGV_SearchGrid.Columns["DefaultID"].Visible = false;
-                //DGV_SearchGrid.Columns["RKCreationID"].Visible = false;
-                //DGV_SearchGrid.Columns["RKGCreationID"].Visible = false;
-                //DGV_SearchGrid.Columns["S.No."].Width = 50;
-                //DGV_SearchGrid.Columns["Location Name in English"].Width = 200;
-                //DGV_SearchGrid.Columns["Location Name in Tamil"].Width = 200;
-                //DGV_SearchGrid.Columns["Rack Group Creation"].Width = 130;
-                //DGV_SearchGrid.Columns["Short Name"].Width = 100;
-                //DGV_SearchGrid.Columns["Stock Applicable"].Width = 110;
-                //DGV_SearchGrid.Columns["Status"].Width = 80;
-                //DGV_SearchGrid.Columns["Godown Type"].Width = 150;
-                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -616,8 +605,7 @@ namespace ROMS
                                 grdInwardList.Columns["GIP_SLID"].Visible = false;
                                 grdInwardList.Columns["SPID"].Visible = false;
                                 grdInwardList.Columns["GIPID"].Visible = false;
-                               
-                               
+                                grdInwardList.Columns["GIP_Date"].Visible = false;
                                 grdInwardList.Columns["SPSCID"].Visible = false;
                                 grdInwardList.Columns["Status ID"].Visible = false;
                             }
@@ -1535,6 +1523,11 @@ namespace ROMS
             try
             {
                 txtSupplier.BackColor = Color.White;
+                if(txtSupplier.Text.Trim()=="")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedule.Text = "0";
+                }
             }
             catch (Exception ex)
             {
