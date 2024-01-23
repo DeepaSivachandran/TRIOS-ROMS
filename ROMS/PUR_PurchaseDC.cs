@@ -280,6 +280,7 @@ namespace ROMS
                 {
                     this.Close();
                 }
+                MainForm.objPUR_PurchaseDCList.udfnList();
             }
             catch (Exception ex)
             {

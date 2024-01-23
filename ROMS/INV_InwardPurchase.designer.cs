@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -40,9 +40,6 @@
             this.btnRemarks = new System.Windows.Forms.Button();
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dpVoucherDate = new System.Windows.Forms.DateTimePicker();
-            this.dpInvoiceDate = new System.Windows.Forms.DateTimePicker();
-            this.dpGRNDate = new System.Windows.Forms.DateTimePicker();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.txtInchargeName = new System.Windows.Forms.TextBox();
@@ -78,6 +75,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epInwardPurchase = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dpGRNDate = new System.Windows.Forms.TextBox();
+            this.dpVoucherDate = new System.Windows.Forms.TextBox();
+            this.dpInvoiceDate = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
@@ -106,8 +106,9 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(212, 22);
-            this.tspHeader.Text = "Goods Inward From Purchase & GRN";
+            this.tspHeader.Size = new System.Drawing.Size(221, 22);
+            this.tspHeader.Text = "Goods Inward From Purchase && GRN";
+            this.tspHeader.Click += new System.EventHandler(this.TspHeader_Click);
             // 
             // pnlinward
             // 
@@ -178,32 +179,32 @@
             this.grdGrnlist.AllowUserToResizeRows = false;
             this.grdGrnlist.BackgroundColor = System.Drawing.Color.White;
             this.grdGrnlist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grdGrnlist.ColumnHeadersHeight = 30;
             this.grdGrnlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle8;
             this.grdGrnlist.EnableHeadersVisualStyles = false;
             this.grdGrnlist.GridColor = System.Drawing.Color.White;
             this.grdGrnlist.Location = new System.Drawing.Point(3, 122);
             this.grdGrnlist.Name = "grdGrnlist";
             this.grdGrnlist.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdGrnlist.RowTemplate.Height = 25;
             this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnlist.Size = new System.Drawing.Size(1338, 449);
@@ -215,8 +216,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dpVoucherDate);
             this.groupBox1.Controls.Add(this.dpInvoiceDate);
+            this.groupBox1.Controls.Add(this.dpVoucherDate);
             this.groupBox1.Controls.Add(this.dpGRNDate);
             this.groupBox1.Controls.Add(this.txtStockLocation);
             this.groupBox1.Controls.Add(this.textBox10);
@@ -243,36 +244,6 @@
             this.groupBox1.Size = new System.Drawing.Size(1039, 109);
             this.groupBox1.TabIndex = 958826;
             this.groupBox1.TabStop = false;
-            // 
-            // dpVoucherDate
-            // 
-            this.dpVoucherDate.CustomFormat = "dd/MM/yyyy";
-            this.dpVoucherDate.Enabled = false;
-            this.dpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpVoucherDate.Location = new System.Drawing.Point(709, 21);
-            this.dpVoucherDate.Name = "dpVoucherDate";
-            this.dpVoucherDate.Size = new System.Drawing.Size(123, 25);
-            this.dpVoucherDate.TabIndex = 1111222;
-            // 
-            // dpInvoiceDate
-            // 
-            this.dpInvoiceDate.CustomFormat = "dd/MM/yyyy";
-            this.dpInvoiceDate.Enabled = false;
-            this.dpInvoiceDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpInvoiceDate.Location = new System.Drawing.Point(912, 21);
-            this.dpInvoiceDate.Name = "dpInvoiceDate";
-            this.dpInvoiceDate.Size = new System.Drawing.Size(123, 25);
-            this.dpInvoiceDate.TabIndex = 1111221;
-            // 
-            // dpGRNDate
-            // 
-            this.dpGRNDate.CustomFormat = "dd/MM/yyyy";
-            this.dpGRNDate.Enabled = false;
-            this.dpGRNDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpGRNDate.Location = new System.Drawing.Point(506, 21);
-            this.dpGRNDate.Name = "dpGRNDate";
-            this.dpGRNDate.Size = new System.Drawing.Size(123, 25);
-            this.dpGRNDate.TabIndex = 1111220;
             // 
             // txtStockLocation
             // 
@@ -673,6 +644,36 @@
             // 
             this.epInwardPurchase.ContainerControl = this;
             // 
+            // dpGRNDate
+            // 
+            this.dpGRNDate.Enabled = false;
+            this.dpGRNDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.dpGRNDate.Location = new System.Drawing.Point(506, 21);
+            this.dpGRNDate.Name = "dpGRNDate";
+            this.dpGRNDate.ReadOnly = true;
+            this.dpGRNDate.Size = new System.Drawing.Size(123, 25);
+            this.dpGRNDate.TabIndex = 1111223;
+            // 
+            // dpVoucherDate
+            // 
+            this.dpVoucherDate.Enabled = false;
+            this.dpVoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.dpVoucherDate.Location = new System.Drawing.Point(709, 21);
+            this.dpVoucherDate.Name = "dpVoucherDate";
+            this.dpVoucherDate.ReadOnly = true;
+            this.dpVoucherDate.Size = new System.Drawing.Size(123, 25);
+            this.dpVoucherDate.TabIndex = 1111224;
+            // 
+            // dpInvoiceDate
+            // 
+            this.dpInvoiceDate.Enabled = false;
+            this.dpInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.dpInvoiceDate.Location = new System.Drawing.Point(912, 21);
+            this.dpInvoiceDate.Name = "dpInvoiceDate";
+            this.dpInvoiceDate.ReadOnly = true;
+            this.dpInvoiceDate.Size = new System.Drawing.Size(123, 25);
+            this.dpInvoiceDate.TabIndex = 1111225;
+            // 
             // INV_InwardPurchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -748,10 +749,10 @@
         public System.Windows.Forms.TextBox txtGRNNo;
         public System.Windows.Forms.TextBox txtInchargeName;
         public System.Windows.Forms.TextBox txtStockLocation;
-        public System.Windows.Forms.DateTimePicker dpGRNDate;
-        public System.Windows.Forms.DateTimePicker dpVoucherDate;
-        public System.Windows.Forms.DateTimePicker dpInvoiceDate;
         private System.Windows.Forms.CheckBox chkCompleted;
         private System.Windows.Forms.ErrorProvider epInwardPurchase;
+        public System.Windows.Forms.TextBox dpInvoiceDate;
+        public System.Windows.Forms.TextBox dpVoucherDate;
+        public System.Windows.Forms.TextBox dpGRNDate;
     }
 }
