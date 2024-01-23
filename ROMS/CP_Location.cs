@@ -112,7 +112,10 @@ namespace ROMS
             try
             {
                 udfnclose();
-                MainForm.objCP_LocationList.udfnList();
+                if (varFormFlag == 0)
+                {
+                    MainForm.objCP_LocationList.udfnList();
+                }
             }
             catch (Exception ex)
             {

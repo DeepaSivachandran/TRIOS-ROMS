@@ -290,7 +290,10 @@ namespace ROMS
             try
             {
                 udfnclose();
-                MainForm.objCP_UserCategoryList.udfnList();
+                if (varmastertype == 0)
+                {
+                    MainForm.objCP_UserCategoryList.udfnList();
+                }
             }
             catch (Exception ex)
             {

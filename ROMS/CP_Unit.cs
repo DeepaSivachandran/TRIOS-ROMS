@@ -310,7 +310,10 @@ namespace ROMS
             try
             {
                 udfnclose();
-                MainForm.objCP_Unitlist.udfnList();
+                if (varmastertype == 0)
+                {
+                    MainForm.objCP_Unitlist.udfnList();
+                }
             }
             catch (Exception ex)
             {

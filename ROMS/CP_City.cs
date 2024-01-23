@@ -260,7 +260,10 @@ namespace ROMS
             try
             {
                 udfnclose();
-                MainForm.objCP_Citylist.udfnList();
+                if (varmastertype == 0)
+                {
+                    MainForm.objCP_Citylist.udfnList();
+                }
             }
             catch (Exception ex)
             {

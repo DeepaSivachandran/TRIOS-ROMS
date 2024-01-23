@@ -572,7 +572,10 @@ namespace ROMS
             try
             {
                 udfnclose();
-                MainForm.objCP_SubGroupList.udfnList();
+                if (varmastertype == 0)
+                {
+                    MainForm.objCP_SubGroupList.udfnList();
+                }
             }
             catch (Exception ex)
             {
