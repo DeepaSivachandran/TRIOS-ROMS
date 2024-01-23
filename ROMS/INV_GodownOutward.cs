@@ -2243,6 +2243,7 @@ namespace ROMS
                         this.ActiveControl = btnClose;
                         epGoodsOutward.Clear();
                         grdGoodsOutward.ReadOnly = true;
+                        grdGoodsOutward.Columns["clmRemove"].Visible = false;
                         udfntooltiphide();
                         txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
                         txtProduct.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
