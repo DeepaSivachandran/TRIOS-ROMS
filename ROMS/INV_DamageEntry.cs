@@ -1050,6 +1050,8 @@ namespace ROMS
                 }
                 else
                 {
+                    string Qty = objValidation.udfnDecimal((txtQuantity.Text).Trim(), varDecimal);
+                    txtQuantity.Text = Qty;
                     txtQuantity.BackColor = Color.White;
                     epDamageEntry.Clear();
                 }

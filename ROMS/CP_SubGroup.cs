@@ -560,6 +560,7 @@ namespace ROMS
             try
             {
                 this.Close();
+                MainForm.objCP_SubGroupList.udfnList();
             }
             catch (Exception ex)
             {

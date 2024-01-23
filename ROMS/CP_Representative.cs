@@ -56,6 +56,7 @@ namespace ROMS
                 tpGroupNameinEnglish.Active = false; 
                 tpGroupNameinTamil.Active = false; 
                 this.Close();
+                MainForm.objCP_RepresentativeList.udfnlist();
             }
             catch (Exception ex)
             {

@@ -296,8 +296,8 @@ namespace ROMS
         {
             try
             {
-                
-                    this.Close(); 
+                this.Close();
+                MainForm.objCP_Unitlist.udfnList();
             }
             catch (Exception ex)
             {

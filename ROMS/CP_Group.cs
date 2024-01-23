@@ -52,7 +52,8 @@ namespace ROMS
         {
             try
             { 
-                this.Close(); 
+                this.Close();
+                MainForm.objCP_GroupList.udfnList();
             }
             catch (Exception ex)
             {

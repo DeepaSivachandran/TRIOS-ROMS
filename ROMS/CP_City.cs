@@ -247,7 +247,8 @@ namespace ROMS
         {
             try
             {
-                this.Close();   
+                this.Close();
+                MainForm.objCP_Citylist.udfnList();
             }
             catch (Exception ex)
             {
