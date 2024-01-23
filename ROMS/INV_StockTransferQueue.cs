@@ -202,10 +202,10 @@ namespace ROMS
         private void INV_StockTransferList_Load(object sender, EventArgs e)
         {
             udfnCmbConcern();
-            DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (6) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
-            objDataBind = null;
-            cmbStatus.SelectedValue = 0;
+            //DataBind objDataBind = new DataBind();
+            //objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (6) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+            //objDataBind = null;
+            //cmbStatus.SelectedValue = 0;
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);
@@ -315,6 +315,10 @@ namespace ROMS
                 {
                     lblProduct.Text = "0";
                 }
+                if (txtSLocation.Text == "")
+                {
+                    lblSLocation.Text = "0";
+                }
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -330,7 +334,7 @@ namespace ROMS
                 objTRNG_StockRequest.paraPRID = Convert.ToInt32(lblProduct.Text);
                 objTRNG_StockRequest.ParaSTFromDate = Convert.ToString(dpTrannsferFromDate.Text);
                 objTRNG_StockRequest.ParaSTToDate = Convert.ToString(dpTransferToDate.Text);
-                objTRNG_StockRequest.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRNG_StockRequest.paraSLID = Convert.ToInt32(lblSLocation.Text);
                 objDs = objspservice.udfnStockRequestList(objTRNG_StockRequest);
                 objspservice.CloseConnection();
                 if (objDs != null)
@@ -619,7 +623,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -777,7 +781,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(27,Convert.ToInt32(cmbConcern.SelectedValue),0,0,txtSLocation.Text,0,0,0,dpTrannsferFromDate.Text,dpTransferToDate.Text);
+                    objDs = objspdservice.udfnStockLocationList(11,Convert.ToInt32(cmbConcern.SelectedValue),0,0,txtSLocation.Text,0,0,0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1097,12 +1101,13 @@ namespace ROMS
                 if (txtProductNamePICode.Text.Length > 0)
                 {
                     MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 46;
+                    objMR_Product.paraViewType = 53;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.paraLocationId = Convert.ToInt32(lblSLocation.Text);
                     objMR_Product.paraProductName = txtProductNamePICode.Text;
                     objMR_Product.ParaFromDate = dpTrannsferFromDate.Text;
                     objMR_Product.ParaToDate =dpTransferToDate.Text;
+                    objMR_Product.paraId = 3;
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                     objspdservice.CloseConnection();
@@ -1178,7 +1183,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnProductEvent();
-                    cmbStatus.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -1351,63 +1356,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbStatus_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbStatus.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStatus_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbStatus.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TsbQue_Click(object sender, EventArgs e)
+        private void TsbTransferList_Click(object sender, EventArgs e)
         {
             try
             {
