@@ -793,6 +793,8 @@ namespace ROMS
                                                         varHeader = "Purchase Order";
                                                         objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[0].Name.ToString());
                                                         objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[1].Name.ToString());
+                                                        objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                                                        objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue), objBillreport.Subreports[1].Name.ToString());
                                                         objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
                                                         objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
                                                         objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
