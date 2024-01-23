@@ -228,6 +228,7 @@
             this.txtTAT.Text = " ";
             this.txtTAT.Enter += new System.EventHandler(this.TxtTAT_Enter);
             this.txtTAT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtTAT_KeyDown);
+            this.txtTAT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTAT_KeyPress);
             this.txtTAT.Leave += new System.EventHandler(this.TxtTAT_Leave);
             // 
             // textBox4

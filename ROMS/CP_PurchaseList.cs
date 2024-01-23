@@ -601,7 +601,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
-                DGV_SearchGrid.Columns["clmEdit"].Visible = false;
+                //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
