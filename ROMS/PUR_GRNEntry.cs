@@ -49,18 +49,18 @@ namespace ROMS
 
             try
             {
-                if (varCloseFlag == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
+                //if (varCloseFlag == 0)
+                //{
+                    //DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    //if (dialogResult == DialogResult.Yes)
+                    //{
                         this.Close();
-                    } 
-                }
-                else
-                {
-                    this.Close();
-                }
+                  //  } 
+                //}
+                //else
+                //{
+                  //  this.Close();
+                //}
             }
             catch (Exception ex)
             {
@@ -1349,7 +1349,7 @@ namespace ROMS
                                 {
                                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
-                                this.ActiveControl = txtSupplier;
+                                //this.ActiveControl = txtSupplier;
                             }
                         }
                     }
@@ -1833,26 +1833,19 @@ namespace ROMS
         {
             try
             {
-                //if (varCloseFlag == 0)
-                //{
-                //    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //    if (dialogResult == DialogResult.Yes)
-                //    {
-                //        e.Cancel = false;
-                //    }
-                //    else
-                //    {
-                //        e.Cancel = true;
-                //    }
-                //}
-                //else
-                //{
-                //    this.Close();
-                //}
-                //else
-                //{
-                //    this.Close();
-                //}
+                if (varCloseFlag == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+
+                }
             }
             catch (Exception ex)
             {
