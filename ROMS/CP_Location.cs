@@ -112,6 +112,7 @@ namespace ROMS
             try
             {
                 udfnclose();
+                MainForm.objCP_LocationList.udfnList();
             }
             catch (Exception ex)
             {
@@ -280,7 +281,6 @@ namespace ROMS
             try
             {
                 this.Close();
-                MainForm.objCP_LocationList.udfnList();
             }
             catch (Exception ex)
             {

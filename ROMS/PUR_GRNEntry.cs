@@ -175,8 +175,8 @@ namespace ROMS
                     }
                 }
 
-                //cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                cmbConcern.SelectedValue = 4;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                //cmbConcern.SelectedValue = 4;
             }
             catch (Exception ex)
             {

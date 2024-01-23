@@ -53,7 +53,6 @@ namespace ROMS
             try
             { 
                 this.Close();
-                MainForm.objCP_GroupList.udfnList();
             }
             catch (Exception ex)
             {
@@ -456,6 +455,7 @@ namespace ROMS
             try
             {
                 udfnclose();
+                MainForm.objCP_GroupList.udfnList();
             }
             catch (Exception ex)
             {

@@ -357,7 +357,6 @@ namespace ROMS
             try
             {
                 this.Close();
-                MainForm.objCP_RackList.udfnList();
             }
             catch (Exception ex)
             {
@@ -370,7 +369,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-                // MainForm.objCP_RackList.udfnList();
+                MainForm.objCP_RackList.udfnList();
             }
             catch (Exception ex)
             {
