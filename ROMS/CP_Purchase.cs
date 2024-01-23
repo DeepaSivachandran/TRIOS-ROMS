@@ -3756,8 +3756,8 @@ namespace ROMS
                         {
                             grdPurchaseList.Rows.Add(grdPurchaseList.Rows.Count + 1, "None",Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), 
                             Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]),Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Code"]),"",
-                            Convert.ToString(objDs.Tables[0].Rows[i]["POPR_TOTOrderQty"]),"","","","",Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]),"","","", 
-                            Convert.ToString(objDs.Tables[0].Rows[i]["Gstper"]),"","","", Convert.ToString(objDs.Tables[0].Rows[i]["POID"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["QTY"]),"","","","",Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]),"","","", 
+                            Convert.ToString(objDs.Tables[0].Rows[i]["Gstper"]),"","","", Convert.ToString(objDs.Tables[0].Rows[i]["ID"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]));
                         }
                     } 
