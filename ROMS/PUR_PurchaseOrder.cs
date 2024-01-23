@@ -63,10 +63,10 @@ namespace ROMS
                     }
                 }
                 udfnEditLoad();
-                DataService objDservice = new DataService();
-                string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
-                objDservice.CloseConnection();
-                dpPlanDate.Text = vardate;
+                //DataService objDservice = new DataService();
+                //string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
+                //objDservice.CloseConnection();
+                //dpPlanDate.Text = vardate;
                 //if (VarStatusId == 12)
                 //{
                 //    btnSave.Enabled = true;
@@ -87,7 +87,7 @@ namespace ROMS
                 {
                     btnSave.Enabled = true;
                 }
-                if (Currentsts == 38)
+                if (Currentsts == 38 || Currentsts == 51)
                 { 
                     gpissued.Enabled = false;
                     btnAdd.Enabled = false;
@@ -131,7 +131,6 @@ namespace ROMS
             finally
             {
                 lblPC.Text = grdsupplieradd.Rows.Count.ToString(); 
-                cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
             }
         }
         public void udfnEditLoad()
@@ -275,7 +274,7 @@ namespace ROMS
                 {
                     dpissuedateandtime.Enabled = false;
                     txtTurnAroundTime.Enabled = false;
-                    if (Currentsts == 38)
+                    if (Currentsts == 38 || Currentsts == 51)
                     {
                         grdsupplieradd.Columns["clmRemove"].Visible = false;
                         grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
@@ -395,6 +394,7 @@ namespace ROMS
                 }
             }
 
+            cmbConcern.SelectedValue = Convert.ToInt32(MainForm.pbDefaultComId);
             DataBind objDataBind = new DataBind();
             DataService objdservice = new DataService();
             objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=44 AND MSTID NOT IN (135,136) OR MSTID=-1", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
@@ -478,7 +478,8 @@ namespace ROMS
         {
             try
             {
-                udfnclose();
+                udfnclose(); 
+                MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
             }
             catch (Exception ex)
             {
@@ -767,7 +768,6 @@ namespace ROMS
                                                 MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                 this.ActiveControl = txtSupplier;
                                                 MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
-                                                udfnClear();
                                                 varModifiedFlag = 0;
                                                 varupdate = "1";
                                                 if (btnSave.Text != "Update")
@@ -818,6 +818,8 @@ namespace ROMS
                                                     finally
                                                     {
                                                     }
+
+                                                    udfnClear();
                                                     udfnclose();
                                                 }
                                                 else
@@ -2831,6 +2833,22 @@ namespace ROMS
             }
         }
 
+        private void TxtTurnAroundTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void Dpissuedateandtime_Enter(object sender, EventArgs e)
         {
 
@@ -3237,7 +3255,7 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "-")
                     {
-                        if (VarStatusId != 14 || VarStatusId != 33 || Currentsts != 38)
+                        if (VarStatusId != 14 || VarStatusId != 33 || Currentsts != 38 || Currentsts != 51)
                         {
                             switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                             {
@@ -3851,7 +3869,7 @@ namespace ROMS
                             totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
                             varFinalUnit = totalUnitqty;
-                            varFinalBulkUnit = totalBulkqty;
+                            varFinalBulkUnit = Math.Round(Convert.ToDecimal(totalBulkqty), 2, MidpointRounding.AwayFromZero);
                             varFinalTotalQty = totalOrderQty;
                             varFinalTotalKg = totalKgQty;
                         }
@@ -3892,7 +3910,7 @@ namespace ROMS
                             totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
                             varFinalUnit = totalUnitqty;
-                            varFinalBulkUnit = totalBulkqty;
+                            varFinalBulkUnit = Math.Round(Convert.ToDecimal(totalBulkqty), 2, MidpointRounding.AwayFromZero);
                             varFinalTotalQty = totalOrderQty;
                             varFinalTotalKg = totalKgQty;
                         }
@@ -3904,7 +3922,7 @@ namespace ROMS
                             totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
                             varFinalUnit = totalUnitqty;
-                            varFinalBulkUnit = totalBulkqty;
+                            varFinalBulkUnit = Math.Round(Convert.ToDecimal(totalBulkqty), 2, MidpointRounding.AwayFromZero);
                             varFinalTotalQty = totalOrderQty;
                             varFinalTotalKg = totalKgQty;
                         }
@@ -3977,7 +3995,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38)
+                        if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51)
                         {
 
                             DataGridView dataGridView = (DataGridView)sender;
@@ -4037,7 +4055,7 @@ namespace ROMS
             }
             finally
             {
-                if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38)
+                if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51)
                 {
                     grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
                     grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;
@@ -4125,7 +4143,12 @@ namespace ROMS
         {
             try
             {
-                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty")
+                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty")
+                {
+
+                }
+
+                if ( grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty")
                 { 
                     int varDecimal = Convert.ToInt32(grdsupplieradd.CurrentRow.Cells["clmUT_Decimal"].Value);
                     //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -4133,6 +4156,10 @@ namespace ROMS
                     //    e.Handled = true;  // Disallow the character
                     //}
                     TextBox textBox = (TextBox)sender;
+                    if (textBox.Text.Length >= 8 && !char.IsControl(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
                     if (varDecimal == 0)
                     {
                         if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -4394,7 +4421,7 @@ namespace ROMS
                                      Convert.ToString(objDs.Tables[3].Rows[i]["B.UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["T.UTID"]),"", 
                                      Convert.ToString(objDs.Tables[3].Rows[i]["UT_Decimal"])
                                      );
-                                    grdsupplieradd.Columns[10].ReadOnly = false;
+                                    grdsupplieradd.Columns[10].ReadOnly = true;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     Grdsupplieradd_DataBindingComplete(grdsupplieradd, args2);
                                 }

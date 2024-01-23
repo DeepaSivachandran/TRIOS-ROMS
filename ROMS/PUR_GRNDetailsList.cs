@@ -236,6 +236,7 @@ namespace ROMS
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
                             grdGRNList.Columns["STSID"].Visible = false;
+                            grdGRNList.Columns["Totallbl"].Visible = false;
                             grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
@@ -313,7 +314,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["clmPrint"].Visible = false;
-                DGV_SearchGrid.Columns["ClmEdit"].Visible = false;
+                DGV_SearchGrid.Columns["ClmEdit"].Visible = false; 
+                DGV_SearchGrid.Columns["Totallbl"].Visible = false;  
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -378,7 +380,7 @@ namespace ROMS
                             MainForm.objPUR_GRNEntry.ShowDialog();
                             break;
                         case "clmPrint":
-                            DialogResult result1 = DialogResult.Yes;
+                                        DialogResult result1 = DialogResult.Yes;
                             SPDataService objDServ = new SPDataService();
                             string varMessage = objDServ.udfnGetMessages(87);
                             objDServ.CloseConnection();
@@ -1107,6 +1109,7 @@ namespace ROMS
             try
             {
                 LV_Supplier.Visible = false;
+                lblschedleCode.Focus();
                 udfnListLoad();
             }
             catch (Exception ex)
@@ -1326,6 +1329,20 @@ namespace ROMS
 
         }
 
+        private void CmbOrdertype_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
         private void GrdGRNList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -1351,6 +1368,12 @@ namespace ROMS
                             cell.Style.BackColor = Color.LimeGreen;
                             cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                         }
+                        if (Convert.ToString(grdGRNList.Rows[i].Cells["Totallbl"].Value) == "0")
+                        { 
+                            DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"]; 
+                            cell2.Value = new Bitmap(1, 1);
+                            cell2.ReadOnly = true;
+                        } 
                     }
                 }
                 catch (Exception ex)

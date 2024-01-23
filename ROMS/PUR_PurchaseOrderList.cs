@@ -121,13 +121,12 @@ namespace ROMS
                             MainForm.objPUR_POIssuedDetails = new PUR_POIssuedDetails();
                             MainForm.objPUR_POIssuedDetails.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.Varordertype = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["SPSC_TAT"].Value.ToString());
-                            MainForm.objPUR_POIssuedDetails.varsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
+                            MainForm.objPUR_POIssuedDetails.varsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_CurrentSTSID"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.ShowDialog();
                             break;
                         case "clmPrint":
                             try
-                            {
-
+                            { 
                                 string POUpdatevalue = "0",POCOMID="0"; 
                                     POUpdatevalue = Convert.ToString((grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString())); 
                                     POCOMID = Convert.ToString((grdPurchaseorderlist.SelectedRows[0].Cells["COMID"].Value.ToString())); 
