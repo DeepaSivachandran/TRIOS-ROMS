@@ -344,8 +344,9 @@
             this.txtConvertBatch.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtConvertBatch.Size = new System.Drawing.Size(115, 28);
             this.txtConvertBatch.TabIndex = 15;
-            this.txtConvertBatch.Enter += new System.EventHandler(this.TxtBatchNo2_Enter);
-            this.txtConvertBatch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo2_KeyDown);
+            this.txtConvertBatch.Enter += new System.EventHandler(this.TxtConvertBatch_Enter);
+            this.txtConvertBatch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtConvertBatch_KeyDown);
+            this.txtConvertBatch.Leave += new System.EventHandler(this.TxtConvertBatch_Leave);
             // 
             // label2
             // 

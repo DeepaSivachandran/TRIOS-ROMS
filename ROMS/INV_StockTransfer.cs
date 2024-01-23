@@ -320,7 +320,7 @@ namespace ROMS
 
                                 if (Convert.ToDecimal(CurrentStockQty) < Convert.ToDecimal(TransferQty))
                                 {
-                                    ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
+                                    ((DataGridViewImageCell)grdStockTransfer.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); 
                                     //grdStockTransfer.Rows[i].Cells["clmRemove"].ReadOnly = true;
                                 }
                             }
@@ -1775,9 +1775,12 @@ namespace ROMS
                     varoriginator = "Stock Transfer Creation";
                     varType = 0;
                 }
-                else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == true)
+                else if (btnSave.Text == "Save" && chkStatus.Checked == true)
                 {
-                    varStatusID = 32;
+                    varStockRequestID = 0;
+                    varUpdateflag = 0;
+                    varoriginator = "Stock Transfer Creation";
+                    varType = 0;
                 }
                 else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == false)
                 {

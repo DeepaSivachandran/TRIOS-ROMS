@@ -1772,8 +1772,8 @@ namespace ROMS
                                 lvproduct.Columns[0].Width = 0;
                                 lvproduct.Columns[1].Width = 100;
                                 lvproduct.Columns[2].Width = 0;
-                                lvproduct.Columns[3].Width = 270;
-                                lvproduct.Columns[4].Width = 270;
+                                lvproduct.Columns[3].Width = 0;
+                                lvproduct.Columns[4].Width = 0;
                                 lvproduct.Columns[5].Width = 70;
                                 lvproduct.Columns[6].Width = 60;
                                 lvproduct.Columns[7].Width = 70;
