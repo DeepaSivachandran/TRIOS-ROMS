@@ -363,6 +363,7 @@ namespace ROMS
                             grdStockTransfer.Columns["SLID"].Visible = false;
                             grdStockTransfer.Columns["ConcernID"].Visible = false;
                             grdStockTransfer.Columns["StatusID"].Visible = false;
+                            grdStockTransfer.Columns["Product STSID"].Visible = false;
                             grdStockTransfer.Columns["STRID"].Visible = false;
                             grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["Transfer Qty"].Visible = false;
@@ -424,6 +425,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["STRID"].Visible = false;
+                grdStockTransfer.Columns["Product STSID"].Visible = false;
                 grdStockTransfer.Columns["Transfer Qty"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Status"].Width = 120;
@@ -1466,7 +1468,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 40 || MainForm.objINV_Inward.varSTSID==42)
+                if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 40 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value)>0)
                 {
                     tsbDelete.Visible = false;
                     tssQueue.Visible = false;
