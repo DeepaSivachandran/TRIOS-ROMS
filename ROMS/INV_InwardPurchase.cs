@@ -577,6 +577,14 @@ namespace ROMS
                 {
                     this.Close();
                 }
+                if (varEditFlag == 0)
+                {
+                    MainForm.objINV_InwardQueueList.udfnList();
+                }
+                else
+                {
+                    MainForm.objINV_InwardPurchaseList.udfnList();
+                }
             }
             catch (Exception ex)
             {
