@@ -35,9 +35,7 @@ namespace ROMS
 
                 MainForm.objINV_GodownOutward = new INV_GodownOutward(); 
                 MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
-
                 MainForm.objINV_GodownOutward.Show();
-
             }
             catch (Exception ex)
             {
@@ -97,12 +95,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         } 
-
-
-        private void CP_UserList_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
         private void udfnSearchGridHead()
         {
             try
@@ -171,12 +163,20 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
                 }
             }
             catch (Exception ex)
@@ -185,7 +185,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void cmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -208,7 +207,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dtpOutwardDate2.Focus();
+                    dtpOutwardToDate.Focus();
                 }
             }
             catch (Exception ex)
@@ -217,24 +216,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DtpOutwardDate2_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtStockLocation.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-
         private void TxtProductName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -266,39 +247,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void BtnView_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                //    if (e.KeyCode == Keys.Enter)
-                //    {
-                //        btnExport.Focus();
-                //    }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnExport_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                //    if (e.KeyCode == Keys.Enter)
-                //    {
-                //        cmbConcern.Focus();
-                //    }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -324,24 +272,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DtpOutwardDate2_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                dtpOutwardDate2.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TxtProductName_Enter(object sender, EventArgs e)
         {
             try
             {
+                lvSLocation.Visible = false;
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -350,13 +285,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
         private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
@@ -370,8 +298,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void TxtProductName_Leave(object sender, EventArgs e)
         {
             try
@@ -385,7 +311,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -446,7 +371,7 @@ namespace ROMS
                 objTRNG_GoodsOutward.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRNG_GoodsOutward.ParaCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRNG_GoodsOutward.paraFromDate = dtpOutwardDate.Text;
-                objTRNG_GoodsOutward.paraToDate = dtpOutwardDate2.Text;
+                objTRNG_GoodsOutward.paraToDate = dtpOutwardToDate.Text;
                 objTRNG_GoodsOutward.paraSLID = Convert.ToInt32(varStockLocationId);
                 objTRNG_GoodsOutward.ParaGOId = Convert.ToInt32(varGOID);
                 objTRNG_GoodsOutward.paraPRID = Convert.ToInt32(varPRID);
@@ -559,13 +484,13 @@ namespace ROMS
                 if (objDS.Tables[0].Rows.Count > 0)
                 {
                     DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dtpOutwardDate2.MinDate = varDate;
+                    dtpOutwardToDate.MinDate = varDate;
                     dtpOutwardDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
                 }
                 objspservice.CloseConnection();                
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
-                dtpOutwardDate2.MaxDate = MainForm.pbCurrentDate;
+                dtpOutwardToDate.MaxDate = MainForm.pbCurrentDate;
                 cmbConcern.SelectedValue = 1;
                 this.ActiveControl = cmbConcern;
                 udfnList();
@@ -607,12 +532,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbConcern_ControlAdded(object sender, ControlEventArgs e)
-        {
-
-        }
-
         private void BtnView_Click(object sender, EventArgs e)
         {
             try
@@ -641,7 +560,7 @@ namespace ROMS
                     objMR_Product.paraLocationId = Convert.ToInt32(varStockLocationId);
                     objMR_Product.paraProductName = txtProductName.Text;
                     objMR_Product.ParaFromDate = dtpOutwardDate.Text;
-                    objMR_Product.ParaToDate = dtpOutwardDate2.Text;
+                    objMR_Product.ParaToDate = dtpOutwardToDate.Text;
                     objMR_Product.paraId = 1;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
@@ -699,8 +618,6 @@ namespace ROMS
 
             }
         }
-
-
         private void LvProduct_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -732,7 +649,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnProductEvent()
         {
             try
@@ -755,33 +671,11 @@ namespace ROMS
                 lvProduct.Visible = false;
             }
         }
-
-        private void GrdUserList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //if (e.RowIndex == -1)
-                //{
-                //    return;
-                //}
-                //udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void GrdUserList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void TxtStockLocation_Enter(object sender, EventArgs e)
         {
             try
             {
+                lvProduct.Visible = false;
                 txtStockLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -863,7 +757,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text, 0, 0, 0, dtpOutwardDate.Text, dtpOutwardDate2.Text);
+                    objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text, 0, 0, 0, dtpOutwardDate.Text, dtpOutwardToDate.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -962,7 +856,7 @@ namespace ROMS
             try
             {
                 DateTime varmindate = DateTime.ParseExact(dtpOutwardDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dtpOutwardDate2.MinDate = varmindate;
+                dtpOutwardToDate.MinDate = varmindate;
             }
             catch (Exception ex)
             {
@@ -983,20 +877,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DtpOutwardDate2_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                dtpOutwardDate2.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1210,7 +1090,7 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "Concern" || col.Name == "Outward Date" || col.Name == "Outward No." || col.Name == "Stock Location" || col.Name == "Transaction Type" || col.Name == "Total Products")
+                            if (col.Name == "Concern" || col.Name == "Outward Date" || col.Name == "Outward No." || col.Name == "Stock Location" || col.Name == "Transaction Type" || col.Name == "Total Products" )
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
@@ -1222,7 +1102,11 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            
+                            if (col.Name == "Created On" || col.Name == "Status")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+
                             if (col.Name == "Total Products")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
@@ -1285,7 +1169,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdUserList_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -1404,7 +1287,6 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void GrdUserList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -1439,26 +1321,12 @@ namespace ROMS
                 grdOutwardList.ClearSelection();
             }
         }
-
-        private void Lbloutwarddate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmbConcern_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GrdOutwardList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void CmbStatus_Enter(object sender, EventArgs e)
         {
             try
             {
+                lvSLocation.Visible = false;
+                lvProduct.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1486,20 +1354,19 @@ namespace ROMS
 
         private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
         {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void CmbStatus_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmbStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmbStatus_Leave_1(object sender, EventArgs e)
         {
             try
             {
@@ -1512,7 +1379,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try
@@ -1545,11 +1411,52 @@ namespace ROMS
             }
         }
 
-        private void BtnExport_Leave(object sender, EventArgs e)
+        private void DtpOutwardToDate_Enter(object sender, EventArgs e)
         {
             try
             {
-                
+                dtpOutwardToDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }  
+        }
+
+        private void DtpOutwardToDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtStockLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DtpOutwardToDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dtpOutwardToDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {   
                 btnExport.BackColor = Color.Transparent;
             }
             catch (Exception ex)
@@ -1558,25 +1465,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void CmbStatus_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void LvProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

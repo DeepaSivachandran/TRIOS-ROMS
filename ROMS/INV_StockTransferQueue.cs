@@ -62,12 +62,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         } 
-        private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
-        {
-
-        }
-
-     
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (lblNoRecordsFound.Visible == false)
@@ -163,7 +157,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void INV_StockTransferList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -592,6 +585,7 @@ namespace ROMS
         {
             try
             {
+                lvSLocation.Visible = false;
                 txtProductNamePICode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -832,10 +826,17 @@ namespace ROMS
         }
         private void DpTrannsferFromDate_ValueChanged(object sender, EventArgs e)
         {
-            DateTime varmindate = DateTime.ParseExact(dpTrannsferFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            dpTransferToDate.MinDate = varmindate;
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpTrannsferFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpTransferToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-
         private void GrdStockTransfer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -951,28 +952,12 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
-                //{
-                //    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "21")
-                //    {
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //    else
-                //    {
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                //        grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //}
+                grdStockTransfer.ClearSelection();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdStockTransfer.ClearSelection();
             }
         }
 
