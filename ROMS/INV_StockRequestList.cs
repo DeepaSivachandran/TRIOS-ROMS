@@ -73,7 +73,7 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        if (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 29)
+                        if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value)==0 && Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 29))
                         {
                             SPDataService objspdservice = new SPDataService();
                             result = "";
@@ -735,7 +735,7 @@ namespace ROMS
                             grdStockRequestList.Columns["ConcernID"].Visible = false;
                             grdStockRequestList.Columns["StatusID"].Visible = false;
                             grdStockRequestList.Columns["SRQID"].Visible = false;
-                            grdStockRequestList.Columns["Received Qty"].Width = 100;
+                            grdStockRequestList.Columns["Received Qty"].Visible = false;
                             grdStockRequestList.Columns["S.No."].Width = 50;
                             grdStockRequestList.Columns["Status"].Width = 120;
                             grdStockRequestList.Columns["Created By"].Width = 100;
@@ -791,7 +791,7 @@ namespace ROMS
                 DGV__SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV__SearchGrid.Columns["StatusID"].Visible = false;
                 DGV__SearchGrid.Columns["SRQID"].Visible = false;
-                DGV__SearchGrid.Columns["Received Qty"].Width = 100;
+                DGV__SearchGrid.Columns["Received Qty"].Visible = false;
                 DGV__SearchGrid.Columns["S.No."].Width = 50;
                 DGV__SearchGrid.Columns["Status"].Width = 80;
                 DGV__SearchGrid.Columns["Created By"].Width = 100; DGV__SearchGrid.ScrollBars = ScrollBars.Both;
