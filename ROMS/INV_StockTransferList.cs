@@ -365,6 +365,7 @@ namespace ROMS
                             grdStockTransfer.Columns["StatusID"].Visible = false;
                             grdStockTransfer.Columns["STRID"].Visible = false;
                             grdStockTransfer.Columns["SRQID"].Visible = false;
+                            grdStockTransfer.Columns["Transfer Qty"].Visible = false;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["Status"].Width = 120;
                             grdStockTransfer.Columns["Source"].Width = 120;
@@ -423,6 +424,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["STRID"].Visible = false;
+                grdStockTransfer.Columns["Transfer Qty"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Status"].Width = 120;
                 DGV_SearchGrid.Columns["Source"].Width = 120;
@@ -941,43 +943,33 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 32)
+                        SPDataService objDser = new SPDataService();
+                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 0, 0, 0, 0);
+                        objDser.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
                         {
-                            SPDataService objDser = new SPDataService();
-                            string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 0, 0, 0, 0);
-                            objDser.CloseConnection();
-                            if (varResult.Split('~')[0] == "3")
+                            if (varResult.Split('~')[1] == "1")
                             {
-                                if (varResult.Split('~')[1] == "1")
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
                                 {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    varUserID = MainForm.objCP_Verify.varUserId;
-                                    if (MainForm.objCP_Verify.flag == 1)
+                                    objDser = new SPDataService();
+                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 1, 0, 0, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value.ToString()));
+                                    objDser.CloseConnection();
+                                    if (varResult.Split('~')[0] == "3")
                                     {
-                                        objDser = new SPDataService();
-                                        varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 1, 0, 0, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value.ToString()));
-                                        objDser.CloseConnection();
-                                        if (varResult.Split('~')[0] == "3")
-                                        {
-                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            udfnList();
-                                        }
-                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
                                     }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                            else if (varResult.Split('~')[0] == "4")
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
                         }
-                        else 
+                        else if (varResult.Split('~')[0] == "4")
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(6);
-                            objDServ.CloseConnection();
-                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -1463,6 +1455,39 @@ namespace ROMS
                 MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
                 MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
                 MainForm.objINV_StockTransferQueue.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDeleteHide()
+        {
+            try
+            {
+                if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 40 || MainForm.objINV_Inward.varSTSID==42)
+                {
+                    tsbDelete.Visible = false;
+                    tssQueue.Visible = false;
+                }
+                else
+                {
+                    tsbDelete.Visible = true;
+                    tssQueue.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdStockTransfer_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
             }
             catch (Exception ex)
             {
