@@ -931,6 +931,8 @@ namespace ROMS
                 }
                 else
                 {
+                    string Qty = objValidation.udfnDecimal((txtActualQty.Text).Trim(), varDecimal);
+                    txtActualQty.Text = Qty;
                     epGoodsInward.Clear();
                     txtActualQty.BackColor = Color.White;
                     tpQuantity.Active = false;
@@ -1993,20 +1995,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void Lvproduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TxtRack_Leave(object sender, EventArgs e)
         {
             try
@@ -2034,7 +2022,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtRemark_Leave(object sender, EventArgs e)
         {
             try
@@ -2089,7 +2076,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DpInwardDate_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -2443,7 +2429,6 @@ namespace ROMS
                             }
                         }
                     }
-                    //varPRID = "0";
                 }
 
                 if (blnErrorFlag == false && pbDateflag == 0)
@@ -2476,7 +2461,6 @@ namespace ROMS
                 }
             }
         }
-
         private void TxtYear_TextChanged(object sender, EventArgs e)
         {
             try

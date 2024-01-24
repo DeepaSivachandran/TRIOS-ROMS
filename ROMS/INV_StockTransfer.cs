@@ -2009,11 +2009,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void INV_StockTransfer_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
         private void DpTrannsferDate_Enter(object sender, EventArgs e)
         {
             try
@@ -2280,7 +2275,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ChkStatus_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -2300,7 +2294,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ChkStatus_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2316,7 +2309,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdStockTransfer_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -2351,7 +2343,6 @@ namespace ROMS
 
             }
         } 
-
         private void GrdStockTransfer_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try

@@ -53,9 +53,9 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvSLocation = new System.Windows.Forms.ListView();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -300,12 +300,6 @@
             this.columnHeader2.Text = "Quantity";
             this.columnHeader2.Width = 80;
             // 
-            // columnHeader3
-            // 
-            this.columnHeader3.DisplayIndex = 8;
-            this.columnHeader3.Text = "Unit";
-            this.columnHeader3.Width = 80;
-            // 
             // columnHeader8
             // 
             this.columnHeader8.DisplayIndex = 10;
@@ -316,6 +310,12 @@
             // 
             this.columnHeader9.DisplayIndex = 11;
             this.columnHeader9.Width = 0;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.DisplayIndex = 8;
+            this.columnHeader3.Text = "Unit";
+            this.columnHeader3.Width = 80;
             // 
             // columnHeader10
             // 
@@ -1071,7 +1071,6 @@
             this.Name = "INV_StockTransfer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock Transfer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.INV_StockTransfer_FormClosing);
             this.Load += new System.EventHandler(this.INV_StockTransfer_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_StockTransfer_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).EndInit();
