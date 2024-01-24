@@ -246,7 +246,7 @@ namespace ROMS
                     {
                         MainForm.objPUR_PurchaseDC.editFlag = 1;
                     }
-                    else if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value.ToString()) == 34)
+                    else //else if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value.ToString()) == 34)
                     {
                         MainForm.objPUR_PurchaseDC.editFlag = 2;
                     }
