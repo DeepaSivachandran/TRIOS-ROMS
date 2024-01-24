@@ -17,7 +17,7 @@ namespace ROMS
         DataError objError;
         public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0,varStausId=0;
         public int varPurchaseID = 0, varID = 0, varGRNPurchaseFlag = 0, varCloseFlag = 0, varTypeID = 0, varRemarkFlag = 0;
-        public string varRemarkCount="";
+        public int varRemarkCount=0;
         DataTable dtInwardPurchase = new DataTable();
         public INV_InwardPurchase()
         {
@@ -36,7 +36,7 @@ namespace ROMS
                 MainForm.objINV_InwardQueueList_Remarks.varRemarkFlag = varRemarkFlag;
                 MainForm.objINV_InwardQueueList_Remarks.varFlag = varGRNPurchaseFlag;
                 MainForm.objINV_InwardQueueList_Remarks.udfnRemarkList();
-                if (varRemarkCount == "")
+                if (varRemarkCount == 0)
                 {
                     btnRemarks.Enabled = false;
                 }
@@ -256,7 +256,7 @@ namespace ROMS
                     dtInwardPurchase.Rows.Clear();
                     for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                     {
-                        decimal varShopQty = 0,varReceivedty=0,varRackID=0;
+                        decimal varShopQty = 0,varReceivedty=0,varRackID=0,varRackCount=0;
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["Shop Qty"].Value)=="")
                         { varShopQty = 0; }
                         else { varShopQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Shop Qty"].Value); }
@@ -288,15 +288,25 @@ namespace ROMS
                             grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         }
                         varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
-                        if (varRackID==-1)
+                        varRackCount = Convert.ToInt32(grdGrnlist.Rows[i].Cells["RackCount"].Value);
+                        if (varRackCount != 0)
+                        {
+                            if(Convert.ToString(grdGrnlist.Rows[i].Cells["Rack"].Value)=="")
+                            {
+                                grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
+                                varErrorFlag = false;
+                            }
+                            else
+                            {
+                                grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            }
+                        }
+                        if (varRackID == -1)
                         {
                             grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
                             varErrorFlag = false;
                         }
-                        else
-                        {
-                            grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                        }
+                        
                     }
                     if (varErrorFlag == true )
                     {
@@ -656,6 +666,7 @@ namespace ROMS
                                 grdGrnlist.Columns["Unit ID"].Visible = false;
                                 grdGrnlist.Columns["Location ID"].Visible = false;
                                 grdGrnlist.Columns["Rack ID"].Visible = false;
+                                grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
                                 if (varGRNPurchaseFlag == 2)  //from  purchase
