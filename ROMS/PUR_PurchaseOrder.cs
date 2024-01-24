@@ -1218,16 +1218,16 @@ namespace ROMS
                     }
                     else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[i].Cells["clmMXSQ"].Value) != "-")
                     {
-                        int stockval = 0;
+                        decimal stockval = 0;
                         if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmstock"].Value) == "-" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmstock"].Value) == "")
                         {
                             stockval = 0;
                         }
                         else
                         {
-                            stockval = Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmstock"].Value);
+                            stockval = Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmstock"].Value);
                         }
-                        if (stockval < Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value))
+                        if (stockval < Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value))
                         {
                             orderqty = 0;
                             varRecqty = -1;
@@ -1290,7 +1290,7 @@ namespace ROMS
                             objPurchaseOrder.Rows.Add(Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value), Convert.ToInt64(grdsupplieradd.Rows[i].Cells["clmMSQ"].Value)
                             , Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmreorderqty"].Value), bulk, Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmflag"].Value), Convert.ToInt32(lblschedule.Text),
                             Convert.ToInt32(grdsupplieradd.Rows[i].Cells["UTID"].Value), Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmeditflag"].Value),
-                            Convert.ToDouble(unit), Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value),
+                            Convert.ToDouble(unit), Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value),
                             Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmtotalkg"].Value), Convert.ToInt32(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value),
                             Convert.ToInt32(grdsupplieradd.Rows[i].Cells["QTID"].Value), Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmUPP"].Value),
                             Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmNettWeight"].Value),

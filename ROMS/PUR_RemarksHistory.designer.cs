@@ -32,6 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_RemarksHistory));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlStockRequest = new System.Windows.Forms.Panel();
+            this.txtSRCreatedOn = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtRequestCreated = new System.Windows.Forms.Label();
+            this.lblStockRequest = new System.Windows.Forms.Label();
+            this.lblSRRemarks = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -48,18 +54,12 @@
             this.txtCreatedby = new System.Windows.Forms.Label();
             this.txtSTTable = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.Label();
-            this.pnlStockRequest = new System.Windows.Forms.Panel();
-            this.txtSRCreatedOn = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtRequestCreated = new System.Windows.Forms.Label();
-            this.lblStockRequest = new System.Windows.Forms.Label();
-            this.lblSRRemarks = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.panel1.SuspendLayout();
+            this.pnlStockRequest.SuspendLayout();
             this.panel5.SuspendLayout();
             this.pnlGoodsInward.SuspendLayout();
             this.pnlStockTransfer.SuspendLayout();
-            this.pnlStockRequest.SuspendLayout();
             this.SuspendLayout();
             // 
             // errUnit
@@ -78,6 +78,71 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(426, 235);
             this.panel1.TabIndex = 0;
+            // 
+            // pnlStockRequest
+            // 
+            this.pnlStockRequest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.pnlStockRequest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlStockRequest.Controls.Add(this.txtSRCreatedOn);
+            this.pnlStockRequest.Controls.Add(this.label6);
+            this.pnlStockRequest.Controls.Add(this.txtRequestCreated);
+            this.pnlStockRequest.Controls.Add(this.lblStockRequest);
+            this.pnlStockRequest.Controls.Add(this.lblSRRemarks);
+            this.pnlStockRequest.Location = new System.Drawing.Point(9, 154);
+            this.pnlStockRequest.Name = "pnlStockRequest";
+            this.pnlStockRequest.Size = new System.Drawing.Size(406, 58);
+            this.pnlStockRequest.TabIndex = 5;
+            // 
+            // txtSRCreatedOn
+            // 
+            this.txtSRCreatedOn.AutoSize = true;
+            this.txtSRCreatedOn.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSRCreatedOn.Location = new System.Drawing.Point(297, 5);
+            this.txtSRCreatedOn.Name = "txtSRCreatedOn";
+            this.txtSRCreatedOn.Size = new System.Drawing.Size(94, 15);
+            this.txtSRCreatedOn.TabIndex = 13;
+            this.txtSRCreatedOn.Text = "25/07/2023 01:02 PM";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(282, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(17, 15);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "@";
+            // 
+            // txtRequestCreated
+            // 
+            this.txtRequestCreated.AutoSize = true;
+            this.txtRequestCreated.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRequestCreated.Location = new System.Drawing.Point(217, 5);
+            this.txtRequestCreated.Name = "txtRequestCreated";
+            this.txtRequestCreated.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtRequestCreated.Size = new System.Drawing.Size(31, 15);
+            this.txtRequestCreated.TabIndex = 11;
+            this.txtRequestCreated.Text = "User1";
+            // 
+            // lblStockRequest
+            // 
+            this.lblStockRequest.AutoSize = true;
+            this.lblStockRequest.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStockRequest.Location = new System.Drawing.Point(4, 5);
+            this.lblStockRequest.Name = "lblStockRequest";
+            this.lblStockRequest.Size = new System.Drawing.Size(66, 15);
+            this.lblStockRequest.TabIndex = 7;
+            this.lblStockRequest.Text = "Stock Request";
+            // 
+            // lblSRRemarks
+            // 
+            this.lblSRRemarks.AutoSize = true;
+            this.lblSRRemarks.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSRRemarks.Location = new System.Drawing.Point(4, 26);
+            this.lblSRRemarks.Name = "lblSRRemarks";
+            this.lblSRRemarks.Size = new System.Drawing.Size(190, 20);
+            this.lblSRRemarks.TabIndex = 5;
+            this.lblSRRemarks.Text = "MRP Corrected. Please check now";
             // 
             // panel5
             // 
@@ -131,7 +196,7 @@
             this.pnlGoodsInward.Controls.Add(this.txtGICreatedOn);
             this.pnlGoodsInward.Controls.Add(this.txtGITable);
             this.pnlGoodsInward.Controls.Add(this.txtGIRemarks);
-            this.pnlGoodsInward.Location = new System.Drawing.Point(9, 91);
+            this.pnlGoodsInward.Location = new System.Drawing.Point(9, 88);
             this.pnlGoodsInward.Name = "pnlGoodsInward";
             this.pnlGoodsInward.Size = new System.Drawing.Size(406, 58);
             this.pnlGoodsInward.TabIndex = 2;
@@ -197,7 +262,7 @@
             this.pnlStockTransfer.Controls.Add(this.txtCreatedby);
             this.pnlStockTransfer.Controls.Add(this.txtSTTable);
             this.pnlStockTransfer.Controls.Add(this.txtRemarks);
-            this.pnlStockTransfer.Location = new System.Drawing.Point(9, 18);
+            this.pnlStockTransfer.Location = new System.Drawing.Point(9, 22);
             this.pnlStockTransfer.Name = "pnlStockTransfer";
             this.pnlStockTransfer.Size = new System.Drawing.Size(406, 58);
             this.pnlStockTransfer.TabIndex = 0;
@@ -255,71 +320,6 @@
             this.txtRemarks.TabIndex = 2;
             this.txtRemarks.Text = "Purchase entry is waiting for approval";
             // 
-            // pnlStockRequest
-            // 
-            this.pnlStockRequest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.pnlStockRequest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlStockRequest.Controls.Add(this.txtSRCreatedOn);
-            this.pnlStockRequest.Controls.Add(this.label6);
-            this.pnlStockRequest.Controls.Add(this.txtRequestCreated);
-            this.pnlStockRequest.Controls.Add(this.lblStockRequest);
-            this.pnlStockRequest.Controls.Add(this.lblSRRemarks);
-            this.pnlStockRequest.Location = new System.Drawing.Point(9, 164);
-            this.pnlStockRequest.Name = "pnlStockRequest";
-            this.pnlStockRequest.Size = new System.Drawing.Size(406, 58);
-            this.pnlStockRequest.TabIndex = 5;
-            // 
-            // txtSRCreatedOn
-            // 
-            this.txtSRCreatedOn.AutoSize = true;
-            this.txtSRCreatedOn.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSRCreatedOn.Location = new System.Drawing.Point(297, 5);
-            this.txtSRCreatedOn.Name = "txtSRCreatedOn";
-            this.txtSRCreatedOn.Size = new System.Drawing.Size(94, 15);
-            this.txtSRCreatedOn.TabIndex = 13;
-            this.txtSRCreatedOn.Text = "25/07/2023 01:02 PM";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(282, 5);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(17, 15);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "@";
-            // 
-            // txtRequestCreated
-            // 
-            this.txtRequestCreated.AutoSize = true;
-            this.txtRequestCreated.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRequestCreated.Location = new System.Drawing.Point(217, 5);
-            this.txtRequestCreated.Name = "txtRequestCreated";
-            this.txtRequestCreated.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtRequestCreated.Size = new System.Drawing.Size(31, 15);
-            this.txtRequestCreated.TabIndex = 11;
-            this.txtRequestCreated.Text = "User1";
-            // 
-            // lblStockRequest
-            // 
-            this.lblStockRequest.AutoSize = true;
-            this.lblStockRequest.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStockRequest.Location = new System.Drawing.Point(4, 5);
-            this.lblStockRequest.Name = "lblStockRequest";
-            this.lblStockRequest.Size = new System.Drawing.Size(66, 15);
-            this.lblStockRequest.TabIndex = 7;
-            this.lblStockRequest.Text = "Stock Request";
-            // 
-            // lblSRRemarks
-            // 
-            this.lblSRRemarks.AutoSize = true;
-            this.lblSRRemarks.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSRRemarks.Location = new System.Drawing.Point(4, 26);
-            this.lblSRRemarks.Name = "lblSRRemarks";
-            this.lblSRRemarks.Size = new System.Drawing.Size(190, 20);
-            this.lblSRRemarks.TabIndex = 5;
-            this.lblSRRemarks.Text = "MRP Corrected. Please check now";
-            // 
             // PUR_RemarksHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -340,14 +340,14 @@
             this.Load += new System.EventHandler(this.PUR_RemarksHistory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.pnlStockRequest.ResumeLayout(false);
+            this.pnlStockRequest.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.pnlGoodsInward.ResumeLayout(false);
             this.pnlGoodsInward.PerformLayout();
             this.pnlStockTransfer.ResumeLayout(false);
             this.pnlStockTransfer.PerformLayout();
-            this.pnlStockRequest.ResumeLayout(false);
-            this.pnlStockRequest.PerformLayout();
             this.ResumeLayout(false);
 
         }

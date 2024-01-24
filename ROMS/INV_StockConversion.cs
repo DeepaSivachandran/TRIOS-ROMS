@@ -348,33 +348,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TxtBatchNo2_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtConvertBatch.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TxtBatchNo2_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtConvertQty.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void TxtDay_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1183,9 +1156,7 @@ namespace ROMS
                         txtStock.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         udfnClear();
                     }
-
                 }
-            
             }
             catch (Exception ex)
             {
@@ -1304,7 +1275,6 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
-
                 TextBox textBox = (TextBox)sender;
                 if (varDecimal == 0)
                 {
@@ -1575,6 +1545,49 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TxtConvertBatch_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtConvertBatch.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        
+        }
+        private void TxtConvertBatch_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtConvertQty.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtConvertBatch_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtConvertBatch.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtConvertMrp_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1697,31 +1710,31 @@ namespace ROMS
                     switch (grdBatchConversion.Columns[e.ColumnIndex].Name)
                     {
                         case "clmRemove":
-                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                        DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            varMRP = Convert.ToString(grdBatchConversion.SelectedRows[0].Cells["clmMrp"].Value);
+                            varExpiryDate = Convert.ToString(grdBatchConversion.SelectedRows[0].Cells["clmExpirydate"].Value);
+                            varBatchNo = Convert.ToString(grdBatchConversion.SelectedRows[0].Cells["clmBatchNo"].Value);
+                            varQty = Convert.ToString(grdBatchConversion.SelectedRows[0].Cells["clmQty"].Value);
+                            grdBatchConversion.Rows.RemoveAt(this.grdBatchConversion.SelectedRows[0].Index);
+                            for (int i = 0; i < grdBatchConversion.RowCount; i++)
                             {
-                                varMRP = Convert.ToString(grdBatchConversion.SelectedRows[0].Cells["clmMrp"].Value);
-                                varExpiryDate = Convert.ToString(grdBatchConversion.SelectedRows[0].Cells["clmExpirydate"].Value);
-                                varBatchNo = Convert.ToString(grdBatchConversion.SelectedRows[0].Cells["clmBatchNo"].Value);
-                                varQty = Convert.ToString(grdBatchConversion.SelectedRows[0].Cells["clmQty"].Value);
-                                grdBatchConversion.Rows.RemoveAt(this.grdBatchConversion.SelectedRows[0].Index);
-                                for (int i = 0; i < grdBatchConversion.RowCount; i++)
+                                grdBatchConversion.Rows[i].Cells["clmSno"].Value = i + 1;
+                                Sum += Convert.ToDecimal(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
+                                totalQty.Text = Convert.ToString(Sum);
+                            }
+                            changedQuantity = Sum;
+                            for (int i = 0; i < dtStock.Rows.Count; i++)
+                            {
+                                if (Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo )
                                 {
-                                    grdBatchConversion.Rows[i].Cells["clmSno"].Value = i + 1;
-                                    Sum += Convert.ToDecimal(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
-                                    totalQty.Text = Convert.ToString(Sum);
-                                }
-                                changedQuantity = Sum;
-                                for (int i = 0; i < dtStock.Rows.Count; i++)
-                                {
-                                    if (Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo )
-                                    {
-                                        dtStock.Rows[i].Delete();
-                                        dtStock.AcceptChanges();                                      
-                                    }
+                                    dtStock.Rows[i].Delete();
+                                    dtStock.AcceptChanges();                                      
                                 }
                             }
-                            break;
+                        }
+                        break;
                     }
                 }
                 varChangeFlag = false;

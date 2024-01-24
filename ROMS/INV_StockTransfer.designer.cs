@@ -1072,7 +1072,6 @@
             this.Name = "INV_StockTransfer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock Transfer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.INV_StockTransfer_FormClosing);
             this.Load += new System.EventHandler(this.INV_StockTransfer_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_StockTransfer_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).EndInit();

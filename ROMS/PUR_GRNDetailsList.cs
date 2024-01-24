@@ -1370,6 +1370,11 @@ namespace ROMS
                             cell.Style.BackColor = Color.LimeGreen;
                             cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                         }
+                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "44")
+                        {
+                            cell.Style.BackColor = Color.RoyalBlue;
+                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                        }
                         if (Convert.ToString(grdGRNList.Rows[i].Cells["Totallbl"].Value) == "0")
                         { 
                             DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"]; 
