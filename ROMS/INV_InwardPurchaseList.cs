@@ -583,7 +583,7 @@ namespace ROMS
                                 lblNoRecordsFound.SendToBack();
                                 grdInwardList.DataSource = objDs.Tables[0];
                                 grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdInwardList.Columns["Inward No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                               // grdInwardList.Columns["Inward No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Inward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
