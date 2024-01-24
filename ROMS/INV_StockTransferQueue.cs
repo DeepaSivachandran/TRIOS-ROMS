@@ -344,6 +344,7 @@ namespace ROMS
                             grdStockTransfer.Columns["COMID"].Visible = false;
                             grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["SLID"].Visible = false;
+                            grdStockTransfer.Columns["clmPrint"].Visible = true;
                             grdStockTransfer.Columns["clmPrint"].Width = 50;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["Created By"].Width = 100;
@@ -361,12 +362,14 @@ namespace ROMS
                     }
                     else
                     {
+                        grdStockTransfer.Columns["clmPrint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
                 }
                 else
                 {
+                    grdStockTransfer.Columns["clmPrint"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
@@ -1392,44 +1395,44 @@ namespace ROMS
                     switch (grdStockTransfer.Columns[e.ColumnIndex].Name)
                     {
                         case "clmPrint":
-                            try
+                        try
+                        {
+                            string SRQID = "0",SLID="0";
+                            SRQID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                            SLID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value.ToString());
+                            DialogResult result1;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
                             {
-                                string SRQID = "0",SLID="0";
-                                SRQID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value.ToString());
-                                SLID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value.ToString());
-                                DialogResult result1;
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(87);
-                                objDServ.CloseConnection();
-                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (result1 == DialogResult.Yes)
-                                {
-                                    string varHeader = "";
-                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request_Transfer.rpt");
-                                    varHeader = "Shop Stock Request DC";
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request_Transfer.rpt");
+                                varHeader = "Shop Stock Request DC";
 
-                                    objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SRQID));
-                                    objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(SLID));
-                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                    objValidation.CrySqlConnection(objBillreport);
+                                objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SRQID));
+                                objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(SLID));
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
 
-                                    MainForm.objReportLoad = new ReportLoad();
-                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                    MainForm.objReportLoad.Text = varHeader;
-                                    MainForm.objReportLoad.ShowDialog();
-                                }
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
                             }
-                            catch (Exception ex)
-                            {
-                                objError = new DataError();
-                                objError.WriteFile(ex);
-                            }
-                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            objError = new DataError();
+                            objError.WriteFile(ex);
+                        }
+                        break;
                     }
                 }
 

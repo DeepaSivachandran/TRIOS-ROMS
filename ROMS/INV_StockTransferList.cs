@@ -19,6 +19,7 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
+        Boolean BlnSearchImageYN = false;
         public INV_StockTransferList()
         {
             InitializeComponent();
@@ -360,6 +361,7 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdStockTransfer.DataSource = objDs.Tables[0];
+                            grdStockTransfer.Columns["clmPrint"].Visible = true;
                             grdStockTransfer.Columns["SLID"].Visible = false;
                             grdStockTransfer.Columns["ConcernID"].Visible = false;
                             grdStockTransfer.Columns["StatusID"].Visible = false;
@@ -368,6 +370,7 @@ namespace ROMS
                             grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["Transfer Qty"].Visible = false;
                             grdStockTransfer.Columns["S.No."].Width = 50;
+                            grdStockTransfer.Columns["clmPrint"].Width = 50;
                             grdStockTransfer.Columns["Status"].Width = 120;
                             grdStockTransfer.Columns["Source"].Width = 120;
                             grdStockTransfer.Columns["Created By"].Width = 100;
@@ -379,19 +382,21 @@ namespace ROMS
                         }
                         else
                         {
+                            grdStockTransfer.Columns["clmPrint"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
+                        grdStockTransfer.Columns["clmPrint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-
                 }
                 else
                 {
+                    grdStockTransfer.Columns["clmPrint"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
@@ -459,7 +464,12 @@ namespace ROMS
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
-                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    if (lblNoRecordsFound.Visible == false)
+                    {
+                        DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -482,11 +492,24 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -992,6 +1015,7 @@ namespace ROMS
             {
                 for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
                 {
+                    DataGridView dataGridView = (DataGridView)sender;
                     if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "21")
                     {
                         grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
@@ -1001,6 +1025,12 @@ namespace ROMS
                     {
                         grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["SRQID"].Value) == "0")
+                    {
+                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"];
+                        cell2.Value = new Bitmap(1, 1);
+                        cell2.ReadOnly = true;
                     }
                 }
             }
@@ -1495,6 +1525,63 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockTransfer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdStockTransfer.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                            try
+                            {
+                                string STRID = "0";
+                                STRID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Issued.rpt");
+                                    varHeader = "Shop Stock Issued";
+
+                                    objBillreport.SetParameterValue("paraStockTransferID", Convert.ToInt32(STRID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }

@@ -1934,8 +1934,53 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MainForm.objINV_StockTransferQueue.udfnList();
-                        udfnClear();
                         varModifiedFlag = 0;
+                        try
+                        {
+                            if (varUpdateflag == 1)
+                            {
+                                string STID = "0";
+                                if (varStockTransferID == 0)
+                                {
+                                    STID = varvalue[2];
+                                }
+                                else
+                                {
+                                    STID = Convert.ToString(varStockTransferID);
+                                }
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Issued.rpt");
+                                    varHeader = "Shop Stock Issued";
+
+                                    objBillreport.SetParameterValue("paraStockTransferID", Convert.ToInt32(STID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            objError = new DataError();
+                            objError.WriteFile(ex);
+                        }
+                        udfnClear();
                         this.Close();
                     }
                 }
