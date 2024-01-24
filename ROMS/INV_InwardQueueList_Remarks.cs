@@ -71,44 +71,31 @@ namespace ROMS
                             txtCreatedby1.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
                             txtCreatedOn1.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
                             txtTable1.Text = objDs.Tables[0].Rows[0]["Transaction"].ToString();
-                            MainForm.objINV_InwardPurchase.varRemarkCount = objDs.Tables[0].Rows[0]["Count"].ToString();
                             count1 = objDs.Tables[0].Rows[0]["Count"].ToString();
                         }
-                    }
-                    if (objDs.Tables.Count > 1)
-                    {
-                        if (objDs.Tables[1].Rows.Count != 0)
+                        if (objDs.Tables[0].Rows.Count > 1)
                         {
-                            txtRemarks2.Text = objDs.Tables[1].Rows[0]["Remarks"].ToString();
-                            txtCreatedby2.Text = objDs.Tables[1].Rows[0]["Created By"].ToString();
-                            txtCreatedOn2.Text = objDs.Tables[1].Rows[0]["Created On"].ToString();
-                            txtTable2.Text = objDs.Tables[1].Rows[0]["Transaction"].ToString();
-                            MainForm.objINV_InwardPurchase.varRemarkCount = objDs.Tables[1].Rows[0]["Count"].ToString();
-                            count2 = objDs.Tables[1].Rows[0]["Count"].ToString();
+                            txtRemarks2.Text = objDs.Tables[0].Rows[1]["Remarks"].ToString();
+                            txtCreatedby2.Text = objDs.Tables[0].Rows[1]["Created By"].ToString();
+                            txtCreatedOn2.Text = objDs.Tables[0].Rows[1]["Created On"].ToString();
+                            txtTable2.Text = objDs.Tables[0].Rows[1]["Transaction"].ToString();
+                            count2 = objDs.Tables[0].Rows[0]["Count"].ToString();
                         }
-                    }
-                    if (objDs.Tables.Count > 2)
-                    {
-                        if (objDs.Tables[2].Rows.Count != 0)
+                        if (objDs.Tables[0].Rows.Count > 2)
                         {
-                            txtRemarks3.Text = objDs.Tables[2].Rows[0]["Remarks"].ToString();
-                            txtCreatedby3.Text = objDs.Tables[2].Rows[0]["Created By"].ToString();
-                            txtCreatedOn3.Text = objDs.Tables[2].Rows[0]["Created On"].ToString();
-                            txtTable3.Text = objDs.Tables[2].Rows[0]["Transaction"].ToString();
-                            MainForm.objINV_InwardPurchase.varRemarkCount = objDs.Tables[2].Rows[0]["Count"].ToString();
-                            count3 = objDs.Tables[2].Rows[0]["Count"].ToString();
+                            txtRemarks3.Text = objDs.Tables[0].Rows[2]["Remarks"].ToString();
+                            txtCreatedby3.Text = objDs.Tables[0].Rows[2]["Created By"].ToString();
+                            txtCreatedOn3.Text = objDs.Tables[0].Rows[2]["Created On"].ToString();
+                            txtTable3.Text = objDs.Tables[0].Rows[2]["Transaction"].ToString();
+                            count3 = objDs.Tables[0].Rows[2]["Count"].ToString();
                         }
-                    }
-                    if (objDs.Tables.Count > 3)
-                    {
-                        if (objDs.Tables[3].Rows.Count != 0)
+                        if (objDs.Tables[0].Rows.Count > 3)
                         {
-                            txtRemarks4.Text = objDs.Tables[3].Rows[0]["Remarks"].ToString();
-                            txtCreatedby4.Text = objDs.Tables[3].Rows[0]["Created By"].ToString();
-                            txtCreatedOn4.Text = objDs.Tables[3].Rows[0]["Created On"].ToString();
-                            txtTable4.Text = objDs.Tables[3].Rows[0]["Transaction"].ToString();
-                            MainForm.objINV_InwardPurchase.varRemarkCount = objDs.Tables[3].Rows[0]["Count"].ToString();
-                           count4 = objDs.Tables[3].Rows[0]["Count"].ToString();
+                            txtRemarks4.Text = objDs.Tables[0].Rows[3]["Remarks"].ToString();
+                            txtCreatedby4.Text = objDs.Tables[0].Rows[3]["Created By"].ToString();
+                            txtCreatedOn4.Text = objDs.Tables[0].Rows[3]["Created On"].ToString();
+                            txtTable4.Text = objDs.Tables[0].Rows[3]["Transaction"].ToString();
+                            count4 = objDs.Tables[0].Rows[3]["Count"].ToString();
                         }
                     }
                 }
@@ -120,6 +107,10 @@ namespace ROMS
                 { panel3.Visible = false; }
                 if (count4 == "")
                 { panel4.Visible = false; }
+                if(count1!="" || count2!="" || count3!="" || count4!="")
+                {
+                    MainForm.objINV_InwardPurchase.varRemarkCount = 1;
+                }
             }
             catch (Exception ex)
             {

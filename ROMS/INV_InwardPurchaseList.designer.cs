@@ -117,8 +117,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(122, 24);
-            this.tspHeader.Text = "Goods Inward List";
+            this.tspHeader.Size = new System.Drawing.Size(244, 24);
+            this.tspHeader.Text = "Goods Inward List From Purchase && GRN";
             // 
             // tsbQue
             // 
