@@ -46,10 +46,14 @@ namespace ROMS
         {
             try
             {
+                grdSupplierList.Enabled = true;
                 btnViewDataView.Visible = true;
                 txtInvoiceNo.Enabled = true;
                 txtInvoiceNo.ReadOnly = false;
                 txtInvoiceNo.Text = "";
+                txtInvoiceamt.Enabled = true; 
+                txtInvoiceamt.ReadOnly = false;
+                txtInvoiceamt.Text = "";
                 if (cmbEntryType.SelectedValue.ToString() == "54") // GRN
                 {
                     udfnPurchaseGrnLoad();
@@ -159,6 +163,7 @@ namespace ROMS
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
+                            grdSupplierList.Enabled = false;
                         }
                     }
                     else
@@ -359,6 +364,25 @@ namespace ROMS
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                         } 
                         txtInvoiceNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Invno"]);
+                        txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["invamt"]);
+                        txtLoadingchargeGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_LoadingCharges"]);
+                        txtFrightGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]); 
+                        if (Convert.ToString(objDs.Tables[0].Rows[0]["STSID"]) == "45" || Convert.ToString(objDs.Tables[0].Rows[0]["STSID"]) == "46")
+                        {
+                            grdSupplierList.Enabled = false;
+                        }
+                        else
+                        {
+                            grdSupplierList.Enabled = true;
+                        }
+                        txtInvoiceNo.Enabled = false;
+                        txtInvoiceamt.Enabled = false;
+                        //txtLoadingchargeGrn.Enabled = false;
+                        //txtFrightGrn.Enabled = false;
+                        txtInvoiceNo.ReadOnly = true;
+                        txtInvoiceamt.ReadOnly = true;
+                        //txtLoadingchargeGrn.ReadOnly = true;
+                        //txtFrightGrn.ReadOnly = true;
                     }
                     else
                     {
@@ -3495,15 +3519,16 @@ namespace ROMS
                             tpInvNo.Show("Please enter invoice No.", txtInvoiceNo, 5000);
                             varErrorFlag = true;
                         }
+                        if (Convert.ToString(txtInvoiceamt.Text) == "")
+                        {
+                            errPurchaseentry.SetError(txtInvoiceamt, "Please enter invoice amount");
+                            txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpinvamt.ShowAlways = true;
+                            tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
+                            varErrorFlag = true;
+                        }
                     }
-                    if (Convert.ToString(txtInvoiceamt.Text) == "")
-                    {
-                        errPurchaseentry.SetError(txtInvoiceamt, "Please enter invoice amount");
-                        txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpinvamt.ShowAlways = true;
-                        tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
-                        varErrorFlag = true;
-                    }
+                   
                     if (varErrorFlag == false)
                     {  
                         string result = "", varorginator = "Purchase entry save"; 
@@ -3776,6 +3801,7 @@ namespace ROMS
                                     objTRN_PurchaseEntry.ParaEditFlag = 1;
                                     objTRN_PurchaseEntry.ParaPurchaseDC = PurchaseDcIds;
                                     objTRN_PurchaseEntry.paraGRNID = Convert.ToInt32(pbGRNNo);
+                                    objTRN_PurchaseEntry.Purchase_Products_Details = objPurchaseentryDetails;
                                     result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                                     objspdservice.CloseConnection();
                                     string[] varvalue = result.Split('~');
@@ -3851,7 +3877,8 @@ namespace ROMS
                 {
                     cmbConcern.Enabled = false; 
                     txtSupplier.Enabled = false; 
-                    cmbEntryType.Enabled = false; 
+                    cmbEntryType.Enabled = false;
+                    btnViewDataView.Visible = false;
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
@@ -3862,13 +3889,23 @@ namespace ROMS
                     grdPurchaseList.Rows.Clear(); 
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
+                        string varQty = "";
+                       
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
+                            if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
+                            {
+                                varQty = Convert.ToString(objDs.Tables[0].Rows[i]["QTY"]);
+                            } 
                             grdPurchaseList.Rows.Add(grdPurchaseList.Rows.Count + 1, "None",Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), 
-                            Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]),Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Name"]),"",
-                            Convert.ToString(objDs.Tables[0].Rows[i]["QTY"]),"","","","",Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]),"","","", 
+                            Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_InvoiceMRP"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_Batch"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["SL_EName"]), Convert.ToString(objDs.Tables[0].Rows[i]["RK_ShortName"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Name"]),"",
+                            Convert.ToString(objDs.Tables[0].Rows[i]["QTY"]), varQty, "","","",Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]),"","","", 
                             Convert.ToString(objDs.Tables[0].Rows[i]["Gstper"]),"","","", Convert.ToString(objDs.Tables[0].Rows[i]["ID"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]));
+                            Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]),  Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]));
                         }
                     } 
                 }
@@ -3928,13 +3965,13 @@ namespace ROMS
                         for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
                         {
                             objPurchaseentryDetails.Rows.Add(pbPurchaseno, Convert.ToInt32(grdPurchaseList.Rows[i].Cells["proid"].Value),
-                            Convert.ToInt32(grdPurchaseList.Rows[i].Cells["hsnid"].Value),Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value),
-                            Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPOqty"].Value),Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value),
-                            Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value),Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value),
+                            Convert.ToInt32(grdPurchaseList.Rows[i].Cells["hsnid"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value),
+                            Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPOqty"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value),
+                            Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value), Convert.ToDecimal(1),
                             Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value),
                             Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmTax"].Value),
                             Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmGstper"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmGstamt"].Value),
-                            Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmnetamt"].Value), 0 );
+                            Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmnetamt"].Value), 0);
                         }
                     }
                 }
@@ -4220,6 +4257,782 @@ namespace ROMS
             }
             return varstr;
         }
+
+        private void TxtLoadingCharge_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLoadingCharge.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+        private void TxtLoadingCharge_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLoadingCharge.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void TxtLoadingCharge_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtUnLoadingCharge.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLoadingCharge_KeyPress(object sender, KeyPressEventArgs e)
+        { 
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseList_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void TxtUnLoadingCharge_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCouriercharge.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtUnLoadingCharge_Leave(object sender, EventArgs e)
+        { 
+            try
+            {
+                txtUnLoadingCharge.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtUnLoadingCharge_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtUnLoadingCharge_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtUnLoadingCharge.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+        private void TxtCouriercharge_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtotherexpense.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtCouriercharge_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCouriercharge.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtCouriercharge_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtCouriercharge_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCouriercharge.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtotherexpense_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtotherexpense.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtotherexpense_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    Txtdiscount.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtotherexpense_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void Txtotherexpense_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtotherexpense.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtdiscount_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                Txtdiscount.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtdiscount_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                Txtdiscount.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtdiscount_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtDiscPer.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtdiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDiscountamt_KeyDown(object sender, KeyEventArgs e)
+        {
+              try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                     txtTcsamt.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDiscountamt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDiscountamt.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDiscountamt_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDiscountamt.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDiscountamt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+              try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTcsamt_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTcsamt.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTcsamt_KeyDown(object sender, KeyEventArgs e)
+        {
+              try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtDamagecost.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTcsamt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+              try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTcsamt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTcsamt.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDamagecost_KeyDown(object sender, KeyEventArgs e)
+        {
+              try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtOtherdiscount.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDamagecost_KeyPress(object sender, KeyPressEventArgs e)
+        {
+              try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDamagecost_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDamagecost.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDamagecost_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDamagecost.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtOtherdiscount_KeyDown(object sender, KeyEventArgs e)
+        {
+              try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtRemarks.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtOtherdiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+              try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtOtherdiscount_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtOtherdiscount.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtOtherdiscount_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtOtherdiscount.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemarks_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnRemarks.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void TxtRemarks_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemarks_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemarks.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemarks_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemarks.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnRemarks_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRemarks.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnRemarks_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRemarks.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnDC_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnDC.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnDC_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnDC.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkCompleted_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkCompleted.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkCompleted_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkCompleted.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+            try
+            {
+                if (pbPurchaseno != "0")
+                {
+                    VarGridError = "0";
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cellHSNname = dataGridView.Rows[e.RowIndex].Cells["clmHSN"];
+                    DataGridViewCell cellHSNid = dataGridView.Rows[e.RowIndex].Cells["hsnid"];
+                    DataGridViewCell CellHSNGSTper = dataGridView.Rows[e.RowIndex].Cells["clmGstper"];
+                    DataGridViewCell CellHSNGSTValue = dataGridView.Rows[e.RowIndex].Cells["GstValue"];
+                    if (e.ColumnIndex == grdPurchaseList.Columns["clmHSN"].Index && e.RowIndex >= 0)
+                    {
+                        string SelectedHSNName = grdPurchaseList.Rows[e.RowIndex].Cells["clmHSN"].Value?.ToString();
+                        if (!string.IsNullOrEmpty(SelectedHSNName))
+                        {
+                            /* Check HSN is valid or not*/
+                            string varHSNId = "0";
+                            DataSet objDsPurLoc = new DataSet();
+                            SPDataService objDServ3 = new SPDataService();
+                            objDsPurLoc = objDServ3.udfnHsnList(11, 0, 0, 0, SelectedHSNName, "");
+                            objDServ3.CloseConnection();
+                            if (objDsPurLoc != null)
+                            {
+                                if (objDsPurLoc.Tables.Count > 0)
+                                {
+                                    if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                                    {
+                                        varHSNId = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                                        if (varHSNId != "-1")
+                                        {
+                                            if (objDsPurLoc.Tables[1].Rows.Count > 0)
+                                            {
+                                                CellHSNGSTper.Value = Convert.ToString(objDsPurLoc.Tables[1].Rows[0]["GST_Text"]);
+                                                CellHSNGSTValue.Value = Convert.ToString(objDsPurLoc.Tables[1].Rows[0]["GST_Value"]);
+                                                cellHSNid.Value = varHSNId;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            CellHSNGSTper.Value = "-";
+                                            CellHSNGSTValue.Value = "0";
+                                            cellHSNid.Value = varHSNId;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtMonth_TextChanged(object sender, EventArgs e)
         {
             try
