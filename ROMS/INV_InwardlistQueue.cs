@@ -719,6 +719,7 @@ namespace ROMS
                             grdInwardQueueList.Columns["SLID"].Visible = false;
                             grdInwardQueueList.Columns["COMID"].Visible = false;
                             grdInwardQueueList.Columns["STRID"].Visible = false;
+                            grdInwardQueueList.Columns["STSID"].Visible = false;
                             grdInwardQueueList.Columns["S.No."].Width = 50;
                             grdInwardQueueList.Columns["Concern"].Width = 120;
                             grdInwardQueueList.Columns["Transfer Date"].Width = 120;

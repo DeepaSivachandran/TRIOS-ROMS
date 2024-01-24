@@ -73,65 +73,56 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        if (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 29)
-                        {
-                            SPDataService objspdservice = new SPDataService();
-                            result = "";
-                            Model.TRN_StockRequest objTRNS_StockRequest = new Model.TRN_StockRequest();
-                            objTRNS_StockRequest.ViewType = 2;
-                            objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
-                            objTRNS_StockRequest.paraOriginator = "Stock Request Delete";
-                            result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
-                            objspdservice.CloseConnection();
+                        
+                        SPDataService objspdservice = new SPDataService();
+                        result = "";
+                        Model.TRN_StockRequest objTRNS_StockRequest = new Model.TRN_StockRequest();
+                        objTRNS_StockRequest.ViewType = 2;
+                        objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                        objTRNS_StockRequest.paraOriginator = "Stock Request Delete";
+                        result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
+                        objspdservice.CloseConnection();
 
-                            string[] varvalue = result.Split('~');
-                            if (varvalue[0] == "3")
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            if (result.Split('~')[1] == "1")
                             {
-                                if (result.Split('~')[1] == "1")
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
                                 {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    varUserID = MainForm.objCP_Verify.varUserId;
-                                    if (MainForm.objCP_Verify.flag == 1)
+                                    objTRNS_StockRequest.ViewType = 2;
+                                    objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                                    objTRNS_StockRequest.paraOriginator = "Stock Request Delete";
+                                    objTRNS_StockRequest.paraDeleteFlag = 1;
+                                    result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
+                                    if (result.Split('~')[0] == "3")
                                     {
-                                        objTRNS_StockRequest.ViewType = 2;
-                                        objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
-                                        objTRNS_StockRequest.paraOriginator = "Stock Request Delete";
-                                        objTRNS_StockRequest.paraDeleteFlag = 1;
-                                        result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
-                                        if (result.Split('~')[0] == "3")
-                                        {
-                                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            udfnList();
-                                        }
-                                        else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
                                     }
+                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
-                            }
-                            else
-                            {
-                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                         else
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(6);
-                            objDServ.CloseConnection();
-                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
         }
         private void udfnEdit()
         {
@@ -735,7 +726,7 @@ namespace ROMS
                             grdStockRequestList.Columns["ConcernID"].Visible = false;
                             grdStockRequestList.Columns["StatusID"].Visible = false;
                             grdStockRequestList.Columns["SRQID"].Visible = false;
-                            grdStockRequestList.Columns["Received Qty"].Width = 100;
+                            grdStockRequestList.Columns["Received Qty"].Visible = false;
                             grdStockRequestList.Columns["S.No."].Width = 50;
                             grdStockRequestList.Columns["Status"].Width = 120;
                             grdStockRequestList.Columns["Created By"].Width = 100;
@@ -791,7 +782,7 @@ namespace ROMS
                 DGV__SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV__SearchGrid.Columns["StatusID"].Visible = false;
                 DGV__SearchGrid.Columns["SRQID"].Visible = false;
-                DGV__SearchGrid.Columns["Received Qty"].Width = 100;
+                DGV__SearchGrid.Columns["Received Qty"].Visible = false;
                 DGV__SearchGrid.Columns["S.No."].Width = 50;
                 DGV__SearchGrid.Columns["Status"].Width = 80;
                 DGV__SearchGrid.Columns["Created By"].Width = 100; DGV__SearchGrid.ScrollBars = ScrollBars.Both;
@@ -1462,6 +1453,26 @@ namespace ROMS
             {
                 DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpEntryToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockRequestList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) > 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48))
+                {
+                    tsbDelete.Visible = false;
+                }
+                else
+                {
+                    tsbDelete.Visible = true;
+                }
             }
             catch (Exception ex)
             {
