@@ -3378,8 +3378,7 @@ namespace ROMS
             try
             {
                 if (pbSupplierid != "0")
-                { 
-
+                {  
                     errCompany.Clear();
                     udfntphide();
                     udfncolorchange();
