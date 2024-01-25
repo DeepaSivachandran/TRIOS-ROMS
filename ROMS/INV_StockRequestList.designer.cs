@@ -506,6 +506,7 @@
             this.grdStockRequestList.ShowRowErrors = false;
             this.grdStockRequestList.Size = new System.Drawing.Size(1348, 489);
             this.grdStockRequestList.TabIndex = 958797;
+            this.grdStockRequestList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockRequestList_CellContentClick);
             this.grdStockRequestList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockRequestList_CellDoubleClick);
             this.grdStockRequestList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockRequestList_DataBindingComplete);
             this.grdStockRequestList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockRequestList_Scroll);

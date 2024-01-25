@@ -173,7 +173,7 @@
             // 
             this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProductName.Location = new System.Drawing.Point(186, 45);
-            this.txtProductName.MaxLength = 20;
+            this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(264, 27);
             this.txtProductName.TabIndex = 2;

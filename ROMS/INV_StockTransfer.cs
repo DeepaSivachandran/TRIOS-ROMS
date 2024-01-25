@@ -1406,6 +1406,42 @@ namespace ROMS
                     tpDStockLocation.Show("Please enter destination location", txtDLocation, 5000);
                     blnErrorFlag = true;
                 }
+                if(Convert.ToString(lblDLocation.Text)=="0" || Convert.ToString(lblDLocation.Text)=="")
+                {
+                    errStockTransfer.SetError(txtDLocation, "Please enter destination location");
+                    txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpDStockLocation.ShowAlways = true;
+                    tpDStockLocation.Show("Please enter destination location", txtDLocation, 5000);
+                    blnErrorFlag = true;
+                }
+                else 
+                {
+                    string varId_Location = "0";
+                    DataSet objDsPurLoc = new DataSet();
+                    SPDataService objDServ3 = new SPDataService();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0, "", "");
+                    //  objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtPurLocation.Text.Trim(),0,0,0);
+                    objDServ3.CloseConnection();
+                    if (objDsPurLoc != null)
+                    {
+                        if (objDsPurLoc.Tables.Count > 0)
+                        {
+                            if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                            {
+                                varId_Location = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    lblDLocation.Text = Convert.ToString(varId_Location);
+                    if (varId_Location == "0" || varId_Location == "-1")
+                    {
+                        errStockTransfer.SetError(txtDLocation, "Please select valid destination location");
+                        txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpDStockLocation.ShowAlways = true;
+                        tpDStockLocation.Show("Please select valid destination location", txtDLocation, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (Convert.ToString(txtQuantity.Text).Trim() != "")
                 {
                     if (Convert.ToDecimal(txtStockQty.Text.Trim()) >= Convert.ToDecimal(txtQuantity.Text.Trim()))
@@ -1898,8 +1934,53 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MainForm.objINV_StockTransferQueue.udfnList();
-                        udfnClear();
                         varModifiedFlag = 0;
+                        try
+                        {
+                            if (varUpdateflag == 1)
+                            {
+                                string STID = "0";
+                                if (varStockTransferID == 0)
+                                {
+                                    STID = varvalue[2];
+                                }
+                                else
+                                {
+                                    STID = Convert.ToString(varStockTransferID);
+                                }
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Issued.rpt");
+                                    varHeader = "Shop Stock Issued";
+
+                                    objBillreport.SetParameterValue("paraStockTransferID", Convert.ToInt32(STID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            objError = new DataError();
+                            objError.WriteFile(ex);
+                        }
+                        udfnClear();
                         this.Close();
                     }
                 }

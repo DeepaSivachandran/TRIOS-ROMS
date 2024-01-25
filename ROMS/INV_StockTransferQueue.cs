@@ -19,6 +19,7 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
+        Boolean BlnSearchImageYN = false;
         public INV_StockTransferQueue()
         {
             InitializeComponent();
@@ -343,6 +344,8 @@ namespace ROMS
                             grdStockTransfer.Columns["COMID"].Visible = false;
                             grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["SLID"].Visible = false;
+                            grdStockTransfer.Columns["clmPrint"].Visible = true;
+                            grdStockTransfer.Columns["clmPrint"].Width = 50;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["Created By"].Width = 100;
                             grdStockTransfer.Columns["Stock Location"].Width = 150;
@@ -352,18 +355,21 @@ namespace ROMS
                         }
                         else
                         {
+                            grdStockTransfer.Columns["clmPrint"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
+                        grdStockTransfer.Columns["clmPrint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
                 }
                 else
                 {
+                    grdStockTransfer.Columns["clmPrint"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
@@ -411,22 +417,30 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdStockTransfer, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdStockTransfer.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    udfnGridSearchHeading(grdStockTransfer, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdStockTransfer.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    if (lblNoRecordsFound.Visible == false)
+                    {
+                        DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -434,23 +448,39 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    if (col.Visible)
+                    //dgv2.DataSource = null;
+                    dgv2.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgv1.Columns)
                     {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
+                        if (col.Visible)
+                        {
+                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                            visibleColumns.Add(col.Index);
+                        }
                     }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    int rowIndex = 0;
+                    int ColIndex = 0;
+                    dgv2.Rows.Clear();
+                    dgv2.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1353,6 +1383,65 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockTransfer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdStockTransfer.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                        try
+                        {
+                            string SRQID = "0",SLID="0";
+                            SRQID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                            SLID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value.ToString());
+                            DialogResult result1;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request_Transfer.rpt");
+                                varHeader = "Shop Stock Request DC";
+
+                                objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SRQID));
+                                objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(SLID));
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
+
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            objError = new DataError();
+                            objError.WriteFile(ex);
+                        }
+                        break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }
