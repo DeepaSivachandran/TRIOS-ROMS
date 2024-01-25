@@ -647,6 +647,7 @@ namespace ROMS
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpEntryToDate.MaxDate = MainForm.pbCurrentDate;
+                tsbDelete.Visible = true;
                 udfnList();
             }
             catch (Exception ex)
@@ -768,6 +769,7 @@ namespace ROMS
             }
             finally
             {
+                grdStockRequestList.ClearSelection();
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
@@ -1463,6 +1465,10 @@ namespace ROMS
 
         private void GrdStockRequestList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+        }
+        public void udfnDeleteHide()
+        {
             try
             {
                 if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) > 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48))
@@ -1473,6 +1479,18 @@ namespace ROMS
                 {
                     tsbDelete.Visible = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdStockRequestList_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
             }
             catch (Exception ex)
             {
