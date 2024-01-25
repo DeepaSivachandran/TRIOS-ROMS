@@ -19,6 +19,7 @@ namespace ROMS
         public int varPurchaseID = 0, varID = 0, varGRNPurchaseFlag = 0, varCloseFlag = 0, varTypeID = 0, varRemarkFlag = 0;
         public int varRemarkCount=0;
         DataTable dtInwardPurchase = new DataTable();
+        ToolTip tpInwardNo = new ToolTip();
         public INV_InwardPurchase()
         {
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace ROMS
             {
                 ClearSupplier();
                 EditLoad();
+                udfnVocherno();
                 udfnUddtTable();
                 MainForm.objINV_InwardQueueList_Remarks = new INV_InwardQueueList_Remarks();
                 MainForm.objINV_InwardQueueList_Remarks.varID = varID;
@@ -157,6 +159,58 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnVocherno()
+        {
+            try
+            {
+                if (varInwardId == 0)
+                {
+                    if (Convert.ToInt32(varConcernId) != -1)
+                    {
+                        string vardate = "", varResult = "";
+                        SPDataService objspdservice = new SPDataService();
+                        DataSet objDs = new DataSet();
+                        DataService objDservice = new DataService();
+                        vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpInwardDate.Text + "',103)");
+                        objDservice.CloseConnection();
+                        varResult = objspdservice.udfngetVoucherNo("183", vardate, varConcernId);
+                        objspdservice.CloseConnection();
+                        string[] parts = varResult.Split('~');
+                        string pono = parts[0];
+                        if (pono != "")
+                        {
+                            txtInwardNo.Text = pono;
+                        }
+                        else
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(75);
+                            objDServ.CloseConnection();
+                            txtInwardNo.Text = "";
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                MainForm.objCP_Settings = new CP_Settings();
+                                MainForm.objCP_Settings.varconcernvalue =Convert.ToString(varConcernId);
+                                MainForm.objCP_Settings.varValues = Convert.ToString(38);
+                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                                MainForm.objCP_Settings.Show();
+                                this.Close();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        txtInwardNo.Text = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnUddtTable()
         {
             try
@@ -247,11 +301,11 @@ namespace ROMS
                     bool varErrorFlag = true;
                     if (txtInwardNo.Text == "")
                     {
-                        //epInwardPurchase.SetError(txtInwardNo, "INward No. is empty.");
-                        ////txtDcNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //tpInwardNo.ShowAlways = true;
-                        //tpInwardNo.Show("DC No. is empty.", txtInwardNo, 5000);
-                        //varErrorFlag = false;
+                        epInwardPurchase.SetError(txtInwardNo, "Inward No. is empty.");
+                        //txtDcNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpInwardNo.ShowAlways = true;
+                        tpInwardNo.Show("DC No. is empty.", txtInwardNo, 5000);
+                        varErrorFlag = false;
                     }
                     dtInwardPurchase.Rows.Clear();
                     for (int i = 0; i < grdGrnlist.Rows.Count; i++)
@@ -576,6 +630,14 @@ namespace ROMS
                 else
                 {
                     this.Close();
+                }
+                if (varEditFlag == 0)
+                {
+                    MainForm.objINV_InwardQueueList.udfnList();
+                }
+                else
+                {
+                    MainForm.objINV_InwardPurchaseList.udfnList();
                 }
             }
             catch (Exception ex)

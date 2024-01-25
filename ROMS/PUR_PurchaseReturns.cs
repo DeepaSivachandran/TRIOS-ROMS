@@ -110,6 +110,7 @@ namespace ROMS
                     dpCreditNoteDate.Visible = false;
                     dpDCreditNoteDate.Visible = false;
                     btnView.Visible = true;
+                    udfnView();
                 }
                 else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64) //Debit Note Created
                 {
@@ -165,10 +166,10 @@ namespace ROMS
                                 MainForm.objINV_SalesInvoiceList.udfnList();
                             }
                         }
-                        
                         else { this.Close(); }
                     }
                 }
+                MainForm.objINV_SalesInvoiceList.udfnList();
             }
             catch (Exception ex)
             {
@@ -386,11 +387,11 @@ namespace ROMS
                     EditLoad();
                     if (varStatusId == 39)
                     {
-                        txtAmount.ReadOnly = true;
-                        txtCrNo.ReadOnly = true;
+                        txtAmount.Enabled = true;
+                        txtCrNo.Enabled = true;
                         dpCreditNoteDate.Enabled = false;
                         cmbReasonForClosing.Enabled = false;
-                        txtRemarks.ReadOnly = true;
+                        txtRemarks.Enabled = true;
                         btnSave.Enabled = false;
                         //lblStatus.Text = "Closed";
                     }
@@ -973,7 +974,7 @@ namespace ROMS
             try
             {
                 udfnListViewData();
-                txtProductName.Focus();
+                cmbReason.Focus();
             }
             catch (Exception ex)
             {
@@ -999,7 +1000,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductName.Focus();
+                    cmbReason.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -1040,35 +1041,6 @@ namespace ROMS
                     epReturnDc.Clear();
                     txtSupplier.BackColor = Color.White;
                     tpSuppliername.Active = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void LV_Supplier_DoubleClick_1(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnListViewData();
-                txtProductName.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void LV_Supplier_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnListViewData();
-                    txtProductName.Focus();
                 }
             }
             catch (Exception ex)
@@ -1542,7 +1514,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplier.Focus();
+                    txtAmount.Focus();
                 }
             }
             catch (Exception ex)
@@ -1666,7 +1638,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnView_Click(object sender, EventArgs e)
+        public void udfnView()
         {
             try
             {
@@ -1677,6 +1649,18 @@ namespace ROMS
                 MainForm.objPUR_DCGoodsInward.varScheduleId = Convert.ToInt32(lblschedule.Text);
                 MainForm.objPUR_DCGoodsInward.varReturnDCID = varReturnDCID;
                 MainForm.objPUR_DCGoodsInward.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnView();
             }
             catch (Exception ex)
             {
