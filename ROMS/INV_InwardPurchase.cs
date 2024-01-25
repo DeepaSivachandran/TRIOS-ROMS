@@ -31,6 +31,7 @@ namespace ROMS
             {
                 ClearSupplier();
                 EditLoad();
+                udfnVocherno();
                 udfnUddtTable();
                 MainForm.objINV_InwardQueueList_Remarks = new INV_InwardQueueList_Remarks();
                 MainForm.objINV_InwardQueueList_Remarks.varID = varID;
@@ -151,6 +152,58 @@ namespace ROMS
             try
             {
                 btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVocherno()
+        {
+            try
+            {
+                if (varInwardId == 0)
+                {
+                    if (Convert.ToInt32(varConcernId) != -1)
+                    {
+                        string vardate = "", varResult = "";
+                        SPDataService objspdservice = new SPDataService();
+                        DataSet objDs = new DataSet();
+                        DataService objDservice = new DataService();
+                        vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpInwardDate.Text + "',103)");
+                        objDservice.CloseConnection();
+                        varResult = objspdservice.udfngetVoucherNo("183", vardate, varConcernId);
+                        objspdservice.CloseConnection();
+                        string[] parts = varResult.Split('~');
+                        string pono = parts[0];
+                        if (pono != "")
+                        {
+                            txtInwardNo.Text = pono;
+                        }
+                        else
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(75);
+                            objDServ.CloseConnection();
+                            txtInwardNo.Text = "";
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                MainForm.objCP_Settings = new CP_Settings();
+                                MainForm.objCP_Settings.varconcernvalue =Convert.ToString(varConcernId);
+                                MainForm.objCP_Settings.varValues = Convert.ToString(38);
+                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                                MainForm.objCP_Settings.Show();
+                                this.Close();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        txtInwardNo.Text = "";
+                    }
+                }
             }
             catch (Exception ex)
             {
