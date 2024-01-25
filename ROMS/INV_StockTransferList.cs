@@ -180,7 +180,10 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
                 {
-                    TsbDelete_Click(sender, e);
+                    if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 32 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value) == 0)
+                    {
+                        TsbDelete_Click(sender, e);
+                    }
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -191,7 +194,10 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
-                    udfndelete();
+                    if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 32 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value) == 0)
+                    {
+                        udfndelete();
+                    }
                 }
             }
             catch (Exception ex)

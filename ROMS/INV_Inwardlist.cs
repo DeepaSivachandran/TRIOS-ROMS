@@ -1010,6 +1010,7 @@ namespace ROMS
                             grdInwardList.Columns["Inward Date"].Width = 120;
                             grdInwardList.Columns["Inward No."].Width = 120;
                             grdInwardList.Columns["Stock Location"].Width = 150;
+                            grdInwardList.Columns["SLID"].Visible = false;
                             grdInwardList.Columns["Transaction Type"].Width = 120;
                             grdInwardList.Columns["GIID"].Visible = false;
                             grdInwardList.Columns["STRID"].Visible = false;
@@ -1072,6 +1073,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Inward Date"].Width = 120;
                 DGV_SearchGrid.Columns["Inward No."].Width = 120;
                 DGV_SearchGrid.Columns["Stock Location"].Width = 150;
+                DGV_SearchGrid.Columns["SLID"].Visible = false;
                 DGV_SearchGrid.Columns["Transaction Type"].Width = 120;
                 DGV_SearchGrid.Columns["GIID"].Visible = false;
                 DGV_SearchGrid.Columns["Total Products"].Width = 120;
@@ -1124,6 +1126,7 @@ namespace ROMS
                         objTRNS_GoodsInward.ViewType = ViewType;
                         objTRNS_GoodsInward.paraGIID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value.ToString());
                         objTRNS_GoodsInward.paraSTRID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STRID"].Value.ToString());
+                        objTRNS_GoodsInward.paraSLID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SLID"].Value.ToString());
                         objTRNS_GoodsInward.paraUserID = varUserID;
                         objTRNS_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
                         objTRNS_GoodsInward.paraOriginator = varoriginator;
@@ -1132,7 +1135,7 @@ namespace ROMS
                         string result = objspdservice.udfnGoodsInward(objTRNS_GoodsInward);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
+                        if (result.Split('~')[0] == "3")
                         {
                             if (result.Split('~')[1] == "1")
                             {
@@ -1146,6 +1149,8 @@ namespace ROMS
                                     objTRNS_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
                                     objTRNS_GoodsInward.paraOriginator = varoriginator;
                                     objTRNS_GoodsInward.paraGIID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value.ToString());
+                                    objTRNS_GoodsInward.paraSTRID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STRID"].Value.ToString());
+                                    objTRNS_GoodsInward.paraSLID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SLID"].Value.ToString());
                                     objTRNS_GoodsInward.paraDeleteFlag = 1;
                                     result = objspdservice.udfnGoodsInward(objTRNS_GoodsInward);
                                     if (result.Split('~')[0] == "3")

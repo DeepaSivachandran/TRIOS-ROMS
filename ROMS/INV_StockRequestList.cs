@@ -166,7 +166,10 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
                 {
-                    tsbDelete_Click(sender, e);
+                    if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) == 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 47 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 28 || ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 29) && (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) == 0))))
+                    {
+                        tsbDelete_Click(sender, e);
+                    }
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -177,7 +180,10 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
-                    udfndelete();
+                    if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) > 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 47 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 28 || ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 29) && (Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) == 0))))
+                    {
+                        udfndelete();
+                    }
                 }
             }
             catch (Exception ex)
