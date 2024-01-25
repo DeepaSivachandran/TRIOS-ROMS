@@ -327,7 +327,7 @@
             this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click_1);
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
             this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
@@ -411,7 +411,6 @@
             this.grdInwardQueueList.TabIndex = 958797;
             this.grdInwardQueueList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInwardList_CellDoubleClick);
             this.grdInwardQueueList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInwardList_DataBindingComplete);
-            this.grdInwardQueueList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdInwardList_KeyDown);
             // 
             // DGV_SearchGrid
             // 

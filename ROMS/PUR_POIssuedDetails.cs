@@ -33,6 +33,7 @@ namespace ROMS
             try
             {
                 udfnclose();
+                MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
             }
             catch (Exception ex)
             {
@@ -193,17 +194,20 @@ namespace ROMS
             try
             {
                 this.ActiveControl = dpissuedateandtime;
-                if (varsts == 11)
+                if (varsts != 12) //pending po
                 {
-                    dpissuedateandtime.Enabled = false;
-                    txtTAT.Enabled = false;
-                    this.ActiveControl = txtIssuedBY;
-                }
-                if (varsts == 14 || varsts == 33 || varsts == 13)
-                { 
-                    gpissued.Enabled = false;
-                    gpissued.Enabled = false;
-                    btnSave.Enabled = false; 
+                    if (varsts == 11) //issued po
+                    {
+                        dpissuedateandtime.Enabled = false;
+                        txtTAT.Enabled = false;
+                        this.ActiveControl = txtIssuedBY;
+                    }
+                    else//if (varsts == 14 || varsts == 33 || varsts == 13) //////po genrated with others
+                    {
+                        gpissued.Enabled = false;
+                        gpissued.Enabled = false;
+                        btnSave.Enabled = false;
+                    }
                 }
                 //DateTime varmindate = DateTime.ParseExact(txtPODate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 //dpissuedateandtime.MinDate = varmindate;
@@ -541,6 +545,22 @@ namespace ROMS
             try
             {
                 txtTAT.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTAT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {

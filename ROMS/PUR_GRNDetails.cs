@@ -239,7 +239,8 @@ namespace ROMS
             try
             {
                 skipValidation = true;
-                udfnclose();
+                udfnclose(); 
+                MainForm.objPUR_GRNDetailsList.udfnListLoad();
             }
             catch (Exception ex)
             {
@@ -542,6 +543,7 @@ namespace ROMS
                         objGRNProd.Columns.Add("GRNPR_BatchNoGenration", typeof(int));
                         objGRNProd.Columns.Add("GRNPR_PRFlag", typeof(int));
                         objGRNProd.Columns.Add("GRNPR_ShelfLife_Flag", typeof(int));
+                        objGRNProd.Columns.Add("GRNPR_POQty", typeof(float)); 
                         objGRNProd = udfnobjGRNProd();
                         if (varcount == 0)
                         {
@@ -711,6 +713,7 @@ namespace ROMS
                 objGRNProd.Columns.Add("GRNPR_BatchNoGenration", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_PRFlag", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_ShelfLife_Flag", typeof(int));
+                objGRNProd.Columns.Add("GRNPR_POQty", typeof(float));
                 if (chkCompleted.Enabled == true)
                 {
                     for (int i = 0; i < grdGrnlist.Rows.Count; i++)
@@ -800,7 +803,7 @@ namespace ROMS
                         , varShelfPer, Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value)
                         , Convert.ToString(grdGrnlist.Rows[i].Cells["clmtam"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmShelflifeenable"].Value)
                         , Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value)
-                        , ProFlag, Shelflifevalue);
+                        , ProFlag, Shelflifevalue, Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmPOQty"].Value));
                     }
                 }
             }
@@ -1661,6 +1664,7 @@ namespace ROMS
                                     lvproduct.Items.Add(objList);
                                 } 
                                 lvproduct.Visible = true;
+                                lvproduct.BringToFront();
                                 lvproduct.Columns[0].Width = 100;
                                 lvproduct.Columns[3].Width = 50;
                                 if (VarSearchFlag == true)
@@ -2755,7 +2759,7 @@ namespace ROMS
                                 }
 
                                 grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), (txtmrprate.Text).Trim(), (varExpiryDate).Trim()
-                                    , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag);
+                                    , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag,0);
                                 udfnrowclear();
                                 varModifiedFlag = 1;
                                 //grdsupplieradd.Sort(grdsupplieradd.Columns[1], ListSortDirection.Ascending);
@@ -3473,6 +3477,7 @@ namespace ROMS
                                     Convert.ToString(objDs.Tables[3].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[3].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["POID"])
                                     , Convert.ToString(objDs.Tables[3].Rows[i]["BATCHNO"]), Convert.ToString(objDs.Tables[3].Rows[i]["Batchnogeneration"])
                                     , Convert.ToString(objDs.Tables[3].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[3].Rows[i]["newproflag"])
+                                    ,Convert.ToString(objDs.Tables[3].Rows[i]["PO_Qty"])
                                     );
                                 }
                                 txtTotalpro.Text = Convert.ToString(grdGrnlist.Rows.Count);

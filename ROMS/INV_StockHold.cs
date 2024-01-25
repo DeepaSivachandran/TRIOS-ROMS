@@ -40,9 +40,21 @@ namespace ROMS
             try
             {
                 udfnCmbConcern();
-                cmbConcern.SelectedValue = 1;
+                this.ActiveControl = txtProductNamePICode;
+                VarSearchFlag = true;
+                lblProductName.Text = "Search by P.I Code";
                 lblUnit.Text = "";
                 udfnList();
+                //if (grdStockHold.Rows.Count>0)
+                //{
+                //    grdStockHold.Columns["clmDelete"].Visible = true;
+                //    grdStockHold.Columns["clmEdit"].Visible = true;
+                //}
+                //else
+                //{
+                //grdStockHold.Columns["clmDelete"].Visible = false;
+                //grdStockHold.Columns["clmEdit"].Visible = false;
+                //}
             }
             catch (Exception ex)
             {
@@ -50,20 +62,42 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        
         private void INV_StockHold_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
+
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    //tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    //tsbEdit_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    lvproduct.Visible = false;
-                    udfnclose();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    udfntooltiphide();
+                    this.Close();
                 }
-                if (e.KeyCode == Keys.F5)
+
+                if (e.KeyCode == Keys.F11)
                 {
-                    BtnSave_Click(sender, e);
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
                 }
             }
             catch (Exception ex)
@@ -94,12 +128,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GrdStockRequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void TxtProductNamePICode_Enter(object sender, EventArgs e)
         {
             try
@@ -123,8 +151,6 @@ namespace ROMS
                     txtProductNamePICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProductNamePICode.ShowAlways = true;
                     tpProductNamePICode.Show("Please enter the product", txtProductNamePICode, 5000);
-
-
                 }
                 else
                 {
@@ -171,7 +197,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQty_Enter(object sender, EventArgs e)
         {
             try
@@ -196,8 +221,6 @@ namespace ROMS
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpQty.ShowAlways = true;
                     tpQty.Show("Please enter Quantity", txtQty, 5000);
-
-
                 }
                 else
                 {
@@ -212,36 +235,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void INV_StockHold_Load_1(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCmbConcern();
-                this.ActiveControl = txtProductNamePICode;
-                VarSearchFlag = true;
-                lblProductName.Text = "Search by P.I Code";               
-                lblUnit.Text = "";
-                udfnList();
-                //if (grdStockHold.Rows.Count>0)
-                //{
-                //    grdStockHold.Columns["clmDelete"].Visible = true;
-                //    grdStockHold.Columns["clmEdit"].Visible = true;
-                //}
-                //else
-                //{
-                    //grdStockHold.Columns["clmDelete"].Visible = false;
-                    //grdStockHold.Columns["clmEdit"].Visible = false;
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
         private void TxtQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -772,7 +765,6 @@ namespace ROMS
         {
             try
             {
-
                         //epStockHold.Clear();
                  txtProductName.BackColor = Color.White;
                  tpProductName.Active = false;
@@ -1453,47 +1445,7 @@ namespace ROMS
 
         private void INV_StockHold_KeyDown_1(object sender, KeyEventArgs e)
         {
-            try
-            {
-
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    //tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    //tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    udfntooltiphide();
-                    this.Close();
-                }
-
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
-                        txtProductName.CharacterCasing = CharacterCasing.Upper;
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
-                        txtProductName.CharacterCasing = CharacterCasing.Normal;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
         //private void UpdateLabelText()
         //{
@@ -1772,8 +1724,8 @@ namespace ROMS
                                 lvproduct.Columns[0].Width = 0;
                                 lvproduct.Columns[1].Width = 100;
                                 lvproduct.Columns[2].Width = 0;
-                                lvproduct.Columns[3].Width = 270;
-                                lvproduct.Columns[4].Width = 270;
+                                lvproduct.Columns[3].Width = 0;
+                                lvproduct.Columns[4].Width = 0;
                                 lvproduct.Columns[5].Width = 70;
                                 lvproduct.Columns[6].Width = 60;
                                 lvproduct.Columns[7].Width = 70;

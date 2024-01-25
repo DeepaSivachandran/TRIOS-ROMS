@@ -37,6 +37,7 @@ namespace ROMS
             try
             {
                 udfnclose();
+                MainForm.objPUR_GRNDetailsList.udfnListLoad();
             }
             catch (Exception ex)
             {
@@ -49,18 +50,18 @@ namespace ROMS
 
             try
             {
-                if (varCloseFlag == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
+                //if (varCloseFlag == 0)
+                //{
+                    //DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    //if (dialogResult == DialogResult.Yes)
+                    //{
                         this.Close();
-                    } 
-                }
-                else
-                {
-                    this.Close();
-                }
+                  //  } 
+                //}
+                //else
+                //{
+                  //  this.Close();
+                //}
             }
             catch (Exception ex)
             {
@@ -175,8 +176,8 @@ namespace ROMS
                     }
                 }
 
-                //cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                cmbConcern.SelectedValue = 4;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                //cmbConcern.SelectedValue = 4;
             }
             catch (Exception ex)
             {
@@ -1310,46 +1311,60 @@ namespace ROMS
                                     }
                                     this.ActiveControl = txtSupplier;
                                     MainForm.objPUR_GRNDetailsList.udfnListLoad();
-                                    varCloseFlag = 1; 
-                                    string varMessage = objDServ.udfnGetMessages(87);
-                                    objDServ.CloseConnection();
-                                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    if (result1 == DialogResult.Yes)
-                                    {
-                                        try
-                                        {
-                                            string varHeader = "";
-                                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_LP_GRN_QRCode.rpt"); 
-                                            objBillreport.SetParameterValue("paraGRNID", GrnUpdatevalue); 
-                                            objValidation.CrySqlConnection(objBillreport);
+                                    varCloseFlag = 1;
 
-                                            MainForm.objReportLoad = new ReportLoad();
-                                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                            MainForm.objReportLoad.Text = varHeader;
-                                            MainForm.objReportLoad.ShowDialog();
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            objError = new DataError();
-                                            objError.WriteFile(ex);
-                                        }
-                                        finally
-                                        {
-                                        }
-                                        udfnclose();
-                                    }
-                                    else
+                                    SPDataService objdserv = new SPDataService();
+                                    objDs = objdserv.udfnGrnListLoad(5, 0, 0, 0, 0, "", "", Convert.ToInt32(GrnUpdatevalue), 0, 0, "", "", 0, 0, "0");
+                                    objdserv.CloseConnection();
+                                    if (objDs.Tables.Count != 0)
                                     {
-                                        udfnclose();
-                                    }
+                                        if (objDs.Tables[0].Rows.Count != 0)
+                                        {
+                                            if (Convert.ToString(objDs.Tables[0].Rows[0]["TOT"]) != "0")
+                                            {
+                                                string varMessage = objDServ.udfnGetMessages(87);
+                                                objDServ.CloseConnection();
+                                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                if (result1 == DialogResult.Yes)
+                                                {
+                                                    try
+                                                    {
+                                                        string varHeader = "";
+                                                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_LP_GRN_QRCode.rpt");
+                                                        objBillreport.SetParameterValue("paraGRNID", GrnUpdatevalue);
+                                                        objValidation.CrySqlConnection(objBillreport);
+
+                                                        MainForm.objReportLoad = new ReportLoad();
+                                                        MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                                        MainForm.objReportLoad.Text = varHeader;
+                                                        MainForm.objReportLoad.ShowDialog();
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        objError = new DataError();
+                                                        objError.WriteFile(ex);
+                                                    } 
+                                                    udfnclose();
+                                                }
+                                                else
+                                                {
+                                                    udfnclose();
+                                                }
+                                            }
+                                            else
+                                            {
+                                                udfnclose();
+                                            }
+                                        } 
+                                    } 
                                 }
                                 else
                                 {
                                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
-                                this.ActiveControl = txtSupplier;
+                                //this.ActiveControl = txtSupplier;
                             }
                         }
                     }
@@ -1833,26 +1848,19 @@ namespace ROMS
         {
             try
             {
-                //if (varCloseFlag == 0)
-                //{
-                //    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //    if (dialogResult == DialogResult.Yes)
-                //    {
-                //        e.Cancel = false;
-                //    }
-                //    else
-                //    {
-                //        e.Cancel = true;
-                //    }
-                //}
-                //else
-                //{
-                //    this.Close();
-                //}
-                //else
-                //{
-                //    this.Close();
-                //}
+                if (varCloseFlag == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+
+                }
             }
             catch (Exception ex)
             {

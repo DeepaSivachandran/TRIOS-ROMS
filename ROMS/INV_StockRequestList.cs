@@ -73,6 +73,7 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        
                         SPDataService objspdservice = new SPDataService();
                         result = "";
                         Model.TRN_StockRequest objTRNS_StockRequest = new Model.TRN_StockRequest();
@@ -110,18 +111,18 @@ namespace ROMS
                         {
                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
         }
         private void udfnEdit()
         {
@@ -167,16 +168,16 @@ namespace ROMS
                 {
                     tsbDelete_Click(sender, e);
                 }
-                if ((e.KeyCode == Keys.Delete))
-                {
-                    tsbDelete_Click(sender, e);
-                }
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
                 }
             }
             catch (Exception ex)
@@ -630,19 +631,19 @@ namespace ROMS
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,11) AND STSID IN(0,28,29)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,11) AND STSID IN(0,28,29,48)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 5);
-                if (objDs.Tables[0].Rows.Count > 0)
-                {
-                    DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpEntryToDate.MinDate = varDate;
-                    dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
-                }
-                objspservice.CloseConnection();
+                //DataSet objDs = new DataSet();
+                //SPDataService objspservice = new SPDataService();
+                //objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 5);
+                //if (objDs.Tables[0].Rows.Count > 0)
+                //{
+                //    DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    dpEntryToDate.MinDate = varDate;
+                //    dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+                //}
+                //objspservice.CloseConnection();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpEntryToDate.MaxDate = MainForm.pbCurrentDate;
@@ -725,6 +726,7 @@ namespace ROMS
                             grdStockRequestList.Columns["ConcernID"].Visible = false;
                             grdStockRequestList.Columns["StatusID"].Visible = false;
                             grdStockRequestList.Columns["SRQID"].Visible = false;
+                            grdStockRequestList.Columns["Received Qty"].Visible = false;
                             grdStockRequestList.Columns["S.No."].Width = 50;
                             grdStockRequestList.Columns["Status"].Width = 120;
                             grdStockRequestList.Columns["Created By"].Width = 100;
@@ -780,6 +782,7 @@ namespace ROMS
                 DGV__SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV__SearchGrid.Columns["StatusID"].Visible = false;
                 DGV__SearchGrid.Columns["SRQID"].Visible = false;
+                DGV__SearchGrid.Columns["Received Qty"].Visible = false;
                 DGV__SearchGrid.Columns["S.No."].Width = 50;
                 DGV__SearchGrid.Columns["Status"].Width = 80;
                 DGV__SearchGrid.Columns["Created By"].Width = 100; DGV__SearchGrid.ScrollBars = ScrollBars.Both;
@@ -1161,10 +1164,6 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
-                }
             }
             catch (Exception ex)
             {
@@ -1320,11 +1319,11 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Status" || col.Name == "Concern")
+                            if (col.Name == "S.No." || col.Name == "Concern")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if (col.Name == "Request Date" || col.Name == "Request No." || col.Name == "Created By")
+                            else if (col.Name == "Request Date" || col.Name == "Request No." || col.Name == "Created By" || col.Name == "Status" || col.Name == "Created On")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
@@ -1396,6 +1395,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1439,6 +1439,40 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpEntryToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockRequestList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) > 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48))
+                {
+                    tsbDelete.Visible = false;
+                }
+                else
+                {
+                    tsbDelete.Visible = true;
+                }
             }
             catch (Exception ex)
             {

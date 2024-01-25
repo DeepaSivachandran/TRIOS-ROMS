@@ -36,7 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsStockTransferList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.tsbQue = new System.Windows.Forms.ToolStripButton();
+            this.tsbTransferList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
@@ -54,8 +54,6 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdStockTransfer = new System.Windows.Forms.DataGridView();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.lblTransferToDate = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
             this.lblProduct = new System.Windows.Forms.Label();
@@ -73,6 +71,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStockTransfer)).BeginInit();
@@ -88,7 +87,7 @@
             this.tsStockTransferList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsStockTransferList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
-            this.tsbQue,
+            this.tsbTransferList,
             this.toolStripSeparator1,
             this.tsbEdit,
             this.tssNew});
@@ -108,18 +107,18 @@
             this.tspHeader.Size = new System.Drawing.Size(103, 24);
             this.tspHeader.Text = "Stock Transfer";
             // 
-            // tsbQue
+            // tsbTransferList
             // 
-            this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbQue.Image = global::ROMS.Properties.Resources.list;
-            this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbQue.Name = "tsbQue";
-            this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbQue.Size = new System.Drawing.Size(130, 24);
-            this.tsbQue.Text = "Stock Transfer List";
-            this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
+            this.tsbTransferList.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbTransferList.Image = global::ROMS.Properties.Resources.list;
+            this.tsbTransferList.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbTransferList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTransferList.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbTransferList.Name = "tsbTransferList";
+            this.tsbTransferList.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbTransferList.Size = new System.Drawing.Size(130, 24);
+            this.tsbTransferList.Text = "Stock Transfer List";
+            this.tsbTransferList.Click += new System.EventHandler(this.TsbTransferList_Click);
             // 
             // toolStripSeparator1
             // 
@@ -258,6 +257,8 @@
             this.grdStockTransfer.ColumnHeadersHeight = 30;
             this.grdStockTransfer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdStockTransfer.ColumnHeadersVisible = false;
+            this.grdStockTransfer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmPrint});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -280,6 +281,7 @@
             this.grdStockTransfer.ShowRowErrors = false;
             this.grdStockTransfer.Size = new System.Drawing.Size(1348, 497);
             this.grdStockTransfer.TabIndex = 958802;
+            this.grdStockTransfer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellContentClick);
             this.grdStockTransfer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellDoubleClick);
             this.grdStockTransfer.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockTransfer_DataBindingComplete);
             this.grdStockTransfer.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockTransfer_Scroll);
@@ -288,8 +290,6 @@
             // 
             // grbFilterBy
             // 
-            this.grbFilterBy.Controls.Add(this.cmbStatus);
-            this.grbFilterBy.Controls.Add(this.lblStatus);
             this.grbFilterBy.Controls.Add(this.lblTransferToDate);
             this.grbFilterBy.Controls.Add(this.btnExport);
             this.grbFilterBy.Controls.Add(this.lblProduct);
@@ -314,29 +314,6 @@
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By";
             // 
-            // cmbStatus
-            // 
-            this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(896, 49);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(205, 27);
-            this.cmbStatus.TabIndex = 5;
-            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
-            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
-            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
-            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(896, 25);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(45, 20);
-            this.lblStatus.TabIndex = 1111196;
-            this.lblStatus.Text = "Status";
-            // 
             // lblTransferToDate
             // 
             this.lblTransferToDate.AutoSize = true;
@@ -350,7 +327,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1188, 48);
+            this.btnExport.Location = new System.Drawing.Point(983, 48);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 7;
@@ -493,7 +470,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1107, 48);
+            this.btnView.Location = new System.Drawing.Point(903, 48);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 6;
@@ -564,6 +541,13 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            // 
             // INV_StockTransferQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -630,11 +614,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblTransferToDate;
-        public System.Windows.Forms.ToolStripButton tsbQue;
+        public System.Windows.Forms.ToolStripButton tsbTransferList;
         public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.ToolStripSeparator tssNew;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }

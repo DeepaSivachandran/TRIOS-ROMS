@@ -57,30 +57,6 @@ namespace ROMS
 
             }
         }
-        private void tsbEdit_Click(object sender, EventArgs e)
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            { 
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void INV_StockRequest_Load(object sender, EventArgs e)
         {
             try
@@ -235,6 +211,7 @@ namespace ROMS
             }
             finally
             {
+                grdStockRequest.ClearSelection();
                 txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
             }
         }
@@ -331,7 +308,15 @@ namespace ROMS
         }
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            udfnclose();
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnclose()
         {
@@ -848,6 +833,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.Visible = false; 
                 txtRequiredQty.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1354,7 +1340,6 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void GrdStockRequest_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1386,7 +1371,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1402,7 +1386,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1415,7 +1398,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStatus_Leave(object sender, EventArgs e)
         {
             try

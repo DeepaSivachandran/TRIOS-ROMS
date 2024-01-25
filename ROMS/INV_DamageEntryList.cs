@@ -1035,12 +1035,14 @@ namespace ROMS
                     }
                     else
                     {
+                        grdDamageEntryList.Columns["clmPrint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
                 }
                 else
                 {
+                    grdDamageEntryList.Columns["clmPrint"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
@@ -1336,12 +1338,14 @@ namespace ROMS
                     }
                     else
                     {
+                        grdSupDEList.Columns["clmSupPrint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
                 }
                 else
                 {
+                    grdSupDEList.Columns["clmSupPrint"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }

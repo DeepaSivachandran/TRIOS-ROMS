@@ -2986,6 +2986,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaPEToDate", objTRN_PurchaseEntry.ParaPEToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@ParaEditFlag", objTRN_PurchaseEntry.ParaEditFlag);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -3054,6 +3055,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products", objTRN_PurchaseEntry.ParaPurchase_Products);
                 varSqlCommand.Parameters.AddWithValue("@paraLoadingChargesGRN", objTRN_PurchaseEntry.paraLoadingChargesGRN);
                 varSqlCommand.Parameters.AddWithValue("@paraFrightGRN", objTRN_PurchaseEntry.paraFrightGRN);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_PurchaseEntry.paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
