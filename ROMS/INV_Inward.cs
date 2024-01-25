@@ -123,7 +123,6 @@ namespace ROMS
                 udfnTransactionData();              
                 this.ActiveControl = txtStockLocation;
                 lblProductName.Text = "Search by P.I Code";
-                //grdInward.Columns["clmreceivedqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                 if (varEditflag == 0)
                 {
                     udfnEdit();
@@ -154,6 +153,7 @@ namespace ROMS
                 {
                     btnRemarks.Enabled = false;
                 }
+                grdInward.Columns["clmactualqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
             }
             catch (Exception ex)
             {
@@ -1212,7 +1212,7 @@ namespace ROMS
                         dtInward.Rows.Add(varPRID, Convert.ToDecimal(txtMrp.Text), varExpiryDate, txtBatchNo.Text.Trim(),txtActualQty.Text.Trim(),varRKID,varStockLocationId,0,0,varShelflife,ProductShelflifeValue,ProductShelflifeType,varShelflifeper[0]);
                         txttotalitem.Text = Convert.ToString(grdInward.Rows.Count);
                         //((DataGridViewTextBoxColumn)grdInward.Columns["clmQuantity"]).MaxInputLength = 8;
-                        //grdInward.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                        //grdInward.Columns["clmactualquantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         ////grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
                         grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1783,58 +1783,29 @@ namespace ROMS
         {
             try
             {
+                decimal Quantity = Convert.ToDecimal(grdInward.CurrentRow.Cells["clmactualqty"].Value);
+                if (Convert.ToString(Quantity) == "0" || Convert.ToString(Quantity) == "")
+                {
+                    grdInward.Rows[e.RowIndex].Cells["clmactualqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    varErrQty = 1;
+                }
+                else
+                {
+                    grdInward.CurrentRow.Cells["clmactualqty"].Style.BackColor = Color.PaleGreen;
+                    varErrQty = 0;
+                }
+                int varDecimal = Convert.ToInt32(grdInward.CurrentRow.Cells["clmUnitDecimal"].Value);
 
-                //int TransferdCellValue = Convert.ToInt32(grdInward.CurrentRow.Cells["clmtransferqty"].Value);
-                //int ReceivedQty = Convert.ToInt32(grdInward.CurrentRow.Cells["clmreceivedqty"].Value);
+                string Qty = objValidation.udfnDecimal(Convert.ToString(grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
+                grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
 
-                //if (Convert.ToInt32(ReceivedQty) > Convert.ToInt32(TransferdCellValue))
-                //{
-                //    grdInward.CurrentRow.Cells["clmreceivedqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    //epGoodsOutward.SetError(DGV_inward, "Please enter valid outward qty");
-                //    tpCompany.ShowAlways = true;
-                //    tpCompany.Show("Please enter valid received quantity", grdInward, 5000);
-                //    SPDataService objDServ = new SPDataService();
-                //    objDServ.CloseConnection();
-                //    varErrQty = 1;
-                //    //MessageBox.Show("Please Enter Valid Outward Quantity", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //}
-                //else if (Convert.ToString(TransferdCellValue) == "" || Convert.ToString(ReceivedQty) == "0")
-                //{
-                //    grdInward.Rows[e.RowIndex].Cells["clmreceivedqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    SPDataService objDServ = new SPDataService();
-                //    string varMessage = objDServ.udfnGetMessages(89);
-                //    objDServ.CloseConnection();
-                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    varErrQty = 1;
-                //}
-                //else
-                //{
-                //    grdInward.CurrentRow.Cells["clmreceivedQty"].Style.BackColor = Color.PaleGreen;
-                //    varErrQty = 0;
-
-                //}
-                //object varEditQty = grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                //// Update the same column value in the DataTable
-                //dtInward.Rows[e.RowIndex]["GIPR_ReqQty"] = varEditQty;
-                //int varUTDecimal = Convert.ToInt32(grdInward.CurrentRow.Cells["clmUTDecimal"].Value);
-                //if (varUTDecimal == 6)
-                //{
-                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 1);
-                //    grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                //}
-                //if (varUTDecimal == 7)
-                //{
-                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
-                //    grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                //}
-                //if (varUTDecimal == 8)
-                //{
-                //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 3);
-                //    grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                //}
-                //object varEditQty = grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                //// Update the same column value in the DataTable
-                //dtInward.Rows[e.RowIndex]["SRQ_RequestedQty"] = varEditQty;
+                object varEditQty = grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                // Update the same column value in the DataTable
+                dtInward.Rows[e.RowIndex]["GIPR_QTY"] = varEditQty;
 
             }
             catch (Exception ex)
@@ -1906,6 +1877,19 @@ namespace ROMS
         {
             try
             {
+                try
+                {
+                    grdInward.Columns["clmactualqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+
+                }
                 grdInward.ClearSelection();
             }
             catch (Exception ex)

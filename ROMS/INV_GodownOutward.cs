@@ -1367,7 +1367,6 @@ namespace ROMS
                 {
                     grdGoodsOutward.CurrentRow.Cells["clmOutward"].Style.BackColor = Color.PaleGreen;
                     varErrQty = 0;
-
                 } 
                 int varDecimal = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmUTDecimal"].Value);
 
