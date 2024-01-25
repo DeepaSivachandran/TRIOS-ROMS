@@ -19,6 +19,7 @@ namespace ROMS
         public int varPurchaseID = 0, varID = 0, varGRNPurchaseFlag = 0, varCloseFlag = 0, varTypeID = 0, varRemarkFlag = 0;
         public int varRemarkCount=0;
         DataTable dtInwardPurchase = new DataTable();
+        ToolTip tpInwardNo = new ToolTip();
         public INV_InwardPurchase()
         {
             InitializeComponent();
@@ -247,11 +248,11 @@ namespace ROMS
                     bool varErrorFlag = true;
                     if (txtInwardNo.Text == "")
                     {
-                        //epInwardPurchase.SetError(txtInwardNo, "INward No. is empty.");
-                        ////txtDcNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //tpInwardNo.ShowAlways = true;
-                        //tpInwardNo.Show("DC No. is empty.", txtInwardNo, 5000);
-                        //varErrorFlag = false;
+                        epInwardPurchase.SetError(txtInwardNo, "Inward No. is empty.");
+                        //txtDcNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpInwardNo.ShowAlways = true;
+                        tpInwardNo.Show("DC No. is empty.", txtInwardNo, 5000);
+                        varErrorFlag = false;
                     }
                     dtInwardPurchase.Rows.Clear();
                     for (int i = 0; i < grdGrnlist.Rows.Count; i++)
