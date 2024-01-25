@@ -1,0 +1,1365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C81E91FD-B5D0-49DE-B1A7-364B2D8FAB92}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ROMS</RootNamespace>
+    <AssemblyName>ROMS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.102.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.102.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony, Version=1.0.11.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Irony.NetCore.1.0.11\lib\net461\Irony.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO.Packaging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.6.0.0\lib\net461\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="XLParser, Version=1.5.2.0, Culture=neutral, PublicKeyToken=63397e1e46bb91b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\XLParser.1.5.2\lib\net461\XLParser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authentication.designer.cs">
+      <DependentUpon>Authentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BatchNoConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BatchNoConfiguration.designer.cs">
+      <DependentUpon>CP_BatchNoConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BatchNoConfigurationList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BatchNoConfigurationList.designer.cs">
+      <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BulkAttributeVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BulkAttributeVerify.designer.cs">
+      <DependentUpon>CP_BulkAttributeVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ChangePasswordConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ChangePasswordConfirmation.designer.cs">
+      <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_GeneralSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_GeneralSettings.designer.cs">
+      <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BulkAttributes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BulkAttributes.designer.cs">
+      <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Representative.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Representative.designer.cs">
+      <DependentUpon>CP_Representative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RepresentativeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RepresentativeList.designer.cs">
+      <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_InwardlistQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardlistQueue.designer.cs">
+      <DependentUpon>INV_InwardlistQueue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_InwardQueueList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardQueueList.designer.cs">
+      <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalVerify.designer.cs">
+      <DependentUpon>PUR_GRNApprovalVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_Calculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_Calculator.designer.cs">
+      <DependentUpon>PUR_Calculator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseQueue.designer.cs">
+      <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockConversionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockConversionList.designer.cs">
+      <DependentUpon>INV_StockConversionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockHold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold.designer.cs">
+      <DependentUpon>INV_StockHold.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_ChequePrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_ChequePrint.designer.cs">
+      <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_DebitNoteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_DebitNoteList.designer.cs">
+      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PODamagedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PODamagedView.designer.cs">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_DCDeatils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_DCDeatils.designer.cs">
+      <DependentUpon>PUR_DCDeatils.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseDCList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseDCList.designer.cs">
+      <DependentUpon>PUR_PurchaseDCList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_DCGoodsInward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_DCGoodsInward.designer.cs">
+      <DependentUpon>PUR_DCGoodsInward.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductDetails.designer.cs">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Supplier.designer.cs">
+      <DependentUpon>CP_Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SupplierOrderDetailsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SupplierOrderDetailsList.designer.cs">
+      <DependentUpon>CP_SupplierOrderDetailsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SupplierOrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SupplierOrderDetails.designer.cs">
+      <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_UserCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_UserCategory.designer.cs">
+      <DependentUpon>CP_UserCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_UserCategoryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_UserCategoryList.designer.cs">
+      <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_DamageEntryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_DamageEntryList.designer.cs">
+      <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_DamageEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_DamageEntry.designer.cs">
+      <DependentUpon>INV_DamageEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNApproval.designer.cs">
+      <DependentUpon>PUR_GRNApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalList.designer.cs">
+      <DependentUpon>PUR_GRNApprovalList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_InwardPurchaseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardPurchaseList.designer.cs">
+      <DependentUpon>INV_InwardPurchaseList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_InwardPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardPurchase.designer.cs">
+      <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNEntry.designer.cs">
+      <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GSTIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GSTIN.designer.cs">
+      <DependentUpon>PUR_GSTIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POIssuedDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POIssuedDetails.designer.cs">
+      <DependentUpon>PUR_POIssuedDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POProducts.designer.cs">
+      <DependentUpon>PUR_POProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POScheduledaywise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POScheduledaywise.designer.cs">
+      <DependentUpon>PUR_POScheduledaywise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POMappedProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POMappedProducts.designer.cs">
+      <DependentUpon>PUR_POMappedProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POReturns.designer.cs">
+      <DependentUpon>PUR_POReturns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_SupplierPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_SupplierPayment.designer.cs">
+      <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_SupplierPaymentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_SupplierPaymentList.designer.cs">
+      <DependentUpon>PAY_SupplierPaymentList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Broker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Broker.designer.cs">
+      <DependentUpon>CP_Broker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BrokerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BrokerList.designer.cs">
+      <DependentUpon>CP_BrokerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackGroup.designer.cs">
+      <DependentUpon>CP_RackGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackGroupList.designer.cs">
+      <DependentUpon>CP_RackGroupList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackSettings.designer.cs">
+      <DependentUpon>CP_RackSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Settings.designer.cs">
+      <DependentUpon>CP_Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SupplierMapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SupplierMapping.designer.cs">
+      <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_GodownOutward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_GodownOutward.designer.cs">
+      <DependentUpon>INV_GodownOutward.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_GodownOutwardList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_GodownOutwardList.designer.cs">
+      <DependentUpon>INV_GodownOutwardList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_GRNPODamaged.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_GRNPODamaged.designer.cs">
+      <DependentUpon>INV_GRNPODamaged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_SalesInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_SalesInvoice.designer.cs">
+      <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_SalesInvoiceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_SalesInvoiceList.designer.cs">
+      <DependentUpon>INV_SalesInvoiceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockRequest.designer.cs">
+      <DependentUpon>INV_StockRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockRequestList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockRequestList.designer.cs">
+      <DependentUpon>INV_StockRequestList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockTransfer.designer.cs">
+      <DependentUpon>INV_StockTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockTransferList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockTransferList.designer.cs">
+      <DependentUpon>INV_StockTransferList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNEntryVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNEntryVerify.designer.cs">
+      <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_BulkUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_BulkUnit.designer.cs">
+      <DependentUpon>PUR_BulkUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseApproval.designer.cs">
+      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseDC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseDC.designer.cs">
+      <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockConversion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockConversion.designer.cs">
+      <DependentUpon>INV_StockConversion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_RemarksHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_RemarksHistory.designer.cs">
+      <DependentUpon>PUR_RemarksHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PODamaged.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PODamaged.designer.cs">
+      <DependentUpon>PUR_PODamaged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_Product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_Product.designer.cs">
+      <DependentUpon>PUR_Product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrderDamage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrderDamage.designer.cs">
+      <DependentUpon>PUR_PurchaseOrderDamage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNOrderType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNOrderType.designer.cs">
+      <DependentUpon>PUR_GRNOrderType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNVerify.designer.cs">
+      <DependentUpon>PUR_GRNVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNDetails.designer.cs">
+      <DependentUpon>PUR_GRNDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNDetailsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNDetailsList.designer.cs">
+      <DependentUpon>PUR_GRNDetailsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseReturns.designer.cs">
+      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_SupplierSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_SupplierSchedule.designer.cs">
+      <DependentUpon>PUR_SupplierSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Brand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Brand.designer.cs">
+      <DependentUpon>CP_Brand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_PurchaseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_PurchaseList.designer.cs">
+      <DependentUpon>CP_PurchaseList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Purchase_Inward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Purchase_Inward.designer.cs">
+      <DependentUpon>CP_Purchase_Inward.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Purchase_PO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Purchase_PO.designer.cs">
+      <DependentUpon>CP_Purchase_PO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_City.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_City.designer.cs">
+      <DependentUpon>CP_City.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Citylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Citylist.designer.cs">
+      <DependentUpon>CP_Citylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Group.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Group.designer.cs">
+      <DependentUpon>CP_Group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_GroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_GroupList.designer.cs">
+      <DependentUpon>CP_GroupList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ProductList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductList.designer.cs">
+      <DependentUpon>CP_ProductList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Product.designer.cs">
+      <DependentUpon>CP_Product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Location.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Location.designer.cs">
+      <DependentUpon>CP_Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_LocationList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_LocationList.designer.cs">
+      <DependentUpon>CP_LocationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ProductHSNList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductHSNList.designer.cs">
+      <DependentUpon>CP_ProductHSNList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ProductHSN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductHSN.designer.cs">
+      <DependentUpon>CP_ProductHSN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Companylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Companylist.designer.cs">
+      <DependentUpon>CP_Companylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Purchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Purchase.designer.cs">
+      <DependentUpon>CP_Purchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Rack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Rack.designer.cs">
+      <DependentUpon>CP_Rack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackList.designer.cs">
+      <DependentUpon>CP_RackList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackSettinglist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackSettinglist.designer.cs">
+      <DependentUpon>CP_RackSettinglist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SubGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SubGroup.designer.cs">
+      <DependentUpon>CP_SubGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SubGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SubGroupList.designer.cs">
+      <DependentUpon>CP_SubGroupList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Supplierlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Supplierlist.designer.cs">
+      <DependentUpon>CP_Supplierlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BrandList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BrandList.designer.cs">
+      <DependentUpon>CP_BrandList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ChangePassword.designer.cs">
+      <DependentUpon>CP_ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Company.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Company.designer.cs">
+      <DependentUpon>CP_Company.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SupplierMappinglist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SupplierMappinglist.designer.cs">
+      <DependentUpon>CP_SupplierMappinglist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Unit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Unit.designer.cs">
+      <DependentUpon>CP_Unit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Unitlist .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Unitlist .designer.cs">
+      <DependentUpon>CP_Unitlist .cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_User.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_User.designer.cs">
+      <DependentUpon>CP_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_UserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_UserList.designer.cs">
+      <DependentUpon>CP_UserList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DEF_Start.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DEF_Start.designer.cs">
+      <DependentUpon>DEF_Start.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_Inward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_Inward.designer.cs">
+      <DependentUpon>INV_Inward.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_Inwardlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_Inwardlist.designer.cs">
+      <DependentUpon>INV_Inwardlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PUR_PurchaseOrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrderList.designer.cs">
+      <DependentUpon>PUR_PurchaseOrderList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseApprovalList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseApprovalList.designer.cs">
+      <DependentUpon>PUR_PurchaseApprovalList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrder.designer.cs">
+      <DependentUpon>PUR_PurchaseOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_SupplierScheduleList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_SupplierScheduleList.designer.cs">
+      <DependentUpon>PUR_SupplierScheduleList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerSettings.designer.cs">
+      <DependentUpon>ServerSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service Class\DataBind.cs" />
+    <Compile Include="Service Class\DataError.cs" />
+    <Compile Include="Service Class\DataService.cs" />
+    <Compile Include="Service Class\DataValidation.cs" />
+    <Compile Include="Service Class\SecurityController.cs" />
+    <Compile Include="Service Class\SPCall.cs" />
+    <Compile Include="Service Class\SPDataService.cs" />
+    <Compile Include="SSS Acccounts activation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SSS Acccounts activation.designer.cs">
+      <DependentUpon>SSS Acccounts activation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ActivationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Authentication.resx">
+      <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BatchNoConfiguration.resx">
+      <DependentUpon>CP_BatchNoConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
+      <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BulkAttributeVerify.resx">
+      <DependentUpon>CP_BulkAttributeVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ChangePasswordConfirmation.resx">
+      <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_GeneralSettings.resx">
+      <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BulkAttributes.resx">
+      <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Representative.resx">
+      <DependentUpon>CP_Representative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RepresentativeList.resx">
+      <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardlistQueue.resx">
+      <DependentUpon>INV_InwardlistQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardQueueList.resx">
+      <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNApprovalVerify.resx">
+      <DependentUpon>PUR_GRNApprovalVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_Calculator.resx">
+      <DependentUpon>PUR_Calculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseQueue.resx">
+      <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockConversionList.resx">
+      <DependentUpon>INV_StockConversionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold.resx">
+      <DependentUpon>INV_StockHold.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_ChequePrint.resx">
+      <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_DebitNoteList.resx">
+      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PODamagedView.resx">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_DCDeatils.resx">
+      <DependentUpon>PUR_DCDeatils.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseDCList.resx">
+      <DependentUpon>PUR_PurchaseDCList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_DCGoodsInward.resx">
+      <DependentUpon>PUR_DCGoodsInward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductDetails.resx">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Supplier.resx">
+      <DependentUpon>CP_Supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SupplierOrderDetailsList.resx">
+      <DependentUpon>CP_SupplierOrderDetailsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SupplierOrderDetails.resx">
+      <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_UserCategory.resx">
+      <DependentUpon>CP_UserCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_UserCategoryList.resx">
+      <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_DamageEntryList.resx">
+      <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_DamageEntry.resx">
+      <DependentUpon>INV_DamageEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNApproval.resx">
+      <DependentUpon>PUR_GRNApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNApprovalList.resx">
+      <DependentUpon>PUR_GRNApprovalList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardPurchaseList.resx">
+      <DependentUpon>INV_InwardPurchaseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardPurchase.resx">
+      <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNEntry.resx">
+      <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GSTIN.resx">
+      <DependentUpon>PUR_GSTIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POIssuedDetails.resx">
+      <DependentUpon>PUR_POIssuedDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POProducts.resx">
+      <DependentUpon>PUR_POProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POScheduledaywise.resx">
+      <DependentUpon>PUR_POScheduledaywise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POMappedProducts.resx">
+      <DependentUpon>PUR_POMappedProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POReturns.resx">
+      <DependentUpon>PUR_POReturns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_SupplierPayment.resx">
+      <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_SupplierPaymentList.resx">
+      <DependentUpon>PAY_SupplierPaymentList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Broker.resx">
+      <DependentUpon>CP_Broker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BrokerList.resx">
+      <DependentUpon>CP_BrokerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackGroup.resx">
+      <DependentUpon>CP_RackGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackGroupList.resx">
+      <DependentUpon>CP_RackGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackSettings.resx">
+      <DependentUpon>CP_RackSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Settings.resx">
+      <DependentUpon>CP_Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SupplierMapping.resx">
+      <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_GodownOutward.resx">
+      <DependentUpon>INV_GodownOutward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_GodownOutwardList.resx">
+      <DependentUpon>INV_GodownOutwardList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_GRNPODamaged.resx">
+      <DependentUpon>INV_GRNPODamaged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_SalesInvoice.resx">
+      <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_SalesInvoiceList.resx">
+      <DependentUpon>INV_SalesInvoiceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockRequest.resx">
+      <DependentUpon>INV_StockRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockRequestList.resx">
+      <DependentUpon>INV_StockRequestList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockTransfer.resx">
+      <DependentUpon>INV_StockTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockTransferList.resx">
+      <DependentUpon>INV_StockTransferList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNEntryVerify.resx">
+      <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_BulkUnit.resx">
+      <DependentUpon>PUR_BulkUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseApproval.resx">
+      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseDC.resx">
+      <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockConversion.resx">
+      <DependentUpon>INV_StockConversion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_RemarksHistory.resx">
+      <DependentUpon>PUR_RemarksHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PODamaged.resx">
+      <DependentUpon>PUR_PODamaged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_Product.resx">
+      <DependentUpon>PUR_Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseOrderDamage.resx">
+      <DependentUpon>PUR_PurchaseOrderDamage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNOrderType.resx">
+      <DependentUpon>PUR_GRNOrderType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNVerify.resx">
+      <DependentUpon>PUR_GRNVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNDetails.resx">
+      <DependentUpon>PUR_GRNDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNDetailsList.resx">
+      <DependentUpon>PUR_GRNDetailsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseReturns.resx">
+      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_SupplierSchedule.resx">
+      <DependentUpon>PUR_SupplierSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Brand.resx">
+      <DependentUpon>CP_Brand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_PurchaseList.resx">
+      <DependentUpon>CP_PurchaseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Purchase_Inward.resx">
+      <DependentUpon>CP_Purchase_Inward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Purchase_PO.resx">
+      <DependentUpon>CP_Purchase_PO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_City.resx">
+      <DependentUpon>CP_City.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Citylist.resx">
+      <DependentUpon>CP_Citylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Group.resx">
+      <DependentUpon>CP_Group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_GroupList.resx">
+      <DependentUpon>CP_GroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductList.resx">
+      <DependentUpon>CP_ProductList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Product.resx">
+      <DependentUpon>CP_Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Location.resx">
+      <DependentUpon>CP_Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_LocationList.resx">
+      <DependentUpon>CP_LocationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductHSNList.resx">
+      <DependentUpon>CP_ProductHSNList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductHSN.resx">
+      <DependentUpon>CP_ProductHSN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Companylist.resx">
+      <DependentUpon>CP_Companylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Purchase.resx">
+      <DependentUpon>CP_Purchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Rack.resx">
+      <DependentUpon>CP_Rack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackList.resx">
+      <DependentUpon>CP_RackList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackSettinglist.resx">
+      <DependentUpon>CP_RackSettinglist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SubGroup.resx">
+      <DependentUpon>CP_SubGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SubGroupList.resx">
+      <DependentUpon>CP_SubGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Supplierlist.resx">
+      <DependentUpon>CP_Supplierlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BrandList.resx">
+      <DependentUpon>CP_BrandList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ChangePassword.resx">
+      <DependentUpon>CP_ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Company.resx">
+      <DependentUpon>CP_Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SupplierMappinglist.resx">
+      <DependentUpon>CP_SupplierMappinglist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Unit.resx">
+      <DependentUpon>CP_Unit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Unitlist .resx">
+      <DependentUpon>CP_Unitlist .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_User.resx">
+      <DependentUpon>CP_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_UserList.resx">
+      <DependentUpon>CP_UserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DEF_Start.resx">
+      <DependentUpon>DEF_Start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_Inward.resx">
+      <DependentUpon>INV_Inward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_Inwardlist.resx">
+      <DependentUpon>INV_Inwardlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="PUR_PurchaseOrderList.resx">
+      <DependentUpon>PUR_PurchaseOrderList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseApprovalList.resx">
+      <DependentUpon>PUR_PurchaseApprovalList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseOrder.resx">
+      <DependentUpon>PUR_PurchaseOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_SupplierScheduleList.resx">
+      <DependentUpon>PUR_SupplierScheduleList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerSettings.resx">
+      <DependentUpon>ServerSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SSS Acccounts activation.resx">
+      <DependentUpon>SSS Acccounts activation.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Web References\ActivationService\ActivationService.wsdl" />
+    <None Include="Web References\ActivationService\ActivationService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ActivationService\ActivationService0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ActivationService\ActivationService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ActivationService\ActivationService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ActivationService\Customerrecords.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ActivationService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\approve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bread-crumb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mismatch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newcancelBill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rupeeicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://cloud.shivasoftwares.com/activation/ActivationService.svc">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ActivationService\</RelPath>
+      <UpdateFromURL>http://cloud.shivasoftwares.com/activation/ActivationService.svc</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ROMS_ActivationService_ActivationService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\ActivationService\ActivationService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login_1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login %282%291.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\include.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internet-on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Launcher.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\returns1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\returns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Iphone-spinner-2.gif" />
+    <None Include="Resources\list.png" />
+    <None Include="Resources\pending.png" />
+    <None Include="Resources\deliverychallan24.png" />
+    <None Include="Resources\submit.png" />
+    <None Include="Resources\queue.png" />
+    <None Include="Resources\damage24.png" />
+    <None Include="Resources\print16x16 %282%29.png" />
+    <None Include="Resources\spinner.gif.gif" />
+    <None Include="Resources\undo16x16.png" />
+    <None Include="Resources\save16x16.png" />
+    <None Include="Resources\print16x16.png" />
+    <None Include="Resources\clear.png" />
+    <Content Include="Resources\close-eye.png" />
+    <None Include="Resources\exclude1.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
