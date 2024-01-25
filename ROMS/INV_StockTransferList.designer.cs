@@ -56,6 +56,7 @@
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdStockTransfer = new System.Windows.Forms.DataGridView();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -77,7 +78,6 @@
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.activationService1 = new ROMS.ActivationService.ActivationService();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStockTransfer)).BeginInit();
@@ -326,10 +326,17 @@
             this.grdStockTransfer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellContentClick);
             this.grdStockTransfer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellDoubleClick);
             this.grdStockTransfer.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockTransfer_DataBindingComplete);
-            this.grdStockTransfer.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_RowEnter);
             this.grdStockTransfer.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockTransfer_Scroll);
+            this.grdStockTransfer.SelectionChanged += new System.EventHandler(this.GrdStockTransfer_SelectionChanged);
             this.grdStockTransfer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdStockTransfer_KeyDown);
             this.grdStockTransfer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GrdStockTransfer_MouseDoubleClick);
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
             // 
             // grbFilterBy
             // 
@@ -614,13 +621,6 @@
             this.activationService1.Credentials = null;
             this.activationService1.Url = "http://cloud.shivasoftwares.com/activation/ActivationService.svc";
             this.activationService1.UseDefaultCredentials = false;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
             // 
             // INV_StockTransferList
             // 
