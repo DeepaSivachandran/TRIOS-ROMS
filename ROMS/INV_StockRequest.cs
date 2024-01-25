@@ -755,6 +755,7 @@ namespace ROMS
                                 grdGodownStock.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["SL_ShortName"]), Convert.ToString(objDS.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[1].Rows[i]["STK_Qty"]));
                                 varModifiedFlag = 1;
                             }
+                            grdGodownStock.ClearSelection();
                         }
                     }
                 }
