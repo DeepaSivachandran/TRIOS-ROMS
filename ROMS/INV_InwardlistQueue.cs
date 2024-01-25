@@ -57,19 +57,18 @@ namespace ROMS
         {
             try
             {
-
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_Inward = new INV_Inward();
-                    MainForm.objINV_Inward.btnSave.Text = "Update";
-                    MainForm.objINV_Inward.grdInward.Columns["clmremove"].Visible = false;
-                    MainForm.objINV_Inward.varEditflag = 1;
-                    MainForm.objINV_Inward.varUpdateflag = 1;
-                    MainForm.objINV_Inward.varSTRID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["STRID"].Value);
-                    MainForm.objINV_Inward.varSLID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value);
-                    MainForm.objINV_Inward.MdiParent = this.ParentForm;
-                    MainForm.objINV_Inward.Show();
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                MainForm.objINV_Inward = new INV_Inward();
+                MainForm.objINV_Inward.btnSave.Text = "Update";
+                MainForm.objINV_Inward.grdInward.Columns["clmremove"].Visible = false;
+                MainForm.objINV_Inward.varEditflag = 1;
+                MainForm.objINV_Inward.varUpdateflag = 1;
+                MainForm.objINV_Inward.varSTRID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["STRID"].Value);
+                MainForm.objINV_Inward.varSLID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value);
+                MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                MainForm.objINV_Inward.Show();
             }
             catch (Exception ex)
             {

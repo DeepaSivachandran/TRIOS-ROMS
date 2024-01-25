@@ -222,6 +222,7 @@ namespace ROMS
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
             cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             this.ActiveControl = txtSLocation;
+            tsbDelete.Visible = true;
             udfnList();
         }
         public void udfnCmbConcern()
@@ -367,6 +368,7 @@ namespace ROMS
                             grdStockTransfer.Columns["STRID"].Visible = false;
                             grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["Transfer Qty"].Visible = false;
+                            //grdStockTransfer.Columns["Product STSID"].Width = 100;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["Status"].Width = 120;
                             grdStockTransfer.Columns["Source"].Width = 120;
@@ -410,6 +412,7 @@ namespace ROMS
             }
             finally
             {
+                grdStockTransfer.ClearSelection();
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
@@ -1468,6 +1471,7 @@ namespace ROMS
         {
             try
             {
+
                 if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 40 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value)>0)
                 {
                     tsbDelete.Visible = false;
