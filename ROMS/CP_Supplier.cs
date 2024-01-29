@@ -21,7 +21,7 @@ namespace ROMS
         public int SearchFlag = 0;
         public string varcompanycode;
         public int pbFormStatus=0;
-        public string varstatecode = "", varupdate = "0", vardays = "";
+        public string varstatecode = "", varupdate = "0", vardays = "", varUserID="";
         public int varOrderid = 0, scheduleselectedIndex = -1;
         public int varBrandId = 0;
         public int varGroupId = 0;
@@ -4897,7 +4897,7 @@ namespace ROMS
             try
             {
                 string result = "";
-                int sceduleidupdate = 0;
+                int sceduleidupdate = 0,varDeleteFlag=0;
                 //if (varOrderid == 0)
                 //{
                 //    sceduleidupdate = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
@@ -4918,51 +4918,81 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
 
-                                //SPDataService objspdservice = new SPDataService();
-                                //result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",0);
-                                //string[] varvalue = result.Split('~');
-                                //if (varvalue[0] == "3")
-                                //{
-                                //    this.ActiveControl = txtScheduleName;
-                                //    grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
-                                //    for (int i = 0; i < grdSupplierList.RowCount; i++)
-                                //    {
-                                //        grdSupplierList.Rows[i].Cells["clmsno"].Value = i + 1;
-                                //    }
-                                //    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //    MainForm.objCP_Supplierlist.udfnList();
-                                //}
-                                //else
-                                //{
-                                    //DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    //if (dialogResult1 == DialogResult.Yes)
+                                SPDataService objspdservice = new SPDataService();
+                                result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", 0);
+                                string[] varvalue = result.Split('~');
+                                if (varvalue[0] == "3")
+                                {
+                                    this.ActiveControl = txtScheduleName;
+                                    varDeleteFlag = 1;
+                                }
+                                else
+                                {
+                                    DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (dialogResult1 == DialogResult.Yes)
+                                    {
+                                        varDeleteFlag = 1;
+                                    }
+                                }
+                                if(varDeleteFlag==1)
+                                {
+                                    //SPDataService objspdservice1 = new SPDataService();
+                                    //result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", 0);
+                                    //objspdservice1.CloseConnection();
+                                    //string[] varvalue1 = result.Split('~');
+                                    //if (varvalue1[0] == "3")
                                     //{
-                                        SPDataService objspdservice1 = new SPDataService();
-                                        result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",0);
-                                        objspdservice1.CloseConnection();
-                                        string[] varvalue1 = result.Split('~');
-                                        if (varvalue1[0] == "3")
-                                        {
-                                            this.ActiveControl = txtScheduleName;
-                                            grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
-                                            for (int i = 0; i < grdSupplierList.RowCount; i++)
-                                            {
-                                                grdSupplierList.Rows[i].Cells["clmsno"].Value = i + 1;
-                                            }
-                                            MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            MainForm.objCP_Supplierlist.udfnList();
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                        }
-                                       
-
-                                        udfnScheduleClear();
-                                        btnAdd.Text = "Save";
+                                    //    this.ActiveControl = txtScheduleName;
+                                    //    grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
+                                    //    for (int i = 0; i < grdSupplierList.RowCount; i++)
+                                    //    {
+                                    //        grdSupplierList.Rows[i].Cells["clmsno"].Value = i + 1;
+                                    //    }
+                                    //    MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //    MainForm.objCP_Supplierlist.udfnList();
                                     //}
-                                //}
-                                objspdservice1.CloseConnection();
+                                    //else
+                                    //{
+                                    //    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    //}
+                                    SPDataService objspdservice1 = new SPDataService();
+                                    result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", 0);
+                                    objspdservice1.CloseConnection();
+                                    string[] varvalue1 = result.Split('~');
+                                    if (varvalue1[0] == "3")
+                                    {
+                                        if (result.Split('~')[1] == "1")
+                                        {
+                                            MainForm.objCP_Verify = new CP_Verify();
+                                            MainForm.objCP_Verify.ShowDialog();
+                                            varUserID = MainForm.objCP_Verify.varUserId;
+                                            if (MainForm.objCP_Verify.flag == 1)
+                                            {
+                                                result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 1, "", 0);
+                                                objspdservice1.CloseConnection();
+                                                if (result.Split('~')[0] == "3")
+                                                {
+                                                    this.ActiveControl = txtScheduleName;
+                                                    grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
+                                                    for (int i = 0; i < grdSupplierList.RowCount; i++)
+                                                    {
+                                                        grdSupplierList.Rows[i].Cells["clmsno"].Value = i + 1;
+                                                    }
+                                                    MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    MainForm.objCP_Supplierlist.udfnList();
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else if (result.Split('~')[0] == "4")
+                                    {
+                                        MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                }
                                 udfnScheduleClear();
                                 btnAdd.Text = "Save";
                                 udfnSetRegularText();

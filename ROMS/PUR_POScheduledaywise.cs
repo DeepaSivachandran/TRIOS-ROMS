@@ -260,6 +260,7 @@ namespace ROMS
                     {
                         varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
                     }
+                    varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
                     string varHeader = "";
                     switch (grdPOSchedule.Columns[e.ColumnIndex].Name)
                     {

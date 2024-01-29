@@ -1097,6 +1097,11 @@ namespace ROMS
                 //    epPurchaseDC.Clear();
                 //}
                 txtMrp.BackColor = Color.White;
+                if (txtMrp.Text.Trim() != "")
+                {
+                    //string mrp = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                    txtMrp.Text = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                }
             }
             catch (Exception ex)
             {
