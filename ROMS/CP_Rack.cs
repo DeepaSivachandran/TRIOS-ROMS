@@ -109,12 +109,14 @@ namespace ROMS
             try
             {
                 txtLocation.Text = PbLocationName;
+                txtLocation.Enabled = false;
                 lblLocation.Text = Convert.ToString(varLocationCode);
                 txtRackName.Text = PbRackName;
                 txtShortName.Text = PbShortName;
                 txtDescription.Text = PbDescription;
                 cmbConcern.SelectedValue = PbConcernID;
                 cmbConcern.Enabled = false;
+                this.ActiveControl = txtRackName;
                 //cmbStockLocation.SelectedValue = PbStockLocationID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if(PbStatus==2)

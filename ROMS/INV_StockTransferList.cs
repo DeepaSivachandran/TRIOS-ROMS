@@ -208,6 +208,7 @@ namespace ROMS
             objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (6) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
             objDataBind = null;
             cmbStatus.SelectedValue = 0;
+            /*
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);
@@ -218,6 +219,8 @@ namespace ROMS
                 dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
             }
             objspservice.CloseConnection();
+            */
+            dpTrannsferFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;

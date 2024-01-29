@@ -749,7 +749,6 @@
             dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdStaffDetails.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.grdStaffDetails.RowTemplate.Height = 25;
-            this.grdStaffDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdStaffDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdStaffDetails.ShowRowErrors = false;
             this.grdStaffDetails.Size = new System.Drawing.Size(628, 160);

@@ -201,7 +201,7 @@ namespace ROMS
                         {
                             pnlStatus.Enabled = true;
                         }
-                        pnlGodownType.Enabled = true;
+                        //pnlGodownType.Enabled = true;
                     }
                 }
                 if (varFormFlag != 0)

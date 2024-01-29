@@ -846,6 +846,10 @@ namespace ROMS
                         {
                             varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
                         }
+                        if (objDsPurLoc.Tables[1].Rows.Count > 0)
+                        {
+                            varLocation = Convert.ToString(objDsPurLoc.Tables[1].Rows[0][0]);
+                        }
                     }
                 }
             }
@@ -855,13 +859,22 @@ namespace ROMS
         {
             try
             {
-                udfnSLocationValid();
+                //udfnSLocationValid();
                 lvDLocation.Items.Clear();
+                int varSLID = 0;
+                if(varLocation == "0")
+                {
+                    varSLID = Convert.ToInt32(lblSLocation.Text);
+                }
+                else
+                {
+                    varSLID = 0;
+                }
                 if (txtDLocation.Text.Length > 0)
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(24, Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text) , 0, txtDLocation.Text, 0, 0, 0,"","");
+                    objDs = objspdservice.udfnStockLocationList(24, Convert.ToInt32(cmbConcern.SelectedValue),varSLID, 0, txtDLocation.Text, 0, 0, 0,"","");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

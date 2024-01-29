@@ -680,7 +680,7 @@ namespace ROMS
                     row.Cells[0].Value = false;
                 }
                 udfnemployeeload();
-                grdRack.DataSource = null;
+                //grdRack.DataSource = null;
             }
             catch (Exception ex)
             {

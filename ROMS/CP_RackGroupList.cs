@@ -197,7 +197,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdRackGroupList.DataSource = objDs.Tables[0];
                             grdRackGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdRackGroupList.Columns["TotalProducts"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdRackGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                          
                             grdRackGroupList.Columns["S.No."].Width = 50;
                             grdRackGroupList.Columns["Concern"].Width = 150;
@@ -207,7 +207,7 @@ namespace ROMS
                             grdRackGroupList.Columns["Short Name"].Width = 150;
                             grdRackGroupList.Columns["Description"].Width = 150;
                             grdRackGroupList.Columns["Employee Name"].Width = 150;
-                            grdRackGroupList.Columns["TotalProducts"].Width = 150;
+                            grdRackGroupList.Columns["Total Products"].Width = 120;
 
                             grdRackGroupList.Columns["ID"].Visible = false;
                             grdRackGroupList.Columns["COMID"].Visible = false;
@@ -265,7 +265,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Short Name"].Width = 150;
                 DGV_SearchGrid.Columns["Description"].Width = 150;
                 DGV_SearchGrid.Columns["Employee Name"].Width = 150;
-                DGV_SearchGrid.Columns["TotalProducts"].Width = 150;
+                DGV_SearchGrid.Columns["Total Products"].Width = 120;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["COMID"].Visible = false;
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
