@@ -100,6 +100,9 @@ namespace ROMS
                     dpDCreditNoteDate.Visible = true;
                     dpCreditNoteDate.Enabled = true;
                     btnView.Visible = false;
+                    dtExchangeProducts.Rows.Clear();
+                    dtExchangeProducts.AcceptChanges();
+                    varModifiedFlag = 1;
                 }
                 else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 63) //Received Equivalent Product
                 {
@@ -107,10 +110,12 @@ namespace ROMS
                     txtAmount.Visible = true;
                     txtDCrNo.Visible = false;
                     txtCrNo.Visible = false;
+                    txtCrNo.Text = "";
                     dpCreditNoteDate.Visible = false;
                     dpDCreditNoteDate.Visible = false;
                     btnView.Visible = true;
                     udfnView();
+                    varModifiedFlag = 1;
                 }
                 else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64) //Debit Note Created
                 {
@@ -118,9 +123,25 @@ namespace ROMS
                     txtAmount.Visible = true;
                     txtDCrNo.Visible = false;
                     txtCrNo.Visible = false;
+                    txtCrNo.Text = "";
                     dpCreditNoteDate.Visible = false;
                     dpDCreditNoteDate.Visible = false;
                     btnView.Visible = false;
+                    varModifiedFlag = 1;
+                }
+                else if(Convert.ToInt32(cmbReasonForClosing.SelectedValue) == -1)
+                {
+                    txtDAmount.Visible = false;
+                    txtAmount.Visible = false;
+                    txtDCrNo.Visible = false;
+                    txtCrNo.Visible = false;
+                    txtCrNo.Text = "";
+                    txtAmount.Text = "";
+                    dpCreditNoteDate.Visible = false;
+                    dpDCreditNoteDate.Visible = false;
+                    btnView.Visible = false;
+                    dtExchangeProducts.Rows.Clear();
+                    dtExchangeProducts.AcceptChanges();
                 }
             }
             catch (Exception ex)
@@ -137,11 +158,8 @@ namespace ROMS
                 {
                     this.Close();
                 }
-                
                 else
                 {
-
-
                     if (varModifiedFlag == 1)
                     {
                         DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -186,7 +204,6 @@ namespace ROMS
                 txtActualQty.Enabled = false;
                 btnAdd.Enabled = false;
                 lblTotal.Text = "Approximate Total";
-                
             }
             else if (Convert.ToInt32(cmbReason.SelectedValue) == 61) //excess
             {
@@ -382,7 +399,6 @@ namespace ROMS
                     if(varEditFlag==1)
                     {
                         varReturnDCID = varDebitDCID;
-
                     }
                     EditLoad();
                     if (varStatusId == 39)
@@ -405,7 +421,6 @@ namespace ROMS
                         }
                     }
                     grpReturnDCSupplier.Enabled = false;
-                    varModifiedFlag = 1;
                 }
             }
             catch (Exception ex)
@@ -505,7 +520,7 @@ namespace ROMS
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
-                        if (objDs.Tables[0].Rows.Count != 0)
+                        if (objDs.Tables[1].Rows.Count != 0)
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
@@ -1765,7 +1780,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try
