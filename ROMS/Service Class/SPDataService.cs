@@ -2977,6 +2977,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@ParaEditFlag", objTRN_PurchaseEntry.ParaEditFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraType", objTRN_PurchaseEntry.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_PurchaseEntry.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRN_PurchaseEntry.paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRN_PurchaseEntry.paraScheduleID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
