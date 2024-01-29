@@ -392,6 +392,7 @@
             // txtConvertMrp
             // 
             this.txtConvertMrp.Location = new System.Drawing.Point(24, 43);
+            this.txtConvertMrp.MaxLength = 8;
             this.txtConvertMrp.Name = "txtConvertMrp";
             this.txtConvertMrp.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtConvertMrp.Size = new System.Drawing.Size(75, 28);

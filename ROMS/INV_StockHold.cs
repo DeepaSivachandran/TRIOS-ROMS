@@ -359,7 +359,7 @@ namespace ROMS
                     tpQty.Show("Please enter quantity", txtQty, 5000);
                     blnErrorFlag = false;
                 }
-                if (Convert.ToDecimal(txtQty.Text) > Convert.ToInt32(txtStockQty.Text) || Convert.ToDecimal(txtQty.Text)==0)
+                if (Convert.ToDecimal(txtQty.Text) > Convert.ToDecimal(txtStockQty.Text) || Convert.ToDecimal(txtQty.Text)==0)
                 {
                     //epGoodsOutward.SetError(txtQty, "Please enter a correct Outward Quantity");
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1437,6 +1437,19 @@ namespace ROMS
                 }
             }
             catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockHold_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdStockHold.ClearSelection();
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

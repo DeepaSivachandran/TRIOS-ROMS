@@ -1020,6 +1020,7 @@ namespace ROMS
                             grdInwardList.Columns["Created By"].Width = 100;
                             grdInwardList.Columns["Created On"].Width = 150;
                             grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdInwardList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdInwardList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdInwardList.Columns["Inward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -1074,6 +1075,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Inward No."].Width = 120;
                 DGV_SearchGrid.Columns["Stock Location"].Width = 150;
                 DGV_SearchGrid.Columns["SLID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["STRID"].Visible = false;
                 DGV_SearchGrid.Columns["Transaction Type"].Width = 120;
                 DGV_SearchGrid.Columns["GIID"].Visible = false;
                 DGV_SearchGrid.Columns["Total Products"].Width = 120;
@@ -1485,10 +1488,10 @@ namespace ROMS
                 {
                     udfnEdit(0);
                 }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
-                }
+                //if (e.KeyCode == Keys.Delete)
+                //{
+                //    udfndelete();
+                //}
             }
             catch (Exception ex)
             {

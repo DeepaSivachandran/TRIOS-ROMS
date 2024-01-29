@@ -411,6 +411,7 @@
             this.grdInwardQueueList.TabIndex = 958797;
             this.grdInwardQueueList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInwardList_CellDoubleClick);
             this.grdInwardQueueList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInwardList_DataBindingComplete);
+            this.grdInwardQueueList.Enter += new System.EventHandler(this.GrdInwardQueueList_Enter);
             // 
             // DGV_SearchGrid
             // 

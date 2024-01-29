@@ -398,6 +398,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.Visible = false;
                 txtStockLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -572,6 +573,7 @@ namespace ROMS
         {
             try
             {
+                lvSLocation.Visible = false;
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1161,6 +1163,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdInwardQueueList_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvSLocation.Visible = false;
+                lvProduct.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TsbInwardList_Click(object sender, EventArgs e)
         {
             try

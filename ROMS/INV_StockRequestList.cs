@@ -938,7 +938,7 @@ namespace ROMS
             try
             {
                 udfnProductEvent();
-                btnView.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
@@ -1480,10 +1480,12 @@ namespace ROMS
                 if ((Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["Received Qty"].Value) > 0 || Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value) == 48))
                 {
                     tsbDelete.Visible = false;
+                    tssEdit.Visible = false;
                 }
                 else
                 {
                     tsbDelete.Visible = true;
+                    tssEdit.Visible = true;
                 }
             }
             catch (Exception ex)
