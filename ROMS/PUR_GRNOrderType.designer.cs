@@ -123,10 +123,10 @@
             // 
             this.lblFinishedNoRecord.AutoSize = true;
             this.lblFinishedNoRecord.BackColor = System.Drawing.Color.White;
-            this.lblFinishedNoRecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFinishedNoRecord.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.lblFinishedNoRecord.Location = new System.Drawing.Point(198, 129);
             this.lblFinishedNoRecord.Name = "lblFinishedNoRecord";
-            this.lblFinishedNoRecord.Size = new System.Drawing.Size(84, 16);
+            this.lblFinishedNoRecord.Size = new System.Drawing.Size(106, 20);
             this.lblFinishedNoRecord.TabIndex = 1111210;
             this.lblFinishedNoRecord.Text = "No Records Found";
             this.lblFinishedNoRecord.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -150,7 +150,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_GRNOrderType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Select Purchase Order";
+            this.Text = "Purchase Order";
             this.Load += new System.EventHandler(this.PUR_GRNOrderType_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_GRNOrderType_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();

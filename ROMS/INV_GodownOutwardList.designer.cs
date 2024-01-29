@@ -56,7 +56,7 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
-            this.dtpOutwardDate2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpOutwardToDate = new System.Windows.Forms.DateTimePicker();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblDProductNamePicode = new System.Windows.Forms.Label();
             this.dtpOutwardDate = new System.Windows.Forms.DateTimePicker();
@@ -218,7 +218,6 @@
             this.lvProduct.UseCompatibleStateImageBehavior = false;
             this.lvProduct.View = System.Windows.Forms.View.Details;
             this.lvProduct.Visible = false;
-            this.lvProduct.SelectedIndexChanged += new System.EventHandler(this.LvProduct_SelectedIndexChanged);
             this.lvProduct.DoubleClick += new System.EventHandler(this.LvProduct_DoubleClick);
             this.lvProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvProduct_KeyDown);
             // 
@@ -319,10 +318,8 @@
             this.grdOutwardList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdOutwardList.RowTemplate.Height = 25;
             this.grdOutwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdOutwardList.Size = new System.Drawing.Size(1328, 510);
+            this.grdOutwardList.Size = new System.Drawing.Size(1328, 495);
             this.grdOutwardList.TabIndex = 111111133;
-            this.grdOutwardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdOutwardList_CellContentClick);
-            this.grdOutwardList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdUserList_CellDoubleClick);
             this.grdOutwardList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
             this.grdOutwardList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserList_Scroll);
             this.grdOutwardList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
@@ -333,7 +330,7 @@
             this.grbFilterBy.Controls.Add(this.lblStatus);
             this.grbFilterBy.Controls.Add(this.cmbStatus);
             this.grbFilterBy.Controls.Add(this.txtStockLocation);
-            this.grbFilterBy.Controls.Add(this.dtpOutwardDate2);
+            this.grbFilterBy.Controls.Add(this.dtpOutwardToDate);
             this.grbFilterBy.Controls.Add(this.txtProductName);
             this.grbFilterBy.Controls.Add(this.lblDProductNamePicode);
             this.grbFilterBy.Controls.Add(this.dtpOutwardDate);
@@ -369,10 +366,10 @@
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(127, 27);
             this.cmbStatus.TabIndex = 5;
-            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
-            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave_1);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
             // 
             // txtStockLocation
             // 
@@ -385,17 +382,17 @@
             this.txtStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStockLocation_KeyDown);
             this.txtStockLocation.Leave += new System.EventHandler(this.TxtStockLocation_Leave);
             // 
-            // dtpOutwardDate2
+            // dtpOutwardToDate
             // 
-            this.dtpOutwardDate2.CustomFormat = "dd/MM/yyyy";
-            this.dtpOutwardDate2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpOutwardDate2.Location = new System.Drawing.Point(246, 47);
-            this.dtpOutwardDate2.Name = "dtpOutwardDate2";
-            this.dtpOutwardDate2.Size = new System.Drawing.Size(104, 27);
-            this.dtpOutwardDate2.TabIndex = 2;
-            this.dtpOutwardDate2.Enter += new System.EventHandler(this.DtpOutwardDate2_Enter);
-            this.dtpOutwardDate2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtpOutwardDate2_KeyDown);
-            this.dtpOutwardDate2.Leave += new System.EventHandler(this.DtpOutwardDate2_Leave);
+            this.dtpOutwardToDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpOutwardToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpOutwardToDate.Location = new System.Drawing.Point(246, 47);
+            this.dtpOutwardToDate.Name = "dtpOutwardToDate";
+            this.dtpOutwardToDate.Size = new System.Drawing.Size(104, 27);
+            this.dtpOutwardToDate.TabIndex = 2;
+            this.dtpOutwardToDate.Enter += new System.EventHandler(this.DtpOutwardToDate_Enter);
+            this.dtpOutwardToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtpOutwardToDate_KeyDown);
+            this.dtpOutwardToDate.Leave += new System.EventHandler(this.DtpOutwardToDate_Leave);
             // 
             // txtProductName
             // 
@@ -444,12 +441,11 @@
             // lbloutwarddate
             // 
             this.lbloutwarddate.AutoSize = true;
-            this.lbloutwarddate.Location = new System.Drawing.Point(145, 22);
+            this.lbloutwarddate.Location = new System.Drawing.Point(133, 22);
             this.lbloutwarddate.Name = "lbloutwarddate";
             this.lbloutwarddate.Size = new System.Drawing.Size(84, 20);
             this.lbloutwarddate.TabIndex = 92;
             this.lbloutwarddate.Text = "Outward Date";
-            this.lbloutwarddate.Click += new System.EventHandler(this.Lbloutwarddate_Click);
             // 
             // lblDConcern
             // 
@@ -474,7 +470,6 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
-            this.btnExport.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnExport_KeyDown);
             this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
             // btnView
@@ -490,7 +485,6 @@
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
-            this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnView_KeyDown);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // cmbConcern
@@ -500,7 +494,6 @@
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(121, 27);
             this.cmbConcern.TabIndex = 0;
-            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged_1);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
@@ -584,7 +577,7 @@
         private System.Windows.Forms.Label lbloutwarddate;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label lblDProductNamePicode;
-        private System.Windows.Forms.DateTimePicker dtpOutwardDate2;
+        private System.Windows.Forms.DateTimePicker dtpOutwardToDate;
         public System.Windows.Forms.ListView lvProduct;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;

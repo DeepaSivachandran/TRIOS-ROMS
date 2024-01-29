@@ -52,7 +52,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnBrokerList(1, Convert.ToInt32(varBrokerid),0,0);
+                    objDS = objspservice.udfnBrokerList(1, Convert.ToInt32(varBrokerid),0,0,"");
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -343,6 +343,7 @@ namespace ROMS
             try
             {
                 this.Close();
+                MainForm.objCP_CP_BrokerList.udfnList();
             }
             catch (Exception ex)
             {

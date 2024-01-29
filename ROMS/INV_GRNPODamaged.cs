@@ -134,8 +134,9 @@ namespace ROMS
                             grdGRNPODamaged.Columns["Reason"].ReadOnly = true;
                             grdGRNPODamaged.Columns["Total Products"].ReadOnly = true;
                             grdGRNPODamaged.Columns["Total value"].ReadOnly = true;
-                            grdGRNPODamaged.Columns["ID"].Visible = false;
-
+                            grdGRNPODamaged.Columns["ID"].Visible = false; 
+                            grdGRNPODamaged.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGRNPODamaged.Columns["Total value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {

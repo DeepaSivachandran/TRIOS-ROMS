@@ -369,7 +369,10 @@ namespace ROMS
             try
             {
                 udfnclose();
-                // MainForm.objCP_RackList.udfnList();
+                if (varFormFlag == 0)
+                {
+                    MainForm.objCP_RackList.udfnList();
+                }
             }
             catch (Exception ex)
             {

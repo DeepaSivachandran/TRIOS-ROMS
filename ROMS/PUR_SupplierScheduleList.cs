@@ -316,7 +316,7 @@ namespace ROMS
                     }
                     else
                     {
-                        DGV_SearchGrid.ScrollBars = ScrollBars.None;
+                        DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
                     }
                 }
                 else
@@ -1094,22 +1094,25 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(dgvSupplierScheduleList, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgvSupplierScheduleList.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    udfnGridSearchHeading(dgvSupplierScheduleList, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgvSupplierScheduleList.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex)
             { objError = new DataError(); objError.WriteFile(ex); }
@@ -1119,23 +1122,26 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    if (col.Visible)
+                    //dgv2.DataSource = null;
+                    dgv2.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgv1.Columns)
                     {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
+                        if (col.Visible)
+                        {
+                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                            visibleColumns.Add(col.Index);
+                        }
                     }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    int rowIndex = 0;
+                    dgv2.Rows.Clear();
+                    dgv2.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1433,12 +1439,11 @@ namespace ROMS
                 Application.DoEvents();
                 if (dgvSupplierScheduleList.SelectedRows.Count > 0)
                 {
-
                     MainForm.objCP_Supplier = new CP_Supplier();
                     MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                     MainForm.objCP_Supplier.btnSave.Text = "Update";
                     MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(dgvSupplierScheduleList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
-                    MainForm.objCP_Supplier.varMasterid = 1; 
+                    MainForm.objCP_Supplier.PoScheduleFlag = 1; 
                     MainForm.objCP_Supplier.Show();
                 }
             }
@@ -1841,7 +1846,7 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible = false)
+                if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
                     int offSetValue = dgvSupplierScheduleList.HorizontalScrollingOffset;

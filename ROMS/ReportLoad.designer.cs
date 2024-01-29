@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportLoad));
             this.cryptview = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.SuspendLayout();
             // 
@@ -37,16 +38,9 @@
             this.cryptview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cryptview.Cursor = System.Windows.Forms.Cursors.Default;
             this.cryptview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cryptview.EnableDrillDown = false;
             this.cryptview.Location = new System.Drawing.Point(0, 0);
             this.cryptview.Name = "cryptview";
-            this.cryptview.ShowCloseButton = false;
-            this.cryptview.ShowCopyButton = false;
-            this.cryptview.ShowGroupTreeButton = false;
-            this.cryptview.ShowParameterPanelButton = false;
-            this.cryptview.ShowRefreshButton = false;
-            this.cryptview.ShowTextSearchButton = false;
-            this.cryptview.ShowZoomButton = false;
+            this.cryptview.ReuseParameterValuesOnRefresh = true;
             this.cryptview.Size = new System.Drawing.Size(761, 545);
             this.cryptview.TabIndex = 0;
             this.cryptview.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
@@ -57,6 +51,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 545);
             this.Controls.Add(this.cryptview);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReportLoad";
             this.Text = "ReportLoad";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

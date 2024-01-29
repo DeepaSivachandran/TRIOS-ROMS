@@ -49,6 +49,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.Visible = false;
                 if(txtProductName.Text=="")
                 {
                     lblProduct.Text = "0";

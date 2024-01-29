@@ -32,7 +32,7 @@ namespace ROMS
         public bool VarSearchFlag = true;
         public int expirydateFlag = 0, pbDateflag=0, varShelflife=0, varReturnDCID=0;
         public string varBatchNo = "0";
-       public  int varcloseflag=0;
+       public  int varcloseflag=0,varDecimal=0;
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varExpiryDate = "";
         public string varPICode = "", varTName = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "",
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
@@ -59,7 +59,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -99,7 +99,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -138,6 +138,8 @@ namespace ROMS
                         grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         udfnProductCount();
                     }
+                    this.ActiveControl = txtProductName;
+                    txtProductName.Focus();
                 }
                 else
                 {
@@ -146,7 +148,7 @@ namespace ROMS
                     grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     grpproductname.Enabled = false;
                     btnSave.Enabled = false;
-                    txtRemark.ReadOnly = true;
+                    txtRemark.Enabled = false;
                     grdProductExchage.Columns["clmRemove"].Visible = false;
                 }
             }
@@ -350,19 +352,19 @@ namespace ROMS
                     btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
-                    }
-                }
+                //if (e.KeyCode == Keys.F11)
+                //{
+                //    if (VarSearchFlag == false)
+                //    {
+                //        VarSearchFlag = true;
+                //        lblProductName.Text = "Search by P.I Code";
+                //    }
+                //    else
+                //    {
+                //        VarSearchFlag = false;
+                //        lblProductName.Text = "Search by Product Name";
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -479,6 +481,21 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtMrp.Focus();
@@ -773,7 +790,6 @@ namespace ROMS
                                     lvStockLocation.Items.Add(objList);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-
                                 }
                                 lvStockLocation.Visible = true;
                             }
@@ -1057,11 +1073,60 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                int varDecimal = Convert.ToInt32(grdProductExchage.CurrentRow.Cells["clmUTDecimal"].Value);
+                if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmQuantity")
+                {
+                    //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    //{
+                    //    e.Handled = true;  // Disallow the character
+                    //}
+                    TextBox textBox = (TextBox)sender;
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                    {
+                        e.Handled = false;
+                    }
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void GrdProductExchage_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
             {
+                if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmQuantity")
+                {
+                    e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress;
+                }
                 if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmQuantity")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
@@ -1192,6 +1257,10 @@ namespace ROMS
                     grdProductExchage.CurrentRow.Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
                     grdProductExchage.Rows[e.RowIndex].Cells["clmError"].Value = varErrQty;
                 }
+                int varDecimal = Convert.ToInt32(grdProductExchage.CurrentRow.Cells["clmUTDecimal"].Value);
+
+                string Qty = objValidation.udfnDecimal(Convert.ToString(grdProductExchage.CurrentRow.Cells["clmQuantity"].Value), varDecimal);
+                grdProductExchage.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
                 //Update the same column value in the DataTable
                 object varEditQty = grdProductExchage.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 dtPurchaseDC.Rows[e.RowIndex]["DCPR_Qty"] = varEditQty;
@@ -1416,6 +1485,8 @@ namespace ROMS
                 }
                 else
                 {
+                    string Qty = objValidation.udfnDecimal((txtActualQty.Text).Trim(), varDecimal);
+                    txtActualQty.Text = Qty;
                     txtActualQty.BackColor = Color.White;
                     epProductExchange.Clear();
                 }
@@ -1434,9 +1505,43 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
-
                 // Allow only one decimal point
                 if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+
+                TextBox textBox = (TextBox)sender;
+                if (varDecimal == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else
+                {
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                {
+                    e.Handled = false;
+                }
+                if (varDecimal == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -1929,7 +2034,15 @@ namespace ROMS
         {
             try
             {
-               if (txtProductName.Text != "" || txtProductName.Text == "")
+                if (VarSearchFlag == true)
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Upper;
+                }
+                else
+                {
+                    txtProductName.CharacterCasing = CharacterCasing.Normal;
+                }
+                if (txtProductName.Text != "" || txtProductName.Text == "")
                 {
                     udfnAddClear();
                     udfnTooltipHide();
@@ -1971,7 +2084,8 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(),objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(),
-                                        objDs.Tables[0].Rows[i]["PR_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNoGeneration"].ToString(),objDs.Tables[0].Rows[i]["PR_RMForProduction"].ToString(),objDs.Tables[0].Rows[i]["PR_PRCTID"].ToString(),objDs.Tables[0].Rows[i]["PR_ShelfLife"].ToString() };
+                                        objDs.Tables[0].Rows[i]["PR_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PR_BatchNoGeneration"].ToString(),objDs.Tables[0].Rows[i]["PR_RMForProduction"].ToString(),objDs.Tables[0].Rows[i]["PR_PRCTID"].ToString(),objDs.Tables[0].Rows[i]["PR_ShelfLife"].ToString(),
+                                      objDs.Tables[0].Rows[i]["UT_Decimal"].ToString()};
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1979,7 +2093,7 @@ namespace ROMS
                                 }
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 130;
-                                lvproduct.Columns[1].Width = 500;
+                                lvproduct.Columns[1].Width = 300;
                                 lvproduct.Columns[2].Width = 50;
                             }
                         }
@@ -2244,7 +2358,7 @@ namespace ROMS
                         decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                         string mrp = string.Format("{0:0.00}", varMRP);
                         string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
-                        grdProductExchage.Rows.Add(grdProductExchage.Rows.Count + 1, varPICode.Trim(), varTName.Trim(), Convert.ToDecimal(mrp), varExpiryDate, txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid);
+                        grdProductExchage.Rows.Add(grdProductExchage.Rows.Count + 1, varPICode.Trim(), varTName.Trim(), Convert.ToDecimal(mrp), varExpiryDate, txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid, varDecimal);
                         dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text), varTName, varPICode, lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim());
                         ((DataGridViewTextBoxColumn)grdProductExchage.Columns["clmQuantity"]).MaxInputLength = 8;
                         grdProductExchage.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;

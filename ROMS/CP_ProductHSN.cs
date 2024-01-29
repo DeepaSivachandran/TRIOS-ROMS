@@ -298,6 +298,7 @@ namespace ROMS
             try
             {
                 this.Close();
+                MainForm.objCP_ProductHSNlist.udfnList();
             }
             catch (Exception ex)
             {

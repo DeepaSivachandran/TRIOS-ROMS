@@ -112,6 +112,10 @@ namespace ROMS
             try
             {
                 udfnclose();
+                if (varFormFlag == 0)
+                {
+                    MainForm.objCP_LocationList.udfnList();
+                }
             }
             catch (Exception ex)
             {
@@ -186,12 +190,19 @@ namespace ROMS
                 }
                 else
                 {
+                    udfnLoad();
                     if (btnSave.Visible)
                     {
-                        pnlStatus.Enabled = true;
+                        if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11)
+                        {
+                            pnlStatus.Enabled = false;
+                        }
+                        else
+                        {
+                            pnlStatus.Enabled = true;
+                        }
                         pnlGodownType.Enabled = true;
                     }
-                    udfnLoad();
                 }
                 if (varFormFlag != 0)
                 {
@@ -272,7 +283,7 @@ namespace ROMS
         {
             try
             {
-                this.Close(); 
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -1074,14 +1085,21 @@ namespace ROMS
         {
             try
             {
-                if (cmbStockApplicable.SelectedIndex == 1)
+                if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
-                    rbActive.Checked = true;
                 }
                 else
                 {
-                    pnlStatus.Enabled = true;
+                    if (Convert.ToInt32(cmbStockApplicable.SelectedValue)== 11)
+                    {
+                        pnlStatus.Enabled = false;
+                        rbActive.Checked = true;
+                    }
+                    else
+                    {
+                        pnlStatus.Enabled = true;
+                    }
                 }
             }
             catch (Exception ex)

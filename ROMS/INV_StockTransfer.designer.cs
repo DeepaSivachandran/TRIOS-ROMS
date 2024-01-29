@@ -46,14 +46,17 @@
             this.lvProduct = new System.Windows.Forms.ListView();
             this.lvclmPICode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvClmTNmae = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvclmProductName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvclmProductEName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvclmRack = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvSLocation = new System.Windows.Forms.ListView();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -80,6 +83,7 @@
             this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCurrentStockQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnRemarks = new System.Windows.Forms.Button();
             this.lbltotalproducts = new System.Windows.Forms.Label();
@@ -88,6 +92,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbStockTransfer = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTransactionType = new System.Windows.Forms.TextBox();
             this.lblDLocation = new System.Windows.Forms.Label();
             this.lblSLocation = new System.Windows.Forms.Label();
             this.txtSLocation = new System.Windows.Forms.TextBox();
@@ -191,7 +197,7 @@
             // chkStatus
             // 
             this.chkStatus.AutoSize = true;
-            this.chkStatus.Location = new System.Drawing.Point(891, 591);
+            this.chkStatus.Location = new System.Drawing.Point(891, 593);
             this.chkStatus.Name = "chkStatus";
             this.chkStatus.Size = new System.Drawing.Size(86, 24);
             this.chkStatus.TabIndex = 16;
@@ -217,14 +223,17 @@
             this.lvProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lvclmPICode,
             this.columnHeader6,
-            this.columnHeader7,
+            this.lvClmTNmae,
             this.lvclmProductName,
-            this.lvclmProductEName,
+            this.lvclmRack,
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader3,
+            this.columnHeader10});
             this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvProduct.FullRowSelect = true;
             this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -247,54 +256,70 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.DisplayIndex = 8;
+            this.columnHeader6.DisplayIndex = 9;
             this.columnHeader6.Width = 0;
             // 
-            // columnHeader7
+            // lvClmTNmae
             // 
-            this.columnHeader7.DisplayIndex = 9;
-            this.columnHeader7.Width = 0;
+            this.lvClmTNmae.DisplayIndex = 1;
+            this.lvClmTNmae.Text = "Product Name";
+            this.lvClmTNmae.Width = 280;
             // 
             // lvclmProductName
             // 
-            this.lvclmProductName.DisplayIndex = 1;
+            this.lvclmProductName.DisplayIndex = 2;
             this.lvclmProductName.Text = "Product Name";
             this.lvclmProductName.Width = 280;
             // 
-            // lvclmProductEName
+            // lvclmRack
             // 
-            this.lvclmProductEName.DisplayIndex = 2;
-            this.lvclmProductEName.Text = "Rack";
-            this.lvclmProductEName.Width = 80;
+            this.lvclmRack.DisplayIndex = 3;
+            this.lvclmRack.Text = "Rack";
+            this.lvclmRack.Width = 80;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.DisplayIndex = 3;
+            this.columnHeader4.DisplayIndex = 4;
             this.columnHeader4.Text = "MRP";
             this.columnHeader4.Width = 70;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.DisplayIndex = 4;
+            this.columnHeader5.DisplayIndex = 5;
             this.columnHeader5.Text = "Expiry Date";
             this.columnHeader5.Width = 90;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.DisplayIndex = 5;
+            this.columnHeader1.DisplayIndex = 6;
             this.columnHeader1.Text = "Batch No.";
             // 
             // columnHeader2
             // 
-            this.columnHeader2.DisplayIndex = 6;
+            this.columnHeader2.DisplayIndex = 7;
             this.columnHeader2.Text = "Quantity";
             this.columnHeader2.Width = 80;
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.DisplayIndex = 10;
+            this.columnHeader8.Text = "";
+            this.columnHeader8.Width = 0;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.DisplayIndex = 11;
+            this.columnHeader9.Width = 0;
+            // 
             // columnHeader3
             // 
-            this.columnHeader3.DisplayIndex = 7;
+            this.columnHeader3.DisplayIndex = 8;
             this.columnHeader3.Text = "Unit";
             this.columnHeader3.Width = 80;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Width = 0;
             // 
             // lvSLocation
             // 
@@ -393,6 +418,7 @@
             this.clmUTID,
             this.clmQTY,
             this.clmCurrentStockQty,
+            this.clmUnitDecimal,
             this.clmRemove});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -538,6 +564,13 @@
             this.clmCurrentStockQty.Visible = false;
             this.clmCurrentStockQty.Width = 50;
             // 
+            // clmUnitDecimal
+            // 
+            this.clmUnitDecimal.HeaderText = "Unit Decimal";
+            this.clmUnitDecimal.Name = "clmUnitDecimal";
+            this.clmUnitDecimal.Visible = false;
+            this.clmUnitDecimal.Width = 10;
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -547,7 +580,6 @@
             // 
             // btnRemarks
             // 
-            this.btnRemarks.Enabled = false;
             this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
             this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -625,6 +657,8 @@
             // 
             // grbStockTransfer
             // 
+            this.grbStockTransfer.Controls.Add(this.label2);
+            this.grbStockTransfer.Controls.Add(this.txtTransactionType);
             this.grbStockTransfer.Controls.Add(this.lblDLocation);
             this.grbStockTransfer.Controls.Add(this.lblSLocation);
             this.grbStockTransfer.Controls.Add(this.txtSLocation);
@@ -641,6 +675,25 @@
             this.grbStockTransfer.Size = new System.Drawing.Size(1331, 74);
             this.grbStockTransfer.TabIndex = 0;
             this.grbStockTransfer.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(657, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 20);
+            this.label2.TabIndex = 1111192;
+            this.label2.Text = "Transaction Type";
+            // 
+            // txtTransactionType
+            // 
+            this.txtTransactionType.Enabled = false;
+            this.txtTransactionType.Location = new System.Drawing.Point(657, 41);
+            this.txtTransactionType.Name = "txtTransactionType";
+            this.txtTransactionType.ReadOnly = true;
+            this.txtTransactionType.Size = new System.Drawing.Size(120, 28);
+            this.txtTransactionType.TabIndex = 1111191;
+            this.txtTransactionType.Text = "Regular";
             // 
             // lblDLocation
             // 
@@ -943,6 +996,7 @@
             // txtQuantity
             // 
             this.txtQuantity.Location = new System.Drawing.Point(1196, 40);
+            this.txtQuantity.MaxLength = 8;
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(59, 27);
             this.txtQuantity.TabIndex = 12;
@@ -1018,7 +1072,6 @@
             this.Name = "INV_StockTransfer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock Transfer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.INV_StockTransfer_FormClosing);
             this.Load += new System.EventHandler(this.INV_StockTransfer_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_StockTransfer_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).EndInit();
@@ -1087,11 +1140,6 @@
         private System.Windows.Forms.Label lblSLocation;
         private System.Windows.Forms.Label lblDLocation;
         private System.Windows.Forms.Label lblProduct;
-        private System.Windows.Forms.ColumnHeader lvclmPICode;
-        private System.Windows.Forms.ColumnHeader lvclmProductName;
-        private System.Windows.Forms.ColumnHeader lvclmProductEName;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txttotalitem;
         public System.Windows.Forms.Button btnSave;
@@ -1099,13 +1147,23 @@
         private System.Windows.Forms.TextBox txtSRack;
         private System.Windows.Forms.Label lbltxtSourceRack;
         private System.Windows.Forms.Label lblDestRack;
+        private System.Windows.Forms.CheckBox chkStatus;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtTransactionType;
         private System.Windows.Forms.ListView lvProduct;
+        private System.Windows.Forms.ColumnHeader lvclmPICode;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader lvclmProductName;
+        private System.Windows.Forms.ColumnHeader lvClmTNmae;
+        private System.Windows.Forms.ColumnHeader lvclmRack;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.CheckBox chkStatus;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
@@ -1123,6 +1181,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCurrentStockQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }

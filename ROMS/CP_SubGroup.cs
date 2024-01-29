@@ -572,7 +572,10 @@ namespace ROMS
             try
             {
                 udfnclose();
-                MainForm.objCP_SubGroupList.udfnList();
+                if (varmastertype == 0)
+                {
+                    MainForm.objCP_SubGroupList.udfnList();
+                }
             }
             catch (Exception ex)
             {
@@ -1423,9 +1426,28 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdRackList.RowCount; i++) {
-                    if (Convert.ToBoolean(grdRackList.Rows[i].Cells[0].EditedFormattedValue) == true) { dtRackList.Rows[i][0] = true; }
-                    else { dtRackList.Rows[i][0] = false; }
+                for (int i = 0; i < grdRackList.RowCount; i++)
+                {
+                    if (Convert.ToBoolean(grdRackList.SelectedRows[i].Cells[0].Value) == true)
+                    {
+                        for (int j = 0; j < dtRackList.Rows.Count; j++)
+                        {
+                            if (grdRackList.Rows[i].Cells["RKID"].Value == dtRackList.Rows[j]["RKID"])
+                            {
+                                { dtRackList.Rows[i][0] = true; }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 0; j < dtRackList.Rows.Count; j++)
+                        {
+                            if (grdRackList.Rows[i].Cells["RKID"].Value == dtRackList.Rows[j]["RKID"])
+                            {
+                                { dtRackList.Rows[i][0] = false; }
+                            }
+                        }
+                    }
                 }
                 //grdRackList.DataSource = null;
                 //grdRackList.DataSource = dtRackList;

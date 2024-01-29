@@ -23,7 +23,7 @@ namespace ROMS
         private ToolTip tpUserRole  = new ToolTip();
         private ToolTip tpUserCategory  = new ToolTip();
         private ToolTip tpPassKey  = new ToolTip();
-        public string oldpassword,varpassword;
+        public string oldpassword,varpassword,oldUsername, varUsername;
         public string PbDefault;
         public int varstatus;
         public string varUserID ="";
@@ -445,23 +445,47 @@ namespace ROMS
                     tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
                     blnErrorFlag = true;
                 }
-
-                if (oldpassword != null && oldpassword != "")
+                if (oldUsername != null && oldUsername != "")
                 {
-                    if (oldpassword.Trim() == txtPassword.Text.Trim())
+                    if (oldUsername.Trim() == txtLoginID.Text.Trim())
                     {
-                        varpassword = txtPassword.Text;
+                        if (oldpassword != null && oldpassword != "")
+                        {
+                            if (oldpassword.Trim() == txtPassword.Text.Trim())
+                            {
+                                varpassword = txtPassword.Text;
+                            }
+                            else
+                            {
+                                goto L;
+                            }
+                        }
+                        else
+                        {
+                            goto L;
+                        }
                     }
                     else
                     {
-                        varpassword = _security.Encrypt(txtUserName.Text.Trim().ToLower() ,txtPassword.Text.Trim());
+                        if (oldpassword != null && oldpassword != "")
+                        {
+                            if (oldpassword.Trim() == txtPassword.Text.Trim())
+                            {
+                                string varoldpwd = _security.Decrypt(oldUsername.Trim().ToLower(), txtPassword.Text.Trim());
+                                varpassword = _security.Encrypt(txtLoginID.Text.Trim().ToLower(), varoldpwd);
+                            }
+                            else
+                            {
+                                goto L;
+                            }
+                        }
+                        else
+                        {
+                            goto L;
+                        }
                     }
                 }
-                else
-                {
-                    varpassword = _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text.Trim());
-                }
-
+                L: varpassword = _security.Encrypt(txtLoginID.Text.Trim().ToLower(), txtPassword.Text.Trim());
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -532,6 +556,7 @@ namespace ROMS
             try
             {
                 this.Close();
+                MainForm.objCP_Userlist.udfnList();
             }
             catch (Exception ex)
             {
@@ -903,6 +928,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             txtUserName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString().Replace("''", "'");
+                            oldUsername = objDs.Tables[0].Rows[0]["U_LoginID"].ToString().Replace("''", "'");
                             txtLoginID.Text = objDs.Tables[0].Rows[0]["U_LoginID"].ToString();
                             txtPassword.Text = objDs.Tables[0].Rows[0]["U_Password"].ToString();
                             oldpassword = objDs.Tables[0].Rows[0]["U_Password"].ToString();

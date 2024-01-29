@@ -19,6 +19,7 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
+        Boolean BlnSearchImageYN = false;
         public INV_StockTransferList()
         {
             InitializeComponent();
@@ -71,55 +72,61 @@ namespace ROMS
      
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdStockTransfer.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdStockTransfer.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
+            if (lblNoRecordsFound.Visible == false)
             {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn && grdStockTransfer.SortOrder == SortOrder.Ascending)
+                DataGridViewColumn newColumn = grdStockTransfer.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdStockTransfer.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
                 {
-                    direction = ListSortDirection.Descending;
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn && grdStockTransfer.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
                 }
                 else
                 {
-                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            grdStockTransfer.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
+                grdStockTransfer.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
 
-            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-            DGV_SearchGrid.HorizontalScrollingOffset = grdStockTransfer.HorizontalScrollingOffset;
-            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdStockTransfer.HorizontalScrollingOffset;
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdStockTransfer.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdStockTransfer.Width > grdStockTransfer.HorizontalScrollingOffset && grdStockTransfer.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdStockTransfer.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdStockTransfer.Width > grdStockTransfer.HorizontalScrollingOffset && grdStockTransfer.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
             }
             catch (Exception ex)
             {
@@ -214,8 +221,9 @@ namespace ROMS
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
-            cmbConcern.SelectedValue = 1;
+            cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             this.ActiveControl = txtSLocation;
+            tsbDelete.Visible = true;
             udfnList();
         }
         public void udfnCmbConcern()
@@ -342,7 +350,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockTransferList(0,0,Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text),0,Convert.ToInt32(lblProduct.Text),Convert.ToInt32(cmbStatus.SelectedValue),dpTrannsferFromDate.Text,dpTransferToDate.Text);
+                objDs = objspservice.udfnStockTransferList(0,0,Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text),0,Convert.ToInt32(lblProduct.Text),Convert.ToInt32(cmbStatus.SelectedValue),dpTrannsferFromDate.Text,dpTransferToDate.Text,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -354,33 +362,43 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdStockTransfer.DataSource = objDs.Tables[0];
+                            grdStockTransfer.Columns["clmPrint"].Visible = true;
                             grdStockTransfer.Columns["SLID"].Visible = false;
                             grdStockTransfer.Columns["ConcernID"].Visible = false;
                             grdStockTransfer.Columns["StatusID"].Visible = false;
+                            grdStockTransfer.Columns["Product STSID"].Visible = false;
                             grdStockTransfer.Columns["STRID"].Visible = false;
+                            grdStockTransfer.Columns["SRQID"].Visible = false;
+                            grdStockTransfer.Columns["Transfer Qty"].Visible = false;
+                            //grdStockTransfer.Columns["Product STSID"].Width = 100;
                             grdStockTransfer.Columns["S.No."].Width = 50;
+                            grdStockTransfer.Columns["clmPrint"].Width = 50;
                             grdStockTransfer.Columns["Status"].Width = 120;
                             grdStockTransfer.Columns["Source"].Width = 120;
                             grdStockTransfer.Columns["Created By"].Width = 100;
+                            grdStockTransfer.Columns["Created On"].Width = 150;
+                            grdStockTransfer.Columns["Transaction Type"].Width = 150;
                             grdStockTransfer.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
+                            grdStockTransfer.Columns["clmPrint"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
+                        grdStockTransfer.Columns["clmPrint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-
                 }
                 else
                 {
+                    grdStockTransfer.Columns["clmPrint"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
@@ -390,6 +408,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -398,6 +417,7 @@ namespace ROMS
             }
             finally
             {
+                grdStockTransfer.ClearSelection();
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
@@ -413,10 +433,12 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["STRID"].Visible = false;
+                DGV_SearchGrid.Columns["Product STSID"].Visible = false;
+                DGV_SearchGrid.Columns["Transfer Qty"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Status"].Width = 120;
                 DGV_SearchGrid.Columns["Source"].Width = 120;
-                DGV_SearchGrid.Columns["Created By"].Width = 100;
+                DGV_SearchGrid.Columns["Created By"].Width = 100; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -428,22 +450,30 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdStockTransfer, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdStockTransfer.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    udfnGridSearchHeading(grdStockTransfer, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdStockTransfer.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    if (lblNoRecordsFound.Visible == false)
+                    {
+                        DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -451,23 +481,39 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    if (col.Visible)
+                    //dgv2.DataSource = null;
+                    dgv2.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgv1.Columns)
                     {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
+                        if (col.Visible)
+                        {
+                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                            visibleColumns.Add(col.Index);
+                        }
                     }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    int rowIndex = 0;
+                    int ColIndex = 0;
+                    dgv2.Rows.Clear();
+                    dgv2.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -602,6 +648,7 @@ namespace ROMS
         {
             try
             {
+                lvSLocation.Visible = false;
                 txtProductNamePICode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -664,6 +711,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.Visible = false;
                 txtSLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -842,8 +890,16 @@ namespace ROMS
         }
         private void DpTrannsferFromDate_ValueChanged(object sender, EventArgs e)
         {
-            DateTime varmindate = DateTime.ParseExact(dpTrannsferFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            dpTransferToDate.MinDate = varmindate;
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpTrannsferFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpTransferToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdStockTransfer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -854,7 +910,7 @@ namespace ROMS
                 {
                     return;
                 }
-                udfnEdit();
+                udfnEdit(0);
             }
             catch (Exception ex)
             {
@@ -862,21 +918,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void udfnEdit()
+        private void udfnEdit(int EditFlag)
         {
             try
             {
-                if (grdStockTransfer.SelectedRows.Count > 0)
+                if (EditFlag == 0)
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                    MainForm.objINV_StockTransfer.MdiParent = ParentForm;
-                    //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
-                    MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
-                    MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objINV_StockTransfer.Show();
+                    if (grdStockTransfer.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_StockTransfer = new INV_StockTransfer();
+                        MainForm.objINV_StockTransfer.MdiParent = ParentForm;
+                        //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
+                        MainForm.objINV_StockTransfer.EditFlag = 0;
+                        MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
+                        MainForm.objINV_StockTransfer.varSTSRQID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
+                        MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objINV_StockTransfer.Show();
+                    }
                 }
             }
             catch (Exception ex)
@@ -911,7 +972,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete",dtStock,0);
+                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 0, 0, 0, 0);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -923,7 +984,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objDser = new SPDataService();
-                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock,1);
+                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 1, 0, 0, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value.ToString()));
                                     objDser.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -957,6 +1018,7 @@ namespace ROMS
             {
                 for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
                 {
+                    DataGridView dataGridView = (DataGridView)sender;
                     if (Convert.ToString(grdStockTransfer.Rows[i].Cells["StatusID"].Value) == "21")
                     {
                         grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
@@ -966,6 +1028,12 @@ namespace ROMS
                     {
                         grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["SRQID"].Value) == "0")
+                    {
+                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"];
+                        cell2.Value = new Bitmap(1, 1);
+                        cell2.ReadOnly = true;
                     }
                 }
             }
@@ -986,7 +1054,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    udfnEdit();
+                    udfnEdit(0);
                 }
                 //if (e.KeyCode == Keys.Delete)
                 //{
@@ -1004,17 +1072,20 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdStockTransfer.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdStockTransfer.Width > grdStockTransfer.HorizontalScrollingOffset && grdStockTransfer.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdStockTransfer.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdStockTransfer.Width > grdStockTransfer.HorizontalScrollingOffset && grdStockTransfer.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdStockTransfer);
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdStockTransfer);
             }
             catch (Exception ex)
             {
@@ -1229,7 +1300,7 @@ namespace ROMS
         {
             try
             {
-                udfnEdit();
+                udfnEdit(0);
             }
             catch (Exception ex)
             {
@@ -1286,11 +1357,11 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Status")
+                            if (col.Name == "S.No." || col.Name == "Concern")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if (col.Name == "Concern" || col.Name == "Source" || col.Name == "Destination")
+                            else if (col.Name == "Source" || col.Name == "Destination" || col.Name == "Created On" || col.Name == "Status")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
@@ -1409,6 +1480,112 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbQue_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
+                MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
+                MainForm.objINV_StockTransferQueue.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDeleteHide()
+        {
+            try
+            {
+
+                if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 40 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value)>0)
+                {
+                    tsbDelete.Visible = false;
+                    tssQueue.Visible = false;
+                }
+                else
+                {
+                    tsbDelete.Visible = true;
+                    tssQueue.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdStockTransfer_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockTransfer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdStockTransfer.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                            try
+                            {
+                                string STRID = "0";
+                                STRID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Issued.rpt");
+                                    varHeader = "Shop Stock Issued";
+
+                                    objBillreport.SetParameterValue("paraStockTransferID", Convert.ToInt32(STRID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }

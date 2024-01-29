@@ -163,7 +163,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnBrokerList(2,0, Convert.ToInt32(cmbStatus.SelectedValue),0);
+                objDs = objspservice.udfnBrokerList(2,0, Convert.ToInt32(cmbStatus.SelectedValue),0,"");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -234,7 +234,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnBrokerList(3, 0, Convert.ToInt32(cmbStatus.SelectedValue),varcityid );
+                objDs = objspservice.udfnBrokerList(3, 0, Convert.ToInt32(cmbStatus.SelectedValue),varcityid,"" );
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

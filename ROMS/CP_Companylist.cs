@@ -213,6 +213,10 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
+                else
+                {
+                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
+                }
             }
             catch (Exception ex)
             {
@@ -241,6 +245,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Status"].Visible = false;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -253,24 +258,26 @@ namespace ROMS
         {
             try
             {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                        return;
+                    if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
+                                                                       //return;
 
-                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
-                    return;
-                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
-                                                                   //return;
+                        if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                        {
+                            e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                                & ~(DataGridViewPaintParts.ContentForeground));
 
-                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                    {
-                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                            & ~(DataGridViewPaintParts.ContentForeground));
+                            TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                                e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
 
-                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                            e.Handled = true;
+                        }
 
-                        e.Handled = true;
-                    }
-
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -278,11 +285,14 @@ namespace ROMS
         {
             try
             {
-                if (grdCompanyList.ColumnCount > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    grdCompanyList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdCompanyList.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
+                    if (grdCompanyList.ColumnCount > 0)
+                    {
+                        grdCompanyList.Columns[e.Column.Index].Width = e.Column.Width;
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdCompanyList.HorizontalScrollingOffset;
+                        //grdBrandList.HorizontalScrollingOffset = 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -295,12 +305,15 @@ namespace ROMS
         {
             try
             {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdCompanyList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCompanyList);
-                objDser.CloseConnection();
-                grdCompanyList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    //udfnGridSearchFilter();
+                    DataService objDser = new DataService();
+                    grdCompanyList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCompanyList);
+                    objDser.CloseConnection();
+                    grdCompanyList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                    //DGV_SearchGrid_CellPainting(sender,e);
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -308,22 +321,25 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdCompanyList, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdCompanyList.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    udfnGridSearchHeading(grdCompanyList, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdCompanyList.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -332,23 +348,26 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    if (col.Visible)
+                    //dgv2.DataSource = null;
+                    dgv2.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgv1.Columns)
                     {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
+                        if (col.Visible)
+                        {
+                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                            visibleColumns.Add(col.Index);
+                        }
                     }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    int rowIndex = 0;
+                    dgv2.Rows.Clear();
+                    dgv2.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -356,40 +375,43 @@ namespace ROMS
      
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdCompanyList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdCompanyList.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
+            if (lblNoRecordsFound.Visible == false)
             {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    grdCompanyList.SortOrder == SortOrder.Ascending)
+                DataGridViewColumn newColumn = grdCompanyList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdCompanyList.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
                 {
-                    direction = ListSortDirection.Descending;
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn &&
+                        grdCompanyList.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
                 }
                 else
                 {
-                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            grdCompanyList.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
+                grdCompanyList.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
 
-            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-            DGV_SearchGrid.HorizontalScrollingOffset = grdCompanyList.HorizontalScrollingOffset;
-            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdCompanyList.HorizontalScrollingOffset;
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
@@ -486,20 +508,22 @@ namespace ROMS
         {
             try
             {
-
-                int totalWidth = 0;
-                int offSetValue = grdCompanyList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-
-                if (totalWidth - grdCompanyList.Width > grdCompanyList.HorizontalScrollingOffset && grdCompanyList.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    //offSetValue = offSetValue ;
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdCompanyList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+
+                    if (totalWidth - grdCompanyList.Width > grdCompanyList.HorizontalScrollingOffset && grdCompanyList.HorizontalScrollingOffset > 0)
+                    {
+                        //offSetValue = offSetValue ;
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdCompanyList);
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdCompanyList);
             }
             catch (Exception ex)
             {
@@ -594,18 +618,21 @@ namespace ROMS
         {
             try
             {
-                if (DGV_SearchGrid.IsCurrentCellDirty)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    // Commit the changes immediately
-                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                }
+                    if (DGV_SearchGrid.IsCurrentCellDirty)
+                    {
+                        // Commit the changes immediately
+                        DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    }
 
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdCompanyList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCompanyList);
-                objDser.CloseConnection();
-                grdCompanyList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //grdCompanyList(sender,e); 
+                    //udfnGridSearchFilter();
+                    DataService objDser = new DataService();
+                    grdCompanyList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCompanyList);
+                    objDser.CloseConnection();
+                    grdCompanyList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                    //grdCompanyList(sender,e);
+                }
             }
             catch (Exception ex)
             {

@@ -22,7 +22,7 @@ namespace ROMS.Model
         public string paraMrp { get; set; } = "";
         public string paraExpiryDate { get; set; } = "";
         public string paraBatchNo { get; set; } = "";
-        public string paraQuantity { get; set; } = "";
+        public decimal paraQuantity { get; set; } = 0;
         public int paraStatusId { get; set; } = 0;
         public DataTable paraBatchConversion { get; set; } = null;
     }

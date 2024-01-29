@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,7 @@ namespace ROMS
         public string varbrandcode;
         public string pbFormStatus;
         public DataTable dtPendingPO;
+        public int varMasterType = 0;
         public PUR_GRNOrderType()
         {
             InitializeComponent();
@@ -55,57 +57,63 @@ namespace ROMS
         private void PUR_GRNOrderType_Load(object sender, EventArgs e)
         {
             try
-            {
-                if (Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text) != 0)
-                { 
-                    dtPendingPO = new DataTable();
-                    dtPendingPO.Columns.Add("", typeof(Boolean));
-                    dtPendingPO.Columns.Add("S.No.", typeof(string));
-                    dtPendingPO.Columns.Add("PO.No", typeof(string));
-                    dtPendingPO.Columns.Add("PO Date", typeof(string));
-                    dtPendingPO.Columns.Add("Total Products", typeof(string));
-                    dtPendingPO.Columns.Add("poid", typeof(string));
-                    SPDataService objspdservice = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnPOEntry(4, Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text), Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, MainForm.objPUR_GRNEntry.pbPONO,0,0, 0, 0, 0, 0);
-                    objspdservice.CloseConnection();
-                    if (objDs.Tables[0].Rows.Count > 0)
+            { 
+                dtPendingPO = new DataTable();
+                dtPendingPO.Columns.Add("", typeof(Boolean));
+                dtPendingPO.Columns.Add("S.No.", typeof(string));
+                dtPendingPO.Columns.Add("PO.No", typeof(string));
+                dtPendingPO.Columns.Add("PO Date", typeof(string));
+                dtPendingPO.Columns.Add("Total Products", typeof(string));
+                dtPendingPO.Columns.Add("poid", typeof(string));
+                int supplierid = 0, scheduleid = 0;
+                    string pono = "0";
+                if (varMasterType == 1)
+                {
+                    supplierid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text);
+                    scheduleid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text);
+                    pono = MainForm.objPUR_GRNEntry.pbPONO;
+                }
+                if (varMasterType == 2)
+                {
+                    supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
+                    scheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
+                    pono = MainForm.objCP_Purchase.pbPONO;
+                }
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnPOEntry(4, supplierid, scheduleid, 0, 0, 0, 0, 0, 0, "", "", 0, 0, pono, 0,0, 0, 0, 0, 0);
+                objspdservice.CloseConnection();
+                if (objDs.Tables[0].Rows.Count > 0)
+                {
+                    grdPurchaseOrder.Rows.Clear();
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-                        grdPurchaseOrder.Rows.Clear();
-                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                        {
-                            lblFinishedNoRecord.Visible = false;
-                            dtPendingPO.Rows.Add(false, Convert.ToString(objDs.Tables[0].Rows[i]["SINO"].ToString()), Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]),
-                             Convert.ToString(objDs.Tables[0].Rows[i]["PO_Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDs.Tables[0].Rows[i]["POID"])
-                            );
-                        }
-                        grdPurchaseOrder.DataSource = dtPendingPO;
-                        grdPurchaseOrder.Columns[0].HeaderText = "";
-                        grdPurchaseOrder.Columns[0].Width = 30; 
-                        grdPurchaseOrder.Columns[0].ReadOnly = false;
-                        grdPurchaseOrder.Columns["S.No."].ReadOnly = true;
-                        grdPurchaseOrder.Columns["PO.No"].ReadOnly = true;
-                        grdPurchaseOrder.Columns["PO Date"].ReadOnly = true;
-                        grdPurchaseOrder.Columns["Total Products"].ReadOnly = true;
-                        grdPurchaseOrder.Columns["S.No."].Width = 50;
-                        grdPurchaseOrder.Columns["PO.No"].Width = 100;
-                        grdPurchaseOrder.Columns["PO Date"].Width = 100;
-                        grdPurchaseOrder.Columns["Total Products"].Width = 100;
-                        grdPurchaseOrder.Columns["poid"].Visible = false;
-                        grdPurchaseOrder.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdPurchaseOrder.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        lblFinishedNoRecord.Visible = false;
+                        dtPendingPO.Rows.Add(false, Convert.ToString(objDs.Tables[0].Rows[i]["SINO"].ToString()), Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["PO_Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDs.Tables[0].Rows[i]["POID"])
+                        );
                     }
-                    else
-                    {
-                        lblFinishedNoRecord.Visible = true;
-                        grdPurchaseOrder.DataSource = null;
-                    }
+                    grdPurchaseOrder.DataSource = dtPendingPO;
+                    grdPurchaseOrder.Columns[0].HeaderText = "";
+                    grdPurchaseOrder.Columns[0].Width = 30; 
+                    grdPurchaseOrder.Columns[0].ReadOnly = false;
+                    grdPurchaseOrder.Columns["S.No."].ReadOnly = true;
+                    grdPurchaseOrder.Columns["PO.No"].ReadOnly = true;
+                    grdPurchaseOrder.Columns["PO Date"].ReadOnly = true;
+                    grdPurchaseOrder.Columns["Total Products"].ReadOnly = true;
+                    grdPurchaseOrder.Columns["S.No."].Width = 50;
+                    grdPurchaseOrder.Columns["PO.No"].Width = 100;
+                    grdPurchaseOrder.Columns["PO Date"].Width = 100;
+                    grdPurchaseOrder.Columns["Total Products"].Width = 100;
+                    grdPurchaseOrder.Columns["poid"].Visible = false;
+                    grdPurchaseOrder.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdPurchaseOrder.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
                 else
                 {
                     lblFinishedNoRecord.Visible = true;
                     grdPurchaseOrder.DataSource = null;
-                }
+                } 
             }
             catch (Exception ex)
             {
@@ -170,8 +178,7 @@ namespace ROMS
         {
             try
             { 
-                udfnAddPrevPending();
-                 
+                udfnAddPrevPending();  
             }
             catch (Exception ex)
             {
@@ -179,46 +186,104 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnAddPrevPending()
+
+        
+
+        public void udfnAddPrevPending() 
         {
             try
             {
                int VARFLAG = 0;
-                for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
+                if (varMasterType == 1) //---Grn screen Po add---\\
                 {
-                    if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
+                    for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
                     {
-                        MainForm.objPUR_GRNEntry.grdPODetails.Rows.Add(grdPurchaseOrder.Rows[i].Cells["PO.No"].Value, grdPurchaseOrder.Rows[i].Cells["PO Date"].Value, grdPurchaseOrder.Rows[i].Cells["Total Products"].Value, grdPurchaseOrder.Rows[i].Cells["poid"].Value);
-                       VARFLAG = 1;
+                        if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
+                        {
+                            MainForm.objPUR_GRNEntry.grdPODetails.Rows.Add(grdPurchaseOrder.Rows[i].Cells["PO.No"].Value, grdPurchaseOrder.Rows[i].Cells["PO Date"].Value, grdPurchaseOrder.Rows[i].Cells["Total Products"].Value, grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                            VARFLAG = 1;
+                        }
                     }
-                }
-                if (VARFLAG != 0)
-                {
-                    if (MainForm.objPUR_GRNEntry.grdPODetails.Rows.Count > 0)
+                    if (VARFLAG != 0)
                     {
-                        MainForm.objPUR_GRNEntry.lblFinishedNoRecord.Visible = false;
+                        if (MainForm.objPUR_GRNEntry.grdPODetails.Rows.Count > 0)
+                        {
+                            MainForm.objPUR_GRNEntry.lblFinishedNoRecord.Visible = false;
+                        }
+                        else
+                        {
+                            MainForm.objPUR_GRNEntry.lblFinishedNoRecord.Visible = false;
+                        }
+                        MainForm.objPUR_GRNEntry.grdPODetails.Sort(MainForm.objPUR_GRNEntry.grdPODetails.Columns["clmPODate"], ListSortDirection.Descending);
+                        this.Close();
                     }
                     else
                     {
-                        MainForm.objPUR_GRNEntry.lblFinishedNoRecord.Visible = false;
+                        SPDataService objDServ = new SPDataService();
+                        if (grdPurchaseOrder.Rows.Count > 0)
+                        {
+                            string varMessage = objDServ.udfnGetMessages(81);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            string varMessage = objDServ.udfnGetMessages(41);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
-                    MainForm.objPUR_GRNEntry.grdPODetails.Sort(MainForm.objPUR_GRNEntry.grdPODetails.Columns["clmPODate"], ListSortDirection.Descending);
-                    this.Close();
                 }
-                else
+                if (varMasterType == 2) //---purchase screen Po add---\\
                 {
-                    SPDataService objDServ = new SPDataService();
-                    if (grdPurchaseOrder.Rows.Count > 0)
-                    { 
-                        string varMessage = objDServ.udfnGetMessages(81);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string pono = "0";
+                    MainForm.objCP_Purchase.pbPONO = "0";
+                    for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
+                        {
+                            MainForm.objCP_Purchase.grdPODetails.Rows.Add(grdPurchaseOrder.Rows[i].Cells["PO.No"].Value, grdPurchaseOrder.Rows[i].Cells["PO Date"].Value, grdPurchaseOrder.Rows[i].Cells["Total Products"].Value, grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                            VARFLAG = 1;
+                            if (pono == "0")
+                            {
+                                pono = Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                            }
+                            else
+                            {
+                                pono = pono + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
+                            } 
+                        }
+                    }
+                    if (VARFLAG != 0)
+                    {
+                        if (MainForm.objCP_Purchase.grdPODetails.Rows.Count > 0)
+                        {
+                            MainForm.objCP_Purchase.lblFinishedNoRecord.Visible = false;
+                        }
+                        else
+                        {
+                            MainForm.objCP_Purchase.lblFinishedNoRecord.Visible = false;
+                        }
+                        MainForm.objCP_Purchase.grdPODetails.Sort(MainForm.objCP_Purchase.grdPODetails.Columns["clmPODate"], ListSortDirection.Descending); 
+
+                        MainForm.objCP_Purchase.pbPONO = pono;
+                        udfnclose();
                     }
                     else
-                    {  
-                        string varMessage = objDServ.udfnGetMessages(41);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        if (grdPurchaseOrder.Rows.Count > 0)
+                        {
+                            string varMessage = objDServ.udfnGetMessages(81);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            string varMessage = objDServ.udfnGetMessages(41);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }

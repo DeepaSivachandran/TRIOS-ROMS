@@ -58,12 +58,12 @@
             this.totalQty = new System.Windows.Forms.TextBox();
             this.txtUnit3 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.txtBatchNo2 = new System.Windows.Forms.TextBox();
+            this.txtConvertBatch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtQty2 = new System.Windows.Forms.TextBox();
+            this.txtConvertQty = new System.Windows.Forms.TextBox();
             this.lblActualQty = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtMrp2 = new System.Windows.Forms.TextBox();
+            this.txtConvertMrp = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.txtDay = new System.Windows.Forms.TextBox();
@@ -177,12 +177,12 @@
             this.grpExcessProduct.Controls.Add(this.totalQty);
             this.grpExcessProduct.Controls.Add(this.txtUnit3);
             this.grpExcessProduct.Controls.Add(this.textBox3);
-            this.grpExcessProduct.Controls.Add(this.txtBatchNo2);
+            this.grpExcessProduct.Controls.Add(this.txtConvertBatch);
             this.grpExcessProduct.Controls.Add(this.label2);
-            this.grpExcessProduct.Controls.Add(this.txtQty2);
+            this.grpExcessProduct.Controls.Add(this.txtConvertQty);
             this.grpExcessProduct.Controls.Add(this.lblActualQty);
             this.grpExcessProduct.Controls.Add(this.label3);
-            this.grpExcessProduct.Controls.Add(this.txtMrp2);
+            this.grpExcessProduct.Controls.Add(this.txtConvertMrp);
             this.grpExcessProduct.Controls.Add(this.label4);
             this.grpExcessProduct.Controls.Add(this.txtYear);
             this.grpExcessProduct.Controls.Add(this.txtDay);
@@ -235,7 +235,6 @@
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
             this.lvproduct.Visible = false;
-            this.lvproduct.SelectedIndexChanged += new System.EventHandler(this.Lvproduct_SelectedIndexChanged);
             this.lvproduct.DoubleClick += new System.EventHandler(this.Lvproduct_DoubleClick);
             this.lvproduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lvproduct_KeyDown);
             // 
@@ -277,6 +276,7 @@
             // ExpiryDate
             // 
             this.ExpiryDate.Text = "Expiry Date";
+            this.ExpiryDate.Width = 0;
             // 
             // BatchNo
             // 
@@ -337,16 +337,16 @@
             this.textBox3.TabIndex = 1111259;
             this.textBox3.Text = "₹";
             // 
-            // txtBatchNo2
+            // txtConvertBatch
             // 
-            this.txtBatchNo2.Location = new System.Drawing.Point(290, 43);
-            this.txtBatchNo2.Name = "txtBatchNo2";
-            this.txtBatchNo2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtBatchNo2.Size = new System.Drawing.Size(115, 28);
-            this.txtBatchNo2.TabIndex = 15;
-            this.txtBatchNo2.Enter += new System.EventHandler(this.TxtBatchNo2_Enter);
-            this.txtBatchNo2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo2_KeyDown);
-            this.txtBatchNo2.Leave += new System.EventHandler(this.TxtBatchNo2_Leave);
+            this.txtConvertBatch.Location = new System.Drawing.Point(290, 43);
+            this.txtConvertBatch.Name = "txtConvertBatch";
+            this.txtConvertBatch.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtConvertBatch.Size = new System.Drawing.Size(115, 28);
+            this.txtConvertBatch.TabIndex = 15;
+            this.txtConvertBatch.Enter += new System.EventHandler(this.TxtConvertBatch_Enter);
+            this.txtConvertBatch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtConvertBatch_KeyDown);
+            this.txtConvertBatch.Leave += new System.EventHandler(this.TxtConvertBatch_Leave);
             // 
             // label2
             // 
@@ -357,19 +357,19 @@
             this.label2.TabIndex = 1111254;
             this.label2.Text = "Batch No.";
             // 
-            // txtQty2
+            // txtConvertQty
             // 
-            this.txtQty2.Location = new System.Drawing.Point(417, 43);
-            this.txtQty2.Name = "txtQty2";
-            this.txtQty2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtQty2.Size = new System.Drawing.Size(46, 28);
-            this.txtQty2.TabIndex = 16;
-            this.txtQty2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtQty2.TextChanged += new System.EventHandler(this.TxtQty2_TextChanged);
-            this.txtQty2.Enter += new System.EventHandler(this.TxtQty2_Enter);
-            this.txtQty2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQty2_KeyDown);
-            this.txtQty2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQty2_KeyPress);
-            this.txtQty2.Leave += new System.EventHandler(this.TxtQty2_Leave);
+            this.txtConvertQty.Location = new System.Drawing.Point(417, 43);
+            this.txtConvertQty.Name = "txtConvertQty";
+            this.txtConvertQty.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtConvertQty.Size = new System.Drawing.Size(46, 28);
+            this.txtConvertQty.TabIndex = 16;
+            this.txtConvertQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtConvertQty.TextChanged += new System.EventHandler(this.TxtConvertQty_TextChanged);
+            this.txtConvertQty.Enter += new System.EventHandler(this.TxtConvertQty_Enter);
+            this.txtConvertQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtConvertQty_KeyDown);
+            this.txtConvertQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtConvertQty_KeyPress);
+            this.txtConvertQty.Leave += new System.EventHandler(this.TxtConvertQty_Leave);
             // 
             // lblActualQty
             // 
@@ -389,18 +389,18 @@
             this.label3.TabIndex = 1111255;
             this.label3.Text = "Expiry Date";
             // 
-            // txtMrp2
+            // txtConvertMrp
             // 
-            this.txtMrp2.Location = new System.Drawing.Point(24, 43);
-            this.txtMrp2.Name = "txtMrp2";
-            this.txtMrp2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtMrp2.Size = new System.Drawing.Size(75, 28);
-            this.txtMrp2.TabIndex = 11;
-            this.txtMrp2.TextChanged += new System.EventHandler(this.TxtMrp2_TextChanged);
-            this.txtMrp2.Enter += new System.EventHandler(this.TxtMrp2_Enter);
-            this.txtMrp2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMrp2_KeyDown);
-            this.txtMrp2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMrp2_KeyPress);
-            this.txtMrp2.Leave += new System.EventHandler(this.TxtMrp2_Leave);
+            this.txtConvertMrp.Location = new System.Drawing.Point(24, 43);
+            this.txtConvertMrp.Name = "txtConvertMrp";
+            this.txtConvertMrp.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtConvertMrp.Size = new System.Drawing.Size(75, 28);
+            this.txtConvertMrp.TabIndex = 11;
+            this.txtConvertMrp.TextChanged += new System.EventHandler(this.TxtConvertMrp_TextChanged);
+            this.txtConvertMrp.Enter += new System.EventHandler(this.TxtConvertMrp_Enter);
+            this.txtConvertMrp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtConvertMrp_KeyDown);
+            this.txtConvertMrp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtConvertMrp_KeyPress);
+            this.txtConvertMrp.Leave += new System.EventHandler(this.TxtConvertMrp_Leave);
             // 
             // label4
             // 
@@ -527,7 +527,7 @@
             this.grdBatchConversion.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdBatchConversion.RowTemplate.Height = 25;
             this.grdBatchConversion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdBatchConversion.Size = new System.Drawing.Size(1289, 403);
+            this.grdBatchConversion.Size = new System.Drawing.Size(1298, 403);
             this.grdBatchConversion.TabIndex = 1111333456;
             this.grdBatchConversion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBatchConversion_CellContentClick);
             // 
@@ -762,12 +762,11 @@
             this.label6.Size = new System.Drawing.Size(39, 20);
             this.label6.TabIndex = 1111247;
             this.label6.Text = "Stock";
-            this.label6.Click += new System.EventHandler(this.Label6_Click);
             // 
             // txtUnit2
             // 
             this.txtUnit2.Enabled = false;
-            this.txtUnit2.Location = new System.Drawing.Point(1267, 39);
+            this.txtUnit2.Location = new System.Drawing.Point(1270, 39);
             this.txtUnit2.Name = "txtUnit2";
             this.txtUnit2.ReadOnly = true;
             this.txtUnit2.Size = new System.Drawing.Size(31, 28);
@@ -793,7 +792,6 @@
             this.textBox4.Size = new System.Drawing.Size(17, 28);
             this.textBox4.TabIndex = 1111235;
             this.textBox4.Text = "₹";
-            this.textBox4.TextChanged += new System.EventHandler(this.TextBox4_TextChanged);
             // 
             // txtExpiryDate
             // 
@@ -899,7 +897,7 @@
             this.txtQty.Location = new System.Drawing.Point(1213, 39);
             this.txtQty.Name = "txtQty";
             this.txtQty.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtQty.Size = new System.Drawing.Size(54, 28);
+            this.txtQty.Size = new System.Drawing.Size(57, 28);
             this.txtQty.TabIndex = 10;
             this.txtQty.TextChanged += new System.EventHandler(this.TxtQty_TextChanged);
             this.txtQty.Enter += new System.EventHandler(this.TxtQty_Enter);
@@ -915,7 +913,6 @@
             this.lblQty.Size = new System.Drawing.Size(56, 20);
             this.lblQty.TabIndex = 1111224;
             this.lblQty.Text = "Quantity";
-            this.lblQty.Click += new System.EventHandler(this.LblQty_Click);
             // 
             // label12
             // 
@@ -993,12 +990,12 @@
         private System.Windows.Forms.TextBox txtUnit2;
         private System.Windows.Forms.TextBox txtUnit3;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox txtBatchNo2;
+        private System.Windows.Forms.TextBox txtConvertBatch;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtQty2;
+        private System.Windows.Forms.TextBox txtConvertQty;
         private System.Windows.Forms.Label lblActualQty;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtMrp2;
+        private System.Windows.Forms.TextBox txtConvertMrp;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.TextBox txtDay;

@@ -28,7 +28,7 @@ namespace ROMS
         public string varUserID = "";
         
         public string varPICode="",varSHID="", varMrp="";
-        public int SHID=0,varPRID = 0, varUTID = 0, varStockLocationId = 0, varRKID=0,varCOMID=0;
+        public int SHID=0,varPRID = 0, varUTID = 0, varStockLocationId = 0, varRKID=0,varCOMID=0, varDecimal=0;
         Boolean BlnSearchImageYN = false;
         public bool VarSearchFlag = true;
         public INV_StockHold()
@@ -40,9 +40,21 @@ namespace ROMS
             try
             {
                 udfnCmbConcern();
-                cmbConcern.SelectedValue = 1;
+                this.ActiveControl = txtProductNamePICode;
+                VarSearchFlag = true;
+                lblProductName.Text = "Search by P.I Code";
                 lblUnit.Text = "";
                 udfnList();
+                //if (grdStockHold.Rows.Count>0)
+                //{
+                //    grdStockHold.Columns["clmDelete"].Visible = true;
+                //    grdStockHold.Columns["clmEdit"].Visible = true;
+                //}
+                //else
+                //{
+                //grdStockHold.Columns["clmDelete"].Visible = false;
+                //grdStockHold.Columns["clmEdit"].Visible = false;
+                //}
             }
             catch (Exception ex)
             {
@@ -50,20 +62,42 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        
         private void INV_StockHold_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
+
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    //tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    //tsbEdit_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    lvproduct.Visible = false;
-                    udfnclose();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    udfntooltiphide();
+                    this.Close();
                 }
-                if (e.KeyCode == Keys.F5)
+
+                if (e.KeyCode == Keys.F11)
                 {
-                    BtnSave_Click(sender, e);
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblProductName.Text = "Search by P.I Code";
+                        txtProductName.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblProductName.Text = "Search by Product Name";
+                        txtProductName.CharacterCasing = CharacterCasing.Normal;
+                    }
                 }
             }
             catch (Exception ex)
@@ -94,12 +128,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GrdStockRequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void TxtProductNamePICode_Enter(object sender, EventArgs e)
         {
             try
@@ -123,8 +151,6 @@ namespace ROMS
                     txtProductNamePICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProductNamePICode.ShowAlways = true;
                     tpProductNamePICode.Show("Please enter the product", txtProductNamePICode, 5000);
-
-
                 }
                 else
                 {
@@ -171,7 +197,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQty_Enter(object sender, EventArgs e)
         {
             try
@@ -196,8 +221,6 @@ namespace ROMS
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpQty.ShowAlways = true;
                     tpQty.Show("Please enter Quantity", txtQty, 5000);
-
-
                 }
                 else
                 {
@@ -212,36 +235,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void INV_StockHold_Load_1(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCmbConcern();
-                this.ActiveControl = txtProductNamePICode;
-                VarSearchFlag = true;
-                lblProductName.Text = "Search by P.I Code";               
-                lblUnit.Text = "";
-                udfnList();
-                //if (grdStockHold.Rows.Count>0)
-                //{
-                //    grdStockHold.Columns["clmDelete"].Visible = true;
-                //    grdStockHold.Columns["clmEdit"].Visible = true;
-                //}
-                //else
-                //{
-                    //grdStockHold.Columns["clmDelete"].Visible = false;
-                    //grdStockHold.Columns["clmEdit"].Visible = false;
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
         private void TxtQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -366,7 +359,7 @@ namespace ROMS
                     tpQty.Show("Please enter quantity", txtQty, 5000);
                     blnErrorFlag = false;
                 }
-                if (Convert.ToInt32(txtQty.Text) > Convert.ToInt32(txtStockQty.Text) || Convert.ToInt32(txtQty.Text)==0)
+                if (Convert.ToDecimal(txtQty.Text) > Convert.ToInt32(txtStockQty.Text) || Convert.ToDecimal(txtQty.Text)==0)
                 {
                     //epGoodsOutward.SetError(txtQty, "Please enter a correct Outward Quantity");
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -397,8 +390,8 @@ namespace ROMS
                     objTRNS_StockHold.paraMrp = Convert.ToDecimal(string.Format("{0:G29}", decimal.Parse(txtMrp.Text.Trim())));
                     objTRNS_StockHold.paraExpiryDate = Convert.ToString(txtExpiryDate.Text);
                     objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
-                    objTRNS_StockHold.paraUTID = varUTID;
-                    objTRNS_StockHold.paraQty = Convert.ToInt32(txtQty.Text);
+                    //objTRNS_StockHold.paraUTID = varUTID;
+                    objTRNS_StockHold.paraQty = Convert.ToDecimal(txtQty.Text);
                     objTRNS_StockHold.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
                     objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);                   
                     objTRNS_StockHold.paraFlag = 0;
@@ -425,9 +418,9 @@ namespace ROMS
                                 objTRNS_StockHold.paraMrp = Convert.ToDecimal(string.Format("{0:G29}", decimal.Parse(txtMrp.Text.Trim())));
                                 objTRNS_StockHold.paraExpiryDate = Convert.ToString(txtExpiryDate.Text);
                                 objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
-                                objTRNS_StockHold.paraUTID = varUTID;
+                                //objTRNS_StockHold.paraUTID = varUTID;
                                 objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
-                                objTRNS_StockHold.paraQty = Convert.ToInt32(txtQty.Text);
+                                objTRNS_StockHold.paraQty = Convert.ToDecimal(txtQty.Text);
                                 objTRNS_StockHold.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
                                 objTRNS_StockHold.paraUserID = Convert.ToInt32(varUserID);
                                 objTRNS_StockHold.paraFlag = 1;
@@ -772,7 +765,6 @@ namespace ROMS
         {
             try
             {
-
                         //epStockHold.Clear();
                  txtProductName.BackColor = Color.White;
                  tpProductName.Active = false;
@@ -902,7 +894,6 @@ namespace ROMS
                     objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
                     objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
-                    objdserv.CloseConnection();
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -1322,14 +1313,57 @@ namespace ROMS
         {
             try
             {
-                 bool IsSpecialCharacter(char integers)
+                //if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+                //{
+                //    e.Handled = true;
+                //}     
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
-                    string allowedCharacters = "0123456789\b";
-                    return !allowedCharacters.Contains(integers);
+                    e.Handled = true;
                 }
-                if (IsSpecialCharacter(e.KeyChar))
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
-                    // Cancel the keypress event if the character is a special character
+                    e.Handled = true;
+                }
+
+                TextBox textBox = (TextBox)sender;
+                if (varDecimal == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else
+                {
+                    if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                {
+                    e.Handled = false;
+                }
+                if (varDecimal == 0)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+                if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                {
+                    e.Handled = true;
+                }
+                //only allow one decimal point
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
                     e.Handled = true;
                 }
             }
@@ -1411,47 +1445,7 @@ namespace ROMS
 
         private void INV_StockHold_KeyDown_1(object sender, KeyEventArgs e)
         {
-            try
-            {
-
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    //tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    //tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    udfntooltiphide();
-                    this.Close();
-                }
-
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
-                        txtProductName.CharacterCasing = CharacterCasing.Upper;
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
-                        txtProductName.CharacterCasing = CharacterCasing.Normal;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
         //private void UpdateLabelText()
         //{
@@ -1612,6 +1606,7 @@ namespace ROMS
                     varUTID = Convert.ToInt32(selectedItem.SubItems[12].Text);
                     varStockLocationId = Convert.ToInt32(selectedItem.SubItems[13].Text);
                     varRKID = Convert.ToInt32(selectedItem.SubItems[14].Text);
+                    varDecimal = Convert.ToInt32(selectedItem.SubItems[15].Text);
                 }
             }
             catch (Exception ex)
@@ -1718,7 +1713,7 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PRODUCTLIST"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(),
-                                        objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["STK_Qty"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["STK_SLID"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString() };
+                                        objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["STK_MRP"].ToString(), objDs.Tables[0].Rows[i]["STK_ExpiryDate"].ToString(), objDs.Tables[0].Rows[i]["STK_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["STK_Qty"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["STK_SLID"].ToString(), objDs.Tables[0].Rows[i]["STK_RKID"].ToString(),objDs.Tables[0].Rows[i]["UT_Decimal"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[3].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1729,7 +1724,7 @@ namespace ROMS
                                 lvproduct.Columns[0].Width = 0;
                                 lvproduct.Columns[1].Width = 100;
                                 lvproduct.Columns[2].Width = 0;
-                                lvproduct.Columns[3].Width = 270;
+                                lvproduct.Columns[3].Width = 0;
                                 lvproduct.Columns[4].Width = 0;
                                 lvproduct.Columns[5].Width = 70;
                                 lvproduct.Columns[6].Width = 60;
@@ -1738,8 +1733,17 @@ namespace ROMS
                                 lvproduct.Columns[9].Width = 60;
                                 lvproduct.Columns[10].Width = 60;
                                 lvproduct.Columns[11].Width = 40;
-                                lvproduct.Columns[12].Width = 0;
-                                lvproduct.Columns[13].Width = 0;
+
+                                if (VarSearchFlag == false)
+                                {
+                                    lvproduct.Columns[4].Width = 320;
+                                    lvproduct.Columns[3].Width = 0;
+                                }
+                                else
+                                {
+                                    lvproduct.Columns[4].Width = 0;
+                                    lvproduct.Columns[3].Width = 320;
+                                }
 
                             }
                             else

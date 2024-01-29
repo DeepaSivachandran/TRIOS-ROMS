@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ROMS.Model
+{
+    public class TRN_PurchaseEntry
+    {
+        public int ViewType { get; set; } = 0;
+        public string ParaIds { get; set; } = "";
+        public int paraUserID { get; set; } = 0;
+        public string paraIPAddress { get; set; } = "";
+        public int paraPurchaseId { get; set; } = 0;
+        public int paraGRNID { get; set; } = 0;
+        public string paraOriginator { get; set; } = "";
+        public string paraSkipped { get; set; } = "";
+        public int paraCompanyId { get; set; } = 0;
+        public int paraSupplierID { get; set; } = 0;
+        public int paraScheduleID { get; set; } = 0;
+        public int paraBrokerID { get; set; } = 0;
+        public decimal ParaInvAmt { get; set; } = 0;
+        public string paraINVNo { get; set; } = "";
+        public string paraPurchaseDate { get; set; } = "";
+        public string paraINVDate { get; set; } = "";
+        public string paraRemarks { get; set; } = "";
+        public string ParaPurchaseDC { get; set; } = "";
+        public string paraHostName { get; set; } = "";
+        public string paraGSTIN { get; set; } = "";
+        public int paraStatus { get; set; } = 0;
+        public int paraDeleteFlag { get; set; } = 0;
+        public int ParaEditFlag { get; set; } = 0;
+        public int paraEntryType { get; set; } = 0;
+        public int paraTransactionType { get; set; } = 0;
+        public int paraPurchaseType { get; set; } = 0;
+        public decimal paraPaymentType { get; set; } = 0;
+        public decimal paraRateCalculation { get; set; } = 0;
+        public decimal paraDiscCalculation { get; set; } = 0;
+        public decimal paraLoadingCharges { get; set; } = 0;
+        public decimal paraUnloadingCharges { get; set; } = 0;
+        public decimal paraCourierCharges { get; set; } = 0;
+        public decimal paraOtherExpenses { get; set; } = 0;
+        public decimal paraDiscPer { get; set; } = 0;
+        public decimal paraDiscAmnt { get; set; } = 0;
+        public decimal paraTcsAmnt { get; set; } = 0;
+        public decimal paraDamageCost { get; set; } = 0;
+        public decimal paraOtherDisc { get; set; } = 0;
+        public decimal paraSubTotal { get; set; } = 0;
+        public decimal paraGSTAmnt { get; set; } = 0;
+        public decimal paraRoundOff { get; set; } = 0;
+        public decimal paraGrandTotal { get; set; } = 0;
+        public decimal paraFrightGRN { get; set; } = 0;
+        public decimal paraLoadingChargesGRN { get; set; } = 0;
+        public byte[] paraQrimg { get; set; } = null;
+        public DataTable ParaPurchase_Products { get; set; } = null;
+        public DataTable Purchase_Products_Details { get; set; } = null;
+        public string paraEinvoice { get; set; } = "";
+        public string ParaPEToDate { get; set; } = "";
+        public string ParaPEFromDate { get; set; } = ""; 
+
+    }
+}

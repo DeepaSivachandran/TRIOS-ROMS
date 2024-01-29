@@ -39,13 +39,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_POProducts));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtPONo = new System.Windows.Forms.TextBox();
-            this.txtPODate = new System.Windows.Forms.TextBox();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtUserData = new System.Windows.Forms.TextBox();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +50,15 @@
             this.clmPendingQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPONo = new System.Windows.Forms.TextBox();
+            this.txtPODate = new System.Windows.Forms.TextBox();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtUserData = new System.Windows.Forms.TextBox();
+            this.txtPOSts = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -109,72 +111,6 @@
             this.grdPurchaseOrder.Size = new System.Drawing.Size(1051, 435);
             this.grdPurchaseOrder.TabIndex = 1111144;
             this.grdPurchaseOrder.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseOrder_DataBindingComplete);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 20);
-            this.label1.TabIndex = 1111146;
-            this.label1.Text = "PO No.";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(168, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 20);
-            this.label2.TabIndex = 1111147;
-            this.label2.Text = "PO Date";
-            // 
-            // txtPONo
-            // 
-            this.txtPONo.Enabled = false;
-            this.txtPONo.Location = new System.Drawing.Point(62, 9);
-            this.txtPONo.Name = "txtPONo";
-            this.txtPONo.ReadOnly = true;
-            this.txtPONo.Size = new System.Drawing.Size(100, 28);
-            this.txtPONo.TabIndex = 1111148;
-            // 
-            // txtPODate
-            // 
-            this.txtPODate.Enabled = false;
-            this.txtPODate.Location = new System.Drawing.Point(226, 9);
-            this.txtPODate.Name = "txtPODate";
-            this.txtPODate.ReadOnly = true;
-            this.txtPODate.Size = new System.Drawing.Size(100, 28);
-            this.txtPODate.TabIndex = 1111149;
-            // 
-            // lblNoRecordsFound
-            // 
-            this.lblNoRecordsFound.AutoSize = true;
-            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
-            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(517, 252);
-            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
-            this.lblNoRecordsFound.TabIndex = 1111150;
-            this.lblNoRecordsFound.Text = "No Records Found";
-            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(332, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 20);
-            this.label3.TabIndex = 1111151;
-            this.label3.Text = "User";
-            // 
-            // txtUserData
-            // 
-            this.txtUserData.Enabled = false;
-            this.txtUserData.Location = new System.Drawing.Point(372, 9);
-            this.txtUserData.Name = "txtUserData";
-            this.txtUserData.ReadOnly = true;
-            this.txtUserData.Size = new System.Drawing.Size(529, 28);
-            this.txtUserData.TabIndex = 1111152;
             // 
             // clmsno
             // 
@@ -260,12 +196,98 @@
             this.STSID.ReadOnly = true;
             this.STSID.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 20);
+            this.label1.TabIndex = 1111146;
+            this.label1.Text = "PO No.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(168, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 20);
+            this.label2.TabIndex = 1111147;
+            this.label2.Text = "PO Date";
+            // 
+            // txtPONo
+            // 
+            this.txtPONo.Enabled = false;
+            this.txtPONo.Location = new System.Drawing.Point(62, 9);
+            this.txtPONo.Name = "txtPONo";
+            this.txtPONo.ReadOnly = true;
+            this.txtPONo.Size = new System.Drawing.Size(100, 28);
+            this.txtPONo.TabIndex = 1111148;
+            // 
+            // txtPODate
+            // 
+            this.txtPODate.Enabled = false;
+            this.txtPODate.Location = new System.Drawing.Point(226, 9);
+            this.txtPODate.Name = "txtPODate";
+            this.txtPODate.ReadOnly = true;
+            this.txtPODate.Size = new System.Drawing.Size(100, 28);
+            this.txtPODate.TabIndex = 1111149;
+            // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(517, 252);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 1111150;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(332, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 20);
+            this.label3.TabIndex = 1111151;
+            this.label3.Text = "User";
+            // 
+            // txtUserData
+            // 
+            this.txtUserData.Enabled = false;
+            this.txtUserData.Location = new System.Drawing.Point(372, 9);
+            this.txtUserData.Name = "txtUserData";
+            this.txtUserData.ReadOnly = true;
+            this.txtUserData.Size = new System.Drawing.Size(420, 28);
+            this.txtUserData.TabIndex = 1111152;
+            // 
+            // txtPOSts
+            // 
+            this.txtPOSts.Enabled = false;
+            this.txtPOSts.Location = new System.Drawing.Point(868, 9);
+            this.txtPOSts.Name = "txtPOSts";
+            this.txtPOSts.ReadOnly = true;
+            this.txtPOSts.Size = new System.Drawing.Size(195, 28);
+            this.txtPOSts.TabIndex = 1111154;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(798, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 20);
+            this.label4.TabIndex = 1111153;
+            this.label4.Text = "PO Status";
+            // 
             // PUR_POProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1073, 488);
+            this.Controls.Add(this.txtPOSts);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtUserData);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblNoRecordsFound);
@@ -314,5 +336,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPendingQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn STSID;
+        private System.Windows.Forms.TextBox txtPOSts;
+        private System.Windows.Forms.Label label4;
     }
 }
