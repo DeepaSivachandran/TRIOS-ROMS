@@ -5460,6 +5460,7 @@ namespace ROMS
             grplocation.Enabled = false;
             grbSalesStockLocation.Enabled = false;
             grbBatchNoDetails.Enabled = false;
+            rbActive.Enabled = false;
             grpExpire.Enabled = false;
             grpHsndetail.Enabled = false;
             groupBox1.Enabled = false;

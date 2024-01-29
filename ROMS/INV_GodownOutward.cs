@@ -1376,7 +1376,6 @@ namespace ROMS
                 object varEditQty = grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
-
             }
             catch (Exception ex)
             {
