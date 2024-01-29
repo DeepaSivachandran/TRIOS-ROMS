@@ -2866,7 +2866,7 @@ namespace ROMS
                             varProductsCodes = varProductsCodes + ',' + Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value);
                         }
                     }
-                    lvproduct.Items.Clear();
+                    //lvproduct.Items.Clear();
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0)
@@ -2952,8 +2952,8 @@ namespace ROMS
                     {
                         DGV_FilterProduct.Visible = false;
                         DGV_FilterProduct.DataSource = null;
-                        lvproduct.Visible = false;
-                        lvproduct.Items.Clear();
+                        //lvproduct.Visible = false;
+                        //lvproduct.Items.Clear();
                     }
                 }
             }
