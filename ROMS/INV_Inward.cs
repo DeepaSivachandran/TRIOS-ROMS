@@ -1212,7 +1212,7 @@ namespace ROMS
                         dtInward.Rows.Add(varPRID, Convert.ToDecimal(txtMrp.Text), varExpiryDate, txtBatchNo.Text.Trim(),txtActualQty.Text.Trim(),varRKID,varStockLocationId,0,0,varShelflife,ProductShelflifeValue,ProductShelflifeType,varShelflifeper[0]);
                         txttotalitem.Text = Convert.ToString(grdInward.Rows.Count);
                         //((DataGridViewTextBoxColumn)grdInward.Columns["clmQuantity"]).MaxInputLength = 8;
-                        //grdInward.Columns["clmactualquantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                        grdInward.Columns["clmactualqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         ////grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
                         grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
