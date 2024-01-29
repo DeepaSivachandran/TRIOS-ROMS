@@ -2930,13 +2930,13 @@ namespace ROMS
                                     {
                                         //lvproduct.Columns[1].Width = 320;
                                         //lvproduct.Columns[2].Width = 0;
-                                        (DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_EName]) LIKE '%" + txtProductName.Text + "%'";
+                                        //(DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_EName]) LIKE '%" + txtProductName.Text + "%'";
                                     }
                                     else
                                     {
                                         //lvproduct.Columns[1].Width = 0;
                                         //lvproduct.Columns[2].Width = 320;
-                                        (DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_PICode]) LIKE '%" + txtProductName.Text + "%'";
+                                        //(DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_PICode]) LIKE '%" + txtProductName.Text + "%'";
                                     }
                                     //txtProductName.Select(txtProductName.Text.Length, 0);
                                 }
