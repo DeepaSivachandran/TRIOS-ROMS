@@ -265,8 +265,7 @@ namespace ROMS
                     grdGRNList.Columns["clmPrint"].Visible = false;
                     grdGRNList.Columns["ClmEdit"].Visible = false;
                     Deftable = objDs.Tables[0];
-                }
-
+                } 
                 udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
                 {

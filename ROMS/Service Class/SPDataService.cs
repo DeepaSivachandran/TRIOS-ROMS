@@ -1475,7 +1475,8 @@ namespace ROMS
              string paraUpp, int paraPurStklocation, int paraSaleStklocation, int paraPurRack, int parasaleRack, int paraRkMOQ, int paraBatchNo,
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight, double paraMaxstk, double paraGrossweight, double paraMinstk,
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
-             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs)
+             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, 
+              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs,int paraSupplierId, int paraScheduleId,int paraGRNId,int paraNewPRID)
         {
             string result = "";
             try
@@ -1527,6 +1528,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteflag", paraDeleteflag);
                 varSqlCommand.Parameters.AddWithValue("@paraIDs", paraIDs);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierId", paraSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", paraScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNId", paraGRNId);
+                varSqlCommand.Parameters.AddWithValue("@paraNewPRID", paraNewPRID);
 
                 varSqlCommand.CommandTimeout = 0;
 

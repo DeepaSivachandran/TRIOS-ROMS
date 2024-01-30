@@ -54,11 +54,10 @@ namespace ROMS
         private ToolTip tpMxstock = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
-        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varSalesRack="",varBrandName="", varRackDescription="";
+        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varMasterType = "0", varSalesRack="",varBrandName="", varRackDescription="", varEname = "",varGRNid="0",varNewproid="0";
         public CP_Product()
         {
             InitializeComponent();
-            MainForm.objCP_Itemlist.picLoader.Visible = false;
         }
          
         private void btnSave_Click(object sender, EventArgs e)
@@ -934,13 +933,21 @@ namespace ROMS
                         varupdateproductcode = varproductcode;
                         varupdate = "1";
                     }
+                    int varSupplierId = 0, varScheduleid = 0,varGRNID=0,varNewPRoid=0;
+                    if (varMasterType == "1")
+                    {
+                        varSupplierId = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
+                        varScheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
+                        varGRNID = Convert.ToInt32(MainForm.objCP_Purchase.pbGRNNo);
+                        varNewPRoid = Convert.ToInt32(varNewproid);
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(lblPurLocationCode.Text), Convert.ToInt32(lblSaleLocationCode.Text)
-                    , Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
-                    , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty,
-                    wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction, shelflife,
-                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue),null,0,"");
+                    ,Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
+                    varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty,wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction, 
+                    shelflife,Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue),null,0,"",
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid);
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -948,13 +955,23 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         btnSave.Enabled = true;
-                        if (btnSave.Text == "Update")
+                        if (varMasterType != "0")
                         {
+                            MainForm.objCP_Purchase.lblProductcode.Text = varvalue[2];
+                            MainForm.objCP_Purchase.txtProductName.Text = txtItemNameEnglish.Text;
+                            varupdate = "1";
                             this.Close();
                         }
-                        MainForm.objCP_Itemlist.udfnDropdownbind();
-                        MainForm.objCP_Itemlist.udfnList();
-                        udfnclear();
+                        else
+                        {
+                            MainForm.objCP_Itemlist.udfnDropdownbind();
+                            MainForm.objCP_Itemlist.udfnList();
+                            udfnclear();
+                        }
+                        if (btnSave.Text == "Update")
+                        { 
+                            this.Close();
+                        }
                     }
                     else
                     {
@@ -3280,6 +3297,14 @@ namespace ROMS
         {
             try
             {
+                if (varMasterType == "0")
+                {
+                    MainForm.objCP_Itemlist.picLoader.Visible = false;
+                }
+                else
+                {
+                    txtItemNameEnglish.Text = varEname;
+                }
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 if (btnSave.Text == "Save")
                 {
