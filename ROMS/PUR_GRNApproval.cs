@@ -15,7 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int varSupplierID = 0,varScheduleID=0,varConcernID=0;
+        public int varSupplierID = 0,varScheduleID=0,varConcernID=0,varID=0;
 
         public PUR_GRNApproval()
         {

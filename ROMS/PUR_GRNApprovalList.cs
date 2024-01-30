@@ -42,6 +42,7 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varSupplierID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPID"].Value);
                     MainForm.objPUR_GRNApproval.varScheduleID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPSCID"].Value);
                     MainForm.objPUR_GRNApproval.varConcernID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Concern ID"].Value);
+                    MainForm.objPUR_GRNApproval.varID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
                 }
@@ -64,8 +65,9 @@ namespace ROMS
                 objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                udfnDate();
+               // udfnDate();
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -691,23 +693,7 @@ namespace ROMS
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
-        private void DGV_SearchGrid_ColumnMinimumWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            try
-            {
-                if (grdGrnApprovalList.ColumnCount > 0)
-                {
-                    grdGrnApprovalList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdGrnApprovalList.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        
 
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -740,7 +726,6 @@ namespace ROMS
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
-
                 }
             }
             catch (Exception ex)
@@ -749,7 +734,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdGrnApprovalList_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -1194,7 +1178,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdGrnApprovalList.ColumnCount > 0)
+                {
+                    grdGrnApprovalList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdGrnApprovalList.HorizontalScrollingOffset;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnList()
         {
             try
