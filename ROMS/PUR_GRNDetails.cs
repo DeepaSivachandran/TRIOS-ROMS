@@ -2374,7 +2374,7 @@ namespace ROMS
                             }
                         }
                         if (error == 1)
-                        {
+                        {   
                             if (varExpiryDate != "")
                             {
                                 if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == varExpiryDate)

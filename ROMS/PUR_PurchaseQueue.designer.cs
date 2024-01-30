@@ -43,7 +43,7 @@
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.grdSupplierList = new System.Windows.Forms.DataGridView();
+            this.grdPurchaseEntryQueueList = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,7 +79,7 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryQueueList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.pnlpurchase.SuspendLayout();
             this.grpFilterby.SuspendLayout();
@@ -188,14 +188,14 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
-            // grdSupplierList
+            // grdPurchaseEntryQueueList
             // 
-            this.grdSupplierList.AllowUserToAddRows = false;
-            this.grdSupplierList.AllowUserToDeleteRows = false;
-            this.grdSupplierList.AllowUserToResizeColumns = false;
-            this.grdSupplierList.AllowUserToResizeRows = false;
-            this.grdSupplierList.BackgroundColor = System.Drawing.Color.White;
-            this.grdSupplierList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdPurchaseEntryQueueList.AllowUserToAddRows = false;
+            this.grdPurchaseEntryQueueList.AllowUserToDeleteRows = false;
+            this.grdPurchaseEntryQueueList.AllowUserToResizeColumns = false;
+            this.grdPurchaseEntryQueueList.AllowUserToResizeRows = false;
+            this.grdPurchaseEntryQueueList.BackgroundColor = System.Drawing.Color.White;
+            this.grdPurchaseEntryQueueList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -203,10 +203,10 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdSupplierList.ColumnHeadersHeight = 30;
-            this.grdSupplierList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdPurchaseEntryQueueList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdPurchaseEntryQueueList.ColumnHeadersHeight = 30;
+            this.grdPurchaseEntryQueueList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPurchaseEntryQueueList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
             this.Column10,
             this.Column2,
@@ -227,20 +227,20 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSupplierList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdSupplierList.EnableHeadersVisualStyles = false;
-            this.grdSupplierList.GridColor = System.Drawing.Color.White;
-            this.grdSupplierList.Location = new System.Drawing.Point(3, 130);
-            this.grdSupplierList.Name = "grdSupplierList";
-            this.grdSupplierList.ReadOnly = true;
-            this.grdSupplierList.RowHeadersVisible = false;
+            this.grdPurchaseEntryQueueList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdPurchaseEntryQueueList.EnableHeadersVisualStyles = false;
+            this.grdPurchaseEntryQueueList.GridColor = System.Drawing.Color.White;
+            this.grdPurchaseEntryQueueList.Location = new System.Drawing.Point(3, 130);
+            this.grdPurchaseEntryQueueList.Name = "grdPurchaseEntryQueueList";
+            this.grdPurchaseEntryQueueList.ReadOnly = true;
+            this.grdPurchaseEntryQueueList.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdSupplierList.RowTemplate.Height = 25;
-            this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierList.Size = new System.Drawing.Size(1348, 484);
-            this.grdSupplierList.TabIndex = 958797;
+            this.grdPurchaseEntryQueueList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdPurchaseEntryQueueList.RowTemplate.Height = 25;
+            this.grdPurchaseEntryQueueList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPurchaseEntryQueueList.Size = new System.Drawing.Size(1348, 484);
+            this.grdPurchaseEntryQueueList.TabIndex = 958797;
             // 
             // clmsno
             // 
@@ -387,7 +387,7 @@
             this.pnlpurchase.Controls.Add(this.grpFilterby);
             this.pnlpurchase.Controls.Add(this.DGV_SearchGrid);
             this.pnlpurchase.Controls.Add(this.lblNoRecordsFound);
-            this.pnlpurchase.Controls.Add(this.grdSupplierList);
+            this.pnlpurchase.Controls.Add(this.grdPurchaseEntryQueueList);
             this.pnlpurchase.Location = new System.Drawing.Point(0, 31);
             this.pnlpurchase.Name = "pnlpurchase";
             this.pnlpurchase.Size = new System.Drawing.Size(1354, 641);
@@ -600,7 +600,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseQueue_KeyDown);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryQueueList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.pnlpurchase.ResumeLayout(false);
             this.pnlpurchase.PerformLayout();
@@ -623,7 +623,7 @@
         private System.Windows.Forms.Panel pnlpurchase;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdSupplierList;
+        public System.Windows.Forms.DataGridView grdPurchaseEntryQueueList;
         private System.Windows.Forms.GroupBox grpFilterby;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label label1;

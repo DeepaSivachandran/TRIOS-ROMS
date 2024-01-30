@@ -24,6 +24,8 @@ namespace ROMS
             try
             {
                 MainForm.objCP_Purchase = new CP_Purchase();
+                MainForm.objCP_Purchase.PbID = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["STSID"].Value.ToString());
+                MainForm.objCP_Purchase.PbFlag = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["PURID"].Value.ToString());
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
                 MainForm.objCP_Purchase.Show();
             }
@@ -90,10 +92,10 @@ namespace ROMS
         {
             try
             {
-                if (grdSupplierList.ColumnCount > 0)
+                if (grdPurchaseEntryQueueList.ColumnCount > 0)
                 {
-                    grdSupplierList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierList.HorizontalScrollingOffset; 
+                    grdPurchaseEntryQueueList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryQueueList.HorizontalScrollingOffset; 
                 }
             }
             catch (Exception ex)
@@ -108,9 +110,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdSupplierList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierList);
+                grdPurchaseEntryQueueList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryQueueList);
                 objDser.CloseConnection();
-                grdSupplierList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdPurchaseEntryQueueList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -119,10 +121,10 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdSupplierList, DGV_SearchGrid);
+                udfnGridSearchHeading(grdPurchaseEntryQueueList, DGV_SearchGrid);
                 DGV_SearchGrid.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdSupplierList.Columns)
+                foreach (DataGridViewColumn col in grdPurchaseEntryQueueList.Columns)
                 {
                     DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
@@ -147,7 +149,7 @@ namespace ROMS
                     if (DGV_SearchGrid.ColumnCount > 0)
                     {
                         BindingSource bs = new BindingSource();
-                        bs.DataSource = grdSupplierList.DataSource;
+                        bs.DataSource = grdPurchaseEntryQueueList.DataSource;
                         string filter = "";
                         for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
                         {
@@ -161,7 +163,7 @@ namespace ROMS
                             }
                         }
                         bs.Filter = filter;
-                        grdSupplierList.DataSource = bs;
+                        grdPurchaseEntryQueueList.DataSource = bs;
                     }
                 }
             }
@@ -195,8 +197,8 @@ namespace ROMS
      
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdSupplierList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdSupplierList.SortedColumn;
+            DataGridViewColumn newColumn = grdPurchaseEntryQueueList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdPurchaseEntryQueueList.SortedColumn;
             ListSortDirection direction;
 
             // If oldColumn is null, then the DataGridView is not sorted.
@@ -204,7 +206,7 @@ namespace ROMS
             {
                 // Sort the same column again, reversing the SortOrder.
                 if (oldColumn == newColumn &&
-                    grdSupplierList.SortOrder == SortOrder.Ascending)
+                    grdPurchaseEntryQueueList.SortOrder == SortOrder.Ascending)
                 {
                     direction = ListSortDirection.Descending;
                 }
@@ -219,7 +221,7 @@ namespace ROMS
             {
                 direction = ListSortDirection.Ascending;
             }
-            grdSupplierList.Sort(newColumn, direction);
+            grdPurchaseEntryQueueList.Sort(newColumn, direction);
             newColumn.HeaderCell.SortGlyphDirection =
                 direction == ListSortDirection.Ascending ?
                 SortOrder.Ascending : SortOrder.Descending;
@@ -227,7 +229,7 @@ namespace ROMS
             DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
             DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-            DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierList.HorizontalScrollingOffset;
+            DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryQueueList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
 
@@ -236,11 +238,11 @@ namespace ROMS
             try
             { 
                 int totalWidth = 0;
-                int offSetValue = grdSupplierList.HorizontalScrollingOffset;
+                int offSetValue = grdPurchaseEntryQueueList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
 
-                if (totalWidth - grdSupplierList.Width > grdSupplierList.HorizontalScrollingOffset && grdSupplierList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdPurchaseEntryQueueList.Width > grdPurchaseEntryQueueList.HorizontalScrollingOffset && grdPurchaseEntryQueueList.HorizontalScrollingOffset > 0)
                 {
                     //offSetValue = offSetValue ;
                     offSetValue = offSetValue;

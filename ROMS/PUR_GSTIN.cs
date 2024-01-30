@@ -76,6 +76,7 @@ namespace ROMS
                 {
                     if (txtGstin.Text.Length < 15)
                     {
+                        txtGstin.Focus();
                         errUnit.SetError(txtGstin, "Please enter valid supplier GSTIN");
                         txtGstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpgst.ShowAlways = true;
