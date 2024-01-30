@@ -1109,7 +1109,7 @@ namespace ROMS
                 {
                     blnErrorFlag = false;
                     SPDataService objDServ = new SPDataService();
-                    grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //grdBatchConversion.Rows.Columns["clmExpiryDate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     string varMessage = objDServ.udfnGetMessages(94);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1660,14 +1660,11 @@ namespace ROMS
                         }
                     }
                 }
-                if (varErrorFormat == 0)
-                {
                     udfnExpiryDateCheck();
                     //grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
                     object varEditDate = grdBatchConversion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     // Update the same column value in the DataTable
                     dtStock.Rows[e.RowIndex]["STK_ExpiryDate"] = varEditDate;
-                }
             }
             catch (Exception ex)
             {
@@ -1984,7 +1981,7 @@ namespace ROMS
                                                     pbDateflag = 1;
                                                     if (Convert.ToString(grdBatchConversion.Rows[i].Cells["clmExpiryDate"].Value) == varExpiryDate)
                                                     {
-                                                        grdBatchConversion.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                                        grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                                         string varMessage = objDServ.udfnGetMessages(98);
                                                         objDServ.CloseConnection();
                                                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1992,7 +1989,7 @@ namespace ROMS
                                                 }
                                                 else
                                                 {
-                                                    grdBatchConversion.Rows[i].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                                    //grdBatchConversion.Rows[i].DefaultCellStyle.BackColor = Color.PaleGreen;
                                                 }
                                             }
                                             else
@@ -2004,28 +2001,31 @@ namespace ROMS
                                 }
                             }
                         }
-                        if (error == 1)
+                        if (varShelflife == 0)
                         {
-                            if (varExpiryDate != "")
+                            if (error == 1)
                             {
-                                if (Convert.ToString(grdBatchConversion.Rows[i].Cells["clmExpiryDate"].Value) == varExpiryDate || Convert.ToString(grdBatchConversion.Rows[i].Cells["clmExpiryDate"].Value)=="0")
+                                if (varExpiryDate != "")
                                 {
-                                    varErroronGrid = 1;
-                                    grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                                    string varMessage = objDServ.udfnGetMessages(94);
-                                    objDServ.CloseConnection();
-                                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    if (Convert.ToString(grdBatchConversion.Rows[i].Cells["clmExpiryDate"].Value) == varExpiryDate || Convert.ToString(grdBatchConversion.Rows[i].Cells["clmExpiryDate"].Value) == "0")
+                                    {
+                                        varErroronGrid = 1;
+                                        grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                        string varMessage = objDServ.udfnGetMessages(94);
+                                        objDServ.CloseConnection();
+                                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            if (pbDateflag == 0)
+                            else
                             {
-                                //grdBatchConversion.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                                //DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmExpiryDate"];
-                                grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
-                                //cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                if (pbDateflag == 0)
+                                {
+                                    //grdBatchConversion.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                    //DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmExpiryDate"];
+                                    grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
+                                    //cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                }
                             }
                         }
                     }

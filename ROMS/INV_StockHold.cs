@@ -225,6 +225,8 @@ namespace ROMS
                 else
                 {
                     epStockHold.Clear();
+                    string Qty = objValidation.udfnDecimal((txtQty.Text).Trim(), varDecimal);
+                    txtQty.Text = Qty;
                     txtQty.BackColor = Color.White;
                     tpQty.Active = false;
                 }
@@ -543,6 +545,7 @@ namespace ROMS
                     dtDefaultGrid = objDS.Tables[0];
                     udfnDefaultSearchGrid();
                 }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -973,20 +976,22 @@ namespace ROMS
 
         private void GrdStockHold_Scroll(object sender, ScrollEventArgs e)
         {
-
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdStockHold.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdStockHold.Width > grdStockHold.HorizontalScrollingOffset && grdStockHold.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdStockHold.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdStockHold.Width > grdStockHold.HorizontalScrollingOffset && grdStockHold.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdStockHold);
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdStockHold);
             }
             catch (Exception ex)
             {
@@ -1094,6 +1099,7 @@ namespace ROMS
                         dgv2.Rows[rowIndex].Cells[i].Value = "";
                     }
                 }
+
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1698,9 +1704,11 @@ namespace ROMS
             }
             else
             {
+                picLoader.Visible = true;
                 RPTViewer.Visible = false;
                 btnPrint.Image = global::ROMS.Properties.Resources.print;
                 udfnList();
+                picLoader.SendToBack();
             }
         }
 
