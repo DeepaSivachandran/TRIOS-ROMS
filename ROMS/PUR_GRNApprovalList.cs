@@ -729,6 +729,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
+
                     int totalWidth = 0;
                     int offSetValue = grdGrnApprovalList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
@@ -739,6 +740,7 @@ namespace ROMS
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
+
                 }
             }
             catch (Exception ex)
