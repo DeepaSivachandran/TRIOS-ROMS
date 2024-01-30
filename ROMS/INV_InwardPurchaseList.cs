@@ -148,7 +148,7 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                udfnDate();
+               // udfnDate();
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 udfnList();

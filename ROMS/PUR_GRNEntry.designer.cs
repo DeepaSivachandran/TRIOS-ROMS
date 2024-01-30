@@ -87,6 +87,9 @@
             this.lblsupplierGST = new System.Windows.Forms.Label();
             this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.grdUnitList = new System.Windows.Forms.DataGridView();
+            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbOrderType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblDESupplier = new System.Windows.Forms.Label();
@@ -110,9 +113,6 @@
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errGRN)).BeginInit();
             this.gpGRNEntry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QrcodeImg)).BeginInit();
@@ -324,7 +324,7 @@
             this.columnHeader9});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(266, 124);
+            this.LV_Supplier.Location = new System.Drawing.Point(266, 44);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(358, 93);
             this.LV_Supplier.TabIndex = 1111208;
@@ -721,6 +721,32 @@
             this.grdUnitList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdUnitList_CellFormatting);
             this.grdUnitList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdUnitList_CurrentCellDirtyStateChanged);
             this.grdUnitList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdUnitList_EditingControlShowing);
+            this.grdUnitList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUnitList_KeyDown);
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Package";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            this.clmUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmUnit.Width = 80;
+            // 
+            // clmQty
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.clmQty.DefaultCellStyle = dataGridViewCellStyle12;
+            this.clmQty.HeaderText = "Qty";
+            this.clmQty.Name = "clmQty";
+            this.clmQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmQty.Width = 50;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id.Visible = false;
             // 
             // cmbOrderType
             // 
@@ -992,31 +1018,6 @@
             this.lblSupplierCode.TabIndex = 1111211;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Package";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            this.clmUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUnit.Width = 80;
-            // 
-            // clmQty
-            // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.clmQty.DefaultCellStyle = dataGridViewCellStyle12;
-            this.clmQty.HeaderText = "Qty";
-            this.clmQty.Name = "clmQty";
-            this.clmQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmQty.Width = 50;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.id.Visible = false;
             // 
             // PUR_GRNEntry
             // 

@@ -828,6 +828,7 @@ namespace ROMS
                 {
                     //txtLoadingCharge.Focus();
                     grdUnitList.Focus();
+                    grdUnitList.CurrentCell = grdUnitList.Rows[0].Cells[1];
                 }
             }
             catch (Exception ex)
@@ -1700,6 +1701,22 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdUnitList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtLoadingCharge.Focus();
                 }
             }
             catch (Exception ex)

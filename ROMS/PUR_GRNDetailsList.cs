@@ -241,6 +241,8 @@ namespace ROMS
                             grdGRNList.Columns["Totallbl"].Visible = false;
                             grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGRNList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {

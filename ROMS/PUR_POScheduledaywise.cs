@@ -256,11 +256,18 @@ namespace ROMS
                 if (e.RowIndex != -1)
                 {
                     int varDYID = 0;
-                    if (e.ColumnIndex == grdPOSchedule.Rows.Count - 1)
+                    //if (e.ColumnIndex == grdPOSchedule.Rows.Count - 1)
+                    //{
+                    //    varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
+                    //}
+                    if (e.RowIndex == 7)
+                    {
+                        varDYID = 0;
+                    }
+                    else
                     {
                         varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
                     }
-                    varDYID = Convert.ToInt32(grdPOSchedule.SelectedRows[0].Cells["DYID"].Value.ToString());
                     string varHeader = "";
                     switch (grdPOSchedule.Columns[e.ColumnIndex].Name)
                     {
