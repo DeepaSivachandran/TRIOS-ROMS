@@ -765,10 +765,8 @@ namespace ROMS
         {
             try
             {
-                        //epStockHold.Clear();
                  txtProductName.BackColor = Color.White;
                  tpProductName.Active = false;
-                
             }
             catch (Exception ex)
             {
@@ -776,17 +774,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TextBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -816,12 +803,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsStockRequest_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void GrdStockHold_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -933,17 +914,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void LblExpiryDate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void TxtQty_TextChanged(object sender, EventArgs e)
         {
             try
@@ -957,20 +927,6 @@ namespace ROMS
             }
 
         }
-
-        private void GrdStockHold_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void GrdStockHold_Scroll(object sender, ScrollEventArgs e)
         {
 
@@ -1256,19 +1212,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void Lvproduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try {
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
         private void TxtStockQty_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1442,24 +1385,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void INV_StockHold_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            
-        }
-        //private void UpdateLabelText()
-        //{
-        //    try
-        //    {
-        //        // Change the text of the label based on the current state
-        //        lblProductName.Text = isText ? "Search by Product" : "Search by P.I Code";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
 
         private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {

@@ -170,7 +170,7 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     if (grdDCDetails.Rows.Count > 0)
                     {
-                        string varMessage = objDServ.udfnGetMessages(84);
+                        string varMessage = objDServ.udfnGetMessages(106);
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
