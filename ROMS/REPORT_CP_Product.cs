@@ -141,6 +141,10 @@ namespace ROMS
                     {
                         udfnProductMinSales();
                     }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 184)
+                    {
+                        udfnAlphaProduct();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1081,6 +1085,62 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
                 btnListPrint.Focus(); 
+                GC.Collect();
+            }
+        }
+        public void udfnAlphaProduct()
+        {
+            try
+            {
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 56;
+                objMR_Product.paraPicode = txtSearchByPICode.Text.Trim();
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Alphabetic.rpt");
+                    objBillreport.SetParameterValue("paraPICode", Convert.ToString(txtSearchByPICode.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }

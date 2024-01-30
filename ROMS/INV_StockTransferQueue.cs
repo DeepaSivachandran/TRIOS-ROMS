@@ -805,7 +805,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(11,Convert.ToInt32(cmbConcern.SelectedValue),0,0,txtSLocation.Text,0,0,0,"","");
+                    objDs = objspdservice.udfnStockLocationList(11,Convert.ToInt32(cmbConcern.SelectedValue),0,0,txtSLocation.Text,0,0,0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

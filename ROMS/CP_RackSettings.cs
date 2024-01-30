@@ -288,7 +288,7 @@ namespace ROMS
                     string varId_SourceLocation = "0";
                     DataSet objDsSourceLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsSourceLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSourceLocation.Text.Trim(), 0, 0, 0,"","");
+                    objDsSourceLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSourceLocation.Text.Trim(), 0, 0, 0,"","",0);
                     objDServ3.CloseConnection();
                     if (objDsSourceLoc != null)
                     {
@@ -329,7 +329,7 @@ namespace ROMS
                     string varId_DestinationLocation = "0";
                     DataSet objDsDestinationLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsDestinationLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDestinationLocation.Text.Trim(), 0, 0, 0,"","");
+                    objDsDestinationLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDestinationLocation.Text.Trim(), 0, 0, 0,"","",0);
                     objDServ3.CloseConnection();
                     if (objDsDestinationLoc != null)
                     {
@@ -2860,7 +2860,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtDestinationLocation.Text, 0, 0, 0,"","");
+                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtDestinationLocation.Text, 0, 0, 0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -3026,7 +3026,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(10,Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSourceLocation.Text, 0, 0, 0,"","");
+                    objDs = objspdservice.udfnStockLocationList(10,Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSourceLocation.Text, 0, 0, 0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
