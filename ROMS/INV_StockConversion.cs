@@ -57,16 +57,25 @@ namespace ROMS
         }
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            if (varChangeFlag == false)
+            try
             {
-                udfnDiscard();
-                MainForm.objINV_StockConversionList.udfnList();
+                if (varChangeFlag == false)
+                {
+                    skipValidation = true;
+                    udfnDiscard();
+                    MainForm.objINV_StockConversionList.udfnList();
+                }
+                else
+                {
+                    skipValidation = true;
+                    udfnclose();
+                    MainForm.objINV_StockConversionList.udfnList();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                skipValidation = true;
-                udfnclose();
-                MainForm.objINV_StockConversionList.udfnList();
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnDiscard()
@@ -76,6 +85,7 @@ namespace ROMS
                 DialogResult dialogResult = MessageBox.Show("Do you want to Discard Changes ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    skipValidation = true;
                     this.Close();
                 }
             }
@@ -869,7 +879,7 @@ namespace ROMS
                             string Qty = objValidation.udfnDecimal((txtConvertQty.Text), varDecimal);
                             txtConvertQty.Text = Qty;
                         }
-                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtConvertMrp.Text), (txtExpiryDate.Text).Trim(), (txtConvertBatch.Text).Trim(), (txtConvertQty.Text),varPRID,varRKID,varStockLocationId);
+                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtConvertMrp.Text), (txtExpiryDate.Text).Trim(), (txtConvertBatch.Text).Trim(), (txtConvertQty.Text),varPRID,varRKID,varStockLocationId,varShelflife);
                         dtStock.Rows.Add(Convert.ToDecimal((txtConvertQty.Text).Trim()),Convert.ToDecimal (txtConvertMrp.Text), (txtExpiryDate.Text).Trim(),Convert.ToInt32 ((txtConvertBatch.Text).Trim()));
                         grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1650,11 +1660,14 @@ namespace ROMS
                         }
                     }
                 }
-                udfnExpiryDateCheck();
-                //grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
-                object varEditDate = grdBatchConversion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                // Update the same column value in the DataTable
-                dtStock.Rows[e.RowIndex]["STK_ExpiryDate"] = varEditDate;
+                if (varErrorFormat == 0)
+                {
+                    udfnExpiryDateCheck();
+                    //grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
+                    object varEditDate = grdBatchConversion.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    // Update the same column value in the DataTable
+                    dtStock.Rows[e.RowIndex]["STK_ExpiryDate"] = varEditDate;
+                }
             }
             catch (Exception ex)
             {
@@ -1690,7 +1703,8 @@ namespace ROMS
                         {
                             varErrorFormat = 1;
                             MessageBox.Show("Invalid date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            e.Cancel = true;
+                            grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            //e.Cancel = true;
                         }
                         else
                         {
@@ -1707,6 +1721,7 @@ namespace ROMS
                                     {
                                         varErrorFormat = 1;
                                         MessageBox.Show("Invalid date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        grdBatchConversion.CurrentRow.Cells["clmExpiryDate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                         e.Cancel = true;
                                     }
                                     else
@@ -1718,6 +1733,7 @@ namespace ROMS
                         }
                     }
                 }
+                //skipValidation = true;
             }
             catch (Exception ex)
             {
@@ -1809,13 +1825,18 @@ namespace ROMS
                             {
                                 grdBatchConversion.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdBatchConversion.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo"]),
-                                Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]));
+                                Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife"]));
                                 dtStock.Rows.Add(Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo"]));
                                 sum += Convert.ToDecimal(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
                                 grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdBatchConversion.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdBatchConversion.Columns["clmExpiryDate"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                varShelflife = Convert.ToInt32(objDs.Tables[1].Rows[i]["Shelflife"]);
+                                if(varShelflife==1)
+                                {
+                                    expirydateFlag = 1;
+                                }
                             }
                             changedQuantity = sum;
                             btnSave.Text = "Update";
@@ -1914,7 +1935,7 @@ namespace ROMS
                
                 //DataGridView dataGridView = (DataGridView)sender;
                 varExpiryDate = "";
-                varShelflife = 0;
+                //varShelflife = 0;
                 varErroronGrid = 0;
                 int varExpiryDays = 0; int varProid = 0;
                 SPDataService objDServ = new SPDataService();
