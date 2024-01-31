@@ -20,7 +20,8 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbranGRNode;
+        public string varbranGRNode="", varGRNQRCode = "";
+        public int QRFlag=0 ;
        DataTable dtPurchaseGRN = new DataTable();
         public string pbFormStatus;
         public PUR_Purchase_GRNDetails()
@@ -73,6 +74,7 @@ namespace ROMS
                 dtPurchaseGRN.Columns.Add("GRN Date", typeof(string));
                 dtPurchaseGRN.Columns.Add("Total Products", typeof(string));
                 dtPurchaseGRN.Columns.Add("GRNID", typeof(string));
+                dtPurchaseGRN.Columns.Add("QRCode", typeof(string));
                 int supplierid = 0, scheduleid = 0;
                 string GRNNo= "0"; 
                 supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
@@ -82,7 +84,7 @@ namespace ROMS
                 {  
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0,GRNNo);
+                    objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0,GRNNo,"");
                     objdserv.CloseConnection(); 
                     if (objDs.Tables[0].Rows.Count > 0)
                     {
@@ -91,7 +93,7 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             dtPurchaseGRN.Rows.Add(false, dtPurchaseGRN.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["GRNNo"]),Convert.ToString(objDs.Tables[0].Rows[i]["GRNDate"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"])
+                            Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["QRCode"]) 
                             );
                         }
                         grdGRNDetails.DataSource = dtPurchaseGRN;
@@ -107,6 +109,7 @@ namespace ROMS
                         grdGRNDetails.Columns["GRN Date"].Width = 100;
                         grdGRNDetails.Columns["Total Products"].Width = 100;
                         grdGRNDetails.Columns["GRNID"].Visible = false;
+                        grdGRNDetails.Columns["QRCode"].Visible = false;
                         grdGRNDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdGRNDetails.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
@@ -128,15 +131,36 @@ namespace ROMS
                 objError.WriteFile(ex);
             } 
         }
-
+        public void udfnGRNCheckTrue()
+        {
+            try
+            {
+                for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
+                {
+                    if (Convert.ToInt32(grdGRNDetails.Rows[i].Cells["GRNID"].Value) == MainForm.objCP_Purchase.varGrnId)
+                    {
+                        grdGRNDetails.Rows[i].Cells[0].Value = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         public void udfnAddGRN()
         {
             try {
                 //{
                 int VARFLAG = 0;
-                string GRNno = "0";
+                string GRNno = "0", varGRNQRCode="";
                 MainForm.objCP_Purchase.pbGRNNo = "0";
+                if(QRFlag==1)
+                {
+                    udfnGRNCheckTrue();
+                }
                 //MainForm.objPUR_GRNEntry.grdReurnGRN.Rows.Clear();
                 for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
                 {
@@ -151,11 +175,13 @@ namespace ROMS
                         {
                             GRNno = GRNno + ',' + Convert.ToString(grdGRNDetails.Rows[i].Cells["GRNID"].Value);
                         }
+                        varGRNQRCode= Convert.ToString(grdGRNDetails.Rows[i].Cells["QRCode"].Value);
                     }
                 }
                 if (VARFLAG != 0)
                 { 
                     MainForm.objCP_Purchase.pbGRNNo = GRNno;
+                    MainForm.objCP_Purchase.pbQRCode = varGRNQRCode;
                     this.Close();
                 }
                 else
@@ -242,5 +268,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 }

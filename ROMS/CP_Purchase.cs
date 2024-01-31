@@ -37,7 +37,8 @@ namespace ROMS
         varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds = "0";
         public decimal PbDiscamt = 0, PbTaxvalue = 0, PbGstamt = 0, PbNetamt = 0, pbDiffQty = 0;
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,
-            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0,varQueueFlag=0;
+            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0;
+        public string pbQRCode = "";
         public CP_Purchase()
         {
             InitializeComponent();
@@ -329,6 +330,7 @@ namespace ROMS
                 }
                 MainForm.objPUR_Purchase_GRNDetails = new PUR_Purchase_GRNDetails();
                 MainForm.objPUR_Purchase_GRNDetails.ShowDialog();
+                txtQRCode.Text = pbQRCode;
             }
             catch (Exception ex)
             {
@@ -3744,7 +3746,7 @@ namespace ROMS
                         {
                             varshelflife = cellValue.ToString();
                             if (varshelflife != "" || varshelflife != null)
-                                objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid, 0, "0");
+                                objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid, 0, "0","");
                             objdserv.CloseConnection();
                             if (objDs != null)
                             {
@@ -5670,6 +5672,28 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGetGRNID()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnGrnListLoad(7, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "",txtQRCode.Text.Trim());
+                objdserv.CloseConnection();
+                varGrnId = Convert.ToInt32(objDs.Tables[0].Rows[0]["GRNID"]);
+                if(varGrnId == -1)
+                {
+                    string varMessage = objdserv.udfnGetMessages(108);
+                    objdserv.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtQRCode_Leave(object sender, EventArgs e)
         {
             try
@@ -5686,6 +5710,17 @@ namespace ROMS
                     errPurchaseentry.Clear();
                     txtQRCode.BackColor = Color.White;
                     tpQRCode.Hide(txtQRCode);
+                    udfnGetGRNID();
+                    if(varGrnId==-1)
+                    {
+                        txtQRCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    }
+                    if(varGrnId != -1 && varGrnId != 0)
+                    {
+                        MainForm.objPUR_Purchase_GRNDetails.QRFlag = 1;
+                        pbGRNNo = Convert.ToString( varGrnId);
+                        udfnGRNProload();
+                    }
                 }
                 if (Convert.ToString(txtQRCode.Text).Trim() == "")
                 {
