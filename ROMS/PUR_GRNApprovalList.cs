@@ -325,6 +325,137 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TxtSLocation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvSLocation.Items.Count == 0 || txtSLocation.Text == "")
+                    {
+                        txtProductNamePICode.Focus();
+                        lvSLocation.Visible = false;
+                    }
+                    else
+                    {
+                        lvSLocation.Focus();
+                    }
+                    if (lvSLocation.Items.Count > 0)
+                    {
+                        lvSLocation.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductNamePICode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSLocation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSLocation.BackColor = Color.White;
+                if (txtSLocation.Text == "")
+                {
+                    lblSLocation.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSLocation_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //int varViewType = 0;
+                //if (Convert.ToInt32(cmbConcern.SelectedValue) == 0)
+                //{
+                //    varViewType = 13;
+                //}
+                //else
+                //{
+                //    varViewType = 11;
+                //}
+                lvSLocation.Items.Clear();
+                if (txtSLocation.Text.Length > 0)
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0, dpFromDate.Text, dpToDate.Text,0);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvSLocation.Columns[1].Width = 0;
+                                    lvSLocation.Items.Add(objList);
+                                }
+                                lvSLocation.BringToFront();
+                                lvSLocation.Visible = true;
+                            }
+                            else
+                            {
+                                lvSLocation.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvSLocation.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvSLocation.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvSLocation.Visible = false;
+                    lvSLocation.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
         private void TxtProductNamePICode_Enter(object sender, EventArgs e)
         {
             try

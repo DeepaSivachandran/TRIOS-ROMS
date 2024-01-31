@@ -109,12 +109,14 @@ namespace ROMS
             try
             {
                 txtLocation.Text = PbLocationName;
+                txtLocation.Enabled = false;
                 lblLocation.Text = Convert.ToString(varLocationCode);
                 txtRackName.Text = PbRackName;
                 txtShortName.Text = PbShortName;
                 txtDescription.Text = PbDescription;
                 cmbConcern.SelectedValue = PbConcernID;
                 cmbConcern.Enabled = false;
+                this.ActiveControl = txtRackName;
                 //cmbStockLocation.SelectedValue = PbStockLocationID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if(PbStatus==2)
@@ -166,7 +168,7 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0,"","");
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0,"","",0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -763,7 +765,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(20,Convert.ToInt32(cmbConcern.SelectedValue),0,0, txtLocation.Text,0,0,0,"","");
+                    objDs = objspdservice.udfnStockLocationList(20,Convert.ToInt32(cmbConcern.SelectedValue),0,0, txtLocation.Text,0,0,0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

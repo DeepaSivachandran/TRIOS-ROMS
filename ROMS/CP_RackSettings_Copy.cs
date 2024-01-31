@@ -246,7 +246,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0, 0,0,"","");
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0, 0,0,"","",0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -916,7 +916,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text,0,0, 0,"","");
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text,0,0, 0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1155,7 +1155,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0, 0,"","");
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0, 0,"","",0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -1308,7 +1308,7 @@ namespace ROMS
                 if (txtDLocation.Text.Length > 0)
                 {
 
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtDLocation.Text, 0,0,0,"","");
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtDLocation.Text, 0,0,0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1498,7 +1498,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0, 0,"","");
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0, 0,"","",0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -2035,7 +2035,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0,"","");
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0,"","",0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -2360,7 +2360,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0,0,"","");
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0,0,"","",0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -3267,7 +3267,7 @@ namespace ROMS
                         string varId_PurLocation = "0";
                         DataSet objDsPurLoc = new DataSet();
                         SPDataService objDServ3 = new SPDataService();
-                        objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0, 0,"","");
+                        objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(),0,0, 0,"","",0);
                         objDServ3.CloseConnection();
                         if (objDsPurLoc != null)
                         {
@@ -3343,7 +3343,7 @@ namespace ROMS
                         string varId_PurLocation = "0";
                         DataSet objDsPurLoc = new DataSet();
                         SPDataService objDServ3 = new SPDataService();
-                        objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtMoveLocation.Text.Trim(),0, 0,0,"","");
+                        objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtMoveLocation.Text.Trim(),0, 0,0,"","",0);
                         objDServ3.CloseConnection();
                         if (objDsPurLoc != null)
                         {
@@ -3681,7 +3681,7 @@ namespace ROMS
                 if (txtMoveLocation.Text.Length > 0)
                 {
 
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtMoveLocation.Text,0,0,0,"","");
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtMoveLocation.Text,0,0,0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -3738,7 +3738,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtMoveLocation.Text.Trim(),0,0,0,"","");
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtMoveLocation.Text.Trim(),0,0,0,"","",0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {

@@ -208,6 +208,7 @@ namespace ROMS
             objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (6) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
             objDataBind = null;
             cmbStatus.SelectedValue = 0;
+            /*
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);
@@ -218,6 +219,8 @@ namespace ROMS
                 dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
             }
             objspservice.CloseConnection();
+            */
+            dpTrannsferFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
             dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
@@ -320,7 +323,7 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","");
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","",0);
                     objDServ5.CloseConnection();
                     if (objDsSalesLoc != null)
                     {
@@ -839,7 +842,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(27,Convert.ToInt32(cmbConcern.SelectedValue),0,0,txtSLocation.Text,0,0,0,dpTrannsferFromDate.Text,dpTransferToDate.Text);
+                    objDs = objspdservice.udfnStockLocationList(27,Convert.ToInt32(cmbConcern.SelectedValue),0,0,txtSLocation.Text,0,0,0,dpTrannsferFromDate.Text,dpTransferToDate.Text,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1432,6 +1435,8 @@ namespace ROMS
         {
             try
             {
+                lvSLocation.Visible = false;
+                lvProduct.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
