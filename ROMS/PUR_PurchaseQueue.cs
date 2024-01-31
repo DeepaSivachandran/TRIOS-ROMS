@@ -41,16 +41,7 @@ namespace ROMS
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
-                }
-            }
-                MainForm.objCP_Purchase = new CP_Purchase();
-                MainForm.objCP_Purchase.PbID = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["STSID"].Value.ToString());
-                MainForm.objCP_Purchase.PbFlag = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["PURID"].Value.ToString());
-                MainForm.objCP_Purchase.lblschedule.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
-                MainForm.objCP_Purchase.lblSupplierCode.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPID"].Value.ToString());
-                MainForm.objCP_Purchase.txtSupplier.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SUPPLIER"].Value.ToString());
-                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
-                MainForm.objCP_Purchase.Show();
+                } 
             }
             catch (Exception ex)
             {
@@ -783,6 +774,39 @@ namespace ROMS
             }
 
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void GrdPurchaseEntryQueueList_DoubleClick(object sender, EventArgs e)
+        { 
+            try { udfnEdit(); }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                MainForm.objCP_Purchase = new CP_Purchase();
+                MainForm.objCP_Purchase.PbID = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["ID"].Value.ToString());
+                MainForm.objCP_Purchase.PbFlag = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Flag"].Value.ToString());
+                MainForm.objCP_Purchase.lblschedule.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                MainForm.objCP_Purchase.lblSupplierCode.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                MainForm.objCP_Purchase.txtSupplier.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SUPPLIER"].Value.ToString());
+                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                MainForm.objCP_Purchase.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                //picLoader.Visible = false;
+            }
         }
     }
 }

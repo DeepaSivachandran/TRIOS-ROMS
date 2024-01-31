@@ -37,6 +37,7 @@
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbPurchaseList = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.grdPurchaseEntryQueueList = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
@@ -47,7 +48,9 @@
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.grpFilterby = new System.Windows.Forms.GroupBox();
+            this.lblschedule = new System.Windows.Forms.Label();
             this.cmbEntryType = new System.Windows.Forms.ComboBox();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dpToDate = new System.Windows.Forms.DateTimePicker();
             this.dpFromDate = new System.Windows.Forms.DateTimePicker();
@@ -57,9 +60,6 @@
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblDESupplier = new System.Windows.Forms.Label();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.lblschedule = new System.Windows.Forms.Label();
-            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryQueueList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -105,6 +105,13 @@
             this.tsbPurchaseList.Text = "Purchse List";
             this.tsbPurchaseList.Click += new System.EventHandler(this.TsbPurchaseList_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
             // grdPurchaseEntryQueueList
             // 
             this.grdPurchaseEntryQueueList.AllowUserToAddRows = false;
@@ -144,6 +151,7 @@
             this.grdPurchaseEntryQueueList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseEntryQueueList.Size = new System.Drawing.Size(1348, 484);
             this.grdPurchaseEntryQueueList.TabIndex = 958797;
+            this.grdPurchaseEntryQueueList.DoubleClick += new System.EventHandler(this.GrdPurchaseEntryQueueList_DoubleClick);
             // 
             // lblNoRecordsFound
             // 
@@ -294,6 +302,16 @@
             this.grpFilterby.TabStop = false;
             this.grpFilterby.Text = "Filter By";
             // 
+            // lblschedule
+            // 
+            this.lblschedule.AutoSize = true;
+            this.lblschedule.Location = new System.Drawing.Point(610, 28);
+            this.lblschedule.Name = "lblschedule";
+            this.lblschedule.Size = new System.Drawing.Size(16, 20);
+            this.lblschedule.TabIndex = 1111223;
+            this.lblschedule.Text = "0";
+            this.lblschedule.Visible = false;
+            // 
             // cmbEntryType
             // 
             this.cmbEntryType.FormattingEnabled = true;
@@ -306,6 +324,16 @@
             this.cmbEntryType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbEntryType_KeyDown);
             this.cmbEntryType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbEntryType_KeyPress);
             this.cmbEntryType.Leave += new System.EventHandler(this.CmbEntryType_Leave);
+            // 
+            // lblSupplierCode
+            // 
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.Location = new System.Drawing.Point(586, 28);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.TabIndex = 1111222;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
             // 
             // label4
             // 
@@ -412,33 +440,6 @@
             this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDESupplier.TabIndex = 958798;
             this.lblDESupplier.Text = "Supplier";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // lblschedule
-            // 
-            this.lblschedule.AutoSize = true;
-            this.lblschedule.Location = new System.Drawing.Point(610, 28);
-            this.lblschedule.Name = "lblschedule";
-            this.lblschedule.Size = new System.Drawing.Size(16, 20);
-            this.lblschedule.TabIndex = 1111223;
-            this.lblschedule.Text = "0";
-            this.lblschedule.Visible = false;
-            // 
-            // lblSupplierCode
-            // 
-            this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(586, 28);
-            this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
-            this.lblSupplierCode.TabIndex = 1111222;
-            this.lblSupplierCode.Text = "0";
-            this.lblSupplierCode.Visible = false;
             // 
             // PUR_PurchaseQueue
             // 

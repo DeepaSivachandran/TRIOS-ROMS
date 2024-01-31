@@ -63,14 +63,17 @@ namespace ROMS
                     grdSupplierList.Columns["clmAddPro"].Visible = false;
                     if (cmbEntryType.SelectedValue.ToString() == "54") // GRN
                     {
-                        udfnPurchaseGrnLoad();
-                        udfnGRNProload();
-                        txtQRCode.ReadOnly = false;
-                        dpInvoiceDate.Enabled = false;
-                        txtInvoiceNo.ReadOnly = true;
-                        txtInvoiceNo.Enabled = false;
-                        grdPODetails.Visible = true;
-                        grdReurnDC.Visible = false;
+                        if (PbFlag == "0")
+                        {
+                            udfnPurchaseGrnLoad();
+                            udfnGRNProload();
+                            txtQRCode.ReadOnly = false;
+                            dpInvoiceDate.Enabled = false;
+                            txtInvoiceNo.ReadOnly = true;
+                            txtInvoiceNo.Enabled = false;
+                            grdPODetails.Visible = true;
+                            grdReurnDC.Visible = false;
+                        }
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "55") // PO
                     {
@@ -106,17 +109,20 @@ namespace ROMS
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                     {
-                        udfnPurchaseDC();
-                        udfnDefReturnDc();
-                        grdPODetails.Visible = false;
-                        grdReurnDC.Visible = true;
-                        if (grdSupplierList.Rows.Count != 0)
+                        if (PbFlag == "0")
                         {
-                            btnClear.Enabled = true;
-                        }
-                        if (grdReurnDC.Rows.Count != 0)
-                        {
-                            lblFinishedNoRecord.Visible = false;
+                            udfnPurchaseDC();
+                            udfnDefReturnDc();
+                            grdPODetails.Visible = false;
+                            grdReurnDC.Visible = true;
+                            if (grdSupplierList.Rows.Count != 0)
+                            {
+                                btnClear.Enabled = true;
+                            }
+                            if (grdReurnDC.Rows.Count != 0)
+                            {
+                                lblFinishedNoRecord.Visible = false;
+                            }
                         }
                     }
                 }
@@ -1310,39 +1316,43 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                if (btnSave.Text == "Save as Draft")
+                if (PbFlag == "0")
                 {
-                    if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
+                    BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                    if (btnSave.Text == "Save as Draft")
                     {
-                        if (Convert.ToString(cmbConcern.SelectedValue) != "-1" && Convert.ToInt32(grdSupplierList.Rows.Count) != 0)
+                        if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(78);
-                            objDServ.CloseConnection();
-
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                            if (Convert.ToString(cmbConcern.SelectedValue) != "-1" && Convert.ToInt32(grdSupplierList.Rows.Count) != 0)
                             {
-                                grdSupplierList.Rows.Clear();
-                                grdPurchaseList.Rows.Clear();
-                                txtSupplier.Text = "";
-                                lblSupplierCode.Text = "0";
-                                txtQRCode.Text = "";
-                                lblschedule.Text = "0";
-                                txtInvoiceNo.Text = "0";
-                                cmbEntryType.SelectedValue = "56";
-                                cmbTransactionType.SelectedValue = "58";
-                                txtBroker.Text = "";
-                                txtGstin.Text = "";
-                                lblBrokerId.Text = "0";
-                                ClearSupplier();
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(78);
+                                objDServ.CloseConnection();
+
+                                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    grdSupplierList.Rows.Clear();
+                                    grdPurchaseList.Rows.Clear();
+                                    txtSupplier.Text = "";
+                                    lblSupplierCode.Text = "0";
+                                    txtQRCode.Text = "";
+                                    lblschedule.Text = "0";
+                                    txtInvoiceNo.Text = "0";
+                                    cmbEntryType.SelectedValue = "56";
+                                    cmbTransactionType.SelectedValue = "58";
+                                    txtBroker.Text = "";
+                                    txtGstin.Text = "";
+                                    lblBrokerId.Text = "0";
+                                    ClearSupplier();
+                                }
                             }
                         }
                     }
                 }
-                varcomid = Convert.ToString(cmbConcern.SelectedValue);
-                udfnVocherno();
+                    varcomid = Convert.ToString(cmbConcern.SelectedValue);
+                    udfnVocherno();
+                
             }
             catch (Exception ex)
             {
