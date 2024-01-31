@@ -31,6 +31,8 @@ namespace ROMS
             {
                 if (grdGrnApprovalList.Rows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
                     MainForm.objPUR_GRNApproval = new PUR_GRNApproval();
                     MainForm.objPUR_GRNApproval.txtConcern.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Concern"].Value);
                     MainForm.objPUR_GRNApproval.txtVoucherDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Voucher Date"].Value);
@@ -43,6 +45,7 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varScheduleID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPSCID"].Value);
                     MainForm.objPUR_GRNApproval.varConcernID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Concern ID"].Value);
                     MainForm.objPUR_GRNApproval.varID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
                 }
@@ -51,6 +54,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         private void PUR_GRNApprovalList_Load(object sender, EventArgs e)
@@ -1194,6 +1202,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdGrnApprovalList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdGrnApprovalList.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnList()
         {
             try
@@ -1254,6 +1276,8 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["SPID"].Visible = false;
                                 grdGrnApprovalList.Columns["SPSCID"].Visible = false;
                                 grdGrnApprovalList.Columns["Concern ID"].Visible = false;
+                                grdGrnApprovalList.Columns["PUR_EntryType"].Visible = false;
+                                grdGrnApprovalList.Columns["Purchase Type"].Visible = false;
                             }
                             else
                             {
@@ -1299,6 +1323,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnView.Enabled = true;
                 btnView.Focus();
+                grdGrnApprovalList.ClearSelection();
             }
         }
     }

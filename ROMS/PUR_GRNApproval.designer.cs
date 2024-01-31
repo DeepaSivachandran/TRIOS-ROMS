@@ -73,32 +73,13 @@
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.txtVoucherNo = new System.Windows.Forms.TextBox();
             this.grdpurchasedetails = new System.Windows.Forms.DataGridView();
-            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.lblDPercentage = new System.Windows.Forms.Label();
-            this.lblPercentage = new System.Windows.Forms.Label();
+            this.lbltwentyfiveper = new System.Windows.Forms.Label();
+            this.lblFivetyPercentage = new System.Windows.Forms.Label();
             this.txtRDPercentageCheck = new System.Windows.Forms.TextBox();
-            this.txtDGPercentageCheck = new System.Windows.Forms.TextBox();
+            this.txtORPercentageCheck = new System.Windows.Forms.TextBox();
             this.btnRemarks = new System.Windows.Forms.Button();
-            this.grdGrnlist = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdGrnApproval = new System.Windows.Forms.DataGridView();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
@@ -106,6 +87,25 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
+            this.Sno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmactualshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmShelflifeper = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpoqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clminvoiceqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmreturnqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpodate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmcreatedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmissuedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.grbSalesmanDetails.SuspendLayout();
@@ -113,7 +113,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdpurchasedetails)).BeginInit();
             this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGrnApproval)).BeginInit();
             this.SuspendLayout();
             // 
             // tsInwardList
@@ -154,7 +154,7 @@
             this.pnlinward.Controls.Add(this.grdpurchasedetails);
             this.pnlinward.Controls.Add(this.groupBox10);
             this.pnlinward.Controls.Add(this.btnRemarks);
-            this.pnlinward.Controls.Add(this.grdGrnlist);
+            this.pnlinward.Controls.Add(this.grdGrnApproval);
             this.pnlinward.Controls.Add(this.txttotalitem);
             this.pnlinward.Controls.Add(this.lbltotalproducts);
             this.pnlinward.Controls.Add(this.txtRemark);
@@ -600,10 +600,10 @@
             this.grdpurchasedetails.ColumnHeadersHeight = 30;
             this.grdpurchasedetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdpurchasedetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmpicode,
-            this.clmsno,
-            this.clmproductname,
-            this.clmTotalProduct});
+            this.clmpodate,
+            this.clmpono,
+            this.clmcreatedby,
+            this.clmissuedby});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -626,40 +626,12 @@
             this.grdpurchasedetails.Size = new System.Drawing.Size(390, 123);
             this.grdpurchasedetails.TabIndex = 1111213;
             // 
-            // clmpicode
-            // 
-            this.clmpicode.HeaderText = "PO Date";
-            this.clmpicode.Name = "clmpicode";
-            this.clmpicode.ReadOnly = true;
-            this.clmpicode.Width = 80;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "PO No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmproductname
-            // 
-            this.clmproductname.HeaderText = "Created By";
-            this.clmproductname.Name = "clmproductname";
-            this.clmproductname.ReadOnly = true;
-            // 
-            // clmTotalProduct
-            // 
-            this.clmTotalProduct.HeaderText = "Issued By";
-            this.clmTotalProduct.Name = "clmTotalProduct";
-            this.clmTotalProduct.ReadOnly = true;
-            this.clmTotalProduct.Width = 80;
-            // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.lblDPercentage);
-            this.groupBox10.Controls.Add(this.lblPercentage);
+            this.groupBox10.Controls.Add(this.lbltwentyfiveper);
+            this.groupBox10.Controls.Add(this.lblFivetyPercentage);
             this.groupBox10.Controls.Add(this.txtRDPercentageCheck);
-            this.groupBox10.Controls.Add(this.txtDGPercentageCheck);
+            this.groupBox10.Controls.Add(this.txtORPercentageCheck);
             this.groupBox10.Location = new System.Drawing.Point(628, 571);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(252, 42);
@@ -667,25 +639,25 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Shelf Life";
             // 
-            // lblDPercentage
+            // lbltwentyfiveper
             // 
-            this.lblDPercentage.AutoSize = true;
-            this.lblDPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDPercentage.Location = new System.Drawing.Point(170, 18);
-            this.lblDPercentage.Name = "lblDPercentage";
-            this.lblDPercentage.Size = new System.Drawing.Size(45, 20);
-            this.lblDPercentage.TabIndex = 1111159;
-            this.lblDPercentage.Text = "< 25%";
+            this.lbltwentyfiveper.AutoSize = true;
+            this.lbltwentyfiveper.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltwentyfiveper.Location = new System.Drawing.Point(170, 18);
+            this.lbltwentyfiveper.Name = "lbltwentyfiveper";
+            this.lbltwentyfiveper.Size = new System.Drawing.Size(45, 20);
+            this.lbltwentyfiveper.TabIndex = 1111159;
+            this.lbltwentyfiveper.Text = "< 25%";
             // 
-            // lblPercentage
+            // lblFivetyPercentage
             // 
-            this.lblPercentage.AutoSize = true;
-            this.lblPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentage.Location = new System.Drawing.Point(43, 18);
-            this.lblPercentage.Name = "lblPercentage";
-            this.lblPercentage.Size = new System.Drawing.Size(45, 20);
-            this.lblPercentage.TabIndex = 1111158;
-            this.lblPercentage.Text = "< 50%";
+            this.lblFivetyPercentage.AutoSize = true;
+            this.lblFivetyPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFivetyPercentage.Location = new System.Drawing.Point(43, 18);
+            this.lblFivetyPercentage.Name = "lblFivetyPercentage";
+            this.lblFivetyPercentage.Size = new System.Drawing.Size(45, 20);
+            this.lblFivetyPercentage.TabIndex = 1111158;
+            this.lblFivetyPercentage.Text = "< 50%";
             // 
             // txtRDPercentageCheck
             // 
@@ -698,16 +670,16 @@
             this.txtRDPercentageCheck.Size = new System.Drawing.Size(27, 16);
             this.txtRDPercentageCheck.TabIndex = 1111157;
             // 
-            // txtDGPercentageCheck
+            // txtORPercentageCheck
             // 
-            this.txtDGPercentageCheck.BackColor = System.Drawing.Color.Orange;
-            this.txtDGPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDGPercentageCheck.Location = new System.Drawing.Point(16, 20);
-            this.txtDGPercentageCheck.MaxLength = 50;
-            this.txtDGPercentageCheck.Multiline = true;
-            this.txtDGPercentageCheck.Name = "txtDGPercentageCheck";
-            this.txtDGPercentageCheck.Size = new System.Drawing.Size(27, 16);
-            this.txtDGPercentageCheck.TabIndex = 1111156;
+            this.txtORPercentageCheck.BackColor = System.Drawing.Color.Orange;
+            this.txtORPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtORPercentageCheck.Location = new System.Drawing.Point(16, 20);
+            this.txtORPercentageCheck.MaxLength = 50;
+            this.txtORPercentageCheck.Multiline = true;
+            this.txtORPercentageCheck.Name = "txtORPercentageCheck";
+            this.txtORPercentageCheck.Size = new System.Drawing.Size(27, 16);
+            this.txtORPercentageCheck.TabIndex = 1111156;
             // 
             // btnRemarks
             // 
@@ -726,14 +698,14 @@
             this.btnRemarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnRemarks_KeyDown);
             this.btnRemarks.Leave += new System.EventHandler(this.BtnRemarks_Leave);
             // 
-            // grdGrnlist
+            // grdGrnApproval
             // 
-            this.grdGrnlist.AllowUserToAddRows = false;
-            this.grdGrnlist.AllowUserToDeleteRows = false;
-            this.grdGrnlist.AllowUserToResizeColumns = false;
-            this.grdGrnlist.AllowUserToResizeRows = false;
-            this.grdGrnlist.BackgroundColor = System.Drawing.Color.White;
-            this.grdGrnlist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdGrnApproval.AllowUserToAddRows = false;
+            this.grdGrnApproval.AllowUserToDeleteRows = false;
+            this.grdGrnApproval.AllowUserToResizeColumns = false;
+            this.grdGrnApproval.AllowUserToResizeRows = false;
+            this.grdGrnApproval.BackgroundColor = System.Drawing.Color.White;
+            this.grdGrnApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -741,24 +713,24 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdGrnlist.ColumnHeadersHeight = 30;
-            this.grdGrnlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdGrnlist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.grdGrnApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdGrnApproval.ColumnHeadersHeight = 30;
+            this.grdGrnApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdGrnApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Sno,
             this.Column2,
-            this.Column5,
+            this.clmproduct,
             this.Column6,
-            this.Column3,
+            this.clmmrp,
             this.clmexpirydate,
             this.Column10,
-            this.Column11,
-            this.Column12,
+            this.clmactualshelflife,
+            this.clmShelflifeper,
             this.clmBatchno,
-            this.Column4,
-            this.Column8,
-            this.Column7,
-            this.Column9,
+            this.clmpoqty,
+            this.clminvoiceqty,
+            this.clmreceivedqty,
+            this.clmreturnqty,
             this.clmReason});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -767,117 +739,19 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdGrnlist.EnableHeadersVisualStyles = false;
-            this.grdGrnlist.GridColor = System.Drawing.Color.White;
-            this.grdGrnlist.Location = new System.Drawing.Point(6, 135);
-            this.grdGrnlist.Name = "grdGrnlist";
-            this.grdGrnlist.ReadOnly = true;
-            this.grdGrnlist.RowHeadersVisible = false;
+            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdGrnApproval.EnableHeadersVisualStyles = false;
+            this.grdGrnApproval.GridColor = System.Drawing.Color.White;
+            this.grdGrnApproval.Location = new System.Drawing.Point(6, 135);
+            this.grdGrnApproval.Name = "grdGrnApproval";
+            this.grdGrnApproval.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdGrnlist.RowTemplate.Height = 25;
-            this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdGrnlist.Size = new System.Drawing.Size(1335, 434);
-            this.grdGrnlist.TabIndex = 958827;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "P.I Code";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 120;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Product Name";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 200;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Unit";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 80;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "MRP";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // clmexpirydate
-            // 
-            this.clmexpirydate.HeaderText = "Expiry Date";
-            this.clmexpirydate.Name = "clmexpirydate";
-            this.clmexpirydate.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Product Shelf Life";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Width = 120;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Actual Shelf Life";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Width = 120;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Shelf Life (%)";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // clmBatchno
-            // 
-            this.clmBatchno.HeaderText = "Batch No.";
-            this.clmBatchno.Name = "clmBatchno";
-            this.clmBatchno.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "PO Qty";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Invoice Qty";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 80;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Received Qty";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Returned Qty";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // clmReason
-            // 
-            this.clmReason.HeaderText = "Reason";
-            this.clmReason.Name = "clmReason";
-            this.clmReason.ReadOnly = true;
+            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdGrnApproval.RowTemplate.Height = 25;
+            this.grdGrnApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGrnApproval.Size = new System.Drawing.Size(1335, 434);
+            this.grdGrnApproval.TabIndex = 958827;
             // 
             // txttotalitem
             // 
@@ -960,6 +834,134 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
+            // Sno
+            // 
+            this.Sno.HeaderText = "S.No";
+            this.Sno.Name = "Sno";
+            this.Sno.Width = 50;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "P.I Code";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // clmproduct
+            // 
+            this.clmproduct.HeaderText = "Product Name";
+            this.clmproduct.Name = "clmproduct";
+            this.clmproduct.ReadOnly = true;
+            this.clmproduct.Width = 200;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Unit";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 70;
+            // 
+            // clmmrp
+            // 
+            this.clmmrp.HeaderText = "MRP";
+            this.clmmrp.Name = "clmmrp";
+            this.clmmrp.ReadOnly = true;
+            this.clmmrp.Width = 80;
+            // 
+            // clmexpirydate
+            // 
+            this.clmexpirydate.HeaderText = "Expiry Date";
+            this.clmexpirydate.Name = "clmexpirydate";
+            this.clmexpirydate.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Product Shelf Life";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Width = 120;
+            // 
+            // clmactualshelflife
+            // 
+            this.clmactualshelflife.HeaderText = "Actual Shelf Life";
+            this.clmactualshelflife.Name = "clmactualshelflife";
+            this.clmactualshelflife.ReadOnly = true;
+            this.clmactualshelflife.Width = 110;
+            // 
+            // clmShelflifeper
+            // 
+            this.clmShelflifeper.HeaderText = "Shelf Life (%)";
+            this.clmShelflifeper.Name = "clmShelflifeper";
+            this.clmShelflifeper.ReadOnly = true;
+            this.clmShelflifeper.Width = 90;
+            // 
+            // clmBatchno
+            // 
+            this.clmBatchno.HeaderText = "Batch No.";
+            this.clmBatchno.Name = "clmBatchno";
+            this.clmBatchno.ReadOnly = true;
+            this.clmBatchno.Width = 80;
+            // 
+            // clmpoqty
+            // 
+            this.clmpoqty.HeaderText = "PO Qty";
+            this.clmpoqty.Name = "clmpoqty";
+            this.clmpoqty.ReadOnly = true;
+            this.clmpoqty.Width = 70;
+            // 
+            // clminvoiceqty
+            // 
+            this.clminvoiceqty.HeaderText = "Invoice Qty";
+            this.clminvoiceqty.Name = "clminvoiceqty";
+            this.clminvoiceqty.ReadOnly = true;
+            this.clminvoiceqty.Width = 70;
+            // 
+            // clmreceivedqty
+            // 
+            this.clmreceivedqty.HeaderText = "Received Qty";
+            this.clmreceivedqty.Name = "clmreceivedqty";
+            this.clmreceivedqty.ReadOnly = true;
+            this.clmreceivedqty.Width = 70;
+            // 
+            // clmreturnqty
+            // 
+            this.clmreturnqty.HeaderText = "Returned Qty";
+            this.clmreturnqty.Name = "clmreturnqty";
+            this.clmreturnqty.ReadOnly = true;
+            this.clmreturnqty.Width = 70;
+            // 
+            // clmReason
+            // 
+            this.clmReason.HeaderText = "Reason";
+            this.clmReason.Name = "clmReason";
+            // 
+            // clmpodate
+            // 
+            this.clmpodate.HeaderText = "PO Date";
+            this.clmpodate.Name = "clmpodate";
+            this.clmpodate.ReadOnly = true;
+            this.clmpodate.Width = 80;
+            // 
+            // clmpono
+            // 
+            this.clmpono.HeaderText = "PO No.";
+            this.clmpono.Name = "clmpono";
+            this.clmpono.ReadOnly = true;
+            this.clmpono.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmpono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmcreatedby
+            // 
+            this.clmcreatedby.HeaderText = "Created By";
+            this.clmcreatedby.Name = "clmcreatedby";
+            this.clmcreatedby.ReadOnly = true;
+            // 
+            // clmissuedby
+            // 
+            this.clmissuedby.HeaderText = "Issued By";
+            this.clmissuedby.Name = "clmissuedby";
+            this.clmissuedby.ReadOnly = true;
+            this.clmissuedby.Width = 80;
+            // 
             // PUR_GRNApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -991,7 +993,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdpurchasedetails)).EndInit();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGrnApproval)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1010,10 +1012,10 @@
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.Button btnRemarks;
         private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.Label lblDPercentage;
-        private System.Windows.Forms.Label lblPercentage;
+        private System.Windows.Forms.Label lbltwentyfiveper;
+        private System.Windows.Forms.Label lblFivetyPercentage;
         private System.Windows.Forms.TextBox txtRDPercentageCheck;
-        private System.Windows.Forms.TextBox txtDGPercentageCheck;
+        private System.Windows.Forms.TextBox txtORPercentageCheck;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtDConcern;
@@ -1023,35 +1025,16 @@
         private System.Windows.Forms.TextBox txtDInvoiceDate;
         private System.Windows.Forms.TextBox txtDVoucherNo;
         public System.Windows.Forms.DataGridView grdpurchasedetails;
-        public System.Windows.Forms.DataGridView grdGrnlist;
+        public System.Windows.Forms.DataGridView grdGrnApproval;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProduct;
         private System.Windows.Forms.TextBox txtDGrnDate;
         private System.Windows.Forms.TextBox txtDGrnNo;
         private System.Windows.Forms.GroupBox grbSalesmanDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmReason;
         public System.Windows.Forms.TextBox txtConcern;
         public System.Windows.Forms.TextBox txtInvoiceDate;
         public System.Windows.Forms.TextBox txtPurchaseType;
@@ -1070,5 +1053,24 @@
         private System.Windows.Forms.Label lblWhatsAppNo;
         private System.Windows.Forms.Label lblSalesmanName;
         private System.Windows.Forms.Label lblMobileNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmproduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmmrp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmactualshelflife;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflifeper;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpoqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoiceqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmreceivedqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmreturnqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmReason;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpodate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmcreatedby;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmissuedby;
     }
 }
