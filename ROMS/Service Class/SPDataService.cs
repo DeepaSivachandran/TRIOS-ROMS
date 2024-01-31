@@ -2890,6 +2890,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_BatchConversion.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraBatchConversion", objTRN_BatchConversion.paraBatchConversion);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_BatchConversion.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_BatchConversion.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
@@ -2907,7 +2908,7 @@ namespace ROMS
             }
             return result;
         }
-        public DataSet udfnBatchList(int paraviewType, int paraBTID, int paraCompanycode, string paraFromDate, string paraToDate, int paraPRID)
+        public DataSet udfnBatchConversionList(TRN_BatchConversion objTRNG_BatchConversion)
         {
             DataSet ds = new DataSet();
             try
@@ -2915,12 +2916,12 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[TRNG_BatchConversion]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
-                varSqlCommand.Parameters.AddWithValue("@paraBTID", paraBTID);
-                varSqlCommand.Parameters.AddWithValue("@paraCompanycode", paraCompanycode);
-                varSqlCommand.Parameters.AddWithValue("@paraFromDate", paraFromDate);
-                varSqlCommand.Parameters.AddWithValue("@paraToDate", paraToDate);
-                varSqlCommand.Parameters.AddWithValue("@paraPRID", paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_BatchConversion.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraBTID", objTRNG_BatchConversion.paraBTID); 
+                varSqlCommand.Parameters.AddWithValue("@paraCompanycode", objTRNG_BatchConversion.paraCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_BatchConversion.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_BatchConversion.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_BatchConversion.paraPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

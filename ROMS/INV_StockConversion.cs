@@ -1722,7 +1722,7 @@ namespace ROMS
                 txtYear.TextAlign = HorizontalAlignment.Right;
                 if (txtYear.Text.Length == 2)
                 {
-                    txtBatchNo.Focus();
+                    txtConvertBatch.Focus();
                 }
             }
             catch (Exception ex)
@@ -2016,7 +2016,13 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     int ViewType = 1;
-                    objDs = objdserv.udfnBatchList(ViewType, varBTID, 0, "", "", varPRID);
+                    TRN_BatchConversion objTRNG_BatchConversion = new TRN_BatchConversion();
+                    objTRNG_BatchConversion.ViewType = ViewType;
+                    objTRNG_BatchConversion.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRNG_BatchConversion.paraBTID = Convert.ToInt32(varBTID);
+                    objTRNG_BatchConversion.paraPRID = Convert.ToInt32(varPRID);
+                    objTRNG_BatchConversion.paraIPAddress = MainForm.pbIpAddress;
+                    objDs = objdserv.udfnBatchConversionList(objTRNG_BatchConversion);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {

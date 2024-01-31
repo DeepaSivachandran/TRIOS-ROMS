@@ -1156,6 +1156,7 @@ namespace ROMS
                                     objTRNS_GoodsInward.paraSLID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SLID"].Value.ToString());
                                     objTRNS_GoodsInward.paraDeleteFlag = 1;
                                     result = objspdservice.udfnGoodsInward(objTRNS_GoodsInward);
+                                    objspdservice.CloseConnection();
                                     if (result.Split('~')[0] == "3")
                                     {
                                         MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
