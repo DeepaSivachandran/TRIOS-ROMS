@@ -451,7 +451,7 @@
             this.grpReason.Location = new System.Drawing.Point(10, 340);
             this.grpReason.Name = "grpReason";
             this.grpReason.Size = new System.Drawing.Size(339, 142);
-            this.grpReason.TabIndex = 1111207;
+            this.grpReason.TabIndex = 5;
             this.grpReason.TabStop = false;
             // 
             // btnView
@@ -609,7 +609,7 @@
             this.btnClose.Location = new System.Drawing.Point(1223, 443);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -637,7 +637,7 @@
             this.btnSave.Location = new System.Drawing.Point(1134, 443);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -698,7 +698,7 @@
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(580, 87);
-            this.txtRemarks.TabIndex = 5;
+            this.txtRemarks.TabIndex = 6;
             this.txtRemarks.Enter += new System.EventHandler(this.TxtRemarks_Enter);
             this.txtRemarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemarks_KeyDown);
             this.txtRemarks.Leave += new System.EventHandler(this.TxtRemarks_Leave);

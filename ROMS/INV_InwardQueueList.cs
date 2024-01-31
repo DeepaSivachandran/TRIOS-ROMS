@@ -456,10 +456,6 @@ namespace ROMS
             }
         }
 
-        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try
