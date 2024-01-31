@@ -1343,47 +1343,39 @@ namespace ROMS
         }
 
         private void GrdGRNList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
+        { 
             try
             {
-                try
+                for (int i = 0; i < grdGRNList.Rows.Count; i++)
                 {
-                    for (int i = 0; i < grdGRNList.Rows.Count; i++)
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"]; 
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "17")
                     {
-                        DataGridView dataGridView = (DataGridView)sender;
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"]; 
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "17")
-                        {
-                            cell.Style.BackColor = Color.Red;
-                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                        }
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "24")
-                        {
-                            cell.Style.BackColor = Color.Green;
-                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                        }
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "23")
-                        {
-                            cell.Style.BackColor = Color.LimeGreen;
-                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                        }
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "44")
-                        {
-                            cell.Style.BackColor = Color.RoyalBlue;
-                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                        }
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["Totallbl"].Value) == "0")
-                        { 
-                            DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"]; 
-                            cell2.Value = new Bitmap(1, 1);
-                            cell2.ReadOnly = true;
-                        } 
+                        cell.Style.BackColor = Color.Red;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "24")
+                    {
+                        cell.Style.BackColor = Color.Green;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "23")
+                    {
+                        cell.Style.BackColor = Color.LimeGreen;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "44")
+                    {
+                        cell.Style.BackColor = Color.RoyalBlue;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["Totallbl"].Value) == "0")
+                    { 
+                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"]; 
+                        cell2.Value = new Bitmap(1, 1);
+                        cell2.ReadOnly = true;
+                    } 
                 }
             }
             catch (Exception ex)
@@ -1391,6 +1383,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            
         }
     }
 

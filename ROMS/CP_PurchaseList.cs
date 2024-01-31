@@ -415,7 +415,11 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex); 
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdPurchaseEntryList.ClearSelection();
             }
         }
 
@@ -1236,6 +1240,34 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void GrdPurchaseEntryList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
+                {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49")
+                    {
+                        cell.Style.BackColor = Color.Red;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "50")
+                    {
+                        cell.Style.BackColor = Color.Green;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    } 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
     }
 }

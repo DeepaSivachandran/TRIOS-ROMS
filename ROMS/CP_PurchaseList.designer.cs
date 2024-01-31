@@ -229,7 +229,7 @@
             this.grdPurchaseEntryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseEntryList.Size = new System.Drawing.Size(1348, 510);
             this.grdPurchaseEntryList.TabIndex = 958797;
-//            this.grdPurchaseEntryList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdPurchaseEntryList_CurrentCellDirtyStateChanged);
+            this.grdPurchaseEntryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseEntryList_DataBindingComplete);
             this.grdPurchaseEntryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupplierList_Scroll);
             this.grdPurchaseEntryList.DoubleClick += new System.EventHandler(this.GrdPurchaseEntryList_DoubleClick);
             // 
