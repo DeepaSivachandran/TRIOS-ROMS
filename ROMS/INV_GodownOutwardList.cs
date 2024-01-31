@@ -478,16 +478,16 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (35,26,0) ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
-                DataSet objDS = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 4);
-                if (objDS.Tables[0].Rows.Count > 0)
-                {
-                    DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dtpOutwardToDate.MinDate = varDate;
-                    dtpOutwardDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
-                }
-                objspservice.CloseConnection();                
+                //DataSet objDS = new DataSet();
+                //SPDataService objspservice = new SPDataService();
+                //objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 4);
+                //if (objDS.Tables[0].Rows.Count > 0)
+                //{
+                //    DateTime varDate = DateTime.ParseExact(objDS.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    dtpOutwardToDate.MinDate = varDate;
+                //    dtpOutwardDate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["DATE1"]);
+                //}
+                //objspservice.CloseConnection();                
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
                 dtpOutwardToDate.MaxDate = MainForm.pbCurrentDate;
@@ -1158,10 +1158,10 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
-                }
+                //if (e.KeyCode == Keys.Delete)
+                //{
+                //    udfndelete();
+                //}
             }
             catch (Exception ex)
             {

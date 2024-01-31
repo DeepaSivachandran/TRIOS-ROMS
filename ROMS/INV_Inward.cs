@@ -1025,14 +1025,22 @@ namespace ROMS
         }
         private void TxtMrp_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+            try
             {
-                e.Handled = true;
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
             }
-            //only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            catch (Exception ex)
             {
-                e.Handled = true;
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void LvStockLocation_DoubleClick(object sender, EventArgs e)
@@ -1759,7 +1767,7 @@ namespace ROMS
         {
             try
             {
-                if (grdInward.CurrentCell.OwningColumn.Name == "clmreceivedqty")
+                if (grdInward.CurrentCell.OwningColumn.Name == "clmactualqty")
                 {
                     if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
                     {
@@ -1818,7 +1826,7 @@ namespace ROMS
         {
             try
             {
-                int varDecimal = Convert.ToInt32(grdInward.CurrentRow.Cells["clmUTDecimal"].Value);
+                int varDecimal = Convert.ToInt32(grdInward.CurrentRow.Cells["clmUnitDecimal"].Value);
                 if (grdInward.CurrentCell.OwningColumn.Name == "clmactualqty")
                 {
                     //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -1826,30 +1834,16 @@ namespace ROMS
                     //    e.Handled = true;  // Disallow the character
                     //}
                     TextBox textBox = (TextBox)sender;
-                    if (varDecimal == 5)
+                    if (varDecimal == 0)
                     {
                         if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                         {
                             e.Handled = true;
                         }
                     }
-                    else if (varDecimal == 6)
+                    else
                     {
-                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 2)
-                        {
-                            e.Handled = true;
-                        }
-                    }
-                    else if (varDecimal == 7)
-                    {
-                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 3)
-                        {
-                            e.Handled = true;
-                        }
-                    }
-                    else if (varDecimal == 8)
-                    {
-                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 4)
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
                         {
                             e.Handled = true;
                         }
@@ -1858,7 +1852,7 @@ namespace ROMS
                     {
                         e.Handled = false;
                     }
-                    if (varDecimal == 5)
+                    if (varDecimal == 0)
                     {
                         if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                         {

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -73,6 +73,26 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdInward = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmactualshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshelflifeper = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmactualqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtransferqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpproductname = new System.Windows.Forms.GroupBox();
             this.lblRack = new System.Windows.Forms.Label();
             this.txtRack = new System.Windows.Forms.TextBox();
@@ -96,26 +116,6 @@
             this.lblDd = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epGoodsInward = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmactualshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshelflifeper = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmactualqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtransferqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.gbshelfLife.SuspendLayout();
@@ -565,14 +565,14 @@
             this.grdInward.AllowUserToResizeRows = false;
             this.grdInward.BackgroundColor = System.Drawing.Color.White;
             this.grdInward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdInward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdInward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdInward.ColumnHeadersHeight = 30;
             this.grdInward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdInward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -596,22 +596,22 @@
             this.clmUTID,
             this.clmUnitDecimal,
             this.clmremove});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdInward.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdInward.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdInward.EnableHeadersVisualStyles = false;
             this.grdInward.GridColor = System.Drawing.Color.White;
             this.grdInward.Location = new System.Drawing.Point(3, 146);
             this.grdInward.Name = "grdInward";
             this.grdInward.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdInward.RowTemplate.Height = 25;
             this.grdInward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdInward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -623,258 +623,6 @@
             this.grdInward.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInward_DataBindingComplete);
             this.grdInward.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdInward_EditingControlShowing);
             this.grdInward.Enter += new System.EventHandler(this.GrdInward_Enter);
-            // 
-            // grpproductname
-            // 
-            this.grpproductname.Controls.Add(this.lblRack);
-            this.grpproductname.Controls.Add(this.txtRack);
-            this.grpproductname.Controls.Add(this.btnAdd);
-            this.grpproductname.Controls.Add(this.txtunit);
-            this.grpproductname.Controls.Add(this.textBox4);
-            this.grpproductname.Controls.Add(this.txtBatchNo);
-            this.grpproductname.Controls.Add(this.lblbatchno);
-            this.grpproductname.Controls.Add(this.txtProductName);
-            this.grpproductname.Controls.Add(this.txtActualQty);
-            this.grpproductname.Controls.Add(this.lblActualQty);
-            this.grpproductname.Controls.Add(this.lblExpiryDate);
-            this.grpproductname.Controls.Add(this.txtMrp);
-            this.grpproductname.Controls.Add(this.lblMrp);
-            this.grpproductname.Controls.Add(this.txtYear);
-            this.grpproductname.Controls.Add(this.lblProductName);
-            this.grpproductname.Controls.Add(this.txtDay);
-            this.grpproductname.Controls.Add(this.txtMonth);
-            this.grpproductname.Controls.Add(this.lblYyyy);
-            this.grpproductname.Controls.Add(this.lblMM);
-            this.grpproductname.Controls.Add(this.lblDd);
-            this.grpproductname.Location = new System.Drawing.Point(3, 70);
-            this.grpproductname.Name = "grpproductname";
-            this.grpproductname.Size = new System.Drawing.Size(1339, 70);
-            this.grpproductname.TabIndex = 1;
-            this.grpproductname.TabStop = false;
-            // 
-            // lblRack
-            // 
-            this.lblRack.AutoSize = true;
-            this.lblRack.Location = new System.Drawing.Point(8, 14);
-            this.lblRack.Name = "lblRack";
-            this.lblRack.Size = new System.Drawing.Size(35, 20);
-            this.lblRack.TabIndex = 1111238;
-            this.lblRack.Text = "Rack";
-            // 
-            // txtRack
-            // 
-            this.txtRack.Location = new System.Drawing.Point(10, 37);
-            this.txtRack.Name = "txtRack";
-            this.txtRack.Size = new System.Drawing.Size(142, 27);
-            this.txtRack.TabIndex = 5;
-            this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
-            this.txtRack.Enter += new System.EventHandler(this.TxtRack_Enter);
-            this.txtRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRack_KeyDown);
-            this.txtRack.Leave += new System.EventHandler(this.TxtRack_Leave);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(1020, 37);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(25, 24);
-            this.btnAdd.TabIndex = 1111215;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // txtunit
-            // 
-            this.txtunit.Enabled = false;
-            this.txtunit.Location = new System.Drawing.Point(960, 37);
-            this.txtunit.Name = "txtunit";
-            this.txtunit.ReadOnly = true;
-            this.txtunit.Size = new System.Drawing.Size(31, 27);
-            this.txtunit.TabIndex = 12;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
-            this.textBox4.Location = new System.Drawing.Point(513, 37);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(17, 27);
-            this.textBox4.TabIndex = 1111236;
-            this.textBox4.Text = "₹";
-            // 
-            // txtBatchNo
-            // 
-            this.txtBatchNo.Location = new System.Drawing.Point(793, 37);
-            this.txtBatchNo.Name = "txtBatchNo";
-            this.txtBatchNo.Size = new System.Drawing.Size(115, 27);
-            this.txtBatchNo.TabIndex = 10;
-            this.txtBatchNo.Enter += new System.EventHandler(this.TxtBatchNo_Enter);
-            this.txtBatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo_KeyDown);
-            this.txtBatchNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBatchNo_KeyPress);
-            this.txtBatchNo.Leave += new System.EventHandler(this.TxtBatchNo_Leave);
-            // 
-            // lblbatchno
-            // 
-            this.lblbatchno.AutoSize = true;
-            this.lblbatchno.Location = new System.Drawing.Point(789, 14);
-            this.lblbatchno.Name = "lblbatchno";
-            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
-            this.lblbatchno.TabIndex = 958816;
-            this.lblbatchno.Text = "Batch No.";
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.Location = new System.Drawing.Point(158, 37);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(349, 27);
-            this.txtProductName.TabIndex = 6;
-            this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
-            this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
-            this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
-            this.txtProductName.Leave += new System.EventHandler(this.TxtProductName_Leave);
-            // 
-            // txtActualQty
-            // 
-            this.txtActualQty.Location = new System.Drawing.Point(914, 37);
-            this.txtActualQty.Name = "txtActualQty";
-            this.txtActualQty.Size = new System.Drawing.Size(46, 27);
-            this.txtActualQty.TabIndex = 11;
-            this.txtActualQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtActualQty.Enter += new System.EventHandler(this.TxtActualQty_Enter);
-            this.txtActualQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtActualQty_KeyDown);
-            this.txtActualQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtActualQty_KeyPress);
-            this.txtActualQty.Leave += new System.EventHandler(this.TxtActualQty_Leave);
-            // 
-            // lblActualQty
-            // 
-            this.lblActualQty.AutoSize = true;
-            this.lblActualQty.Location = new System.Drawing.Point(909, 14);
-            this.lblActualQty.Name = "lblActualQty";
-            this.lblActualQty.Size = new System.Drawing.Size(28, 20);
-            this.lblActualQty.TabIndex = 80;
-            this.lblActualQty.Text = "Qty";
-            // 
-            // lblExpiryDate
-            // 
-            this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(611, 40);
-            this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
-            this.lblExpiryDate.TabIndex = 958821;
-            this.lblExpiryDate.Text = "Expiry Date";
-            // 
-            // txtMrp
-            // 
-            this.txtMrp.Location = new System.Drawing.Point(530, 37);
-            this.txtMrp.Name = "txtMrp";
-            this.txtMrp.Size = new System.Drawing.Size(75, 27);
-            this.txtMrp.TabIndex = 7;
-            this.txtMrp.TextChanged += new System.EventHandler(this.TxtMrp_TextChanged);
-            this.txtMrp.Enter += new System.EventHandler(this.TxtMrp_Enter);
-            this.txtMrp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMrp_KeyDown);
-            this.txtMrp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMrp_KeyPress);
-            this.txtMrp.Leave += new System.EventHandler(this.TxtMrp_Leave);
-            // 
-            // lblMrp
-            // 
-            this.lblMrp.AutoSize = true;
-            this.lblMrp.Location = new System.Drawing.Point(511, 14);
-            this.lblMrp.Name = "lblMrp";
-            this.lblMrp.Size = new System.Drawing.Size(34, 20);
-            this.lblMrp.TabIndex = 77;
-            this.lblMrp.Text = "MRP";
-            // 
-            // txtYear
-            // 
-            this.txtYear.Location = new System.Drawing.Point(753, 37);
-            this.txtYear.MaxLength = 2;
-            this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(34, 27);
-            this.txtYear.TabIndex = 9;
-            this.txtYear.TextChanged += new System.EventHandler(this.TxtYear_TextChanged);
-            this.txtYear.Enter += new System.EventHandler(this.TxtYear_Enter);
-            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtYear_KeyDown);
-            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtYear_KeyPress);
-            this.txtYear.Leave += new System.EventHandler(this.TxtYear_Leave);
-            // 
-            // lblProductName
-            // 
-            this.lblProductName.AutoSize = true;
-            this.lblProductName.Location = new System.Drawing.Point(157, 14);
-            this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(134, 20);
-            this.lblProductName.TabIndex = 28;
-            this.lblProductName.Text = "Product Name/P.I Code";
-            // 
-            // txtDay
-            // 
-            this.txtDay.Location = new System.Drawing.Point(686, 37);
-            this.txtDay.MaxLength = 2;
-            this.txtDay.Name = "txtDay";
-            this.txtDay.Size = new System.Drawing.Size(33, 27);
-            this.txtDay.TabIndex = 8;
-            this.txtDay.TextChanged += new System.EventHandler(this.TxtDay_TextChanged);
-            this.txtDay.Enter += new System.EventHandler(this.TxtDay_Enter);
-            this.txtDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDay_KeyDown);
-            this.txtDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDay_KeyPress);
-            this.txtDay.Leave += new System.EventHandler(this.TxtDay_Leave);
-            // 
-            // txtMonth
-            // 
-            this.txtMonth.Location = new System.Drawing.Point(719, 37);
-            this.txtMonth.MaxLength = 2;
-            this.txtMonth.Name = "txtMonth";
-            this.txtMonth.Size = new System.Drawing.Size(34, 27);
-            this.txtMonth.TabIndex = 8;
-            this.txtMonth.TextChanged += new System.EventHandler(this.TxtMonth_TextChanged);
-            this.txtMonth.Enter += new System.EventHandler(this.TxtMonth_Enter);
-            this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonth_KeyDown);
-            this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMonth_KeyPress);
-            this.txtMonth.Leave += new System.EventHandler(this.TxtMonth_Leave);
-            // 
-            // lblYyyy
-            // 
-            this.lblYyyy.AutoSize = true;
-            this.lblYyyy.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblYyyy.Location = new System.Drawing.Point(757, 21);
-            this.lblYyyy.Name = "lblYyyy";
-            this.lblYyyy.Size = new System.Drawing.Size(20, 16);
-            this.lblYyyy.TabIndex = 958824;
-            this.lblYyyy.Text = "YY";
-            // 
-            // lblMM
-            // 
-            this.lblMM.AutoSize = true;
-            this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblMM.Location = new System.Drawing.Point(723, 21);
-            this.lblMM.Name = "lblMM";
-            this.lblMM.Size = new System.Drawing.Size(24, 16);
-            this.lblMM.TabIndex = 958823;
-            this.lblMM.Text = "MM";
-            // 
-            // lblDd
-            // 
-            this.lblDd.AutoSize = true;
-            this.lblDd.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblDd.Location = new System.Drawing.Point(690, 21);
-            this.lblDd.Name = "lblDd";
-            this.lblDd.Size = new System.Drawing.Size(20, 16);
-            this.lblDd.TabIndex = 958822;
-            this.lblDd.Text = "DD";
-            // 
-            // lblEdit
-            // 
-            this.lblEdit.AutoSize = true;
-            this.lblEdit.Location = new System.Drawing.Point(711, 19);
-            this.lblEdit.Name = "lblEdit";
-            this.lblEdit.Size = new System.Drawing.Size(0, 20);
-            this.lblEdit.TabIndex = 37;
-            this.lblEdit.Visible = false;
-            // 
-            // epGoodsInward
-            // 
-            this.epGoodsInward.ContainerControl = this;
             // 
             // clmsno
             // 
@@ -1036,6 +784,259 @@
             this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmremove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmremove.Width = 70;
+            // 
+            // grpproductname
+            // 
+            this.grpproductname.Controls.Add(this.lblRack);
+            this.grpproductname.Controls.Add(this.txtRack);
+            this.grpproductname.Controls.Add(this.btnAdd);
+            this.grpproductname.Controls.Add(this.txtunit);
+            this.grpproductname.Controls.Add(this.textBox4);
+            this.grpproductname.Controls.Add(this.txtBatchNo);
+            this.grpproductname.Controls.Add(this.lblbatchno);
+            this.grpproductname.Controls.Add(this.txtProductName);
+            this.grpproductname.Controls.Add(this.txtActualQty);
+            this.grpproductname.Controls.Add(this.lblActualQty);
+            this.grpproductname.Controls.Add(this.lblExpiryDate);
+            this.grpproductname.Controls.Add(this.txtMrp);
+            this.grpproductname.Controls.Add(this.lblMrp);
+            this.grpproductname.Controls.Add(this.txtYear);
+            this.grpproductname.Controls.Add(this.lblProductName);
+            this.grpproductname.Controls.Add(this.txtDay);
+            this.grpproductname.Controls.Add(this.txtMonth);
+            this.grpproductname.Controls.Add(this.lblYyyy);
+            this.grpproductname.Controls.Add(this.lblMM);
+            this.grpproductname.Controls.Add(this.lblDd);
+            this.grpproductname.Location = new System.Drawing.Point(3, 70);
+            this.grpproductname.Name = "grpproductname";
+            this.grpproductname.Size = new System.Drawing.Size(1339, 70);
+            this.grpproductname.TabIndex = 1;
+            this.grpproductname.TabStop = false;
+            // 
+            // lblRack
+            // 
+            this.lblRack.AutoSize = true;
+            this.lblRack.Location = new System.Drawing.Point(8, 14);
+            this.lblRack.Name = "lblRack";
+            this.lblRack.Size = new System.Drawing.Size(35, 20);
+            this.lblRack.TabIndex = 1111238;
+            this.lblRack.Text = "Rack";
+            // 
+            // txtRack
+            // 
+            this.txtRack.Location = new System.Drawing.Point(10, 37);
+            this.txtRack.Name = "txtRack";
+            this.txtRack.Size = new System.Drawing.Size(142, 27);
+            this.txtRack.TabIndex = 5;
+            this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
+            this.txtRack.Enter += new System.EventHandler(this.TxtRack_Enter);
+            this.txtRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRack_KeyDown);
+            this.txtRack.Leave += new System.EventHandler(this.TxtRack_Leave);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(1020, 37);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(25, 24);
+            this.btnAdd.TabIndex = 1111215;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            // 
+            // txtunit
+            // 
+            this.txtunit.Enabled = false;
+            this.txtunit.Location = new System.Drawing.Point(960, 37);
+            this.txtunit.Name = "txtunit";
+            this.txtunit.ReadOnly = true;
+            this.txtunit.Size = new System.Drawing.Size(31, 27);
+            this.txtunit.TabIndex = 12;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox4.Location = new System.Drawing.Point(513, 37);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(17, 27);
+            this.textBox4.TabIndex = 1111236;
+            this.textBox4.Text = "₹";
+            // 
+            // txtBatchNo
+            // 
+            this.txtBatchNo.Location = new System.Drawing.Point(793, 37);
+            this.txtBatchNo.Name = "txtBatchNo";
+            this.txtBatchNo.Size = new System.Drawing.Size(115, 27);
+            this.txtBatchNo.TabIndex = 10;
+            this.txtBatchNo.Enter += new System.EventHandler(this.TxtBatchNo_Enter);
+            this.txtBatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo_KeyDown);
+            this.txtBatchNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBatchNo_KeyPress);
+            this.txtBatchNo.Leave += new System.EventHandler(this.TxtBatchNo_Leave);
+            // 
+            // lblbatchno
+            // 
+            this.lblbatchno.AutoSize = true;
+            this.lblbatchno.Location = new System.Drawing.Point(789, 14);
+            this.lblbatchno.Name = "lblbatchno";
+            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
+            this.lblbatchno.TabIndex = 958816;
+            this.lblbatchno.Text = "Batch No.";
+            // 
+            // txtProductName
+            // 
+            this.txtProductName.Location = new System.Drawing.Point(158, 37);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(349, 27);
+            this.txtProductName.TabIndex = 6;
+            this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
+            this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
+            this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
+            this.txtProductName.Leave += new System.EventHandler(this.TxtProductName_Leave);
+            // 
+            // txtActualQty
+            // 
+            this.txtActualQty.Location = new System.Drawing.Point(914, 37);
+            this.txtActualQty.Name = "txtActualQty";
+            this.txtActualQty.Size = new System.Drawing.Size(46, 27);
+            this.txtActualQty.TabIndex = 11;
+            this.txtActualQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtActualQty.Enter += new System.EventHandler(this.TxtActualQty_Enter);
+            this.txtActualQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtActualQty_KeyDown);
+            this.txtActualQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtActualQty_KeyPress);
+            this.txtActualQty.Leave += new System.EventHandler(this.TxtActualQty_Leave);
+            // 
+            // lblActualQty
+            // 
+            this.lblActualQty.AutoSize = true;
+            this.lblActualQty.Location = new System.Drawing.Point(909, 14);
+            this.lblActualQty.Name = "lblActualQty";
+            this.lblActualQty.Size = new System.Drawing.Size(28, 20);
+            this.lblActualQty.TabIndex = 80;
+            this.lblActualQty.Text = "Qty";
+            // 
+            // lblExpiryDate
+            // 
+            this.lblExpiryDate.AutoSize = true;
+            this.lblExpiryDate.Location = new System.Drawing.Point(611, 40);
+            this.lblExpiryDate.Name = "lblExpiryDate";
+            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
+            this.lblExpiryDate.TabIndex = 958821;
+            this.lblExpiryDate.Text = "Expiry Date";
+            // 
+            // txtMrp
+            // 
+            this.txtMrp.Location = new System.Drawing.Point(530, 37);
+            this.txtMrp.MaxLength = 8;
+            this.txtMrp.Name = "txtMrp";
+            this.txtMrp.Size = new System.Drawing.Size(75, 27);
+            this.txtMrp.TabIndex = 7;
+            this.txtMrp.TextChanged += new System.EventHandler(this.TxtMrp_TextChanged);
+            this.txtMrp.Enter += new System.EventHandler(this.TxtMrp_Enter);
+            this.txtMrp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMrp_KeyDown);
+            this.txtMrp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMrp_KeyPress);
+            this.txtMrp.Leave += new System.EventHandler(this.TxtMrp_Leave);
+            // 
+            // lblMrp
+            // 
+            this.lblMrp.AutoSize = true;
+            this.lblMrp.Location = new System.Drawing.Point(511, 14);
+            this.lblMrp.Name = "lblMrp";
+            this.lblMrp.Size = new System.Drawing.Size(34, 20);
+            this.lblMrp.TabIndex = 77;
+            this.lblMrp.Text = "MRP";
+            // 
+            // txtYear
+            // 
+            this.txtYear.Location = new System.Drawing.Point(753, 37);
+            this.txtYear.MaxLength = 2;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(34, 27);
+            this.txtYear.TabIndex = 9;
+            this.txtYear.TextChanged += new System.EventHandler(this.TxtYear_TextChanged);
+            this.txtYear.Enter += new System.EventHandler(this.TxtYear_Enter);
+            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtYear_KeyDown);
+            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtYear_KeyPress);
+            this.txtYear.Leave += new System.EventHandler(this.TxtYear_Leave);
+            // 
+            // lblProductName
+            // 
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Location = new System.Drawing.Point(157, 14);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(134, 20);
+            this.lblProductName.TabIndex = 28;
+            this.lblProductName.Text = "Product Name/P.I Code";
+            // 
+            // txtDay
+            // 
+            this.txtDay.Location = new System.Drawing.Point(686, 37);
+            this.txtDay.MaxLength = 2;
+            this.txtDay.Name = "txtDay";
+            this.txtDay.Size = new System.Drawing.Size(33, 27);
+            this.txtDay.TabIndex = 8;
+            this.txtDay.TextChanged += new System.EventHandler(this.TxtDay_TextChanged);
+            this.txtDay.Enter += new System.EventHandler(this.TxtDay_Enter);
+            this.txtDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDay_KeyDown);
+            this.txtDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDay_KeyPress);
+            this.txtDay.Leave += new System.EventHandler(this.TxtDay_Leave);
+            // 
+            // txtMonth
+            // 
+            this.txtMonth.Location = new System.Drawing.Point(719, 37);
+            this.txtMonth.MaxLength = 2;
+            this.txtMonth.Name = "txtMonth";
+            this.txtMonth.Size = new System.Drawing.Size(34, 27);
+            this.txtMonth.TabIndex = 8;
+            this.txtMonth.TextChanged += new System.EventHandler(this.TxtMonth_TextChanged);
+            this.txtMonth.Enter += new System.EventHandler(this.TxtMonth_Enter);
+            this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonth_KeyDown);
+            this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMonth_KeyPress);
+            this.txtMonth.Leave += new System.EventHandler(this.TxtMonth_Leave);
+            // 
+            // lblYyyy
+            // 
+            this.lblYyyy.AutoSize = true;
+            this.lblYyyy.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.lblYyyy.Location = new System.Drawing.Point(757, 21);
+            this.lblYyyy.Name = "lblYyyy";
+            this.lblYyyy.Size = new System.Drawing.Size(20, 16);
+            this.lblYyyy.TabIndex = 958824;
+            this.lblYyyy.Text = "YY";
+            // 
+            // lblMM
+            // 
+            this.lblMM.AutoSize = true;
+            this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.lblMM.Location = new System.Drawing.Point(723, 21);
+            this.lblMM.Name = "lblMM";
+            this.lblMM.Size = new System.Drawing.Size(24, 16);
+            this.lblMM.TabIndex = 958823;
+            this.lblMM.Text = "MM";
+            // 
+            // lblDd
+            // 
+            this.lblDd.AutoSize = true;
+            this.lblDd.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.lblDd.Location = new System.Drawing.Point(690, 21);
+            this.lblDd.Name = "lblDd";
+            this.lblDd.Size = new System.Drawing.Size(20, 16);
+            this.lblDd.TabIndex = 958822;
+            this.lblDd.Text = "DD";
+            // 
+            // lblEdit
+            // 
+            this.lblEdit.AutoSize = true;
+            this.lblEdit.Location = new System.Drawing.Point(711, 19);
+            this.lblEdit.Name = "lblEdit";
+            this.lblEdit.Size = new System.Drawing.Size(0, 20);
+            this.lblEdit.TabIndex = 37;
+            this.lblEdit.Visible = false;
+            // 
+            // epGoodsInward
+            // 
+            this.epGoodsInward.ContainerControl = this;
             // 
             // INV_Inward
             // 

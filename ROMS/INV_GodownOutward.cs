@@ -960,8 +960,8 @@ namespace ROMS
                                 lvproduct.Visible = true;
                                 lvproduct.Columns[0].Width = 0;
                                 lvproduct.Columns[1].Width = 100;
-                                lvproduct.Columns[2].Width = 300;
-                                lvproduct.Columns[3].Width = 300;
+                                lvproduct.Columns[2].Width = 0;
+                                lvproduct.Columns[3].Width = 0;
                                 lvproduct.Columns[4].Width = 0;
                                 lvproduct.Columns[5].Width = 60;
                                 lvproduct.Columns[6].Width = 60;
@@ -1376,7 +1376,6 @@ namespace ROMS
                 object varEditQty = grdGoodsOutward.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 // Update the same column value in the DataTable
                 dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
-
             }
             catch (Exception ex)
             {

@@ -180,7 +180,10 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
                 {
-                    TsbDelete_Click(sender, e);
+                    if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 32 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value) == 0)
+                    {
+                        TsbDelete_Click(sender, e);
+                    }
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -191,7 +194,10 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
-                    udfndelete();
+                    if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 32 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value) == 0)
+                    {
+                        udfndelete();
+                    }
                 }
             }
             catch (Exception ex)
@@ -226,7 +232,7 @@ namespace ROMS
             dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
             cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             this.ActiveControl = txtSLocation;
-            tsbDelete.Visible = true;
+            //tsbDelete.Visible = true;
             udfnList();
         }
         public void udfnCmbConcern()
@@ -1506,7 +1512,6 @@ namespace ROMS
         {
             try
             {
-
                 if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 40 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value)>0)
                 {
                     tsbDelete.Visible = false;
@@ -1526,15 +1531,15 @@ namespace ROMS
         }
         private void GrdStockTransfer_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                udfnDeleteHide();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    udfnDeleteHide();
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void GrdStockTransfer_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1591,6 +1596,19 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+
+        private void GrdStockTransfer_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

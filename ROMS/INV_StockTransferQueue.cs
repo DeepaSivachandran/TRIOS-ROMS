@@ -170,20 +170,12 @@ namespace ROMS
                 {
                     TsbEdit_Click(sender, e);
                 }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
-                {
-                    TsbDelete_Click(sender, e);
-                }
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();   
                     this.Close();
-                }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
                 }
             }
             catch (Exception ex)
@@ -917,67 +909,7 @@ namespace ROMS
                 picLoader.SendToBack();
             }
         }
-        public void udfndelete()
-        {
-            try
-            {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                dtStock.Columns.Add("STK_UTID", typeof(string));
-                dtStock.Columns.Add("STK_QTY", typeof(string));
-                dtStock.Columns.Add("STK_Source_RKID", typeof(string));
-                dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
-                dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
-                if (grdStockTransfer.SelectedRows.Count > 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()),0,"",0,0,"", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete",dtStock,0,0,0,0);
-                        objDser.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
-                        {
-                            if (varResult.Split('~')[1] == "1")
-                            {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
-                                {
-                                    objDser = new SPDataService();
-                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock,1,0,0,0);
-                                    objDser.CloseConnection();
-                                    if (varResult.Split('~')[0] == "3")
-                                    {
-                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
-                                    }
-                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                                }
-                            }
-                        }
-                        else if (varResult.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+        
         private void GrdStockTransfer_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -1094,18 +1026,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfndelete();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
         private void TxtProductNamePICode_TextChanged(object sender, EventArgs e)
         {
@@ -1118,7 +1038,7 @@ namespace ROMS
                     MR_Product objMR_Product = new MR_Product();
                     objMR_Product.paraViewType = 53;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                    objMR_Product.paraLocationId = Convert.ToInt32(lblSLocation.Text);
+                    //objMR_Product.paraLocationId = Convert.ToInt32(lblSLocation.Text);
                     objMR_Product.paraProductName = txtProductNamePICode.Text;
                     objMR_Product.ParaFromDate = dpTrannsferFromDate.Text;
                     objMR_Product.ParaToDate =dpTransferToDate.Text;

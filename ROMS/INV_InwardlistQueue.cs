@@ -282,16 +282,16 @@ namespace ROMS
                 udfnConcern();
                 cmbConcern.SelectedValue = 1;
                 this.ActiveControl = cmbConcern;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 9);
-                if (objDs.Tables[0].Rows.Count > 0)
-                {
-                    DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpToDate.MinDate = varDate;
-                    dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
-                }
-                objspservice.CloseConnection();
+                //DataSet objDs = new DataSet();
+                //SPDataService objspservice = new SPDataService();
+                //objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 9);
+                //if (objDs.Tables[0].Rows.Count > 0)
+                //{
+                //    DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    dpToDate.MinDate = varDate;
+                //    dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+                //}
+                //objspservice.CloseConnection();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
@@ -398,6 +398,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.Visible = false;
                 txtStockLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -572,6 +573,7 @@ namespace ROMS
         {
             try
             {
+                lvSLocation.Visible = false;
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1161,6 +1163,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdInwardQueueList_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvSLocation.Visible = false;
+                lvProduct.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TsbInwardList_Click(object sender, EventArgs e)
         {
             try
