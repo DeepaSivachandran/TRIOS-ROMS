@@ -24,6 +24,7 @@ namespace ROMS
         ToolTip tpRack = new ToolTip();
         ToolTip tpStockLocation = new ToolTip();
         ToolTip tpSuppliername = new ToolTip();
+        ToolTip tpQRCode = new ToolTip();
         ToolTip tpinvamt = new ToolTip();
         ToolTip tpInvNo = new ToolTip();
         public bool skipValidation = false;
@@ -36,7 +37,7 @@ namespace ROMS
         varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds = "0";
         public decimal PbDiscamt = 0, PbTaxvalue = 0, PbGstamt = 0, PbNetamt = 0, pbDiffQty = 0;
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,
-            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0;
+            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0,varQueueFlag=0;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -68,6 +69,7 @@ namespace ROMS
                             udfnPurchaseGrnLoad();
                             udfnGRNProload();
                             txtQRCode.ReadOnly = false;
+                            txtQRCode.Enabled = true;
                             dpInvoiceDate.Enabled = false;
                             txtInvoiceNo.ReadOnly = true;
                             txtInvoiceNo.Enabled = false;
@@ -81,6 +83,7 @@ namespace ROMS
                         udfnPendingPOLoad();
                         udfnDefGrnGridLoad();
                         udfnPODropdownload();
+                        txtQRCode.Text = "";
                         txtQRCode.ReadOnly = true;
                         txtQRCode.Enabled = false;
                         dpInvoiceDate.Enabled = true;
@@ -102,6 +105,7 @@ namespace ROMS
                         btnViewDataView.Visible = false;
                         txtQRCode.ReadOnly = true;
                         txtQRCode.Enabled = false;
+                        txtQRCode.Text = "";
                         dpInvoiceDate.Enabled = true;
                         txtInvoiceNo.ReadOnly = false;
                         grdPODetails.Visible = true;
@@ -114,6 +118,9 @@ namespace ROMS
                             udfnPurchaseDC();
                             udfnDefReturnDc();
                             grdPODetails.Visible = false;
+                            txtQRCode.Text = "";
+                            txtQRCode.ReadOnly = true;
+                            txtQRCode.Enabled = false;
                             grdReurnDC.Visible = true;
                             if (grdSupplierList.Rows.Count != 0)
                             {
@@ -449,6 +456,10 @@ namespace ROMS
                 {
                     this.Close();
                 }
+                if(varQueueFlag==1)
+                {
+                    MainForm.objPUR_PurchaseQueue.udfnList();
+                }
             }
             catch (Exception ex)
             {
@@ -550,6 +561,15 @@ namespace ROMS
                 grdTaxDetails.Columns["Taxable Value"].Width = 80;
                 grdTaxDetails.Columns["Tax Value"].Width = 60;
                 udfnEditLoad();
+                if(varQueueFlag==1)
+                {
+                    cmbConcern.Enabled = false;
+                    dpVoucherDate.Enabled = false;
+                    txtSupplier.Enabled = false;
+                    cmbEntryType.Enabled = false;
+                    btnViewDataView.Enabled = false;
+                    LV_Supplier.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -5638,7 +5658,63 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void TxtQRCode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtQRCode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtQRCode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtQRCode.Text).Trim() != "" && txtQRCode.Text.Length < 6)
+                {
+                    errPurchaseentry.SetError(txtQRCode, "Please enter valid GRN scan code");
+                    txtQRCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpQRCode.ShowAlways = true;
+                    tpQRCode.Show("Please enter valid GRN scan code", txtQRCode, 5000);
+                }
+                else
+                {
+                    errPurchaseentry.Clear();
+                    txtQRCode.BackColor = Color.White;
+                    tpQRCode.Hide(txtQRCode);
+                }
+                if (Convert.ToString(txtQRCode.Text).Trim() == "")
+                {
+                    errPurchaseentry.Clear();
+                    txtQRCode.BackColor = Color.White;
+                    tpQRCode.Hide(txtQRCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtQRCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar)  && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtFrightGrn_KeyPress(object sender, KeyPressEventArgs e)
         {
             try

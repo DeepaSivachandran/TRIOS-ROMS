@@ -16,6 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataTable dtDefaultGrid = new DataTable();
         public PUR_PurchaseQueue()
         {
             InitializeComponent();
@@ -86,17 +87,46 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["Concern"].Width = 80;
+                DGV_SearchGrid.Columns["Entry Date"].Width = 100;
+                DGV_SearchGrid.Columns["Entry No."].Width = 80;
+                DGV_SearchGrid.Columns["Supplier"].Width = 250;
+                DGV_SearchGrid.Columns["Total Products"].Width = 100;
+                DGV_SearchGrid.Columns["Created By"].Width = 110;
+                DGV_SearchGrid.Columns["Created On"].Width = 140;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 150;
+                DGV_SearchGrid.Columns["S.No."].Width = 60;
+                DGV_SearchGrid.Columns["SPID"].Visible = false;
+                DGV_SearchGrid.Columns["SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["Entry Date1"].Visible = false;
+                DGV_SearchGrid.Columns["Flag"].Visible = false;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnList()
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
                 if (txtSupplier.Text == "")
                 {
                     lblSupplierCode.Text = "0";
                     lblschedule.Text = "0";
                 }
-                //picLoader.Visible = true;
-                //picLoader.BringToFront();
+                picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 this.ActiveControl = dpFromDate;
                 //********** To display a data in a grid  ****************** 
@@ -109,6 +139,7 @@ namespace ROMS
                 objTRN_PurchaseEntry.ViewType = 7;
                 objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseEntry.paraFromDate = dpFromDate.Text;
                 objTRN_PurchaseEntry.paraToDate = dpToDate.Text;
                 objTRN_PurchaseEntry.paraType = Convert.ToInt32(cmbEntryType.SelectedValue);
@@ -124,26 +155,25 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdPurchaseEntryQueueList.DataSource = objDs.Tables[0];
-                            //grdPurchaseEntryQueueList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdPurchaseEntryQueueList.Columns["GRN No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdPurchaseEntryQueueList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdPurchaseEntryQueueList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            //grdPurchaseEntryQueueList.Columns["Concern"].Width = 80;
-                            //grdPurchaseEntryQueueList.Columns["GRN Date"].Width = 100;
-                            //grdPurchaseEntryQueueList.Columns["GRN No."].Width = 80;
-                            //grdPurchaseEntryQueueList.Columns["Supplier"].Width = 250;
-                            //grdPurchaseEntryQueueList.Columns["Total Products in Invoice"].Width = 150;
-                            /////   grdInwardQueueList.Columns["Created By"].Width = 110;
-                            //grdPurchaseEntryQueueList.Columns["Created On"].Width = 140;
-                            //grdPurchaseEntryQueueList.Columns["GSTIN"].Width = 150;
-                            //grdPurchaseEntryQueueList.Columns["S.No."].Width = 60;
-                            //grdPurchaseEntryQueueList.Columns["GRNID"].Visible = false;
-                            //grdPurchaseEntryQueueList.Columns["SPID"].Visible = false;
-                            //grdPurchaseEntryQueueList.Columns["SPSCID"].Visible = false;
-                            //grdPurchaseEntryQueueList.Columns["SPSCID"].Visible = false;
-                            //grdPurchaseEntryQueueList.Columns["PR_PUR_SLID"].Visible = false;
-                            //grdPurchaseEntryQueueList.Columns["GRN_COMID"].Visible = false;
-                            //grdPurchaseEntryQueueList.Columns["My Products"].Visible = false;
+                            grdPurchaseEntryQueueList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryQueueList.Columns["Entry No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryQueueList.Columns["Entry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryQueueList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryQueueList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseEntryQueueList.Columns["Concern"].Width = 80;
+                            grdPurchaseEntryQueueList.Columns["Entry Date"].Width = 100;
+                            grdPurchaseEntryQueueList.Columns["Entry No."].Width = 80;
+                            grdPurchaseEntryQueueList.Columns["Supplier"].Width = 250;
+                            grdPurchaseEntryQueueList.Columns["Total Products"].Width = 100;
+                            grdPurchaseEntryQueueList.Columns["Created By"].Width = 110;
+                            grdPurchaseEntryQueueList.Columns["Created On"].Width = 140;
+                            grdPurchaseEntryQueueList.Columns["GSTIN"].Width = 150;
+                            grdPurchaseEntryQueueList.Columns["S.No."].Width = 60;
+                            grdPurchaseEntryQueueList.Columns["SPID"].Visible = false;
+                            grdPurchaseEntryQueueList.Columns["SPSCID"].Visible = false;
+                            grdPurchaseEntryQueueList.Columns["ID"].Visible = false;
+                            grdPurchaseEntryQueueList.Columns["Entry Date1"].Visible = false;
+                            grdPurchaseEntryQueueList.Columns["Flag"].Visible = false;
                         }
                         else
                         {
@@ -162,13 +192,73 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
-
+                udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                grdPurchaseEntryQueueList.ClearSelection();
+            }
+        }
+        private void udfnSearchGridHead()
+        {
+            try
+            {
+                udfnGridSearchHeading(grdPurchaseEntryQueueList, DGV_SearchGrid);
+                DGV_SearchGrid.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in grdPurchaseEntryQueueList.Columns)
+                {
+                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                    visibleColumns.Add(col.Index);
+                }
+                int rowIndex = 0;
+                DGV_SearchGrid.Rows.Clear();
+                DGV_SearchGrid.Rows.Add();
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                }
+                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
+        {
+            try
+            {
+                //dgv2.DataSource = null;
+                dgv2.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in dgv1.Columns)
+                {
+                    if (col.Visible)
+                    {
+                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                }
+                int rowIndex = 0;
+                dgv2.Rows.Clear();
+                dgv2.Rows.Add();
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
@@ -221,7 +311,7 @@ namespace ROMS
                     }
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "  MSTID IN (0,57,54)", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=58 OR  MSTID IN (0)", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -734,23 +824,18 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible == false)
+                if (grdPurchaseEntryQueueList.ColumnCount > 0)
                 {
-                    if (DGV_SearchGrid.IsCurrentCellDirty)
-                    {
-                        // Commit the changes immediately
-                        DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                    }
+                    grdPurchaseEntryQueueList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryQueueList.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
                 }
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdPurchaseEntryQueueList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryQueueList);
-                objDser.CloseConnection();
-                grdPurchaseEntryQueueList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //grdCompanyList(sender,e); 
             }
-
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -778,7 +863,10 @@ namespace ROMS
 
         private void GrdPurchaseEntryQueueList_DoubleClick(object sender, EventArgs e)
         { 
-            try { udfnEdit(); }
+            try
+            {
+                udfnEdit();
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -790,6 +878,7 @@ namespace ROMS
             try
             {
                 MainForm.objCP_Purchase = new CP_Purchase();
+                MainForm.objCP_Purchase.varQueueFlag = 1;
                 MainForm.objCP_Purchase.PbID = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["ID"].Value.ToString());
                 MainForm.objCP_Purchase.PbFlag = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Flag"].Value.ToString());
                 MainForm.objCP_Purchase.lblschedule.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
@@ -806,6 +895,103 @@ namespace ROMS
             finally
             {
                 //picLoader.Visible = false;
+            }
+        }
+        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    int totalWidth = 0;
+                    int offSetValue = grdPurchaseEntryQueueList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+
+                    if (totalWidth - grdPurchaseEntryQueueList.Width > grdPurchaseEntryQueueList.HorizontalScrollingOffset && grdPurchaseEntryQueueList.HorizontalScrollingOffset > 0)
+                    {
+                        //offSetValue = offSetValue ;
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdPurchaseEntryQueueList_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    int totalWidth = 0;
+                    int offSetValue = grdPurchaseEntryQueueList.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdPurchaseEntryQueueList.Width > grdPurchaseEntryQueueList.HorizontalScrollingOffset && grdPurchaseEntryQueueList.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdPurchaseEntryQueueList);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnscrollVisible(DataGridView DGV, DataGridView grdGroupList)
+        {
+            try
+            {
+                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+
+                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdPurchaseEntryQueueList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
