@@ -73,6 +73,10 @@
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.txtVoucherNo = new System.Windows.Forms.TextBox();
             this.grdpurchasedetails = new System.Windows.Forms.DataGridView();
+            this.clmpodate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmcreatedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmissuedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lbltwentyfiveper = new System.Windows.Forms.Label();
             this.lblFivetyPercentage = new System.Windows.Forms.Label();
@@ -102,10 +106,6 @@
             this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreturnqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpodate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcreatedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmissuedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.grbSalesmanDetails.SuspendLayout();
@@ -626,6 +626,34 @@
             this.grdpurchasedetails.Size = new System.Drawing.Size(390, 123);
             this.grdpurchasedetails.TabIndex = 1111213;
             // 
+            // clmpodate
+            // 
+            this.clmpodate.HeaderText = "PO Date";
+            this.clmpodate.Name = "clmpodate";
+            this.clmpodate.ReadOnly = true;
+            this.clmpodate.Width = 80;
+            // 
+            // clmpono
+            // 
+            this.clmpono.HeaderText = "PO No.";
+            this.clmpono.Name = "clmpono";
+            this.clmpono.ReadOnly = true;
+            this.clmpono.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmpono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmcreatedby
+            // 
+            this.clmcreatedby.HeaderText = "Created By";
+            this.clmcreatedby.Name = "clmcreatedby";
+            this.clmcreatedby.ReadOnly = true;
+            // 
+            // clmissuedby
+            // 
+            this.clmissuedby.HeaderText = "Issued By";
+            this.clmissuedby.Name = "clmissuedby";
+            this.clmissuedby.ReadOnly = true;
+            this.clmissuedby.Width = 80;
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.lbltwentyfiveper);
@@ -913,54 +941,23 @@
             this.clminvoiceqty.HeaderText = "Invoice Qty";
             this.clminvoiceqty.Name = "clminvoiceqty";
             this.clminvoiceqty.ReadOnly = true;
-            this.clminvoiceqty.Width = 70;
             // 
             // clmreceivedqty
             // 
             this.clmreceivedqty.HeaderText = "Received Qty";
             this.clmreceivedqty.Name = "clmreceivedqty";
             this.clmreceivedqty.ReadOnly = true;
-            this.clmreceivedqty.Width = 70;
             // 
             // clmreturnqty
             // 
             this.clmreturnqty.HeaderText = "Returned Qty";
             this.clmreturnqty.Name = "clmreturnqty";
             this.clmreturnqty.ReadOnly = true;
-            this.clmreturnqty.Width = 70;
             // 
             // clmReason
             // 
             this.clmReason.HeaderText = "Reason";
             this.clmReason.Name = "clmReason";
-            // 
-            // clmpodate
-            // 
-            this.clmpodate.HeaderText = "PO Date";
-            this.clmpodate.Name = "clmpodate";
-            this.clmpodate.ReadOnly = true;
-            this.clmpodate.Width = 80;
-            // 
-            // clmpono
-            // 
-            this.clmpono.HeaderText = "PO No.";
-            this.clmpono.Name = "clmpono";
-            this.clmpono.ReadOnly = true;
-            this.clmpono.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmpono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmcreatedby
-            // 
-            this.clmcreatedby.HeaderText = "Created By";
-            this.clmcreatedby.Name = "clmcreatedby";
-            this.clmcreatedby.ReadOnly = true;
-            // 
-            // clmissuedby
-            // 
-            this.clmissuedby.HeaderText = "Issued By";
-            this.clmissuedby.Name = "clmissuedby";
-            this.clmissuedby.ReadOnly = true;
-            this.clmissuedby.Width = 80;
             // 
             // PUR_GRNApproval
             // 
@@ -1053,6 +1050,10 @@
         private System.Windows.Forms.Label lblWhatsAppNo;
         private System.Windows.Forms.Label lblSalesmanName;
         private System.Windows.Forms.Label lblMobileNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpodate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmcreatedby;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmissuedby;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproduct;
@@ -1068,9 +1069,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreceivedqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreturnqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReason;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpodate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcreatedby;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmissuedby;
     }
 }
