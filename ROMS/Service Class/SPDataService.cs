@@ -2990,6 +2990,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRN_PurchaseEntry.paraScheduleID);
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_PurchaseEntry.paraToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_PurchaseEntry.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraEntryType", objTRN_PurchaseEntry.paraEntryType);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

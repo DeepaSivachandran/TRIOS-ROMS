@@ -47,10 +47,10 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtCreatedby = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCreatedOn = new System.Windows.Forms.Label();
-            this.txtSTTable = new System.Windows.Forms.Label();
+            this.txtCreatedby = new System.Windows.Forms.Label();
+            this.txtRemark1 = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.panel1.SuspendLayout();
@@ -88,7 +88,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(406, 58);
             this.panel5.TabIndex = 3;
-            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
             // 
             // label2
             // 
@@ -133,7 +132,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(406, 58);
             this.panel4.TabIndex = 2;
-            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
             // 
             // txtGICreatedby
             // 
@@ -197,7 +195,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(406, 58);
             this.panel3.TabIndex = 1;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
             // 
             // label3
             // 
@@ -236,24 +233,12 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txtCreatedOn);
             this.panel2.Controls.Add(this.txtCreatedby);
-            this.panel2.Controls.Add(this.txtSTTable);
+            this.panel2.Controls.Add(this.txtRemark1);
             this.panel2.Controls.Add(this.txtRemarks);
             this.panel2.Location = new System.Drawing.Point(9, 29);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(406, 58);
             this.panel2.TabIndex = 0;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
-            // 
-            // txtCreatedby
-            // 
-            this.txtCreatedby.AutoSize = true;
-            this.txtCreatedby.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCreatedby.Location = new System.Drawing.Point(217, 3);
-            this.txtCreatedby.Name = "txtCreatedby";
-            this.txtCreatedby.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtCreatedby.Size = new System.Drawing.Size(31, 15);
-            this.txtCreatedby.TabIndex = 8;
-            this.txtCreatedby.Text = "User1";
             // 
             // label5
             // 
@@ -274,17 +259,27 @@
             this.txtCreatedOn.Size = new System.Drawing.Size(94, 15);
             this.txtCreatedOn.TabIndex = 0;
             this.txtCreatedOn.Text = "25/07/2023 01:02 PM";
-            this.txtCreatedOn.Click += new System.EventHandler(this.TxtCreated_Click);
             // 
-            // txtSTTable
+            // txtCreatedby
             // 
-            this.txtSTTable.AutoSize = true;
-            this.txtSTTable.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSTTable.Location = new System.Drawing.Point(4, 4);
-            this.txtSTTable.Name = "txtSTTable";
-            this.txtSTTable.Size = new System.Drawing.Size(67, 15);
-            this.txtSTTable.TabIndex = 7;
-            this.txtSTTable.Text = "Stock Transfer";
+            this.txtCreatedby.AutoSize = true;
+            this.txtCreatedby.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCreatedby.Location = new System.Drawing.Point(217, 3);
+            this.txtCreatedby.Name = "txtCreatedby";
+            this.txtCreatedby.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtCreatedby.Size = new System.Drawing.Size(31, 15);
+            this.txtCreatedby.TabIndex = 8;
+            this.txtCreatedby.Text = "User1";
+            // 
+            // txtRemark1
+            // 
+            this.txtRemark1.AutoSize = true;
+            this.txtRemark1.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemark1.Location = new System.Drawing.Point(4, 4);
+            this.txtRemark1.Name = "txtRemark1";
+            this.txtRemark1.Size = new System.Drawing.Size(67, 15);
+            this.txtRemark1.TabIndex = 7;
+            this.txtRemark1.Text = "Stock Transfer";
             // 
             // txtRemarks
             // 
@@ -345,7 +340,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label txtGITable;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label txtSTTable;
+        private System.Windows.Forms.Label txtRemark1;
         private System.Windows.Forms.Label txtCreatedby;
         private System.Windows.Forms.Label txtGICreatedby;
         private System.Windows.Forms.Label txtGICreatedOn;

@@ -93,7 +93,7 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtSTTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
+                                txtRemark1.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
                                 txtRemarks.Text = objDs.Tables[0].Rows[0]["STR_Remarks"].ToString();
                                 txtCreatedby.Text = objDs.Tables[0].Rows[0]["STR Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["STR Created On"].ToString();

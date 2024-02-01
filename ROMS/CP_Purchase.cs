@@ -37,7 +37,7 @@ namespace ROMS
         varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds = "0";
         public decimal PbDiscamt = 0, PbTaxvalue = 0, PbGstamt = 0, PbNetamt = 0, pbDiffQty = 0;
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,
-            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0,varRMFlag=0;
+            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0,varRMFlag=0, varRemarkCount=0,varRemarkFlag=0;
         public string pbQRCode = "";
         public CP_Purchase()
         {
@@ -481,7 +481,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnDamage_Click(object sender, EventArgs e)
         {
             try
@@ -500,8 +499,29 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
-                MainForm.objPUR_RemarksHistory.ShowDialog();
+                string varID = "0";
+                int varflag = 0;
+                if(Convert.ToInt32(cmbEntryType.SelectedValue)==54) //grn
+                {
+                    varflag = 54;
+                    varID = pbGRNNo;
+                }
+                else if(Convert.ToInt32(cmbEntryType.SelectedValue) == 55) //PO
+                {
+                    varflag = 55;
+                    varID = pbPONO;
+                }
+                else if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //DC
+                {
+                    varflag = 57;
+                    varID = pbDCNo;
+                }
+                MainForm.objPUR_PurchaseRemarksHistory = new PUR_PurchaseRemarksHistory();
+                MainForm.objPUR_PurchaseRemarksHistory.varID =Convert.ToInt32(varID);
+                MainForm.objPUR_PurchaseRemarksHistory.varRemarkFlag =Convert.ToInt32(varflag);
+                MainForm.objPUR_PurchaseRemarksHistory.varPurchaseID =Convert.ToInt32(pbPurchaseno);
+              //  MainForm.objPUR_PurchaseRemarksHistory.varRemarkFlag = varRemarkFlag;
+                MainForm.objPUR_PurchaseRemarksHistory.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -569,6 +589,8 @@ namespace ROMS
                     btnViewDataView.Enabled = false;
                     LV_Supplier.Visible = false;
                 }
+                if (varRemarkFlag == 1) { btnRemarks.Enabled = true; }
+                else { btnRemarks.Enabled = false; }
             }
             catch (Exception ex)
             {
@@ -582,6 +604,7 @@ namespace ROMS
             {
                 if (pbPurchaseno != "0")
                 {
+                    varRemarkFlag = 1;
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
@@ -4223,7 +4246,9 @@ namespace ROMS
                                         if (btnSave.Text == "Save as Draft")
                                         {
                                             varCloseflag = 1;
-                                            pbPurchaseno = varvalue[2]; 
+                                            pbPurchaseno = varvalue[2];
+                                            varRemarkFlag = 1;
+                                            btnRemarks.Enabled = true;
                                             udfnPurchaseEntryTabLoad(); //tab2 load
                                         }
                                         else
