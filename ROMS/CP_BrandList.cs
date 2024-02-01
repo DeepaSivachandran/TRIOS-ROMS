@@ -302,6 +302,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdBrandList.DataSource = objDs.Tables[0];
                             grdBrandList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdBrandList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdBrandList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdBrandList.Columns["Total Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdBrandList.Columns["Total Subgroups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1235,8 +1236,7 @@ namespace ROMS
             try
             {
                 udfnLvSubGroup();
-                btnView.Focus();
-
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {

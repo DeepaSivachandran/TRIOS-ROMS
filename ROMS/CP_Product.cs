@@ -3127,6 +3127,7 @@ namespace ROMS
         {
             try
             {
+                lvSaleRack.Visible = false;
                 txtRackMOQQty.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -3181,6 +3182,7 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
                 cmbUnit.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -3497,6 +3499,7 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
                 txtBrand.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -4114,7 +4117,7 @@ namespace ROMS
             try
             {
                 txtGroup.BackColor = Color.LemonChiffon;
-                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
             }
             catch (Exception ex)
             {
@@ -4422,6 +4425,7 @@ namespace ROMS
         {
             try
             {
+                lvPurLocation.Visible = false;
                 txtPurRack.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -4548,6 +4552,8 @@ namespace ROMS
         {
             try
             {
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
                 txtSaleLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -5245,10 +5251,24 @@ namespace ROMS
             }
         }
 
+        private void TxtRackDescription_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvPurRack.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtSaleRack_Enter(object sender, EventArgs e)
         {
             try
             {
+                lvSaleLocation.Visible = false;
                 txtSaleRack.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
