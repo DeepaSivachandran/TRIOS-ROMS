@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+
             this.tsStockRequest = new System.Windows.Forms.ToolStrip();
             this.tspStockRequest = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -123,7 +124,6 @@
             this.tsStockRequest.Size = new System.Drawing.Size(1354, 25);
             this.tsStockRequest.TabIndex = 35;
             this.tsStockRequest.Text = "Stock Hold";
-            this.tsStockRequest.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.TsStockRequest_ItemClicked);
             // 
             // tspStockRequest
             // 
@@ -241,6 +241,7 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -259,6 +260,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
+
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(10, 89);
@@ -267,6 +269,7 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -327,7 +330,6 @@
             this.txtRack.ReadOnly = true;
             this.txtRack.Size = new System.Drawing.Size(78, 27);
             this.txtRack.TabIndex = 1111250;
-            this.txtRack.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
             // txtStockLoc
             // 
@@ -367,7 +369,6 @@
             this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 1111248;
             this.label3.Text = "Concern";
-            this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // cmbConcern
             // 
@@ -447,7 +448,6 @@
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
             this.lvproduct.Visible = false;
-            this.lvproduct.SelectedIndexChanged += new System.EventHandler(this.Lvproduct_SelectedIndexChanged);
             this.lvproduct.DoubleClick += new System.EventHandler(this.Lvproduct_DoubleClick);
             this.lvproduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lvproduct_KeyDown);
             // 
@@ -537,7 +537,6 @@
             this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
             this.lblExpiryDate.TabIndex = 1111243;
             this.lblExpiryDate.Text = "Expiry Date";
-            this.lblExpiryDate.Click += new System.EventHandler(this.LblExpiryDate_Click);
             // 
             // txtExpiryDate
             // 
@@ -586,7 +585,6 @@
             this.textBox4.Size = new System.Drawing.Size(17, 27);
             this.textBox4.TabIndex = 1111238;
             this.textBox4.Text = "₹";
-            this.textBox4.TextChanged += new System.EventHandler(this.TextBox4_TextChanged);
             // 
             // txtMrp
             // 
@@ -630,6 +628,7 @@
             this.grdStockHold.AllowUserToResizeRows = false;
             this.grdStockHold.BackgroundColor = System.Drawing.Color.White;
             this.grdStockHold.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -638,12 +637,14 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdStockHold.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+
             this.grdStockHold.ColumnHeadersHeight = 30;
             this.grdStockHold.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdStockHold.ColumnHeadersVisible = false;
             this.grdStockHold.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmDelete,
             this.clmEdit});
+
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -652,21 +653,23 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdStockHold.DefaultCellStyle = dataGridViewCellStyle5;
+
             this.grdStockHold.EnableHeadersVisualStyles = false;
             this.grdStockHold.GridColor = System.Drawing.Color.White;
             this.grdStockHold.Location = new System.Drawing.Point(10, 145);
             this.grdStockHold.Name = "grdStockHold";
             this.grdStockHold.ReadOnly = true;
             this.grdStockHold.RowHeadersVisible = false;
+
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdStockHold.RowsDefaultCellStyle = dataGridViewCellStyle6;
+
             this.grdStockHold.RowTemplate.Height = 25;
             this.grdStockHold.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdStockHold.Size = new System.Drawing.Size(1310, 478);
             this.grdStockHold.TabIndex = 1110000988;
             this.grdStockHold.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockHold_CellContentClick);
-            this.grdStockHold.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockHold_CellDoubleClick);
             this.grdStockHold.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.GrdStockHold_ColumnWidthChanged);
             this.grdStockHold.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockHold_DataBindingComplete);
             this.grdStockHold.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockHold_Scroll);

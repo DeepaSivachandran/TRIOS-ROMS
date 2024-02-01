@@ -250,6 +250,13 @@
     <Compile Include="INV_InwardQueueList_Remarks.designer.cs">
       <DependentUpon>INV_InwardQueueList_Remarks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Product_Alphabetic.cs">
+      <DependentUpon>RPT_CP_Product_Alphabetic.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Product.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1932,6 +1939,11 @@
       <LastGenOutput>RPT_CP_Product_Group_Subgroup.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_CP_Product_Alphabetic.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Product_Alphabetic.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Product_StockLocation_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Product_StockLocation_Details.cs</LastGenOutput>

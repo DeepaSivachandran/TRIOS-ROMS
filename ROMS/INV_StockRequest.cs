@@ -755,6 +755,7 @@ namespace ROMS
                                 grdGodownStock.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["SL_ShortName"]), Convert.ToString(objDS.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[1].Rows[i]["STK_Qty"]));
                                 varModifiedFlag = 1;
                             }
+                            grdGodownStock.ClearSelection();
                         }
                     }
                 }
@@ -1261,6 +1262,20 @@ namespace ROMS
                     varModifiedFlag = 0;
                     try
                     {
+                        if (varStockRequestID == 0)
+                        {
+                            SSRUpdatevalue = varvalue[2];
+                            string varQrcode = varvalue[3];
+                            var varImgMemoryStream = new MemoryStream();
+                            QrcodeImg.Text = varQrcode;
+                            QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                            varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+                            objTRNS_StockRequest.ViewType = 3;
+                            objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(SSRUpdatevalue);
+                            objTRNS_StockRequest.paraQrimg = (varobjBarCodeByte);
+                            varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
+                            objspservice.CloseConnection();
+                        }
                         if (Convert.ToInt32(cmbStatus.SelectedValue)==29)
                         {
                             string SSR = "0";
@@ -1298,20 +1313,6 @@ namespace ROMS
                                 MainForm.objReportLoad.Text = varHeader;
                                 MainForm.objReportLoad.ShowDialog();
                             }
-                        }
-                        if(varStockRequestID==0)
-                        {
-                            SSRUpdatevalue = varvalue[2];
-                            string varQrcode = varvalue[3];
-                            var varImgMemoryStream = new MemoryStream();
-                            QrcodeImg.Text = varQrcode;
-                            QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
-                            varobjBarCodeByte = varImgMemoryStream.GetBuffer();
-                            objTRNS_StockRequest.ViewType = 3;
-                            objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(SSRUpdatevalue);
-                            objTRNS_StockRequest.paraQrimg = (varobjBarCodeByte);
-                            varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
-                            objspservice.CloseConnection();
                         }
                     }
                     catch (Exception ex)

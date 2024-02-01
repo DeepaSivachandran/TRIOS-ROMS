@@ -578,6 +578,7 @@ namespace ROMS
             objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (53) AND MSTID !=0", "MST_DisplayText,MSTID", cmbDMShow, "", "MST_DisplayText", "MSTID");
             objDataBind = null;
             cmbStatus.SelectedValue = 0;
+            /*
             DataSet objDs = new DataSet();
             SPDataService objspservice = new SPDataService();
             objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 3);
@@ -588,6 +589,8 @@ namespace ROMS
                 dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
             }
             objspservice.CloseConnection();
+            */
+            dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
             dpFromDate.MinDate = MainForm.pbFYStartDate;
             dpFromDate.MaxDate = MainForm.pbCurrentDate;
             dpToDate.MaxDate = MainForm.pbCurrentDate;
@@ -2276,6 +2279,7 @@ namespace ROMS
         {
             try
             {
+                lvSupplier.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

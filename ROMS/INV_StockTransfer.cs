@@ -619,7 +619,7 @@ namespace ROMS
             {
                 DataSet objDsPurLoc = new DataSet();
                 SPDataService objDServ3 = new SPDataService();
-                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0,"","");
+                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0,"","",0);
                 objDServ3.CloseConnection();
                 if (objDsPurLoc != null)
                 {
@@ -655,7 +655,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0,"","");
+                    objDs = objspdservice.udfnStockLocationList(21, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -758,7 +758,8 @@ namespace ROMS
         {
             try
             {
-                udfnSLocationValid();
+                //udfnSLocationValid();
+                udfnSLocationRackValid();
                 lvSLocation.Visible = false;
                 lvProduct.Visible = false;
                 txtDLocation.BackColor = Color.LemonChiffon;
@@ -836,7 +837,7 @@ namespace ROMS
             {
                 DataSet objDsPurLoc = new DataSet();
                 SPDataService objDServ3 = new SPDataService();
-                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","");
+                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","",0);
                 objDServ3.CloseConnection();
                 if (objDsPurLoc != null)
                 {
@@ -851,17 +852,53 @@ namespace ROMS
             }
             lblSLocation.Text = Convert.ToString(varId_PurLocation);
         }
+        public void udfnSLocationRackValid()
+        {
+            /* Check purchase stock location is valid or not*/
+            string varId_PurLocation = "0";
+            if (txtSLocation.Text == "")
+            {
+                varId_PurLocation = "0";
+            }
+            else
+            {
+                DataSet objDsPurLoc = new DataSet();
+                SPDataService objDServ3 = new SPDataService();
+                objDsPurLoc = objDServ3.udfnStockLocationList(28, 0, 0, 0, txtSLocation.Text.Trim(),0, 0, 0, "", "",Convert.ToInt32(varSRKID));
+                objDServ3.CloseConnection();
+                if (objDsPurLoc != null)
+                {
+                    if (objDsPurLoc.Tables.Count > 0)
+                    {
+                        if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                        {
+                            varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                        }
+                        else
+                        {
+                            varId_PurLocation = "0";
+                        }
+                    }
+                }
+            }
+            varLocation = Convert.ToString(varId_PurLocation);
+        }
         private void TxtDLocation_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                udfnSLocationValid();
+                //udfnSLocationValid();
                 lvDLocation.Items.Clear();
+                int varSLID = 0;
+                if(varLocation == "0")
+                {
+                    varSLID = Convert.ToInt32(lblSLocation.Text);
+                }
                 if (txtDLocation.Text.Length > 0)
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(24, Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text) , 0, txtDLocation.Text, 0, 0, 0,"","");
+                    objDs = objspdservice.udfnStockLocationList(24, Convert.ToInt32(cmbConcern.SelectedValue),varSLID, 0, txtDLocation.Text, 0, 0, 0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1419,7 +1456,7 @@ namespace ROMS
                     string varId_Location = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0, "", "");
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0, "", "",0);
                     //  objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtPurLocation.Text.Trim(),0,0,0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
@@ -1844,7 +1881,7 @@ namespace ROMS
                         string varId_PurLocation = "0";
                         DataSet objDsSalesLoc = new DataSet();
                         SPDataService objDServ5 = new SPDataService();
-                        objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0, "", "");
+                        objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSLocation.Text.Trim(), 0, 0, 0, "", "",0);
                         objDServ5.CloseConnection();
                         if (objDsSalesLoc != null)
                         {
@@ -1876,7 +1913,7 @@ namespace ROMS
                         string varId_PurLocation = "0";
                         DataSet objDsSalesLoc = new DataSet();
                         SPDataService objDServ5 = new SPDataService();
-                        objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0, "", "");
+                        objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtDLocation.Text.Trim(), 0, 0, 0, "", "",0);
                         objDServ5.CloseConnection();
                         if (objDsSalesLoc != null)
                         {

@@ -392,7 +392,7 @@ namespace ROMS
                 if (txtStockLocation.Text.Length > 0 || txtStockLocation.Text == " ")
                 {
                     var ViewType = 26;
-                    objDs = objspdservice.udfnStockLocationList(ViewType, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text, 0, 0, 0, "", "");
+                    objDs = objspdservice.udfnStockLocationList(ViewType, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text, 0, 0, 0, "", "",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1220,7 +1220,7 @@ namespace ROMS
                         dtInward.Rows.Add(varPRID, Convert.ToDecimal(txtMrp.Text), varExpiryDate, txtBatchNo.Text.Trim(),txtActualQty.Text.Trim(),varRKID,varStockLocationId,0,0,varShelflife,ProductShelflifeValue,ProductShelflifeType,varShelflifeper[0]);
                         txttotalitem.Text = Convert.ToString(grdInward.Rows.Count);
                         //((DataGridViewTextBoxColumn)grdInward.Columns["clmQuantity"]).MaxInputLength = 8;
-                        //grdInward.Columns["clmactualquantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                        grdInward.Columns["clmactualqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         ////grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
                         grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -2233,7 +2233,7 @@ namespace ROMS
                     string varLocationId = "0";
                     DataSet objDsLocation = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsLocation = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "");
+                    objDsLocation = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "",0);
                     objDServ3.CloseConnection();
                     if (objDsLocation != null)
                     {

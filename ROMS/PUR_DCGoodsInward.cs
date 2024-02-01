@@ -542,6 +542,11 @@ namespace ROMS
             try
             {
                 txtMrp.BackColor = Color.White;
+                if (txtMrp.Text.Trim() != "")
+                {
+                    //string mrp = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                    txtMrp.Text = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                }
             }
             catch (Exception ex)
             {
@@ -775,7 +780,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(26,varConcernId, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "");
+                    objDs = objspdservice.udfnStockLocationList(26,varConcernId, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1825,7 +1830,7 @@ namespace ROMS
                     string varLocationId = "0";
                     DataSet objDsLocation = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsLocation = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "");
+                    objDsLocation = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "",0);
                     objDServ3.CloseConnection();
                     if (objDsLocation != null)
                     {
@@ -2285,7 +2290,7 @@ namespace ROMS
                     {
                         DataSet ObjsLocation = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 0, 0, "", "");
+                        ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 0, 0, "", "",0);
                         objDserv.CloseConnection();
                         if (ObjsLocation != null)
                         {

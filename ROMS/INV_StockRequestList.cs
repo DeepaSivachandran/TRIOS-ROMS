@@ -650,6 +650,7 @@ namespace ROMS
                 //    dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
                 //}
                 //objspservice.CloseConnection();
+                dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpEntryToDate.MaxDate = MainForm.pbCurrentDate;

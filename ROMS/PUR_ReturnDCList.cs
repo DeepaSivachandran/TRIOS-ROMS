@@ -86,7 +86,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                udfnDate();
+                //udfnDate();
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 //txtSupplier.Focus();

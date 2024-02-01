@@ -243,7 +243,7 @@ namespace ROMS
                 grdEmployee.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnEmployeeList(6, "", 0, "", 1,0,0);
+                objDs = objdserv.udfnEmployeeList(9, "", 0, "", 1,0,0);
                 objdserv.CloseConnection();
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
@@ -305,7 +305,7 @@ namespace ROMS
                 grdChecker.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnEmployeeList(6, "", 0, "", 1, 0, 0);
+                objDs = objdserv.udfnEmployeeList(9, "", 0, "", 1, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs.Tables[0].Rows.Count != 0)
                 {

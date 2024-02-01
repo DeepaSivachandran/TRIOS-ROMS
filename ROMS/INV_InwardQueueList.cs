@@ -147,7 +147,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = 1;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                udfnDate();
+                //udfnDate();
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 udfnList();
@@ -418,7 +418,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 3, txtStockLocation.Text.Trim(), 0, 0, 0, dpFromDate.Text, dpToDate.Text);
+                    objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 3, txtStockLocation.Text.Trim(), 0, 0, 0, dpFromDate.Text, dpToDate.Text,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

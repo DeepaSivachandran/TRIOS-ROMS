@@ -89,7 +89,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataSet objDS = new DataSet();
                 SPDataService objDServ = new SPDataService();
-                objDS = objdserv.udfnStockLocationList(18, 0,0,0,"",0,0,0,"","");
+                objDS = objdserv.udfnStockLocationList(18, 0,0,0,"",0,0,0,"","",0);
                 objDServ.CloseConnection();
                 cmbLocationType.DataSource = null;
                 if (objDS != null)
@@ -130,7 +130,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0,(Convert.ToInt16(cmbLocationType.SelectedValue)), (Convert.ToInt16(cmbStatus.SelectedValue)),"","");
+                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0,(Convert.ToInt16(cmbLocationType.SelectedValue)), (Convert.ToInt16(cmbStatus.SelectedValue)),"","",0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
