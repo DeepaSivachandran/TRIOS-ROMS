@@ -37,7 +37,7 @@ namespace ROMS
         varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds = "0";
         public decimal PbDiscamt = 0, PbTaxvalue = 0, PbGstamt = 0, PbNetamt = 0, pbDiffQty = 0;
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,
-            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0;
+            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0,varRMFlag=0;
         public string pbQRCode = "";
         public CP_Purchase()
         {
@@ -496,12 +496,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnRemarks_Click(object sender, EventArgs e)
         {
             try
             {
-
                 MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
                 MainForm.objPUR_RemarksHistory.ShowDialog();
             }
@@ -511,7 +509,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnNew_Click(object sender, EventArgs e)
         {
             try
@@ -5678,7 +5675,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objdserv.udfnGrnListLoad(7, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "",txtQRCode.Text.Trim());
+                objDs = objdserv.udfnGrnListLoad(7, Convert.ToInt32(lblSupplierCode.Text),Convert.ToInt32(lblschedule.Text), 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "",txtQRCode.Text.Trim());
                 objdserv.CloseConnection();
                 varGrnId = Convert.ToInt32(objDs.Tables[0].Rows[0]["GRNID"]);
                 if(varGrnId == -1)
@@ -6539,6 +6536,7 @@ namespace ROMS
                     txtSourceLocation.Enabled = false;
                     cmbrack.Enabled = false;
                 }
+                varRMFlag = Convert.ToInt32(cmbTransactionType.SelectedValue);
             }
             catch (Exception ex)
             {
@@ -6832,7 +6830,14 @@ namespace ROMS
                     {
                         DataSet ObjsLocation = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 0, 0, "", "");
+                        if (varRMFlag == 59)
+                        {
+                            ObjsLocation = objDserv.udfnStockLocationList(25, Convert.ToInt32(cmbConcern.SelectedValue), 0, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 1, 0, "", "");
+                        }
+                        else
+                        {
+                            ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 0, 0, "", "");
+                        }
                         objDserv.CloseConnection();
                         if (ObjsLocation != null)
                         {
@@ -6979,12 +6984,14 @@ namespace ROMS
                 varNewFlag = "0";
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                int GRNID = 0;
+                int GRNID = 0,varRMFlag=0;
                 if (Convert.ToInt32(cmbPONo.SelectedValue) == 0)
                 {
                     GRNID = 0;
                 }
                 else { GRNID = Convert.ToInt32(pbGRNId); }
+                if(Convert.ToInt32(cmbTransactionType.SelectedValue)==59)
+                { varRMFlag = 1; }
                 if (txtProductName.Text.Length > 0)
                 {
                     MR_Product objMR_Product = new MR_Product();
@@ -6993,8 +7000,10 @@ namespace ROMS
                     objMR_Product.ParaScheduleid = Convert.ToString(lblschedule.Text);
                     objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Product.paraId = Convert.ToInt32(cmbPONo.SelectedValue);
+                    objMR_Product.ParaRMFlag = varRMFlag;
                     objMR_Product.ParaGRNID = GRNID;
                     objMR_Product.ParaProductsCode = varProductsCodes;
+
                     if (VarSearchFlag == true)
                     {
                         objMR_Product.paraPicode = txtProductName.Text;

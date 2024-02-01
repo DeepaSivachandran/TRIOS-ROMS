@@ -28,14 +28,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
-         
-
-        private void TxtEUnitName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
         private void PUR_RemarksHistory_Load(object sender, EventArgs e)
         {
             try
@@ -47,7 +39,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
         public void udfnShowDialog()
         {
@@ -86,7 +77,6 @@ namespace ROMS
                             }
                         }
                     }
-
                 }
                 else
                 {
@@ -129,7 +119,6 @@ namespace ROMS
                             }
                         }
                     }
-
                 }
             }
             catch (Exception ex)
@@ -137,16 +126,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void Panel2_Paint(object sender, PaintEventArgs e)
-        {
-        
-        }
-
-        private void TxtCreated_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
