@@ -216,7 +216,7 @@ namespace ROMS
                             grdSubGroupList.DataSource = objDs.Tables[0];
                             grdSubGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdSubGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            // grdSubGroupList.Columns["Batch No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdSubGroupList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                             grdSubGroupList.Columns["S.No."].Width = 50;
                             grdSubGroupList.Columns["Product Group Name"].Width = 200;
@@ -741,19 +741,27 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Status" || col.Name == "Batch No.")
+                            if (col.Name == "S.No.")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 8;
                             }
-                            else if (col.Name == "Stock Location" || col.Name == "Rack" || col.Name == "Total Products")
+                            else if (col.Name == "Stock Location")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
+                            else if (col.Name == "Rack" || col.Name == "Product Group Name")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 19;
+                            }
+                            else if ( col.Name == "Total Products" || col.Name == "Status")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 16;
+                            }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 50;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 40;
                             }
-                            if (col.Name == "Total Products" || col.Name == "Batch No.")
+                            if (col.Name == "Total Products")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }

@@ -608,6 +608,7 @@ namespace ROMS
                         if (varSlNo == "0")
                         {
                             grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(),varstatusid);
+                            grdBankDetails.Columns["clmStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             varCompanyModifiedFlag = 1;
                         }
                         else {
@@ -3813,6 +3814,7 @@ namespace ROMS
                                 grdBankDetails.Rows.Add(Convert.ToString(objDS.Tables[2].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[2].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[2].Rows[i]["SHORTNAME"]),
                                 Convert.ToString(objDS.Tables[2].Rows[i]["BRANCH"]), Convert.ToString(objDS.Tables[2].Rows[i]["ACCOUNT"]), Convert.ToString(objDS.Tables[2].Rows[i]["IFSC"])
                                 , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]));
+                                grdBankDetails.Columns["clmStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             }
                             btnSave.Text = "Update";
                             btnSaveContact.Text = "Update"; 
