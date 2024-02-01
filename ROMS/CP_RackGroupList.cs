@@ -998,7 +998,7 @@ namespace ROMS
         {
             try
             {
-                if (txtStockLocation.Text.Trim() != "")
+                if (txtStockLocation.Text != "")
                 {
                     ListViewItem selectedItem = lvStockLocation.SelectedItems[0];
                     txtStockLocation.Text = selectedItem.SubItems[0].Text;

@@ -1181,7 +1181,7 @@ namespace ROMS
         {
             try
             {
-                if (txtProductGroup.Text.Trim() != "")
+                if (txtProductGroup.Text != "")
                 {
                     ListViewItem selectedItem = lvGroup.SelectedItems[0];
                     txtProductGroup.Text = selectedItem.SubItems[0].Text;
@@ -1200,7 +1200,7 @@ namespace ROMS
         {
             try
             {
-                if (txtProductSubGroup.Text.Trim() != "")
+                if (txtProductSubGroup.Text != "")
                 {
                     ListViewItem selectedItem = lvSubGroup.SelectedItems[0];
                     txtProductSubGroup.Text = selectedItem.SubItems[0].Text;

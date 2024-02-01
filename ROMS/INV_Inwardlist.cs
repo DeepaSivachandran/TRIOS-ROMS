@@ -537,7 +537,6 @@ namespace ROMS
         {
             try
             {
-                txtProductName.Visible = false;
                 txtStockLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

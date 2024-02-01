@@ -200,7 +200,7 @@ namespace ROMS
                 string varSupplierId = "0";
                 if (txtSupplier.Text == "")
                 {
-                    varSupplierId = "0";
+                    lblSupplierCode.Text = "0";
                     lblschedule.Text = "0";
                 }
                 //else
