@@ -1363,6 +1363,10 @@ namespace ROMS
                         if (col.Visible)
                         {
                             cIndex += 1;
+                            if (cIndex == 1) // Skip the first two columns (image columns)
+                            {
+                                continue;
+                            }
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
