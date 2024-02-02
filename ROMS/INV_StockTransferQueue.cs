@@ -1222,32 +1222,32 @@ namespace ROMS
                             {
                                 continue;
                             }
-                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            ExcelSheet.Cells[2, cIndex - 1] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex - 1].NumberFormat = "@";
 
                             if (col.Name == "S.No." || col.Name == "Status")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                             }
                             else if (col.Name == "Concern" || col.Name == "Source" || col.Name == "Destination")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 20;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                             }
                             if (col.Name == "S.No.")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
                             if (col.Name == "Total Products")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
                             foreach (DataGridViewRow rowa in grdStockTransfer.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
                             }
                         }
                     }
