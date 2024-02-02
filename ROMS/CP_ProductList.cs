@@ -891,6 +891,10 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 8;
                             }
+                            if (cIndex == 4 || cIndex == 5 || cIndex == 6)
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                            }
                             else
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;

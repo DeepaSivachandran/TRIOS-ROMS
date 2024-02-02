@@ -852,13 +852,13 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Status" )
+                            if (col.Name == "S.No."  )
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            else if (col.Name == "Total Groups" || col.Name == "Total Subgroups" || col.Name == "Total Products" || col.Name == "Status")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
-                            }
-                            else if (col.Name == "Total Groups" || col.Name == "Total Subgroups" || col.Name == "Total Products")
-                            {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
                             else
                             {

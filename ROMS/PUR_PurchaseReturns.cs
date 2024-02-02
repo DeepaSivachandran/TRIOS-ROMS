@@ -766,6 +766,7 @@ namespace ROMS
             try
             {
                 dpReturnDCDate.BackColor = Color.LemonChiffon;
+                LV_Supplier.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1069,6 +1070,7 @@ namespace ROMS
             try
             {
                 cmbReason.BackColor = Color.LemonChiffon;
+                LV_Supplier.Visible = false;
             }
             catch (Exception ex)
             {

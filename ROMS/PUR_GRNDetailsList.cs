@@ -237,10 +237,12 @@ namespace ROMS
                             grdGRNList.Columns["Order Type"].Width = 100;
                             grdGRNList.Columns["Any Purchase Returns"].Width = 150;
                             grdGRNList.Columns["Status"].Width = 130;
+                            grdGRNList.Columns["Inward Status"].Width = 130;
                             grdGRNList.Columns["GRNID"].Visible = false;
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
+                            grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["STSID"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
                             grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -248,6 +250,7 @@ namespace ROMS
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGRNList.Columns["Inward Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else

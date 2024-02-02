@@ -617,6 +617,27 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
                             Excel.Range cell = ExcelSheet.Cells[2, cIndex];
                             cell.Font.Color = Excel.XlRgbColor.rgbWhite;
+                            if (col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                             else if (col.Name == "Concern" || col.Name == "Location Type" || col.Name == "Godown Type" || col.Name == "Status" || col.Name == "Rack Creation" || col.Name == "Rack Group Creation" || col.Name == "No.of Products")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 50;
+                            }
+
+                            if (col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            else if (col.Name == "Total Products" || col.Name == "Total Groups" || col.Name == "Total Subgroups")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
                             if (cIndex == 1 || cIndex == 8)
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
