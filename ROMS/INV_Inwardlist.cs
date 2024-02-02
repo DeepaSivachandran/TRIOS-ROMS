@@ -537,6 +537,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.Visible = false;
                 txtStockLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
