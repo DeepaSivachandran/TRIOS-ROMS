@@ -63,9 +63,6 @@ namespace ROMS.Model
         public string paraEinvoice { get; set; } = "";
         public string ParaPEToDate { get; set; } = "";
         public string ParaPEFromDate { get; set; } = ""; 
-        public string paraFromDate { get; set; } = ""; 
-        public string paraToDate { get; set; } = ""; 
-
 
     }
 }
