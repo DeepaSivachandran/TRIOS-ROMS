@@ -2916,20 +2916,32 @@ namespace ROMS
                                         //DGV_FilterProduct.DataSource = null;
                                         //DGV_FilterProduct.Refresh();
                                         DGV_FilterProduct.DataSource = objDs.Tables[0];
-                                        DGV_FilterProduct.Columns["PRID"].Visible = false;
-                                        DGV_FilterProduct.Columns["UT_Symbol"].Visible = true;
-                                        DGV_FilterProduct.Columns["pr_retailrate"].Visible = true;
-                                        DGV_FilterProduct.Columns["PR_BatchNo"].Visible = false;
-                                        DGV_FilterProduct.Columns["PR_BatchNoGeneration"].Visible = false;
-                                        DGV_FilterProduct.Columns["PR_RMForProduction"].Visible = false;
-                                        DGV_FilterProduct.Columns["PR_PRCTID"].Visible = false;
-                                        DGV_FilterProduct.Columns["PR_ShelfLife"].Visible = false;
-                                        DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
-                                        DGV_FilterProduct.Columns["PR_EName"].Width = 310;
-                                        DGV_FilterProduct.Columns["PR_TName"].Width = 310;
-                                        DGV_FilterProduct.Columns["PR_PICode"].Width = 110;
-                                        DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     }
+
+                                    DGV_FilterProduct.Columns["PRID"].Visible = false;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].Visible = true;
+                                    DGV_FilterProduct.Columns["pr_retailrate"].Visible = true;
+                                    DGV_FilterProduct.Columns["PR_BatchNo"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_BatchNoGeneration"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_RMForProduction"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_PRCTID"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_ShelfLife"].Visible = false;
+                                    DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_EName"].Width = 320;
+                                    DGV_FilterProduct.Columns["PR_TName"].Width = 320;
+                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].Width = 60;
+                                    DGV_FilterProduct.Columns["pr_retailrate"].Width = 90;
+                                    DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
+                                    DGV_FilterProduct.Columns["pr_retailrate"].DisplayIndex = 3;
+                                    DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                    DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
+                                    DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
+                                    DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "PI Code";
+                                    DGV_FilterProduct.Columns["pr_retailrate"].HeaderText = "Retail Rate";
+                                    DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
+                                    DGV_FilterProduct.Columns["pr_retailrate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     //lvproduct.Visible = true;
 
                                     //lvproduct.Columns[0].Width = 100;
@@ -2941,6 +2953,7 @@ namespace ROMS
                                     {
                                         DGV_FilterProduct.Columns["PR_EName"].Visible = true;
                                         DGV_FilterProduct.Columns["PR_TName"].Visible = false;
+                                        DGV_FilterProduct.Columns["PR_EName"].DisplayIndex = 2;
                                         //lvproduct.Columns[1].Width = 320;
                                         //lvproduct.Columns[2].Width = 0;
                                         //(DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_EName]) LIKE '%" + txtProductName.Text + "%'";
@@ -2949,6 +2962,7 @@ namespace ROMS
                                     {
                                         DGV_FilterProduct.Columns["PR_EName"].Visible = false;
                                         DGV_FilterProduct.Columns["PR_TName"].Visible = true;
+                                        DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 2;
                                         //lvproduct.Columns[1].Width = 0;
                                         //lvproduct.Columns[2].Width = 320;
                                         //(DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_PICode]) LIKE '%" + txtProductName.Text + "%'";
