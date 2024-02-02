@@ -40,11 +40,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNDetails));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNDetails));
             this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
             this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -140,17 +140,6 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
-            this.grpVerify = new System.Windows.Forms.GroupBox();
-            this.lblVerified2 = new System.Windows.Forms.Label();
-            this.lblVerified1 = new System.Windows.Forms.Label();
-            this.lblVerifyDateTime2 = new System.Windows.Forms.Label();
-            this.lblVerifyDateTime = new System.Windows.Forms.Label();
-            this.txtDLevel2 = new System.Windows.Forms.TextBox();
-            this.txtDLevel1 = new System.Windows.Forms.TextBox();
-            this.btnVerify1 = new System.Windows.Forms.Button();
-            this.btnVerify2 = new System.Windows.Forms.Button();
-            this.lblRemark = new System.Windows.Forms.Label();
-            this.errGRNDetails = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -172,6 +161,17 @@
             this.clmprflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPOQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.grpVerify = new System.Windows.Forms.GroupBox();
+            this.lblVerified2 = new System.Windows.Forms.Label();
+            this.lblVerified1 = new System.Windows.Forms.Label();
+            this.lblVerifyDateTime2 = new System.Windows.Forms.Label();
+            this.lblVerifyDateTime = new System.Windows.Forms.Label();
+            this.txtDLevel2 = new System.Windows.Forms.TextBox();
+            this.txtDLevel1 = new System.Windows.Forms.TextBox();
+            this.btnVerify1 = new System.Windows.Forms.Button();
+            this.btnVerify2 = new System.Windows.Forms.Button();
+            this.lblRemark = new System.Windows.Forms.Label();
+            this.errGRNDetails = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -1112,6 +1112,7 @@
             this.BtnNew.Text = "New Product";
             this.BtnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Visible = false;
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // lblDD
@@ -1336,128 +1337,6 @@
             this.grdGrnlist.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGrnlist_DataBindingComplete);
             this.grdGrnlist.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnlist_EditingControlShowing);
             // 
-            // grpVerify
-            // 
-            this.grpVerify.Controls.Add(this.lblVerified2);
-            this.grpVerify.Controls.Add(this.lblVerified1);
-            this.grpVerify.Controls.Add(this.lblVerifyDateTime2);
-            this.grpVerify.Controls.Add(this.lblVerifyDateTime);
-            this.grpVerify.Controls.Add(this.txtDLevel2);
-            this.grpVerify.Controls.Add(this.txtDLevel1);
-            this.grpVerify.Controls.Add(this.btnVerify1);
-            this.grpVerify.Controls.Add(this.btnVerify2);
-            this.grpVerify.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpVerify.Location = new System.Drawing.Point(897, 517);
-            this.grpVerify.Name = "grpVerify";
-            this.grpVerify.Size = new System.Drawing.Size(228, 108);
-            this.grpVerify.TabIndex = 1111164;
-            this.grpVerify.TabStop = false;
-            this.grpVerify.Text = "Verification Process";
-            // 
-            // lblVerified2
-            // 
-            this.lblVerified2.AutoSize = true;
-            this.lblVerified2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerified2.Location = new System.Drawing.Point(103, 62);
-            this.lblVerified2.Name = "lblVerified2";
-            this.lblVerified2.Size = new System.Drawing.Size(0, 16);
-            this.lblVerified2.TabIndex = 1111189;
-            // 
-            // lblVerified1
-            // 
-            this.lblVerified1.AutoSize = true;
-            this.lblVerified1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerified1.Location = new System.Drawing.Point(103, 29);
-            this.lblVerified1.Name = "lblVerified1";
-            this.lblVerified1.Size = new System.Drawing.Size(0, 16);
-            this.lblVerified1.TabIndex = 1111188;
-            // 
-            // lblVerifyDateTime2
-            // 
-            this.lblVerifyDateTime2.AutoSize = true;
-            this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyDateTime2.Location = new System.Drawing.Point(103, 76);
-            this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
-            this.lblVerifyDateTime2.Size = new System.Drawing.Size(0, 16);
-            this.lblVerifyDateTime2.TabIndex = 1111187;
-            // 
-            // lblVerifyDateTime
-            // 
-            this.lblVerifyDateTime.AutoSize = true;
-            this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyDateTime.Location = new System.Drawing.Point(103, 43);
-            this.lblVerifyDateTime.Name = "lblVerifyDateTime";
-            this.lblVerifyDateTime.Size = new System.Drawing.Size(0, 16);
-            this.lblVerifyDateTime.TabIndex = 1111186;
-            // 
-            // txtDLevel2
-            // 
-            this.txtDLevel2.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDLevel2.Enabled = false;
-            this.txtDLevel2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDLevel2.Location = new System.Drawing.Point(5, 64);
-            this.txtDLevel2.Name = "txtDLevel2";
-            this.txtDLevel2.ReadOnly = true;
-            this.txtDLevel2.Size = new System.Drawing.Size(55, 27);
-            this.txtDLevel2.TabIndex = 17;
-            this.txtDLevel2.TabStop = false;
-            this.txtDLevel2.Text = "Level 2";
-            // 
-            // txtDLevel1
-            // 
-            this.txtDLevel1.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDLevel1.Enabled = false;
-            this.txtDLevel1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDLevel1.Location = new System.Drawing.Point(5, 31);
-            this.txtDLevel1.Name = "txtDLevel1";
-            this.txtDLevel1.ReadOnly = true;
-            this.txtDLevel1.Size = new System.Drawing.Size(55, 27);
-            this.txtDLevel1.TabIndex = 16;
-            this.txtDLevel1.TabStop = false;
-            this.txtDLevel1.Text = "Level 1";
-            // 
-            // btnVerify1
-            // 
-            this.btnVerify1.Enabled = false;
-            this.btnVerify1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnVerify1.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify1.Image")));
-            this.btnVerify1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerify1.Location = new System.Drawing.Point(66, 29);
-            this.btnVerify1.Name = "btnVerify1";
-            this.btnVerify1.Size = new System.Drawing.Size(31, 30);
-            this.btnVerify1.TabIndex = 6;
-            this.btnVerify1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVerify1.UseVisualStyleBackColor = true;
-            this.btnVerify1.Click += new System.EventHandler(this.BtnVerify1_Click);
-            // 
-            // btnVerify2
-            // 
-            this.btnVerify2.Enabled = false;
-            this.btnVerify2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnVerify2.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify2.Image")));
-            this.btnVerify2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerify2.Location = new System.Drawing.Point(66, 62);
-            this.btnVerify2.Name = "btnVerify2";
-            this.btnVerify2.Size = new System.Drawing.Size(31, 30);
-            this.btnVerify2.TabIndex = 5;
-            this.btnVerify2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVerify2.UseVisualStyleBackColor = true;
-            this.btnVerify2.Click += new System.EventHandler(this.BtnVerify2_Click);
-            // 
-            // lblRemark
-            // 
-            this.lblRemark.AutoSize = true;
-            this.lblRemark.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRemark.Location = new System.Drawing.Point(689, 515);
-            this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(50, 17);
-            this.lblRemark.TabIndex = 1111168;
-            this.lblRemark.Text = "Remarks";
-            // 
-            // errGRNDetails
-            // 
-            this.errGRNDetails.ContainerControl = this;
-            // 
             // clmsno
             // 
             this.clmsno.HeaderText = "S.No.";
@@ -1603,6 +1482,128 @@
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmRemove.Width = 50;
+            // 
+            // grpVerify
+            // 
+            this.grpVerify.Controls.Add(this.lblVerified2);
+            this.grpVerify.Controls.Add(this.lblVerified1);
+            this.grpVerify.Controls.Add(this.lblVerifyDateTime2);
+            this.grpVerify.Controls.Add(this.lblVerifyDateTime);
+            this.grpVerify.Controls.Add(this.txtDLevel2);
+            this.grpVerify.Controls.Add(this.txtDLevel1);
+            this.grpVerify.Controls.Add(this.btnVerify1);
+            this.grpVerify.Controls.Add(this.btnVerify2);
+            this.grpVerify.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpVerify.Location = new System.Drawing.Point(897, 517);
+            this.grpVerify.Name = "grpVerify";
+            this.grpVerify.Size = new System.Drawing.Size(228, 108);
+            this.grpVerify.TabIndex = 1111164;
+            this.grpVerify.TabStop = false;
+            this.grpVerify.Text = "Verification Process";
+            // 
+            // lblVerified2
+            // 
+            this.lblVerified2.AutoSize = true;
+            this.lblVerified2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerified2.Location = new System.Drawing.Point(103, 62);
+            this.lblVerified2.Name = "lblVerified2";
+            this.lblVerified2.Size = new System.Drawing.Size(0, 16);
+            this.lblVerified2.TabIndex = 1111189;
+            // 
+            // lblVerified1
+            // 
+            this.lblVerified1.AutoSize = true;
+            this.lblVerified1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerified1.Location = new System.Drawing.Point(103, 29);
+            this.lblVerified1.Name = "lblVerified1";
+            this.lblVerified1.Size = new System.Drawing.Size(0, 16);
+            this.lblVerified1.TabIndex = 1111188;
+            // 
+            // lblVerifyDateTime2
+            // 
+            this.lblVerifyDateTime2.AutoSize = true;
+            this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime2.Location = new System.Drawing.Point(103, 76);
+            this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
+            this.lblVerifyDateTime2.Size = new System.Drawing.Size(0, 16);
+            this.lblVerifyDateTime2.TabIndex = 1111187;
+            // 
+            // lblVerifyDateTime
+            // 
+            this.lblVerifyDateTime.AutoSize = true;
+            this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime.Location = new System.Drawing.Point(103, 43);
+            this.lblVerifyDateTime.Name = "lblVerifyDateTime";
+            this.lblVerifyDateTime.Size = new System.Drawing.Size(0, 16);
+            this.lblVerifyDateTime.TabIndex = 1111186;
+            // 
+            // txtDLevel2
+            // 
+            this.txtDLevel2.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDLevel2.Enabled = false;
+            this.txtDLevel2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDLevel2.Location = new System.Drawing.Point(5, 64);
+            this.txtDLevel2.Name = "txtDLevel2";
+            this.txtDLevel2.ReadOnly = true;
+            this.txtDLevel2.Size = new System.Drawing.Size(55, 27);
+            this.txtDLevel2.TabIndex = 17;
+            this.txtDLevel2.TabStop = false;
+            this.txtDLevel2.Text = "Level 2";
+            // 
+            // txtDLevel1
+            // 
+            this.txtDLevel1.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDLevel1.Enabled = false;
+            this.txtDLevel1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDLevel1.Location = new System.Drawing.Point(5, 31);
+            this.txtDLevel1.Name = "txtDLevel1";
+            this.txtDLevel1.ReadOnly = true;
+            this.txtDLevel1.Size = new System.Drawing.Size(55, 27);
+            this.txtDLevel1.TabIndex = 16;
+            this.txtDLevel1.TabStop = false;
+            this.txtDLevel1.Text = "Level 1";
+            // 
+            // btnVerify1
+            // 
+            this.btnVerify1.Enabled = false;
+            this.btnVerify1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnVerify1.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify1.Image")));
+            this.btnVerify1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerify1.Location = new System.Drawing.Point(66, 29);
+            this.btnVerify1.Name = "btnVerify1";
+            this.btnVerify1.Size = new System.Drawing.Size(31, 30);
+            this.btnVerify1.TabIndex = 6;
+            this.btnVerify1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerify1.UseVisualStyleBackColor = true;
+            this.btnVerify1.Click += new System.EventHandler(this.BtnVerify1_Click);
+            // 
+            // btnVerify2
+            // 
+            this.btnVerify2.Enabled = false;
+            this.btnVerify2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnVerify2.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify2.Image")));
+            this.btnVerify2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerify2.Location = new System.Drawing.Point(66, 62);
+            this.btnVerify2.Name = "btnVerify2";
+            this.btnVerify2.Size = new System.Drawing.Size(31, 30);
+            this.btnVerify2.TabIndex = 5;
+            this.btnVerify2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerify2.UseVisualStyleBackColor = true;
+            this.btnVerify2.Click += new System.EventHandler(this.BtnVerify2_Click);
+            // 
+            // lblRemark
+            // 
+            this.lblRemark.AutoSize = true;
+            this.lblRemark.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemark.Location = new System.Drawing.Point(689, 515);
+            this.lblRemark.Name = "lblRemark";
+            this.lblRemark.Size = new System.Drawing.Size(50, 17);
+            this.lblRemark.TabIndex = 1111168;
+            this.lblRemark.Text = "Remarks";
+            // 
+            // errGRNDetails
+            // 
+            this.errGRNDetails.ContainerControl = this;
             // 
             // PUR_GRNDetails
             // 

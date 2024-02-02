@@ -599,7 +599,7 @@
             this.columnHeader6});
             this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lv_Broker.HideSelection = false;
-            this.lv_Broker.Location = new System.Drawing.Point(382, 100);
+            this.lv_Broker.Location = new System.Drawing.Point(382, 57);
             this.lv_Broker.Name = "lv_Broker";
             this.lv_Broker.Size = new System.Drawing.Size(478, 88);
             this.lv_Broker.TabIndex = 1111223;
@@ -1009,7 +1009,7 @@
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(179, 47);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(528, 93);
+            this.lvproduct.Size = new System.Drawing.Size(528, 150);
             this.lvproduct.TabIndex = 1111213;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -1203,6 +1203,7 @@
             this.btnNew.Size = new System.Drawing.Size(21, 22);
             this.btnNew.TabIndex = 1111217;
             this.btnNew.Text = "        ";
+            this.btnNew.Visible = false;
             this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // label20
