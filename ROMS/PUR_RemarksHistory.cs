@@ -24,21 +24,39 @@ namespace ROMS
         public string varbrandcode;
         public string pbFormStatus;
         public int varEditflag = 0, varSTRID = 0, varGIID = 0;
+        public int varSRQID = 0,varLoadFlag=0;
         public PUR_RemarksHistory()
         {
             InitializeComponent();
         }
+
+         
+
+        private void TxtEUnitName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
         private void PUR_RemarksHistory_Load(object sender, EventArgs e)
         {
             try
             {
-                udfnShowDialog();
+                //MainForm.objINV_StockTransfer = new INV_StockTransfer();
+                if (varLoadFlag==0)
+                {
+                    udfnRequestDialog();
+                }
+                else
+                {
+                    udfnShowDialog();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
         }
         public void udfnShowDialog()
         {
@@ -63,17 +81,31 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
+                                txtSTTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
                                 txtRemarks.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
                                 txtCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
                                 txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
                                 MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
-                                panel4.Visible = false;
+
+                                if(objDs.Tables[0].Rows.Count > 1)
+                                {
+                                    txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
+                                    txtGIRemarks.Text = objDs.Tables[0].Rows[1]["Remarks"].ToString();
+                                    txtGICreatedby.Text = objDs.Tables[0].Rows[1]["Created By"].ToString();
+                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["Created On"].ToString();
+                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[1]["STRID"].ToString();
+                                }
+                                else
+                                {
+                                    pnlGoodsInward.Visible = false;
+                                }
+                                pnlStockRequest.Visible = false;
                             }
                             else
                             {
                                 MainForm.objINV_Inward.btnRemarks.Enabled = false;
-                                panel4.Visible = false;
-                                panel2.Visible = false;
+                                pnlGoodsInward.Visible = false;
+                                pnlStockTransfer.Visible = false;
                             }
                         }
                     }
@@ -93,29 +125,41 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtRemark1.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
-                                txtRemarks.Text = objDs.Tables[0].Rows[0]["STR_Remarks"].ToString();
-                                txtCreatedby.Text = objDs.Tables[0].Rows[0]["STR Created By"].ToString();
-                                txtCreatedOn.Text = objDs.Tables[0].Rows[0]["STR Created On"].ToString();
-                                MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
-
+                                txtSTTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
+                                txtRemarks.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
+                                txtCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
+                                txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
+                                MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["ID"].ToString();
                                 if (objDs.Tables[0].Rows.Count > 1)
                                 {
                                     txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
-                                    txtGIRemarks.Text = objDs.Tables[0].Rows[1]["STR_Remarks"].ToString();
-                                    txtGICreatedby.Text = objDs.Tables[0].Rows[1]["STR Created By"].ToString();
-                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["STR Created On"].ToString();
-                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[0]["STRID"].ToString();
+                                    txtGIRemarks.Text = objDs.Tables[0].Rows[1]["Remarks"].ToString();
+                                    txtGICreatedby.Text = objDs.Tables[0].Rows[1]["Created By"].ToString();
+                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["Created On"].ToString();
+                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[1]["ID"].ToString();
                                 }
                                 else
                                 {
-                                    panel4.Visible = false;
+                                    pnlGoodsInward.Visible = false;
+                                }
+                                if (objDs.Tables[0].Rows.Count > 2)
+                                {
+                                    lblStockRequest.Text = objDs.Tables[0].Rows[2]["flag"].ToString();
+                                    lblSRRemarks.Text = objDs.Tables[0].Rows[2]["Remarks"].ToString();
+                                    txtRequestCreated.Text = objDs.Tables[0].Rows[2]["Created By"].ToString();
+                                    txtSRCreatedOn.Text = objDs.Tables[0].Rows[2]["Created On"].ToString();
+                                    MainForm.objINV_Inward.varIDCOUNT = objDs.Tables[0].Rows[2]["ID"].ToString();
+                                }
+                                else
+                                {
+                                    pnlStockRequest.Visible = false;
                                 }
                             }
                             else
                             {
-                                panel4.Visible = false;
-                                panel2.Visible = false;
+                                pnlGoodsInward.Visible = false;
+                                pnlStockTransfer.Visible = false;
+                                pnlStockRequest.Visible = false;
                             }
                         }
                     }
@@ -126,6 +170,94 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnRequestDialog()
+        {
+            try
+            {
+                pnlStockRequest.Visible = false;
+                DataSet objDs = new DataSet();
+                SPDataService objspdservice = new SPDataService();
+                DataTable objGrnPO = new DataTable();
+                if (varEditflag == 1)
+                {
+
+                    objDs = objspdservice.udfnStockTransferList(4, 0, 0, 0, 0, 0, 0, "", "",varSRQID,varEditflag);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                txtSTTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
+                                txtRemarks.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
+                                txtCreatedby.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
+                                txtCreatedOn.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
+                                MainForm.objINV_StockTransfer.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
+                                pnlGoodsInward.Visible = false;
+                            }
+                            else
+                            {
+                                MainForm.objINV_Inward.btnRemarks.Enabled = false;
+                                pnlGoodsInward.Visible = false;
+                                pnlStockTransfer.Visible = false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    objDs = objspdservice.udfnStockTransferList(4, varSTRID, 0, 0, 0, 0, 0, "", "", varSRQID, varEditflag);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                txtSTTable.Text = objDs.Tables[0].Rows[0]["flag"].ToString();
+                                txtRemarks.Text = objDs.Tables[0].Rows[0]["SRQ_Remarks"].ToString();
+                                txtCreatedby.Text = objDs.Tables[0].Rows[0]["SRQ Created By"].ToString();
+                                txtCreatedOn.Text = objDs.Tables[0].Rows[0]["SRQ Created On"].ToString();
+                                MainForm.objINV_StockTransfer.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
+
+                                if (objDs.Tables[0].Rows.Count > 1)
+                                {
+                                    txtGITable.Text = objDs.Tables[0].Rows[1]["flag"].ToString();
+                                    txtGIRemarks.Text = objDs.Tables[0].Rows[1]["SRQ_Remarks"].ToString();
+                                    txtGICreatedby.Text = objDs.Tables[0].Rows[1]["SRQ Created By"].ToString();
+                                    txtGICreatedOn.Text = objDs.Tables[0].Rows[1]["SRQ Created On"].ToString();
+                                    MainForm.objINV_StockTransfer.varIDCOUNT = objDs.Tables[0].Rows[0]["SRQID"].ToString();
+                                }
+                                else
+                                {
+                                    pnlGoodsInward.Visible = false;
+                                }
+                            }
+                            else
+                            {
+                                pnlGoodsInward.Visible = false;
+                                pnlStockTransfer.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void Panel2_Paint(object sender, PaintEventArgs e)
+        {
+        
+        }
+
+        private void TxtCreated_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

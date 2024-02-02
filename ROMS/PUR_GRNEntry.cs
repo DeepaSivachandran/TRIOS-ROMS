@@ -1319,7 +1319,7 @@ namespace ROMS
                                         varCloseFlag = 1;
 
                                         SPDataService objdserv = new SPDataService();
-                                        objDs = objdserv.udfnGrnListLoad(5, 0, 0, 0, 0, "", "", Convert.ToInt32(GrnUpdatevalue), 0, 0, "", "", 0, 0, "0");
+                                        objDs = objdserv.udfnGrnListLoad(5, 0, 0, 0, 0, "", "", Convert.ToInt32(GrnUpdatevalue), 0, 0, "", "", 0, 0, "0","");
                                         objdserv.CloseConnection();
                                         if (objDs.Tables.Count != 0)
                                         {
