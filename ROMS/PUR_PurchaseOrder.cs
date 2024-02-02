@@ -2904,8 +2904,8 @@ namespace ROMS
                                 if (objDs.Tables[0].Rows.Count != 0)
                                 {
                                     DGV_FilterProduct.Visible = true;
-                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    {
+                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    //{
                                         //string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["pr_retailrate"].ToString(), objDs.Tables[0].Rows[i]["UT_Decimal"].ToString() };
                                         //ListViewItem objList = new ListViewItem(row);
                                         //objList.UseItemStyleForSubItems = false;
@@ -2916,7 +2916,7 @@ namespace ROMS
                                         //DGV_FilterProduct.DataSource = null;
                                         //DGV_FilterProduct.Refresh();
                                         DGV_FilterProduct.DataSource = objDs.Tables[0];
-                                    }
+                                    //}
 
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Visible = true;
