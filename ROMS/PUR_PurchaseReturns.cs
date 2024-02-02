@@ -816,6 +816,24 @@ namespace ROMS
         {
             try
             {
+                if (Convert.ToInt32(grdReturnDC.Rows.Count) != 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(78);
+                    objDServ.CloseConnection();
+
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        dtPurchaseReturnDC.Rows.Clear();
+                        grdReturnDC.DataSource = null;
+                        grdRepDetails.DataSource = null;
+                    }
+                    else
+                    {
+                        grdReturnDC.Refresh();
+                    }
+                }
                 LV_Supplier.Items.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {

@@ -921,7 +921,7 @@ namespace ROMS
         {
             try
             {
-                txtQty.TextAlign = HorizontalAlignment.Right;
+                //txtQty.TextAlign = HorizontalAlignment.Right;
             }
             catch (Exception ex)
             {
