@@ -173,6 +173,7 @@ namespace ROMS
             {
                 udfnCmbConcernLoad();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dpEntryDate.MinDate = MainForm.pbFYStartDate;
                 dpEntryDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,52) AND MSTID !=0", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
@@ -530,7 +531,7 @@ namespace ROMS
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();
@@ -1419,6 +1420,7 @@ namespace ROMS
             {
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
                 grdEmployee.ClearSelection();
+                grdDamageEntry.ClearSelection();
                 grdChecker.ClearSelection();
                 this.grdEmployee.Sort(this.grdEmployee.Columns[0], ListSortDirection.Descending);
                 this.grdChecker.Sort(this.grdChecker.Columns[0], ListSortDirection.Descending);

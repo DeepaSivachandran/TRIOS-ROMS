@@ -154,13 +154,14 @@ namespace ROMS
             {
                 LV_Supplier.Visible = false;
                 grdPurchaseDC.ClearSelection();
+                grdRepDetails.ClearSelection();
             }
         }
         public void udfnDiscard()
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Discard Changes ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Do you want to discard changes ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     this.Close();
@@ -270,7 +271,7 @@ namespace ROMS
             {
                 if (varCloseFlag == 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();

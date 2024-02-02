@@ -68,6 +68,8 @@ namespace ROMS
                 dtStock.Columns.Add("SRQ_RequestedQty", typeof(decimal));
                 dtStock.Columns.Add("SRQ_ReceivedQty", typeof(decimal));
                 udfnCmbConcern();
+                dpDate.MinDate = MainForm.pbFYStartDate;
+                dpDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=11 AND STSID IN(28,29)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
@@ -335,7 +337,7 @@ namespace ROMS
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();

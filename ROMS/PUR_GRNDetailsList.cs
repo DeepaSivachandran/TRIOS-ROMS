@@ -42,36 +42,36 @@ namespace ROMS
 
             }
         }
-        public void udfnDate()
-        {
-            try
-            {
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet(); 
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
-                objDServ.CloseConnection();
-                if (objd.Tables[1].Rows.Count != 0)
-                {
-                    varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                } 
-                objd = null; 
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 6);
-                objDServ.CloseConnection();
-                if (objd.Tables[0].Rows.Count != 0)
-                {
-                    DateTime varmindate = MainForm.pbFYStartDate;
-                    dpFromDate.MinDate = varmindate;
-                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
-                }
+        //public void udfnDate()
+        //{
+        //    try
+        //    {
+        //        SPDataService objDServ = new SPDataService();
+        //        DataSet objd = new DataSet(); 
+        //        objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+        //        objDServ.CloseConnection();
+        //        if (objd.Tables[1].Rows.Count != 0)
+        //        {
+        //            varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        //        } 
+        //        objd = null; 
+        //        objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 6);
+        //        objDServ.CloseConnection();
+        //        if (objd.Tables[0].Rows.Count != 0)
+        //        {
+        //            DateTime varmindate = MainForm.pbFYStartDate;
+        //            dpFromDate.MinDate = varmindate;
+        //            dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
+        //        }
 
-                dpFromDate.MaxDate = varmaxdate;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //        dpFromDate.MaxDate = varmaxdate;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
         private void PUR_GRNDetailsList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -121,8 +121,12 @@ namespace ROMS
         {
             try
             {
-                udfnDate();
+                //udfnDate();
                 udfnConcernLoad();
+                dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
                 udfnListLoad(); 
             }
             catch (Exception ex)
@@ -243,6 +247,8 @@ namespace ROMS
                             grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGRNList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGRNList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -1187,11 +1193,8 @@ namespace ROMS
         {
             try
             {
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
                 DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpToDate.MinDate = varmindate;
-                dpToDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
             {
@@ -1353,6 +1356,7 @@ namespace ROMS
             {
                 try
                 {
+                    grdGRNList.ClearSelection();
                     for (int i = 0; i < grdGRNList.Rows.Count; i++)
                     {
                         DataGridView dataGridView = (DataGridView)sender;

@@ -98,7 +98,7 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     skipValidation = true;
@@ -122,8 +122,9 @@ namespace ROMS
                 dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                 dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 udfnCmbConcern();
+                dpConversionDate.MinDate = MainForm.pbFYStartDate;
+                dpConversionDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = txtProductName;
-                dpConversionDate.MaxDate = MainForm.pbCurrentDate; 
                 VarSearchFlag = true;
                 lblProductName.Text = "Search by P.I Code";
                 grdBatchConversion.ClearSelection();
@@ -779,6 +780,7 @@ namespace ROMS
             }
         }
         private void BtnAdd_Click(object sender, EventArgs e)
+
         {
             try
             {
@@ -1632,7 +1634,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtConvertBatch.Focus();
+                    txtDay.Focus();
                 }
             }
             catch (Exception ex)

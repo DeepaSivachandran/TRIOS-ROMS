@@ -336,6 +336,7 @@ namespace ROMS
                     txtProductSearch.Visible = false;
                     lblDSearch.Visible = false;
                     udfnPOEntryLoad();
+                    grdProDetails.ClearSelection();
                 }
                 else
                 {
@@ -1096,6 +1097,7 @@ namespace ROMS
             }
             finally
             {
+                grdProDetails.ClearSelection();
                 picLoader.Visible = false;
             }
         }
@@ -2382,6 +2384,7 @@ namespace ROMS
         {
             try
             {
+                grdProDetails.ClearSelection();
                 for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
                 { 
                     DataGridView dataGridView = (DataGridView)sender;
@@ -2432,9 +2435,9 @@ namespace ROMS
 
             try
             {
+                grdProDetails.ClearSelection();
                 for (int i = 0; i < grdProDetails.Rows.Count; i++)
                 {
-
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
                     DataGridViewCell cell1 = dataGridView.Rows[i].Cells["PO Status"];
