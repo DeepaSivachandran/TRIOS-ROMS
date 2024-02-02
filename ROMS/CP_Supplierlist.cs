@@ -1130,6 +1130,18 @@ namespace ROMS
                                     ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
                                 }
                             }
+                            if (col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 8;
+                            }
+                            else if (col.Name == "City" || col.Name == "Supplier Type" || col.Name == "GSTIN" || col.Name == "Order Type" || col.Name =="Days" || col.Name == "Payment Term" || col.Name == "Ret. Policy" || col.Name == "Ret.Condition" || col.Name == "T.Pro.Count" || col.Name == "Schedule Status")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 30;
+                            }
                         }
                     }
                     ExcelObj.Visible = true;

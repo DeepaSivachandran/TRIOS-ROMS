@@ -412,6 +412,7 @@
             this.grdInwardQueueList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInwardList_CellDoubleClick);
             this.grdInwardQueueList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInwardList_DataBindingComplete);
             this.grdInwardQueueList.Enter += new System.EventHandler(this.GrdInwardQueueList_Enter);
+            this.grdInwardQueueList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdInwardQueueList_KeyDown);
             // 
             // DGV_SearchGrid
             // 

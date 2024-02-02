@@ -72,6 +72,18 @@
             this.lblMM = new System.Windows.Forms.Label();
             this.lblDd = new System.Windows.Forms.Label();
             this.grdBatchConversion = new System.Windows.Forms.DataGridView();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -100,18 +112,6 @@
             this.txtQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epBatchConversion)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -317,6 +317,7 @@
             this.totalQty.ReadOnly = true;
             this.totalQty.Size = new System.Drawing.Size(77, 28);
             this.totalQty.TabIndex = 17;
+            this.totalQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtUnit3
             // 
@@ -415,39 +416,44 @@
             // 
             // txtYear
             // 
-            this.txtYear.Enabled = false;
+            this.txtYear.BackColor = System.Drawing.SystemColors.Window;
             this.txtYear.Location = new System.Drawing.Point(247, 43);
             this.txtYear.MaxLength = 4;
             this.txtYear.Name = "txtYear";
-            this.txtYear.ReadOnly = true;
             this.txtYear.Size = new System.Drawing.Size(34, 28);
             this.txtYear.TabIndex = 14;
+            this.txtYear.TextChanged += new System.EventHandler(this.TxtYear_TextChanged);
+            this.txtYear.Enter += new System.EventHandler(this.TxtYear_Enter);
             this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtYear_KeyDown);
+            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtYear_KeyPress);
             this.txtYear.Leave += new System.EventHandler(this.TxtYear_Leave);
             // 
             // txtDay
             // 
-            this.txtDay.Enabled = false;
+            this.txtDay.BackColor = System.Drawing.SystemColors.Window;
             this.txtDay.Location = new System.Drawing.Point(180, 43);
             this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
-            this.txtDay.ReadOnly = true;
             this.txtDay.Size = new System.Drawing.Size(33, 28);
             this.txtDay.TabIndex = 12;
             this.txtDay.TextChanged += new System.EventHandler(this.TxtDay_TextChanged);
+            this.txtDay.Enter += new System.EventHandler(this.TxtDay_Enter);
             this.txtDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDay_KeyDown);
+            this.txtDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDay_KeyPress);
+            this.txtDay.Leave += new System.EventHandler(this.TxtDay_Leave);
             // 
             // txtMonth
             // 
-            this.txtMonth.Enabled = false;
+            this.txtMonth.BackColor = System.Drawing.SystemColors.Window;
             this.txtMonth.Location = new System.Drawing.Point(213, 43);
             this.txtMonth.MaxLength = 2;
             this.txtMonth.Name = "txtMonth";
-            this.txtMonth.ReadOnly = true;
             this.txtMonth.Size = new System.Drawing.Size(34, 28);
             this.txtMonth.TabIndex = 13;
             this.txtMonth.TextChanged += new System.EventHandler(this.TxtMonth_TextChanged);
+            this.txtMonth.Enter += new System.EventHandler(this.TxtMonth_Enter);
             this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonth_KeyDown);
+            this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMonth_KeyPress);
             this.txtMonth.Leave += new System.EventHandler(this.TxtMonth_Leave);
             // 
             // lblYyyy
@@ -523,6 +529,7 @@
             this.grdBatchConversion.GridColor = System.Drawing.Color.White;
             this.grdBatchConversion.Location = new System.Drawing.Point(9, 77);
             this.grdBatchConversion.Name = "grdBatchConversion";
+            this.grdBatchConversion.ReadOnly = true;
             this.grdBatchConversion.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
@@ -535,6 +542,93 @@
             this.grdBatchConversion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBatchConversion_CellEndEdit);
             this.grdBatchConversion.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GrdBatchConversion_CellValidating);
             this.grdBatchConversion.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBatchConversion_EditingControlShowing);
+            // 
+            // clmSno
+            // 
+            this.clmSno.Frozen = true;
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmSno.Width = 50;
+            // 
+            // clmPicode
+            // 
+            this.clmPicode.Frozen = true;
+            this.clmPicode.HeaderText = "P.I Code";
+            this.clmPicode.Name = "clmPicode";
+            this.clmPicode.ReadOnly = true;
+            // 
+            // clmProduct
+            // 
+            this.clmProduct.Frozen = true;
+            this.clmProduct.HeaderText = "Product Name";
+            this.clmProduct.Name = "clmProduct";
+            this.clmProduct.ReadOnly = true;
+            this.clmProduct.Width = 300;
+            // 
+            // clmMrp
+            // 
+            this.clmMrp.Frozen = true;
+            this.clmMrp.HeaderText = "MRP";
+            this.clmMrp.Name = "clmMrp";
+            this.clmMrp.ReadOnly = true;
+            // 
+            // clmExpiryDate
+            // 
+            this.clmExpiryDate.HeaderText = "Expiry Date";
+            this.clmExpiryDate.Name = "clmExpiryDate";
+            this.clmExpiryDate.ReadOnly = true;
+            this.clmExpiryDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // clmBatchNo
+            // 
+            this.clmBatchNo.HeaderText = "Batch No.";
+            this.clmBatchNo.Name = "clmBatchNo";
+            this.clmBatchNo.ReadOnly = true;
+            // 
+            // clmQty
+            // 
+            this.clmQty.HeaderText = "Qty";
+            this.clmQty.Name = "clmQty";
+            this.clmQty.ReadOnly = true;
+            this.clmQty.Width = 75;
+            // 
+            // clmPRID
+            // 
+            this.clmPRID.HeaderText = "PRID";
+            this.clmPRID.Name = "clmPRID";
+            this.clmPRID.ReadOnly = true;
+            this.clmPRID.Visible = false;
+            // 
+            // clmRKID
+            // 
+            this.clmRKID.HeaderText = "RKID";
+            this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
+            this.clmRKID.Visible = false;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
+            this.clmSLID.Visible = false;
+            // 
+            // shelflife
+            // 
+            this.shelflife.HeaderText = "shelflife";
+            this.shelflife.Name = "shelflife";
+            this.shelflife.ReadOnly = true;
+            this.shelflife.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
             // 
             // btnClose
             // 
@@ -622,7 +716,7 @@
             // txtRack
             // 
             this.txtRack.Enabled = false;
-            this.txtRack.Location = new System.Drawing.Point(749, 38);
+            this.txtRack.Location = new System.Drawing.Point(749, 39);
             this.txtRack.Name = "txtRack";
             this.txtRack.ReadOnly = true;
             this.txtRack.Size = new System.Drawing.Size(76, 28);
@@ -631,7 +725,7 @@
             // txtStockLocation
             // 
             this.txtStockLocation.Enabled = false;
-            this.txtStockLocation.Location = new System.Drawing.Point(631, 38);
+            this.txtStockLocation.Location = new System.Drawing.Point(631, 39);
             this.txtStockLocation.Name = "txtStockLocation";
             this.txtStockLocation.ReadOnly = true;
             this.txtStockLocation.Size = new System.Drawing.Size(112, 28);
@@ -705,7 +799,7 @@
             // txtBatchNo
             // 
             this.txtBatchNo.Enabled = false;
-            this.txtBatchNo.Location = new System.Drawing.Point(1018, 38);
+            this.txtBatchNo.Location = new System.Drawing.Point(1018, 39);
             this.txtBatchNo.Name = "txtBatchNo";
             this.txtBatchNo.ReadOnly = true;
             this.txtBatchNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -716,7 +810,7 @@
             // 
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Rupee Foradian", 13F);
-            this.textBox4.Location = new System.Drawing.Point(831, 38);
+            this.textBox4.Location = new System.Drawing.Point(831, 39);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(17, 28);
@@ -726,7 +820,7 @@
             // txtExpiryDate
             // 
             this.txtExpiryDate.Enabled = false;
-            this.txtExpiryDate.Location = new System.Drawing.Point(906, 38);
+            this.txtExpiryDate.Location = new System.Drawing.Point(906, 39);
             this.txtExpiryDate.Name = "txtExpiryDate";
             this.txtExpiryDate.ReadOnly = true;
             this.txtExpiryDate.Size = new System.Drawing.Size(106, 28);
@@ -794,7 +888,7 @@
             // txtMrp
             // 
             this.txtMrp.Enabled = false;
-            this.txtMrp.Location = new System.Drawing.Point(848, 38);
+            this.txtMrp.Location = new System.Drawing.Point(848, 39);
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.ReadOnly = true;
             this.txtMrp.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -853,85 +947,6 @@
             this.label12.Size = new System.Drawing.Size(54, 20);
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
-            // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmSno.Width = 50;
-            // 
-            // clmPicode
-            // 
-            this.clmPicode.HeaderText = "P.I Code";
-            this.clmPicode.Name = "clmPicode";
-            this.clmPicode.ReadOnly = true;
-            // 
-            // clmProduct
-            // 
-            this.clmProduct.HeaderText = "Product Name";
-            this.clmProduct.Name = "clmProduct";
-            this.clmProduct.ReadOnly = true;
-            this.clmProduct.Width = 300;
-            // 
-            // clmMrp
-            // 
-            this.clmMrp.HeaderText = "MRP";
-            this.clmMrp.Name = "clmMrp";
-            this.clmMrp.ReadOnly = true;
-            // 
-            // clmExpiryDate
-            // 
-            this.clmExpiryDate.HeaderText = "Expiry Date";
-            this.clmExpiryDate.Name = "clmExpiryDate";
-            // 
-            // clmBatchNo
-            // 
-            this.clmBatchNo.HeaderText = "Batch No.";
-            this.clmBatchNo.Name = "clmBatchNo";
-            this.clmBatchNo.ReadOnly = true;
-            // 
-            // clmQty
-            // 
-            this.clmQty.HeaderText = "Qty";
-            this.clmQty.Name = "clmQty";
-            this.clmQty.ReadOnly = true;
-            this.clmQty.Width = 75;
-            // 
-            // clmPRID
-            // 
-            this.clmPRID.HeaderText = "PRID";
-            this.clmPRID.Name = "clmPRID";
-            this.clmPRID.ReadOnly = true;
-            this.clmPRID.Visible = false;
-            // 
-            // clmRKID
-            // 
-            this.clmRKID.HeaderText = "RKID";
-            this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
-            this.clmRKID.Visible = false;
-            // 
-            // clmSLID
-            // 
-            this.clmSLID.HeaderText = "SLID";
-            this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
-            this.clmSLID.Visible = false;
-            // 
-            // shelflife
-            // 
-            this.shelflife.HeaderText = "shelflife";
-            this.shelflife.Name = "shelflife";
-            this.shelflife.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
             // 
             // INV_StockConversion
             // 

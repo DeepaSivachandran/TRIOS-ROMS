@@ -18,6 +18,7 @@ namespace ROMS
 
         DataValidation objValidation = new DataValidation();
         public int varPRID = 0;
+        public int varviewtype = 0;
         DataTable dtDefaultGrid = new DataTable();
         DataError objError;
         public INV_StockConversionList()
@@ -531,9 +532,18 @@ namespace ROMS
                 grdConversionList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnBatchList(0, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToString(dpFromDate.Text), Convert.ToString(dpToDate.Text),Convert.ToInt32(varPRID));
-                objspservice.CloseConnection();
+                //objDs = objspservice.udfnBatchList(0, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToString(dpFromDate.Text), Convert.ToString(dpToDate.Text),Convert.ToInt32(varPRID));
+                SPDataService objdserv = new SPDataService();
+                TRN_BatchConversion objTRNG_BatchConversion = new TRN_BatchConversion();
+                objTRNG_BatchConversion.ViewType = 0;
+                objTRNG_BatchConversion.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_BatchConversion.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_BatchConversion.paraFromDate = dpFromDate.Text;
+                objTRNG_BatchConversion.paraToDate = dpToDate.Text;
+                objTRNG_BatchConversion.paraPRID = Convert.ToInt32(varPRID);
+                objTRNG_BatchConversion.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnBatchConversionList(objTRNG_BatchConversion);
+                objdserv.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -971,50 +981,55 @@ namespace ROMS
         {
             try
             {
-                string result = "", varUserID = "";
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_BatchConversion_Product";
-                dtStock.Columns.Add("STK_QTY", typeof(string));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
                 if (grdConversionList.SelectedRows.Count > 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        SPDataService objspdservice = new SPDataService();
-                        DataTable objGrnPO = new DataTable();
+                        string varorginator = "Batch conversion delete", result = "";
+                        int varUserID = 0;
+                        varviewtype = 2;
                         TRN_BatchConversion objTRN_BatchConversion = new TRN_BatchConversion();
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
+                        objTRN_BatchConversion.ViewType = varviewtype;
+                        objTRN_BatchConversion.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                        objTRN_BatchConversion.paraIPAddress = MainForm.pbIpAddress;
+                        objTRN_BatchConversion.paraOriginator = varorginator;
+                        objTRN_BatchConversion.paraBTID = Convert.ToInt32(grdConversionList.SelectedRows[0].Cells["BTID"].Value.ToString());
+                        objTRN_BatchConversion.paraDeleteFlag = 0;
+                        SPDataService objspdservice = new SPDataService();
+                        result = objspdservice.udfnBatchConversion(objTRN_BatchConversion);
+                        objspdservice.CloseConnection();
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
                         {
-                            objTRN_BatchConversion.ViewType = 2;
-                            objTRN_BatchConversion.paraBTID = Convert.ToInt32(grdConversionList.SelectedRows[0].Cells["BTID"].Value.ToString());
-                            objTRN_BatchConversion.paraCompanyCode = 0;
-                            objTRN_BatchConversion.paraConversionDate = "";
-                            objTRN_BatchConversion.paraPRID = 0;
-                            objTRN_BatchConversion.paraRKID = 0;
-                            objTRN_BatchConversion.paraSLID = 0;
-                            objTRN_BatchConversion.paraMrp = "";
-                            objTRN_BatchConversion.paraExpiryDate = "";
-                            objTRN_BatchConversion.paraBatchNo = "";
-                            objTRN_BatchConversion.paraQuantity = 0;
-                            objTRN_BatchConversion.paraOriginator = "Batch Conversion Delete";
-                            objTRN_BatchConversion.paraBatchConversion = dtStock;
-                            result = objspdservice.udfnBatchConversion(objTRN_BatchConversion);
-                            objspdservice.CloseConnection();
-                            if (result.Split('~')[0] == "3")
+                            if (result.Split('~')[1] == "1")
                             {
-                                MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                udfnList();
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                    objTRN_BatchConversion.ViewType = varviewtype;
+                                    objTRN_BatchConversion.paraUserID = varUserID;
+                                    objTRN_BatchConversion.paraIPAddress = MainForm.pbIpAddress;
+                                    objTRN_BatchConversion.paraOriginator = varorginator;
+                                    objTRN_BatchConversion.paraBTID = Convert.ToInt32(grdConversionList.SelectedRows[0].Cells["BTID"].Value.ToString());
+                                    objTRN_BatchConversion.paraDeleteFlag = 1;
+                                    result = objspdservice.udfnBatchConversion(objTRN_BatchConversion);
+                                    objspdservice.CloseConnection();
+                                    if (result.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        varviewtype = 0;
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
                             }
-                            else if (result.Split('~')[0] == "4")
-                            {
-                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                        }
+                        else if (result.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }

@@ -15,7 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int varSupplierID = 0,varScheduleID=0,varConcernID=0;
+        public int varSupplierID = 0,varScheduleID=0,varConcernID=0,varID=0;
 
         public PUR_GRNApproval()
         {
@@ -322,6 +322,7 @@ namespace ROMS
             {
                 ClearSupplier();
                 udfnsupplierLoad();
+                udfnEdit();
             }
             catch (Exception ex)
             {
@@ -341,6 +342,88 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                if (varID!= 0)
+                {
+                    Application.DoEvents();
+                    //********** To display a data in a grid  ******************  
+                    DataSet objDs = new DataSet();
+                    //**** To call the function from SP ***************
+                    SPDataService objdserv = new SPDataService();
+                    TRN_PurchaseEntry objTRNG_PurchaseEntry = new TRN_PurchaseEntry();
+                    objTRNG_PurchaseEntry.ViewType = 8;
+                    objTRNG_PurchaseEntry.paraPurchaseId = varID;
+                    objDs = objdserv.udfnGetPurchaseEntry(objTRNG_PurchaseEntry);
+                    objdserv.CloseConnection();
+                    if (objDs.Tables[0].Rows.Count > 0)
+                    {
+                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                        {
+                            grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]), Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]));
+                            grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGrnApproval.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGrnApproval.Columns["clmShelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGrnApproval.Columns["clmpoqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGrnApproval.Columns["clminvoiceqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGrnApproval.Columns["clmreceivedqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGrnApproval.Columns["clmreturnqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGrnApproval.Columns["clmReason"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            string[] varShelflifeper = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]).Split(' ');
+                            if (varShelflifeper[0] != "")
+                            {
+                                if (Convert.ToDecimal(varShelflifeper[0]) > 24 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                                {
+                                    DataGridView dataGridView = grdGrnApproval;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                    cell.Style.BackColor = Color.Orange;
+                                    cell.Style.ForeColor = Color.Black;
+                                    txtORPercentageCheck.Enabled = true;
+                                    lblFivetyPercentage.Enabled = true;
+                                }
+                                else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                {
+                                    DataGridView dataGridView = grdGrnApproval;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                    cell.Style.BackColor = Color.Red;
+                                    cell.Style.ForeColor = Color.White;
+                                    txtRDPercentageCheck.Enabled = true;
+                                    lbltwentyfiveper.Enabled = true;
+                                }
+                                else
+                                {
+                                    DataGridView dataGridView = grdGrnApproval;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                    cell.Style.BackColor = Color.White;
+                                    cell.Style.ForeColor = Color.Black;
+                                }
+                            }
+                        }
+                    }
+                    if(objDs.Tables[1].Rows.Count>1)
+                    {
+                        for(int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                        {
+                            grdpurchasedetails.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PO_Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Created By"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_IssuedBy"]));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+            finally
+            {
+                grdGrnApproval.ClearSelection();
             }
         }
     }

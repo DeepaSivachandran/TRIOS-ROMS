@@ -3174,7 +3174,7 @@ namespace ROMS
                                         }
                                     }
                                 }
-                                varSalesLocationCode = Convert.ToString(varId_SalesRack);
+                                varSalesRackCode = Convert.ToString(varId_SalesRack);
                                 if (varId_SalesRack == "0" || varId_SalesRack == "-1")
                                 {
                                     epProductApproval.SetError(txtSalesRack, "Please select valid sales rack");

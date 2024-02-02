@@ -270,7 +270,7 @@
             this.lvStockLocation.HideSelection = false;
             this.lvStockLocation.Location = new System.Drawing.Point(369, 70);
             this.lvStockLocation.Name = "lvStockLocation";
-            this.lvStockLocation.Size = new System.Drawing.Size(386, 157);
+            this.lvStockLocation.Size = new System.Drawing.Size(361, 157);
             this.lvStockLocation.TabIndex = 958814;
             this.lvStockLocation.UseCompatibleStateImageBehavior = false;
             this.lvStockLocation.View = System.Windows.Forms.View.Details;

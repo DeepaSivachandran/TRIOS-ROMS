@@ -2601,6 +2601,7 @@ namespace ROMS
                     epRackSettings.SetError(txtSourceLocation, "Please select source location.");
                 }
                 cmbSourceRack.BackColor = Color.LemonChiffon;
+                lvSourceLocation.Visible = false;
             }
             catch (Exception ex)
             {
@@ -2730,6 +2731,7 @@ namespace ROMS
             try
             {
                 cmbDestinationRack.BackColor = Color.LemonChiffon;
+                lvDestinationLocation.Visible = false;
             }
             catch (Exception ex)
             {

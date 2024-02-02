@@ -1178,6 +1178,22 @@ namespace ROMS
             }
         }
 
+        private void GrdInwardQueueList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit(1);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TsbInwardList_Click(object sender, EventArgs e)
         {
             try
