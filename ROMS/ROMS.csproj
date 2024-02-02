@@ -244,6 +244,12 @@
     <Compile Include="PUR_POScheduleSummary.designer.cs">
       <DependentUpon>PUR_POScheduleSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PurchaseRemarksHistory .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseRemarksHistory .designer.cs">
+      <DependentUpon>PUR_PurchaseRemarksHistory .cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_InwardQueueList_Remarks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1649,6 +1655,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_SalesInvoice.resx">
       <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseRemarksHistory .resx">
+      <DependentUpon>PUR_PurchaseRemarksHistory .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_InwardQueueList_Remarks.resx">
       <DependentUpon>INV_InwardQueueList_Remarks.cs</DependentUpon>

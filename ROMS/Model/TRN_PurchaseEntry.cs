@@ -12,11 +12,14 @@ namespace ROMS.Model
         public int ViewType { get; set; } = 0;
         public string ParaIds { get; set; } = "";
         public int paraUserID { get; set; } = 0;
+        public int paraType { get; set; } = 0;
         public string paraIPAddress { get; set; } = "";
         public int paraPurchaseId { get; set; } = 0;
         public int paraDateFilter { get; set; } = 0;
         public int paraGRNID { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
+        public string paraFromDate { get; set; } = "";
+        public string paraToDate { get; set; } = "";
         public string paraSkipped { get; set; } = "";
         public int paraCompanyId { get; set; } = 0;
         public int paraSupplierID { get; set; } = 0;
@@ -62,6 +65,7 @@ namespace ROMS.Model
         public string ParaPEFromDate { get; set; } = ""; 
         public string paraFromDate { get; set; } = ""; 
         public string paraToDate { get; set; } = ""; 
+
 
     }
 }
