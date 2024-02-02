@@ -2917,8 +2917,8 @@ namespace ROMS
                                         //DGV_FilterProduct.Refresh();
                                         DGV_FilterProduct.DataSource = objDs.Tables[0];
                                         DGV_FilterProduct.Columns["PRID"].Visible = false;
-                                        DGV_FilterProduct.Columns["UT_Symbol"].Visible = false;
-                                        DGV_FilterProduct.Columns["pr_retailrate"].Visible = false;
+                                        DGV_FilterProduct.Columns["UT_Symbol"].Visible = true;
+                                        DGV_FilterProduct.Columns["pr_retailrate"].Visible = true;
                                         DGV_FilterProduct.Columns["PR_BatchNo"].Visible = false;
                                         DGV_FilterProduct.Columns["PR_BatchNoGeneration"].Visible = false;
                                         DGV_FilterProduct.Columns["PR_RMForProduction"].Visible = false;
@@ -2939,12 +2939,16 @@ namespace ROMS
                                     //lvproduct.Columns[6].Width = 0;
                                     if (VarSearchFlag == false)
                                     {
+                                        DGV_FilterProduct.Columns["PR_EName"].Visible = true;
+                                        DGV_FilterProduct.Columns["PR_TName"].Visible = false;
                                         //lvproduct.Columns[1].Width = 320;
                                         //lvproduct.Columns[2].Width = 0;
                                         //(DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_EName]) LIKE '%" + txtProductName.Text + "%'";
                                     }
                                     else
                                     {
+                                        DGV_FilterProduct.Columns["PR_EName"].Visible = false;
+                                        DGV_FilterProduct.Columns["PR_TName"].Visible = true;
                                         //lvproduct.Columns[1].Width = 0;
                                         //lvproduct.Columns[2].Width = 320;
                                         //(DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_PICode]) LIKE '%" + txtProductName.Text + "%'";
