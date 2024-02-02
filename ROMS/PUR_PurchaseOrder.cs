@@ -974,7 +974,14 @@ namespace ROMS
                     objMR_Product.paraViewType = 39;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
-                    objMR_Product.paraProductName = txtProductName.Text;
+                    if (VarSearchFlag == true)
+                    {
+                        objMR_Product.paraPicode = txtProductName.Text;
+                    }
+                    else
+                    {
+                        objMR_Product.paraProductName = txtProductName.Text;
+                    }
                     DataSet objDsproductId = new DataSet();
                     SPDataService objDserv = new SPDataService();
                     objDsproductId = objDserv.udfnproductmasterlist(objMR_Product);
@@ -2121,11 +2128,11 @@ namespace ROMS
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
                             if (VarSearchFlag == false)
                             {
-                                txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells[0].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                             }
                             else
                             {
-                                txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells[2].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString();
                             }
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
@@ -2136,11 +2143,11 @@ namespace ROMS
                             if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
                             if (VarSearchFlag == false)
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells[0].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                             }
                             else
                             {
-                                txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells[2].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString();
                             }
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
@@ -2152,13 +2159,16 @@ namespace ROMS
                                 {
                                     if(VarSearchFlag==false)
                                     {
-                                        txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells[0].Value.ToString();
+                                        txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                                     }
                                     else
                                     {
-                                        txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells[2].Value.ToString();
+                                        txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString();
                                     }
-                                    lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells[3].Value.ToString();
+                                    lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
+                                    lblUnitDecimal.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString();
+                                    udfnProductAdd();
+                                    udfnPossibleSupplierLoad();
                                     DGV_FilterProduct.Visible = false;
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
@@ -2233,6 +2243,7 @@ namespace ROMS
             try
             {
                 lvproduct.Visible = false;
+                DGV_FilterProduct.Visible = false;
                 txtProductQty.BackColor = Color.LemonChiffon;
                 if (txtProductName.Text == "")
                 {
@@ -3059,15 +3070,8 @@ namespace ROMS
         {
             try
             {
-                if (VarSearchFlag == false)
-                {
-                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells[0].Value.ToString();
-                }
-                else
-                {
-                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells[2].Value.ToString();
-                }
-                lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells[3].Value.ToString();
+                udfnGridviewProduct();
+                udfnPossibleSupplierLoad();
             }
             catch (Exception ex)
             {
@@ -3079,6 +3083,45 @@ namespace ROMS
                 DGV_FilterProduct.Visible = false;
             }
         }
+        public void udfnGridviewProduct()
+        {
+            try
+            {
+                if (VarSearchFlag == false)
+                {
+                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                }
+                else
+                {
+                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString();
+                }
+                lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
+                lblUnitDecimal.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString();
+                udfnProductAdd();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnGridviewProduct();
+                    udfnPossibleSupplierLoad();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtIssuedBy_Leave(object sender, EventArgs e)
         {
             try
