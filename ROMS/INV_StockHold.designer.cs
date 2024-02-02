@@ -375,6 +375,7 @@
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
             this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
             // lvproductPICode

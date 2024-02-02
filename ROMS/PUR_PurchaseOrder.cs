@@ -216,7 +216,7 @@ namespace ROMS
                                     , objDs.Tables[0].Rows[i]["bulkwtval"].ToString(), objDs.Tables[0].Rows[i]["B.UTID"].ToString(), objDs.Tables[0].Rows[i]["T.UTID"].ToString(),
                                     objDs.Tables[0].Rows[i]["P.Remarks"].ToString()
                                     );
-                                    grdsupplieradd.Columns[10].ReadOnly = false;
+                                    //grdsupplieradd.Columns[10].ReadOnly = true;
                                 }
 
                                 cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["COMPANY"].ToString();
@@ -1112,7 +1112,7 @@ namespace ROMS
                             (varPARITAL).Trim(), (varOtherSupPartial).Trim(), (varReOrderQty).Trim(), bulk, var_BulkSymbol, unit, var_Symbol, varFinalTotalQty, var_Symbol, varFinalTotalKg, var_TotSymbol,
                             (addproductid).Trim(), defflag, 1, "", 10, (Convert.ToInt32(varUnitvalue)), varNetweight, varUPP, 0, varBulkunitvalue, varTotalunitvalue,"",lblUnitDecimal.Text);
 
-                            grdsupplieradd.Columns[10].ReadOnly = false;
+                            //grdsupplieradd.Columns[10].ReadOnly = true;
                             udfnrowclear();
                             grdsupplieradd.Sort(grdsupplieradd.Columns[1], ListSortDirection.Ascending);
                             for (int i = 0; i < grdsupplieradd.RowCount; i++)
@@ -4651,7 +4651,7 @@ namespace ROMS
                                      Convert.ToString(objDs.Tables[3].Rows[i]["B.UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["T.UTID"]),"", 
                                      Convert.ToString(objDs.Tables[3].Rows[i]["UT_Decimal"])
                                      );
-                                    grdsupplieradd.Columns[10].ReadOnly = true;
+                                    //grdsupplieradd.Columns[10].ReadOnly = true;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     Grdsupplieradd_DataBindingComplete(grdsupplieradd, args2);
                                 }
