@@ -2682,6 +2682,7 @@ namespace ROMS
         {
             try
             {
+                grdDamageEntry.ClearSelection();
                 for (int i = 0; i < grdDamageEntry.Rows.Count; i++)
                 {
                     if (varStatusID == 20)
