@@ -115,6 +115,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdGroupList.DataSource = objDs.Tables[0];
                             grdGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGroupList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGroupList.Columns["Total Sub Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                            
@@ -896,7 +897,7 @@ namespace ROMS
         {
             try
             {
-                if (txtProductGroup.Text.Trim() != "")
+                if (txtProductGroup.Text != "")
                 {
                     ListViewItem selectedItem = lvGroup.SelectedItems[0];
                     txtProductGroup.Text = selectedItem.SubItems[0].Text;

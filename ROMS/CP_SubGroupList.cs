@@ -215,6 +215,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdSubGroupList.DataSource = objDs.Tables[0];
                             grdSubGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdSubGroupList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             // grdSubGroupList.Columns["Batch No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 

@@ -381,6 +381,7 @@
             this.grdSelectedRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSelectedRack_CellContentClick);
             this.grdSelectedRack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSelectedRack_CellDoubleClick);
             this.grdSelectedRack.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GrdSelectedRackList_CellMouseDoubleClick);
+            this.grdSelectedRack.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSelectedRack_DataBindingComplete);
             this.grdSelectedRack.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSelectedRack_Scroll);
             this.grdSelectedRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSelectedRackList_KeyDown);
             // 
@@ -506,6 +507,7 @@
             this.grdRack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellDoubleClick);
             this.grdRack.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_Racklist_CellMouseDoubleClick);
             this.grdRack.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdRack_CurrentCellDirtyStateChanged);
+            this.grdRack.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdRack_DataBindingComplete);
             this.grdRack.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdRack_Scroll);
             // 
             // txtRackGroupName
@@ -755,6 +757,7 @@
             this.grdStaffDetails.TabIndex = 331254;
             this.grdStaffDetails.TabStop = false;
             this.grdStaffDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStaffDetails_CellContentClick);
+            this.grdStaffDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStaffDetails_DataBindingComplete);
             this.grdStaffDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvStaffDetails_KeyDown);
             // 
             // clmSno
@@ -848,6 +851,7 @@
             this.grdEmployee.TabIndex = 513;
             this.grdEmployee.TabStop = false;
             this.grdEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdEmployee_CellContentClick);
+            this.grdEmployee.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdEmployee_DataBindingComplete);
             // 
             // btnAdd
             // 
