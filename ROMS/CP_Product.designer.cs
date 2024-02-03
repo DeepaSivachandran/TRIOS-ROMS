@@ -1390,6 +1390,7 @@
             this.txtRackDescription.Size = new System.Drawing.Size(388, 27);
             this.txtRackDescription.TabIndex = 26;
             this.txtRackDescription.TabStop = false;
+            this.txtRackDescription.Enter += new System.EventHandler(this.TxtRackDescription_Enter);
             // 
             // textBox1
             // 

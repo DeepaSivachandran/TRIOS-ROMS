@@ -2712,7 +2712,7 @@ namespace ROMS
             }
             finally
             {
-                
+                grdDamageEntry.ClearSelection();
             }
         }
 

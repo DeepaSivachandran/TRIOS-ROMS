@@ -44,12 +44,37 @@ namespace ROMS
         {
             try
             {
-                
+                udfnEdit();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnEdit()
+        {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                MainForm.objCP_Purchase = new CP_Purchase();
+                MainForm.objCP_Purchase.btnSave.Text = "Update as Draft"; 
+                MainForm.objCP_Purchase.PbSTS = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["STSID"].Value.ToString()); 
+                MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString()); 
+                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                MainForm.objCP_Purchase.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
             }
         }
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -144,6 +169,8 @@ namespace ROMS
                         visibleColumns.Add(col.Index);
                     }
                     int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
                     DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                     for (int i = 1; i < visibleColumns.Count; i++)
                     {
@@ -315,11 +342,11 @@ namespace ROMS
             {
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
                 {
-                    // tsbNew_Click(sender, e);
+                    tsbNew_Click(sender, e);
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
-                    // tsbEdit_Click(sender, e);
+                     tsbEdit_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -388,7 +415,11 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex); 
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdPurchaseEntryList.ClearSelection();
             }
         }
 
@@ -496,6 +527,7 @@ namespace ROMS
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
                 objTRN_PurchaseEntry.ParaPEFromDate = dpFromDate.Text;
                 objTRN_PurchaseEntry.ParaPEToDate = dpToDate.Text;
+                objTRN_PurchaseEntry.paraType = Convert.ToInt32(cmbOrdertype.SelectedValue);
                 objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                 objspdservice.CloseConnection(); 
                 if (objDs != null)
@@ -507,9 +539,9 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdPurchaseEntryList.Columns["clmEdit"].Visible = true;
+                            //grdPurchaseEntryList.Columns["clmEdit"].Visible = true;
                             //grdPurchaseEntryList.Columns["clmEdit"].DisplayIndex = objDs.Tables[0].Columns.Count;
-                            grdPurchaseEntryList.Columns["clmEdit"].Width = 100; 
+                            //grdPurchaseEntryList.Columns["clmEdit"].Width = 100; 
                             grdPurchaseEntryList.DataSource = objDs.Tables[0];
                             grdPurchaseEntryList.Columns["S.No."].Width = 50;
                             grdPurchaseEntryList.Columns["Company"].Width = 80;
@@ -654,10 +686,10 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    if (grdPurchaseEntryList.IsCurrentCellDirty)
+                    if (DGV_SearchGrid.IsCurrentCellDirty)
                     {
                         // Commit the changes immediately
-                        grdPurchaseEntryList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                        DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                     }
                 }
                 //udfnGridSearchFilter();
@@ -1179,6 +1211,63 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void GrdPurchaseEntryList_DoubleClick(object sender, EventArgs e)
+        { 
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
+        private void CmbOrdertype_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbstatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseEntryList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
+                {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49")
+                    {
+                        cell.Style.BackColor = Color.Red;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "50")
+                    {
+                        cell.Style.BackColor = Color.Green;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    } 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
     }
 }

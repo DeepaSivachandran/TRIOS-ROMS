@@ -1478,7 +1478,8 @@ namespace ROMS
              string paraUpp, int paraPurStklocation, int paraSaleStklocation, int paraPurRack, int parasaleRack, int paraRkMOQ, int paraBatchNo,
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight, double paraMaxstk, double paraGrossweight, double paraMinstk,
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
-             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs)
+             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, 
+              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs,int paraSupplierId, int paraScheduleId,int paraGRNId,int paraNewPRID)
         {
             string result = "";
             try
@@ -1530,6 +1531,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteflag", paraDeleteflag);
                 varSqlCommand.Parameters.AddWithValue("@paraIDs", paraIDs);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierId", paraSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", paraScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNId", paraGRNId);
+                varSqlCommand.Parameters.AddWithValue("@paraNewPRID", paraNewPRID);
 
                 varSqlCommand.CommandTimeout = 0;
 
@@ -1588,6 +1593,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objMR_Product.ParaFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_Product.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaGRNID", objMR_Product.ParaGRNID);
+                varSqlCommand.Parameters.AddWithValue("@ParaRMFlag", objMR_Product.ParaRMFlag);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2471,7 +2477,7 @@ namespace ROMS
 
         // added by venkat on 03/11/2023 for GRN list
         public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, string ParaGRNFromDate, string ParaGRNToDate,
-            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId,int paraLocationID,String paraGRNIds)
+            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId,int paraLocationID,String paraGRNIds,string paraQRCode)
         {
             DataSet ds = new DataSet();
             try
@@ -2496,6 +2502,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId); 
                 varSqlCommand.Parameters.AddWithValue("@paraLocationID", paraLocationID); 
                 varSqlCommand.Parameters.AddWithValue("@paraGRNIds", paraGRNIds); 
+                varSqlCommand.Parameters.AddWithValue("@paraQRCode", paraQRCode); 
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2989,13 +2996,16 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@ParaEditFlag", objTRN_PurchaseEntry.ParaEditFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraDateFilter", objTRN_PurchaseEntry.paraDateFilter);
-                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_PurchaseEntry.paraFromDate);
-                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_PurchaseEntry.paraToDate);
-                varSqlCommand.Parameters.AddWithValue("@ParaScheduleId", objTRN_PurchaseEntry.paraScheduleID);
-                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_PurchaseEntry.paraSupplierID);
-                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_PurchaseEntry.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraType", objTRN_PurchaseEntry.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraEntryType", objTRN_PurchaseEntry.paraEntryType);
                 varSqlCommand.Parameters.AddWithValue("@paraPurchaseId", objTRN_PurchaseEntry.paraPurchaseId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_PurchaseEntry.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRN_PurchaseEntry.paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRN_PurchaseEntry.paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_PurchaseEntry.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_PurchaseEntry.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraDateFilter", objTRN_PurchaseEntry.paraDateFilter);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_PurchaseEntry.paraSupplierID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

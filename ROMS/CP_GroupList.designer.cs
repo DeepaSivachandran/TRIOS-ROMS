@@ -266,7 +266,7 @@
             this.grpSearch.Name = "grpSearch";
             this.grpSearch.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpSearch.Size = new System.Drawing.Size(321, 67);
-            this.grpSearch.TabIndex = 1;
+            this.grpSearch.TabIndex = 4;
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Search By Product Group Name";
             this.grpSearch.Enter += new System.EventHandler(this.GrpSearch_Enter);
@@ -276,7 +276,7 @@
             this.txtSearchProduct.Location = new System.Drawing.Point(13, 26);
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.Size = new System.Drawing.Size(296, 27);
-            this.txtSearchProduct.TabIndex = 0;
+            this.txtSearchProduct.TabIndex = 4;
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.TxtSearchProduct_TextChanged);
             this.txtSearchProduct.Enter += new System.EventHandler(this.TxtSearchProduct_Enter);
             this.txtSearchProduct.Leave += new System.EventHandler(this.TxtSearchProduct_Leave);

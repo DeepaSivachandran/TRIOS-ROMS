@@ -30,6 +30,7 @@ namespace ROMS.Model
         public int paraGodownType = 0;
         public int paraRKGId = 0;
         public int paraEMPId = 0;
+        public int ParaRMFlag = 0;
         public string paraProductName = "";
         public int ParaSupplierId = 0;
         public string ParaFromDate = "";

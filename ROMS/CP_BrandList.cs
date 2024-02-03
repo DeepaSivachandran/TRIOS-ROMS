@@ -302,6 +302,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdBrandList.DataSource = objDs.Tables[0];
                             grdBrandList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdBrandList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdBrandList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdBrandList.Columns["Total Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdBrandList.Columns["Total Subgroups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1181,7 +1182,7 @@ namespace ROMS
         {
             try
             {
-                if (txtProductGroup.Text.Trim() != "")
+                if (txtProductGroup.Text != "")
                 {
                     ListViewItem selectedItem = lvGroup.SelectedItems[0];
                     txtProductGroup.Text = selectedItem.SubItems[0].Text;
@@ -1200,7 +1201,7 @@ namespace ROMS
         {
             try
             {
-                if (txtProductSubGroup.Text.Trim() != "")
+                if (txtProductSubGroup.Text != "")
                 {
                     ListViewItem selectedItem = lvSubGroup.SelectedItems[0];
                     txtProductSubGroup.Text = selectedItem.SubItems[0].Text;
@@ -1235,8 +1236,7 @@ namespace ROMS
             try
             {
                 udfnLvSubGroup();
-                btnView.Focus();
-
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {

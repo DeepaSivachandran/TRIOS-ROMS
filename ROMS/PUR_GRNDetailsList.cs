@@ -204,7 +204,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0,0, "0");
+                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0,0, "0","");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -278,8 +278,7 @@ namespace ROMS
                     grdGRNList.Columns["clmPrint"].Visible = false;
                     grdGRNList.Columns["ClmEdit"].Visible = false;
                     Deftable = objDs.Tables[0];
-                }
-
+                } 
                 udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
                 {
@@ -1354,48 +1353,40 @@ namespace ROMS
         }
 
         private void GrdGRNList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
+        { 
             try
             {
-                try
+                grdGRNList.ClearSelection();
+                for (int i = 0; i < grdGRNList.Rows.Count; i++)
                 {
-                    grdGRNList.ClearSelection();
-                    for (int i = 0; i < grdGRNList.Rows.Count; i++)
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"]; 
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "17")
                     {
-                        DataGridView dataGridView = (DataGridView)sender;
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"]; 
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "17")
-                        {
-                            cell.Style.BackColor = Color.Red;
-                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                        }
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "24")
-                        {
-                            cell.Style.BackColor = Color.Green;
-                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                        }
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "23")
-                        {
-                            cell.Style.BackColor = Color.LimeGreen;
-                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                        }
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "44")
-                        {
-                            cell.Style.BackColor = Color.RoyalBlue;
-                            cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                        }
-                        if (Convert.ToString(grdGRNList.Rows[i].Cells["Totallbl"].Value) == "0")
-                        { 
-                            DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"]; 
-                            cell2.Value = new Bitmap(1, 1);
-                            cell2.ReadOnly = true;
-                        } 
+                        cell.Style.BackColor = Color.Red;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "24")
+                    {
+                        cell.Style.BackColor = Color.Green;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "23")
+                    {
+                        cell.Style.BackColor = Color.LimeGreen;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "44")
+                    {
+                        cell.Style.BackColor = Color.RoyalBlue;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["Totallbl"].Value) == "0")
+                    { 
+                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"]; 
+                        cell2.Value = new Bitmap(1, 1);
+                        cell2.ReadOnly = true;
+                    } 
                 }
             }
             catch (Exception ex)
@@ -1403,6 +1394,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            
         }
     }
 
