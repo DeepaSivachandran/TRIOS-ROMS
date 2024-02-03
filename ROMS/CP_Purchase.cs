@@ -2935,7 +2935,7 @@ namespace ROMS
                 varExpiryDate = "";
                 int varSourceLocationID = 0;
                 /* Check  source location is valid or not*/
-                if (txtSourceLocation.Text != "")
+                if (txtSourceLocation.Text != "" && varRMFlag!=59)
                 {
                     string varId_SourceLocation = "0";
                     DataSet objDsSourceLoc = new DataSet();
@@ -2973,79 +2973,82 @@ namespace ROMS
 
 
                 /*check location have a rack or not*/
-                string varId_PurchaseRack = "0";
-                string varId_PurchaseRackCount = "0";
-                DataSet objDsPurchaseRack = new DataSet();
-                SPDataService objDServ6 = new SPDataService();
-                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblLocationcode.Text), 0, cmbrack.Text.Trim(), 0, 0);
-                objDServ6.CloseConnection();
-                if (Convert.ToInt32(cmbrack.SelectedValue) != -1)
+                if (varRMFlag != 59)
                 {
-                    if (lblLocationcode.Text != "0")
+                    string varId_PurchaseRack = "0";
+                    string varId_PurchaseRackCount = "0";
+                    DataSet objDsPurchaseRack = new DataSet();
+                    SPDataService objDServ6 = new SPDataService();
+                    objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblLocationcode.Text), 0, cmbrack.Text.Trim(), 0, 0);
+                    objDServ6.CloseConnection();
+                    if (Convert.ToInt32(cmbrack.SelectedValue) != -1)
                     {
-                        if (objDsPurchaseRack != null)
+                        if (lblLocationcode.Text != "0")
                         {
-                            if (objDsPurchaseRack.Tables.Count > 0)
+                            if (objDsPurchaseRack != null)
                             {
-                                if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                if (objDsPurchaseRack.Tables.Count > 0)
                                 {
-                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                    if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                    }
+                                    if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRackCount = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                    }
+                                    if (varId_PurchaseRackCount == "0")
+                                    { varId_PurchaseRack = "0"; }
                                 }
-                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
-                                {
-                                    varId_PurchaseRackCount = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
-                                }
-                                if (varId_PurchaseRackCount == "0")
-                                { varId_PurchaseRack = "0"; }
                             }
-                        }
-                        //lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
-                        if (Convert.ToInt32(varId_PurchaseRackCount) > 0)
-                        {
-                            if (Convert.ToInt32(varId_PurchaseRack) < 0 || varId_PurchaseRack == "-1")
+                            //lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                            if (Convert.ToInt32(varId_PurchaseRackCount) > 0)
                             {
-                                errPurchaseentry.SetError(cmbrack, "Please enter valid rack.");
-                                cmbrack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                if (Convert.ToInt32(varId_PurchaseRack) < 0 || varId_PurchaseRack == "-1")
+                                {
+                                    errPurchaseentry.SetError(cmbrack, "Please enter valid rack.");
+                                    cmbrack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
 
-                                tpRack.ShowAlways = true;
-                                tpRack.Show("Please enter valid rack.", cmbrack, 5000);
-                                varErrorFlag = true;
+                                    tpRack.ShowAlways = true;
+                                    tpRack.Show("Please enter valid rack.", cmbrack, 5000);
+                                    varErrorFlag = true;
+                                }
                             }
                         }
                     }
-                }
-                else
-                {
-                    if (lblLocationcode.Text != "0")
+                    else
                     {
-                        if (objDsPurchaseRack != null)
+                        if (lblLocationcode.Text != "0")
                         {
-                            if (objDsPurchaseRack.Tables.Count > 0)
+                            if (objDsPurchaseRack != null)
                             {
-                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                if (objDsPurchaseRack.Tables.Count > 0)
                                 {
-                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                    if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                    }
                                 }
                             }
-                        }
-                        //lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
-                        if (Convert.ToInt32(varId_PurchaseRack) > 0)
-                        {
-                            errPurchaseentry.SetError(cmbrack, "Please enter rack.");
-                            cmbrack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpRack.ShowAlways = true;
-                            tpRack.Show("Please enter rack.", cmbrack, 5000);
-                            varErrorFlag = true;
-                        }
-                        if (varId_PurchaseRack == "0")
-                        {
-                            cmbrack.Text = "None";
-                            cmbrack.Enabled = false;
-                            //lblRackCode.Text = "0";
-                        }
-                        else
-                        {
-                            cmbrack.Enabled = true;
+                            //lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                            if (Convert.ToInt32(varId_PurchaseRack) > 0)
+                            {
+                                errPurchaseentry.SetError(cmbrack, "Please enter rack.");
+                                cmbrack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpRack.ShowAlways = true;
+                                tpRack.Show("Please enter rack.", cmbrack, 5000);
+                                varErrorFlag = true;
+                            }
+                            if (varId_PurchaseRack == "0")
+                            {
+                                cmbrack.Text = "None";
+                                cmbrack.Enabled = false;
+                                //lblRackCode.Text = "0";
+                            }
+                            else
+                            {
+                                cmbrack.Enabled = true;
+                            }
                         }
                     }
                 }
@@ -6579,11 +6582,11 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbTransactionType.SelectedValue) == "59")
-                {
-                    txtSourceLocation.Enabled = false;
-                    cmbrack.Enabled = false;
-                }
+                //if (Convert.ToString(cmbTransactionType.SelectedValue) == "59")
+                //{
+                //    txtSourceLocation.Enabled = false;
+                //    cmbrack.Enabled = false;
+                //}
                 varRMFlag = Convert.ToInt32(cmbTransactionType.SelectedValue);
             }
             catch (Exception ex)
