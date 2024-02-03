@@ -42,6 +42,8 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varSupplierID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPID"].Value);
                     MainForm.objPUR_GRNApproval.varScheduleID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPSCID"].Value);
                     MainForm.objPUR_GRNApproval.varConcernID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Concern ID"].Value);
+                    MainForm.objPUR_GRNApproval.varID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
                 }
@@ -64,7 +66,7 @@ namespace ROMS
                 objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                udfnDate();
+                //udfnDate();
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
             }
             catch (Exception ex)
@@ -1185,7 +1187,7 @@ namespace ROMS
         {
             try
             {
-                udfnDate();
+                //udfnDate();
             }
             catch (Exception ex)
             {
@@ -1254,6 +1256,8 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["SPID"].Visible = false;
                                 grdGrnApprovalList.Columns["SPSCID"].Visible = false;
                                 grdGrnApprovalList.Columns["Concern ID"].Visible = false;
+                                grdGrnApprovalList.Columns["PUR_EntryType"].Visible = false;
+                                grdGrnApprovalList.Columns["Purchase Type"].Visible = false;
                             }
                             else
                             {
