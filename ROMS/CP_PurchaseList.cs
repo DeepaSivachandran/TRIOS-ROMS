@@ -64,6 +64,7 @@ namespace ROMS
                 MainForm.objCP_Purchase.btnSave.Text = "Update as Draft"; 
                 MainForm.objCP_Purchase.PbSTS = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["STSID"].Value.ToString()); 
                 MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString()); 
+                MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Status"].Value.ToString()); 
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
                 MainForm.objCP_Purchase.Show();
             }
@@ -548,7 +549,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Voucher No."].Width = 100;
                             grdPurchaseEntryList.Columns["Voucher Date"].Width = 100;
                             grdPurchaseEntryList.Columns["Supplier Name"].Width = 300;
-                            grdPurchaseEntryList.Columns["City"].Width = 100;
+                           // grdPurchaseEntryList.Columns["City"].Width = 100;
                             grdPurchaseEntryList.Columns["GSTIN"].Width = 120;
                             grdPurchaseEntryList.Columns["Invoice Date"].Width = 100;
                             grdPurchaseEntryList.Columns["Invoice No."].Width = 100; 
@@ -619,7 +620,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Voucher No."].Width = 100;
                 DGV_SearchGrid.Columns["Voucher Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
-                DGV_SearchGrid.Columns["City"].Width = 100;
+               // DGV_SearchGrid.Columns["City"].Width = 100;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 120;
                 DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
                 DGV_SearchGrid.Columns["Invoice No."].Width = 100;

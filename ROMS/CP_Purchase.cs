@@ -37,7 +37,7 @@ namespace ROMS
         varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds = "0";
         public decimal PbDiscamt = 0, PbTaxvalue = 0, PbGstamt = 0, PbNetamt = 0, pbDiffQty = 0;
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,
-            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0,varRMFlag=0, varRemarkCount=0,varRemarkFlag=0;
+            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0,varRMFlag=0, varRemarkCount=0,varRemarkFlag=0, varerrFlag=0;
         public string pbQRCode = "";
         public CP_Purchase()
         {
@@ -77,6 +77,10 @@ namespace ROMS
                             txtInvoiceNo.Enabled = false;
                             grdPODetails.Visible = true;
                             grdReurnDC.Visible = false;
+                            if(Convert.ToInt32(grdPODetails.Rows.Count)!=0)
+                            {
+                                cmbPONo.Enabled = true;
+                            }
                         }
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "55") // PO
@@ -1040,6 +1044,10 @@ namespace ROMS
         {
             try
             {
+                if(txtSupplier.Text.Trim()=="")
+                {
+                    grdPODetails.Rows.Clear();
+                }
                 txtSupplier.BackColor = Color.White;
             }
             catch (Exception ex)
@@ -2925,7 +2933,46 @@ namespace ROMS
                 txtTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
             }
         }
-
+        public void udfnEntryTypeErr()
+        {
+            try
+            {
+                int varmsgID=0;
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) == 54) //against grn
+                {
+                    if (Convert.ToInt32(pbGRNNo) == 0)
+                    { varerrFlag = 1;    varmsgID = 105;   }
+                    else
+                    { varerrFlag = 0; }
+                }
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) == 55) //against po
+                {
+                    if (Convert.ToInt32(pbPONO) == 0)
+                    { varerrFlag = 1; varmsgID = 81;  }
+                    else
+                    { varerrFlag = 0; }
+                }
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
+                {
+                    if (Convert.ToInt32(pbDCNo) == 0)
+                    { varerrFlag = 1; varmsgID = 106; }
+                    else
+                    { varerrFlag = 0; }
+                }
+                if(varerrFlag == 1)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(varmsgID);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnAddProductsgrid()
         {
             try
@@ -3218,7 +3265,8 @@ namespace ROMS
                     {
                         if (varflag == 0)
                         {
-                            if (pbDateflag == 0)
+                            udfnEntryTypeErr();
+                            if (pbDateflag == 0 && varerrFlag==0)
                             {
                                 errPurchaseentry.Clear();
                                 tpdate.Active = false;
@@ -3935,7 +3983,7 @@ namespace ROMS
                 bool varErrorFlag = false;
                 if (grdSupplierList.RowCount > 0)
                 {
-
+                    udfnEntryTypeErr();
                     if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                     {
                         errPurchaseentry.SetError(cmbConcern, "Please select company");
@@ -3976,7 +4024,7 @@ namespace ROMS
                         }
                     }
 
-                    if (varErrorFlag == false)
+                    if (varErrorFlag == false && varerrFlag==0)
                     {
                         string result = "", varorginator = "Purchase entry save";
                         SPDataService objspdservice = new SPDataService();
@@ -4427,7 +4475,7 @@ namespace ROMS
                         {
                             string varZero = "0";
                             int varDecimal = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["UT_Decimal"].Value);
-                            varZero =objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
+                            varZero =0+objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
                             if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmHSN"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["hsnid"].Value) == "0")
                             {
                                 varcount++;
@@ -5567,7 +5615,7 @@ namespace ROMS
         {
             try
             {
-                btnRemarks.BackColor = Color.White;
+                btnRemarks.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -5712,6 +5760,85 @@ namespace ROMS
             try
             {
                 txtQRCode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnSave_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnSave_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnClose_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnClose_Click(sender, e);
+                }
             }
             catch (Exception ex)
             {
