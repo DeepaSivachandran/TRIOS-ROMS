@@ -761,6 +761,7 @@ namespace ROMS
                                         btnSave.Enabled = false;
                                         chkCompleted.Enabled = false;
                                         txtRemark.Enabled = false;
+                                        txttotalProduct.Enabled = false;
                                     }
                                     if (objDs.Tables[1].Rows.Count != 0)
                                     {
