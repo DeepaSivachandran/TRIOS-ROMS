@@ -361,7 +361,7 @@
             this.columnHeader1});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(148, 96);
+            this.LV_Supplier.Location = new System.Drawing.Point(148, 95);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(468, 93);
             this.LV_Supplier.TabIndex = 1111207;
@@ -411,7 +411,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(8, 145);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(8, 142);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -420,7 +420,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(743, 226);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(612, 226);
             this.DGV_FilterProduct.TabIndex = 1111221;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
