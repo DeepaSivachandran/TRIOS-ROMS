@@ -2150,7 +2150,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(7, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "");
+                objDs = objspservice.udfnproductDamage(7, 0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblScheduleCode.Text), Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -2161,6 +2161,7 @@ namespace ROMS
                     varHeader = "Damaged Supplier List";
 
                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
+                    objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblScheduleCode.Text));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
