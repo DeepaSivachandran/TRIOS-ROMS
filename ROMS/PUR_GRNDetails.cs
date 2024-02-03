@@ -2294,6 +2294,10 @@ namespace ROMS
                 {
                     udfnGridaddvalue(sender, e);
                 }
+                decimal varMRP = Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmmrp"].Value);
+                string mrp = string.Format("{0:0.00}", varMRP);
+                string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                grdGrnlist.Rows[e.RowIndex].Cells["clmmrp"].Value = mrp;
             }
             catch (Exception ex)
             {
