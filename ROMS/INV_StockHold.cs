@@ -921,7 +921,7 @@ namespace ROMS
         {
             try
             {
-                txtQty.TextAlign = HorizontalAlignment.Right;
+                //txtQty.TextAlign = HorizontalAlignment.Right;
             }
             catch (Exception ex)
             {
@@ -1398,6 +1398,19 @@ namespace ROMS
             try
             {
                 grdStockHold.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {

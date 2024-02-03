@@ -574,7 +574,7 @@ namespace ROMS
             udfnCmbConcern();
             cmbconcern.SelectedValue = MainForm.pbDefaultComId;
             DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (3) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+            objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (3,0) AND STSID NOT IN(-1,36)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
             objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (53) AND MSTID !=0", "MST_DisplayText,MSTID", cmbDMShow, "", "MST_DisplayText", "MSTID");
             objDataBind = null;
             cmbStatus.SelectedValue = 0;
@@ -1009,7 +1009,6 @@ namespace ROMS
                             grdDamageEntryList.DataSource = objDs.Tables[0];
                             grdDamageEntryList.Columns["ConcernID"].Visible = false;
                             grdDamageEntryList.Columns["StatusID"].Visible = false;
-                            grdDamageEntryList.Columns["PRStatusID"].Visible = false;
                             grdDamageEntryList.Columns["DMID"].Visible = false;
                             //grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;

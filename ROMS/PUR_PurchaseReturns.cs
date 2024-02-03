@@ -31,6 +31,9 @@ namespace ROMS
         DataTable dtPurchaseReturnDC = new DataTable();
         public DataTable dtExchangeProducts = new DataTable();
         public string varExchangeRemarks = "";
+        public string varSupplierID = "";
+        public string varSupplierScheduleID = "";
+        public string varSupplierName = "";
         public PUR_PurchaseReturns()
         {
             InitializeComponent();
@@ -752,6 +755,24 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (Convert.ToInt32(grdReturnDC.Rows.Count) != 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(78);
+                    objDServ.CloseConnection();
+
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        dtPurchaseReturnDC.Rows.Clear();
+                        grdReturnDC.DataSource = null;
+                        grdRepDetails.DataSource = null;
+                    }
+                    else
+                    {
+                        grdReturnDC.Refresh();
+                    }
+                }
                 txtReturnDcNo.Text = "";
                 udfnVocherno();
             }
@@ -892,6 +913,9 @@ namespace ROMS
                 //{
                 //    tbSupplierDetails.Enabled = false;
                 //}
+                varSupplierID = lblSupplierCode.Text;
+                varSupplierScheduleID = lblschedule.Text;
+                varSupplierName = txtSupplier.Text;
                 if (lblSupplierCode.Text.Length > 0)
                 {
                     int varReturnApplicable = 0, varReturnType = 0;
@@ -962,6 +986,31 @@ namespace ROMS
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedule.Text = selectedItem.SubItems[2].Text;
                     varSuppliervalue = selectedItem.SubItems[3].Text;
+
+                    if (Convert.ToInt32(grdReturnDC.Rows.Count) != 0)
+                    {
+                        if (Convert.ToString(lblSupplierCode.Text.Trim()) != Convert.ToString(varSupplierID))
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(78);
+                            objDServ.CloseConnection();
+
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                dtPurchaseReturnDC.Rows.Clear();
+                                grdReturnDC.DataSource = null;
+                                grdRepDetails.DataSource = null;
+                            }
+                            else
+                            {
+                                grdReturnDC.Refresh();
+                                txtSupplier.Text = varSupplierName;
+                                lblSupplierCode.Text = varSupplierID;
+                                lblschedule.Text = varSupplierScheduleID;
+                            }
+                        }
+                    }
                     udfnsupplierLoad();
                 }
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
