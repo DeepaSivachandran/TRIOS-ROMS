@@ -408,7 +408,10 @@ namespace ROMS
             {
                 //grdSupplierList.Rows.Add(1, "GNM", "16/08/2023", "PUR001", "9097337", "16/08/2023", "ABCD Suppliers", "Against PO", "10","Pending","10,000","ABCD","16/08/2023 01:50PM");
 
-                udfnDate();
+                //udfnDate();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
                 udfnConcernLoad();
                 udfnListLoad();
             }
@@ -1187,11 +1190,8 @@ namespace ROMS
         {
             try
             {
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
                 DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpToDate.MinDate = varmindate;
-                dpToDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
             {
