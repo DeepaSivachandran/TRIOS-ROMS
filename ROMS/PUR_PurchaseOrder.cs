@@ -675,7 +675,7 @@ namespace ROMS
                     for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                     {
                         string varZero = "0"; int varDecimal = Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmUT_Decimal"].Value);
-                        varZero = objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
+                        varZero =0+objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
                         if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == varZero || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "0")
                         {
                             varcount++; grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
