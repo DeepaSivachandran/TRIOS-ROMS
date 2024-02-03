@@ -1124,6 +1124,10 @@ namespace ROMS
             try
             {
                 txtmrprate.BackColor = Color.White;
+                decimal varMRP = Math.Round(Convert.ToDecimal(txtmrprate.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                string mrp = string.Format("{0:0.00}", varMRP);
+                string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                txtmrprate.Text = mrp;
             }
             catch (Exception ex)
             {
@@ -2757,8 +2761,10 @@ namespace ROMS
                                         expirydateFlag = 0;
                                     }
                                 }
-
-                                grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), (txtmrprate.Text).Trim(), (varExpiryDate).Trim()
+                                decimal varMRP = Math.Round(Convert.ToDecimal(txtmrprate.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                                string mrp = string.Format("{0:0.00}", varMRP);
+                                string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                                grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), Convert.ToDecimal(mrp), (varExpiryDate).Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag,0);
                                 udfnrowclear();
                                 varModifiedFlag = 1;

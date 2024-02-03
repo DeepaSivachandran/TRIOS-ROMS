@@ -855,6 +855,10 @@ namespace ROMS
             try
             {
                 txtMrp.BackColor = Color.White;
+                decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                string mrp = string.Format("{0:0.00}", varMRP);
+                string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                txtMrp.Text = mrp;
             }
             catch (Exception ex)
             {
