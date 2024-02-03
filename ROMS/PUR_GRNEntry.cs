@@ -358,6 +358,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         varVoucherSkip = true;
+                        udfnclose();
                         //MainForm.objCP_Settings = new CP_Settings();
                         //MainForm.objCP_Settings.MdiParent = this.ParentForm;
                         //MainForm.objCP_Settings.Show();
@@ -369,7 +370,7 @@ namespace ROMS
                         MainForm.objCP_Settings.MdiParent = this.ParentForm;
                         MainForm.objCP_Settings.Show();
                         varCloseFlag = 1;
-                        udfnclose();
+                        //udfnclose();
                     }
                     else { varVoucherSkip = true; }
                 } 
