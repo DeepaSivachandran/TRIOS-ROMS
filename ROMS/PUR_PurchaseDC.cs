@@ -38,11 +38,12 @@ namespace ROMS
         public string varPICode = "", varTName="", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "",
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
         public string pbFormStatus;
-        public int VarPrevSupplierid = 0,varDCID=0, varCloseFlag=0;
+        public int VarPrevSupplierid = 0,varDCID=0, varCloseFlag=0,varClose = 0, varDateChange = 0;
         public string varBatchNo = "0";
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0";
         public string varErrQty = "0"; int expirydateFlag = 0;
         public int editFlag=0;
+        bool varVoucherSkip = false;
 
         public PUR_PurchaseDC()
         {
@@ -269,19 +270,22 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
+                if (varClose == 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (varCloseFlag == 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                        }
+                    }
+                    if (varCloseFlag == 1)
                     {
                         this.Close();
                     }
+                    MainForm.objPUR_PurchaseDCList.udfnList();
                 }
-                if (varCloseFlag == 1)
-                {
-                    this.Close();
-                }
-                MainForm.objPUR_PurchaseDCList.udfnList();
             }
             catch (Exception ex)
             {
@@ -322,54 +326,61 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpDCDate.MinDate = MainForm.pbFYStartDate;
                 dpDCDate.MaxDate = MainForm.pbCurrentDate;
-                this.ActiveControl = txtSupplier;
-                txtSupplier.Focus();
-                if(editFlag==0)
+                if (varClose == 1)
                 {
-                    btnSave.Enabled = true;
+                    this.BeginInvoke(new MethodInvoker(Close));
                 }
                 else
                 {
-                    EditLoad();
-                    grpDCSupplier.Enabled = false;
-                    if (editFlag==2)
+                    this.ActiveControl = txtSupplier;
+                    txtSupplier.Focus();
+                    if (editFlag == 0)
                     {
-                        //grpDC.Enabled = false;
-                        txtProductName.Enabled = false;
-                        txtMrp.Enabled = false;
-                        txtDay.Enabled = false;
-                        txtMonth.Enabled = false;
-                        txtYear.Enabled = false;
-                        txtBatchNo.Enabled = false;
-                        txtActualQty.Enabled = false;
-                        txtStockLocation.Enabled = false;
-                        txtRack.Enabled = false;
-                        btnAdd.Enabled = false;
-                        btnSave.Enabled = false;
-                        txtRemark.Enabled = false;
-                        chkCompleted.Enabled = false;
-                        txtTotalProducts.Enabled = false;
-                        grdPurchaseDC.ReadOnly = true;
-                        txtProductName.BackColor = Color.White;
-                        txtActualQty.BackColor = Color.White;
-                        txtStockLocation.BackColor = Color.White;
-                        txtRack.BackColor = Color.White;
-                        tpProduct.Active = false;
-                        btnClose.Enabled = true;
-                        grdPurchaseDC.Columns["clmRemove"].Visible = false;
-                        epPurchaseDC.Clear();
-                        chkCompleted.Checked = true;
-                        udfnTooltipHide();
+                        btnSave.Enabled = true;
                     }
+                    else
+                    {
+                        EditLoad();
+                        grpDCSupplier.Enabled = false;
+                        if (editFlag == 2)
+                        {
+                            //grpDC.Enabled = false;
+                            txtProductName.Enabled = false;
+                            txtMrp.Enabled = false;
+                            txtDay.Enabled = false;
+                            txtMonth.Enabled = false;
+                            txtYear.Enabled = false;
+                            txtBatchNo.Enabled = false;
+                            txtActualQty.Enabled = false;
+                            txtStockLocation.Enabled = false;
+                            txtRack.Enabled = false;
+                            btnAdd.Enabled = false;
+                            btnSave.Enabled = false;
+                            txtRemark.Enabled = false;
+                            chkCompleted.Enabled = false;
+                            txtTotalProducts.Enabled = false;
+                            grdPurchaseDC.ReadOnly = true;
+                            txtProductName.BackColor = Color.White;
+                            txtActualQty.BackColor = Color.White;
+                            txtStockLocation.BackColor = Color.White;
+                            txtRack.BackColor = Color.White;
+                            tpProduct.Active = false;
+                            btnClose.Enabled = true;
+                            grdPurchaseDC.Columns["clmRemove"].Visible = false;
+                            epPurchaseDC.Clear();
+                            chkCompleted.Checked = true;
+                            udfnTooltipHide();
+                        }
+                    }
+                    ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
+                    grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                    grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
+                    grdPurchaseDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdPurchaseDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 }
-                ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
-                grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
-                grdPurchaseDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdPurchaseDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
             }
             catch (Exception ex)
             {
@@ -479,6 +490,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 txtDcNo.Text = "";
+                varDateChange = 0;
                 udfnVocherno();
             }
             catch (Exception ex)
@@ -3272,19 +3284,10 @@ namespace ROMS
                         }
                         else
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(75);
-                            objDServ.CloseConnection();
-                            txtDcNo.Text = "";
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                            varVoucherSkip = false;
+                            if (varDateChange == 0)
                             {
-                                MainForm.objCP_Settings = new CP_Settings();
-                                MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
-                                MainForm.objCP_Settings.varValues = Convert.ToString(38);
-                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                                MainForm.objCP_Settings.Show();
-                                this.Close();
+                                udfnvoucheradd();
                             }
                         }
                     }
@@ -3300,10 +3303,43 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnvoucheradd()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(75);
+                objDServ.CloseConnection();
+                txtDcNo.Text = "";
+                if (varVoucherSkip == false)
+                {
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        varVoucherSkip = true;
+                        varClose = 1;
+                        udfnclose();
+                        MainForm.objCP_Settings = new CP_Settings();
+                        MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                        MainForm.objCP_Settings.varValues = Convert.ToString(38);
+                        MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                        MainForm.objCP_Settings.Show();
+                        varCloseFlag = 1;
+                    }
+                    else { varVoucherSkip = true; }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DpDCDate_ValueChanged(object sender, EventArgs e)
         {
             try
             {
+                varDateChange = 1;
                 udfnVocherno();
             }
             catch (Exception ex)
