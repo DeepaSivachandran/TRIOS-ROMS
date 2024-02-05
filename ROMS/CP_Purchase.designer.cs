@@ -430,6 +430,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.lblFinishedNoRecord);
             this.groupBox1.Controls.Add(this.grdReurnDC);
             this.groupBox1.Controls.Add(this.lv_Broker);
@@ -438,7 +439,6 @@
             this.groupBox1.Controls.Add(this.btnViewDataView);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.cmbConcern);
-            this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.lblGodown);
             this.groupBox1.Controls.Add(this.tbDetails);
@@ -599,7 +599,7 @@
             this.columnHeader6});
             this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lv_Broker.HideSelection = false;
-            this.lv_Broker.Location = new System.Drawing.Point(382, 57);
+            this.lv_Broker.Location = new System.Drawing.Point(381, 104);
             this.lv_Broker.Name = "lv_Broker";
             this.lv_Broker.Size = new System.Drawing.Size(478, 88);
             this.lv_Broker.TabIndex = 1111223;
