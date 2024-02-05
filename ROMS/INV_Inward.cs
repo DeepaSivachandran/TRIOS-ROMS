@@ -19,7 +19,7 @@ namespace ROMS
         DataError objError;
         public string varIDCOUNT = "";
         string varStockLocationId = "",varPRID="",varPICode="",varUTID="", varExpiryDate = "", varBatchNo="", varRKID="", varTamilname="", varBatchNoGeneration="";
-        public int varGIId = 0, pbDateflag = 0, varShelflife=0, varSTRID = 0, varSLID = 0,varUpdateflag=0, varStatusId = 0,varSTRPRID=0, varGISTRID=0;
+        public int varGIId = 0, pbDateflag = 0, varShelflife=0, varSTRID = 0, varSLID = 0,varUpdateflag=0, varStatusId = 0,varSTRPRID=0, varGISTRID=0,varcomID=0;
         string varShelflifevalue = "", varAcutalshelflife = "", result="", Shelflife="", ProductShelflifeValue="", ProductShelflifeType="";
         public bool VarSearchFlag = true;
         public bool varDiscardFlag = true;
@@ -119,9 +119,9 @@ namespace ROMS
                 dtInward.Columns.Add("GIPR_ShelfLifeType", typeof(int));
                 dtInward.Columns.Add("GIPR_ShelfLifePer", typeof(decimal));
                 udfnCmbConcern();
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpInwardDate.MinDate = MainForm.pbFYStartDate;
                 dpInwardDate.MaxDate = MainForm.pbCurrentDate;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnTransactionData();              
                 this.ActiveControl = txtStockLocation;
                 lblProductName.Text = "Search by P.I Code";
@@ -448,7 +448,7 @@ namespace ROMS
         {
             try
             {
-                cmbConcern.Focus();
+                //cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 objDT = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
@@ -466,7 +466,6 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = 1;
             }
             catch (Exception ex)
             {
@@ -3113,6 +3112,7 @@ namespace ROMS
                             varStockLocationId = Convert.ToString(varSLID);
                             txtStockLocation.Text = objDs.Tables[0].Rows[0]["SL_EName"].ToString();
                             cmbTransactionType.SelectedValue = 69;
+                            cmbConcern.SelectedValue = varcomID;
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {

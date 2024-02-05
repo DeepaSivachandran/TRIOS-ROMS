@@ -235,7 +235,7 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 //DataSet objDS = new DataSet();
                 //SPDataService objspservice = new SPDataService();
                 //objDS = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 7);

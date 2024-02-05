@@ -1553,7 +1553,7 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {

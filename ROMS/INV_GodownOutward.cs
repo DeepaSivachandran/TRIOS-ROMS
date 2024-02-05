@@ -434,6 +434,8 @@ namespace ROMS
                 }
                 else
                 {
+                    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), varDecimal);
+                    txtOutwardQuantity.Text = Qty;
                     epGoodsOutward.Clear();
                     txtOutwardQuantity.BackColor = Color.White;
                 }

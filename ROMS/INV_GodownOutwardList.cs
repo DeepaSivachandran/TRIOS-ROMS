@@ -491,7 +491,7 @@ namespace ROMS
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
                 dtpOutwardToDate.MaxDate = MainForm.pbCurrentDate;
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;
                 udfnList();
 
