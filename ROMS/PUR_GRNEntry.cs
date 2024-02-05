@@ -1716,7 +1716,10 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtLoadingCharge.Focus();
+                    if (grdUnitList.CurrentRow.Index==3)
+                    {
+                        txtLoadingCharge.Focus();
+                    }
                 }
             }
             catch (Exception ex)

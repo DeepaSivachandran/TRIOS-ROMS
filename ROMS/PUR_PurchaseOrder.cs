@@ -594,6 +594,7 @@ namespace ROMS
         {
             try
             {
+                string varERRQty = "0";
                 if (grdsupplieradd.RowCount > 0)
                 {
                     bool varErrorFlag = true;
@@ -660,7 +661,7 @@ namespace ROMS
                             tpSuppliername.Show("Invalid supplier.", txtSupplier, 5000);
                             lblSupplierCode.Text = "0";
                             lblschedule.Text = "0";
-                            varErrorFlag = true;
+                            varErrorFlag = false;
                         }
                         else
                         {
@@ -669,6 +670,30 @@ namespace ROMS
                             lblschedule.Text = values[1];
                             txtSupplier.BackColor = Color.White;
                         }
+                    }
+
+                    for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
+                    {
+                        string varZero = "0"; int varDecimal = Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmUT_Decimal"].Value);
+                        varZero =0+objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
+                        if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == varZero || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "0")
+                        {
+                            varcount++; grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
+                            grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.ForeColor = Color.Black;
+                            varERRQty = "1";
+                        }
+                        else
+                        {
+                            grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.White;
+                        }
+                    }
+                    if(varERRQty=="1")
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrorFlag = false;
                     }
                     //if (Convert.ToInt64(cmbStatus.SelectedValue) == -1)
                     //{
