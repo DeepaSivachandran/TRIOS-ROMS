@@ -599,7 +599,7 @@
             this.columnHeader6});
             this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lv_Broker.HideSelection = false;
-            this.lv_Broker.Location = new System.Drawing.Point(382, 100);
+            this.lv_Broker.Location = new System.Drawing.Point(382, 57);
             this.lv_Broker.Name = "lv_Broker";
             this.lv_Broker.Size = new System.Drawing.Size(478, 88);
             this.lv_Broker.TabIndex = 1111223;
@@ -1009,7 +1009,7 @@
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(179, 47);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(528, 93);
+            this.lvproduct.Size = new System.Drawing.Size(528, 150);
             this.lvproduct.TabIndex = 1111213;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -1203,6 +1203,7 @@
             this.btnNew.Size = new System.Drawing.Size(21, 22);
             this.btnNew.TabIndex = 1111217;
             this.btnNew.Text = "        ";
+            this.btnNew.Visible = false;
             this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // label20
@@ -1580,6 +1581,7 @@
             this.clmAddPro.HeaderText = "";
             this.clmAddPro.Image = global::ROMS.Properties.Resources.New;
             this.clmAddPro.Name = "clmAddPro";
+            this.clmAddPro.Visible = false;
             this.clmAddPro.Width = 50;
             // 
             // label16
@@ -3208,6 +3210,9 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnClose_KeyDown);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // btnSave
             // 
@@ -3222,6 +3227,9 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -3243,9 +3251,9 @@
             this.lblstatusvalue.ForeColor = System.Drawing.Color.Black;
             this.lblstatusvalue.Location = new System.Drawing.Point(1237, 4);
             this.lblstatusvalue.Name = "lblstatusvalue";
-            this.lblstatusvalue.Size = new System.Drawing.Size(107, 17);
+            this.lblstatusvalue.Size = new System.Drawing.Size(33, 17);
             this.lblstatusvalue.TabIndex = 37;
-            this.lblstatusvalue.Text = "Waiting for Approval";
+            this.lblstatusvalue.Text = "Draft";
             // 
             // errPurchaseentry
             // 
@@ -3390,7 +3398,6 @@
         private System.Windows.Forms.TextBox txtQtyUnit;
         private System.Windows.Forms.Label lblGrandTotal;
         private System.Windows.Forms.Label lblRupee;
-        private System.Windows.Forms.Label lblstatusvalue;
         private System.Windows.Forms.CheckBox chkInvoice;
         private System.Windows.Forms.TextBox txtFreeQty;
         private System.Windows.Forms.Label label19;
@@ -3516,36 +3523,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.TextBox txtProductName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProTname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmGrnMrp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmMRP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflife;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmactuallife;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmshelfper;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmLocation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmrack;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UTID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchenable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchgeneration;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflifeenable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn slid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rkid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmrkcount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTransId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmGRNQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDCQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPURPRIDDetail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmAddproflag;
-        private System.Windows.Forms.DataGridViewImageColumn clmAddPro;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
@@ -3578,5 +3555,36 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPURPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn UT_DECIMAL;
         public System.Windows.Forms.TextBox txtSupplier;
+        public System.Windows.Forms.Label lblstatusvalue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProTname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmGrnMrp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflife;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmactuallife;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmshelfper;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmLocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmrack;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UTID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchenable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchgeneration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflifeenable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn slid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rkid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmrkcount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTransId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmGRNQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDCQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPURPRIDDetail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmAddproflag;
+        private System.Windows.Forms.DataGridViewImageColumn clmAddPro;
     }
 }

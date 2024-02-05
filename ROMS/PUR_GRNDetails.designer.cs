@@ -1113,6 +1113,7 @@
             this.BtnNew.Text = "New Product";
             this.BtnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Visible = false;
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // lblDD

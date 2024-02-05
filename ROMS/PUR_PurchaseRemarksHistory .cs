@@ -60,7 +60,7 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            txtTable1.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
+                            txtRemarks1.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
                             txtCreatedby1.Text = objDs.Tables[0].Rows[0]["Created By"].ToString();
                             txtCreatedOn1.Text = objDs.Tables[0].Rows[0]["Created On"].ToString();
                             txtTable1.Text = objDs.Tables[0].Rows[0]["Transaction"].ToString();
@@ -68,7 +68,7 @@ namespace ROMS
                         }
                         if (objDs.Tables[0].Rows.Count > 1)
                         {
-                            txtTable2.Text = objDs.Tables[0].Rows[1]["Remarks"].ToString();
+                            txtRemarks2.Text = objDs.Tables[0].Rows[1]["Remarks"].ToString();
                             txtCreatedby2.Text = objDs.Tables[0].Rows[1]["Created By"].ToString();
                             txtCreatedOn2.Text = objDs.Tables[0].Rows[1]["Created On"].ToString();
                             txtTable2.Text = objDs.Tables[0].Rows[1]["Transaction"].ToString();

@@ -31,53 +31,53 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseRemarksHistory));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.txtCreatedby2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCreatedOn2 = new System.Windows.Forms.Label();
             this.txtTable2 = new System.Windows.Forms.Label();
             this.txtRemarks2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtCreatedby3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtCreatedOn3 = new System.Windows.Forms.Label();
             this.txtTable3 = new System.Windows.Forms.Label();
             this.txtRemarks3 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCreatedOn1 = new System.Windows.Forms.Label();
             this.txtCreatedby1 = new System.Windows.Forms.Label();
             this.txtTable1 = new System.Windows.Forms.Label();
             this.txtRemarks1 = new System.Windows.Forms.Label();
-            this.txtCreatedby3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCreatedOn3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // errUnit
             // 
             this.errUnit.ContainerControl = this;
             // 
-            // panel1
+            // panel12
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.panel5);
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(426, 211);
-            this.panel1.TabIndex = 0;
+            this.panel12.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Controls.Add(this.panel5);
+            this.panel12.Controls.Add(this.panel2);
+            this.panel12.Controls.Add(this.panel3);
+            this.panel12.Controls.Add(this.panel1);
+            this.panel12.Location = new System.Drawing.Point(3, 3);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(426, 211);
+            this.panel12.TabIndex = 0;
             // 
             // panel5
             // 
@@ -121,19 +121,19 @@
             this.label8.TabIndex = 2;
             this.label8.Text = "User1 @25/07/2023 01:06 PM";
             // 
-            // panel4
+            // panel2
             // 
-            this.panel4.BackColor = System.Drawing.Color.PowderBlue;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.txtCreatedby2);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.txtCreatedOn2);
-            this.panel4.Controls.Add(this.txtTable2);
-            this.panel4.Controls.Add(this.txtRemarks2);
-            this.panel4.Location = new System.Drawing.Point(9, 76);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(406, 58);
-            this.panel4.TabIndex = 2;
+            this.panel2.BackColor = System.Drawing.Color.PowderBlue;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.txtCreatedby2);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.txtCreatedOn2);
+            this.panel2.Controls.Add(this.txtTable2);
+            this.panel2.Controls.Add(this.txtRemarks2);
+            this.panel2.Location = new System.Drawing.Point(9, 76);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(406, 58);
+            this.panel2.TabIndex = 2;
             // 
             // txtCreatedby2
             // 
@@ -200,6 +200,37 @@
             this.panel3.Size = new System.Drawing.Size(406, 58);
             this.panel3.TabIndex = 1;
             // 
+            // txtCreatedby3
+            // 
+            this.txtCreatedby3.AutoSize = true;
+            this.txtCreatedby3.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCreatedby3.Location = new System.Drawing.Point(217, 5);
+            this.txtCreatedby3.Name = "txtCreatedby3";
+            this.txtCreatedby3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtCreatedby3.Size = new System.Drawing.Size(31, 15);
+            this.txtCreatedby3.TabIndex = 13;
+            this.txtCreatedby3.Text = "User1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(282, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(17, 15);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "@";
+            // 
+            // txtCreatedOn3
+            // 
+            this.txtCreatedOn3.AutoSize = true;
+            this.txtCreatedOn3.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCreatedOn3.Location = new System.Drawing.Point(297, 5);
+            this.txtCreatedOn3.Name = "txtCreatedOn3";
+            this.txtCreatedOn3.Size = new System.Drawing.Size(94, 15);
+            this.txtCreatedOn3.TabIndex = 12;
+            this.txtCreatedOn3.Text = "25/07/2023 01:02 PM";
+            // 
             // txtTable3
             // 
             this.txtTable3.AutoSize = true;
@@ -220,19 +251,19 @@
             this.txtRemarks3.TabIndex = 5;
             this.txtRemarks3.Text = "MRP Corrected. Please check now";
             // 
-            // panel2
+            // panel1
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.txtCreatedOn1);
-            this.panel2.Controls.Add(this.txtCreatedby1);
-            this.panel2.Controls.Add(this.txtTable1);
-            this.panel2.Controls.Add(this.txtRemarks1);
-            this.panel2.Location = new System.Drawing.Point(9, 10);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(406, 58);
-            this.panel2.TabIndex = 0;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.txtCreatedOn1);
+            this.panel1.Controls.Add(this.txtCreatedby1);
+            this.panel1.Controls.Add(this.txtTable1);
+            this.panel1.Controls.Add(this.txtRemarks1);
+            this.panel1.Location = new System.Drawing.Point(9, 10);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(406, 58);
+            this.panel1.TabIndex = 0;
             // 
             // label5
             // 
@@ -285,44 +316,13 @@
             this.txtRemarks1.TabIndex = 2;
             this.txtRemarks1.Text = "Purchase entry is waiting for approval";
             // 
-            // txtCreatedby3
-            // 
-            this.txtCreatedby3.AutoSize = true;
-            this.txtCreatedby3.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCreatedby3.Location = new System.Drawing.Point(217, 5);
-            this.txtCreatedby3.Name = "txtCreatedby3";
-            this.txtCreatedby3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtCreatedby3.Size = new System.Drawing.Size(31, 15);
-            this.txtCreatedby3.TabIndex = 13;
-            this.txtCreatedby3.Text = "User1";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(282, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 15);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "@";
-            // 
-            // txtCreatedOn3
-            // 
-            this.txtCreatedOn3.AutoSize = true;
-            this.txtCreatedOn3.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCreatedOn3.Location = new System.Drawing.Point(297, 5);
-            this.txtCreatedOn3.Name = "txtCreatedOn3";
-            this.txtCreatedOn3.Size = new System.Drawing.Size(94, 15);
-            this.txtCreatedOn3.TabIndex = 12;
-            this.txtCreatedOn3.Text = "25/07/2023 01:02 PM";
-            // 
             // PUR_PurchaseRemarksHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(433, 218);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel12);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -335,25 +335,25 @@
             this.Text = "Remarks History";
             this.Load += new System.EventHandler(this.PUR_RemarksHistory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.ErrorProvider errUnit;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label txtCreatedOn1;
         private System.Windows.Forms.Label txtRemarks1;
         private System.Windows.Forms.Label txtRemarks2;
