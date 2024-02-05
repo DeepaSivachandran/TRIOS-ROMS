@@ -49,6 +49,8 @@ namespace ROMS
         string result = "";
         public string varPICode = "", varPEname = "", varPTname = "", varPID = "", varUTID = "", varPRID = "", varRKID = "", varTotalItem = "", varUnit = "", varTransType = "";
         private int varviewtype = 0;
+        bool varVoucherSkip = false;
+        public int varClose = 0, varDateChange = 0;
 
         public INV_GodownOutward()
         {
@@ -58,10 +60,13 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varClose == 0)
                 {
-                    this.Close();
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -563,6 +568,7 @@ namespace ROMS
         {
             try
             {
+                varDateChange = 0;
                 udfnVocherno();
                 grdGoodsOutward.Rows.Clear();
                 if (btnSave.Text == "Save as Draft")
@@ -600,19 +606,10 @@ namespace ROMS
                         }
                         else
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(75);
-                            objDServ.CloseConnection();
-                            txtOutwardNo.Text = "";
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                            varVoucherSkip = false;
+                            if (varDateChange == 0)
                             {
-                                MainForm.objCP_Settings = new CP_Settings();
-                                //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
-                                //MainForm.objCP_Settings.varValues = Convert.ToString(44);
-                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                                MainForm.objCP_Settings.Show();
-                                this.Close();
+                                udfnvoucheradd();
                             }
                         }
                     }
@@ -628,7 +625,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnvoucheradd()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(75);
+                objDServ.CloseConnection();
+                txtOutwardNo.Text = "";
+                if (varVoucherSkip == false)
+                {
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        varVoucherSkip = true;
+                        varClose = 1;
+                        udfnclose();
+                        MainForm.objCP_Settings = new CP_Settings();
+                        //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                        //MainForm.objCP_Settings.varValues = Convert.ToString(44);
+                        MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                        MainForm.objCP_Settings.Show();
+                    }
+                    else { varVoucherSkip = true; }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -675,20 +702,27 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
-                udfnTransactionData();
-                //dtpOutwardDate.MaxDate = DateTime.Now;
-                grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                //txtStockLocation.BackColor = Color.White;
-                lblProductName.Text = "Search by P.I Code";
-                VarSearchFlag = true;
-                if (varGOId == 0)
+                if (varClose == 1)
                 {
-                    this.ActiveControl = txtStockLocation;
+                    this.BeginInvoke(new MethodInvoker(Close));
                 }
                 else
                 {
-                    this.ActiveControl = txtProduct;
-                    udfnEdit();
+                    udfnTransactionData();
+                    //dtpOutwardDate.MaxDate = DateTime.Now;
+                    grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                    //txtStockLocation.BackColor = Color.White;
+                    lblProductName.Text = "Search by P.I Code";
+                    VarSearchFlag = true;
+                    if (varGOId == 0)
+                    {
+                        this.ActiveControl = txtStockLocation;
+                    }
+                    else
+                    {
+                        this.ActiveControl = txtProduct;
+                        udfnEdit();
+                    }
                 }
             }
             catch (Exception ex)
@@ -744,6 +778,7 @@ namespace ROMS
         {
             try
             {
+                varDateChange = 1;
                 udfnVocherno();
             }
             catch (Exception ex)
