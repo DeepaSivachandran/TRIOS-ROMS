@@ -31,6 +31,8 @@ namespace ROMS
         public int SHID=0,varPRID = 0, varUTID = 0, varStockLocationId = 0, varRKID=0,varCOMID=0, varDecimal=0;
         Boolean BlnSearchImageYN = false;
         public bool VarSearchFlag = true;
+        bool varVoucherSkip = false;
+        public int varClose = 0, varDateChange = 0;
         public INV_StockHold()
         {
             InitializeComponent();
