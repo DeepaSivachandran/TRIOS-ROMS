@@ -6723,7 +6723,7 @@ namespace ROMS
         {
             try
             {
-                if (txtMappingGroup.Text.Trim() != "")
+                if (txtMappingGroup.Text != "")
                 {
                     ListViewItem selectedItem = lvMappingGroup.SelectedItems[0];
                     txtMappingGroup.Text = selectedItem.SubItems[0].Text;
@@ -6742,7 +6742,7 @@ namespace ROMS
         {
             try
             {
-                if (txtMappingSubGroup.Text.Trim() != "")
+                if (txtMappingSubGroup.Text != "")
                 {
                     ListViewItem selectedItem = lvMappingSubGroup.SelectedItems[0];
                     txtMappingSubGroup.Text = selectedItem.SubItems[0].Text;
@@ -7247,7 +7247,7 @@ namespace ROMS
         {
             try
             {
-                if (txtBrand.Text.Trim() != "")
+                if (txtBrand.Text != "")
                 {
                     ListViewItem selectedItem = lvBrand.SelectedItems[0];
                     txtBrand.Text = selectedItem.SubItems[0].Text;

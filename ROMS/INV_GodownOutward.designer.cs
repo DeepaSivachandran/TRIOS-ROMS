@@ -194,7 +194,7 @@
             this.columnHeader6});
             this.lvStockLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvStockLocation.HideSelection = false;
-            this.lvStockLocation.Location = new System.Drawing.Point(409, 76);
+            this.lvStockLocation.Location = new System.Drawing.Point(409, 74);
             this.lvStockLocation.Name = "lvStockLocation";
             this.lvStockLocation.Size = new System.Drawing.Size(322, 157);
             this.lvStockLocation.TabIndex = 958806;
@@ -234,7 +234,7 @@
             this.lvproduct.FullRowSelect = true;
             this.lvproduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvproduct.HideSelection = false;
-            this.lvproduct.Location = new System.Drawing.Point(24, 146);
+            this.lvproduct.Location = new System.Drawing.Point(24, 144);
             this.lvproduct.Name = "lvproduct";
             this.lvproduct.Size = new System.Drawing.Size(874, 179);
             this.lvproduct.TabIndex = 1111157;
@@ -546,7 +546,7 @@
             // 
             // cmbConcern
             // 
-            this.cmbConcern.BackColor = System.Drawing.SystemColors.Control;
+            this.cmbConcern.BackColor = System.Drawing.SystemColors.Window;
             this.cmbConcern.DropDownWidth = 94;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;

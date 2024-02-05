@@ -2586,7 +2586,7 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                                 }
-                                if (col.Name == "Supplier" || col.Name == "City")
+                                if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Current Status")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 25;
                                 }
@@ -2636,13 +2636,13 @@ namespace ROMS
                                 {
                                     if (cIndex != 2)
                                     {
-                                        if (cIndex == 4)
-                                        {
-                                            ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = varSLno;
-                                            varSLno++;
-                                        }
-                                        else
-                                        {
+                                        //if (cIndex == 4)
+                                        //{
+                                        //    ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = varSLno;
+                                        //    varSLno++;
+                                        //}
+                                        //else
+                                        //{
                                             //ExcelSheet.Row(i + 2).Style.Fill.PatternType = ExcelFillStyle.Solid;
                                             //ExcelSheet.Row(i + 2).Style.Fill.BackgroundColor.SetColor(Color.Red);
                                             //rowa.Interior.Color = System.Drawing.Color.Red;
@@ -2654,9 +2654,7 @@ namespace ROMS
                                                 //------SET THE BACK COLOR FOR GRID TO EXCEL
                                                 ExcelSheet.Cells[rowa.Index + 3, cIndex - 1].Interior.Color = System.Drawing.ColorTranslator.ToOle(cellBackColor);
                                             }
-
-
-                                        }
+                                        //}
                                     }
                                 }
                             }

@@ -33,9 +33,11 @@ namespace ROMS
         public int varStatus = 0;
         public int varSLID = 0;
         public int varRKID = 0;
+        public int varClose = 0, varCloseFlag = 0, varDateChange = 0;
         public string varErrQty = "0";
         public string SSRUpdatevalue = "";
         public bool VarSearchFlag = true;
+        bool varVoucherSkip = false;
         byte[] varobjBarCodeByte;
         List<int> varProductsIDs = new List<int>(); 
         public INV_StockRequest()
@@ -77,7 +79,7 @@ namespace ROMS
                 {
                     if (varStockRequestID == 0)
                     {
-                        udfnTransferNo();
+                        //udfnTransferNo();
                         dpDate.Value = MainForm.pbCurrentDate;
                         cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                     }
@@ -90,9 +92,16 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
-                if (varStatus != 29)
+                if (varClose == 1)
                 {
-                    this.ActiveControl = txtProductNamePICode;
+                    this.BeginInvoke(new MethodInvoker(Close));
+                }
+                else
+                {
+                    if (varStatus != 29)
+                    {
+                        this.ActiveControl = txtProductNamePICode;
+                    }
                 }
             }
             catch (Exception ex)
@@ -324,23 +333,26 @@ namespace ROMS
         {
             try
             {
-                if (varModifiedFlag == 1)
+                if (varClose == 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (varModifiedFlag == 1)
                     {
-                        this.Close();
-                        MainForm.objINV_StockRequestList.udfnList();
+                        DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                            MainForm.objINV_StockRequestList.udfnList();
+                        }
+                        else
+                        { btnSave.Focus(); }
                     }
                     else
-                    { btnSave.Focus(); }
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
                     {
-                        this.Close();
+                        DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                        }
                     }
                 }
             }
@@ -420,7 +432,6 @@ namespace ROMS
         {
             try
             {
-                udfnTransferNo();
                 grdStockRequest.Rows.Clear();
                 dtStock.Rows.Clear();
                 varProducts = "";
@@ -432,6 +443,8 @@ namespace ROMS
                     txtRequiredQty.Text = "";
                     txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
                 }
+                varDateChange = 0;
+                udfnTransferNo();
             }
             catch (Exception ex)
             {
@@ -461,19 +474,10 @@ namespace ROMS
                         }
                         else
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(75);
-                            objDServ.CloseConnection();
-                            txtRequestNo.Text = "";
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                            varVoucherSkip = false;
+                            if (varDateChange == 0)
                             {
-                                MainForm.objCP_Settings = new CP_Settings();
-                                //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
-                                //MainForm.objCP_Settings.varValues = Convert.ToString(44);
-                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                                MainForm.objCP_Settings.Show();
-                                this.Close();
+                                udfnvoucheradd();
                             }
                         }
                     }
@@ -484,7 +488,35 @@ namespace ROMS
                 }
             }
         }
-
+        public void udfnvoucheradd()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(75);
+                objDServ.CloseConnection();
+                txtRequestNo.Text = "";
+                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    varVoucherSkip = true;
+                    varClose = 1;
+                    udfnclose();
+                    MainForm.objCP_Settings = new CP_Settings();
+                    //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                    //MainForm.objCP_Settings.varValues = Convert.ToString(44);
+                    MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                    MainForm.objCP_Settings.Show();
+                    varCloseFlag = 1;
+                }
+                else { varVoucherSkip = true; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtProductNamePICode_Enter(object sender, EventArgs e)
         {
             try

@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
         public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
-        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0;
+        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0,varClose=0,varDateChange=0;
         public PUR_GRNEntry()
         {
             InitializeComponent();
@@ -52,11 +52,14 @@ namespace ROMS
             {
                 //if (varCloseFlag == 0)
                 //{
-                    //DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    //if (dialogResult == DialogResult.Yes)
-                    //{
-                        this.Close();
-                  //  } 
+                //DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
+                if (varClose == 0)
+                {
+                    this.Close();
+                }
+                //} 
                 //}
                 //else
                 //{
@@ -79,11 +82,19 @@ namespace ROMS
             try
             {
                 btnDC.Enabled = false;
-                this.ActiveControl = txtSupplier;
+                //this.ActiveControl = txtSupplier;
                 udfnDropdownLoad();
-                udfnDateSet();
-                udfnUnitListGrid();
-                udfnEditLoad();
+                if(varClose==1)
+                {
+                    this.BeginInvoke(new MethodInvoker(Close));
+                }
+                else
+                {
+                    this.ActiveControl = txtSupplier;
+                    udfnDateSet();
+                    udfnUnitListGrid();
+                    udfnEditLoad();
+                }
             }
             catch (Exception ex)
             {
@@ -291,6 +302,7 @@ namespace ROMS
                 }
 
                 varcomid = Convert.ToString(cmbConcern.SelectedValue);
+                varDateChange = 0;
                 udfnvoucherload();
             }
             catch (Exception ex)
@@ -323,7 +335,11 @@ namespace ROMS
                         }
                         else
                         {
-                            udfnvoucheradd();
+                            varVoucherSkip = false;
+                            if (varDateChange == 0)
+                            {
+                                udfnvoucheradd();
+                            }
                             //if (Convert.ToInt32(cmbConcern.SelectedValue) == MainForm.pbDefaultComId)
                             //{
                             //    varVoucherSkip = false;
@@ -358,6 +374,8 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         varVoucherSkip = true;
+                        varClose = 1;
+                        udfnclose();
                         //MainForm.objCP_Settings = new CP_Settings();
                         //MainForm.objCP_Settings.MdiParent = this.ParentForm;
                         //MainForm.objCP_Settings.Show();
@@ -369,7 +387,7 @@ namespace ROMS
                         MainForm.objCP_Settings.MdiParent = this.ParentForm;
                         MainForm.objCP_Settings.Show();
                         varCloseFlag = 1;
-                        udfnclose();
+                        //udfnclose();
                     }
                     else { varVoucherSkip = true; }
                 } 
@@ -1882,6 +1900,7 @@ namespace ROMS
             {
                 if (varCloseFlag == 0)
                 {
+                    udfntooltiphide();
                     DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -1909,6 +1928,7 @@ namespace ROMS
         {
             try
             {
+                varDateChange = 1;
                 udfnvoucherload();
             }
             catch (Exception ex)
