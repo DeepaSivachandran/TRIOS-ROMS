@@ -501,18 +501,18 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnRemarks_Click(object sender, EventArgs e)
+        public void udfnRemark()
         {
             try
             {
                 string varID = "0";
                 int varflag = 0;
-                if(Convert.ToInt32(cmbEntryType.SelectedValue)==54) //grn
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) == 54) //grn
                 {
                     varflag = 54;
                     varID = pbGRNNo;
                 }
-                else if(Convert.ToInt32(cmbEntryType.SelectedValue) == 55) //PO
+                else if (Convert.ToInt32(cmbEntryType.SelectedValue) == 55) //PO
                 {
                     varflag = 55;
                     varID = pbPONO;
@@ -523,10 +523,22 @@ namespace ROMS
                     varID = pbDCNo;
                 }
                 MainForm.objPUR_PurchaseRemarksHistory = new PUR_PurchaseRemarksHistory();
-                MainForm.objPUR_PurchaseRemarksHistory.varID =Convert.ToInt32(varID);
-                MainForm.objPUR_PurchaseRemarksHistory.varRemarkFlag =Convert.ToInt32(varflag);
-                MainForm.objPUR_PurchaseRemarksHistory.varPurchaseID =Convert.ToInt32(pbPurchaseno);
-              //  MainForm.objPUR_PurchaseRemarksHistory.varRemarkFlag = varRemarkFlag;
+                MainForm.objPUR_PurchaseRemarksHistory.varID = Convert.ToInt32(varID);
+                MainForm.objPUR_PurchaseRemarksHistory.varRemarkFlag = Convert.ToInt32(varflag);
+                MainForm.objPUR_PurchaseRemarksHistory.varPurchaseID = Convert.ToInt32(pbPurchaseno);
+                MainForm.objPUR_PurchaseRemarksHistory.udfnRemarkList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnRemarks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnRemark();
                 MainForm.objPUR_PurchaseRemarksHistory.ShowDialog();
             }
             catch (Exception ex)
@@ -611,6 +623,11 @@ namespace ROMS
                 if (pbPurchaseno != "0")
                 {
                     varRemarkFlag = 1;
+                    udfnRemark();
+                    if (varRemarkCount == 0)
+                    {
+                        btnRemarks.Enabled = false;
+                    }
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
@@ -4314,7 +4331,6 @@ namespace ROMS
                                         {
                                             varCloseflag = 1;
                                             pbPurchaseno = varvalue[2];
-                                            varRemarkFlag = 1;
                                             btnRemarks.Enabled = true;
                                             udfnPurchaseEntryTabLoad(); //tab2 load
                                         }
@@ -5831,6 +5847,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+
         private void BtnClose_KeyDown(object sender, KeyEventArgs e)
         {
             try
