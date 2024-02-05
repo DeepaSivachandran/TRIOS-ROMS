@@ -522,11 +522,14 @@ namespace ROMS
                     varflag = 57;
                     varID = pbDCNo;
                 }
+                else if (Convert.ToInt32(cmbEntryType.SelectedValue) == 56) //Direct
+                {
+                    varflag = 56;
+                }
                 MainForm.objPUR_PurchaseRemarksHistory = new PUR_PurchaseRemarksHistory();
                 MainForm.objPUR_PurchaseRemarksHistory.varID = Convert.ToInt32(varID);
                 MainForm.objPUR_PurchaseRemarksHistory.varRemarkFlag = Convert.ToInt32(varflag);
                 MainForm.objPUR_PurchaseRemarksHistory.varPurchaseID = Convert.ToInt32(pbPurchaseno);
-                MainForm.objPUR_PurchaseRemarksHistory.udfnRemarkList();
             }
             catch (Exception ex)
             {
@@ -624,6 +627,7 @@ namespace ROMS
                 {
                     varRemarkFlag = 1;
                     udfnRemark();
+                    MainForm.objPUR_PurchaseRemarksHistory.udfnRemarkList();
                     if (varRemarkCount == 0)
                     {
                         btnRemarks.Enabled = false;
