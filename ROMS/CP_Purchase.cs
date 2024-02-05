@@ -903,7 +903,9 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { pbPONO = "0"; }
+            finally
+            { //pbPONO = "0";
+            }
         }
         public void udfnDropdownLoad()
         {
@@ -2961,21 +2963,21 @@ namespace ROMS
                 int varmsgID=0;
                 if (Convert.ToInt32(cmbEntryType.SelectedValue) == 54) //against grn
                 {
-                    if (Convert.ToInt32(pbGRNNo) == 0)
+                    if (Convert.ToString(pbGRNNo) == "0")
                     { varerrFlag = 1;    varmsgID = 105;   }
                     else
                     { varerrFlag = 0; }
                 }
                 if (Convert.ToInt32(cmbEntryType.SelectedValue) == 55) //against po
                 {
-                    if (Convert.ToInt32(pbPONO) == 0)
+                    if (Convert.ToString(pbPONO) == "0")
                     { varerrFlag = 1; varmsgID = 81;  }
                     else
                     { varerrFlag = 0; }
                 }
                 if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
                 {
-                    if (Convert.ToInt32(pbDCNo) == 0)
+                    if (Convert.ToString(pbDCNo) == "0")
                     { varerrFlag = 1; varmsgID = 106; }
                     else
                     { varerrFlag = 0; }
