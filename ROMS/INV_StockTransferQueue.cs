@@ -894,6 +894,7 @@ namespace ROMS
                         MainForm.objINV_StockTransfer.EditFlag = 1;
                         MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
                         MainForm.objINV_StockTransfer.varStockRequestSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
+                        MainForm.objINV_StockTransfer.ComID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["COMID"].Value);
                         MainForm.objINV_StockTransfer.Show();
                     }
                 }

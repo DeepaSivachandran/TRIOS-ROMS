@@ -67,6 +67,7 @@ namespace ROMS
                 MainForm.objINV_Inward.varUpdateflag = 1;
                 MainForm.objINV_Inward.varSTRID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["STRID"].Value);
                 MainForm.objINV_Inward.varSLID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value);
+                MainForm.objINV_Inward.varcomID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["COMID"].Value);
                 MainForm.objINV_Inward.MdiParent = this.ParentForm;
                 MainForm.objINV_Inward.Show();
             }
@@ -280,7 +281,7 @@ namespace ROMS
             try
             {
                 udfnConcern();
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;
                 //DataSet objDs = new DataSet();
                 //SPDataService objspservice = new SPDataService();
