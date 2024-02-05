@@ -20,6 +20,8 @@ namespace ROMS
         public int varRemarkCount=0;
         DataTable dtInwardPurchase = new DataTable();
         ToolTip tpInwardNo = new ToolTip();
+        bool varVoucherSkip = false;
+        public int varClose = 0, varDateChange = 0;
         public INV_InwardPurchase()
         {
             InitializeComponent();
@@ -29,18 +31,25 @@ namespace ROMS
         {
             try
             {
-                ClearSupplier();
-                EditLoad();
-                udfnVocherno();
-                udfnUddtTable();
-                MainForm.objINV_InwardQueueList_Remarks = new INV_InwardQueueList_Remarks();
-                MainForm.objINV_InwardQueueList_Remarks.varID = varID;
-                MainForm.objINV_InwardQueueList_Remarks.varRemarkFlag = varRemarkFlag;
-                MainForm.objINV_InwardQueueList_Remarks.varFlag = varGRNPurchaseFlag;
-                MainForm.objINV_InwardQueueList_Remarks.udfnRemarkList();
-                if (varRemarkCount == 0)
+                if (varClose == 1)
                 {
-                    btnRemarks.Enabled = false;
+                    this.BeginInvoke(new MethodInvoker(Close));
+                }
+                else
+                {
+                    ClearSupplier();
+                    EditLoad();
+                    udfnVocherno();
+                    udfnUddtTable();
+                    MainForm.objINV_InwardQueueList_Remarks = new INV_InwardQueueList_Remarks();
+                    MainForm.objINV_InwardQueueList_Remarks.varID = varID;
+                    MainForm.objINV_InwardQueueList_Remarks.varRemarkFlag = varRemarkFlag;
+                    MainForm.objINV_InwardQueueList_Remarks.varFlag = varGRNPurchaseFlag;
+                    MainForm.objINV_InwardQueueList_Remarks.udfnRemarkList();
+                    if (varRemarkCount == 0)
+                    {
+                        btnRemarks.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -183,19 +192,10 @@ namespace ROMS
                         }
                         else
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(75);
-                            objDServ.CloseConnection();
-                            txtInwardNo.Text = "";
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                            varVoucherSkip = false;
+                            if (varDateChange == 0)
                             {
-                                MainForm.objCP_Settings = new CP_Settings();
-                                MainForm.objCP_Settings.varconcernvalue =Convert.ToString(varConcernId);
-                                MainForm.objCP_Settings.varValues = Convert.ToString(38);
-                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                                MainForm.objCP_Settings.Show();
-                                this.Close();
+                                udfnvoucheradd();
                             }
                         }
                     }
@@ -203,6 +203,37 @@ namespace ROMS
                     {
                         txtInwardNo.Text = "";
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnvoucheradd()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(75);
+                objDServ.CloseConnection();
+                txtInwardNo.Text = "";
+                if (varVoucherSkip == false)
+                {
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        varVoucherSkip = true;
+                        varClose = 1;
+                        udfnclose();
+                        MainForm.objCP_Settings = new CP_Settings();
+                        //MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                        //MainForm.objCP_Settings.varValues = Convert.ToString(44);
+                        MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                        MainForm.objCP_Settings.Show();
+                    }
+                    else { varVoucherSkip = true; }
                 }
             }
             catch (Exception ex)
