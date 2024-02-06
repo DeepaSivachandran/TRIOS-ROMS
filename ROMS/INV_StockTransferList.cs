@@ -532,8 +532,9 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterProduct.Visible = false;
                 lvSLocation.Visible = false;
-                lvProduct.Visible = false;
+                //lvProduct.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1544,8 +1545,9 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterProduct.Visible = false;
                 lvSLocation.Visible = false;
-                lvProduct.Visible = false;
+                //lvProduct.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
