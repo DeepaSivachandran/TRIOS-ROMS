@@ -5529,8 +5529,12 @@ namespace ROMS
                             break;
                     }
                 }
+                int vscroll = grdFinalSupplierMapping.FirstDisplayedScrollingRowIndex;
+                int hscroll = grdFinalSupplierMapping.FirstDisplayedScrollingColumnIndex;
                 int varPRID = Convert.ToInt16(grdFinalSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
                 udfnGetMappedProductCount(varPRID);
+                grdFinalSupplierMapping.FirstDisplayedScrollingRowIndex = vscroll;
+                grdFinalSupplierMapping.FirstDisplayedScrollingColumnIndex = hscroll;
                 // udfnGetProductCount(0);       
             }
             catch (Exception ex)
@@ -7936,8 +7940,12 @@ namespace ROMS
             {
                 if (e.ColumnIndex == 0)
                 {
+                    int vscroll = grdSupplierMappingLoad.FirstDisplayedScrollingRowIndex;
+                    int hscroll = grdSupplierMappingLoad.FirstDisplayedScrollingColumnIndex;
                     int varProId = Convert.ToInt16(grdSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
                     udfnGetProductCount(varProId);
+                    grdSupplierMappingLoad.FirstDisplayedScrollingRowIndex = vscroll;
+                    grdSupplierMappingLoad.FirstDisplayedScrollingColumnIndex = hscroll;
                 }
             }
             catch (Exception ex)
