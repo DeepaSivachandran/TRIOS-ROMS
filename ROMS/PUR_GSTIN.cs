@@ -67,7 +67,35 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGSTINSave()
+        {
+            try
+            {
+                if(Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text)!=0)
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    string result = "";
+                    result = objspdservice.udfnSupplierMaster(12, Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "",txtGstin.Text.Trim() , 0,
+                    0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, "",
+                    "","", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0);
 
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                       // MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
@@ -85,6 +113,7 @@ namespace ROMS
                     else
                     {
                         errUnit.Clear();
+                        udfnGSTINSave();
                         MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
                         this.Close();
                     }
@@ -105,6 +134,7 @@ namespace ROMS
             try
             {
                 btnSave.BackColor = Color.LemonChiffon;
+
             }
             catch (Exception ex)
             {
@@ -119,6 +149,19 @@ namespace ROMS
             try
             {
                 btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_GSTIN_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                txtGstin.Text = MainForm.objCP_Purchase.txtGstin.Text;
             }
             catch (Exception ex)
             {
