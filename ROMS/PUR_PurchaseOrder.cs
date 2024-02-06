@@ -44,7 +44,9 @@ namespace ROMS
         private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                MainForm objMainForm = new MainForm();
+                objMainForm.udfnGetDefaultCompany();
                 tbSupplierDetails.Enabled = false;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) OR MSTID=-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
@@ -459,19 +461,6 @@ namespace ROMS
                 if (e.KeyCode == Keys.Escape)
                 {
                     udfnclose();
-                }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblDProduct.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblDProduct.Text = "Search by Product Name";
-                    }
                 }
             }
             catch (Exception ex)
@@ -2061,6 +2050,19 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblDProduct.Text = "Search by P.I Code";
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblDProduct.Text = "Search by Product Name";
+                    }
+                }
                 //if (e.KeyCode == Keys.Enter)
                 //{
                 //    txtProductQty.Focus();
@@ -2163,7 +2165,8 @@ namespace ROMS
                 */
 
                 //// DataGrid View TextBox Search Event Handle
-                if (DGV_FilterProduct.CurrentCell == null)
+                ///
+                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
                 {
                     return;
                 }
@@ -2185,7 +2188,14 @@ namespace ROMS
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
 
-                            txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                            if (VarSearchFlag == true)
+                            {
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
+                            }
+                            else
+                            {
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                            }
 
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
@@ -2197,7 +2207,14 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                if (VarSearchFlag == true)
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
+                                }
+                                else
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                }
                             }
 
                             txtProductName.Focus();
@@ -2208,9 +2225,10 @@ namespace ROMS
                             {
                                 if (DGV_FilterProduct.Rows.Count > 0)
                                 {
-                                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                                    varUpDownKey = 1;
                                     lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                                     lblUnitDecimal.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString();
+                                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                                     udfnProductAdd();
                                     udfnPossibleSupplierLoad();
                                     DGV_FilterProduct.Visible = false;
@@ -2946,22 +2964,29 @@ namespace ROMS
                             if (objDs.Tables.Count != 0)
                             {
                                 if (objDs.Tables[0].Rows.Count != 0)
-                                {
-                                    DGV_FilterProduct.Visible = true;
-                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    //{
-                                        //string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["pr_retailrate"].ToString(), objDs.Tables[0].Rows[i]["UT_Decimal"].ToString() };
-                                        //ListViewItem objList = new ListViewItem(row);
-                                        //objList.UseItemStyleForSubItems = false;
-                                        //objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                        //objList.SubItems[0].Font = new Font("Oswald Regular", 11.25F);
-                                        //objList.SubItems[5].Font = new Font("Oswald Regular", 11.25F);
-                                        //lvproduct.Items.Add(objList);
-                                        //DGV_FilterProduct.DataSource = null;
-                                        //DGV_FilterProduct.Refresh();
-                                        DGV_FilterProduct.DataSource = objDs.Tables[0];
-                                    //}
+                                {   /*
+                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    {
+                                        string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UT_Symbol"].ToString(), objDs.Tables[0].Rows[i]["pr_retailrate"].ToString(), objDs.Tables[0].Rows[i]["UT_Decimal"].ToString() };
+                                        ListViewItem objList = new ListViewItem(row);
+                                        objList.UseItemStyleForSubItems = false;
+                                        objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                        objList.SubItems[0].Font = new Font("Oswald Regular", 11.25F);
+                                        objList.SubItems[5].Font = new Font("Oswald Regular", 11.25F);
+                                        lvproduct.Items.Add(objList);
+                                        DGV_FilterProduct.DataSource = null;
+                                        DGV_FilterProduct.Refresh();
+                                    }
+                                    //lvproduct.Visible = true;
+                                    //lvproduct.Columns[0].Width = 100;
+                                    //lvproduct.Columns[3].Width = 0;
+                                    //lvproduct.Columns[4].Width = 50;
+                                    //lvproduct.Columns[5].Width = 60;
+                                    //lvproduct.Columns[6].Width = 0;
+                                    */
 
+                                    DGV_FilterProduct.Visible = true;
+                                    DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Visible = true;
                                     DGV_FilterProduct.Columns["pr_retailrate"].Visible = true;
@@ -2977,7 +3002,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UT_Symbol"].Width = 60;
                                     DGV_FilterProduct.Columns["pr_retailrate"].Width = 90;
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
-                                    DGV_FilterProduct.Columns["pr_retailrate"].DisplayIndex = 3;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 3;
+                                    DGV_FilterProduct.Columns["pr_retailrate"].DisplayIndex = 4;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
                                     DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
@@ -2986,13 +3012,6 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["pr_retailrate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                    //lvproduct.Visible = true;
-
-                                    //lvproduct.Columns[0].Width = 100;
-                                    //lvproduct.Columns[3].Width = 0;
-                                    //lvproduct.Columns[4].Width = 50;
-                                    //lvproduct.Columns[5].Width = 60;
-                                    //lvproduct.Columns[6].Width = 0;
                                     if (VarSearchFlag == false)
                                     {
                                         DGV_FilterProduct.Columns["PR_EName"].Visible = true;
@@ -3132,6 +3151,7 @@ namespace ROMS
         {
             try
             {
+                varUpDownKey = 1;
                 udfnGridviewProduct();
                 udfnPossibleSupplierLoad();
             }
@@ -3149,9 +3169,9 @@ namespace ROMS
         {
             try
             {
-                txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                 lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                 lblUnitDecimal.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString();
+                txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                 udfnProductAdd();
             }
             catch (Exception ex)
@@ -3210,9 +3230,10 @@ namespace ROMS
                             {
                                 if (DGV_FilterProduct.Rows.Count > 0)
                                 {
-                                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                                    varUpDownKey = 1;
                                     lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                                     lblUnitDecimal.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString();
+                                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                                     udfnProductAdd();
                                     udfnPossibleSupplierLoad();
                                     DGV_FilterProduct.Visible = false;

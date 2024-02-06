@@ -81,6 +81,8 @@ namespace ROMS
         {
             try
             {
+                MainForm objMainForm = new MainForm();
+                objMainForm.udfnGetDefaultCompany();
                 btnDC.Enabled = false;
                 //this.ActiveControl = txtSupplier;
                 udfnDropdownLoad();

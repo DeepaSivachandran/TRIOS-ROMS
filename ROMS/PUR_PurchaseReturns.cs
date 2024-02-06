@@ -118,7 +118,10 @@ namespace ROMS
                     dpCreditNoteDate.Visible = false;
                     dpDCreditNoteDate.Visible = false;
                     btnView.Visible = true;
-                    udfnView();
+                    if (varStatusId != 39)
+                    {
+                        udfnView();
+                    }
                     varModifiedFlag = 1;
                 }
                 else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64) //Debit Note Created
@@ -1600,8 +1603,10 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbReasonForClosing.Select(int.MaxValue, 0)));
-                udfnReasonforClosing();
+                
+                    BeginInvoke(new Action(() => cmbReasonForClosing.Select(int.MaxValue, 0)));
+                    udfnReasonforClosing();
+                
             }
             catch (Exception ex)
             {
