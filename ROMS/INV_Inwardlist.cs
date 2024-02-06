@@ -732,10 +732,10 @@ namespace ROMS
                     //}
                     DGV_FilterProduct.Focus();
                 }
-                //if (e.KeyCode == Keys.Enter)
-                //{
-                //    cmbStatus.Focus();
-                //}
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStatus.Focus();
+                }
                 if (DGV_FilterProduct.CurrentCell == null)
                 {
                     return;
@@ -892,44 +892,55 @@ namespace ROMS
         {
             try
             {
-
-                //lvProduct.Items.Clear();
-                if (txtProductName.Text.Length > 0)
+                if (varUpDownKey==0)
                 {
-                    MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 53;
-                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                    objMR_Product.paraLocationId = Convert.ToInt32(varStockLocationId);
-                    objMR_Product.paraProductName = txtProductName.Text;
-                    objMR_Product.ParaFromDate = dpFromDate.Text;
-                    objMR_Product.ParaToDate = dpToDate.Text;
-                    objMR_Product.paraId = 0;
-                    DataSet objDs = new DataSet();
-                    SPDataService objspdservice = new SPDataService();
-                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    //lvProduct.Items.Clear();
+                    if (txtProductName.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        MR_Product objMR_Product = new MR_Product();
+                        objMR_Product.paraViewType = 53;
+                        objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Product.paraLocationId = Convert.ToInt32(varStockLocationId);
+                        objMR_Product.paraProductName = txtProductName.Text;
+                        objMR_Product.ParaFromDate = dpFromDate.Text;
+                        objMR_Product.ParaToDate = dpToDate.Text;
+                        objMR_Product.paraId = 0;
+                        DataSet objDs = new DataSet();
+                        SPDataService objspdservice = new SPDataService();
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                //{
-                                //    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
-                                //    ListViewItem objList = new ListViewItem(row);
-                                //    objList.UseItemStyleForSubItems = false;
-                                //    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                //    lvProduct.Items.Add(objList);
-                                //}
-                                DGV_FilterProduct.Visible = true;
-                                DGV_FilterProduct.DataSource = objDs.Tables[0];
-                                DGV_FilterProduct.Columns["PRID"].Visible = false;
-                                DGV_FilterProduct.Columns["PR_EName"].Width = 320;
-                                DGV_FilterProduct.Columns["PR_TName"].Width = 320;
-                                DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
-                                DGV_FilterProduct.Columns["PR_EName"].DisplayIndex = 2;
-                                DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 3;
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    //{
+                                    //    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
+                                    //    ListViewItem objList = new ListViewItem(row);
+                                    //    objList.UseItemStyleForSubItems = false;
+                                    //    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    //    lvProduct.Items.Add(objList);
+                                    //}
+                                    DGV_FilterProduct.Visible = true;
+                                    DGV_FilterProduct.DataSource = objDs.Tables[0];
+                                    DGV_FilterProduct.Columns["PRID"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_EName"].Width = 320;
+                                    DGV_FilterProduct.Columns["PR_TName"].Width = 320;
+                                    DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
+                                    DGV_FilterProduct.Columns["PR_EName"].DisplayIndex = 2;
+                                    DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 3;
+                                    DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
+                                    DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
+                                    DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "PI Code";
+                                    DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                }
+                                else
+                                {
+                                    DGV_FilterProduct.DataSource = null;
+                                    DGV_FilterProduct.Visible = false;
+                                }
                             }
                             else
                             {
@@ -947,13 +958,8 @@ namespace ROMS
                     {
                         DGV_FilterProduct.DataSource = null;
                         DGV_FilterProduct.Visible = false;
+                        //DGV_FilterProduct.Items.Clear();
                     }
-                }
-                else
-                {
-                    DGV_FilterProduct.DataSource = null;
-                    DGV_FilterProduct.Visible = false;
-                    //DGV_FilterProduct.Items.Clear();
                 }
             }
             catch (Exception ex)
@@ -1543,6 +1549,7 @@ namespace ROMS
             try
             {
                 udfnProductEvent();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
