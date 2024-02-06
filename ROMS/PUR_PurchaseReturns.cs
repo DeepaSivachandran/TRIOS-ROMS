@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpAmount = new ToolTip();
 
         public int varReturnDCID = 0, varCloseFlag = 0;
-        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varModifiedFlag = 0, varDebitDCID=0, varEditFlag=0;
+        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varModifiedFlag = 0, varDebitDCID=0, varEditFlag=0,varClose = 0, varDateChange = 0;
         public string varSuppliervalue = "";
         DataTable dtPurchaseReturnDC = new DataTable();
         public DataTable dtExchangeProducts = new DataTable();
@@ -34,6 +34,7 @@ namespace ROMS
         public string varSupplierID = "";
         public string varSupplierScheduleID = "";
         public string varSupplierName = "";
+        bool varVoucherSkip = false;
         public PUR_PurchaseReturns()
         {
             InitializeComponent();
@@ -157,40 +158,43 @@ namespace ROMS
         {
             try
             {
-                if (varStatusId == 39)
+                if (varClose == 0)
                 {
-                    this.Close();
-                }
-                else
-                {
-                    if (varModifiedFlag == 1)
+                    if (varStatusId == 39)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            this.Close();
-                            MainForm.objINV_SalesInvoiceList.Show();
-                            MainForm.objINV_SalesInvoiceList.udfnList();
-                        }
-                        else
-                        { btnSave.Focus(); }
+                        this.Close();
                     }
                     else
                     {
-                        if (varCloseFlag == 0)
+                        if (varModifiedFlag == 1)
                         {
-                            DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
                                 this.Close();
                                 MainForm.objINV_SalesInvoiceList.Show();
                                 MainForm.objINV_SalesInvoiceList.udfnList();
                             }
+                            else
+                            { btnSave.Focus(); }
                         }
-                        else { this.Close(); }
+                        else
+                        {
+                            if (varCloseFlag == 0)
+                            {
+                                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    this.Close();
+                                    MainForm.objINV_SalesInvoiceList.Show();
+                                    MainForm.objINV_SalesInvoiceList.udfnList();
+                                }
+                            }
+                            else { this.Close(); }
+                        }
                     }
+                    MainForm.objINV_SalesInvoiceList.udfnList();
                 }
-                MainForm.objINV_SalesInvoiceList.udfnList();
             }
             catch (Exception ex)
             {
@@ -242,25 +246,47 @@ namespace ROMS
                         }
                         else
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(75);
-                            objDServ.CloseConnection();
-                            txtReturnDcNo.Text = "";
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                            varVoucherSkip = false;
+                            if (varDateChange == 0)
                             {
-                                MainForm.objCP_Settings = new CP_Settings();
-                                MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
-                                MainForm.objCP_Settings.varValues = Convert.ToString(38);
-                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                                MainForm.objCP_Settings.Show();
-                                this.Close();
+                                udfnvoucheradd();
                             }
                         }
                     }
                     else
                     {
                         txtReturnDcNo.Text = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnvoucheradd()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(75);
+                objDServ.CloseConnection();
+                txtReturnDcNo.Text = "";
+                if (varVoucherSkip == false)
+                {
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        varVoucherSkip = true;
+                        varClose = 1;
+                        udfnclose();
+                        MainForm.objCP_Settings = new CP_Settings();
+                        MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                        MainForm.objCP_Settings.varValues = Convert.ToString(38);
+                        MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                        MainForm.objCP_Settings.Show();
+                        varCloseFlag = 1;
                     }
                 }
             }
@@ -378,52 +404,59 @@ namespace ROMS
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                udfnReason();
-                ClearSupplier();
-                udfnUddtTable();
-                udfnClosingDropdown();
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                dpReturnDCDate.MinDate = MainForm.pbFYStartDate;
-                dpReturnDCDate.MaxDate = MainForm.pbCurrentDate;
-                dpCreditNoteDate.MinDate = MainForm.pbFYStartDate;
-                dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
-                this.ActiveControl = txtSupplier;
-                txtSupplier.Focus();
-                if (varReturnDCID == 0)
+                if (varClose == 1)
                 {
-                    lblStatus.Text = "Pending";
-                }
-                if (btnSave.Text == "Save")
-                {
-                    grpReason.Enabled = false;
+                    this.BeginInvoke(new MethodInvoker(Close));
                 }
                 else
                 {
-                    if(varEditFlag==1)
+                    udfnReason();
+                    ClearSupplier();
+                    udfnUddtTable();
+                    udfnClosingDropdown();
+                    cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                    dpReturnDCDate.MinDate = MainForm.pbFYStartDate;
+                    dpReturnDCDate.MaxDate = MainForm.pbCurrentDate;
+                    dpCreditNoteDate.MinDate = MainForm.pbFYStartDate;
+                    dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
+                    this.ActiveControl = txtSupplier;
+                    txtSupplier.Focus();
+                    if (varReturnDCID == 0)
                     {
-                        varReturnDCID = varDebitDCID;
+                        lblStatus.Text = "Pending";
                     }
-                    EditLoad();
-                    if (varStatusId == 39)
+                    if (btnSave.Text == "Save")
                     {
-                        txtAmount.Enabled = true;
-                        txtCrNo.Enabled = true;
-                        dpCreditNoteDate.Enabled = false;
-                        cmbReasonForClosing.Enabled = false;
-                        txtRemarks.Enabled = true;
-                        btnSave.Enabled = false;
-                        //lblStatus.Text = "Closed";
+                        grpReason.Enabled = false;
                     }
                     else
                     {
-                        grpReason.Enabled = false;
-                        if (varStatusId == 16)
+                        if (varEditFlag == 1)
                         {
-                            grpReason.Enabled = true;
-                            //lblStatus.Text = "Linked with GRN";
+                            varReturnDCID = varDebitDCID;
                         }
+                        EditLoad();
+                        if (varStatusId == 39)
+                        {
+                            txtAmount.Enabled = true;
+                            txtCrNo.Enabled = true;
+                            dpCreditNoteDate.Enabled = false;
+                            cmbReasonForClosing.Enabled = false;
+                            txtRemarks.Enabled = true;
+                            btnSave.Enabled = false;
+                            //lblStatus.Text = "Closed";
+                        }
+                        else
+                        {
+                            grpReason.Enabled = false;
+                            if (varStatusId == 16)
+                            {
+                                grpReason.Enabled = true;
+                                //lblStatus.Text = "Linked with GRN";
+                            }
+                        }
+                        grpReturnDCSupplier.Enabled = false;
                     }
-                    grpReturnDCSupplier.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -774,6 +807,7 @@ namespace ROMS
                     }
                 }
                 txtReturnDcNo.Text = "";
+                varDateChange = 0;
                 udfnVocherno();
             }
             catch (Exception ex)
@@ -826,6 +860,7 @@ namespace ROMS
         {
             try
             {
+                varDateChange = 1;
                 udfnVocherno();
             }
             catch (Exception ex)
