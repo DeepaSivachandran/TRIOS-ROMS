@@ -854,6 +854,7 @@ namespace ROMS
                             }
                         }
                     }
+                    udfnPurchaseEntryTabLoad();
                 }
             }
             catch (Exception ex)
@@ -913,11 +914,11 @@ namespace ROMS
                 {
                     if (objDT.Tables.Count > 0)
                     {
-                        if (objDT.Tables[0].Rows.Count > 0)
+                        if (objDT.Tables[1].Rows.Count > 0)
                         {
                             cmbPONo.ValueMember = "poid";
                             cmbPONo.DisplayMember = "PO_No";
-                            cmbPONo.DataSource = objDT.Tables[0];
+                            cmbPONo.DataSource = objDT.Tables[1];
                         }
                     }
                 }
@@ -1131,14 +1132,14 @@ namespace ROMS
                 }
                 else
                 {
-                    if (PbSTS == "49")
-                    {
-                        udfnPurchaseEntryTabLoad(); //tab2 load
-                    }
                     if (pbPurchaseno == "0")
                     {
                         tbDetails.TabPages[0].Enabled = true; // First tab 
                         tbDetails.TabPages[1].Enabled = false; // Second tab 
+                        //if (PbSTS == "49")
+                        //{
+                        //    udfnPurchaseEntryTabLoad(); //tab2 load
+                        //}
                     }
                     else
                     {
@@ -4077,7 +4078,7 @@ namespace ROMS
                 if (txtGrandtot.Text != "")
                 { grandtotal = Convert.ToDecimal(txtGrandtot.Text); }
 
-                lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense + tcsamt - discountamt - damagecost - otherdiscount;
+                lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense - tcsamt - discountamt - damagecost - otherdiscount;
                 lblGrandTotal.Text = lblGrandTot.ToString("0.00");
                 
             }
@@ -4206,6 +4207,10 @@ namespace ROMS
                         if (pbPurchaseno != "0" )
                         {
                             objPurchaseentryDetails = udfnobjPurchaseprodDetails();
+                            if(varcount!=0)
+                            {
+                                tbDetails.SelectedIndex = 1;
+                            }
                         }
                         if (varcount == 0)
                         {
@@ -6398,17 +6403,17 @@ namespace ROMS
                     }
                     if ((e.ColumnIndex == grdPurchaseList.Columns["clmPurchaseRate"].Index && e.RowIndex >= 0))
                     {
-                        if (varPurchaseRate != 0)
-                        {
+                        //if (varPurchaseRate != 0)
+                        //{
                             CellPurchaseRate.Style.BackColor = Color.PaleGreen;
                             udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue);
                             udfnSubtotCalc(e); 
                             udfnGstvalue();
-                        }
-                        else
-                        {
-                            CellPurchaseRate.Style.BackColor = Color.LightPink;
-                        }
+                        //}
+                        //else
+                        //{
+                        //    CellPurchaseRate.Style.BackColor = Color.LightPink;
+                        //}
 
                     }
                     if ((e.ColumnIndex == grdPurchaseList.Columns["clmDiscAmt"].Index && e.RowIndex >= 0))
@@ -6416,6 +6421,8 @@ namespace ROMS
                         //if (varCellDiscAmt != 0)
                         //{
                             CellDiscAmt.Style.BackColor = Color.PaleGreen;
+                            pbDisper = (varCellDiscAmt * 100) / (varPurchaseRate*varInvQty);
+                            grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscPer"].Value = Math.Round(pbDisper);
                             udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue);
                             udfnSubtotCalc(e);
                         //}
@@ -6426,14 +6433,14 @@ namespace ROMS
                     }
                     if ((e.ColumnIndex == grdPurchaseList.Columns["clmInvQty"].Index || e.ColumnIndex == grdPurchaseList.Columns["clmRecqty"].Index) && e.RowIndex >= 0)
                     {
-                        if (varInvQty != 0)
-                        {
+                        //if (varInvQty != 0)
+                        //{
                             CellInvQty.Style.BackColor = Color.PaleGreen;
                             udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue);
-                            udfnSubtotCalc(e);
                             udfnGstvalue();
-                        }
-                        else { CellInvQty.Style.BackColor = Color.LightPink; }
+                            udfnSubtotCalc(e);
+                        //}
+                        //else { CellInvQty.Style.BackColor = Color.LightPink; }
                     }
                     if ((e.ColumnIndex == grdPurchaseList.Columns["clmDiscPer"].Index) && e.RowIndex >= 0)
                     {
@@ -6441,6 +6448,8 @@ namespace ROMS
                         //{
                             CellDiscAmt.Style.BackColor = Color.PaleGreen;
                             CellDiscPer.Style.BackColor = Color.PaleGreen;
+                            PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
+                            grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = Math.Round(PbDiscamt).ToString("0.00");
                             udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue);
                             udfnSubtotCalc(e);
                             udfnGstvalue();
@@ -6474,9 +6483,9 @@ namespace ROMS
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value = Math.Round(PbGstamt).ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value = Math.Round(PbNetamt).ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = pbDiffQty;
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscPer"].Value = Math.Round(pbDisper).ToString("0.00");
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = Math.Round(PbDiscamt).ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value = Math.Round(PbTaxvalue).ToString("0.00");
+                    udfnSubtotCalc(e);
+                    udfnGstvalue();
                     PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0;
                 }
             }
@@ -6487,10 +6496,10 @@ namespace ROMS
             try
             {
                 pbDiffQty = Math.Abs(varInvQty - varRecQty);
-                PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                PbTaxvalue = (varPurchaseRate * varInvQty) - PbDiscamt;
-                pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
-                PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
+               // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
+                PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
+                //pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
+               // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
                 PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
                 PbNetamt = (PbTaxvalue + PbGstamt);
             }
