@@ -65,7 +65,7 @@ namespace ROMS
                     MainForm.objINV_StockConversion = new INV_StockConversion();
                     MainForm.objINV_StockConversion.MdiParent = this.ParentForm;
                     MainForm.objINV_StockConversion.btnSave.Text = "Update";
-                    MainForm.objINV_StockConversion.varBTID = Convert.ToInt32(grdConversionList.SelectedRows[0].Cells["BTID"].Value);
+                    MainForm.objINV_StockConversion.varBTID = Convert.ToInt32(grdConversionList.SelectedRows[0].Cells["BTID"].Value); 
                     MainForm.objINV_StockConversion.Show();
                 }
             }
