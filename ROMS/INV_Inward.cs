@@ -548,11 +548,11 @@ namespace ROMS
                         txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
-                if (DGV_FilterProduct.RowCount > 0)
-                {
-                    DGV_FilterProduct.Focus();
-                }
-                if (DGV_FilterProduct.CurrentCell == null)
+                //if (DGV_FilterProduct.RowCount > 0)
+                //{
+                //    DGV_FilterProduct.Focus();
+                //}
+                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount==0)
                 {
                     return;
                 }
@@ -2980,6 +2980,7 @@ namespace ROMS
                     txtDay.Text = "";
                     txtMonth.Text = "";
                     txtYear.Text = "";
+                    txtunit.Text = "";
                     //SLID = varStockLocationId;
 
                     if (VarSearchFlag == true)
