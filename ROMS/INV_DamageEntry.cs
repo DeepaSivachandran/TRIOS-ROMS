@@ -176,7 +176,10 @@ namespace ROMS
                 MainForm objMainForm = new MainForm();
                 objMainForm.udfnGetDefaultCompany();
                 udfnCmbConcernLoad();
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                if (varID == 0)
+                {
+                    cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                }
                 dpEntryDate.MinDate = MainForm.pbFYStartDate;
                 dpEntryDate.MaxDate = MainForm.pbCurrentDate;
                 if (varClose == 1)

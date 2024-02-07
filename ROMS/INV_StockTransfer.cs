@@ -44,6 +44,7 @@ namespace ROMS
         public string varExpiryDate = "";
         public string varMRP = "";
         public string varSRKID = "";
+        public int varCompanyID = 0;
         public int varDecimal = 0;
         public int varFlag = 0, varUpdateflag=0;
         public string varSNo = "0";
@@ -239,7 +240,10 @@ namespace ROMS
                 udfnCmbConcern();
                 dpTrannsferDate.MinDate = MainForm.pbFYStartDate;
                 dpTrannsferDate.MaxDate = MainForm.pbCurrentDate;
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                if (varStockTransferID == 0 && varStockRequestID == 0)
+                {
+                    cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                }
                 if (varClose == 1)
                 {
                     this.BeginInvoke(new MethodInvoker(Close));
@@ -418,6 +422,8 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
+                                cmbConcern.Text = objDS.Tables[0].Rows[0]["Company"].ToString();
+                                cmbConcern.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["COMID"].ToString());
                                 txtSLocation.Text = objDS.Tables[0].Rows[0]["Source Location"].ToString();
                                 grdStockTransfer.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Source Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Dest Rack"]), Convert.ToString(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]),0, Convert.ToString(objDS.Tables[0].Rows[i]["PR_UTID"]),0, Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]));
                                 string varMRP = "0";
@@ -509,7 +515,6 @@ namespace ROMS
                         }
                     }
                 }
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
