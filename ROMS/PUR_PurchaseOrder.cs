@@ -2157,6 +2157,11 @@ namespace ROMS
                 }
                 */
 
+
+                //AutoCompleteStringCollection MyCollection = new AutoCompleteStringCollection();
+                //MyCollection.Add(DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString());
+                //txtProductName.AutoCompleteCustomSource = MyCollection;
+
                 //// DataGrid View TextBox Search Event Handle
                 ///
                 if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
