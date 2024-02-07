@@ -20,7 +20,7 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbranGRNode="", varGRNQRCode = "";
+        public string varbranGRNode="", varGRNQRCode = "",varGRNID="";
         public int QRFlag=0 ;
        DataTable dtPurchaseGRN = new DataTable();
         public string pbFormStatus;
@@ -80,6 +80,8 @@ namespace ROMS
                 supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
                 scheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
                 GRNNo = MainForm.objCP_Purchase.pbGRNNo;
+                varGRNID = MainForm.objCP_Purchase.pbGRNNo;
+                udfnGRNCheckTrue();
                 if (supplierid != 0 && scheduleid != 0)
                 {  
                     SPDataService objdserv = new SPDataService();
@@ -135,13 +137,23 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
-                {
-                    if (Convert.ToInt32(grdGRNDetails.Rows[i].Cells["GRNID"].Value) == MainForm.objCP_Purchase.varGrnId)
-                    {
-                        grdGRNDetails.Rows[i].Cells[0].Value = true;
-                    }
-                }
+                ////for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
+                ////{
+                ////    if (Convert.ToInt32(grdGRNDetails.Rows[i].Cells["GRNID"].Value) == varGRNID)
+                ////    {
+                ////        grdGRNDetails.Rows[i].Cells[0].Value = true;
+                ////    }
+                ////}
+                //string[] varSecondList = varGRNID.Split(',');
+                //for (int i = 0; i < varSecondList.Length; i++)
+                //{
+                //    if (Convert.ToString(grdGRNDetails.Rows[j].Cells["GRNID"].Value) == varProductID )
+                //    {
+                //        grdPurchaseDC.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                //        //  grdPurchaseDC.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
+                //    }
+                //    if (Convert.ToInt32(grdGRNDetails.Rows[i].Cells["GRNID"].Value))
+                //}
             }
             catch (Exception ex)
             {

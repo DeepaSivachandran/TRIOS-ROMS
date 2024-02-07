@@ -39,6 +39,8 @@ namespace ROMS
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,
             VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0, varRMFlag = 0, varRemarkCount = 0, varRemarkFlag = 0, varerrFlag = 0;
         public string pbQRCode = "";
+        public int varClose = 0, varDateChange = 0, varCloseFalg = 0;
+        bool varVoucherSkip = false;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -75,8 +77,9 @@ namespace ROMS
                             dpInvoiceDate.Enabled = false;
                             txtInvoiceNo.ReadOnly = true;
                             txtInvoiceNo.Enabled = false;
-                            grdPODetails.Visible = true;
+                            grdGRN.Visible = true;
                             grdReurnDC.Visible = false;
+                            grdPODetails.Visible = false;
                             if(Convert.ToInt32(grdPODetails.Rows.Count)!=0)
                             {
                                 cmbPONo.Enabled = true;
@@ -339,6 +342,7 @@ namespace ROMS
                 MainForm.objPUR_Purchase_GRNDetails = new PUR_Purchase_GRNDetails();
                 MainForm.objPUR_Purchase_GRNDetails.ShowDialog();
                 txtQRCode.Text = pbQRCode;
+                varTypeErrId = pbGRNNo;
             }
             catch (Exception ex)
             {
@@ -360,7 +364,7 @@ namespace ROMS
                     objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                     objspdservice.CloseConnection();
                     grdSupplierList.Rows.Clear();
-
+                    grdGRN.Rows.Clear();
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -440,6 +444,15 @@ namespace ROMS
                     {
                         lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[3].Rows[0]["VERIFIED2"]);
                     }
+                    if (objDs.Tables[4].Rows.Count != 0)
+                    {
+                        for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
+                        {
+                            lblFinishedNoRecord.Visible = false;
+                            grdGRN.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["GRN_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRN_Date"]),
+                            Convert.ToString(objDs.Tables[4].Rows[i]["Procount"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRNID"]));
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -454,21 +467,24 @@ namespace ROMS
         {
             try
             {
-                if (varCloseflag == 0)
+                if (varClose == 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (varCloseflag == 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else
                     {
                         this.Close();
                     }
-                }
-                else
-                {
-                    this.Close();
-                }
-                if(varQueueFlag==1)
-                {
-                    MainForm.objPUR_PurchaseQueue.udfnList();
+                    if (varQueueFlag == 1)
+                    {
+                        MainForm.objPUR_PurchaseQueue.udfnList();
+                    }
                 }
             }
             catch (Exception ex)
@@ -583,37 +599,49 @@ namespace ROMS
         {
             try
             {
+                MainForm objMainForm = new MainForm();
+                objMainForm.udfnGetDefaultCompany();
                 dtTaxTable.Columns.Add("GST%", typeof(string));
                 dtTaxTable.Columns.Add("Taxable Value", typeof(decimal));
                 dtTaxTable.Columns.Add("Tax Value", typeof(decimal));
                 udfnDropdownLoad();
-                udfnDateset();
-                udfnPODropdownload();
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                if (Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                if (pbPurchaseno == "0")
                 {
-                    this.ActiveControl = cmbConcern;
+                    cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                }
+                if (varClose == 1)
+                {
+                    this.BeginInvoke(new MethodInvoker(Close));
                 }
                 else
                 {
-                    this.ActiveControl = txtSupplier;
+                    udfnDateset();
+                    udfnPODropdownload();
+                    if (Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                    {
+                        this.ActiveControl = cmbConcern;
+                    }
+                    else
+                    {
+                        this.ActiveControl = txtSupplier;
+                    }
+                    grdTaxDetails.DataSource = dtTaxTable;
+                    grdTaxDetails.Columns["GST%"].Width = 60;
+                    grdTaxDetails.Columns["Taxable Value"].Width = 80;
+                    grdTaxDetails.Columns["Tax Value"].Width = 60;
+                    udfnEditLoad();
+                    if (varQueueFlag == 1)
+                    {
+                        cmbConcern.Enabled = false;
+                        dpVoucherDate.Enabled = false;
+                        txtSupplier.Enabled = false;
+                        cmbEntryType.Enabled = false;
+                        btnViewDataView.Enabled = false;
+                        LV_Supplier.Visible = false;
+                    }
+                    if (varRemarkFlag == 1) { btnRemarks.Enabled = true; }
+                    else { btnRemarks.Enabled = false; }
                 }
-                grdTaxDetails.DataSource = dtTaxTable;
-                grdTaxDetails.Columns["GST%"].Width = 60;
-                grdTaxDetails.Columns["Taxable Value"].Width = 80;
-                grdTaxDetails.Columns["Tax Value"].Width = 60;
-                udfnEditLoad();
-                if(varQueueFlag==1)
-                {
-                    cmbConcern.Enabled = false;
-                    dpVoucherDate.Enabled = false;
-                    txtSupplier.Enabled = false;
-                    cmbEntryType.Enabled = false;
-                    btnViewDataView.Enabled = false;
-                    LV_Supplier.Visible = false;
-                }
-                if (varRemarkFlag == 1) { btnRemarks.Enabled = true; }
-                else { btnRemarks.Enabled = false; }
             }
             catch (Exception ex)
             {
@@ -1462,7 +1490,8 @@ namespace ROMS
                     }
                 }
                     varcomid = Convert.ToString(cmbConcern.SelectedValue);
-                    udfnVocherno();
+                varDateChange = 0;
+                udfnVocherno();
                 
             }
             catch (Exception ex)
@@ -1513,20 +1542,12 @@ namespace ROMS
                         }
                         else
                         {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(75);
-                            objDServ.CloseConnection();
-                            txtPENO.Text = "";
-                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
+                            varVoucherSkip = false;
+                            if (varDateChange == 0)
                             {
-                                MainForm.objCP_Settings = new CP_Settings();
-                                MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
-                                MainForm.objCP_Settings.varValues = Convert.ToString(38);
-                                MainForm.objCP_Settings.MdiParent = this.ParentForm;
-                                MainForm.objCP_Settings.Show();
-                                this.Close();
+                                udfnvoucheradd();
                             }
+                            
                         }
                     }
                     else
@@ -1534,6 +1555,34 @@ namespace ROMS
                         txtPENO.Text = "";
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnvoucheradd()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(75);
+                objDServ.CloseConnection();
+                txtPENO.Text = "";
+                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    varVoucherSkip = true;
+                    varClose = 1;
+                    udfnclose();
+                    MainForm.objCP_Settings = new CP_Settings();
+                    MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                    MainForm.objCP_Settings.varValues = Convert.ToString(38);
+                    MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                    MainForm.objCP_Settings.Show();
+                }
+                else { varVoucherSkip = true; }
             }
             catch (Exception ex)
             {
@@ -6262,6 +6311,7 @@ namespace ROMS
         {
             try
             {
+                varDateChange = 1;
                 udfnVocherno();
             }
             catch (Exception ex)
