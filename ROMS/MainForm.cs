@@ -717,6 +717,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objCP_PurchaseList = new CP_PurchaseList();
                 MainForm.objCP_PurchaseList.MdiParent = this;
@@ -734,6 +735,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objPUR_PurchaseOrderList = new PUR_PurchaseOrderList();
                 MainForm.objPUR_PurchaseOrderList.MdiParent = this;
@@ -808,6 +810,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
                 MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
@@ -825,6 +828,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objPUR_SupplierScheduleList = new PUR_SupplierScheduleList();
                 MainForm.objPUR_SupplierScheduleList.MdiParent = this;
@@ -842,6 +846,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objPUR_GRNDetailsList = new PUR_GRNDetailsList();
                 MainForm.objPUR_GRNDetailsList.MdiParent = this;
@@ -910,6 +915,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objINV_StockTransferList = new INV_StockTransferList();
                 MainForm.objINV_StockTransferList.MdiParent = this;
@@ -927,6 +933,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objINV_GodownOutwardList = new INV_GodownOutwardList();
                 MainForm.objINV_GodownOutwardList.MdiParent = this;
@@ -944,6 +951,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objINV_StockRequestList = new INV_StockRequestList();
                 MainForm.objINV_StockRequestList.MdiParent = this;
@@ -1013,6 +1021,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
                 MainForm.objINV_SalesInvoiceList.MdiParent = this;
@@ -1082,6 +1091,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objINV_DamageEntryList = new INV_DamageEntryList();
                 MainForm.objINV_DamageEntryList.MdiParent = this;
@@ -1099,6 +1109,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objINV_Inwardlist = new INV_Inwardlist();
                 MainForm.objINV_Inwardlist.MdiParent = this;
@@ -1116,6 +1127,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
                 MainForm.objINV_InwardPurchaseList.MdiParent = this;
@@ -1133,6 +1145,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
                 MainForm.objPUR_GRNApprovalList.MdiParent = this;
@@ -1150,6 +1163,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objPUR_PurchaseDCList = new PUR_PurchaseDCList();
                 MainForm.objPUR_PurchaseDCList.MdiParent = this;
@@ -1218,6 +1232,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objINV_StockHold = new INV_StockHold();
                 MainForm.objINV_StockHold.MdiParent = this;
@@ -1235,6 +1250,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
+                udfnGetDefaultCompany();
                 if (isClose == false) { return; }
                 MainForm.objINV_StockConversionList = new INV_StockConversionList();
                 MainForm.objINV_StockConversionList.MdiParent = this;
