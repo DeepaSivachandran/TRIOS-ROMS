@@ -1228,6 +1228,10 @@ namespace ROMS
                 txtDay.Text = "";
                 txtMonth.Text = "";
                 txtYear.Text = "";
+                txtUnit.Text = "";
+                txtUnit2.Text = "";
+                txtUnit3.Text = "";
+                txtTotalUnit.Text = "";
             }
             catch (Exception ex)
             {
@@ -1491,6 +1495,13 @@ namespace ROMS
             {
                 varDateChange = 0;
                 udfnVocherno();
+                udfnClearAll();
+                grdBatchConversion.Rows.Clear();
+                if (btnSave.Text == "Save")
+                {
+                    txtProductName.Text = "";
+                    totalQty.Text = Convert.ToString(grdBatchConversion.Rows.Count);
+                }
             }
             catch (Exception ex)
             {

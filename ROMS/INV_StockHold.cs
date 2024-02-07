@@ -1532,6 +1532,29 @@ namespace ROMS
             }
         }
 
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                txtProductNamePICode.Text = "";
+                txtStockLoc.Text = "";
+                txtRack.Text = "";
+                txtMrp.Text = "";
+                txtExpiryDate.Text = "";
+                txtBatchNo.Text = "";
+                txtStockQty.Text = "";
+                txtQty.Text = "";
+                txtRemark.Text = "";
+                lblUnit.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
