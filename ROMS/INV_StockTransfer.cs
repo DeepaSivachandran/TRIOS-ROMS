@@ -59,6 +59,7 @@ namespace ROMS
         public int VarConcernID = 0;
         public int varModifiedFlag = 0;
         public int varUpDownKey = 0;
+        public int ComID = 0;
         public string VarSource = "0";
         public string VarDestination = "0";
         public string varErrQty = "0";
