@@ -1140,7 +1140,7 @@ namespace ROMS
                     {
                         //tbDetails.TabPages[0].Enabled = false; // First tab 
                        // tbDetails.TabPages[1].Enabled = true; // Second tab  
-                        udfnPurchaseEntryTabLoad(); //tab2 load
+                        //udfnPurchaseEntryTabLoad(); //tab2 load
                     }
                 }
             }
@@ -6486,7 +6486,7 @@ namespace ROMS
                 PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
                 PbTaxvalue = (varPurchaseRate * varInvQty) - PbDiscamt;
                 pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
-                PbDiscamt = ((varPurchaseRate * varInvQty) * (pbDisper)) / 100;
+                PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
                 PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
                 PbNetamt = (PbTaxvalue + PbGstamt);
             }
