@@ -118,6 +118,7 @@ namespace ROMS
         {
             try
             {
+                txtOutwardQuantity.TextAlign = HorizontalAlignment.Right;
                 if (e.KeyCode == Keys.Escape)
                 {
                     DGV_FilterProduct.Visible = false;
@@ -365,7 +366,7 @@ namespace ROMS
         }
 
         private void TxtProduct_KeyDown(object sender, KeyEventArgs e)
-    {
+        {
             try
             {
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up )
@@ -397,7 +398,6 @@ namespace ROMS
                         VarSearchFlag = true;
                         lblProductName.Text = "Search by P.I Code";
                         txtProductName.CharacterCasing = CharacterCasing.Upper;
-
                     }
                     else
                     {
@@ -406,11 +406,11 @@ namespace ROMS
                         txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
-                if(DGV_FilterProduct.RowCount>0)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     DGV_FilterProduct.Focus();
                 }
-                if (DGV_FilterProduct.CurrentCell == null)
+                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
                 {
                     return;
                 }
@@ -431,14 +431,16 @@ namespace ROMS
                         case Keys.Up:
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-
-                            if (VarSearchFlag == true)
+                            if (RowIndex != (-1))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
-                            }
-                            else
-                            {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                if (VarSearchFlag == true)
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
+                                }
+                                else
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                }
                             }
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
@@ -459,7 +461,6 @@ namespace ROMS
                                     txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                                 }
                             }
-
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
@@ -1728,6 +1729,19 @@ namespace ROMS
             {
                 DGV_FilterProduct.Visible = false;
             }
+        }
+
+        private void DGV_FilterProduct_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            //try
+            //{
+            //    //DGV_FilterProduct.ClearSelection();
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void BtnSave_Enter(object sender, EventArgs e)

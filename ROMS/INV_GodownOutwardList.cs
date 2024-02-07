@@ -237,10 +237,10 @@ namespace ROMS
                     //}
                     DGV_FilterProduct.Focus();
                 }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbStatus.Focus();
-                }
+                //if (e.KeyCode == Keys.Enter)
+                //{
+                //    cmbStatus.Focus();
+                //}
                 if (DGV_FilterProduct.CurrentCell == null)
                 {
                     return;

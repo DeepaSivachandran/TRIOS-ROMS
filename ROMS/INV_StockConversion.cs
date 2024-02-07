@@ -241,7 +241,7 @@ namespace ROMS
             }
         }
         private void TxtProductName_KeyDown(object sender, KeyEventArgs e)
-        {
+       {
             try
             {
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
@@ -280,15 +280,11 @@ namespace ROMS
                         txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
-                //if (DGV_FilterProduct.RowCount > 0)
-                //{
-                //    DGV_FilterProduct.Focus();
-                //}
-                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount > 0)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     DGV_FilterProduct.Focus();
                 }
-                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount==0)
+                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
                 {
                     return;
                 }
@@ -309,14 +305,16 @@ namespace ROMS
                         case Keys.Up:
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-
-                            if (VarSearchFlag == true)
+                            if (RowIndex != (-1))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
-                            }
-                            else
-                            {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                if (VarSearchFlag == true)
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
+                                }
+                                else
+                                {
+                                    txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                }
                             }
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;

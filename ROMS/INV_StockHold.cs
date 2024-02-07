@@ -197,7 +197,7 @@ namespace ROMS
                 //{
                 //    DGV_FilterProduct.Focus();
                 //}
-                
+
                 if (e.KeyCode == Keys.F11)
                 {
                     if (VarSearchFlag == false)
@@ -213,7 +213,7 @@ namespace ROMS
                         txtProductNamePICode.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
-                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount >= 0)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     DGV_FilterProduct.Focus();
                 }
@@ -235,20 +235,20 @@ namespace ROMS
                     }
                     switch (e.KeyCode)
                     {
-
                         case Keys.Up:
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-
-                            if (VarSearchFlag == true)
+                            if (RowIndex != (-1))
                             {
-                                txtProductNamePICode.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
+                                if (VarSearchFlag == true)
+                                {
+                                    txtProductNamePICode.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_PICode"].Value.ToString();
+                                }
+                                else
+                                {
+                                    txtProductNamePICode.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                }
                             }
-                            else
-                            {
-                                txtProductNamePICode.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
-                            }
-
                             txtProductNamePICode.Focus();
                             txtProductNamePICode.SelectionStart = txtProductNamePICode.Text.Length;
                             e.Handled = true;
@@ -284,11 +284,6 @@ namespace ROMS
                                 e.Handled = e.SuppressKeyPress = true;
                                 break;
                             }
-                        //case Keys.Back:
-                        //    {
-                        //        txtProductNamePICode.Focus();
-                        //    }
-                        //    break;
                     }
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -1564,10 +1559,10 @@ namespace ROMS
                         RowIndex--;
                         if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
 
-                        txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                        txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
 
-                        txtProductName.Focus();
-                        txtProductName.SelectionStart = txtProductName.Text.Length;
+                            txtProductNamePICode.Focus();
+                            txtProductNamePICode.SelectionStart = txtProductNamePICode.Text.Length;
                         e.Handled = true;
                         break;
                     case Keys.Down:
@@ -1576,11 +1571,11 @@ namespace ROMS
 
                         if (RowIndex != (DGV_FilterProduct.Rows.Count))
                         {
-                            txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtProductNamePICode.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                         }
 
-                        txtProductName.Focus();
-                        txtProductName.SelectionStart = txtProductName.Text.Length;
+                            txtProductNamePICode.Focus();
+                            txtProductNamePICode.SelectionStart = txtProductNamePICode.Text.Length;
                         e.Handled = true;
                         break;
                     case Keys.Enter:
