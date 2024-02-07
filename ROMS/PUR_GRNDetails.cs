@@ -2470,6 +2470,10 @@ namespace ROMS
                 {
                     udfnGridaddvalue(sender, e);
                 }
+                decimal varMRP = Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmmrp"].Value);
+                string mrp = string.Format("{0:0.00}", varMRP);
+                string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                grdGrnlist.Rows[e.RowIndex].Cells["clmmrp"].Value = mrp;
             }
             catch (Exception ex)
             {
@@ -3754,6 +3758,7 @@ namespace ROMS
                                     , Convert.ToString(objDs.Tables[3].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[3].Rows[i]["newproflag"])
                                     ,Convert.ToString(objDs.Tables[3].Rows[i]["PO_Qty"])
                                     );
+                                    grdGrnlist.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 }
                                 txtTotalpro.Text = Convert.ToString(grdGrnlist.Rows.Count);
                                 DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);

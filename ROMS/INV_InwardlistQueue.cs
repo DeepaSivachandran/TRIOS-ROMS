@@ -17,7 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public string varStockLocaionId = "",varPRID="";
-        public int varSTRID = 0, varSLID = 0;
+        public int varSTRID = 0, varSLID = 0, varUpDownKey = 0;
 
         public INV_InwardlistQueue()
         {
@@ -67,6 +67,7 @@ namespace ROMS
                 MainForm.objINV_Inward.varUpdateflag = 1;
                 MainForm.objINV_Inward.varSTRID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["STRID"].Value);
                 MainForm.objINV_Inward.varSLID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value);
+                MainForm.objINV_Inward.varcomID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["COMID"].Value);
                 MainForm.objINV_Inward.MdiParent = this.ParentForm;
                 MainForm.objINV_Inward.Show();
             }
@@ -280,7 +281,7 @@ namespace ROMS
             try
             {
                 udfnConcern();
-                cmbConcern.SelectedValue = 1;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;
                 //DataSet objDs = new DataSet();
                 //SPDataService objspservice = new SPDataService();
@@ -398,7 +399,7 @@ namespace ROMS
         {
             try
             {
-                lvProduct.Visible = false;
+                DGV_FilterProduct.Visible = false;
                 txtStockLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -588,23 +589,89 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
-                    if (lvProduct.Items.Count == 0 || txtProductName.Text == "")
-                    {
-                        txtProductName.Focus();
-                        lvProduct.Visible = false;
-                    }
-                    else
-                    {
-                        lvProduct.Focus();
-                    }
-                    if (lvProduct.Items.Count > 0)
-                    {
-                        lvProduct.Items[0].Selected = true;
-                    }
+                    //    if (lvProduct.Items.Count == 0 || txtProductName.Text == "")
+                    //    {
+                    //        txtProductName.Focus();
+                    //        lvProduct.Visible = false;
+                    //    }
+                    //    else
+                    //    {
+                    //        lvProduct.Focus();
+                    //    }
+                    //    if (lvProduct.Items.Count > 0)
+                    //    {
+                    //        lvProduct.Items[0].Selected = true;
+                    //    }
+                    DGV_FilterProduct.Focus();
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
                     btnView.Focus();
+                }
+                if (DGV_FilterProduct.CurrentCell == null)
+                {
+                    return;
+                }
+                else
+                {
+                    int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKey = 1;
+                    }
+                    else
+                    {
+                        varUpDownKey = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+
+                            txtProductName.Focus();
+                            txtProductName.SelectionStart = txtProductName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterProduct.Rows.Count))
+                            {
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                            }
+
+                            txtProductName.Focus();
+                            txtProductName.SelectionStart = txtProductName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterProduct.Rows.Count > 0)
+                                {
+                                    udfnProductEvent();
+                                    //DGV_FilterProduct.Items[0].Selected = true;
+                                    DGV_FilterProduct.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        btnView.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -629,7 +696,7 @@ namespace ROMS
         {
             try
             {
-                lvProduct.Visible = false;
+                DGV_FilterProduct.Visible = false;
                 lvSLocation.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
@@ -772,7 +839,7 @@ namespace ROMS
             try
             {
                 lvSLocation.Visible = false;
-                lvProduct.Visible = false;
+                DGV_FilterProduct.Visible = false;
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -799,61 +866,75 @@ namespace ROMS
         {
             try
             {
-                lvProduct.Items.Clear();
-                DataSet objDs = new DataSet();
-                if (txtProductName.Text.Length > 0)
+                if (varUpDownKey == 0)
                 {
-                    MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 53;
-                    objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                    objMR_Product.paraLocationId = Convert.ToInt32(varStockLocaionId);
-                    objMR_Product.paraProductName = txtProductName.Text;
-                    objMR_Product.ParaFromDate = dpFromDate.Text;
-                    objMR_Product.ParaToDate = dpToDate.Text;
-                    objMR_Product.paraId = 2;
-                    SPDataService objspdservice = new SPDataService();
-                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    //lvProduct.Items.Clear();
+                    DataSet objDs = new DataSet();
+                    if (txtProductName.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        MR_Product objMR_Product = new MR_Product();
+                        objMR_Product.paraViewType = 53;
+                        objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Product.paraLocationId = Convert.ToInt32(varStockLocaionId);
+                        objMR_Product.paraProductName = txtProductName.Text;
+                        objMR_Product.ParaFromDate = dpFromDate.Text;
+                        objMR_Product.ParaToDate = dpToDate.Text;
+                        objMR_Product.paraId = 2;
+                        SPDataService objspdservice = new SPDataService();
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                    lvProduct.Items.Add(objList);
+                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    //{
+                                    //    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
+                                    //    ListViewItem objList = new ListViewItem(row);
+                                    //    objList.UseItemStyleForSubItems = false;
+                                    //    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                    //    lvProduct.Items.Add(objList);
+                                    //}
+                                    DGV_FilterProduct.Visible = true;
+                                    DGV_FilterProduct.DataSource = objDs.Tables[0];
+                                    DGV_FilterProduct.Columns["PRID"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_EName"].Width = 320;
+                                    DGV_FilterProduct.Columns["PR_TName"].Width = 320;
+                                    DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
+                                    DGV_FilterProduct.Columns["PR_EName"].DisplayIndex = 2;
+                                    DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 3;
+                                    DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
+                                    DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
+                                    DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "PI Code";
+                                    DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 }
-                                lvProduct.Visible = true;
-                                lvProduct.BringToFront();
-                                lvProduct.Columns[0].Width = 150;
-                                lvProduct.Columns[1].Width = 250;
-                                lvProduct.Columns[2].Width = 250;
-                                lvProduct.Columns[3].Width = 0;
+                                else
+                                {
+                                    DGV_FilterProduct.DataSource = null;
+                                    DGV_FilterProduct.Visible = false;
+                                }
                             }
                             else
                             {
-                                lvProduct.Visible = false;
+                                DGV_FilterProduct.DataSource = null;
+                                DGV_FilterProduct.Visible = false;
                             }
                         }
                         else
                         {
-                            lvProduct.Visible = false;
+                            DGV_FilterProduct.DataSource = null;
+                            DGV_FilterProduct.Visible = false;
                         }
                     }
                     else
                     {
-                        lvProduct.Visible = false;
+                        DGV_FilterProduct.DataSource = null;
+                        DGV_FilterProduct.Visible = false;
+                        //lvProduct.Visible = false;
+                        //lvProduct.Items.Clear();
                     }
-                }
-                else
-                {
-                    lvProduct.Visible = false;
-                    lvProduct.Items.Clear();
                 }
             }
             catch (Exception ex)
@@ -870,7 +951,7 @@ namespace ROMS
         {
             try
             {
-                lvProduct.BringToFront();
+                //lvProduct.BringToFront();
                 udfnProductEvent();
                 btnView.Focus();
             }
@@ -1169,7 +1250,86 @@ namespace ROMS
             try
             {
                 lvSLocation.Visible = false;
-                lvProduct.Visible = false;
+                DGV_FilterProduct.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                udfnProductEvent();
+                btnView.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                DGV_FilterProduct.Visible = false;
+            }
+        }
+
+        private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKey = 1;
+                    }
+                    else
+                    {
+                        varUpDownKey = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+
+                            txtProductName.Focus();
+                            txtProductName.SelectionStart = txtProductName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterProduct.Rows.Count))
+                            {
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                            }
+
+                            txtProductName.Focus();
+                            txtProductName.SelectionStart = txtProductName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterProduct.Rows.Count > 0)
+                                {
+                                    udfnProductEvent();
+                                    DGV_FilterProduct.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1214,9 +1374,8 @@ namespace ROMS
             {
                 if (txtProductName.Text != "")
                 {
-                    ListViewItem selectedItem = lvProduct.SelectedItems[0];
-                    txtProductName.Text = selectedItem.SubItems[1].Text;
-                    varPRID = selectedItem.SubItems[3].Text;
+                    varPRID = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
+                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -1226,7 +1385,7 @@ namespace ROMS
             }
             finally
             {
-                lvProduct.Visible = false;
+                DGV_FilterProduct.Visible = false;
             }
         }
     }

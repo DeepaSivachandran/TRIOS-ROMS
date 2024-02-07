@@ -681,6 +681,9 @@ namespace ROMS
                                     }
                                 }
                             }
+                            dtBrand.DefaultView.Sort = dtBrand.Columns[0].ColumnName + " DESC";
+                            dtBrand = dtBrand.DefaultView.ToTable();
+                            grdRepBrand.DataSource = null;
                             grdRepBrand.DataSource = dtBrand;
                             grdRepBrand.Columns["Column1"].HeaderText = "";
                             grdRepBrand.Columns[0].Width = 30;
@@ -709,7 +712,7 @@ namespace ROMS
             finally
             {
                 grdRepBrand.ClearSelection();
-                this.grdRepBrand.Sort(this.grdRepBrand.Columns[0], ListSortDirection.Descending); 
+               // this.grdRepBrand.Sort(this.grdRepBrand.Columns[0], ListSortDirection.Descending); 
             }
         }
 
@@ -1423,7 +1426,7 @@ namespace ROMS
             {
                 for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                 {
-                    if (Convert.ToBoolean(grdRepBrand.Rows[i].Cells[0].FormattedValue) == true)
+                    if (Convert.ToBoolean(grdRepBrand.Rows[i].Cells[0].EditedFormattedValue) == true)
                     {
                         varCheckedCount++;
                     }
