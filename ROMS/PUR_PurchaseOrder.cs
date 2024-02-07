@@ -998,14 +998,7 @@ namespace ROMS
                     objMR_Product.paraViewType = 39;
                     objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
-                    if (VarSearchFlag == true)
-                    {
-                        objMR_Product.paraPicode = txtProductName.Text;
-                    }
-                    else
-                    {
-                        objMR_Product.paraProductName = txtProductName.Text;
-                    }
+                    objMR_Product.paraProductName = txtProductName.Text;
                     DataSet objDsproductId = new DataSet();
                     SPDataService objDserv = new SPDataService();
                     objDsproductId = objDserv.udfnproductmasterlist(objMR_Product);
