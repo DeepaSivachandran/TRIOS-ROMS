@@ -1131,6 +1131,10 @@ namespace ROMS
                 }
                 else
                 {
+                    if (PbSTS == "49")
+                    {
+                        udfnPurchaseEntryTabLoad(); //tab2 load
+                    }
                     if (pbPurchaseno == "0")
                     {
                         tbDetails.TabPages[0].Enabled = true; // First tab 
