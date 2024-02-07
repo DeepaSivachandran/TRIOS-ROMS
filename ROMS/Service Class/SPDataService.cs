@@ -2899,7 +2899,6 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBatchConversion", objTRN_BatchConversion.paraBatchConversion);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_BatchConversion.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_BatchConversion.paraDeleteFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraUpdateFlag", objTRN_BatchConversion.paraUpdateFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);

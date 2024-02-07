@@ -25,7 +25,6 @@ namespace ROMS.Model
         public decimal paraQuantity { get; set; } = 0;
         public int paraStatusId { get; set; } = 0;
         public int paraDeleteFlag { get; set; } = 0;
-        public int paraUpdateFlag { get; set; } = 0;
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
         public DataTable paraBatchConversion { get; set; } = null;
