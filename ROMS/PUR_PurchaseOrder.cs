@@ -2158,10 +2158,6 @@ namespace ROMS
                 */
 
 
-                //AutoCompleteStringCollection MyCollection = new AutoCompleteStringCollection();
-                //MyCollection.Add(DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString());
-                //txtProductName.AutoCompleteCustomSource = MyCollection;
-
                 //// DataGrid View TextBox Search Event Handle
                 ///
                 if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
@@ -3032,6 +3028,13 @@ namespace ROMS
                                         //(DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_PICode]) LIKE '%" + txtProductName.Text + "%'";
                                     }
                                     //txtProductName.Select(txtProductName.Text.Length, 0);
+
+
+                                    //AutoCompleteStringCollection MyCollection = new AutoCompleteStringCollection();
+                                    //MyCollection.Add(DGV_FilterProduct.Rows[0].Cells["PR_PICode"].Value.ToString());
+                                    //txtProductName.AutoCompleteCustomSource = MyCollection;
+
+
                                 }
                                 else
                                 {
