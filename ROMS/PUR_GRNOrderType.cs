@@ -24,6 +24,7 @@ namespace ROMS
         public string pbFormStatus;
         public DataTable dtPendingPO;
         public int varMasterType = 0;
+        public string varPOID = "";
         public PUR_GRNOrderType()
         {
             InitializeComponent();
@@ -72,12 +73,14 @@ namespace ROMS
                     supplierid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text);
                     scheduleid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text);
                     pono = MainForm.objPUR_GRNEntry.pbPONO;
+                    varPOID = MainForm.objPUR_GRNEntry.pbPONO;
                 }
                 if (varMasterType == 2)
                 {
                     supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
                     scheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
                     pono = MainForm.objCP_Purchase.pbPONO;
+                    varPOID = MainForm.objCP_Purchase.pbPONO;
                 }
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -108,6 +111,7 @@ namespace ROMS
                     grdPurchaseOrder.Columns["poid"].Visible = false;
                     grdPurchaseOrder.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdPurchaseOrder.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    udfnPOCheckTrue();
                 }
                 else
                 {
@@ -121,7 +125,28 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnPOCheckTrue()
+        {
+            try
+            {
+                string[] varPO = varPOID.Split(',');
+                for (int i = 0; i < varPO.Length; i++)
+                {
+                    for (int j = 0; j < grdPurchaseOrder.Rows.Count; j++)
+                    {
+                        if (Convert.ToInt16(grdPurchaseOrder.Rows[j].Cells["POID"].Value) == Convert.ToInt16(varPO[i]))
+                        {
+                            grdPurchaseOrder.Rows[j].Cells[0].Value = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -186,8 +211,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        
 
         public void udfnAddPrevPending() 
         {

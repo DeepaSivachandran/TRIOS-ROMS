@@ -4310,7 +4310,7 @@ namespace ROMS
                                         objTRN_PurchaseEntry.paraEinvoice = "0";
                                     }
                                     objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(varUserID);
-                                    objTRN_PurchaseEntry.paraRemarks = txtRemarks.Text;
+                                    objTRN_PurchaseEntry.paraRemarks = txtRemarks.Text.Trim();
                                     objTRN_PurchaseEntry.ParaPurchase_Products = objPurchaseentry;
                                     
                                     if (chkCompleted.Checked == true)
@@ -6116,7 +6116,7 @@ namespace ROMS
                 {
                      varDisPercent = (vardisamt * 100) / GrandTot;
                 }
-                Txtdiscount.Text = varDisPercent.ToString("0.00");
+                Txtdiscount.Text =Convert.ToString(varDisPercent);
                 udfnLoadingGrandTotCalculation();
                 //decimal varDisPer = (GrandTot * vardisamt) / 100;
             }
