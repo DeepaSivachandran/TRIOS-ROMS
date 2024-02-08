@@ -111,7 +111,7 @@ namespace ROMS
                     grdPurchaseOrder.Columns["poid"].Visible = false;
                     grdPurchaseOrder.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdPurchaseOrder.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    udfnPOCheckTrue();
+                   // udfnPOCheckTrue();
                 }
                 else
                 {

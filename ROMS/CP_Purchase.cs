@@ -77,9 +77,9 @@ namespace ROMS
                             dpInvoiceDate.Enabled = false;
                             txtInvoiceNo.ReadOnly = true;
                             txtInvoiceNo.Enabled = false;
-                            grdGRN.Visible = true;
+                           // grdGRN.Visible = true;
                             grdReurnDC.Visible = false;
-                            grdPODetails.Visible = false;
+                            grdPODetails.Visible = true;
                             if(Convert.ToInt32(grdPODetails.Rows.Count)!=0)
                             {
                                 cmbPONo.Enabled = true;
@@ -444,15 +444,15 @@ namespace ROMS
                     {
                         lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[3].Rows[0]["VERIFIED2"]);
                     }
-                    if (objDs.Tables[4].Rows.Count != 0)
-                    {
-                        for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
-                        {
-                            lblFinishedNoRecord.Visible = false;
-                            grdGRN.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["GRN_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRN_Date"]),
-                            Convert.ToString(objDs.Tables[4].Rows[i]["Procount"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRNID"]));
-                        }
-                    }
+                    //if (objDs.Tables[4].Rows.Count != 0)
+                    //{
+                    //    for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
+                    //    {
+                    //        lblFinishedNoRecord.Visible = false;
+                    //        grdGRN.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["GRN_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRN_Date"]),
+                    //        Convert.ToString(objDs.Tables[4].Rows[i]["Procount"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRNID"]));
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -878,7 +878,7 @@ namespace ROMS
                             {
                                 grdGRN.Rows.Clear();
                                 grdGRN.Visible = false;
-                                lblFinishedNoRecord.Visible = true;
+                              //  lblFinishedNoRecord.Visible = true;
                             }
                         }
                     }
@@ -910,6 +910,7 @@ namespace ROMS
                 if (PbSTS == "50")
                 {
                     tbDetails.TabPages[0].Enabled = false;
+                    tbDetails.TabPages[1].Enabled = true;
                     chkCompleted.Enabled = false;
                     chkCompleted.Checked = true;
                     gpdiscount.Enabled = false;
@@ -1155,7 +1156,8 @@ namespace ROMS
                 if (PbSTS == "50")
                 {
                     tbDetails.TabPages[0].Enabled = false; // First tab 
-                    tbDetails.TabPages[1].Enabled = false; // Second tab 
+                   // tbDetails.TabPages[1].Enabled = true; // Second tab 
+                    
                     udfnPurchaseEntryTabLoad(); //tab2 load
                 }
                 else
@@ -4271,6 +4273,7 @@ namespace ROMS
                             TRN_PurchaseEntry objTRN_PurchaseEntry1 = new TRN_PurchaseEntry();
                             objTRN_PurchaseEntry1.ViewType = varViewType;
                             objTRN_PurchaseEntry1.ParaEditFlag = 0;
+                            objTRN_PurchaseEntry1.paraUserID =Convert.ToInt32(MainForm.pbUserID);
                             objTRN_PurchaseEntry1.paraPurchaseId = Convert.ToInt32(pbPurchaseno);
                             objTRN_PurchaseEntry1.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                             objTRN_PurchaseEntry1.paraPurchaseDate = dpVoucherDate.Text;
@@ -4467,6 +4470,7 @@ namespace ROMS
                                     objTRN_PurchaseEntry.ParaEditFlag = 1;
                                     objTRN_PurchaseEntry.ParaPurchaseDC = PurchaseDcIds;
                                     objTRN_PurchaseEntry.paraGRNID = Convert.ToInt32(pbGRNNo);
+                                    objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                                     objTRN_PurchaseEntry.Purchase_Products_Details = objPurchaseentryDetails;
                                     result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                                     objspdservice.CloseConnection();
@@ -4557,9 +4561,10 @@ namespace ROMS
                     if(PbSTS == "50")
                     {
                         tbDetails.TabPages[0].Enabled = false; // First tab 
-                        tbDetails.TabPages[1].Enabled = false; // Second tab
+                        tbDetails.TabPages[1].Enabled = true; // Second tab
                         grdPurchaseList.ReadOnly = true;
                     }
+
                     cmbConcern.Enabled = false;
                     txtSupplier.Enabled = false;
                     cmbEntryType.Enabled = false;
@@ -6472,7 +6477,7 @@ namespace ROMS
                         //{
                             CellDiscAmt.Style.BackColor = Color.PaleGreen;
                             pbDisper = (varCellDiscAmt * 100) / (varPurchaseRate*varInvQty);
-                            grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscPer"].Value = Math.Round(pbDisper);
+                            grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscPer"].Value = pbDisper.ToString("0.00");
                             udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue);
                             udfnSubtotCalc(e);
                         //}
@@ -6499,7 +6504,7 @@ namespace ROMS
                             CellDiscAmt.Style.BackColor = Color.PaleGreen;
                             CellDiscPer.Style.BackColor = Color.PaleGreen;
                             PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                            grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = Math.Round(PbDiscamt).ToString("0.00");
+                            grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = PbDiscamt.ToString("0.00");
                             udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue);
                             udfnSubtotCalc(e);
                             udfnGstvalue();

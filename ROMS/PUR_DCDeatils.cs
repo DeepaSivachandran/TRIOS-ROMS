@@ -71,7 +71,7 @@ namespace ROMS
                 {
                     for (int j = 0; j < grdDCDetails.Rows.Count; j++)
                     {
-                        if (Convert.ToInt16(grdDCDetails.Rows[j].Cells["POID"].Value) == Convert.ToInt16(varDC[i]))
+                        if (Convert.ToInt16(grdDCDetails.Rows[j].Cells["DCID"].Value) == Convert.ToInt16(varDC[i]))
                         {
                             grdDCDetails.Rows[j].Cells[0].Value = true;
                         }
@@ -100,6 +100,7 @@ namespace ROMS
                 supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
                 scheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
                 DCNo = MainForm.objCP_Purchase.pbDCNo;
+                varDCID = MainForm.objCP_Purchase.pbDCNo;
                 if (supplierid != 0 && scheduleid != 0)
                 {
                     SPDataService objdserv = new SPDataService();
