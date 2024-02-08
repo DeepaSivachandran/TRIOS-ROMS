@@ -1451,43 +1451,40 @@ namespace ROMS
                             varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
                             objspservice.CloseConnection();
                         }
-                        if (Convert.ToInt32(cmbStatus.SelectedValue)==29)
+                        string SSR = "0";
+                        if (varStockRequestID == 0)
                         {
-                            string SSR = "0";
-                            if (varStockRequestID == 0)
-                            {
-                                SSR = varvalue[2];
-                            }
-                            else
-                            {
-                                SSR = Convert.ToString(varStockRequestID);
-                            }
-                            DialogResult result1;
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(87);
-                            objDServ.CloseConnection();
-                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (result1 == DialogResult.Yes)
-                            {
-                                string varHeader = "";
-                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request.rpt");
-                                varHeader = "Shop Stock Request";
+                            SSR = varvalue[2];
+                        }
+                        else
+                        {
+                            SSR = Convert.ToString(varStockRequestID);
+                        }
+                        DialogResult result1;
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(87);
+                        objDServ.CloseConnection();
+                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result1 == DialogResult.Yes)
+                        {
+                            string varHeader = "";
+                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request.rpt");
+                            varHeader = "Shop Stock Request";
 
-                                objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SSR));
-                                objBillreport.SetParameterValue("paraConcern", Convert.ToInt32(cmbConcern.SelectedValue));
-                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                objValidation.CrySqlConnection(objBillreport);
+                            objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SSR));
+                            objBillreport.SetParameterValue("paraConcern", Convert.ToInt32(cmbConcern.SelectedValue));
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                            objValidation.CrySqlConnection(objBillreport);
 
-                                MainForm.objReportLoad = new ReportLoad();
-                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                MainForm.objReportLoad.Text = varHeader;
-                                MainForm.objReportLoad.ShowDialog();
-                            }
+                            MainForm.objReportLoad = new ReportLoad();
+                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                            MainForm.objReportLoad.Text = varHeader;
+                            MainForm.objReportLoad.ShowDialog();
                         }
                     }
                     catch (Exception ex)

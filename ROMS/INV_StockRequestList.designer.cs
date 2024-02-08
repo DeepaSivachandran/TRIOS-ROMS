@@ -71,6 +71,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdStockRequestList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmprint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockRequestList.SuspendLayout();
             this.pnlStockRequestList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -533,6 +534,8 @@
             this.grdStockRequestList.ColumnHeadersHeight = 30;
             this.grdStockRequestList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdStockRequestList.ColumnHeadersVisible = false;
+            this.grdStockRequestList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmprint});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -575,6 +578,16 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // clmprint
+            // 
+            this.clmprint.HeaderText = "Print";
+            this.clmprint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmprint.Name = "clmprint";
+            this.clmprint.ReadOnly = true;
+            this.clmprint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmprint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmprint.Width = 70;
             // 
             // INV_StockRequestList
             // 
@@ -645,5 +658,6 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
+        private System.Windows.Forms.DataGridViewImageColumn clmprint;
     }
 }
