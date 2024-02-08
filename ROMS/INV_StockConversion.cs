@@ -36,7 +36,7 @@ namespace ROMS
         private ToolTip tpYear = new ToolTip();
         public string varExpiryDate = "";
         public int varErroronGrid = 0, varErrorFormat = 0, varUpDownKey = 0;
-        public int varPRID = 0,varUTID=0,varRKID=0,varStockLocationId=0, varDecimal=0, pbDateflag = 0, varShelflife = 0;
+        public int varPRID = 0,varUTID=0,varRKID=0,varStockLocationId=0, varDecimal=0, pbDateflag = 0, varShelflife = 0, varUpdateFlag=0;
         DataTable dtStock = new DataTable();
         private bool varErrorFlag;
         int expirydateFlag = 0, error=0;
@@ -1228,6 +1228,10 @@ namespace ROMS
                 txtDay.Text = "";
                 txtMonth.Text = "";
                 txtYear.Text = "";
+                txtUnit.Text = "";
+                txtUnit2.Text = "";
+                txtUnit3.Text = "";
+                txtTotalUnit.Text = "";
             }
             catch (Exception ex)
             {
@@ -1491,6 +1495,13 @@ namespace ROMS
             {
                 varDateChange = 0;
                 udfnVocherno();
+                udfnClearAll();
+                grdBatchConversion.Rows.Clear();
+                if (btnSave.Text == "Save")
+                {
+                    txtProductName.Text = "";
+                    totalQty.Text = Convert.ToString(grdBatchConversion.Rows.Count);
+                }
             }
             catch (Exception ex)
             {
@@ -2325,10 +2336,24 @@ namespace ROMS
                                 grdBatchConversion.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 //grdBatchConversion.Columns["clmExpiryDate"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 varShelflife = Convert.ToInt32(objDs.Tables[1].Rows[i]["Shelflife"]);
-                                if(varShelflife==1)
+                                if (varShelflife==1)
                                 {
                                     expirydateFlag = 1;
                                 }
+                            }
+                            varUpdateFlag = Convert.ToInt32(objDs.Tables[2].Rows[0]["ErrorCount"]);
+                            if(varUpdateFlag>0)
+                            {
+                                btnSave.Enabled = false;
+                                txtConvertMrp.Enabled = false;
+                                txtDay.Enabled = false;
+                                txtMonth.Enabled = false;
+                                txtYear.Enabled = false;
+                                txtConvertBatch.Enabled = false;
+                                txtConvertQty.Enabled = false;
+                                btnAdd.Enabled = false;
+                                grdBatchConversion.Columns["clmremove"].Visible = false;
+                                btnClose.Focus();
                             }
                             changedQuantity = sum;
                             btnSave.Text = "Update";

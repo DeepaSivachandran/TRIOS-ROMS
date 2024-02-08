@@ -227,7 +227,7 @@ namespace ROMS
                     exists = objDtMenuCloseDet.AsEnumerable().Where(c => c.Field<string>("MenuName").Equals(child.Text) && c.Field<int>("CloseFlag").Equals(0)).Count() > 0; 
                     if (isFound == true && exists == false)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
                             child.Close();
@@ -329,7 +329,7 @@ namespace ROMS
                 {
                     if (pbCloseForm == 0)
                     {
-                        DialogResult objResponse = MessageBox.Show("Are you sure want to Logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                        DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                         if ((objResponse == DialogResult.Yes))
                         {
                             e.Cancel = false;
@@ -467,7 +467,7 @@ namespace ROMS
             try {
                 if (pbCloseForm == 0)
                 {
-                    DialogResult objResponse = MessageBox.Show("Are you sure want to Logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if ((objResponse == DialogResult.Yes))
                     {
                         if ((System.Windows.Forms.Application.MessageLoop))

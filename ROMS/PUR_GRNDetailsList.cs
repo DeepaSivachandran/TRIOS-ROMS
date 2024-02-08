@@ -449,7 +449,9 @@ namespace ROMS
         {
             try
             {
-
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
                 MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
                 MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
                 MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
@@ -462,6 +464,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
 

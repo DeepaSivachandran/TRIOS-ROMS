@@ -69,7 +69,7 @@ namespace ROMS
         {
             try
             {
-                if(txtExpiryDate.Text!="")
+                if(txtExpiryDate.Text.Trim()!="")
                 {
                     string varExpiryDate = "";
                     varExpiryDate = txtExpiryDate.Text.Trim();

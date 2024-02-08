@@ -915,10 +915,10 @@ namespace ROMS
                 {
                     DGV_FilterProduct.Focus();
                 }
-                if (DGV_FilterProduct.RowCount > 0)
-                {
-                    DGV_FilterProduct.Focus();
-                }
+                //if (DGV_FilterProduct.RowCount > 0)
+                //{
+                //    DGV_FilterProduct.Focus();
+                //}
                 if (DGV_FilterProduct.CurrentCell == null)
                 {
                     return;
@@ -1102,7 +1102,7 @@ namespace ROMS
         {
             try
             {
-                lvproduct.Visible = false;
+                DGV_FilterProduct.Visible = false;
                 txtMrp.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
