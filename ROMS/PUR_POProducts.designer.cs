@@ -39,6 +39,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_POProducts));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPONo = new System.Windows.Forms.TextBox();
+            this.txtPODate = new System.Windows.Forms.TextBox();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtUserData = new System.Windows.Forms.TextBox();
+            this.txtPOSts = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,15 +59,6 @@
             this.clmPendingQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtPONo = new System.Windows.Forms.TextBox();
-            this.txtPODate = new System.Windows.Forms.TextBox();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtUserData = new System.Windows.Forms.TextBox();
-            this.txtPOSts = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -108,93 +108,9 @@
             this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.grdPurchaseOrder.RowTemplate.Height = 25;
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseOrder.Size = new System.Drawing.Size(1051, 435);
+            this.grdPurchaseOrder.Size = new System.Drawing.Size(1234, 435);
             this.grdPurchaseOrder.TabIndex = 1111144;
             this.grdPurchaseOrder.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseOrder_DataBindingComplete);
-            // 
-            // clmsno
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmsno.DefaultCellStyle = dataGridViewCellStyle2;
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 50;
-            // 
-            // clmdate
-            // 
-            this.clmdate.HeaderText = "PI Code";
-            this.clmdate.Name = "clmdate";
-            this.clmdate.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column1.HeaderText = "Product Name";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 300;
-            // 
-            // clmTotalitem
-            // 
-            this.clmTotalitem.HeaderText = "Unit";
-            this.clmTotalitem.Name = "clmTotalitem";
-            this.clmTotalitem.ReadOnly = true;
-            this.clmTotalitem.Width = 70;
-            // 
-            // clmUPP
-            // 
-            this.clmUPP.HeaderText = "UPP";
-            this.clmUPP.Name = "clmUPP";
-            this.clmUPP.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column4.HeaderText = "PO Qty";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // clmQtyUnit
-            // 
-            this.clmQtyUnit.HeaderText = "Unit";
-            this.clmQtyUnit.Name = "clmQtyUnit";
-            this.clmQtyUnit.ReadOnly = true;
-            this.clmQtyUnit.Visible = false;
-            this.clmQtyUnit.Width = 70;
-            // 
-            // clmRcvdQty
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmRcvdQty.DefaultCellStyle = dataGridViewCellStyle5;
-            this.clmRcvdQty.HeaderText = "Received Qty";
-            this.clmRcvdQty.Name = "clmRcvdQty";
-            this.clmRcvdQty.ReadOnly = true;
-            // 
-            // clmPendingQty
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmPendingQty.DefaultCellStyle = dataGridViewCellStyle6;
-            this.clmPendingQty.HeaderText = "Pending Qty";
-            this.clmPendingQty.Name = "clmPendingQty";
-            this.clmPendingQty.ReadOnly = true;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            // 
-            // STSID
-            // 
-            this.STSID.HeaderText = "STSID";
-            this.STSID.Name = "STSID";
-            this.STSID.ReadOnly = true;
-            this.STSID.Visible = false;
             // 
             // label1
             // 
@@ -280,12 +196,101 @@
             this.label4.TabIndex = 1111153;
             this.label4.Text = "PO Status";
             // 
+            // clmsno
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmsno.DefaultCellStyle = dataGridViewCellStyle2;
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmsno.Width = 50;
+            // 
+            // clmdate
+            // 
+            this.clmdate.HeaderText = "PI Code";
+            this.clmdate.Name = "clmdate";
+            this.clmdate.ReadOnly = true;
+            this.clmdate.Width = 160;
+            // 
+            // Column1
+            // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column1.HeaderText = "Product Name";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 460;
+            // 
+            // clmTotalitem
+            // 
+            this.clmTotalitem.HeaderText = "Unit";
+            this.clmTotalitem.Name = "clmTotalitem";
+            this.clmTotalitem.ReadOnly = true;
+            this.clmTotalitem.Width = 70;
+            // 
+            // clmUPP
+            // 
+            this.clmUPP.HeaderText = "UPP";
+            this.clmUPP.Name = "clmUPP";
+            this.clmUPP.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column4.HeaderText = "PO Qty";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 70;
+            // 
+            // clmQtyUnit
+            // 
+            this.clmQtyUnit.HeaderText = "Unit";
+            this.clmQtyUnit.Name = "clmQtyUnit";
+            this.clmQtyUnit.ReadOnly = true;
+            this.clmQtyUnit.Visible = false;
+            this.clmQtyUnit.Width = 70;
+            // 
+            // clmRcvdQty
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmRcvdQty.DefaultCellStyle = dataGridViewCellStyle5;
+            this.clmRcvdQty.HeaderText = "Received Qty";
+            this.clmRcvdQty.Name = "clmRcvdQty";
+            this.clmRcvdQty.ReadOnly = true;
+            this.clmRcvdQty.Width = 90;
+            // 
+            // clmPendingQty
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmPendingQty.DefaultCellStyle = dataGridViewCellStyle6;
+            this.clmPendingQty.HeaderText = "Pending Qty";
+            this.clmPendingQty.Name = "clmPendingQty";
+            this.clmPendingQty.ReadOnly = true;
+            this.clmPendingQty.Width = 90;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            // 
+            // STSID
+            // 
+            this.STSID.HeaderText = "STSID";
+            this.STSID.Name = "STSID";
+            this.STSID.ReadOnly = true;
+            this.STSID.Visible = false;
+            this.STSID.Width = 10;
+            // 
             // PUR_POProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1073, 488);
+            this.ClientSize = new System.Drawing.Size(1258, 488);
             this.Controls.Add(this.txtPOSts);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtUserData);
@@ -325,6 +330,8 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.TextBox txtUserData;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtPOSts;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -336,7 +343,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPendingQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn STSID;
-        private System.Windows.Forms.TextBox txtPOSts;
-        private System.Windows.Forms.Label label4;
     }
 }

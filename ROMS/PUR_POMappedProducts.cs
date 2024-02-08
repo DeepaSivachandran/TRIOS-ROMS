@@ -230,21 +230,19 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int cl = grdPurchaseOrder.ColumnCount;
-                int cls = DGV_SearchGrid.ColumnCount;
-                int offSetValue = grdPurchaseOrder.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-
-                if (totalWidth - grdPurchaseOrder.Width > grdPurchaseOrder.HorizontalScrollingOffset && grdPurchaseOrder.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    //offSetValue = offSetValue ;
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdPurchaseOrder.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdPurchaseOrder.Width > grdPurchaseOrder.HorizontalScrollingOffset && grdPurchaseOrder.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdPurchaseOrder);
             }
             catch (Exception ex)
             {
@@ -721,6 +719,32 @@ namespace ROMS
                     row.Cells[0].Value = true;
                 } 
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseOrder_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    int totalWidth = 0;
+                    int offSetValue = grdPurchaseOrder.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdPurchaseOrder.Width > grdPurchaseOrder.HorizontalScrollingOffset && grdPurchaseOrder.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdPurchaseOrder);
+                }
             }
             catch (Exception ex)
             {
