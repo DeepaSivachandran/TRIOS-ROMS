@@ -77,9 +77,9 @@ namespace ROMS
                             dpInvoiceDate.Enabled = false;
                             txtInvoiceNo.ReadOnly = true;
                             txtInvoiceNo.Enabled = false;
-                            grdGRN.Visible = true;
+                           // grdGRN.Visible = true;
                             grdReurnDC.Visible = false;
-                            grdPODetails.Visible = false;
+                            grdPODetails.Visible = true;
                             if(Convert.ToInt32(grdPODetails.Rows.Count)!=0)
                             {
                                 cmbPONo.Enabled = true;
@@ -910,6 +910,7 @@ namespace ROMS
                 if (PbSTS == "50")
                 {
                     tbDetails.TabPages[0].Enabled = false;
+                    tbDetails.TabPages[1].Enabled = true;
                     chkCompleted.Enabled = false;
                     chkCompleted.Checked = true;
                     gpdiscount.Enabled = false;
@@ -1155,7 +1156,8 @@ namespace ROMS
                 if (PbSTS == "50")
                 {
                     tbDetails.TabPages[0].Enabled = false; // First tab 
-                    tbDetails.TabPages[1].Enabled = false; // Second tab 
+                   // tbDetails.TabPages[1].Enabled = true; // Second tab 
+                    
                     udfnPurchaseEntryTabLoad(); //tab2 load
                 }
                 else
@@ -4559,9 +4561,10 @@ namespace ROMS
                     if(PbSTS == "50")
                     {
                         tbDetails.TabPages[0].Enabled = false; // First tab 
-                        tbDetails.TabPages[1].Enabled = false; // Second tab
+                        tbDetails.TabPages[1].Enabled = true; // Second tab
                         grdPurchaseList.ReadOnly = true;
                     }
+
                     cmbConcern.Enabled = false;
                     txtSupplier.Enabled = false;
                     cmbEntryType.Enabled = false;
