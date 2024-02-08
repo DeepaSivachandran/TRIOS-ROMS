@@ -20,7 +20,7 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbranGRNode="", varGRNQRCode = "";
+        public string varbranGRNode="", varGRNQRCode = "",varGRNID="";
         public int QRFlag=0 ;
        DataTable dtPurchaseGRN = new DataTable();
         public string pbFormStatus;
@@ -80,6 +80,7 @@ namespace ROMS
                 supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
                 scheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
                 GRNNo = MainForm.objCP_Purchase.pbGRNNo;
+                varGRNID = MainForm.objCP_Purchase.pbGRNNo;
                 if (supplierid != 0 && scheduleid != 0)
                 {  
                     SPDataService objdserv = new SPDataService();
@@ -112,6 +113,7 @@ namespace ROMS
                         grdGRNDetails.Columns["QRCode"].Visible = false;
                         grdGRNDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdGRNDetails.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        udfnGRNCheckTrue();
                     }
                     else
                     {
@@ -135,11 +137,15 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
+                string[] varGRN = varGRNID.Split(',');
+                for (int i = 0; i < varGRN.Length; i++)
                 {
-                    if (Convert.ToInt32(grdGRNDetails.Rows[i].Cells["GRNID"].Value) == MainForm.objCP_Purchase.varGrnId)
+                    for (int j = 0; j < grdGRNDetails.Rows.Count; j++)
                     {
-                        grdGRNDetails.Rows[i].Cells[0].Value = true;
+                        if (Convert.ToInt16(grdGRNDetails.Rows[j].Cells["GRNID"].Value) ==  Convert.ToInt16(varGRN[i]))
+                        {
+                            grdGRNDetails.Rows[j].Cells[0].Value = true;
+                        }
                     }
                 }
             }
@@ -157,10 +163,10 @@ namespace ROMS
                 int VARFLAG = 0;
                 string GRNno = "0", varGRNQRCode="";
                 MainForm.objCP_Purchase.pbGRNNo = "0";
-                if(QRFlag==1)
-                {
-                    udfnGRNCheckTrue();
-                }
+                //if(QRFlag==1)
+                //{
+                //    udfnGRNCheckTrue();
+                //}
                 //MainForm.objPUR_GRNEntry.grdReurnGRN.Rows.Clear();
                 for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
                 {

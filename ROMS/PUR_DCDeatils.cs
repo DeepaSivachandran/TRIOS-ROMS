@@ -21,8 +21,9 @@ namespace ROMS
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
-       DataTable dtReturnDC = new DataTable();
+        DataTable dtReturnDC = new DataTable();
         public string pbFormStatus;
+        public string varDCID="";
         public PUR_DCDeatils()
         {
             InitializeComponent();
@@ -61,9 +62,30 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDCCheckTrue()
+        {
+            try
+            {
+                string[] varDC = varDCID.Split(',');
+                for (int i = 0; i < varDC.Length; i++)
+                {
+                    for (int j = 0; j < grdDCDetails.Rows.Count; j++)
+                    {
+                        if (Convert.ToInt16(grdDCDetails.Rows[j].Cells["POID"].Value) == Convert.ToInt16(varDC[i]))
+                        {
+                            grdDCDetails.Rows[j].Cells[0].Value = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_DCDeatils_Load(object sender, EventArgs e)
         {
-
             try
             {
                 dtReturnDC = new DataTable();
@@ -114,6 +136,7 @@ namespace ROMS
                         grdDCDetails.Columns["DCID"].Visible = false;
                         grdDCDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdDCDetails.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        udfnDCCheckTrue();
                     }
                     else
                     {
