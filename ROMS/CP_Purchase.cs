@@ -878,7 +878,7 @@ namespace ROMS
                             {
                                 grdGRN.Rows.Clear();
                                 grdGRN.Visible = false;
-                                lblFinishedNoRecord.Visible = true;
+                              //  lblFinishedNoRecord.Visible = true;
                             }
                         }
                     }
