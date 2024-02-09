@@ -724,6 +724,7 @@ namespace ROMS
                         grdViewProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                         grdViewProduct.Columns["Product Name in English"].Visible = false;
                         grdViewProduct.Columns["Unit"].ReadOnly = true;
+                        grdViewProduct.Columns["Stock Qty"].ReadOnly = true;
                         grdViewProduct.Columns["PRODUCTID"].Visible = false;
                         grdViewProduct.Columns["S.No."].Visible = false;
                         grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1476,13 +1477,13 @@ namespace ROMS
                     if (rbSales.Checked == true)
                     {
                         varFlag = 2;
-                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, varDestinationLocationID, 0, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0);
+                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varSourceLocationID, varDestinationLocationID, varSourceRackID, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0);
                         objspservice.CloseConnection();
                     }
                     else if (rbPurchase.Checked == true)
                     {
                         varFlag = 1;
-                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varDestinationLocationID, 0, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0);
+                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "",varSourceLocationID, varDestinationLocationID, varSourceRackID, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0);
                         objspservice.CloseConnection();
                     }
                     string[] varvalue = varResult.Split('~');
@@ -1679,12 +1680,14 @@ namespace ROMS
                                 //grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                                 //grdMoveProduct.Columns["Unit"].ReadOnly = true;
                                 grdMoveProduct.Columns[0].ReadOnly = false;
+                                grdMoveProduct.Columns["Stock Qty"].ReadOnly = true;
                                 grdMoveProduct.Rows.RemoveAt(this.grdMoveProduct.SelectedRows[0].Index);
                                 //for (int i = 0; i < grdMoveProduct.RowCount; i++)
                                 //{
                                 //    grdMoveProduct.Rows[i].Cells["sno"].Value = i + 1;
                                 //}
-                                lblMoveProCount.Text =Convert.ToString(grdViewProduct.Rows.Count);
+                                lblMoveProCount.Text =Convert.ToString(grdMoveProduct.Rows.Count);
+                                lblViewProductCount.Text =Convert.ToString(grdViewProduct.Rows.Count);
                             }
                         break;
                     }

@@ -328,6 +328,8 @@
             // 
             // txtDestinationLocation
             // 
+            this.txtDestinationLocation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDestinationLocation.Enabled = false;
             this.txtDestinationLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtDestinationLocation.Location = new System.Drawing.Point(123, 26);
             this.txtDestinationLocation.MaxLength = 100;
