@@ -65,7 +65,7 @@ namespace ROMS
                     txtLoadingchargeGrn.Text = "";
                     grdPODetails.Rows.Clear();
                     grdReurnDC.Rows.Clear();
-                    grdSupplierList.Columns["clmAddPro"].Visible = false;
+                  //  grdSupplierList.Columns["clmAddPro"].Visible = false;
                     if (cmbEntryType.SelectedValue.ToString() == "54") // GRN
                     {
                         if (PbFlag == "0")
@@ -392,7 +392,7 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["GRNPR_PRFlag"]));
                             grdSupplierList.Columns["clmGrnMrp"].Visible = true;
-                            grdSupplierList.Columns["clmAddPro"].Visible = true;
+                           // grdSupplierList.Columns["clmAddPro"].Visible = true;
                         }
                         DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                         GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -802,7 +802,7 @@ namespace ROMS
                                     , Convert.ToString(objDs.Tables[1].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GRNQty"])
                                     , Convert.ToDecimal(objDs.Tables[1].Rows[i]["DCQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"]), 0, 0);
 
-                                    grdSupplierList.Columns["clmAddPro"].Visible = false;
+                                    //grdSupplierList.Columns["clmAddPro"].Visible = false;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                                 }
@@ -4798,10 +4798,10 @@ namespace ROMS
                     for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                     {
 
-                        if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
-                        {
-                            PurchaseDcIds = Convert.ToString(grdSupplierList.Rows[i].Cells["clmTransId"].Value);
-                        }
+                        //if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
+                        //{
+                        //    PurchaseDcIds = Convert.ToString(grdSupplierList.Rows[i].Cells["clmTransId"].Value);
+                        //}
                         if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "-1")
                         {
                             varcount++;
@@ -4918,6 +4918,11 @@ namespace ROMS
                             , Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmTotQty"].Value), Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmGRNQty"].Value)
                             , Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmDCQty"].Value), varPURPRID);
                         }
+                    }
+                    if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
+                    {
+                       // PurchaseDcIds = Convert.ToString(grdSupplierList.Rows[i].Cells["clmTransId"].Value);
+                       PurchaseDcIds = Convert.ToString(pbDCNo);
                     }
                 }
 
@@ -6088,6 +6093,38 @@ namespace ROMS
             }
         }
 
+        private void GrdGRN_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void GrdReurnDC_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                    {
+                        case "DCDate":
+                            string cellPOValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["ID"].Value);
+                            MainForm.objPUR_POProducts = new PUR_POProducts();
+                            MainForm.objPUR_POProducts.pbPoid = cellPOValue;
+                            MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
+                            MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
+                            MainForm.objPUR_POProducts.ShowDialog();
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
         private void Txtdiscount_TextChanged(object sender, EventArgs e)
         {
             try
@@ -6328,32 +6365,32 @@ namespace ROMS
 
         private void GrdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (e.RowIndex != -1)
-                {
-                    switch (grdSupplierList.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmAddPro":
+            //try
+            //{
+            //    if (e.RowIndex != -1)
+            //    {
+            //        switch (grdSupplierList.Columns[e.ColumnIndex].Name)
+            //        {
+            //            case "clmAddPro":
 
-                            string cellTname = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmProTname"].Value);
-                            string cellNewProid = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmProid"].Value);
-                            MainForm.objCP_Items = new CP_Product();
-                            MainForm.objCP_Items.varMasterType = "1";
-                            MainForm.objCP_Items.varGRNid = pbGRNId;
-                            MainForm.objCP_Items.varNewproid = cellNewProid;
-                            MainForm.objCP_Items.varEname = cellTname;
-                            MainForm.objCP_Items.ShowDialog();
-                            udfnGRNProload();
-                            break; 
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //                string cellTname = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmProTname"].Value);
+            //                string cellNewProid = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmProid"].Value);
+            //                MainForm.objCP_Items = new CP_Product();
+            //                MainForm.objCP_Items.varMasterType = "1";
+            //                MainForm.objCP_Items.varGRNid = pbGRNId;
+            //                MainForm.objCP_Items.varNewproid = cellNewProid;
+            //                MainForm.objCP_Items.varEname = cellTname;
+            //                MainForm.objCP_Items.ShowDialog();
+            //                udfnGRNProload();
+            //                break; 
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
          
 
