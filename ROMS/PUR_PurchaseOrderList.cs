@@ -2070,7 +2070,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) != "51")
+                if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) == "12")
                 {
                     if (grdPurchaseorderlist.SelectedRows.Count > 0)
                     {
@@ -3293,7 +3293,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) == "51" )
+                if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) != "12" )
                 { tsbDelete.Visible = false; }
                 else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
             }
