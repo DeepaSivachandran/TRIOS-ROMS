@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+     
 namespace ROMS
 {
     public partial class CP_Brand : Form
@@ -20,7 +20,7 @@ namespace ROMS
         private ToolTip tpBrandNameInEnglish = new ToolTip();
         private ToolTip tpBrandNameInTamil = new ToolTip();
 
-        public int varStatusid = 1;
+        public int varStatusid = 1; 
         public int varUpdate = 0;
         public int varFormFlag = 0;
         public int varId = 0;

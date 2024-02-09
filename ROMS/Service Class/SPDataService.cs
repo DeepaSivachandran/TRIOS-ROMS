@@ -3031,7 +3031,7 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[TRNS_Purchase_Entry]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_PurchaseEntry.ViewType); 
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_PurchaseEntry.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_PurchaseEntry.paraOriginator);
