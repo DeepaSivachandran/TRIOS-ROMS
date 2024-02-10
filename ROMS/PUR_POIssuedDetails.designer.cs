@@ -254,6 +254,7 @@
             this.txtIssuemodeValues.TabIndex = 3;
             this.txtIssuemodeValues.Enter += new System.EventHandler(this.TxtIssuemodeValues_Enter);
             this.txtIssuemodeValues.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtIssuemodeValues_KeyDown);
+            this.txtIssuemodeValues.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIssuemodeValues_KeyPress);
             this.txtIssuemodeValues.Leave += new System.EventHandler(this.TxtIssuemodeValues_Leave);
             // 
             // cmbIssueMode

@@ -711,14 +711,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (btnViewPO.Visible == true)
-                    {
-                        btnViewPO.Focus();
-                    }
-                    else
-                    {
+                    //if (btnViewPO.Visible == true)
+                    //{
+                    //    btnViewPO.Focus();
+                    //}
+                    //else
+                    //{
                         dpinvoicedate.Focus();
-                    }
+                    //}
                 }
             }
             catch (Exception ex)

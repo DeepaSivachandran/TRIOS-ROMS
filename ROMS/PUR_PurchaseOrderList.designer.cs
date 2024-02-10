@@ -1327,6 +1327,7 @@
             this.grdPurchaseorderlist.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseorderlist_CellContentClick);
             this.grdPurchaseorderlist.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseorderlist_DataBindingComplete);
             this.grdPurchaseorderlist.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
+            this.grdPurchaseorderlist.SelectionChanged += new System.EventHandler(this.GrdPurchaseorderlist_SelectionChanged);
             this.grdPurchaseorderlist.DoubleClick += new System.EventHandler(this.GrdPurchaseorderlist_DoubleClick);
             this.grdPurchaseorderlist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseorderlist_KeyDown);
             // 
