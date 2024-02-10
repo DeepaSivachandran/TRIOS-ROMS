@@ -2244,6 +2244,21 @@ namespace ROMS
             }
         }
 
+        private void BtnVerified_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRN_Level_Verified = new PUR_GRN_Level_Verified();
+                //MainForm.objPUR_GRN_Level_Verified.varMasterType = "1";
+                MainForm.objPUR_GRN_Level_Verified.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtInvoiceQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
