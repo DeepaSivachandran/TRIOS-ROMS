@@ -90,8 +90,8 @@ namespace ROMS
                     MainForm.objINV_InwardPurchase.varRemarkFlag = 2;
                     MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern"].Value);
                     MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
-                   MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
-                    MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
+                   MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction Date"].Value);
+                    MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction No."].Value);
                     MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice Date"].Value);
                     MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Invoice No."].Value);
                     MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher Date"].Value);
@@ -548,8 +548,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["My Products"].Visible = false;
                 DGV_SearchGrid.Columns["Type ID"].Visible = false;
                 DGV_SearchGrid.Columns["Concern"].Width = 80;
-                DGV_SearchGrid.Columns["GRN Date"].Width = 100;
-                DGV_SearchGrid.Columns["GRN No."].Width = 80;
+                DGV_SearchGrid.Columns["Transaction Date"].Width = 100;
+                DGV_SearchGrid.Columns["Transaction No."].Width = 80;
                 DGV_SearchGrid.Columns["Supplier"].Width = 250;
                 DGV_SearchGrid.Columns["Total Products in Invoice"].Width = 150;
                 ///   grdInwardQueueList.Columns["Created By"].Width = 110;
@@ -664,8 +664,8 @@ namespace ROMS
                                 grdInwardQueueList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardQueueList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInwardQueueList.Columns["Concern"].Width = 80;
-                                grdInwardQueueList.Columns["GRN Date"].Width = 100;
-                                grdInwardQueueList.Columns["GRN No."].Width = 80;
+                                grdInwardQueueList.Columns["Transaction Date"].Width = 100;
+                                grdInwardQueueList.Columns["Transaction No."].Width = 80;
                                 grdInwardQueueList.Columns["Supplier"].Width = 250;
                                 grdInwardQueueList.Columns["Total Products in Invoice"].Width = 150;
                              ///   grdInwardQueueList.Columns["Created By"].Width = 110;
