@@ -150,7 +150,7 @@ namespace ROMS
                                 TRN_GRN objTRNS_GRN = new TRN_GRN();
                                 objTRNS_GRN.ViewType = 2;
                                 objTRNS_GRN.ParaGRNID = Convert.ToInt32(pbGRNId);
-                                objTRNS_GRN.ParaVerify = Convert.ToInt32(varUserId);
+                                objTRNS_GRN.ParaVerify1 = Convert.ToInt32(varUserId);
                                 objTRNS_GRN.paraflag = Convert.ToInt32(flag);
                                 objTRNS_GRN.paraOriginator = Originator;
                                 result = objDser.udfnGRNEntry(objTRNS_GRN);

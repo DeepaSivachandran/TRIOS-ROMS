@@ -35,6 +35,7 @@ namespace ROMS
 
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0, varModifiedFlag = 0, varUpDownKey=0, varDecimal=0;
         public bool VarSearchFlag = true;
+        public int PbVerified = 0;
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -48,6 +49,14 @@ namespace ROMS
                 udfnEditLoad();
                 udfnDateSet();
                 udfnPODropdownload();
+                if(chkCompleted.Checked == true)
+                {
+                    btnVerified.Enabled = false;
+                }
+                else
+                {
+                    btnVerified.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -2249,8 +2258,34 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_GRN_Level_Verified = new PUR_GRN_Level_Verified();
-                //MainForm.objPUR_GRN_Level_Verified.varMasterType = "1";
+                MainForm.objPUR_GRN_Level_Verified.pbGRNId = pbGRNId;
                 MainForm.objPUR_GRN_Level_Verified.ShowDialog();
+                if (PbVerified ==1)
+                {
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objdserv.udfnGrnListLoad(8, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0, 0, "0", "");
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                lblVerifiedBy1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMP_Name"]);
+                                lblVerifiedDate1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_VerifiedOn1"]);
+                            }
+                        }
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        {
+                            if (objDs.Tables[1].Rows.Count > 0)
+                            {
+                                lblVerifiedBy2.Text = Convert.ToString(objDs.Tables[1].Rows[1]["EMP_Name"]);
+                                lblVerifiedDate2.Text = Convert.ToString(objDs.Tables[1].Rows[1]["GRN_VerifiedOn2"]);
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

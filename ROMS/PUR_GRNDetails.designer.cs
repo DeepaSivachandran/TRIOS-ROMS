@@ -50,7 +50,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNDetails));
             this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
-            this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlSupplierMapping = new System.Windows.Forms.Panel();
             this.grpSupplierMapping = new System.Windows.Forms.GroupBox();
@@ -60,7 +59,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtInvoiceQty = new System.Windows.Forms.TextBox();
             this.cmbPONo = new System.Windows.Forms.ComboBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtBatchno = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -70,7 +68,6 @@
             this.lblDEGroup = new System.Windows.Forms.Label();
             this.txtDate = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.BtnNew = new System.Windows.Forms.Button();
             this.lblDD = new System.Windows.Forms.Label();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.txtmrprate = new System.Windows.Forms.TextBox();
@@ -88,7 +85,6 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnDamage = new System.Windows.Forms.Button();
             this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.grdPODetails = new System.Windows.Forms.DataGridView();
             this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,7 +99,6 @@
             this.lblPercentage = new System.Windows.Forms.Label();
             this.txtRDPercentageCheck = new System.Windows.Forms.TextBox();
             this.txtDGPercentageCheck = new System.Windows.Forms.TextBox();
-            this.btnDC = new System.Windows.Forms.Button();
             this.grdReurnDC = new System.Windows.Forms.DataGridView();
             this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,8 +106,6 @@
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtRemark = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.grpGrnDetails = new System.Windows.Forms.GroupBox();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
@@ -170,7 +163,6 @@
             this.clmprflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPOQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpVerify = new System.Windows.Forms.GroupBox();
             this.lblVerified2 = new System.Windows.Forms.Label();
             this.lblVerified1 = new System.Windows.Forms.Label();
@@ -178,11 +170,24 @@
             this.lblVerifyDateTime = new System.Windows.Forms.Label();
             this.txtDLevel2 = new System.Windows.Forms.TextBox();
             this.txtDLevel1 = new System.Windows.Forms.TextBox();
-            this.btnVerify1 = new System.Windows.Forms.Button();
-            this.btnVerify2 = new System.Windows.Forms.Button();
             this.lblRemark = new System.Windows.Forms.Label();
             this.errGRNDetails = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnVerified = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.BtnNew = new System.Windows.Forms.Button();
+            this.btnDamage = new System.Windows.Forms.Button();
+            this.btnDC = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnVerify1 = new System.Windows.Forms.Button();
+            this.btnVerify2 = new System.Windows.Forms.Button();
+            this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
+            this.lblVerifiedBy1 = new System.Windows.Forms.Label();
+            this.lblVerifiedBy2 = new System.Windows.Forms.Label();
+            this.lblVerifiedDate1 = new System.Windows.Forms.Label();
+            this.lblVerifiedDate2 = new System.Windows.Forms.Label();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -211,16 +216,6 @@
             this.tsSupplierMapping.Size = new System.Drawing.Size(1354, 25);
             this.tsSupplierMapping.TabIndex = 35;
             this.tsSupplierMapping.Text = "Goods Receipt";
-            // 
-            // tspSupplierMapping
-            // 
-            this.tspSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspSupplierMapping.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspSupplierMapping.Name = "tspSupplierMapping";
-            this.tspSupplierMapping.Size = new System.Drawing.Size(137, 22);
-            this.tspSupplierMapping.Text = "Goods Received Note";
             // 
             // lblNoRecordsFound
             // 
@@ -395,21 +390,6 @@
             this.cmbPONo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPONo_KeyPress);
             this.cmbPONo.Leave += new System.EventHandler(this.CmbPONo_Leave);
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(966, 37);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 22);
-            this.btnAdd.TabIndex = 15;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
-            // 
             // txtProductName
             // 
             this.txtProductName.Location = new System.Drawing.Point(182, 35);
@@ -512,21 +492,6 @@
             this.label7.Size = new System.Drawing.Size(34, 20);
             this.label7.TabIndex = 1111154;
             this.label7.Text = "MRP";
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.Enabled = false;
-            this.BtnNew.Image = global::ROMS.Properties.Resources.New;
-            this.BtnNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnNew.Location = new System.Drawing.Point(461, 35);
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(104, 27);
-            this.BtnNew.TabIndex = 900;
-            this.BtnNew.Text = "New Product";
-            this.BtnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnNew.UseVisualStyleBackColor = true;
-            this.BtnNew.Visible = false;
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // lblDD
             // 
@@ -708,21 +673,6 @@
             // 
             this.columnHeader9.Width = 0;
             // 
-            // btnDamage
-            // 
-            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
-            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDamage.Location = new System.Drawing.Point(514, 513);
-            this.btnDamage.Name = "btnDamage";
-            this.btnDamage.Size = new System.Drawing.Size(90, 29);
-            this.btnDamage.TabIndex = 1111204;
-            this.btnDamage.Text = "Damages";
-            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDamage.UseVisualStyleBackColor = true;
-            this.btnDamage.Visible = false;
-            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
-            // 
             // chkCompleted
             // 
             this.chkCompleted.AutoSize = true;
@@ -890,20 +840,6 @@
             this.txtDGPercentageCheck.Size = new System.Drawing.Size(27, 16);
             this.txtDGPercentageCheck.TabIndex = 1111156;
             // 
-            // btnDC
-            // 
-            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
-            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDC.Location = new System.Drawing.Point(300, 513);
-            this.btnDC.Name = "btnDC";
-            this.btnDC.Size = new System.Drawing.Size(101, 29);
-            this.btnDC.TabIndex = 1111181;
-            this.btnDC.Text = "Return DC";
-            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDC.UseVisualStyleBackColor = true;
-            this.btnDC.Click += new System.EventHandler(this.BtnDC_Click);
-            // 
             // grdReurnDC
             // 
             this.grdReurnDC.AllowUserToAddRows = false;
@@ -995,38 +931,6 @@
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(201, 88);
             this.txtRemark.TabIndex = 16;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1255, 596);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 20;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
-            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1130, 596);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(123, 29);
-            this.btnSave.TabIndex = 19;
-            this.btnSave.Text = "Update as Draft";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // grpGrnDetails
             // 
@@ -1590,17 +1494,12 @@
             this.clmUTDecimal.Visible = false;
             this.clmUTDecimal.Width = 10;
             // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemove.Width = 50;
-            // 
             // grpVerify
             // 
+            this.grpVerify.Controls.Add(this.lblVerifiedDate2);
+            this.grpVerify.Controls.Add(this.lblVerifiedDate1);
+            this.grpVerify.Controls.Add(this.lblVerifiedBy2);
+            this.grpVerify.Controls.Add(this.lblVerifiedBy1);
             this.grpVerify.Controls.Add(this.lblVerified2);
             this.grpVerify.Controls.Add(this.lblVerified1);
             this.grpVerify.Controls.Add(this.lblVerifyDateTime2);
@@ -1665,6 +1564,7 @@
             this.txtDLevel2.TabIndex = 17;
             this.txtDLevel2.TabStop = false;
             this.txtDLevel2.Text = "Level 2";
+            this.txtDLevel2.Visible = false;
             // 
             // txtDLevel1
             // 
@@ -1678,34 +1578,7 @@
             this.txtDLevel1.TabIndex = 16;
             this.txtDLevel1.TabStop = false;
             this.txtDLevel1.Text = "Level 1";
-            // 
-            // btnVerify1
-            // 
-            this.btnVerify1.Enabled = false;
-            this.btnVerify1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnVerify1.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify1.Image")));
-            this.btnVerify1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerify1.Location = new System.Drawing.Point(66, 29);
-            this.btnVerify1.Name = "btnVerify1";
-            this.btnVerify1.Size = new System.Drawing.Size(31, 30);
-            this.btnVerify1.TabIndex = 6;
-            this.btnVerify1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVerify1.UseVisualStyleBackColor = true;
-            this.btnVerify1.Click += new System.EventHandler(this.BtnVerify1_Click);
-            // 
-            // btnVerify2
-            // 
-            this.btnVerify2.Enabled = false;
-            this.btnVerify2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnVerify2.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify2.Image")));
-            this.btnVerify2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerify2.Location = new System.Drawing.Point(66, 62);
-            this.btnVerify2.Name = "btnVerify2";
-            this.btnVerify2.Size = new System.Drawing.Size(31, 30);
-            this.btnVerify2.TabIndex = 5;
-            this.btnVerify2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVerify2.UseVisualStyleBackColor = true;
-            this.btnVerify2.Click += new System.EventHandler(this.BtnVerify2_Click);
+            this.txtDLevel1.Visible = false;
             // 
             // lblRemark
             // 
@@ -1721,9 +1594,17 @@
             // 
             this.errGRNDetails.ContainerControl = this;
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Width = 50;
+            // 
             // btnVerified
             // 
-            this.btnVerified.Enabled = false;
             this.btnVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnVerified.Image = ((System.Drawing.Image)(resources.GetObject("btnVerified.Image")));
             this.btnVerified.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1735,6 +1616,182 @@
             this.btnVerified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVerified.UseVisualStyleBackColor = true;
             this.btnVerified.Click += new System.EventHandler(this.BtnVerified_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(966, 37);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 22);
+            this.btnAdd.TabIndex = 15;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
+            // BtnNew
+            // 
+            this.BtnNew.Enabled = false;
+            this.BtnNew.Image = global::ROMS.Properties.Resources.New;
+            this.BtnNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnNew.Location = new System.Drawing.Point(461, 35);
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(104, 27);
+            this.BtnNew.TabIndex = 900;
+            this.BtnNew.Text = "New Product";
+            this.BtnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Visible = false;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // btnDamage
+            // 
+            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
+            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDamage.Location = new System.Drawing.Point(514, 513);
+            this.btnDamage.Name = "btnDamage";
+            this.btnDamage.Size = new System.Drawing.Size(90, 29);
+            this.btnDamage.TabIndex = 1111204;
+            this.btnDamage.Text = "Damages";
+            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDamage.UseVisualStyleBackColor = true;
+            this.btnDamage.Visible = false;
+            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
+            // 
+            // btnDC
+            // 
+            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
+            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDC.Location = new System.Drawing.Point(300, 513);
+            this.btnDC.Name = "btnDC";
+            this.btnDC.Size = new System.Drawing.Size(101, 29);
+            this.btnDC.TabIndex = 1111181;
+            this.btnDC.Text = "Return DC";
+            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDC.UseVisualStyleBackColor = true;
+            this.btnDC.Click += new System.EventHandler(this.BtnDC_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1255, 596);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 20;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1130, 596);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(123, 29);
+            this.btnSave.TabIndex = 19;
+            this.btnSave.Text = "Update as Draft";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemove.Width = 50;
+            // 
+            // btnVerify1
+            // 
+            this.btnVerify1.Enabled = false;
+            this.btnVerify1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnVerify1.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify1.Image")));
+            this.btnVerify1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerify1.Location = new System.Drawing.Point(66, 29);
+            this.btnVerify1.Name = "btnVerify1";
+            this.btnVerify1.Size = new System.Drawing.Size(31, 30);
+            this.btnVerify1.TabIndex = 6;
+            this.btnVerify1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerify1.UseVisualStyleBackColor = true;
+            this.btnVerify1.Visible = false;
+            this.btnVerify1.Click += new System.EventHandler(this.BtnVerify1_Click);
+            // 
+            // btnVerify2
+            // 
+            this.btnVerify2.Enabled = false;
+            this.btnVerify2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnVerify2.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify2.Image")));
+            this.btnVerify2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerify2.Location = new System.Drawing.Point(66, 62);
+            this.btnVerify2.Name = "btnVerify2";
+            this.btnVerify2.Size = new System.Drawing.Size(31, 30);
+            this.btnVerify2.TabIndex = 5;
+            this.btnVerify2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerify2.UseVisualStyleBackColor = true;
+            this.btnVerify2.Visible = false;
+            this.btnVerify2.Click += new System.EventHandler(this.BtnVerify2_Click);
+            // 
+            // tspSupplierMapping
+            // 
+            this.tspSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspSupplierMapping.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspSupplierMapping.Name = "tspSupplierMapping";
+            this.tspSupplierMapping.Size = new System.Drawing.Size(137, 22);
+            this.tspSupplierMapping.Text = "Goods Received Note";
+            // 
+            // lblVerifiedBy1
+            // 
+            this.lblVerifiedBy1.AutoSize = true;
+            this.lblVerifiedBy1.Location = new System.Drawing.Point(6, 36);
+            this.lblVerifiedBy1.Name = "lblVerifiedBy1";
+            this.lblVerifiedBy1.Size = new System.Drawing.Size(69, 17);
+            this.lblVerifiedBy1.TabIndex = 1111190;
+            this.lblVerifiedBy1.Text = "Verified By 1";
+            // 
+            // lblVerifiedBy2
+            // 
+            this.lblVerifiedBy2.AutoSize = true;
+            this.lblVerifiedBy2.Location = new System.Drawing.Point(6, 68);
+            this.lblVerifiedBy2.Name = "lblVerifiedBy2";
+            this.lblVerifiedBy2.Size = new System.Drawing.Size(69, 17);
+            this.lblVerifiedBy2.TabIndex = 1111191;
+            this.lblVerifiedBy2.Text = "Verified By 2";
+            // 
+            // lblVerifiedDate1
+            // 
+            this.lblVerifiedDate1.AutoSize = true;
+            this.lblVerifiedDate1.Location = new System.Drawing.Point(84, 36);
+            this.lblVerifiedDate1.Name = "lblVerifiedDate1";
+            this.lblVerifiedDate1.Size = new System.Drawing.Size(70, 17);
+            this.lblVerifiedDate1.TabIndex = 1111192;
+            this.lblVerifiedDate1.Text = "Verified Date";
+            // 
+            // lblVerifiedDate2
+            // 
+            this.lblVerifiedDate2.AutoSize = true;
+            this.lblVerifiedDate2.Location = new System.Drawing.Point(84, 69);
+            this.lblVerifiedDate2.Name = "lblVerifiedDate2";
+            this.lblVerifiedDate2.Size = new System.Drawing.Size(70, 17);
+            this.lblVerifiedDate2.TabIndex = 1111193;
+            this.lblVerifiedDate2.Text = "Verified Date";
             // 
             // PUR_GRNDetails
             // 
@@ -1916,5 +1973,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTDecimal;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.Button btnVerified;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.Label lblVerifiedBy2;
+        private System.Windows.Forms.Label lblVerifiedBy1;
+        private System.Windows.Forms.Label lblVerifiedDate2;
+        private System.Windows.Forms.Label lblVerifiedDate1;
     }
 }

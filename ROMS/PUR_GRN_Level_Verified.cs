@@ -19,11 +19,12 @@ namespace ROMS
         DataError objError;
 
 
-        private ToolTip tpbrandname = new ToolTip();
-        private ToolTip tpbrandtamilname = new ToolTip();
+        private ToolTip tpVerified1 = new ToolTip();
+        private ToolTip tpVerified2 = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
         public string varUserId = "";
+        public string pbGRNId = "";
         public string varPasskey = "";
         public int flag = 0;
         public PUR_GRN_Level_Verified()
@@ -40,22 +41,75 @@ namespace ROMS
         {
             try
             {
-                DataSet objDs = new DataSet();
-                
+                bool blnErrorFlag = false;
+                if (Convert.ToInt32(cmbVerified1.SelectedValue)==-1 && Convert.ToInt32(cmbVerified2.SelectedValue) == -1)
+                {
+                    errVerified.SetError(cmbVerified1, "Please select verified employee");
+                    cmbVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerified1.ShowAlways = true;
+                    tpVerified1.Show("Please select verified employee", cmbVerified1, 5000);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    udfnSave(sender, e);
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void TxtPassKey_KeyDown(object sender, KeyEventArgs e)
+        public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                int V1_EMPID = 0, V2_EMPID = 0;
+                if (Convert.ToInt32(cmbVerified1.SelectedValue)!=-1)
                 {
-                    btnAuthorise.Focus();
+                    V1_EMPID = Convert.ToInt32(cmbVerified1.SelectedValue);
+                }
+                if (Convert.ToInt32(cmbVerified2.SelectedValue) != -1)
+                {
+                    V2_EMPID = Convert.ToInt32(cmbVerified2.SelectedValue);
+                }
+                SPDataService objDser = new SPDataService();
+                string result = "", Originator = "";
+                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1)
+                {
+                    Originator = "GRN Verifed1";
+                }
+                else
+                {
+                    Originator = "GRN Verifed2";
+                }
+                Model.TRN_GRN objTRNS_GRN = new Model.TRN_GRN();
+                objTRNS_GRN.ViewType = 2;
+                objTRNS_GRN.ParaGRNID = Convert.ToInt32(pbGRNId);
+                objTRNS_GRN.ParaVerify1 = Convert.ToInt32(V1_EMPID);
+                objTRNS_GRN.ParaVerify2 = Convert.ToInt32(V2_EMPID);
+                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1)
+                {
+                    objTRNS_GRN.ParaVerifyDate1 = Convert.ToString(dpVerified1.Text);
+                }
+                if (Convert.ToInt32(cmbVerified2.SelectedValue) != -1)
+                {
+                    objTRNS_GRN.ParaVerifyDate2 = Convert.ToString(dpVerified2.Text);
+                }
+                objTRNS_GRN.paraOriginator = Originator;
+                result = objDser.udfnGRNEntry(objTRNS_GRN);
+                objDser.CloseConnection();
+                string[] varvalue = result.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objPUR_GRNDetails.PbVerified = 1;
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -267,7 +321,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3, varConcernId = 0;
-                objDT = objdserv.udfnEmployeeList(9, "", 0, "", 1, 0, 0);
+                objDT = objdserv.udfnEmployeeList(10, "", 0, "", 1, 0, 0);
                 objdserv.CloseConnection();
                 cmbVerified1.DataSource = null;
                 if (objDT != null)
@@ -276,11 +330,12 @@ namespace ROMS
                     {
                         if (objDT.Tables[0].Rows.Count > 0)
                         {
-                            cmbVerified1.ValueMember = "COMID";
-                            cmbVerified1.DisplayMember = "COM_ShortName";
+                            cmbVerified1.ValueMember = "EMPID";
+                            cmbVerified1.DisplayMember = "EMP_Name";
                             cmbVerified1.DataSource = objDT.Tables[0];
                         }
                     }
+                    cmbVerified1.SelectedValue = -1;
                 }
             }
             catch (Exception ex)
@@ -297,7 +352,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3, varConcernId = 0;
-                objDT = objdserv.udfnEmployeeList(9, "", 0, "", 1, 0, 0);
+                objDT = objdserv.udfnEmployeeList(10, "", 0, "", 1, 0, 0);
                 objdserv.CloseConnection();
                 cmbVerified2.DataSource = null;
                 if (objDT != null)
@@ -306,11 +361,12 @@ namespace ROMS
                     {
                         if (objDT.Tables[0].Rows.Count > 0)
                         {
-                            cmbVerified2.ValueMember = "COMID";
-                            cmbVerified2.DisplayMember = "COM_ShortName";
+                            cmbVerified2.ValueMember = "EMPID";
+                            cmbVerified2.DisplayMember = "EMP_Name";
                             cmbVerified2.DataSource = objDT.Tables[0];
                         }
                     }
+                    cmbVerified2.SelectedValue = -1;
                 }
             }
             catch (Exception ex)
