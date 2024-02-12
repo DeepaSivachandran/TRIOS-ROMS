@@ -38,6 +38,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbQue = new System.Windows.Forms.ToolStripButton();
@@ -78,6 +83,12 @@
             this.grdInwardQueueList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.epQueueList = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbShow = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.cmbOrderBy = new System.Windows.Forms.ComboBox();
+            this.grdProDetails = new System.Windows.Forms.DataGridView();
+            this.DGV_ProdSearchGrid = new System.Windows.Forms.DataGridView();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -86,6 +97,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdInwardQueueList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epQueueList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_ProdSearchGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // tsInwardList
@@ -150,6 +163,10 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.lblStatus);
+            this.pnlinward.Controls.Add(this.cmbOrderBy);
+            this.pnlinward.Controls.Add(this.label7);
+            this.pnlinward.Controls.Add(this.cmbShow);
             this.pnlinward.Controls.Add(this.DGV_FilterProduct);
             this.pnlinward.Controls.Add(this.lblStockLocationCode);
             this.pnlinward.Controls.Add(this.lvStockLocation);
@@ -160,6 +177,8 @@
             this.pnlinward.Controls.Add(this.lblNoRecordsFound);
             this.pnlinward.Controls.Add(this.grdInwardQueueList);
             this.pnlinward.Controls.Add(this.picLoader);
+            this.pnlinward.Controls.Add(this.grdProDetails);
+            this.pnlinward.Controls.Add(this.DGV_ProdSearchGrid);
             this.pnlinward.Location = new System.Drawing.Point(0, 31);
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 641);
@@ -281,9 +300,9 @@
             // 
             // txtStockLocation
             // 
-            this.txtStockLocation.Location = new System.Drawing.Point(629, 44);
+            this.txtStockLocation.Location = new System.Drawing.Point(527, 44);
             this.txtStockLocation.Name = "txtStockLocation";
-            this.txtStockLocation.Size = new System.Drawing.Size(171, 27);
+            this.txtStockLocation.Size = new System.Drawing.Size(151, 27);
             this.txtStockLocation.TabIndex = 3;
             this.txtStockLocation.TextChanged += new System.EventHandler(this.TxtStockLocation_TextChanged);
             this.txtStockLocation.Enter += new System.EventHandler(this.TxtStockLocation_Enter);
@@ -330,9 +349,9 @@
             // cmbEntryType
             // 
             this.cmbEntryType.FormattingEnabled = true;
-            this.cmbEntryType.Location = new System.Drawing.Point(1140, 42);
+            this.cmbEntryType.Location = new System.Drawing.Point(953, 42);
             this.cmbEntryType.Name = "cmbEntryType";
-            this.cmbEntryType.Size = new System.Drawing.Size(121, 27);
+            this.cmbEntryType.Size = new System.Drawing.Size(98, 27);
             this.cmbEntryType.TabIndex = 5;
             this.cmbEntryType.SelectedIndexChanged += new System.EventHandler(this.CmbEntryType_SelectedIndexChanged);
             this.cmbEntryType.Enter += new System.EventHandler(this.CmbEntryType_Enter);
@@ -354,7 +373,7 @@
             // 
             this.lblEntryType.AutoSize = true;
             this.lblEntryType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblEntryType.Location = new System.Drawing.Point(1140, 20);
+            this.lblEntryType.Location = new System.Drawing.Point(949, 20);
             this.lblEntryType.Name = "lblEntryType";
             this.lblEntryType.Size = new System.Drawing.Size(66, 20);
             this.lblEntryType.TabIndex = 958818;
@@ -363,7 +382,7 @@
             // lblDSupplier
             // 
             this.lblDSupplier.AutoSize = true;
-            this.lblDSupplier.Location = new System.Drawing.Point(367, 19);
+            this.lblDSupplier.Location = new System.Drawing.Point(315, 19);
             this.lblDSupplier.Name = "lblDSupplier";
             this.lblDSupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDSupplier.TabIndex = 1111211;
@@ -372,9 +391,9 @@
             // cmbConcern
             // 
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(19, 41);
+            this.cmbConcern.Location = new System.Drawing.Point(9, 41);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(121, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(84, 27);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -385,7 +404,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label1.Location = new System.Drawing.Point(142, 19);
+            this.label1.Location = new System.Drawing.Point(95, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 958816;
@@ -393,10 +412,10 @@
             // 
             // txtSupplier
             // 
-            this.txtSupplier.Location = new System.Drawing.Point(367, 41);
+            this.txtSupplier.Location = new System.Drawing.Point(319, 41);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(253, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(199, 27);
             this.txtSupplier.TabIndex = 1111210;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -407,7 +426,7 @@
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(257, 41);
+            this.dpToDate.Location = new System.Drawing.Point(209, 41);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(104, 27);
             this.dpToDate.TabIndex = 2;
@@ -417,10 +436,10 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(803, 42);
+            this.txtProductName.Location = new System.Drawing.Point(681, 42);
             this.txtProductName.MaxLength = 2;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(331, 27);
+            this.txtProductName.Size = new System.Drawing.Size(266, 27);
             this.txtProductName.TabIndex = 4;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -430,7 +449,7 @@
             // lblDProductNamePicode
             // 
             this.lblDProductNamePicode.AutoSize = true;
-            this.lblDProductNamePicode.Location = new System.Drawing.Point(803, 20);
+            this.lblDProductNamePicode.Location = new System.Drawing.Point(677, 20);
             this.lblDProductNamePicode.Name = "lblDProductNamePicode";
             this.lblDProductNamePicode.Size = new System.Drawing.Size(134, 20);
             this.lblDProductNamePicode.TabIndex = 958811;
@@ -440,7 +459,7 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(146, 41);
+            this.dpFromDate.Location = new System.Drawing.Point(99, 41);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(104, 27);
             this.dpFromDate.TabIndex = 1;
@@ -453,7 +472,7 @@
             // 
             this.lblDGodown.AutoSize = true;
             this.lblDGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblDGodown.Location = new System.Drawing.Point(627, 19);
+            this.lblDGodown.Location = new System.Drawing.Point(520, 19);
             this.lblDGodown.Name = "lblDGodown";
             this.lblDGodown.Size = new System.Drawing.Size(87, 20);
             this.lblDGodown.TabIndex = 38;
@@ -471,7 +490,7 @@
             // 
             this.lblDConcern.AutoSize = true;
             this.lblDConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblDConcern.Location = new System.Drawing.Point(26, 19);
+            this.lblDConcern.Location = new System.Drawing.Point(9, 19);
             this.lblDConcern.Name = "lblDConcern";
             this.lblDConcern.Size = new System.Drawing.Size(54, 20);
             this.lblDConcern.TabIndex = 36;
@@ -615,6 +634,140 @@
             // 
             this.epQueueList.ContainerControl = this;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1056, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 20);
+            this.label7.TabIndex = 111111141;
+            this.label7.Text = "Show";
+            // 
+            // cmbShow
+            // 
+            this.cmbShow.FormattingEnabled = true;
+            this.cmbShow.Items.AddRange(new object[] {
+            "Purchase Order List",
+            "Product List"});
+            this.cmbShow.Location = new System.Drawing.Point(1060, 44);
+            this.cmbShow.Name = "cmbShow";
+            this.cmbShow.Size = new System.Drawing.Size(103, 27);
+            this.cmbShow.TabIndex = 111111140;
+            this.cmbShow.SelectedIndexChanged += new System.EventHandler(this.CmbShow_SelectedIndexChanged);
+            this.cmbShow.SelectedValueChanged += new System.EventHandler(this.CmbShow_SelectedValueChanged);
+            this.cmbShow.Enter += new System.EventHandler(this.CmbShow_Enter);
+            this.cmbShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbShow_KeyDown);
+            this.cmbShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShow_KeyPress);
+            this.cmbShow.Leave += new System.EventHandler(this.CmbShow_Leave);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(1166, 22);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(57, 20);
+            this.lblStatus.TabIndex = 111111143;
+            this.lblStatus.Text = "Order By";
+            // 
+            // cmbOrderBy
+            // 
+            this.cmbOrderBy.FormattingEnabled = true;
+            this.cmbOrderBy.Items.AddRange(new object[] {
+            "Purchase Order List",
+            "Product List"});
+            this.cmbOrderBy.Location = new System.Drawing.Point(1170, 44);
+            this.cmbOrderBy.Name = "cmbOrderBy";
+            this.cmbOrderBy.Size = new System.Drawing.Size(94, 27);
+            this.cmbOrderBy.TabIndex = 111111142;
+            this.cmbOrderBy.SelectedIndexChanged += new System.EventHandler(this.CmbOrderBy_SelectedIndexChanged);
+            this.cmbOrderBy.Enter += new System.EventHandler(this.CmbOrderBy_Enter);
+            this.cmbOrderBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderBy_KeyDown);
+            this.cmbOrderBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderBy_KeyPress);
+            this.cmbOrderBy.Leave += new System.EventHandler(this.CmbOrderBy_Leave);
+            // 
+            // grdProDetails
+            // 
+            this.grdProDetails.AllowUserToAddRows = false;
+            this.grdProDetails.AllowUserToDeleteRows = false;
+            this.grdProDetails.AllowUserToResizeColumns = false;
+            this.grdProDetails.AllowUserToResizeRows = false;
+            this.grdProDetails.BackgroundColor = System.Drawing.Color.White;
+            this.grdProDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.grdProDetails.ColumnHeadersHeight = 30;
+            this.grdProDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdProDetails.ColumnHeadersVisible = false;
+            this.grdProDetails.EnableHeadersVisualStyles = false;
+            this.grdProDetails.GridColor = System.Drawing.Color.White;
+            this.grdProDetails.Location = new System.Drawing.Point(3, 137);
+            this.grdProDetails.Name = "grdProDetails";
+            this.grdProDetails.ReadOnly = true;
+            this.grdProDetails.RowHeadersVisible = false;
+            this.grdProDetails.RowHeadersWidth = 100;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdProDetails.RowsDefaultCellStyle = dataGridViewCellStyle11;
+            this.grdProDetails.RowTemplate.Height = 25;
+            this.grdProDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdProDetails.Size = new System.Drawing.Size(1348, 501);
+            this.grdProDetails.TabIndex = 111111144;
+            this.grdProDetails.Visible = false;
+            // 
+            // DGV_ProdSearchGrid
+            // 
+            this.DGV_ProdSearchGrid.AllowUserToAddRows = false;
+            this.DGV_ProdSearchGrid.AllowUserToDeleteRows = false;
+            this.DGV_ProdSearchGrid.AllowUserToResizeRows = false;
+            this.DGV_ProdSearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_ProdSearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_ProdSearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.DGV_ProdSearchGrid.ColumnHeadersHeight = 30;
+            this.DGV_ProdSearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_ProdSearchGrid.DefaultCellStyle = dataGridViewCellStyle13;
+            this.DGV_ProdSearchGrid.EnableHeadersVisualStyles = false;
+            this.DGV_ProdSearchGrid.GridColor = System.Drawing.Color.White;
+            this.DGV_ProdSearchGrid.Location = new System.Drawing.Point(3, 81);
+            this.DGV_ProdSearchGrid.Name = "DGV_ProdSearchGrid";
+            this.DGV_ProdSearchGrid.RowHeadersVisible = false;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_ProdSearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            this.DGV_ProdSearchGrid.RowTemplate.Height = 25;
+            this.DGV_ProdSearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.DGV_ProdSearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_ProdSearchGrid.ShowRowErrors = false;
+            this.DGV_ProdSearchGrid.Size = new System.Drawing.Size(1345, 56);
+            this.DGV_ProdSearchGrid.TabIndex = 111111145;
+            this.DGV_ProdSearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_ProdSearchGrid_CellEndEdit);
+            this.DGV_ProdSearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_ProdSearchGrid_CellPainting);
+            this.DGV_ProdSearchGrid.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_ProdSearchGrid_ColumnHeaderMouseDoubleClick);
+            this.DGV_ProdSearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_ProdSearchGrid_ColumnWidthChanged);
+            this.DGV_ProdSearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_ProdSearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_ProdSearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_ProdSearchGrid_Scroll);
+            // 
             // INV_InwardQueueList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -643,6 +796,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdInwardQueueList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epQueueList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_ProdSearchGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -689,5 +844,11 @@
         private System.Windows.Forms.Label lblSupplierCode;
         private System.Windows.Forms.ErrorProvider epQueueList;
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
+        private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.ComboBox cmbShow;
+        private System.Windows.Forms.Label lblStatus;
+        public System.Windows.Forms.ComboBox cmbOrderBy;
+        public System.Windows.Forms.DataGridView grdProDetails;
+        public System.Windows.Forms.DataGridView DGV_ProdSearchGrid;
     }
 }

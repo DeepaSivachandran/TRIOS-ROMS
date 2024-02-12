@@ -153,6 +153,9 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 udfnList();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=59 AND MSTID IN (188,189)", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=60 AND MSTID IN (190,191)", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID");
             }
             catch (Exception ex)
             {
@@ -1605,6 +1608,354 @@ namespace ROMS
             finally
             {
                 DGV_FilterProduct.Visible = false;
+            }
+        }
+
+        private void CmbShow_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbShow.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbShow_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbOrderBy.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbShow_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbShow_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbShow.BackColor = Color.White;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbShow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbShow.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrderBy_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderBy.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrderBy_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrderBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrderBy_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderBy.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrderBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbOrderBy.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbShow_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Convert.ToInt32(cmbShow.SelectedValue)!=189)
+                {
+                    cmbOrderBy.Enabled = false;
+                }
+                else
+                {
+                    cmbOrderBy.Enabled = true;
+                }
+                if(Convert.ToInt32(cmbShow.SelectedValue)==189)
+                {
+                    grdInwardQueueList.Visible = false;
+                    DGV_SearchGrid.Visible = false;
+                    grdProDetails.Visible = true;
+                    DGV_ProdSearchGrid.Visible = true;
+                }
+                else
+                {
+                    grdInwardQueueList.Visible = true;
+                    DGV_SearchGrid.Visible = true;
+                    grdProDetails.Visible = false;
+                    DGV_ProdSearchGrid.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_ProdSearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdProDetails.DataSource = objDser.udfnGridSearchFilter(DGV_ProdSearchGrid, grdProDetails);
+                objDser.CloseConnection();
+                grdProDetails.HorizontalScrollingOffset = DGV_ProdSearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError(); objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_ProdSearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                    return;
+                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
+                                                                   //return;
+
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                               & ~(DataGridViewPaintParts.ContentForeground));
+
+                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                        e.Handled = true;
+                    }
+                DGV_ProdSearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_ProdSearchGrid_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (lblNoRecordsFound.Visible == false)
+            {
+                DataGridViewColumn newColumn = grdProDetails.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdProDetails.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
+                {
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn && grdProDetails.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
+                }
+                else
+                {
+                    direction = ListSortDirection.Ascending;
+                }
+                grdProDetails.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
+
+                DataGridViewColumn DGV = DGV_ProdSearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                DGV_ProdSearchGrid.HorizontalScrollingOffset = grdProDetails.HorizontalScrollingOffset;
+                DGV_ProdSearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
+        }
+
+        private void DGV_ProdSearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdProDetails.ColumnCount > 0)
+                {
+                    grdProDetails.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_ProdSearchGrid.HorizontalScrollingOffset = grdProDetails.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_ProdSearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_ProdSearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_ProdSearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdProDetails.DataSource = objDser.udfnGridSearchFilter(DGV_ProdSearchGrid, grdProDetails);
+                objDser.CloseConnection();
+                grdProDetails.HorizontalScrollingOffset = DGV_ProdSearchGrid.HorizontalScrollingOffset;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnProdSearchGridHead()
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    udfnGridSearchHeading(grdProDetails, DGV_ProdSearchGrid);
+                    DGV_ProdSearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdProDetails.Columns)
+                    {
+                        DGV_ProdSearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_ProdSearchGrid.Rows.Clear();
+                    DGV_ProdSearchGrid.Rows.Add();
+                    DGV_ProdSearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                    //DGV__SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
+                    for (int i = 2; i < visibleColumns.Count; i++)
+                    {
+                        DGV_ProdSearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV_ProdSearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_ProdSearchGrid.Columns[0].ReadOnly = true;
+                    //DGV__SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_ProdSearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    //DGV__SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void DGV_ProdSearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    int totalWidth = 0;
+                    int offSetValue = grdProDetails.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_ProdSearchGrid.Columns)
+                        totalWidth += col.Width;
+                    if (totalWidth - grdProDetails.Width > grdProDetails.HorizontalScrollingOffset && grdProDetails.HorizontalScrollingOffset > 0)
+                    {
+                        offSetValue = offSetValue;
+                    }
+                    DGV_ProdSearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_ProdSearchGrid.Invalidate();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
