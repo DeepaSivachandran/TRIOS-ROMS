@@ -70,8 +70,8 @@
             this.btnView = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdStockRequestList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmprint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsStockRequestList.SuspendLayout();
             this.pnlStockRequestList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -226,7 +226,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(935, 47);
+            this.btnExport.Location = new System.Drawing.Point(938, 47);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 29);
             this.btnExport.TabIndex = 6;
@@ -492,7 +492,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(851, 46);
+            this.btnView.Location = new System.Drawing.Point(853, 46);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 5;
@@ -565,6 +565,16 @@
             this.grdStockRequestList.SelectionChanged += new System.EventHandler(this.GrdStockRequestList_SelectionChanged);
             this.grdStockRequestList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdStockRequestList_KeyDown);
             // 
+            // clmprint
+            // 
+            this.clmprint.HeaderText = "Print";
+            this.clmprint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmprint.Name = "clmprint";
+            this.clmprint.ReadOnly = true;
+            this.clmprint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmprint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmprint.Width = 70;
+            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -578,16 +588,6 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // clmprint
-            // 
-            this.clmprint.HeaderText = "Print";
-            this.clmprint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmprint.Name = "clmprint";
-            this.clmprint.ReadOnly = true;
-            this.clmprint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmprint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmprint.Width = 70;
             // 
             // INV_StockRequestList
             // 
