@@ -35,6 +35,7 @@ namespace ROMS
 
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0, varModifiedFlag = 0, varUpDownKey=0, varDecimal=0;
         public bool VarSearchFlag = true;
+        public int PbVerified = 0;
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -48,6 +49,14 @@ namespace ROMS
                 udfnEditLoad();
                 udfnDateSet();
                 udfnPODropdownload();
+                if(chkCompleted.Checked == true)
+                {
+                    btnVerified.Enabled = false;
+                }
+                else
+                {
+                    btnVerified.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -763,7 +772,7 @@ namespace ROMS
                                     {
                                         if (btnVerify2.Enabled == true)
                                         {
-                                            objTRNS_GRN.paraStatus = 24;
+                                            //objTRNS_GRN.paraStatus = 24;
                                         }
                                         else
                                         {
@@ -2244,6 +2253,62 @@ namespace ROMS
             }
         }
 
+        private void BtnVerified_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRN_Level_Verified = new PUR_GRN_Level_Verified();
+                MainForm.objPUR_GRN_Level_Verified.pbGRNId = pbGRNId;
+                MainForm.objPUR_GRN_Level_Verified.ShowDialog();
+                if (PbVerified ==1)
+                {
+                    udfnVerifiedBy();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVerifiedBy()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnGrnListLoad(8, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0, 0, "0", "");
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            lblVerifiedBy1.Visible = true;
+                            lblVerifiedDate1.Visible = true;
+                            lblVerifiedBy1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMP_Name"]);
+                            lblVerifiedDate1.Text = " @ " + Convert.ToString(objDs.Tables[0].Rows[0]["GRN_VerifiedOn1"]);
+                        }
+                    }
+                    if (objDs.Tables[1].Rows.Count != 0)
+                    {
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+                            lblVerifiedBy2.Visible = true;
+                            lblVerifiedDate2.Visible = true;
+                            lblVerifiedBy2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["EMP_Name"]);
+                            lblVerifiedDate2.Text = " @ " + Convert.ToString(objDs.Tables[1].Rows[0]["GRN_VerifiedOn2"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtInvoiceQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -4310,6 +4375,16 @@ namespace ROMS
                                 }
                             }
                         }
+                    }
+                    if(chkCompleted.Checked==true)
+                    {
+                        btnVerified.Enabled = false;
+                        udfnVerifiedBy();
+                    }
+                    else
+                    {
+                        btnVerified.Enabled = true;
+                        udfnVerifiedBy();
                     }
                 }
             }

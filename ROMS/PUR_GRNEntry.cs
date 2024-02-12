@@ -816,8 +816,10 @@ namespace ROMS
                     errGRN.Clear();
                     txtInvoiceamt.BackColor = Color.White;
                     tpinvamt.Active = false;
-                    //string mrp = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtInvoiceamt.Text.Trim()), 2, MidpointRounding.AwayFromZero));
-                    txtInvoiceamt.Text = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtInvoiceamt.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                    decimal varInvoiceAMT = Math.Round(Convert.ToDecimal(txtInvoiceamt.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                    string AMT = string.Format("{0:0.00}", varInvoiceAMT);
+                    string AMT1 = string.Format("{0:G29}", decimal.Parse(AMT));
+                    txtInvoiceamt.Text = AMT;
                 }
             }
             catch (Exception ex)
