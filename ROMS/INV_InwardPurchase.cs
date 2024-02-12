@@ -774,6 +774,7 @@ namespace ROMS
                                     grdGrnlist.Columns["DC Qty"].Width = 100;
                                     grdGrnlist.Columns["DC Qty"].ReadOnly = true;
                                 }
+                                grdGrnlist.Columns["Product Name in English"].Visible = false;
                                 if (varGRNPurchaseFlag == 2)  //from  purchase
                                 {
                                     grdGrnlist.Columns["Invoice Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
