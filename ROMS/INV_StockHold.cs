@@ -542,6 +542,10 @@ namespace ROMS
                                     MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     udfnClear();
                                     udfnList();
+                                    if (RPTViewer.Visible)
+                                    {
+                                        udfnPrint();
+                                    }
                                 }
                                 else
                                 {
@@ -567,6 +571,13 @@ namespace ROMS
                 cmbConcern.Enabled = true;
                 txtProductNamePICode.Enabled = true;
                 grdStockHold.ClearSelection();
+                //if (btnPrint.Image == global::ROMS.Properties.Resources.view)
+                //{
+                //    udfnPrint();
+                //}
+                //RPTViewer.Visible = false;
+                //btnPrint.Image = global::ROMS.Properties.Resources.print;
+                //udfnList();
             }
         }
         public void udfnList()
@@ -1810,12 +1821,11 @@ namespace ROMS
                 DGV_FilterProduct.Visible = false;
             }
         }
-
-        private void BtnPrint_Click(object sender, EventArgs e)
+        public void udfnPrint()
         {
-            if(!RPTViewer.Visible)
+            try
             {
-                try
+                if (!RPTViewer.Visible)
                 {
                     btnPrint.Image = global::ROMS.Properties.Resources.view;
                     btnPrint.Enabled = false;
@@ -1858,29 +1868,42 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         btnPrint.Image = global::ROMS.Properties.Resources.view;
                         RPTViewer.Visible = false;
-                    }
+                    }                  
                 }
-                catch (Exception ex)
+                else
                 {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
-                finally
-                {
-                    picLoader.Visible = false;
+                    picLoader.Visible = true;
+                    RPTViewer.Visible = false;
+                    btnPrint.Image = global::ROMS.Properties.Resources.print;
+                    udfnList();
                     picLoader.SendToBack();
-                    btnPrint.Enabled = true;
-                    btnPrint.Focus();
-                    GC.Collect();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                picLoader.Visible = true;
-                RPTViewer.Visible = false;
-                btnPrint.Image = global::ROMS.Properties.Resources.print;
-                udfnList();
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
                 picLoader.SendToBack();
+                btnPrint.Enabled = true;
+                btnPrint.Focus();
+                GC.Collect();
+            }
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnPrint();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -1898,6 +1921,7 @@ namespace ROMS
                     txtStockQty.Text = "";
                     txtQty.Text = "";
                     lblUnit.Text = "";
+                    DGV_FilterProduct.BringToFront();
                     //lvproduct.Items.Clear();
                     if (VarSearchFlag == true)
                     {
@@ -2030,6 +2054,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                
             }
         }
     }

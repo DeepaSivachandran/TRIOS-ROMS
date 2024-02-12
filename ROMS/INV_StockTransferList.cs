@@ -1115,12 +1115,12 @@ namespace ROMS
                         grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdStockTransfer.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["SRQID"].Value) == "0")
-                    {
-                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"];
-                        cell2.Value = new Bitmap(1, 1);
-                        cell2.ReadOnly = true;
-                    }
+                    //if (Convert.ToString(grdStockTransfer.Rows[i].Cells["SRQID"].Value) == "0")
+                    //{
+                        //DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"];
+                        //cell2.Value = new Bitmap(1, 1);
+                        //cell2.ReadOnly = true;
+                    //}
                 }
             }
             catch (Exception ex)

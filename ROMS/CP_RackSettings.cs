@@ -87,6 +87,7 @@ namespace ROMS
                 DGV_SearchGridMove.Columns.Add("clmPIcode", "P.I Code");
                 DGV_SearchGridMove.Columns.Add("clmProductName", "Product Name in Tamil");
                 DGV_SearchGridMove.Columns.Add("clmUnit", "Unit");
+                DGV_SearchGridMove.Columns.Add("clmStock", "Stock Qty");
                 DGV_SearchGrid.Columns["clmProductName"].Width = 250;
                 DGV_SearchGridMove.Columns["clmProductName"].Width = 250;
             }
@@ -702,7 +703,7 @@ namespace ROMS
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 dtViewProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name in English"],
-                                   objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["PRID"]);
+                                   objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["PRID"], objDs.Tables[0].Rows[i]["Stock Qty"]);
                             }
                         }
                         grdViewProduct.DataSource = null;
@@ -712,6 +713,9 @@ namespace ROMS
                         grdViewProduct.Columns["S.No."].Width = 50;
                         //grdViewProduct.Columns["PRODUCTID"].Visible = false;
                         grdViewProduct.Columns["P.I Code"].Width = 100;
+                        grdViewProduct.Columns["Stock Qty"].Width = 80;
+                        grdViewProduct.Columns["Unit"].Width = 80;
+                        //grdViewProduct.Columns["Stock Qty"].Width = 100;
                         grdViewProduct.Columns["Product Name in English"].Width = 250;
                         grdViewProduct.Columns["Product Name in Tamil"].Width = 300;
                         grdViewProduct.Columns["S.No."].ReadOnly = true;
@@ -720,6 +724,7 @@ namespace ROMS
                         grdViewProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                         grdViewProduct.Columns["Product Name in English"].Visible = false;
                         grdViewProduct.Columns["Unit"].ReadOnly = true;
+                        grdViewProduct.Columns["Stock Qty"].ReadOnly = true;
                         grdViewProduct.Columns["PRODUCTID"].Visible = false;
                         grdViewProduct.Columns["S.No."].Visible = false;
                         grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1327,7 +1332,7 @@ namespace ROMS
                             if (varFlag == 0)
                             {
                                 dtMoveProduct.Rows.Add(grdViewProduct.Rows[i].Cells["P.I Code"].Value, grdViewProduct.Rows[i].Cells["Product Name in English"].Value,
-                                    grdViewProduct.Rows[i].Cells["Product Name in Tamil"].Value, grdViewProduct.Rows[i].Cells["Unit"].Value, grdViewProduct.Rows[i].Cells["PRODUCTID"].Value);
+                                    grdViewProduct.Rows[i].Cells["Product Name in Tamil"].Value, grdViewProduct.Rows[i].Cells["Unit"].Value, grdViewProduct.Rows[i].Cells["PRODUCTID"].Value, grdViewProduct.Rows[i].Cells["Stock Qty"].Value);
                             }
                         }
                         else
@@ -1348,8 +1353,9 @@ namespace ROMS
                    // grdMoveProduct.Columns["clmRemoveProduct"].DisplayIndex = 5;
                     grdMoveProduct.Columns["PRID"].Visible = false;
                     grdMoveProduct.Columns["P.I Code"].Width = 100;
-                    grdMoveProduct.Columns["Product Name in English"].Width = 250;
+                    //grdMoveProduct.Columns["Product Name in English"].Width = 250;
                     grdMoveProduct.Columns["Product Name in Tamil"].Width = 250;
+                    grdMoveProduct.Columns["Stock Qty"].Width = 80;
                     //grdMoveProduct.Columns["P.I Code"].ReadOnly = true;
                     //grdMoveProduct.Columns["Product Name in English"].ReadOnly = true;
                     //grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
@@ -1471,13 +1477,13 @@ namespace ROMS
                     if (rbSales.Checked == true)
                     {
                         varFlag = 2;
-                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, varDestinationLocationID, 0, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0);
+                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varSourceLocationID, varDestinationLocationID, varSourceRackID, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0);
                         objspservice.CloseConnection();
                     }
                     else if (rbPurchase.Checked == true)
                     {
                         varFlag = 1;
-                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varDestinationLocationID, 0, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0);
+                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "",varSourceLocationID, varDestinationLocationID, varSourceRackID, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0);
                         objspservice.CloseConnection();
                     }
                     string[] varvalue = varResult.Split('~');
@@ -1657,26 +1663,31 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
                                 dtViewProduct.Rows.Add(false,grdViewProduct.Rows.Count+1,grdMoveProduct.SelectedRows[0].Cells["P.I Code"].Value, grdMoveProduct.SelectedRows[0].Cells["Product Name in English"].Value,
-                                   grdMoveProduct.SelectedRows[0].Cells["Product Name in Tamil"].Value, grdMoveProduct.SelectedRows[0].Cells["Unit"].Value, grdMoveProduct.SelectedRows[0].Cells["PRID"].Value);
+                                   grdMoveProduct.SelectedRows[0].Cells["Product Name in Tamil"].Value, grdMoveProduct.SelectedRows[0].Cells["Unit"].Value, grdMoveProduct.SelectedRows[0].Cells["PRID"].Value, grdMoveProduct.SelectedRows[0].Cells["Stock Qty"].Value);
                                 dtViewProduct.AcceptChanges();
                                 grdMoveProduct.DataSource = null;
                                 grdMoveProduct.DataSource = dtMoveProduct;
                                 // grdMoveProduct.Columns["clmRemoveProduct"].DisplayIndex = 5;
                                 grdMoveProduct.Columns["PRID"].Visible = false;
+                                grdMoveProduct.Columns["Product Name in English"].Visible = false;
                                 grdMoveProduct.Columns["P.I Code"].Width = 100;
-                                grdMoveProduct.Columns["Product Name in English"].Width = 250;
+                                //grdMoveProduct.Columns["Product Name in English"].Width = 250;
                                 grdMoveProduct.Columns["Product Name in Tamil"].Width = 250;
+                                grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdMoveProduct.Columns["Stock Qty"].Width = 80;
                                 //grdMoveProduct.Columns["P.I Code"].ReadOnly = true;
                                 //grdMoveProduct.Columns["Product Name in English"].ReadOnly = true;
                                 //grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                                 //grdMoveProduct.Columns["Unit"].ReadOnly = true;
                                 grdMoveProduct.Columns[0].ReadOnly = false;
+                                grdMoveProduct.Columns["Stock Qty"].ReadOnly = true;
                                 grdMoveProduct.Rows.RemoveAt(this.grdMoveProduct.SelectedRows[0].Index);
-                                for (int i = 0; i < grdMoveProduct.RowCount; i++)
-                                {
-                                    grdMoveProduct.Rows[i].Cells["sno"].Value = i + 1;
-                                }
-                                lblMoveProCount.Text =Convert.ToString(grdViewProduct.Rows.Count);
+                                //for (int i = 0; i < grdMoveProduct.RowCount; i++)
+                                //{
+                                //    grdMoveProduct.Rows[i].Cells["sno"].Value = i + 1;
+                                //}
+                                lblMoveProCount.Text =Convert.ToString(grdMoveProduct.Rows.Count);
+                                lblViewProductCount.Text =Convert.ToString(grdViewProduct.Rows.Count);
                             }
                         break;
                     }
@@ -2328,6 +2339,7 @@ namespace ROMS
                 dtViewProduct.Columns.Add("Product Name in Tamil", typeof(string));
                 dtViewProduct.Columns.Add("Unit", typeof(string));
                 dtViewProduct.Columns.Add("PRODUCTID", typeof(int));
+                dtViewProduct.Columns.Add("Stock Qty", typeof(float));
 
                 dtMoveProduct = new DataTable();
                 dtMoveProduct.Columns.Add("P.I Code", typeof(string));
@@ -2335,6 +2347,7 @@ namespace ROMS
                 dtMoveProduct.Columns.Add("Product Name in Tamil", typeof(string));
                 dtMoveProduct.Columns.Add("Unit", typeof(string));
                 dtMoveProduct.Columns.Add("PRID", typeof(int));
+                dtMoveProduct.Columns.Add("Stock Qty", typeof(float));
                 udfnCmbConcern();
                 udfnCmbSourceRack();
                 udfnCmbDestinationRack();
@@ -2402,7 +2415,7 @@ namespace ROMS
                                 if (objDs.Tables[0].Rows.Count > 0)
                                 {
                                     cmbSourceRack.ValueMember = "RKID";
-                                    cmbSourceRack.DisplayMember = "RK_Name";
+                                    cmbSourceRack.DisplayMember = "RK_ShortName";
                                     cmbSourceRack.DataSource = objDs.Tables[0];
                                     cmbSourceRack.Enabled = true;
                                 }
@@ -2452,7 +2465,7 @@ namespace ROMS
                                     if (objDs.Tables[0].Rows.Count > 0)
                                     {
                                         cmbDestinationRack.ValueMember = "RKID";
-                                        cmbDestinationRack.DisplayMember = "RK_Name";
+                                        cmbDestinationRack.DisplayMember = "RK_ShortName";
                                         cmbDestinationRack.DataSource = objDs.Tables[0];
                                         cmbDestinationRack.Enabled = true;
                                     }
@@ -2463,7 +2476,7 @@ namespace ROMS
                                 if (objDs.Tables[0].Rows.Count > 0)
                                 {
                                     cmbDestinationRack.ValueMember = "RKID";
-                                    cmbDestinationRack.DisplayMember = "RK_Name";
+                                    cmbDestinationRack.DisplayMember = "RK_ShortName";
                                     cmbDestinationRack.DataSource = objDs.Tables[0];
                                     cmbDestinationRack.Enabled = true;
                                 }
@@ -2870,7 +2883,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtDestinationLocation.Text, 0, 0, 0,"","",0);
+                    objDs = objspdservice.udfnStockLocationList(29, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtDestinationLocation.Text, 0, 0, 0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -3036,7 +3049,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnStockLocationList(10,Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSourceLocation.Text, 0, 0, 0,"","",0);
+                    objDs = objspdservice.udfnStockLocationList(29,Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSourceLocation.Text, 0, 0, 0,"","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

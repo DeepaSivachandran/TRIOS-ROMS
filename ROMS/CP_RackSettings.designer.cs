@@ -145,8 +145,8 @@
             this.tspRackSettings.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspRackSettings.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspRackSettings.Name = "tspRackSettings";
-            this.tspRackSettings.Size = new System.Drawing.Size(100, 22);
-            this.tspRackSettings.Text = "Rack Settings";
+            this.tspRackSettings.Size = new System.Drawing.Size(99, 22);
+            this.tspRackSettings.Text = "Rack Transfer";
             // 
             // lblNoRecordsFound
             // 
@@ -328,6 +328,8 @@
             // 
             // txtDestinationLocation
             // 
+            this.txtDestinationLocation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDestinationLocation.Enabled = false;
             this.txtDestinationLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtDestinationLocation.Location = new System.Drawing.Point(123, 26);
             this.txtDestinationLocation.MaxLength = 100;

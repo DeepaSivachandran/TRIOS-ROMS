@@ -43,6 +43,7 @@ namespace ROMS
         public string varSPSCID = "";
         public string varErrQty = "0";
         public int varID = 0;
+        int varCheckFlag = 0, varUncheckFlag = 0;
         public int varStatusID = 0;
         public string varTempDay = "";
         public string varTempMonth = "";
@@ -284,7 +285,7 @@ namespace ROMS
                 grdEmployee.Columns["S.No."].Visible = false;
                 grdEmployee.Columns["Emp. Code"].Width = 75;
                 grdEmployee.Columns["Employee Name"].Width = 150;
-                grdEmployee.Columns["Employee Category"].Width = 130;
+                grdEmployee.Columns["Employee Category"].Width = 120;
                 grdEmployee.Columns["EMPID"].Visible = false;
                 grdEmployee.Columns["CT_SINO"].Visible = false;
                 grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -347,7 +348,7 @@ namespace ROMS
                 grdChecker.Columns["S.No."].Visible = false;
                 grdChecker.Columns["Emp. Code"].Width = 75;
                 grdChecker.Columns["Employee Name"].Width = 150;
-                grdChecker.Columns["Employee Category"].Width = 130;
+                grdChecker.Columns["Employee Category"].Width = 120;
                 grdChecker.Columns["EMPID"].Visible = false;
                 grdChecker.Columns["CT_SINO"].Visible = false;
                 grdChecker.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2796,7 +2797,100 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void GridCheckLoop()
+        {
+            try
+            {
+                if (varCheckFlag==1)
+                {
+                    string EmpID = grdEmployee.SelectedRows[0].Cells["EMPID"].Value.ToString();
+                    for (int i = 0; i < grdChecker.Rows.Count; i++)
+                    {
+                        if (EmpID == grdChecker.Rows[i].Cells["EMPID"].Value.ToString())
+                        {
+                            if (varUncheckFlag == 1)
+                            {
+                                grdChecker.Rows[i].ReadOnly = true;
+                                grdChecker.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                                break;
+                            }
+                            else
+                            {
+                                grdChecker.Rows[i].ReadOnly = false;
+                                grdChecker.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    string EmpID = grdChecker.SelectedRows[0].Cells["EMPID"].Value.ToString();
+                    for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                    {
+                        if (EmpID == grdEmployee.Rows[i].Cells["EMPID"].Value.ToString())
+                        {
+                            if (varUncheckFlag == 1)
+                            {
+                                grdEmployee.Rows[i].ReadOnly = true;
+                                grdEmployee.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                                break;
+                            }
+                            else
+                            {
+                                grdEmployee.Rows[i].ReadOnly = false;
+                                grdEmployee.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        //public void udfnCheckerGridViewDisable()
+        //{
+        //    try
+        //    {
+                
+        //        if (varCheckFlag == 1)
+        //        {
+        //            if (Convert.ToBoolean(grdEmployee.SelectedRows[0].Cells[0].Value) == true)
+        //            {
+        //                varUncheckFlag = 1;
+        //                GridCheckLoop();
+        //            }
+        //            else 
+        //            {
+        //                varUncheckFlag = 0;
+        //                GridCheckLoop();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (Convert.ToBoolean(grdChecker.SelectedRows[0].Cells[0].Value) == true)
+        //            {
+        //                varUncheckFlag = 1;
+        //                GridCheckLoop();
+        //            }
+        //            else
+        //            {
+        //                varUncheckFlag = 0;
+        //                GridCheckLoop();
+        //            }
+        //        }
 
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
         private void GrdEmployee_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
@@ -2804,7 +2898,23 @@ namespace ROMS
                 if (grdEmployee.IsCurrentCellDirty)
                 {
                     grdEmployee.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    varCheckFlag = 1;
+                    //udfnCheckerGridViewDisable();
+                    if (Convert.ToBoolean(grdEmployee.SelectedRows[0].Cells[0].Value) == true)
+                    {
+                        varUncheckFlag = 1;
+                        GridCheckLoop();
+                    }
+                    else
+                    {
+                        varUncheckFlag = 0;
+                        GridCheckLoop();
+                    }
                 }
+                //else
+                //{
+                //    varCheckFlag = 0;
+                //}
             }
             catch (Exception ex)
             {
@@ -3381,6 +3491,18 @@ namespace ROMS
                 if (grdChecker.IsCurrentCellDirty)
                 {
                     grdChecker.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    varCheckFlag = 0;
+                    //udfnCheckerGridViewDisable();
+                    if (Convert.ToBoolean(grdChecker.SelectedRows[0].Cells[0].Value) == true)
+                    {
+                        varUncheckFlag = 1;
+                        GridCheckLoop();
+                    }
+                    else
+                    {
+                        varUncheckFlag = 0;
+                        GridCheckLoop();
+                    }
                 }
             }
             catch (Exception ex)
@@ -3394,7 +3516,7 @@ namespace ROMS
         {
             try
             {
-                grdEmployee.ClearSelection();
+                //grdEmployee.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -3407,7 +3529,7 @@ namespace ROMS
         {
             try
             {
-                grdChecker.ClearSelection();
+                //grdChecker.ClearSelection();
             }
             catch (Exception ex)
             {

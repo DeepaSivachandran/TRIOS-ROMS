@@ -20,6 +20,8 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
         public int varUpDownKey = 0;
+        Boolean BlnSearchImageYN = false;
+
         public INV_StockRequestList()
         {
             InitializeComponent();
@@ -294,11 +296,17 @@ namespace ROMS
                     int rowIndex = 0;
                     DGV__SearchGrid.Rows.Clear();
                     DGV__SearchGrid.Rows.Add();
-                    for (int i = 0; i < visibleColumns.Count; i++)
+                    DGV__SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                    //DGV__SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
+                    for (int i = 2; i < visibleColumns.Count; i++)
                     {
                         DGV__SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV__SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV__SearchGrid.Columns[0].ReadOnly = true;
+                    //DGV__SearchGrid.Columns[1].ReadOnly = true;
+                    DGV__SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    //DGV__SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -336,27 +344,44 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible == false)
+                dgv2.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in dgv1.Columns)
                 {
-                    //dgv2.DataSource = null;
-                    dgv2.Columns.Clear();
-                    List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in dgv1.Columns)
+                    if (col.Visible)
                     {
-                        if (col.Visible)
-                        {
-                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                            visibleColumns.Add(col.Index);
-                        }
+                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
                     }
-                    int rowIndex = 0;
-                    dgv2.Rows.Clear();
-                    dgv2.Rows.Add();
-                    for (int i = 0; i < visibleColumns.Count; i++)
+                }
+                int rowIndex = 0;
+                int ColIndex = 0;
+                dgv2.Rows.Clear();
+                dgv2.Rows.Add();
+                BlnSearchImageYN = false;
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                    if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                    {
+                        //dgv2.Rows[rowIndex].Visible = false;
+                        BlnSearchImageYN = true;
+                        ColIndex = i;
+                        dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                        dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                        ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                    {
+                        BlnSearchImageYN = true;
+                        dgv2.Rows[rowIndex].Cells[i].Value = false;
+                    }
+                    else
                     {
                         dgv2.Rows[rowIndex].Cells[i].Value = "";
                     }
                 }
+
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1576,7 +1601,59 @@ namespace ROMS
 
         private void GrdStockRequestList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdStockRequestList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmprint":
+                            try
+                            {
+                                string SRQID = "0", SLID = "0";
+                                SRQID = Convert.ToString(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                                //SLID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request.rpt");
+                                    varHeader = "Shop Stock Request";
+
+                                    objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SRQID));
+                                    objBillreport.SetParameterValue("paraConcern", Convert.ToInt32(cmbConcern.SelectedValue));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnDeleteHide()
         {
