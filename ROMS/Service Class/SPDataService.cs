@@ -2450,7 +2450,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaFrightCharge", objTRNS_GRN.ParaFrightCharge);
                 varSqlCommand.Parameters.AddWithValue("@paraOrderType", objTRNS_GRN.paraOrderType);
                 varSqlCommand.Parameters.AddWithValue("@paraPAckage", objTRNS_GRN.paraPAckage);
-                varSqlCommand.Parameters.AddWithValue("@ParaVerify", objTRNS_GRN.ParaVerify);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerify1", objTRNS_GRN.ParaVerify1);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerify2", objTRNS_GRN.ParaVerify2);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerifyDate1", objTRNS_GRN.ParaVerifyDate1);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerifyDate2", objTRNS_GRN.ParaVerifyDate2);
                 varSqlCommand.Parameters.AddWithValue("@paraflag", objTRNS_GRN.paraflag);
                 varSqlCommand.Parameters.AddWithValue("@ParaPurchaseDC", objTRNS_GRN.ParaPurchaseDC);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRNS_GRN.paraStatus);

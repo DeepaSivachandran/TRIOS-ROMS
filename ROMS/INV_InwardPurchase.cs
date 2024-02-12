@@ -409,6 +409,7 @@ namespace ROMS
                                     { varTypeID = 174;}
                                     else if (varGRNPurchaseFlag == 2)
                                     { varTypeID = 175; }
+                                    else { varTypeID = 187; }
                                 }
                                 else if(varEditFlag==1)
                                 { varviewtype = 1; }
@@ -435,6 +436,10 @@ namespace ROMS
                                 {
                                     objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(varID);
                                 }
+                                //if (varGRNPurchaseFlag == 3)
+                                //{
+                                //    objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(varID);
+                                //}
                                 objTRN_GoodsInward_Purchase.paraInwardId = varInwardId;
                                 objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(varStatusID);
                                 objTRN_GoodsInward_Purchase.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
@@ -751,6 +756,7 @@ namespace ROMS
                                 grdGrnlist.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdGrnlist.Columns["Batch No."].ReadOnly = true;
                                 grdGrnlist.Columns["Unit"].ReadOnly = true;
+                                //grdGrnlist.Columns["Expiry Date"].ReadOnly = true;
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Received Qty"]).MaxInputLength = 8;
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Shop Qty"]).MaxInputLength = 8;
                                 //btnSave.Text = "Update";
@@ -763,11 +769,17 @@ namespace ROMS
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
                                 grdGrnlist.Columns["Product Name in English"].Visible = false;
+                                if (varGRNPurchaseFlag == 3) //from Purchase DC
+                                {
+                                    grdGrnlist.Columns["DC Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdGrnlist.Columns["DC Qty"].Width = 100;
+                                    grdGrnlist.Columns["DC Qty"].ReadOnly = true;
+                                }
                                 if (varGRNPurchaseFlag == 2)  //from  purchase
                                 {
-                                    grdGrnlist.Columns["Invoice Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdGrnlist.Columns["Invoice Received Qty"].Width = 150;
-                                    grdGrnlist.Columns["Invoice Received Qty"].ReadOnly = true;
+                                    grdGrnlist.Columns["Invoice Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdGrnlist.Columns["Invoice Qty"].Width = 120;
+                                    grdGrnlist.Columns["Invoice Qty"].ReadOnly = true;
                                 }
                                 if (varGRNPurchaseFlag == 1) 
                                 {
