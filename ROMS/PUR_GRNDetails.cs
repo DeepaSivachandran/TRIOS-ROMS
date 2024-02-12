@@ -772,7 +772,7 @@ namespace ROMS
                                     {
                                         if (btnVerify2.Enabled == true)
                                         {
-                                            objTRNS_GRN.paraStatus = 24;
+                                            //objTRNS_GRN.paraStatus = 24;
                                         }
                                         else
                                         {
@@ -2262,27 +2262,43 @@ namespace ROMS
                 MainForm.objPUR_GRN_Level_Verified.ShowDialog();
                 if (PbVerified ==1)
                 {
-                    SPDataService objdserv = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(8, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0, 0, "0", "");
-                    objdserv.CloseConnection();
-                    if (objDs != null)
+                    udfnVerifiedBy();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVerifiedBy()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnGrnListLoad(8, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0, 0, "0", "");
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count != 0)
                     {
-                        if (objDs.Tables[0].Rows.Count != 0)
+                        if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            if (objDs.Tables[0].Rows.Count > 0)
-                            {
-                                lblVerifiedBy1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMP_Name"]);
-                                lblVerifiedDate1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_VerifiedOn1"]);
-                            }
+                            lblVerifiedBy1.Visible = true;
+                            lblVerifiedDate1.Visible = true;
+                            lblVerifiedBy1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMP_Name"]);
+                            lblVerifiedDate1.Text = " @ " + Convert.ToString(objDs.Tables[0].Rows[0]["GRN_VerifiedOn1"]);
                         }
-                        if (objDs.Tables[1].Rows.Count != 0)
+                    }
+                    if (objDs.Tables[1].Rows.Count != 0)
+                    {
+                        if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            if (objDs.Tables[1].Rows.Count > 0)
-                            {
-                                lblVerifiedBy2.Text = Convert.ToString(objDs.Tables[1].Rows[1]["EMP_Name"]);
-                                lblVerifiedDate2.Text = Convert.ToString(objDs.Tables[1].Rows[1]["GRN_VerifiedOn2"]);
-                            }
+                            lblVerifiedBy2.Visible = true;
+                            lblVerifiedDate2.Visible = true;
+                            lblVerifiedBy2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["EMP_Name"]);
+                            lblVerifiedDate2.Text = " @ " + Convert.ToString(objDs.Tables[1].Rows[0]["GRN_VerifiedOn2"]);
                         }
                     }
                 }
@@ -2293,7 +2309,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtInvoiceQty_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -4360,6 +4375,16 @@ namespace ROMS
                                 }
                             }
                         }
+                    }
+                    if(chkCompleted.Checked==true)
+                    {
+                        btnVerified.Enabled = false;
+                        udfnVerifiedBy();
+                    }
+                    else
+                    {
+                        btnVerified.Enabled = true;
+                        udfnVerifiedBy();
                     }
                 }
             }

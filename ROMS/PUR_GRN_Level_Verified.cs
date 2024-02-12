@@ -44,14 +44,27 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToInt32(cmbVerified1.SelectedValue)==-1 && Convert.ToInt32(cmbVerified2.SelectedValue) == -1)
                 {
-                    errVerified.SetError(cmbVerified1, "Please select verified employee");
+                    errVerified.SetError(cmbVerified1, "Please select verified by 1");
+                    errVerified.SetError(cmbVerified2, "Please select verified by 2");
+                    cmbVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    cmbVerified2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerified1.ShowAlways = true;
+                    tpVerified2.ShowAlways = true;
+                    tpVerified1.Show("Please select verified by 1", cmbVerified1, 5000);
+                    tpVerified2.Show("Please select verified by 2", cmbVerified2, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToInt32(cmbVerified1.SelectedValue) == -1 && Convert.ToInt32(cmbVerified2.SelectedValue) != -1)
+                {
+                    errVerified.SetError(cmbVerified1, "Please select verified by 1");
                     cmbVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpVerified1.ShowAlways = true;
-                    tpVerified1.Show("Please select verified employee", cmbVerified1, 5000);
+                    tpVerified1.Show("Please select verified by 1", cmbVerified1, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
                 {
+                    errVerified.Clear();
                     udfnSave(sender, e);
                 }
             }
@@ -304,6 +317,10 @@ namespace ROMS
         {
             try
             {
+                dpVerified1.MinDate = MainForm.pbFYStartDate;
+                dpVerified1.MaxDate = MainForm.pbCurrentDate;
+                dpVerified2.MinDate = MainForm.pbFYStartDate;
+                dpVerified2.MaxDate = MainForm.pbCurrentDate;
                 udfnCmbVerified1Load();
                 udfnCmbVerified2Load();
             }
