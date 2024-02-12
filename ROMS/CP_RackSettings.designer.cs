@@ -809,6 +809,7 @@
             // 
             this.grdViewProduct.AllowUserToAddRows = false;
             this.grdViewProduct.AllowUserToDeleteRows = false;
+            this.grdViewProduct.AllowUserToResizeColumns = false;
             this.grdViewProduct.AllowUserToResizeRows = false;
             this.grdViewProduct.BackgroundColor = System.Drawing.Color.White;
             this.grdViewProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -992,6 +993,7 @@
             // 
             this.grdMoveProduct.AllowUserToAddRows = false;
             this.grdMoveProduct.AllowUserToDeleteRows = false;
+            this.grdMoveProduct.AllowUserToResizeColumns = false;
             this.grdMoveProduct.AllowUserToResizeRows = false;
             this.grdMoveProduct.BackgroundColor = System.Drawing.Color.White;
             this.grdMoveProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;

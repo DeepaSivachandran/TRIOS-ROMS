@@ -66,7 +66,6 @@
             this.txtGstin.TabIndex = 1;
             this.txtGstin.Enter += new System.EventHandler(this.TxtEUnitName_Enter);
             this.txtGstin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEUnitName_KeyDown);
-//            this.txtGstin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEUnitName_KeyPress);
             this.txtGstin.Leave += new System.EventHandler(this.TxtEUnitName_Leave);
             // 
             // btnSave
@@ -105,6 +104,7 @@
             this.Name = "PUR_GSTIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GSTIN";
+            this.Load += new System.EventHandler(this.PUR_GSTIN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -115,6 +115,6 @@
         private System.Windows.Forms.ErrorProvider errUnit;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtDPasskey;
-        private System.Windows.Forms.TextBox txtGstin;
+        public System.Windows.Forms.TextBox txtGstin;
     }
 }

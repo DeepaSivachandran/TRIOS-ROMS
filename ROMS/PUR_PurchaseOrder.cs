@@ -2157,6 +2157,7 @@ namespace ROMS
                 }
                 */
 
+
                 //// DataGrid View TextBox Search Event Handle
                 ///
                 if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
@@ -3027,6 +3028,13 @@ namespace ROMS
                                         //(DGV_FilterProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_PICode]) LIKE '%" + txtProductName.Text + "%'";
                                     }
                                     //txtProductName.Select(txtProductName.Text.Length, 0);
+
+
+                                    //AutoCompleteStringCollection MyCollection = new AutoCompleteStringCollection();
+                                    //MyCollection.Add(DGV_FilterProduct.Rows[0].Cells["PR_PICode"].Value.ToString());
+                                    //txtProductName.AutoCompleteCustomSource = MyCollection;
+
+
                                 }
                                 else
                                 {
@@ -3120,6 +3128,25 @@ namespace ROMS
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 {
                     e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtissuemodevalue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if(Convert.ToInt32(cmbIssueMode.SelectedValue)==139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -3975,6 +4002,35 @@ namespace ROMS
                         txtIssuedBy.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpIssueby.ShowAlways = true;
                         tpIssueby.Show("Please enter issuedby.", txtIssuedBy, 5000);
+                        varErrorFlag = false;
+                    }
+                    else
+                    {
+                        txtIssuedBy.BackColor = Color.White;
+                    }
+                    if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 138)
+                    {
+                        if (Convert.ToString(txtissuemodevalue.Text).Trim() != "" && objValidation.FormatEMail(txtissuemodevalue.Text) == false)
+                        {
+                            errPO.SetError(txtissuemodevalue, "Please enter valid email");
+                            txtissuemodevalue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpIssuemode.ShowAlways = true;
+                            tpIssuemode.Show("Please enter valid email.", txtissuemodevalue, 5000);
+                            varErrorFlag = false;
+                        }
+                        else
+                        {
+                            txtissuemodevalue.BackColor = Color.White;
+                        }
+                    }
+
+                    if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1 && txtissuemodevalue.Text.Trim()=="")
+                    {
+                        string Issue = cmbIssueMode.Text;
+                        errPO.SetError(txtissuemodevalue, "Please enter mode of issue");
+                        txtissuemodevalue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIssuemode.ShowAlways = true;
+                        tpIssuemode.Show("Please enter mode of issue.", txtissuemodevalue, 5000);
                         varErrorFlag = false;
                     }
                     if (txtTurnAroundTime.Text == "0")

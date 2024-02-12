@@ -64,6 +64,7 @@ namespace ROMS
                 MainForm.objCP_Purchase.btnSave.Text = "Update as Draft"; 
                 MainForm.objCP_Purchase.PbSTS = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["STSID"].Value.ToString()); 
                 MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString()); 
+                MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Status"].Value.ToString()); 
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
                 MainForm.objCP_Purchase.Show();
             }
@@ -81,7 +82,7 @@ namespace ROMS
         {
             try
             {
-                
+                udfnDelete();
             }
             catch (Exception ex)
             {
@@ -89,8 +90,77 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
-          
+        public void udfnDelete()
+        {
+            try
+            {
+                if (grdPurchaseEntryList.SelectedRows.Count > 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        string varorginator = "Purchase Deletion", result = "";
+                        
+                        int varUserID = 0;
+                        
+
+                        TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                        objTRN_PurchaseEntry.ViewType =2 ;
+                        objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                        objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
+                        objTRN_PurchaseEntry.paraOriginator = varorginator;
+                        objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value); 
+                        objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                        SPDataService objspdservice = new SPDataService();
+                        result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                        objspdservice.CloseConnection();
+
+
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            if (result.Split('~')[1] == "1")
+                            {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                    objTRN_PurchaseEntry.ViewType = 2;
+                                    objTRN_PurchaseEntry.paraUserID = varUserID;
+                                    objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
+                                    objTRN_PurchaseEntry.paraOriginator = varorginator;
+                                    objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value);
+                                    objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                                    result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                                    objspdservice.CloseConnection();
+                                    if (result.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnListLoad();
+                                    }
+                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
+                        }
+                        else if (result.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -551,7 +621,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Voucher No."].Width = 100;
                             grdPurchaseEntryList.Columns["Voucher Date"].Width = 100;
                             grdPurchaseEntryList.Columns["Supplier Name"].Width = 300;
-                            grdPurchaseEntryList.Columns["City"].Width = 100;
+                           // grdPurchaseEntryList.Columns["City"].Width = 100;
                             grdPurchaseEntryList.Columns["GSTIN"].Width = 120;
                             grdPurchaseEntryList.Columns["Invoice Date"].Width = 100;
                             grdPurchaseEntryList.Columns["Invoice No."].Width = 100; 
@@ -622,7 +692,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Voucher No."].Width = 100;
                 DGV_SearchGrid.Columns["Voucher Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
-                DGV_SearchGrid.Columns["City"].Width = 100;
+               // DGV_SearchGrid.Columns["City"].Width = 100;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 120;
                 DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
                 DGV_SearchGrid.Columns["Invoice No."].Width = 100;
@@ -1267,7 +1337,25 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
+        }
+        private void GrdPurchaseEntryList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    tsbDelete_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
