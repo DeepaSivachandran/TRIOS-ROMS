@@ -2722,6 +2722,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraGIP_NO", objTRN_GoodsInward_Purchase.paraGIP_NO);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_GoodsInward_Purchase.paraGRNID);
                 varSqlCommand.Parameters.AddWithValue("@paraPurchaseID", objTRN_GoodsInward_Purchase.paraPurchaseID);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseDCID", objTRN_GoodsInward_Purchase.paraPurchaseDCID);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_GoodsInward_Purchase.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraInwardId", objTRN_GoodsInward_Purchase.paraInwardId);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_GoodsInward_Purchase.paraStatusID);

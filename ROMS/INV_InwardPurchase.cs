@@ -436,10 +436,10 @@ namespace ROMS
                                 {
                                     objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(varID);
                                 }
-                                //if (varGRNPurchaseFlag == 3)
-                                //{
-                                //    objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(varID);
-                                //}
+                                if (varGRNPurchaseFlag == 3)
+                                {
+                                    objTRN_GoodsInward_Purchase.paraPurchaseDCID = Convert.ToInt32(varID);
+                                }
                                 objTRN_GoodsInward_Purchase.paraInwardId = varInwardId;
                                 objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(varStatusID);
                                 objTRN_GoodsInward_Purchase.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
@@ -756,7 +756,7 @@ namespace ROMS
                                 grdGrnlist.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdGrnlist.Columns["Batch No."].ReadOnly = true;
                                 grdGrnlist.Columns["Unit"].ReadOnly = true;
-                                //grdGrnlist.Columns["Expiry Date"].ReadOnly = true;
+                                grdGrnlist.Columns["Expiry Date"].ReadOnly = true;
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Received Qty"]).MaxInputLength = 8;
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Shop Qty"]).MaxInputLength = 8;
                                 //btnSave.Text = "Update";
