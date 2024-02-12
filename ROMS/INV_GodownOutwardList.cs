@@ -461,7 +461,7 @@ namespace ROMS
                             grdOutwardList.Columns["Outward Date"].Width = 120;
                             grdOutwardList.Columns["Outward No."].Width = 120;
                             grdOutwardList.Columns["Stock Location"].Width = 150;
-                            grdOutwardList.Columns["Transaction Type"].Width = 120;
+                            grdOutwardList.Columns["Transaction Type"].Visible = false;
                             grdOutwardList.Columns["GOID"].Visible = false;
                             grdOutwardList.Columns["Total Products"].Width = 120;
                             grdOutwardList.Columns["Created By"].Width = 120;
