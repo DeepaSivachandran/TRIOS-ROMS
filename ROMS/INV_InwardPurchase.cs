@@ -762,6 +762,7 @@ namespace ROMS
                                 grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
+                                grdGrnlist.Columns["Product Name in English"].Visible = false;
                                 if (varGRNPurchaseFlag == 2)  //from  purchase
                                 {
                                     grdGrnlist.Columns["Invoice Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
