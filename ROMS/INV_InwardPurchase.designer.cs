@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -40,6 +40,9 @@
             this.btnRemarks = new System.Windows.Forms.Button();
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dpInvoiceDate = new System.Windows.Forms.TextBox();
+            this.dpVoucherDate = new System.Windows.Forms.TextBox();
+            this.dpGRNDate = new System.Windows.Forms.TextBox();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.txtInchargeName = new System.Windows.Forms.TextBox();
@@ -75,9 +78,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epInwardPurchase = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dpGRNDate = new System.Windows.Forms.TextBox();
-            this.dpVoucherDate = new System.Windows.Forms.TextBox();
-            this.dpInvoiceDate = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
@@ -179,32 +179,32 @@
             this.grdGrnlist.AllowUserToResizeRows = false;
             this.grdGrnlist.BackgroundColor = System.Drawing.Color.White;
             this.grdGrnlist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdGrnlist.ColumnHeadersHeight = 30;
             this.grdGrnlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdGrnlist.EnableHeadersVisualStyles = false;
             this.grdGrnlist.GridColor = System.Drawing.Color.White;
             this.grdGrnlist.Location = new System.Drawing.Point(3, 122);
             this.grdGrnlist.Name = "grdGrnlist";
             this.grdGrnlist.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdGrnlist.RowTemplate.Height = 25;
             this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnlist.Size = new System.Drawing.Size(1338, 449);
@@ -244,6 +244,36 @@
             this.groupBox1.Size = new System.Drawing.Size(1039, 109);
             this.groupBox1.TabIndex = 958826;
             this.groupBox1.TabStop = false;
+            // 
+            // dpInvoiceDate
+            // 
+            this.dpInvoiceDate.Enabled = false;
+            this.dpInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.dpInvoiceDate.Location = new System.Drawing.Point(912, 21);
+            this.dpInvoiceDate.Name = "dpInvoiceDate";
+            this.dpInvoiceDate.ReadOnly = true;
+            this.dpInvoiceDate.Size = new System.Drawing.Size(123, 25);
+            this.dpInvoiceDate.TabIndex = 1111225;
+            // 
+            // dpVoucherDate
+            // 
+            this.dpVoucherDate.Enabled = false;
+            this.dpVoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.dpVoucherDate.Location = new System.Drawing.Point(709, 21);
+            this.dpVoucherDate.Name = "dpVoucherDate";
+            this.dpVoucherDate.ReadOnly = true;
+            this.dpVoucherDate.Size = new System.Drawing.Size(123, 25);
+            this.dpVoucherDate.TabIndex = 1111224;
+            // 
+            // dpGRNDate
+            // 
+            this.dpGRNDate.Enabled = false;
+            this.dpGRNDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.dpGRNDate.Location = new System.Drawing.Point(506, 21);
+            this.dpGRNDate.Name = "dpGRNDate";
+            this.dpGRNDate.ReadOnly = true;
+            this.dpGRNDate.Size = new System.Drawing.Size(123, 25);
+            this.dpGRNDate.TabIndex = 1111223;
             // 
             // txtStockLocation
             // 
@@ -643,36 +673,6 @@
             // epInwardPurchase
             // 
             this.epInwardPurchase.ContainerControl = this;
-            // 
-            // dpGRNDate
-            // 
-            this.dpGRNDate.Enabled = false;
-            this.dpGRNDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.dpGRNDate.Location = new System.Drawing.Point(506, 21);
-            this.dpGRNDate.Name = "dpGRNDate";
-            this.dpGRNDate.ReadOnly = true;
-            this.dpGRNDate.Size = new System.Drawing.Size(123, 25);
-            this.dpGRNDate.TabIndex = 1111223;
-            // 
-            // dpVoucherDate
-            // 
-            this.dpVoucherDate.Enabled = false;
-            this.dpVoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.dpVoucherDate.Location = new System.Drawing.Point(709, 21);
-            this.dpVoucherDate.Name = "dpVoucherDate";
-            this.dpVoucherDate.ReadOnly = true;
-            this.dpVoucherDate.Size = new System.Drawing.Size(123, 25);
-            this.dpVoucherDate.TabIndex = 1111224;
-            // 
-            // dpInvoiceDate
-            // 
-            this.dpInvoiceDate.Enabled = false;
-            this.dpInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.dpInvoiceDate.Location = new System.Drawing.Point(912, 21);
-            this.dpInvoiceDate.Name = "dpInvoiceDate";
-            this.dpInvoiceDate.ReadOnly = true;
-            this.dpInvoiceDate.Size = new System.Drawing.Size(123, 25);
-            this.dpInvoiceDate.TabIndex = 1111225;
             // 
             // INV_InwardPurchase
             // 

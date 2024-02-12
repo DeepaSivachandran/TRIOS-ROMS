@@ -136,6 +136,30 @@ namespace ROMS
                     tpIssueby.Show("Invalid turn around time.", txtTAT, 5000);
                     varErrorFlag = false;
                 }
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 138)
+                {
+                    if (Convert.ToString(txtIssuemodeValues.Text).Trim() != "" && objValidation.FormatEMail(txtIssuemodeValues.Text) == false)
+                    {
+                        errIssued.SetError(txtIssuemodeValues, "Please enter valid email");
+                        txtIssuemodeValues.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIssuemode.ShowAlways = true;
+                        tpIssuemode.Show("Please enter valid email.", txtIssuemodeValues, 5000);
+                        varErrorFlag = false;
+                    }
+                    else
+                    {
+                        txtIssuemodeValues.BackColor = Color.White;
+                    }
+                }
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1 && txtIssuemodeValues.Text.Trim() == "")
+                {
+                    string Issue = cmbIssueMode.Text;
+                    errIssued.SetError(txtIssuemodeValues, "Please enter mode of issue");
+                    txtIssuemodeValues.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIssuemode.ShowAlways = true;
+                    tpIssuemode.Show("Please enter mode of issue.", txtIssuemodeValues, 5000);
+                    varErrorFlag = false;
+                }
                 if (varErrorFlag == true)
                 {
                     if (varPOID != 0)
@@ -560,6 +584,25 @@ namespace ROMS
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 {
                     e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssuemodeValues_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
                 }
             }
             catch (Exception ex)

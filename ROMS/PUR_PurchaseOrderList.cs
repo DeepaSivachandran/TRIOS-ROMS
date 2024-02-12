@@ -2070,17 +2070,19 @@ namespace ROMS
         {
             try
             {
-                if (grdPurchaseorderlist.SelectedRows.Count > 0)
+                if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) == "12")
                 {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdPurchaseorderlist.SelectedRows.Count > 0)
                     {
-                        SPDataService objspdservice = new SPDataService();
-                        result = "";
-                        result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0,0);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~'); 
+                        string result = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            SPDataService objspdservice = new SPDataService();
+                            result = "";
+                            result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0, 0);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
                             if (result.Split('~')[1] == "1")
                             {
                                 MainForm.objCP_Verify = new CP_Verify();
@@ -2106,7 +2108,8 @@ namespace ROMS
                             else
                             {
                                 MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            } 
+                            }
+                        }
                     }
                 }
             }
@@ -3285,6 +3288,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdPurchaseorderlist_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) != "12" )
+                { tsbDelete.Visible = false; }
+                else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbProductStatus_KeyDown(object sender, KeyEventArgs e)
         {
             try
