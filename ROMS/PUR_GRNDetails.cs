@@ -4233,7 +4233,7 @@ namespace ROMS
                                 dpGrnDate.Enabled = false;
                                 txtSupplier.Enabled = false;
                                 cmbOrderType.Enabled = false;
-                                if (Convert.ToString(objDs.Tables[0].Rows[0]["STSID"]) == "23" || Convert.ToString(objDs.Tables[0].Rows[0]["STSID"]) == "24")
+                                if (Convert.ToString(objDs.Tables[0].Rows[0]["STSID"]) == "23" || Convert.ToString(objDs.Tables[0].Rows[0]["STSID"]) == "24" || Convert.ToString(objDs.Tables[0].Rows[0]["STSID"]) == "44")
                                 {
                                     chkCompleted.Enabled = false;
                                     chkCompleted.Checked = true;

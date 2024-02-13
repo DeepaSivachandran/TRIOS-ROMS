@@ -100,6 +100,7 @@
             this.dpVerified1.Name = "dpVerified1";
             this.dpVerified1.Size = new System.Drawing.Size(177, 27);
             this.dpVerified1.TabIndex = 1;
+            this.dpVerified1.ValueChanged += new System.EventHandler(this.DpVerified1_ValueChanged);
             this.dpVerified1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpVerified1_KeyDown);
             // 
             // dpVerified2
