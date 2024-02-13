@@ -442,8 +442,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
-
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
         {
             try
@@ -489,9 +487,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
             }
         }
 
