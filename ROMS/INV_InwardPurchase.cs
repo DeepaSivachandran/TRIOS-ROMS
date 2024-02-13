@@ -768,8 +768,10 @@ namespace ROMS
                                 grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
-                                if (varGRNPurchaseFlag == 3) //from Purchase DC
+                                if (varGRNPurchaseFlag == 4) //from Purchase DC
                                 {
+                                    txtDGRNDate.Text = "DC Date";
+                                    txtDGRNNo.Text = "DC No.";
                                     grdGrnlist.Columns["DC Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["DC Qty"].Width = 100;
                                     grdGrnlist.Columns["DC Qty"].ReadOnly = true;
@@ -782,7 +784,18 @@ namespace ROMS
                                 }
                                 if (varGRNPurchaseFlag == 1) 
                                 {
+                                    textBox4.Visible = true;
+                                    txtVerifiedby1.Visible = true;
+                                    textBox5.Visible = true;
+                                    txtVerifiedby2.Visible = true;
                                     grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
+                                }
+                                else
+                                {
+                                    textBox4.Visible = false;
+                                    txtVerifiedby1.Visible = false;
+                                    textBox5.Visible = false;
+                                    txtVerifiedby2.Visible = false;
                                 }
                                 //if (varEditFlag==0)
                                 //{
