@@ -49,6 +49,11 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.cmbOrderBy = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbShow = new System.Windows.Forms.ComboBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.lblStockLocationCode = new System.Windows.Forms.Label();
             this.lvStockLocation = new System.Windows.Forms.ListView();
@@ -82,13 +87,10 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdInwardQueueList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.epQueueList = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.cmbShow = new System.Windows.Forms.ComboBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.cmbOrderBy = new System.Windows.Forms.ComboBox();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.DGV_ProdSearchGrid = new System.Windows.Forms.DataGridView();
+            this.epQueueList = new System.Windows.Forms.ErrorProvider(this.components);
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -96,9 +98,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdInwardQueueList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epQueueList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_ProdSearchGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epQueueList)).BeginInit();
             this.SuspendLayout();
             // 
             // tsInwardList
@@ -163,6 +165,7 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.btnPrint);
             this.pnlinward.Controls.Add(this.lblStatus);
             this.pnlinward.Controls.Add(this.cmbOrderBy);
             this.pnlinward.Controls.Add(this.label7);
@@ -179,10 +182,77 @@
             this.pnlinward.Controls.Add(this.picLoader);
             this.pnlinward.Controls.Add(this.grdProDetails);
             this.pnlinward.Controls.Add(this.DGV_ProdSearchGrid);
+            this.pnlinward.Controls.Add(this.RPTViewer);
             this.pnlinward.Location = new System.Drawing.Point(0, 31);
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 641);
             this.pnlinward.TabIndex = 36;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(1310, 42);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(33, 29);
+            this.btnPrint.TabIndex = 111111146;
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(1170, 22);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(57, 20);
+            this.lblStatus.TabIndex = 111111143;
+            this.lblStatus.Text = "Order By";
+            // 
+            // cmbOrderBy
+            // 
+            this.cmbOrderBy.FormattingEnabled = true;
+            this.cmbOrderBy.Items.AddRange(new object[] {
+            "Purchase Order List",
+            "Product List"});
+            this.cmbOrderBy.Location = new System.Drawing.Point(1174, 44);
+            this.cmbOrderBy.Name = "cmbOrderBy";
+            this.cmbOrderBy.Size = new System.Drawing.Size(94, 27);
+            this.cmbOrderBy.TabIndex = 111111142;
+            this.cmbOrderBy.SelectedIndexChanged += new System.EventHandler(this.CmbOrderBy_SelectedIndexChanged);
+            this.cmbOrderBy.Enter += new System.EventHandler(this.CmbOrderBy_Enter);
+            this.cmbOrderBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderBy_KeyDown);
+            this.cmbOrderBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderBy_KeyPress);
+            this.cmbOrderBy.Leave += new System.EventHandler(this.CmbOrderBy_Leave);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1061, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 20);
+            this.label7.TabIndex = 111111141;
+            this.label7.Text = "Show";
+            // 
+            // cmbShow
+            // 
+            this.cmbShow.FormattingEnabled = true;
+            this.cmbShow.Items.AddRange(new object[] {
+            "Purchase Order List",
+            "Product List"});
+            this.cmbShow.Location = new System.Drawing.Point(1065, 44);
+            this.cmbShow.Name = "cmbShow";
+            this.cmbShow.Size = new System.Drawing.Size(103, 27);
+            this.cmbShow.TabIndex = 111111140;
+            this.cmbShow.SelectedIndexChanged += new System.EventHandler(this.CmbShow_SelectedIndexChanged);
+            this.cmbShow.SelectedValueChanged += new System.EventHandler(this.CmbShow_SelectedValueChanged);
+            this.cmbShow.Enter += new System.EventHandler(this.CmbShow_Enter);
+            this.cmbShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbShow_KeyDown);
+            this.cmbShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShow_KeyPress);
+            this.cmbShow.Leave += new System.EventHandler(this.CmbShow_Leave);
             // 
             // DGV_FilterProduct
             // 
@@ -212,7 +282,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(806, 71);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(684, 71);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -246,7 +316,7 @@
             this.lvStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvStockLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvStockLocation.HideSelection = false;
-            this.lvStockLocation.Location = new System.Drawing.Point(629, 72);
+            this.lvStockLocation.Location = new System.Drawing.Point(527, 72);
             this.lvStockLocation.Name = "lvStockLocation";
             this.lvStockLocation.Size = new System.Drawing.Size(305, 155);
             this.lvStockLocation.TabIndex = 111111134;
@@ -276,7 +346,7 @@
             this.columnHeader2});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(370, 72);
+            this.LV_Supplier.Location = new System.Drawing.Point(322, 72);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(366, 155);
             this.LV_Supplier.TabIndex = 1111212;
@@ -349,7 +419,7 @@
             // cmbEntryType
             // 
             this.cmbEntryType.FormattingEnabled = true;
-            this.cmbEntryType.Location = new System.Drawing.Point(953, 42);
+            this.cmbEntryType.Location = new System.Drawing.Point(958, 42);
             this.cmbEntryType.Name = "cmbEntryType";
             this.cmbEntryType.Size = new System.Drawing.Size(98, 27);
             this.cmbEntryType.TabIndex = 5;
@@ -373,7 +443,7 @@
             // 
             this.lblEntryType.AutoSize = true;
             this.lblEntryType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblEntryType.Location = new System.Drawing.Point(949, 20);
+            this.lblEntryType.Location = new System.Drawing.Point(954, 20);
             this.lblEntryType.Name = "lblEntryType";
             this.lblEntryType.Size = new System.Drawing.Size(66, 20);
             this.lblEntryType.TabIndex = 958818;
@@ -439,7 +509,7 @@
             this.txtProductName.Location = new System.Drawing.Point(681, 42);
             this.txtProductName.MaxLength = 2;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(266, 27);
+            this.txtProductName.Size = new System.Drawing.Size(271, 27);
             this.txtProductName.TabIndex = 4;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -500,11 +570,10 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1267, 40);
+            this.btnView.Location = new System.Drawing.Point(1271, 40);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.Size = new System.Drawing.Size(33, 29);
             this.btnView.TabIndex = 6;
-            this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
@@ -630,63 +699,6 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // epQueueList
-            // 
-            this.epQueueList.ContainerControl = this;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(1056, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 20);
-            this.label7.TabIndex = 111111141;
-            this.label7.Text = "Show";
-            // 
-            // cmbShow
-            // 
-            this.cmbShow.FormattingEnabled = true;
-            this.cmbShow.Items.AddRange(new object[] {
-            "Purchase Order List",
-            "Product List"});
-            this.cmbShow.Location = new System.Drawing.Point(1060, 44);
-            this.cmbShow.Name = "cmbShow";
-            this.cmbShow.Size = new System.Drawing.Size(103, 27);
-            this.cmbShow.TabIndex = 111111140;
-            this.cmbShow.SelectedIndexChanged += new System.EventHandler(this.CmbShow_SelectedIndexChanged);
-            this.cmbShow.SelectedValueChanged += new System.EventHandler(this.CmbShow_SelectedValueChanged);
-            this.cmbShow.Enter += new System.EventHandler(this.CmbShow_Enter);
-            this.cmbShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbShow_KeyDown);
-            this.cmbShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShow_KeyPress);
-            this.cmbShow.Leave += new System.EventHandler(this.CmbShow_Leave);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(1166, 22);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(57, 20);
-            this.lblStatus.TabIndex = 111111143;
-            this.lblStatus.Text = "Order By";
-            // 
-            // cmbOrderBy
-            // 
-            this.cmbOrderBy.FormattingEnabled = true;
-            this.cmbOrderBy.Items.AddRange(new object[] {
-            "Purchase Order List",
-            "Product List"});
-            this.cmbOrderBy.Location = new System.Drawing.Point(1170, 44);
-            this.cmbOrderBy.Name = "cmbOrderBy";
-            this.cmbOrderBy.Size = new System.Drawing.Size(94, 27);
-            this.cmbOrderBy.TabIndex = 111111142;
-            this.cmbOrderBy.SelectedIndexChanged += new System.EventHandler(this.CmbOrderBy_SelectedIndexChanged);
-            this.cmbOrderBy.Enter += new System.EventHandler(this.CmbOrderBy_Enter);
-            this.cmbOrderBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderBy_KeyDown);
-            this.cmbOrderBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderBy_KeyPress);
-            this.cmbOrderBy.Leave += new System.EventHandler(this.CmbOrderBy_Leave);
-            // 
             // grdProDetails
             // 
             this.grdProDetails.AllowUserToAddRows = false;
@@ -721,6 +733,8 @@
             this.grdProDetails.Size = new System.Drawing.Size(1348, 501);
             this.grdProDetails.TabIndex = 111111144;
             this.grdProDetails.Visible = false;
+            this.grdProDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdProDetails_DataBindingComplete);
+            this.grdProDetails.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdProDetails_Scroll);
             // 
             // DGV_ProdSearchGrid
             // 
@@ -763,10 +777,27 @@
             this.DGV_ProdSearchGrid.TabIndex = 111111145;
             this.DGV_ProdSearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_ProdSearchGrid_CellEndEdit);
             this.DGV_ProdSearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_ProdSearchGrid_CellPainting);
-            this.DGV_ProdSearchGrid.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_ProdSearchGrid_ColumnHeaderMouseDoubleClick);
+            this.DGV_ProdSearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_ProdSearchGrid_ColumnHeaderMouseClick);
             this.DGV_ProdSearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_ProdSearchGrid_ColumnWidthChanged);
             this.DGV_ProdSearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_ProdSearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_ProdSearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_ProdSearchGrid_Scroll);
+            // 
+            // epQueueList
+            // 
+            this.epQueueList.ContainerControl = this;
+            // 
+            // RPTViewer
+            // 
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(6, 81);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1319, 544);
+            this.RPTViewer.TabIndex = 1110000993;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
             // 
             // INV_InwardQueueList
             // 
@@ -795,9 +826,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdInwardQueueList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epQueueList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_ProdSearchGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epQueueList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -850,5 +881,7 @@
         public System.Windows.Forms.ComboBox cmbOrderBy;
         public System.Windows.Forms.DataGridView grdProDetails;
         public System.Windows.Forms.DataGridView DGV_ProdSearchGrid;
+        public System.Windows.Forms.Button btnPrint;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
     }
 }

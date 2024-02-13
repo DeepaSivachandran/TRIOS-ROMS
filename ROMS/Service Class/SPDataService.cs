@@ -2687,6 +2687,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaToDate", objTRN_GoodsInward_Purchase.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarkFlag", objTRN_GoodsInward_Purchase.paraRemarkFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraPurchaseID", objTRN_GoodsInward_Purchase.paraPurchaseID);
+                varSqlCommand.Parameters.AddWithValue("@paraOrderBy", objTRN_GoodsInward_Purchase.paraOrderBy);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_GoodsInward_Purchase.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_GoodsInward_Purchase.paraID);
                 varSqlCommand.CommandTimeout = 0;
