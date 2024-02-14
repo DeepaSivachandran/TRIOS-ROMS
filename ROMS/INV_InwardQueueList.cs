@@ -607,30 +607,18 @@ namespace ROMS
             try
             {
                 DGV_ProdSearchGrid.DataSource = dtDefaultGrid;
-                //DGV_ProdSearchGrid.Columns["ID"].Visible = false;
-                //DGV_ProdSearchGrid.Columns["SPID"].Visible = false;
-                //DGV_ProdSearchGrid.Columns["SPSCID"].Visible = false;
-                //DGV_ProdSearchGrid.Columns["SPSCID"].Visible = false;
-                //DGV_ProdSearchGrid.Columns["Location ID"].Visible = false;
-                //DGV_ProdSearchGrid.Columns["Concern ID"].Visible = false;
-                //DGV_ProdSearchGrid.Columns["My Products"].Visible = false;
-                //DGV_ProdSearchGrid.Columns["Type"].Visible = false;
-                //DGV_ProdSearchGrid.Columns["Concern"].Width = 80;
                 DGV_ProdSearchGrid.Columns["Type"].Width = 80;
-                DGV_ProdSearchGrid.Columns["PICode"].Width = 100;
+                DGV_ProdSearchGrid.Columns["P.I Code"].Width = 100;
                 DGV_ProdSearchGrid.Columns["MRP"].Width = 80;
                 DGV_ProdSearchGrid.Columns["Expiry Date"].Width = 80;
-                DGV_ProdSearchGrid.Columns["Batch No"].Width = 100;
-                DGV_ProdSearchGrid.Columns["Invoice No"].Width = 100;
+                DGV_ProdSearchGrid.Columns["Batch No."].Width = 100;
+                DGV_ProdSearchGrid.Columns["Invoice No."].Width = 100;
                 DGV_ProdSearchGrid.Columns["Invoice Date"].Width = 80;
                 DGV_ProdSearchGrid.Columns["Transaction Date"].Width = 80;
                 DGV_ProdSearchGrid.Columns["Transaction No."].Width = 80;
-                DGV_ProdSearchGrid.Columns["Supplier Name"].Width = 200;
-                DGV_ProdSearchGrid.Columns["Product Name"].Width = 300;
-                ///grdInwardQueueList.Columns["Created By"].Width = 110;
-                //DGV_ProdSearchGrid.Columns["Created On"].Width = 140;
-                //DGV_ProdSearchGrid.Columns["GSTIN"].Width = 150;
-                //DGV_ProdSearchGrid.Columns["S.No."].Width = 60;
+                DGV_ProdSearchGrid.Columns["Supplier"].Width = 200;
+                DGV_ProdSearchGrid.Columns["Product Name"].Width = 300;           
+                DGV_ProdSearchGrid.Columns["Order By"].Visible = false;           
                 DGV_ProdSearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -879,15 +867,15 @@ namespace ROMS
                             grdProDetails.DataSource = objDs.Tables[0];
                             grdProDetails.Columns["Type"].Width = 80;
                             grdProDetails.Columns["Product Name"].Width = 300;
-                            grdProDetails.Columns["P.I Code"].Width = 100;
-                            grdProDetails.Columns["Supplier Name"].Width = 200;
+                            grdProDetails.Columns["P.I Code"].Width = 90;
+                            grdProDetails.Columns["Supplier"].Width = 200;
                             grdProDetails.Columns["MRP"].Width = 80;
                             grdProDetails.Columns["Unit"].Width = 50;
                             grdProDetails.Columns["Expiry Date"].Width = 80;
-                            grdProDetails.Columns["Batch No"].Width = 100;
-                            grdProDetails.Columns["Invoice No"].Width = 100;
+                            grdProDetails.Columns["Batch No."].Width = 100;
+                            grdProDetails.Columns["Invoice No."].Width = 100;
                             grdProDetails.Columns["Invoice Date"].Width = 80;
-                            grdProDetails.Columns["Transaction No"].Width = 100;
+                            grdProDetails.Columns["Transaction No."].Width = 90;
                             grdProDetails.Columns["Transaction Date"].Width = 80;
                             grdProDetails.Columns["SLID"].Visible = false;
                             grdProDetails.Columns["Order By"].Visible = false;
