@@ -768,6 +768,7 @@ namespace ROMS
                                 grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
+                                grdGrnlist.Columns["U_Name"].Visible = false;
                                 if (varGRNPurchaseFlag == 4) //from Purchase DC
                                 {
                                     txtDGRNDate.Text = "DC Date";
@@ -776,19 +777,24 @@ namespace ROMS
                                     grdGrnlist.Columns["DC Qty"].Width = 100;
                                     grdGrnlist.Columns["DC Qty"].ReadOnly = true;
                                 }
-                                if (varGRNPurchaseFlag == 2)  //from  purchase
+                                if (varGRNPurchaseFlag == 2) //from  purchase
                                 {
                                     grdGrnlist.Columns["Invoice Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["Invoice Qty"].Width = 120;
                                     grdGrnlist.Columns["Invoice Qty"].ReadOnly = true;
                                 }
-                                if (varGRNPurchaseFlag == 1) 
+                                if (varGRNPurchaseFlag == 1) //from  grn
                                 {
                                     textBox4.Visible = true;
                                     txtVerifiedby1.Visible = true;
                                     textBox5.Visible = true;
                                     txtVerifiedby2.Visible = true;
+                                    txtVerifiedby1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 1"]);
+                                    txtVerifiedby2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 2"]);
+                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["U_Name"]);
                                     grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
+                                    grdGrnlist.Columns["Verified BY 1"].Visible = false;
+                                    grdGrnlist.Columns["Verified BY 2"].Visible = false;
                                 }
                                 else
                                 {
