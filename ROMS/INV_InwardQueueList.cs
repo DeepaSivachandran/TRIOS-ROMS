@@ -749,6 +749,7 @@ namespace ROMS
                     objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
                     objTRN_GoodsInward_Purchase.paraSLID = Convert.ToInt32(lblStockLocationCode.Text);
                     objTRN_GoodsInward_Purchase.paraProductId = Convert.ToInt32(varPRID);
+                    objTRN_GoodsInward_Purchase.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbEntryType.SelectedValue);
                     objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objdserv.CloseConnection();
@@ -770,7 +771,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInwardQueueList.Columns["Concern"].Width = 80;
                                 grdInwardQueueList.Columns["Transaction Date"].Width = 100;
-                                grdInwardQueueList.Columns["Transaction No."].Width = 80;
+                                grdInwardQueueList.Columns["Transaction No."].Width = 100;
                                 //grdInwardQueueList.Columns["GRN Date"].Width = 100;
                                 //grdInwardQueueList.Columns["GRN No."].Width = 80;
                                 grdInwardQueueList.Columns["Supplier"].Width = 250;
@@ -889,6 +890,7 @@ namespace ROMS
                             grdProDetails.Columns["Transaction No"].Width = 100;
                             grdProDetails.Columns["Transaction Date"].Width = 80;
                             grdProDetails.Columns["SLID"].Visible = false;
+                            grdProDetails.Columns["Order By"].Visible = false;
                             grdProDetails.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
