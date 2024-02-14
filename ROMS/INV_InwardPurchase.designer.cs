@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -40,6 +40,12 @@
             this.btnRemarks = new System.Windows.Forms.Button();
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtVerifiedby2 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtVerifiedby1 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtCompletedby = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.dpInvoiceDate = new System.Windows.Forms.TextBox();
             this.dpVoucherDate = new System.Windows.Forms.TextBox();
             this.dpGRNDate = new System.Windows.Forms.TextBox();
@@ -78,12 +84,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epInwardPurchase = new System.Windows.Forms.ErrorProvider(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtCompletedby = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.txtVerifiedby1 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.txtVerifiedby2 = new System.Windows.Forms.TextBox();
             this.lblStatusValue = new System.Windows.Forms.Label();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -187,32 +187,32 @@
             this.grdGrnlist.AllowUserToResizeRows = false;
             this.grdGrnlist.BackgroundColor = System.Drawing.Color.White;
             this.grdGrnlist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdGrnlist.ColumnHeadersHeight = 30;
             this.grdGrnlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdGrnlist.EnableHeadersVisualStyles = false;
             this.grdGrnlist.GridColor = System.Drawing.Color.White;
             this.grdGrnlist.Location = new System.Drawing.Point(3, 122);
             this.grdGrnlist.Name = "grdGrnlist";
             this.grdGrnlist.RowHeadersVisible = false;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdGrnlist.RowTemplate.Height = 25;
             this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnlist.Size = new System.Drawing.Size(1338, 449);
@@ -258,6 +258,75 @@
             this.groupBox1.Size = new System.Drawing.Size(1039, 109);
             this.groupBox1.TabIndex = 958826;
             this.groupBox1.TabStop = false;
+            // 
+            // txtVerifiedby2
+            // 
+            this.txtVerifiedby2.Enabled = false;
+            this.txtVerifiedby2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtVerifiedby2.Location = new System.Drawing.Point(506, 71);
+            this.txtVerifiedby2.Name = "txtVerifiedby2";
+            this.txtVerifiedby2.ReadOnly = true;
+            this.txtVerifiedby2.Size = new System.Drawing.Size(123, 25);
+            this.txtVerifiedby2.TabIndex = 1111231;
+            this.txtVerifiedby2.Visible = false;
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox5.Enabled = false;
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox5.Location = new System.Drawing.Point(429, 71);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(77, 25);
+            this.textBox5.TabIndex = 1111230;
+            this.textBox5.Text = "Verified by 2";
+            this.textBox5.Visible = false;
+            // 
+            // txtVerifiedby1
+            // 
+            this.txtVerifiedby1.Enabled = false;
+            this.txtVerifiedby1.Location = new System.Drawing.Point(284, 71);
+            this.txtVerifiedby1.Name = "txtVerifiedby1";
+            this.txtVerifiedby1.ReadOnly = true;
+            this.txtVerifiedby1.Size = new System.Drawing.Size(141, 25);
+            this.txtVerifiedby1.TabIndex = 1111229;
+            this.txtVerifiedby1.Visible = false;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox4.Location = new System.Drawing.Point(207, 71);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(77, 25);
+            this.textBox4.TabIndex = 1111228;
+            this.textBox4.Text = "Verified by 1";
+            this.textBox4.Visible = false;
+            // 
+            // txtCompletedby
+            // 
+            this.txtCompletedby.Enabled = false;
+            this.txtCompletedby.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtCompletedby.Location = new System.Drawing.Point(80, 71);
+            this.txtCompletedby.Name = "txtCompletedby";
+            this.txtCompletedby.ReadOnly = true;
+            this.txtCompletedby.Size = new System.Drawing.Size(123, 25);
+            this.txtCompletedby.TabIndex = 1111227;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox2.Location = new System.Drawing.Point(3, 71);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(77, 25);
+            this.textBox2.TabIndex = 1111226;
+            this.textBox2.Text = "Completed by";
             // 
             // dpInvoiceDate
             // 
@@ -688,81 +757,12 @@
             // 
             this.epInwardPurchase.ContainerControl = this;
             // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox2.Location = new System.Drawing.Point(3, 71);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(77, 25);
-            this.textBox2.TabIndex = 1111226;
-            this.textBox2.Text = "Completed by";
-            // 
-            // txtCompletedby
-            // 
-            this.txtCompletedby.Enabled = false;
-            this.txtCompletedby.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtCompletedby.Location = new System.Drawing.Point(80, 71);
-            this.txtCompletedby.Name = "txtCompletedby";
-            this.txtCompletedby.ReadOnly = true;
-            this.txtCompletedby.Size = new System.Drawing.Size(123, 25);
-            this.txtCompletedby.TabIndex = 1111227;
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox4.Location = new System.Drawing.Point(207, 71);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(77, 25);
-            this.textBox4.TabIndex = 1111228;
-            this.textBox4.Text = "Verified by 1";
-            this.textBox4.Visible = false;
-            // 
-            // txtVerifiedby1
-            // 
-            this.txtVerifiedby1.Enabled = false;
-            this.txtVerifiedby1.Location = new System.Drawing.Point(284, 71);
-            this.txtVerifiedby1.Name = "txtVerifiedby1";
-            this.txtVerifiedby1.ReadOnly = true;
-            this.txtVerifiedby1.Size = new System.Drawing.Size(141, 25);
-            this.txtVerifiedby1.TabIndex = 1111229;
-            this.txtVerifiedby1.Visible = false;
-            // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox5.Location = new System.Drawing.Point(429, 71);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(77, 25);
-            this.textBox5.TabIndex = 1111230;
-            this.textBox5.Text = "Verified by 2";
-            this.textBox5.Visible = false;
-            // 
-            // txtVerifiedby2
-            // 
-            this.txtVerifiedby2.Enabled = false;
-            this.txtVerifiedby2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtVerifiedby2.Location = new System.Drawing.Point(506, 71);
-            this.txtVerifiedby2.Name = "txtVerifiedby2";
-            this.txtVerifiedby2.ReadOnly = true;
-            this.txtVerifiedby2.Size = new System.Drawing.Size(123, 25);
-            this.txtVerifiedby2.TabIndex = 1111231;
-            this.txtVerifiedby2.Visible = false;
-            // 
             // lblStatusValue
             // 
             this.lblStatusValue.AutoSize = true;
             this.lblStatusValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(194)))), ((int)(((byte)(116)))));
             this.lblStatusValue.ForeColor = System.Drawing.Color.Black;
-            this.lblStatusValue.Location = new System.Drawing.Point(1237, 4);
+            this.lblStatusValue.Location = new System.Drawing.Point(1200, 4);
             this.lblStatusValue.Name = "lblStatusValue";
             this.lblStatusValue.Size = new System.Drawing.Size(37, 20);
             this.lblStatusValue.TabIndex = 38;
