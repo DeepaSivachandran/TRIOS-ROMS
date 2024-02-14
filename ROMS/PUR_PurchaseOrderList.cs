@@ -974,7 +974,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Supplier"].Width = 300;
                             grdPurchaseorderlist.Columns["City"].Width = 100; 
                             grdPurchaseorderlist.Columns["T.Pro"].Width = 50;
-                            grdPurchaseorderlist.Columns["T.Units"].Width = 50;
+                            grdPurchaseorderlist.Columns["T.Units"].Width = 140;
                             grdPurchaseorderlist.Columns["TAT"].Width = 70;
                             grdPurchaseorderlist.Columns["DTAT"].Width = 70;
                             grdPurchaseorderlist.Columns["Created By"].Width = 100;
@@ -985,6 +985,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Status"].Width = 100;
                             grdPurchaseorderlist.Columns["clmView"].Width = 50;
                             grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
+                            grdPurchaseorderlist.Columns["Overall Status"].Width = 130;
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
                             grdPurchaseorderlist.Columns["COMID"].Visible = false;
                             grdPurchaseorderlist.Columns["Status1"].Visible = false;
@@ -2589,7 +2590,7 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                                 }
-                                if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Current Status")
+                                if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Overall Status")
                                 {
                                     ExcelSheet.Columns[cIndex - 1].ColumnWidth = 25;
                                 }

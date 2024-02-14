@@ -867,7 +867,7 @@ namespace ROMS
                             grdProDetails.DataSource = objDs.Tables[0];
                             grdProDetails.Columns["Type"].Width = 80;
                             grdProDetails.Columns["Product Name"].Width = 300;
-                            grdProDetails.Columns["P.I Code"].Width = 90;
+                            grdProDetails.Columns["P.I Code"].Width = 100;
                             grdProDetails.Columns["Supplier"].Width = 200;
                             grdProDetails.Columns["MRP"].Width = 80;
                             grdProDetails.Columns["Unit"].Width = 50;
