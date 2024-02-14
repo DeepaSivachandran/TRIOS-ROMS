@@ -206,6 +206,7 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["DCID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, 0);
+                            grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -268,6 +269,7 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[0].Rows[i]["POID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, 0
                             );
+                            grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -403,7 +405,8 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["GRNPR_PRFlag"]));
                             grdSupplierList.Columns["clmGrnMrp"].Visible = true;
-                           // grdSupplierList.Columns["clmAddPro"].Visible = true;
+                            // grdSupplierList.Columns["clmAddPro"].Visible = true;
+                            grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                         GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -661,6 +664,8 @@ namespace ROMS
                     }
                     if (varRemarkFlag == 1) { btnRemarks.Enabled = true; }
                     else { btnRemarks.Enabled = false; }
+                    if(PbSTS == "50")
+                    { btnSave.Text = "Update"; }
                 }
             }
             catch (Exception ex)
@@ -822,6 +827,7 @@ namespace ROMS
                                     , Convert.ToString(objDs.Tables[1].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GRNQty"])
                                     , Convert.ToDecimal(objDs.Tables[1].Rows[i]["DCQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"]), 0, 0);
 
+                                    grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     //grdSupplierList.Columns["clmAddPro"].Visible = false;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -3492,6 +3498,7 @@ namespace ROMS
                                 grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varTName).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDate).Trim()
                                 , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), txtSourceLocation.Text, cmbrack.Text, (var_Symbol).Trim(), cmbPONo.SelectedValue,
                                 (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0);
+                                grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 udfnrowclear();
                                 txtProductName.Focus();
                                 DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
@@ -4686,6 +4693,7 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]));
                         }
+                         grdSupplierList.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     }
                 }
 
