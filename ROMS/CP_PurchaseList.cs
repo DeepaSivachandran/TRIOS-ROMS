@@ -19,6 +19,7 @@ namespace ROMS
         DataTable Deftable = new DataTable();
         ToolTip tpSupplier = new ToolTip();
         public Boolean BlnSearchImageYN = false;
+        public int varDeleteFlag = 0;
         DateTime varmaxdate;
         public CP_PurchaseList()
         {
@@ -94,60 +95,63 @@ namespace ROMS
         {
             try
             {
-                if (grdPurchaseEntryList.SelectedRows.Count > 0)
+                if (varDeleteFlag == 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdPurchaseEntryList.SelectedRows.Count > 0)
                     {
-                        string varorginator = "Purchase Deletion", result = "";
-                        
-                        int varUserID = 0;
-                        
-
-                        TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                        objTRN_PurchaseEntry.ViewType =2 ;
-                        objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                        objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
-                        objTRN_PurchaseEntry.paraOriginator = varorginator;
-                        objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value); 
-                        objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                        objTRN_PurchaseEntry.paraDeleteFlag = 0;
-                        SPDataService objspdservice = new SPDataService();
-                        result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
-                        objspdservice.CloseConnection();
-
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (result.Split('~')[1] == "1")
+                            string varorginator = "Purchase Deletion", result = "";
+
+                            int varUserID = 0;
+
+
+                            TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                            objTRN_PurchaseEntry.ViewType = 2;
+                            objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                            objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
+                            objTRN_PurchaseEntry.paraOriginator = varorginator;
+                            objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value);
+                            objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                            objTRN_PurchaseEntry.paraDeleteFlag = 0;
+                            SPDataService objspdservice = new SPDataService();
+                            result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                            objspdservice.CloseConnection();
+
+
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (result.Split('~')[1] == "1")
                                 {
-                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
-                                    objTRN_PurchaseEntry.ViewType = 2;
-                                    objTRN_PurchaseEntry.paraUserID = varUserID;
-                                    objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
-                                    objTRN_PurchaseEntry.paraOriginator = varorginator;
-                                    objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value);
-                                    objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                                    objTRN_PurchaseEntry.paraDeleteFlag =1;
-                                    result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
-                                    objspdservice.CloseConnection();
-                                    if (result.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnListLoad();
+                                        varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                        objTRN_PurchaseEntry.ViewType = 2;
+                                        objTRN_PurchaseEntry.paraUserID = varUserID;
+                                        objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
+                                        objTRN_PurchaseEntry.paraOriginator = varorginator;
+                                        objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value);
+                                        objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                                        objTRN_PurchaseEntry.paraDeleteFlag = 1;
+                                        result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                                        objspdservice.CloseConnection();
+                                        if (result.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnListLoad();
+                                        }
+                                        else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else if (result.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else if (result.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
@@ -479,12 +483,14 @@ namespace ROMS
             try
             {
                 //grdSupplierList.Rows.Add(1, "GNM", "16/08/2023", "PUR001", "9097337", "16/08/2023", "ABCD Suppliers", "Against PO", "10","Pending","10,000","ABCD","16/08/2023 01:50PM");
-
-                //udfnDate();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
+                this.ActiveControl = cmbConcern;
+               // udfnDate();
                 udfnConcernLoad();
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnListLoad();
             }
             catch (Exception ex)
@@ -629,9 +635,9 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Invoice No."].Width = 100; 
                             grdPurchaseEntryList.Columns["Created By"].Width = 100;
                             grdPurchaseEntryList.Columns["Created On"].Width = 150;
-                            grdPurchaseEntryList.Columns["Purchase Type"].Width = 100;
-                            grdPurchaseEntryList.Columns["Total Products"].Width = 150;
-                            grdPurchaseEntryList.Columns["Grand Total"].Width = 150;
+                            grdPurchaseEntryList.Columns["Purchase Type"].Width = 150;
+                            grdPurchaseEntryList.Columns["Total Products"].Width = 100;
+                            grdPurchaseEntryList.Columns["Grand Total"].Width = 100;
                             grdPurchaseEntryList.Columns["Status"].Width = 130;
                             grdPurchaseEntryList.Columns["PURID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPSCID"].Visible = false;
@@ -681,6 +687,7 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                udfnDeleteHide();
             }
         }
         public void udfnDefcolumns()
@@ -721,7 +728,6 @@ namespace ROMS
         {
             try
             {
-
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (17 ) OR MSTID  IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=14 OR STSID=0 ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
@@ -743,8 +749,6 @@ namespace ROMS
                         }
                     }
                 }
-
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {
@@ -1354,6 +1358,44 @@ namespace ROMS
                 }
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDeleteHide()
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false && grdPurchaseEntryList.SelectedRows.Count == 1)
+                {
+                    if (Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["STSID"].Value) == 50 )
+                    {
+                        tsbDelete.Visible = false;
+                        tssEdit.Visible = false;
+                        varDeleteFlag = 0;
+                    }
+                    else
+                    {
+                        tsbDelete.Visible = true;
+                        tssEdit.Visible = true;
+                        varDeleteFlag = 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdPurchaseEntryList_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
+            }
+            catch(Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
