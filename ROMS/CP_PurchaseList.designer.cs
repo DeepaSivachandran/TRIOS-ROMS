@@ -231,6 +231,7 @@
             this.grdPurchaseEntryList.TabIndex = 958797;
             this.grdPurchaseEntryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseEntryList_DataBindingComplete);
             this.grdPurchaseEntryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupplierList_Scroll);
+            this.grdPurchaseEntryList.SelectionChanged += new System.EventHandler(this.GrdPurchaseEntryList_SelectionChanged);
             this.grdPurchaseEntryList.DoubleClick += new System.EventHandler(this.GrdPurchaseEntryList_DoubleClick);
             this.grdPurchaseEntryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseEntryList_KeyDown);
             // 
