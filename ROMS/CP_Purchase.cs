@@ -63,8 +63,8 @@ namespace ROMS
                     txtInvoiceamt.Text = "";
                     txtFrightGrn.Text = "";
                     txtLoadingchargeGrn.Text = "";
-                    grdPODetails.Rows.Clear();
-                    grdReurnDC.Rows.Clear();
+                    //grdPODetails.Rows.Clear();
+                    //grdReurnDC.Rows.Clear();
                   //  grdSupplierList.Columns["clmAddPro"].Visible = false;
                     if (cmbEntryType.SelectedValue.ToString() == "54") // GRN
                     {
@@ -6215,7 +6215,10 @@ namespace ROMS
                                     }
                                 }
                                 pbDCNo = varDCID;
-                                udfnDefGrnGridLoad();
+                                if(Convert.ToInt32(pbDCNo)==0)
+                                { grdReurnDC.Rows.Clear(); }
+                                else
+                                { udfnDefGrnGridLoad(); }
                                 udfnDefReturnDc();
                             }
                             break;
@@ -6268,7 +6271,14 @@ namespace ROMS
                                     }
                                 }
                                 pbPONO = varPOID;
-                                udfnDefGrnGridLoad();
+                                if (Convert.ToInt32(pbPONO) == 0)
+                                {
+                                    grdSupplierList.Rows.Clear();
+                                }
+                                else
+                                {
+                                    udfnDefGrnGridLoad();
+                                }
                             }
                             break;
                     }
