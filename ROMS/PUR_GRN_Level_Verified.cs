@@ -42,7 +42,7 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToInt32(cmbVerified1.SelectedValue)==-1 && Convert.ToInt32(cmbVerified2.SelectedValue) == -1)
+                if (Convert.ToInt32(cmbVerified1.SelectedValue) == -1 && Convert.ToInt32(cmbVerified2.SelectedValue) == -1)
                 {
                     errVerified.SetError(cmbVerified1, "Please select verified by 1");
                     errVerified.SetError(cmbVerified2, "Please select verified by 2");
@@ -83,7 +83,7 @@ namespace ROMS
             try
             {
                 int V1_EMPID = 0, V2_EMPID = 0;
-                if (Convert.ToInt32(cmbVerified1.SelectedValue)!=-1)
+                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1)
                 {
                     V1_EMPID = Convert.ToInt32(cmbVerified1.SelectedValue);
                 }
@@ -385,6 +385,19 @@ namespace ROMS
                     }
                     cmbVerified2.SelectedValue = -1;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpVerified1_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dpVerified2.MinDate = Convert.ToDateTime(dpVerified1.Text);
             }
             catch (Exception ex)
             {

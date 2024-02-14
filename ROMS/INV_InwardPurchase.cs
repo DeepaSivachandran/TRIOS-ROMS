@@ -436,10 +436,10 @@ namespace ROMS
                                 {
                                     objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(varID);
                                 }
-                                //if (varGRNPurchaseFlag == 3)
-                                //{
-                                //    objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(varID);
-                                //}
+                                if (varGRNPurchaseFlag == 3)
+                                {
+                                    objTRN_GoodsInward_Purchase.paraPurchaseDCID = Convert.ToInt32(varID);
+                                }
                                 objTRN_GoodsInward_Purchase.paraInwardId = varInwardId;
                                 objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(varStatusID);
                                 objTRN_GoodsInward_Purchase.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
@@ -756,7 +756,7 @@ namespace ROMS
                                 grdGrnlist.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdGrnlist.Columns["Batch No."].ReadOnly = true;
                                 grdGrnlist.Columns["Unit"].ReadOnly = true;
-                                //grdGrnlist.Columns["Expiry Date"].ReadOnly = true;
+                                grdGrnlist.Columns["Expiry Date"].ReadOnly = true;
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Received Qty"]).MaxInputLength = 8;
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Shop Qty"]).MaxInputLength = 8;
                                 //btnSave.Text = "Update";
@@ -769,21 +769,40 @@ namespace ROMS
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
                                 grdGrnlist.Columns["Product Name in English"].Visible = false;
+                                grdGrnlist.Columns["U_Name"].Visible = false;
                                 if (varGRNPurchaseFlag == 3) //from Purchase DC
                                 {
+                                    txtDGRNDate.Text = "DC Date";
+                                    txtDGRNNo.Text = "DC No.";
                                     grdGrnlist.Columns["DC Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["DC Qty"].Width = 100;
                                     grdGrnlist.Columns["DC Qty"].ReadOnly = true;
                                 }
-                                if (varGRNPurchaseFlag == 2)  //from  purchase
+                                if (varGRNPurchaseFlag == 2) //from  purchase
                                 {
                                     grdGrnlist.Columns["Invoice Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["Invoice Qty"].Width = 120;
                                     grdGrnlist.Columns["Invoice Qty"].ReadOnly = true;
                                 }
-                                if (varGRNPurchaseFlag == 1) 
+                                if (varGRNPurchaseFlag == 1) //from  grn
                                 {
+                                    textBox4.Visible = true;
+                                    txtVerifiedby1.Visible = true;
+                                    textBox5.Visible = true;
+                                    txtVerifiedby2.Visible = true;
+                                    txtVerifiedby1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 1"]);
+                                    txtVerifiedby2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 2"]);
+                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["U_Name"]);
                                     grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
+                                    grdGrnlist.Columns["Verified BY 1"].Visible = false;
+                                    grdGrnlist.Columns["Verified BY 2"].Visible = false;
+                                }
+                                else
+                                {
+                                    textBox4.Visible = false;
+                                    txtVerifiedby1.Visible = false;
+                                    textBox5.Visible = false;
+                                    txtVerifiedby2.Visible = false;
                                 }
                                 //if (varEditFlag==0)
                                 //{
