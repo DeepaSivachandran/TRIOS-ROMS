@@ -111,6 +111,7 @@ namespace ROMS
                         objTRN_PurchaseEntry.paraOriginator = varorginator;
                         objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value); 
                         objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objTRN_PurchaseEntry.paraDeleteFlag = 0;
                         SPDataService objspdservice = new SPDataService();
                         result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                         objspdservice.CloseConnection();
@@ -132,6 +133,7 @@ namespace ROMS
                                     objTRN_PurchaseEntry.paraOriginator = varorginator;
                                     objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value);
                                     objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                                    objTRN_PurchaseEntry.paraDeleteFlag =1;
                                     result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                                     objspdservice.CloseConnection();
                                     if (result.Split('~')[0] == "3")

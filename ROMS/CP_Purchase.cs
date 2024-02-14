@@ -63,8 +63,8 @@ namespace ROMS
                     txtInvoiceamt.Text = "";
                     txtFrightGrn.Text = "";
                     txtLoadingchargeGrn.Text = "";
-                    grdPODetails.Rows.Clear();
-                    grdReurnDC.Rows.Clear();
+                    //grdPODetails.Rows.Clear();
+                    //grdReurnDC.Rows.Clear();
                   //  grdSupplierList.Columns["clmAddPro"].Visible = false;
                     if (cmbEntryType.SelectedValue.ToString() == "54") // GRN
                     {
@@ -860,7 +860,7 @@ namespace ROMS
                             {
                                 grdReurnDC.Rows.Clear();
                                 grdReurnDC.Visible = false;
-                                lblFinishedNoRecord.Visible = true;
+                                //lblFinishedNoRecord.Visible = true;
                             }
                             if (objDs.Tables[5].Rows.Count != 0) //GRN DETAILS LOAD
                             {
@@ -920,6 +920,14 @@ namespace ROMS
                     gpPurchase.Enabled = false;
                     gprate.Enabled = false;
                     btnClear.Enabled = false;
+                    if (grdReurnDC.Visible == true)
+                    {
+                        grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                    }
+                    if (grdPODetails.Visible == true)
+                    {
+                        grdReurnDC.Columns["clmRemovePO"].Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -2213,6 +2221,7 @@ namespace ROMS
                     DataGridViewCell cellSlid = dataGridView.Rows[e.RowIndex].Cells["slid"];
                     DataGridViewCell cellRkname = dataGridView.Rows[e.RowIndex].Cells["clmrack"];
                     DataGridViewCell cellRkid = dataGridView.Rows[e.RowIndex].Cells["rkid"];
+                    DataGridViewCell cellRkcount = dataGridView.Rows[e.RowIndex].Cells["clmrkcount"];
                     if (e.ColumnIndex == grdSupplierList.Columns["clmLocation"].Index && e.RowIndex >= 0)
                     {
                         string SelectedLocationName = grdSupplierList.Rows[e.RowIndex].Cells["clmLocation"].Value?.ToString();
@@ -2242,12 +2251,14 @@ namespace ROMS
                             {
                                 cellRkid.Value = varRkCount;
                                 cellRkname.Value = "None";
+                                cellRkcount.Value = 0;
                                 cellRkname.ReadOnly = true; cellRkname.Style.BackColor = Color.LightGray;
                             }
                             else
                             {
                                 cellRkid.Value = "-1";
                                 cellRkname.Value = "";
+                                cellRkcount.Value = 0;
                                 cellRkname.ReadOnly = false; cellRkname.Style.BackColor = Color.PaleGreen;
                             }
                             if (varId_PurLocation != "-1")
@@ -2267,7 +2278,7 @@ namespace ROMS
                     {
                         if (Convert.ToString(cellSlid.Value) != "-1")
                         {
-                            string SelectedRackName = grdSupplierList.Rows[e.RowIndex].Cells["clmRack"].Value?.ToString();
+                            string SelectedRackName = grdSupplierList.Rows[e.RowIndex].Cells["clmRack"].Value?.ToString().Trim();
                             if (!string.IsNullOrEmpty(SelectedRackName))
                             {
                                 /*check location have a rack or not*/
@@ -3489,7 +3500,7 @@ namespace ROMS
             try
             {
                 errPurchaseentry.Clear();
-                cmbPONo.SelectedIndex = 0;
+                cmbPONo.SelectedIndex = -1;
                 cmbPONo.BackColor = Color.White;
                 txtProductName.Text = "";
                 txtSourceLocation.Text = "";
@@ -4263,7 +4274,7 @@ namespace ROMS
                                 tbDetails.SelectedIndex = 1;
                             }
                         }
-                        if (varcount == 0)
+                        if (varcount == 0 && Convert.ToInt32(VarGridError)==0)
                         {
                             string result2 = ""; int varViewType = 0;
                             if (btnSave.Text != "Save as Draft")
@@ -4797,23 +4808,26 @@ namespace ROMS
                 {
                     for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                     {
-
                         //if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                         //{
                         //    PurchaseDcIds = Convert.ToString(grdSupplierList.Rows[i].Cells["clmTransId"].Value);
                         //}
-                        if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "-1")
+                        //if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "-1")
+                        //{
+                        //    varcount++;
+                        //    grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightPink;
+                        //}
+                        //else
+                        //{
+                        //    if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmrkcount"].Value) != "0")
+                        //    {
+                        //        varcount++;
+                        //        grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightPink;
+                        //    }
+                        //}
+                        if(Convert.ToString(grdSupplierList.Rows[i].Cells["clmrack"].Value.ToString().Trim()) == "")
                         {
-                            varcount++;
-                            grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightPink;
-                        }
-                        else
-                        {
-                            if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmrkcount"].Value) != "0")
-                            {
-                                varcount++;
-                                grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightPink;
-                            }
+                           grdSupplierList.Rows[i].Cells["rkid"].Value = "0";
                         }
                         if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmLocation"].Value) != "")
                         {
@@ -4901,7 +4915,7 @@ namespace ROMS
                             varShelfPer = Convert.ToDecimal(varShelflifeper[0]);
                         }
                         else { varShelfPer = 0; }
-                        if (varcount == 0)
+                        if (varcount == 0 && Convert.ToInt32(VarGridError)==0)
                         {
                             int varPURPRID = 0;
                             if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "0")
@@ -5128,6 +5142,12 @@ namespace ROMS
             try
             {
                 txtLoadingCharge.BackColor = Color.White;
+                if (txtLoadingCharge.Text.Trim() != "")
+                {
+                    string loadingchargre = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtLoadingCharge.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
+                    txtLoadingCharge.Text = loadingchargre;
+                    udfnLoadingGrandTotCalculation();
+                }
             }
             catch (Exception ex)
             {
@@ -5252,6 +5272,12 @@ namespace ROMS
             try
             {
                 txtUnLoadingCharge.BackColor = Color.White;
+                if (txtUnLoadingCharge.Text.Trim() != "")
+                {
+                    string unloadingchargre = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtUnLoadingCharge.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
+                    txtUnLoadingCharge.Text = unloadingchargre;
+                    udfnLoadingGrandTotCalculation();
+                }
             }
             catch (Exception ex)
             {
@@ -5315,6 +5341,12 @@ namespace ROMS
             try
             {
                 txtCouriercharge.BackColor = Color.White;
+                if (txtCouriercharge.Text.Trim() != "")
+                {
+                    string courierCharge = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtCouriercharge.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
+                    txtCouriercharge.Text = courierCharge;
+                    udfnLoadingGrandTotCalculation();
+                }
             }
             catch (Exception ex)
             {
@@ -5362,6 +5394,12 @@ namespace ROMS
             try
             {
                 txtotherexpense.BackColor = Color.White;
+                if (txtotherexpense.Text.Trim() != "")
+                {
+                    string otherExpense = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtotherexpense.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
+                    txtotherexpense.Text = otherExpense;
+                    udfnLoadingGrandTotCalculation();
+                }
             }
             catch (Exception ex)
             {
@@ -5602,6 +5640,12 @@ namespace ROMS
             try
             {
                 txtTcsamt.BackColor = Color.White;
+                if (txtTcsamt.Text.Trim() != "")
+                {
+                    string Tcsamt = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtTcsamt.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
+                    txtTcsamt.Text = Tcsamt;
+                    udfnLoadingGrandTotCalculation();
+                }
             }
             catch (Exception ex)
             {
@@ -5652,6 +5696,12 @@ namespace ROMS
             try
             {
                 txtDamagecost.BackColor = Color.White;
+                if (txtDamagecost.Text.Trim() != "")
+                {
+                    string DamageCost = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtDamagecost.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
+                    txtDamagecost.Text = DamageCost;
+                    udfnLoadingGrandTotCalculation();
+                }
             }
             catch (Exception ex)
             {
@@ -5715,6 +5765,12 @@ namespace ROMS
             try
             {
                 txtOtherdiscount.BackColor = Color.White;
+                if (txtOtherdiscount.Text.Trim() != "")
+                {
+                    string OtherDiscount = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtOtherdiscount.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
+                    txtOtherdiscount.Text = OtherDiscount;
+                    udfnLoadingGrandTotCalculation();
+                }
             }
             catch (Exception ex)
             {
@@ -5854,6 +5910,12 @@ namespace ROMS
             try
             {
                 txtLoadingchargeGrn.BackColor = Color.White;
+                if (txtLoadingchargeGrn.Text.Trim() != "")
+                {
+                    string loadingGRnCharge = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtLoadingchargeGrn.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
+                    txtLoadingchargeGrn.Text = loadingGRnCharge;
+                    udfnLoadingGrandTotCalculation();
+                }
             }
             catch (Exception ex)
             {
@@ -6107,12 +6169,12 @@ namespace ROMS
                     switch (grdReurnDC.Columns[e.ColumnIndex].Name)
                     {
                         case "DCDate":
-                            string cellPOValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["ID"].Value);
-                            MainForm.objPUR_POProducts = new PUR_POProducts();
-                            MainForm.objPUR_POProducts.pbPoid = cellPOValue;
-                            MainForm.objPUR_POProducts.pbSupplierCode = lblSupplierCode.Text;
-                            MainForm.objPUR_POProducts.pbScheduleCode = lblschedule.Text;
-                            MainForm.objPUR_POProducts.ShowDialog();
+                            string cellDCValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["ID"].Value);
+                            MainForm.objPUR_DCProducts = new PUR_DCProducts();
+                            MainForm.objPUR_DCProducts.pbDCid = cellDCValue;
+                            MainForm.objPUR_DCProducts.pbSupplierCode = lblSupplierCode.Text;
+                            MainForm.objPUR_DCProducts.pbScheduleCode = lblschedule.Text;
+                            MainForm.objPUR_DCProducts.ShowDialog();
                             break;
                     }
                 }
@@ -6122,6 +6184,121 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+
+        private void GrdReurnDC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmRemoveDC":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                string varID = "0", varDCID = "0";
+                                string[] varDC = pbDCNo.Split(',');
+                                varID = Convert.ToString(grdPODetails.Rows[e.RowIndex].Cells["DCID"].Value);
+                                grdReurnDC.Rows.RemoveAt(this.grdReurnDC.SelectedCells[0].RowIndex);
+
+                                for (int i = 0; i < varDC.Length; i++)
+                                {
+                                    if (Convert.ToInt16(varDC[i]) != Convert.ToInt16(varID))
+                                    {
+                                        if (varDCID == "0")
+                                        { varDCID = varDC[i]; }
+                                        else
+                                        { varDCID = varDCID + ',' + varDC[i]; }
+                                    }
+                                }
+                                pbDCNo = varDCID;
+                                if(Convert.ToInt32(pbDCNo)==0)
+                                { grdReurnDC.Rows.Clear(); }
+                                else
+                                { udfnDefGrnGridLoad(); }
+                                udfnDefReturnDc();
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (grdReurnDC.Rows.Count > 0)
+                {
+                    lblFinishedNoRecord.Visible = false;
+                }
+                else
+                {
+                    lblFinishedNoRecord.Visible = true;
+                }
+            }
+        }
+
+        private void GrdPODetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPODetails.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmRemovePO":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if(dialogResult == DialogResult.Yes)
+                            {
+                                string varID = "0",varPOID="0";
+                                string[] varPO = pbPONO.Split(',');
+                                varID = Convert.ToString(grdPODetails.Rows[e.RowIndex].Cells["clmSelectedpoid"].Value);
+                                grdPODetails.Rows.RemoveAt(this.grdPODetails.SelectedCells[0].RowIndex);
+                                
+                                for (int i = 0; i < varPO.Length; i++)
+                                {
+                                    if (Convert.ToInt16(varPO[i]) != Convert.ToInt16(varID))
+                                    {
+                                        if (varPOID == "0")
+                                        { varPOID = varPO[i]; }
+                                        else
+                                        { varPOID = varPOID + ',' + varPO[i]; }
+                                    }
+                                }
+                                pbPONO = varPOID;
+                                if (Convert.ToInt32(pbPONO) == 0)
+                                {
+                                    grdSupplierList.Rows.Clear();
+                                }
+                                else
+                                {
+                                    udfnDefGrnGridLoad();
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (grdPODetails.Rows.Count > 0)
+                {
+                    lblFinishedNoRecord.Visible = false;
+                }
+                else
+                {
+                    lblFinishedNoRecord.Visible = true;
+                }
             }
         }
 
@@ -6341,6 +6518,12 @@ namespace ROMS
             try
             {
                 txtFrightGrn.BackColor = Color.White;
+                if (txtFrightGrn.Text.Trim() != "")
+                {
+                    string FrightGrn = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtFrightGrn.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
+                    txtFrightGrn.Text = FrightGrn;
+                    udfnLoadingGrandTotCalculation();
+                }
             }
             catch (Exception ex)
             {

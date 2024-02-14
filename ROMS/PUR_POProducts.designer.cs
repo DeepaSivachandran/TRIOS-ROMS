@@ -112,6 +112,90 @@
             this.grdPurchaseOrder.TabIndex = 1111144;
             this.grdPurchaseOrder.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseOrder_DataBindingComplete);
             // 
+            // clmsno
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmsno.DefaultCellStyle = dataGridViewCellStyle2;
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmsno.Width = 50;
+            // 
+            // clmdate
+            // 
+            this.clmdate.HeaderText = "PI Code";
+            this.clmdate.Name = "clmdate";
+            this.clmdate.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column1.HeaderText = "Product Name";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 300;
+            // 
+            // clmTotalitem
+            // 
+            this.clmTotalitem.HeaderText = "Unit";
+            this.clmTotalitem.Name = "clmTotalitem";
+            this.clmTotalitem.ReadOnly = true;
+            this.clmTotalitem.Width = 70;
+            // 
+            // clmUPP
+            // 
+            this.clmUPP.HeaderText = "UPP";
+            this.clmUPP.Name = "clmUPP";
+            this.clmUPP.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column4.HeaderText = "PO Qty";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // clmQtyUnit
+            // 
+            this.clmQtyUnit.HeaderText = "Unit";
+            this.clmQtyUnit.Name = "clmQtyUnit";
+            this.clmQtyUnit.ReadOnly = true;
+            this.clmQtyUnit.Visible = false;
+            this.clmQtyUnit.Width = 70;
+            // 
+            // clmRcvdQty
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmRcvdQty.DefaultCellStyle = dataGridViewCellStyle5;
+            this.clmRcvdQty.HeaderText = "Received Qty";
+            this.clmRcvdQty.Name = "clmRcvdQty";
+            this.clmRcvdQty.ReadOnly = true;
+            // 
+            // clmPendingQty
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmPendingQty.DefaultCellStyle = dataGridViewCellStyle6;
+            this.clmPendingQty.HeaderText = "Pending Qty";
+            this.clmPendingQty.Name = "clmPendingQty";
+            this.clmPendingQty.ReadOnly = true;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            // 
+            // STSID
+            // 
+            this.STSID.HeaderText = "STSID";
+            this.STSID.Name = "STSID";
+            this.STSID.ReadOnly = true;
+            this.STSID.Visible = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
