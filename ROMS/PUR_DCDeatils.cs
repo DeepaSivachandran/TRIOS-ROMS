@@ -157,8 +157,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             } 
         }
-
-
         public void udfnAddDC()
         {
             try
