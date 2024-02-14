@@ -152,7 +152,7 @@ namespace ROMS
                 //udfnDate();
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
-                if(Convert.ToInt32(cmbShow.SelectedValue)==188)
+                if(Convert.ToInt32(cmbShow.SelectedValue)==189)
                 {
                     btnPrint.Visible = true;
                     udfnProductList();
@@ -843,9 +843,9 @@ namespace ROMS
             {
                 dtDefaultGrid = null;
                 DGV_ProdSearchGrid.DataSource = null;
-                //Varflag = 0;
-                //picLoader.Visible = true;
-                //picLoader.BringToFront();
+                Varflag = 0;
+                picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 btnView.Enabled = true;
                 varviewtype = 6;
@@ -926,6 +926,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+            }
         }
         private void BtnView_Click(object sender, EventArgs e)
         {
@@ -938,6 +943,8 @@ namespace ROMS
                     grdProDetails.Visible = true;
                     DGV_ProdSearchGrid.Visible = true;
                     btnPrint.Visible = true;
+                    RPTViewer.Visible = false;
+                    RPTViewer.SendToBack();
                     udfnProductList();
                 }
                 else
@@ -1540,7 +1547,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbShow.Focus();
                 }
             }
             catch (Exception ex)
@@ -2316,6 +2323,7 @@ namespace ROMS
                 objTRN_GoodsInward_Purchase.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_GoodsInward_Purchase.paraSLID = Convert.ToInt32(lblStockLocationCode.Text);
                 objTRN_GoodsInward_Purchase.paraOrderBy = Convert.ToInt32(cmbOrderBy.SelectedValue);
+                objTRN_GoodsInward_Purchase.paraStatusID = 0;
                 objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
@@ -2331,6 +2339,14 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsInwardQueue_Products.rpt");
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraCompanyId", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("ParaFromDate", Convert.ToString(dpFromDate.Text));
+                    objBillreport.SetParameterValue("ParaToDate", Convert.ToString(dpToDate.Text));
+                    objBillreport.SetParameterValue("paraProductId", varPRID);
+                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text)); 
+                    objBillreport.SetParameterValue("paraSLID", Convert.ToInt32(lblStockLocationCode.Text)); 
+                    objBillreport.SetParameterValue("paraOrderBy", Convert.ToInt32(cmbOrderBy.SelectedValue)); 
+                    objBillreport.SetParameterValue("paraStatusID", 0); 
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -2338,11 +2354,24 @@ namespace ROMS
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
                 }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnPrint.Enabled = true;
+                btnPrint.Focus();
+                GC.Collect();
             }
         }
 
