@@ -38,6 +38,7 @@ namespace ROMS.Model
         public int paraUserID { get; set; } = 0;
         public int paraInwardPurchaseID { get; set; } = 0;
         public int ParaScheduleId { get; set; } = 0;
+        public int paraOrderBy { get; set; } = 0;
         public string paraIPAddress { get; set; } = "";
         public DataTable paraTRN_GoodsInward_Purchase_Products { get; set; } = null;
     }

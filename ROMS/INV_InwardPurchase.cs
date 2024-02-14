@@ -768,13 +768,13 @@ namespace ROMS
                                 grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
+                                grdGrnlist.Columns["Product Name in English"].Visible = false;
                                 if (varGRNPurchaseFlag == 3) //from Purchase DC
                                 {
                                     grdGrnlist.Columns["DC Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["DC Qty"].Width = 100;
                                     grdGrnlist.Columns["DC Qty"].ReadOnly = true;
                                 }
-                                grdGrnlist.Columns["Product Name in English"].Visible = false;
                                 if (varGRNPurchaseFlag == 2)  //from  purchase
                                 {
                                     grdGrnlist.Columns["Invoice Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
