@@ -372,26 +372,33 @@ namespace ROMS
                         {
                             grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         }
-                        varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
+                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["Rack"].Value) == "")
+                        {
+                            varRackID = 0;
+                        }
+                        else
+                        {
+                            varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
+                        }
                         varRackCount = Convert.ToInt32(grdGrnlist.Rows[i].Cells["RackCount"].Value);
                         if (varRackCount != 0)
                         {
-                            if(Convert.ToString(grdGrnlist.Rows[i].Cells["Rack"].Value)=="")
-                            {
-                                grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
-                                varErrorFlag = false;
-                            }
-                            else
-                            {
-                                grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                            }
+                            //if (Convert.ToString(grdGrnlist.Rows[i].Cells["Rack"].Value) == "")
+                            //{
+                            //    grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
+                            //    varErrorFlag = false;
+                            //}
+                            //else
+                            //{
+                            //    grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            //}
                         }
                         if (varRackID == -1)
                         {
                             grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
                             varErrorFlag = false;
                         }
-                        
+
                     }
                     if (varErrorFlag == true )
                     {
