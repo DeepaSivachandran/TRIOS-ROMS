@@ -1403,6 +1403,41 @@ namespace ROMS
             }
             
         }
+
+        private void GrdGRNList_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnDeleteHide()
+        {
+            try
+            {
+                if(Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value)==17)
+                {
+                    tsbDelete.Visible = true;
+                    tssEdit.Visible = true;
+                }
+                else
+                {
+                    tsbDelete.Visible = false;
+                    tssEdit.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 
 }
