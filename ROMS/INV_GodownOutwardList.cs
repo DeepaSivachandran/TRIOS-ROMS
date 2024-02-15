@@ -522,7 +522,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Outward Date"].Width = 120;
                 DGV_SearchGrid.Columns["Outward No."].Width = 120;
                 DGV_SearchGrid.Columns["Stock Location"].Width = 150;
-                DGV_SearchGrid.Columns["Transaction Type"].Width = 120;
+                DGV_SearchGrid.Columns["Transaction Type"].Visible = false;
                 DGV_SearchGrid.Columns["GOID"].Visible = false;
                 DGV_SearchGrid.Columns["Total Products"].Width = 120;
                 DGV_SearchGrid.Columns["Created By"].Width = 120;
