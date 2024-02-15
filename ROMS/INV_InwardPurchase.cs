@@ -768,7 +768,6 @@ namespace ROMS
                                 grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
-                                grdGrnlist.Columns["Product Name in English"].Visible = false;
                                 grdGrnlist.Columns["U_Name"].Visible = false;
                                 grdGrnlist.Columns["STS_Name"].Visible = false;
                                 lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
