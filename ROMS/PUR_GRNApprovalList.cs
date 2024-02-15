@@ -1362,6 +1362,42 @@ namespace ROMS
             }
         }
 
+        private void GrdGrnApprovalList_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdGrnApprovalList.ColumnCount > 0)
+                {
+                    grdGrnApprovalList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdGrnApprovalList.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdGrnApprovalList.ColumnCount > 0)
+                {
+                    grdGrnApprovalList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdGrnApprovalList.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbDateType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1391,6 +1427,10 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (Varflag == 0)
                 {
+                    if(lblProduct.Text=="")
+                    {
+                        lblProduct.Text = "0";
+                    }
                     btnView.Enabled = false;
                     varviewtype = 5;
                     SPDataService objdserv = new SPDataService();
@@ -1404,6 +1444,7 @@ namespace ROMS
                     objTRN_PurchaseEntry.paraToDate = Convert.ToString(dpToDate.Text);
                     objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                     objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                    objTRN_PurchaseEntry.paraProductID = Convert.ToInt32(lblProduct.Text);
                     objDs = objdserv.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                     objdserv.CloseConnection();
                     if (objDs != null)
