@@ -1421,7 +1421,7 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value)==17)
+                if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value) == 17)
                 {
                     tsbDelete.Visible = true;
                     tssEdit.Visible = true;
@@ -1430,6 +1430,7 @@ namespace ROMS
                 {
                     tsbDelete.Visible = false;
                     tssEdit.Visible = false;
+
                 }
             }
             catch (Exception ex)
@@ -1438,6 +1439,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 
 }
