@@ -372,6 +372,7 @@ namespace ROMS
                         {
                             grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         }
+                        varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["Rack"].Value) == "")
                         {
                             varRackID = 0;
