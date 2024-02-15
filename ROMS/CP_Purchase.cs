@@ -4793,7 +4793,7 @@ namespace ROMS
                             }
                             if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value) !="")   
                             {
-                                if (Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value) > 100)
+                                if (Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value) > 100)
                                 {
                                     varcount++;
                                     grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightPink;
