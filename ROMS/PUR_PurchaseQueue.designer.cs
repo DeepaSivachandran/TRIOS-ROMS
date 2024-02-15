@@ -105,8 +105,8 @@
             this.tsbPurchaseList.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbPurchaseList.Name = "tsbPurchaseList";
             this.tsbPurchaseList.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPurchaseList.Size = new System.Drawing.Size(96, 24);
-            this.tsbPurchaseList.Text = "Purchse List";
+            this.tsbPurchaseList.Size = new System.Drawing.Size(102, 24);
+            this.tsbPurchaseList.Text = "Purchase List";
             this.tsbPurchaseList.Click += new System.EventHandler(this.TsbPurchaseList_Click);
             // 
             // toolStripSeparator1

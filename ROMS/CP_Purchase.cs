@@ -4690,7 +4690,7 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]));
                         }
-                         grdSupplierList.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                        grdPurchaseList.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     }
                 }
 

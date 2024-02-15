@@ -229,7 +229,7 @@ namespace ROMS
             // 
             this.tsmPurchaseEntry1.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmPurchaseEntry1.Name = "tsmPurchaseEntry1";
-            this.tsmPurchaseEntry1.Size = new System.Drawing.Size(171, 22);
+            this.tsmPurchaseEntry1.Size = new System.Drawing.Size(180, 22);
             this.tsmPurchaseEntry1.Text = "Purchase Entry";
             this.tsmPurchaseEntry1.Click += new System.EventHandler(this.Tsmpurchaseentry_Click);
             // 
@@ -237,7 +237,7 @@ namespace ROMS
             // 
             this.tsmpurchaseReturn.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmpurchaseReturn.Name = "tsmpurchaseReturn";
-            this.tsmpurchaseReturn.Size = new System.Drawing.Size(171, 22);
+            this.tsmpurchaseReturn.Size = new System.Drawing.Size(180, 22);
             this.tsmpurchaseReturn.Text = "Purchase Return DC";
             this.tsmpurchaseReturn.Click += new System.EventHandler(this.TsmpurchaseReturn_Click);
             // 
@@ -245,7 +245,7 @@ namespace ROMS
             // 
             this.tsmpurchaseApprove.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmpurchaseApprove.Name = "tsmpurchaseApprove";
-            this.tsmpurchaseApprove.Size = new System.Drawing.Size(171, 22);
+            this.tsmpurchaseApprove.Size = new System.Drawing.Size(180, 22);
             this.tsmpurchaseApprove.Text = "Purchase Approval";
             this.tsmpurchaseApprove.Click += new System.EventHandler(this.TsmpurchaseApprove_Click);
             // 
@@ -287,14 +287,14 @@ namespace ROMS
             // tsmfromPurchase
             // 
             this.tsmfromPurchase.Name = "tsmfromPurchase";
-            this.tsmfromPurchase.Size = new System.Drawing.Size(181, 22);
-            this.tsmfromPurchase.Text = "From Purchase && GRN";
+            this.tsmfromPurchase.Size = new System.Drawing.Size(240, 22);
+            this.tsmfromPurchase.Text = "From Purchase,GRN &&Purchase DC";
             this.tsmfromPurchase.Click += new System.EventHandler(this.TsmfromPurchase_Click);
             // 
             // tsmfromOtherStockLocation
             // 
             this.tsmfromOtherStockLocation.Name = "tsmfromOtherStockLocation";
-            this.tsmfromOtherStockLocation.Size = new System.Drawing.Size(181, 22);
+            this.tsmfromOtherStockLocation.Size = new System.Drawing.Size(240, 22);
             this.tsmfromOtherStockLocation.Text = "From Others";
             this.tsmfromOtherStockLocation.Click += new System.EventHandler(this.TsmfromOtherStockLocation_Click);
             // 
