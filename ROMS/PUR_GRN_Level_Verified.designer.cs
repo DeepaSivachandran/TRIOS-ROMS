@@ -32,13 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRN_Level_Verified));
             this.errVerified = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtVerifed1 = new System.Windows.Forms.TextBox();
-            this.btnAuthorise = new System.Windows.Forms.Button();
             this.txtVerified2 = new System.Windows.Forms.TextBox();
             this.dpVerified1 = new System.Windows.Forms.DateTimePicker();
             this.dpVerified2 = new System.Windows.Forms.DateTimePicker();
             this.cmbVerified1 = new System.Windows.Forms.ComboBox();
             this.cmbVerified2 = new System.Windows.Forms.ComboBox();
             this.grpVerify = new System.Windows.Forms.GroupBox();
+            this.btnAuthorise = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errVerified)).BeginInit();
             this.grpVerify.SuspendLayout();
             this.SuspendLayout();
@@ -59,24 +59,6 @@
             this.txtVerifed1.Size = new System.Drawing.Size(78, 28);
             this.txtVerifed1.TabIndex = 11;
             this.txtVerifed1.Text = "Verified By 1";
-            // 
-            // btnAuthorise
-            // 
-            this.btnAuthorise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuthorise.Image = global::ROMS.Properties.Resources.approve;
-            this.btnAuthorise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAuthorise.Location = new System.Drawing.Point(342, 81);
-            this.btnAuthorise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnAuthorise.Name = "btnAuthorise";
-            this.btnAuthorise.Size = new System.Drawing.Size(93, 30);
-            this.btnAuthorise.TabIndex = 4;
-            this.btnAuthorise.Text = "Authorize";
-            this.btnAuthorise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAuthorise.UseVisualStyleBackColor = true;
-            this.btnAuthorise.Click += new System.EventHandler(this.btnAuthorise_Click);
-            this.btnAuthorise.Enter += new System.EventHandler(this.BtnAuthorise_Enter);
-            this.btnAuthorise.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAuthorise_KeyDown);
-            this.btnAuthorise.Leave += new System.EventHandler(this.BtnAuthorise_Leave);
             // 
             // txtVerified2
             // 
@@ -144,10 +126,10 @@
             // 
             // grpVerify
             // 
+            this.grpVerify.Controls.Add(this.btnAuthorise);
             this.grpVerify.Controls.Add(this.cmbVerified1);
             this.grpVerify.Controls.Add(this.cmbVerified2);
             this.grpVerify.Controls.Add(this.txtVerifed1);
-            this.grpVerify.Controls.Add(this.btnAuthorise);
             this.grpVerify.Controls.Add(this.dpVerified2);
             this.grpVerify.Controls.Add(this.txtVerified2);
             this.grpVerify.Controls.Add(this.dpVerified1);
@@ -156,6 +138,23 @@
             this.grpVerify.Size = new System.Drawing.Size(451, 124);
             this.grpVerify.TabIndex = 13;
             this.grpVerify.TabStop = false;
+            // 
+            // btnAuthorise
+            // 
+            this.btnAuthorise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAuthorise.Image = global::ROMS.Properties.Resources.save;
+            this.btnAuthorise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAuthorise.Location = new System.Drawing.Point(355, 81);
+            this.btnAuthorise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnAuthorise.Name = "btnAuthorise";
+            this.btnAuthorise.Size = new System.Drawing.Size(80, 33);
+            this.btnAuthorise.TabIndex = 13;
+            this.btnAuthorise.Text = "Update";
+            this.btnAuthorise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAuthorise.UseVisualStyleBackColor = true;
+            this.btnAuthorise.Click += new System.EventHandler(this.btnAuthorise_Click);
+            this.btnAuthorise.Enter += new System.EventHandler(this.BtnAuthorise_Enter);
+            this.btnAuthorise.Leave += new System.EventHandler(this.BtnAuthorise_Leave);
             // 
             // PUR_GRN_Level_Verified
             // 
@@ -184,7 +183,6 @@
 
         #endregion
         private System.Windows.Forms.ErrorProvider errVerified;
-        private System.Windows.Forms.Button btnAuthorise;
         private System.Windows.Forms.TextBox txtVerifed1;
         private System.Windows.Forms.TextBox txtVerified2;
         private System.Windows.Forms.DateTimePicker dpVerified2;
@@ -192,5 +190,6 @@
         public System.Windows.Forms.ComboBox cmbVerified2;
         public System.Windows.Forms.ComboBox cmbVerified1;
         private System.Windows.Forms.GroupBox grpVerify;
+        public System.Windows.Forms.Button btnAuthorise;
     }
 }
