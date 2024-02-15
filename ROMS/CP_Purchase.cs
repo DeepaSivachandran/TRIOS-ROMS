@@ -39,7 +39,7 @@ namespace ROMS
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,
             VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0, varRMFlag = 0, varRemarkCount = 0, varRemarkFlag = 0, varerrFlag = 0;
         public string pbQRCode = "";
-        public int varClose = 0, varDateChange = 0, varCloseFalg = 0;
+        public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh=0;
         bool varVoucherSkip = false;
         public CP_Purchase()
         {
@@ -63,15 +63,22 @@ namespace ROMS
                     txtInvoiceamt.Text = "";
                     txtFrightGrn.Text = "";
                     txtLoadingchargeGrn.Text = "";
-                    //grdPODetails.Rows.Clear();
+                    if (varEntryTypeRefresh == 0)
+                    {
+                        grdSupplierList.Rows.Clear();
+                    }
                     //grdReurnDC.Rows.Clear();
-                  //  grdSupplierList.Columns["clmAddPro"].Visible = false;
+                    //  grdSupplierList.Columns["clmAddPro"].Visible = false;
                     if (cmbEntryType.SelectedValue.ToString() == "54") // GRN
                     {
                         if (PbFlag == "0")
                         {
+                            if (varEntryTypeRefresh == 0)
+                            { grdPODetails.Rows.Clear(); }
+                            grdReurnDC.Rows.Clear();
                             udfnPurchaseGrnLoad();
                             udfnGRNProload();
+                            grdReurnDC.Rows.Clear();
                             txtQRCode.ReadOnly = false;
                             txtQRCode.Enabled = true;
                             dpInvoiceDate.Enabled = false;
@@ -88,6 +95,7 @@ namespace ROMS
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "55") // PO
                     {
+                        grdReurnDC.Rows.Clear();
                         grdPODetails.Visible = true;
                         udfnPendingPOLoad();
                         udfnDefGrnGridLoad();
@@ -111,6 +119,8 @@ namespace ROMS
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "56") // Direct
                     {
+                        grdPODetails.Rows.Clear();
+                        grdReurnDC.Rows.Clear();
                         grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                         btnViewDataView.Visible = false;
                         txtQRCode.ReadOnly = true;
@@ -125,6 +135,7 @@ namespace ROMS
                     {
                         if (PbFlag == "0")
                         {
+                            grdPODetails.Rows.Clear();
                             udfnPurchaseDC();
                             udfnDefReturnDc();
                             grdPODetails.Visible = false;
@@ -195,6 +206,7 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["DCID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, 0);
+                            grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -257,6 +269,7 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[0].Rows[i]["POID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, 0
                             );
+                            grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -392,7 +405,8 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["GRNPR_PRFlag"]));
                             grdSupplierList.Columns["clmGrnMrp"].Visible = true;
-                           // grdSupplierList.Columns["clmAddPro"].Visible = true;
+                            // grdSupplierList.Columns["clmAddPro"].Visible = true;
+                            grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                         GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -638,9 +652,20 @@ namespace ROMS
                         cmbEntryType.Enabled = false;
                         btnViewDataView.Enabled = false;
                         LV_Supplier.Visible = false;
+                        cmbTransactionType.Enabled = false;
+                        if (grdReurnDC.Visible == true)
+                        {
+                            grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                        }
+                        if (grdPODetails.Visible == true)
+                        {
+                            grdPODetails.Columns["clmRemovePO"].Visible = false;
+                        }
                     }
                     if (varRemarkFlag == 1) { btnRemarks.Enabled = true; }
                     else { btnRemarks.Enabled = false; }
+                    if(PbSTS == "50")
+                    { btnSave.Text = "Update"; }
                 }
             }
             catch (Exception ex)
@@ -802,6 +827,7 @@ namespace ROMS
                                     , Convert.ToString(objDs.Tables[1].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GRNQty"])
                                     , Convert.ToDecimal(objDs.Tables[1].Rows[i]["DCQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"]), 0, 0);
 
+                                    grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     //grdSupplierList.Columns["clmAddPro"].Visible = false;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -880,6 +906,14 @@ namespace ROMS
                                 grdGRN.Visible = false;
                               //  lblFinishedNoRecord.Visible = true;
                             }
+                            if (grdReurnDC.Visible == true)
+                            {
+                                grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                            }
+                            if (grdPODetails.Visible == true)
+                            {
+                                grdPODetails.Columns["clmRemovePO"].Visible = false;
+                            }
                         }
                     }
                     udfnPurchaseEntryTabLoad();
@@ -920,14 +954,6 @@ namespace ROMS
                     gpPurchase.Enabled = false;
                     gprate.Enabled = false;
                     btnClear.Enabled = false;
-                    if (grdReurnDC.Visible == true)
-                    {
-                        grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                    }
-                    if (grdPODetails.Visible == true)
-                    {
-                        grdReurnDC.Columns["clmRemovePO"].Visible = false;
-                    }
                 }
             }
             catch (Exception ex)
@@ -2119,6 +2145,11 @@ namespace ROMS
         {
             try
             {
+                if (grdSupplierList.CurrentCell.OwningColumn.Name== "clmMRP" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmGrnMrp")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
                 if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmLocation")
                 {
                     TextBox txtPurStockLocation = e.Control as TextBox;
@@ -2150,6 +2181,47 @@ namespace ROMS
                 {
                     e.Control.KeyPress -= udfnHandleKeyPressGRD1;
                     e.Control.KeyPress += udfnHandleKeyPressGRD1;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void allowonlynumber(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (grdSupplierList.Enabled == true)
+                {
+                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmGrnMrp" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmMRP" )
+                    {
+                        if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                        {
+                            e.Handled = true;
+                        }
+                        //only allow one decimal point
+                        if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    if(grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPOqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty"
+                        || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiffqty"
+                        || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscAmt" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer"
+                        ||  grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPurchaseRate")
+                    {
+                        if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                        {
+                            e.Handled = true;
+                        }
+                        //only allow one decimal point
+                        if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                        {
+                            e.Handled = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -3063,28 +3135,25 @@ namespace ROMS
                 {
                     if (Convert.ToInt32(cmbEntryType.SelectedValue) == 54) //against grn
                     {
-                        //if (Convert.ToString(pbGRNNo) == "0")
-                        varerrFlag = 1; varmsgID = 105;
+                        if (Convert.ToString(pbGRNNo) == "0")
+                        { varerrFlag = 1; varmsgID = 105; }
+                        else
+                        { varerrFlag = 0; }
                     }
-                    else
-                    { varerrFlag = 0; }
-                    
                     if (Convert.ToInt32(cmbEntryType.SelectedValue) == 55) //against po
                     {
-                        // if (Convert.ToString(pbPONO) == "0")
-                        varerrFlag = 1; varmsgID = 81;
+                        if (Convert.ToString(pbPONO) == "0")
+                        { varerrFlag = 1; varmsgID = 81; }
+                        else
+                        { varerrFlag = 0; }
                     }
-                    else
-                    { varerrFlag = 0; }
-
                     if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
                     {
-                        //if (Convert.ToString(pbDCNo) == "0")
-                        varerrFlag = 1; varmsgID = 106;
+                        if (Convert.ToString(pbDCNo) == "0")
+                        { varerrFlag = 1; varmsgID = 106; }
+                        else
+                        { varerrFlag = 0; }
                     }
-                    else
-                    { varerrFlag = 0; }
-
                     if (varerrFlag == 1)
                     {
                         SPDataService objDServ = new SPDataService();
@@ -3426,6 +3495,7 @@ namespace ROMS
                                 grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varTName).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDate).Trim()
                                 , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), txtSourceLocation.Text, cmbrack.Text, (var_Symbol).Trim(), cmbPONo.SelectedValue,
                                 (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0);
+                                grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 udfnrowclear();
                                 txtProductName.Focus();
                                 DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
@@ -4064,6 +4134,7 @@ namespace ROMS
         {
             try
             {
+                varEntryTypeRefresh = 1;
                 CmbType_SelectedIndexChanged(sender, e);
             }
             catch (Exception ex)
@@ -4071,6 +4142,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { varEntryTypeRefresh = 0; }
         }
 
         private void BtnViewDataView_Enter(object sender, EventArgs e)
@@ -4277,10 +4349,12 @@ namespace ROMS
                         if (varcount == 0 && Convert.ToInt32(VarGridError)==0)
                         {
                             string result2 = ""; int varViewType = 0;
-                            if (btnSave.Text != "Save as Draft")
-                            {
-                                varViewType = 1;
-                            }
+                            //if (btnSave.Text != "Save as Draft")
+                            //{
+                            //    varViewType = 1;
+                            //}
+                            if(pbPurchaseno != "0")
+                            { varViewType = 1; }
                             TRN_PurchaseEntry objTRN_PurchaseEntry1 = new TRN_PurchaseEntry();
                             objTRN_PurchaseEntry1.ViewType = varViewType;
                             objTRN_PurchaseEntry1.ParaEditFlag = 0;
@@ -4496,6 +4570,14 @@ namespace ROMS
                                         //varCloseflag = 1;
                                         //udfnclose();                  
                                         tbDetails.SelectedIndex = 1;
+                                        if (grdReurnDC.Visible == true)
+                                        {
+                                            grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                                        }
+                                        if (grdPODetails.Visible == true)
+                                        {
+                                            grdPODetails.Columns["clmRemovePO"].Visible = false;
+                                        }
                                         if (btnSave.Text == "Save as Draft")
                                         {
                                             varCloseflag = 1;
@@ -4608,6 +4690,7 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]));
                         }
+                         grdSupplierList.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     }
                 }
 
@@ -4707,6 +4790,15 @@ namespace ROMS
                             else
                             {
                                 grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
+                            }
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value) !="")   
+                            {
+                                if (Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value) > 100)
+                                {
+                                    varcount++;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightPink;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.ForeColor = Color.Black;
+                                }
                             }
                             //if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Value) == "0")
                             //{
@@ -5012,6 +5104,13 @@ namespace ROMS
         {
             try
             {
+                if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPOqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty"
+                        || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty"  || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscAmt" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer"
+                        ||  grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPurchaseRate")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
                 if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmHSN")
                 {
                     TextBox txtHSNName = e.Control as TextBox;
@@ -6201,9 +6300,8 @@ namespace ROMS
                             {
                                 string varID = "0", varDCID = "0";
                                 string[] varDC = pbDCNo.Split(',');
-                                varID = Convert.ToString(grdPODetails.Rows[e.RowIndex].Cells["DCID"].Value);
+                                varID = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["ID"].Value);
                                 grdReurnDC.Rows.RemoveAt(this.grdReurnDC.SelectedCells[0].RowIndex);
-
                                 for (int i = 0; i < varDC.Length; i++)
                                 {
                                     if (Convert.ToInt16(varDC[i]) != Convert.ToInt16(varID))
@@ -6216,10 +6314,10 @@ namespace ROMS
                                 }
                                 pbDCNo = varDCID;
                                 if(Convert.ToInt32(pbDCNo)==0)
-                                { grdReurnDC.Rows.Clear(); }
+                                { grdSupplierList.Rows.Clear(); }
                                 else
-                                { udfnDefGrnGridLoad(); }
-                                udfnDefReturnDc();
+                                { udfnDefGrnGridLoad(); udfnDefReturnDc(); }
+                                
                             }
                             break;
                     }
