@@ -712,7 +712,7 @@ namespace ROMS
                     //}
                     //else
                     //{
-                        dpinvoicedate.Focus();
+                        txtInvoiceno.Focus();
                     //}
                 }
             }
