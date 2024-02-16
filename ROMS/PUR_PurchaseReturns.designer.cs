@@ -1257,9 +1257,8 @@
             this.lblStatus.ForeColor = System.Drawing.Color.Black;
             this.lblStatus.Location = new System.Drawing.Point(1223, 3);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(53, 20);
+            this.lblStatus.Size = new System.Drawing.Size(0, 20);
             this.lblStatus.TabIndex = 38;
-            this.lblStatus.Text = "Pending";
             // 
             // PUR_PurchaseReturns
             // 

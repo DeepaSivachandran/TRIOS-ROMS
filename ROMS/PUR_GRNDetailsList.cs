@@ -86,7 +86,10 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D) || (e.KeyCode == Keys.Delete))
                 {
-                    TsbDelete_Click(sender, e);
+                    if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value)==17)
+                    {
+                        TsbDelete_Click(sender, e);
+                    }
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
