@@ -776,9 +776,13 @@ namespace ROMS
                                 grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
-                                grdGrnlist.Columns["U_Name"].Visible = false;
-                                grdGrnlist.Columns["STS_Name"].Visible = false;
-                                lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
+                                if (varEditFlag == 0)
+                                {
+                                    grdGrnlist.Columns["U_Name"].Visible = false;
+                                }
+                                    grdGrnlist.Columns["STS_Name"].Visible = false;
+                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
+                                
                                 if (varGRNPurchaseFlag == 3) //from Purchase DC
                                 {
                                     txtDGRNDate.Text = "DC Date";
