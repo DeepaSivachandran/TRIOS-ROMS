@@ -424,10 +424,10 @@ namespace ROMS
                     dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
                     this.ActiveControl = txtSupplier;
                     txtSupplier.Focus();
-                    if (varReturnDCID == 0)
-                    {
-                        lblStatus.Text = "Pending";
-                    }
+                    //if (varReturnDCID == 0)
+                    //{
+                    //    lblStatus.Text = "Pending";
+                    //}
                     if (btnSave.Text == "Save")
                     {
                         grpReason.Enabled = false;

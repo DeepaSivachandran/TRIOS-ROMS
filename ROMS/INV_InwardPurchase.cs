@@ -373,25 +373,33 @@ namespace ROMS
                             grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         }
                         varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
+                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["Rack"].Value) == "")
+                        {
+                            varRackID = 0;
+                        }
+                        else
+                        {
+                            varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
+                        }
                         varRackCount = Convert.ToInt32(grdGrnlist.Rows[i].Cells["RackCount"].Value);
                         if (varRackCount != 0)
                         {
-                            if(Convert.ToString(grdGrnlist.Rows[i].Cells["Rack"].Value)=="")
-                            {
-                                grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
-                                varErrorFlag = false;
-                            }
-                            else
-                            {
-                                grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                            }
+                            //if (Convert.ToString(grdGrnlist.Rows[i].Cells["Rack"].Value) == "")
+                            //{
+                            //    grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
+                            //    varErrorFlag = false;
+                            //}
+                            //else
+                            //{
+                            //    grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            //}
                         }
                         if (varRackID == -1)
                         {
                             grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
                             varErrorFlag = false;
                         }
-                        
+
                     }
                     if (varErrorFlag == true )
                     {
@@ -738,7 +746,7 @@ namespace ROMS
                                 
                                 grdGrnlist.Columns["Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdGrnlist.Columns["Product Name in English"].Width = 300;
+                                grdGrnlist.Columns["Product Name in English"].Visible = false;
                                 grdGrnlist.Columns["Product Name in Tamil"].Width = 300;
                                 
                                 grdGrnlist.Columns["S.No."].Width = 50;
@@ -768,9 +776,13 @@ namespace ROMS
                                 grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
-                                grdGrnlist.Columns["U_Name"].Visible = false;
-                                grdGrnlist.Columns["STS_Name"].Visible = false;
-                                lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
+                                if (varEditFlag == 0)
+                                {
+                                    grdGrnlist.Columns["U_Name"].Visible = false;
+                                }
+                                    grdGrnlist.Columns["STS_Name"].Visible = false;
+                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
+                                
                                 if (varGRNPurchaseFlag == 3) //from Purchase DC
                                 {
                                     txtDGRNDate.Text = "DC Date";

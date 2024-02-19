@@ -128,7 +128,7 @@ namespace ROMS
                     txtDCDate.Text = objDs.Tables[0].Rows[0]["DC_Date"].ToString();
                     txtUserData.Text = objDs.Tables[0].Rows[0]["Maker Details"].ToString();
                     txtDCSts.Text = objDs.Tables[0].Rows[0]["Status"].ToString();
-                    grdDC.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                    grdDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 }
                 else
                 {

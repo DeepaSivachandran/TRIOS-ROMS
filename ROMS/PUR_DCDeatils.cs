@@ -169,7 +169,7 @@ namespace ROMS
                 {
                     if (Convert.ToBoolean(grdDCDetails.Rows[i].Cells[0].Value) == true)
                     {
-                        MainForm.objCP_Purchase.grdReurnDC.Rows.Add(grdDCDetails.Rows[i].Cells["DC Date"].Value, grdDCDetails.Rows[i].Cells["DC No."].Value, grdDCDetails.Rows[i].Cells["Total Products"].Value, grdDCDetails.Rows[i].Cells["DCID"].Value);
+                        MainForm.objCP_Purchase.grdReurnDC.Rows.Add(grdDCDetails.Rows[i].Cells["DC No."].Value, grdDCDetails.Rows[i].Cells["DC Date"].Value, grdDCDetails.Rows[i].Cells["Total Products"].Value, grdDCDetails.Rows[i].Cells["DCID"].Value);
                         VARFLAG = 1;
                         if (dcno == "0")
                         {
