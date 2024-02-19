@@ -33,7 +33,7 @@ namespace ROMS
         public bool VarSearchFlag = true;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
         , varorderSaleQty = "", varorderqty = "", addproductid = "", varunitid = "0", varDamage = "0", varReturnDC = "0", pbGRNId = "0", pbSupplierId = "0", dcid = "0",
-        varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0", varTempExpiryDate = "0",
+        varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varExpiryDateAdd="", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0", varTempExpiryDate = "0",
         varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds = "0", varTypeErrId = "0";
         public decimal PbDiscamt = 0, PbTaxvalue = 0, PbGstamt = 0, PbNetamt = 0, pbDiffQty = 0,  pbDisper=0;
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varExpiryError=0,
@@ -3531,8 +3531,7 @@ namespace ROMS
                                 {
                                     varGrnMrp = 0;
                                 }
-                                string ExpiryDate = txtDate.Text + '/' + txtMonth.Text + '/' + txtYear.Text;
-                                grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varTName).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDate).Trim()
+                                grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varTName).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDateAdd).Trim()
                                 , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), txtSourceLocation.Text, cmbrack.Text, (var_Symbol).Trim(), cmbPONo.SelectedValue,
                                 (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0);
                                 grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -3704,11 +3703,13 @@ namespace ROMS
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
                             varExpiryDate = objDS.Tables[0].Rows[0]["DD/MM/YYYY"].ToString();
+                            varExpiryDateAdd = objDS.Tables[0].Rows[0]["DD/MM/YYYY"].ToString();
                         }
                     }
                     else
                     {
                         varExpiryDate = varDay + "/" + varMonth + "/" + varYear;
+                        varExpiryDateAdd = varDay + "/" + varMonth + "/" + txtYear.Text.Trim();
                     }
                     objDS = objDServ.udfnMaster(10, 0, 0, dpInvoiceDate.Text.Trim(), varExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
                     objDServ.CloseConnection();
@@ -3857,8 +3858,8 @@ namespace ROMS
             try
             {
                 DataGridView dataGridView = (DataGridView)sender;
-                varExpiryDate = "";
-                varShelflife = 0;
+                varExpiryDate = ""; varExpiryDateAdd = "";
+                 varShelflife = 0;
                 varErroronGrid = 0;
                 int varExpiryDays = 0; int error = 0, rowIndex = value.RowIndex, columnIndex = value.ColumnIndex, varProid = 0;
                 SPDataService objDServ = new SPDataService();
@@ -5074,6 +5075,10 @@ namespace ROMS
                                         {
                                             cellValue = DMY[0] + "/" + DMY[1] + "/" + 20 + varTempYear;
                                         }
+                                        if (varTempYear.Length == 4)
+                                        {
+                                            cellValue = DMY[0] + "/" + DMY[1] + "/" + varTempYear;
+                                        }
                                     }
                                     varTempExpiryDate = cellValue.ToString();
 
@@ -5110,6 +5115,10 @@ namespace ROMS
                                 if (varTempYear.Length == 2)
                                 {
                                     cellValue = DMY[0] + "/" + DMY[1] + "/" + 20 + varTempYear;
+                                }
+                                if (varTempYear.Length == 4)
+                                {
+                                    cellValue = DMY[0] + "/" + DMY[1] + "/" + varTempYear;
                                 }
                             }
                             varTempExpiryDate = cellValue.ToString();
@@ -5161,6 +5170,7 @@ namespace ROMS
                                 }
                             }
                         }
+                    }
                         if (varExpiryError == 1)
                         {
                             SPDataService objDServe1 = new SPDataService();
@@ -5288,7 +5298,7 @@ namespace ROMS
                             // PurchaseDcIds = Convert.ToString(grdSupplierList.Rows[i].Cells["clmTransId"].Value);
                             PurchaseDcIds = Convert.ToString(pbDCNo);
                         }
-                    }
+                    
                 }
                 
             }
