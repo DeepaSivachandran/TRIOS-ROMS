@@ -126,8 +126,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(179, 24);
-            this.tspHeader.Text = "Queue from Purchase && GRN";
+            this.tspHeader.Size = new System.Drawing.Size(248, 24);
+            this.tspHeader.Text = "Queue from Purchase,GRN &&Purchase DC";
             // 
             // tsbQue
             // 

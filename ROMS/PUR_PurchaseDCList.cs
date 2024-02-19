@@ -151,7 +151,7 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["Created By"].Width = 110;
                                 grdPurchaseDCList.Columns["Created On"].Width = 140;
                                 grdPurchaseDCList.Columns["GSTIN"].Width = 140;
-                                grdPurchaseDCList.Columns["Status"].Width = 100;
+                                grdPurchaseDCList.Columns["Status"].Width = 140;
                                 grdPurchaseDCList.Columns["S.No."].Width = 50;
                                 grdPurchaseDCList.Columns["ID"].Visible = false;
                                 grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
