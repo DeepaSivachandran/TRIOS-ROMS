@@ -159,8 +159,8 @@ namespace ROMS
                 }
                 else
                 {
-                    udfnList();
                     btnPrint.Visible = false;
+                    udfnList();
                 }
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=59 AND MSTID IN (188,189)", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
@@ -944,6 +944,8 @@ namespace ROMS
                     grdProDetails.Visible = false;
                     DGV_ProdSearchGrid.Visible = false;
                     btnPrint.Visible = false;
+                    RPTViewer.Visible = false;
+                    RPTViewer.SendToBack();
                     udfnList();
                 }
             }
@@ -1990,6 +1992,7 @@ namespace ROMS
                 if(Convert.ToInt32(cmbShow.SelectedValue)==188)
                 {
                     cmbOrderBy.Enabled = false;
+                    btnPrint.Visible = false;
                     //grdInwardQueueList.Visible = true;
                     //DGV_SearchGrid.Visible = true;
                     //grdProDetails.Visible = false;
@@ -1998,6 +2001,7 @@ namespace ROMS
                 else
                 {
                     cmbOrderBy.Enabled = true;
+                    btnPrint.Visible = true;
                     //grdInwardQueueList.Visible = false;
                     //DGV_SearchGrid.Visible = false;
                     //grdProDetails.Visible = true;

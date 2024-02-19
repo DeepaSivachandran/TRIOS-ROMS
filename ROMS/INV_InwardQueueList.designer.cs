@@ -62,9 +62,7 @@
             this.grdInwardQueueList = new System.Windows.Forms.DataGridView();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.cmbOrderBy = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cmbShow = new System.Windows.Forms.ComboBox();
             this.lblStockLocationCode = new System.Windows.Forms.Label();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.lblDGodown = new System.Windows.Forms.Label();
@@ -84,6 +82,8 @@
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
+            this.cmbShow = new System.Windows.Forms.ComboBox();
+            this.cmbOrderBy = new System.Windows.Forms.ComboBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
@@ -339,7 +339,7 @@
             this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(1310, 42);
+            this.btnPrint.Location = new System.Drawing.Point(1310, 45);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(33, 29);
             this.btnPrint.TabIndex = 10;
@@ -357,22 +357,6 @@
             this.lblStatus.TabIndex = 111111143;
             this.lblStatus.Text = "Order By";
             // 
-            // cmbOrderBy
-            // 
-            this.cmbOrderBy.FormattingEnabled = true;
-            this.cmbOrderBy.Items.AddRange(new object[] {
-            "Purchase Order List",
-            "Product List"});
-            this.cmbOrderBy.Location = new System.Drawing.Point(1174, 44);
-            this.cmbOrderBy.Name = "cmbOrderBy";
-            this.cmbOrderBy.Size = new System.Drawing.Size(94, 27);
-            this.cmbOrderBy.TabIndex = 8;
-            this.cmbOrderBy.SelectedIndexChanged += new System.EventHandler(this.CmbOrderBy_SelectedIndexChanged);
-            this.cmbOrderBy.Enter += new System.EventHandler(this.CmbOrderBy_Enter);
-            this.cmbOrderBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderBy_KeyDown);
-            this.cmbOrderBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderBy_KeyPress);
-            this.cmbOrderBy.Leave += new System.EventHandler(this.CmbOrderBy_Leave);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -382,23 +366,6 @@
             this.label7.Size = new System.Drawing.Size(38, 20);
             this.label7.TabIndex = 111111141;
             this.label7.Text = "Show";
-            // 
-            // cmbShow
-            // 
-            this.cmbShow.FormattingEnabled = true;
-            this.cmbShow.Items.AddRange(new object[] {
-            "Purchase Order List",
-            "Product List"});
-            this.cmbShow.Location = new System.Drawing.Point(1065, 44);
-            this.cmbShow.Name = "cmbShow";
-            this.cmbShow.Size = new System.Drawing.Size(103, 27);
-            this.cmbShow.TabIndex = 7;
-            this.cmbShow.SelectedIndexChanged += new System.EventHandler(this.CmbShow_SelectedIndexChanged);
-            this.cmbShow.SelectedValueChanged += new System.EventHandler(this.CmbShow_SelectedValueChanged);
-            this.cmbShow.Enter += new System.EventHandler(this.CmbShow_Enter);
-            this.cmbShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbShow_KeyDown);
-            this.cmbShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShow_KeyPress);
-            this.cmbShow.Leave += new System.EventHandler(this.CmbShow_Leave);
             // 
             // lblStockLocationCode
             // 
@@ -604,7 +571,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1271, 40);
+            this.btnView.Location = new System.Drawing.Point(1271, 43);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(33, 29);
             this.btnView.TabIndex = 9;
@@ -624,6 +591,39 @@
             this.txtStockLocation.Enter += new System.EventHandler(this.TxtStockLocation_Enter);
             this.txtStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStockLocation_KeyDown);
             this.txtStockLocation.Leave += new System.EventHandler(this.TxtStockLocation_Leave);
+            // 
+            // cmbShow
+            // 
+            this.cmbShow.FormattingEnabled = true;
+            this.cmbShow.Items.AddRange(new object[] {
+            "Purchase Order List",
+            "Product List"});
+            this.cmbShow.Location = new System.Drawing.Point(1065, 44);
+            this.cmbShow.Name = "cmbShow";
+            this.cmbShow.Size = new System.Drawing.Size(103, 27);
+            this.cmbShow.TabIndex = 7;
+            this.cmbShow.SelectedIndexChanged += new System.EventHandler(this.CmbShow_SelectedIndexChanged);
+            this.cmbShow.SelectedValueChanged += new System.EventHandler(this.CmbShow_SelectedValueChanged);
+            this.cmbShow.Enter += new System.EventHandler(this.CmbShow_Enter);
+            this.cmbShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbShow_KeyDown);
+            this.cmbShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShow_KeyPress);
+            this.cmbShow.Leave += new System.EventHandler(this.CmbShow_Leave);
+            // 
+            // cmbOrderBy
+            // 
+            this.cmbOrderBy.FormattingEnabled = true;
+            this.cmbOrderBy.Items.AddRange(new object[] {
+            "Purchase Order List",
+            "Product List"});
+            this.cmbOrderBy.Location = new System.Drawing.Point(1174, 44);
+            this.cmbOrderBy.Name = "cmbOrderBy";
+            this.cmbOrderBy.Size = new System.Drawing.Size(94, 27);
+            this.cmbOrderBy.TabIndex = 8;
+            this.cmbOrderBy.SelectedIndexChanged += new System.EventHandler(this.CmbOrderBy_SelectedIndexChanged);
+            this.cmbOrderBy.Enter += new System.EventHandler(this.CmbOrderBy_Enter);
+            this.cmbOrderBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderBy_KeyDown);
+            this.cmbOrderBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderBy_KeyPress);
+            this.cmbOrderBy.Leave += new System.EventHandler(this.CmbOrderBy_Leave);
             // 
             // DGV_SearchGrid
             // 

@@ -746,7 +746,7 @@ namespace ROMS
                                 
                                 grdGrnlist.Columns["Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdGrnlist.Columns["Product Name in English"].Width = 300;
+                                grdGrnlist.Columns["Product Name in English"].Visible = false;
                                 grdGrnlist.Columns["Product Name in Tamil"].Width = 300;
                                 
                                 grdGrnlist.Columns["S.No."].Width = 50;
