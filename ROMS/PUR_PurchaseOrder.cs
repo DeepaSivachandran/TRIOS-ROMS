@@ -3148,6 +3148,18 @@ namespace ROMS
                         e.Handled = true;
                     }
                 }
+                TextBox textBox = (TextBox)sender;
+                if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 11)
+                {
+                    e.Handled = true;
+                }
+                if(Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+                {
+                    if(txtissuemodevalue.Text.Trim().Length>9 && textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= 11)
+                    {
+                        e.Handled = true;
+                    }
+                }
             }
             catch (Exception ex)
             {

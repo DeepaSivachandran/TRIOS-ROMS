@@ -84,14 +84,14 @@ namespace ROMS
             try
             {
                 int V1_EMPID = 0, V2_EMPID = 0;
-                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1)
-                {
+                //if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1)
+                //{
                     V1_EMPID = Convert.ToInt32(cmbVerified1.SelectedValue);
-                }
-                if (Convert.ToInt32(cmbVerified2.SelectedValue) != -1)
-                {
+                //}
+                //if (Convert.ToInt32(cmbVerified2.SelectedValue) != -1)
+                //{
                     V2_EMPID = Convert.ToInt32(cmbVerified2.SelectedValue);
-                }
+                //}
                 SPDataService objDser = new SPDataService();
                 string result = "", Originator = "";
                 if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1)
@@ -107,14 +107,14 @@ namespace ROMS
                 objTRNS_GRN.ParaGRNID = Convert.ToInt32(pbGRNId);
                 objTRNS_GRN.ParaVerify1 = Convert.ToInt32(V1_EMPID);
                 objTRNS_GRN.ParaVerify2 = Convert.ToInt32(V2_EMPID);
-                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1)
-                {
+                //if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1)
+                //{
                     objTRNS_GRN.ParaVerifyDate1 = Convert.ToString(dpVerified1.Text);
-                }
-                if (Convert.ToInt32(cmbVerified2.SelectedValue) != -1)
-                {
+                //}
+                //if (Convert.ToInt32(cmbVerified2.SelectedValue) != -1)
+                //{
                     objTRNS_GRN.ParaVerifyDate2 = Convert.ToString(dpVerified2.Text);
-                }
+                //}
                 objTRNS_GRN.paraOriginator = Originator;
                 result = objDser.udfnGRNEntry(objTRNS_GRN);
                 objDser.CloseConnection();
@@ -404,10 +404,13 @@ namespace ROMS
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
+                    int Verified1 = 0,Verified2=0;
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
+                            Verified1= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby1"].ToString());
+                            Verified2= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby2"].ToString());
                             dpVerified1.Text = objDs.Tables[0].Rows[0]["GRN1_VerfiedOn"].ToString();
                             dpVerified2.Text = objDs.Tables[0].Rows[0]["GRN2_VerfiedOn"].ToString();
                             cmbVerified1.SelectedValue= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby1"].ToString());
@@ -415,6 +418,14 @@ namespace ROMS
                             DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                             dpVerified1.MaxDate = varmaxdate;
                             dpVerified2.MaxDate = varmaxdate;
+                            if (Verified1 == -1)
+                            {
+                                dpVerified1.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
+                            }
+                            if (Verified2 == -1)
+                            {
+                                dpVerified2.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
+                            }
                         }
                     }
                 }
