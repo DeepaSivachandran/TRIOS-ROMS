@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using System.Globalization;
 
 namespace ROMS
 {
@@ -317,12 +318,13 @@ namespace ROMS
         {
             try
             {
-                dpVerified1.MinDate = MainForm.pbFYStartDate;
-                dpVerified1.MaxDate = MainForm.pbCurrentDate;
-                dpVerified2.MinDate = MainForm.pbFYStartDate;
-                dpVerified2.MaxDate = MainForm.pbCurrentDate;
                 udfnCmbVerified1Load();
                 udfnCmbVerified2Load();
+                udfnDateLoad();
+                dpVerified1.MinDate = MainForm.pbFYStartDate;
+                //dpVerified1.MaxDate = MainForm.pbCurrentDate;
+                dpVerified2.MinDate = MainForm.pbFYStartDate;
+                //dpVerified2.MaxDate = MainForm.pbCurrentDate;
             }
             catch (Exception ex)
             {
@@ -392,7 +394,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnDateLoad()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnGrnListLoad(9, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0, 0, "0", "");
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            dpVerified1.Text = objDs.Tables[0].Rows[0]["GRN1_VerfiedOn"].ToString();
+                            dpVerified2.Text = objDs.Tables[0].Rows[0]["GRN2_VerfiedOn"].ToString();
+                            cmbVerified1.SelectedValue= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby1"].ToString());
+                            cmbVerified2.SelectedValue= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby2"].ToString());
+                            DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                            dpVerified1.MaxDate = varmaxdate;
+                            dpVerified2.MaxDate = varmaxdate;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DpVerified1_ValueChanged(object sender, EventArgs e)
         {
             try
