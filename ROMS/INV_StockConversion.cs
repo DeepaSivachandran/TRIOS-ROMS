@@ -2392,6 +2392,23 @@ namespace ROMS
             finally
             {
                 grdBatchConversion.ClearSelection();
+                if(Convert.ToDecimal(totalQty.Text)==changedQuantity)
+                {
+                    txtConvertMrp.Enabled = false;
+                    txtConvertBatch.Enabled = false;
+                    txtDay.Enabled = false;
+                    txtMonth.Enabled = false;
+                    txtYear.Enabled = false;
+                    txtConvertQty.Enabled = false;
+                    btnAdd.Enabled = false;
+                    epBatchConversion.Clear();
+                    txtConvertQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtConvertMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtConvertBatch.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                }
             }
         }
         private void GrdBatchConversion_CellContentClick(object sender, DataGridViewCellEventArgs e)
