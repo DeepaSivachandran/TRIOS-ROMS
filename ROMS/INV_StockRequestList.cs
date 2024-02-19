@@ -1678,15 +1678,15 @@ namespace ROMS
         }
         private void GrdStockRequestList_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //try
-            //{
-            //    udfnDeleteHide();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                //udfnDeleteHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdStockRequestList_SelectionChanged(object sender, EventArgs e)

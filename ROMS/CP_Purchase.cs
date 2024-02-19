@@ -27,6 +27,7 @@ namespace ROMS
         ToolTip tpQRCode = new ToolTip();
         ToolTip tpinvamt = new ToolTip();
         ToolTip tpInvNo = new ToolTip();
+        int flag = 0;
         public bool skipValidation = false;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
         public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0", pbPurchaseno = "0", pbDCNo = "0", pbGRNNo = "0", PbSTS = "0", PbID = "0", PbFlag = "0";
@@ -41,6 +42,8 @@ namespace ROMS
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh=0, varUpDownKey = 0;
         bool varVoucherSkip = false;
+        int grid_flag = 0;
+
         public CP_Purchase()
         {
             InitializeComponent();
@@ -488,7 +491,7 @@ namespace ROMS
                 {
                     if (varCloseflag == 0)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
                             this.Close();
@@ -688,6 +691,7 @@ namespace ROMS
                 if (pbPurchaseno != "0")
                 {
                     varRemarkFlag = 1;
+                    flag = 0;
                     udfnRemark();
                     MainForm.objPUR_PurchaseRemarksHistory.udfnRemarkList();
                     if (varRemarkCount == 0)
@@ -800,6 +804,7 @@ namespace ROMS
                                 if (cmbEntryType.SelectedValue.ToString() == "55") // PO
                                 {
                                     grdPODetails.Visible = true;
+
                                 }
                                 if (cmbEntryType.SelectedValue.ToString() == "56") // Direct
                                 {
@@ -840,6 +845,10 @@ namespace ROMS
                                     GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                                 }
                                 txtTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
+                                if (grdSupplierList.RowCount > 0)
+                                {
+                                    grdSupplierList.CurrentCell = grdSupplierList.Rows[0].Cells[5];
+                                }
                             }
 
                             if (objDs.Tables[2].Rows.Count != 0) //GST DETAILS LOAD
@@ -1241,18 +1250,18 @@ namespace ROMS
         {
             try
             {
+                flag = 0;
                 if (PbSTS == "50")
                 {
                     tbDetails.TabPages[0].Enabled = false; // First tab 
-                   // tbDetails.TabPages[1].Enabled = true; // Second tab 
-                    
+                                                           // tbDetails.TabPages[1].Enabled = true; // Second tab 
                     udfnPurchaseEntryTabLoad(); //tab2 load
                 }
                 else
                 {
                     if (pbPurchaseno == "0")
                     {
-                        tbDetails.TabPages[0].Enabled = true; // First tab 
+                        tbDetails.TabPages[0].Enabled = true; // First tab
                         tbDetails.TabPages[1].Enabled = false; // Second tab 
                         //if (PbSTS == "49")
                         //{
@@ -3168,6 +3177,7 @@ namespace ROMS
             try
             {
                 pbDateflag = 0;
+                flag = 0;
                 udfnAddProductsgrid();
             }
             catch (Exception ex)
@@ -3545,8 +3555,8 @@ namespace ROMS
                                 {
                                     varGrnMrp = 0;
                                 }
-
-                                grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varTName).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDate).Trim()
+                               
+                                grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varTName).Trim(), varGrnMrp,(txtMrp.Text).Trim(), (varExpiryDate).Trim()
                                 , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), txtSourceLocation.Text, cmbrack.Text, (var_Symbol).Trim(), cmbPONo.SelectedValue,
                                 (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0);
                                 grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -3578,6 +3588,10 @@ namespace ROMS
                                         cell.Style.BackColor = Color.White;
                                         cell.Style.ForeColor = Color.Black;
                                     }
+                                }
+                                if (grdSupplierList.RowCount > 0)
+                                {
+                                    grdSupplierList.CurrentCell = grdSupplierList.Rows[0].Cells[5];
                                 }
 
                                 if (varBatchNo == "72" && varBatchNoGeneration == "74")
@@ -4701,11 +4715,13 @@ namespace ROMS
                     btnSave.Text = "Update as Draft";
                     if (PbSTS != "50")
                     {
+                        flag = 0;
                         tbDetails.TabPages[0].Enabled = true; // First tab 
                         tbDetails.TabPages[1].Enabled = true; // Second tab  
                     }
                     if(PbSTS == "50")
                     {
+                        flag = 1;
                         tbDetails.TabPages[0].Enabled = false; // First tab 
                         tbDetails.TabPages[1].Enabled = true; // Second tab
                         grdPurchaseList.ReadOnly = true;
@@ -4742,8 +4758,14 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["TAX"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gstper"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_GSTAmnt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_NettAmnt"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]));
+                            //flag = 1;
+                        }
+                        if (grdPurchaseList.RowCount > 0)
+                        {
+                            grdPurchaseList.CurrentCell = grdPurchaseList.Rows[0].Cells[9];
                         }
                         grdPurchaseList.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                        grdSupplierList.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     }
                 }
 
@@ -8498,5 +8520,387 @@ namespace ROMS
                 txtTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
             }
         }
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+        {
+            try
+            {
+                //grdSupplierList.CurrentCell = grdSupplierList.Item("clminvMRP", 5);
+                //clminvMRP.Focus();
+                //int rowindex = 0;
+                //int columnindex = 5;
+                if (tbDetails.SelectedIndex == 0)
+                {
+                    if (grdSupplierList.Focused)
+                    {
+                        grid_flag = 1;
+                    }
+
+                    if (grid_flag == 1)
+                    {
+                        if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
+                        {
+                            int icolumn = grdSupplierList.CurrentCell.ColumnIndex;
+                            int irow = grdSupplierList.CurrentCell.RowIndex;
+                            int i = irow;
+                            int intsection = 0, intlvariant = 0;
+                            //intsection = grdSupplierList.Columns.Count - 18;
+                            intlvariant = grdSupplierList.Columns.Count - 18;
+                            //if (intsection == icolumn)
+                            //{
+                            //    grdSupplierList.CurrentCell = grdSupplierList[intsection, irow + 1];
+                            //    icolumn = grdSupplierList.Columns.Count - 18;//grdSupplierList.CurrentCell.ColumnIndex;
+                            //    irow = grdSupplierList.CurrentCell.RowIndex;
+                            //}
+                            //else
+                            if (intlvariant == icolumn)
+                            {
+                            A: if (icolumn == grdSupplierList.Columns.Count - 18)
+                                {
+                                    //grdProDetails.Rows.Add();
+                                    if (irow < grdSupplierList.Rows.Count - 1)
+                                    {
+                                        grdSupplierList.CurrentCell = grdSupplierList[5, irow + 1];
+                                        icolumn = grdSupplierList.CurrentCell.ColumnIndex;
+                                        irow = grdSupplierList.CurrentCell.RowIndex;
+                                        //goto A;
+                                    }
+                                    else
+                                    {
+                                        //grdSupplierList.CurrentCell = grdSupplierList[icolumn + 1, irow];
+                                        //if (grdSupplierList.CurrentCell.ReadOnly == true)
+                                        //{
+                                        //    icolumn++; goto A;
+                                        //}
+
+                                    }
+                                }
+                                else
+                                {
+                                    grdSupplierList.CurrentCell = grdSupplierList[icolumn + 1, irow];
+                                    if (grdSupplierList.CurrentCell.ReadOnly == true && grdSupplierList.CurrentCell.Visible == false) { icolumn++; goto A; }
+                                }
+                            }
+                            else
+                            {
+                            A: if (icolumn == grdSupplierList.Columns.Count - 18)
+                                {
+                                    //grdProDetails.Rows.Add();
+                                    if (irow < grdSupplierList.Rows.Count - 1)
+                                    {
+                                        grdSupplierList.CurrentCell = grdSupplierList[1, irow + 1];
+                                        icolumn = grdSupplierList.CurrentCell.ColumnIndex;
+                                        irow = grdSupplierList.CurrentCell.RowIndex;
+                                        //goto A;
+                                    }
+                                    else
+                                    {
+                                        grdSupplierList.CurrentCell = grdSupplierList[icolumn + 1, irow];
+                                        if (grdSupplierList.CurrentCell.ReadOnly == true)
+                                        {
+                                            icolumn++; goto A;
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    grdSupplierList.CurrentCell = grdSupplierList[icolumn + 1, irow];
+                                    if (grdSupplierList.CurrentCell.ReadOnly == true || grdSupplierList.CurrentCell.Visible == false) { icolumn++; goto A; }
+                                }
+                            }
+                            //A: if (icolumn == grdProDetails.Columns.Count - 1)
+                            //{
+                            //    //grdProDetails.Rows.Add();
+                            //    if (irow < grdProDetails.Rows.Count - 1)
+                            //    {
+                            //        grdProDetails.CurrentCell = grdProDetails[1, irow + 1];
+                            //        icolumn = grdProDetails.CurrentCell.ColumnIndex;
+                            //        irow = grdProDetails.CurrentCell.RowIndex;
+                            //        goto A;
+                            //    }
+                            //    else
+                            //    {
+                            //        grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                            //        if (grdProDetails.CurrentCell.ReadOnly == true)
+                            //        {
+                            //            icolumn++; goto A;
+                            //        }
+
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                            //    if (grdProDetails.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                            //}
+
+                            grid_flag = 0;
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (grdPurchaseList.Focused)
+                    {
+                        grid_flag = 1;
+                    }
+
+                    if (grid_flag == 1)
+                    {
+                        if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
+                        {
+                            int icolumn = grdPurchaseList.CurrentCell.ColumnIndex;
+                            int irow = grdPurchaseList.CurrentCell.RowIndex;
+                            int i = irow;
+                            int intsection = 0, intlvariant = 0;
+                            //intsection = grdPurchaseList.Columns.Count - 11;
+                            intlvariant = grdPurchaseList.Columns.Count - 9;
+                            //if (intsection == icolumn)
+                            //{
+                            //    grdPurchaseList.CurrentCell = grdPurchaseList[intsection, irow + 1];
+                            //    icolumn = grdPurchaseList.Columns.Count - 1;//grdProDetails.CurrentCell.ColumnIndex;
+                            //    irow = grdPurchaseList.CurrentCell.RowIndex;
+                            //}
+                            //else 
+                            if (intlvariant == icolumn)
+                            {
+                            A: if (icolumn == grdPurchaseList.Columns.Count - 9)
+                                {
+                                    //grdProDetails.Rows.Add();
+                                    if (irow < grdPurchaseList.Rows.Count - 1)
+                                    {
+                                        grdPurchaseList.CurrentCell = grdPurchaseList[3, irow + 1];
+                                        icolumn = grdPurchaseList.CurrentCell.ColumnIndex;
+                                        irow = grdPurchaseList.CurrentCell.RowIndex;
+                                        //goto A;
+                                    }
+                                    else
+                                    {
+                                        grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
+                                        if (grdPurchaseList.CurrentCell.ReadOnly == true)
+                                        {
+                                            icolumn++; goto A;
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
+                                    if (grdPurchaseList.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                                }
+                            }
+                            else
+                            {
+                            A: if (icolumn == grdPurchaseList.Columns.Count - 9)
+                                {
+                                    //grdProDetails.Rows.Add();
+                                    if (irow < grdPurchaseList.Rows.Count - 1)
+                                    {
+                                        grdPurchaseList.CurrentCell = grdPurchaseList[9, irow + 1];
+                                        icolumn = grdPurchaseList.CurrentCell.ColumnIndex;
+                                        irow = grdPurchaseList.CurrentCell.RowIndex;
+                                        //goto A;
+                                    }
+                                    else
+                                    {
+                                        //grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
+                                        //if (grdPurchaseList.CurrentCell.ReadOnly == true)
+                                        //{
+                                        //    icolumn++; goto A;
+                                        //}
+                                        grdPurchaseList.CurrentCell = grdPurchaseList["clmDiscPer",irow];
+                                    }
+                                }
+                                else
+                                {
+                                    if (grdPurchaseList[icolumn + 1, irow].Visible == false)
+                                    {
+                                        icolumn++;
+                                    }
+                                    grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
+                                    if (grdPurchaseList.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                                }
+                            }
+                            //A: if (icolumn == grdProDetails.Columns.Count - 1)
+                            //{
+                            //    //grdProDetails.Rows.Add();
+                            //    if (irow < grdProDetails.Rows.Count - 1)
+                            //    {
+                            //        grdProDetails.CurrentCell = grdProDetails[1, irow + 1];
+                            //        icolumn = grdProDetails.CurrentCell.ColumnIndex;
+                            //        irow = grdProDetails.CurrentCell.RowIndex;
+                            //        goto A;
+                            //    }
+                            //    else
+                            //    {
+                            //        grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                            //        if (grdProDetails.CurrentCell.ReadOnly == true)
+                            //        {
+                            //            icolumn++; goto A;
+                            //        }
+
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                            //    if (grdProDetails.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                            //}
+
+                            grid_flag = 0;
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            //// below is for escape key return
+            //return base.ProcessCmdKey(ref msg, keyData);
+            // below is for enter key return
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        //protected override bool ProcessCmdKeyPurchase(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+        //{
+        //    try
+        //    {
+        //        if (grdPurchaseList.Focused)
+        //        {
+        //            grid_flag = 1;
+        //        }
+
+        //        if (grid_flag == 1)
+        //        {
+        //            if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
+        //            {
+        //                int icolumn = grdPurchaseList.CurrentCell.ColumnIndex;
+        //                int irow = grdPurchaseList.CurrentCell.RowIndex;
+        //                int i = irow;
+        //                int intsection = 0, intlvariant = 0;
+        //                intsection = grdPurchaseList.Columns.Count - 1;
+        //                intlvariant = grdPurchaseList.Columns.Count - 3;
+        //                if (intsection == icolumn)
+        //                {
+        //                    grdPurchaseList.CurrentCell = grdPurchaseList[intsection, irow + 1];
+        //                    icolumn = grdPurchaseList.Columns.Count - 1;//grdProDetails.CurrentCell.ColumnIndex;
+        //                    irow = grdPurchaseList.CurrentCell.RowIndex;
+        //                }
+        //                else if (intlvariant == icolumn)
+        //                {
+        //                A: if (icolumn == grdPurchaseList.Columns.Count - 3)
+        //                    {
+        //                        //grdProDetails.Rows.Add();
+        //                        if (irow < grdPurchaseList.Rows.Count - 1)
+        //                        {
+        //                            grdPurchaseList.CurrentCell = grdPurchaseList[3, irow + 1];
+        //                            icolumn = grdPurchaseList.CurrentCell.ColumnIndex;
+        //                            irow = grdPurchaseList.CurrentCell.RowIndex;
+        //                            //goto A;
+        //                        }
+        //                        else
+        //                        {
+        //                            grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
+        //                            if (grdPurchaseList.CurrentCell.ReadOnly == true)
+        //                            {
+        //                                icolumn++; goto A;
+        //                            }
+
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
+        //                        if (grdPurchaseList.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                A: if (icolumn == grdPurchaseList.Columns.Count - 1)
+        //                    {
+        //                        //grdProDetails.Rows.Add();
+        //                        if (irow < grdPurchaseList.Rows.Count - 1)
+        //                        {
+        //                            grdPurchaseList.CurrentCell = grdPurchaseList[1, irow + 1];
+        //                            icolumn = grdPurchaseList.CurrentCell.ColumnIndex;
+        //                            irow = grdPurchaseList.CurrentCell.RowIndex;
+        //                            //goto A;
+        //                        }
+        //                        else
+        //                        {
+        //                            grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
+        //                            if (grdPurchaseList.CurrentCell.ReadOnly == true)
+        //                            {
+        //                                icolumn++; goto A;
+        //                            }
+
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
+        //                        if (grdPurchaseList.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+        //                    }
+        //                }
+        //                //A: if (icolumn == grdProDetails.Columns.Count - 1)
+        //                //{
+        //                //    //grdProDetails.Rows.Add();
+        //                //    if (irow < grdProDetails.Rows.Count - 1)
+        //                //    {
+        //                //        grdProDetails.CurrentCell = grdProDetails[1, irow + 1];
+        //                //        icolumn = grdProDetails.CurrentCell.ColumnIndex;
+        //                //        irow = grdProDetails.CurrentCell.RowIndex;
+        //                //        goto A;
+        //                //    }
+        //                //    else
+        //                //    {
+        //                //        grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+        //                //        if (grdProDetails.CurrentCell.ReadOnly == true)
+        //                //        {
+        //                //            icolumn++; goto A;
+        //                //        }
+
+        //                //    }
+        //                //}
+        //                //else
+        //                //{
+        //                //    grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+        //                //    if (grdProDetails.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+        //                //}
+
+        //                grid_flag = 0;
+        //                return true;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //    //// below is for escape key return
+        //    //return base.ProcessCmdKey(ref msg, keyData);
+        //    // below is for enter key return
+        //    return base.ProcessCmdKeyPurchase(ref msg, keyData);
+
+
+        //}
     }
 }
