@@ -239,8 +239,8 @@ namespace ROMS
                             grdGRNList.Columns["Created On"].Width = 150;
                             grdGRNList.Columns["Order Type"].Width = 100;
                             grdGRNList.Columns["Any Purchase Returns"].Width = 150;
-                            grdGRNList.Columns["Status"].Width = 130;
-                            grdGRNList.Columns["Inward Status"].Width = 130;
+                            grdGRNList.Columns["GRN Status"].Width = 130;
+                            grdGRNList.Columns["Overall Status"].Width = 130;
                             grdGRNList.Columns["GRNID"].Visible = false;
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
@@ -252,8 +252,8 @@ namespace ROMS
                             grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGRNList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGRNList.Columns["Inward Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGRNList.Columns["GRN Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
@@ -1370,7 +1370,7 @@ namespace ROMS
                 for (int i = 0; i < grdGRNList.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"]; 
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["GRN Status"]; 
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "17")
                     {
                         cell.Style.BackColor = Color.Red;
