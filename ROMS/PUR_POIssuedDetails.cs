@@ -654,7 +654,14 @@ namespace ROMS
                     txtDmode.Text = "";
                 }
                 string selectedValue = cmbIssueMode.SelectedItem.ToString();
-                 
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+                {
+                    this.txtIssuemodeValues.MaxLength = 10;
+                }
+                else
+                {
+                    this.txtIssuemodeValues.MaxLength = 50;
+                }
             }
             catch (Exception ex)
             {
