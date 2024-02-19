@@ -1194,20 +1194,6 @@ namespace ROMS
                 {
                     udfnclose();
                 }
-                if (e.KeyCode == Keys.F11)
-                {
-                    if (VarSearchFlag == false)
-                    {
-                        VarSearchFlag = true;
-                        lblDProduct.Text = "Search by P.I Code";
-                    }
-                    else
-                    {
-                        VarSearchFlag = false;
-                        lblDProduct.Text = "Search by Product Name";
-
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -8312,12 +8298,10 @@ namespace ROMS
                 {
                     if (VarSearchFlag == true)
                     {
-                        lblDProduct.Text = "Search by P.I Code";
                         txtProductName.CharacterCasing = CharacterCasing.Upper;
                     }
                     else
                     {
-                        lblDProduct.Text = "Search by Product Name";
                         txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
 

@@ -52,9 +52,9 @@
             this.clmTotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUPP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmQtyUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQtyUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDC)).BeginInit();
             this.SuspendLayout();
@@ -88,9 +88,9 @@
             this.clmTotalitem,
             this.clmUPP,
             this.Column4,
-            this.clmQtyUnit,
             this.clmStatus,
-            this.STSID});
+            this.STSID,
+            this.clmQtyUnit});
             this.grdDC.EnableHeadersVisualStyles = false;
             this.grdDC.GridColor = System.Drawing.Color.White;
             this.grdDC.Location = new System.Drawing.Point(12, 45);
@@ -237,19 +237,12 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
-            // clmQtyUnit
-            // 
-            this.clmQtyUnit.HeaderText = "Unit";
-            this.clmQtyUnit.Name = "clmQtyUnit";
-            this.clmQtyUnit.ReadOnly = true;
-            this.clmQtyUnit.Visible = false;
-            this.clmQtyUnit.Width = 70;
-            // 
             // clmStatus
             // 
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
+            this.clmStatus.Width = 120;
             // 
             // STSID
             // 
@@ -257,6 +250,14 @@
             this.STSID.Name = "STSID";
             this.STSID.ReadOnly = true;
             this.STSID.Visible = false;
+            // 
+            // clmQtyUnit
+            // 
+            this.clmQtyUnit.HeaderText = "Unit";
+            this.clmQtyUnit.Name = "clmQtyUnit";
+            this.clmQtyUnit.ReadOnly = true;
+            this.clmQtyUnit.Visible = false;
+            this.clmQtyUnit.Width = 70;
             // 
             // PUR_DCProducts
             // 
@@ -283,7 +284,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_DCProducts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pending PO Products";
+            this.Text = "Pending DC Products";
             this.Load += new System.EventHandler(this.PUR_POProducts_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_POProducts_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
@@ -311,8 +312,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalitem;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUPP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmQtyUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn STSID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmQtyUnit;
     }
 }
