@@ -703,7 +703,7 @@ namespace ROMS
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 dtViewProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name in English"],
-                                   objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["PRID"], objDs.Tables[0].Rows[i]["Stock Qty"]);
+                                   objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["PRID"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Stock Qty"]));
                             }
                         }
                         grdViewProduct.DataSource = null;
@@ -1332,7 +1332,7 @@ namespace ROMS
                             if (varFlag == 0)
                             {
                                 dtMoveProduct.Rows.Add(grdViewProduct.Rows[i].Cells["P.I Code"].Value, grdViewProduct.Rows[i].Cells["Product Name in English"].Value,
-                                    grdViewProduct.Rows[i].Cells["Product Name in Tamil"].Value, grdViewProduct.Rows[i].Cells["Unit"].Value, grdViewProduct.Rows[i].Cells["PRODUCTID"].Value, grdViewProduct.Rows[i].Cells["Stock Qty"].Value);
+                                    grdViewProduct.Rows[i].Cells["Product Name in Tamil"].Value, grdViewProduct.Rows[i].Cells["Unit"].Value, grdViewProduct.Rows[i].Cells["PRODUCTID"].Value, Convert.ToDecimal(grdViewProduct.Rows[i].Cells["Stock Qty"].Value));
                             }
                         }
                         else
@@ -1663,7 +1663,7 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
                                 dtViewProduct.Rows.Add(false,grdViewProduct.Rows.Count+1,grdMoveProduct.SelectedRows[0].Cells["P.I Code"].Value, grdMoveProduct.SelectedRows[0].Cells["Product Name in English"].Value,
-                                   grdMoveProduct.SelectedRows[0].Cells["Product Name in Tamil"].Value, grdMoveProduct.SelectedRows[0].Cells["Unit"].Value, grdMoveProduct.SelectedRows[0].Cells["PRID"].Value, grdMoveProduct.SelectedRows[0].Cells["Stock Qty"].Value);
+                                   grdMoveProduct.SelectedRows[0].Cells["Product Name in Tamil"].Value, grdMoveProduct.SelectedRows[0].Cells["Unit"].Value, grdMoveProduct.SelectedRows[0].Cells["PRID"].Value, Convert.ToDecimal(grdMoveProduct.SelectedRows[0].Cells["Stock Qty"].Value));
                                 dtViewProduct.AcceptChanges();
                                 grdMoveProduct.DataSource = null;
                                 grdMoveProduct.DataSource = dtMoveProduct;
@@ -2339,7 +2339,7 @@ namespace ROMS
                 dtViewProduct.Columns.Add("Product Name in Tamil", typeof(string));
                 dtViewProduct.Columns.Add("Unit", typeof(string));
                 dtViewProduct.Columns.Add("PRODUCTID", typeof(int));
-                dtViewProduct.Columns.Add("Stock Qty", typeof(float));
+                dtViewProduct.Columns.Add("Stock Qty", typeof(decimal));
 
                 dtMoveProduct = new DataTable();
                 dtMoveProduct.Columns.Add("P.I Code", typeof(string));
@@ -2347,7 +2347,7 @@ namespace ROMS
                 dtMoveProduct.Columns.Add("Product Name in Tamil", typeof(string));
                 dtMoveProduct.Columns.Add("Unit", typeof(string));
                 dtMoveProduct.Columns.Add("PRID", typeof(int));
-                dtMoveProduct.Columns.Add("Stock Qty", typeof(float));
+                dtMoveProduct.Columns.Add("Stock Qty", typeof(decimal));
                 udfnCmbConcern();
                 udfnCmbSourceRack();
                 udfnCmbDestinationRack();

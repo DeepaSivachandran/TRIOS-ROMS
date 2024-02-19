@@ -1191,6 +1191,23 @@ namespace ROMS
                     txtProductName.BackColor=Color.White;
                     txtQty.BackColor = Color.White;
                 }
+                if(Convert.ToInt32(txtQty.Text)==changedQuantity)
+                {
+                    txtConvertMrp.Enabled = false;
+                    txtConvertBatch.Enabled = false;
+                    txtDay.Enabled = false;
+                    txtMonth.Enabled = false;
+                    txtYear.Enabled = false;
+                    txtConvertQty.Enabled = false;
+                    btnAdd.Enabled = false;
+                    epBatchConversion.Clear();
+                    txtConvertQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtConvertMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtConvertBatch.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0"); 
+                }
             }
         }
         public void udfnClear()
@@ -1202,7 +1219,7 @@ namespace ROMS
                 txtConvertQty.Text = "";
                 txtDay.Text = "";
                 txtMonth.Text = "";
-                txtYear.Text = "";
+                txtYear.Text = "";            
             }
             catch (Exception ex)
             {
@@ -2443,6 +2460,23 @@ namespace ROMS
                     cmbConcern.Enabled = true;
                     txtProductName.BackColor = Color.White;
                 }
+                if (changedQuantity<Convert.ToInt32(txtQty.Text))
+                {
+                    txtConvertMrp.Enabled = true;
+                    txtConvertBatch.Enabled = true;
+                    txtDay.Enabled = true;
+                    txtMonth.Enabled = true;
+                    txtYear.Enabled = true;
+                    txtConvertQty.Enabled = true;
+                    btnAdd.Enabled = true;
+                    txtConvertQty.BackColor = Color.White;
+                    txtConvertMrp.BackColor = Color.White;
+                    txtConvertBatch.BackColor = Color.White;
+                    txtDay.BackColor = Color.White;
+                    txtMonth.BackColor = Color.White;
+                    txtYear.BackColor = Color.White;
+                }
+
             }
         }
         public void udfnExpiryDateCheck()
