@@ -1393,11 +1393,11 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
+        private void udfnscrollVisible(DataGridView DGV, DataGridView grdInwardQueueList)
         {
             try
             {
-                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdInwardQueueList.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -1423,11 +1423,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void udfnProductscrollVisible(DataGridView DGV, DataGridView grdCityList)
+        private void udfnProductscrollVisible(DataGridView DGV, DataGridView grdProDetails)
         {
             try
             {
-                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdProDetails.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -2223,7 +2223,7 @@ namespace ROMS
                     }
                     DGV_ProdSearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_ProdSearchGrid.Invalidate();
-                    udfnscrollVisible(DGV_ProdSearchGrid, grdProDetails);
+                    udfnProductscrollVisible(DGV_ProdSearchGrid, grdProDetails);
                 }
             }
             catch (Exception ex)
@@ -2414,6 +2414,7 @@ namespace ROMS
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdInwardQueueList);
                 }
             }
             catch (Exception ex)
