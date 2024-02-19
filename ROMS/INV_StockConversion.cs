@@ -1206,7 +1206,7 @@ namespace ROMS
                     txtConvertBatch.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
                     txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
                     txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
-                    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0"); ;
+                    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0"); 
                 }
             }
         }
@@ -2460,6 +2460,23 @@ namespace ROMS
                     cmbConcern.Enabled = true;
                     txtProductName.BackColor = Color.White;
                 }
+                if (changedQuantity<Convert.ToInt32(txtQty.Text))
+                {
+                    txtConvertMrp.Enabled = true;
+                    txtConvertBatch.Enabled = true;
+                    txtDay.Enabled = true;
+                    txtMonth.Enabled = true;
+                    txtYear.Enabled = true;
+                    txtConvertQty.Enabled = true;
+                    btnAdd.Enabled = true;
+                    txtConvertQty.BackColor = Color.White;
+                    txtConvertMrp.BackColor = Color.White;
+                    txtConvertBatch.BackColor = Color.White;
+                    txtDay.BackColor = Color.White;
+                    txtMonth.BackColor = Color.White;
+                    txtYear.BackColor = Color.White;
+                }
+
             }
         }
         public void udfnExpiryDateCheck()
