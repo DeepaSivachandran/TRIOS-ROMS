@@ -19,7 +19,7 @@ namespace ROMS
         DateTime varmaxdate;
         public DataTable Deftable = new DataTable();
         Boolean BlnSearchImageYN = false;
-        public string varUserID = "0", varsuppliername="";
+        public string varUserID = "0", varsuppliername = "";
         public ToolTip tpSupplier = new ToolTip();
         public PUR_GRNDetailsList()
         {
@@ -86,7 +86,7 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D) || (e.KeyCode == Keys.Delete))
                 {
-                    if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value)==17)
+                    if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value) == 17)
                     {
                         TsbDelete_Click(sender, e);
                     }
@@ -130,7 +130,7 @@ namespace ROMS
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
-                udfnListLoad(); 
+                udfnListLoad();
             }
             catch (Exception ex)
             {
@@ -189,7 +189,7 @@ namespace ROMS
                         lblschedleCode.Text = values[1];
                         txtSupplier.BackColor = Color.White;
 
-                    } 
+                    }
                 }
                 if (txtSupplier.Text == "")
                 {
@@ -207,14 +207,14 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0,0, "0","");
+                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
                     {
                         lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0 && Varflag ==0)
+                        if (objDs.Tables[0].Rows.Count != 0 && Varflag == 0)
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
@@ -281,7 +281,7 @@ namespace ROMS
                     grdGRNList.Columns["clmPrint"].Visible = false;
                     grdGRNList.Columns["ClmEdit"].Visible = false;
                     Deftable = objDs.Tables[0];
-                } 
+                }
                 udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
                 {
@@ -322,15 +322,15 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
                 DGV_SearchGrid.Columns["Created On"].Width = 150;
                 DGV_SearchGrid.Columns["Order Type"].Width = 100;
-                DGV_SearchGrid.Columns["Any Purchase Returns"].Width = 150;   
+                DGV_SearchGrid.Columns["Any Purchase Returns"].Width = 150;
                 DGV_SearchGrid.Columns["GRNID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_SPID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["clmPrint"].Visible = false;
-                DGV_SearchGrid.Columns["ClmEdit"].Visible = false; 
-                DGV_SearchGrid.Columns["Totallbl"].Visible = false;  
+                DGV_SearchGrid.Columns["ClmEdit"].Visible = false;
+                DGV_SearchGrid.Columns["Totallbl"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -395,7 +395,7 @@ namespace ROMS
                             MainForm.objPUR_GRNEntry.ShowDialog();
                             break;
                         case "clmPrint":
-                                        DialogResult result1 = DialogResult.Yes;
+                            DialogResult result1 = DialogResult.Yes;
                             SPDataService objDServ = new SPDataService();
                             string varMessage = objDServ.udfnGetMessages(87);
                             objDServ.CloseConnection();
@@ -688,7 +688,7 @@ namespace ROMS
         }
 
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 LV_Supplier.Items.Clear();
@@ -1003,7 +1003,8 @@ namespace ROMS
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (lblNoRecordsFound.Visible ==false ) {
+            if (lblNoRecordsFound.Visible == false)
+            {
                 int i = e.ColumnIndex + 2;
                 if (e.ColumnIndex == 0)
                 {
@@ -1091,7 +1092,11 @@ namespace ROMS
                         DGV_SearchGrid.Rows.Add();
                         for (int i = 0; i < visibleColumns.Count; i++)
                         {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            if (DGV_SearchGrid.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                            {
+                                DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            }
+                            else { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = ""; }
                         }
                     }
                 }
@@ -1363,14 +1368,14 @@ namespace ROMS
         }
 
         private void GrdGRNList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        { 
+        {
             try
             {
                 grdGRNList.ClearSelection();
                 for (int i = 0; i < grdGRNList.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"]; 
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "17")
                     {
                         cell.Style.BackColor = Color.Red;
@@ -1392,11 +1397,11 @@ namespace ROMS
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["Totallbl"].Value) == "0")
-                    { 
-                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"]; 
+                    {
+                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"];
                         cell2.Value = new Bitmap(1, 1);
                         cell2.ReadOnly = true;
-                    } 
+                    }
                 }
             }
             catch (Exception ex)
@@ -1404,7 +1409,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            
+
         }
 
         private void GrdGRNList_SelectionChanged(object sender, EventArgs e)
