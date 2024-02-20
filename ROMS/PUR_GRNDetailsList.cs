@@ -861,12 +861,12 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                    if (e.RowIndex < 0 || e.ColumnIndex < 3)        /*If a header cell*/
                         return;
-                    //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
+                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
+                        return;
+                    //if ((e.ColumnIndex <2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     //    return;
-                    if ((e.ColumnIndex == 0 || e.ColumnIndex == 1))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
-                        return;
 
                     if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                     {
