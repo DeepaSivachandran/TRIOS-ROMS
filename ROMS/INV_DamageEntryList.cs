@@ -1079,7 +1079,6 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
-                DGV_SearchGrid.Columns["PRStatusID"].Visible = false;
                 DGV_SearchGrid.Columns["DMID"].Visible = false;
                 DGV_SearchGrid.Columns["clmPrint"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
@@ -2216,8 +2215,8 @@ namespace ROMS
         {
             try
             {
-                //DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                //dpToDate.MinDate = varmindate;
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
             }
             catch (Exception ex)
             {
