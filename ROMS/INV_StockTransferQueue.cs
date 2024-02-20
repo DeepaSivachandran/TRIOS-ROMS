@@ -148,7 +148,11 @@ namespace ROMS
                         DGV_SearchGrid.Rows.Add();
                         for (int i = 0; i < visibleColumns.Count; i++)
                         {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            if (DGV_SearchGrid.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                            {
+                                DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            }
+                            else { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = ""; }
                         }
                     }
                 }
