@@ -94,7 +94,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62) //received credit note
+                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192) //received credit note
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
