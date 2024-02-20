@@ -930,6 +930,7 @@ namespace ROMS
                     DGV_SearchGrid.Rows.Clear();
                     DGV_SearchGrid.Rows.Add();
                     DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                    DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
                     for (int i = 1; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
