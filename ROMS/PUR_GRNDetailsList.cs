@@ -240,7 +240,7 @@ namespace ROMS
                             grdGRNList.Columns["Order Type"].Width = 100;
                             grdGRNList.Columns["Any Purchase Returns"].Width = 150;
                             grdGRNList.Columns["GRN Status"].Width = 130;
-                            grdGRNList.Columns["Overall Status"].Width = 130;
+                            grdGRNList.Columns["Overall Status"].Width = 350;
                             grdGRNList.Columns["GRNID"].Visible = false;
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
@@ -253,7 +253,7 @@ namespace ROMS
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             grdGRNList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
@@ -1371,6 +1371,7 @@ namespace ROMS
                 {
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["GRN Status"]; 
+                    DataGridViewCell cell3 = dataGridView.Rows[i].Cells["Overall Status"]; 
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "17")
                     {
                         cell.Style.BackColor = Color.Red;
@@ -1396,8 +1397,33 @@ namespace ROMS
                         DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"]; 
                         cell2.Value = new Bitmap(1, 1);
                         cell2.ReadOnly = true;
-                    } 
-                }
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN Status"].Value) == "")
+                    {
+                        cell3.Style.BackColor = Color.Red;
+                        cell3.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN Status"].Value) != "" && Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "17")
+                    {
+                        cell3.Style.BackColor = Color.RoyalBlue;
+                        cell3.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "44")
+                    {
+                        cell3.Style.BackColor = Color.DarkGreen;
+                        cell3.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "23" && Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "23" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "52" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "55")
+                    {
+                        cell3.Style.BackColor = Color.LimeGreen;
+                        cell3.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["stsid"].Value) == "44" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "55" && Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "23")
+                    {
+                        cell3.Style.BackColor = Color.DarkGreen;
+                        cell3.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                } 
             }
             catch (Exception ex)
             {
