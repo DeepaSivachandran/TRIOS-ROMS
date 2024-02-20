@@ -1149,6 +1149,22 @@ namespace ROMS
             }
         }
 
+        private void GrdDebitNoteList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
         {
             try
