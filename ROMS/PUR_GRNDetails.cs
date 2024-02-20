@@ -993,7 +993,7 @@ namespace ROMS
 
                         DataService objDser = new DataService();
                         objGRNProd.Rows.Add(Convert.ToInt32(pbGRNId), Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmProid"].Value),
-                        Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmUtid"].Value), "1", varMRP,
+                        Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmUtid"].Value),Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Value), varMRP,
                          0, 0, 0, Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchno"].Value),
                          ProShelflife, 0, POno
                         , varShelfPer, varTempExpiryDate
@@ -3452,7 +3452,7 @@ namespace ROMS
                                 string mrp = string.Format("{0:0.00}", varMRP);
                                 string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                                 string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
-                                grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(),"1",Convert.ToDecimal(mrp), (ExpiryDate).Trim()
+                                grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), txtInvoiceQty.Text.Trim(), Convert.ToDecimal(mrp), (ExpiryDate).Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag,0,varDecimal);
                                 udfnrowclear();
                                 varModifiedFlag = 1;
