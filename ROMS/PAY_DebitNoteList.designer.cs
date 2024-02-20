@@ -218,6 +218,7 @@
             this.grdDebitNoteList.TabIndex = 1110000989;
             this.grdDebitNoteList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDebitNoteList_CellDoubleClick);
             this.grdDebitNoteList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDebitNoteList_DataBindingComplete);
+            this.grdDebitNoteList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdDebitNoteList_KeyDown);
             // 
             // clmPrint
             // 

@@ -272,7 +272,7 @@ namespace ROMS
         {
             try
             {
-                if (varReturnDCID == 0)
+                if (varReturnDCID != 0)
                 {
                     if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
                     {
