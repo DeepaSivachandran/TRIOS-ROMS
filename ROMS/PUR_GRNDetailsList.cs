@@ -245,6 +245,7 @@ namespace ROMS
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
+                            grdGRNList.Columns["STSID"].Visible = false;
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
                             grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -325,7 +326,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRNID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_SPID"].Visible = false;
-                DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_INVSTSID"].Visible = false;
                 DGV_SearchGrid.Columns["clmPrint"].Visible = false;
                 DGV_SearchGrid.Columns["ClmEdit"].Visible = false; 
                 DGV_SearchGrid.Columns["Totallbl"].Visible = false;  
