@@ -387,7 +387,6 @@
             this.label11.Size = new System.Drawing.Size(75, 20);
             this.label11.TabIndex = 1111202;
             this.label11.Text = "Pending Qty";
-            this.label11.Visible = false;
             // 
             // txtInvoiceQty
             // 
@@ -1705,7 +1704,7 @@
             this.clmInvoiceQty.DefaultCellStyle = dataGridViewCellStyle14;
             this.clmInvoiceQty.HeaderText = "Pending Qty";
             this.clmInvoiceQty.Name = "clmInvoiceQty";
-            this.clmInvoiceQty.Width = 80;
+            this.clmInvoiceQty.Width = 90;
             // 
             // clmmrp
             // 

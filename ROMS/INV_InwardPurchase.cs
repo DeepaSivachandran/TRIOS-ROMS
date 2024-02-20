@@ -853,7 +853,9 @@ namespace ROMS
                                     txtVerifiedby2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 2"]);
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN User"]);
                                     lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN STS"]);
-                                    grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
+                                    grdGrnlist.Columns["Pending Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdGrnlist.Columns["Pending Qty"].ReadOnly = true;
+                                    //grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
                                     grdGrnlist.Columns["Verified BY 1"].Visible = false;
                                     grdGrnlist.Columns["Verified BY 2"].Visible = false;
                                     grdGrnlist.Columns["GRN_Date"].Visible = false;

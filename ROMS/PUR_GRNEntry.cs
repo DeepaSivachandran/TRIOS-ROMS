@@ -1166,6 +1166,50 @@ namespace ROMS
                             }
                         }
                     }
+                    if (txtInvoiceamt.Text.Trim() != "")
+                    {
+                        decimal Amount = Convert.ToDecimal(txtInvoiceamt.Text);
+                        if (Amount > Convert.ToDecimal(9999.99))
+                        {
+                            string[] values = new string[0];
+                            MR_Supplier objMR_Supplier = new MR_Supplier();
+                            objMR_Supplier.ViewType = 33;
+                            objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                            objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                            DataSet objDsSupplierId = new DataSet();
+                            SPDataService objDserv = new SPDataService();
+                            objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                            objDserv.CloseConnection();
+                            if (objDsSupplierId != null)
+                            {
+                                int VarSupplierType = 0;
+                                if (objDsSupplierId.Tables.Count > 0)
+                                {
+                                    if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                                    {
+                                        VarSupplierType = Convert.ToInt32(objDsSupplierId.Tables[0].Rows[0]["SP_SupplierType"]);
+                                    }
+                                    if (VarSupplierType == 32)
+                                    {
+                                        SPDataService objDServ = new SPDataService();
+                                        string varMessage = objDServ.udfnGetMessages(109);
+                                        objDServ.CloseConnection();
+
+                                        DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        if (dialogResult == DialogResult.Yes)
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            txtInvoiceamt.Focus();
+                                            VarErrorFlag = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     if (Convert.ToInt32(cmbOrderType.SelectedValue) == 53)
                     {
                         if (grdPODetails.Rows.Count == 0)
