@@ -950,7 +950,7 @@ namespace ROMS
             }
         }
         private void BtnAdd_Click(object sender, EventArgs e)
-        {
+            {
             try
             {
                 pbDateflag = 0;
@@ -1137,7 +1137,7 @@ namespace ROMS
                             string Qty = objValidation.udfnDecimal((txtConvertQty.Text), varDecimal);
                             txtConvertQty.Text = Qty;
                         }
-                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtConvertMrp.Text), (varExpiryDate).Trim(), (txtConvertBatch.Text).Trim(), (txtConvertQty.Text),varPRID,varRKID,varStockLocationId,varShelflife);
+                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtConvertMrp.Text), (varExpiryDate).Trim(), (txtConvertBatch.Text).Trim(), (txtConvertQty.Text),varPRID,varRKID,varStockLocationId,varShelflife,varDecimal);
                         dtStock.Rows.Add(Convert.ToDecimal((txtConvertQty.Text).Trim()),Convert.ToDecimal (txtConvertMrp.Text), (varExpiryDate).Trim(),Convert.ToInt32 ((txtConvertBatch.Text).Trim()));
                         grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1191,6 +1191,24 @@ namespace ROMS
                     txtProductName.BackColor=Color.White;
                     txtQty.BackColor = Color.White;
                 }
+                if(Convert.ToDecimal(txtQty.Text)==Convert.ToDecimal(changedQuantity))
+                {
+                    txtConvertMrp.Enabled = false;
+                    txtConvertBatch.Enabled = false;
+                    txtDay.Enabled = false;
+                    txtMonth.Enabled = false;
+                    txtYear.Enabled = false;
+                    txtConvertQty.Enabled = false;
+                    btnAdd.Enabled = false;
+                    epBatchConversion.Clear();
+                    txtConvertQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtConvertMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtConvertBatch.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtUnit3.Text = "";
+                }
             }
         }
         public void udfnClear()
@@ -1202,7 +1220,7 @@ namespace ROMS
                 txtConvertQty.Text = "";
                 txtDay.Text = "";
                 txtMonth.Text = "";
-                txtYear.Text = "";
+                txtYear.Text = "";            
             }
             catch (Exception ex)
             {
@@ -2313,6 +2331,7 @@ namespace ROMS
                             txtStock.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STKQty"]);
                             txtQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Qty"]);
                             varPICode = Convert.ToString(objDs.Tables[0].Rows[0]["PICode"]);
+                            varDecimal = Convert.ToInt32(objDs.Tables[0].Rows[0]["UT_Decimal"]);
                             totalQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Qty"]);
                             txtUnit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Unit"]);
                             txtUnit2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Unit"]);
@@ -2328,7 +2347,7 @@ namespace ROMS
                             {
                                 grdBatchConversion.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdBatchConversion.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo"]),
-                                Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife"]));
+                                Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]));
                                 dtStock.Rows.Add(Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo"]));
                                 sum += Convert.ToDecimal(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
                                 grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2375,6 +2394,24 @@ namespace ROMS
             finally
             {
                 grdBatchConversion.ClearSelection();
+                if(Convert.ToDecimal(totalQty.Text)==changedQuantity)
+                {
+                    txtConvertMrp.Enabled = false;
+                    txtConvertBatch.Enabled = false;
+                    txtDay.Enabled = false;
+                    txtMonth.Enabled = false;
+                    txtYear.Enabled = false;
+                    txtConvertQty.Enabled = false;
+                    btnAdd.Enabled = false;
+                    epBatchConversion.Clear();
+                    txtConvertQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtConvertMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtConvertBatch.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
+                    txtUnit3.Text = "";
+                }
             }
         }
         private void GrdBatchConversion_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -2443,6 +2480,24 @@ namespace ROMS
                     cmbConcern.Enabled = true;
                     txtProductName.BackColor = Color.White;
                 }
+                if (changedQuantity<Convert.ToDecimal(txtQty.Text))
+                {
+                    txtConvertMrp.Enabled = true;
+                    txtConvertBatch.Enabled = true;
+                    txtDay.Enabled = true;
+                    txtMonth.Enabled = true;
+                    txtYear.Enabled = true;
+                    txtConvertQty.Enabled = true;
+                    btnAdd.Enabled = true;
+                    txtConvertQty.BackColor = Color.White;
+                    txtConvertMrp.BackColor = Color.White;
+                    txtConvertBatch.BackColor = Color.White;
+                    txtDay.BackColor = Color.White;
+                    txtMonth.BackColor = Color.White;
+                    txtYear.BackColor = Color.White;
+                    txtUnit3.Text = txtUnit2.Text;
+                }
+
             }
         }
         public void udfnExpiryDateCheck()

@@ -268,6 +268,49 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDebitNoteVocherno()
+        {
+            try
+            {
+                if (varReturnDCID != 0)
+                {
+                    if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
+                    {
+                        string vardate = "", varResult = "";
+                        SPDataService objspdservice = new SPDataService();
+                        DataSet objDs = new DataSet();
+                        DataService objDservice = new DataService();
+                        vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpReturnDCDate.Text + "',103)");
+                        objDservice.CloseConnection();
+                        varResult = objspdservice.udfngetVoucherNo("47", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        objspdservice.CloseConnection();
+                        string[] parts = varResult.Split('~');
+                        string pono = parts[0];
+                        if (pono != "")
+                        {
+                            txtReturnDcNo.Text = pono;
+                        }
+                        else
+                        {
+                            varVoucherSkip = false;
+                            if (varDateChange == 0)
+                            {
+                                udfnvoucheradd();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        txtReturnDcNo.Text = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnvoucheradd()
         {
             try
@@ -812,6 +855,7 @@ namespace ROMS
                 txtReturnDcNo.Text = "";
                 varDateChange = 0;
                 udfnVocherno();
+                udfnDebitNoteVocherno();
             }
             catch (Exception ex)
             {
@@ -865,6 +909,7 @@ namespace ROMS
             {
                 varDateChange = 1;
                 udfnVocherno();
+                udfnDebitNoteVocherno();
             }
             catch (Exception ex)
             {

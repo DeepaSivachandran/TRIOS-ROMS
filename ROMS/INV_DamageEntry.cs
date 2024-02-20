@@ -2817,7 +2817,7 @@ namespace ROMS
                             else
                             {
                                 grdChecker.Rows[i].ReadOnly = false;
-                                grdChecker.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                                grdChecker.Rows[i].DefaultCellStyle.BackColor = Color.White;
                                 break;
                             }
                         }
@@ -2839,7 +2839,7 @@ namespace ROMS
                             else
                             {
                                 grdEmployee.Rows[i].ReadOnly = false;
-                                grdEmployee.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                                grdEmployee.Rows[i].DefaultCellStyle.BackColor = Color.White;
                                 break;
                             }
                         }

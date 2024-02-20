@@ -2916,6 +2916,8 @@ namespace ROMS
             {
                 if (varUpDownKey == 0)
                 {
+                    txtProductQty.Text = "";
+                    cmbUnit.Text = "";
                     if (VarSearchFlag == true)
                     {
                         txtProductName.CharacterCasing = CharacterCasing.Upper;
@@ -3177,6 +3179,8 @@ namespace ROMS
                 varUpDownKey = 1;
                 udfnGridviewProduct();
                 udfnPossibleSupplierLoad();
+                txtProductQty.Focus();
+
             }
             catch (Exception ex)
             {
