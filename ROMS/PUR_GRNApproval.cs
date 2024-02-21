@@ -16,7 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varSupplierID = 0,varScheduleID=0,varConcernID=0,varID=0;
-
+        decimal varInvoiceQty=0, VarReceivedQty=0, varPOID=0;
         public PUR_GRNApproval()
         {
             InitializeComponent();
@@ -366,7 +366,7 @@ namespace ROMS
                         {
                             grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]), Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]));
+                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["POID"]));
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGrnApproval.Columns["clmShelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -375,7 +375,11 @@ namespace ROMS
                             grdGrnApproval.Columns["clmreceivedqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmreturnqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmReason"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            grdGrnApproval.Columns["clmPOID"].Visible = false;
                             string[] varShelflifeper = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]).Split(' ');
+                            varInvoiceQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Qty"]);
+                            VarReceivedQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Received Qty"]);
+                            varPOID = Convert.ToInt32(objDs.Tables[0].Rows[i]["POID"]);
                             if (varShelflifeper[0] != "")
                             {
                                 if (Convert.ToDecimal(varShelflifeper[0]) > 24 && Convert.ToDecimal(varShelflifeper[0]) < 50)
@@ -404,6 +408,7 @@ namespace ROMS
                                     cell.Style.ForeColor = Color.Black;
                                 }
                             }
+                            udfnQtyCheck();    
                         }
                     }
                     if(objDs.Tables[1].Rows.Count>1)
@@ -424,6 +429,42 @@ namespace ROMS
             finally
             {
                 grdGrnApproval.ClearSelection();
+            }
+        }
+        public void udfnQtyCheck()
+        {
+            try
+            {
+                if (VarReceivedQty > varInvoiceQty)
+                {
+                    //Moccasin;
+                    DataGridView dataGridView = grdGrnApproval;
+                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmreceivedqty"];
+                    cell.Style.BackColor = Color.Moccasin;
+                    cell.Style.ForeColor = Color.Black;
+                    //txtORPercentageCheck.Enabled = true;
+                    //lblFivetyPercentage.Enabled = true;
+                }
+                else if (VarReceivedQty < varInvoiceQty)
+                {
+                    DataGridView dataGridView = grdGrnApproval;
+                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmreceivedqty"];
+                    cell.Style.BackColor = Color.MediumAquamarine;
+                    cell.Style.ForeColor = Color.Black;
+                }
+                if(varPOID==1)
+                {
+                    DataGridView dataGridView = grdGrnApproval;
+                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmproduct"];
+                    cell.Style.BackColor = Color.LightCoral;
+                    cell.Style.ForeColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }

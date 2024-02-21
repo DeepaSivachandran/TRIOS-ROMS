@@ -105,6 +105,7 @@
             this.clminvoiceqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreturnqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -759,6 +760,7 @@
             this.clminvoiceqty,
             this.clmreceivedqty,
             this.clmreturnqty,
+            this.clmPOID,
             this.clmReason});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -954,6 +956,12 @@
             this.clmreturnqty.Name = "clmreturnqty";
             this.clmreturnqty.ReadOnly = true;
             // 
+            // clmPOID
+            // 
+            this.clmPOID.HeaderText = "POID";
+            this.clmPOID.Name = "clmPOID";
+            this.clmPOID.Visible = false;
+            // 
             // clmReason
             // 
             this.clmReason.HeaderText = "Reason";
@@ -1068,6 +1076,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clminvoiceqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreceivedqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreturnqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPOID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReason;
     }
 }
