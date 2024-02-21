@@ -53,6 +53,7 @@ namespace ROMS
                 MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPID"].Value);
                 MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPSCID"].Value);
                 MainForm.objINV_InwardPurchase.varStausId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value);
+                MainForm.objINV_InwardPurchase.varGRNPurchaseFlag = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_TypeID"].Value);
                 MainForm.objINV_InwardPurchase.varEditFlag = 1;
                 MainForm.objINV_InwardPurchase.varRemarkFlag = 1;
                 MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Concern"].Value);
@@ -671,6 +672,7 @@ namespace ROMS
                                 grdInwardList.Columns["Purchase ID"].Visible = false;
                                 grdInwardList.Columns["GIP_COMID"].Visible = false;
                                 grdInwardList.Columns["GIP_SLID"].Visible = false;
+                                grdInwardList.Columns["GIP_TypeID"].Visible = false;
                                 grdInwardList.Columns["SPID"].Visible = false;
                                 grdInwardList.Columns["GIPID"].Visible = false;
                                 grdInwardList.Columns["GIP_Date"].Visible = false;

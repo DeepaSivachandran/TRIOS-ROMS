@@ -778,10 +778,10 @@ namespace ROMS
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
                                 if (varEditFlag == 0)
                                 {
-                                    grdGrnlist.Columns["U_Name"].Visible = false;
+                                    //grdGrnlist.Columns["U_Name"].Visible = false;
                                 }
-                                    grdGrnlist.Columns["STS_Name"].Visible = false;
-                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
+                                    //grdGrnlist.Columns["STS_Name"].Visible = false;
+                                    //lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
                                 
                                 if (varGRNPurchaseFlag == 3) //from Purchase DC
                                 {
@@ -789,12 +789,15 @@ namespace ROMS
                                     txtDGRNNo.Text = "DC No.";
                                     dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Date"]);
                                     txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_No"]);
-                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["U_Name"]);
+                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC User"]);
+                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC STS"]);
                                     grdGrnlist.Columns["DC Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["DC Qty"].Width = 100;
                                     grdGrnlist.Columns["DC Qty"].ReadOnly = true;
                                     grdGrnlist.Columns["DC_No"].Visible = false;
                                     grdGrnlist.Columns["DC_Date"].Visible = false;
+                                    grdGrnlist.Columns["DC User"].Visible = false;
+                                    grdGrnlist.Columns["DC STS"].Visible = false;
                                 }
                                 if (varGRNPurchaseFlag == 2) //from  Purchase
                                 {
@@ -805,6 +808,8 @@ namespace ROMS
                                         txtDGRNNo.Text = "GRN No.";
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN_No"]);
+                                        txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN User"]);
+                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN STS"]);
                                     }
                                     if (PurEntryType == "55") // Against PO
                                     {
@@ -812,6 +817,8 @@ namespace ROMS
                                         txtDGRNNo.Text = "PO No.";
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO_No"]);
+                                        txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO User"]);
+                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO STS"]);
                                     }
                                     if (PurEntryType == "57") // Against DC
                                     {
@@ -819,12 +826,18 @@ namespace ROMS
                                         txtDGRNNo.Text = "DC No.";
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC_No"]);
+                                        txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC User"]);
+                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC STS"]);
+
                                     }
-                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["U_Name"]);
+                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR STS"]);
+                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR User"]);
                                     grdGrnlist.Columns["Invoice Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["Invoice Qty"].Width = 120;
                                     grdGrnlist.Columns["Invoice Qty"].ReadOnly = true;
                                     grdGrnlist.Columns["PUR_EntryType"].Visible = false;
+                                    grdGrnlist.Columns["PUR STS"].Visible = false;
+                                    grdGrnlist.Columns["PUR User"].Visible = false;
                                 }
                                 if (varGRNPurchaseFlag == 1) //from  grn
                                 {
@@ -838,12 +851,15 @@ namespace ROMS
                                     txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_No"]);
                                     txtVerifiedby1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 1"]);
                                     txtVerifiedby2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 2"]);
-                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["U_Name"]);
+                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN User"]);
+                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN STS"]);
                                     grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
                                     grdGrnlist.Columns["Verified BY 1"].Visible = false;
                                     grdGrnlist.Columns["Verified BY 2"].Visible = false;
                                     grdGrnlist.Columns["GRN_Date"].Visible = false;
                                     grdGrnlist.Columns["GRN_No"].Visible = false;
+                                    grdGrnlist.Columns["GRN User"].Visible = false;
+                                    grdGrnlist.Columns["GRN STS"].Visible = false;
                                 }
                                 else
                                 {
@@ -852,19 +868,66 @@ namespace ROMS
                                     textBox5.Visible = false;
                                     txtVerifiedby2.Visible = false;
                                 }
-                                //if (varEditFlag==0)
-                                //{
-                                //    grdGrnlist.Columns["GRNPR_PRID"].Visible = false;
-                                //    grdGrnlist.Columns["GRNPR_UTID"].Visible = false;
-                                //    grdGrnlist.Columns["PR_PUR_SLID"].Visible = false;
-                                //    grdGrnlist.Columns["PR_PUR_RKID"].Visible = false;
-                                //    grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
-                                //    grdGrnlist.Columns["GRNPRID"].Visible = false;
-                                //}
-                                //else
+                                if (varGRNPurchaseFlag == 174) //from  grn
+                                {
+                                    textBox4.Visible = true;
+                                    txtVerifiedby1.Visible = true;
+                                    textBox5.Visible = true;
+                                    txtVerifiedby2.Visible = true;
+                                    txtDGRNDate.Text = "GRN Date";
+                                    txtDGRNNo.Text = "GRN No.";
+                                    dpGRNDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN_Date"]);
+                                    txtGRNNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN_No"]);
+                                    txtVerifiedby1.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 1"]);
+                                    txtVerifiedby2.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 2"]);
+                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN User"]);
+                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN STS"]);
+                                    grdGrnlist.Columns["PUR_EntryType"].Visible = false;
+                                }
+                                if (varGRNPurchaseFlag == 175) //from  Purchase
+                                {
+                                    string PurEntryType = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_EntryType"]);
+                                    if (PurEntryType == "54") // Against GRN
+                                    {
+                                        txtDGRNDate.Text = "GRN Date";
+                                        txtDGRNNo.Text = "GRN No.";
+                                        dpGRNDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN_Date"]);
+                                        txtGRNNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN_No"]);
+                                        txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN User"]);
+                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN STS"]);
+                                    }
+                                    if (PurEntryType == "55") // Against PO
+                                    {
+                                        txtDGRNDate.Text = "PO Date";
+                                        txtDGRNNo.Text = "PO No.";
+                                        dpGRNDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PO_Date"]);
+                                        txtGRNNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PO_No"]);
+                                        txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PO User"]);
+                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PO STS"]);
+                                    }
+                                    if (PurEntryType == "57") // Against DC
+                                    {
+                                        txtDGRNDate.Text = "DC Date";
+                                        txtDGRNNo.Text = "DC No.";
+                                        dpGRNDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC_Date"]);
+                                        txtGRNNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC_No"]);
+                                        txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC User"]);
+                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC STS"]);
+                                    }
+                                    grdGrnlist.Columns["PUR_EntryType"].Visible = false;
+                                }
+                                if (varGRNPurchaseFlag == 187) //from  Purchase
+                                {
+                                    txtDGRNDate.Text = "DC Date";
+                                    txtDGRNNo.Text = "DC No.";
+                                    dpGRNDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC_Date"]);
+                                    txtGRNNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC_No"]);
+                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC User"]);
+                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC STS"]);
+                                    grdGrnlist.Columns["PUR_EntryType"].Visible = false;
+                                }
                                 if (varEditFlag==1)
                                 {
-                                    //grdGrnlist.Columns["Invoice Received Qty"].Visible = false;
                                     grdGrnlist.Columns["GIPPR_GIPID"].Visible = false;
                                     if(varStausId==46)
                                     {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,8 @@ namespace ROMS
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+        [HandleProcessCorruptedStateExceptions]
+        [SecurityCritical]
         public static void Main()
         {
             try
