@@ -1084,7 +1084,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["DMID"].Visible = false;
-                DGV_SearchGrid.Columns["clmPrint"].Visible = false;
+                //DGV_SearchGrid.Columns["clmPrint"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Status"].Width = 120;
                 DGV_SearchGrid.Columns["Employees"].Width = 300;
