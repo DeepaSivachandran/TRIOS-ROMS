@@ -40,6 +40,7 @@ namespace ROMS.Model
         public int paraID { get; set; } =0;
         public DataTable paraGRNProd { get; set; } =null;
         public byte[] paraQrimg { get; set; } =null;
+        public int paraSaveFlag { get; set; } = 0;
 
     }
 }
