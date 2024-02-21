@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
         public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
-        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0,varClose=0,varDateChange=0;
+        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0,varClose=0,varDateChange=0,ParaSupplierAMT = 0;
         public PUR_GRNEntry()
         {
             InitializeComponent();
@@ -1166,50 +1166,6 @@ namespace ROMS
                             }
                         }
                     }
-                    if (txtInvoiceamt.Text.Trim() != "")
-                    {
-                        decimal Amount = Convert.ToDecimal(txtInvoiceamt.Text);
-                        if (Amount > Convert.ToDecimal(9999.99))
-                        {
-                            string[] values = new string[0];
-                            MR_Supplier objMR_Supplier = new MR_Supplier();
-                            objMR_Supplier.ViewType = 33;
-                            objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
-                            objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
-                            DataSet objDsSupplierId = new DataSet();
-                            SPDataService objDserv = new SPDataService();
-                            objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
-                            objDserv.CloseConnection();
-                            if (objDsSupplierId != null)
-                            {
-                                int VarSupplierType = 0;
-                                if (objDsSupplierId.Tables.Count > 0)
-                                {
-                                    if (objDsSupplierId.Tables[0].Rows.Count > 0)
-                                    {
-                                        VarSupplierType = Convert.ToInt32(objDsSupplierId.Tables[0].Rows[0]["SP_SupplierType"]);
-                                    }
-                                    if (VarSupplierType == 32)
-                                    {
-                                        SPDataService objDServ = new SPDataService();
-                                        string varMessage = objDServ.udfnGetMessages(109);
-                                        objDServ.CloseConnection();
-
-                                        DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                        if (dialogResult == DialogResult.Yes)
-                                        {
-
-                                        }
-                                        else
-                                        {
-                                            txtInvoiceamt.Focus();
-                                            VarErrorFlag = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
                     if (Convert.ToInt32(cmbOrderType.SelectedValue) == 53)
                     {
                         if (grdPODetails.Rows.Count == 0)
@@ -1350,6 +1306,7 @@ namespace ROMS
                                     objTRNS_GRN.paraPAckage = varpakage;
                                     objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                     objTRNS_GRN.paraSkipped = varSkip;
+                                    objTRNS_GRN.paraID = ParaSupplierAMT;
                                     result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                     objspdservice.CloseConnection();
                                     string[] varvalue = result.Split('~');
@@ -1428,7 +1385,22 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        if(varvalue[0]=="5")
+                                        {
+                                            DialogResult dialogResult = MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                            if (dialogResult == DialogResult.Yes)
+                                            {
+                                                ParaSupplierAMT = 1;
+                                            }
+                                            else
+                                            {
+                                                txtInvoiceamt.Focus();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
                                     }
                                     //this.ActiveControl = txtSupplier;
                                 }

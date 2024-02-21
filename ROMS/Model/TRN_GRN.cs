@@ -37,6 +37,7 @@ namespace ROMS.Model
         public int paraStatus { get; set; } =0;
         public int paraDeleteFlag { get; set; } =0;
         public int ParaEditFlag { get; set; } =0;
+        public int paraID { get; set; } =0;
         public DataTable paraGRNProd { get; set; } =null;
         public byte[] paraQrimg { get; set; } =null;
 

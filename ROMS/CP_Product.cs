@@ -5480,7 +5480,36 @@ namespace ROMS
                         }
                     }
                 }
-                if(pbFormStatus==2)
+                if (varproductcode != 0)
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        MR_Product objMR_Product = new MR_Product();
+                        objMR_Product.paraViewType = 57;
+                        objMR_Product.ParaProductCode = varproductcode;
+                        SPDataService objspservice = new SPDataService();
+                        DataSet objDS;
+                        objDS = objdserv.udfnproductmasterlist(objMR_Product);
+                        objdserv.CloseConnection();
+                        if (objDS != null)
+                        {
+                            int PO_Status = 0;
+                            if (objDS.Tables[0].Rows.Count > 0)
+                            {
+                                PO_Status =Convert.ToInt32(objDS.Tables[0].Rows[0]["PO_CurrentSTSID"].ToString());
+                                if(PO_Status==12)
+                                {
+                                    pnlStatus.Enabled = false;
+                                }
+                                else
+                                {
+                                    pnlStatus.Enabled = true;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (pbFormStatus==2)
                 {
                     udfnDisable();
                 }
