@@ -35,7 +35,7 @@ namespace ROMS
 
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0, varModifiedFlag = 0, varUpDownKey=0, varDecimal=0;
         public bool VarSearchFlag = true;
-        public int PbVerified = 0;
+        public int PbVerified = 0,ParaSupplierAMT = 0;
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -714,6 +714,10 @@ namespace ROMS
                             objTRNS_GRN1.ViewType = 3;
                             objTRNS_GRN1.ParaGRNID = Convert.ToInt32(pbGRNId);
                             objTRNS_GRN1.paraGRNDate = dpGrnDate.Text;
+                            objTRNS_GRN1.paraSupplierID =Convert.ToInt32(lblSupplierCode.Text);
+                            objTRNS_GRN1.paraScheduleID =Convert.ToInt32(lblschedule.Text);
+                            objTRNS_GRN1.paraID = ParaSupplierAMT;
+                            objTRNS_GRN1.paraSaveFlag = 0;
                             objTRNS_GRN1.paraGRNProd = objGRNProd;
                             result2 = objspdservice.udfnGRNEntry(objTRNS_GRN1);
                             objspdservice.CloseConnection();
@@ -737,6 +741,10 @@ namespace ROMS
                                     objTRNS_GRN.ParaPurchaseDC = varPurchaseDC;
                                     objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                     objTRNS_GRN.paraRemarks = txtRemark.Text;
+                                    objTRNS_GRN.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                                    objTRNS_GRN.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                                    objTRNS_GRN.paraID = ParaSupplierAMT;
+                                    objTRNS_GRN.paraSaveFlag = 0;
                                     objTRNS_GRN.paraSkipped = varSkip;
                                     objTRNS_GRN.paraGRNProd = objGRNProd;
                                     objTRNS_GRN.paraGRNDate = dpGrnDate.Text;
