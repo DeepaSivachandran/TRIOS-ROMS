@@ -2345,19 +2345,22 @@ namespace ROMS
                             e.Handled = true;
                         }
                     }
-                    if(grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPOqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty"
-                        || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiffqty"
-                        || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscAmt" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer"
-                        ||  grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPurchaseRate")
+                    if (grdPurchaseList.Rows.Count > 0)
                     {
-                        if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                        if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPOqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty"
+                            || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiffqty"
+                            || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscAmt" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer"
+                            || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPurchaseRate")
                         {
-                            e.Handled = true;
-                        }
-                        //only allow one decimal point
-                        if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-                        {
-                            e.Handled = true;
+                            if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                            {
+                                e.Handled = true;
+                            }
+                            //only allow one decimal point
+                            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                            {
+                                e.Handled = true;
+                            }
                         }
                     }
                 }
