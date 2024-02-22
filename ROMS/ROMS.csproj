@@ -373,6 +373,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_ReturnDC_SupplierWise.cs">
+      <DependentUpon>RPT_PUR_ReturnDC_SupplierWise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Supplier_Detail.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -702,6 +709,13 @@
       <DependentUpon>RPT_TP_INV_Shop_Stock_Issued.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_TP_PUR_ReturnDC.cs">
+      <DependentUpon>RPT_TP_PUR_ReturnDC.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_TP_INV_Shop_Stock_Request_Transfer.cs">
       <DependentUpon>RPT_TP_INV_Shop_Stock_Request_Transfer.rpt</DependentUpon>
@@ -2012,6 +2026,11 @@
       <LastGenOutput>RPT_INV_Damage_Supplier_DamageEntry_Wise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_ReturnDC_SupplierWise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_ReturnDC_SupplierWise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_INV_Damage_Supplier_Detail.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_INV_Damage_Supplier_Detail.cs</LastGenOutput>
@@ -2195,6 +2214,11 @@
     <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Issued.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Issued.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_PUR_ReturnDC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_PUR_ReturnDC.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Request_Transfer.rpt">
