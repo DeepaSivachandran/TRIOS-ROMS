@@ -744,7 +744,6 @@ namespace ROMS
                                     objTRNS_GRN.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                                     objTRNS_GRN.paraScheduleID = Convert.ToInt32(lblschedule.Text);
                                     objTRNS_GRN.paraID = ParaSupplierAMT;
-                                    objTRNS_GRN.paraSaveFlag = 1;
                                     objTRNS_GRN.paraSkipped = varSkip;
                                     objTRNS_GRN.paraGRNProd = objGRNProd;
                                     objTRNS_GRN.paraGRNDate = dpGrnDate.Text;
@@ -787,7 +786,8 @@ namespace ROMS
                                             objTRNS_GRN.paraStatus = 23;
                                         }
                                     }
-                                   K: result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                                   K: objTRNS_GRN.paraSaveFlag = 0; 
+                                    result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                     objspdservice.CloseConnection();
                                     string[] varvalue = result.Split('~');
                                 if (result.Split('~')[1] == "1")
@@ -798,6 +798,7 @@ namespace ROMS
                                     varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
                                     if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
                                     {
+                                        objTRNS_GRN.paraSaveFlag = 1;
                                         result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                         objspdservice.CloseConnection();
                                         varvalue = result.Split('~');
