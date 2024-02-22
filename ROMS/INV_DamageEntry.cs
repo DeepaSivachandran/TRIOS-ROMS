@@ -323,12 +323,12 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnEmployeeList(9, "", 0, "", 1, 0, 0);
                 objdserv.CloseConnection();
-                if (objDs.Tables[0].Rows.Count != 0)
+                if (objDs.Tables[1].Rows.Count != 0)
                 {
-                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                     {
-                        dtChecker.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Employee Code"], objDs.Tables[0].Rows[i]["Employee Name"],
-                           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"], objDs.Tables[0].Rows[i]["CT_SINO"]);
+                        dtChecker.Rows.Add(false, objDs.Tables[1].Rows[i]["S.No."], objDs.Tables[1].Rows[i]["Employee Code"], objDs.Tables[1].Rows[i]["Employee Name"],
+                           objDs.Tables[1].Rows[i]["Employee Category"], objDs.Tables[1].Rows[i]["EMPID"], objDs.Tables[1].Rows[i]["CT_SINO"]);
                     }
                 }
                 //if (objDs.Tables[0].Rows.Count != 0)

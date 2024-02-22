@@ -15,13 +15,13 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        public DataTable dtModules = new DataTable();
         private ToolTip tpempname = new ToolTip();
         private ToolTip tpempcode = new ToolTip();
         private ToolTip tpUserCategory  = new ToolTip();
         public string PbDefault;
         public int varstatus;
-        public string varEmpID ="";
+        public string varEmpID ="",varModules = "";
         public string PbNameoftheUser = "";
         public string PbEmpCode = "";
         public string PbUserCategory = "";
@@ -224,7 +224,7 @@ namespace ROMS
                 {
                     varEmpID = "0";
                 }
-                varResult = objspservice.udfnEmployee(varViewType, Convert.ToInt32( varEmpID), (txtEmpCode.Text).Trim(), (txtEmpName.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), varstatus, varoriginator,MainForm.pbUserID,0);
+                varResult = objspservice.udfnEmployee(varViewType, Convert.ToInt32( varEmpID), (txtEmpCode.Text).Trim(), (txtEmpName.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), varstatus, varoriginator,MainForm.pbUserID,0,varModules);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -264,6 +264,7 @@ namespace ROMS
         {
             try
             {
+                varModules = "";
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtEmpCode.Text).Trim() == "")
                 {
@@ -289,6 +290,34 @@ namespace ROMS
                     tpUserCategory.Show("Please select employee category", cmbUserCategory, 5000);
                     blnErrorFlag = true;
                 }
+                string varCheckModule = "0";
+                if (grdModules.Rows.Count > 0)
+                {
+                    grdModules.DataSource = dtModules;
+                    for (int i = 0; i < grdModules.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdModules.Rows[i].Cells[0].Value) == true)
+                        {
+                            varCheckModule = "1";
+                            if (varModules == "")
+                            {
+                                varModules = Convert.ToString(grdModules.Rows[i].Cells["MID"].Value);
+                            }
+                            else
+                            {
+                                varModules = varModules + ',' + Convert.ToString(grdModules.Rows[i].Cells["MID"].Value);
+                            }
+                        }
+                    }
+                }
+                if (varCheckModule == "0")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(101);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -309,6 +338,9 @@ namespace ROMS
         {
             txtEmpCode.Text = "";
             txtEmpName.Text = "";
+            grdModules.Refresh();
+            grdModules.DataSource = null;
+            udfnModuleload();
             cmbUserCategory.SelectedIndex = 0;
             rbActive.Checked = true;
             btnSave.Text = "Save";
@@ -392,6 +424,12 @@ namespace ROMS
         {
             try
             {
+                dtModules = new DataTable();
+                dtModules.Columns.Add("", typeof(Boolean));
+                dtModules.Columns.Add("MID", typeof(string));
+                dtModules.Columns.Add("M_Name", typeof(string));
+
+                udfnModuleload();
                 txtEmpCode.Focus();
                 this.ActiveControl = txtEmpCode;
                 DataSet objDs = new DataSet();
@@ -429,7 +467,7 @@ namespace ROMS
                     {
                         pnlStatus.Enabled = true;
                     }
-                    udfnLoad();
+                    udfnEditLoad();
                 }
             }
             catch (Exception ex)
@@ -441,7 +479,44 @@ namespace ROMS
             {
             }
         }
-        private void udfnLoad()
+        public void udfnModuleload()
+        {
+            try
+            {
+                dtModules.Rows.Clear();
+                Application.DoEvents();
+                grdModules.DataSource = null;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnEmployeeList(11, "", 0, "", 1,0,0);
+                objdserv.CloseConnection();
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        dtModules.Rows.Add(false, objDs.Tables[0].Rows[i]["MID"], objDs.Tables[0].Rows[i]["M_Name"]);
+                    }
+                }
+                grdModules.DataSource = null;
+                grdModules.DataSource = dtModules;
+                grdModules.Columns[0].HeaderText = "";
+                grdModules.Columns[0].Width = 30;
+                grdModules.Columns["MID"].Visible = false;
+                grdModules.Columns["M_Name"].Width = 150;
+                grdModules.Columns["M_Name"].ReadOnly = true;
+                grdModules.Columns["M_Name"].HeaderText = "Modules";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdModules.ClearSelection();
+            }
+        }
+        private void udfnEditLoad()
         {
             try
             {   
@@ -452,6 +527,29 @@ namespace ROMS
                 if(PbStatus==2)
                 {
                     udfnDisable();
+                }
+                for (int i = 0; i < grdModules.Rows.Count; i++)
+                {
+                    string[] Modules= varModules.Split(',');
+                    for (int j = 0; j < Modules.Count(); j++)
+                    {
+                        if (Convert.ToString(grdModules.Rows[i].Cells["MID"].Value) == Convert.ToString(Modules[j]))
+                        {
+                            grdModules.Rows[i].Cells[0].Value = true;
+                        }
+                    }
+                }
+                if (Convert.ToBoolean(grdModules.Rows[2].Cells[0].Value) == true)
+                {
+                    grdModules.Rows[3].ReadOnly = true;
+                    grdModules.Rows[3].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdModules.ClearSelection();
+                }
+                if (Convert.ToBoolean(grdModules.Rows[3].Cells[0].Value) == true)
+                {
+                    grdModules.Rows[2].ReadOnly = true;
+                    grdModules.Rows[2].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdModules.ClearSelection();
                 }
             }
             catch (Exception ex)
@@ -639,6 +737,40 @@ namespace ROMS
                         e.Cancel = true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdModules_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                 if (Convert.ToBoolean(grdModules.Rows[2].Cells[0].Value) == true)
+                 {
+                     grdModules.Rows[3].ReadOnly = true;
+                     grdModules.Rows[3].DefaultCellStyle.BackColor = Color.LightGray;
+                     grdModules.ClearSelection();
+                 }
+                 else
+                 {
+                     grdModules.Rows[3].ReadOnly = false;
+                     grdModules.Rows[3].DefaultCellStyle.BackColor = Color.White;
+                 }
+                 if (Convert.ToBoolean(grdModules.Rows[3].Cells[0].Value) == true)
+                 {
+                     grdModules.Rows[2].ReadOnly = true;
+                     grdModules.Rows[2].DefaultCellStyle.BackColor = Color.LightGray;
+                     grdModules.ClearSelection();
+                 }
+                 else
+                 {
+                     grdModules.Rows[2].ReadOnly = false;
+                     grdModules.Rows[2].DefaultCellStyle.BackColor = Color.White;
+                 }
             }
             catch (Exception ex)
             {

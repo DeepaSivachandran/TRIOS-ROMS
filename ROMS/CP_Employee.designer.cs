@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Employee));
             this.txtDLoginID = new System.Windows.Forms.TextBox();
             this.txtEmpName = new System.Windows.Forms.TextBox();
@@ -45,9 +48,13 @@
             this.cmbUserCategory = new System.Windows.Forms.ComboBox();
             this.txtDUserCategory = new System.Windows.Forms.TextBox();
             this.epUser = new System.Windows.Forms.ErrorProvider(this.components);
+            this.grdModules = new System.Windows.Forms.DataGridView();
+            this.grbModules = new System.Windows.Forms.GroupBox();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdModules)).BeginInit();
+            this.grbModules.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDLoginID
@@ -156,7 +163,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(327, 144);
+            this.btnSave.Location = new System.Drawing.Point(575, 338);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 9;
@@ -172,7 +179,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(417, 144);
+            this.btnClose.Location = new System.Drawing.Point(665, 338);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 10;
@@ -185,6 +192,7 @@
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.grbModules);
             this.grbForm.Controls.Add(this.btnNew);
             this.grbForm.Controls.Add(this.cmbUserCategory);
             this.grbForm.Controls.Add(this.txtDUserCategory);
@@ -198,7 +206,7 @@
             this.grbForm.Controls.Add(this.txtEmpCode);
             this.grbForm.Location = new System.Drawing.Point(17, 4);
             this.grbForm.Name = "grbForm";
-            this.grbForm.Size = new System.Drawing.Size(525, 184);
+            this.grbForm.Size = new System.Drawing.Size(757, 373);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
@@ -244,12 +252,64 @@
             // 
             this.epUser.ContainerControl = this;
             // 
+            // grdModules
+            // 
+            this.grdModules.AllowUserToAddRows = false;
+            this.grdModules.AllowUserToDeleteRows = false;
+            this.grdModules.AllowUserToResizeRows = false;
+            this.grdModules.BackgroundColor = System.Drawing.Color.White;
+            this.grdModules.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdModules.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdModules.ColumnHeadersHeight = 30;
+            this.grdModules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdModules.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdModules.EnableHeadersVisualStyles = false;
+            this.grdModules.GridColor = System.Drawing.Color.White;
+            this.grdModules.Location = new System.Drawing.Point(6, 26);
+            this.grdModules.Name = "grdModules";
+            this.grdModules.RowHeadersVisible = false;
+            this.grdModules.RowHeadersWidth = 70;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdModules.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdModules.RowTemplate.Height = 25;
+            this.grdModules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdModules.ShowRowErrors = false;
+            this.grdModules.Size = new System.Drawing.Size(205, 287);
+            this.grdModules.TabIndex = 514;
+            this.grdModules.TabStop = false;
+            this.grdModules.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdModules_CurrentCellDirtyStateChanged);
+            // 
+            // grbModules
+            // 
+            this.grbModules.Controls.Add(this.grdModules);
+            this.grbModules.Location = new System.Drawing.Point(523, 13);
+            this.grbModules.Name = "grbModules";
+            this.grbModules.Size = new System.Drawing.Size(217, 319);
+            this.grbModules.TabIndex = 515;
+            this.grbModules.TabStop = false;
+            this.grbModules.Text = "Modules";
+            // 
             // CP_Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(566, 193);
+            this.ClientSize = new System.Drawing.Size(790, 389);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -270,6 +330,8 @@
             this.grbForm.ResumeLayout(false);
             this.grbForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdModules)).EndInit();
+            this.grbModules.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -291,5 +353,7 @@
         public System.Windows.Forms.Button btnSave;
         internal System.Windows.Forms.Label btnNew;
         public System.Windows.Forms.TextBox txtEmpCode;
+        private System.Windows.Forms.GroupBox grbModules;
+        public System.Windows.Forms.DataGridView grdModules;
     }
 }
