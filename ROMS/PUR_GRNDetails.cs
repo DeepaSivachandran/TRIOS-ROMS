@@ -744,7 +744,7 @@ namespace ROMS
                                     objTRNS_GRN.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                                     objTRNS_GRN.paraScheduleID = Convert.ToInt32(lblschedule.Text);
                                     objTRNS_GRN.paraID = ParaSupplierAMT;
-                                    objTRNS_GRN.paraSaveFlag = 0;
+                                    objTRNS_GRN.paraSaveFlag = 1;
                                     objTRNS_GRN.paraSkipped = varSkip;
                                     objTRNS_GRN.paraGRNProd = objGRNProd;
                                     objTRNS_GRN.paraGRNDate = dpGrnDate.Text;
