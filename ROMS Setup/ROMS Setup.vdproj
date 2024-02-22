@@ -2602,8 +2602,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ROMS"
-        "ProductCode" = "8:{C8CECE5C-5417-423D-93FC-F379CF316D94}"
-        "PackageCode" = "8:{23F30CE8-E01B-4176-B734-03F0BEC907B8}"
+        "ProductCode" = "8:{11013AD9-B416-4D8A-A07D-F5BC7C41DF29}"
+        "PackageCode" = "8:{782C94F1-921E-4E6B-87F9-8499C8C85ADA}"
         "UpgradeCode" = "8:{FC2AE767-A3BF-4189-A07F-0B601778A960}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

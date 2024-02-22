@@ -1320,7 +1320,8 @@ namespace ROMS
                                         {
                                             objTRNS_GRN.paraSaveFlag = 1;
                                             result = objspdservice.udfnGRNEntry(objTRNS_GRN);
-                                            varvalue = result.Split('~');
+                                        objspdservice.CloseConnection();
+                                        varvalue = result.Split('~');
                                             if (varvalue[0] == "3")
                                             {
                                                 MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
