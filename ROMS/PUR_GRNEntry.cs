@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
         public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
-        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0,varClose=0,varDateChange=0;
+        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0,varClose=0,varDateChange=0,ParaSupplierAMT = 0;
         public PUR_GRNEntry()
         {
             InitializeComponent();
@@ -1236,12 +1236,12 @@ namespace ROMS
 
                         if (result1 == DialogResult.Yes)
                         {
-                            MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
-                            MainForm.objPUR_GRNApprovalVerify.varTrnType = 2;
-                            MainForm.objPUR_GRNApprovalVerify.ShowDialog();
-                            if (varflag == "1")
-                            {
-                                if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
+                            //MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                            //MainForm.objPUR_GRNApprovalVerify.varTrnType = 2;
+                            //MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+                            //if (varflag == "1")
+                            //{
+                               K:if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
                                 {
                                     for (int i = 0; i < grdReurnDC.Rows.Count; i++)
                                     {
@@ -1306,89 +1306,128 @@ namespace ROMS
                                     objTRNS_GRN.paraPAckage = varpakage;
                                     objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                     objTRNS_GRN.paraSkipped = varSkip;
+                                    objTRNS_GRN.paraID = ParaSupplierAMT;
+                                    objTRNS_GRN.paraSaveFlag = 0;
                                     result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                     objspdservice.CloseConnection();
                                     string[] varvalue = result.Split('~');
-                                    if (varvalue[0] == "3")
+                                    if (result.Split('~')[1] == "1")
                                     {
-                                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                        if (pbGRNId == "0")
+                                        MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                                        MainForm.objPUR_GRNApprovalVerify.varTrnType = 2;
+                                        MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+                                        if (varflag == "1")
                                         {
-                                            GrnUpdatevalue = varvalue[2];
-                                            string varQrcode = varvalue[3];
-                                            var varImgMemoryStream = new MemoryStream();
-                                            QrcodeImg.Text = varQrcode;
-                                            QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
-                                            varobjBarCodeByte = varImgMemoryStream.GetBuffer();
-                                            objTRNS_GRN.ViewType = 5;
-                                            objTRNS_GRN.ParaGRNID = Convert.ToInt32(GrnUpdatevalue);
-                                            objTRNS_GRN.paraQrimg = (varobjBarCodeByte);
+                                            objTRNS_GRN.paraSaveFlag = 1;
                                             result = objspdservice.udfnGRNEntry(objTRNS_GRN);
-                                            objspdservice.CloseConnection();
-                                        }
-                                        else
-                                        {
-                                            GrnUpdatevalue = Convert.ToString(pbGRNId);
-                                        }
-                                        this.ActiveControl = txtSupplier;
-                                        MainForm.objPUR_GRNDetailsList.udfnListLoad();
-                                        varCloseFlag = 1;
-
-                                        SPDataService objdserv = new SPDataService();
-                                        objDs = objdserv.udfnGrnListLoad(5, 0, 0, 0, 0, "", "", Convert.ToInt32(GrnUpdatevalue), 0, 0, "", "", 0, 0, "0","");
-                                        objdserv.CloseConnection();
-                                        if (objDs.Tables.Count != 0)
-                                        {
-                                            if (objDs.Tables[0].Rows.Count != 0)
+                                            varvalue = result.Split('~');
+                                            if (varvalue[0] == "3")
                                             {
-                                                if (Convert.ToString(objDs.Tables[0].Rows[0]["TOT"]) != "0")
+                                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                if (pbGRNId == "0")
                                                 {
-                                                    string varMessage = objDServ.udfnGetMessages(87);
-                                                    objDServ.CloseConnection();
-                                                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                                    if (result1 == DialogResult.Yes)
-                                                    {
-                                                        try
-                                                        {
-                                                            string varHeader = "";
-                                                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_LP_GRN_QRCode.rpt");
-                                                            objBillreport.SetParameterValue("paraGRNID", GrnUpdatevalue);
-                                                            objValidation.CrySqlConnection(objBillreport);
-
-                                                            MainForm.objReportLoad = new ReportLoad();
-                                                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                                            MainForm.objReportLoad.Text = varHeader;
-                                                            MainForm.objReportLoad.ShowDialog();
-                                                        }
-                                                        catch (Exception ex)
-                                                        {
-                                                            objError = new DataError();
-                                                            objError.WriteFile(ex);
-                                                        }
-                                                        udfnclose();
-                                                    }
-                                                    else
-                                                    {
-                                                        udfnclose();
-                                                    }
+                                                    GrnUpdatevalue = varvalue[2];
+                                                    string varQrcode = varvalue[3];
+                                                    var varImgMemoryStream = new MemoryStream();
+                                                    QrcodeImg.Text = varQrcode;
+                                                    QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                                                    varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+                                                    objTRNS_GRN.ViewType = 5;
+                                                    objTRNS_GRN.ParaGRNID = Convert.ToInt32(GrnUpdatevalue);
+                                                    objTRNS_GRN.paraQrimg = (varobjBarCodeByte);
+                                                    result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                                                    objspdservice.CloseConnection();
                                                 }
                                                 else
                                                 {
-                                                    udfnclose();
+                                                    GrnUpdatevalue = Convert.ToString(pbGRNId);
                                                 }
+                                                this.ActiveControl = txtSupplier;
+                                                MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                                                varCloseFlag = 1;
+                                                SPDataService objdserv = new SPDataService();
+                                                objDs = objdserv.udfnGrnListLoad(5, 0, 0, 0, 0, "", "", Convert.ToInt32(GrnUpdatevalue), 0, 0, "", "", 0, 0, "0", "");
+                                                objdserv.CloseConnection();
+                                                if (objDs.Tables.Count != 0)
+                                                {
+                                                    if (objDs.Tables[0].Rows.Count != 0)
+                                                    {
+                                                        if (Convert.ToString(objDs.Tables[0].Rows[0]["TOT"]) != "0")
+                                                        {
+                                                            string varMessage = objDServ.udfnGetMessages(87);
+                                                            objDServ.CloseConnection();
+                                                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                            if (result1 == DialogResult.Yes)
+                                                            {
+                                                                try
+                                                                {
+                                                                    string varHeader = "";
+                                                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_LP_GRN_QRCode.rpt");
+                                                                    objBillreport.SetParameterValue("paraGRNID", GrnUpdatevalue);
+                                                                    objValidation.CrySqlConnection(objBillreport);
+
+                                                                    MainForm.objReportLoad = new ReportLoad();
+                                                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                                                    MainForm.objReportLoad.Text = varHeader;
+                                                                    MainForm.objReportLoad.ShowDialog();
+                                                                }
+                                                                catch (Exception ex)
+                                                                {
+                                                                    objError = new DataError();
+                                                                    objError.WriteFile(ex);
+                                                                }
+                                                                udfnclose();
+                                                            }
+                                                            else
+                                                            {
+                                                                udfnclose();
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            udfnclose();
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                             }
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        if (varvalue[0] == "5")
+                                        {
+                                            DialogResult dialogResult = MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                            if (dialogResult == DialogResult.Yes)
+                                            {
+                                                ParaSupplierAMT = 1;
+                                                goto K;
+                                            }
+                                            else
+                                            {
+                                                txtInvoiceamt.Focus();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if(varvalue[0]=="3")
+                                            {
+                                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            }
+                                        }
                                     }
                                     //this.ActiveControl = txtSupplier;
-                                }
-                            }
+                               }
+                           // }
                         }
                         else
                         {

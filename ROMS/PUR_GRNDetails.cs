@@ -35,7 +35,7 @@ namespace ROMS
 
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0, varModifiedFlag = 0, varUpDownKey=0, varDecimal=0;
         public bool VarSearchFlag = true;
-        public int PbVerified = 0;
+        public int PbVerified = 0,ParaSupplierAMT = 0;
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -714,6 +714,10 @@ namespace ROMS
                             objTRNS_GRN1.ViewType = 3;
                             objTRNS_GRN1.ParaGRNID = Convert.ToInt32(pbGRNId);
                             objTRNS_GRN1.paraGRNDate = dpGrnDate.Text;
+                            objTRNS_GRN1.paraSupplierID =Convert.ToInt32(lblSupplierCode.Text);
+                            objTRNS_GRN1.paraScheduleID =Convert.ToInt32(lblschedule.Text);
+                            objTRNS_GRN1.paraID = ParaSupplierAMT;
+                            objTRNS_GRN1.paraSaveFlag = 0;
                             objTRNS_GRN1.paraGRNProd = objGRNProd;
                             result2 = objspdservice.udfnGRNEntry(objTRNS_GRN1);
                             objspdservice.CloseConnection();
@@ -737,6 +741,10 @@ namespace ROMS
                                     objTRNS_GRN.ParaPurchaseDC = varPurchaseDC;
                                     objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                     objTRNS_GRN.paraRemarks = txtRemark.Text;
+                                    objTRNS_GRN.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                                    objTRNS_GRN.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                                    objTRNS_GRN.paraID = ParaSupplierAMT;
+                                    objTRNS_GRN.paraSaveFlag = 0;
                                     objTRNS_GRN.paraSkipped = varSkip;
                                     objTRNS_GRN.paraGRNProd = objGRNProd;
                                     objTRNS_GRN.paraGRNDate = dpGrnDate.Text;
@@ -993,7 +1001,7 @@ namespace ROMS
 
                         DataService objDser = new DataService();
                         objGRNProd.Rows.Add(Convert.ToInt32(pbGRNId), Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmProid"].Value),
-                        Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmUtid"].Value), "1", varMRP,
+                        Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmUtid"].Value),Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Value), varMRP,
                          0, 0, 0, Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchno"].Value),
                          ProShelflife, 0, POno
                         , varShelfPer, varTempExpiryDate
@@ -3402,6 +3410,7 @@ namespace ROMS
                             {
                                 grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
                                 grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
                                 grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
                                 grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
                             }
@@ -3452,7 +3461,7 @@ namespace ROMS
                                 string mrp = string.Format("{0:0.00}", varMRP);
                                 string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                                 string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
-                                grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(),"1",Convert.ToDecimal(mrp), (ExpiryDate).Trim()
+                                grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), txtInvoiceQty.Text.Trim(), Convert.ToDecimal(mrp), (ExpiryDate).Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag,0,varDecimal);
                                 udfnrowclear();
                                 varModifiedFlag = 1;
@@ -3461,6 +3470,7 @@ namespace ROMS
                                 //{
                                 //    grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
                                 //}
+                                grdGrnlist.Columns["clmInvoiceQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 txtProductName.Focus();
                                 string[] varShelflifeper = Convert.ToString(varShelflifevalue).Split(' ');
                                 if (varShelflifeper[0] != "")
