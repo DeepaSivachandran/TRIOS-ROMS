@@ -26,6 +26,8 @@ namespace ROMS
         ToolTip tpdate = new ToolTip();
         ToolTip tpyear = new ToolTip();
         ToolTip tpInvoiceQty = new ToolTip();
+        ToolTip tpInvoiceNo = new ToolTip();
+        ToolTip tpInvoiceAMT = new ToolTip();
 
         public bool skipValidation = false;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
@@ -668,8 +670,29 @@ namespace ROMS
                     {
                         result1 = DialogResult.Yes;
                     }
+
+                    if (txtInvoiceno.Text.Trim() == "")
+                    {
+                        errGRNDetails.SetError(txtInvoiceno, "Please enter invoiceno.");
+                        txtInvoiceno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpInvoiceNo.ShowAlways = true;
+                        tpInvoiceNo.Show("Please enter invoiceno.", txtInvoiceno, 5000);
+                        result1 = DialogResult.No;
+                        varErrorFormat = 1;
+                    }
+                    if (txtInvoiceamt.Text.Trim() == "")
+                    {
+                        errGRNDetails.SetError(txtInvoiceamt, "Please enter invoice amount.");
+                        txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpInvoiceAMT.ShowAlways = true;
+                        tpInvoiceAMT.Show("Please enter invoice amount.", txtInvoiceamt, 5000);
+                        result1 = DialogResult.No;
+                        varErrorFormat = 1;
+                    }
+
                     if (result1 == DialogResult.Yes)
                     {
+                        errGRNDetails.Clear();
                         for (int i = 0; i < grdReurnDC.Rows.Count; i++)
                         {
                             if (varPurchaseDC == "0")
@@ -2027,7 +2050,13 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
                 }
