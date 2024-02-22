@@ -1552,9 +1552,51 @@ namespace ROMS
                                     {
                                         varCloseFlag = 1;
                                         varModifiedFlag = 0;
-                                        udfnclose();
+                                    }
+                                    try
+                                    {
+                                        string ReturnDCID = "0";
+                                        if (varReturnDCID == 0)
+                                        {
+                                            ReturnDCID = varvalue[2];
+                                        }
+                                        else
+                                        {
+                                            ReturnDCID = Convert.ToString(varReturnDCID);
+                                        }
+                                        DialogResult result1;
+                                        SPDataService objDServ = new SPDataService();
+                                        string varMessage = objDServ.udfnGetMessages(87);
+                                        objDServ.CloseConnection();
+                                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        if (result1 == DialogResult.Yes)
+                                        {
+                                            string varHeader = "";
+                                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_ReturnDC.rpt");
+                                            varHeader = "Purchase Return DC";
+
+                                            objBillreport.SetParameterValue("paraReturnDCID", Convert.ToInt32(ReturnDCID));
+                                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                            objValidation.CrySqlConnection(objBillreport);
+
+                                            MainForm.objReportLoad = new ReportLoad();
+                                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                            MainForm.objReportLoad.Text = varHeader;
+                                            MainForm.objReportLoad.ShowDialog();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        objError = new DataError();
+                                        objError.WriteFile(ex);
                                     }
                                     udfnClear();
+                                    this.Close();
                                     MainForm.objINV_SalesInvoiceList.udfnList();
                                 }
                                 else if (varvalue[0] == "4")
