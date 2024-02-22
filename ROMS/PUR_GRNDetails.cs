@@ -724,12 +724,12 @@ namespace ROMS
                             string[] varvalue1 = result2.Split('~');
                             if (varvalue1[1] == "1")
                             {
-                                MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
-                                MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
-                                MainForm.objPUR_GRNApprovalVerify.ShowDialog();
-                                varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
-                                if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
-                                {
+                                //MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                                //MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
+                                //MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+                                //varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
+                                //if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
+                                //{
                                     varGrnId = Convert.ToInt32(pbGRNId);
                                     TRN_GRN objTRNS_GRN = new TRN_GRN();
                                     objTRNS_GRN.ViewType = 3;
@@ -787,23 +787,68 @@ namespace ROMS
                                             objTRNS_GRN.paraStatus = 23;
                                         }
                                     }
-                                    result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                                   K: result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                     objspdservice.CloseConnection();
                                     string[] varvalue = result.Split('~');
-                                    if (varvalue[0] == "3")
+                                if (result.Split('~')[1] == "1")
+                                {
+                                    MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                                    MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
+                                    MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+                                    varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
+                                    if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
                                     {
-                                        varModifiedFlag = 0;
-                                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        this.ActiveControl = txtSupplier;
-                                        MainForm.objPUR_GRNDetailsList.udfnListLoad();
-                                        varCloseflag = 1;
-                                        udfnclose();
+                                        result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                                        objspdservice.CloseConnection();
+                                        varvalue = result.Split('~');
+                                        if (varvalue[0] == "3")
+                                        {
+                                            varModifiedFlag = 0;
+                                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            this.ActiveControl = txtSupplier;
+                                            MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                                            varCloseflag = 1;
+                                            udfnclose();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
+                                    }
+                                }
+                                else {
+                                    if (varvalue[0] == "5")
+                                    {
+                                        DialogResult dialogResult = MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        if (dialogResult == DialogResult.Yes)
+                                        {
+                                            ParaSupplierAMT = 1;
+                                            objTRNS_GRN.paraSaveFlag = 1;
+                                            objTRNS_GRN.paraID = ParaSupplierAMT;
+                                            goto K;
+                                        }
+                                        else
+                                        {
+                                            txtInvoiceamt.Focus();
+                                        }
                                     }
                                     else
                                     {
-                                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        if (varvalue[0] == "3")
+                                        {
+                                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                                            MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                                            varCloseflag = 1;
+                                            varModifiedFlag = 0;
+                                            udfnclose();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
                                     }
                                 }
+                               // }
                             }
                             else
                             {
