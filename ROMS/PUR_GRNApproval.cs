@@ -379,9 +379,18 @@ namespace ROMS
         {
             try
             {
-                object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                //Update the same column value in the DataTable
-                dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToString(Reason);
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
+                {
+                    object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    //Update the same column value in the DataTable
+                    dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToString(Reason);
+                }
+                if(grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
+                {
+                    object Quantity = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    //Update the same column value in the DataTable
+                    dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
+                }
             }
             catch (Exception ex)
             {
@@ -418,8 +427,7 @@ namespace ROMS
         {
             try
             {
-
-                    udfnSave();
+                 udfnSave();
             }
             catch (Exception ex)
             {
