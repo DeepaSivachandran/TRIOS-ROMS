@@ -42,7 +42,7 @@ namespace ROMS
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0;
         bool varVoucherSkip = false;
-        int grid_flag = 0;
+        int grid_flag = 0, varEditProAdd=0,varEditFlag=0;
 
         public CP_Purchase()
         {
@@ -759,6 +759,7 @@ namespace ROMS
             {
                 if (pbPurchaseno != "0")
                 {
+                    varEditFlag = 1;
                     varRemarkFlag = 1;
                     udfnRemark();
                     MainForm.objPUR_PurchaseRemarksHistory.udfnRemarkList();
@@ -3602,6 +3603,7 @@ namespace ROMS
                             udfnEntryTypeErr();
                             if (pbDateflag == 0 && varerrFlag == 0)
                             {
+                                varEditProAdd = 1;
                                 errPurchaseentry.Clear();
                                 tpdate.Active = false;
                                 txtDate.BackColor = Color.White;
@@ -3676,6 +3678,11 @@ namespace ROMS
                                     cell.Style.BackColor = Color.LightGray;
                                     cell.Style.ForeColor = Color.Black;
                                     cell.ReadOnly = true;
+                                }
+                                if (varEditFlag == 1 && varEditProAdd == 1)
+                                {
+                                    chkCompleted.Checked = false;
+                                    chkCompleted.Enabled = false;
                                 }
                             }
                             else
@@ -4562,6 +4569,17 @@ namespace ROMS
                         //{
                         //    objPurchaseentryDetails = udfnobjPurchaseprodDetails();
                         //}
+                        if (shelfLifeError != 0)
+                        {
+                            SPDataService objDServe1 = new SPDataService();
+                            string varMessage = objDServe1.udfnGetMessages(110);
+                            objDServe1.CloseConnection();
+                            DialogResult dialogResult1=MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult1 == DialogResult.Yes)
+                            {
+                                shelfLifeError = 0;
+                            }
+                        }
                         if (pbPurchaseno != "0")
                         {
                             objPurchaseentryDetails = udfnobjPurchaseprodDetails();
@@ -4570,7 +4588,7 @@ namespace ROMS
                                 tbDetails.SelectedIndex = 1;
                             }
                         }
-                        if (varcount == 0 && Convert.ToInt32(VarGridError) == 0)
+                        if (varcount == 0 && Convert.ToInt32(VarGridError) == 0 && shelfLifeError==0)
                         {
                             string result2 = ""; int varViewType = 0;
                             //if (btnSave.Text != "Save as Draft")
@@ -5320,9 +5338,21 @@ namespace ROMS
                         //{
                         //    result1 = DialogResult.Yes;
                         //}
-                        if (Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmshelfper"].Value.ToString().Trim()) <50)
+                        
+                        if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value.ToString().Trim())!="")
                         {
-                            shelfLifeError++;
+                            //decimal varShelfPer = 0;
+                            string percent = "";
+                            string shelfper = ""; decimal shelflifeper = 0;
+                            object cellValue = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value);
+
+                            shelfper = cellValue.ToString();
+                            string[] shelfvalue = shelfper.Split('%');
+                            shelflifeper =Convert.ToDecimal(shelfvalue[0]);
+                            if (shelflifeper < 50)
+                            {
+                                shelfLifeError++;
+                            }
                         }
                         if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmrack"].Value.ToString().Trim()) == "")
                         {
@@ -6640,6 +6670,7 @@ namespace ROMS
             }
         }
 
+
         private void TxtTcsamt_TextChanged(object sender, EventArgs e)
         {
             try
@@ -6651,6 +6682,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TextBox13_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void TxtDamagecost_TextChanged(object sender, EventArgs e)
