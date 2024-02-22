@@ -145,6 +145,7 @@
     <Compile Include="CP_RackSettings_Copy.designer.cs">
       <DependentUpon>CP_RackSettings_Copy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_GRNApproval.cs" />
     <Compile Include="PUR_GRN_Level_Verified.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -3096,6 +3096,38 @@ namespace ROMS
             }
             return result;
         }
+        public string udfnSetGRNApproval(TRN_GRNApproval objTRN_GRNApproval)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_GRNApproval]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_GRNApproval.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraPURID", objTRN_GRNApproval.paraPURID);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_GRNApproval.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GRNApproval.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_GRNApproval.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_GRNApproval.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraApprovalProduct", objTRN_GRNApproval.paraApprovalProduct);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+
     }
 
 }

@@ -106,6 +106,7 @@
             this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreturnqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -761,6 +762,7 @@
             this.clmreceivedqty,
             this.clmreturnqty,
             this.clmPOID,
+            this.clmUnitDecimal,
             this.clmReason});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -779,9 +781,11 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdGrnApproval.RowTemplate.Height = 25;
-            this.grdGrnApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGrnApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnApproval.Size = new System.Drawing.Size(1335, 434);
             this.grdGrnApproval.TabIndex = 958827;
+            this.grdGrnApproval.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnApproval_CellEndEdit);
+            this.grdGrnApproval.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnApproval_EditingControlShowing);
             // 
             // txttotalitem
             // 
@@ -954,13 +958,18 @@
             // 
             this.clmreturnqty.HeaderText = "Returned Qty";
             this.clmreturnqty.Name = "clmreturnqty";
-            this.clmreturnqty.ReadOnly = true;
             // 
             // clmPOID
             // 
             this.clmPOID.HeaderText = "POID";
             this.clmPOID.Name = "clmPOID";
             this.clmPOID.Visible = false;
+            // 
+            // clmUnitDecimal
+            // 
+            this.clmUnitDecimal.HeaderText = "UnitDecimal";
+            this.clmUnitDecimal.Name = "clmUnitDecimal";
+            this.clmUnitDecimal.Visible = false;
             // 
             // clmReason
             // 
@@ -1077,6 +1086,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreceivedqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreturnqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPOID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReason;
     }
 }
