@@ -470,11 +470,9 @@ namespace ROMS
                 string varVerified1 = "0";
                 var varValue = "";
                 varVerified1 = Convert.ToString(cmbVerified1.SelectedValue);
-                var varRowsToUpdate = dtEmployee.AsEnumerable().Where(r => r.Field<string>("EMPID") != Convert.ToString(varVerified1));
-                foreach (var row in varRowsToUpdate)
-                {
-                    dtUpdatedEmployee.Rows.Add(varRowsToUpdate);
-                }
+                DataView dv = new DataView(dtEmployee);
+                dv.RowFilter = "EMPID = " + varVerified1;
+                dtUpdatedEmployee = dv.ToTable();
             }
             catch (Exception ex)
             {
