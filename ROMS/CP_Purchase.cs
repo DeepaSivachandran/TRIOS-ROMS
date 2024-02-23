@@ -1313,7 +1313,12 @@ namespace ROMS
         {
             try
             {
-                if (chkCompleted.Checked) { btnSave.Text = "Update"; } else { btnSave.Text = "Save as Draft"; }
+                if (chkCompleted.Checked) { btnSave.Text = "Update"; }
+                else
+                if(pbPurchaseno=="0")
+                { btnSave.Text = "Save as Draft"; }
+                else
+                { btnSave.Text = "Update as Draft"; }
             }
             catch (Exception ex)
             {
@@ -4650,6 +4655,7 @@ namespace ROMS
                                     MainForm.objPUR_GRNApprovalVerify.varTrnType = 3;
                                     MainForm.objPUR_GRNApprovalVerify.ShowDialog();
                                     varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
+
                                     if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
                                     {
                                         TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
@@ -4860,6 +4866,8 @@ namespace ROMS
                                             {
                                                 pbPurchaseno = varvalue[2];
                                                 grdSupplierList.Rows.Clear();
+                                                grdPODetails.Rows.Clear();
+                                                grdReurnDC.Rows.Clear();
                                                 //CP_Purchase_Load(sender, e);
                                                 udfnEditLoad();
                                                 udfnPurchaseEntryTabLoad(); //tab2 load
@@ -8231,12 +8239,13 @@ namespace ROMS
                 //{
                 //    DGV_FilterProduct.Focus();
                 //}
-                if (DGV_FilterProduct.CurrentCell == null)
+                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount==0)
                 {
                     return;
                 }
                 else
                 {
+                    DGV_FilterProduct.Focus();
                     int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
                     int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
                     if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
@@ -8302,6 +8311,8 @@ namespace ROMS
                                 break;
                             }
                     }
+                    txtProductName.Focus();
+                    e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
                         //txtProductName.SelectedText = true;
