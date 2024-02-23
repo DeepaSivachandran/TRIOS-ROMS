@@ -425,12 +425,13 @@ namespace ROMS
                 {
                     cmbEntryType.Focus();
                 }
-                if (DGV_FilterProduct.CurrentCell == null)
+                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
                 {
                     return;
                 }
                 else
                 {
+                    DGV_FilterProduct.Focus();
                     int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
                     int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
                     if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
@@ -478,6 +479,8 @@ namespace ROMS
                                 break;
                             }
                     }
+                    txtProductName.Focus();
+                    e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
                         //txtProductName.SelectedText = true;
