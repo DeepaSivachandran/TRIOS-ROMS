@@ -64,6 +64,7 @@ namespace ROMS.Model
         public string ParaPEToDate { get; set; } = "";
         public string ParaPEFromDate { get; set; } = ""; 
         public int paraProductID { get; set; } = 0; 
+        public int paraSaveFlag { get; set; } = 0; 
 
     }
 }

@@ -1121,7 +1121,7 @@ namespace ROMS
                     tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
                     VarErrorFlag = true;
                 }
-                if(Convert.ToInt32(grdUnitList.Rows[0].Cells["clmQty"].Value)!=0)
+                if(Convert.ToInt32(grdUnitList.Rows[3].Cells["clmQty"].Value)!=0)
                 { 
                     if (btnSave.Text != "Update && Print")
                     {
