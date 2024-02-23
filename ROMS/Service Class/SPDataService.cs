@@ -3106,13 +3106,18 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_GRNApproval.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPURID", objTRN_GRNApproval.paraPURID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRN_GRNApproval.paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRN_GRNApproval.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_GRNApproval.paraCompanyId);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_GRNApproval.paraRemarks);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GRNApproval.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_GRNApproval.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_GRNApproval.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnDC_Date", objTRN_GRNApproval.paraReturnDC_Date);
                 varSqlCommand.Parameters.AddWithValue("@paraApprovalProduct", objTRN_GRNApproval.paraApprovalProduct);
+                varSqlCommand.Parameters.AddWithValue("@paraTRN_Purchase_ReturnDC", objTRN_GRNApproval.paraTRN_Purchase_ReturnDC);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

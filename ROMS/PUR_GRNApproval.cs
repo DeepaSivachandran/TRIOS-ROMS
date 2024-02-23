@@ -21,6 +21,7 @@ namespace ROMS
         decimal varInvoiceQty=0, VarReceivedQty=0, varPOID=0;
         public string result = "", varUserID = "0",varReason="";
         DataTable dtApproval = new DataTable();
+        DataTable dtPurchaseReturnDC = new DataTable();
         public PUR_GRNApproval()
         {
             InitializeComponent();
@@ -413,6 +414,19 @@ namespace ROMS
                 dtApproval.Columns.Add("GRNAPR_Reason", typeof(string));
                 dtApproval.Columns.Add("GRNAPR_ReturnedQty", typeof(decimal));
 
+                dtPurchaseReturnDC.TableName = "TRN_Purchase_ReturnDC";
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_PRID", typeof(int));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_MRP", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_ExpDate", typeof(string));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_BatchNo", typeof(string));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_AppRate", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_Qty", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_UTID", typeof(int));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_TaxableAmnt", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTPer", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTAmnt", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_NettAmnt", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("DMID", typeof(string));
                 ClearSupplier();
                 udfnsupplierLoad();
                 udfnEdit();
@@ -440,6 +454,8 @@ namespace ROMS
         {
             try
             {
+                DateTime varDate = DateTime.Today;
+                String vardate = Convert.ToString(varDate);
                 string varoriginator = "GRN Approval Creation";
                 SPDataService objspdservice = new SPDataService();
                 DataTable objGrnPO = new DataTable();
@@ -449,7 +465,12 @@ namespace ROMS
                 objTRN_GRNApproval.paraRemarks = txtRemark.Text;
                 objTRN_GRNApproval.paraFlag = 0;
                 objTRN_GRNApproval.paraOriginator = varoriginator;
+                objTRN_GRNApproval.paraCompanyId = varConcernID;
+                objTRN_GRNApproval.paraSupplierID = varSupplierID;
+                objTRN_GRNApproval.paraScheduleID = varScheduleID;
+                objTRN_GRNApproval.paraReturnDC_Date = vardate;
                 objTRN_GRNApproval.paraApprovalProduct = dtApproval;
+                objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
                 result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
@@ -467,8 +488,13 @@ namespace ROMS
                             objTRN_GRNApproval.paraPURID = varID;
                             objTRN_GRNApproval.paraRemarks = txtRemark.Text;
                             objTRN_GRNApproval.paraFlag = 1;
+                            objTRN_GRNApproval.paraCompanyId = varConcernID;
+                            objTRN_GRNApproval.paraSupplierID = varSupplierID;
+                            objTRN_GRNApproval.paraScheduleID = varScheduleID;
                             objTRN_GRNApproval.paraOriginator = varoriginator;
+                            objTRN_GRNApproval.paraReturnDC_Date = vardate;
                             objTRN_GRNApproval.paraApprovalProduct = dtApproval;
+                            objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
                             result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
                             objspdservice.CloseConnection();
                             string[] varvalue1 = result.Split('~');
@@ -529,6 +555,7 @@ namespace ROMS
                             grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]), Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["POID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]));
                             dtApproval.Rows.Add( Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(""), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]));
+                            dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0);
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGrnApproval.Columns["clmShelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

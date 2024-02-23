@@ -94,7 +94,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192) //received credit note
+                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62 ) //received credit note
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
@@ -124,7 +124,7 @@ namespace ROMS
                     }
                     varModifiedFlag = 1;
                 }
-                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64) //Debit Note Created
+                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192) //Debit Note Created
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
@@ -484,12 +484,13 @@ namespace ROMS
                         EditLoad();
                         if (varStatusId == 39)
                         {
-                            txtAmount.Enabled = true;
-                            txtCrNo.Enabled = true;
+                            txtAmount.Enabled = false;
+                            txtCrNo.Enabled = false;
                             dpCreditNoteDate.Enabled = false;
                             cmbReasonForClosing.Enabled = false;
-                            txtRemarks.Enabled = true;
+                            txtRemarks.Enabled = false;
                             btnSave.Enabled = false;
+                            txtAmount.Enabled = false;
                             //lblStatus.Text = "Closed";
                         }
                         else
@@ -716,7 +717,7 @@ namespace ROMS
                             }
                             if (objDs.Tables[2].Rows.Count != 0)
                             {
-                                if (varStatusId == 39 && Convert.ToInt32(cmbReason.SelectedValue) == 60)
+                                if (varStatusId == 39 && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192))
                                 {
                                     cmbReasonForClosing.SelectedValue = objDs.Tables[2].Rows[0]["PURREDC_ClosingReasonId"].ToString();
                                     txtCrNo.Text = objDs.Tables[2].Rows[0]["PURREDC_CNNo"].ToString();
@@ -1497,11 +1498,12 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    //if (varStatusId == 16)
-                                    //{
-                                    varviewtype = 1;
-                                    varorginator = "Purchase Return DC updation";
-                                    //}
+                                    if (varStatusId == 16)
+                                    {
+                                        varviewtype = 1;
+                                        varorginator = "Purchase Return DC updation";
+                                        varStatusId = 39;
+                                    }
 
                                 }
                                 TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();

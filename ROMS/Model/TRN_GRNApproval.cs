@@ -16,6 +16,11 @@ namespace ROMS.Model
         public string paraOriginator { get; set; } = "";
         public string paraRemarks { get; set; } = "";
         public int paraFlag { get; set; } = 0;
+        public int paraCompanyId { get; set; } = 0;
+        public int paraSupplierID { get; set; } = 0;
+        public int paraScheduleID { get; set; } = 0;
+        public string paraReturnDC_Date { get; set; } = "";
         public DataTable paraApprovalProduct { get; set; } = null;
+        public DataTable paraTRN_Purchase_ReturnDC { get; set; } = null;
     }
 }

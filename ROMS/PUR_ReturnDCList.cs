@@ -59,7 +59,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false && grdReturnDCList.SelectedRows.Count == 1)
                 {
-                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39)
+                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 61)
                     {
                         tsbDelete.Visible = false;
                         varDeleteFlag = 0;
@@ -944,6 +944,7 @@ namespace ROMS
                                 grdReturnDCList.Columns["Supplier ID"].Visible = false;
                                 grdReturnDCList.Columns["Schedule ID"].Visible = false;
                                 grdReturnDCList.Columns["Status ID"].Visible = false;
+                                grdReturnDCList.Columns["PURREDC_ReasonId"].Visible = false;
                             }
                             else
                             {
@@ -1336,7 +1337,10 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
-                    TsbDelete_Click(sender, e);
+                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 60)
+                    {
+                        TsbDelete_Click(sender, e);
+                    }
                 }
             }
             catch (Exception ex)
@@ -1421,7 +1425,7 @@ namespace ROMS
         {
             try
             {
-                udfnDeleteHide();
+                //udfnDeleteHide();
             }
             catch (Exception ex)
             {
@@ -1444,7 +1448,10 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
                 {
-                    TsbDelete_Click(sender, e);
+                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 60)
+                    {
+                        TsbDelete_Click(sender, e);
+                    }
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -1453,6 +1460,19 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdReturnDCList_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
             }
             catch (Exception ex)
             {
