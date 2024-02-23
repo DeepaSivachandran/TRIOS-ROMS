@@ -146,7 +146,6 @@
             this.chkCompleted.TabIndex = 2;
             this.chkCompleted.Text = "Completed";
             this.chkCompleted.UseVisualStyleBackColor = true;
-            this.chkCompleted.Visible = false;
             this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
             // 
             // lblNoRecordsFound

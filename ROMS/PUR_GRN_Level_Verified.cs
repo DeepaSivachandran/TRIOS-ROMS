@@ -28,7 +28,7 @@ namespace ROMS
         public string varUserId = "";
         public string pbGRNId = "";
         public string varPasskey = "";
-        public int flag = 0;
+        public int flag = 0, verified1 = 0, verified2 = 0;
         public PUR_GRN_Level_Verified()
         {
 
@@ -367,8 +367,18 @@ namespace ROMS
                         {
                             dtEmployee.Rows.Add(objDT.Tables[0].Rows[i]["EMPID"], objDT.Tables[0].Rows[i]["EMP_Name"]);
                         }
+                        if (dtEmployee != null)
+                        {
+                            if (dtEmployee.Rows.Count > 0)
+                            {
+                                cmbVerified2.ValueMember = "EMPID";
+                                cmbVerified2.DisplayMember = "EMP_Name";
+                                cmbVerified2.DataSource = dtEmployee;
+                            }
+                        }
+                        cmbVerified1.SelectedValue = -1;
+                        cmbVerified2.SelectedValue = -1;
                     }
-                    cmbVerified1.SelectedValue = -1;
                 }
             }
             catch (Exception ex)
@@ -381,6 +391,9 @@ namespace ROMS
         {
             try
             {
+
+                //cmbVerified2.DataSource = dtEmployee;
+                /*
                 //cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
@@ -400,7 +413,7 @@ namespace ROMS
                         }
                     }
                     cmbVerified2.SelectedValue = -1;
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -467,12 +480,16 @@ namespace ROMS
         {
             try
             {
-                string varVerified1 = "0";
-                var varValue = "";
-                varVerified1 = Convert.ToString(cmbVerified1.SelectedValue);
-                DataView dv = new DataView(dtEmployee);
-                dv.RowFilter = "EMPID = " + varVerified1;
-                dtUpdatedEmployee = dv.ToTable();
+                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1 && Convert.ToString(cmbVerified1.SelectedValue)!=null)
+                {
+                    string varVerified1 = "0";//int Verified2 = 0;Verified2 = Convert.ToInt32(cmbVerified2.SelectedValue);
+                    varVerified1 = Convert.ToString(cmbVerified1.SelectedValue);
+                    DataView dv = new DataView(dtEmployee);
+                    dv.RowFilter = "EMPID <> " + varVerified1;
+                    dtUpdatedEmployee = dv.ToTable();
+                    cmbVerified2.DataSource = dtUpdatedEmployee;
+                    //cmbVerified2.SelectedValue = Verified2;
+                }
             }
             catch (Exception ex)
             {
@@ -485,7 +502,16 @@ namespace ROMS
         {
             try
             {
-
+                //if (Convert.ToInt32(cmbVerified2.SelectedValue) != -1 && Convert.ToString(cmbVerified2.SelectedValue) != null)
+                //{
+                //    string varVerified2 = "0";// int Verified1 = 0; Verified1 = Convert.ToInt32(cmbVerified1.SelectedValue);
+                //    varVerified2 = Convert.ToString(cmbVerified2.SelectedValue);
+                //    DataView dv = new DataView(dtEmployee);
+                //    dv.RowFilter = "EMPID <> " + varVerified2;
+                //    dtUpdatedEmployee = dv.ToTable();
+                //    cmbVerified1.DataSource = dtUpdatedEmployee;
+                //    //cmbVerified1.SelectedValue = Verified1;
+                //}
             }
             catch (Exception ex)
             {
