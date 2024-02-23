@@ -105,6 +105,7 @@
             this.cmbVerified1.Name = "cmbVerified1";
             this.cmbVerified1.Size = new System.Drawing.Size(174, 27);
             this.cmbVerified1.TabIndex = 0;
+            this.cmbVerified1.SelectedIndexChanged += new System.EventHandler(this.CmbVerified1_SelectedIndexChanged);
             this.cmbVerified1.Enter += new System.EventHandler(this.CmbVerified1_Enter);
             this.cmbVerified1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbVerified1_KeyDown);
             this.cmbVerified1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbVerified1_KeyPress);
@@ -119,6 +120,7 @@
             this.cmbVerified2.Name = "cmbVerified2";
             this.cmbVerified2.Size = new System.Drawing.Size(174, 27);
             this.cmbVerified2.TabIndex = 2;
+            this.cmbVerified2.SelectedIndexChanged += new System.EventHandler(this.CmbVerified2_SelectedIndexChanged);
             this.cmbVerified2.Enter += new System.EventHandler(this.CmbVerified2_Enter);
             this.cmbVerified2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbVerified2_KeyDown);
             this.cmbVerified2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbVerified2_KeyPress);

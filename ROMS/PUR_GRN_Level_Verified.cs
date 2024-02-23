@@ -19,7 +19,8 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
-
+        public DataTable dtEmployee = new DataTable();
+        public DataTable dtUpdatedEmployee = new DataTable();
         private ToolTip tpVerified1 = new ToolTip();
         private ToolTip tpVerified2 = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
@@ -318,6 +319,15 @@ namespace ROMS
         {
             try
             {
+                dtEmployee = new DataTable();
+                dtEmployee.Columns.Add("EMPID", typeof(string));
+                dtEmployee.Columns.Add("EMP_Name", typeof(string));
+
+
+                dtUpdatedEmployee = new DataTable();
+                dtUpdatedEmployee.Columns.Add("EMPID", typeof(string));
+                dtUpdatedEmployee.Columns.Add("EMP_Name", typeof(string));
+
                 udfnCmbVerified1Load();
                 udfnCmbVerified2Load();
                 udfnDateLoad();
@@ -352,6 +362,10 @@ namespace ROMS
                             cmbVerified1.ValueMember = "EMPID";
                             cmbVerified1.DisplayMember = "EMP_Name";
                             cmbVerified1.DataSource = objDT.Tables[0];
+                        }
+                        for (int i = 0; i < objDT.Tables[0].Rows.Count; i++)
+                        {
+                            dtEmployee.Rows.Add(objDT.Tables[0].Rows[i]["EMPID"], objDT.Tables[0].Rows[i]["EMP_Name"]);
                         }
                     }
                     cmbVerified1.SelectedValue = -1;
@@ -441,6 +455,39 @@ namespace ROMS
             try
             {
                 dpVerified2.MinDate = Convert.ToDateTime(dpVerified1.Text);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbVerified1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string varVerified1 = "0";
+                var varValue = "";
+                varVerified1 = Convert.ToString(cmbVerified1.SelectedValue);
+                var varRowsToUpdate = dtEmployee.AsEnumerable().Where(r => r.Field<string>("EMPID") != Convert.ToString(varVerified1));
+                foreach (var row in varRowsToUpdate)
+                {
+                    dtUpdatedEmployee.Rows.Add(varRowsToUpdate);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbVerified2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
             }
             catch (Exception ex)
             {
