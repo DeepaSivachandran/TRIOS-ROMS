@@ -865,6 +865,7 @@ namespace ROMS
                 }
                 else
                 {
+                    DGV_FilterProduct.Focus();
                     int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
                     int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
                     if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
@@ -930,10 +931,8 @@ namespace ROMS
                                 break;
                             }
                     }
-                    if (txtProductName.Text.Length == 1)
-                    {
-                        DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[0].Cells[0];
-                    }
+                    txtProductName.Focus();
+                    e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
                         //txtProductName.SelectedText = true;
