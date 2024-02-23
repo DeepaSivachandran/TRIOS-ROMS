@@ -689,10 +689,12 @@ namespace ROMS
             try
             {
                 MainForm objMainForm = new MainForm();
+                dtTaxTable = new DataTable();
                 objMainForm.udfnGetDefaultCompany();
                 dtTaxTable.Columns.Add("GST%", typeof(string));
                 dtTaxTable.Columns.Add("Taxable Value", typeof(decimal));
                 dtTaxTable.Columns.Add("Tax Value", typeof(decimal));
+
                 udfnDropdownLoad();
                 if (pbPurchaseno == "0")
                 {
@@ -4394,7 +4396,7 @@ namespace ROMS
         {
             try
             {
-                udfnSave();
+                udfnSave(sender,e);
             }
             catch (Exception ex)
             {
@@ -4453,7 +4455,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnSave()
+        public void udfnSave(object sender, EventArgs e)
         {
             try
             {
@@ -4856,9 +4858,12 @@ namespace ROMS
                                             }
                                             if (btnSave.Text == "Save as Draft")
                                             {
-                                                varCloseflag = 1;
                                                 pbPurchaseno = varvalue[2];
+                                                grdSupplierList.Rows.Clear();
+                                                //CP_Purchase_Load(sender, e);
+                                                udfnEditLoad();
                                                 udfnPurchaseEntryTabLoad(); //tab2 load
+                                                varCloseflag = 1;
                                             }
                                             else
                                             {
