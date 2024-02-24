@@ -375,10 +375,8 @@
             this.lblUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnit.Location = new System.Drawing.Point(536, 38);
             this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(35, 20);
+            this.lblUnit.Size = new System.Drawing.Size(0, 20);
             this.lblUnit.TabIndex = 1111203;
-            this.lblUnit.Text = "UNIT";
-            this.lblUnit.Visible = false;
             // 
             // label11
             // 
@@ -386,10 +384,9 @@
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(461, 13);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(69, 20);
+            this.label11.Size = new System.Drawing.Size(75, 20);
             this.label11.TabIndex = 1111202;
-            this.label11.Text = "Invoice Qty";
-            this.label11.Visible = false;
+            this.label11.Text = "Pending Qty";
             // 
             // txtInvoiceQty
             // 
@@ -400,7 +397,6 @@
             this.txtInvoiceQty.Size = new System.Drawing.Size(69, 27);
             this.txtInvoiceQty.TabIndex = 9;
             this.txtInvoiceQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtInvoiceQty.Visible = false;
             this.txtInvoiceQty.Enter += new System.EventHandler(this.TxtInvoiceQty_Enter);
             this.txtInvoiceQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceQty_KeyDown);
             this.txtInvoiceQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtInvoiceQty_KeyPress);
@@ -440,7 +436,7 @@
             this.txtProductName.Location = new System.Drawing.Point(182, 35);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(398, 27);
+            this.txtProductName.Size = new System.Drawing.Size(273, 27);
             this.txtProductName.TabIndex = 8;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -1289,7 +1285,7 @@
             // 
             this.txtInvoiceamt.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInvoiceamt.Location = new System.Drawing.Point(686, 56);
-            this.txtInvoiceamt.MaxLength = 7;
+            this.txtInvoiceamt.MaxLength = 8;
             this.txtInvoiceamt.Name = "txtInvoiceamt";
             this.txtInvoiceamt.Size = new System.Drawing.Size(140, 27);
             this.txtInvoiceamt.TabIndex = 6;
@@ -1569,10 +1565,9 @@
             // 
             dataGridViewCellStyle14.BackColor = System.Drawing.Color.PaleGreen;
             this.clmInvoiceQty.DefaultCellStyle = dataGridViewCellStyle14;
-            this.clmInvoiceQty.HeaderText = "Invoice Qty";
+            this.clmInvoiceQty.HeaderText = "Pending Qty";
             this.clmInvoiceQty.Name = "clmInvoiceQty";
-            this.clmInvoiceQty.Visible = false;
-            this.clmInvoiceQty.Width = 80;
+            this.clmInvoiceQty.Width = 90;
             // 
             // clmmrp
             // 
@@ -1975,6 +1970,14 @@
         private System.Windows.Forms.TextBox txtInvoiceQty;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblUnit;
+        private System.Windows.Forms.Button btnVerified;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.Label lblVerifiedBy2;
+        private System.Windows.Forms.Label lblVerifiedBy1;
+        private System.Windows.Forms.Label lblVerifiedDate2;
+        private System.Windows.Forms.Label lblVerifiedDate1;
+        private System.Windows.Forms.Label lblVerify2;
+        private System.Windows.Forms.Label lblVerify1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
@@ -1998,13 +2001,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPOQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTDecimal;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
-        private System.Windows.Forms.Button btnVerified;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.Label lblVerifiedBy2;
-        private System.Windows.Forms.Label lblVerifiedBy1;
-        private System.Windows.Forms.Label lblVerifiedDate2;
-        private System.Windows.Forms.Label lblVerifiedDate1;
-        private System.Windows.Forms.Label lblVerify2;
-        private System.Windows.Forms.Label lblVerify1;
     }
 }

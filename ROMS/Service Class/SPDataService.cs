@@ -2030,7 +2030,7 @@ namespace ROMS
             return varResult;
         }
         /*Added by deepa on 19-09-2023*/
-        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag)
+        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag,string paraModules)
         {
             string varResult = "";
             try
@@ -2046,6 +2046,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSTSID", paraSTSID);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraModules", paraModules);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
@@ -2463,6 +2464,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRNS_GRN.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@ParaEditFlag", objTRNS_GRN.ParaEditFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRNS_GRN.paraQrimg);
+                varSqlCommand.Parameters.AddWithValue("@paraID", objTRNS_GRN.paraID);
+                varSqlCommand.Parameters.AddWithValue("@paraSaveFlag", objTRNS_GRN.paraSaveFlag);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -3081,6 +3084,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraLoadingChargesGRN", objTRN_PurchaseEntry.paraLoadingChargesGRN);
                 varSqlCommand.Parameters.AddWithValue("@paraFrightGRN", objTRN_PurchaseEntry.paraFrightGRN);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_PurchaseEntry.paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraSaveFlag", objTRN_PurchaseEntry.paraSaveFlag);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();

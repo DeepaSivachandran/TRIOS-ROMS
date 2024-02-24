@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +22,7 @@ namespace ROMS
         private ToolTip tpSuppliername = new ToolTip();
         private DataTable dtDefaultGrid = new DataTable();
         public int varDeleteFlag = 0;
+        Boolean BlnSearchImageYN = false;
         public PUR_ReturnDCList()
         {
             InitializeComponent();
@@ -216,7 +217,12 @@ namespace ROMS
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
-                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    if (lblNoRecordsFound.Visible == false)
+                    {
+                        DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -240,11 +246,24 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -317,7 +336,7 @@ namespace ROMS
         {
             try
             {
-                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdReturnDCList.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -333,7 +352,11 @@ namespace ROMS
                         DGV_SearchGrid.Rows.Add();
                         for (int i = 0; i < visibleColumns.Count; i++)
                         {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            if (DGV_SearchGrid.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                            {
+                                DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            }
+                            else { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = ""; }
                         }
                     }
                 }
@@ -925,6 +948,7 @@ namespace ROMS
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
                                 grdReturnDCList.DataSource = objDs.Tables[0];
+                                grdReturnDCList.Columns["clmPrint"].Visible = true;
                                 grdReturnDCList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -938,6 +962,7 @@ namespace ROMS
                                 grdReturnDCList.Columns["Created On"].Width = 140;
                                 grdReturnDCList.Columns["Created By"].Width = 100;
                                 grdReturnDCList.Columns["Status"].Width = 100;
+                                grdReturnDCList.Columns["clmPrint"].Width = 50;
                                 grdReturnDCList.Columns["S.No."].Width = 60;
                                 grdReturnDCList.Columns["ID"].Visible = false;
                                 grdReturnDCList.Columns["Concern ID"].Visible = false;
@@ -948,18 +973,21 @@ namespace ROMS
                             }
                             else
                             {
+                                grdReturnDCList.Columns["clmPrint"].Visible = false;
                                 lblNoRecordsFound.Visible = true;
                                 lblNoRecordsFound.BringToFront();
                             }
                         }
                         else
                         {
+                            grdReturnDCList.Columns["clmPrint"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
+                        grdReturnDCList.Columns["clmPrint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
@@ -1467,12 +1495,185 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdReturnDCList_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
                 udfnDeleteHide();
+                if (e.RowIndex != -1)
+                {
+                    switch (grdReturnDCList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                            try
+                            {
+                                string ReturnDCID = "0";
+                                ReturnDCID = Convert.ToString(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_ReturnDC.rpt");
+                                    varHeader = "Purchase Return DC";
+
+                                    objBillreport.SetParameterValue("paraReturnDCID", Convert.ToInt32(ReturnDCID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrint_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrint_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtSupplier.Text) != "")
+                {
+                    string[] values = new string[0];
+                    string varSupplierId = "0";
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 23;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
+                    {
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                            else
+                            {
+                                lblSupplierCode.Text = "0";
+                                lblschedule.Text = "0";
+                            }
+                        }
+                    }
+                    if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                    {
+                        if (values[0] == "-1")
+                        {
+                            lblSupplierCode.Text = "0";
+                            lblschedule.Text = "0";
+                        }
+                        else
+                        {
+                            lblSupplierCode.Text = values[0];
+                            lblschedule.Text = values[1];
+                            txtSupplier.BackColor = Color.White;
+                        }
+                    }
+                }
+                else
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedule.Text = "0";
+                }
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
+                objTRN_PurchaseReturnDC.paraViewType = 8;
+                objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text);
+                objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbDCType.SelectedValue);
+                objTRN_PurchaseReturnDC.paraFromDate = dpFromDate.Text;
+                objTRN_PurchaseReturnDC.paraToDate = dpToDate.Text;
+                objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_ReturnDC_SupplierWise.rpt");
+                    varHeader = "Supplier Wise Return DC";
+
+                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                    objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
+                    objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedule.Text));
+                    objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraReasonId", Convert.ToInt32(cmbDCType.SelectedValue));
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
             }
             catch (Exception ex)
             {

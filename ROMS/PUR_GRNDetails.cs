@@ -26,6 +26,8 @@ namespace ROMS
         ToolTip tpdate = new ToolTip();
         ToolTip tpyear = new ToolTip();
         ToolTip tpInvoiceQty = new ToolTip();
+        ToolTip tpInvoiceNo = new ToolTip();
+        ToolTip tpInvoiceAMT = new ToolTip();
 
         public bool skipValidation = false;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
@@ -35,7 +37,7 @@ namespace ROMS
 
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0, varModifiedFlag = 0, varUpDownKey=0, varDecimal=0;
         public bool VarSearchFlag = true;
-        public int PbVerified = 0;
+        public int PbVerified = 0,ParaSupplierAMT = 0;
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -668,8 +670,29 @@ namespace ROMS
                     {
                         result1 = DialogResult.Yes;
                     }
+
+                    if (txtInvoiceno.Text.Trim() == "")
+                    {
+                        errGRNDetails.SetError(txtInvoiceno, "Please enter invoiceno.");
+                        txtInvoiceno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpInvoiceNo.ShowAlways = true;
+                        tpInvoiceNo.Show("Please enter invoiceno.", txtInvoiceno, 5000);
+                        result1 = DialogResult.No;
+                        varErrorFormat = 1;
+                    }
+                    if (txtInvoiceamt.Text.Trim() == "")
+                    {
+                        errGRNDetails.SetError(txtInvoiceamt, "Please enter invoice amount.");
+                        txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpInvoiceAMT.ShowAlways = true;
+                        tpInvoiceAMT.Show("Please enter invoice amount.", txtInvoiceamt, 5000);
+                        result1 = DialogResult.No;
+                        varErrorFormat = 1;
+                    }
+
                     if (result1 == DialogResult.Yes)
                     {
+                        errGRNDetails.Clear();
                         for (int i = 0; i < grdReurnDC.Rows.Count; i++)
                         {
                             if (varPurchaseDC == "0")
@@ -714,18 +737,22 @@ namespace ROMS
                             objTRNS_GRN1.ViewType = 3;
                             objTRNS_GRN1.ParaGRNID = Convert.ToInt32(pbGRNId);
                             objTRNS_GRN1.paraGRNDate = dpGrnDate.Text;
+                            objTRNS_GRN1.paraSupplierID =Convert.ToInt32(lblSupplierCode.Text);
+                            objTRNS_GRN1.paraScheduleID =Convert.ToInt32(lblschedule.Text);
+                            objTRNS_GRN1.paraID = ParaSupplierAMT;
+                            objTRNS_GRN1.paraSaveFlag = 0;
                             objTRNS_GRN1.paraGRNProd = objGRNProd;
                             result2 = objspdservice.udfnGRNEntry(objTRNS_GRN1);
                             objspdservice.CloseConnection();
                             string[] varvalue1 = result2.Split('~');
                             if (varvalue1[1] == "1")
                             {
-                                MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
-                                MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
-                                MainForm.objPUR_GRNApprovalVerify.ShowDialog();
-                                varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
-                                if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
-                                {
+                                //MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                                //MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
+                                //MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+                                //varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
+                                //if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
+                                //{
                                     varGrnId = Convert.ToInt32(pbGRNId);
                                     TRN_GRN objTRNS_GRN = new TRN_GRN();
                                     objTRNS_GRN.ViewType = 3;
@@ -737,6 +764,9 @@ namespace ROMS
                                     objTRNS_GRN.ParaPurchaseDC = varPurchaseDC;
                                     objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                     objTRNS_GRN.paraRemarks = txtRemark.Text;
+                                    objTRNS_GRN.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                                    objTRNS_GRN.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                                    objTRNS_GRN.paraID = ParaSupplierAMT;
                                     objTRNS_GRN.paraSkipped = varSkip;
                                     objTRNS_GRN.paraGRNProd = objGRNProd;
                                     objTRNS_GRN.paraGRNDate = dpGrnDate.Text;
@@ -779,23 +809,70 @@ namespace ROMS
                                             objTRNS_GRN.paraStatus = 23;
                                         }
                                     }
+                                   K: objTRNS_GRN.paraSaveFlag = 0; 
                                     result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                     objspdservice.CloseConnection();
                                     string[] varvalue = result.Split('~');
-                                    if (varvalue[0] == "3")
+                                if (result.Split('~')[1] == "1")
+                                {
+                                    MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                                    MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
+                                    MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+                                    varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
+                                    if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
                                     {
-                                        varModifiedFlag = 0;
-                                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        this.ActiveControl = txtSupplier;
-                                        MainForm.objPUR_GRNDetailsList.udfnListLoad();
-                                        varCloseflag = 1;
-                                        udfnclose();
+                                        objTRNS_GRN.paraSaveFlag = 1;
+                                        result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                                        objspdservice.CloseConnection();
+                                        varvalue = result.Split('~');
+                                        if (varvalue[0] == "3")
+                                        {
+                                            varModifiedFlag = 0;
+                                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            this.ActiveControl = txtSupplier;
+                                            MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                                            varCloseflag = 1;
+                                            udfnclose();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
+                                    }
+                                }
+                                else {
+                                    if (varvalue[0] == "5")
+                                    {
+                                        DialogResult dialogResult = MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        if (dialogResult == DialogResult.Yes)
+                                        {
+                                            ParaSupplierAMT = 1;
+                                            objTRNS_GRN.paraSaveFlag = 1;
+                                            objTRNS_GRN.paraID = ParaSupplierAMT;
+                                            goto K;
+                                        }
+                                        else
+                                        {
+                                            txtInvoiceamt.Focus();
+                                        }
                                     }
                                     else
                                     {
-                                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        if (varvalue[0] == "3")
+                                        {
+                                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                                            MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                                            varCloseflag = 1;
+                                            varModifiedFlag = 0;
+                                            udfnclose();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
                                     }
                                 }
+                               // }
                             }
                             else
                             {
@@ -993,7 +1070,7 @@ namespace ROMS
 
                         DataService objDser = new DataService();
                         objGRNProd.Rows.Add(Convert.ToInt32(pbGRNId), Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmProid"].Value),
-                        Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmUtid"].Value), "1", varMRP,
+                        Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmUtid"].Value),Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Value), varMRP,
                          0, 0, 0, Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchno"].Value),
                          ProShelflife, 0, POno
                         , varShelfPer, varTempExpiryDate
@@ -1973,7 +2050,13 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
                 {
                     e.Handled = true;
                 }
@@ -3402,6 +3485,7 @@ namespace ROMS
                             {
                                 grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
                                 grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
                                 grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
                                 grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
                             }
@@ -3452,7 +3536,7 @@ namespace ROMS
                                 string mrp = string.Format("{0:0.00}", varMRP);
                                 string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                                 string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
-                                grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(),"1",Convert.ToDecimal(mrp), (ExpiryDate).Trim()
+                                grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), txtInvoiceQty.Text.Trim(), Convert.ToDecimal(mrp), (ExpiryDate).Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag,0,varDecimal);
                                 udfnrowclear();
                                 varModifiedFlag = 1;
@@ -3461,6 +3545,7 @@ namespace ROMS
                                 //{
                                 //    grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;
                                 //}
+                                grdGrnlist.Columns["clmInvoiceQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 txtProductName.Focus();
                                 string[] varShelflifeper = Convert.ToString(varShelflifevalue).Split(' ');
                                 if (varShelflifeper[0] != "")
