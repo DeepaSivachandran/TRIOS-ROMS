@@ -1526,6 +1526,7 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDecimal(varReturnDcAmount);
                                 objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
+                                objTRN_PurchaseReturnDC.paraPurchaseId = 0;
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
                                 if (dtExchangeProducts.Rows.Count != 0)
                                 {
