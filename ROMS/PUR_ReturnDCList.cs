@@ -1500,6 +1500,17 @@ namespace ROMS
             try
             {
                 udfnDeleteHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdReturnDCList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
                 if (e.RowIndex != -1)
                 {
                     switch (grdReturnDCList.Columns[e.ColumnIndex].Name)
