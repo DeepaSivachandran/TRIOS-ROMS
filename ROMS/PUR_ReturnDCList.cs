@@ -948,7 +948,6 @@ namespace ROMS
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
                                 grdReturnDCList.DataSource = objDs.Tables[0];
-                                grdReturnDCList.Columns["clmPrint"].Visible = true;
                                 grdReturnDCList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -962,32 +961,28 @@ namespace ROMS
                                 grdReturnDCList.Columns["Created On"].Width = 140;
                                 grdReturnDCList.Columns["Created By"].Width = 100;
                                 grdReturnDCList.Columns["Status"].Width = 100;
-                                grdReturnDCList.Columns["clmPrint"].Width = 50;
                                 grdReturnDCList.Columns["S.No."].Width = 60;
                                 grdReturnDCList.Columns["ID"].Visible = false;
                                 grdReturnDCList.Columns["Concern ID"].Visible = false;
                                 grdReturnDCList.Columns["Supplier ID"].Visible = false;
                                 grdReturnDCList.Columns["Schedule ID"].Visible = false;
                                 grdReturnDCList.Columns["Status ID"].Visible = false;
-                                grdReturnDCList.Columns["PURREDC_ReasonId"].Visible = false;
+                                grdReturnDCList.Columns["URREDDC_ReasonId"].Visible = false;
                             }
                             else
                             {
-                                grdReturnDCList.Columns["clmPrint"].Visible = false;
                                 lblNoRecordsFound.Visible = true;
                                 lblNoRecordsFound.BringToFront();
                             }
                         }
                         else
                         {
-                            grdReturnDCList.Columns["clmPrint"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
-                        grdReturnDCList.Columns["clmPrint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
