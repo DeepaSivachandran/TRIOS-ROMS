@@ -2388,6 +2388,13 @@ namespace ROMS
                             lblVerifiedDate2.Text = " @ " + Convert.ToString(objDs.Tables[1].Rows[0]["GRN_VerifiedOn2"]);
                         }
                     }
+                    else
+                    {
+                        lblVerifiedBy2.Visible = true;
+                        lblVerifiedDate2.Visible = true;
+                        lblVerifiedBy2.Text = "";
+                        lblVerifiedDate2.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
