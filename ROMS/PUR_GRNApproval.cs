@@ -600,6 +600,7 @@ namespace ROMS
                             }
                             udfnQtyCheck();    
                         }
+                        txttotalitem.Text = Convert.ToString(grdGrnApproval.Rows.Count);
                     }
                     if(objDs.Tables[1].Rows.Count>1)
                     {
