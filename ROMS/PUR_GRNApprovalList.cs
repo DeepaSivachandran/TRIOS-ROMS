@@ -68,6 +68,7 @@ namespace ROMS
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 //udfnDate();
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
+                udfnList();
             }
             catch (Exception ex)
             {
