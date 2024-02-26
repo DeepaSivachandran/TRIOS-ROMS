@@ -967,7 +967,7 @@ namespace ROMS
                                 grdReturnDCList.Columns["Supplier ID"].Visible = false;
                                 grdReturnDCList.Columns["Schedule ID"].Visible = false;
                                 grdReturnDCList.Columns["Status ID"].Visible = false;
-                                grdReturnDCList.Columns["URREDDC_ReasonId"].Visible = false;
+                                grdReturnDCList.Columns["PURREDC_ReasonId"].Visible = false;
                             }
                             else
                             {
