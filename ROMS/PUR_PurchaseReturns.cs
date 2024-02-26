@@ -1496,16 +1496,17 @@ namespace ROMS
                                     varStatusId = 15;
                                     varorginator = "Purchase Return DC insertion";
                                 }
-                                else
+                                if (varStatusId == 16)
                                 {
-                                    if (varStatusId == 16)
-                                    {
-                                        varviewtype = 1;
-                                        varorginator = "Purchase Return DC updation";
-                                        varStatusId = 39;
-                                    }
-
+                                    varviewtype = 1;
+                                    varorginator = "Purchase Return DC updation";
+                                    varStatusId = 39;
                                 }
+                                if(varStatusId==15 && varReturnDCID!=0)
+                                {
+                                    varviewtype = 1;
+                                    varorginator = "Purchase Return DC updation";
+                                }                               
                                 TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
                                 objTRN_PurchaseReturnDC.paraViewType = varviewtype;
                                 objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);

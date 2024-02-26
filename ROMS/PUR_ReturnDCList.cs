@@ -936,6 +936,7 @@ namespace ROMS
                                 grdReturnDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdReturnDCList.Columns["Total Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdReturnDCList.Columns["Concern"].Width = 100;
+                                grdReturnDCList.Columns["Reason"].Width = 120;
                                 grdReturnDCList.Columns["DC Date"].Width = 100;
                                 grdReturnDCList.Columns["DC No."].Width = 100;
                                 grdReturnDCList.Columns["Supplier"].Width = 300;
