@@ -480,7 +480,10 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1 && Convert.ToString(cmbVerified1.SelectedValue)!=null)
+                int Verified1 = 0, Verified2 = 0;
+                Verified1 = Convert.ToInt32(cmbVerified1.SelectedValue);
+                Verified2 = Convert.ToInt32(cmbVerified2.SelectedValue);
+                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1 && Convert.ToString(cmbVerified1.SelectedValue)!=null && Verified1==Verified2)
                 {
                     string varVerified1 = "0";//int Verified2 = 0;Verified2 = Convert.ToInt32(cmbVerified2.SelectedValue);
                     varVerified1 = Convert.ToString(cmbVerified1.SelectedValue);
@@ -502,16 +505,19 @@ namespace ROMS
         {
             try
             {
-                //if (Convert.ToInt32(cmbVerified2.SelectedValue) != -1 && Convert.ToString(cmbVerified2.SelectedValue) != null)
-                //{
-                //    string varVerified2 = "0";// int Verified1 = 0; Verified1 = Convert.ToInt32(cmbVerified1.SelectedValue);
-                //    varVerified2 = Convert.ToString(cmbVerified2.SelectedValue);
-                //    DataView dv = new DataView(dtEmployee);
-                //    dv.RowFilter = "EMPID <> " + varVerified2;
-                //    dtUpdatedEmployee = dv.ToTable();
-                //    cmbVerified1.DataSource = dtUpdatedEmployee;
-                //    //cmbVerified1.SelectedValue = Verified1;
-                //}
+                int Verified1 = 0, Verified2 = 0;
+                Verified1 = Convert.ToInt32(cmbVerified1.SelectedValue);
+                Verified2 = Convert.ToInt32(cmbVerified2.SelectedValue);
+                if (Convert.ToInt32(cmbVerified2.SelectedValue) != -1 && Convert.ToString(cmbVerified2.SelectedValue) != null && Verified1 == Verified2)
+                {
+                    string varVerified2 = "0";// int Verified1 = 0; Verified1 = Convert.ToInt32(cmbVerified1.SelectedValue);
+                    varVerified2 = Convert.ToString(cmbVerified2.SelectedValue);
+                    DataView dv = new DataView(dtEmployee);
+                    dv.RowFilter = "EMPID <> " + varVerified2;
+                    dtUpdatedEmployee = dv.ToTable();
+                    cmbVerified1.DataSource = dtUpdatedEmployee;
+                    //cmbVerified1.SelectedValue = Verified1;
+                }
             }
             catch (Exception ex)
             {
