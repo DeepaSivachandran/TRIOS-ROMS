@@ -1081,7 +1081,7 @@ namespace ROMS
                 cmbPONo.DataSource = null;
                 if (objDT != null)
                 {
-                    if (objDT.Tables.Count > 0)
+                    if (objDT.Tables.Count > 1)
                     {
                         if (objDT.Tables[1].Rows.Count > 0)
                         {
