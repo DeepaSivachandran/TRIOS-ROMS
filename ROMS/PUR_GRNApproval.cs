@@ -388,6 +388,10 @@ namespace ROMS
                 }
                 if(grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
                 {
+                    int varDecimal = Convert.ToInt32(grdGrnApproval.CurrentRow.Cells["clmUnitDecimal"].Value);
+
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
+                    grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
                     object Quantity = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     //Update the same column value in the DataTable
                     dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
@@ -468,6 +472,7 @@ namespace ROMS
                 objTRN_GRNApproval.paraCompanyId = varConcernID;
                 objTRN_GRNApproval.paraSupplierID = varSupplierID;
                 objTRN_GRNApproval.paraScheduleID = varScheduleID;
+                objTRN_GRNApproval.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_GRNApproval.paraReturnDC_Date = vardate;
                 objTRN_GRNApproval.paraApprovalProduct = dtApproval;
                 objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
@@ -491,6 +496,7 @@ namespace ROMS
                             objTRN_GRNApproval.paraCompanyId = varConcernID;
                             objTRN_GRNApproval.paraSupplierID = varSupplierID;
                             objTRN_GRNApproval.paraScheduleID = varScheduleID;
+                            objTRN_GRNApproval.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                             objTRN_GRNApproval.paraOriginator = varoriginator;
                             objTRN_GRNApproval.paraReturnDC_Date = vardate;
                             objTRN_GRNApproval.paraApprovalProduct = dtApproval;

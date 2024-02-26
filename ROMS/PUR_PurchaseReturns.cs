@@ -1937,6 +1937,38 @@ namespace ROMS
             }
         }
 
+        private void CmbReason_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbReason.SelectedValue) == 60) //damage
+                {
+                    txtProductName.Enabled = false;
+                    txtpurchaseRate.Enabled = false;
+                    txtActualQty.Enabled = false;
+                    btnAdd.Enabled = false;
+                    lblTotal.Text = "Approximate Total";
+                }
+                else if (Convert.ToInt32(cmbReason.SelectedValue) == 61) //excess
+                {
+                    txtProductName.Enabled = true;
+                    txtpurchaseRate.Enabled = true;
+                    txtActualQty.Enabled = true;
+                    btnAdd.Enabled = true;
+                    lblTotal.Text = "Actual Total";
+                }
+                if(varReturnDCID==0)
+                {
+                    udfnList();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdReturnDC_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
