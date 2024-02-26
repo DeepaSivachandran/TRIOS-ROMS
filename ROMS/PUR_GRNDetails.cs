@@ -46,7 +46,7 @@ namespace ROMS
         {
             try
             {
-                this.ActiveControl = dpinvoicedate;
+                this.ActiveControl = txtProductName;
                 udfnDropdownLoad();
                 udfnEditLoad();
                 udfnDateSet();
@@ -3049,6 +3049,7 @@ namespace ROMS
 
                 string Qty = objValidation.udfnDecimal(Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value), varDecimal);
                 grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value = Qty;
+                //udfnGridaddvalue( sender,value);
 
             }
             catch (Exception ex)

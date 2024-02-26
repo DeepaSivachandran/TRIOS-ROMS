@@ -324,7 +324,7 @@
             this.columnHeader9});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(266, 44);
+            this.LV_Supplier.Location = new System.Drawing.Point(265, 44);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(358, 93);
             this.LV_Supplier.TabIndex = 1111208;
@@ -353,7 +353,7 @@
             this.txtFrieghtamount.MaxLength = 7;
             this.txtFrieghtamount.Name = "txtFrieghtamount";
             this.txtFrieghtamount.Size = new System.Drawing.Size(70, 27);
-            this.txtFrieghtamount.TabIndex = 9;
+            this.txtFrieghtamount.TabIndex = 10;
             this.txtFrieghtamount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtFrieghtamount.Enter += new System.EventHandler(this.TxtFrieghtamount_Enter);
             this.txtFrieghtamount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFrieghtamount_KeyDown);
@@ -387,7 +387,7 @@
             this.txtLoadingCharge.MaxLength = 7;
             this.txtLoadingCharge.Name = "txtLoadingCharge";
             this.txtLoadingCharge.Size = new System.Drawing.Size(70, 27);
-            this.txtLoadingCharge.TabIndex = 8;
+            this.txtLoadingCharge.TabIndex = 9;
             this.txtLoadingCharge.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtLoadingCharge.Enter += new System.EventHandler(this.TxtLoadingCharge_Enter);
             this.txtLoadingCharge.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLoadingCharge_KeyDown);
@@ -717,7 +717,7 @@
             this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdUnitList.Size = new System.Drawing.Size(132, 230);
             this.grdUnitList.StandardTab = true;
-            this.grdUnitList.TabIndex = 7;
+            this.grdUnitList.TabIndex = 8;
             this.grdUnitList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdUnitList_CellFormatting);
             this.grdUnitList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdUnitList_CurrentCellDirtyStateChanged);
             this.grdUnitList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdUnitList_EditingControlShowing);
@@ -812,7 +812,7 @@
             this.txtInvoiceamt.MaxLength = 8;
             this.txtInvoiceamt.Name = "txtInvoiceamt";
             this.txtInvoiceamt.Size = new System.Drawing.Size(105, 27);
-            this.txtInvoiceamt.TabIndex = 6;
+            this.txtInvoiceamt.TabIndex = 7;
             this.txtInvoiceamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtInvoiceamt.Enter += new System.EventHandler(this.TxtInvoiceamt_Enter);
             this.txtInvoiceamt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceamt_KeyDown);
@@ -836,7 +836,7 @@
             this.txtInvoiceno.MaxLength = 20;
             this.txtInvoiceno.Name = "txtInvoiceno";
             this.txtInvoiceno.Size = new System.Drawing.Size(105, 27);
-            this.txtInvoiceno.TabIndex = 5;
+            this.txtInvoiceno.TabIndex = 6;
             this.txtInvoiceno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtInvoiceno.Enter += new System.EventHandler(this.TxtInvoiceno_Enter);
             this.txtInvoiceno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceno_KeyDown);
@@ -859,7 +859,7 @@
             this.dpinvoicedate.Location = new System.Drawing.Point(266, 50);
             this.dpinvoicedate.Name = "dpinvoicedate";
             this.dpinvoicedate.Size = new System.Drawing.Size(105, 28);
-            this.dpinvoicedate.TabIndex = 17611111;
+            this.dpinvoicedate.TabIndex = 5;
             this.dpinvoicedate.Enter += new System.EventHandler(this.Dpinvoicedate_Enter);
             this.dpinvoicedate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Dpinvoicedate_KeyDown);
             this.dpinvoicedate.Leave += new System.EventHandler(this.Dpinvoicedate_Leave);
@@ -969,7 +969,7 @@
             this.btnClose.Location = new System.Drawing.Point(1099, 344);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 11;
+            this.btnClose.TabIndex = 12;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -983,7 +983,7 @@
             this.btnSave.Location = new System.Drawing.Point(968, 344);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(125, 29);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save && Print";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
