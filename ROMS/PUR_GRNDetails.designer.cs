@@ -254,8 +254,8 @@
             // grpSupplierMapping
             // 
             this.grpSupplierMapping.BackColor = System.Drawing.Color.White;
-            this.grpSupplierMapping.Controls.Add(this.btnVerified);
             this.grpSupplierMapping.Controls.Add(this.DGV_FilterProduct);
+            this.grpSupplierMapping.Controls.Add(this.btnVerified);
             this.grpSupplierMapping.Controls.Add(this.gpAddrow);
             this.grpSupplierMapping.Controls.Add(this.groupBox5);
             this.grpSupplierMapping.Controls.Add(this.btnVerify2);
@@ -334,7 +334,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(528, 349);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(528, 346);
             this.DGV_FilterProduct.TabIndex = 111111143;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
@@ -492,7 +492,7 @@
             // textBox2
             // 
             this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.textBox2.Location = new System.Drawing.Point(586, 35);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -1181,7 +1181,7 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.textBox1.Location = new System.Drawing.Point(669, 56);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
