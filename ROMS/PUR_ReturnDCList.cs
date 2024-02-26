@@ -195,7 +195,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 picLoader.Visible = false;
             }
-        } 
+        }
         private void udfnSearchGridHead()
         {
             try
@@ -217,12 +217,7 @@ namespace ROMS
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
-                    if (lblNoRecordsFound.Visible == false)
-                    {
-                        DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                    }
-                    DGV_SearchGrid.Columns[0].ReadOnly = true;
-                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -246,30 +241,17 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
-                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
-                        {
-                            //dgv2.Rows[rowIndex].Visible = false;
-                            BlnSearchImageYN = true;
-                            ColIndex = i;
-                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
-                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
-                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
-                        }
-                        else
-                        {
-                            dgv2.Rows[rowIndex].Cells[i].Value = "";
-                        }
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
                     }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-         
+
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewColumn newColumn = grdReturnDCList.Columns[e.ColumnIndex];
