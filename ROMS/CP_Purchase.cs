@@ -923,8 +923,8 @@ namespace ROMS
                                     Convert.ToString(varTempExpiryDate), Convert.ToString(objDs.Tables[1].Rows[i]["PRODUCTEXP"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Location"]),
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["RKNAME"]), Convert.ToString(objDs.Tables[1].Rows[i]["UNIT"]),
-                                    "0", Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["RKNAME"]), Convert.ToString(objDs.Tables[1].Rows[i]["UNIT"]), 
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["POID"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["BATCHNO"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["Batchnogeneration"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"])
