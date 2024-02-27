@@ -680,6 +680,12 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
+                    if(lblVerifiedBy1.Text=="" && lblVerifiedBy2.Text =="")
+                    {
+                        MessageBox.Show("Verification details are mandatory", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        result1 = DialogResult.No;
+                        varErrorFormat =1;
+                    }
                     if (txtInvoiceamt.Text.Trim() == "")
                     {
                         errGRNDetails.SetError(txtInvoiceamt, "Please enter invoice amount.");
@@ -689,7 +695,6 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-
                     if (result1 == DialogResult.Yes)
                     {
                         errGRNDetails.Clear();
@@ -4515,7 +4520,11 @@ namespace ROMS
             }
             finally
             {
-                grdGrnlist.CurrentCell = grdGrnlist[6, 0];
+                if(grdGrnlist.Rows.Count>0)
+                {
+                    grdGrnlist.CurrentCell = grdGrnlist[6, 0];
+
+                }
             }
         }
         protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)

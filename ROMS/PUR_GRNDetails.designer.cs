@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNDetails));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNDetails));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -54,8 +54,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlSupplierMapping = new System.Windows.Forms.Panel();
             this.grpSupplierMapping = new System.Windows.Forms.GroupBox();
-            this.btnVerified = new System.Windows.Forms.Button();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
+            this.btnVerified = new System.Windows.Forms.Button();
             this.gpAddrow = new System.Windows.Forms.GroupBox();
             this.lblUnit = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -283,20 +283,6 @@
             this.grpSupplierMapping.TabIndex = 958765;
             this.grpSupplierMapping.TabStop = false;
             // 
-            // btnVerified
-            // 
-            this.btnVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnVerified.Image = ((System.Drawing.Image)(resources.GetObject("btnVerified.Image")));
-            this.btnVerified.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerified.Location = new System.Drawing.Point(407, 513);
-            this.btnVerified.Name = "btnVerified";
-            this.btnVerified.Size = new System.Drawing.Size(146, 29);
-            this.btnVerified.TabIndex = 700000001;
-            this.btnVerified.Text = "Verification Details";
-            this.btnVerified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVerified.UseVisualStyleBackColor = true;
-            this.btnVerified.Click += new System.EventHandler(this.BtnVerified_Click);
-            // 
             // DGV_FilterProduct
             // 
             this.DGV_FilterProduct.AllowUserToAddRows = false;
@@ -339,6 +325,20 @@
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
             this.DGV_FilterProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
+            // 
+            // btnVerified
+            // 
+            this.btnVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnVerified.Image = ((System.Drawing.Image)(resources.GetObject("btnVerified.Image")));
+            this.btnVerified.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerified.Location = new System.Drawing.Point(407, 513);
+            this.btnVerified.Name = "btnVerified";
+            this.btnVerified.Size = new System.Drawing.Size(146, 29);
+            this.btnVerified.TabIndex = 700000001;
+            this.btnVerified.Text = "Verification Details";
+            this.btnVerified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerified.UseVisualStyleBackColor = true;
+            this.btnVerified.Click += new System.EventHandler(this.BtnVerified_Click);
             // 
             // gpAddrow
             // 
@@ -1730,9 +1730,8 @@
             this.lblVerifiedBy2.AutoSize = true;
             this.lblVerifiedBy2.Location = new System.Drawing.Point(13, 84);
             this.lblVerifiedBy2.Name = "lblVerifiedBy2";
-            this.lblVerifiedBy2.Size = new System.Drawing.Size(69, 17);
+            this.lblVerifiedBy2.Size = new System.Drawing.Size(0, 17);
             this.lblVerifiedBy2.TabIndex = 1111191;
-            this.lblVerifiedBy2.Text = "Verified By 2";
             this.lblVerifiedBy2.Visible = false;
             // 
             // lblVerified2
@@ -1786,9 +1785,8 @@
             this.lblVerifiedBy1.AutoSize = true;
             this.lblVerifiedBy1.Location = new System.Drawing.Point(13, 41);
             this.lblVerifiedBy1.Name = "lblVerifiedBy1";
-            this.lblVerifiedBy1.Size = new System.Drawing.Size(69, 17);
+            this.lblVerifiedBy1.Size = new System.Drawing.Size(0, 17);
             this.lblVerifiedBy1.TabIndex = 1111190;
-            this.lblVerifiedBy1.Text = "Verified By 1";
             this.lblVerifiedBy1.Visible = false;
             // 
             // lblRemark
