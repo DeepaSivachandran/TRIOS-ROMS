@@ -325,6 +325,13 @@ namespace ROMS
         {
             try
             {
+                //if (txtValue.Text.Contains("%") == true)
+                //{
+                //    string[] Var1 = txtValue.Text.Split('+','-','*');
+                //    string value = "%";
+                //    string Var2 = Array.IndexOf(Var1, value).ToString();
+
+                //}
                 txtValue.Text = lblFinalValue.Text;
             }
             catch (Exception ex)
