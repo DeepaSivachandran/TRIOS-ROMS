@@ -5040,6 +5040,12 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally {
+                if (grdPurchaseList.Rows.Count > 0)
+                {
+                    grdPurchaseList.CurrentCell = grdPurchaseList[10, 0];
+                }
+            }
         }
         public void udfntooltiphide()
         {
