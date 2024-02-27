@@ -944,7 +944,7 @@ namespace ROMS
                                     //grdSupplierList.Columns["clmAddPro"].Visible = false;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
-                                    if (Convert.ToInt16(objDs.Tables[0].Rows[i]["InvFlag"]) == 1)
+                                    if (Convert.ToInt16(objDs.Tables[1].Rows[i]["InvFlag"]) == 1)
                                     {
                                         grdSupplierList.Rows[i].ReadOnly = true;
                                     }
@@ -7497,7 +7497,12 @@ namespace ROMS
                         //    CellDiscAmt.Style.BackColor = Color.LightPink;
                         //}
                     }
-
+                    if (grdPurchaseList.Columns[e.ColumnIndex].Name == "clmFreeqty")
+                    {
+                        decimal varDiffQqty = 0;
+                        varDiffQqty= Math.Abs(varInvQty - (varRecQty + varFreeQty));
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
+                    }
                     //int varDecimal = Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["UT_Decimal"].Value);
 
                     //if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty"
@@ -7525,6 +7530,7 @@ namespace ROMS
                     udfnGstvalue();
                     PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0;
                 }
+                
             }
         }
 
@@ -7533,7 +7539,7 @@ namespace ROMS
             try
             {
                 if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
-                { pbDiffQty = Math.Abs(varInvQty - varRecQty + varFreeQty); }
+                { pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); }
                 else
                 { pbDiffQty = Math.Abs(varInvQty - varRecQty);  }
                 // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
