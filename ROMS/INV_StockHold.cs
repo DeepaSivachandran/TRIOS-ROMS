@@ -172,6 +172,7 @@ namespace ROMS
         {
             try
             {
+                varUpDownKey = 0;
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up )
                 {
                     //if (lvproduct.Items.Count == 0 || txtProductNamePICode.Text == "")
@@ -313,6 +314,8 @@ namespace ROMS
             {
                 txtQty.BackColor = Color.LemonChiffon;
                 DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                varUpDownKey = 0;
             }
             catch (Exception ex)
             {

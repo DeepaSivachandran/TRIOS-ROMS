@@ -244,6 +244,7 @@ namespace ROMS
        {
             try
             {
+                varUpDownKey = 0;
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     //if (lvproduct.Items.Count == 0 || txtProductName.Text == "")
@@ -402,6 +403,9 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                varUpDownKey = 0;
                 txtQty.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

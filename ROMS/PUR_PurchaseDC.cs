@@ -904,6 +904,7 @@ namespace ROMS
         {
             try
             {
+                varUpDownKey = 0;
                 if (e.KeyCode == Keys.F11)
                 {
                     if (VarSearchFlag == false)
@@ -1137,6 +1138,8 @@ namespace ROMS
             try
             {
                 DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                varUpDownKey = 0;
                 txtMrp.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

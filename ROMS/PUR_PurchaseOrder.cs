@@ -2043,6 +2043,7 @@ namespace ROMS
         {
             try
             {
+                varUpDownKey = 0;
                 if (e.KeyCode == Keys.F11)
                 {
                     if (VarSearchFlag == false)
@@ -2306,6 +2307,8 @@ namespace ROMS
             {
                 lvproduct.Visible = false;
                 DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                varUpDownKey = 0;
                 txtProductQty.BackColor = Color.LemonChiffon;
                 if (txtProductName.Text == "")
                 {
