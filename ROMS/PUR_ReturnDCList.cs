@@ -832,6 +832,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Supplier ID"].Visible = false;
                 DGV_SearchGrid.Columns["Schedule ID"].Visible = false;
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                DGV_SearchGrid.Columns["PURREDC_ReasonId"].Visible = false;
                 DGV_SearchGrid.Columns["Status"].Width = 120; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
                 //DGV_SearchGrid.Columns["Employees"].Width = 300;
                 //DGV_SearchGrid.Columns["Created By"].Width = 100;
