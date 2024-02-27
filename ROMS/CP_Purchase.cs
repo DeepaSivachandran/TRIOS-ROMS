@@ -944,7 +944,7 @@ namespace ROMS
                                     //grdSupplierList.Columns["clmAddPro"].Visible = false;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
-                                    if (Convert.ToInt16(objDs.Tables[0].Rows[i]["InvFlag"]) == 1)
+                                    if (Convert.ToInt16(objDs.Tables[1].Rows[i]["InvFlag"]) == 1)
                                     {
                                         grdSupplierList.Rows[i].ReadOnly = true;
                                     }
@@ -7510,7 +7510,7 @@ namespace ROMS
             try
             {
                 if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
-                { pbDiffQty = Math.Abs(varInvQty - varRecQty + varFreeQty); }
+                { pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); }
                 else
                 { pbDiffQty = Math.Abs(varInvQty - varRecQty);  }
                 // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
