@@ -17,6 +17,7 @@ namespace ROMS
         double varResult = 0;
         float varAns = 0, varNum = 0;
         int varCount = 0;
+        public string PbValue = "";
         public PUR_Calculator()
         {
             InitializeComponent();
@@ -366,6 +367,10 @@ namespace ROMS
                 if(lblFinalValue.Text != "0")
                 {
                     MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
+                }
+                else
+                {
+                    MainForm.objCP_Purchase.varPurchaseRate = PbValue;
                 }
                 this.Close();
             }

@@ -1434,7 +1434,9 @@ namespace ROMS
                     string columnName = grdPurchaseList.Columns[varColumn].Name;
                     if (columnName == "clmPurchaseRate")
                     {
+                        string Varvalue =Convert.ToString(grdPurchaseList.Rows[varRow].Cells[varColumn].Value);
                         MainForm.objPUR_Calculator = new PUR_Calculator();
+                        MainForm.objPUR_Calculator.PbValue = Varvalue;
                         MainForm.objPUR_Calculator.ShowDialog();
                         grdPurchaseList.Rows[varRow].Cells[varColumn].Value = Convert.ToString(varPurchaseRate);
                     }
