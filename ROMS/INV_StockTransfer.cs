@@ -1053,7 +1053,9 @@ namespace ROMS
         private void TxtProductNamePICode_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            {   /*
+            {
+                varUpDownKey = 0;
+                /*
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     if (lvProduct.Items.Count == 0 || txtProductNamePICode.Text == "")
@@ -1781,6 +1783,9 @@ namespace ROMS
                 lvSLocation.Visible = false;
                 lvDLocation.Visible = false;
                 lvProduct.Visible = false;
+                DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                varUpDownKey = 0;
                 btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

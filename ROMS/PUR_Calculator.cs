@@ -17,6 +17,7 @@ namespace ROMS
         double varResult = 0;
         float varAns = 0, varNum = 0;
         int varCount = 0;
+        public string PbValue = "";
         public PUR_Calculator()
         {
             InitializeComponent();
@@ -65,8 +66,9 @@ namespace ROMS
 
         private void PUR_Calculator_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try {
-                MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
+            try
+            {
+                //MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
             }
             catch (Exception ex)
             {
@@ -323,7 +325,61 @@ namespace ROMS
         {
             try
             {
+                //if (txtValue.Text.Contains("%") == true)
+                //{
+                //    string[] Var1 = txtValue.Text.Split('+','-','*');
+                //    string value = "%";
+                //    string Var2 = Array.IndexOf(Var1, value).ToString();
+
+                //}
                 txtValue.Text = lblFinalValue.Text;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOK_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnOK.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOK_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnOK.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(lblFinalValue.Text != "0")
+                {
+                    MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
+                }
+                else
+                {
+                    MainForm.objCP_Purchase.varPurchaseRate = PbValue;
+                }
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -50,6 +50,7 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnDiv = new System.Windows.Forms.Button();
             this.lbltemptext = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtValue
@@ -227,7 +228,7 @@
             this.btnEql.Font = new System.Drawing.Font("Oswald Regular", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEql.Location = new System.Drawing.Point(181, 232);
             this.btnEql.Name = "btnEql";
-            this.btnEql.Size = new System.Drawing.Size(50, 106);
+            this.btnEql.Size = new System.Drawing.Size(50, 50);
             this.btnEql.TabIndex = 22;
             this.btnEql.Text = "=";
             this.btnEql.UseVisualStyleBackColor = false;
@@ -305,12 +306,27 @@
             this.lbltemptext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbltemptext.Visible = false;
             // 
+            // btnOK
+            // 
+            this.btnOK.BackColor = System.Drawing.Color.White;
+            this.btnOK.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.Location = new System.Drawing.Point(181, 288);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(50, 50);
+            this.btnOK.TabIndex = 29;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.BtnOK_Click);
+            this.btnOK.Enter += new System.EventHandler(this.BtnOK_Enter);
+            this.btnOK.Leave += new System.EventHandler(this.BtnOK_Leave);
+            // 
             // PUR_Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(243, 349);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lbltemptext);
             this.Controls.Add(this.btnDiv);
             this.Controls.Add(this.btnClear);
@@ -370,5 +386,6 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnDiv;
         private System.Windows.Forms.Label lbltemptext;
+        private System.Windows.Forms.Button btnOK;
     }
 }

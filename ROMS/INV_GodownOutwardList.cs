@@ -220,6 +220,7 @@ namespace ROMS
         {
             try
             {
+                varUpDownKey = 0;
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up )
                 {
                     //if (lvProduct.Items.Count == 0 || txtProductName.Text == "")
@@ -1466,6 +1467,8 @@ namespace ROMS
             try
             {
                 DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                varUpDownKey = 0;
                 lvSLocation.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
