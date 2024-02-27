@@ -7472,11 +7472,14 @@ namespace ROMS
                         //    CellDiscAmt.Style.BackColor = Color.LightPink;
                         //}
                     }
-                    if (grdPurchaseList.Columns[e.ColumnIndex].Name == "clmFreeqty")
+                    if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57)
                     {
-                        decimal varDiffQqty = 0;
-                        varDiffQqty= Math.Abs(varInvQty - (varRecQty + varFreeQty));
-                        grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
+                        if (grdPurchaseList.Columns[e.ColumnIndex].Name == "clmFreeqty")
+                        {
+                            decimal varDiffQqty = 0;
+                            varDiffQqty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
+                            grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
+                        }
                     }
                     //int varDecimal = Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["UT_Decimal"].Value);
 
@@ -7505,7 +7508,6 @@ namespace ROMS
                     udfnGstvalue();
                     PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0;
                 }
-                
             }
         }
 
