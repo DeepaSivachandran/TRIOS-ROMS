@@ -65,8 +65,9 @@ namespace ROMS
 
         private void PUR_Calculator_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try {
-                MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
+            try
+            {
+                //MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
             }
             catch (Exception ex)
             {
@@ -324,6 +325,49 @@ namespace ROMS
             try
             {
                 txtValue.Text = lblFinalValue.Text;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOK_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnOK.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOK_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnOK.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(lblFinalValue.Text != "0")
+                {
+                    MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
+                }
+                this.Close();
             }
             catch (Exception ex)
             {
